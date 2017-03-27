@@ -1,21 +1,32 @@
 {
+  "DVTSourceControlWorkspaceBlueprintPrimaryRemoteRepositoryKey" : "DBCF5618F57EF1F328B33BAFBA334F8B65763166+++C939FEE",
   "DVTSourceControlWorkspaceBlueprintWorkingCopyRepositoryLocationsKey" : {
 
   },
   "DVTSourceControlWorkspaceBlueprintWorkingCopyStatesKey" : {
     "95438028B10BBB846574013D29F154A00556A9D1+++BE6753C" : 9223372036854775807,
-    "E084C86B03F81D63323C9E7510697EA528A758C7+++387EE7C" : 9223372036854775807,
+    "D0725CAC6FF2D66F2C83C2C48DC12106D42DAA64+++2BF4988" : 9223372036854775807,
     "95438028B10BBB846574013D29F154A00556A9D1+++231572E" : 9223372036854775807,
     "95438028B10BBB846574013D29F154A00556A9D1+++2664596" : 9223372036854775807,
-    "D0725CAC6FF2D66F2C83C2C48DC12106D42DAA64+++2BF4988" : 9223372036854775807
+    "95438028B10BBB846574013D29F154A00556A9D1+++3F67C5F" : 9223372036854775807,
+    "E084C86B03F81D63323C9E7510697EA528A758C7+++C52FF20" : 9223372036854775807,
+    "E084C86B03F81D63323C9E7510697EA528A758C7+++387EE7C" : 9223372036854775807,
+    "D0725CAC6FF2D66F2C83C2C48DC12106D42DAA64+++BD37CAC" : 9223372036854775807,
+    "DBCF5618F57EF1F328B33BAFBA334F8B65763166+++C939FEE" : 9223372036854775807,
+    "95438028B10BBB846574013D29F154A00556A9D1+++B951747" : 9223372036854775807
   },
   "DVTSourceControlWorkspaceBlueprintIdentifierKey" : "73AED094-79E0-4BF0-8AD2-DA2D6CDCFBDD",
   "DVTSourceControlWorkspaceBlueprintWorkingCopyPathsKey" : {
     "95438028B10BBB846574013D29F154A00556A9D1+++BE6753C" : "instantsearch\/Carthage\/Checkouts\/Quick\/Externals\/Nimble\/",
-    "E084C86B03F81D63323C9E7510697EA528A758C7+++387EE7C" : "instantsearch\/Carthage\/Checkouts\/xcconfigs\/",
+    "D0725CAC6FF2D66F2C83C2C48DC12106D42DAA64+++2BF4988" : "instantsearch\/Carthage\/Checkouts\/Quick\/",
     "95438028B10BBB846574013D29F154A00556A9D1+++231572E" : "instantsearch\/Carthage\/Checkouts\/Nimble\/",
     "95438028B10BBB846574013D29F154A00556A9D1+++2664596" : "instantsearch\/Carthage\/Checkouts\/Quick\/Externals\/Nimble\/",
-    "D0725CAC6FF2D66F2C83C2C48DC12106D42DAA64+++2BF4988" : "instantsearch\/Carthage\/Checkouts\/Quick\/"
+    "95438028B10BBB846574013D29F154A00556A9D1+++3F67C5F" : "instantsearch-ios\/Carthage\/Checkouts\/Quick\/Externals\/Nimble\/",
+    "E084C86B03F81D63323C9E7510697EA528A758C7+++C52FF20" : "instantsearch-ios\/Carthage\/Checkouts\/xcconfigs\/",
+    "E084C86B03F81D63323C9E7510697EA528A758C7+++387EE7C" : "instantsearch\/Carthage\/Checkouts\/xcconfigs\/",
+    "D0725CAC6FF2D66F2C83C2C48DC12106D42DAA64+++BD37CAC" : "instantsearch-ios\/Carthage\/Checkouts\/Quick\/",
+    "DBCF5618F57EF1F328B33BAFBA334F8B65763166+++C939FEE" : "instantsearch-ios\/",
+    "95438028B10BBB846574013D29F154A00556A9D1+++B951747" : "instantsearch-ios\/Carthage\/Checkouts\/Nimble\/"
   },
   "DVTSourceControlWorkspaceBlueprintNameKey" : "instantsearch",
   "DVTSourceControlWorkspaceBlueprintVersion" : 204,
@@ -34,6 +45,16 @@
     {
       "DVTSourceControlWorkspaceBlueprintRemoteRepositoryURLKey" : "https:\/\/github.com\/Quick\/Nimble.git",
       "DVTSourceControlWorkspaceBlueprintRemoteRepositorySystemKey" : "com.apple.dt.Xcode.sourcecontrol.Git",
+      "DVTSourceControlWorkspaceBlueprintRemoteRepositoryIdentifierKey" : "95438028B10BBB846574013D29F154A00556A9D1+++3F67C5F"
+    },
+    {
+      "DVTSourceControlWorkspaceBlueprintRemoteRepositoryURLKey" : "https:\/\/github.com\/Quick\/Nimble.git",
+      "DVTSourceControlWorkspaceBlueprintRemoteRepositorySystemKey" : "com.apple.dt.Xcode.sourcecontrol.Git",
+      "DVTSourceControlWorkspaceBlueprintRemoteRepositoryIdentifierKey" : "95438028B10BBB846574013D29F154A00556A9D1+++B951747"
+    },
+    {
+      "DVTSourceControlWorkspaceBlueprintRemoteRepositoryURLKey" : "https:\/\/github.com\/Quick\/Nimble.git",
+      "DVTSourceControlWorkspaceBlueprintRemoteRepositorySystemKey" : "com.apple.dt.Xcode.sourcecontrol.Git",
       "DVTSourceControlWorkspaceBlueprintRemoteRepositoryIdentifierKey" : "95438028B10BBB846574013D29F154A00556A9D1+++BE6753C"
     },
     {
@@ -42,9 +63,24 @@
       "DVTSourceControlWorkspaceBlueprintRemoteRepositoryIdentifierKey" : "D0725CAC6FF2D66F2C83C2C48DC12106D42DAA64+++2BF4988"
     },
     {
+      "DVTSourceControlWorkspaceBlueprintRemoteRepositoryURLKey" : "https:\/\/github.com\/Quick\/Quick.git",
+      "DVTSourceControlWorkspaceBlueprintRemoteRepositorySystemKey" : "com.apple.dt.Xcode.sourcecontrol.Git",
+      "DVTSourceControlWorkspaceBlueprintRemoteRepositoryIdentifierKey" : "D0725CAC6FF2D66F2C83C2C48DC12106D42DAA64+++BD37CAC"
+    },
+    {
+      "DVTSourceControlWorkspaceBlueprintRemoteRepositoryURLKey" : "https:\/\/github.com\/algolia\/instantsearch-ios",
+      "DVTSourceControlWorkspaceBlueprintRemoteRepositorySystemKey" : "com.apple.dt.Xcode.sourcecontrol.Git",
+      "DVTSourceControlWorkspaceBlueprintRemoteRepositoryIdentifierKey" : "DBCF5618F57EF1F328B33BAFBA334F8B65763166+++C939FEE"
+    },
+    {
       "DVTSourceControlWorkspaceBlueprintRemoteRepositoryURLKey" : "https:\/\/github.com\/jspahrsummers\/xcconfigs.git",
       "DVTSourceControlWorkspaceBlueprintRemoteRepositorySystemKey" : "com.apple.dt.Xcode.sourcecontrol.Git",
       "DVTSourceControlWorkspaceBlueprintRemoteRepositoryIdentifierKey" : "E084C86B03F81D63323C9E7510697EA528A758C7+++387EE7C"
+    },
+    {
+      "DVTSourceControlWorkspaceBlueprintRemoteRepositoryURLKey" : "https:\/\/github.com\/jspahrsummers\/xcconfigs.git",
+      "DVTSourceControlWorkspaceBlueprintRemoteRepositorySystemKey" : "com.apple.dt.Xcode.sourcecontrol.Git",
+      "DVTSourceControlWorkspaceBlueprintRemoteRepositoryIdentifierKey" : "E084C86B03F81D63323C9E7510697EA528A758C7+++C52FF20"
     }
   ]
 }
