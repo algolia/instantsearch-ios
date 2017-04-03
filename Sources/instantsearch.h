@@ -1,17 +1,18 @@
 //
-//  instantsearch.h
-//  instantsearch
+//  InstantSearch.h
+//  InstantSearch
 //
-//  Created by Algolia on 04/10/16.
-//  Copyright © 2017 Algolia. All rights reserved.
+//  Copyright © 2016 Algolia. All rights reserved.
 //
 
-#import <Foundation/Foundation.h>
+#import <UIKit/UIKit.h>
 
-//! Project version number for instantsearch.
-FOUNDATION_EXPORT double instantsearchVersionNumber;
+//! Project version number for InstantSearch.
+FOUNDATION_EXPORT double InstantSearchVersionNumber;
 
-//! Project version string for instantsearch.
-FOUNDATION_EXPORT const unsigned char instantsearchVersionString[];
+//! Project version string for InstantSearch.
+FOUNDATION_EXPORT const unsigned char InstantSearchVersionString[];
 
-// In this header, you should import all the public headers of your framework using statements like #import <instantsearch/PublicHeader.h>
+// In this header, you should import all the public headers of your framework using statements like #import <InstantSearch/PublicHeader.h>
+
+

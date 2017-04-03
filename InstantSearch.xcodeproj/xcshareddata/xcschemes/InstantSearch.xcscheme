@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <Scheme
-   LastUpgradeVersion = "820"
+   LastUpgradeVersion = "0800"
    version = "1.3">
    <BuildAction
       parallelizeBuildables = "YES"
@@ -14,10 +14,10 @@
             buildForAnalyzing = "YES">
             <BuildableReference
                BuildableIdentifier = "primary"
-               BlueprintIdentifier = "3549BB2D1DA389DB00C63030"
-               BuildableName = "instantsearch.framework"
-               BlueprintName = "instantsearch-watchOS"
-               ReferencedContainer = "container:instantsearch.xcodeproj">
+               BlueprintIdentifier = "28F8287C1C494B2C00330CF4"
+               BuildableName = "InstantSearch.framework"
+               BlueprintName = "InstantSearch"
+               ReferencedContainer = "container:InstantSearch.xcodeproj">
             </BuildableReference>
          </BuildActionEntry>
       </BuildActionEntries>
@@ -28,7 +28,26 @@
       selectedLauncherIdentifier = "Xcode.DebuggerFoundation.Launcher.LLDB"
       shouldUseLaunchSchemeArgsEnv = "YES">
       <Testables>
+         <TestableReference
+            skipped = "NO">
+            <BuildableReference
+               BuildableIdentifier = "primary"
+               BlueprintIdentifier = "28F828861C494B2C00330CF4"
+               BuildableName = "InstantSearchTests.xctest"
+               BlueprintName = "InstantSearchTests"
+               ReferencedContainer = "container:InstantSearch.xcodeproj">
+            </BuildableReference>
+         </TestableReference>
       </Testables>
+      <MacroExpansion>
+         <BuildableReference
+            BuildableIdentifier = "primary"
+            BlueprintIdentifier = "28F8287C1C494B2C00330CF4"
+            BuildableName = "InstantSearch.framework"
+            BlueprintName = "InstantSearch"
+            ReferencedContainer = "container:InstantSearch.xcodeproj">
+         </BuildableReference>
+      </MacroExpansion>
       <AdditionalOptions>
       </AdditionalOptions>
    </TestAction>
@@ -45,10 +64,10 @@
       <MacroExpansion>
          <BuildableReference
             BuildableIdentifier = "primary"
-            BlueprintIdentifier = "3549BB2D1DA389DB00C63030"
-            BuildableName = "instantsearch.framework"
-            BlueprintName = "instantsearch-watchOS"
-            ReferencedContainer = "container:instantsearch.xcodeproj">
+            BlueprintIdentifier = "28F8287C1C494B2C00330CF4"
+            BuildableName = "InstantSearch.framework"
+            BlueprintName = "InstantSearch"
+            ReferencedContainer = "container:InstantSearch.xcodeproj">
          </BuildableReference>
       </MacroExpansion>
       <AdditionalOptions>
@@ -63,10 +82,10 @@
       <MacroExpansion>
          <BuildableReference
             BuildableIdentifier = "primary"
-            BlueprintIdentifier = "3549BB2D1DA389DB00C63030"
-            BuildableName = "instantsearch.framework"
-            BlueprintName = "instantsearch-watchOS"
-            ReferencedContainer = "container:instantsearch.xcodeproj">
+            BlueprintIdentifier = "28F8287C1C494B2C00330CF4"
+            BuildableName = "InstantSearch.framework"
+            BlueprintName = "InstantSearch"
+            ReferencedContainer = "container:InstantSearch.xcodeproj">
          </BuildableReference>
       </MacroExpansion>
    </ProfileAction>

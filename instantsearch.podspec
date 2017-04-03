@@ -1,19 +1,18 @@
 Pod::Spec.new do |s|
- s.name = 'instantsearch'
- s.version = '0.0.1'
- s.license = { :type => "MIT", :file => "LICENSE" }
- s.summary = 'A library of widgets and helpers to build instant-search applications on iOS.'
- s.homepage = 'https://www.algolia.com/'
- s.social_media_url = 'https://twitter.com/algolia'
- s.authors = { "Algolia" => "guy.daher@algolia.com" }
- s.source = { :git => "https://github.com/Algolia/instantsearch.git", :tag => "v"+s.version.to_s }
- s.platforms     = { :ios => "8.0", :osx => "10.10", :tvos => "9.0", :watchos => "2.0" }
- s.requires_arc = true
-
- s.default_subspec = "Core"
- s.subspec "Core" do |ss|
-     ss.source_files  = "Sources/*.swift"
-     ss.framework  = "Foundation"
- end
-
+  s.name             = "InstantSearch"
+  s.version          = "1.0.0"
+  s.summary          = "A short description of InstantSearch."
+  s.homepage         = "https://github.com/algolia/InstantSearch"
+  s.license          = { type: 'MIT', file: 'LICENSE' }
+  s.author           = { "Algolia" => "contact@algolia.com" }
+  s.source           = { git: "https://github.com/algolia/InstantSearch.git", tag: s.version.to_s }
+  s.social_media_url = 'https://twitter.com/algolia'
+  s.ios.deployment_target = '8.0'
+  s.requires_arc = true
+  s.ios.source_files = 'InstantSearch/Sources/**/*.{swift}'
+  # s.resource_bundles = {
+  #   'InstantSearch' => ['InstantSearch/Sources/**/*.xib']
+  # }
+  # s.ios.frameworks = 'UIKit', 'Foundation'
+  # s.dependency 'Eureka', '~> 1.0'
 end
