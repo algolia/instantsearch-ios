@@ -13,7 +13,7 @@ By [Algolia](http://algolia.com).
 
 ## Introduction
 
-InstantSearch is a library to .......
+InstantSearch iOS is a library providing widgets and helpers to help you build the best instant-search experience on iOS with Algolia. It is built on top of Algolia's [Swift API Client](https://github.com/algolia/algoliasearch-client-swift) to provide you a high-level solution to quickly build various search interfaces.
 
 <!-- <img src="Example/InstantSearch.gif" width="300"/> -->
 
