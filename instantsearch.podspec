@@ -14,5 +14,5 @@ Pod::Spec.new do |s|
   #   'InstantSearch' => ['InstantSearch/Sources/**/*.xib']
   # }
   # s.ios.frameworks = 'UIKit', 'Foundation'
-  # s.dependency 'Eureka', '~> 1.0'
+  s.dependency 'InstantSearch-Core-Swift', '~> 1.0'
 end

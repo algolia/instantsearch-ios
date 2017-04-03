@@ -11,6 +11,8 @@
 		28F828811C494B2C00330CF4 /* InstantSearch.h in Headers */ = {isa = PBXBuildFile; fileRef = 28F828801C494B2C00330CF4 /* InstantSearch.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		28F828881C494B2C00330CF4 /* InstantSearch.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 28F8287D1C494B2C00330CF4 /* InstantSearch.framework */; };
 		28F8289A1C494B4200330CF4 /* iOS.swift in Sources */ = {isa = PBXBuildFile; fileRef = 28F828991C494B4200330CF4 /* iOS.swift */; };
+		6B3F1A5AC5B19AB0F4FC9B3C /* Pods_InstantSearchTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 33749566A6B791EB78B9A2F5 /* Pods_InstantSearchTests.framework */; };
+		BC2BDF7408F80426E13BBB47 /* Pods_InstantSearch.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C5E2FC6F7BC12D4C7904D4D8 /* Pods_InstantSearch.framework */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -32,6 +34,12 @@
 		28F8288E1C494B2C00330CF4 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist; name = Info.plist; path = Tests/Info.plist; sourceTree = "<group>"; };
 		28F828991C494B4200330CF4 /* iOS.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = iOS.swift; sourceTree = "<group>"; };
 		28F8289B1C494BF100330CF4 /* Playground.playground */ = {isa = PBXFileReference; lastKnownFileType = file.playground; name = Playground.playground; path = Example/Playground.playground; sourceTree = "<group>"; };
+		33749566A6B791EB78B9A2F5 /* Pods_InstantSearchTests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_InstantSearchTests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		95AABD24AC80EDEEA69D9324 /* Pods-InstantSearchTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-InstantSearchTests.debug.xcconfig"; path = "Pods/Target Support Files/Pods-InstantSearchTests/Pods-InstantSearchTests.debug.xcconfig"; sourceTree = "<group>"; };
+		997ABAD475E7B1B7B982693A /* Pods-InstantSearch.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-InstantSearch.debug.xcconfig"; path = "Pods/Target Support Files/Pods-InstantSearch/Pods-InstantSearch.debug.xcconfig"; sourceTree = "<group>"; };
+		A41C629CA0D1EB7443B828C6 /* Pods-InstantSearchTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-InstantSearchTests.release.xcconfig"; path = "Pods/Target Support Files/Pods-InstantSearchTests/Pods-InstantSearchTests.release.xcconfig"; sourceTree = "<group>"; };
+		C5E2FC6F7BC12D4C7904D4D8 /* Pods_InstantSearch.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_InstantSearch.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		CFF04E06E7D4D0CDE5F6CF30 /* Pods-InstantSearch.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-InstantSearch.release.xcconfig"; path = "Pods/Target Support Files/Pods-InstantSearch/Pods-InstantSearch.release.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -39,6 +47,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				BC2BDF7408F80426E13BBB47 /* Pods_InstantSearch.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -47,6 +56,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				28F828881C494B2C00330CF4 /* InstantSearch.framework in Frameworks */,
+				6B3F1A5AC5B19AB0F4FC9B3C /* Pods_InstantSearchTests.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -60,6 +70,8 @@
 				28F828971C494B4200330CF4 /* Sources */,
 				28F8288B1C494B2C00330CF4 /* Tests */,
 				28F8287E1C494B2C00330CF4 /* Products */,
+				2B8A051A461640BE916F0ABE /* Pods */,
+				DFE4D6EB73C731EB10B0D33C /* Frameworks */,
 			);
 			sourceTree = "<group>";
 		};
@@ -92,6 +104,26 @@
 			path = Sources;
 			sourceTree = "<group>";
 		};
+		2B8A051A461640BE916F0ABE /* Pods */ = {
+			isa = PBXGroup;
+			children = (
+				997ABAD475E7B1B7B982693A /* Pods-InstantSearch.debug.xcconfig */,
+				CFF04E06E7D4D0CDE5F6CF30 /* Pods-InstantSearch.release.xcconfig */,
+				95AABD24AC80EDEEA69D9324 /* Pods-InstantSearchTests.debug.xcconfig */,
+				A41C629CA0D1EB7443B828C6 /* Pods-InstantSearchTests.release.xcconfig */,
+			);
+			name = Pods;
+			sourceTree = "<group>";
+		};
+		DFE4D6EB73C731EB10B0D33C /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				C5E2FC6F7BC12D4C7904D4D8 /* Pods_InstantSearch.framework */,
+				33749566A6B791EB78B9A2F5 /* Pods_InstantSearchTests.framework */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
 /* End PBXGroup section */
 
 /* Begin PBXHeadersBuildPhase section */
@@ -110,10 +142,12 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = 28F828911C494B2C00330CF4 /* Build configuration list for PBXNativeTarget "InstantSearch" */;
 			buildPhases = (
+				CCBDAB4C027CF214FB4442A5 /* [CP] Check Pods Manifest.lock */,
 				28F828781C494B2C00330CF4 /* Sources */,
 				28F828791C494B2C00330CF4 /* Frameworks */,
 				28F8287A1C494B2C00330CF4 /* Headers */,
 				28F8287B1C494B2C00330CF4 /* Resources */,
+				0B71F67F22D833E60800EECD /* [CP] Copy Pods Resources */,
 			);
 			buildRules = (
 			);
@@ -128,9 +162,12 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = 28F828941C494B2C00330CF4 /* Build configuration list for PBXNativeTarget "InstantSearchTests" */;
 			buildPhases = (
+				A4568DBDAED4C8B4127B804A /* [CP] Check Pods Manifest.lock */,
 				28F828831C494B2C00330CF4 /* Sources */,
 				28F828841C494B2C00330CF4 /* Frameworks */,
 				28F828851C494B2C00330CF4 /* Resources */,
+				AA287B1EEC251DD5B5099EB1 /* [CP] Embed Pods Frameworks */,
+				66F284E979F0C7023AA7E83A /* [CP] Copy Pods Resources */,
 			);
 			buildRules = (
 			);
@@ -195,6 +232,84 @@
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXResourcesBuildPhase section */
+
+/* Begin PBXShellScriptBuildPhase section */
+		0B71F67F22D833E60800EECD /* [CP] Copy Pods Resources */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "[CP] Copy Pods Resources";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-InstantSearch/Pods-InstantSearch-resources.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+		66F284E979F0C7023AA7E83A /* [CP] Copy Pods Resources */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "[CP] Copy Pods Resources";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-InstantSearchTests/Pods-InstantSearchTests-resources.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+		A4568DBDAED4C8B4127B804A /* [CP] Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "[CP] Check Pods Manifest.lock";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_ROOT}/../Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n";
+			showEnvVarsInLog = 0;
+		};
+		AA287B1EEC251DD5B5099EB1 /* [CP] Embed Pods Frameworks */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "[CP] Embed Pods Frameworks";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-InstantSearchTests/Pods-InstantSearchTests-frameworks.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+		CCBDAB4C027CF214FB4442A5 /* [CP] Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "[CP] Check Pods Manifest.lock";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_ROOT}/../Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n";
+			showEnvVarsInLog = 0;
+		};
+/* End PBXShellScriptBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
 		28F828781C494B2C00330CF4 /* Sources */ = {
@@ -320,6 +435,7 @@
 		};
 		28F828921C494B2C00330CF4 /* Debug */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 997ABAD475E7B1B7B982693A /* Pods-InstantSearch.debug.xcconfig */;
 			buildSettings = {
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "";
 				DEFINES_MODULE = YES;
@@ -338,6 +454,7 @@
 		};
 		28F828931C494B2C00330CF4 /* Release */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = CFF04E06E7D4D0CDE5F6CF30 /* Pods-InstantSearch.release.xcconfig */;
 			buildSettings = {
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "";
 				DEFINES_MODULE = YES;
@@ -356,6 +473,7 @@
 		};
 		28F828951C494B2C00330CF4 /* Debug */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 95AABD24AC80EDEEA69D9324 /* Pods-InstantSearchTests.debug.xcconfig */;
 			buildSettings = {
 				CLANG_ENABLE_MODULES = YES;
 				INFOPLIST_FILE = Tests/Info.plist;
@@ -369,6 +487,7 @@
 		};
 		28F828961C494B2C00330CF4 /* Release */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = A41C629CA0D1EB7443B828C6 /* Pods-InstantSearchTests.release.xcconfig */;
 			buildSettings = {
 				CLANG_ENABLE_MODULES = YES;
 				INFOPLIST_FILE = Tests/Info.plist;
