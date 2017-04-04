@@ -1,5 +1,5 @@
 //
-//  InstantSearchPresenter.swift
+//  InstantSearchBinder.swift
 //  ecommerce
 //
 //  Created by Guy Daher on 08/03/2017.

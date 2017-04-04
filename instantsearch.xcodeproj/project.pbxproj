@@ -17,7 +17,7 @@
 		E27C16441E9394250091D79E /* SliderWidget.swift in Sources */ = {isa = PBXBuildFile; fileRef = E27C16381E9394250091D79E /* SliderWidget.swift */; };
 		E27C16451E9394250091D79E /* SearchBarWidget.swift in Sources */ = {isa = PBXBuildFile; fileRef = E27C16391E9394250091D79E /* SearchBarWidget.swift */; };
 		E27C16461E9394250091D79E /* StatsWidget.swift in Sources */ = {isa = PBXBuildFile; fileRef = E27C163A1E9394250091D79E /* StatsWidget.swift */; };
-		E27C16471E9394250091D79E /* InstantSearchPresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = E27C163B1E9394250091D79E /* InstantSearchPresenter.swift */; };
+		E27C16471E9394250091D79E /* InstantSearchBinder.swift in Sources */ = {isa = PBXBuildFile; fileRef = E27C163B1E9394250091D79E /* InstantSearchBinder.swift */; };
 		E27C16481E9394250091D79E /* InstantSearchMultiplePresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = E27C163C1E9394250091D79E /* InstantSearchMultiplePresenter.swift */; };
 		E27C16491E9394250091D79E /* ClearAllWidget.swift in Sources */ = {isa = PBXBuildFile; fileRef = E27C163D1E9394250091D79E /* ClearAllWidget.swift */; };
 		E27C164A1E9394250091D79E /* ActivityIndicatorView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E27C163E1E9394250091D79E /* ActivityIndicatorView.swift */; };
@@ -55,7 +55,7 @@
 		E27C16381E9394250091D79E /* SliderWidget.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SliderWidget.swift; sourceTree = "<group>"; };
 		E27C16391E9394250091D79E /* SearchBarWidget.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SearchBarWidget.swift; sourceTree = "<group>"; };
 		E27C163A1E9394250091D79E /* StatsWidget.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = StatsWidget.swift; sourceTree = "<group>"; };
-		E27C163B1E9394250091D79E /* InstantSearchPresenter.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = InstantSearchPresenter.swift; sourceTree = "<group>"; };
+		E27C163B1E9394250091D79E /* InstantSearchBinder.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = InstantSearchBinder.swift; sourceTree = "<group>"; };
 		E27C163C1E9394250091D79E /* InstantSearchMultiplePresenter.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = InstantSearchMultiplePresenter.swift; sourceTree = "<group>"; };
 		E27C163D1E9394250091D79E /* ClearAllWidget.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ClearAllWidget.swift; sourceTree = "<group>"; };
 		E27C163E1E9394250091D79E /* ActivityIndicatorView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ActivityIndicatorView.swift; sourceTree = "<group>"; };
@@ -124,7 +124,7 @@
 				E27C16381E9394250091D79E /* SliderWidget.swift */,
 				E27C16391E9394250091D79E /* SearchBarWidget.swift */,
 				E27C163A1E9394250091D79E /* StatsWidget.swift */,
-				E27C163B1E9394250091D79E /* InstantSearchPresenter.swift */,
+				E27C163B1E9394250091D79E /* InstantSearchBinder.swift */,
 				E27C163C1E9394250091D79E /* InstantSearchMultiplePresenter.swift */,
 				E27C163D1E9394250091D79E /* ClearAllWidget.swift */,
 				E27C163E1E9394250091D79E /* ActivityIndicatorView.swift */,
@@ -223,6 +223,7 @@
 				TargetAttributes = {
 					28F8287C1C494B2C00330CF4 = {
 						CreatedOnToolsVersion = 7.2;
+						DevelopmentTeam = 5RDFJYUV23;
 						LastSwiftMigration = 0830;
 					};
 					28F828861C494B2C00330CF4 = {
@@ -352,7 +353,7 @@
 				E27C16431E9394250091D79E /* HitsTableWidget.swift in Sources */,
 				E27C16461E9394250091D79E /* StatsWidget.swift in Sources */,
 				E27C164B1E9394250091D79E /* RefinementControlWidget.swift in Sources */,
-				E27C16471E9394250091D79E /* InstantSearchPresenter.swift in Sources */,
+				E27C16471E9394250091D79E /* InstantSearchBinder.swift in Sources */,
 				E27C16491E9394250091D79E /* ClearAllWidget.swift in Sources */,
 				E27C164C1E9394250091D79E /* AlgoliaWidget.swift in Sources */,
 				E27C16441E9394250091D79E /* SliderWidget.swift in Sources */,
@@ -482,8 +483,9 @@
 			baseConfigurationReference = 997ABAD475E7B1B7B982693A /* Pods-InstantSearch.debug.xcconfig */;
 			buildSettings = {
 				CLANG_ENABLE_MODULES = YES;
-				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				DEFINES_MODULE = YES;
+				DEVELOPMENT_TEAM = 5RDFJYUV23;
 				DYLIB_COMPATIBILITY_VERSION = 1;
 				DYLIB_CURRENT_VERSION = 1;
 				DYLIB_INSTALL_NAME_BASE = "@rpath";
@@ -503,8 +505,9 @@
 			baseConfigurationReference = CFF04E06E7D4D0CDE5F6CF30 /* Pods-InstantSearch.release.xcconfig */;
 			buildSettings = {
 				CLANG_ENABLE_MODULES = YES;
-				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				DEFINES_MODULE = YES;
+				DEVELOPMENT_TEAM = 5RDFJYUV23;
 				DYLIB_COMPATIBILITY_VERSION = 1;
 				DYLIB_CURRENT_VERSION = 1;
 				DYLIB_INSTALL_NAME_BASE = "@rpath";
