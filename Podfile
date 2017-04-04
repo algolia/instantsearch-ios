@@ -6,7 +6,7 @@ target 'InstantSearch' do
   use_frameworks!
 
   # Pods for InstantSearch
-  pod "InstantSearch-Core-Swift"
+  pod "InstantSearch-Core-Swift”, :path => ‘/Users/guydaher/Developer/Algolia/iOS/instantsearch-core-swift’
 
   target 'InstantSearchTests' do
     inherit! :search_paths
