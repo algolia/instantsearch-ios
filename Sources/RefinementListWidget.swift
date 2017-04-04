@@ -11,7 +11,7 @@ import UIKit
 import InstantSearchCore
 
 @IBDesignable
-class RefinementListWidget: UITableView, AlgoliaWidget, AlgoliaFacetDataSource2, AlgoliaFacetDelegate, UITableViewDataSource, UITableViewDelegate {
+@objc public class RefinementListWidget: UITableView, AlgoliaWidget, AlgoliaFacetDataSource2, AlgoliaFacetDelegate, UITableViewDataSource, UITableViewDelegate {
     private var searcher: Searcher!
     @IBInspectable var facet: String = ""
     @IBInspectable var areRefinedValuesFirst: Bool = true
@@ -29,7 +29,7 @@ class RefinementListWidget: UITableView, AlgoliaWidget, AlgoliaFacetDataSource2,
     var facetResults: [FacetValue] = []
     weak var facetDataSource: FacetDataSource?
     
-    func initWith(searcher: Searcher) {
+    public func initWith(searcher: Searcher) {
         self.searcher = searcher
         delegate = self
         dataSource = self
@@ -41,7 +41,7 @@ class RefinementListWidget: UITableView, AlgoliaWidget, AlgoliaFacetDataSource2,
         }
     }
     
-    func on(results: SearchResults?, error: Error?, userInfo: [String : Any]) {
+    public func on(results: SearchResults?, error: Error?, userInfo: [String : Any]) {
             // TODO: Fix that cause for some reason, can't find the facet refinement.
             //,searcher.params.hasFacetRefinements(name: facet)
             // else { return }
@@ -50,7 +50,7 @@ class RefinementListWidget: UITableView, AlgoliaWidget, AlgoliaFacetDataSource2,
         reloadData()
     }
     
-    func onReset() {
+    public func onReset() {
         
     }
     
@@ -72,17 +72,17 @@ class RefinementListWidget: UITableView, AlgoliaWidget, AlgoliaFacetDataSource2,
         searcher.search()
     }
     
-    func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+    public func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let facetValue = facetForRow(at: indexPath)
         let isRefined = self.isRefined(at: indexPath)
         return facetDataSource?.cellFor(facetValue: facetValue, isRefined: isRefined, at: indexPath) ?? UITableViewCell()
     }
     
-    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+    public func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return numberOfRows(in: section)
     }
     
-    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+    public func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         deselectRow(at: indexPath, animated: true)
         didSelectRow(at: indexPath)
     }

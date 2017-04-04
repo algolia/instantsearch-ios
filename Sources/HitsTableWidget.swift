@@ -9,14 +9,14 @@
 import Foundation
 import InstantSearchCore
 
-public class HitsTableWidget: UITableView, UITableViewDataSource, AlgoliaWidget, AlgoliaTableHitDataSource {
+@objc public class HitsTableWidget: UITableView, UITableViewDataSource, AlgoliaWidget, AlgoliaTableHitDataSource {
     
     var searcher: Searcher!
     @IBInspectable var hitsPerPage: UInt = 20
     @IBInspectable var infiniteScrolling: Bool = true
     @IBInspectable var remainingItemsBeforeLoading: UInt = 5
     
-    @objc func initWith(searcher: Searcher) {
+    @objc public func initWith(searcher: Searcher) {
         self.searcher = searcher
         searcher.params.hitsPerPage = hitsPerPage
         dataSource = self
@@ -28,7 +28,7 @@ public class HitsTableWidget: UITableView, UITableViewDataSource, AlgoliaWidget,
     
     weak var hitDataSource: HitDataSource?
     
-    @objc func on(results: SearchResults?, error: Error?, userInfo: [String: Any]) {
+    @objc public func on(results: SearchResults?, error: Error?, userInfo: [String: Any]) {
         // TODO: Work on that...
         if searcher.hits != nil {
             reloadData()
@@ -47,7 +47,7 @@ public class HitsTableWidget: UITableView, UITableViewDataSource, AlgoliaWidget,
         }
     }
     
-    @objc func onReset() {
+    @objc public func onReset() {
         
     }
     

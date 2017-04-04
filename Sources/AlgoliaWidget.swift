@@ -9,7 +9,7 @@
 import Foundation
 import InstantSearchCore
 
-@objc protocol AlgoliaWidget: class {
+@objc public protocol AlgoliaWidget: class {
     @objc func initWith(searcher: Searcher)
     @objc func on(results: SearchResults?, error: Error?, userInfo: [String: Any])
     @objc optional func onReset()

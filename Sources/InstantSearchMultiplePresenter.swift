@@ -9,7 +9,7 @@
 import Foundation
 import InstantSearchCore
 
-@objc class InstantSearchMultiplePresenter: NSObject {
+@objc public class InstantSearchMultiplePresenter: NSObject {
     @objc var instantSearchPresenters: [InstantSearchBinder] = []
     
     @objc init(searcher: Searcher) {
@@ -33,7 +33,7 @@ extension InstantSearchMultiplePresenter: UISearchResultsUpdating {
         searchController.searchResultsUpdater = self
     }
     
-    func updateSearchResults(for searchController: UISearchController) {
+    public func updateSearchResults(for searchController: UISearchController) {
         guard let searchText = searchController.searchBar.text else { return }
         
         searchInAllPresenters(searchText: searchText)
@@ -45,7 +45,7 @@ extension InstantSearchMultiplePresenter: UISearchBarDelegate {
         searchBar.delegate = self
     }
     
-    func searchBar(_ searchBar: UISearchBar, textDidChange searchText: String) {
+    public func searchBar(_ searchBar: UISearchBar, textDidChange searchText: String) {
         searchInAllPresenters(searchText: searchText)
     }
 }

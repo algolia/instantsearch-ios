@@ -11,7 +11,7 @@ import InstantSearchCore
 
 let clearAllFiltersNotification = Notification.Name(rawValue: "clearAllFiltersNotification")
 
-@objc class InstantSearchBinder : NSObject, SearcherDelegate {
+@objc public class InstantSearchBinder : NSObject, SearcherDelegate {
     
     // MARK: - Properties
     
@@ -117,7 +117,7 @@ let clearAllFiltersNotification = Notification.Name(rawValue: "clearAllFiltersNo
     
     // MARK: - SearcherDelegate
     
-    internal func searcher(_ searcher: Searcher, didReceive results: SearchResults?, error: Error?, userInfo: [String : Any]) {
+    public func searcher(_ searcher: Searcher, didReceive results: SearchResults?, error: Error?, userInfo: [String : Any]) {
         for algoliaWidget in algoliaWidgets {
             algoliaWidget.on(results: results, error: error, userInfo: userInfo)
         }
@@ -174,7 +174,7 @@ extension InstantSearchBinder: UISearchResultsUpdating {
         searchController.searchResultsUpdater = self
     }
     
-    func updateSearchResults(for searchController: UISearchController) {
+    public func updateSearchResults(for searchController: UISearchController) {
         guard let searchText = searchController.searchBar.text else { return }
         
         searchInPresenter(searchText: searchText)
@@ -186,7 +186,7 @@ extension InstantSearchBinder: UISearchBarDelegate {
         searchBar.delegate = self
     }
     
-    func searchBar(_ searchBar: UISearchBar, textDidChange searchText: String) {
+    public func searchBar(_ searchBar: UISearchBar, textDidChange searchText: String) {
         searchInPresenter(searchText: searchText)
     }
 }

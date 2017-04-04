@@ -9,16 +9,16 @@
 import UIKit
 import InstantSearchCore
 
-class ClearAllWidget: UIButton, AlgoliaWidget {
+@objc public class ClearAllWidget: UIButton, AlgoliaWidget {
 
     private var searcher: Searcher!
     
-    func initWith(searcher: Searcher) {
+    public func initWith(searcher: Searcher) {
         self.searcher = searcher
         addTarget(self, action: #selector(self.clearFilter), for: .touchUpInside)
     }
     
-    func on(results: SearchResults?, error: Error?, userInfo: [String : Any]) {
+    public func on(results: SearchResults?, error: Error?, userInfo: [String : Any]) {
         
     }
     

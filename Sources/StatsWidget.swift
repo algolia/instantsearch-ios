@@ -10,7 +10,7 @@ import UIKit
 import InstantSearchCore
 
 @IBDesignable
-@objc class StatsWidget: UILabel, AlgoliaWidget {
+@objc public class StatsWidget: UILabel, AlgoliaWidget {
     private var searcher: Searcher?
     
     @IBInspectable public var resultTemplate: String! // TODO: Unsafe, fix that
@@ -19,7 +19,7 @@ import InstantSearchCore
     private let defaultResultTemplate = "{nbHits} results found in {processingTimeMS} ms"
     
     
-    func initWith(searcher: Searcher) {
+    public func initWith(searcher: Searcher) {
         self.searcher = searcher
         
         if self.resultTemplate == nil {
@@ -33,7 +33,7 @@ import InstantSearchCore
         }
     }
     
-    func on(results: SearchResults?, error: Error?, userInfo: [String: Any]) {
+    public func on(results: SearchResults?, error: Error?, userInfo: [String: Any]) {
         if let results = results {
             text = applyTemplate(resultTemplate: resultTemplate, results: results)
         }

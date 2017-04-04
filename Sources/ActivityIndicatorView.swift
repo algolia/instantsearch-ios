@@ -9,13 +9,13 @@
 import UIKit
 import InstantSearchCore
 
-class ActivityIndicatorView: UIActivityIndicatorView, AlgoliaWidget, SearchProgressDelegate {
+@objc public class ActivityIndicatorView: UIActivityIndicatorView, AlgoliaWidget, SearchProgressDelegate {
 
     var searchProgressController: SearchProgressController!
     
     // MARK: - AlgoliaWidget methods
     
-    func initWith(searcher: Searcher) {
+    public func initWith(searcher: Searcher) {
         searchProgressController = SearchProgressController(searcher: searcher)
         
 //        if searcher.hits == nil {
@@ -27,18 +27,18 @@ class ActivityIndicatorView: UIActivityIndicatorView, AlgoliaWidget, SearchProgr
         searchProgressController.delegate = self
     }
     
-    func on(results: SearchResults?, error: Error?, userInfo: [String : Any]) {
+    public func on(results: SearchResults?, error: Error?, userInfo: [String : Any]) {
         
     }
     
     // MARK: - SearchProgressDelegate methods
     
-    func searchDidStart(_ searchProgressController: SearchProgressController) {
+    public func searchDidStart(_ searchProgressController: SearchProgressController) {
         UIApplication.shared.isNetworkActivityIndicatorVisible = true
         startAnimating()
     }
     
-    func searchDidStop(_ searchProgressController: SearchProgressController) {
+    public func searchDidStop(_ searchProgressController: SearchProgressController) {
         UIApplication.shared.isNetworkActivityIndicatorVisible = false
         stopAnimating()
         

@@ -11,7 +11,7 @@ import InstantSearchCore
 import UIKit
 
 @IBDesignable
-@objc class SliderWidget: UISlider, RefinementControlWidget {
+@objc public class SliderWidget: UISlider, RefinementControlWidget {
     
     private var searcher: Searcher?
     var valueLabel: UILabel?
@@ -37,7 +37,7 @@ import UIKit
     internal var numericFiltersDebouncer = Debouncer(delay: 0.2)
     
     
-    @objc func initWith(searcher: Searcher) {
+    @objc public func initWith(searcher: Searcher) {
         self.searcher = searcher
         if let numeric = self.searcher?.params.getNumericRefinement(name: attributeName, op: op) {
             setValue(numeric.value.floatValue, animated: false)
@@ -46,7 +46,7 @@ import UIKit
         }
     }
     
-    @objc func registerValueChangedAction() {
+    @objc public func registerValueChangedAction() {
         addTarget(self, action: #selector(numericFilterValueChanged(sender:)), for: .valueChanged)
     }
     
@@ -57,11 +57,11 @@ import UIKit
         }
     }
     
-    @objc func getAttributeName() -> String {
+    @objc public func getAttributeName() -> String {
         return attributeName
     }
     
-    @objc func onRefinementChange(numerics: [NumericRefinement]) {
+    @objc public func onRefinementChange(numerics: [NumericRefinement]) {
         for numeric in numerics {
             if numeric.op == op {
                 setValue(numeric.value.floatValue, animated: false)
@@ -71,13 +71,13 @@ import UIKit
         }
     }
     
-    @objc func onReset() {
+    @objc public func onReset() {
         setValue(minimumValue, animated: false)
         // TODO: Is minimum the right choice? maybe we want max to be default! think about it...
         valueLabel?.text = "\(minimumValue)"
     }
     
-    @objc func on(results: SearchResults?, error: Error?, userInfo: [String: Any]) {
+    @objc public func on(results: SearchResults?, error: Error?, userInfo: [String: Any]) {
         
     }
 }

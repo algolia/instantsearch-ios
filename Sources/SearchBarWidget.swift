@@ -9,25 +9,25 @@
 import Foundation
 import InstantSearchCore
 
-class SearchBarWidget: UISearchBar, AlgoliaWidget, UISearchBarDelegate {
+@objc public class SearchBarWidget: UISearchBar, AlgoliaWidget, UISearchBarDelegate {
     
     private var searcher: Searcher!
     
-    func initWith(searcher: Searcher) {
+    public func initWith(searcher: Searcher) {
         self.searcher = searcher
         delegate = self
     }
     
-    func on(results: SearchResults?, error: Error?, userInfo: [String: Any]) {
+    public func on(results: SearchResults?, error: Error?, userInfo: [String: Any]) {
         
     }
     
-    func searchBar(_ searchBar: UISearchBar, textDidChange searchText: String) {
+    public func searchBar(_ searchBar: UISearchBar, textDidChange searchText: String) {
         searcher.params.query = searchText
         searcher.search()
     }
     
-    func onReset() {
+    public func onReset() {
         text = ""
     }
 }

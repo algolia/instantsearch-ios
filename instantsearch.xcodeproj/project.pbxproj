@@ -119,17 +119,10 @@
 		28F828971C494B4200330CF4 /* Sources */ = {
 			isa = PBXGroup;
 			children = (
-				E27C16361E9394250091D79E /* RefinementListWidget.swift */,
-				E27C16371E9394250091D79E /* HitsTableWidget.swift */,
-				E27C16381E9394250091D79E /* SliderWidget.swift */,
-				E27C16391E9394250091D79E /* SearchBarWidget.swift */,
-				E27C163A1E9394250091D79E /* StatsWidget.swift */,
 				E27C163B1E9394250091D79E /* InstantSearchBinder.swift */,
 				E27C163C1E9394250091D79E /* InstantSearchMultiplePresenter.swift */,
-				E27C163D1E9394250091D79E /* ClearAllWidget.swift */,
-				E27C163E1E9394250091D79E /* ActivityIndicatorView.swift */,
-				E27C163F1E9394250091D79E /* RefinementControlWidget.swift */,
-				E27C16401E9394250091D79E /* AlgoliaWidget.swift */,
+				E27C16551E939B690091D79E /* Protocols */,
+				E27C16541E939B430091D79E /* Widgets */,
 				E27C16411E9394250091D79E /* Helpers.swift */,
 				28F828801C494B2C00330CF4 /* InstantSearch.h */,
 				28F828821C494B2C00330CF4 /* Info.plist */,
@@ -155,6 +148,29 @@
 				33749566A6B791EB78B9A2F5 /* Pods_InstantSearchTests.framework */,
 			);
 			name = Frameworks;
+			sourceTree = "<group>";
+		};
+		E27C16541E939B430091D79E /* Widgets */ = {
+			isa = PBXGroup;
+			children = (
+				E27C16361E9394250091D79E /* RefinementListWidget.swift */,
+				E27C16371E9394250091D79E /* HitsTableWidget.swift */,
+				E27C16381E9394250091D79E /* SliderWidget.swift */,
+				E27C16391E9394250091D79E /* SearchBarWidget.swift */,
+				E27C163A1E9394250091D79E /* StatsWidget.swift */,
+				E27C163D1E9394250091D79E /* ClearAllWidget.swift */,
+				E27C163E1E9394250091D79E /* ActivityIndicatorView.swift */,
+			);
+			name = Widgets;
+			sourceTree = "<group>";
+		};
+		E27C16551E939B690091D79E /* Protocols */ = {
+			isa = PBXGroup;
+			children = (
+				E27C16401E9394250091D79E /* AlgoliaWidget.swift */,
+				E27C163F1E9394250091D79E /* RefinementControlWidget.swift */,
+			);
+			name = Protocols;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
