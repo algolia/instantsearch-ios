@@ -26,7 +26,7 @@ import InstantSearchCore
         }
     }
     
-    weak var hitDataSource: HitDataSource?
+    @objc public weak var hitDataSource: HitDataSource?
     
     @objc public func on(results: SearchResults?, error: Error?, userInfo: [String: Any]) {
         // TODO: Work on that...
@@ -51,11 +51,11 @@ import InstantSearchCore
         
     }
     
-    func numberOfRows(in section: Int) -> Int {
+    public func numberOfRows(in section: Int) -> Int {
         return searcher.hits?.count ?? 0
     }
     
-    func hitForRow(at indexPath: IndexPath) -> [String: Any] {
+    public func hitForRow(at indexPath: IndexPath) -> [String: Any] {
         loadMoreIfNecessary(rowNumber: indexPath.row)
         return searcher.hits![indexPath.row]
     }
@@ -70,11 +70,11 @@ import InstantSearchCore
     }
 }
 
-protocol HitDataSource: class {
+@objc public protocol HitDataSource: class {
     func cellFor(hit: [String: Any], at indexPath: IndexPath) -> UITableViewCell
 }
 
-protocol AlgoliaTableHitDataSource {
+@objc public protocol AlgoliaTableHitDataSource {
     func numberOfRows(in section: Int) -> Int
     func hitForRow(at indexPath: IndexPath) -> [String: Any]
 }

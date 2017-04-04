@@ -27,7 +27,7 @@ import UIKit
 private var highlightedBackgroundColorKey: Void?
 
 extension UILabel {
-    var highlightedBackgroundColor: UIColor? {
+    @objc public var highlightedBackgroundColor: UIColor? {
         get {
             return objc_getAssociatedObject(self, &highlightedBackgroundColorKey) as? UIColor
         }
@@ -36,7 +36,7 @@ extension UILabel {
         }
     }
     
-    var highlightedText: String? {
+    @objc public var highlightedText: String? {
         get {
             return attributedText?.string
         }

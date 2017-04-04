@@ -1,25 +1,35 @@
-//
-//  ViewController.swift
-//  Example
-//
-//  Copyright © 2016 Algolia. All rights reserved.
-//
-
 import UIKit
+import InstantSearchCore
 import InstantSearch
 
-class ViewController: UIViewController {
+class ViewController: UIViewController, HitDataSource {
+    
+    var instantSearchBinder: InstantSearchBinder!
+    @IBOutlet weak var hitsTable: HitsTableWidget!
 
     override func viewDidLoad() {
         super.viewDidLoad()
-        // Do any additional setup after loading the view, typically from a nib.
+        
+        hitsTable.hitDataSource = self
+        instantSearchBinder = InstantSearchBinder(searcher: AlgoliaSearchManager.instance.searcher, view: self.view)
     }
-
-    override func didReceiveMemoryWarning() {
-        super.didReceiveMemoryWarning()
-        // Dispose of any resources that can be recreated.
+    
+    func cellFor(hit: [String : Any], at indexPath: IndexPath) -> UITableViewCell {
+        let cell = hitsTable.dequeueReusableCell(withIdentifier: "hitCell", for: indexPath)
+        
+        cell.textLabel?.text = hit["name"] as? String
+        
+        cell.textLabel?.highlightedText = SearchResults.highlightResult(hit: hit, path: "name")?.value
+        cell.textLabel?.highlightedTextColor = .black
+        cell.textLabel?.highlightedBackgroundColor = .yellow
+        
+        cell.detailTextLabel?.text = String(hit["salePrice"] as! Double)
+        
+        return cell
     }
-
-
+    
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        let facetController = segue.destination as! FacetController
+        facetController.instantSearchBinder = instantSearchBinder
+    }
 }
-

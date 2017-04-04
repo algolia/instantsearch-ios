@@ -27,7 +27,7 @@ import InstantSearchCore
     }
     
     var facetResults: [FacetValue] = []
-    weak var facetDataSource: FacetDataSource?
+    @objc public weak var facetDataSource: FacetDataSource?
     
     public func initWith(searcher: Searcher) {
         self.searcher = searcher
@@ -54,19 +54,19 @@ import InstantSearchCore
         
     }
     
-    func numberOfRows(in section: Int) -> Int {
+    public func numberOfRows(in section: Int) -> Int {
         return searcher.results?.facets(name: facet)?.count ?? 0
     }
     
-    func facetForRow(at indexPath: IndexPath) -> FacetValue {
+    public func facetForRow(at indexPath: IndexPath) -> FacetValue {
         return facetResults[indexPath.row]
     }
     
-    func isRefined(at indexPath: IndexPath) -> Bool {
+    public func isRefined(at indexPath: IndexPath) -> Bool {
         return searcher.params.hasFacetRefinement(name: facet, value: facetResults[indexPath.item].value)
     }
     
-    func didSelectRow(at indexPath: IndexPath) {
+    public func didSelectRow(at indexPath: IndexPath) {
         searcher.params.setFacet(withName: facet, disjunctive: isDisjunctive)
         searcher.params.toggleFacetRefinement(name: facet, value: facetResults[indexPath.item].value)
         searcher.search()
@@ -88,16 +88,16 @@ import InstantSearchCore
     }
 }
 
-protocol AlgoliaFacetDataSource2 {
+@objc public protocol AlgoliaFacetDataSource2 {
     func numberOfRows(in section: Int) -> Int
     func facetForRow(at indexPath: IndexPath) -> FacetValue
     func isRefined(at indexPath: IndexPath) -> Bool
 }
 
-protocol AlgoliaFacetDelegate {
+@objc public protocol AlgoliaFacetDelegate {
     func didSelectRow(at indexPath: IndexPath)
 }
 
-protocol FacetDataSource: class {
+@objc public protocol FacetDataSource: class {
     func cellFor(facetValue: FacetValue, isRefined: Bool, at indexPath: IndexPath) -> UITableViewCell
 }
