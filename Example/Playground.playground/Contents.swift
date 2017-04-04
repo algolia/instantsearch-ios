@@ -11,3 +11,8 @@ import UIKit
 import InstantSearch
 
 var str = "Hello, playground"
+
+var sliderWidget = SliderWidget()
+sliderWidget.attributeName = "salePrice"
+
+
