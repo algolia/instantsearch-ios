@@ -94,7 +94,7 @@
                         </constraints>
                     </view>
                     <navigationItem key="navigationItem" id="gxj-nt-Nm7">
-                        <barButtonItem key="rightBarButtonItem" style="plain" id="gii-be-WHm">
+                        <barButtonItem key="rightBarButtonItem" id="gii-be-WHm">
                             <button key="customView" opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" id="gyr-Jp-J3e">
                                 <rect key="frame" x="317" y="7" width="42" height="30"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>

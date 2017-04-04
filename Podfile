@@ -13,10 +13,10 @@ target 'InstantSearch' do
   target 'InstantSearchTests' do
       inherit! :search_paths
   end
-  
-  target 'Example' do
-      workspace 'InstantSearch.xcworkspace'
-      project 'Example/Example.xcodeproj'
-      instantsearch_core
-  end
+end
+
+target 'Example' do
+    workspace 'InstantSearch.xcworkspace'
+    project 'Example/Example.xcodeproj'
+    instantsearch_core
 end

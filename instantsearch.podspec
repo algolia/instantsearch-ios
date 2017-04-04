@@ -9,7 +9,7 @@ Pod::Spec.new do |s|
   s.social_media_url = 'https://twitter.com/algolia'
   s.ios.deployment_target = '8.0'
   s.requires_arc = true
-  s.ios.source_files = 'InstantSearch/Sources/**/*.{swift}'
+  s.source_files = ['Sources/*.swift']
   # s.resource_bundles = {
   #   'InstantSearch' => ['InstantSearch/Sources/**/*.xib']
   # }
