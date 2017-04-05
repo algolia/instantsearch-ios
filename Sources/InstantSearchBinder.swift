@@ -18,8 +18,8 @@ let clearAllFiltersNotification = Notification.Name(rawValue: "clearAllFiltersNo
     // All widgets, including the specific ones such as refinementControlWidget
     // Note: Wish we could do a Set, but Swift doesn't support Set<GenericProtocol> for now.
     private var algoliaWidgets: [AlgoliaWidget] = []
-    private var refinementControlWidgets: [AlgoliaInputWidget] = []
-    private var refinementWidgetMap: [String: [AlgoliaInputWidget]] = [:]
+    private var algoliaInputWidgets: [AlgoliaInputWidget] = []
+    private var algoliaInputWidgetMap: [String: [AlgoliaInputWidget]] = [:]
     
     public var searcher: Searcher
     
@@ -64,8 +64,8 @@ let clearAllFiltersNotification = Notification.Name(rawValue: "clearAllFiltersNo
                 add(widget: algoliaWidget)
             }
             
-            if let refinementControlWidget = subView as? AlgoliaInputWidget {
-                addRefinementControl(widget: refinementControlWidget)
+            if let algoliaInputWidget = subView as? AlgoliaInputWidget {
+                addRefinementControl(widget: algoliaInputWidget)
             }
             
             // List the subviews of subview
@@ -81,19 +81,19 @@ let clearAllFiltersNotification = Notification.Name(rawValue: "clearAllFiltersNo
     }
     
     @objc public func addRefinementControl(widget: AlgoliaInputWidget) {
-        guard !refinementControlWidgets.contains(where: { $0 === widget } ) else { return }
+        guard !algoliaInputWidgets.contains(where: { $0 === widget } ) else { return }
         
         widget.searcher = searcher
         algoliaWidgets.append(widget)
-        refinementControlWidgets.append(widget)
+        algoliaInputWidgets.append(widget)
         
         let attributeName = widget.getAttributeName()
         
-        if refinementWidgetMap[attributeName] == nil {
-            refinementWidgetMap[attributeName] = []
+        if algoliaInputWidgetMap[attributeName] == nil {
+            algoliaInputWidgetMap[attributeName] = []
         }
         
-        refinementWidgetMap[attributeName]!.append(widget)
+        algoliaInputWidgetMap[attributeName]!.append(widget)
     }
     
     // MARK: - Notification Observers
@@ -125,7 +125,7 @@ let clearAllFiltersNotification = Notification.Name(rawValue: "clearAllFiltersNo
     // MARK: - Helper methods
     
     private func callGeneralRefinementChanges(numericRefinementMap:[String: [NumericRefinement]]?, facetRefinementMap: [String: [FacetRefinement]]?) {
-        for refinementControlWidget in refinementControlWidgets {
+        for refinementControlWidget in algoliaInputWidgets {
             refinementControlWidget.onRefinementChange?(numericMap: numericRefinementMap)
             refinementControlWidget.onRefinementChange?(facetMap: facetRefinementMap)
         }
@@ -134,7 +134,7 @@ let clearAllFiltersNotification = Notification.Name(rawValue: "clearAllFiltersNo
     private func callSpecificNumericChanges(numericRefinementMap:[String: [NumericRefinement]]?) {
         if let numericRefinementMap = numericRefinementMap {
             for (refinementName, numericRefinement) in numericRefinementMap {
-                if let widgets = refinementWidgetMap[refinementName] {
+                if let widgets = algoliaInputWidgetMap[refinementName] {
                     for widget in widgets {
                         widget.onRefinementChange?(numerics: numericRefinement)
                     }
@@ -146,7 +146,7 @@ let clearAllFiltersNotification = Notification.Name(rawValue: "clearAllFiltersNo
     private func callSpecificFacetChanges(facetRefinementMap:[String: [FacetRefinement]]?) {
         if let facetRefinementMap = facetRefinementMap {
             for (refinementName, facetRefinement) in facetRefinementMap {
-                if let widgets = refinementWidgetMap[refinementName] {
+                if let widgets = algoliaInputWidgetMap[refinementName] {
                     for widget in widgets {
                         widget.onRefinementChange?(facets: facetRefinement)
                     }
