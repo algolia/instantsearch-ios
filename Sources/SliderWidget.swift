@@ -20,6 +20,8 @@ import UIKit
                 // TODO: Offer customisation and reevaluate if label is best choice
                 valueLabel?.text = "\(numeric.value)"
             }
+            
+            addTarget(self, action: #selector(numericFilterValueChanged(sender:)), for: .valueChanged)
         }
     }
     
@@ -44,10 +46,6 @@ import UIKit
     
     // TODO: Make this debouncer customisable (expose it)
     internal var numericFiltersDebouncer = Debouncer(delay: 0.2)
-    
-    @objc public func registerValueChangedAction() {
-        addTarget(self, action: #selector(numericFilterValueChanged(sender:)), for: .valueChanged)
-    }
     
     @objc internal func numericFilterValueChanged(sender: SliderWidget) {
         numericFiltersDebouncer.call {

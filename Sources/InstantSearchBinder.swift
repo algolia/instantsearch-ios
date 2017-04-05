@@ -84,11 +84,10 @@ let clearAllFiltersNotification = Notification.Name(rawValue: "clearAllFiltersNo
         guard !refinementControlWidgets.contains(where: { $0 === widget } ) else { return }
         
         widget.searcher = searcher
-        widget.registerValueChangedAction()
         algoliaWidgets.append(widget)
         refinementControlWidgets.append(widget)
         
-        guard let attributeName = widget.getAttributeName?() else { return }
+        let attributeName = widget.getAttributeName()
         
         if refinementWidgetMap[attributeName] == nil {
             refinementWidgetMap[attributeName] = []

@@ -10,10 +10,9 @@ import Foundation
 import InstantSearchCore
 
 @objc public protocol AlgoliaInputWidget: AlgoliaWidget {
-    @objc func registerValueChangedAction()
-    @objc optional func getAttributeName() -> String
+    @objc func getAttributeName() -> String
     @objc optional func onRefinementChange(numericMap: [String: [NumericRefinement]]?)
+    @objc optional func onRefinementChange(numerics: [NumericRefinement])
     @objc optional func onRefinementChange(facetMap: [String: [FacetRefinement]]?)
     @objc optional func onRefinementChange(facets: [FacetRefinement])
-    @objc optional func onRefinementChange(numerics: [NumericRefinement])
 }
