@@ -28,10 +28,6 @@ import InstantSearchCore
         searchProgressController.delegate = self
     }
     
-    public func on(results: SearchResults?, error: Error?, userInfo: [String : Any]) {
-        
-    }
-    
     // MARK: - SearchProgressDelegate methods
     
     public func searchDidStart(_ searchProgressController: SearchProgressController) {

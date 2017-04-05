@@ -46,10 +46,6 @@ import InstantSearchCore
         }
     }
     
-    @objc public func onReset() {
-        
-    }
-    
     public func numberOfRows(in section: Int) -> Int {
         return searcher.hits.count
     }

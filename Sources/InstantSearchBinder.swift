@@ -101,7 +101,7 @@ let clearAllFiltersNotification = Notification.Name(rawValue: "clearAllFiltersNo
     
     func onReset(notification: Notification) {
         for algoliaWidget in algoliaWidgets {
-            (algoliaWidget as? AlgoliaResetableWidget)?.onReset()
+            (algoliaWidget as? AlgoliaResettableWidget)?.onReset()
         }
     }
     

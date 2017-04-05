@@ -17,10 +17,6 @@ import InstantSearchCore
         }
     }
     
-    public func on(results: SearchResults?, error: Error?, userInfo: [String : Any]) {
-        
-    }
-    
     internal func clearFilter() {
         searcher.params.clearRefinements()
         NotificationCenter.default.post(name: clearAllFiltersNotification, object: nil)

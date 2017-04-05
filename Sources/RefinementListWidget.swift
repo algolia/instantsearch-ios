@@ -50,10 +50,6 @@ import InstantSearchCore
         reloadData()
     }
     
-    public func onReset() {
-        
-    }
-    
     public func numberOfRows(in section: Int) -> Int {
         return searcher.results?.facets(name: facet)?.count ?? 0
     }

@@ -12,6 +12,8 @@
 		28F828881C494B2C00330CF4 /* InstantSearch.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 28F8287D1C494B2C00330CF4 /* InstantSearch.framework */; };
 		6B3F1A5AC5B19AB0F4FC9B3C /* Pods_InstantSearchTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 33749566A6B791EB78B9A2F5 /* Pods_InstantSearchTests.framework */; };
 		BC2BDF7408F80426E13BBB47 /* Pods_InstantSearch.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C5E2FC6F7BC12D4C7904D4D8 /* Pods_InstantSearch.framework */; };
+		E27A7BEA1E955612005B2506 /* AlgoliaResettableWidget.swift in Sources */ = {isa = PBXBuildFile; fileRef = E27A7BE91E955612005B2506 /* AlgoliaResettableWidget.swift */; };
+		E27A7BEC1E9556C6005B2506 /* AlgoliaOutputWidget.swift in Sources */ = {isa = PBXBuildFile; fileRef = E27A7BEB1E9556C6005B2506 /* AlgoliaOutputWidget.swift */; };
 		E27C16421E9394250091D79E /* RefinementListWidget.swift in Sources */ = {isa = PBXBuildFile; fileRef = E27C16361E9394250091D79E /* RefinementListWidget.swift */; };
 		E27C16431E9394250091D79E /* HitsTableWidget.swift in Sources */ = {isa = PBXBuildFile; fileRef = E27C16371E9394250091D79E /* HitsTableWidget.swift */; };
 		E27C16441E9394250091D79E /* SliderWidget.swift in Sources */ = {isa = PBXBuildFile; fileRef = E27C16381E9394250091D79E /* SliderWidget.swift */; };
@@ -21,7 +23,7 @@
 		E27C16481E9394250091D79E /* InstantSearchMultiplePresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = E27C163C1E9394250091D79E /* InstantSearchMultiplePresenter.swift */; };
 		E27C16491E9394250091D79E /* ClearAllWidget.swift in Sources */ = {isa = PBXBuildFile; fileRef = E27C163D1E9394250091D79E /* ClearAllWidget.swift */; };
 		E27C164A1E9394250091D79E /* ActivityIndicatorView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E27C163E1E9394250091D79E /* ActivityIndicatorView.swift */; };
-		E27C164B1E9394250091D79E /* RefinementControlWidget.swift in Sources */ = {isa = PBXBuildFile; fileRef = E27C163F1E9394250091D79E /* RefinementControlWidget.swift */; };
+		E27C164B1E9394250091D79E /* AlgoliaInputWidget.swift in Sources */ = {isa = PBXBuildFile; fileRef = E27C163F1E9394250091D79E /* AlgoliaInputWidget.swift */; };
 		E27C164C1E9394250091D79E /* AlgoliaWidget.swift in Sources */ = {isa = PBXBuildFile; fileRef = E27C16401E9394250091D79E /* AlgoliaWidget.swift */; };
 		E27C164D1E9394250091D79E /* Helpers.swift in Sources */ = {isa = PBXBuildFile; fileRef = E27C16411E9394250091D79E /* Helpers.swift */; };
 /* End PBXBuildFile section */
@@ -50,6 +52,8 @@
 		A41C629CA0D1EB7443B828C6 /* Pods-InstantSearchTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-InstantSearchTests.release.xcconfig"; path = "Pods/Target Support Files/Pods-InstantSearchTests/Pods-InstantSearchTests.release.xcconfig"; sourceTree = "<group>"; };
 		C5E2FC6F7BC12D4C7904D4D8 /* Pods_InstantSearch.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_InstantSearch.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		CFF04E06E7D4D0CDE5F6CF30 /* Pods-InstantSearch.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-InstantSearch.release.xcconfig"; path = "Pods/Target Support Files/Pods-InstantSearch/Pods-InstantSearch.release.xcconfig"; sourceTree = "<group>"; };
+		E27A7BE91E955612005B2506 /* AlgoliaResettableWidget.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AlgoliaResettableWidget.swift; sourceTree = "<group>"; };
+		E27A7BEB1E9556C6005B2506 /* AlgoliaOutputWidget.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AlgoliaOutputWidget.swift; sourceTree = "<group>"; };
 		E27C16361E9394250091D79E /* RefinementListWidget.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RefinementListWidget.swift; sourceTree = "<group>"; };
 		E27C16371E9394250091D79E /* HitsTableWidget.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HitsTableWidget.swift; sourceTree = "<group>"; };
 		E27C16381E9394250091D79E /* SliderWidget.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SliderWidget.swift; sourceTree = "<group>"; };
@@ -59,7 +63,7 @@
 		E27C163C1E9394250091D79E /* InstantSearchMultiplePresenter.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = InstantSearchMultiplePresenter.swift; sourceTree = "<group>"; };
 		E27C163D1E9394250091D79E /* ClearAllWidget.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ClearAllWidget.swift; sourceTree = "<group>"; };
 		E27C163E1E9394250091D79E /* ActivityIndicatorView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ActivityIndicatorView.swift; sourceTree = "<group>"; };
-		E27C163F1E9394250091D79E /* RefinementControlWidget.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RefinementControlWidget.swift; sourceTree = "<group>"; };
+		E27C163F1E9394250091D79E /* AlgoliaInputWidget.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AlgoliaInputWidget.swift; sourceTree = "<group>"; };
 		E27C16401E9394250091D79E /* AlgoliaWidget.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AlgoliaWidget.swift; sourceTree = "<group>"; };
 		E27C16411E9394250091D79E /* Helpers.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Helpers.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -168,7 +172,9 @@
 			isa = PBXGroup;
 			children = (
 				E27C16401E9394250091D79E /* AlgoliaWidget.swift */,
-				E27C163F1E9394250091D79E /* RefinementControlWidget.swift */,
+				E27A7BEB1E9556C6005B2506 /* AlgoliaOutputWidget.swift */,
+				E27A7BE91E955612005B2506 /* AlgoliaResettableWidget.swift */,
+				E27C163F1E9394250091D79E /* AlgoliaInputWidget.swift */,
 			);
 			name = Protocols;
 			sourceTree = "<group>";
@@ -368,8 +374,9 @@
 			files = (
 				E27C16431E9394250091D79E /* HitsTableWidget.swift in Sources */,
 				E27C16461E9394250091D79E /* StatsWidget.swift in Sources */,
-				E27C164B1E9394250091D79E /* RefinementControlWidget.swift in Sources */,
+				E27C164B1E9394250091D79E /* AlgoliaInputWidget.swift in Sources */,
 				E27C16471E9394250091D79E /* InstantSearchBinder.swift in Sources */,
+				E27A7BEC1E9556C6005B2506 /* AlgoliaOutputWidget.swift in Sources */,
 				E27C16491E9394250091D79E /* ClearAllWidget.swift in Sources */,
 				E27C164C1E9394250091D79E /* AlgoliaWidget.swift in Sources */,
 				E27C16441E9394250091D79E /* SliderWidget.swift in Sources */,
@@ -378,6 +385,7 @@
 				E27C164A1E9394250091D79E /* ActivityIndicatorView.swift in Sources */,
 				E27C16481E9394250091D79E /* InstantSearchMultiplePresenter.swift in Sources */,
 				E27C16451E9394250091D79E /* SearchBarWidget.swift in Sources */,
+				E27A7BEA1E955612005B2506 /* AlgoliaResettableWidget.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
