@@ -106,8 +106,8 @@ let clearAllFiltersNotification = Notification.Name(rawValue: "clearAllFiltersNo
     }
     
     func onRefinementNotification(notification: Notification) {
-        let numericRefinementMap =  notification.userInfo?[Searcher.notificationNumericRefinementChangeKey] as? [String: [NumericRefinement]]
-        let facetRefinementMap =  notification.userInfo?[Searcher.notificationFacetRefinementChangeKey] as? [String: [FacetRefinement]]
+        let numericRefinementMap =  notification.userInfo?[Searcher.userInfoNumericRefinementChangeKey] as? [String: [NumericRefinement]]
+        let facetRefinementMap =  notification.userInfo?[Searcher.userInfoFacetRefinementChangeKey] as? [String: [FacetRefinement]]
         
         callGeneralRefinementChanges(numericRefinementMap: numericRefinementMap, facetRefinementMap: facetRefinementMap)
         callSpecificNumericChanges(numericRefinementMap: numericRefinementMap)
