@@ -153,11 +153,11 @@
 		E27C16541E939B430091D79E /* Widgets */ = {
 			isa = PBXGroup;
 			children = (
-				E27C16361E9394250091D79E /* RefinementListWidget.swift */,
-				E27C16371E9394250091D79E /* HitsTableWidget.swift */,
-				E27C16381E9394250091D79E /* SliderWidget.swift */,
 				E27C16391E9394250091D79E /* SearchBarWidget.swift */,
 				E27C163A1E9394250091D79E /* StatsWidget.swift */,
+				E27C16381E9394250091D79E /* SliderWidget.swift */,
+				E27C16371E9394250091D79E /* HitsTableWidget.swift */,
+				E27C16361E9394250091D79E /* RefinementListWidget.swift */,
 				E27C163D1E9394250091D79E /* ClearAllWidget.swift */,
 				E27C163E1E9394250091D79E /* ActivityIndicatorView.swift */,
 			);

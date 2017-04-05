@@ -18,8 +18,8 @@ let clearAllFiltersNotification = Notification.Name(rawValue: "clearAllFiltersNo
     // All widgets, including the specific ones such as refinementControlWidget
     // Note: Wish we could do a Set, but Swift doesn't support Set<GenericProtocol> for now.
     private var algoliaWidgets: [AlgoliaWidget] = []
-    private var refinementControlWidgets: [RefinementControlWidget] = []
-    private var refinementWidgetMap: [String: [RefinementControlWidget]] = [:]
+    private var refinementControlWidgets: [AlgoliaInputWidget] = []
+    private var refinementWidgetMap: [String: [AlgoliaInputWidget]] = [:]
     
     public var searcher: Searcher
     
@@ -64,7 +64,7 @@ let clearAllFiltersNotification = Notification.Name(rawValue: "clearAllFiltersNo
                 add(widget: algoliaWidget)
             }
             
-            if let refinementControlWidget = subView as? RefinementControlWidget {
+            if let refinementControlWidget = subView as? AlgoliaInputWidget {
                 addRefinementControl(widget: refinementControlWidget)
             }
             
@@ -76,14 +76,14 @@ let clearAllFiltersNotification = Notification.Name(rawValue: "clearAllFiltersNo
     @objc public func add(widget: AlgoliaWidget) {
         guard !algoliaWidgets.contains(where: { $0 === widget } ) else { return }
         
-        widget.initWith(searcher: searcher)
+        widget.searcher = searcher
         algoliaWidgets.append(widget)
     }
     
-    @objc public func addRefinementControl(widget: RefinementControlWidget) {
+    @objc public func addRefinementControl(widget: AlgoliaInputWidget) {
         guard !refinementControlWidgets.contains(where: { $0 === widget } ) else { return }
         
-        widget.initWith(searcher: searcher)
+        widget.searcher = searcher
         widget.registerValueChangedAction()
         algoliaWidgets.append(widget)
         refinementControlWidgets.append(widget)
@@ -101,7 +101,7 @@ let clearAllFiltersNotification = Notification.Name(rawValue: "clearAllFiltersNo
     
     func onReset(notification: Notification) {
         for algoliaWidget in algoliaWidgets {
-            algoliaWidget.onReset?()
+            (algoliaWidget as? AlgoliaResetableWidget)?.onReset()
         }
     }
     
@@ -119,7 +119,7 @@ let clearAllFiltersNotification = Notification.Name(rawValue: "clearAllFiltersNo
     
     public func searcher(_ searcher: Searcher, didReceive results: SearchResults?, error: Error?, userInfo: [String : Any]) {
         for algoliaWidget in algoliaWidgets {
-            algoliaWidget.on(results: results, error: error, userInfo: userInfo)
+            (algoliaWidget as? AlgoliaOutputWidget)?.on(results: results, error: error, userInfo: userInfo)
         }
     }
     

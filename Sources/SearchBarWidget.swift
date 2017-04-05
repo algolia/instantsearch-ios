@@ -11,15 +11,10 @@ import InstantSearchCore
 
 @objc public class SearchBarWidget: UISearchBar, AlgoliaWidget, UISearchBarDelegate {
     
-    private var searcher: Searcher!
-    
-    public func initWith(searcher: Searcher) {
-        self.searcher = searcher
-        delegate = self
-    }
-    
-    public func on(results: SearchResults?, error: Error?, userInfo: [String: Any]) {
-        
+    public var searcher: Searcher! {
+        didSet {
+            delegate = self
+        }
     }
     
     public func searchBar(_ searchBar: UISearchBar, textDidChange searchText: String) {

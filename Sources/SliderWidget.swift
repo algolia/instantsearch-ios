@@ -11,9 +11,18 @@ import InstantSearchCore
 import UIKit
 
 @IBDesignable
-@objc public class SliderWidget: UISlider, RefinementControlWidget {
+@objc public class SliderWidget: UISlider, AlgoliaInputWidget {
     
-    private var searcher: Searcher?
+    public var searcher: Searcher! {
+        didSet {
+            if let numeric = self.searcher?.params.getNumericRefinement(name: attributeName, op: op) {
+                setValue(numeric.value.floatValue, animated: false)
+                // TODO: Offer customisation and reevaluate if label is best choice
+                valueLabel?.text = "\(numeric.value)"
+            }
+        }
+    }
+    
     var valueLabel: UILabel?
     
     @IBInspectable public var attributeName: String!
@@ -35,16 +44,6 @@ import UIKit
     
     // TODO: Make this debouncer customisable (expose it)
     internal var numericFiltersDebouncer = Debouncer(delay: 0.2)
-    
-    
-    @objc public func initWith(searcher: Searcher) {
-        self.searcher = searcher
-        if let numeric = self.searcher?.params.getNumericRefinement(name: attributeName, op: op) {
-            setValue(numeric.value.floatValue, animated: false)
-            // TODO: Offer customisation and reevaluate if label is best choice
-            valueLabel?.text = "\(numeric.value)"
-        }
-    }
     
     @objc public func registerValueChangedAction() {
         addTarget(self, action: #selector(numericFilterValueChanged(sender:)), for: .valueChanged)

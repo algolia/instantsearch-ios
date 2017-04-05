@@ -10,7 +10,22 @@ import Foundation
 import InstantSearchCore
 
 @objc public protocol AlgoliaWidget: class {
-    @objc func initWith(searcher: Searcher)
+    var searcher: Searcher! { get set }
+}
+
+@objc public protocol AlgoliaOutputWidget: AlgoliaWidget {
     @objc func on(results: SearchResults?, error: Error?, userInfo: [String: Any])
-    @objc optional func onReset()
+}
+
+@objc public protocol AlgoliaResetableWidget: AlgoliaWidget {
+    @objc func onReset()
+}
+
+@objc public protocol AlgoliaInputWidget: AlgoliaWidget {
+    @objc func registerValueChangedAction()
+    @objc optional func getAttributeName() -> String
+    @objc optional func onRefinementChange(numericMap: [String: [NumericRefinement]]?)
+    @objc optional func onRefinementChange(facetMap: [String: [FacetRefinement]]?)
+    @objc optional func onRefinementChange(facets: [FacetRefinement])
+    @objc optional func onRefinementChange(numerics: [NumericRefinement])
 }

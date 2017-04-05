@@ -11,11 +11,10 @@ import InstantSearchCore
 
 @objc public class ClearAllWidget: UIButton, AlgoliaWidget {
 
-    private var searcher: Searcher!
-    
-    public func initWith(searcher: Searcher) {
-        self.searcher = searcher
-        addTarget(self, action: #selector(self.clearFilter), for: .touchUpInside)
+    public var searcher: Searcher! {
+        didSet {
+            addTarget(self, action: #selector(self.clearFilter), for: .touchUpInside)
+        }
     }
     
     public func on(results: SearchResults?, error: Error?, userInfo: [String : Any]) {

@@ -10,28 +10,25 @@ import UIKit
 import InstantSearchCore
 
 @IBDesignable
-@objc public class StatsWidget: UILabel, AlgoliaWidget {
-    private var searcher: Searcher?
+@objc public class StatsWidget: UILabel, AlgoliaOutputWidget {
+    public var searcher: Searcher! {
+        didSet {
+            if self.resultTemplate == nil {
+                self.resultTemplate = defaultResultTemplate
+            }
+            
+            // Initial value of label in case a search was made.
+            // If a search wasn't made yet and it is still ongoing, then the label will get initialized in the onResult method
+            if let results = searcher.results {
+                text = applyTemplate(resultTemplate: resultTemplate, results: results)
+            }
+        }
+    }
     
     @IBInspectable public var resultTemplate: String! // TODO: Unsafe, fix that
     public var errorTemplate: String?
     
     private let defaultResultTemplate = "{nbHits} results found in {processingTimeMS} ms"
-    
-    
-    public func initWith(searcher: Searcher) {
-        self.searcher = searcher
-        
-        if self.resultTemplate == nil {
-            self.resultTemplate = defaultResultTemplate
-        }
-        
-        // Initial value of label in case a search was made.
-        // If a search wasn't made yet and it is still ongoing, then the label will get initialized in the onResult method
-        if let results = searcher.results {
-            text = applyTemplate(resultTemplate: resultTemplate, results: results)
-        }
-    }
     
     public func on(results: SearchResults?, error: Error?, userInfo: [String: Any]) {
         if let results = results {

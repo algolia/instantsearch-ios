@@ -11,8 +11,20 @@ import UIKit
 import InstantSearchCore
 
 @IBDesignable
-@objc public class RefinementListWidget: UITableView, AlgoliaWidget, AlgoliaFacetDataSource2, AlgoliaFacetDelegate, UITableViewDataSource, UITableViewDelegate {
-    private var searcher: Searcher!
+@objc public class RefinementListWidget: UITableView, AlgoliaOutputWidget, AlgoliaFacetDataSource2, AlgoliaFacetDelegate, UITableViewDataSource, UITableViewDelegate {
+    public var searcher: Searcher! {
+        didSet {
+            delegate = self
+            dataSource = self
+            // TODO: Make the countDesc and refinedFirst customisable ofc.
+            if let results = searcher.results, searcher.hits.count > 0 {
+                facetResults = searcher.getRefinementList(facetCounts: results.facets(name: facet), andFacetName: facet, transformRefinementList: transformRefinementList, areRefinedValuesFirst: areRefinedValuesFirst)
+                
+                reloadData()
+            }
+        }
+    }
+    
     @IBInspectable var facet: String = ""
     @IBInspectable var areRefinedValuesFirst: Bool = true
     @IBInspectable var isDisjunctive: Bool = true
@@ -28,18 +40,6 @@ import InstantSearchCore
     
     var facetResults: [FacetValue] = []
     @objc public weak var facetDataSource: FacetDataSource?
-    
-    public func initWith(searcher: Searcher) {
-        self.searcher = searcher
-        delegate = self
-        dataSource = self
-        // TODO: Make the countDesc and refinedFirst customisable ofc. 
-        if let results = searcher.results, let hits = searcher.hits, hits.count > 0 {
-            facetResults = searcher.getRefinementList(facetCounts: results.facets(name: facet), andFacetName: facet, transformRefinementList: transformRefinementList, areRefinedValuesFirst: areRefinedValuesFirst)
-            
-            reloadData()
-        }
-    }
     
     public func on(results: SearchResults?, error: Error?, userInfo: [String : Any]) {
             // TODO: Fix that cause for some reason, can't find the facet refinement.

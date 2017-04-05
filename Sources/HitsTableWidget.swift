@@ -9,40 +9,39 @@
 import Foundation
 import InstantSearchCore
 
-@objc public class HitsTableWidget: UITableView, UITableViewDataSource, AlgoliaWidget, AlgoliaTableHitDataSource {
+@objc public class HitsTableWidget: UITableView, UITableViewDataSource, AlgoliaOutputWidget, AlgoliaTableHitDataSource {
     
-    var searcher: Searcher!
+    public var searcher: Searcher! {
+        didSet {
+            searcher.params.hitsPerPage = hitsPerPage
+            dataSource = self
+            
+            if searcher.hits.count > 0 {
+                reloadData()
+            }
+        }
+    }
+    
     @IBInspectable var hitsPerPage: UInt = 20
     @IBInspectable var infiniteScrolling: Bool = true
     @IBInspectable var remainingItemsBeforeLoading: UInt = 5
     
-    @objc public func initWith(searcher: Searcher) {
-        self.searcher = searcher
-        searcher.params.hitsPerPage = hitsPerPage
-        dataSource = self
-        
-        if searcher.hits != nil {
-            reloadData()
-        }
-    }
-    
     @objc public weak var hitDataSource: HitDataSource?
     
     @objc public func on(results: SearchResults?, error: Error?, userInfo: [String: Any]) {
-        // TODO: Work on that...
-        if searcher.hits != nil {
-            reloadData()
-        }
+        guard searcher.hits.count > 0 else { return }
         
-        if searcher.hits != nil && searcher.hits!.count != 0 && results?.page == 0 {
+        reloadData()
+        
+        if results?.page == 0 {
             let indexPath = IndexPath(row: 0, section: 0)
             scrollToRow(at: indexPath, at: .top, animated: true)
         }
     }
     
     func loadMoreIfNecessary(rowNumber: Int) {
-        guard infiniteScrolling, let hits = searcher.hits else { return }
-        if rowNumber + Int(remainingItemsBeforeLoading) >= hits.count {
+        guard infiniteScrolling else { return }
+        if rowNumber + Int(remainingItemsBeforeLoading) >= searcher.hits.count {
             searcher.loadMore()
         }
     }
@@ -52,12 +51,12 @@ import InstantSearchCore
     }
     
     public func numberOfRows(in section: Int) -> Int {
-        return searcher.hits?.count ?? 0
+        return searcher.hits.count
     }
     
     public func hitForRow(at indexPath: IndexPath) -> [String: Any] {
         loadMoreIfNecessary(rowNumber: indexPath.row)
-        return searcher.hits![indexPath.row]
+        return searcher.hits[indexPath.row]
     }
     
     public func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {

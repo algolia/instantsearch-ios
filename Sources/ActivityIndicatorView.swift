@@ -12,6 +12,7 @@ import InstantSearchCore
 @objc public class ActivityIndicatorView: UIActivityIndicatorView, AlgoliaWidget, SearchProgressDelegate {
 
     var searchProgressController: SearchProgressController!
+    public var searcher: Searcher!
     
     // MARK: - AlgoliaWidget methods
     
