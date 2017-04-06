@@ -1,5 +1,5 @@
 //
-//  AlgoliaWidget.swift
+//  SearcherInterface.swift
 //  ecommerce
 //
 //  Created by Guy Daher on 08/03/2017.
@@ -9,6 +9,6 @@
 import Foundation
 import InstantSearchCore
 
-@objc public protocol AlgoliaWidget: class {
+@objc public protocol SearcherInterface: class {
     var searcher: Searcher! { get set }
 }

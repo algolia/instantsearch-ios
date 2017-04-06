@@ -9,7 +9,7 @@
 import UIKit
 import InstantSearchCore
 
-@objc public class ClearAllWidget: UIButton, AlgoliaWidget {
+@objc public class ClearAllWidget: UIButton, SearcherInterface {
 
     public var searcher: Searcher! {
         didSet {

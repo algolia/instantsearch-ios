@@ -9,12 +9,12 @@
 import UIKit
 import InstantSearchCore
 
-@objc public class ActivityIndicatorView: UIActivityIndicatorView, AlgoliaWidget, SearchProgressDelegate {
+@objc public class ActivityIndicatorView: UIActivityIndicatorView, SearcherInterface, SearchProgressDelegate {
 
     var searchProgressController: SearchProgressController!
     public var searcher: Searcher!
     
-    // MARK: - AlgoliaWidget methods
+    // MARK: - SearcherInterface methods
     
     public func initWith(searcher: Searcher) {
         searchProgressController = SearchProgressController(searcher: searcher)

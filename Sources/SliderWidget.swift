@@ -11,7 +11,7 @@ import InstantSearchCore
 import UIKit
 
 @IBDesignable
-@objc public class SliderWidget: UISlider, AlgoliaInputWidget, AlgoliaResettableWidget {
+@objc public class SliderWidget: UISlider, RefinableInterface, ResettableInterface {
     
     public var searcher: Searcher! {
         didSet {

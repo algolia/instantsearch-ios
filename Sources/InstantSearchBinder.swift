@@ -11,15 +11,19 @@ import InstantSearchCore
 
 let clearAllFiltersNotification = Notification.Name(rawValue: "clearAllFiltersNotification")
 
+/// Handles the dependencies and binding between View - ViewModel, and ViewModel - Model
+/// The Views are the widgets 
+/// the ViewModel are the business logic of the widgets
+/// The Model is the Searcher.
 @objc public class InstantSearchBinder : NSObject, SearcherDelegate {
     
     // MARK: - Properties
     
     // All widgets, including the specific ones such as refinementControlWidget
     // Note: Wish we could do a Set, but Swift doesn't support Set<GenericProtocol> for now.
-    private var algoliaWidgets: [AlgoliaWidget] = []
-    private var algoliaInputWidgets: [AlgoliaInputWidget] = []
-    private var algoliaInputWidgetMap: [String: [AlgoliaInputWidget]] = [:]
+    private var algoliaWidgets: [ResultingInterface] = []
+    private var algoliaInputWidgets: [RefinableInterface] = []
+    private var algoliaInputWidgetMap: [String: [RefinableInterface]] = [:]
     
     public var searcher: Searcher
     
@@ -60,11 +64,11 @@ let clearAllFiltersNotification = Notification.Name(rawValue: "clearAllFiltersNo
         
         for subView in subviews as [UIView] {
             
-            if let algoliaWidget = subView as? AlgoliaWidget {
+            if let algoliaWidget = subView as? AlgoliaView {
                 add(widget: algoliaWidget)
             }
             
-            if let algoliaInputWidget = subView as? AlgoliaInputWidget {
+            if let algoliaInputWidget = subView as? RefinableInterface {
                 addRefinementControl(widget: algoliaInputWidget)
             }
             
@@ -73,18 +77,24 @@ let clearAllFiltersNotification = Notification.Name(rawValue: "clearAllFiltersNo
         }
     }
     
-    @objc public func add(widget: AlgoliaWidget) {
+    @objc public func add(widget: AlgoliaView) {
         guard !algoliaWidgets.contains(where: { $0 === widget } ) else { return }
         
-        widget.searcher = searcher
-        algoliaWidgets.append(widget)
+        if let hitWidget = widget as? HitsViewDelegate {
+            
+            let hitsViewModel = HitsViewModel()
+            hitsViewModel.view = hitWidget
+            hitWidget.viewModel = hitsViewModel
+            hitsViewModel.searcher = searcher
+            algoliaWidgets.append(hitsViewModel)
+        }
     }
     
-    @objc public func addRefinementControl(widget: AlgoliaInputWidget) {
+    @objc public func addRefinementControl(widget: RefinableInterface) {
         guard !algoliaInputWidgets.contains(where: { $0 === widget } ) else { return }
         
-        widget.searcher = searcher
-        algoliaWidgets.append(widget)
+        // widget.searcher = searcher
+        // algoliaWidgets.append(widget)
         algoliaInputWidgets.append(widget)
         
         let attributeName = widget.getAttributeName()
@@ -100,7 +110,7 @@ let clearAllFiltersNotification = Notification.Name(rawValue: "clearAllFiltersNo
     
     func onReset(notification: Notification) {
         for algoliaWidget in algoliaWidgets {
-            (algoliaWidget as? AlgoliaResettableWidget)?.onReset()
+            (algoliaWidget as? ResettableInterface)?.onReset()
         }
     }
     
@@ -118,7 +128,7 @@ let clearAllFiltersNotification = Notification.Name(rawValue: "clearAllFiltersNo
     
     public func searcher(_ searcher: Searcher, didReceive results: SearchResults?, error: Error?, userInfo: [String : Any]) {
         for algoliaWidget in algoliaWidgets {
-            (algoliaWidget as? AlgoliaOutputWidget)?.on(results: results, error: error, userInfo: userInfo)
+            (algoliaWidget as? ResultingInterface)?.on(results: results, error: error, userInfo: userInfo)
         }
     }
     
