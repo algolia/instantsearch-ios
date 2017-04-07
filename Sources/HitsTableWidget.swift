@@ -10,10 +10,6 @@ import Foundation
 
 @objc public class HitsTableWidget: UITableView, UITableViewDataSource, HitsViewDelegate, AlgoliaView {
     
-    public func initView() {
-        dataSource = self
-    }
-    
     public func reloadHits() {
         reloadData()
     }
@@ -22,7 +18,11 @@ import Foundation
     @IBInspectable public var infiniteScrolling: Bool = true
     @IBInspectable public var remainingItemsBeforeLoading: UInt = 5
     
-    @objc public weak var hitDataSource: HitDataSource?
+    @objc public weak var hitDataSource: HitDataSource? {
+        didSet {
+            dataSource = self
+        }
+    }
     
     public var viewModel: HitsViewModelDelegate!
     

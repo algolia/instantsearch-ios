@@ -16,8 +16,7 @@ class HitsViewModel: HitsViewModelDelegate, ResultingInterface, SearcherInterfac
     public init() {}
     
     public var searcher: Searcher! {
-        didSet {            
-            view.initView()
+        didSet {
             searcher.params.hitsPerPage = view.hitsPerPage
             
             if searcher.hits.count > 0 {
@@ -53,16 +52,13 @@ class HitsViewModel: HitsViewModelDelegate, ResultingInterface, SearcherInterfac
     }
 }
 
-@objc public protocol AlgoliaView: class {
-    
-}
+@objc public protocol AlgoliaView: class {}
 
 /*
  * Protocol that defines the view input methods.
  */
 @objc public protocol HitsViewDelegate: class {
     
-    func initView()
     func reloadHits()
     func scrollTop()
     
