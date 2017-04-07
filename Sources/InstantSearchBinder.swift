@@ -19,11 +19,6 @@ let clearAllFiltersNotification = Notification.Name(rawValue: "clearAllFiltersNo
     // All widgets, including the specific ones such as refinementControlWidget
     // Note: Wish we could do a Set, but Swift doesn't support Set<GenericProtocol> for now.
     private var resultingDelegates = WeakSet<ResultingDelegate>()
-    {
-        didSet {
-            print(resultingDelegates.objects.count)
-        }
-    }
     private var resettableDelegates = WeakSet<ResettableDelegate>()
     private var refinableDelegates = WeakSet<RefinableDelegate>()
     private var refinableDelegateMap = [String: WeakSet<RefinableDelegate>]()
