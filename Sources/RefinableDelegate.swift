@@ -9,7 +9,7 @@
 import Foundation
 import InstantSearchCore
 
-@objc public protocol RefinableInterface: class {
+@objc public protocol RefinableDelegate: class {
     @objc func getAttributeName() -> String
     @objc optional func onRefinementChange(numericMap: [String: [NumericRefinement]]?)
     @objc optional func onRefinementChange(numerics: [NumericRefinement])

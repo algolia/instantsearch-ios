@@ -9,12 +9,12 @@
 import UIKit
 import InstantSearchCore
 
-@objc public class ActivityIndicatorView: UIActivityIndicatorView, SearcherInterface, SearchProgressDelegate {
+@objc public class ActivityIndicatorView: UIActivityIndicatorView, SearchableViewModel, SearchProgressDelegate {
 
     var searchProgressController: SearchProgressController!
     public var searcher: Searcher!
     
-    // MARK: - SearcherInterface methods
+    // MARK: - SearchableViewModel methods
     
     public func initWith(searcher: Searcher) {
         searchProgressController = SearchProgressController(searcher: searcher)

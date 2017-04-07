@@ -9,7 +9,7 @@
 import Foundation
 import InstantSearchCore
 
-class HitsViewModel: HitsViewModelDelegate, ResultingInterface, SearcherInterface {
+class HitsViewModel: HitsViewModelDelegate, ResultingDelegate, SearchableViewModel {
     
     weak var view: HitsViewDelegate!
     
@@ -72,7 +72,7 @@ class HitsViewModel: HitsViewModelDelegate, ResultingInterface, SearcherInterfac
 /*
  * Protocol that defines the commands sent from the View to the ViewModel
  */
-@objc public protocol HitsViewModelDelegate: SearcherInterface {
+@objc public protocol HitsViewModelDelegate: SearchableViewModel {
     
     var view: HitsViewDelegate! { get set }
     

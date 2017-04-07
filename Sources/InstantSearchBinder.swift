@@ -18,9 +18,9 @@ let clearAllFiltersNotification = Notification.Name(rawValue: "clearAllFiltersNo
     
     // All widgets, including the specific ones such as refinementControlWidget
     // Note: Wish we could do a Set, but Swift doesn't support Set<GenericProtocol> for now.
-    private var algoliaWidgets: [ResultingInterface] = []
-    private var algoliaInputWidgets: [RefinableInterface] = []
-    private var algoliaInputWidgetMap: [String: [RefinableInterface]] = [:]
+    private var algoliaWidgets: [ResultingDelegate] = []
+    private var algoliaInputWidgets: [RefinableDelegate] = []
+    private var algoliaInputWidgetMap: [String: [RefinableDelegate]] = [:]
     
     public var searcher: Searcher
     
@@ -65,7 +65,7 @@ let clearAllFiltersNotification = Notification.Name(rawValue: "clearAllFiltersNo
                 add(widget: algoliaWidget)
             }
             
-            if let algoliaInputWidget = subView as? RefinableInterface {
+            if let algoliaInputWidget = subView as? RefinableDelegate {
                 addRefinementControl(widget: algoliaInputWidget)
             }
             
@@ -84,7 +84,7 @@ let clearAllFiltersNotification = Notification.Name(rawValue: "clearAllFiltersNo
         }
     }
     
-    @objc public func addRefinementControl(widget: RefinableInterface) {
+    @objc public func addRefinementControl(widget: RefinableDelegate) {
         guard !algoliaInputWidgets.contains(where: { $0 === widget } ) else { return }
         
         // widget.searcher = searcher
@@ -104,7 +104,7 @@ let clearAllFiltersNotification = Notification.Name(rawValue: "clearAllFiltersNo
     
     func onReset(notification: Notification) {
         for algoliaWidget in algoliaWidgets {
-            (algoliaWidget as? ResettableInterface)?.onReset()
+            (algoliaWidget as? ResettableDelegate)?.onReset()
         }
     }
     
@@ -122,7 +122,7 @@ let clearAllFiltersNotification = Notification.Name(rawValue: "clearAllFiltersNo
     
     public func searcher(_ searcher: Searcher, didReceive results: SearchResults?, error: Error?, userInfo: [String : Any]) {
         for algoliaWidget in algoliaWidgets {
-            (algoliaWidget as? ResultingInterface)?.on(results: results, error: error, userInfo: userInfo)
+            (algoliaWidget as? ResultingDelegate)?.on(results: results, error: error, userInfo: userInfo)
         }
     }
     

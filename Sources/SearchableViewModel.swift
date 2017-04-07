@@ -1,5 +1,5 @@
 //
-//  SearcherInterface.swift
+//  SearchableViewModel.swift
 //  ecommerce
 //
 //  Created by Guy Daher on 08/03/2017.
@@ -9,6 +9,6 @@
 import Foundation
 import InstantSearchCore
 
-@objc public protocol SearcherInterface: class {
+@objc public protocol SearchableViewModel: class {
     var searcher: Searcher! { get set }
 }
