@@ -11,7 +11,7 @@ import UIKit
 import InstantSearchCore
 
 @IBDesignable
-@objc public class RefinementListWidget: UITableView, ResultingDelegate, AlgoliaFacetDataSource2, AlgoliaFacetDelegate, UITableViewDataSource, UITableViewDelegate {
+@objc public class RefinementListWidget: UITableView, ResultingDelegate, AlgoliaFacetDataSource2, AlgoliaFacetDelegate, UITableViewDataSource, UITableViewDelegate, SearchableViewModel, AlgoliaView {
     public var searcher: Searcher! {
         didSet {
             delegate = self

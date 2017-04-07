@@ -18,9 +18,10 @@ let clearAllFiltersNotification = Notification.Name(rawValue: "clearAllFiltersNo
     
     // All widgets, including the specific ones such as refinementControlWidget
     // Note: Wish we could do a Set, but Swift doesn't support Set<GenericProtocol> for now.
-    private var algoliaWidgets: [ResultingDelegate] = []
-    private var algoliaInputWidgets: [RefinableDelegate] = []
-    private var algoliaInputWidgetMap: [String: [RefinableDelegate]] = [:]
+    private var resultingDelegates: [ResultingDelegate] = []
+    private var resettableDelegates: [ResettableDelegate] = []
+    private var refinableDelegates: [RefinableDelegate] = []
+    private var refinableDelegateMap: [String: [RefinableDelegate]] = [:]
     
     public var searcher: Searcher
     
@@ -61,12 +62,9 @@ let clearAllFiltersNotification = Notification.Name(rawValue: "clearAllFiltersNo
         
         for subView in subviews as [UIView] {
             
+            
             if let algoliaWidget = subView as? AlgoliaView {
                 add(widget: algoliaWidget)
-            }
-            
-            if let algoliaInputWidget = subView as? RefinableDelegate {
-                addRefinementControl(widget: algoliaInputWidget)
             }
             
             // List the subviews of subview
@@ -75,36 +73,44 @@ let clearAllFiltersNotification = Notification.Name(rawValue: "clearAllFiltersNo
     }
     
     @objc public func add(widget: AlgoliaView) {
-        guard !algoliaWidgets.contains(where: { $0 === widget } ) else { return }
+        guard
+            !resultingDelegates.contains(where: { $0 === widget } ),
+            !refinableDelegates.contains(where: { $0 === widget } ),
+            !resettableDelegates.contains(where: { $0 === widget } )
+        else { return }
         
         if let hitWidget = widget as? HitsViewDelegate {
             
             let hitsViewModel = Builder.build(hitView: hitWidget, with: searcher)
-            algoliaWidgets.append(hitsViewModel)
-        }
-    }
-    
-    @objc public func addRefinementControl(widget: RefinableDelegate) {
-        guard !algoliaInputWidgets.contains(where: { $0 === widget } ) else { return }
-        
-        // widget.searcher = searcher
-        // algoliaWidgets.append(widget)
-        algoliaInputWidgets.append(widget)
-        
-        let attributeName = widget.getAttributeName()
-        
-        if algoliaInputWidgetMap[attributeName] == nil {
-            algoliaInputWidgetMap[attributeName] = []
+            resultingDelegates.append(hitsViewModel)
         }
         
-        algoliaInputWidgetMap[attributeName]!.append(widget)
+        if let searchableWidget = widget as? SearchableViewModel {
+            searchableWidget.searcher = searcher
+        }
+        
+        if let resultingWidget = widget as? ResultingDelegate {
+            resultingDelegates.append(resultingWidget)
+        }
+        
+        if let refinableWidget = widget as? RefinableDelegate {
+            refinableDelegates.append(refinableWidget)
+            
+            let attributeName = refinableWidget.getAttributeName()
+            
+            if refinableDelegateMap[attributeName] == nil {
+                refinableDelegateMap[attributeName] = []
+            }
+            
+            refinableDelegateMap[attributeName]!.append(refinableWidget)
+        }
     }
     
     // MARK: - Notification Observers
     
     func onReset(notification: Notification) {
-        for algoliaWidget in algoliaWidgets {
-            (algoliaWidget as? ResettableDelegate)?.onReset()
+        for algoliaWidget in resettableDelegates {
+            algoliaWidget.onReset()
         }
     }
     
@@ -121,15 +127,15 @@ let clearAllFiltersNotification = Notification.Name(rawValue: "clearAllFiltersNo
     // MARK: - SearcherDelegate
     
     public func searcher(_ searcher: Searcher, didReceive results: SearchResults?, error: Error?, userInfo: [String : Any]) {
-        for algoliaWidget in algoliaWidgets {
-            (algoliaWidget as? ResultingDelegate)?.on(results: results, error: error, userInfo: userInfo)
+        for algoliaWidget in resultingDelegates {
+            algoliaWidget.on(results: results, error: error, userInfo: userInfo)
         }
     }
     
     // MARK: - Helper methods
     
     private func callGeneralRefinementChanges(numericRefinementMap:[String: [NumericRefinement]]?, facetRefinementMap: [String: [FacetRefinement]]?) {
-        for refinementControlWidget in algoliaInputWidgets {
+        for refinementControlWidget in refinableDelegates {
             refinementControlWidget.onRefinementChange?(numericMap: numericRefinementMap)
             refinementControlWidget.onRefinementChange?(facetMap: facetRefinementMap)
         }
@@ -138,7 +144,7 @@ let clearAllFiltersNotification = Notification.Name(rawValue: "clearAllFiltersNo
     private func callSpecificNumericChanges(numericRefinementMap:[String: [NumericRefinement]]?) {
         if let numericRefinementMap = numericRefinementMap {
             for (refinementName, numericRefinement) in numericRefinementMap {
-                if let widgets = algoliaInputWidgetMap[refinementName] {
+                if let widgets = refinableDelegateMap[refinementName] {
                     for widget in widgets {
                         widget.onRefinementChange?(numerics: numericRefinement)
                     }
@@ -150,7 +156,7 @@ let clearAllFiltersNotification = Notification.Name(rawValue: "clearAllFiltersNo
     private func callSpecificFacetChanges(facetRefinementMap:[String: [FacetRefinement]]?) {
         if let facetRefinementMap = facetRefinementMap {
             for (refinementName, facetRefinement) in facetRefinementMap {
-                if let widgets = algoliaInputWidgetMap[refinementName] {
+                if let widgets = refinableDelegateMap[refinementName] {
                     for widget in widgets {
                         widget.onRefinementChange?(facets: facetRefinement)
                     }

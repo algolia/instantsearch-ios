@@ -19,8 +19,8 @@ class FacetController: UIViewController, FacetDataSource {
     
     override func viewDidLoad() {
         refinementList.facetDataSource = self
-        //instantSearchBinder.add(widget: refinementList)
-        //instantSearchBinder.add(widget: statLabel)
+        instantSearchBinder.add(widget: refinementList)
+        instantSearchBinder.add(widget: statLabel)
     }
     
     func cellFor(facetValue: FacetValue, isRefined: Bool, at indexPath: IndexPath) -> UITableViewCell {
@@ -31,9 +31,5 @@ class FacetController: UIViewController, FacetDataSource {
         cell.accessoryType = isRefined ? .checkmark : .none
         
         return cell
-    }
-    
-    deinit {
-        print("I am gone!")
     }
 }

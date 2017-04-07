@@ -10,7 +10,7 @@ import UIKit
 import InstantSearchCore
 
 @IBDesignable
-@objc public class StatsWidget: UILabel, ResultingDelegate {
+@objc public class StatsWidget: UILabel, ResultingDelegate, SearchableViewModel, AlgoliaView {
     public var searcher: Searcher! {
         didSet {
             if self.resultTemplate == nil {
