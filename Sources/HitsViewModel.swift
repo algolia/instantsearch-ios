@@ -51,31 +51,3 @@ class HitsViewModel: HitsViewModelDelegate, ResultingDelegate, SearchableViewMod
         }
     }
 }
-
-@objc public protocol AlgoliaView: class {}
-
-/*
- * Protocol that defines the view input methods.
- */
-@objc public protocol HitsViewDelegate: class {
-    
-    func reloadHits()
-    func scrollTop()
-    
-    var hitsPerPage: UInt { get set }
-    var infiniteScrolling: Bool { get set }
-    var remainingItemsBeforeLoading: UInt { get set }
-    
-    var viewModel: HitsViewModelDelegate! { get set }
-}
-
-/*
- * Protocol that defines the commands sent from the View to the ViewModel
- */
-@objc public protocol HitsViewModelDelegate: SearchableViewModel {
-    
-    var view: HitsViewDelegate! { get set }
-    
-    func numberOfRows() -> Int
-    func hitForRow(at indexPath: IndexPath) -> [String: Any]
-}
