@@ -140,32 +140,7 @@ let clearAllFiltersNotification = Notification.Name(rawValue: "clearAllFiltersNo
     
     @objc public func add(widget: AlgoliaView) {
         
-        // Widgets that act as ViewModel and Views
-        // In that case, the widget is the delegate to the events emitted by the Searcher
-        
-        if let searchableWidget = widget as? SearchableViewModel {
-            searchableWidget.searcher = searcher
-        }
-        
-        if let resultingWidget = widget as? ResultingDelegate {
-            resultingDelegates.add(resultingWidget)
-        }
-        
-        if let resettableWidget = widget as? ResettableDelegate {
-            resettableDelegates.add(resettableWidget)
-        }
-        
-        if let refinableWidget = widget as? RefinableDelegate {
-            refinableDelegates.add(refinableWidget)
-            
-            let attributeName = refinableWidget.getAttributeName()
-            
-            if refinableDelegateMap[attributeName] == nil {
-                refinableDelegateMap[attributeName] = WeakSet<RefinableDelegate>()
-            }
-            
-            refinableDelegateMap[attributeName]!.add(refinableWidget)
-        }
+        var viewModel: Any?
         
         // Widgets that act only as Views
         // We spin off a ViewModel associated to the particular View
@@ -176,6 +151,38 @@ let clearAllFiltersNotification = Notification.Name(rawValue: "clearAllFiltersNo
             
             let hitsViewModel = Builder.build(hitView: hitWidget, with: searcher)
             resultingDelegates.add(hitsViewModel)
+            viewModel = hitsViewModel
+        }
+        
+        if viewModel == nil {
+            viewModel = widget
+        }
+        
+        // Widgets that act as ViewModel and Views
+        // In that case, the widget is the delegate to the events emitted by the Searcher
+        
+        if let searchableWidget = viewModel as? SearchableViewModel {
+            searchableWidget.searcher = searcher
+        }
+        
+        if let resultingWidget = viewModel as? ResultingDelegate {
+            resultingDelegates.add(resultingWidget)
+        }
+        
+        if let resettableWidget = viewModel as? ResettableDelegate {
+            resettableDelegates.add(resettableWidget)
+        }
+        
+        if let refinableWidget = viewModel as? RefinableDelegate {
+            refinableDelegates.add(refinableWidget)
+            
+            let attributeName = refinableWidget.getAttributeName()
+            
+            if refinableDelegateMap[attributeName] == nil {
+                refinableDelegateMap[attributeName] = WeakSet<RefinableDelegate>()
+            }
+            
+            refinableDelegateMap[attributeName]!.add(refinableWidget)
         }
     }
     
