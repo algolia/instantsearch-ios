@@ -11,10 +11,7 @@ import InstantSearchCore
 
 let clearAllFiltersNotification = Notification.Name(rawValue: "clearAllFiltersNotification")
 
-/// Handles the dependencies and binding between View - ViewModel, and ViewModel - Model
-/// The Views are the widgets 
-/// the ViewModel are the business logic of the widgets
-/// The Model is the Searcher.
+/// The Presenter and Binder
 @objc public class InstantSearchBinder : NSObject, SearcherDelegate {
     
     // MARK: - Properties
@@ -82,10 +79,7 @@ let clearAllFiltersNotification = Notification.Name(rawValue: "clearAllFiltersNo
         
         if let hitWidget = widget as? HitsViewDelegate {
             
-            let hitsViewModel = HitsViewModel()
-            hitsViewModel.view = hitWidget
-            hitWidget.viewModel = hitsViewModel
-            hitsViewModel.searcher = searcher
+            let hitsViewModel = Builder.build(hitView: hitWidget, with: searcher)
             algoliaWidgets.append(hitsViewModel)
         }
     }

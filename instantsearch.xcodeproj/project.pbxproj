@@ -15,6 +15,8 @@
 		E27A7BEA1E955612005B2506 /* ResettableInterface.swift in Sources */ = {isa = PBXBuildFile; fileRef = E27A7BE91E955612005B2506 /* ResettableInterface.swift */; };
 		E27A7BEC1E9556C6005B2506 /* ResultingInterface.swift in Sources */ = {isa = PBXBuildFile; fileRef = E27A7BEB1E9556C6005B2506 /* ResultingInterface.swift */; };
 		E27A7BEF1E962768005B2506 /* HitsViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = E27A7BEE1E962768005B2506 /* HitsViewModel.swift */; };
+		E27A7BF11E97931E005B2506 /* Builder.swift in Sources */ = {isa = PBXBuildFile; fileRef = E27A7BF01E97931E005B2506 /* Builder.swift */; };
+		E27A7BF31E97947C005B2506 /* HitsCollectionWidget.swift in Sources */ = {isa = PBXBuildFile; fileRef = E27A7BF21E97947C005B2506 /* HitsCollectionWidget.swift */; };
 		E27C16421E9394250091D79E /* RefinementListWidget.swift in Sources */ = {isa = PBXBuildFile; fileRef = E27C16361E9394250091D79E /* RefinementListWidget.swift */; };
 		E27C16431E9394250091D79E /* HitsTableWidget.swift in Sources */ = {isa = PBXBuildFile; fileRef = E27C16371E9394250091D79E /* HitsTableWidget.swift */; };
 		E27C16441E9394250091D79E /* SliderWidget.swift in Sources */ = {isa = PBXBuildFile; fileRef = E27C16381E9394250091D79E /* SliderWidget.swift */; };
@@ -56,6 +58,8 @@
 		E27A7BE91E955612005B2506 /* ResettableInterface.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ResettableInterface.swift; sourceTree = "<group>"; };
 		E27A7BEB1E9556C6005B2506 /* ResultingInterface.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ResultingInterface.swift; sourceTree = "<group>"; };
 		E27A7BEE1E962768005B2506 /* HitsViewModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HitsViewModel.swift; sourceTree = "<group>"; };
+		E27A7BF01E97931E005B2506 /* Builder.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Builder.swift; sourceTree = "<group>"; };
+		E27A7BF21E97947C005B2506 /* HitsCollectionWidget.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HitsCollectionWidget.swift; sourceTree = "<group>"; };
 		E27C16361E9394250091D79E /* RefinementListWidget.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RefinementListWidget.swift; sourceTree = "<group>"; };
 		E27C16371E9394250091D79E /* HitsTableWidget.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HitsTableWidget.swift; sourceTree = "<group>"; };
 		E27C16381E9394250091D79E /* SliderWidget.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SliderWidget.swift; sourceTree = "<group>"; };
@@ -125,6 +129,7 @@
 		28F828971C494B4200330CF4 /* Sources */ = {
 			isa = PBXGroup;
 			children = (
+				E27A7BF01E97931E005B2506 /* Builder.swift */,
 				E27C163B1E9394250091D79E /* InstantSearchBinder.swift */,
 				E27C163C1E9394250091D79E /* InstantSearchMultiplePresenter.swift */,
 				E27C16551E939B690091D79E /* Protocols */,
@@ -169,6 +174,7 @@
 			isa = PBXGroup;
 			children = (
 				E27C16371E9394250091D79E /* HitsTableWidget.swift */,
+				E27A7BF21E97947C005B2506 /* HitsCollectionWidget.swift */,
 				E27C16391E9394250091D79E /* SearchBarWidget.swift */,
 				E27C163A1E9394250091D79E /* StatsWidget.swift */,
 				E27C16381E9394250091D79E /* SliderWidget.swift */,
@@ -384,6 +390,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				E27C16431E9394250091D79E /* HitsTableWidget.swift in Sources */,
+				E27A7BF31E97947C005B2506 /* HitsCollectionWidget.swift in Sources */,
 				E27C16461E9394250091D79E /* StatsWidget.swift in Sources */,
 				E27C164B1E9394250091D79E /* RefinableInterface.swift in Sources */,
 				E27C16471E9394250091D79E /* InstantSearchBinder.swift in Sources */,
@@ -398,6 +405,7 @@
 				E27C16481E9394250091D79E /* InstantSearchMultiplePresenter.swift in Sources */,
 				E27C16451E9394250091D79E /* SearchBarWidget.swift in Sources */,
 				E27A7BEA1E955612005B2506 /* ResettableInterface.swift in Sources */,
+				E27A7BF11E97931E005B2506 /* Builder.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
