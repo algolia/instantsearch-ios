@@ -18,10 +18,15 @@ let clearAllFiltersNotification = Notification.Name(rawValue: "clearAllFiltersNo
     
     // All widgets, including the specific ones such as refinementControlWidget
     // Note: Wish we could do a Set, but Swift doesn't support Set<GenericProtocol> for now.
-    private var resultingDelegates: [ResultingDelegate] = []
-    private var resettableDelegates: [ResettableDelegate] = []
-    private var refinableDelegates: [RefinableDelegate] = []
-    private var refinableDelegateMap: [String: [RefinableDelegate]] = [:]
+    private var resultingDelegates = WeakSet<ResultingDelegate>()
+    {
+        didSet {
+            print(resultingDelegates.objects.count)
+        }
+    }
+    private var resettableDelegates = WeakSet<ResettableDelegate>()
+    private var refinableDelegates = WeakSet<RefinableDelegate>()
+    private var refinableDelegateMap = [String: WeakSet<RefinableDelegate>]()
     
     public var searcher: Searcher
     
@@ -32,7 +37,7 @@ let clearAllFiltersNotification = Notification.Name(rawValue: "clearAllFiltersNo
         super.init()
         self.searcher.delegate = self
         
-        // TODO: should we use nil for queue (OperationQueue) synchronous or not? Check..
+        // TODO: should we use nil sefor queue (OperationQueue) synchronous or not? Check..
         NotificationCenter.default.addObserver(self, selector: #selector(onReset(notification:)), name: clearAllFiltersNotification, object: nil)
         NotificationCenter.default.addObserver(self, selector: #selector(onRefinementNotification(notification:)), name: Searcher.RefinementChangeNotification, object: nil)
         
@@ -73,36 +78,36 @@ let clearAllFiltersNotification = Notification.Name(rawValue: "clearAllFiltersNo
     }
     
     @objc public func add(widget: AlgoliaView) {
-        guard
-            !resultingDelegates.contains(where: { $0 === widget } ),
-            !refinableDelegates.contains(where: { $0 === widget } ),
-            !resettableDelegates.contains(where: { $0 === widget } )
-        else { return }
         
-        if let hitWidget = widget as? HitsViewDelegate {
-            
-            let hitsViewModel = Builder.build(hitView: hitWidget, with: searcher)
-            resultingDelegates.append(hitsViewModel)
+        if let resultingWidget = widget as? ResultingDelegate {
+            resultingDelegates.add(resultingWidget)
         }
+        
+        if let resettableWidget = widget as? ResettableDelegate {
+            resettableDelegates.add(resettableWidget)
+        }
+        
+        if let refinableWidget = widget as? RefinableDelegate {
+            refinableDelegates.add(refinableWidget)
+            
+            let attributeName = refinableWidget.getAttributeName()
+            
+            if refinableDelegateMap[attributeName] == nil {
+                refinableDelegateMap[attributeName] = WeakSet<RefinableDelegate>()
+            }
+            
+            refinableDelegateMap[attributeName]!.add(refinableWidget)
+        }
+        
         
         if let searchableWidget = widget as? SearchableViewModel {
             searchableWidget.searcher = searcher
         }
         
-        if let resultingWidget = widget as? ResultingDelegate {
-            resultingDelegates.append(resultingWidget)
-        }
-        
-        if let refinableWidget = widget as? RefinableDelegate {
-            refinableDelegates.append(refinableWidget)
+        if let hitWidget = widget as? HitsViewDelegate {
             
-            let attributeName = refinableWidget.getAttributeName()
-            
-            if refinableDelegateMap[attributeName] == nil {
-                refinableDelegateMap[attributeName] = []
-            }
-            
-            refinableDelegateMap[attributeName]!.append(refinableWidget)
+            let hitsViewModel = Builder.build(hitView: hitWidget, with: searcher)
+            resultingDelegates.add(hitsViewModel)
         }
     }
     

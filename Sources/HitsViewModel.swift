@@ -13,8 +13,6 @@ class HitsViewModel: HitsViewModelDelegate, ResultingDelegate, SearchableViewMod
     
     weak var view: HitsViewDelegate!
     
-    public init() {}
-    
     public var searcher: Searcher! {
         didSet {
             searcher.params.hitsPerPage = view.hitsPerPage
