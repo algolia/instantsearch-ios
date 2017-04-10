@@ -9,9 +9,12 @@
 import Foundation
 import InstantSearchCore
 
-class HitsViewModel: HitsViewModelDelegate, ResultingDelegate, SearchableViewModel {
-    
-    weak var view: HitsViewDelegate!
+/// ViewModel - View: HitsViewModelDelegate
+///
+/// ViewModel - Searcher: SearchableViewModel, ResultingDelegate
+class HitsViewModel: HitsViewModelDelegate, SearchableViewModel {
+
+    // MARK: - SearchableViewModel
     
     public var searcher: Searcher! {
         didSet {
@@ -23,15 +26,9 @@ class HitsViewModel: HitsViewModelDelegate, ResultingDelegate, SearchableViewMod
         }
     }
     
-    @objc public func on(results: SearchResults?, error: Error?, userInfo: [String: Any]) {
-        guard searcher.hits.count > 0 else { return }
-        
-        view.reloadHits()
-        
-        if results?.page == 0 {
-            view.scrollTop()
-        }
-    }
+    // MARK: - HitsViewModelDelegate
+    
+    weak var view: HitsViewDelegate!
     
     public func numberOfRows() -> Int {
         return searcher.hits.count
@@ -47,5 +44,26 @@ class HitsViewModel: HitsViewModelDelegate, ResultingDelegate, SearchableViewMod
         if rowNumber + Int(view.remainingItemsBeforeLoading) >= searcher.hits.count {
             searcher.loadMore()
         }
+    }
+}
+
+extension HitsViewModel: ResultingDelegate {
+    
+    // MARK: - ResultingDelegate
+    
+    @objc public func on(results: SearchResults?, error: Error?, userInfo: [String: Any]) {
+        guard searcher.hits.count > 0 else { return }
+        
+        view.reloadHits()
+        
+        if results?.page == 0 {
+            view.scrollTop()
+        }
+    }
+}
+
+extension HitsViewModel: ResettableDelegate {
+    func onReset() {
+        view.reloadHits()
     }
 }

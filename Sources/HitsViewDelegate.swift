@@ -9,9 +9,11 @@
 import Foundation
 
 /*
- * Protocol that defines the view input methods.
+ * Protocol that defines the view input methods and propreties
  */
 @objc public protocol HitsViewDelegate: class {
+
+    var viewModel: HitsViewModelDelegate! { get set }
     
     func reloadHits()
     func scrollTop()
@@ -19,6 +21,4 @@ import Foundation
     var hitsPerPage: UInt { get set }
     var infiniteScrolling: Bool { get set }
     var remainingItemsBeforeLoading: UInt { get set }
-    
-    var viewModel: HitsViewModelDelegate! { get set }
 }

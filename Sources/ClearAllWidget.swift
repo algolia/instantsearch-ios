@@ -20,9 +20,8 @@ let clearAllFiltersNotification = Notification.Name(rawValue: "clearAllFiltersNo
     }
     
     internal func clearFilter() {
-        searcher.params.clearRefinements()
+        searcher.reset()
         NotificationCenter.default.post(name: clearAllFiltersNotification, object: nil)
-        searcher.search()
     }
 
 }
