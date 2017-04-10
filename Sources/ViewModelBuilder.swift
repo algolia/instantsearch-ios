@@ -19,6 +19,8 @@ class ViewModelBuilder {
         switch widgetV {
         case let hitWidgetV as HitsViewDelegate:
             return buildWidgetVM(with: hitWidgetV)
+        case let hitWidgetV as StatsViewDelegate:
+            return buildWidgetVM(with: hitWidgetV)
         default: return nil
         }
     }
@@ -29,5 +31,13 @@ class ViewModelBuilder {
         hitView.viewModel = hitsViewModel
         
         return hitsViewModel
+    }
+    
+    private func buildWidgetVM(with statView: StatsViewDelegate) -> StatsViewModel {
+        let statsViewModel = StatsViewModel()
+        statsViewModel.view = statView
+        statView.viewModel = statsViewModel
+        
+        return statsViewModel
     }
 }
