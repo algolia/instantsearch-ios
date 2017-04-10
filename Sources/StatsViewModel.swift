@@ -20,6 +20,10 @@ public class StatsViewModel: ResultingDelegate, SearchableViewModel, ResettableD
                 view.resultTemplate = defaultResultTemplate
             }
             
+            if view.errorText.isEmpty {
+                view.errorText = defaultErrorText
+            }
+            
             // Initial value of label in case a search was made.
             // If a search wasn't made yet and it is still ongoing, then the label will get initialized in the onResult method
             if let results = searcher.results {
@@ -32,7 +36,8 @@ public class StatsViewModel: ResultingDelegate, SearchableViewModel, ResettableD
         }
     }
     
-    private let defaultResultTemplate = "{nbHits} results found in {processingTimeMS} ms"
+    private let defaultResultTemplate = "{nbHits} results"
+    private let defaultErrorText = "Error in fetching results"
     
     public func on(results: SearchResults?, error: Error?, userInfo: [String: Any]) {
         if let results = results {
@@ -41,7 +46,7 @@ public class StatsViewModel: ResultingDelegate, SearchableViewModel, ResettableD
         }
         
         if error != nil {
-            let text = "Error in fetching results"
+            let text = view.errorText
             view.set(text: text)
         }
     }
