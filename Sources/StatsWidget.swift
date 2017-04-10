@@ -10,7 +10,7 @@ import UIKit
 import InstantSearchCore
 
 @IBDesignable
-@objc public class StatsWidget: UILabel, ResultingDelegate, SearchableViewModel, AlgoliaView {
+@objc public class StatsWidget: UILabel, ResultingDelegate, SearchableViewModel, ResettableDelegate, AlgoliaView {
     public var searcher: Searcher! {
         didSet {
             if self.resultTemplate == nil {
@@ -26,6 +26,7 @@ import InstantSearchCore
     }
     
     @IBInspectable public var resultTemplate: String! // TODO: Unsafe, fix that
+    @IBInspectable public var clearText: String = ""
     public var errorTemplate: String?
     
     private let defaultResultTemplate = "{nbHits} results found in {processingTimeMS} ms"
@@ -49,5 +50,9 @@ import InstantSearchCore
             .replacingOccurrences(of: "{nbPages}", with: "\(results.nbPages)")
             .replacingOccurrences(of: "{page}", with: "\(results.page)")
             .replacingOccurrences(of: "{query}", with: "\(String(describing: results.query))")
+    }
+    
+    public func onReset() {
+        text = clearText
     }
 }

@@ -15,6 +15,11 @@ import UIKit
     
     public var searcher: Searcher! {
         didSet {
+            // TODO: Find better way...
+            if clearValue == -1 {
+                clearValue = minimumValue
+            }
+            
             if let numeric = self.searcher?.params.getNumericRefinement(name: attributeName, op: op) {
                 setValue(numeric.value.floatValue, animated: false)
                 // TODO: Offer customisation and reevaluate if label is best choice
@@ -41,6 +46,10 @@ import UIKit
             }
         }
     }
+    // Note: can't have optional Float because IBInspectable have to be bridgable to objc
+    // and value types optional cannot be bridged.
+    @IBInspectable public var clearValue: Float = -1
+    
     public var op: NumericRefinement.Operator!
     public var inclusive: Bool!
     
@@ -69,13 +78,9 @@ import UIKit
     }
     
     @objc public func onReset() {
-        setValue(minimumValue, animated: false)
+        setValue(clearValue, animated: false)
         // TODO: Is minimum the right choice? maybe we want max to be default! think about it...
-        valueLabel?.text = "\(minimumValue)"
-    }
-    
-    @objc public func on(results: SearchResults?, error: Error?, userInfo: [String: Any]) {
-        
+        valueLabel?.text = "\(clearValue)"
     }
 }
 

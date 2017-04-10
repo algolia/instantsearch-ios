@@ -22,7 +22,13 @@ import InstantSearchCore
         searcher.search()
     }
     
+    public func searchBarTextDidBeginEditing(_ searchBar: UISearchBar) {
+        searcher.params.query = ""
+        searcher.search()
+    }
+    
     public func onReset() {
+        resignFirstResponder()
         text = ""
     }
 }

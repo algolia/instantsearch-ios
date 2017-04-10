@@ -72,6 +72,9 @@
                                 <userDefinedRuntimeAttributes>
                                     <userDefinedRuntimeAttribute type="string" keyPath="attributeName" value="salePrice"/>
                                     <userDefinedRuntimeAttribute type="string" keyPath="operation" value="lessThan"/>
+                                    <userDefinedRuntimeAttribute type="number" keyPath="clearValue">
+                                        <real key="value" value="50"/>
+                                    </userDefinedRuntimeAttribute>
                                 </userDefinedRuntimeAttributes>
                             </slider>
                             <slider opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" value="100" minValue="0.0" maxValue="100" translatesAutoresizingMaskIntoConstraints="NO" id="vVX-Nn-n5y" customClass="SliderWidget" customModule="InstantSearch">
@@ -80,6 +83,9 @@
                                 <userDefinedRuntimeAttributes>
                                     <userDefinedRuntimeAttribute type="string" keyPath="attributeName" value="salePrice"/>
                                     <userDefinedRuntimeAttribute type="string" keyPath="operation" value="lessThan"/>
+                                    <userDefinedRuntimeAttribute type="number" keyPath="clearValue">
+                                        <real key="value" value="50"/>
+                                    </userDefinedRuntimeAttribute>
                                 </userDefinedRuntimeAttributes>
                             </slider>
                             <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="1T6-GP-vY9" customClass="ClearAllWidget" customModule="InstantSearch">
