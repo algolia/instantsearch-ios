@@ -31,6 +31,5 @@ class AlgoliaSearchManager {
         
         searcher.params.attributesToRetrieve = ["name", "salePrice"]
         searcher.params.attributesToHighlight = ["name"]
-        searcher.params.facets = ["category", "manufacturer"]
     }
 }

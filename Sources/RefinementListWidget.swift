@@ -11,12 +11,31 @@ import UIKit
 import InstantSearchCore
 
 @IBDesignable
-@objc public class RefinementListWidget: UITableView, ResultingDelegate, AlgoliaFacetDataSource2, AlgoliaFacetDelegate, UITableViewDataSource, UITableViewDelegate, SearchableViewModel, AlgoliaView {
+@objc public class RefinementListWidget: UITableView, ResultingDelegate, AlgoliaFacetDataSource2, AlgoliaFacetDelegate, UITableViewDataSource, UITableViewDelegate, SearchableViewModel, AlgoliaView, ResettableDelegate {
     public var searcher: Searcher! {
         didSet {
             delegate = self
             dataSource = self
-            // TODO: Make the countDesc and refinedFirst customisable ofc.
+            
+            guard var facets = searcher.params.facets else {
+                searcher.params.facets = [facet]
+                if searcher.results != nil { // if searching is ongoing
+                    searcher.search() // Need to search again since don't have the facets
+                }
+                return
+            }
+            
+            guard facets.contains(facet) else {
+                facets += [facet]
+                if searcher.results != nil { // if searching is ongoing
+                    searcher.search() // Need to search since don't have the facets
+                }
+                return
+            }
+            
+            // If facet variable has been set beforehand, then we fill
+            // the refinement List with the facets that are already fetched from Algolia
+            
             if let results = searcher.results, searcher.hits.count > 0 {
                 facetResults = searcher.getRefinementList(facetCounts: results.facets(name: facet), andFacetName: facet, transformRefinementList: transformRefinementList, areRefinedValuesFirst: areRefinedValuesFirst)
                 
@@ -47,6 +66,10 @@ import InstantSearchCore
             // else { return }
         
         facetResults = searcher.getRefinementList(facetCounts: results?.facets(name: facet), andFacetName: facet, transformRefinementList: transformRefinementList, areRefinedValuesFirst: areRefinedValuesFirst)
+        reloadData()
+    }
+    
+    public func onReset() {
         reloadData()
     }
     
