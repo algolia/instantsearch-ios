@@ -13,19 +13,20 @@ import InstantSearchCore
 /// The Views are the widgets
 /// the ViewModel are the business logic of the widgets
 /// The Model is the Searcher.
-class Builder {
+class ViewModelBuilder {
     
-    var searcher: Searcher
-    
-    init(searcher: Searcher) {
-        self.searcher = searcher
+    internal func tryBuildWidgetVM(with widgetV: AlgoliaView) -> Any? {
+        switch widgetV {
+        case let hitWidgetV as HitsViewDelegate:
+            return buildWidgetVM(with: hitWidgetV)
+        default: return nil
+        }
     }
     
-    func build(hitView: HitsViewDelegate) -> HitsViewModel {
+    private func buildWidgetVM(with hitView: HitsViewDelegate) -> HitsViewModel {
         let hitsViewModel = HitsViewModel()
         hitsViewModel.view = hitView
         hitView.viewModel = hitsViewModel
-        hitsViewModel.searcher = searcher
         
         return hitsViewModel
     }

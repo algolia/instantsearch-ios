@@ -79,13 +79,13 @@ import InstantSearchCore
 // InstantSearchBinder NOTES
 // ---------------------------------------------------------------------------------
 // InstantSearchBinder does mainly 3 things:
-// - Scans the View to find Algolia Widgets
-// - Knows about all search events, whether coming from the Searcher or other widgets
-// - Binds Searcher - Widgets
+// 1. Scans the View to find Algolia Widgets
+// 2. Knows about all search events, whether coming from the Searcher or other widgets
+// 3. Binds Searcher - Widgets through delegation
 //
-// InstantSearchBinder binds the following:
-// - Searcher and WidgetV through a builder that creates the appropriate WidgetVM
-// - Searcher and WidgetVM
+// For the 3rd point, InstantSearchBinder binds the following:
+// - Searcher and WidgetV through a ViewModelBuilder that creates the appropriate WidgetVM
+// - Searcher and WidgetVVM
 // ---------------------------------------------------------------------------------
 
 /// Binds the Searcher to the widgets through delegation.
@@ -102,8 +102,8 @@ import InstantSearchCore
     
     public var searcher: Searcher
     
-    private lazy var builder: Builder = {
-       return Builder(searcher: self.searcher)
+    private lazy var viewModelBuilder: ViewModelBuilder = {
+       return ViewModelBuilder()
     }()
     
     // MARK: - Init
@@ -163,28 +163,24 @@ import InstantSearchCore
         // (e.g: HitsTableWidget will lead to spin off HitsViewModel)
         // In that case, the ViewModel is the delegate to the events emitted by the Searcher
         // -------------------------------------------------------------------------------------
-        
-        if let hitWidget = widget as? HitsViewDelegate {
-            
-            let hitsViewModel = builder.build(hitView: hitWidget)
-            resultingDelegates.add(hitsViewModel)
-            widgetVM = hitsViewModel
-        }
+        widgetVM = viewModelBuilder.tryBuildWidgetVM(with: widget)
         
         // --------------------------------------------------------------------------------------
         // If the widget doesn't have a specific WidgetVM, that means that it is itself
         // acting both as a View and a ViewModel (WidgetVVM), so we assign it to the WidgetVM
         // in order to hook it up to search events
         // --------------------------------------------------------------------------------------
-        if widgetVM == nil {
-            widgetVM = widget
-        }
+        widgetVM = widgetVM ?? widget
         
         // --------------------------------------------------------------------------------------
-        // Widgets that act as ViewModel and Views
-        // In that case, the widget is the delegate to the events emitted by the Searcher
+        // Hook the search events to the ViewModel. Reminder of the kinds of ViewModels:
+        // - Pure VM created by the ViewModelBuilder
+        // - A WidgetVVM.
         // --------------------------------------------------------------------------------------
-        
+        bind(searcher: searcher, to: widgetVM)
+    }
+    
+    private func bind(searcher: Searcher, to widgetVM: Any?) {
         if let searchableWidget = widgetVM as? SearchableViewModel {
             searchableWidget.searcher = searcher
         }
@@ -208,13 +204,6 @@ import InstantSearchCore
             
             refinableDelegateMap[attributeName]!.add(refinableWidget)
         }
-    }
-    
-    private func isWidgetViewModel(widget: AlgoliaView) -> Bool {
-        return widget is SearchableViewModel ||
-        widget is ResultingDelegate ||
-        widget is ResettableDelegate ||
-        widget is RefinableDelegate
     }
     
     // MARK: - Notification Observers

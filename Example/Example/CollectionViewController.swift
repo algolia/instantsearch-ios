@@ -14,8 +14,8 @@ class CollectionViewController: UICollectionViewController, HitCollectionDataSou
 
     var instantSearchBinder: InstantSearchBinder!
     
-    override func viewDidAppear(_ animated: Bool) {
-        super.viewDidAppear(animated)
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
 
         let hitCollectionWidget = collectionView as! HitsCollectionWidget
         instantSearchBinder.add(widget: hitCollectionWidget)
