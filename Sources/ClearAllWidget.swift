@@ -9,6 +9,8 @@
 import UIKit
 import InstantSearchCore
 
+let clearAllFiltersNotification = Notification.Name(rawValue: "clearAllFiltersNotification")
+
 @objc public class ClearAllWidget: UIButton, SearchableViewModel, AlgoliaView {
 
     public var searcher: Searcher! {

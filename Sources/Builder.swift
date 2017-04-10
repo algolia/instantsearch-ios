@@ -15,7 +15,13 @@ import InstantSearchCore
 /// The Model is the Searcher.
 class Builder {
     
-    static func build(hitView: HitsViewDelegate, with searcher: Searcher) -> HitsViewModel {
+    var searcher: Searcher
+    
+    init(searcher: Searcher) {
+        self.searcher = searcher
+    }
+    
+    func build(hitView: HitsViewDelegate) -> HitsViewModel {
         let hitsViewModel = HitsViewModel()
         hitsViewModel.view = hitView
         hitView.viewModel = hitsViewModel

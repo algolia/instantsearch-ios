@@ -32,10 +32,10 @@ import InstantSearchCore
 // 1. It can be the View
 //
 // ```
-// Widget <--> WidgetVM <--> Binder <--> Searcher
-//                             |
-//                             V
-//                           Builder
+// WidgetV <--> WidgetVM <--> Binder <--> Searcher
+//                              |
+//                              V
+//                            Builder
 // ```
 //
 // In this first case, we offer a better modular architecture where a WidgetVM can be reused
@@ -47,10 +47,10 @@ import InstantSearchCore
 // 2. It can be the View and the ViewModel
 //
 // ```
-// Widget <--> Binder <--> Searcher
-//               |
-//               V
-//             Builder
+// WidgetVVM <--> Binder <--> Searcher
+//                  |
+//                  V
+//               Builder
 // ```
 //
 // In this second case, we offer an easier way to create new widgets since the widget has access
@@ -75,7 +75,18 @@ import InstantSearchCore
 // ------------------------------------------------------------------------------------------------------
 
 
-let clearAllFiltersNotification = Notification.Name(rawValue: "clearAllFiltersNotification")
+// ---------------------------------------------------------------------------------
+// InstantSearchBinder NOTES
+// ---------------------------------------------------------------------------------
+// InstantSearchBinder does mainly 3 things:
+// - Scans the View to find Algolia Widgets
+// - Knows about all search events, whether coming from the Searcher or other widgets
+// - Binds Searcher - Widgets
+//
+// InstantSearchBinder binds the following:
+// - Searcher and WidgetV through a builder that creates the appropriate WidgetVM
+// - Searcher and WidgetVM
+// ---------------------------------------------------------------------------------
 
 /// Binds the Searcher to the widgets through delegation.
 @objc public class InstantSearchBinder : NSObject, SearcherDelegate {
@@ -90,6 +101,10 @@ let clearAllFiltersNotification = Notification.Name(rawValue: "clearAllFiltersNo
     private var refinableDelegateMap = [String: WeakSet<RefinableDelegate>]()
     
     public var searcher: Searcher
+    
+    private lazy var builder: Builder = {
+       return Builder(searcher: self.searcher)
+    }()
     
     // MARK: - Init
     
@@ -112,11 +127,11 @@ let clearAllFiltersNotification = Notification.Name(rawValue: "clearAllFiltersNo
     // MARK: Add widget methods
     
     @objc public func addAllWidgets(in view: UIView) {
-        addSubviewsOf(view: view)
+        addWidgets(in: view)
     }
     
     // Recursively iterate the sub views.
-    private func addSubviewsOf(view: UIView){
+    private func addWidgets(in view: UIView){
         
         // Get the subviews of the view
         let subviews = view.subviews
@@ -134,46 +149,55 @@ let clearAllFiltersNotification = Notification.Name(rawValue: "clearAllFiltersNo
             }
             
             // List the subviews of subview
-            addSubviewsOf(view: subView)
+            addWidgets(in: subView)
         }
     }
     
     @objc public func add(widget: AlgoliaView) {
         
-        var viewModel: Any?
+        var widgetVM: Any?
         
-        // Widgets that act only as Views
-        // We spin off a ViewModel associated to the particular View
+        // -------------------------------------------------------------------------------------
+        // Widgets that act only as Views (WidgetV)
+        // We spin off a ViewModel associated to the particular View (WidgetVM)
         // (e.g: HitsTableWidget will lead to spin off HitsViewModel)
         // In that case, the ViewModel is the delegate to the events emitted by the Searcher
+        // -------------------------------------------------------------------------------------
         
         if let hitWidget = widget as? HitsViewDelegate {
             
-            let hitsViewModel = Builder.build(hitView: hitWidget, with: searcher)
+            let hitsViewModel = builder.build(hitView: hitWidget)
             resultingDelegates.add(hitsViewModel)
-            viewModel = hitsViewModel
+            widgetVM = hitsViewModel
         }
         
-        if viewModel == nil {
-            viewModel = widget
+        // --------------------------------------------------------------------------------------
+        // If the widget doesn't have a specific WidgetVM, that means that it is itself
+        // acting both as a View and a ViewModel (WidgetVVM), so we assign it to the WidgetVM
+        // in order to hook it up to search events
+        // --------------------------------------------------------------------------------------
+        if widgetVM == nil {
+            widgetVM = widget
         }
         
+        // --------------------------------------------------------------------------------------
         // Widgets that act as ViewModel and Views
         // In that case, the widget is the delegate to the events emitted by the Searcher
+        // --------------------------------------------------------------------------------------
         
-        if let searchableWidget = viewModel as? SearchableViewModel {
+        if let searchableWidget = widgetVM as? SearchableViewModel {
             searchableWidget.searcher = searcher
         }
         
-        if let resultingWidget = viewModel as? ResultingDelegate {
+        if let resultingWidget = widgetVM as? ResultingDelegate {
             resultingDelegates.add(resultingWidget)
         }
         
-        if let resettableWidget = viewModel as? ResettableDelegate {
+        if let resettableWidget = widgetVM as? ResettableDelegate {
             resettableDelegates.add(resettableWidget)
         }
         
-        if let refinableWidget = viewModel as? RefinableDelegate {
+        if let refinableWidget = widgetVM as? RefinableDelegate {
             refinableDelegates.add(refinableWidget)
             
             let attributeName = refinableWidget.getAttributeName()
@@ -184,6 +208,13 @@ let clearAllFiltersNotification = Notification.Name(rawValue: "clearAllFiltersNo
             
             refinableDelegateMap[attributeName]!.add(refinableWidget)
         }
+    }
+    
+    private func isWidgetViewModel(widget: AlgoliaView) -> Bool {
+        return widget is SearchableViewModel ||
+        widget is ResultingDelegate ||
+        widget is ResettableDelegate ||
+        widget is RefinableDelegate
     }
     
     // MARK: - Notification Observers

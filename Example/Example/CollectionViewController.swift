@@ -10,21 +10,16 @@ import UIKit
 import InstantSearch
 import InstantSearchCore
 
-private let reuseIdentifier = "Cell"
-
 class CollectionViewController: UICollectionViewController, HitCollectionDataSource {
 
     var instantSearchBinder: InstantSearchBinder!
     
-    override func viewDidLoad() {
-        super.viewDidLoad()
+    override func viewDidAppear(_ animated: Bool) {
+        super.viewDidAppear(animated)
 
         let hitCollectionWidget = collectionView as! HitsCollectionWidget
         instantSearchBinder.add(widget: hitCollectionWidget)
         hitCollectionWidget.hitDataSource = self
-
-        // Register cell classes
-        self.collectionView!.register(UICollectionViewCell.self, forCellWithReuseIdentifier: reuseIdentifier)
 
         // Do any additional setup after loading the view.
     }
@@ -40,14 +35,6 @@ class CollectionViewController: UICollectionViewController, HitCollectionDataSou
         
         cell.salePrice.text = String(hit["salePrice"] as! Double)
         
-        return cell
-    }
-
-    override func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
-        let cell = collectionView.dequeueReusableCell(withReuseIdentifier: reuseIdentifier, for: indexPath)
-    
-        // Configure the cell
-    
         return cell
     }
 
