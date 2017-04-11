@@ -63,7 +63,7 @@ public class RefinementMenuViewModel: RefinementMenuViewModelDelegate, Searchabl
             // the refinement List with the facets that are already fetched from Algolia
             
             if let results = searcher.results, searcher.hits.count > 0 {
-                facetResults = searcher.getRefinementList(facetCounts: results.facets(name: facet), andFacetName: facet, transformRefinementList: transformRefinementList, areRefinedValuesFirst: areRefinedValuesFirst)
+                facetResults = getRefinementList(facetCounts: results.facets(name: facet), andFacetName: facet, transformRefinementList: transformRefinementList, areRefinedValuesFirst: areRefinedValuesFirst)
                 
                 view.reloadRefinements()
             }
@@ -99,7 +99,7 @@ extension RefinementMenuViewModel: ResultingDelegate {
         //,searcher.params.hasFacetRefinements(name: facet)
         // else { return }
         
-        facetResults = searcher.getRefinementList(facetCounts: results?.facets(name: facet), andFacetName: facet, transformRefinementList: transformRefinementList, areRefinedValuesFirst: areRefinedValuesFirst)
+        facetResults = getRefinementList(facetCounts: results?.facets(name: facet), andFacetName: facet, transformRefinementList: transformRefinementList, areRefinedValuesFirst: areRefinedValuesFirst)
         view.reloadRefinements()
     }
 }
