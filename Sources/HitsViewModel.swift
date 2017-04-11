@@ -13,12 +13,26 @@ import InstantSearchCore
 ///
 /// ViewModel - Searcher: SearchableViewModel, ResultingDelegate
 class HitsViewModel: HitsViewModelDelegate, SearchableViewModel {
-
+    
+    // MARK: - Properties
+    
+    var hitsPerPage: UInt {
+        return view.hitsPerPage
+    }
+    
+    var infiniteScrolling: Bool {
+        return view.infiniteScrolling
+    }
+    
+    var remainingItemsBeforeLoading: UInt {
+        return view.remainingItemsBeforeLoading
+    }
+    
     // MARK: - SearchableViewModel
     
     public var searcher: Searcher! {
         didSet {
-            searcher.params.hitsPerPage = view.hitsPerPage
+            searcher.params.hitsPerPage = hitsPerPage
             
             if searcher.hits.count > 0 {
                 view.reloadHits()
@@ -40,12 +54,14 @@ class HitsViewModel: HitsViewModelDelegate, SearchableViewModel {
     }
     
     func loadMoreIfNecessary(rowNumber: Int) {
-        guard view.infiniteScrolling else { return }
-        if rowNumber + Int(view.remainingItemsBeforeLoading) >= searcher.hits.count {
+        guard infiniteScrolling else { return }
+        if rowNumber + Int(remainingItemsBeforeLoading) >= searcher.hits.count {
             searcher.loadMore()
         }
     }
 }
+
+// MARK: - ResultingDelegate
 
 extension HitsViewModel: ResultingDelegate {
     

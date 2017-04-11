@@ -10,7 +10,38 @@ import Foundation
 import InstantSearchCore
 
 @IBDesignable
-public class RefinementMenuViewModel: RefinementMenuViewModelDelegate, ResultingDelegate, SearchableViewModel, ResettableDelegate {
+public class RefinementMenuViewModel: RefinementMenuViewModelDelegate, SearchableViewModel {
+    
+    // MARK: - Properties
+    
+    var facet: String {
+        get {
+            return view.facet
+        }
+    }
+    
+    var areRefinedValuesFirst: Bool {
+        get {
+            return view.areRefinedValuesFirst
+        }
+    }
+    
+    var isDisjunctive: Bool {
+        get {
+            return view.isDisjunctive
+        }
+    }
+    
+    var transformRefinementList: TransformRefinementList {
+        get {
+            return view.transformRefinementList
+        }
+    }
+    
+    var facetResults: [FacetValue] = []
+    
+    // MARK: - SearchableViewModel
+    
     public var searcher: Searcher! {
         didSet {
             guard var facets = searcher.params.facets else {
@@ -40,46 +71,9 @@ public class RefinementMenuViewModel: RefinementMenuViewModelDelegate, Resulting
         }
     }
     
+    // MARK: - RefinementMenuViewModelDelegate
+    
     weak public var view: RefinementMenuViewDelegate!
-    
-    var facet: String {
-        get {
-            return view.facet
-        }
-    }
-    
-    var areRefinedValuesFirst: Bool {
-        get {
-            return view.areRefinedValuesFirst
-        }
-    }
-    
-    var isDisjunctive: Bool {
-        get {
-            return view.isDisjunctive
-        }
-    }
-    
-    var transformRefinementList: TransformRefinementList {
-        get {
-            return view.transformRefinementList
-        }
-    }
-    
-    var facetResults: [FacetValue] = []
-    
-    public func on(results: SearchResults?, error: Error?, userInfo: [String : Any]) {
-        // TODO: Fix that cause for some reason, can't find the facet refinement.
-        //,searcher.params.hasFacetRefinements(name: facet)
-        // else { return }
-        
-        facetResults = searcher.getRefinementList(facetCounts: results?.facets(name: facet), andFacetName: facet, transformRefinementList: transformRefinementList, areRefinedValuesFirst: areRefinedValuesFirst)
-        view.reloadRefinements()
-    }
-    
-    public func onReset() {
-        view.reloadRefinements()
-    }
     
     public func numberOfRows(in section: Int) -> Int {
         return searcher.results?.facets(name: facet)?.count ?? 0
@@ -97,5 +91,22 @@ public class RefinementMenuViewModel: RefinementMenuViewModelDelegate, Resulting
         searcher.params.setFacet(withName: facet, disjunctive: isDisjunctive)
         searcher.params.toggleFacetRefinement(name: facet, value: facetResults[indexPath.item].value)
         searcher.search()
+    }
+}
+
+extension RefinementMenuViewModel: ResultingDelegate {
+    public func on(results: SearchResults?, error: Error?, userInfo: [String : Any]) {
+        // TODO: Fix that cause for some reason, can't find the facet refinement.
+        //,searcher.params.hasFacetRefinements(name: facet)
+        // else { return }
+        
+        facetResults = searcher.getRefinementList(facetCounts: results?.facets(name: facet), andFacetName: facet, transformRefinementList: transformRefinementList, areRefinedValuesFirst: areRefinedValuesFirst)
+        view.reloadRefinements()
+    }
+}
+
+extension RefinementMenuViewModel: ResettableDelegate {
+    public func onReset() {
+        view.reloadRefinements()
     }
 }

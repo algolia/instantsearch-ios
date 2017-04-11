@@ -10,50 +10,73 @@ import UIKit
 import InstantSearchCore
 
 @IBDesignable
-public class StatsViewModel: ResultingDelegate, SearchableViewModel, ResettableDelegate, StatsViewModelDelegate {
+public class StatsViewModel: StatsViewModelDelegate, SearchableViewModel {
     
-    weak public var view: StatsViewDelegate!
+    // MARK: - Properties
+    
+    var resultTemplate: String {
+        return view.resultTemplate
+    }
+    
+    var errorText: String {
+        return view.errorText
+    }
+    
+    var clearText: String {
+        return view.clearText
+    }
+    
+    // MARK: - SearchableViewModel
     
     public var searcher: Searcher! {
         didSet {
-            if view.resultTemplate.isEmpty {
-                view.resultTemplate = defaultResultTemplate
-            }
-            
-            if view.errorText.isEmpty {
-                view.errorText = defaultErrorText
-            }
-            
             // Initial value of label in case a search was made.
             // If a search wasn't made yet and it is still ongoing, then the label will get initialized in the onResult method
             if let results = searcher.results {
-                let text = applyTemplate(resultTemplate: view.resultTemplate, results: results)
+                let text = applyTemplate(resultTemplate: resultTemplate, results: results)
                 view.set(text: text)
             } else {
-                let text = view.clearText
+                let text = clearText
                 view.set(text: text)
             }
         }
     }
     
-    private let defaultResultTemplate = "{nbHits} results"
-    private let defaultErrorText = "Error in fetching results"
+    // MARK: - StatsViewModelDelegate
     
+    weak public var view: StatsViewDelegate!
+    
+
+}
+
+// MARK: - ResettableDelegate
+
+extension StatsViewModel: ResettableDelegate {
+    public func onReset() {
+        view.set(text: clearText)
+    }
+}
+
+// MARK: - ResultingDelegate
+
+extension StatsViewModel: ResultingDelegate {
     public func on(results: SearchResults?, error: Error?, userInfo: [String: Any]) {
         if let results = results {
-            let text = applyTemplate(resultTemplate: view.resultTemplate, results: results)
+            let text = applyTemplate(resultTemplate: resultTemplate, results: results)
             view.set(text: text)
         }
         
         if error != nil {
-            let text = view.errorText
+            let text = errorText
             view.set(text: text)
         }
     }
-    
-    // MARK: - Helper methods
-    
-    private func applyTemplate(resultTemplate: String, results: SearchResults) -> String {
+}
+
+// MARK: - Presentational helper methods
+
+extension StatsViewModel {
+    func applyTemplate(resultTemplate: String, results: SearchResults) -> String {
         return resultTemplate.replacingOccurrences(of: "{hitsPerPage}", with: "\(results.hitsPerPage)")
             .replacingOccurrences(of: "{processingTimeMS}", with: "\(results.processingTimeMS)")
             .replacingOccurrences(of: "{nbHits}", with: "\(results.nbHits)")
@@ -61,10 +84,5 @@ public class StatsViewModel: ResultingDelegate, SearchableViewModel, ResettableD
             .replacingOccurrences(of: "{page}", with: "\(results.page)")
             .replacingOccurrences(of: "{query}", with: "\(String(describing: results.query))")
     }
-    
-    public func onReset() {
-        view.set(text: view.clearText)
-    }
 }
-
 

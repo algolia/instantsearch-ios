@@ -16,6 +16,7 @@ import Foundation
     var viewModel: StatsViewModelDelegate! { get set }
     
     func set(text: String)
+    
     var resultTemplate: String { get set }
     var errorText: String { get set }
     var clearText: String { get set }

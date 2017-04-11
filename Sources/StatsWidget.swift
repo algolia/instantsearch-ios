@@ -13,9 +13,9 @@ import UIKit
     
     public var viewModel: StatsViewModelDelegate!
     
-    @IBInspectable public var resultTemplate: String = ""
+    @IBInspectable public var resultTemplate: String = "{nbHits} results"
     @IBInspectable public var clearText: String = ""
-    @IBInspectable public var errorText: String = ""
+    @IBInspectable public var errorText: String = "Error in fetching results"
     
     public func set(text: String) {
         self.text = text
