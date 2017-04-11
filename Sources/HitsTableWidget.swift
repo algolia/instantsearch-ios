@@ -10,10 +10,6 @@ import Foundation
 
 @objc public class HitsTableWidget: UITableView, UITableViewDataSource, HitsViewDelegate, AlgoliaView {
     
-    public func reloadHits() {
-        reloadData()
-    }
-    
     @IBInspectable public var hitsPerPage: UInt = 20
     @IBInspectable public var infiniteScrolling: Bool = true
     @IBInspectable public var remainingItemsBeforeLoading: UInt = 5
@@ -29,6 +25,10 @@ import Foundation
     public func scrollTop() {
         let indexPath = IndexPath(row: 0, section: 0)
         scrollToRow(at: indexPath, at: .top, animated: true)
+    }
+    
+    public func reloadHits() {
+        reloadData()
     }
     
     public func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {

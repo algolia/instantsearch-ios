@@ -15,6 +15,9 @@
 		E2738FBD1E9BD9ED002C002D /* StatsViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = E2738FBC1E9BD9ED002C002D /* StatsViewModel.swift */; };
 		E2738FBF1E9BDA28002C002D /* StatsViewModelDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = E2738FBE1E9BDA28002C002D /* StatsViewModelDelegate.swift */; };
 		E2738FC11E9BDA31002C002D /* StatsViewDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = E2738FC01E9BDA31002C002D /* StatsViewDelegate.swift */; };
+		E2738FC51E9CC3E0002C002D /* RefinementMenuViewDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = E2738FC41E9CC3E0002C002D /* RefinementMenuViewDelegate.swift */; };
+		E2738FC71E9CC3F8002C002D /* RefinementMenuViewModelDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = E2738FC61E9CC3F8002C002D /* RefinementMenuViewModelDelegate.swift */; };
+		E2738FC91E9CC418002C002D /* RefinementMenuViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = E2738FC81E9CC418002C002D /* RefinementMenuViewModel.swift */; };
 		E27A7BEA1E955612005B2506 /* ResettableDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = E27A7BE91E955612005B2506 /* ResettableDelegate.swift */; };
 		E27A7BEC1E9556C6005B2506 /* ResultingDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = E27A7BEB1E9556C6005B2506 /* ResultingDelegate.swift */; };
 		E27A7BEF1E962768005B2506 /* HitsViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = E27A7BEE1E962768005B2506 /* HitsViewModel.swift */; };
@@ -64,6 +67,9 @@
 		E2738FBC1E9BD9ED002C002D /* StatsViewModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = StatsViewModel.swift; sourceTree = "<group>"; };
 		E2738FBE1E9BDA28002C002D /* StatsViewModelDelegate.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = StatsViewModelDelegate.swift; sourceTree = "<group>"; };
 		E2738FC01E9BDA31002C002D /* StatsViewDelegate.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = StatsViewDelegate.swift; sourceTree = "<group>"; };
+		E2738FC41E9CC3E0002C002D /* RefinementMenuViewDelegate.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RefinementMenuViewDelegate.swift; sourceTree = "<group>"; };
+		E2738FC61E9CC3F8002C002D /* RefinementMenuViewModelDelegate.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RefinementMenuViewModelDelegate.swift; sourceTree = "<group>"; };
+		E2738FC81E9CC418002C002D /* RefinementMenuViewModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RefinementMenuViewModel.swift; sourceTree = "<group>"; };
 		E27A7BE91E955612005B2506 /* ResettableDelegate.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ResettableDelegate.swift; sourceTree = "<group>"; };
 		E27A7BEB1E9556C6005B2506 /* ResultingDelegate.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ResultingDelegate.swift; sourceTree = "<group>"; };
 		E27A7BEE1E962768005B2506 /* HitsViewModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HitsViewModel.swift; sourceTree = "<group>"; };
@@ -178,6 +184,7 @@
 			children = (
 				E27A7BEE1E962768005B2506 /* HitsViewModel.swift */,
 				E2738FBC1E9BD9ED002C002D /* StatsViewModel.swift */,
+				E2738FC81E9CC418002C002D /* RefinementMenuViewModel.swift */,
 			);
 			name = ViewModel;
 			sourceTree = "<group>";
@@ -187,6 +194,7 @@
 			children = (
 				E27A7BF91E97B729005B2506 /* HitsViewModelDelegate.swift */,
 				E2738FBE1E9BDA28002C002D /* StatsViewModelDelegate.swift */,
+				E2738FC61E9CC3F8002C002D /* RefinementMenuViewModelDelegate.swift */,
 			);
 			name = "ViewModel-View";
 			sourceTree = "<group>";
@@ -196,6 +204,7 @@
 			children = (
 				E27A7BFC1E97B781005B2506 /* HitsViewDelegate.swift */,
 				E2738FC01E9BDA31002C002D /* StatsViewDelegate.swift */,
+				E2738FC41E9CC3E0002C002D /* RefinementMenuViewDelegate.swift */,
 			);
 			name = "View-ViewModel";
 			sourceTree = "<group>";
@@ -231,12 +240,12 @@
 		E27C16541E939B430091D79E /* View */ = {
 			isa = PBXGroup;
 			children = (
+				E27C16361E9394250091D79E /* RefinementListWidget.swift */,
 				E27C16371E9394250091D79E /* HitsTableWidget.swift */,
 				E27A7BF21E97947C005B2506 /* HitsCollectionWidget.swift */,
 				E27C16391E9394250091D79E /* SearchBarWidget.swift */,
 				E27C163A1E9394250091D79E /* StatsWidget.swift */,
 				E27C16381E9394250091D79E /* SliderWidget.swift */,
-				E27C16361E9394250091D79E /* RefinementListWidget.swift */,
 				E27C163D1E9394250091D79E /* ClearAllWidget.swift */,
 				E27C163E1E9394250091D79E /* ActivityIndicatorView.swift */,
 			);
@@ -457,15 +466,18 @@
 				E2738FBD1E9BD9ED002C002D /* StatsViewModel.swift in Sources */,
 				E27A7BEC1E9556C6005B2506 /* ResultingDelegate.swift in Sources */,
 				E27A7BFD1E97B781005B2506 /* HitsViewDelegate.swift in Sources */,
+				E2738FC91E9CC418002C002D /* RefinementMenuViewModel.swift in Sources */,
 				E27C16491E9394250091D79E /* ClearAllWidget.swift in Sources */,
 				E27C164C1E9394250091D79E /* SearchableViewModel.swift in Sources */,
 				E2738FC11E9BDA31002C002D /* StatsViewDelegate.swift in Sources */,
 				E27C16441E9394250091D79E /* SliderWidget.swift in Sources */,
+				E2738FC51E9CC3E0002C002D /* RefinementMenuViewDelegate.swift in Sources */,
 				E27C164D1E9394250091D79E /* Helpers.swift in Sources */,
 				E27C16421E9394250091D79E /* RefinementListWidget.swift in Sources */,
 				E27C164A1E9394250091D79E /* ActivityIndicatorView.swift in Sources */,
 				E27A7BEF1E962768005B2506 /* HitsViewModel.swift in Sources */,
 				E2738FBF1E9BDA28002C002D /* StatsViewModelDelegate.swift in Sources */,
+				E2738FC71E9CC3F8002C002D /* RefinementMenuViewModelDelegate.swift in Sources */,
 				E27C16481E9394250091D79E /* InstantSearchMultiplePresenter.swift in Sources */,
 				E27C16451E9394250091D79E /* SearchBarWidget.swift in Sources */,
 				E27A7BEA1E955612005B2506 /* ResettableDelegate.swift in Sources */,

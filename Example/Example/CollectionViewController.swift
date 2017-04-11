@@ -34,6 +34,7 @@ class CollectionViewController: UICollectionViewController, HitCollectionDataSou
         cell.name.highlightedBackgroundColor = .yellow
         
         cell.salePrice.text = String(hit["salePrice"] as! Double)
+        cell.backgroundColor = UIColor.lightGray
         
         return cell
     }
@@ -45,7 +46,7 @@ class CollectionViewCell: UICollectionViewCell {
     @IBOutlet var salePrice: UILabel!
 }
 
-fileprivate let itemsPerRow: CGFloat = 3
+fileprivate let itemsPerRow: CGFloat = 2
 fileprivate let sectionInsets = UIEdgeInsets(top: 50.0, left: 30.0, bottom: 50.0, right: 30.0)
 
 

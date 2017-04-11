@@ -21,6 +21,8 @@ class ViewModelBuilder {
             return buildWidgetVM(with: hitWidgetV)
         case let hitWidgetV as StatsViewDelegate:
             return buildWidgetVM(with: hitWidgetV)
+        case let hitWidgetV as RefinementMenuViewDelegate:
+            return buildWidgetVM(with: hitWidgetV)
         default: return nil
         }
     }
@@ -39,5 +41,13 @@ class ViewModelBuilder {
         statView.viewModel = statsViewModel
         
         return statsViewModel
+    }
+    
+    private func buildWidgetVM(with refinementMenuView: RefinementMenuViewDelegate) -> RefinementMenuViewModel {
+        let refinementMenuViewModel = RefinementMenuViewModel()
+        refinementMenuViewModel.view = refinementMenuView
+        refinementMenuView.viewModel = refinementMenuViewModel
+        
+        return refinementMenuViewModel
     }
 }
