@@ -9,7 +9,6 @@
 import Foundation
 import InstantSearchCore
 
-@IBDesignable
 public class RefinementMenuViewModel: RefinementMenuViewModelDelegate, SearchableViewModel {
     
     // MARK: - Properties

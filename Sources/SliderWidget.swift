@@ -11,28 +11,20 @@ import InstantSearchCore
 import UIKit
 
 @IBDesignable
-@objc public class SliderWidget: UISlider, RefinableDelegate, ResettableDelegate, SearchableViewModel, AlgoliaView {
+@objc public class SliderWidget: UISlider, RefinementControlViewDelegate, AlgoliaView {
     
-    public var searcher: Searcher! {
-        didSet {
-            // TODO: Find better way...
-            if clearValue == -1 {
-                clearValue = minimumValue
-            }
-            
-            if let numeric = self.searcher?.params.getNumericRefinement(name: attributeName, op: op) {
-                setValue(numeric.value.floatValue, animated: false)
-                // TODO: Offer customisation and reevaluate if label is best choice
-                valueLabel?.text = "\(numeric.value)"
-            }
-            
-            addTarget(self, action: #selector(numericFilterValueChanged(sender:)), for: .valueChanged)
-        }
+    public func set(value: NSNumber) {
+        setValue(value.floatValue, animated: false)
     }
     
-    var valueLabel: UILabel?
+    public func registerAction() {
+        addTarget(viewModel, action: #selector(viewModel.numericFilterValueChanged), for: .valueChanged)
+    }
     
-    @IBInspectable public var attributeName: String!
+    public var viewModel: RefinementControlViewModelDelegate!
+    
+    @IBInspectable public var attributeName: String = ""
+    
     @IBInspectable public var operation: String! {
         didSet {
             switch operation {
@@ -46,47 +38,16 @@ import UIKit
             }
         }
     }
+    
+    public func getValue() -> NSNumber {
+        return NSNumber(value: value)
+    }
+    
     // Note: can't have optional Float because IBInspectable have to be bridgable to objc
     // and value types optional cannot be bridged.
-    @IBInspectable public var clearValue: Float = -1
+    @IBInspectable public var clearValue: NSNumber = 0
     
-    public var op: NumericRefinement.Operator!
-    public var inclusive: Bool!
-    
-    // TODO: Make this debouncer customisable (expose it)
-    internal var numericFiltersDebouncer = Debouncer(delay: 0.2)
-    
-    @objc internal func numericFilterValueChanged(sender: SliderWidget) {
-        numericFiltersDebouncer.call {
-            self.searcher?.params.updateNumericRefinement(self.attributeName, self.op, NSNumber(value: sender.value))
-            self.searcher?.search()
-        }
-    }
-    
-    @objc public func getAttributeName() -> String {
-        return attributeName
-    }
-    
-    @objc public func onRefinementChange(numerics: [NumericRefinement]) {
-        for numeric in numerics {
-            if numeric.op == op {
-                setValue(numeric.value.floatValue, animated: false)
-                 // TODO: Offer customisation and reevaluate if label is best choice
-                valueLabel?.text = "\(numeric.value)"
-            }
-        }
-    }
-    
-    @objc public func onReset() {
-        setValue(clearValue, animated: false)
-        // TODO: Is minimum the right choice? maybe we want max to be default! think about it...
-        valueLabel?.text = "\(clearValue)"
-    }
-}
-
-extension SearchParameters {
-    
-    func getNumericRefinement(name filterName: String, op: NumericRefinement.Operator, inclusive: Bool = true) -> NumericRefinement? {
-        return numericRefinements[filterName]?.first(where: { $0.op == op && $0.inclusive == inclusive})
-    }
+    public var op: NumericRefinement.Operator = .equal
+    // TODO: Do something about this...
+    public var inclusive: Bool = false
 }

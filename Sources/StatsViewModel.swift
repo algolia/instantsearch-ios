@@ -6,10 +6,8 @@
 //
 //
 
-import UIKit
 import InstantSearchCore
 
-@IBDesignable
 public class StatsViewModel: StatsViewModelDelegate, SearchableViewModel {
     
     // MARK: - Properties

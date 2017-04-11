@@ -18,6 +18,9 @@
 		E2738FC51E9CC3E0002C002D /* RefinementMenuViewDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = E2738FC41E9CC3E0002C002D /* RefinementMenuViewDelegate.swift */; };
 		E2738FC71E9CC3F8002C002D /* RefinementMenuViewModelDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = E2738FC61E9CC3F8002C002D /* RefinementMenuViewModelDelegate.swift */; };
 		E2738FC91E9CC418002C002D /* RefinementMenuViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = E2738FC81E9CC418002C002D /* RefinementMenuViewModel.swift */; };
+		E2738FCB1E9CDDA0002C002D /* RefinementControlViewModelDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = E2738FCA1E9CDDA0002C002D /* RefinementControlViewModelDelegate.swift */; };
+		E2738FCD1E9CDE04002C002D /* RefinementControlViewDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = E2738FCC1E9CDE04002C002D /* RefinementControlViewDelegate.swift */; };
+		E2738FCF1E9CDE32002C002D /* RefinementControlViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = E2738FCE1E9CDE32002C002D /* RefinementControlViewModel.swift */; };
 		E27A7BEA1E955612005B2506 /* ResettableDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = E27A7BE91E955612005B2506 /* ResettableDelegate.swift */; };
 		E27A7BEC1E9556C6005B2506 /* ResultingDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = E27A7BEB1E9556C6005B2506 /* ResultingDelegate.swift */; };
 		E27A7BEF1E962768005B2506 /* HitsViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = E27A7BEE1E962768005B2506 /* HitsViewModel.swift */; };
@@ -70,6 +73,9 @@
 		E2738FC41E9CC3E0002C002D /* RefinementMenuViewDelegate.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RefinementMenuViewDelegate.swift; sourceTree = "<group>"; };
 		E2738FC61E9CC3F8002C002D /* RefinementMenuViewModelDelegate.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RefinementMenuViewModelDelegate.swift; sourceTree = "<group>"; };
 		E2738FC81E9CC418002C002D /* RefinementMenuViewModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RefinementMenuViewModel.swift; sourceTree = "<group>"; };
+		E2738FCA1E9CDDA0002C002D /* RefinementControlViewModelDelegate.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RefinementControlViewModelDelegate.swift; sourceTree = "<group>"; };
+		E2738FCC1E9CDE04002C002D /* RefinementControlViewDelegate.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RefinementControlViewDelegate.swift; sourceTree = "<group>"; };
+		E2738FCE1E9CDE32002C002D /* RefinementControlViewModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RefinementControlViewModel.swift; sourceTree = "<group>"; };
 		E27A7BE91E955612005B2506 /* ResettableDelegate.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ResettableDelegate.swift; sourceTree = "<group>"; };
 		E27A7BEB1E9556C6005B2506 /* ResultingDelegate.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ResultingDelegate.swift; sourceTree = "<group>"; };
 		E27A7BEE1E962768005B2506 /* HitsViewModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HitsViewModel.swift; sourceTree = "<group>"; };
@@ -185,6 +191,7 @@
 				E27A7BEE1E962768005B2506 /* HitsViewModel.swift */,
 				E2738FBC1E9BD9ED002C002D /* StatsViewModel.swift */,
 				E2738FC81E9CC418002C002D /* RefinementMenuViewModel.swift */,
+				E2738FCE1E9CDE32002C002D /* RefinementControlViewModel.swift */,
 			);
 			name = ViewModel;
 			sourceTree = "<group>";
@@ -195,6 +202,7 @@
 				E27A7BF91E97B729005B2506 /* HitsViewModelDelegate.swift */,
 				E2738FBE1E9BDA28002C002D /* StatsViewModelDelegate.swift */,
 				E2738FC61E9CC3F8002C002D /* RefinementMenuViewModelDelegate.swift */,
+				E2738FCA1E9CDDA0002C002D /* RefinementControlViewModelDelegate.swift */,
 			);
 			name = "ViewModel-View";
 			sourceTree = "<group>";
@@ -205,6 +213,7 @@
 				E27A7BFC1E97B781005B2506 /* HitsViewDelegate.swift */,
 				E2738FC01E9BDA31002C002D /* StatsViewDelegate.swift */,
 				E2738FC41E9CC3E0002C002D /* RefinementMenuViewDelegate.swift */,
+				E2738FCC1E9CDE04002C002D /* RefinementControlViewDelegate.swift */,
 			);
 			name = "View-ViewModel";
 			sourceTree = "<group>";
@@ -474,10 +483,13 @@
 				E2738FC51E9CC3E0002C002D /* RefinementMenuViewDelegate.swift in Sources */,
 				E27C164D1E9394250091D79E /* Helpers.swift in Sources */,
 				E27C16421E9394250091D79E /* RefinementListWidget.swift in Sources */,
+				E2738FCF1E9CDE32002C002D /* RefinementControlViewModel.swift in Sources */,
+				E2738FCD1E9CDE04002C002D /* RefinementControlViewDelegate.swift in Sources */,
 				E27C164A1E9394250091D79E /* ActivityIndicatorView.swift in Sources */,
 				E27A7BEF1E962768005B2506 /* HitsViewModel.swift in Sources */,
 				E2738FBF1E9BDA28002C002D /* StatsViewModelDelegate.swift in Sources */,
 				E2738FC71E9CC3F8002C002D /* RefinementMenuViewModelDelegate.swift in Sources */,
+				E2738FCB1E9CDDA0002C002D /* RefinementControlViewModelDelegate.swift in Sources */,
 				E27C16481E9394250091D79E /* InstantSearchMultiplePresenter.swift in Sources */,
 				E27C16451E9394250091D79E /* SearchBarWidget.swift in Sources */,
 				E27A7BEA1E955612005B2506 /* ResettableDelegate.swift in Sources */,
