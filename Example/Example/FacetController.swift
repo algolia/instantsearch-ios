@@ -23,11 +23,11 @@ class FacetController: UIViewController, FacetDataSource {
         instantSearchBinder.add(widget: statLabel)
     }
     
-    func cellFor(facetValue: FacetValue, isRefined: Bool, at indexPath: IndexPath) -> UITableViewCell {
+    func cellFor(facet: String, count: Int, isRefined: Bool, at indexPath: IndexPath) -> UITableViewCell {
         let cell = refinementList.dequeueReusableCell(withIdentifier: "facetCell", for: indexPath)
         
-        cell.textLabel?.text = facetValue.value
-        cell.detailTextLabel?.text = String(facetValue.count)
+        cell.textLabel?.text = facet
+        cell.detailTextLabel?.text = String(count)
         cell.accessoryType = isRefined ? .checkmark : .none
         
         return cell

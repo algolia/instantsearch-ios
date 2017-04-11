@@ -7,8 +7,6 @@
 //
 
 import Foundation
-// TODO: Try to make it independent of InstantSearchCore (FacetValue problem...)
-import InstantSearchCore
 import UIKit
 
 @IBDesignable
@@ -23,15 +21,9 @@ import UIKit
     @IBInspectable public var facet: String = ""
     @IBInspectable public var areRefinedValuesFirst: Bool = true
     @IBInspectable public var isDisjunctive: Bool = true
-    
-    public var transformRefinementList = TransformRefinementList.countDesc
-    
+
     @available(*, unavailable, message: "This property is reserved for Interface Builder. Use 'transformRefinementList' instead.")
-    @IBInspectable var sorting: String? {
-        willSet {
-            transformRefinementList = TransformRefinementList(named: newValue?.lowercased() ?? "")
-        }
-    }
+    @IBInspectable public var sorting: String = "countDesc"
     
     @objc public weak var facetDataSource: FacetDataSource? {
         didSet {
@@ -43,7 +35,7 @@ import UIKit
     public func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let facetValue = viewModel.facetForRow(at: indexPath)
         let isRefined = viewModel.isRefined(at: indexPath)
-        return facetDataSource?.cellFor(facetValue: facetValue, isRefined: isRefined, at: indexPath) ?? UITableViewCell()
+        return facetDataSource?.cellFor(facet: facetValue.value, count: facetValue.count, isRefined: isRefined, at: indexPath) ?? UITableViewCell()
     }
     
     public func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
@@ -57,5 +49,5 @@ import UIKit
 }
 
 @objc public protocol FacetDataSource: class {
-    func cellFor(facetValue: FacetValue, isRefined: Bool, at indexPath: IndexPath) -> UITableViewCell
+    func cellFor(facet: String, count: Int, isRefined: Bool, at indexPath: IndexPath) -> UITableViewCell
 }

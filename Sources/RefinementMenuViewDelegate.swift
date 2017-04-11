@@ -21,5 +21,5 @@ import InstantSearchCore
     var facet: String { get set }
     var areRefinedValuesFirst: Bool { get set }
     var isDisjunctive: Bool { get set }
-    var transformRefinementList: TransformRefinementList { get set }
+    var sorting: String { get set }
 }

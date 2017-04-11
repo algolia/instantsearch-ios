@@ -33,7 +33,7 @@ public class RefinementMenuViewModel: RefinementMenuViewModelDelegate, Searchabl
     
     var transformRefinementList: TransformRefinementList {
         get {
-            return view.transformRefinementList
+            return TransformRefinementList(named: view.sorting.lowercased())
         }
     }
     
