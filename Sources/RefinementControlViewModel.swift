@@ -9,7 +9,12 @@
 import Foundation
 import InstantSearchCore
 
-public class RefinementControlViewModel: RefinementControlViewModelDelegate, RefinableDelegate, ResettableDelegate, SearchableViewModel {
+public class RefinementControlViewModel: RefinementControlViewModelDelegate, SearchableViewModel {
+    
+    // MARK: - Properties
+    
+    // TODO: Make this debouncer customisable (expose it)
+    internal var numericFiltersDebouncer = Debouncer(delay: 0.2)
     
     var clearValue: NSNumber {
         return view.clearValue
@@ -27,7 +32,7 @@ public class RefinementControlViewModel: RefinementControlViewModelDelegate, Ref
         return view.attributeName
     }
     
-    public weak var view: RefinementControlViewDelegate!
+    // MARK: - SearchableViewModel
     
     public var searcher: Searcher! {
         didSet {
@@ -38,9 +43,10 @@ public class RefinementControlViewModel: RefinementControlViewModelDelegate, Ref
             view.registerAction()
         }
     }
+
+    // MARK: - RefinementControlViewModelDelegate
     
-    // TODO: Make this debouncer customisable (expose it)
-    internal var numericFiltersDebouncer = Debouncer(delay: 0.2)
+    public weak var view: RefinementControlViewDelegate!
     
     @objc public func numericFilterValueChanged() {
         numericFiltersDebouncer.call {
@@ -48,7 +54,11 @@ public class RefinementControlViewModel: RefinementControlViewModelDelegate, Ref
             self.searcher.search()
         }
     }
-    
+}
+
+// MARK: - RefinableDelegate
+
+extension RefinementControlViewModel: RefinableDelegate {
     @objc public func getAttributeName() -> String {
         // TODO: Error handling
         //        if view.attributeName.isEmpty { throw "a control refinement does not have an attribute name specified" }
@@ -62,13 +72,15 @@ public class RefinementControlViewModel: RefinementControlViewModelDelegate, Ref
             }
         }
     }
-    
+}
+
+// MARK: - ResettableDelegate
+
+extension RefinementControlViewModel: ResettableDelegate {
     @objc public func onReset() {
-        view.set(value: view.clearValue)
+        view.set(value: clearValue)
     }
 }
-    
-extension String: Error {}
 
 
 extension SearchParameters {
