@@ -7,7 +7,6 @@
 //
 
 import Foundation
-import InstantSearchCore
 import UIKit
 
 @IBDesignable
@@ -25,19 +24,7 @@ import UIKit
     
     @IBInspectable public var attributeName: String = ""
     
-    @IBInspectable public var operation: String! {
-        didSet {
-            switch operation {
-                case "lessThan": op = .lessThan
-                case "lessThanOrEqual": op = .lessThanOrEqual
-                case "equal": op = .equal
-                case "notEqual": op = .notEqual
-                case "greaterThanOrEqual": op = .greaterThanOrEqual
-                case "greaterThan": op = .greaterThan
-                default: fatalError("No valid operation")
-            }
-        }
-    }
+    @IBInspectable public var operation: String = "equal"
     
     public func getValue() -> NSNumber {
         return NSNumber(value: value)
@@ -47,7 +34,6 @@ import UIKit
     // and value types optional cannot be bridged.
     @IBInspectable public var clearValue: NSNumber = 0
     
-    public var op: NumericRefinement.Operator = .equal
     // TODO: Do something about this...
     public var inclusive: Bool = false
 }

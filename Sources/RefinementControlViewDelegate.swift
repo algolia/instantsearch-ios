@@ -21,8 +21,7 @@ import InstantSearchCore
     func getValue() -> NSNumber
     
     var clearValue: NSNumber { get set }
-    var op: NumericRefinement.Operator { get set }
+    var operation: String { get set }
     var inclusive: Bool { get set }
     var attributeName: String { get set }
-
 }
