@@ -55,7 +55,7 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
-		287D0A6D1C4B73BD004566D6 /* InstantSearchTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = InstantSearchTests.swift; path = Tests/InstantSearchTests.swift; sourceTree = SOURCE_ROOT; };
+		287D0A6D1C4B73BD004566D6 /* InstantSearchTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = InstantSearchTests.swift; sourceTree = "<group>"; };
 		28F8287D1C494B2C00330CF4 /* InstantSearch.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = InstantSearch.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		28F828801C494B2C00330CF4 /* InstantSearch.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = InstantSearch.h; sourceTree = "<group>"; };
 		28F828821C494B2C00330CF4 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
@@ -124,12 +124,12 @@
 		28F828731C494B2C00330CF4 = {
 			isa = PBXGroup;
 			children = (
-				28F8289B1C494BF100330CF4 /* Playground.playground */,
+				DFE4D6EB73C731EB10B0D33C /* Frameworks */,
+				2B8A051A461640BE916F0ABE /* Pods */,
+				28F8287E1C494B2C00330CF4 /* Products */,
 				28F828971C494B4200330CF4 /* Sources */,
 				28F8288B1C494B2C00330CF4 /* Tests */,
-				28F8287E1C494B2C00330CF4 /* Products */,
-				2B8A051A461640BE916F0ABE /* Pods */,
-				DFE4D6EB73C731EB10B0D33C /* Frameworks */,
+				28F8289B1C494BF100330CF4 /* Playground.playground */,
 			);
 			sourceTree = "<group>";
 		};
@@ -148,21 +148,20 @@
 				28F8288E1C494B2C00330CF4 /* Info.plist */,
 				287D0A6D1C4B73BD004566D6 /* InstantSearchTests.swift */,
 			);
-			name = Tests;
-			path = InstantSearchTests;
+			path = Tests;
 			sourceTree = "<group>";
 		};
 		28F828971C494B4200330CF4 /* Sources */ = {
 			isa = PBXGroup;
 			children = (
-				E27A7BF01E97931E005B2506 /* ViewModelBuilder.swift */,
 				E27C163B1E9394250091D79E /* InstantSearchBinder.swift */,
 				E27C163C1E9394250091D79E /* InstantSearchMultiplePresenter.swift */,
-				E27A7C001E97B83C005B2506 /* Protocols */,
+				E27A7BF01E97931E005B2506 /* ViewModelBuilder.swift */,
 				E27A7C021E97B913005B2506 /* Concrete */,
+				E27A7C001E97B83C005B2506 /* Protocols */,
 				E27C16411E9394250091D79E /* Helpers.swift */,
-				28F828801C494B2C00330CF4 /* InstantSearch.h */,
 				28F828821C494B2C00330CF4 /* Info.plist */,
+				28F828801C494B2C00330CF4 /* InstantSearch.h */,
 			);
 			path = Sources;
 			sourceTree = "<group>";
@@ -192,7 +191,7 @@
 			children = (
 				E2738FD11E9D1AFF002C002D /* RefinementListHelper.swift */,
 			);
-			name = Helpers;
+			path = Helpers;
 			sourceTree = "<group>";
 		};
 		E27A7BED1E96271B005B2506 /* ViewModel */ = {
@@ -200,44 +199,44 @@
 			children = (
 				E2738FD01E9D1AED002C002D /* Helpers */,
 				E27A7BEE1E962768005B2506 /* HitsViewModel.swift */,
-				E2738FBC1E9BD9ED002C002D /* StatsViewModel.swift */,
-				E2738FC81E9CC418002C002D /* RefinementMenuViewModel.swift */,
 				E2738FCE1E9CDE32002C002D /* RefinementControlViewModel.swift */,
+				E2738FC81E9CC418002C002D /* RefinementMenuViewModel.swift */,
+				E2738FBC1E9BD9ED002C002D /* StatsViewModel.swift */,
 			);
-			name = ViewModel;
+			path = ViewModel;
 			sourceTree = "<group>";
 		};
 		E27A7BF81E97B6DE005B2506 /* ViewModel-View */ = {
 			isa = PBXGroup;
 			children = (
 				E27A7BF91E97B729005B2506 /* HitsViewModelDelegate.swift */,
-				E2738FBE1E9BDA28002C002D /* StatsViewModelDelegate.swift */,
-				E2738FC61E9CC3F8002C002D /* RefinementMenuViewModelDelegate.swift */,
 				E2738FCA1E9CDDA0002C002D /* RefinementControlViewModelDelegate.swift */,
+				E2738FC61E9CC3F8002C002D /* RefinementMenuViewModelDelegate.swift */,
+				E2738FBE1E9BDA28002C002D /* StatsViewModelDelegate.swift */,
 			);
-			name = "ViewModel-View";
+			path = "ViewModel-View";
 			sourceTree = "<group>";
 		};
 		E27A7BFB1E97B74C005B2506 /* View-ViewModel */ = {
 			isa = PBXGroup;
 			children = (
 				E27A7BFC1E97B781005B2506 /* HitsViewDelegate.swift */,
-				E2738FC01E9BDA31002C002D /* StatsViewDelegate.swift */,
-				E2738FC41E9CC3E0002C002D /* RefinementMenuViewDelegate.swift */,
 				E2738FCC1E9CDE04002C002D /* RefinementControlViewDelegate.swift */,
+				E2738FC41E9CC3E0002C002D /* RefinementMenuViewDelegate.swift */,
+				E2738FC01E9BDA31002C002D /* StatsViewDelegate.swift */,
 			);
-			name = "View-ViewModel";
+			path = "View-ViewModel";
 			sourceTree = "<group>";
 		};
 		E27A7C001E97B83C005B2506 /* Protocols */ = {
 			isa = PBXGroup;
 			children = (
+				E27A7C011E97B86B005B2506 /* View */,
+				E27A7BFB1E97B74C005B2506 /* View-ViewModel */,
 				E27C16551E939B690091D79E /* ViewModel-Binder */,
 				E27A7BF81E97B6DE005B2506 /* ViewModel-View */,
-				E27A7BFB1E97B74C005B2506 /* View-ViewModel */,
-				E27A7C011E97B86B005B2506 /* View */,
 			);
-			name = Protocols;
+			path = Protocols;
 			sourceTree = "<group>";
 		};
 		E27A7C011E97B86B005B2506 /* View */ = {
@@ -245,42 +244,42 @@
 			children = (
 				E27A7BFE1E97B7AA005B2506 /* AlgoliaView.swift */,
 			);
-			name = View;
+			path = View;
 			sourceTree = "<group>";
 		};
 		E27A7C021E97B913005B2506 /* Concrete */ = {
 			isa = PBXGroup;
 			children = (
-				E27A7BED1E96271B005B2506 /* ViewModel */,
 				E27C16541E939B430091D79E /* View */,
+				E27A7BED1E96271B005B2506 /* ViewModel */,
 			);
-			name = Concrete;
+			path = Concrete;
 			sourceTree = "<group>";
 		};
 		E27C16541E939B430091D79E /* View */ = {
 			isa = PBXGroup;
 			children = (
-				E27C16361E9394250091D79E /* RefinementListWidget.swift */,
-				E27C16371E9394250091D79E /* HitsTableWidget.swift */,
-				E27A7BF21E97947C005B2506 /* HitsCollectionWidget.swift */,
-				E27C16391E9394250091D79E /* SearchBarWidget.swift */,
-				E27C163A1E9394250091D79E /* StatsWidget.swift */,
-				E27C16381E9394250091D79E /* SliderWidget.swift */,
-				E27C163D1E9394250091D79E /* ClearAllWidget.swift */,
 				E27C163E1E9394250091D79E /* ActivityIndicatorView.swift */,
+				E27C163D1E9394250091D79E /* ClearAllWidget.swift */,
+				E27A7BF21E97947C005B2506 /* HitsCollectionWidget.swift */,
+				E27C16371E9394250091D79E /* HitsTableWidget.swift */,
+				E27C16361E9394250091D79E /* RefinementListWidget.swift */,
+				E27C16391E9394250091D79E /* SearchBarWidget.swift */,
+				E27C16381E9394250091D79E /* SliderWidget.swift */,
+				E27C163A1E9394250091D79E /* StatsWidget.swift */,
 			);
-			name = View;
+			path = View;
 			sourceTree = "<group>";
 		};
 		E27C16551E939B690091D79E /* ViewModel-Binder */ = {
 			isa = PBXGroup;
 			children = (
-				E27C16401E9394250091D79E /* SearchableViewModel.swift */,
-				E27A7BEB1E9556C6005B2506 /* ResultingDelegate.swift */,
-				E27A7BE91E955612005B2506 /* ResettableDelegate.swift */,
 				E27C163F1E9394250091D79E /* RefinableDelegate.swift */,
+				E27A7BE91E955612005B2506 /* ResettableDelegate.swift */,
+				E27A7BEB1E9556C6005B2506 /* ResultingDelegate.swift */,
+				E27C16401E9394250091D79E /* SearchableViewModel.swift */,
 			);
-			name = "ViewModel-Binder";
+			path = "ViewModel-Binder";
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
