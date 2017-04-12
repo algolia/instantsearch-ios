@@ -15,7 +15,7 @@ class FacetController: UIViewController, FacetDataSource {
     
     var instantSearchBinder: InstantSearchBinder!
     @IBOutlet weak var refinementList: RefinementListWidget!
-    @IBOutlet weak var statLabel: StatsWidget!
+    @IBOutlet weak var statLabel: LabelStatsWidget!
     
     override func viewDidLoad() {
         refinementList.facetDataSource = self
