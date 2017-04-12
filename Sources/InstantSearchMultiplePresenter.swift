@@ -22,7 +22,7 @@ import InstantSearchCore
     
     internal func searchInAllPresenters(searchText: String) {
         for instantSearchPresenter in instantSearchPresenters {
-            instantSearchPresenter.searchInPresenter(searchText: searchText)
+            instantSearchPresenter.search(with: searchText)
         }
     }
 }

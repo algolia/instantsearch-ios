@@ -22,12 +22,12 @@ public class RefinementControlViewModel: RefinementControlViewModelDelegate, Sea
     
     var op: NumericRefinement.Operator {
         switch view.operation {
-        case "lessThan": return .lessThan
-        case "lessThanOrEqual": return .lessThanOrEqual
-        case "equal": return .equal
-        case "notEqual": return .notEqual
-        case "greaterThanOrEqual": return .greaterThanOrEqual
-        case "greaterThan": return .greaterThan
+        case "lessThan", "<": return .lessThan
+        case "lessThanOrEqual", "<=": return .lessThanOrEqual
+        case "equal", "==": return .equal
+        case "notEqual", "!=": return .notEqual
+        case "greaterThanOrEqual", ">=": return .greaterThanOrEqual
+        case "greaterThan", ">": return .greaterThan
         default: fatalError("No valid operation")
         }
     }

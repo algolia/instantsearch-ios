@@ -265,14 +265,8 @@ import InstantSearchCore
         }
     }
     
-    public func searchInPresenter(searchText: String) {
+    internal func search(with searchText: String) {
         searcher.params.query = searchText
-        searcher.search()
-    }
-    
-    // TODO: Move that away to RefinementList component
-    func toggleFacetRefinement(name: String, value: String) {
-        searcher.params.toggleFacetRefinement(name: name, value: value)
         searcher.search()
     }
 }
@@ -286,7 +280,7 @@ extension InstantSearchBinder: UISearchResultsUpdating {
     public func updateSearchResults(for searchController: UISearchController) {
         guard let searchText = searchController.searchBar.text else { return }
         
-        searchInPresenter(searchText: searchText)
+        search(with: searchText)
     }
 }
 
@@ -296,6 +290,6 @@ extension InstantSearchBinder: UISearchBarDelegate {
     }
     
     public func searchBar(_ searchBar: UISearchBar, textDidChange searchText: String) {
-        searchInPresenter(searchText: searchText)
+        search(with: searchText)
     }
 }
