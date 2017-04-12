@@ -13,27 +13,37 @@ public class RefinementMenuViewModel: RefinementMenuViewModelDelegate, Searchabl
     
     // MARK: - Properties
     
-    var facet: String {
+    var attribute: String {
         get {
-            return view.facet
+            return view.attribute
         }
     }
     
-    var areRefinedValuesFirst: Bool {
+    var refinedFirst: Bool {
         get {
-            return view.areRefinedValuesFirst
+            return view.refinedFirst
         }
     }
     
     var isDisjunctive: Bool {
         get {
-            return view.isDisjunctive
+            switch view.operator {
+                case "or", "OR", "|", "||": return true
+                case "and", "AND", "&", "&&": return false
+            default: fatalError("operator of RefinementMenu cannot be interpreted. Please chose one of: 'or', 'and'")
+            }
+        }
+    }
+    
+    var limit: Int {
+        get {
+            return view.limit
         }
     }
     
     var transformRefinementList: TransformRefinementList {
         get {
-            return TransformRefinementList(named: view.sorting.lowercased())
+            return TransformRefinementList(named: view.sortBy.lowercased())
         }
     }
     
@@ -44,15 +54,15 @@ public class RefinementMenuViewModel: RefinementMenuViewModelDelegate, Searchabl
     public var searcher: Searcher! {
         didSet {
             guard var facets = searcher.params.facets else {
-                searcher.params.facets = [facet]
+                searcher.params.facets = [attribute]
                 if searcher.results != nil { // if searching is ongoing
                     searcher.search() // Need to search again since don't have the facets
                 }
                 return
             }
             
-            guard facets.contains(facet) else {
-                facets += [facet]
+            guard facets.contains(attribute) else {
+                facets += [attribute]
                 if searcher.results != nil { // if searching is ongoing
                     searcher.search() // Need to search since don't have the facets
                 }
@@ -63,7 +73,7 @@ public class RefinementMenuViewModel: RefinementMenuViewModelDelegate, Searchabl
             // the refinement List with the facets that are already fetched from Algolia
             
             if let results = searcher.results, searcher.hits.count > 0 {
-                facetResults = getRefinementList(facetCounts: results.facets(name: facet), andFacetName: facet, transformRefinementList: transformRefinementList, areRefinedValuesFirst: areRefinedValuesFirst)
+                facetResults = getRefinementList(facetCounts: results.facets(name: attribute), andFacetName: attribute, transformRefinementList: transformRefinementList, areRefinedValuesFirst: refinedFirst)
                 
                 view.reloadRefinements()
             }
@@ -75,7 +85,7 @@ public class RefinementMenuViewModel: RefinementMenuViewModelDelegate, Searchabl
     weak public var view: RefinementMenuViewDelegate!
     
     public func numberOfRows(in section: Int) -> Int {
-        return searcher.results?.facets(name: facet)?.count ?? 0
+        return min(facetResults.count, limit)
     }
     
     public func facetForRow(at indexPath: IndexPath) -> FacetValue {
@@ -83,12 +93,12 @@ public class RefinementMenuViewModel: RefinementMenuViewModelDelegate, Searchabl
     }
     
     public func isRefined(at indexPath: IndexPath) -> Bool {
-        return searcher.params.hasFacetRefinement(name: facet, value: facetResults[indexPath.item].value)
+        return searcher.params.hasFacetRefinement(name: attribute, value: facetResults[indexPath.item].value)
     }
     
     public func didSelectRow(at indexPath: IndexPath) {
-        searcher.params.setFacet(withName: facet, disjunctive: isDisjunctive)
-        searcher.params.toggleFacetRefinement(name: facet, value: facetResults[indexPath.item].value)
+        searcher.params.setFacet(withName: attribute, disjunctive: isDisjunctive)
+        searcher.params.toggleFacetRefinement(name: attribute, value: facetResults[indexPath.item].value)
         searcher.search()
     }
 }
@@ -99,7 +109,7 @@ extension RefinementMenuViewModel: ResultingDelegate {
         //,searcher.params.hasFacetRefinements(name: facet)
         // else { return }
         
-        facetResults = getRefinementList(facetCounts: results?.facets(name: facet), andFacetName: facet, transformRefinementList: transformRefinementList, areRefinedValuesFirst: areRefinedValuesFirst)
+        facetResults = getRefinementList(facetCounts: results?.facets(name: attribute), andFacetName: attribute, transformRefinementList: transformRefinementList, areRefinedValuesFirst: refinedFirst)
         view.reloadRefinements()
     }
 }

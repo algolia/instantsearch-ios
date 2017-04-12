@@ -18,12 +18,11 @@ import UIKit
         reloadData()
     }
     
-    @IBInspectable public var facet: String = ""
-    @IBInspectable public var areRefinedValuesFirst: Bool = true
-    @IBInspectable public var isDisjunctive: Bool = true
-
-    @available(*, unavailable, message: "This property is reserved for Interface Builder. Use 'transformRefinementList' instead.")
-    @IBInspectable public var sorting: String = "countDesc"
+    @IBInspectable public var attribute: String = ""
+    @IBInspectable public var refinedFirst: Bool = true
+    @IBInspectable public var `operator`: String = "or"
+    @IBInspectable public var sortBy: String = "count:desc"
+    @IBInspectable public var limit: Int = 10
     
     @objc public weak var facetDataSource: FacetDataSource? {
         didSet {
