@@ -32,10 +32,10 @@ import InstantSearchCore
     
     public init(named transformName: String) {
         switch transformName.lowercased() {
-        case "countasc": self = .countAsc
-        case "countdesc": self = .countDesc
-        case "nameasc": self = .nameAsc
-        case "nameDsc": self = .nameDsc
+        case "count:asc": self = .countAsc
+        case "count:desc": self = .countDesc
+        case "name:asc": self = .nameAsc
+        case "name:desc": self = .nameDsc
         default: self = .countDesc
         }
     }
