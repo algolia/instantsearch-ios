@@ -10,13 +10,10 @@ import UIKit
 import InstantSearch
 
 class StatsViewController: UIViewController {
-
-    var instantSearchBinder: InstantSearchBinder!
     
     override func viewDidLoad() {
         super.viewDidLoad()
 
-        instantSearchBinder = AlgoliaSearchManager.instance.instantSearchBinder
-        instantSearchBinder.addAllWidgets(in: self.view)
+        AlgoliaSearchManager.instance.instantSearchBinder.addAllWidgets(in: self.view)
     }
 }

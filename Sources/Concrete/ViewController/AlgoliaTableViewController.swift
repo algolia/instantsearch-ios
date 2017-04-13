@@ -9,22 +9,23 @@
 import Foundation
 import UIKit
 
-class AlgoliaTableViewController: UIViewController, UITableViewDataSource, UITableViewDelegate, HitDataSource {
+@objc open class AlgoliaTableViewController: UIViewController, UITableViewDataSource, UITableViewDelegate, HitDataSource {
     
-    open var tableView: HitsTableWidget! {
+    open var hitsTableView: HitsTableWidget! {
         didSet {
-            tableView.dataSource = self
-            tableView.delegate = self
+            hitsTableView.dataSource = self
+            hitsTableView.delegate = self
+            hitsTableView.hitDataSource = self
         }
     }
     
-    internal func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return self.tableView.tableView(self.tableView, numberOfRowsInSection: section)
+    public func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+        return self.hitsTableView.tableView(self.hitsTableView, numberOfRowsInSection: section)
     }
     
     
-    internal func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        return self.tableView.tableView(self.tableView, cellForRowAt: indexPath)
+    public func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+        return self.hitsTableView.tableView(self.hitsTableView, cellForRowAt: indexPath)
     }
     
     open func cellFor(hit: [String : Any], at indexPath: IndexPath) -> UITableViewCell {

@@ -13,7 +13,7 @@ class StartingTableViewController: UITableViewController {
     let features: [(description: String, nibName: String, type: UIViewController.Type)] =
         [   ("Full Demo Project", "", ViewController.self),
             ("Stat Widgets", "StatsView", StatsViewController.self),
-//         ("Hits Widgets", "HitsView", )
+            ("Algolia Table View Controller", "AlgoliaTableViewControllerDemo", AlgoliaTableViewControllerDemo.self),
          ]
 
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
