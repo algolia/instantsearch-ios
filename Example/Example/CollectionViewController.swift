@@ -10,7 +10,7 @@ import UIKit
 import InstantSearch
 import InstantSearchCore
 
-class CollectionViewController: UICollectionViewController, HitCollectionDataSource {
+class CollectionViewController: UICollectionViewController, HitCollectionViewDataSource {
 
     var instantSearchBinder: InstantSearchBinder!
     
@@ -24,8 +24,8 @@ class CollectionViewController: UICollectionViewController, HitCollectionDataSou
         // Do any additional setup after loading the view.
     }
     
-    func cellFor(hit: [String : Any], at indexPath: IndexPath) -> UICollectionViewCell {
-        let cell = collectionView?.dequeueReusableCell(withReuseIdentifier: "collectionCell", for: indexPath) as! CollectionViewCell
+    func collectionView(_ collectionView: UICollectionView, cellForItem hit: [String: Any], at indexPath: IndexPath) -> UICollectionViewCell {
+        let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "collectionCell", for: indexPath) as! CollectionViewCell
         
         cell.name.text = hit["name"] as? String
         
