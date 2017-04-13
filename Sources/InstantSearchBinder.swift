@@ -282,6 +282,10 @@ extension InstantSearchBinder: UISearchResultsUpdating {
         
         search(with: searchText)
     }
+    
+    public func searchBarTextDidBeginEditing(_ searchBar: UISearchBar) {
+        search(with: "")
+    }
 }
 
 extension InstantSearchBinder: UISearchBarDelegate {
