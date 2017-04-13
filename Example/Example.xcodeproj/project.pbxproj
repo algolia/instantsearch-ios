@@ -13,6 +13,9 @@
 		28F828D71C4B714D00330CF4 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 28F828D61C4B714D00330CF4 /* Assets.xcassets */; };
 		28F828DA1C4B714D00330CF4 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 28F828D81C4B714D00330CF4 /* LaunchScreen.storyboard */; };
 		4E8E6E2C546B2894C7E3098D /* Pods_InstantSearch_Example.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 37A0192420E64C247EE55EE8 /* Pods_InstantSearch_Example.framework */; };
+		E27141DF1E9F808000959294 /* StatsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E27141DD1E9F808000959294 /* StatsViewController.swift */; };
+		E27141E01E9F808000959294 /* StatsView.xib in Resources */ = {isa = PBXBuildFile; fileRef = E27141DE1E9F808000959294 /* StatsView.xib */; };
+		E27141E21E9F858400959294 /* StartingTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E27141E11E9F858400959294 /* StartingTableViewController.swift */; };
 		E27A7BF51E97977F005B2506 /* CollectionViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E27A7BF41E97977F005B2506 /* CollectionViewController.swift */; };
 		E27C16751E93A66C0091D79E /* FacetController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E27C16731E93A66C0091D79E /* FacetController.swift */; };
 		E27C16761E93A66C0091D79E /* AlgoliaSearchManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = E27C16741E93A66C0091D79E /* AlgoliaSearchManager.swift */; };
@@ -74,6 +77,9 @@
 		37A0192420E64C247EE55EE8 /* Pods_InstantSearch_Example.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_InstantSearch_Example.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		3C580632223E734ABFF211AC /* Pods-InstantSearch-Example.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-InstantSearch-Example.release.xcconfig"; path = "../Pods/Target Support Files/Pods-InstantSearch-Example/Pods-InstantSearch-Example.release.xcconfig"; sourceTree = "<group>"; };
 		AC3AF26CFB522F28716AEB9D /* Pods-Example.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Example.debug.xcconfig"; path = "../Pods/Target Support Files/Pods-Example/Pods-Example.debug.xcconfig"; sourceTree = "<group>"; };
+		E27141DD1E9F808000959294 /* StatsViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = StatsViewController.swift; sourceTree = "<group>"; };
+		E27141DE1E9F808000959294 /* StatsView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = StatsView.xib; path = ../StatsView.xib; sourceTree = "<group>"; };
+		E27141E11E9F858400959294 /* StartingTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = StartingTableViewController.swift; sourceTree = "<group>"; };
 		E27A7BF41E97977F005B2506 /* CollectionViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = CollectionViewController.swift; path = Example/CollectionViewController.swift; sourceTree = "<group>"; };
 		E27C16731E93A66C0091D79E /* FacetController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = FacetController.swift; path = Example/FacetController.swift; sourceTree = "<group>"; };
 		E27C16741E93A66C0091D79E /* AlgoliaSearchManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = AlgoliaSearchManager.swift; path = Example/AlgoliaSearchManager.swift; sourceTree = "<group>"; };
@@ -124,7 +130,10 @@
 		28F828CE1C4B714D00330CF4 /* Example */ = {
 			isa = PBXGroup;
 			children = (
+				E27141E11E9F858400959294 /* StartingTableViewController.swift */,
+				E27141D81E9F7EFC00959294 /* xib */,
 				E27C16771E93A6870091D79E /* ViewController.swift */,
+				E27141DD1E9F808000959294 /* StatsViewController.swift */,
 				E27A7BF41E97977F005B2506 /* CollectionViewController.swift */,
 				E27C16731E93A66C0091D79E /* FacetController.swift */,
 				E27C16741E93A66C0091D79E /* AlgoliaSearchManager.swift */,
@@ -173,6 +182,14 @@
 				37A0192420E64C247EE55EE8 /* Pods_InstantSearch_Example.framework */,
 			);
 			name = Frameworks;
+			sourceTree = "<group>";
+		};
+		E27141D81E9F7EFC00959294 /* xib */ = {
+			isa = PBXGroup;
+			children = (
+				E27141DE1E9F808000959294 /* StatsView.xib */,
+			);
+			path = xib;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -287,6 +304,7 @@
 			files = (
 				28F828DA1C4B714D00330CF4 /* LaunchScreen.storyboard in Resources */,
 				28F828D71C4B714D00330CF4 /* Assets.xcassets in Resources */,
+				E27141E01E9F808000959294 /* StatsView.xib in Resources */,
 				28F828D51C4B714D00330CF4 /* Main.storyboard in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -356,7 +374,9 @@
 				28F828D01C4B714D00330CF4 /* AppDelegate.swift in Sources */,
 				E27A7BF51E97977F005B2506 /* CollectionViewController.swift in Sources */,
 				E27C16761E93A66C0091D79E /* AlgoliaSearchManager.swift in Sources */,
+				E27141E21E9F858400959294 /* StartingTableViewController.swift in Sources */,
 				E27C16781E93A6870091D79E /* ViewController.swift in Sources */,
+				E27141DF1E9F808000959294 /* StatsViewController.swift in Sources */,
 				E27C16751E93A66C0091D79E /* FacetController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

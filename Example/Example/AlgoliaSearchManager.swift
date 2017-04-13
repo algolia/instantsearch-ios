@@ -11,6 +11,7 @@ import Foundation
 import Foundation
 import InstantSearchCore
 import AlgoliaSearch
+import InstantSearch
 
 class AlgoliaSearchManager {
     /// The singleton instance.
@@ -22,6 +23,7 @@ class AlgoliaSearchManager {
     private let index: Index
     
     var searcher: Searcher
+    var instantSearchBinder: InstantSearchBinder
     
     private init() {
         
@@ -31,5 +33,6 @@ class AlgoliaSearchManager {
         
         searcher.params.attributesToRetrieve = ["name", "salePrice"]
         searcher.params.attributesToHighlight = ["name"]
+        instantSearchBinder = InstantSearchBinder(searcher: searcher)
     }
 }

@@ -11,7 +11,8 @@ class ViewController: UIViewController, HitDataSource {
         super.viewDidLoad()
         
         hitsTable.hitDataSource = self
-        instantSearchBinder = InstantSearchBinder(searcher: AlgoliaSearchManager.instance.searcher, view: self.view)
+        instantSearchBinder = AlgoliaSearchManager.instance.instantSearchBinder
+        instantSearchBinder.addAllWidgets(in: self.view)
     }
     
     func cellFor(hit: [String : Any], at indexPath: IndexPath) -> UITableViewCell {
