@@ -14,17 +14,20 @@ import Foundation
     @IBInspectable public var infiniteScrolling: Bool = true
     @IBInspectable public var remainingItemsBeforeLoading: UInt = 5
     
-    @objc public weak var hitDataSource: HitCollectionViewDataSource? {
-        didSet {
-            dataSource = self
-        }
+    public override init(frame: CGRect, collectionViewLayout layout: UICollectionViewLayout) {
+        super.init(frame: frame, collectionViewLayout: layout)
+        dataSource = self
+        delegate = self
     }
     
-    @objc public weak var hitDelegate: HitCollectionViewDelegate? {
-        didSet {
-            delegate = self
-        }
+    public required init?(coder aDecoder: NSCoder) {
+        super.init(coder: aDecoder)
+        dataSource = self
+        delegate = self
     }
+    
+    @objc public weak var hitDataSource: HitCollectionViewDataSource?
+    @objc public weak var hitDelegate: HitCollectionViewDelegate?
     
     public var viewModel: HitsViewModelDelegate!
     
