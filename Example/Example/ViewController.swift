@@ -2,7 +2,7 @@ import UIKit
 import InstantSearchCore
 import InstantSearch
 
-class ViewController: UIViewController, HitDataSource {
+class ViewController: UIViewController, HitTableViewDataSource {
     
     var instantSearchBinder: InstantSearchBinder!
     @IBOutlet weak var hitsTable: HitsTableWidget!
@@ -15,7 +15,7 @@ class ViewController: UIViewController, HitDataSource {
         instantSearchBinder.addAllWidgets(in: self.view)
     }
     
-    func cellFor(hit: [String : Any], at indexPath: IndexPath) -> UITableViewCell {
+    func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath, containing hit: [String : Any]) -> UITableViewCell {
         let cell = hitsTable.dequeueReusableCell(withIdentifier: "hitCell", for: indexPath)
         
         cell.textLabel?.text = hit["name"] as? String

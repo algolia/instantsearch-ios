@@ -44,20 +44,20 @@ import Foundation
     public func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         let hit = viewModel.hitForRow(at: indexPath)
         
-        return hitDataSource?.collectionView(collectionView, cellForItem: hit, at: indexPath) ?? UICollectionViewCell()
+        return hitDataSource?.collectionView(collectionView, cellForItemAt: indexPath, containing: hit) ?? UICollectionViewCell()
     }
     
     public func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
         let hit = viewModel.hitForRow(at: indexPath)
         
-        hitDelegate?.collectionView(collectionView, didSelectItem: hit, at: indexPath)
+        hitDelegate?.collectionView(collectionView, didSelectItemAt: indexPath, containing: hit)
     }
 }
 
 @objc public protocol HitCollectionViewDataSource: class {
-    func collectionView(_ collectionView: UICollectionView, cellForItem hit: [String: Any], at indexPath: IndexPath) -> UICollectionViewCell
+    func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath, containing hit: [String: Any]) -> UICollectionViewCell
 }
 
 @objc public protocol HitCollectionViewDelegate: class {
-    func collectionView(_ collectionView: UICollectionView, didSelectItem hit: [String: Any], at indexPath: IndexPath)
+    func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath, containing hit: [String: Any])
 }

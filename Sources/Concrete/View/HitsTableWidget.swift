@@ -8,16 +8,25 @@
 
 import Foundation
 
-@objc public class HitsTableWidget: UITableView, UITableViewDataSource, HitsViewDelegate, AlgoliaView {
+@objc public class HitsTableWidget: UITableView, UITableViewDataSource, UITableViewDelegate, HitsViewDelegate, AlgoliaView {
     
     @IBInspectable public var hitsPerPage: UInt = 20
     @IBInspectable public var infiniteScrolling: Bool = true
     @IBInspectable public var remainingItemsBeforeLoading: UInt = 5
     
-    @objc public weak var hitDataSource: HitDataSource? {
-        didSet {
-            dataSource = self
-        }
+    @objc public weak var hitDataSource: HitTableViewDataSource?
+    @objc public weak var hitDelegate: HitTableViewDelegate?
+    
+    public override init(frame: CGRect, style: UITableViewStyle) {
+        super.init(frame: frame, style: style)
+        dataSource = self
+        delegate = self
+    }
+    
+    required public init?(coder aDecoder: NSCoder) {
+        super.init(coder: aDecoder)
+        dataSource = self
+        delegate = self
     }
     
     public var viewModel: HitsViewModelDelegate!
@@ -37,10 +46,21 @@ import Foundation
     
     public func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let hit = viewModel.hitForRow(at: indexPath)
-        return hitDataSource?.cellFor(hit: hit, at: indexPath) ?? UITableViewCell()
+        
+        return hitDataSource?.tableView(tableView, cellForRowAt: indexPath, containing: hit) ?? UITableViewCell()
+    }
+    
+    public func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        let hit = viewModel.hitForRow(at: indexPath)
+        
+        hitDelegate?.tableView(tableView, didSelectRowAt: indexPath, containing: hit)
     }
 }
 
-@objc public protocol HitDataSource: class {
-    func cellFor(hit: [String: Any], at indexPath: IndexPath) -> UITableViewCell
+@objc public protocol HitTableViewDataSource: class {
+    func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath, containing hit: [String: Any]) -> UITableViewCell
+}
+
+@objc public protocol HitTableViewDelegate: class {
+    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath, containing hit: [String: Any])
 }

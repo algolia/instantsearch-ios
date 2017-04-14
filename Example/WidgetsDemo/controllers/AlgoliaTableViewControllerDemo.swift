@@ -23,9 +23,11 @@ class AlgoliaTableViewControllerDemo: AlgoliaTableViewController {
         self.view.addSubview(hitsTableView)
         
         AlgoliaSearchManager.instance.instantSearchBinder.addAllWidgets(in: self.view)
+        hitsTableView.hitDataSource = self
+        hitsTableView.hitDelegate = self
     }
 
-    override func cellFor(hit: [String : Any], at indexPath: IndexPath) -> UITableViewCell {
+    override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath, containing hit: [String : Any]) -> UITableViewCell {
         let cell = hitsTableView.dequeueReusableCell(withIdentifier: "hitTableCell", for: indexPath)
         
         cell.textLabel?.text = hit["name"] as? String
@@ -36,10 +38,16 @@ class AlgoliaTableViewControllerDemo: AlgoliaTableViewController {
         
         cell.detailTextLabel?.text = String(hit["salePrice"] as! Double)
         
+        
         return cell
     }
 
-    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        print("Ey")
+    override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath, containing hit: [String : Any]) {
+        print("ey")
+    }
+    
+    func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
+        print("Ey2")
+        return 50
     }
 }

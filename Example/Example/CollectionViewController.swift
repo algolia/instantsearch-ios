@@ -24,7 +24,7 @@ class CollectionViewController: UICollectionViewController, HitCollectionViewDat
         // Do any additional setup after loading the view.
     }
     
-    func collectionView(_ collectionView: UICollectionView, cellForItem hit: [String: Any], at indexPath: IndexPath) -> UICollectionViewCell {
+    func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath, containing hit: [String: Any]) -> UICollectionViewCell {
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "collectionCell", for: indexPath) as! CollectionViewCell
         
         cell.name.text = hit["name"] as? String

@@ -9,13 +9,12 @@
 import Foundation
 import UIKit
 
-@objc open class AlgoliaTableViewController: UIViewController, UITableViewDataSource, UITableViewDelegate, HitDataSource {
+@objc open class AlgoliaTableViewController: UIViewController, UITableViewDataSource, UITableViewDelegate, HitTableViewDataSource, HitTableViewDelegate {
     
-    open var hitsTableView: HitsTableWidget! {
+    public var hitsTableView: HitsTableWidget! {
         didSet {
             hitsTableView.dataSource = self
             hitsTableView.delegate = self
-            hitsTableView.hitDataSource = self
         }
     }
     
@@ -28,7 +27,15 @@ import UIKit
         return self.hitsTableView.tableView(self.hitsTableView, cellForRowAt: indexPath)
     }
     
-    open func cellFor(hit: [String : Any], at indexPath: IndexPath) -> UITableViewCell {
+    public func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        self.hitsTableView.tableView(self.hitsTableView, didSelectRowAt: indexPath)
+    }
+    
+    open func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath, containing hit: [String : Any]) -> UITableViewCell {
         fatalError("Must Override cellForHit:indexpath")
+    }
+    
+    open func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath, containing hit: [String : Any]) {
+        
     }
 }
