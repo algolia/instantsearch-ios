@@ -18,6 +18,10 @@
 		E27141E21E9F858400959294 /* StartingTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E27141E11E9F858400959294 /* StartingTableViewController.swift */; };
 		E27141F11E9FAF0E00959294 /* AlgoliaTableViewControllerDemo.swift in Sources */ = {isa = PBXBuildFile; fileRef = E27141EF1E9FAF0E00959294 /* AlgoliaTableViewControllerDemo.swift */; };
 		E27141F21E9FAF0E00959294 /* AlgoliaTableViewControllerDemo.xib in Resources */ = {isa = PBXBuildFile; fileRef = E27141F01E9FAF0E00959294 /* AlgoliaTableViewControllerDemo.xib */; };
+		E27141F81EA0F6E900959294 /* AlgoliaCollectionViewControllerDemo.swift in Sources */ = {isa = PBXBuildFile; fileRef = E27141F61EA0F6E900959294 /* AlgoliaCollectionViewControllerDemo.swift */; };
+		E27141F91EA0F6E900959294 /* AlgoliaCollectionViewControllerDemo.xib in Resources */ = {isa = PBXBuildFile; fileRef = E27141F71EA0F6E900959294 /* AlgoliaCollectionViewControllerDemo.xib */; };
+		E27142001EA0FF1200959294 /* CollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = E27141FE1EA0FF1200959294 /* CollectionViewCell.swift */; };
+		E27142011EA0FF1200959294 /* CollectionViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = E27141FF1EA0FF1200959294 /* CollectionViewCell.xib */; };
 		E27A7BF51E97977F005B2506 /* CollectionViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E27A7BF41E97977F005B2506 /* CollectionViewController.swift */; };
 		E27C16751E93A66C0091D79E /* FacetController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E27C16731E93A66C0091D79E /* FacetController.swift */; };
 		E27C16761E93A66C0091D79E /* AlgoliaSearchManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = E27C16741E93A66C0091D79E /* AlgoliaSearchManager.swift */; };
@@ -84,6 +88,10 @@
 		E27141E11E9F858400959294 /* StartingTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = StartingTableViewController.swift; sourceTree = "<group>"; };
 		E27141EF1E9FAF0E00959294 /* AlgoliaTableViewControllerDemo.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AlgoliaTableViewControllerDemo.swift; sourceTree = "<group>"; };
 		E27141F01E9FAF0E00959294 /* AlgoliaTableViewControllerDemo.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = AlgoliaTableViewControllerDemo.xib; path = ../controllers/AlgoliaTableViewControllerDemo.xib; sourceTree = "<group>"; };
+		E27141F61EA0F6E900959294 /* AlgoliaCollectionViewControllerDemo.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AlgoliaCollectionViewControllerDemo.swift; sourceTree = "<group>"; };
+		E27141F71EA0F6E900959294 /* AlgoliaCollectionViewControllerDemo.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = AlgoliaCollectionViewControllerDemo.xib; path = ../controllers/AlgoliaCollectionViewControllerDemo.xib; sourceTree = "<group>"; };
+		E27141FE1EA0FF1200959294 /* CollectionViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CollectionViewCell.swift; sourceTree = "<group>"; };
+		E27141FF1EA0FF1200959294 /* CollectionViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = CollectionViewCell.xib; path = ../controllers/CollectionViewCell.xib; sourceTree = "<group>"; };
 		E27A7BF41E97977F005B2506 /* CollectionViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = CollectionViewController.swift; path = ../Example/CollectionViewController.swift; sourceTree = "<group>"; };
 		E27C16731E93A66C0091D79E /* FacetController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = FacetController.swift; path = ../Example/FacetController.swift; sourceTree = "<group>"; };
 		E27C16741E93A66C0091D79E /* AlgoliaSearchManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = AlgoliaSearchManager.swift; path = ../Example/AlgoliaSearchManager.swift; sourceTree = "<group>"; };
@@ -209,6 +217,8 @@
 			children = (
 				E27141DD1E9F808000959294 /* StatsViewController.swift */,
 				E27141EF1E9FAF0E00959294 /* AlgoliaTableViewControllerDemo.swift */,
+				E27141F61EA0F6E900959294 /* AlgoliaCollectionViewControllerDemo.swift */,
+				E27141FE1EA0FF1200959294 /* CollectionViewCell.swift */,
 			);
 			path = controllers;
 			sourceTree = "<group>";
@@ -216,8 +226,10 @@
 		E27141ED1E9FAC3000959294 /* xib */ = {
 			isa = PBXGroup;
 			children = (
-				E27141F01E9FAF0E00959294 /* AlgoliaTableViewControllerDemo.xib */,
+				E27141FF1EA0FF1200959294 /* CollectionViewCell.xib */,
 				E27141DE1E9F808000959294 /* StatsView.xib */,
+				E27141F01E9FAF0E00959294 /* AlgoliaTableViewControllerDemo.xib */,
+				E27141F71EA0F6E900959294 /* AlgoliaCollectionViewControllerDemo.xib */,
 			);
 			path = xib;
 			sourceTree = "<group>";
@@ -333,8 +345,10 @@
 			buildActionMask = 2147483647;
 			files = (
 				28F828DA1C4B714D00330CF4 /* LaunchScreen.storyboard in Resources */,
+				E27142011EA0FF1200959294 /* CollectionViewCell.xib in Resources */,
 				E27141F21E9FAF0E00959294 /* AlgoliaTableViewControllerDemo.xib in Resources */,
 				28F828D71C4B714D00330CF4 /* Assets.xcassets in Resources */,
+				E27141F91EA0F6E900959294 /* AlgoliaCollectionViewControllerDemo.xib in Resources */,
 				E27141E01E9F808000959294 /* StatsView.xib in Resources */,
 				28F828D51C4B714D00330CF4 /* Main.storyboard in Resources */,
 			);
@@ -402,9 +416,11 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				E27142001EA0FF1200959294 /* CollectionViewCell.swift in Sources */,
 				28F828D01C4B714D00330CF4 /* AppDelegate.swift in Sources */,
 				E27A7BF51E97977F005B2506 /* CollectionViewController.swift in Sources */,
 				E27C16761E93A66C0091D79E /* AlgoliaSearchManager.swift in Sources */,
+				E27141F81EA0F6E900959294 /* AlgoliaCollectionViewControllerDemo.swift in Sources */,
 				E27141E21E9F858400959294 /* StartingTableViewController.swift in Sources */,
 				E27141F11E9FAF0E00959294 /* AlgoliaTableViewControllerDemo.swift in Sources */,
 				E27C16781E93A6870091D79E /* ViewController.swift in Sources */,

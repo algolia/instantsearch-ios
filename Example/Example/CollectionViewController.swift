@@ -19,12 +19,13 @@ class CollectionViewController: UIViewController, HitCollectionViewDataSource {
         super.viewDidLoad()
         
         hitCollectionWidget.hitDataSource = self
+        hitCollectionWidget.register(UINib(nibName: "CollectionViewCell", bundle: nil) , forCellWithReuseIdentifier: "collectionViewCell")
         instantSearchBinder = AlgoliaSearchManager.instance.instantSearchBinder
         instantSearchBinder.addAllWidgets(in: self.view)
     }
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath, containing hit: [String: Any]) -> UICollectionViewCell {
-        let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "collectionCell", for: indexPath) as! CollectionViewCell
+        let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "collectionViewCell", for: indexPath) as! CollectionViewCell
         
         cell.name.text = hit["name"] as? String
         
@@ -38,11 +39,6 @@ class CollectionViewController: UIViewController, HitCollectionViewDataSource {
         return cell
     }
 
-}
-
-class CollectionViewCell: UICollectionViewCell {
-    @IBOutlet var name: UILabel!
-    @IBOutlet var salePrice: UILabel!
 }
 
 fileprivate let itemsPerRow: CGFloat = 2

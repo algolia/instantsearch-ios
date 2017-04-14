@@ -32,7 +32,7 @@ import UIKit
     }
     
     open func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath, containing hit: [String : Any]) -> UITableViewCell {
-        fatalError("Must Override cellForHit:indexpath")
+        fatalError("Must Override cellForHit:indexpath:containing:")
     }
     
     open func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath, containing hit: [String : Any]) {
