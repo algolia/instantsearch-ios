@@ -19,6 +19,7 @@ class FacetController: UIViewController, FacetDataSource {
     
     override func viewDidLoad() {
         refinementList.facetDataSource = self
+        instantSearchBinder = AlgoliaSearchManager.instance.instantSearchBinder
         instantSearchBinder.add(widget: refinementList)
         instantSearchBinder.add(widget: statLabel)
     }

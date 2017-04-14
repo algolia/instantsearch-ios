@@ -43,11 +43,10 @@ class AlgoliaTableViewControllerDemo: AlgoliaTableViewController {
     }
 
     override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath, containing hit: [String : Any]) {
-        print("ey")
+        
     }
     
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
-        print("Ey2")
         return 50
     }
 }

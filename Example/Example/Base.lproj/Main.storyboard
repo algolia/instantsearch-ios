@@ -295,6 +295,9 @@
                             <outlet property="delegate" destination="Kga-Ee-qCz" id="OdY-6u-6mG"/>
                         </connections>
                     </collectionView>
+                    <connections>
+                        <outlet property="hitCollectionWidget" destination="Hbb-bn-io6" id="Lbm-An-tIW"/>
+                    </connections>
                 </collectionViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="NFV-o9-62Q" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>

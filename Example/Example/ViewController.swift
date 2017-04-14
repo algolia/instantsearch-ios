@@ -28,15 +28,4 @@ class ViewController: UIViewController, HitTableViewDataSource {
         
         return cell
     }
-    
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        
-        if let facetController = segue.destination as? FacetController {
-            facetController.instantSearchBinder = instantSearchBinder
-        }
-        
-        if let collectionViewController = segue.destination as? CollectionViewController {
-            collectionViewController.instantSearchBinder = instantSearchBinder
-        }
-    }
 }

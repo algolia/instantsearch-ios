@@ -12,16 +12,15 @@ import InstantSearchCore
 
 class CollectionViewController: UICollectionViewController, HitCollectionViewDataSource {
 
+    @IBOutlet var hitCollectionWidget: HitsCollectionWidget!
     var instantSearchBinder: InstantSearchBinder!
     
-    override func viewWillAppear(_ animated: Bool) {
-        super.viewWillAppear(animated)
-
-        let hitCollectionWidget = collectionView as! HitsCollectionWidget
-        instantSearchBinder.add(widget: hitCollectionWidget)
+    override func viewDidLoad() {
+        super.viewDidLoad()
+        
         hitCollectionWidget.hitDataSource = self
-
-        // Do any additional setup after loading the view.
+        instantSearchBinder = AlgoliaSearchManager.instance.instantSearchBinder
+        instantSearchBinder.addAllWidgets(in: self.view)
     }
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath, containing hit: [String: Any]) -> UICollectionViewCell {

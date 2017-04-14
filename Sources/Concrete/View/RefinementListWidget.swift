@@ -24,12 +24,19 @@ import UIKit
     @IBInspectable public var sortBy: String = "count:desc"
     @IBInspectable public var limit: Int = 10
     
-    @objc public weak var facetDataSource: FacetDataSource? {
-        didSet {
-            dataSource = self
-            delegate = self
-        }
+    public override init(frame: CGRect, style: UITableViewStyle) {
+        super.init(frame: frame, style: style)
+        dataSource = self
+        delegate = self
     }
+    
+    public required init?(coder aDecoder: NSCoder) {
+        super.init(coder: aDecoder)
+        dataSource = self
+        delegate = self
+    }
+    
+    @objc public weak var facetDataSource: FacetDataSource?
     
     public func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let facetValue = viewModel.facetForRow(at: indexPath)
