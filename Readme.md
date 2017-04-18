@@ -22,7 +22,7 @@ InstantSearch iOS is a library providing widgets and helpers to help you build t
 
 ## Architecture of InstantSearch
 
-InstantSearch is inspired by both MVVM architecture. 
+InstantSearch is inspired by the MVVM architecture. 
 
 This is an overview of the architecture:
 
