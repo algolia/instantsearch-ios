@@ -218,8 +218,9 @@
 				E2738FC81E9CC418002C002D /* RefinementMenuViewModel.swift */,
 				E2738FBC1E9BD9ED002C002D /* StatsViewModel.swift */,
 			);
-			path = ViewModel;
-			sourceTree = "<group>";
+			name = ViewModel;
+			path = Sources/Concrete/ViewModel;
+			sourceTree = SOURCE_ROOT;
 		};
 		E27A7BF81E97B6DE005B2506 /* ViewModel-View */ = {
 			isa = PBXGroup;
@@ -248,8 +249,8 @@
 			children = (
 				E27A7C011E97B86B005B2506 /* View */,
 				E27A7BFB1E97B74C005B2506 /* View-ViewModel */,
-				E27C16551E939B690091D79E /* ViewModel-Binder */,
 				E27A7BF81E97B6DE005B2506 /* ViewModel-View */,
+				E27C16551E939B690091D79E /* ViewModel-Binder */,
 			);
 			path = Protocols;
 			sourceTree = "<group>";
@@ -265,9 +266,9 @@
 		E27A7C021E97B913005B2506 /* Concrete */ = {
 			isa = PBXGroup;
 			children = (
-				E27141D31E9F762F00959294 /* ViewController */,
 				E27C16541E939B430091D79E /* View */,
 				E27A7BED1E96271B005B2506 /* ViewModel */,
+				E27141D31E9F762F00959294 /* ViewController */,
 			);
 			path = Concrete;
 			sourceTree = "<group>";
