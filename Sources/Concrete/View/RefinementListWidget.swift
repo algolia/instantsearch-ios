@@ -12,7 +12,7 @@ import UIKit
 @IBDesignable
 @objc public class RefinementListWidget: UITableView, UITableViewDataSource, UITableViewDelegate, RefinementMenuViewDelegate, AlgoliaView {
     
-    public var viewModel: RefinementMenuViewModelDelegate!
+    var viewModel: RefinementMenuViewModelDelegate!
     
     public func reloadRefinements() {
         reloadData()

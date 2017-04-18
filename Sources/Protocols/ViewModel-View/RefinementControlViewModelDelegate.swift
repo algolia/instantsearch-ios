@@ -11,7 +11,7 @@ import Foundation
 /*
  * Protocol that defines the commands sent from the View to the ViewModel
  */
-@objc public protocol RefinementControlViewModelDelegate: class {
+@objc internal protocol RefinementControlViewModelDelegate: class {
     
     var view: RefinementControlViewDelegate! { get set }
     

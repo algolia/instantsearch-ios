@@ -20,7 +20,7 @@ import UIKit
         addTarget(viewModel, action: #selector(viewModel.numericFilterValueChanged), for: .valueChanged)
     }
     
-    public var viewModel: RefinementControlViewModelDelegate!
+    var viewModel: RefinementControlViewModelDelegate!
     
     @IBInspectable public var attributeName: String = ""
     

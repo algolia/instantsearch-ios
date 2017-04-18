@@ -12,7 +12,7 @@ import InstantSearchCore
 /*
  * Protocol that defines the view input methods and propreties
  */
-@objc public protocol RefinementMenuViewDelegate: class {
+@objc internal protocol RefinementMenuViewDelegate: class {
     
     var viewModel: RefinementMenuViewModelDelegate! { get set }
     

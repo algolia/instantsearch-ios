@@ -9,7 +9,7 @@
 import Foundation
 import InstantSearchCore
 
-public class RefinementMenuViewModel: RefinementMenuViewModelDelegate, SearchableViewModel {
+internal class RefinementMenuViewModel: RefinementMenuViewModelDelegate, SearchableViewModel {
     
     // MARK: - Properties
     
@@ -82,7 +82,7 @@ public class RefinementMenuViewModel: RefinementMenuViewModelDelegate, Searchabl
     
     // MARK: - RefinementMenuViewModelDelegate
     
-    weak public var view: RefinementMenuViewDelegate!
+    weak var view: RefinementMenuViewDelegate!
     
     public func numberOfRows(in section: Int) -> Int {
         return min(facetResults.count, limit)

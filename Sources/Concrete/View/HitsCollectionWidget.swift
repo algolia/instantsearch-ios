@@ -29,7 +29,7 @@ import Foundation
     @objc public weak var hitDataSource: HitCollectionViewDataSource?
     @objc public weak var hitDelegate: HitCollectionViewDelegate?
     
-    public var viewModel: HitsViewModelDelegate!
+    internal var viewModel: HitsViewModelDelegate!
     
     public func scrollTop() {
         let indexPath = IndexPath(row: 0, section: 0)

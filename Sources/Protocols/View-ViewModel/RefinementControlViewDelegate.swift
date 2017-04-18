@@ -12,7 +12,7 @@ import InstantSearchCore
 /*
  * Protocol that defines the view input methods and propreties
  */
-@objc public protocol RefinementControlViewDelegate: class {
+@objc internal protocol RefinementControlViewDelegate: class {
     
     var viewModel: RefinementControlViewModelDelegate! { get set }
     

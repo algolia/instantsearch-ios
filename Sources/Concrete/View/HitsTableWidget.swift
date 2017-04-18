@@ -29,7 +29,7 @@ import Foundation
         delegate = self
     }
     
-    public var viewModel: HitsViewModelDelegate!
+    var viewModel: HitsViewModelDelegate!
     
     public func scrollTop() {
         let indexPath = IndexPath(row: 0, section: 0)

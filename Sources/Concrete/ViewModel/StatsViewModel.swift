@@ -8,7 +8,7 @@
 
 import InstantSearchCore
 
-public class StatsViewModel: StatsViewModelDelegate, SearchableViewModel {
+internal class StatsViewModel: StatsViewModelDelegate, SearchableViewModel {
     
     // MARK: - Properties
     
@@ -42,7 +42,7 @@ public class StatsViewModel: StatsViewModelDelegate, SearchableViewModel {
     
     // MARK: - StatsViewModelDelegate
     
-    weak public var view: StatsViewDelegate!
+    weak var view: StatsViewDelegate!
     
 
 }

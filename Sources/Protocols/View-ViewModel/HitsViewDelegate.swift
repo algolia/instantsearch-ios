@@ -11,7 +11,7 @@ import Foundation
 /*
  * Protocol that defines the view input methods and propreties
  */
-@objc public protocol HitsViewDelegate: class {
+@objc internal protocol HitsViewDelegate: class {
 
     var viewModel: HitsViewModelDelegate! { get set }
     

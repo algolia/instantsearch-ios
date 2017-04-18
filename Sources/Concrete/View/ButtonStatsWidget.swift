@@ -11,7 +11,7 @@ import UIKit
 @IBDesignable
 @objc public class ButtonStatsWidget: UIButton, StatsViewDelegate, AlgoliaView {
     
-    public var viewModel: StatsViewModelDelegate!
+    var viewModel: StatsViewModelDelegate!
     
     @IBInspectable public var resultTemplate: String = "{nbHits} results"
     @IBInspectable public var clearText: String = ""

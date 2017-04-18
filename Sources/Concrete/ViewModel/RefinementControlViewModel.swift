@@ -9,7 +9,7 @@
 import Foundation
 import InstantSearchCore
 
-public class RefinementControlViewModel: RefinementControlViewModelDelegate, SearchableViewModel {
+internal class RefinementControlViewModel: RefinementControlViewModelDelegate, SearchableViewModel {
     
     // MARK: - Properties
     
@@ -54,7 +54,7 @@ public class RefinementControlViewModel: RefinementControlViewModelDelegate, Sea
 
     // MARK: - RefinementControlViewModelDelegate
     
-    public weak var view: RefinementControlViewDelegate!
+    weak var view: RefinementControlViewDelegate!
     
     @objc public func numericFilterValueChanged() {
         numericFiltersDebouncer.call {
