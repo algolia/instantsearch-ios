@@ -18,6 +18,8 @@ import UIKit
         }
     }
     
+    // Forward the 3 important dataSource and delegate methods to the HitsCollectionWidget
+    
     public func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
         return self.hitsCollectionView.collectionView(collectionView, numberOfItemsInSection: section)
     }
@@ -29,6 +31,8 @@ import UIKit
     public func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
         return self.hitsCollectionView.collectionView(collectionView, didSelectItemAt: indexPath)
     }
+    
+    // The follow methods are to be implemented by the class extending AlgoliaCollectionViewController
     
     open func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath, containing hit: [String : Any]) -> UICollectionViewCell {
         fatalError("Must Override cellForItem:indexpath:containing:")

@@ -17,11 +17,7 @@ class AlgoliaCollectionViewControllerDemo: AlgoliaCollectionViewController {
         super.viewDidLoad()
         
         let layout: UICollectionViewFlowLayout = UICollectionViewFlowLayout()
-        layout.sectionInset = UIEdgeInsets(top: 20, left: 10, bottom: 10, right: 10)
-        layout.itemSize = CGSize(width: 90, height: 120)
-        
-        hitsCollectionView = HitsCollectionWidget(frame: self.view.frame, collectionViewLayout: layout)
-        
+        hitsCollectionView = HitsCollectionWidget(frame: self.navigationController?.view.bounds ?? self.view.bounds, collectionViewLayout: layout)
 
         hitsCollectionView.register(UINib(nibName: "CollectionViewCell", bundle: nil) , forCellWithReuseIdentifier: "collectionViewCell")
         hitsCollectionView.backgroundColor = .white
@@ -44,11 +40,41 @@ class AlgoliaCollectionViewControllerDemo: AlgoliaCollectionViewController {
         
         cell.salePrice.text = String(hit["salePrice"] as! Double)
         
+        cell.backgroundColor = .gray
         
         return cell
     }
     
     override func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath, containing hit: [String : Any]) {
         
+    }
+}
+
+fileprivate let itemsPerRow: CGFloat = 4.0
+fileprivate let sectionInsets = UIEdgeInsets(top: 50.0, left: 20.0, bottom: 50.0, right: 20.0)
+
+extension AlgoliaCollectionViewControllerDemo : UICollectionViewDelegateFlowLayout {
+    
+    func collectionView(_ collectionView: UICollectionView,
+                        layout collectionViewLayout: UICollectionViewLayout,
+                        sizeForItemAt indexPath: IndexPath) -> CGSize {
+        
+        let paddingSpace = sectionInsets.left * (itemsPerRow + 1)
+        let availableWidth = view.frame.width - paddingSpace
+        let widthPerItem = availableWidth / itemsPerRow
+        
+        return CGSize(width: widthPerItem, height: widthPerItem)
+    }
+    
+    
+    func collectionView(_ collectionView: UICollectionView,
+                        layout collectionViewLayout: UICollectionViewLayout,
+                        insetForSectionAt section: Int) -> UIEdgeInsets {
+        return sectionInsets
+    }
+    
+    
+    func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, minimumLineSpacingForSectionAt section: Int) -> CGFloat {
+        return sectionInsets.left
     }
 }
