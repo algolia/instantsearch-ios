@@ -75,9 +75,7 @@ In a way, it is like an observable that knows about all search events, and it wi
 the observers that decided to tune in. We decided to go with delegation to offer a clean safe interface.
 It also makes sure to call the Builder methods on the Widgets that fit case 1 mentioned above
 
-The Builder plays the role of spinning up the ViewModels-Widgets for the View-Widgets,
-takes care of injecting the concrete implementations into the View-Widgets and the ViewModel-Widgets,
-and finally links the delegates of the View-Widget, ViewModel-Widget and the Searcher
+The Builder plays the role of spinning up the WidgetVM for the WidgetV, takes care of injecting the concrete implementations into the WidgetV and the WidgetVM, and finally links the delegates of the WidgetV, WidgetVM and the Searcher
 
 ## Usage
 
