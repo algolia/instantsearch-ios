@@ -45,6 +45,7 @@
 		E27C164B1E9394250091D79E /* RefinableDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = E27C163F1E9394250091D79E /* RefinableDelegate.swift */; };
 		E27C164C1E9394250091D79E /* SearchableViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = E27C16401E9394250091D79E /* SearchableViewModel.swift */; };
 		E27C164D1E9394250091D79E /* Helpers.swift in Sources */ = {isa = PBXBuildFile; fileRef = E27C16411E9394250091D79E /* Helpers.swift */; };
+		E2CA327C1EA77BC90057A3D3 /* HitsTableController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E2CA327B1EA77BC90057A3D3 /* HitsTableController.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -104,6 +105,7 @@
 		E27C163F1E9394250091D79E /* RefinableDelegate.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RefinableDelegate.swift; sourceTree = "<group>"; };
 		E27C16401E9394250091D79E /* SearchableViewModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SearchableViewModel.swift; sourceTree = "<group>"; };
 		E27C16411E9394250091D79E /* Helpers.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Helpers.swift; sourceTree = "<group>"; };
+		E2CA327B1EA77BC90057A3D3 /* HitsTableController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = HitsTableController.swift; path = ViewController/HitsTableController.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -268,6 +270,7 @@
 			children = (
 				E27C16541E939B430091D79E /* View */,
 				E27A7BED1E96271B005B2506 /* ViewModel */,
+				E2CA327D1EA797480057A3D3 /* Controller */,
 				E27141D31E9F762F00959294 /* ViewController */,
 			);
 			path = Concrete;
@@ -298,6 +301,14 @@
 				E27C16401E9394250091D79E /* SearchableViewModel.swift */,
 			);
 			path = "ViewModel-Binder";
+			sourceTree = "<group>";
+		};
+		E2CA327D1EA797480057A3D3 /* Controller */ = {
+			isa = PBXGroup;
+			children = (
+				E2CA327B1EA77BC90057A3D3 /* HitsTableController.swift */,
+			);
+			name = Controller;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -501,6 +512,7 @@
 				E27C164B1E9394250091D79E /* RefinableDelegate.swift in Sources */,
 				E27C16471E9394250091D79E /* InstantSearchBinder.swift in Sources */,
 				E2738FBD1E9BD9ED002C002D /* StatsViewModel.swift in Sources */,
+				E2CA327C1EA77BC90057A3D3 /* HitsTableController.swift in Sources */,
 				E27A7BEC1E9556C6005B2506 /* ResultingDelegate.swift in Sources */,
 				E27A7BFD1E97B781005B2506 /* HitsViewDelegate.swift in Sources */,
 				E2738FC91E9CC418002C002D /* RefinementMenuViewModel.swift in Sources */,

@@ -21,10 +21,8 @@ class AlgoliaTableViewControllerDemo: AlgoliaTableViewController {
         hitsTableView.register(UITableViewCell.self, forCellReuseIdentifier: "hitTableCell")
         
         self.view.addSubview(hitsTableView)
-        
         AlgoliaSearchManager.instance.instantSearchBinder.addAllWidgets(in: self.view)
-        hitsTableView.hitDataSource = self
-        hitsTableView.hitDelegate = self
+        
     }
 
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath, containing hit: [String : Any]) -> UITableViewCell {
@@ -43,10 +41,11 @@ class AlgoliaTableViewControllerDemo: AlgoliaTableViewController {
     }
 
     override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath, containing hit: [String : Any]) {
-        
+        print("hit \(String(describing: hit["name"]!)) has been clicked")
     }
     
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
+        // print("I can also edit height!")
         return 50
     }
 }

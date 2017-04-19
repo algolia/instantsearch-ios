@@ -2,15 +2,21 @@ import UIKit
 import InstantSearchCore
 import InstantSearch
 
-class ViewController: UIViewController, HitTableViewDataSource {
+class ViewController: UIViewController, HitTableViewDataSource, HitTableViewDelegate {
     
     var instantSearchBinder: InstantSearchBinder!
     @IBOutlet weak var hitsTable: HitsTableWidget!
+    var hitsTableController: HitsTableController!
 
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        hitsTable.hitDataSource = self
+        hitsTableController = HitsTableController(table: hitsTable)
+        hitsTable.dataSource = hitsTableController
+        hitsTable.delegate = hitsTableController
+        hitsTableController.hitDataSource = self
+        hitsTableController.hitDelegate = self
+        
         instantSearchBinder = AlgoliaSearchManager.instance.instantSearchBinder
         instantSearchBinder.addAllWidgets(in: self.view)
     }
@@ -28,4 +34,9 @@ class ViewController: UIViewController, HitTableViewDataSource {
         
         return cell
     }
+    
+    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath, containing hit: [String: Any]) {
+        print("hit \(String(describing: hit["name"]!)) has been clicked")
+    }
+    
 }
