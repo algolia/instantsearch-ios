@@ -26,7 +26,7 @@ internal class StatsViewModel: StatsViewModelDelegate, SearchableViewModel {
     
     // MARK: - SearchableViewModel
     
-    public var searcher: Searcher! {
+    var searcher: Searcher! {
         didSet {
             // Initial value of label in case a search was made.
             // If a search wasn't made yet and it is still ongoing, then the label will get initialized in the onResult method
@@ -43,14 +43,12 @@ internal class StatsViewModel: StatsViewModelDelegate, SearchableViewModel {
     // MARK: - StatsViewModelDelegate
     
     weak var view: StatsViewDelegate!
-    
-
 }
 
 // MARK: - ResettableDelegate
 
 extension StatsViewModel: ResettableDelegate {
-    public func onReset() {
+    func onReset() {
         view.set(text: clearText)
     }
 }
@@ -58,7 +56,7 @@ extension StatsViewModel: ResettableDelegate {
 // MARK: - ResultingDelegate
 
 extension StatsViewModel: ResultingDelegate {
-    public func on(results: SearchResults?, error: Error?, userInfo: [String: Any]) {
+    func on(results: SearchResults?, error: Error?, userInfo: [String: Any]) {
         if let results = results {
             let text = applyTemplate(resultTemplate: resultTemplate, results: results)
             view.set(text: text)
@@ -83,4 +81,3 @@ extension StatsViewModel {
             .replacingOccurrences(of: "{query}", with: "\(String(describing: results.query))")
     }
 }
-

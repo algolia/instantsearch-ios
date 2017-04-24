@@ -51,7 +51,7 @@ internal class RefinementMenuViewModel: RefinementMenuViewModelDelegate, Searcha
     
     // MARK: - SearchableViewModel
     
-    public var searcher: Searcher! {
+    var searcher: Searcher! {
         didSet {
             guard var facets = searcher.params.facets else {
                 searcher.params.facets = [attribute]
@@ -84,19 +84,19 @@ internal class RefinementMenuViewModel: RefinementMenuViewModelDelegate, Searcha
     
     weak var view: RefinementMenuViewDelegate!
     
-    public func numberOfRows(in section: Int) -> Int {
+    func numberOfRows(in section: Int) -> Int {
         return min(facetResults.count, limit)
     }
     
-    public func facetForRow(at indexPath: IndexPath) -> FacetValue {
+    func facetForRow(at indexPath: IndexPath) -> FacetValue {
         return facetResults[indexPath.row]
     }
     
-    public func isRefined(at indexPath: IndexPath) -> Bool {
+    func isRefined(at indexPath: IndexPath) -> Bool {
         return searcher.params.hasFacetRefinement(name: attribute, value: facetResults[indexPath.item].value)
     }
     
-    public func didSelectRow(at indexPath: IndexPath) {
+    func didSelectRow(at indexPath: IndexPath) {
         searcher.params.setFacet(withName: attribute, disjunctive: isDisjunctive)
         searcher.params.toggleFacetRefinement(name: attribute, value: facetResults[indexPath.item].value)
         searcher.search()
@@ -104,7 +104,7 @@ internal class RefinementMenuViewModel: RefinementMenuViewModelDelegate, Searcha
 }
 
 extension RefinementMenuViewModel: ResultingDelegate {
-    public func on(results: SearchResults?, error: Error?, userInfo: [String : Any]) {
+    func on(results: SearchResults?, error: Error?, userInfo: [String : Any]) {
         // TODO: Fix that cause for some reason, can't find the facet refinement.
         //,searcher.params.hasFacetRefinements(name: facet)
         // else { return }
@@ -115,7 +115,7 @@ extension RefinementMenuViewModel: ResultingDelegate {
 }
 
 extension RefinementMenuViewModel: ResettableDelegate {
-    public func onReset() {
+    func onReset() {
         view.reloadRefinements()
     }
 }

@@ -30,7 +30,7 @@ internal class HitsViewModel: HitsViewModelDelegate, SearchableViewModel {
     
     // MARK: - SearchableViewModel
     
-    public var searcher: Searcher! {
+    var searcher: Searcher! {
         didSet {
             searcher.params.hitsPerPage = hitsPerPage
             
@@ -44,11 +44,11 @@ internal class HitsViewModel: HitsViewModelDelegate, SearchableViewModel {
     
     weak var view: HitsViewDelegate!
     
-    public func numberOfRows() -> Int {
+    func numberOfRows() -> Int {
         return searcher.hits.count
     }
     
-    public func hitForRow(at indexPath: IndexPath) -> [String: Any] {
+    func hitForRow(at indexPath: IndexPath) -> [String: Any] {
         loadMoreIfNecessary(rowNumber: indexPath.row)
         return searcher.hits[indexPath.row]
     }
@@ -67,7 +67,7 @@ extension HitsViewModel: ResultingDelegate {
     
     // MARK: - ResultingDelegate
     
-    @objc public func on(results: SearchResults?, error: Error?, userInfo: [String: Any]) {
+    func on(results: SearchResults?, error: Error?, userInfo: [String: Any]) {
         guard searcher.hits.count > 0 else { return }
         
         view.reloadHits()

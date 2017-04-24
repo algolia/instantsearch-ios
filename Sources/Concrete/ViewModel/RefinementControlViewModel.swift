@@ -42,7 +42,7 @@ internal class RefinementControlViewModel: RefinementControlViewModelDelegate, S
     
     // MARK: - SearchableViewModel
     
-    public var searcher: Searcher! {
+    var searcher: Searcher! {
         didSet {
             if let numeric = self.searcher.params.getNumericRefinement(name: attributeName, op: op) {
                 view.set(value: numeric.value)
@@ -56,7 +56,7 @@ internal class RefinementControlViewModel: RefinementControlViewModelDelegate, S
     
     weak var view: RefinementControlViewDelegate!
     
-    @objc public func numericFilterValueChanged() {
+    func numericFilterValueChanged() {
         numericFiltersDebouncer.call {
             self.searcher.params.updateNumericRefinement(self.attributeName, self.op, self.view.getValue())
             self.searcher.search()
@@ -67,13 +67,13 @@ internal class RefinementControlViewModel: RefinementControlViewModelDelegate, S
 // MARK: - RefinableDelegate
 
 extension RefinementControlViewModel: RefinableDelegate {
-    @objc public func getAttributeName() -> String {
+    func getAttributeName() -> String {
         // TODO: Error handling
         //        if view.attributeName.isEmpty { throw "a control refinement does not have an attribute name specified" }
         return attributeName
     }
     
-    @objc public func onRefinementChange(numerics: [NumericRefinement]) {
+    func onRefinementChange(numerics: [NumericRefinement]) {
         for numeric in numerics {
             if numeric.op == op {
                 view.set(value: numeric.value)
@@ -85,7 +85,7 @@ extension RefinementControlViewModel: RefinableDelegate {
 // MARK: - ResettableDelegate
 
 extension RefinementControlViewModel: ResettableDelegate {
-    @objc public func onReset() {
+    func onReset() {
         view.set(value: clearValue)
     }
 }
