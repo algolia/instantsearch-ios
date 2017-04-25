@@ -7,6 +7,7 @@
 //
 
 import Foundation
+import UIKit
 
 @objc public protocol RefinementTableViewDataSource: class {
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath, containing facet: String, with count: Int, is refined: Bool) -> UITableViewCell

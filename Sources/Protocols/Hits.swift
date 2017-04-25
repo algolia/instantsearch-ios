@@ -7,6 +7,7 @@
 //
 
 import Foundation
+import UIKit
 
 @objc public protocol HitTableViewDataSource: class {
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath, containing hit: [String: Any]) -> UITableViewCell
