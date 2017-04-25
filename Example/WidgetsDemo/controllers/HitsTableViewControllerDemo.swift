@@ -1,5 +1,5 @@
 //
-//  AlgoliaTableViewControllerDemo.swift
+//  HitsTableViewControllerDemo.swift
 //  Example
 //
 //  Created by Guy Daher on 13/04/2017.
@@ -11,7 +11,7 @@ import InstantSearch
 // TODO: Should remove that when moved highlight logic in IS
 import InstantSearchCore
 
-class AlgoliaTableViewControllerDemo: AlgoliaTableViewController {
+class HitsTableViewControllerDemo: HitsTableViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()

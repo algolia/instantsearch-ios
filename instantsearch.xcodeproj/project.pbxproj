@@ -46,6 +46,7 @@
 		E27C164C1E9394250091D79E /* SearchableViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = E27C16401E9394250091D79E /* SearchableViewModel.swift */; };
 		E27C164D1E9394250091D79E /* Helpers.swift in Sources */ = {isa = PBXBuildFile; fileRef = E27C16411E9394250091D79E /* Helpers.swift */; };
 		E28B07DA1EAF71D9003AAE47 /* Hits.swift in Sources */ = {isa = PBXBuildFile; fileRef = E28B07D91EAF71D9003AAE47 /* Hits.swift */; };
+		E28B07DC1EAF8423003AAE47 /* Refinement.swift in Sources */ = {isa = PBXBuildFile; fileRef = E28B07DB1EAF8423003AAE47 /* Refinement.swift */; };
 		E2CA327C1EA77BC90057A3D3 /* HitsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E2CA327B1EA77BC90057A3D3 /* HitsViewController.swift */; };
 /* End PBXBuildFile section */
 
@@ -107,6 +108,7 @@
 		E27C16401E9394250091D79E /* SearchableViewModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SearchableViewModel.swift; sourceTree = "<group>"; };
 		E27C16411E9394250091D79E /* Helpers.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Helpers.swift; sourceTree = "<group>"; };
 		E28B07D91EAF71D9003AAE47 /* Hits.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Hits.swift; sourceTree = "<group>"; };
+		E28B07DB1EAF8423003AAE47 /* Refinement.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Refinement.swift; sourceTree = "<group>"; };
 		E2CA327B1EA77BC90057A3D3 /* HitsViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = HitsViewController.swift; path = ViewController/HitsViewController.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -310,6 +312,7 @@
 			isa = PBXGroup;
 			children = (
 				E28B07D91EAF71D9003AAE47 /* Hits.swift */,
+				E28B07DB1EAF8423003AAE47 /* Refinement.swift */,
 			);
 			name = ViewController;
 			sourceTree = "<group>";
@@ -527,6 +530,7 @@
 				E27A7BEC1E9556C6005B2506 /* ResultingDelegate.swift in Sources */,
 				E27A7BFD1E97B781005B2506 /* HitsViewDelegate.swift in Sources */,
 				E2738FC91E9CC418002C002D /* RefinementMenuViewModel.swift in Sources */,
+				E28B07DC1EAF8423003AAE47 /* Refinement.swift in Sources */,
 				E27C16491E9394250091D79E /* ClearAllWidget.swift in Sources */,
 				E27C164C1E9394250091D79E /* SearchableViewModel.swift in Sources */,
 				E27141F51EA0F20700959294 /* AlgoliaCollectionViewController.swift in Sources */,

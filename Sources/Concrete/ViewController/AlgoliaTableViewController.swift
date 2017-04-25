@@ -1,5 +1,5 @@
 //
-//  AlgoliaTableViewController.swift
+//  HitsTableViewController.swift
 //  InstantSearch
 //
 //  Created by Guy Daher on 13/04/2017.
@@ -9,7 +9,7 @@
 import Foundation
 import UIKit
 
-@objc open class AlgoliaTableViewController: UIViewController, UITableViewDataSource, UITableViewDelegate, HitTableViewDataSource, HitTableViewDelegate {
+@objc open class HitsTableViewController: UIViewController, UITableViewDataSource, UITableViewDelegate, HitTableViewDataSource, HitTableViewDelegate {
     
     var hitsViewController: HitsViewController!
     
@@ -37,7 +37,7 @@ import UIKit
         self.hitsViewController.tableView(self.hitsTableView, didSelectRowAt: indexPath)
     }
     
-    // The follow methods are to be implemented by the class extending AlgoliaTableViewController
+    // The follow methods are to be implemented by the class extending HitsTableViewController
     
     open func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath, containing hit: [String : Any]) -> UITableViewCell {
         fatalError("Must Override cellForHit:indexpath:containing:")

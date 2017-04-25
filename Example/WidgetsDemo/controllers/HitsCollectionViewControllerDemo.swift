@@ -1,5 +1,5 @@
 //
-//  AlgoliaCollectionViewControllerDemo.swift
+//  HitsCollectionViewControllerDemo.swift
 //  Example
 //
 //  Created by Guy Daher on 14/04/2017.
@@ -11,7 +11,7 @@ import InstantSearch
 // TODO: Should remove that when moved highlight logic in IS
 import InstantSearchCore
 
-class AlgoliaCollectionViewControllerDemo: AlgoliaCollectionViewController {
+class HitsCollectionViewControllerDemo: HitsCollectionViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -51,7 +51,7 @@ class AlgoliaCollectionViewControllerDemo: AlgoliaCollectionViewController {
 fileprivate let itemsPerRow: CGFloat = 4.0
 fileprivate let sectionInsets = UIEdgeInsets(top: 50.0, left: 20.0, bottom: 50.0, right: 20.0)
 
-extension AlgoliaCollectionViewControllerDemo : UICollectionViewDelegateFlowLayout {
+extension HitsCollectionViewControllerDemo : UICollectionViewDelegateFlowLayout {
     
     func collectionView(_ collectionView: UICollectionView,
                         layout collectionViewLayout: UICollectionViewLayout,

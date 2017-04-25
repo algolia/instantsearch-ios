@@ -1,5 +1,5 @@
 //
-//  AlgoliaCollectionViewController.swift
+//  HitsCollectionViewController.swift
 //  InstantSearch
 //
 //  Created by Guy Daher on 14/04/2017.
@@ -9,7 +9,7 @@
 import Foundation
 import UIKit
 
-@objc open class AlgoliaCollectionViewController: UIViewController, UICollectionViewDataSource, UICollectionViewDelegate, HitCollectionViewDataSource, HitCollectionViewDelegate {
+@objc open class HitsCollectionViewController: UIViewController, UICollectionViewDataSource, UICollectionViewDelegate, HitCollectionViewDataSource, HitCollectionViewDelegate {
     
     var hitsViewController: HitsViewController!
     
@@ -37,7 +37,7 @@ import UIKit
         return self.hitsViewController.collectionView(collectionView, didSelectItemAt: indexPath)
     }
     
-    // The follow methods are to be implemented by the class extending AlgoliaCollectionViewController
+    // The follow methods are to be implemented by the class extending HitsCollectionViewController
     
     open func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath, containing hit: [String : Any]) -> UICollectionViewCell {
         fatalError("Must Override cellForItem:indexpath:containing:")
