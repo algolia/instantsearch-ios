@@ -49,6 +49,8 @@
 		E28B07DC1EAF8423003AAE47 /* Refinement.swift in Sources */ = {isa = PBXBuildFile; fileRef = E28B07DB1EAF8423003AAE47 /* Refinement.swift */; };
 		E28B07E01EAF88D9003AAE47 /* RefinementViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E28B07DF1EAF88D9003AAE47 /* RefinementViewController.swift */; };
 		E28B07E21EAF9F27003AAE47 /* RefinementCollectionWidget.swift in Sources */ = {isa = PBXBuildFile; fileRef = E28B07E11EAF9F27003AAE47 /* RefinementCollectionWidget.swift */; };
+		E28B07E41EAF9FF2003AAE47 /* RefinementTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E28B07E31EAF9FF2003AAE47 /* RefinementTableViewController.swift */; };
+		E28B07E61EAF9FFE003AAE47 /* RefinementCollectionViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E28B07E51EAF9FFE003AAE47 /* RefinementCollectionViewController.swift */; };
 		E2CA327C1EA77BC90057A3D3 /* HitsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E2CA327B1EA77BC90057A3D3 /* HitsViewController.swift */; };
 /* End PBXBuildFile section */
 
@@ -113,6 +115,8 @@
 		E28B07DB1EAF8423003AAE47 /* Refinement.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Refinement.swift; sourceTree = "<group>"; };
 		E28B07DF1EAF88D9003AAE47 /* RefinementViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RefinementViewController.swift; sourceTree = "<group>"; };
 		E28B07E11EAF9F27003AAE47 /* RefinementCollectionWidget.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RefinementCollectionWidget.swift; sourceTree = "<group>"; };
+		E28B07E31EAF9FF2003AAE47 /* RefinementTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RefinementTableViewController.swift; sourceTree = "<group>"; };
+		E28B07E51EAF9FFE003AAE47 /* RefinementCollectionViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RefinementCollectionViewController.swift; sourceTree = "<group>"; };
 		E2CA327B1EA77BC90057A3D3 /* HitsViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = HitsViewController.swift; path = ViewController/HitsViewController.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -207,6 +211,8 @@
 			children = (
 				E27141D41E9F764100959294 /* HitsTableViewController.swift */,
 				E27141F41EA0F20700959294 /* HitsCollectionViewController.swift */,
+				E28B07E31EAF9FF2003AAE47 /* RefinementTableViewController.swift */,
+				E28B07E51EAF9FFE003AAE47 /* RefinementCollectionViewController.swift */,
 			);
 			path = ViewController;
 			sourceTree = "<group>";
@@ -527,6 +533,7 @@
 				E27C16431E9394250091D79E /* HitsTableWidget.swift in Sources */,
 				E27A7BFA1E97B729005B2506 /* HitsViewModelDelegate.swift in Sources */,
 				E27A7BF31E97947C005B2506 /* HitsCollectionWidget.swift in Sources */,
+				E28B07E61EAF9FFE003AAE47 /* RefinementCollectionViewController.swift in Sources */,
 				E27C16461E9394250091D79E /* LabelStatsWidget.swift in Sources */,
 				E27A7BFF1E97B7AA005B2506 /* AlgoliaView.swift in Sources */,
 				E27C164B1E9394250091D79E /* RefinableDelegate.swift in Sources */,
@@ -534,6 +541,7 @@
 				E27C16471E9394250091D79E /* InstantSearchBinder.swift in Sources */,
 				E2738FBD1E9BD9ED002C002D /* StatsViewModel.swift in Sources */,
 				E2CA327C1EA77BC90057A3D3 /* HitsViewController.swift in Sources */,
+				E28B07E41EAF9FF2003AAE47 /* RefinementTableViewController.swift in Sources */,
 				E27A7BEC1E9556C6005B2506 /* ResultingDelegate.swift in Sources */,
 				E27A7BFD1E97B781005B2506 /* HitsViewDelegate.swift in Sources */,
 				E2738FC91E9CC418002C002D /* RefinementMenuViewModel.swift in Sources */,

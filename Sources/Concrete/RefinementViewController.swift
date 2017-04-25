@@ -25,9 +25,9 @@ import UIKit
         self.init(refinementView: table)
     }
     
-//    convenience public init(collection: HitsCollectionWidget) {
-//        self.init(hitsView: collection)
-//    }
+    convenience public init(collection: RefinementCollectionWidget) {
+        self.init(refinementView: collection)
+    }
     
     init(refinementView: RefinementMenuViewDelegate) {
         self.refinementViewDelegate = refinementView
@@ -50,6 +50,25 @@ extension RefinementViewController: UITableViewDataSource {
 
 extension RefinementViewController: UITableViewDelegate {
     public func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        viewModel.didSelectRow(at: indexPath)
+    }
+}
+
+extension RefinementViewController: UICollectionViewDataSource {
+    
+    public func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
+        return viewModel.numberOfRows(in: section)
+    }
+    
+    public func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
+        let facetValue = viewModel.facetForRow(at: indexPath)
+        let isRefined = viewModel.isRefined(at: indexPath)
+        return collectionDataSource?.collectionView(collectionView, cellForItemAt: indexPath, containing: facetValue.value, with: facetValue.count, is: isRefined) ?? UICollectionViewCell()
+    }
+}
+
+extension RefinementViewController: UICollectionViewDelegate {
+    public func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
         viewModel.didSelectRow(at: indexPath)
     }
 }
