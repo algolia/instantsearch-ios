@@ -22,5 +22,5 @@ import UIKit
 }
 
 @objc public protocol RefinementCollectionViewDelegate: class {
-    func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath, containing hit: [String: Any])
+    func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath, containing facet: String, with count: Int, is refined: Bool)
 }

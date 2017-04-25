@@ -17,6 +17,7 @@ class StartingTableViewController: UITableViewController {
              HitsTableViewControllerDemo.self),
             ("Algolia Collection View Controller", "HitsCollectionViewControllerDemo",
              HitsCollectionViewControllerDemo.self),
+            ("Refinement Collection View Controller", "RefinementCollectionViewControllerDemo", RefinementCollectionViewControllerDemo.self),
          ]
 
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
