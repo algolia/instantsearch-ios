@@ -14,7 +14,7 @@ import InstantSearch
 class FacetController: UIViewController, RefinementTableViewDataSource {
     
     var instantSearchBinder: InstantSearchBinder!
-    @IBOutlet weak var refinementList: RefinementListWidget!
+    @IBOutlet weak var refinementList: RefinementTableWidget!
     @IBOutlet weak var statLabel: LabelStatsWidget!
     
     var refinementViewController: RefinementViewController!

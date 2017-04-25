@@ -21,7 +21,7 @@ import UIKit
     @objc public weak var collectionDataSource: RefinementCollectionViewDataSource?
     @objc public weak var collectionDelegate: RefinementCollectionViewDelegate?
     
-    convenience public init(table: RefinementListWidget) {
+    convenience public init(table: RefinementTableWidget) {
         self.init(refinementView: table)
     }
     
