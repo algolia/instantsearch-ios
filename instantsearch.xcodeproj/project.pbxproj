@@ -13,8 +13,8 @@
 		6B3F1A5AC5B19AB0F4FC9B3C /* Pods_InstantSearchTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 33749566A6B791EB78B9A2F5 /* Pods_InstantSearchTests.framework */; };
 		BC2BDF7408F80426E13BBB47 /* Pods_InstantSearch.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C5E2FC6F7BC12D4C7904D4D8 /* Pods_InstantSearch.framework */; };
 		E27141CA1E9E237200959294 /* ButtonStatsWidget.swift in Sources */ = {isa = PBXBuildFile; fileRef = E27141C91E9E237200959294 /* ButtonStatsWidget.swift */; };
-		E27141D51E9F764100959294 /* AlgoliaTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E27141D41E9F764100959294 /* AlgoliaTableViewController.swift */; };
-		E27141F51EA0F20700959294 /* AlgoliaCollectionViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E27141F41EA0F20700959294 /* AlgoliaCollectionViewController.swift */; };
+		E27141D51E9F764100959294 /* HitsTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E27141D41E9F764100959294 /* HitsTableViewController.swift */; };
+		E27141F51EA0F20700959294 /* HitsCollectionViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E27141F41EA0F20700959294 /* HitsCollectionViewController.swift */; };
 		E2738FBD1E9BD9ED002C002D /* StatsViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = E2738FBC1E9BD9ED002C002D /* StatsViewModel.swift */; };
 		E2738FBF1E9BDA28002C002D /* StatsViewModelDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = E2738FBE1E9BDA28002C002D /* StatsViewModelDelegate.swift */; };
 		E2738FC11E9BDA31002C002D /* StatsViewDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = E2738FC01E9BDA31002C002D /* StatsViewDelegate.swift */; };
@@ -33,7 +33,7 @@
 		E27A7BFA1E97B729005B2506 /* HitsViewModelDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = E27A7BF91E97B729005B2506 /* HitsViewModelDelegate.swift */; };
 		E27A7BFD1E97B781005B2506 /* HitsViewDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = E27A7BFC1E97B781005B2506 /* HitsViewDelegate.swift */; };
 		E27A7BFF1E97B7AA005B2506 /* AlgoliaView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E27A7BFE1E97B7AA005B2506 /* AlgoliaView.swift */; };
-		E27C16421E9394250091D79E /* RefinementListWidget.swift in Sources */ = {isa = PBXBuildFile; fileRef = E27C16361E9394250091D79E /* RefinementListWidget.swift */; };
+		E27C16421E9394250091D79E /* RefinementTableWidget.swift in Sources */ = {isa = PBXBuildFile; fileRef = E27C16361E9394250091D79E /* RefinementTableWidget.swift */; };
 		E27C16431E9394250091D79E /* HitsTableWidget.swift in Sources */ = {isa = PBXBuildFile; fileRef = E27C16371E9394250091D79E /* HitsTableWidget.swift */; };
 		E27C16441E9394250091D79E /* SliderWidget.swift in Sources */ = {isa = PBXBuildFile; fileRef = E27C16381E9394250091D79E /* SliderWidget.swift */; };
 		E27C16451E9394250091D79E /* SearchBarWidget.swift in Sources */ = {isa = PBXBuildFile; fileRef = E27C16391E9394250091D79E /* SearchBarWidget.swift */; };
@@ -76,8 +76,8 @@
 		C5E2FC6F7BC12D4C7904D4D8 /* Pods_InstantSearch.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_InstantSearch.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		CFF04E06E7D4D0CDE5F6CF30 /* Pods-InstantSearch.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-InstantSearch.release.xcconfig"; path = "Pods/Target Support Files/Pods-InstantSearch/Pods-InstantSearch.release.xcconfig"; sourceTree = "<group>"; };
 		E27141C91E9E237200959294 /* ButtonStatsWidget.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ButtonStatsWidget.swift; sourceTree = "<group>"; };
-		E27141D41E9F764100959294 /* AlgoliaTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AlgoliaTableViewController.swift; sourceTree = "<group>"; };
-		E27141F41EA0F20700959294 /* AlgoliaCollectionViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AlgoliaCollectionViewController.swift; sourceTree = "<group>"; };
+		E27141D41E9F764100959294 /* HitsTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HitsTableViewController.swift; sourceTree = "<group>"; };
+		E27141F41EA0F20700959294 /* HitsCollectionViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HitsCollectionViewController.swift; sourceTree = "<group>"; };
 		E2738FBC1E9BD9ED002C002D /* StatsViewModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = StatsViewModel.swift; sourceTree = "<group>"; };
 		E2738FBE1E9BDA28002C002D /* StatsViewModelDelegate.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = StatsViewModelDelegate.swift; sourceTree = "<group>"; };
 		E2738FC01E9BDA31002C002D /* StatsViewDelegate.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = StatsViewDelegate.swift; sourceTree = "<group>"; };
@@ -96,7 +96,7 @@
 		E27A7BF91E97B729005B2506 /* HitsViewModelDelegate.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HitsViewModelDelegate.swift; sourceTree = "<group>"; };
 		E27A7BFC1E97B781005B2506 /* HitsViewDelegate.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HitsViewDelegate.swift; sourceTree = "<group>"; };
 		E27A7BFE1E97B7AA005B2506 /* AlgoliaView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AlgoliaView.swift; sourceTree = "<group>"; };
-		E27C16361E9394250091D79E /* RefinementListWidget.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RefinementListWidget.swift; sourceTree = "<group>"; };
+		E27C16361E9394250091D79E /* RefinementTableWidget.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RefinementTableWidget.swift; sourceTree = "<group>"; };
 		E27C16371E9394250091D79E /* HitsTableWidget.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HitsTableWidget.swift; sourceTree = "<group>"; };
 		E27C16381E9394250091D79E /* SliderWidget.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SliderWidget.swift; sourceTree = "<group>"; };
 		E27C16391E9394250091D79E /* SearchBarWidget.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SearchBarWidget.swift; sourceTree = "<group>"; };
@@ -203,8 +203,8 @@
 		E27141D31E9F762F00959294 /* ViewController */ = {
 			isa = PBXGroup;
 			children = (
-				E27141D41E9F764100959294 /* AlgoliaTableViewController.swift */,
-				E27141F41EA0F20700959294 /* AlgoliaCollectionViewController.swift */,
+				E27141D41E9F764100959294 /* HitsTableViewController.swift */,
+				E27141F41EA0F20700959294 /* HitsCollectionViewController.swift */,
 			);
 			path = ViewController;
 			sourceTree = "<group>";
@@ -290,7 +290,7 @@
 				E27C163D1E9394250091D79E /* ClearAllWidget.swift */,
 				E27A7BF21E97947C005B2506 /* HitsCollectionWidget.swift */,
 				E27C16371E9394250091D79E /* HitsTableWidget.swift */,
-				E27C16361E9394250091D79E /* RefinementListWidget.swift */,
+				E27C16361E9394250091D79E /* RefinementTableWidget.swift */,
 				E27C16391E9394250091D79E /* SearchBarWidget.swift */,
 				E27C16381E9394250091D79E /* SliderWidget.swift */,
 				E27C163A1E9394250091D79E /* LabelStatsWidget.swift */,
@@ -536,17 +536,17 @@
 				E28B07DC1EAF8423003AAE47 /* Refinement.swift in Sources */,
 				E27C16491E9394250091D79E /* ClearAllWidget.swift in Sources */,
 				E27C164C1E9394250091D79E /* SearchableViewModel.swift in Sources */,
-				E27141F51EA0F20700959294 /* AlgoliaCollectionViewController.swift in Sources */,
+				E27141F51EA0F20700959294 /* HitsCollectionViewController.swift in Sources */,
 				E27141CA1E9E237200959294 /* ButtonStatsWidget.swift in Sources */,
 				E2738FC11E9BDA31002C002D /* StatsViewDelegate.swift in Sources */,
 				E27C16441E9394250091D79E /* SliderWidget.swift in Sources */,
 				E2738FC51E9CC3E0002C002D /* RefinementMenuViewDelegate.swift in Sources */,
 				E27C164D1E9394250091D79E /* Helpers.swift in Sources */,
-				E27C16421E9394250091D79E /* RefinementListWidget.swift in Sources */,
+				E27C16421E9394250091D79E /* RefinementTableWidget.swift in Sources */,
 				E2738FCF1E9CDE32002C002D /* RefinementControlViewModel.swift in Sources */,
 				E2738FCD1E9CDE04002C002D /* RefinementControlViewDelegate.swift in Sources */,
 				E27C164A1E9394250091D79E /* ActivityIndicatorView.swift in Sources */,
-				E27141D51E9F764100959294 /* AlgoliaTableViewController.swift in Sources */,
+				E27141D51E9F764100959294 /* HitsTableViewController.swift in Sources */,
 				E27A7BEF1E962768005B2506 /* HitsViewModel.swift in Sources */,
 				E2738FBF1E9BDA28002C002D /* StatsViewModelDelegate.swift in Sources */,
 				E2738FC71E9CC3F8002C002D /* RefinementMenuViewModelDelegate.swift in Sources */,
