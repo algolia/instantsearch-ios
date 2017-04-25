@@ -11,25 +11,32 @@ import UIKit
 import InstantSearchCore
 import InstantSearch
 
-class FacetController: UIViewController, FacetDataSource {
+class FacetController: UIViewController, RefinementTableViewDataSource {
     
     var instantSearchBinder: InstantSearchBinder!
     @IBOutlet weak var refinementList: RefinementListWidget!
     @IBOutlet weak var statLabel: LabelStatsWidget!
     
+    var refinementViewController: RefinementViewController!
+    
     override func viewDidLoad() {
-        refinementList.facetDataSource = self
+        refinementViewController = RefinementViewController(table: refinementList)
+        refinementList.dataSource = refinementViewController
+        refinementList.delegate = refinementViewController
+        refinementViewController.tableDataSource = self
+        // refinementViewController.tableDelegate = self
+        
         instantSearchBinder = AlgoliaSearchManager.instance.instantSearchBinder
         instantSearchBinder.add(widget: refinementList)
         instantSearchBinder.add(widget: statLabel)
     }
     
-    func cellFor(facet: String, count: Int, isRefined: Bool, at indexPath: IndexPath) -> UITableViewCell {
+    func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath, containing facet: String, with count: Int, is refined: Bool) -> UITableViewCell {
         let cell = refinementList.dequeueReusableCell(withIdentifier: "facetCell", for: indexPath)
         
         cell.textLabel?.text = facet
         cell.detailTextLabel?.text = String(count)
-        cell.accessoryType = isRefined ? .checkmark : .none
+        cell.accessoryType = refined ? .checkmark : .none
         
         return cell
     }

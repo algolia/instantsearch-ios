@@ -47,6 +47,7 @@
 		E27C164D1E9394250091D79E /* Helpers.swift in Sources */ = {isa = PBXBuildFile; fileRef = E27C16411E9394250091D79E /* Helpers.swift */; };
 		E28B07DA1EAF71D9003AAE47 /* Hits.swift in Sources */ = {isa = PBXBuildFile; fileRef = E28B07D91EAF71D9003AAE47 /* Hits.swift */; };
 		E28B07DC1EAF8423003AAE47 /* Refinement.swift in Sources */ = {isa = PBXBuildFile; fileRef = E28B07DB1EAF8423003AAE47 /* Refinement.swift */; };
+		E28B07E01EAF88D9003AAE47 /* RefinementViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E28B07DF1EAF88D9003AAE47 /* RefinementViewController.swift */; };
 		E2CA327C1EA77BC90057A3D3 /* HitsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E2CA327B1EA77BC90057A3D3 /* HitsViewController.swift */; };
 /* End PBXBuildFile section */
 
@@ -109,6 +110,7 @@
 		E27C16411E9394250091D79E /* Helpers.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Helpers.swift; sourceTree = "<group>"; };
 		E28B07D91EAF71D9003AAE47 /* Hits.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Hits.swift; sourceTree = "<group>"; };
 		E28B07DB1EAF8423003AAE47 /* Refinement.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Refinement.swift; sourceTree = "<group>"; };
+		E28B07DF1EAF88D9003AAE47 /* RefinementViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RefinementViewController.swift; sourceTree = "<group>"; };
 		E2CA327B1EA77BC90057A3D3 /* HitsViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = HitsViewController.swift; path = ViewController/HitsViewController.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -321,6 +323,7 @@
 			isa = PBXGroup;
 			children = (
 				E2CA327B1EA77BC90057A3D3 /* HitsViewController.swift */,
+				E28B07DF1EAF88D9003AAE47 /* RefinementViewController.swift */,
 			);
 			name = Controller;
 			sourceTree = "<group>";
@@ -554,6 +557,7 @@
 				E2738FD21E9D1AFF002C002D /* RefinementListHelper.swift in Sources */,
 				E27A7BF11E97931E005B2506 /* ViewModelBuilder.swift in Sources */,
 				E28B07DA1EAF71D9003AAE47 /* Hits.swift in Sources */,
+				E28B07E01EAF88D9003AAE47 /* RefinementViewController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
