@@ -17,6 +17,7 @@ import InstantSearchCore
     var viewModel: RefinementMenuViewModelDelegate! { get set }
     
     func reloadRefinements()
+    func deselectRow(at: IndexPath)
     
     var attribute: String { get set }
     var refinedFirst: Bool { get set }

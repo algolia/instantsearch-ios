@@ -14,13 +14,17 @@ import UIKit
     
     var viewModel: RefinementMenuViewModelDelegate!
     
-    public func reloadRefinements() {
-        reloadData()
-    }
-    
     @IBInspectable public var attribute: String = ""
     @IBInspectable public var refinedFirst: Bool = true
     @IBInspectable public var `operator`: String = "or"
     @IBInspectable public var sortBy: String = "count:desc"
     @IBInspectable public var limit: Int = 10
+    
+    public func reloadRefinements() {
+        reloadData()
+    }
+    
+    func deselectRow(at indexPath: IndexPath) {
+        deselectRow(at: indexPath, animated: true)
+    }
 }

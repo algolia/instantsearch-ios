@@ -99,6 +99,7 @@ internal class RefinementMenuViewModel: RefinementMenuViewModelDelegate, Searcha
     func didSelectRow(at indexPath: IndexPath) {
         searcher.params.setFacet(withName: attribute, disjunctive: isDisjunctive)
         searcher.params.toggleFacetRefinement(name: attribute, value: facetResults[indexPath.item].value)
+        view.deselectRow(at: indexPath)
         searcher.search()
     }
 }

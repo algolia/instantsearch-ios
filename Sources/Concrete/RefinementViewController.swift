@@ -50,7 +50,6 @@ extension RefinementViewController: UITableViewDataSource {
 
 extension RefinementViewController: UITableViewDelegate {
     public func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        (refinementViewDelegate as! UITableView).deselectRow(at: indexPath, animated: true)
         viewModel.didSelectRow(at: indexPath)
     }
 }
