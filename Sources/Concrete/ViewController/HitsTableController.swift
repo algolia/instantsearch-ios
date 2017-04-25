@@ -8,32 +8,70 @@
 
 import UIKit
 
-@objc public class HitsTableController: NSObject, UITableViewDataSource, UITableViewDelegate {
+@objc public class HitsTableController: NSObject {
 
     var hitsViewDelegate: HitsViewDelegate
     
-    @objc public weak var hitDataSource: HitTableViewDataSource?
-    @objc public weak var hitDelegate: HitTableViewDelegate?
+    lazy var viewModel: HitsViewModelDelegate = {
+        return self.hitsViewDelegate.viewModel
+    }()
     
-    public init(table: HitsTableWidget) {
-        self.hitsViewDelegate = table
-        super.init()
+    @objc public weak var tableDataSource: HitTableViewDataSource?
+    @objc public weak var tableDelegate: HitTableViewDelegate?
+    @objc public weak var collectionDataSource: HitCollectionViewDataSource?
+    @objc public weak var collectionDelegate: HitCollectionViewDelegate?
+    
+    convenience public init(table: HitsTableWidget) {
+        self.init(hitsView: table)
     }
     
+    convenience public init(collection: HitsCollectionWidget) {
+        self.init(hitsView: collection)
+    }
+    
+    init(hitsView: HitsViewDelegate) {
+        self.hitsViewDelegate = hitsView
+        super.init()
+    }
+}
+
+extension HitsTableController: UITableViewDataSource {
     public func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return hitsViewDelegate.viewModel.numberOfRows()
+        return viewModel.numberOfRows()
     }
     
     public func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let hit = hitsViewDelegate.viewModel.hitForRow(at: indexPath)
+        let hit = viewModel.hitForRow(at: indexPath)
         
-        return hitDataSource?.tableView(tableView, cellForRowAt: indexPath, containing: hit) ?? UITableViewCell()
+        return tableDataSource?.tableView(tableView, cellForRowAt: indexPath, containing: hit) ?? UITableViewCell()
+    }
+}
+
+extension HitsTableController: UITableViewDelegate {
+    public func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        let hit = viewModel.hitForRow(at: indexPath)
+        
+        tableDelegate?.tableView(tableView, didSelectRowAt: indexPath, containing: hit)
+    }
+}
+
+extension HitsTableController: UICollectionViewDataSource {
+    public func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
+        return viewModel.numberOfRows()
     }
     
-    public func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        let hit = hitsViewDelegate.viewModel.hitForRow(at: indexPath)
+    public func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
+        let hit = viewModel.hitForRow(at: indexPath)
         
-        hitDelegate?.tableView(tableView, didSelectRowAt: indexPath, containing: hit)
+        return collectionDataSource?.collectionView(collectionView, cellForItemAt: indexPath, containing: hit) ?? UICollectionViewCell()
+    }
+}
+
+extension HitsTableController: UICollectionViewDelegate {
+    public func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
+        let hit = viewModel.hitForRow(at: indexPath)
+        
+        collectionDelegate?.collectionView(collectionView, didSelectItemAt: indexPath, containing: hit)
     }
 }
 

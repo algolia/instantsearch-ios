@@ -18,8 +18,8 @@ import UIKit
             hitsTableController = HitsTableController(table: hitsTableView)
             hitsTableView.dataSource = self
             hitsTableView.delegate = self
-            hitsTableController.hitDataSource = self
-            hitsTableController.hitDelegate = self
+            hitsTableController.tableDataSource = self
+            hitsTableController.tableDelegate = self
         }
     }
     

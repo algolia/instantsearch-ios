@@ -208,7 +208,7 @@ import InstantSearchCore
     
     // MARK: - Notification Observers
     
-    func onReset(notification: Notification) {
+    func onReset(notification: Notification?) {
         for algoliaWidget in resettableDelegates {
             algoliaWidget.onReset()
         }

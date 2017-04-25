@@ -14,9 +14,6 @@ import Foundation
     @IBInspectable public var infiniteScrolling: Bool = true
     @IBInspectable public var remainingItemsBeforeLoading: UInt = 5
     
-    @objc public weak var hitDataSource: HitTableViewDataSource?
-    @objc public weak var hitDelegate: HitTableViewDelegate?
-    
     public override init(frame: CGRect, style: UITableViewStyle) {
         super.init(frame: frame, style: style)
     }
