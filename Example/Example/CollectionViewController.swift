@@ -13,12 +13,18 @@ import InstantSearchCore
 class CollectionViewController: UIViewController, HitCollectionViewDataSource {
 
     @IBOutlet var hitCollectionWidget: HitsCollectionWidget!
+    var hitsViewController: HitsViewController!
     var instantSearchBinder: InstantSearchBinder!
     
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        hitCollectionWidget.hitDataSource = self
+        hitsViewController = HitsViewController(collection: hitCollectionWidget)
+        hitCollectionWidget.dataSource = hitsViewController
+        hitCollectionWidget.delegate = hitsViewController
+        hitsViewController.collectionDataSource = self
+        // hitsViewController.collectionDelegate = self
+        
         hitCollectionWidget.register(UINib(nibName: "CollectionViewCell", bundle: nil) , forCellWithReuseIdentifier: "collectionViewCell")
         instantSearchBinder = AlgoliaSearchManager.instance.instantSearchBinder
         instantSearchBinder.addAllWidgets(in: self.view)

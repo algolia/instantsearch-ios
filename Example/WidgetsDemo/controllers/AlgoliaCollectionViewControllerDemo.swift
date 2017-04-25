@@ -25,8 +25,6 @@ class AlgoliaCollectionViewControllerDemo: AlgoliaCollectionViewController {
         self.view.addSubview(hitsCollectionView)
         
         AlgoliaSearchManager.instance.instantSearchBinder.addAllWidgets(in: self.view)
-        hitsCollectionView.hitDataSource = self
-        hitsCollectionView.hitDelegate = self
     }
     
     override func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath, containing hit: [String : Any]) -> UICollectionViewCell {

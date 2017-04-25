@@ -6,16 +6,16 @@ class ViewController: UIViewController, HitTableViewDataSource, HitTableViewDele
     
     var instantSearchBinder: InstantSearchBinder!
     @IBOutlet weak var hitsTable: HitsTableWidget!
-    var hitsTableController: HitsTableController!
+    var hitsViewController: HitsViewController!
 
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        hitsTableController = HitsTableController(table: hitsTable)
-        hitsTable.dataSource = hitsTableController
-        hitsTable.delegate = hitsTableController
-        hitsTableController.tableDataSource = self
-        hitsTableController.tableDelegate = self
+        hitsViewController = HitsViewController(table: hitsTable)
+        hitsTable.dataSource = hitsViewController
+        hitsTable.delegate = hitsViewController
+        hitsViewController.tableDataSource = self
+        hitsViewController.tableDelegate = self
         
         instantSearchBinder = AlgoliaSearchManager.instance.instantSearchBinder
         instantSearchBinder.addAllWidgets(in: self.view)

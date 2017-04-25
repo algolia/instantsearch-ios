@@ -1,5 +1,5 @@
 //
-//  HitsTableController.swift
+//  HitsViewController.swift
 //  InstantSearch
 //
 //  Created by Guy Daher on 19/04/2017.
@@ -8,7 +8,7 @@
 
 import UIKit
 
-@objc public class HitsTableController: NSObject {
+@objc public class HitsViewController: NSObject {
 
     var hitsViewDelegate: HitsViewDelegate
     
@@ -35,7 +35,7 @@ import UIKit
     }
 }
 
-extension HitsTableController: UITableViewDataSource {
+extension HitsViewController: UITableViewDataSource {
     public func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return viewModel.numberOfRows()
     }
@@ -47,7 +47,7 @@ extension HitsTableController: UITableViewDataSource {
     }
 }
 
-extension HitsTableController: UITableViewDelegate {
+extension HitsViewController: UITableViewDelegate {
     public func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         let hit = viewModel.hitForRow(at: indexPath)
         
@@ -55,7 +55,7 @@ extension HitsTableController: UITableViewDelegate {
     }
 }
 
-extension HitsTableController: UICollectionViewDataSource {
+extension HitsViewController: UICollectionViewDataSource {
     public func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
         return viewModel.numberOfRows()
     }
@@ -67,18 +67,10 @@ extension HitsTableController: UICollectionViewDataSource {
     }
 }
 
-extension HitsTableController: UICollectionViewDelegate {
+extension HitsViewController: UICollectionViewDelegate {
     public func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
         let hit = viewModel.hitForRow(at: indexPath)
         
         collectionDelegate?.collectionView(collectionView, didSelectItemAt: indexPath, containing: hit)
     }
-}
-
-@objc public protocol HitTableViewDataSource: class {
-    func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath, containing hit: [String: Any]) -> UITableViewCell
-}
-
-@objc public protocol HitTableViewDelegate: class {
-    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath, containing hit: [String: Any])
 }

@@ -14,15 +14,6 @@ import Foundation
     @IBInspectable public var infiniteScrolling: Bool = true
     @IBInspectable public var remainingItemsBeforeLoading: UInt = 5
     
-    public override init(frame: CGRect, style: UITableViewStyle) {
-        super.init(frame: frame, style: style)
-    }
-    
-    required public init?(coder aDecoder: NSCoder) {
-        super.init(coder: aDecoder)
-
-    }
-    
     var viewModel: HitsViewModelDelegate!
     
     public func scrollTop() {
