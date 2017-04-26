@@ -51,6 +51,8 @@
 		E28B07E21EAF9F27003AAE47 /* RefinementCollectionWidget.swift in Sources */ = {isa = PBXBuildFile; fileRef = E28B07E11EAF9F27003AAE47 /* RefinementCollectionWidget.swift */; };
 		E28B07E41EAF9FF2003AAE47 /* RefinementTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E28B07E31EAF9FF2003AAE47 /* RefinementTableViewController.swift */; };
 		E28B07E61EAF9FFE003AAE47 /* RefinementCollectionViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E28B07E51EAF9FFE003AAE47 /* RefinementCollectionViewController.swift */; };
+		E28B08011EB0F459003AAE47 /* CustomSlider.swift in Sources */ = {isa = PBXBuildFile; fileRef = E28B08001EB0F459003AAE47 /* CustomSlider.swift */; };
+		E28B08051EB0F501003AAE47 /* CustomSlider.xib in Resources */ = {isa = PBXBuildFile; fileRef = E28B08041EB0F501003AAE47 /* CustomSlider.xib */; };
 		E2CA327C1EA77BC90057A3D3 /* HitsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E2CA327B1EA77BC90057A3D3 /* HitsViewController.swift */; };
 /* End PBXBuildFile section */
 
@@ -117,6 +119,8 @@
 		E28B07E11EAF9F27003AAE47 /* RefinementCollectionWidget.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RefinementCollectionWidget.swift; sourceTree = "<group>"; };
 		E28B07E31EAF9FF2003AAE47 /* RefinementTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RefinementTableViewController.swift; sourceTree = "<group>"; };
 		E28B07E51EAF9FFE003AAE47 /* RefinementCollectionViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RefinementCollectionViewController.swift; sourceTree = "<group>"; };
+		E28B08001EB0F459003AAE47 /* CustomSlider.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CustomSlider.swift; sourceTree = "<group>"; };
+		E28B08041EB0F501003AAE47 /* CustomSlider.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = CustomSlider.xib; sourceTree = "<group>"; };
 		E2CA327B1EA77BC90057A3D3 /* HitsViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = HitsViewController.swift; path = ViewController/HitsViewController.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -174,6 +178,7 @@
 		28F828971C494B4200330CF4 /* Sources */ = {
 			isa = PBXGroup;
 			children = (
+				E28B07FF1EB0F435003AAE47 /* CustomWidgets */,
 				E28B07F81EB0F0BD003AAE47 /* Library */,
 			);
 			path = Sources;
@@ -336,6 +341,15 @@
 			path = Library;
 			sourceTree = "<group>";
 		};
+		E28B07FF1EB0F435003AAE47 /* CustomWidgets */ = {
+			isa = PBXGroup;
+			children = (
+				E28B08041EB0F501003AAE47 /* CustomSlider.xib */,
+				E28B08001EB0F459003AAE47 /* CustomSlider.swift */,
+			);
+			path = CustomWidgets;
+			sourceTree = "<group>";
+		};
 		E2CA327D1EA797480057A3D3 /* Controller */ = {
 			isa = PBXGroup;
 			children = (
@@ -443,6 +457,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				E28B08051EB0F501003AAE47 /* CustomSlider.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -567,6 +582,7 @@
 				E2738FCD1E9CDE04002C002D /* RefinementControlViewDelegate.swift in Sources */,
 				E27C164A1E9394250091D79E /* ActivityIndicatorView.swift in Sources */,
 				E27141D51E9F764100959294 /* HitsTableViewController.swift in Sources */,
+				E28B08011EB0F459003AAE47 /* CustomSlider.swift in Sources */,
 				E27A7BEF1E962768005B2506 /* HitsViewModel.swift in Sources */,
 				E2738FBF1E9BDA28002C002D /* StatsViewModelDelegate.swift in Sources */,
 				E2738FC71E9CC3F8002C002D /* RefinementMenuViewModelDelegate.swift in Sources */,

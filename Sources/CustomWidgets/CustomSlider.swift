@@ -7,7 +7,6 @@
 //
 
 import UIKit
-import InstantSearch
 import InstantSearchCore
 
 class CustomSlider: UIView {

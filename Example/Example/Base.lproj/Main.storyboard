@@ -125,7 +125,7 @@
                                     <segue destination="PUv-pY-9Yv" kind="show" id="fGg-Lz-CZt"/>
                                 </connections>
                             </button>
-                            <view contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="lgO-Qn-w2W" customClass="CustomSlider" customModule="Example" customModuleProvider="target">
+                            <view contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="lgO-Qn-w2W" customClass="CustomSlider" customModule="InstantSearch">
                                 <rect key="frame" x="190" y="158" width="164" height="57"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
