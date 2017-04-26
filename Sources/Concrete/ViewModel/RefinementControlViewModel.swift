@@ -67,9 +67,7 @@ internal class RefinementControlViewModel: RefinementControlViewModelDelegate, S
 // MARK: - RefinableDelegate
 
 extension RefinementControlViewModel: RefinableDelegate {
-    func getAttributeName() -> String {
-        // TODO: Error handling
-        //        if view.attributeName.isEmpty { throw "a control refinement does not have an attribute name specified" }
+    var attribute: String {
         return attributeName
     }
     

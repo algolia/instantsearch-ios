@@ -61,7 +61,7 @@ class CustomSlider: UIView {
 }
 
 extension CustomSlider: AlgoliaView, RefinableDelegate {
-    @objc func getAttributeName() -> String {
+    var attribute: String {
         return "salePrice"
     }
     

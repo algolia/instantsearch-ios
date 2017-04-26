@@ -196,7 +196,7 @@ import InstantSearchCore
         if let refinableWidget = widgetVM as? RefinableDelegate {
             refinableDelegates.add(refinableWidget)
             
-            let attributeName = refinableWidget.getAttributeName()
+            let attributeName = refinableWidget.attribute
             
             if refinableDelegateMap[attributeName] == nil {
                 refinableDelegateMap[attributeName] = WeakSet<RefinableDelegate>()
