@@ -9,7 +9,7 @@
 import UIKit
 import InstantSearchCore
 
-class CustomSlider: UIView {
+@objc public class CustomSlider: UIView {
     
     // MARK: - Initializers
     
@@ -26,7 +26,7 @@ class CustomSlider: UIView {
         setupView()
     }
     
-    required init?(coder aDecoder: NSCoder) {
+    required public init?(coder aDecoder: NSCoder) {
         super.init(coder: aDecoder)
         setupView()
     }
@@ -60,7 +60,7 @@ class CustomSlider: UIView {
 }
 
 extension CustomSlider: AlgoliaWidget, RefinableDelegate {
-    var attribute: String {
+    public var attribute: String {
         return "salePrice"
     }
     
