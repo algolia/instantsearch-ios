@@ -114,7 +114,7 @@ import InstantSearchCore
         self.searcher.delegate = self
         
         // TODO: should we use nil sefor queue (OperationQueue) synchronous or not? Check..
-        NotificationCenter.default.addObserver(self, selector: #selector(onReset(notification:)), name: clearAllFiltersNotification, object: nil)
+        NotificationCenter.default.addObserver(self, selector: #selector(reset), name: clearAllFiltersNotification, object: nil)
         NotificationCenter.default.addObserver(self, selector: #selector(onRefinementNotification(notification:)), name: Searcher.RefinementChangeNotification, object: nil)
         
         if let view = view {
@@ -208,7 +208,7 @@ import InstantSearchCore
     
     // MARK: - Notification Observers
     
-    func onReset(notification: Notification?) {
+    public func reset() {
         for algoliaWidget in resettableDelegates {
             algoliaWidget.onReset()
         }
