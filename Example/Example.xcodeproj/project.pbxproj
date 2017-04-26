@@ -28,6 +28,8 @@
 		E27C16781E93A6870091D79E /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E27C16771E93A6870091D79E /* ViewController.swift */; };
 		E28B07EB1EAFB27B003AAE47 /* RefinementCollectionViewControllerDemo.swift in Sources */ = {isa = PBXBuildFile; fileRef = E28B07E91EAFB27B003AAE47 /* RefinementCollectionViewControllerDemo.swift */; };
 		E28B07EC1EAFB27B003AAE47 /* RefinementCollectionViewControllerDemo.xib in Resources */ = {isa = PBXBuildFile; fileRef = E28B07EA1EAFB27B003AAE47 /* RefinementCollectionViewControllerDemo.xib */; };
+		E28B07F11EAFB9FF003AAE47 /* RefinementTableViewControllerDemo.swift in Sources */ = {isa = PBXBuildFile; fileRef = E28B07EF1EAFB9FF003AAE47 /* RefinementTableViewControllerDemo.swift */; };
+		E28B07F21EAFB9FF003AAE47 /* RefinementTableViewControllerDemo.xib in Resources */ = {isa = PBXBuildFile; fileRef = E28B07F01EAFB9FF003AAE47 /* RefinementTableViewControllerDemo.xib */; };
 		E2CA32741EA653A00057A3D3 /* CustomSlider.xib in Resources */ = {isa = PBXBuildFile; fileRef = E2CA32731EA653A00057A3D3 /* CustomSlider.xib */; };
 		E2CA32781EA655040057A3D3 /* CustomSlider.swift in Sources */ = {isa = PBXBuildFile; fileRef = E2CA32771EA655040057A3D3 /* CustomSlider.swift */; };
 		E56A8B9B9EB71A71BB627568 /* Pods_Example.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 2939072248732B2B9ADE008A /* Pods_Example.framework */; };
@@ -102,6 +104,8 @@
 		E27C16771E93A6870091D79E /* ViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = ViewController.swift; path = ../Example/ViewController.swift; sourceTree = "<group>"; };
 		E28B07E91EAFB27B003AAE47 /* RefinementCollectionViewControllerDemo.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RefinementCollectionViewControllerDemo.swift; sourceTree = "<group>"; };
 		E28B07EA1EAFB27B003AAE47 /* RefinementCollectionViewControllerDemo.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = RefinementCollectionViewControllerDemo.xib; path = ../controllers/RefinementCollectionViewControllerDemo.xib; sourceTree = "<group>"; };
+		E28B07EF1EAFB9FF003AAE47 /* RefinementTableViewControllerDemo.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RefinementTableViewControllerDemo.swift; sourceTree = "<group>"; };
+		E28B07F01EAFB9FF003AAE47 /* RefinementTableViewControllerDemo.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = RefinementTableViewControllerDemo.xib; path = ../controllers/RefinementTableViewControllerDemo.xib; sourceTree = "<group>"; };
 		E2CA32731EA653A00057A3D3 /* CustomSlider.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = CustomSlider.xib; sourceTree = "<group>"; };
 		E2CA32771EA655040057A3D3 /* CustomSlider.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CustomSlider.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -225,6 +229,7 @@
 			children = (
 				E27141DD1E9F808000959294 /* StatsViewController.swift */,
 				E28B07E91EAFB27B003AAE47 /* RefinementCollectionViewControllerDemo.swift */,
+				E28B07EF1EAFB9FF003AAE47 /* RefinementTableViewControllerDemo.swift */,
 				E27141EF1E9FAF0E00959294 /* HitsTableViewControllerDemo.swift */,
 				E27141F61EA0F6E900959294 /* HitsCollectionViewControllerDemo.swift */,
 				E27141FE1EA0FF1200959294 /* CollectionViewCell.swift */,
@@ -238,6 +243,7 @@
 			children = (
 				E27141FF1EA0FF1200959294 /* CollectionViewCell.xib */,
 				E28B07EA1EAFB27B003AAE47 /* RefinementCollectionViewControllerDemo.xib */,
+				E28B07F01EAFB9FF003AAE47 /* RefinementTableViewControllerDemo.xib */,
 				E27141DE1E9F808000959294 /* StatsView.xib */,
 				E27141F01E9FAF0E00959294 /* HitsTableViewControllerDemo.xib */,
 				E27141F71EA0F6E900959294 /* HitsCollectionViewControllerDemo.xib */,
@@ -365,6 +371,7 @@
 				E27141E01E9F808000959294 /* StatsView.xib in Resources */,
 				28F828D51C4B714D00330CF4 /* Main.storyboard in Resources */,
 				E2CA32741EA653A00057A3D3 /* CustomSlider.xib in Resources */,
+				E28B07F21EAFB9FF003AAE47 /* RefinementTableViewControllerDemo.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -434,6 +441,7 @@
 				E27142001EA0FF1200959294 /* CollectionViewCell.swift in Sources */,
 				28F828D01C4B714D00330CF4 /* AppDelegate.swift in Sources */,
 				E2CA32781EA655040057A3D3 /* CustomSlider.swift in Sources */,
+				E28B07F11EAFB9FF003AAE47 /* RefinementTableViewControllerDemo.swift in Sources */,
 				E27A7BF51E97977F005B2506 /* CollectionViewController.swift in Sources */,
 				E27C16761E93A66C0091D79E /* AlgoliaSearchManager.swift in Sources */,
 				E27141F81EA0F6E900959294 /* HitsCollectionViewControllerDemo.swift in Sources */,

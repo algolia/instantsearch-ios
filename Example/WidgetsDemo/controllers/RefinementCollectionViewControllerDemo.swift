@@ -19,6 +19,7 @@ class RefinementCollectionViewControllerDemo: RefinementCollectionViewController
         
         refinementCollectionView.register(UINib(nibName: "CollectionViewCell", bundle: nil) , forCellWithReuseIdentifier: "collectionViewCell")
         refinementCollectionView.backgroundColor = .white
+        refinementCollectionView.attribute = "category"
         
         self.view.addSubview(refinementCollectionView)
         
@@ -39,7 +40,7 @@ class RefinementCollectionViewControllerDemo: RefinementCollectionViewController
     }
 }
 
-fileprivate let itemsPerRow: CGFloat = 4.0
+fileprivate let itemsPerRow: CGFloat = 3
 fileprivate let sectionInsets = UIEdgeInsets(top: 50.0, left: 20.0, bottom: 50.0, right: 20.0)
 
 extension RefinementCollectionViewControllerDemo : UICollectionViewDelegateFlowLayout {
