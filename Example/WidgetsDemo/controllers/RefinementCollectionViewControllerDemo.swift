@@ -31,6 +31,7 @@ class RefinementCollectionViewControllerDemo: RefinementCollectionViewController
         
         cell.name.text = facet
         cell.salePrice.text = "\(count) \(refined)"
+        cell.backgroundColor = refined ? .green : .red
         
         return cell
     }

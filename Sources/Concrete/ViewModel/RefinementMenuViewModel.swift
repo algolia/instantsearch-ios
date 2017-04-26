@@ -47,25 +47,27 @@ internal class RefinementMenuViewModel: RefinementMenuViewModelDelegate, Searcha
         }
     }
     
+    // TODO: Should we move this to the InstantSearch Core level?
     var facetResults: [FacetValue] = []
     
     // MARK: - SearchableViewModel
     
     var searcher: Searcher! {
         didSet {
+            
+            // check if need to search again if we didn't searh with the facet added
+            
             guard var facets = searcher.params.facets else {
                 searcher.params.facets = [attribute]
-                if searcher.results != nil { // if searching is ongoing
-                    searcher.search() // Need to search again since don't have the facets
-                }
+                searcher.search()
+                
                 return
             }
             
             guard facets.contains(attribute) else {
                 facets += [attribute]
-                if searcher.results != nil { // if searching is ongoing
-                    searcher.search() // Need to search since don't have the facets
-                }
+                searcher.search()
+
                 return
             }
             
