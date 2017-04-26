@@ -32,7 +32,7 @@
 		E27A7BF31E97947C005B2506 /* HitsCollectionWidget.swift in Sources */ = {isa = PBXBuildFile; fileRef = E27A7BF21E97947C005B2506 /* HitsCollectionWidget.swift */; };
 		E27A7BFA1E97B729005B2506 /* HitsViewModelDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = E27A7BF91E97B729005B2506 /* HitsViewModelDelegate.swift */; };
 		E27A7BFD1E97B781005B2506 /* HitsViewDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = E27A7BFC1E97B781005B2506 /* HitsViewDelegate.swift */; };
-		E27A7BFF1E97B7AA005B2506 /* AlgoliaView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E27A7BFE1E97B7AA005B2506 /* AlgoliaView.swift */; };
+		E27A7BFF1E97B7AA005B2506 /* AlgoliaWidget.swift in Sources */ = {isa = PBXBuildFile; fileRef = E27A7BFE1E97B7AA005B2506 /* AlgoliaWidget.swift */; };
 		E27C16421E9394250091D79E /* RefinementTableWidget.swift in Sources */ = {isa = PBXBuildFile; fileRef = E27C16361E9394250091D79E /* RefinementTableWidget.swift */; };
 		E27C16431E9394250091D79E /* HitsTableWidget.swift in Sources */ = {isa = PBXBuildFile; fileRef = E27C16371E9394250091D79E /* HitsTableWidget.swift */; };
 		E27C16441E9394250091D79E /* SliderWidget.swift in Sources */ = {isa = PBXBuildFile; fileRef = E27C16381E9394250091D79E /* SliderWidget.swift */; };
@@ -98,7 +98,7 @@
 		E27A7BF21E97947C005B2506 /* HitsCollectionWidget.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HitsCollectionWidget.swift; sourceTree = "<group>"; };
 		E27A7BF91E97B729005B2506 /* HitsViewModelDelegate.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HitsViewModelDelegate.swift; sourceTree = "<group>"; };
 		E27A7BFC1E97B781005B2506 /* HitsViewDelegate.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HitsViewDelegate.swift; sourceTree = "<group>"; };
-		E27A7BFE1E97B7AA005B2506 /* AlgoliaView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AlgoliaView.swift; sourceTree = "<group>"; };
+		E27A7BFE1E97B7AA005B2506 /* AlgoliaWidget.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AlgoliaWidget.swift; sourceTree = "<group>"; };
 		E27C16361E9394250091D79E /* RefinementTableWidget.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RefinementTableWidget.swift; sourceTree = "<group>"; };
 		E27C16371E9394250091D79E /* HitsTableWidget.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HitsTableWidget.swift; sourceTree = "<group>"; };
 		E27C16381E9394250091D79E /* SliderWidget.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SliderWidget.swift; sourceTree = "<group>"; };
@@ -275,7 +275,7 @@
 		E27A7C011E97B86B005B2506 /* View */ = {
 			isa = PBXGroup;
 			children = (
-				E27A7BFE1E97B7AA005B2506 /* AlgoliaView.swift */,
+				E27A7BFE1E97B7AA005B2506 /* AlgoliaWidget.swift */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -535,7 +535,7 @@
 				E27A7BF31E97947C005B2506 /* HitsCollectionWidget.swift in Sources */,
 				E28B07E61EAF9FFE003AAE47 /* RefinementCollectionViewController.swift in Sources */,
 				E27C16461E9394250091D79E /* LabelStatsWidget.swift in Sources */,
-				E27A7BFF1E97B7AA005B2506 /* AlgoliaView.swift in Sources */,
+				E27A7BFF1E97B7AA005B2506 /* AlgoliaWidget.swift in Sources */,
 				E27C164B1E9394250091D79E /* RefinableDelegate.swift in Sources */,
 				E28B07E21EAF9F27003AAE47 /* RefinementCollectionWidget.swift in Sources */,
 				E27C16471E9394250091D79E /* InstantSearchBinder.swift in Sources */,

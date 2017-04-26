@@ -9,7 +9,7 @@
 import UIKit
 
 @IBDesignable
-@objc public class LabelStatsWidget: UILabel, StatsViewDelegate, AlgoliaView {
+@objc public class LabelStatsWidget: UILabel, StatsViewDelegate, AlgoliaWidget {
     
     var viewModel: StatsViewModelDelegate!
     
@@ -22,7 +22,7 @@ import UIKit
     }
 }
 
-@objc public class LabelStatsController: NSObject, StatsViewDelegate, AlgoliaView {
+@objc public class LabelStatsController: NSObject, StatsViewDelegate, AlgoliaWidget {
     
     var label: UILabel
     

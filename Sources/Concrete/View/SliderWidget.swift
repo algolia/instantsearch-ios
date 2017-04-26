@@ -10,7 +10,7 @@ import Foundation
 import UIKit
 
 @IBDesignable
-@objc public class SliderWidget: UISlider, RefinementControlViewDelegate, AlgoliaView {
+@objc public class SliderWidget: UISlider, RefinementControlViewDelegate, AlgoliaWidget {
     
     public func set(value: NSNumber) {
         setValue(value.floatValue, animated: false)

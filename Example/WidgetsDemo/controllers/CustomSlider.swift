@@ -60,7 +60,7 @@ class CustomSlider: UIView {
     }
 }
 
-extension CustomSlider: AlgoliaView, RefinableDelegate {
+extension CustomSlider: AlgoliaWidget, RefinableDelegate {
     var attribute: String {
         return "salePrice"
     }

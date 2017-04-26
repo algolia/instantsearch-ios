@@ -9,7 +9,7 @@
 import Foundation
 import InstantSearchCore
 
-@objc public class SearchBarWidget: UISearchBar, SearchableViewModel, ResettableDelegate, AlgoliaView, UISearchBarDelegate {
+@objc public class SearchBarWidget: UISearchBar, SearchableViewModel, ResettableDelegate, AlgoliaWidget, UISearchBarDelegate {
     
     public var searcher: Searcher! {
         didSet {

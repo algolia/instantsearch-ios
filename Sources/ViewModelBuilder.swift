@@ -15,7 +15,7 @@ import InstantSearchCore
 /// The Model is the Searcher.
 class ViewModelBuilder {
     
-    internal func tryBuildWidgetVM(with widgetV: AlgoliaView) -> Any? {
+    internal func tryBuildWidgetVM(with widgetV: AlgoliaWidget) -> Any? {
         switch widgetV {
         case let hitWidgetV as HitsViewDelegate:
             return buildWidgetVM(with: hitWidgetV)

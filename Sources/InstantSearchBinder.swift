@@ -144,7 +144,7 @@ import InstantSearchCore
         for subView in subviews as [UIView] {
             
             
-            if let algoliaWidget = subView as? AlgoliaView {
+            if let algoliaWidget = subView as? AlgoliaWidget {
                 add(widget: algoliaWidget)
             }
             
@@ -153,7 +153,7 @@ import InstantSearchCore
         }
     }
     
-    @objc public func add(widget: AlgoliaView) {
+    @objc public func add(widget: AlgoliaWidget) {
         
         var widgetVM: Any?
         

@@ -9,7 +9,7 @@
 import Foundation
 import UIKit
 
-@objc public class HitsTableWidget: UITableView, HitsViewDelegate, AlgoliaView {
+@objc public class HitsTableWidget: UITableView, HitsViewDelegate, AlgoliaWidget {
     
     @IBInspectable public var hitsPerPage: UInt = 20
     @IBInspectable public var infiniteScrolling: Bool = true

@@ -9,7 +9,7 @@
 import UIKit
 
 @IBDesignable
-@objc public class ButtonStatsWidget: UIButton, StatsViewDelegate, AlgoliaView {
+@objc public class ButtonStatsWidget: UIButton, StatsViewDelegate, AlgoliaWidget {
     
     var viewModel: StatsViewModelDelegate!
     

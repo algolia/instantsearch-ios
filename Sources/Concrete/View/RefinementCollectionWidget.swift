@@ -10,7 +10,7 @@ import Foundation
 import UIKit
 
 @IBDesignable
-@objc public class RefinementCollectionWidget: UICollectionView, RefinementMenuViewDelegate, AlgoliaView {
+@objc public class RefinementCollectionWidget: UICollectionView, RefinementMenuViewDelegate, AlgoliaWidget {
     
     var viewModel: RefinementMenuViewModelDelegate!
     
