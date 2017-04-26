@@ -8,7 +8,7 @@
 
 /* Begin PBXBuildFile section */
 		287D0A6E1C4B73BD004566D6 /* InstantSearchTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 287D0A6D1C4B73BD004566D6 /* InstantSearchTests.swift */; };
-		28F828811C494B2C00330CF4 /* InstantSearch.h in Headers */ = {isa = PBXBuildFile; fileRef = 28F828801C494B2C00330CF4 /* InstantSearch.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		28F828811C494B2C00330CF4 /* instantsearch.h in Headers */ = {isa = PBXBuildFile; fileRef = 28F828801C494B2C00330CF4 /* instantsearch.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		28F828881C494B2C00330CF4 /* InstantSearch.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 28F8287D1C494B2C00330CF4 /* InstantSearch.framework */; };
 		6B3F1A5AC5B19AB0F4FC9B3C /* Pods_InstantSearchTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 33749566A6B791EB78B9A2F5 /* Pods_InstantSearchTests.framework */; };
 		BC2BDF7408F80426E13BBB47 /* Pods_InstantSearch.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C5E2FC6F7BC12D4C7904D4D8 /* Pods_InstantSearch.framework */; };
@@ -67,7 +67,7 @@
 /* Begin PBXFileReference section */
 		287D0A6D1C4B73BD004566D6 /* InstantSearchTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = InstantSearchTests.swift; sourceTree = "<group>"; };
 		28F8287D1C494B2C00330CF4 /* InstantSearch.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = InstantSearch.framework; sourceTree = BUILT_PRODUCTS_DIR; };
-		28F828801C494B2C00330CF4 /* InstantSearch.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = InstantSearch.h; sourceTree = "<group>"; };
+		28F828801C494B2C00330CF4 /* instantsearch.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = instantsearch.h; sourceTree = "<group>"; };
 		28F828821C494B2C00330CF4 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		28F828871C494B2C00330CF4 /* InstantSearchTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = InstantSearchTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		28F8288E1C494B2C00330CF4 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist; name = Info.plist; path = Tests/Info.plist; sourceTree = "<group>"; };
@@ -174,14 +174,7 @@
 		28F828971C494B4200330CF4 /* Sources */ = {
 			isa = PBXGroup;
 			children = (
-				E27C163B1E9394250091D79E /* InstantSearchBinder.swift */,
-				E27C163C1E9394250091D79E /* InstantSearchMultiplePresenter.swift */,
-				E27A7BF01E97931E005B2506 /* ViewModelBuilder.swift */,
-				E27A7C021E97B913005B2506 /* Concrete */,
-				E27A7C001E97B83C005B2506 /* Protocols */,
-				E27C16411E9394250091D79E /* Helpers.swift */,
-				28F828801C494B2C00330CF4 /* InstantSearch.h */,
-				28F828821C494B2C00330CF4 /* Info.plist */,
+				E28B07F81EB0F0BD003AAE47 /* Library */,
 			);
 			path = Sources;
 			sourceTree = "<group>";
@@ -235,7 +228,7 @@
 				E2738FBC1E9BD9ED002C002D /* StatsViewModel.swift */,
 			);
 			name = ViewModel;
-			path = Sources/Concrete/ViewModel;
+			path = Sources/Library/Concrete/ViewModel;
 			sourceTree = SOURCE_ROOT;
 		};
 		E27A7BF81E97B6DE005B2506 /* ViewModel-View */ = {
@@ -328,6 +321,21 @@
 			name = ViewController;
 			sourceTree = "<group>";
 		};
+		E28B07F81EB0F0BD003AAE47 /* Library */ = {
+			isa = PBXGroup;
+			children = (
+				E27C163B1E9394250091D79E /* InstantSearchBinder.swift */,
+				E27C163C1E9394250091D79E /* InstantSearchMultiplePresenter.swift */,
+				E27A7BF01E97931E005B2506 /* ViewModelBuilder.swift */,
+				E27A7C021E97B913005B2506 /* Concrete */,
+				E27A7C001E97B83C005B2506 /* Protocols */,
+				E27C16411E9394250091D79E /* Helpers.swift */,
+				28F828801C494B2C00330CF4 /* instantsearch.h */,
+				28F828821C494B2C00330CF4 /* Info.plist */,
+			);
+			path = Library;
+			sourceTree = "<group>";
+		};
 		E2CA327D1EA797480057A3D3 /* Controller */ = {
 			isa = PBXGroup;
 			children = (
@@ -344,7 +352,7 @@
 			isa = PBXHeadersBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				28F828811C494B2C00330CF4 /* InstantSearch.h in Headers */,
+				28F828811C494B2C00330CF4 /* instantsearch.h in Headers */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -700,7 +708,7 @@
 				DYLIB_COMPATIBILITY_VERSION = 1;
 				DYLIB_CURRENT_VERSION = 1;
 				DYLIB_INSTALL_NAME_BASE = "@rpath";
-				INFOPLIST_FILE = "$(SRCROOT)/Sources/Info.plist";
+				INFOPLIST_FILE = "$(SRCROOT)/Sources/Library/Info.plist";
 				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = com.algolia.InstantSearch;
@@ -723,7 +731,7 @@
 				DYLIB_COMPATIBILITY_VERSION = 1;
 				DYLIB_CURRENT_VERSION = 1;
 				DYLIB_INSTALL_NAME_BASE = "@rpath";
-				INFOPLIST_FILE = "$(SRCROOT)/Sources/Info.plist";
+				INFOPLIST_FILE = "$(SRCROOT)/Sources/Library/Info.plist";
 				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = com.algolia.InstantSearch;

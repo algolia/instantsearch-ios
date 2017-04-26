@@ -9,10 +9,18 @@ Pod::Spec.new do |s|
   s.social_media_url = 'https://twitter.com/algolia'
   s.ios.deployment_target = '8.0'
   s.requires_arc = true
-  s.source_files = ['Sources/**/*.{swift}']
-  # s.resource_bundles = {
-  #   'InstantSearch' => ['InstantSearch/Sources/**/*.xib']
-  # }
-  # s.ios.frameworks = 'UIKit', 'Foundation'
-  s.dependency 'InstantSearch-Core-Swift', '~> 1.0'
+  s.default_subspec = "InstantSearch"
+
+  s.subspec "InstantSearch" do |ss|
+    ss.source_files = 'Sources/Library/**/*.{swift}'
+    ss.dependency 'InstantSearch-Core-Swift', '~> 1.0'
+  end
+
+  s.subspec "CustomWidgets" do |ss|
+    ss.source_files = [
+      'Sources/Library/**/*.{swift}',
+      'Sources/CustomWidgets/**/*.{swift}'
+    ]
+    ss.dependency 'InstantSearch-Core-Swift', '~> 1.0'
+  end
 end
