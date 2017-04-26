@@ -15,7 +15,8 @@ class FacetController: UIViewController, RefinementTableViewDataSource {
     
     var instantSearchBinder: InstantSearchBinder!
     @IBOutlet weak var refinementList: RefinementTableWidget!
-    @IBOutlet weak var statLabel: LabelStatsWidget!
+    @IBOutlet weak var statLabel: UILabel!
+    var statLabelController: LabelStatsController!
     
     var refinementViewController: RefinementViewController!
     
@@ -28,7 +29,8 @@ class FacetController: UIViewController, RefinementTableViewDataSource {
         
         instantSearchBinder = AlgoliaSearchManager.instance.instantSearchBinder
         instantSearchBinder.add(widget: refinementList)
-        instantSearchBinder.add(widget: statLabel)
+        statLabelController = LabelStatsController(label: statLabel)
+        instantSearchBinder.add(widget: statLabelController)
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath, containing facet: String, with count: Int, is refined: Bool) -> UITableViewCell {

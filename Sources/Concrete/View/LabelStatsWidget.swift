@@ -21,3 +21,22 @@ import UIKit
         self.text = text
     }
 }
+
+@objc public class LabelStatsController: NSObject, StatsViewDelegate, AlgoliaView {
+    
+    var label: UILabel
+    
+    public init(label: UILabel) {
+        self.label = label
+    }
+    
+    var viewModel: StatsViewModelDelegate!
+    
+    public var resultTemplate: String = "{nbHits} results"
+    public var clearText: String = ""
+    public var errorText: String = "Error in fetching results"
+    
+    public func set(text: String) {
+        label.text = text
+    }
+}
