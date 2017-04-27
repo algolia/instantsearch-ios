@@ -121,7 +121,7 @@
 		E28B07E51EAF9FFE003AAE47 /* RefinementCollectionViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RefinementCollectionViewController.swift; sourceTree = "<group>"; };
 		E28B08001EB0F459003AAE47 /* CustomSlider.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CustomSlider.swift; sourceTree = "<group>"; };
 		E28B08041EB0F501003AAE47 /* CustomSlider.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = CustomSlider.xib; sourceTree = "<group>"; };
-		E2CA327B1EA77BC90057A3D3 /* HitsViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = HitsViewController.swift; path = ViewController/HitsViewController.swift; sourceTree = "<group>"; };
+		E2CA327B1EA77BC90057A3D3 /* HitsViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = HitsViewController.swift; path = HitsViewController.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -207,10 +207,10 @@
 		E27141D31E9F762F00959294 /* ViewController */ = {
 			isa = PBXGroup;
 			children = (
-				E27141D41E9F764100959294 /* HitsTableViewController.swift */,
 				E27141F41EA0F20700959294 /* HitsCollectionViewController.swift */,
-				E28B07E31EAF9FF2003AAE47 /* RefinementTableViewController.swift */,
+				E27141D41E9F764100959294 /* HitsTableViewController.swift */,
 				E28B07E51EAF9FFE003AAE47 /* RefinementCollectionViewController.swift */,
+				E28B07E31EAF9FF2003AAE47 /* RefinementTableViewController.swift */,
 			);
 			path = ViewController;
 			sourceTree = "<group>";
@@ -233,8 +233,8 @@
 				E2738FBC1E9BD9ED002C002D /* StatsViewModel.swift */,
 			);
 			name = ViewModel;
-			path = Sources/Library/Concrete/ViewModel;
-			sourceTree = SOURCE_ROOT;
+			path = ViewModel;
+			sourceTree = "<group>";
 		};
 		E27A7BF81E97B6DE005B2506 /* ViewModel-View */ = {
 			isa = PBXGroup;
@@ -263,9 +263,9 @@
 			children = (
 				E27A7C011E97B86B005B2506 /* View */,
 				E27A7BFB1E97B74C005B2506 /* View-ViewModel */,
-				E27A7BF81E97B6DE005B2506 /* ViewModel-View */,
-				E27C16551E939B690091D79E /* ViewModel-Binder */,
 				E28B07D81EAF7184003AAE47 /* ViewController */,
+				E27C16551E939B690091D79E /* ViewModel-Binder */,
+				E27A7BF81E97B6DE005B2506 /* ViewModel-View */,
 			);
 			path = Protocols;
 			sourceTree = "<group>";
@@ -281,10 +281,10 @@
 		E27A7C021E97B913005B2506 /* Concrete */ = {
 			isa = PBXGroup;
 			children = (
-				E27C16541E939B430091D79E /* View */,
-				E27A7BED1E96271B005B2506 /* ViewModel */,
 				E2CA327D1EA797480057A3D3 /* Controller */,
+				E27C16541E939B430091D79E /* View */,
 				E27141D31E9F762F00959294 /* ViewController */,
+				E27A7BED1E96271B005B2506 /* ViewModel */,
 			);
 			path = Concrete;
 			sourceTree = "<group>";
@@ -293,15 +293,15 @@
 			isa = PBXGroup;
 			children = (
 				E27C163E1E9394250091D79E /* ActivityIndicatorView.swift */,
+				E27141C91E9E237200959294 /* ButtonStatsWidget.swift */,
 				E27C163D1E9394250091D79E /* ClearAllWidget.swift */,
 				E27A7BF21E97947C005B2506 /* HitsCollectionWidget.swift */,
 				E27C16371E9394250091D79E /* HitsTableWidget.swift */,
-				E27C16361E9394250091D79E /* RefinementTableWidget.swift */,
+				E27C163A1E9394250091D79E /* LabelStatsWidget.swift */,
 				E28B07E11EAF9F27003AAE47 /* RefinementCollectionWidget.swift */,
+				E27C16361E9394250091D79E /* RefinementTableWidget.swift */,
 				E27C16391E9394250091D79E /* SearchBarWidget.swift */,
 				E27C16381E9394250091D79E /* SliderWidget.swift */,
-				E27C163A1E9394250091D79E /* LabelStatsWidget.swift */,
-				E27141C91E9E237200959294 /* ButtonStatsWidget.swift */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -324,19 +324,20 @@
 				E28B07DB1EAF8423003AAE47 /* Refinement.swift */,
 			);
 			name = ViewController;
+			path = ViewController;
 			sourceTree = "<group>";
 		};
 		E28B07F81EB0F0BD003AAE47 /* Library */ = {
 			isa = PBXGroup;
 			children = (
-				E27C163B1E9394250091D79E /* InstantSearchBinder.swift */,
-				E27C163C1E9394250091D79E /* InstantSearchMultiplePresenter.swift */,
-				E27A7BF01E97931E005B2506 /* ViewModelBuilder.swift */,
 				E27A7C021E97B913005B2506 /* Concrete */,
 				E27A7C001E97B83C005B2506 /* Protocols */,
 				E27C16411E9394250091D79E /* Helpers.swift */,
-				28F828801C494B2C00330CF4 /* instantsearch.h */,
 				28F828821C494B2C00330CF4 /* Info.plist */,
+				E27C163B1E9394250091D79E /* InstantSearchBinder.swift */,
+				E27C163C1E9394250091D79E /* InstantSearchMultiplePresenter.swift */,
+				E27A7BF01E97931E005B2506 /* ViewModelBuilder.swift */,
+				28F828801C494B2C00330CF4 /* instantsearch.h */,
 			);
 			path = Library;
 			sourceTree = "<group>";
@@ -344,8 +345,8 @@
 		E28B07FF1EB0F435003AAE47 /* CustomWidgets */ = {
 			isa = PBXGroup;
 			children = (
-				E28B08041EB0F501003AAE47 /* CustomSlider.xib */,
 				E28B08001EB0F459003AAE47 /* CustomSlider.swift */,
+				E28B08041EB0F501003AAE47 /* CustomSlider.xib */,
 			);
 			path = CustomWidgets;
 			sourceTree = "<group>";
@@ -357,6 +358,7 @@
 				E28B07DF1EAF88D9003AAE47 /* RefinementViewController.swift */,
 			);
 			name = Controller;
+			path = Controller;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */

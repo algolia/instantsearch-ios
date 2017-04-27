@@ -75,11 +75,11 @@
 		287D0A711C4B7877004566D6 /* ExampleUITests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ExampleUITests.swift; sourceTree = "<group>"; };
 		287D0A741C4B7B26004566D6 /* InstantSearch.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = InstantSearch.xcodeproj; path = ../InstantSearch.xcodeproj; sourceTree = "<group>"; };
 		28F828CC1C4B714D00330CF4 /* Example.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Example.app; sourceTree = BUILT_PRODUCTS_DIR; };
-		28F828CF1C4B714D00330CF4 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = AppDelegate.swift; path = Example/AppDelegate.swift; sourceTree = "<group>"; };
+		28F828CF1C4B714D00330CF4 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = AppDelegate.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		28F828D41C4B714D00330CF4 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
-		28F828D61C4B714D00330CF4 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; name = Assets.xcassets; path = Example/Assets.xcassets; sourceTree = "<group>"; };
+		28F828D61C4B714D00330CF4 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; name = Assets.xcassets; path = Assets.xcassets; sourceTree = "<group>"; };
 		28F828D91C4B714D00330CF4 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
-		28F828DB1C4B714D00330CF4 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; name = Info.plist; path = Example/Info.plist; sourceTree = "<group>"; };
+		28F828DB1C4B714D00330CF4 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; name = Info.plist; path = Info.plist; sourceTree = "<group>"; };
 		28F828E01C4B714D00330CF4 /* ExampleUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = ExampleUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		28F828E61C4B714D00330CF4 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		2939072248732B2B9ADE008A /* Pods_Example.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Example.framework; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -87,23 +87,23 @@
 		37A0192420E64C247EE55EE8 /* Pods_InstantSearch_Example.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_InstantSearch_Example.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		3C580632223E734ABFF211AC /* Pods-InstantSearch-Example.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-InstantSearch-Example.release.xcconfig"; path = "../Pods/Target Support Files/Pods-InstantSearch-Example/Pods-InstantSearch-Example.release.xcconfig"; sourceTree = "<group>"; };
 		AC3AF26CFB522F28716AEB9D /* Pods-Example.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Example.debug.xcconfig"; path = "../Pods/Target Support Files/Pods-Example/Pods-Example.debug.xcconfig"; sourceTree = "<group>"; };
-		E27141DD1E9F808000959294 /* StatsViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = StatsViewController.swift; path = ../../StatsViewController.swift; sourceTree = "<group>"; };
-		E27141DE1E9F808000959294 /* StatsView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = StatsView.xib; path = ../../StatsView.xib; sourceTree = "<group>"; };
+		E27141DD1E9F808000959294 /* StatsViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = StatsViewController.swift; path = StatsViewController.swift; sourceTree = "<group>"; };
+		E27141DE1E9F808000959294 /* StatsView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = StatsView.xib; path = StatsView.xib; sourceTree = "<group>"; };
 		E27141E11E9F858400959294 /* StartingTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = StartingTableViewController.swift; sourceTree = "<group>"; };
 		E27141EF1E9FAF0E00959294 /* HitsTableViewControllerDemo.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HitsTableViewControllerDemo.swift; sourceTree = "<group>"; };
-		E27141F01E9FAF0E00959294 /* HitsTableViewControllerDemo.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = HitsTableViewControllerDemo.xib; path = ../controllers/HitsTableViewControllerDemo.xib; sourceTree = "<group>"; };
+		E27141F01E9FAF0E00959294 /* HitsTableViewControllerDemo.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = HitsTableViewControllerDemo.xib; path = HitsTableViewControllerDemo.xib; sourceTree = "<group>"; };
 		E27141F61EA0F6E900959294 /* HitsCollectionViewControllerDemo.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HitsCollectionViewControllerDemo.swift; sourceTree = "<group>"; };
-		E27141F71EA0F6E900959294 /* HitsCollectionViewControllerDemo.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = HitsCollectionViewControllerDemo.xib; path = ../controllers/HitsCollectionViewControllerDemo.xib; sourceTree = "<group>"; };
+		E27141F71EA0F6E900959294 /* HitsCollectionViewControllerDemo.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = HitsCollectionViewControllerDemo.xib; path = HitsCollectionViewControllerDemo.xib; sourceTree = "<group>"; };
 		E27141FE1EA0FF1200959294 /* CollectionViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CollectionViewCell.swift; sourceTree = "<group>"; };
-		E27141FF1EA0FF1200959294 /* CollectionViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = CollectionViewCell.xib; path = ../controllers/CollectionViewCell.xib; sourceTree = "<group>"; };
-		E27A7BF41E97977F005B2506 /* CollectionViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = CollectionViewController.swift; path = ../Example/CollectionViewController.swift; sourceTree = "<group>"; };
-		E27C16731E93A66C0091D79E /* FacetController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = FacetController.swift; path = ../Example/FacetController.swift; sourceTree = "<group>"; };
-		E27C16741E93A66C0091D79E /* AlgoliaSearchManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = AlgoliaSearchManager.swift; path = ../Example/AlgoliaSearchManager.swift; sourceTree = "<group>"; };
-		E27C16771E93A6870091D79E /* ViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = ViewController.swift; path = ../Example/ViewController.swift; sourceTree = "<group>"; };
+		E27141FF1EA0FF1200959294 /* CollectionViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = CollectionViewCell.xib; path = CollectionViewCell.xib; sourceTree = "<group>"; };
+		E27A7BF41E97977F005B2506 /* CollectionViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = CollectionViewController.swift; path = CollectionViewController.swift; sourceTree = "<group>"; };
+		E27C16731E93A66C0091D79E /* FacetController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = FacetController.swift; path = FacetController.swift; sourceTree = "<group>"; };
+		E27C16741E93A66C0091D79E /* AlgoliaSearchManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = AlgoliaSearchManager.swift; path = AlgoliaSearchManager.swift; sourceTree = "<group>"; };
+		E27C16771E93A6870091D79E /* ViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = ViewController.swift; path = ViewController.swift; sourceTree = "<group>"; };
 		E28B07E91EAFB27B003AAE47 /* RefinementCollectionViewControllerDemo.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RefinementCollectionViewControllerDemo.swift; sourceTree = "<group>"; };
-		E28B07EA1EAFB27B003AAE47 /* RefinementCollectionViewControllerDemo.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = RefinementCollectionViewControllerDemo.xib; path = ../controllers/RefinementCollectionViewControllerDemo.xib; sourceTree = "<group>"; };
+		E28B07EA1EAFB27B003AAE47 /* RefinementCollectionViewControllerDemo.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = RefinementCollectionViewControllerDemo.xib; path = RefinementCollectionViewControllerDemo.xib; sourceTree = "<group>"; };
 		E28B07EF1EAFB9FF003AAE47 /* RefinementTableViewControllerDemo.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RefinementTableViewControllerDemo.swift; sourceTree = "<group>"; };
-		E28B07F01EAFB9FF003AAE47 /* RefinementTableViewControllerDemo.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = RefinementTableViewControllerDemo.xib; path = ../controllers/RefinementTableViewControllerDemo.xib; sourceTree = "<group>"; };
+		E28B07F01EAFB9FF003AAE47 /* RefinementTableViewControllerDemo.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = RefinementTableViewControllerDemo.xib; path = RefinementTableViewControllerDemo.xib; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -131,10 +131,10 @@
 			children = (
 				28F828CE1C4B714D00330CF4 /* Example */,
 				28F828E31C4B714D00330CF4 /* ExampleUITests */,
+				9F123B015212449538096D88 /* Frameworks */,
+				7493B40BC48E0AC5C03BE886 /* Pods */,
 				28F828CD1C4B714D00330CF4 /* Products */,
 				287D0A741C4B7B26004566D6 /* InstantSearch.xcodeproj */,
-				7493B40BC48E0AC5C03BE886 /* Pods */,
-				9F123B015212449538096D88 /* Frameworks */,
 			);
 			sourceTree = "<group>";
 		};
@@ -150,23 +150,24 @@
 		28F828CE1C4B714D00330CF4 /* Example */ = {
 			isa = PBXGroup;
 			children = (
-				E27141E11E9F858400959294 /* StartingTableViewController.swift */,
-				28F828D31C4B714D00330CF4 /* Main.storyboard */,
 				E27141E81E9FAB7A00959294 /* FullDemo */,
 				E27141EB1E9FAB9700959294 /* WidgetsDemo */,
 				28F828CF1C4B714D00330CF4 /* AppDelegate.swift */,
 				28F828D61C4B714D00330CF4 /* Assets.xcassets */,
-				28F828D81C4B714D00330CF4 /* LaunchScreen.storyboard */,
 				28F828DB1C4B714D00330CF4 /* Info.plist */,
+				28F828D81C4B714D00330CF4 /* LaunchScreen.storyboard */,
+				28F828D31C4B714D00330CF4 /* Main.storyboard */,
+				E27141E11E9F858400959294 /* StartingTableViewController.swift */,
 			);
 			name = Example;
+			path = Example;
 			sourceTree = "<group>";
 		};
 		28F828E31C4B714D00330CF4 /* ExampleUITests */ = {
 			isa = PBXGroup;
 			children = (
-				28F828E61C4B714D00330CF4 /* Info.plist */,
 				287D0A711C4B7877004566D6 /* ExampleUITests.swift */,
+				28F828E61C4B714D00330CF4 /* Info.plist */,
 			);
 			path = ExampleUITests;
 			sourceTree = "<group>";
@@ -203,10 +204,10 @@
 		E27141E81E9FAB7A00959294 /* FullDemo */ = {
 			isa = PBXGroup;
 			children = (
-				E27C16771E93A6870091D79E /* ViewController.swift */,
+				E27C16741E93A66C0091D79E /* AlgoliaSearchManager.swift */,
 				E27A7BF41E97977F005B2506 /* CollectionViewController.swift */,
 				E27C16731E93A66C0091D79E /* FacetController.swift */,
-				E27C16741E93A66C0091D79E /* AlgoliaSearchManager.swift */,
+				E27C16771E93A6870091D79E /* ViewController.swift */,
 			);
 			path = FullDemo;
 			sourceTree = "<group>";
@@ -223,12 +224,12 @@
 		E27141EC1E9FAC3000959294 /* controllers */ = {
 			isa = PBXGroup;
 			children = (
-				E27141DD1E9F808000959294 /* StatsViewController.swift */,
+				E27141FE1EA0FF1200959294 /* CollectionViewCell.swift */,
+				E27141F61EA0F6E900959294 /* HitsCollectionViewControllerDemo.swift */,
+				E27141EF1E9FAF0E00959294 /* HitsTableViewControllerDemo.swift */,
 				E28B07E91EAFB27B003AAE47 /* RefinementCollectionViewControllerDemo.swift */,
 				E28B07EF1EAFB9FF003AAE47 /* RefinementTableViewControllerDemo.swift */,
-				E27141EF1E9FAF0E00959294 /* HitsTableViewControllerDemo.swift */,
-				E27141F61EA0F6E900959294 /* HitsCollectionViewControllerDemo.swift */,
-				E27141FE1EA0FF1200959294 /* CollectionViewCell.swift */,
+				E27141DD1E9F808000959294 /* StatsViewController.swift */,
 			);
 			path = controllers;
 			sourceTree = "<group>";
@@ -237,11 +238,11 @@
 			isa = PBXGroup;
 			children = (
 				E27141FF1EA0FF1200959294 /* CollectionViewCell.xib */,
+				E27141F71EA0F6E900959294 /* HitsCollectionViewControllerDemo.xib */,
+				E27141F01E9FAF0E00959294 /* HitsTableViewControllerDemo.xib */,
 				E28B07EA1EAFB27B003AAE47 /* RefinementCollectionViewControllerDemo.xib */,
 				E28B07F01EAFB9FF003AAE47 /* RefinementTableViewControllerDemo.xib */,
 				E27141DE1E9F808000959294 /* StatsView.xib */,
-				E27141F01E9FAF0E00959294 /* HitsTableViewControllerDemo.xib */,
-				E27141F71EA0F6E900959294 /* HitsCollectionViewControllerDemo.xib */,
 			);
 			path = xib;
 			sourceTree = "<group>";
@@ -470,7 +471,7 @@
 				28F828D41C4B714D00330CF4 /* Base */,
 			);
 			name = Main.storyboard;
-			path = Example;
+			path = .;
 			sourceTree = "<group>";
 		};
 		28F828D81C4B714D00330CF4 /* LaunchScreen.storyboard */ = {
@@ -479,7 +480,7 @@
 				28F828D91C4B714D00330CF4 /* Base */,
 			);
 			name = LaunchScreen.storyboard;
-			path = Example;
+			path = .;
 			sourceTree = "<group>";
 		};
 /* End PBXVariantGroup section */
