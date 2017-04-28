@@ -7,7 +7,6 @@
 //
 
 import Foundation
-import InstantSearchCore
 
 /*
  * Protocol that defines the view input methods and propreties

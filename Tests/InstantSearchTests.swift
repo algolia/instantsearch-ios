@@ -7,6 +7,8 @@
 
 import XCTest
 @testable import InstantSearch
+import InstantSearchCore
+import AlgoliaSearch
 
 class InstantSearchTests: XCTestCase {
     
@@ -20,11 +22,26 @@ class InstantSearchTests: XCTestCase {
         super.tearDown()
     }
     
-    func testExample() {
-        // This is an example of a functional test case.
-        // Use XCTAssert and related functions to verify your tests produce the correct results.
-    }
-    
+//    func testExample() {
+//        let refinementVM = RefinementMenuViewModel()
+//        refinementVM.searcher = MockSearcher(index: )
+//        
+//        let facetCounts = [
+//            "Headphones" : 188,
+//            "Flat-Panel TVs" : 190,
+//            "Movies & TV Shows" : 1574,
+//            "Cell Phone Cases & Clips" : 572,
+//            "iPad Cases, Covers & Sleeves" : 165,
+//            "Tablet Cases, Covers & Sleeves" : 146,
+//        ]
+//        
+//        let facetName = "category"
+//        let transformRefinementList = TransformRefinementList.countDesc
+//        let areRefinedValuesFirst = true
+//        
+//        refinementVM.getRefinementList(facetCounts: facetCounts, andFacetName: facetName, transformRefinementList: transformRefinementList, areRefinedValuesFirst: areRefinedValuesFirst)
+//    }
+//    
     func testPerformanceExample() {
         // This is an example of a performance test case.
         self.measure {
