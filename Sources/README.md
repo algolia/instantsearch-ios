@@ -5,7 +5,7 @@ It is built on top of Algolia's Swift API Client to provide you a high-level sol
 
 ## Widgets
 
-The main offering of InstantSearch iOS are the widgets, which are search-aware components that are binded to search events coming from Algolia.
+The core part of InstantSearch iOS are the widgets, which are search-aware components that are binded to search events coming from Algolia.
 
 Widgets binds `UIKit UIViews`, whether it is an advanced `UICollectionView`, or a simple `UISlider`.
 They are also customisable by exposing `IBDesignable` parameters that can be set right through Interface Builder.
