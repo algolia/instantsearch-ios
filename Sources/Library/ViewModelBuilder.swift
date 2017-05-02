@@ -9,10 +9,6 @@
 import Foundation
 import InstantSearchCore
 
-/// Handles the dependencies and binding between View - ViewModel, and ViewModel - Model
-/// The Views are the widgets
-/// the ViewModel are the business logic of the widgets
-/// The Model is the Searcher.
 class ViewModelBuilder {
     
     internal func tryBuildWidgetVM(with widgetV: AlgoliaWidget) -> Any? {
