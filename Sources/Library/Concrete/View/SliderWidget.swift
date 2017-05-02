@@ -20,7 +20,19 @@ import UIKit
         addTarget(viewModel, action: #selector(viewModel.numericFilterValueChanged), for: .valueChanged)
     }
     
-    var viewModel: RefinementControlViewModelDelegate!
+    var viewModel: RefinementControlViewModelDelegate
+    
+    public override init(frame: CGRect) {
+        viewModel = RefinementControlViewModel()
+        super.init(frame: frame)
+        viewModel.view = self
+    }
+    
+    public required init?(coder aDecoder: NSCoder) {
+        viewModel = RefinementControlViewModel()
+        super.init(coder: aDecoder)
+        viewModel.view = self
+    }
     
     @IBInspectable public var attributeName: String = ""
     

@@ -84,7 +84,7 @@ import InstantSearchCore
 // 3. Binds Searcher - Widgets through delegation
 //
 // For the 3rd point, InstantSearchBinder binds the following:
-// - Searcher and WidgetV through a ViewModelBuilder that creates the appropriate WidgetVM
+// - Searcher and WidgetV through a ViewModelFetcher that creates the appropriate WidgetVM
 // - Searcher and WidgetVVM
 // ---------------------------------------------------------------------------------
 
@@ -102,8 +102,8 @@ import InstantSearchCore
     
     public var searcher: Searcher
     
-    private lazy var viewModelBuilder: ViewModelBuilder = {
-       return ViewModelBuilder()
+    private lazy var viewModelFetcher: ViewModelFetcher = {
+       return ViewModelFetcher()
     }()
     
     // MARK: - Init
@@ -163,7 +163,7 @@ import InstantSearchCore
         // (e.g: HitsTableWidget will lead to spin off HitsViewModel)
         // In that case, the ViewModel is the delegate to the events emitted by the Searcher
         // -------------------------------------------------------------------------------------
-        widgetVM = viewModelBuilder.tryBuildWidgetVM(with: widget)
+        widgetVM = viewModelFetcher.tryFetchWidgetVM(with: widget)
         
         // --------------------------------------------------------------------------------------
         // If the widget doesn't have a specific WidgetVM, that means that it is itself
@@ -174,7 +174,7 @@ import InstantSearchCore
         
         // --------------------------------------------------------------------------------------
         // Hook the search events to the ViewModel. Reminder of the kinds of ViewModels:
-        // - Pure VM created by the ViewModelBuilder
+        // - Pure VM created by the ViewModelFetcher
         // - A WidgetVVM.
         // --------------------------------------------------------------------------------------
         bind(searcher: searcher, to: widgetVM)
