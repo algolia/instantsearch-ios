@@ -11,10 +11,7 @@ import UIKit
 @objc public class HitsViewController: NSObject {
 
     var hitsViewDelegate: HitsViewDelegate
-    
-    lazy var viewModel: HitsViewModelDelegate = {
-        return self.hitsViewDelegate.viewModel
-    }()
+    var viewModel: HitsViewModelDelegate
     
     @objc public weak var tableDataSource: HitTableViewDataSource?
     @objc public weak var tableDelegate: HitTableViewDelegate?
@@ -31,6 +28,7 @@ import UIKit
     
     init(hitsView: HitsViewDelegate) {
         self.hitsViewDelegate = hitsView
+        self.viewModel = hitsView.viewModel
         super.init()
     }
 }

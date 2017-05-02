@@ -18,8 +18,7 @@ import UIKit
     internal var viewModel: HitsViewModelDelegate!
     
     public func scrollTop() {
-        let indexPath = IndexPath(row: 0, section: 0)
-        scrollToItem(at: indexPath, at: .top, animated: true)
+        setContentOffset(CGPoint.zero, animated: true)
     }
     
     public func reloadHits() {

@@ -15,11 +15,22 @@ import UIKit
     @IBInspectable public var infiniteScrolling: Bool = true
     @IBInspectable public var remainingItemsBeforeLoading: UInt = 5
     
-    var viewModel: HitsViewModelDelegate!
+    var viewModel: HitsViewModelDelegate
+    
+    public override init(frame: CGRect, style: UITableViewStyle) {
+        viewModel = HitsViewModel()
+        super.init(frame: frame, style: style)
+        viewModel.view = self
+    }
+    
+    public required init?(coder aDecoder: NSCoder) {
+        viewModel = HitsViewModel()
+        super.init(coder: aDecoder)
+        viewModel.view = self
+    }
     
     public func scrollTop() {
-        let indexPath = IndexPath(row: 0, section: 0)
-        scrollToRow(at: indexPath, at: .top, animated: true)
+        setContentOffset(CGPoint.zero, animated: true)
     }
     
     public func reloadHits() {

@@ -11,10 +11,7 @@ import UIKit
 @objc public class RefinementViewController: NSObject {
     
     var refinementViewDelegate: RefinementMenuViewDelegate
-    
-    lazy var viewModel: RefinementMenuViewModelDelegate = {
-        return self.refinementViewDelegate.viewModel
-    }()
+    var viewModel: RefinementMenuViewModelDelegate
     
     @objc public weak var tableDataSource: RefinementTableViewDataSource?
     @objc public weak var tableDelegate: RefinementTableViewDelegate?
@@ -31,6 +28,7 @@ import UIKit
     
     init(refinementView: RefinementMenuViewDelegate) {
         self.refinementViewDelegate = refinementView
+        self.viewModel = refinementView.viewModel
         super.init()
     }
 }

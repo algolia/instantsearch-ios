@@ -29,12 +29,12 @@ class ViewModelBuilder {
         }
     }
     
-    private func buildWidgetVM(with hitView: HitsViewDelegate) -> HitsViewModel {
-        let hitsViewModel = HitsViewModel()
-        hitsViewModel.view = hitView
-        hitView.viewModel = hitsViewModel
+    private func buildWidgetVM(with hitView: HitsViewDelegate) -> Any? {
+//        let hitsViewModel = HitsViewModel()
+//        hitsViewModel.view = hitView
+//        hitView.viewModel = hitsViewModel
         
-        return hitsViewModel
+        return hitView.viewModel
     }
     
     private func buildWidgetVM(with statView: StatsViewDelegate) -> StatsViewModel {
