@@ -47,10 +47,10 @@ We note that the View and the ViewModel depend on abstract delegates, which make
 
 To explain the remaining 2 components:
 
-The Binder plays a role of exposing all possible search events, whether from the Searcher or other widgets,
+1- **Binder**: plays a role of exposing all possible search events, whether from the Searcher or other widgets,
 and making them available for ViewModels or Views so that they can tune in.
 In a way, it is like an observable that knows about all search events, and it will send the search events to 
 the observers that decided to tune in. We decided to go with delegation to offer a clean safe interface.
 It also makes sure to call the Builder methods on the Widgets that fit case 1 mentioned above
 
-The Builder plays the role of spinning up the WidgetVM for the WidgetV, takes care of injecting the concrete implementations into the WidgetV and the WidgetVM, and finally links the delegates of the WidgetV, WidgetVM and the Searcher
+2- **Builder**: plays the role of spinning up the WidgetVM for the WidgetV, takes care of injecting the concrete implementations into the WidgetV and the WidgetVM, and finally links the delegates of the WidgetV, WidgetVM and the Searcher
