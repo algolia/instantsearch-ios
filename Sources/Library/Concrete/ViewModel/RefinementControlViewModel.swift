@@ -48,7 +48,7 @@ internal class RefinementControlViewModel: RefinementControlViewModelDelegate, S
                 view.set(value: numeric.value)
             }
             
-            view.registerAction()
+            view.setup()
         }
     }
 
@@ -59,6 +59,13 @@ internal class RefinementControlViewModel: RefinementControlViewModelDelegate, S
     func numericFilterValueChanged() {
         numericFiltersDebouncer.call {
             self.searcher.params.updateNumericRefinement(self.attributeName, self.op, self.view.getValue())
+            self.searcher.search()
+        }
+    }
+    
+    func removeNumericValue() {
+        numericFiltersDebouncer.call {
+            self.searcher.params.removeNumericRefinement(self.attributeName, self.op, self.view.getValue())
             self.searcher.search()
         }
     }

@@ -12,6 +12,9 @@
 		28F828881C494B2C00330CF4 /* InstantSearch.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 28F8287D1C494B2C00330CF4 /* InstantSearch.framework */; };
 		6B3F1A5AC5B19AB0F4FC9B3C /* Pods_InstantSearchTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 33749566A6B791EB78B9A2F5 /* Pods_InstantSearchTests.framework */; };
 		BC2BDF7408F80426E13BBB47 /* Pods_InstantSearch.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C5E2FC6F7BC12D4C7904D4D8 /* Pods_InstantSearch.framework */; };
+		E233BBFD1EBA18C200F5F5E1 /* SwitchWidget.swift in Sources */ = {isa = PBXBuildFile; fileRef = E233BBFC1EBA18C200F5F5E1 /* SwitchWidget.swift */; };
+		E233BBFF1EBA43F500F5F5E1 /* OneValueSwitchWidget.swift in Sources */ = {isa = PBXBuildFile; fileRef = E233BBFE1EBA43F500F5F5E1 /* OneValueSwitchWidget.swift */; };
+		E233BC011EBA43FF00F5F5E1 /* TwoValuesSwitchWidget.swift in Sources */ = {isa = PBXBuildFile; fileRef = E233BC001EBA43FF00F5F5E1 /* TwoValuesSwitchWidget.swift */; };
 		E27141CA1E9E237200959294 /* ButtonStatsWidget.swift in Sources */ = {isa = PBXBuildFile; fileRef = E27141C91E9E237200959294 /* ButtonStatsWidget.swift */; };
 		E27141D51E9F764100959294 /* HitsTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E27141D41E9F764100959294 /* HitsTableViewController.swift */; };
 		E27141F51EA0F20700959294 /* HitsCollectionViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E27141F41EA0F20700959294 /* HitsCollectionViewController.swift */; };
@@ -80,6 +83,9 @@
 		A41C629CA0D1EB7443B828C6 /* Pods-InstantSearchTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-InstantSearchTests.release.xcconfig"; path = "Pods/Target Support Files/Pods-InstantSearchTests/Pods-InstantSearchTests.release.xcconfig"; sourceTree = "<group>"; };
 		C5E2FC6F7BC12D4C7904D4D8 /* Pods_InstantSearch.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_InstantSearch.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		CFF04E06E7D4D0CDE5F6CF30 /* Pods-InstantSearch.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-InstantSearch.release.xcconfig"; path = "Pods/Target Support Files/Pods-InstantSearch/Pods-InstantSearch.release.xcconfig"; sourceTree = "<group>"; };
+		E233BBFC1EBA18C200F5F5E1 /* SwitchWidget.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SwitchWidget.swift; sourceTree = "<group>"; };
+		E233BBFE1EBA43F500F5F5E1 /* OneValueSwitchWidget.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = OneValueSwitchWidget.swift; sourceTree = "<group>"; };
+		E233BC001EBA43FF00F5F5E1 /* TwoValuesSwitchWidget.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TwoValuesSwitchWidget.swift; sourceTree = "<group>"; };
 		E27141C91E9E237200959294 /* ButtonStatsWidget.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ButtonStatsWidget.swift; sourceTree = "<group>"; };
 		E27141D41E9F764100959294 /* HitsTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HitsTableViewController.swift; sourceTree = "<group>"; };
 		E27141F41EA0F20700959294 /* HitsCollectionViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HitsCollectionViewController.swift; sourceTree = "<group>"; };
@@ -296,6 +302,9 @@
 				E27C16361E9394250091D79E /* RefinementTableWidget.swift */,
 				E28B07E11EAF9F27003AAE47 /* RefinementCollectionWidget.swift */,
 				E27C16381E9394250091D79E /* SliderWidget.swift */,
+				E233BBFC1EBA18C200F5F5E1 /* SwitchWidget.swift */,
+				E233BBFE1EBA43F500F5F5E1 /* OneValueSwitchWidget.swift */,
+				E233BC001EBA43FF00F5F5E1 /* TwoValuesSwitchWidget.swift */,
 				E27141C91E9E237200959294 /* ButtonStatsWidget.swift */,
 				E27C163A1E9394250091D79E /* LabelStatsWidget.swift */,
 				E27C163D1E9394250091D79E /* ClearAllWidget.swift */,
@@ -574,15 +583,18 @@
 				E27141CA1E9E237200959294 /* ButtonStatsWidget.swift in Sources */,
 				E2738FC11E9BDA31002C002D /* StatsViewDelegate.swift in Sources */,
 				E27C16441E9394250091D79E /* SliderWidget.swift in Sources */,
+				E233BC011EBA43FF00F5F5E1 /* TwoValuesSwitchWidget.swift in Sources */,
 				E2738FC51E9CC3E0002C002D /* RefinementMenuViewDelegate.swift in Sources */,
 				E27C164D1E9394250091D79E /* Helpers.swift in Sources */,
 				E27C16421E9394250091D79E /* RefinementTableWidget.swift in Sources */,
 				E2738FCF1E9CDE32002C002D /* RefinementControlViewModel.swift in Sources */,
 				E2738FCD1E9CDE04002C002D /* RefinementControlViewDelegate.swift in Sources */,
+				E233BBFF1EBA43F500F5F5E1 /* OneValueSwitchWidget.swift in Sources */,
 				E27C164A1E9394250091D79E /* ActivityIndicatorView.swift in Sources */,
 				E27141D51E9F764100959294 /* HitsTableViewController.swift in Sources */,
 				E28B08011EB0F459003AAE47 /* CustomSlider.swift in Sources */,
 				E27A7BEF1E962768005B2506 /* HitsViewModel.swift in Sources */,
+				E233BBFD1EBA18C200F5F5E1 /* SwitchWidget.swift in Sources */,
 				E2738FBF1E9BDA28002C002D /* StatsViewModelDelegate.swift in Sources */,
 				E2738FC71E9CC3F8002C002D /* RefinementMenuViewModelDelegate.swift in Sources */,
 				E2738FCB1E9CDDA0002C002D /* RefinementControlViewModelDelegate.swift in Sources */,

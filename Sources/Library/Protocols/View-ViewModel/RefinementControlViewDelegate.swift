@@ -13,9 +13,9 @@ import Foundation
  */
 @objc internal protocol RefinementControlViewDelegate: class {
     
-    var viewModel: RefinementControlViewModelDelegate! { get set }
+    var viewModel: RefinementControlViewModelDelegate { get set }
     
-    func registerAction()
+    func setup()
     func set(value: NSNumber)
     func getValue() -> NSNumber
     
