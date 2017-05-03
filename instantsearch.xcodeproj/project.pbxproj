@@ -298,8 +298,8 @@
 				E27C16381E9394250091D79E /* SliderWidget.swift */,
 				E27141C91E9E237200959294 /* ButtonStatsWidget.swift */,
 				E27C163A1E9394250091D79E /* LabelStatsWidget.swift */,
-				E27C163E1E9394250091D79E /* ActivityIndicatorView.swift */,
 				E27C163D1E9394250091D79E /* ClearAllWidget.swift */,
+				E27C163E1E9394250091D79E /* ActivityIndicatorView.swift */,
 				E27C16391E9394250091D79E /* SearchBarWidget.swift */,
 			);
 			path = View;
