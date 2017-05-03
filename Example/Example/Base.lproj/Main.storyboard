@@ -103,7 +103,7 @@
                                     </tableViewCell>
                                 </prototypes>
                             </tableView>
-                            <slider opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" value="100" minValue="0.0" maxValue="100" translatesAutoresizingMaskIntoConstraints="NO" id="EjM-5w-Vlj" customClass="SliderWidget" customModule="InstantSearch">
+                            <slider opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" value="200" minValue="0.0" maxValue="200" translatesAutoresizingMaskIntoConstraints="NO" id="EjM-5w-Vlj" customClass="SliderWidget" customModule="InstantSearch">
                                 <rect key="frame" x="14" y="172" width="118" height="31"/>
                                 <constraints>
                                     <constraint firstAttribute="width" constant="114" id="l8w-RL-fsr"/>
@@ -111,9 +111,6 @@
                                 <userDefinedRuntimeAttributes>
                                     <userDefinedRuntimeAttribute type="string" keyPath="attributeName" value="salePrice"/>
                                     <userDefinedRuntimeAttribute type="string" keyPath="operation" value="lessThan"/>
-                                    <userDefinedRuntimeAttribute type="number" keyPath="clearValue">
-                                        <real key="value" value="50"/>
-                                    </userDefinedRuntimeAttribute>
                                 </userDefinedRuntimeAttributes>
                             </slider>
                             <button opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="3F8-q9-cVL">
@@ -126,10 +123,6 @@
                             <activityIndicatorView opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" style="gray" translatesAutoresizingMaskIntoConstraints="NO" id="cYN-LF-7Rg" customClass="ActivityIndicatorWidget" customModule="InstantSearch">
                                 <rect key="frame" x="84" y="129" width="20" height="20"/>
                             </activityIndicatorView>
-                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="1T6-GP-vY9" customClass="ClearAllWidget" customModule="InstantSearch">
-                                <rect key="frame" x="248" y="124" width="103" height="30"/>
-                                <state key="normal" title="Clear"/>
-                            </button>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="lgO-Qn-w2W" customClass="CustomSlider" customModule="InstantSearch">
                                 <rect key="frame" x="195" y="159" width="164" height="57"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
@@ -145,12 +138,9 @@
                             <constraint firstItem="3F8-q9-cVL" firstAttribute="top" secondItem="dHQ-Hn-J9e" secondAttribute="bottom" constant="8" id="DHe-oN-hNw"/>
                             <constraint firstAttribute="trailing" secondItem="dHQ-Hn-J9e" secondAttribute="trailing" id="GBw-8J-z93"/>
                             <constraint firstItem="cYN-LF-7Rg" firstAttribute="top" secondItem="dHQ-Hn-J9e" secondAttribute="bottom" constant="13" id="IYg-pA-AdB"/>
-                            <constraint firstItem="1T6-GP-vY9" firstAttribute="leading" secondItem="3F8-q9-cVL" secondAttribute="trailing" constant="8" id="JGT-aE-XCx"/>
                             <constraint firstItem="QrE-Xr-5us" firstAttribute="top" secondItem="dHQ-Hn-J9e" secondAttribute="bottom" constant="13" id="Kdk-9c-j7w"/>
                             <constraint firstItem="Asi-mZ-ilC" firstAttribute="top" secondItem="EjM-5w-Vlj" secondAttribute="bottom" constant="12" id="KwW-TK-wif"/>
-                            <constraint firstAttribute="trailingMargin" secondItem="1T6-GP-vY9" secondAttribute="trailing" constant="8" id="Kzw-gB-DwO"/>
                             <constraint firstAttribute="trailing" secondItem="Asi-mZ-ilC" secondAttribute="trailing" id="Tkc-e7-D5x"/>
-                            <constraint firstItem="1T6-GP-vY9" firstAttribute="top" secondItem="dHQ-Hn-J9e" secondAttribute="bottom" constant="8" id="iCE-qa-Qr7"/>
                             <constraint firstItem="QrE-Xr-5us" firstAttribute="leading" secondItem="8bC-Xf-vdC" secondAttribute="leadingMargin" id="k6M-Rv-bV6"/>
                             <constraint firstItem="Asi-mZ-ilC" firstAttribute="leading" secondItem="8bC-Xf-vdC" secondAttribute="leading" id="mdb-VQ-JpB"/>
                             <constraint firstItem="wfy-db-euE" firstAttribute="top" secondItem="Asi-mZ-ilC" secondAttribute="bottom" id="o20-PD-YVR"/>
