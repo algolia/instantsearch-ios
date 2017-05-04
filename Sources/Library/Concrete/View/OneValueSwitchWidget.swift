@@ -10,10 +10,10 @@ import Foundation
 
 @objc public class OneValueSwitchWidget: SwitchWidget {
     override public func setup() {
-        addTarget(self, action: #selector(numericFilterValueChanged), for: .valueChanged)        
+        addTarget(self, action: #selector(facetValueChanged), for: .valueChanged)
     }
     
-    @objc private func numericFilterValueChanged() {
+    @objc private func facetValueChanged() {
         if isOn {
             viewModel.addFacet(value: valueOn)
         } else {

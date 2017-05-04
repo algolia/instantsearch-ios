@@ -75,9 +75,6 @@ extension HitsViewModel: ResultingDelegate {
     // MARK: - ResultingDelegate
     
     func on(results: SearchResults?, error: Error?, userInfo: [String: Any]) {
-        guard let searcher = searcher else { return }
-        guard searcher.hits.count > 0 else { return }
-        
         view.reloadHits()
         
         if results?.page == 0 {

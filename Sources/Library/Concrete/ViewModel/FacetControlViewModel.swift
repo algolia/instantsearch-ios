@@ -26,10 +26,13 @@ internal class FacetControlViewModel: FacetControlViewModelDelegate, SearchableV
     
     var searcher: Searcher! {
         didSet {
-            // TODO: Fix for Facet instead of Numeric
-//            if let numeric = self.searcher.params.getNumericRefinement(name: attributeName, op: op) {
-//                view.set(value: numeric.value)
-//            }
+            // TODO: A specific facet can have many refinements. But in the case
+            // of facetControl (contrary to facetMenu), will we only have at the maximum one value?
+            // Right now, taknig the first refinement in getFacetRefinement but can do better...
+            // since now we ll have bugs
+            if self.searcher.params.hasFacetRefinements(name: self.attributeName) {
+                view.set(value: self.searcher.params.getFacetRefinement(name: attributeName)!.value)
+            }
             
             view.setup()
         }
@@ -80,6 +83,10 @@ extension FacetControlViewModel: RefinableDelegate {
 
 
 extension SearchParameters {
+    
+    func getFacetRefinement(name facetName: String) -> FacetRefinement? {
+        return facetRefinements[facetName]?.first
+    }
     
     func getNumericRefinement(name filterName: String, op: NumericRefinement.Operator, inclusive: Bool = true) -> NumericRefinement? {
         return numericRefinements[filterName]?.first(where: { $0.op == op && $0.inclusive == inclusive})

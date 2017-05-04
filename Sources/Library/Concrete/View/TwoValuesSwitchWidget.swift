@@ -12,11 +12,11 @@ import Foundation
     @IBInspectable public var valueOff: String = "false"
     
     override public func setup() {
-        addTarget(self, action: #selector(numericFilterValueChanged), for: .valueChanged)
-        numericFilterValueChanged()
+        addTarget(self, action: #selector(facetValueChanged), for: .valueChanged)
+        facetValueChanged()
     }
     
-    @objc private func numericFilterValueChanged() {
+    @objc private func facetValueChanged() {
         if isOn {
             viewModel.updatefacet(oldValue: valueOff, newValue: valueOn)
         } else {

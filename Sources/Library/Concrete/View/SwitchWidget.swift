@@ -14,7 +14,6 @@ import UIKit
     
     // TODO: Need to override for TwoValuesSwitch
     open func set(value: String) {
-        print("HERE \(value)")
         setOn(value == valueOn, animated: true)
     }
     
@@ -40,9 +39,7 @@ import UIKit
     @IBInspectable public var valueOn: String = "true"
     
     internal var operation: String = "equal"
-    
-    internal var clearValue: NSNumber = NSNumber(value: false)
-    
+        
     open func getValue() -> String {
         return valueOn
     }
