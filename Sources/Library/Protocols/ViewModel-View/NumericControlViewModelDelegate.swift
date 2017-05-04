@@ -1,5 +1,5 @@
 //
-//  RefinementControlViewModelDelegate.swift
+//  NumericControlViewModelDelegate.swift
 //  InstantSearch
 //
 //  Created by Guy Daher on 11/04/2017.
@@ -11,9 +11,9 @@ import Foundation
 /*
  * Protocol that defines the commands sent from the View to the ViewModel
  */
-@objc internal protocol RefinementControlViewModelDelegate: class {
+@objc internal protocol NumericControlViewModelDelegate: class {
     
-    var view: RefinementControlViewDelegate! { get set }
+    var view: NumericControlViewDelegate! { get set }
     
     func numericFilterValueChanged()
     func removeNumeric(value: NSNumber)

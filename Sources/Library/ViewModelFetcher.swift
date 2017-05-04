@@ -19,7 +19,7 @@ class ViewModelFetcher {
             return hitWidgetV.viewModel
         case let hitWidgetV as RefinementMenuViewDelegate:
             return hitWidgetV.viewModel
-        case let hitWidgetV as RefinementControlViewDelegate:
+        case let hitWidgetV as NumericControlViewDelegate:
             return hitWidgetV.viewModel
         case let hitWidgetV as FacetControlViewDelegate:
             return hitWidgetV.viewModel

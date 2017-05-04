@@ -1,5 +1,5 @@
 //
-//  RefinementControlViewModel.swift
+//  NumericControlViewModel.swift
 //  InstantSearch
 //
 //  Created by Guy Daher on 11/04/2017.
@@ -9,7 +9,7 @@
 import Foundation
 import InstantSearchCore
 
-internal class RefinementControlViewModel: RefinementControlViewModelDelegate, SearchableViewModel {
+internal class NumericControlViewModel: NumericControlViewModelDelegate, SearchableViewModel {
     
     // MARK: - Properties
     
@@ -52,9 +52,9 @@ internal class RefinementControlViewModel: RefinementControlViewModelDelegate, S
         }
     }
 
-    // MARK: - RefinementControlViewModelDelegate
+    // MARK: - NumericControlViewModelDelegate
     
-    weak var view: RefinementControlViewDelegate!
+    weak var view: NumericControlViewDelegate!
     
     func numericFilterValueChanged() {
         numericFiltersDebouncer.call {
@@ -86,7 +86,7 @@ internal class RefinementControlViewModel: RefinementControlViewModelDelegate, S
 
 // MARK: - RefinableDelegate
 
-extension RefinementControlViewModel: RefinableDelegate {
+extension NumericControlViewModel: RefinableDelegate {
     var attribute: String {
         return attributeName
     }
@@ -103,7 +103,7 @@ extension RefinementControlViewModel: RefinableDelegate {
 
 // MARK: - ResettableDelegate
 
-extension RefinementControlViewModel: ResettableDelegate {
+extension NumericControlViewModel: ResettableDelegate {
     func onReset() {
         view.set(value: clearValue)
     }

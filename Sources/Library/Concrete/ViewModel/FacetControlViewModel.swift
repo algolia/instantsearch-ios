@@ -35,7 +35,7 @@ internal class FacetControlViewModel: FacetControlViewModelDelegate, SearchableV
         }
     }
     
-    // MARK: - RefinementControlViewModelDelegate
+    // MARK: - NumericControlViewModelDelegate
     
     weak var view: FacetControlViewDelegate!
     

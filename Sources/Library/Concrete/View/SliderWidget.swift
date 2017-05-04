@@ -10,7 +10,7 @@ import Foundation
 import UIKit
 
 @IBDesignable
-@objc public class SliderWidget: UISlider, RefinementControlViewDelegate, AlgoliaWidget {
+@objc public class SliderWidget: UISlider, NumericControlViewDelegate, AlgoliaWidget {
     
     public func set(value: NSNumber) {
         setValue(value.floatValue, animated: false)
@@ -23,16 +23,16 @@ import UIKit
         viewModel.numericFilterValueChanged()
     }
     
-    var viewModel: RefinementControlViewModelDelegate
+    var viewModel: NumericControlViewModelDelegate
     
     public override init(frame: CGRect) {
-        viewModel = RefinementControlViewModel()
+        viewModel = NumericControlViewModel()
         super.init(frame: frame)
         viewModel.view = self
     }
     
     public required init?(coder aDecoder: NSCoder) {
-        viewModel = RefinementControlViewModel()
+        viewModel = NumericControlViewModel()
         super.init(coder: aDecoder)
         viewModel.view = self
     }
