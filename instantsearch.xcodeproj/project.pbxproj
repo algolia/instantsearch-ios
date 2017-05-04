@@ -15,6 +15,9 @@
 		E233BBFD1EBA18C200F5F5E1 /* SwitchWidget.swift in Sources */ = {isa = PBXBuildFile; fileRef = E233BBFC1EBA18C200F5F5E1 /* SwitchWidget.swift */; };
 		E233BBFF1EBA43F500F5F5E1 /* OneValueSwitchWidget.swift in Sources */ = {isa = PBXBuildFile; fileRef = E233BBFE1EBA43F500F5F5E1 /* OneValueSwitchWidget.swift */; };
 		E233BC011EBA43FF00F5F5E1 /* TwoValuesSwitchWidget.swift in Sources */ = {isa = PBXBuildFile; fileRef = E233BC001EBA43FF00F5F5E1 /* TwoValuesSwitchWidget.swift */; };
+		E233BC031EBB78B600F5F5E1 /* FacetControlViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = E233BC021EBB78B600F5F5E1 /* FacetControlViewModel.swift */; };
+		E233BC051EBB78D400F5F5E1 /* FacetControlViewDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = E233BC041EBB78D400F5F5E1 /* FacetControlViewDelegate.swift */; };
+		E233BC071EBB796600F5F5E1 /* FacetControlViewModelDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = E233BC061EBB796600F5F5E1 /* FacetControlViewModelDelegate.swift */; };
 		E27141CA1E9E237200959294 /* ButtonStatsWidget.swift in Sources */ = {isa = PBXBuildFile; fileRef = E27141C91E9E237200959294 /* ButtonStatsWidget.swift */; };
 		E27141D51E9F764100959294 /* HitsTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E27141D41E9F764100959294 /* HitsTableViewController.swift */; };
 		E27141F51EA0F20700959294 /* HitsCollectionViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E27141F41EA0F20700959294 /* HitsCollectionViewController.swift */; };
@@ -86,6 +89,9 @@
 		E233BBFC1EBA18C200F5F5E1 /* SwitchWidget.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SwitchWidget.swift; sourceTree = "<group>"; };
 		E233BBFE1EBA43F500F5F5E1 /* OneValueSwitchWidget.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = OneValueSwitchWidget.swift; sourceTree = "<group>"; };
 		E233BC001EBA43FF00F5F5E1 /* TwoValuesSwitchWidget.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TwoValuesSwitchWidget.swift; sourceTree = "<group>"; };
+		E233BC021EBB78B600F5F5E1 /* FacetControlViewModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FacetControlViewModel.swift; sourceTree = "<group>"; };
+		E233BC041EBB78D400F5F5E1 /* FacetControlViewDelegate.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FacetControlViewDelegate.swift; sourceTree = "<group>"; };
+		E233BC061EBB796600F5F5E1 /* FacetControlViewModelDelegate.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FacetControlViewModelDelegate.swift; sourceTree = "<group>"; };
 		E27141C91E9E237200959294 /* ButtonStatsWidget.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ButtonStatsWidget.swift; sourceTree = "<group>"; };
 		E27141D41E9F764100959294 /* HitsTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HitsTableViewController.swift; sourceTree = "<group>"; };
 		E27141F41EA0F20700959294 /* HitsCollectionViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HitsCollectionViewController.swift; sourceTree = "<group>"; };
@@ -236,6 +242,7 @@
 				E27A7BEE1E962768005B2506 /* HitsViewModel.swift */,
 				E2738FC81E9CC418002C002D /* RefinementMenuViewModel.swift */,
 				E2738FCE1E9CDE32002C002D /* RefinementControlViewModel.swift */,
+				E233BC021EBB78B600F5F5E1 /* FacetControlViewModel.swift */,
 				E2738FBC1E9BD9ED002C002D /* StatsViewModel.swift */,
 			);
 			path = ViewModel;
@@ -246,6 +253,7 @@
 			children = (
 				E27A7BF91E97B729005B2506 /* HitsViewModelDelegate.swift */,
 				E2738FCA1E9CDDA0002C002D /* RefinementControlViewModelDelegate.swift */,
+				E233BC061EBB796600F5F5E1 /* FacetControlViewModelDelegate.swift */,
 				E2738FC61E9CC3F8002C002D /* RefinementMenuViewModelDelegate.swift */,
 				E2738FBE1E9BDA28002C002D /* StatsViewModelDelegate.swift */,
 			);
@@ -257,6 +265,7 @@
 			children = (
 				E27A7BFC1E97B781005B2506 /* HitsViewDelegate.swift */,
 				E2738FCC1E9CDE04002C002D /* RefinementControlViewDelegate.swift */,
+				E233BC041EBB78D400F5F5E1 /* FacetControlViewDelegate.swift */,
 				E2738FC41E9CC3E0002C002D /* RefinementMenuViewDelegate.swift */,
 				E2738FC01E9BDA31002C002D /* StatsViewDelegate.swift */,
 			);
@@ -575,6 +584,7 @@
 				E28B07E41EAF9FF2003AAE47 /* RefinementTableViewController.swift in Sources */,
 				E27A7BEC1E9556C6005B2506 /* ResultingDelegate.swift in Sources */,
 				E27A7BFD1E97B781005B2506 /* HitsViewDelegate.swift in Sources */,
+				E233BC071EBB796600F5F5E1 /* FacetControlViewModelDelegate.swift in Sources */,
 				E2738FC91E9CC418002C002D /* RefinementMenuViewModel.swift in Sources */,
 				E28B07DC1EAF8423003AAE47 /* Refinement.swift in Sources */,
 				E27C16491E9394250091D79E /* ClearAllWidget.swift in Sources */,
@@ -590,6 +600,7 @@
 				E2738FCF1E9CDE32002C002D /* RefinementControlViewModel.swift in Sources */,
 				E2738FCD1E9CDE04002C002D /* RefinementControlViewDelegate.swift in Sources */,
 				E233BBFF1EBA43F500F5F5E1 /* OneValueSwitchWidget.swift in Sources */,
+				E233BC051EBB78D400F5F5E1 /* FacetControlViewDelegate.swift in Sources */,
 				E27C164A1E9394250091D79E /* ActivityIndicatorView.swift in Sources */,
 				E27141D51E9F764100959294 /* HitsTableViewController.swift in Sources */,
 				E28B08011EB0F459003AAE47 /* CustomSlider.swift in Sources */,
@@ -598,6 +609,7 @@
 				E2738FBF1E9BDA28002C002D /* StatsViewModelDelegate.swift in Sources */,
 				E2738FC71E9CC3F8002C002D /* RefinementMenuViewModelDelegate.swift in Sources */,
 				E2738FCB1E9CDDA0002C002D /* RefinementControlViewModelDelegate.swift in Sources */,
+				E233BC031EBB78B600F5F5E1 /* FacetControlViewModel.swift in Sources */,
 				E27C16481E9394250091D79E /* InstantSearchMultiplePresenter.swift in Sources */,
 				E27C16451E9394250091D79E /* SearchBarWidget.swift in Sources */,
 				E27A7BEA1E955612005B2506 /* ResettableDelegate.swift in Sources */,

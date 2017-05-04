@@ -71,10 +71,10 @@
                                 <nil key="highlightedColor"/>
                             </label>
                             <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="44" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="Asi-mZ-ilC" customClass="HitsTableWidget" customModule="InstantSearch">
-                                <rect key="frame" x="0.0" y="214" width="375" height="453"/>
+                                <rect key="frame" x="0.0" y="367" width="375" height="300"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 <constraints>
-                                    <constraint firstAttribute="height" constant="453" id="K8t-VS-PSk"/>
+                                    <constraint firstAttribute="height" constant="300" id="K8t-VS-PSk"/>
                                 </constraints>
                                 <prototypes>
                                     <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="blue" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="hitCell" textLabel="KNq-I0-tGa" detailTextLabel="b8d-Om-ey6" style="IBUITableViewCellStyleSubtitle" id="if4-ct-4kY">
@@ -103,8 +103,8 @@
                                     </tableViewCell>
                                 </prototypes>
                             </tableView>
-                            <slider opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" value="200" minValue="0.0" maxValue="200" translatesAutoresizingMaskIntoConstraints="NO" id="EjM-5w-Vlj" customClass="SliderWidget" customModule="InstantSearch">
-                                <rect key="frame" x="14" y="172" width="118" height="31"/>
+                            <slider opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" value="100" minValue="0.0" maxValue="100" translatesAutoresizingMaskIntoConstraints="NO" id="EjM-5w-Vlj" customClass="SliderWidget" customModule="InstantSearch">
+                                <rect key="frame" x="14" y="325" width="118" height="31"/>
                                 <constraints>
                                     <constraint firstAttribute="width" constant="114" id="l8w-RL-fsr"/>
                                 </constraints>
@@ -124,29 +124,67 @@
                                 <rect key="frame" x="84" y="129" width="20" height="20"/>
                             </activityIndicatorView>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="lgO-Qn-w2W" customClass="CustomSlider" customModule="InstantSearch">
-                                <rect key="frame" x="195" y="159" width="164" height="57"/>
+                                <rect key="frame" x="195" y="312" width="164" height="57"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="57" id="ktJ-53-boY"/>
                                     <constraint firstAttribute="width" constant="164" id="upd-PO-SbH"/>
                                 </constraints>
                             </view>
+                            <switch opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" contentHorizontalAlignment="center" contentVerticalAlignment="center" translatesAutoresizingMaskIntoConstraints="NO" id="w9W-tp-hXt" customClass="OneValueSwitchWidget" customModule="InstantSearch">
+                                <rect key="frame" x="13" y="158" width="51" height="31"/>
+                                <userDefinedRuntimeAttributes>
+                                    <userDefinedRuntimeAttribute type="string" keyPath="attributeName" value="shipping"/>
+                                    <userDefinedRuntimeAttribute type="string" keyPath="valueOn" value="Free shipping"/>
+                                </userDefinedRuntimeAttributes>
+                            </switch>
+                            <switch opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" contentHorizontalAlignment="center" contentVerticalAlignment="center" translatesAutoresizingMaskIntoConstraints="NO" id="cXt-GI-ToO" customClass="OneValueSwitchWidget" customModule="InstantSearch">
+                                <rect key="frame" x="127" y="158" width="51" height="31"/>
+                                <userDefinedRuntimeAttributes>
+                                    <userDefinedRuntimeAttribute type="string" keyPath="attributeName" value="shipping"/>
+                                    <userDefinedRuntimeAttribute type="string" keyPath="valueOn" value="Free shipping"/>
+                                </userDefinedRuntimeAttributes>
+                            </switch>
+                            <switch opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" contentHorizontalAlignment="center" contentVerticalAlignment="center" translatesAutoresizingMaskIntoConstraints="NO" id="0ii-o3-h6a" customClass="TwoValuesSwitchWidget" customModule="InstantSearch">
+                                <rect key="frame" x="70" y="158" width="51" height="31"/>
+                                <userDefinedRuntimeAttributes>
+                                    <userDefinedRuntimeAttribute type="string" keyPath="attributeName" value="manufacturer"/>
+                                    <userDefinedRuntimeAttribute type="string" keyPath="valueOn" value="Google"/>
+                                    <userDefinedRuntimeAttribute type="string" keyPath="valueOff" value="Logitech"/>
+                                </userDefinedRuntimeAttributes>
+                            </switch>
+                            <switch opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" contentHorizontalAlignment="center" contentVerticalAlignment="center" translatesAutoresizingMaskIntoConstraints="NO" id="dn5-23-Tsk" customClass="TwoValuesSwitchWidget" customModule="InstantSearch">
+                                <rect key="frame" x="191" y="158" width="51" height="31"/>
+                                <userDefinedRuntimeAttributes>
+                                    <userDefinedRuntimeAttribute type="string" keyPath="attributeName" value="manufacturer"/>
+                                    <userDefinedRuntimeAttribute type="string" keyPath="valueOn" value="Google"/>
+                                    <userDefinedRuntimeAttribute type="string" keyPath="valueOff" value="Logitech"/>
+                                </userDefinedRuntimeAttributes>
+                            </switch>
                         </subviews>
                         <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                         <constraints>
                             <constraint firstItem="EjM-5w-Vlj" firstAttribute="leading" secondItem="8bC-Xf-vdC" secondAttribute="leadingMargin" id="38M-NC-zEh"/>
+                            <constraint firstItem="w9W-tp-hXt" firstAttribute="top" secondItem="QrE-Xr-5us" secondAttribute="bottom" constant="8" id="7bm-7E-4eA"/>
                             <constraint firstItem="3F8-q9-cVL" firstAttribute="top" secondItem="dHQ-Hn-J9e" secondAttribute="bottom" constant="8" id="DHe-oN-hNw"/>
                             <constraint firstAttribute="trailing" secondItem="dHQ-Hn-J9e" secondAttribute="trailing" id="GBw-8J-z93"/>
+                            <constraint firstItem="dn5-23-Tsk" firstAttribute="top" secondItem="3F8-q9-cVL" secondAttribute="bottom" constant="4" id="Hcg-sw-Q5Y"/>
                             <constraint firstItem="cYN-LF-7Rg" firstAttribute="top" secondItem="dHQ-Hn-J9e" secondAttribute="bottom" constant="13" id="IYg-pA-AdB"/>
                             <constraint firstItem="QrE-Xr-5us" firstAttribute="top" secondItem="dHQ-Hn-J9e" secondAttribute="bottom" constant="13" id="Kdk-9c-j7w"/>
                             <constraint firstItem="Asi-mZ-ilC" firstAttribute="top" secondItem="EjM-5w-Vlj" secondAttribute="bottom" constant="12" id="KwW-TK-wif"/>
                             <constraint firstAttribute="trailing" secondItem="Asi-mZ-ilC" secondAttribute="trailing" id="Tkc-e7-D5x"/>
+                            <constraint firstItem="w9W-tp-hXt" firstAttribute="leading" secondItem="8bC-Xf-vdC" secondAttribute="leadingMargin" constant="-3" id="eEw-Js-qad"/>
+                            <constraint firstItem="cXt-GI-ToO" firstAttribute="leading" secondItem="0ii-o3-h6a" secondAttribute="trailing" constant="8" id="iHY-tO-nFW"/>
+                            <constraint firstItem="0ii-o3-h6a" firstAttribute="leading" secondItem="w9W-tp-hXt" secondAttribute="trailing" constant="8" id="jrC-Ov-MRA"/>
                             <constraint firstItem="QrE-Xr-5us" firstAttribute="leading" secondItem="8bC-Xf-vdC" secondAttribute="leadingMargin" id="k6M-Rv-bV6"/>
                             <constraint firstItem="Asi-mZ-ilC" firstAttribute="leading" secondItem="8bC-Xf-vdC" secondAttribute="leading" id="mdb-VQ-JpB"/>
+                            <constraint firstItem="0ii-o3-h6a" firstAttribute="top" secondItem="cYN-LF-7Rg" secondAttribute="bottom" constant="9" id="meb-sQ-cr0"/>
                             <constraint firstItem="wfy-db-euE" firstAttribute="top" secondItem="Asi-mZ-ilC" secondAttribute="bottom" id="o20-PD-YVR"/>
                             <constraint firstItem="cYN-LF-7Rg" firstAttribute="leading" secondItem="QrE-Xr-5us" secondAttribute="trailing" constant="26" id="oXZ-4h-IZm"/>
+                            <constraint firstItem="cXt-GI-ToO" firstAttribute="top" secondItem="3F8-q9-cVL" secondAttribute="bottom" constant="4" id="sV3-Wp-0Lo"/>
                             <constraint firstAttribute="trailingMargin" secondItem="lgO-Qn-w2W" secondAttribute="trailing" id="u2M-MN-3By"/>
                             <constraint firstItem="Asi-mZ-ilC" firstAttribute="top" secondItem="lgO-Qn-w2W" secondAttribute="bottom" constant="-2" id="u3Q-kD-0n9"/>
+                            <constraint firstItem="dn5-23-Tsk" firstAttribute="leading" secondItem="cXt-GI-ToO" secondAttribute="trailing" constant="15" id="uZA-jV-FGH"/>
                             <constraint firstItem="dHQ-Hn-J9e" firstAttribute="top" secondItem="y3c-jy-aDJ" secondAttribute="bottom" constant="8" id="xAt-yc-DUQ"/>
                             <constraint firstItem="dHQ-Hn-J9e" firstAttribute="leading" secondItem="8bC-Xf-vdC" secondAttribute="leading" id="xun-3a-xik"/>
                             <constraint firstItem="3F8-q9-cVL" firstAttribute="leading" secondItem="cYN-LF-7Rg" secondAttribute="trailing" constant="30" id="ydo-qL-Fob"/>

@@ -21,6 +21,8 @@ class ViewModelFetcher {
             return hitWidgetV.viewModel
         case let hitWidgetV as RefinementControlViewDelegate:
             return hitWidgetV.viewModel
+        case let hitWidgetV as FacetControlViewDelegate:
+            return hitWidgetV.viewModel
         default: return nil
         }
     }

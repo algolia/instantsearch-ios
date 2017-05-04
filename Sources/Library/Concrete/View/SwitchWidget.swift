@@ -10,38 +10,41 @@ import Foundation
 import UIKit
 
 @IBDesignable
-@objc public class SwitchWidget: UISwitch, RefinementControlViewDelegate, AlgoliaWidget {
+@objc public class SwitchWidget: UISwitch, FacetControlViewDelegate, AlgoliaWidget {
     
-    public func set(value: NSNumber) {
-        setOn(value.boolValue, animated: false)
+    // TODO: Need to override for TwoValuesSwitch
+    open func set(value: String) {
+        print("HERE \(value)")
+        setOn(value == valueOn, animated: true)
     }
     
     open func setup() {
         fatalError("Cannot use SwitchWidget by itself. Need to use either OneValueSwitchWidget, or TwoValuesSwitchWidget")
     }
     
-    var viewModel: RefinementControlViewModelDelegate
+    var viewModel: FacetControlViewModelDelegate
     
     public override init(frame: CGRect) {
-        viewModel = RefinementControlViewModel()
+        viewModel = FacetControlViewModel()
         super.init(frame: frame)
         viewModel.view = self
     }
     
     public required init?(coder aDecoder: NSCoder) {
-        viewModel = RefinementControlViewModel()
+        viewModel = FacetControlViewModel()
         super.init(coder: aDecoder)
         viewModel.view = self
     }
     
     @IBInspectable public var attributeName: String = ""
+    @IBInspectable public var valueOn: String = "true"
     
     internal var operation: String = "equal"
     
     internal var clearValue: NSNumber = NSNumber(value: false)
     
-    public func getValue() -> NSNumber {
-        return NSNumber(value: isOn)
+    open func getValue() -> String {
+        return valueOn
     }
     
     // TODO: Do something about this...

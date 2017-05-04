@@ -10,16 +10,14 @@ import Foundation
 
 @objc public class OneValueSwitchWidget: SwitchWidget {
     override public func setup() {
-        addTarget(self, action: #selector(numericFilterValueChanged), for: .valueChanged)
-        // We add the initial value of the slider to the Search
-        
+        addTarget(self, action: #selector(numericFilterValueChanged), for: .valueChanged)        
     }
     
     @objc private func numericFilterValueChanged() {
         if isOn {
-            viewModel.numericFilterValueChanged()
+            viewModel.addFacet(value: valueOn)
         } else {
-            viewModel.removeNumericValue()
+            viewModel.removeFacet(value: valueOn)
         }
     }
 }

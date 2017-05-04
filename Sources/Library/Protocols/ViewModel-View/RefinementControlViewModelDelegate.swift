@@ -16,5 +16,5 @@ import Foundation
     var view: RefinementControlViewDelegate! { get set }
     
     func numericFilterValueChanged()
-    func removeNumericValue()
+    func removeNumeric(value: NSNumber)
 }
