@@ -44,15 +44,20 @@ internal class FacetControlViewModel: FacetControlViewModelDelegate, SearchableV
     
     weak var view: FacetControlViewDelegate!
     
-    func addFacet(value: String) {
+    func addFacet(value: String, doSearch: Bool) {
         guard !self.searcher.params.hasFacetRefinement(name: self.attributeName, value: value) else { return }
         self.searcher.params.addFacetRefinement(name: self.attributeName, value: value)
-        self.searcher.search()
+        if doSearch {
+            self.searcher.search()
+        }
     }
     
-    func updatefacet(oldValue: String, newValue: String) {
+    func updatefacet(oldValue: String, newValue: String, doSearch: Bool) {
         self.searcher.params.updatefacetRefinement(attributeName: self.attributeName, oldValue: oldValue, newValue: newValue)
-        self.searcher.search()
+        
+        if doSearch {
+            self.searcher.search()
+        }
     }
     
     func removeFacet(value: String) {

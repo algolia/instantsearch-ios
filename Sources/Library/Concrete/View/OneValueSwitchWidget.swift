@@ -15,7 +15,7 @@ import Foundation
     
     @objc private func facetValueChanged() {
         if isOn {
-            viewModel.addFacet(value: valueOn)
+            viewModel.addFacet(value: valueOn, doSearch: true)
         } else {
             viewModel.removeFacet(value: valueOn)
         }

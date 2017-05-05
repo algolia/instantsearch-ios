@@ -15,6 +15,6 @@ import Foundation
     
     var view: NumericControlViewDelegate! { get set }
     
-    func updateNumeric(value: NSNumber)
+    func updateNumeric(value: NSNumber, doSearch: Bool)
     func removeNumeric(value: NSNumber)
 }

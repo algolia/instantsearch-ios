@@ -30,7 +30,7 @@ import UIKit
     open func setup() {
         addTarget(self, action: #selector(facetValueChanged), for: .valueChanged)
         if selectedSegmentIndex != UISegmentedControlNoSegment {
-            viewModel.addFacet(value: titleForSegment(at: self.actualSegmentedIndex)!)
+            viewModel.addFacet(value: titleForSegment(at: self.actualSegmentedIndex)!, doSearch: false)
         }
     }
     
@@ -41,9 +41,9 @@ import UIKit
         self.actualSegmentedIndex = self.selectedSegmentIndex;
         
         if self.oldSegmentedIndex == UISegmentedControlNoSegment {
-            viewModel.addFacet(value: titleForSegment(at: self.actualSegmentedIndex)!)
+            viewModel.addFacet(value: titleForSegment(at: self.actualSegmentedIndex)!, doSearch: true)
         } else {
-            viewModel.updatefacet(oldValue: titleForSegment(at: self.oldSegmentedIndex)!, newValue: titleForSegment(at: self.actualSegmentedIndex)!)
+            viewModel.updatefacet(oldValue: titleForSegment(at: self.oldSegmentedIndex)!, newValue: titleForSegment(at: self.actualSegmentedIndex)!, doSearch: true)
         }
     }
     

@@ -120,14 +120,16 @@ import InstantSearchCore
         if let view = view {
             addAllWidgets(in: view)
         }
-        
-        searcher.search()
     }
     
     // MARK: Add widget methods
     
     @objc public func addAllWidgets(in view: UIView) {
         addWidgets(in: view)
+        
+        // After added all widgets, the widgets might have added
+        // parameters to the searcher.params. So we need to trigger a new search
+        self.searcher.search()
     }
     
     // Recursively iterate the sub views.
@@ -153,7 +155,7 @@ import InstantSearchCore
         }
     }
     
-    @objc public func add(widget: AlgoliaWidget) {
+    @objc public func add(widget: AlgoliaWidget, doSearch: Bool = false) {
         
         var widgetVM: Any?
         
@@ -178,6 +180,12 @@ import InstantSearchCore
         // - A WidgetVVM.
         // --------------------------------------------------------------------------------------
         bind(searcher: searcher, to: widgetVM)
+        
+        // After a widget is added, we can decide to make a search. This is when
+        // a widget modifies the state of the searcher.params
+        if doSearch {
+            searcher.search()
+        }
     }
     
     private func bind(searcher: Searcher, to widgetVM: Any?) {

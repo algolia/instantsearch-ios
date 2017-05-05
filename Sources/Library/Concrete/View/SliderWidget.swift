@@ -20,11 +20,11 @@ import UIKit
         addTarget(self, action: #selector(numericFilterValueChanged), for: .valueChanged)
         
         // We add the initial value of the slider to the Search
-        viewModel.updateNumeric(value: NSNumber(value: value))
+        viewModel.updateNumeric(value: NSNumber(value: value), doSearch: false)
     }
     
     func numericFilterValueChanged() {
-        viewModel.updateNumeric(value: NSNumber(value: value))
+        viewModel.updateNumeric(value: NSNumber(value: value), doSearch: true)
     }
     
     var viewModel: NumericControlViewModelDelegate

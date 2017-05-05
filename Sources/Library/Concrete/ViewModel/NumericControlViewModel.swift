@@ -58,30 +58,18 @@ internal class NumericControlViewModel: NumericControlViewModelDelegate, Searcha
     
     weak var view: NumericControlViewDelegate!
     
-    func updateNumeric(value: NSNumber) {
+    func updateNumeric(value: NSNumber, doSearch: Bool) {
         numericFiltersDebouncer.call {
             self.searcher.params.updateNumericRefinement(self.attributeName, self.op, value)
-            self.searcher.search()
+            
+            if doSearch {
+                self.searcher.search()
+            }
         }
     }
     
     func removeNumeric(value: NSNumber) {
         self.searcher.params.removeNumericRefinement(self.attributeName, self.op, value)
-        self.searcher.search()
-    }
-    
-    func addFacet(value: String) {
-        self.searcher.params.addFacetRefinement(name: self.attributeName, value: value)
-        self.searcher.search()
-    }
-    
-    func updatefacet(oldValue:String, newValue: String) {
-        self.searcher.params.updatefacetRefinement(attributeName: self.attributeName, oldValue: oldValue, newValue: newValue)
-        self.searcher.search()
-    }
-    
-    func removeFacet(value: String) {
-        self.searcher.params.removeFacetRefinement(name: self.attributeName, value: value)
         self.searcher.search()
     }
 }

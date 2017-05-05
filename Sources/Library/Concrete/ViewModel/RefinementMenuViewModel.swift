@@ -71,6 +71,7 @@ internal class RefinementMenuViewModel: RefinementMenuViewModelDelegate, Searcha
         }
         
         guard facets.contains(attribute) else {
+            //TODO: Is this correct? or did we make a value/reference bug here?
             facets += [attribute]
             searcher.search()
             
