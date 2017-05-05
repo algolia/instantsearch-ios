@@ -39,7 +39,7 @@ import UIKit
     @IBInspectable public var valueOn: String = "true"
     
     internal var operation: String = "equal"
-        
+    
     open func getValue() -> String {
         return valueOn
     }

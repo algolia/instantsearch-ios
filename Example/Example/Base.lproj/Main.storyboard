@@ -161,6 +161,13 @@
                                     <userDefinedRuntimeAttribute type="string" keyPath="valueOff" value="Logitech"/>
                                 </userDefinedRuntimeAttributes>
                             </switch>
+                            <stepper opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" contentHorizontalAlignment="center" contentVerticalAlignment="center" maximumValue="100" translatesAutoresizingMaskIntoConstraints="NO" id="dky-gt-ybb" customClass="StepperWidget" customModule="InstantSearch">
+                                <rect key="frame" x="248" y="158" width="94" height="29"/>
+                                <userDefinedRuntimeAttributes>
+                                    <userDefinedRuntimeAttribute type="string" keyPath="attributeName" value="salePrice"/>
+                                    <userDefinedRuntimeAttribute type="string" keyPath="operation" value="&gt;"/>
+                                </userDefinedRuntimeAttributes>
+                            </stepper>
                         </subviews>
                         <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                         <constraints>
@@ -172,8 +179,10 @@
                             <constraint firstItem="cYN-LF-7Rg" firstAttribute="top" secondItem="dHQ-Hn-J9e" secondAttribute="bottom" constant="13" id="IYg-pA-AdB"/>
                             <constraint firstItem="QrE-Xr-5us" firstAttribute="top" secondItem="dHQ-Hn-J9e" secondAttribute="bottom" constant="13" id="Kdk-9c-j7w"/>
                             <constraint firstItem="Asi-mZ-ilC" firstAttribute="top" secondItem="EjM-5w-Vlj" secondAttribute="bottom" constant="12" id="KwW-TK-wif"/>
+                            <constraint firstItem="dky-gt-ybb" firstAttribute="leading" secondItem="dn5-23-Tsk" secondAttribute="trailing" constant="8" id="QS1-iW-R3G"/>
                             <constraint firstAttribute="trailing" secondItem="Asi-mZ-ilC" secondAttribute="trailing" id="Tkc-e7-D5x"/>
                             <constraint firstItem="w9W-tp-hXt" firstAttribute="leading" secondItem="8bC-Xf-vdC" secondAttribute="leadingMargin" constant="-3" id="eEw-Js-qad"/>
+                            <constraint firstItem="dky-gt-ybb" firstAttribute="top" secondItem="3F8-q9-cVL" secondAttribute="bottom" constant="4" id="gQE-Mf-LjZ"/>
                             <constraint firstItem="cXt-GI-ToO" firstAttribute="leading" secondItem="0ii-o3-h6a" secondAttribute="trailing" constant="8" id="iHY-tO-nFW"/>
                             <constraint firstItem="0ii-o3-h6a" firstAttribute="leading" secondItem="w9W-tp-hXt" secondAttribute="trailing" constant="8" id="jrC-Ov-MRA"/>
                             <constraint firstItem="QrE-Xr-5us" firstAttribute="leading" secondItem="8bC-Xf-vdC" secondAttribute="leadingMargin" id="k6M-Rv-bV6"/>
