@@ -1,19 +1,19 @@
 //
-//  StepperWidget.swift
-//  ecommerce
+//  DatePickerWidger.swift
+//  InstantSearch
 //
-//  Created by Guy Daher on 08/03/2017.
-//  Copyright © 2017 Guy Daher. All rights reserved.
+//  Created by Guy Daher on 05/05/2017.
+//
 //
 
 import Foundation
 import UIKit
 
 @IBDesignable
-@objc public class StepperWidget: UIStepper, NumericControlViewDelegate, AlgoliaWidget {
+@objc public class DatePickerWidget: UIDatePicker, NumericControlViewDelegate, AlgoliaWidget {
     
     public func set(value: NSNumber) {
-        self.value = value.doubleValue
+        self.setDate(Date(timeIntervalSince1970: value.doubleValue), animated: false)
     }
     
     public func setup() {
@@ -38,14 +38,15 @@ import UIKit
     }
     
     @IBInspectable public var attributeName: String = ""
-    @IBInspectable public var operation: String = "<"
+    
+    @IBInspectable public var operation: String = "equal"
     
     // Note: can't have optional Float because IBInspectable have to be bridgable to objc
     // and value types optional cannot be bridged.
     internal var clearValue: NSNumber = 0
     
     public func getValue() -> NSNumber {
-        return NSNumber(value: value)
+        return NSNumber(value: date.timeIntervalSince1970)
     }
     
     // TODO: Do something about this...

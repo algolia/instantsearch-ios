@@ -19,6 +19,7 @@
 		E233BC051EBB78D400F5F5E1 /* FacetControlViewDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = E233BC041EBB78D400F5F5E1 /* FacetControlViewDelegate.swift */; };
 		E233BC071EBB796600F5F5E1 /* FacetControlViewModelDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = E233BC061EBB796600F5F5E1 /* FacetControlViewModelDelegate.swift */; };
 		E233BC091EBC71F500F5F5E1 /* StepperWidget.swift in Sources */ = {isa = PBXBuildFile; fileRef = E233BC081EBC71F500F5F5E1 /* StepperWidget.swift */; };
+		E233BC0C1EBC756500F5F5E1 /* DatePickerWidget.swift in Sources */ = {isa = PBXBuildFile; fileRef = E233BC0B1EBC756500F5F5E1 /* DatePickerWidget.swift */; };
 		E27141CA1E9E237200959294 /* ButtonStatsWidget.swift in Sources */ = {isa = PBXBuildFile; fileRef = E27141C91E9E237200959294 /* ButtonStatsWidget.swift */; };
 		E27141D51E9F764100959294 /* HitsTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E27141D41E9F764100959294 /* HitsTableViewController.swift */; };
 		E27141F51EA0F20700959294 /* HitsCollectionViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E27141F41EA0F20700959294 /* HitsCollectionViewController.swift */; };
@@ -94,6 +95,7 @@
 		E233BC041EBB78D400F5F5E1 /* FacetControlViewDelegate.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FacetControlViewDelegate.swift; sourceTree = "<group>"; };
 		E233BC061EBB796600F5F5E1 /* FacetControlViewModelDelegate.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FacetControlViewModelDelegate.swift; sourceTree = "<group>"; };
 		E233BC081EBC71F500F5F5E1 /* StepperWidget.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = StepperWidget.swift; sourceTree = "<group>"; };
+		E233BC0B1EBC756500F5F5E1 /* DatePickerWidget.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DatePickerWidget.swift; sourceTree = "<group>"; };
 		E27141C91E9E237200959294 /* ButtonStatsWidget.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ButtonStatsWidget.swift; sourceTree = "<group>"; };
 		E27141D41E9F764100959294 /* HitsTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HitsTableViewController.swift; sourceTree = "<group>"; };
 		E27141F41EA0F20700959294 /* HitsCollectionViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HitsCollectionViewController.swift; sourceTree = "<group>"; };
@@ -314,6 +316,7 @@
 				E28B07E11EAF9F27003AAE47 /* RefinementCollectionWidget.swift */,
 				E27C16381E9394250091D79E /* SliderWidget.swift */,
 				E233BC081EBC71F500F5F5E1 /* StepperWidget.swift */,
+				E233BC0B1EBC756500F5F5E1 /* DatePickerWidget.swift */,
 				E233BBFC1EBA18C200F5F5E1 /* SwitchWidget.swift */,
 				E233BBFE1EBA43F500F5F5E1 /* OneValueSwitchWidget.swift */,
 				E233BC001EBA43FF00F5F5E1 /* TwoValuesSwitchWidget.swift */,
@@ -603,6 +606,7 @@
 				E27C16421E9394250091D79E /* RefinementTableWidget.swift in Sources */,
 				E2738FCF1E9CDE32002C002D /* NumericControlViewModel.swift in Sources */,
 				E2738FCD1E9CDE04002C002D /* NumericControlViewDelegate.swift in Sources */,
+				E233BC0C1EBC756500F5F5E1 /* DatePickerWidget.swift in Sources */,
 				E233BBFF1EBA43F500F5F5E1 /* OneValueSwitchWidget.swift in Sources */,
 				E233BC051EBB78D400F5F5E1 /* FacetControlViewDelegate.swift in Sources */,
 				E27C164A1E9394250091D79E /* ActivityIndicatorView.swift in Sources */,
