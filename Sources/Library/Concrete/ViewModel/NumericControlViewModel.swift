@@ -58,9 +58,9 @@ internal class NumericControlViewModel: NumericControlViewModelDelegate, Searcha
     
     weak var view: NumericControlViewDelegate!
     
-    func numericFilterValueChanged() {
+    func updateNumeric(value: NSNumber) {
         numericFiltersDebouncer.call {
-            self.searcher.params.updateNumericRefinement(self.attributeName, self.op, self.view.getValue())
+            self.searcher.params.updateNumericRefinement(self.attributeName, self.op, value)
             self.searcher.search()
         }
     }

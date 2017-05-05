@@ -17,10 +17,14 @@ import UIKit
     }
     
     public func setup() {
-        addTarget(viewModel, action: #selector(viewModel.numericFilterValueChanged), for: .valueChanged)
+        addTarget(self, action: #selector(numericFilterValueChanged), for: .valueChanged)
         
         // We add the initial value of the slider to the Search
-        viewModel.numericFilterValueChanged()
+        viewModel.updateNumeric(value: NSNumber(value: date.timeIntervalSince1970))
+    }
+    
+    func numericFilterValueChanged() {
+        viewModel.updateNumeric(value: NSNumber(value: date.timeIntervalSince1970))
     }
     
     var viewModel: NumericControlViewModelDelegate

@@ -15,6 +15,6 @@ import Foundation
     
     var view: NumericControlViewDelegate! { get set }
     
-    func numericFilterValueChanged()
+    func updateNumeric(value: NSNumber)
     func removeNumeric(value: NSNumber)
 }
