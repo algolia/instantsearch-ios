@@ -13,13 +13,14 @@ target 'InstantSearch' do
   target 'InstantSearchTests' do
       inherit! :search_paths
   end
+  
+  target 'Example' do
+      workspace 'InstantSearch.xcworkspace'
+      project 'Example/Example.xcodeproj'
+      instantsearch_core
+  end
 end
 
-target 'Example' do
-    workspace 'InstantSearch.xcworkspace'
-    project 'Example/Example.xcodeproj'
-    instantsearch_core
-end
 
 post_install do |installer|
     installer.pods_project.targets.each do |target|

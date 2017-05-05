@@ -19,6 +19,7 @@ import UIKit
     open func set(value: String) {
         for index in 0..<numberOfSegments {
             if value == titleForSegment(at: index) {
+                self.selectedSegmentIndex = index
                 self.oldSegmentedIndex = self.actualSegmentedIndex;
                 self.actualSegmentedIndex = self.selectedSegmentIndex;
                 return
@@ -47,6 +48,13 @@ import UIKit
     }
     
     var viewModel: FacetControlViewModelDelegate
+    
+    public override init(items: [Any]?) {
+        viewModel = FacetControlViewModel()
+        super.init(items: items)
+        viewModel.view = self
+        actualSegmentedIndex = self.selectedSegmentIndex
+    }
     
     public override init(frame: CGRect) {
         viewModel = FacetControlViewModel()

@@ -43,6 +43,7 @@ internal class FacetControlViewModel: FacetControlViewModelDelegate, SearchableV
     weak var view: FacetControlViewDelegate!
     
     func addFacet(value: String) {
+        guard !self.searcher.params.hasFacetRefinement(name: self.attributeName, value: value) else { return }
         self.searcher.params.addFacetRefinement(name: self.attributeName, value: value)
         self.searcher.search()
     }

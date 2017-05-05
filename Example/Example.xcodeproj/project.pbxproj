@@ -405,7 +405,7 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
-			shellScript = "\"${SRCROOT}/../Pods/Target Support Files/Pods-Example/Pods-Example-resources.sh\"\n";
+			shellScript = "\"${SRCROOT}/../Pods/Target Support Files/Pods-InstantSearch-Example/Pods-InstantSearch-Example-resources.sh\"\n";
 			showEnvVarsInLog = 0;
 		};
 		F6021DE3940B3DADF458ACF1 /* [CP] Embed Pods Frameworks */ = {
@@ -420,7 +420,7 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
-			shellScript = "\"${SRCROOT}/../Pods/Target Support Files/Pods-Example/Pods-Example-frameworks.sh\"\n";
+			shellScript = "\"${SRCROOT}/../Pods/Target Support Files/Pods-InstantSearch-Example/Pods-InstantSearch-Example-frameworks.sh\"\n";
 			showEnvVarsInLog = 0;
 		};
 /* End PBXShellScriptBuildPhase section */
@@ -575,7 +575,7 @@
 		};
 		28F828EA1C4B714D00330CF4 /* Debug */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = AC3AF26CFB522F28716AEB9D /* Pods-Example.debug.xcconfig */;
+			baseConfigurationReference = 05F390A7A6890AC96240BA4B /* Pods-InstantSearch-Example.debug.xcconfig */;
 			buildSettings = {
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = "$(inherited)";
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
@@ -590,7 +590,7 @@
 		};
 		28F828EB1C4B714D00330CF4 /* Release */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = 2B1F5037CA9316B311DEEF1B /* Pods-Example.release.xcconfig */;
+			baseConfigurationReference = 3C580632223E734ABFF211AC /* Pods-InstantSearch-Example.release.xcconfig */;
 			buildSettings = {
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = "$(inherited)";
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;

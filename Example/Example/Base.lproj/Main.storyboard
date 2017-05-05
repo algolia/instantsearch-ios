@@ -168,6 +168,30 @@
                                     <userDefinedRuntimeAttribute type="string" keyPath="operation" value="&gt;"/>
                                 </userDefinedRuntimeAttributes>
                             </stepper>
+                            <segmentedControl opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="left" contentVerticalAlignment="top" segmentControlStyle="plain" selectedSegmentIndex="1" translatesAutoresizingMaskIntoConstraints="NO" id="qZK-Ug-pv8" customClass="SegmentedControlWidget" customModule="InstantSearch">
+                                <rect key="frame" x="16" y="211" width="233" height="29"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <segments>
+                                    <segment title="Software"/>
+                                    <segment title="HardGood"/>
+                                    <segment title="Music"/>
+                                </segments>
+                                <userDefinedRuntimeAttributes>
+                                    <userDefinedRuntimeAttribute type="string" keyPath="attributeName" value="type"/>
+                                </userDefinedRuntimeAttributes>
+                            </segmentedControl>
+                            <segmentedControl opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="left" contentVerticalAlignment="top" segmentControlStyle="plain" translatesAutoresizingMaskIntoConstraints="NO" id="jfN-A1-PN2" customClass="SegmentedControlWidget" customModule="InstantSearch">
+                                <rect key="frame" x="16" y="247" width="233" height="29"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <segments>
+                                    <segment title="Software"/>
+                                    <segment title="HardGood"/>
+                                    <segment title="Music"/>
+                                </segments>
+                                <userDefinedRuntimeAttributes>
+                                    <userDefinedRuntimeAttribute type="string" keyPath="attributeName" value="type"/>
+                                </userDefinedRuntimeAttributes>
+                            </segmentedControl>
                         </subviews>
                         <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                         <constraints>
