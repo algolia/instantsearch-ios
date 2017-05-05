@@ -24,18 +24,20 @@ internal class FacetControlViewModel: FacetControlViewModelDelegate, SearchableV
     
     // MARK: - SearchableViewModel
     
-    var searcher: Searcher! {
-        didSet {
-            // TODO: A specific facet can have many refinements. But in the case
-            // of facetControl (contrary to facetMenu), will we only have at the maximum one value?
-            // Right now, taknig the first refinement in getFacetRefinement but can do better...
-            // since now we ll have bugs
-            if self.searcher.params.hasFacetRefinements(name: self.attributeName) {
-                view.set(value: self.searcher.params.getFacetRefinement(name: attributeName)!.value)
-            }
-            
-            view.setup()
+    var searcher: Searcher!
+    
+    func setup(with searcher: Searcher) {
+        self.searcher = searcher
+        
+        // TODO: A specific facet can have many refinements. But in the case
+        // of facetControl (contrary to facetMenu), will we only have at the maximum one value?
+        // Right now, taknig the first refinement in getFacetRefinement but can do better...
+        // since now we ll have bugs
+        if self.searcher.params.hasFacetRefinements(name: self.attributeName) {
+            view.set(value: self.searcher.params.getFacetRefinement(name: attributeName)!.value)
         }
+        
+        view.setup()
     }
     
     // MARK: - NumericControlViewModelDelegate

@@ -13,10 +13,11 @@ let clearAllFiltersNotification = Notification.Name(rawValue: "clearAllFiltersNo
 
 @objc private class ClearAllWidget: UIButton, SearchableViewModel, AlgoliaWidget {
 
-    public var searcher: Searcher! {
-        didSet {
-            addTarget(self, action: #selector(self.clearFilter), for: .touchUpInside)
-        }
+    public var searcher: Searcher!
+    
+    func setup(with searcher: Searcher) {
+        self.searcher = searcher
+        addTarget(self, action: #selector(self.clearFilter), for: .touchUpInside)
     }
     
     internal func clearFilter() {

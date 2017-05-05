@@ -11,10 +11,11 @@ import InstantSearchCore
 
 @objc public class SearchBarWidget: UISearchBar, SearchableViewModel, ResettableDelegate, AlgoliaWidget, UISearchBarDelegate {
     
-    public var searcher: Searcher! {
-        didSet {
-            delegate = self
-        }
+    public var searcher: Searcher!
+    
+    public func setup(with searcher: Searcher) {
+        self.searcher = searcher
+        delegate = self
     }
     
     public func searchBar(_ searchBar: UISearchBar, textDidChange searchText: String) {

@@ -10,5 +10,5 @@ import Foundation
 import InstantSearchCore
 
 @objc public protocol SearchableViewModel: class {
-    var searcher: Searcher! { get set }
+    func setup(with searcher: Searcher)
 }

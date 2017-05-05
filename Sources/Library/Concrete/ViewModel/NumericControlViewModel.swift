@@ -42,14 +42,16 @@ internal class NumericControlViewModel: NumericControlViewModelDelegate, Searcha
     
     // MARK: - SearchableViewModel
     
-    var searcher: Searcher! {
-        didSet {
-            if let numeric = self.searcher.params.getNumericRefinement(name: attributeName, op: op) {
-                view.set(value: numeric.value)
-            }
-            
-            view.setup()
+    var searcher: Searcher!
+    
+    func setup(with searcher: Searcher) {
+        self.searcher = searcher
+        
+        if let numeric = self.searcher.params.getNumericRefinement(name: attributeName, op: op) {
+            view.set(value: numeric.value)
         }
+        
+        view.setup()
     }
 
     // MARK: - NumericControlViewModelDelegate

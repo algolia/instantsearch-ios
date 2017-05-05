@@ -26,17 +26,19 @@ internal class StatsViewModel: StatsViewModelDelegate, SearchableViewModel {
     
     // MARK: - SearchableViewModel
     
-    var searcher: Searcher! {
-        didSet {
-            // Initial value of label in case a search was made.
-            // If a search wasn't made yet and it is still ongoing, then the label will get initialized in the onResult method
-            if let results = searcher.results {
-                let text = applyTemplate(resultTemplate: resultTemplate, results: results)
-                view.set(text: text)
-            } else {
-                let text = clearText
-                view.set(text: text)
-            }
+    var searcher: Searcher!
+    
+    func setup(with searcher: Searcher) {
+        self.searcher = searcher
+        
+        // Initial value of label in case a search was made.
+        // If a search wasn't made yet and it is still ongoing, then the label will get initialized in the onResult method
+        if let results = searcher.results {
+            let text = applyTemplate(resultTemplate: resultTemplate, results: results)
+            view.set(text: text)
+        } else {
+            let text = clearText
+            view.set(text: text)
         }
     }
     

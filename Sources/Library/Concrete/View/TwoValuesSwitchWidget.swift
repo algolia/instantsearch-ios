@@ -30,7 +30,6 @@ import Foundation
     }
     
     public override func set(value: String) {
-        print(value)
         if value == valueOn {
             setOn(true, animated: true)
         } else if value == valueOff {

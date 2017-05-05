@@ -30,14 +30,15 @@ internal class HitsViewModel: HitsViewModelDelegate, SearchableViewModel {
     
     // MARK: - SearchableViewModel
     
-    var searcher: Searcher? {
-        didSet {
-            guard let searcher = searcher else { return }
-            searcher.params.hitsPerPage = hitsPerPage
-            
-            if searcher.hits.count > 0 {
-                view.reloadHits()
-            }
+    var searcher: Searcher!
+    
+    func setup(with searcher: Searcher) {
+        self.searcher = searcher
+        
+        searcher.params.hitsPerPage = hitsPerPage
+        
+        if searcher.hits.count > 0 {
+            view.reloadHits()
         }
     }
     

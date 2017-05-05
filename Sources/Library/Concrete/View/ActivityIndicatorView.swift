@@ -12,13 +12,15 @@ import InstantSearchCore
 @objc public class ActivityIndicatorWidget: UIActivityIndicatorView, SearchableViewModel, SearchProgressDelegate, AlgoliaWidget {
 
     var searchProgressController: SearchProgressController!
-    public var searcher: Searcher! {
-        didSet {
-            searchProgressController = SearchProgressController(searcher: searcher)
-            
-            searchProgressController.graceDelay = 0.01
-            searchProgressController.delegate = self
-        }
+    public var searcher: Searcher!
+    
+    public func setup(with searcher: Searcher) {
+        self.searcher = searcher
+        
+        searchProgressController = SearchProgressController(searcher: searcher)
+        
+        searchProgressController.graceDelay = 0.01
+        searchProgressController.delegate = self
     }
     
     // MARK: - SearchProgressDelegate methods

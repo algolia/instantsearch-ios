@@ -52,37 +52,38 @@ internal class RefinementMenuViewModel: RefinementMenuViewModelDelegate, Searcha
     
     // MARK: - SearchableViewModel
     
-    var searcher: Searcher? {
-        didSet {
-            guard let searcher = searcher else { return }
-            guard !attribute.isEmpty else {
-                fatalError("you must assign a value to the attribute of a refinement before adding it to InstantSearch")
-            }
+    var searcher: Searcher!
+    
+    func setup(with searcher: Searcher) {
+        self.searcher = searcher
+        
+        guard !attribute.isEmpty else {
+            fatalError("you must assign a value to the attribute of a refinement before adding it to InstantSearch")
+        }
+        
+        // check if need to search again if we didn't searh with the facet added
+        
+        guard var facets = searcher.params.facets else {
+            searcher.params.facets = [attribute]
+            searcher.search()
             
-            // check if need to search again if we didn't searh with the facet added
+            return
+        }
+        
+        guard facets.contains(attribute) else {
+            facets += [attribute]
+            searcher.search()
             
-            guard var facets = searcher.params.facets else {
-                searcher.params.facets = [attribute]
-                searcher.search()
-                
-                return
-            }
+            return
+        }
+        
+        // If facet variable has been set beforehand, then we fill
+        // the refinement List with the facets that are already fetched from Algolia
+        
+        if let results = searcher.results, searcher.hits.count > 0 {
+            facetResults = getRefinementList(searcher: searcher, facetCounts: results.facets(name: attribute), andFacetName: attribute, transformRefinementList: transformRefinementList, areRefinedValuesFirst: refinedFirst)
             
-            guard facets.contains(attribute) else {
-                facets += [attribute]
-                searcher.search()
-
-                return
-            }
-            
-            // If facet variable has been set beforehand, then we fill
-            // the refinement List with the facets that are already fetched from Algolia
-            
-            if let results = searcher.results, searcher.hits.count > 0 {
-                facetResults = getRefinementList(searcher: searcher, facetCounts: results.facets(name: attribute), andFacetName: attribute, transformRefinementList: transformRefinementList, areRefinedValuesFirst: refinedFirst)
-                
-                view.reloadRefinements()
-            }
+            view.reloadRefinements()
         }
     }
     

@@ -182,7 +182,7 @@ import InstantSearchCore
     
     private func bind(searcher: Searcher, to widgetVM: Any?) {
         if let searchableWidget = widgetVM as? SearchableViewModel {
-            searchableWidget.searcher = searcher
+            searchableWidget.setup(with: searcher)
         }
         
         if let resultingWidget = widgetVM as? ResultingDelegate {
