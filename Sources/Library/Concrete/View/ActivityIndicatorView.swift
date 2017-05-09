@@ -14,7 +14,7 @@ import InstantSearchCore
     var searchProgressController: SearchProgressController!
     public var searcher: Searcher!
     
-    public func setup(with searcher: Searcher) {
+    public func configure(with searcher: Searcher) {
         self.searcher = searcher
         
         searchProgressController = SearchProgressController(searcher: searcher)

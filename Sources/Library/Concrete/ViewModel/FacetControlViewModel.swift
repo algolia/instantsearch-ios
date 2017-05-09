@@ -26,7 +26,7 @@ internal class FacetControlViewModel: FacetControlViewModelDelegate, SearchableV
     
     var searcher: Searcher!
     
-    func setup(with searcher: Searcher) {
+    func configure(with searcher: Searcher) {
         self.searcher = searcher
         
         // TODO: A specific facet can have many refinements. But in the case

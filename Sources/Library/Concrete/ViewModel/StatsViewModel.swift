@@ -28,7 +28,7 @@ internal class StatsViewModel: StatsViewModelDelegate, SearchableViewModel {
     
     var searcher: Searcher!
     
-    func setup(with searcher: Searcher) {
+    func configure(with searcher: Searcher) {
         self.searcher = searcher
         
         // Initial value of label in case a search was made.

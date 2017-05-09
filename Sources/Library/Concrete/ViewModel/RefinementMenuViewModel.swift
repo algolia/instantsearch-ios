@@ -54,7 +54,7 @@ internal class RefinementMenuViewModel: RefinementMenuViewModelDelegate, Searcha
     
     var searcher: Searcher!
     
-    func setup(with searcher: Searcher) {
+    func configure(with searcher: Searcher) {
         self.searcher = searcher
         
         guard !attribute.isEmpty else {

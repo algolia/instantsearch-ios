@@ -15,7 +15,7 @@ let clearAllFiltersNotification = Notification.Name(rawValue: "clearAllFiltersNo
 
     public var searcher: Searcher!
     
-    func setup(with searcher: Searcher) {
+    func configure(with searcher: Searcher) {
         self.searcher = searcher
         addTarget(self, action: #selector(self.clearFilter), for: .touchUpInside)
     }

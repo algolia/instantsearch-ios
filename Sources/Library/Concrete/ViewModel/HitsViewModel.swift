@@ -32,7 +32,7 @@ internal class HitsViewModel: HitsViewModelDelegate, SearchableViewModel {
     
     var searcher: Searcher!
     
-    func setup(with searcher: Searcher) {
+    func configure(with searcher: Searcher) {
         self.searcher = searcher
         
         searcher.params.hitsPerPage = hitsPerPage

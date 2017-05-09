@@ -44,7 +44,7 @@ internal class NumericControlViewModel: NumericControlViewModelDelegate, Searcha
     
     var searcher: Searcher!
     
-    func setup(with searcher: Searcher) {
+    func configure(with searcher: Searcher) {
         self.searcher = searcher
         
         if let numeric = self.searcher.params.getNumericRefinement(name: attributeName, op: op) {
