@@ -124,12 +124,14 @@ import InstantSearchCore
     
     // MARK: Add widget methods
     
-    @objc public func addAllWidgets(in view: UIView) {
+    @objc public func addAllWidgets(in view: UIView, doSearch: Bool = true) {
         addWidgets(in: view)
         
         // After added all widgets, the widgets might have added
         // parameters to the searcher.params. So we need to trigger a new search
-        self.searcher.search()
+        if doSearch {
+            self.searcher.search()
+        }
     }
     
     // Recursively iterate the sub views.
@@ -147,7 +149,7 @@ import InstantSearchCore
             
             
             if let algoliaWidget = subView as? AlgoliaWidget {
-                add(widget: algoliaWidget)
+                add(widget: algoliaWidget, doSearch: false)
             }
             
             // List the subviews of subview
@@ -155,7 +157,19 @@ import InstantSearchCore
         }
     }
     
-    @objc public func add(widget: AlgoliaWidget, doSearch: Bool = false) {
+    @objc public func add(widget: AlgoliaWidget) {
+        
+        if widget is RefinementMenuViewDelegate
+            || widget is NumericControlViewDelegate
+            || widget is FacetControlViewDelegate {
+            add(widget: widget, doSearch: true)
+        } else {
+            add(widget: widget, doSearch: false)
+        }
+    
+    }
+    
+    @objc public func add(widget: AlgoliaWidget, doSearch: Bool) {
         
         var widgetVM: Any?
         

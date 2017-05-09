@@ -63,17 +63,14 @@ internal class RefinementMenuViewModel: RefinementMenuViewModelDelegate, Searcha
         
         // check if need to search again if we didn't searh with the facet added
         
-        guard var facets = searcher.params.facets else {
+        guard let facets = searcher.params.facets else {
             searcher.params.facets = [attribute]
-            searcher.search()
             
             return
         }
         
         guard facets.contains(attribute) else {
-            //TODO: Is this correct? or did we make a value/reference bug here?
-            facets += [attribute]
-            searcher.search()
+            searcher.params.facets! += [attribute]
             
             return
         }
@@ -81,6 +78,9 @@ internal class RefinementMenuViewModel: RefinementMenuViewModelDelegate, Searcha
         // If facet variable has been set beforehand, then we fill
         // the refinement List with the facets that are already fetched from Algolia
         
+        // TODO: Bug of storing state at this level instead of Searcher level.
+        // Think if have 2 refinement menu widgets on same screen refereing 2 different viewmodels,
+        // so the state of facetResults will not be shared between them. careful...
         if let results = searcher.results, searcher.hits.count > 0 {
             facetResults = getRefinementList(searcher: searcher, facetCounts: results.facets(name: attribute), andFacetName: attribute, transformRefinementList: transformRefinementList, areRefinedValuesFirst: refinedFirst)
             
