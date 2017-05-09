@@ -51,7 +51,7 @@ internal class NumericControlViewModel: NumericControlViewModelDelegate, Searcha
             view.set(value: numeric.value)
         }
         
-        view.setup()
+        view.configureView()
     }
 
     // MARK: - NumericControlViewModelDelegate

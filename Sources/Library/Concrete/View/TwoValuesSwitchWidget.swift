@@ -11,7 +11,7 @@ import Foundation
 @objc public class TwoValuesSwitchWidget: SwitchWidget {
     @IBInspectable public var valueOff: String = "false"
     
-    override public func setup() {
+    override public func configureView() {
         addTarget(self, action: #selector(facetValueChanged), for: .valueChanged)
         if isOn {
             viewModel.updatefacet(oldValue: valueOff, newValue: valueOn, doSearch: false)

@@ -12,20 +12,16 @@ import UIKit
 @IBDesignable
 @objc public class DatePickerWidget: UIDatePicker, NumericControlViewDelegate, AlgoliaWidget {
     
-    public func set(value: NSNumber) {
-        self.setDate(Date(timeIntervalSince1970: value.doubleValue), animated: false)
-    }
+    @IBInspectable public var attributeName: String = ""
     
-    public func setup() {
-        addTarget(self, action: #selector(numericFilterValueChanged), for: .valueChanged)
-        
-        // We add the initial value of the slider to the Search
-        viewModel.updateNumeric(value: NSNumber(value: date.timeIntervalSince1970), doSearch: false)
-    }
+    @IBInspectable public var operation: String = "equal"
     
-    func numericFilterValueChanged() {
-        viewModel.updateNumeric(value: NSNumber(value: date.timeIntervalSince1970), doSearch: true)
-    }
+    // Note: can't have optional Float because IBInspectable have to be bridgable to objc
+    // and value types optional cannot be bridged.
+    internal var clearValue: NSNumber = 0
+    
+    // TODO: Do something about this...
+    public var inclusive: Bool = false
     
     var viewModel: NumericControlViewModelDelegate
     
@@ -41,18 +37,22 @@ import UIKit
         viewModel.view = self
     }
     
-    @IBInspectable public var attributeName: String = ""
+    public func set(value: NSNumber) {
+        self.setDate(Date(timeIntervalSince1970: value.doubleValue), animated: false)
+    }
     
-    @IBInspectable public var operation: String = "equal"
+    public func configureView() {
+        addTarget(self, action: #selector(numericFilterValueChanged), for: .valueChanged)
+        
+        // We add the initial value of the slider to the Search
+        viewModel.updateNumeric(value: NSNumber(value: date.timeIntervalSince1970), doSearch: false)
+    }
     
-    // Note: can't have optional Float because IBInspectable have to be bridgable to objc
-    // and value types optional cannot be bridged.
-    internal var clearValue: NSNumber = 0
+    func numericFilterValueChanged() {
+        viewModel.updateNumeric(value: NSNumber(value: date.timeIntervalSince1970), doSearch: true)
+    }
     
     public func getValue() -> NSNumber {
         return NSNumber(value: date.timeIntervalSince1970)
     }
-    
-    // TODO: Do something about this...
-    public var inclusive: Bool = false
 }

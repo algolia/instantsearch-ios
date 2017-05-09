@@ -15,37 +15,12 @@ import UIKit
     private var oldSegmentedIndex: Int = UISegmentedControlNoSegment
     private var actualSegmentedIndex: Int = UISegmentedControlNoSegment
     
-    // TODO: Need to override for TwoValuesSwitch
-    open func set(value: String) {
-        for index in 0..<numberOfSegments {
-            if value == titleForSegment(at: index) {
-                self.selectedSegmentIndex = index
-                self.oldSegmentedIndex = self.actualSegmentedIndex;
-                self.actualSegmentedIndex = self.selectedSegmentIndex;
-                return
-            }
-        }
-    }
+    @IBInspectable public var attributeName: String = ""
     
-    open func setup() {
-        addTarget(self, action: #selector(facetValueChanged), for: .valueChanged)
-        if selectedSegmentIndex != UISegmentedControlNoSegment {
-            viewModel.addFacet(value: titleForSegment(at: self.actualSegmentedIndex)!, doSearch: false)
-        }
-    }
+    internal var operation: String = "equal"
     
-    @objc private func facetValueChanged() {
-        guard self.selectedSegmentIndex != UISegmentedControlNoSegment else { return }
-        
-        self.oldSegmentedIndex = self.actualSegmentedIndex;
-        self.actualSegmentedIndex = self.selectedSegmentIndex;
-        
-        if self.oldSegmentedIndex == UISegmentedControlNoSegment {
-            viewModel.addFacet(value: titleForSegment(at: self.actualSegmentedIndex)!, doSearch: true)
-        } else {
-            viewModel.updatefacet(oldValue: titleForSegment(at: self.oldSegmentedIndex)!, newValue: titleForSegment(at: self.actualSegmentedIndex)!, doSearch: true)
-        }
-    }
+    // TODO: Do something about this...
+    public var inclusive: Bool = false
     
     var viewModel: FacetControlViewModelDelegate
     
@@ -71,15 +46,40 @@ import UIKit
         actualSegmentedIndex = self.selectedSegmentIndex
     }
     
-    @IBInspectable public var attributeName: String = ""
+    // TODO: Need to override for TwoValuesSwitch
+    open func set(value: String) {
+        for index in 0..<numberOfSegments {
+            if value == titleForSegment(at: index) {
+                self.selectedSegmentIndex = index
+                self.oldSegmentedIndex = self.actualSegmentedIndex;
+                self.actualSegmentedIndex = self.selectedSegmentIndex;
+                return
+            }
+        }
+    }
     
-    internal var operation: String = "equal"
+    open func configureView() {
+        addTarget(self, action: #selector(facetValueChanged), for: .valueChanged)
+        if selectedSegmentIndex != UISegmentedControlNoSegment {
+            viewModel.addFacet(value: titleForSegment(at: self.actualSegmentedIndex)!, doSearch: false)
+        }
+    }
+    
+    @objc private func facetValueChanged() {
+        guard self.selectedSegmentIndex != UISegmentedControlNoSegment else { return }
+        
+        self.oldSegmentedIndex = self.actualSegmentedIndex;
+        self.actualSegmentedIndex = self.selectedSegmentIndex;
+        
+        if self.oldSegmentedIndex == UISegmentedControlNoSegment {
+            viewModel.addFacet(value: titleForSegment(at: self.actualSegmentedIndex)!, doSearch: true)
+        } else {
+            viewModel.updatefacet(oldValue: titleForSegment(at: self.oldSegmentedIndex)!, newValue: titleForSegment(at: self.actualSegmentedIndex)!, doSearch: true)
+        }
+    }
     
     // TODO: Check if this is still needed
     open func getValue() -> String {
         return titleForSegment(at: self.actualSegmentedIndex)!
     }
-    
-    // TODO: Do something about this...
-    public var inclusive: Bool = false
 }

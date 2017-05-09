@@ -37,7 +37,7 @@ internal class FacetControlViewModel: FacetControlViewModelDelegate, SearchableV
             view.set(value: self.searcher.params.getFacetRefinement(name: attributeName)!.value)
         }
         
-        view.setup()
+        view.configureView()
     }
     
     // MARK: - NumericControlViewModelDelegate

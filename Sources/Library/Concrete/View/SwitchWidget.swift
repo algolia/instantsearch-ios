@@ -12,14 +12,13 @@ import UIKit
 @IBDesignable
 @objc public class SwitchWidget: UISwitch, FacetControlViewDelegate, AlgoliaWidget {
     
-    // TODO: Need to override for TwoValuesSwitch
-    open func set(value: String) {
-        setOn(value == valueOn, animated: true)
-    }
+    @IBInspectable public var attributeName: String = ""
+    @IBInspectable public var valueOn: String = "true"
     
-    open func setup() {
-        fatalError("Cannot use SwitchWidget by itself. Need to use either OneValueSwitchWidget, or TwoValuesSwitchWidget")
-    }
+    internal var operation: String = "equal"
+    
+    // TODO: Do something about this...
+    public var inclusive: Bool = false
     
     var viewModel: FacetControlViewModelDelegate
     
@@ -35,15 +34,16 @@ import UIKit
         viewModel.view = self
     }
     
-    @IBInspectable public var attributeName: String = ""
-    @IBInspectable public var valueOn: String = "true"
+    // TODO: Need to override for TwoValuesSwitch
+    open func set(value: String) {
+        setOn(value == valueOn, animated: true)
+    }
     
-    internal var operation: String = "equal"
+    open func configureView() {
+        fatalError("Cannot use SwitchWidget by itself. Need to use either OneValueSwitchWidget, or TwoValuesSwitchWidget")
+    }
     
     open func getValue() -> String {
         return valueOn
     }
-    
-    // TODO: Do something about this...
-    public var inclusive: Bool = false
 }

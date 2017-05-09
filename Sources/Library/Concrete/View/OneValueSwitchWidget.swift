@@ -9,7 +9,7 @@
 import Foundation
 
 @objc public class OneValueSwitchWidget: SwitchWidget {
-    override public func setup() {
+    override public func configureView() {
         addTarget(self, action: #selector(facetValueChanged), for: .valueChanged)
     }
     

@@ -14,7 +14,7 @@ import Foundation
 @objc internal protocol FacetControlViewDelegate: class {
     var viewModel: FacetControlViewModelDelegate { get set }
     
-    func setup()
+    func configureView()
     func set(value: String)
     func getValue() -> String
     

@@ -15,7 +15,7 @@ import Foundation
     
     var viewModel: NumericControlViewModelDelegate { get set }
     
-    func setup()
+    func configureView()
     func set(value: NSNumber)
     func getValue() -> NSNumber
     
