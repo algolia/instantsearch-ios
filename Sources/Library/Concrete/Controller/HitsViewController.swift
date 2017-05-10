@@ -10,7 +10,6 @@ import UIKit
 
 @objc public class HitsViewController: NSObject {
 
-    var hitsViewDelegate: HitsViewDelegate
     var viewModel: HitsViewModelDelegate
     
     @objc public weak var tableDataSource: HitTableViewDataSource?
@@ -27,7 +26,6 @@ import UIKit
     }
     
     init(hitsView: HitsViewDelegate) {
-        self.hitsViewDelegate = hitsView
         self.viewModel = hitsView.viewModel
         super.init()
     }
@@ -61,7 +59,8 @@ extension HitsViewController: UICollectionViewDataSource {
     public func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         let hit = viewModel.hitForRow(at: indexPath)
         
-        return collectionDataSource?.collectionView(collectionView, cellForItemAt: indexPath, containing: hit) ?? UICollectionViewCell()
+        return collectionDataSource?.collectionView(collectionView, cellForItemAt: indexPath, containing: hit)
+            ?? UICollectionViewCell()
     }
 }
 

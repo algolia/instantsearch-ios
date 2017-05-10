@@ -51,8 +51,8 @@ import UIKit
         for index in 0..<numberOfSegments {
             if value == titleForSegment(at: index) {
                 self.selectedSegmentIndex = index
-                self.oldSegmentedIndex = self.actualSegmentedIndex;
-                self.actualSegmentedIndex = self.selectedSegmentIndex;
+                self.oldSegmentedIndex = self.actualSegmentedIndex
+                self.actualSegmentedIndex = self.selectedSegmentIndex
                 return
             }
         }
@@ -68,8 +68,8 @@ import UIKit
     @objc private func facetValueChanged() {
         guard self.selectedSegmentIndex != UISegmentedControlNoSegment else { return }
         
-        self.oldSegmentedIndex = self.actualSegmentedIndex;
-        self.actualSegmentedIndex = self.selectedSegmentIndex;
+        self.oldSegmentedIndex = self.actualSegmentedIndex
+        self.actualSegmentedIndex = self.selectedSegmentIndex
         
         if self.oldSegmentedIndex == UISegmentedControlNoSegment {
             viewModel.addFacet(value: titleForSegment(at: self.actualSegmentedIndex)!, doSearch: true)

@@ -37,7 +37,7 @@ internal class HitsViewModel: HitsViewModelDelegate, SearchableViewModel {
         
         searcher.params.hitsPerPage = hitsPerPage
         
-        if searcher.hits.count > 0 {
+        if searcher.hits.isEmpty {
             view.reloadHits()
         }
     }

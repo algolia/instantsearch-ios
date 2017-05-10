@@ -141,7 +141,7 @@ import InstantSearchCore
         let subviews = view.subviews
         
         // Return if there are no subviews
-        if subviews.count == 0 {
+        if subviews.isEmpty {
             return
         }
         

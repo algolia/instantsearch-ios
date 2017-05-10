@@ -10,7 +10,6 @@ import UIKit
 
 @objc public class RefinementViewController: NSObject {
     
-    var refinementViewDelegate: RefinementMenuViewDelegate
     var viewModel: RefinementMenuViewModelDelegate
     
     @objc public weak var tableDataSource: RefinementTableViewDataSource?
@@ -27,7 +26,6 @@ import UIKit
     }
     
     init(refinementView: RefinementMenuViewDelegate) {
-        self.refinementViewDelegate = refinementView
         self.viewModel = refinementView.viewModel
         super.init()
     }
@@ -38,7 +36,11 @@ extension RefinementViewController: UITableViewDataSource {
     public func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let facetValue = viewModel.facetForRow(at: indexPath)
         let isRefined = viewModel.isRefined(at: indexPath)
-        return tableDataSource?.tableView(tableView, cellForRowAt: indexPath, containing: facetValue.value, with: facetValue.count, is: isRefined) ?? UITableViewCell()
+        return tableDataSource?.tableView(tableView,
+                                          cellForRowAt: indexPath,
+                                          containing: facetValue.value,
+                                          with: facetValue.count,
+                                          is: isRefined) ?? UITableViewCell()
     }
     
     public func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {

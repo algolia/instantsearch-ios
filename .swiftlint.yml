@@ -8,3 +8,5 @@ opt_in_rules: # some rules are only opt-in
   # swiftlint rules
 included: # paths to include during linting. `--path` is ignored if present.
   - Sources
+
+line_length: 140

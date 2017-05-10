@@ -65,11 +65,10 @@ extension CustomSlider: AlgoliaWidget, RefinableDelegate {
     }
     
     @objc public func onRefinementChange(numerics: [NumericRefinement]) {
-        for numeric in numerics {
-            if numeric.op == .lessThan {
-                slider.value = numeric.value.floatValue
-                label.text = "\(numeric.value)"
-            }
+        for numeric in numerics where numeric.op == .lessThan {
+            
+            slider.value = numeric.value.floatValue
+            label.text = "\(numeric.value)"
         }
     }
 }

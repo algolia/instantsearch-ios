@@ -50,7 +50,7 @@ extension RefinementMenuViewModel {
         
         let facetList = FacetValue.listFrom(facetCounts: facetCounts, refinements: refinementsForFacetName)
         
-        let sortedFacetList = facetList.sorted() { (lhs, rhs) in
+        let sortedFacetList = facetList.sorted { (lhs, rhs) in
             
             let lhsChecked = searcher.params.hasFacetRefinement(name: facetName, value: lhs.value)
             let rhsChecked = searcher.params.hasFacetRefinement(name: facetName, value: rhs.value)
@@ -77,16 +77,14 @@ extension RefinementMenuViewModel {
             case .nameAsc:
                 if lhs.value != rhs.value {
                     return lhs.value < rhs.value // Name ascending
-                }
-                else {
+                } else {
                     return lhs.count > rhs.count // Biggest Count wins by default
                 }
                 
             case .nameDsc:
                 if lhs.value != rhs.value {
                     return lhs.value > rhs.value // Name descending
-                }
-                else {
+                } else {
                     return lhs.count > rhs.count // Biggest Count wins by default
                 }
             }

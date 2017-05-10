@@ -81,8 +81,12 @@ internal class RefinementMenuViewModel: RefinementMenuViewModelDelegate, Searcha
         // TODO: Bug of storing state at this level instead of Searcher level.
         // Think if have 2 refinement menu widgets on same screen refereing 2 different viewmodels,
         // so the state of facetResults will not be shared between them. careful...
-        if let results = searcher.results, searcher.hits.count > 0 {
-            facetResults = getRefinementList(searcher: searcher, facetCounts: results.facets(name: attribute), andFacetName: attribute, transformRefinementList: transformRefinementList, areRefinedValuesFirst: refinedFirst)
+        if let results = searcher.results, searcher.hits.isEmpty {
+            facetResults = getRefinementList(searcher: searcher,
+                                             facetCounts: results.facets(name: attribute),
+                                             andFacetName: attribute,
+                                             transformRefinementList: transformRefinementList,
+                                             areRefinedValuesFirst: refinedFirst)
             
             view.reloadRefinements()
         }
@@ -120,7 +124,11 @@ extension RefinementMenuViewModel: ResultingDelegate {
         //,searcher.params.hasFacetRefinements(name: facet)
         // else { return }
         
-        facetResults = getRefinementList(searcher: searcher, facetCounts: results?.facets(name: attribute), andFacetName: attribute, transformRefinementList: transformRefinementList, areRefinedValuesFirst: refinedFirst)
+        facetResults = getRefinementList(searcher: searcher,
+                                         facetCounts: results?.facets(name: attribute),
+                                         andFacetName: attribute,
+                                         transformRefinementList: transformRefinementList,
+                                         areRefinedValuesFirst: refinedFirst)
         view.reloadRefinements()
     }
 }
