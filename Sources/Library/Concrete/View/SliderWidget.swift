@@ -41,7 +41,7 @@ import UIKit
     }
     
     public func configureView() {
-        addTarget(self, action: #selector(numericFilterValueChanged), for: .valueChanged)
+        addTarget(self, action: #selector(numericFilterValueChanged), for: [.touchUpInside, .touchUpOutside])
         
         // We add the initial value of the slider to the Search
         viewModel.updateNumeric(value: NSNumber(value: value), doSearch: false)

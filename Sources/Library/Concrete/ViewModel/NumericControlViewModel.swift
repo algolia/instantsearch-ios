@@ -13,9 +13,6 @@ internal class NumericControlViewModel: NumericControlViewModelDelegate, Searcha
 
     // MARK: - Properties
 
-    // TODO: Make this debouncer customisable (expose it)
-    internal var numericFiltersDebouncer = Debouncer(delay: 0.2)
-
     var clearValue: NSNumber {
         return view.clearValue
     }
@@ -59,12 +56,11 @@ internal class NumericControlViewModel: NumericControlViewModelDelegate, Searcha
     weak var view: NumericControlViewDelegate!
 
     func updateNumeric(value: NSNumber, doSearch: Bool) {
-        numericFiltersDebouncer.call {
-            self.searcher.params.updateNumericRefinement(self.attributeName, self.operation, value)
-
-            if doSearch {
-                self.searcher.search()
-            }
+        
+        self.searcher.params.updateNumericRefinement(self.attributeName, self.operation, value)
+        
+        if doSearch {
+            self.searcher.search()
         }
     }
 
