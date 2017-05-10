@@ -21,7 +21,7 @@
 		E233BC091EBC71F500F5F5E1 /* StepperWidget.swift in Sources */ = {isa = PBXBuildFile; fileRef = E233BC081EBC71F500F5F5E1 /* StepperWidget.swift */; };
 		E233BC0C1EBC756500F5F5E1 /* DatePickerWidget.swift in Sources */ = {isa = PBXBuildFile; fileRef = E233BC0B1EBC756500F5F5E1 /* DatePickerWidget.swift */; };
 		E233BC0E1EBC786B00F5F5E1 /* SegmentedControlWidget.swift in Sources */ = {isa = PBXBuildFile; fileRef = E233BC0D1EBC786B00F5F5E1 /* SegmentedControlWidget.swift */; };
-		E27141CA1E9E237200959294 /* ButtonStatsWidget.swift in Sources */ = {isa = PBXBuildFile; fileRef = E27141C91E9E237200959294 /* ButtonStatsWidget.swift */; };
+		E27141CA1E9E237200959294 /* StatsButtonWidget.swift in Sources */ = {isa = PBXBuildFile; fileRef = E27141C91E9E237200959294 /* StatsButtonWidget.swift */; };
 		E27141D51E9F764100959294 /* HitsTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E27141D41E9F764100959294 /* HitsTableViewController.swift */; };
 		E27141F51EA0F20700959294 /* HitsCollectionViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E27141F41EA0F20700959294 /* HitsCollectionViewController.swift */; };
 		E2738FBD1E9BD9ED002C002D /* StatsViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = E2738FBC1E9BD9ED002C002D /* StatsViewModel.swift */; };
@@ -46,7 +46,7 @@
 		E27C16431E9394250091D79E /* HitsTableWidget.swift in Sources */ = {isa = PBXBuildFile; fileRef = E27C16371E9394250091D79E /* HitsTableWidget.swift */; };
 		E27C16441E9394250091D79E /* SliderWidget.swift in Sources */ = {isa = PBXBuildFile; fileRef = E27C16381E9394250091D79E /* SliderWidget.swift */; };
 		E27C16451E9394250091D79E /* SearchBarWidget.swift in Sources */ = {isa = PBXBuildFile; fileRef = E27C16391E9394250091D79E /* SearchBarWidget.swift */; };
-		E27C16461E9394250091D79E /* LabelStatsWidget.swift in Sources */ = {isa = PBXBuildFile; fileRef = E27C163A1E9394250091D79E /* LabelStatsWidget.swift */; };
+		E27C16461E9394250091D79E /* StatsLabelWidget.swift in Sources */ = {isa = PBXBuildFile; fileRef = E27C163A1E9394250091D79E /* StatsLabelWidget.swift */; };
 		E27C16471E9394250091D79E /* InstantSearchBinder.swift in Sources */ = {isa = PBXBuildFile; fileRef = E27C163B1E9394250091D79E /* InstantSearchBinder.swift */; };
 		E27C16481E9394250091D79E /* InstantSearchMultiplePresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = E27C163C1E9394250091D79E /* InstantSearchMultiplePresenter.swift */; };
 		E27C16491E9394250091D79E /* ClearAllWidget.swift in Sources */ = {isa = PBXBuildFile; fileRef = E27C163D1E9394250091D79E /* ClearAllWidget.swift */; };
@@ -98,7 +98,7 @@
 		E233BC081EBC71F500F5F5E1 /* StepperWidget.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = StepperWidget.swift; sourceTree = "<group>"; };
 		E233BC0B1EBC756500F5F5E1 /* DatePickerWidget.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DatePickerWidget.swift; sourceTree = "<group>"; };
 		E233BC0D1EBC786B00F5F5E1 /* SegmentedControlWidget.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SegmentedControlWidget.swift; sourceTree = "<group>"; };
-		E27141C91E9E237200959294 /* ButtonStatsWidget.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ButtonStatsWidget.swift; sourceTree = "<group>"; };
+		E27141C91E9E237200959294 /* StatsButtonWidget.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = StatsButtonWidget.swift; sourceTree = "<group>"; };
 		E27141D41E9F764100959294 /* HitsTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HitsTableViewController.swift; sourceTree = "<group>"; };
 		E27141F41EA0F20700959294 /* HitsCollectionViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HitsCollectionViewController.swift; sourceTree = "<group>"; };
 		E2738FBC1E9BD9ED002C002D /* StatsViewModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = StatsViewModel.swift; sourceTree = "<group>"; };
@@ -123,7 +123,7 @@
 		E27C16371E9394250091D79E /* HitsTableWidget.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HitsTableWidget.swift; sourceTree = "<group>"; };
 		E27C16381E9394250091D79E /* SliderWidget.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SliderWidget.swift; sourceTree = "<group>"; };
 		E27C16391E9394250091D79E /* SearchBarWidget.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SearchBarWidget.swift; sourceTree = "<group>"; };
-		E27C163A1E9394250091D79E /* LabelStatsWidget.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LabelStatsWidget.swift; sourceTree = "<group>"; };
+		E27C163A1E9394250091D79E /* StatsLabelWidget.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = StatsLabelWidget.swift; sourceTree = "<group>"; };
 		E27C163B1E9394250091D79E /* InstantSearchBinder.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = InstantSearchBinder.swift; sourceTree = "<group>"; };
 		E27C163C1E9394250091D79E /* InstantSearchMultiplePresenter.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = InstantSearchMultiplePresenter.swift; sourceTree = "<group>"; };
 		E27C163D1E9394250091D79E /* ClearAllWidget.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ClearAllWidget.swift; sourceTree = "<group>"; };
@@ -323,8 +323,8 @@
 				E233BBFE1EBA43F500F5F5E1 /* OneValueSwitchWidget.swift */,
 				E233BC001EBA43FF00F5F5E1 /* TwoValuesSwitchWidget.swift */,
 				E233BC0D1EBC786B00F5F5E1 /* SegmentedControlWidget.swift */,
-				E27141C91E9E237200959294 /* ButtonStatsWidget.swift */,
-				E27C163A1E9394250091D79E /* LabelStatsWidget.swift */,
+				E27141C91E9E237200959294 /* StatsButtonWidget.swift */,
+				E27C163A1E9394250091D79E /* StatsLabelWidget.swift */,
 				E27C163D1E9394250091D79E /* ClearAllWidget.swift */,
 				E27C163E1E9394250091D79E /* ActivityIndicatorView.swift */,
 				E27C16391E9394250091D79E /* SearchBarWidget.swift */,
@@ -597,7 +597,7 @@
 				E27A7BFA1E97B729005B2506 /* HitsViewModelDelegate.swift in Sources */,
 				E27A7BF31E97947C005B2506 /* HitsCollectionWidget.swift in Sources */,
 				E28B07E61EAF9FFE003AAE47 /* RefinementCollectionViewController.swift in Sources */,
-				E27C16461E9394250091D79E /* LabelStatsWidget.swift in Sources */,
+				E27C16461E9394250091D79E /* StatsLabelWidget.swift in Sources */,
 				E27A7BFF1E97B7AA005B2506 /* AlgoliaWidget.swift in Sources */,
 				E27C164B1E9394250091D79E /* RefinableDelegate.swift in Sources */,
 				E28B07E21EAF9F27003AAE47 /* RefinementCollectionWidget.swift in Sources */,
@@ -614,7 +614,7 @@
 				E27C16491E9394250091D79E /* ClearAllWidget.swift in Sources */,
 				E27C164C1E9394250091D79E /* SearchableViewModel.swift in Sources */,
 				E27141F51EA0F20700959294 /* HitsCollectionViewController.swift in Sources */,
-				E27141CA1E9E237200959294 /* ButtonStatsWidget.swift in Sources */,
+				E27141CA1E9E237200959294 /* StatsButtonWidget.swift in Sources */,
 				E2738FC11E9BDA31002C002D /* StatsViewDelegate.swift in Sources */,
 				E27C16441E9394250091D79E /* SliderWidget.swift in Sources */,
 				E233BC011EBA43FF00F5F5E1 /* TwoValuesSwitchWidget.swift in Sources */,

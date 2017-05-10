@@ -1,5 +1,5 @@
 //
-//  LabelStatsWidget.swift
+//  StatsLabelWidget.swift
 //  ecommerce
 //
 //  Created by Guy Daher on 09/03/2017.
@@ -9,7 +9,7 @@
 import UIKit
 
 @IBDesignable
-@objc public class LabelStatsWidget: UILabel, StatsViewDelegate, AlgoliaWidget {
+@objc public class StatsLabelWidget: UILabel, StatsViewDelegate, AlgoliaWidget {
     
     @IBInspectable public var resultTemplate: String = "{nbHits} results"
     @IBInspectable public var clearText: String = ""

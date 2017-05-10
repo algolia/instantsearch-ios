@@ -1,5 +1,5 @@
 //
-//  ButtonStatsWidget.swift
+//  StatsButtonWidget.swift
 //  InstantSearch
 //
 //  Created by Guy Daher on 12/04/2017.
@@ -9,7 +9,7 @@
 import UIKit
 
 @IBDesignable
-@objc public class ButtonStatsWidget: UIButton, StatsViewDelegate, AlgoliaWidget {
+@objc public class StatsButtonWidget: UIButton, StatsViewDelegate, AlgoliaWidget {
     
     @IBInspectable public var resultTemplate: String = "{nbHits} results"
     @IBInspectable public var clearText: String = ""
