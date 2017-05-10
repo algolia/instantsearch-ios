@@ -17,7 +17,6 @@ import Foundation
     
     func configureView()
     func set(value: NSNumber)
-    func getValue() -> NSNumber
     
     var clearValue: NSNumber { get set }
     var operation: String { get set }

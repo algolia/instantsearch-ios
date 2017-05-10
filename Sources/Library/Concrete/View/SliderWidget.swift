@@ -50,8 +50,4 @@ import UIKit
     func numericFilterValueChanged() {
         viewModel.updateNumeric(value: NSNumber(value: value), doSearch: true)
     }
-    
-    public func getValue() -> NSNumber {
-        return NSNumber(value: value)
-    }
 }

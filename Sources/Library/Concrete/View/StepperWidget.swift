@@ -36,10 +36,6 @@ import UIKit
         viewModel.view = self
     }
     
-    public func getValue() -> NSNumber {
-        return NSNumber(value: value)
-    }
-    
     public func set(value: NSNumber) {
         self.value = value.doubleValue
     }

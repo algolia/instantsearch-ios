@@ -77,9 +77,4 @@ import UIKit
             viewModel.updatefacet(oldValue: titleForSegment(at: self.oldSegmentedIndex)!, newValue: titleForSegment(at: self.actualSegmentedIndex)!, doSearch: true)
         }
     }
-    
-    // TODO: Check if this is still needed
-    open func getValue() -> String {
-        return titleForSegment(at: self.actualSegmentedIndex)!
-    }
 }

@@ -42,8 +42,4 @@ import UIKit
     open func configureView() {
         fatalError("Cannot use SwitchWidget by itself. Need to use either OneValueSwitchWidget, or TwoValuesSwitchWidget")
     }
-    
-    open func getValue() -> String {
-        return valueOn
-    }
 }

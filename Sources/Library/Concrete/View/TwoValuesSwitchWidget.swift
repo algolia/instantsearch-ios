@@ -28,11 +28,6 @@ import Foundation
         }
     }
     
-    // TODO: Make sure we still need this
-    override public func getValue() -> String {
-        return isOn ? valueOn: valueOff
-    }
-    
     public override func set(value: String) {
         if value == valueOn {
             setOn(true, animated: true)

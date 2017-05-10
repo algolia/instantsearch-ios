@@ -16,7 +16,6 @@ import Foundation
     
     func configureView()
     func set(value: String)
-    func getValue() -> String
     
     var inclusive: Bool { get set }
     var attributeName: String { get set }
