@@ -9,6 +9,7 @@ end
 
 target 'InstantSearch' do
   instantsearch_core
+  pod 'SwiftLint'
   
   target 'InstantSearchTests' do
       inherit! :search_paths

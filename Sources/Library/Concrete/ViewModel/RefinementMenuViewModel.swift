@@ -101,12 +101,10 @@ internal class RefinementMenuViewModel: RefinementMenuViewModelDelegate, Searcha
     }
     
     func isRefined(at indexPath: IndexPath) -> Bool {
-        guard let searcher = searcher else { return false }
         return searcher.params.hasFacetRefinement(name: attribute, value: facetResults[indexPath.item].value)
     }
     
     func didSelectRow(at indexPath: IndexPath) {
-        guard let searcher = searcher else { return }
         
         searcher.params.setFacet(withName: attribute, disjunctive: isDisjunctive)
         searcher.params.toggleFacetRefinement(name: attribute, value: facetResults[indexPath.item].value)
