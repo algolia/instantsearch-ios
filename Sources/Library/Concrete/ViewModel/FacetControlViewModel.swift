@@ -13,7 +13,6 @@ internal class FacetControlViewModel: FacetControlViewModelDelegate, SearchableV
     
     // MARK: - Properties
     
-    
     var inclusive: Bool {
         return view.inclusive
     }
@@ -74,11 +73,9 @@ extension FacetControlViewModel: RefinableDelegate {
     }
     
     func onRefinementChange(facets: [FacetRefinement]) {
-        for facet in facets {
-            if facet.name == self.attributeName {
-                view.set(value: facet.value)
-                return
-            }
+        for facet in facets where facet.name == self.attributeName {
+            view.set(value: facet.value)
+            return
         }
         
         // Could not find it anymore, so need to notify!
@@ -89,15 +86,16 @@ extension FacetControlViewModel: RefinableDelegate {
 
 // MARK: - ResettableDelegate
 
-
 extension SearchParameters {
     
     func getFacetRefinement(name facetName: String) -> FacetRefinement? {
         return facetRefinements[facetName]?.first
     }
     
-    func getNumericRefinement(name filterName: String, op: NumericRefinement.Operator, inclusive: Bool = true) -> NumericRefinement? {
-        return numericRefinements[filterName]?.first(where: { $0.op == op && $0.inclusive == inclusive})
+    func getNumericRefinement(name filterName: String,
+                              operation: NumericRefinement.Operator,
+                              inclusive: Bool = true) -> NumericRefinement? {
+        return numericRefinements[filterName]?.first(where: { $0.op == operation && $0.inclusive == inclusive})
     }
     
     func updatefacetRefinement(attributeName: String, oldValue: String, newValue: String) {

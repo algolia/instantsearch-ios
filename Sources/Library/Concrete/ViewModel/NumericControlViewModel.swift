@@ -10,17 +10,17 @@ import Foundation
 import InstantSearchCore
 
 internal class NumericControlViewModel: NumericControlViewModelDelegate, SearchableViewModel {
-    
+
     // MARK: - Properties
-    
+
     // TODO: Make this debouncer customisable (expose it)
     internal var numericFiltersDebouncer = Debouncer(delay: 0.2)
-    
+
     var clearValue: NSNumber {
         return view.clearValue
     }
-    
-    var op: NumericRefinement.Operator {
+
+    var operation: NumericRefinement.Operator {
         switch view.operation {
         case "lessThan", "<": return .lessThan
         case "lessThanOrEqual", "<=": return .lessThanOrEqual
@@ -39,37 +39,37 @@ internal class NumericControlViewModel: NumericControlViewModelDelegate, Searcha
     var attributeName: String {
         return view.attributeName
     }
-    
+
     // MARK: - SearchableViewModel
-    
+
     var searcher: Searcher!
-    
+
     func configure(with searcher: Searcher) {
         self.searcher = searcher
-        
-        if let numeric = self.searcher.params.getNumericRefinement(name: attributeName, op: op) {
+
+        if let numeric = self.searcher.params.getNumericRefinement(name: attributeName, operation: operation) {
             view.set(value: numeric.value)
         }
-        
+
         view.configureView()
     }
 
     // MARK: - NumericControlViewModelDelegate
-    
+
     weak var view: NumericControlViewDelegate!
-    
+
     func updateNumeric(value: NSNumber, doSearch: Bool) {
         numericFiltersDebouncer.call {
-            self.searcher.params.updateNumericRefinement(self.attributeName, self.op, value)
-            
+            self.searcher.params.updateNumericRefinement(self.attributeName, self.operation, value)
+
             if doSearch {
                 self.searcher.search()
             }
         }
     }
-    
+
     func removeNumeric(value: NSNumber) {
-        self.searcher.params.removeNumericRefinement(self.attributeName, self.op, value)
+        self.searcher.params.removeNumericRefinement(self.attributeName, self.operation, value)
         self.searcher.search()
     }
 }
@@ -80,12 +80,10 @@ extension NumericControlViewModel: RefinableDelegate {
     var attribute: String {
         return attributeName
     }
-    
+
     func onRefinementChange(numerics: [NumericRefinement]) {
-        for numeric in numerics {
-            if numeric.op == op {
-                view.set(value: numeric.value)
-            }
+        for numeric in numerics where numeric.op == operation {
+            view.set(value: numeric.value)
         }
     }
 

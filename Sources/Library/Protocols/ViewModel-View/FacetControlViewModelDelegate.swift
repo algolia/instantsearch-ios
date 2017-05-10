@@ -16,6 +16,6 @@ import Foundation
     var view: FacetControlViewDelegate! { get set }
     
     func addFacet(value: String, doSearch: Bool)
-    func updatefacet(oldValue:String, newValue: String, doSearch: Bool)
+    func updatefacet(oldValue: String, newValue: String, doSearch: Bool)
     func removeFacet(value: String)
 }

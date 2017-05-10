@@ -9,7 +9,8 @@
 import Foundation
 import UIKit
 
-@objc open class RefinementCollectionViewController: UIViewController, UICollectionViewDataSource, UICollectionViewDelegate, RefinementCollectionViewDataSource, RefinementCollectionViewDelegate {
+@objc open class RefinementCollectionViewController: UIViewController,
+    UICollectionViewDataSource, UICollectionViewDelegate, RefinementCollectionViewDataSource, RefinementCollectionViewDelegate {
     
     var refinementViewController: RefinementViewController!
     
@@ -38,11 +39,19 @@ import UIKit
     
     // The follow methods are to be implemented by the class extending HitsCollectionViewController
     
-    open func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath, containing facet: String, with count: Int, is refined: Bool) -> UICollectionViewCell {
+    open func collectionView(_ collectionView: UICollectionView,
+                             cellForItemAt indexPath: IndexPath,
+                             containing facet: String,
+                             with count: Int,
+                             is refined: Bool) -> UICollectionViewCell {
         fatalError("Must Override cellForHit:indexpath:containing:with:is:")
     }
     
-    open func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath, containing facet: String, with count: Int, is refined: Bool) {
+    open func collectionView(_ collectionView: UICollectionView,
+                             didSelectItemAt indexPath: IndexPath,
+                             containing facet: String,
+                             with count: Int,
+                             is refined: Bool) {
         
     }
 }

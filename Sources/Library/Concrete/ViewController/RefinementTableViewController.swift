@@ -9,7 +9,8 @@
 import Foundation
 import UIKit
 
-@objc open class RefinementTableViewController: UIViewController, UITableViewDataSource, UITableViewDelegate, RefinementTableViewDataSource, RefinementTableViewDelegate {
+@objc open class RefinementTableViewController: UIViewController,
+    UITableViewDataSource, UITableViewDelegate, RefinementTableViewDataSource, RefinementTableViewDelegate {
     
     var refinementViewController: RefinementViewController!
     
@@ -39,11 +40,19 @@ import UIKit
     
     // The follow methods are to be implemented by the class extending HitsTableViewController
     
-    open func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath, containing facet: String, with count: Int, is refined: Bool) -> UITableViewCell {
+    open func tableView(_ tableView: UITableView,
+                        cellForRowAt indexPath: IndexPath,
+                        containing facet: String,
+                        with count: Int,
+                        is refined: Bool) -> UITableViewCell {
         fatalError("Must Override cellForHit:indexpath:containing:with:is:")
     }
     
-    open func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath, containing facet: String, with count: Int, is refined: Bool) {
+    open func tableView(_ tableView: UITableView,
+                        didSelectRowAt indexPath: IndexPath,
+                        containing facet: String,
+                        with count: Int,
+                        is refined: Bool) {
         
     }
 }

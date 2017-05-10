@@ -63,7 +63,11 @@ extension RefinementViewController: UICollectionViewDataSource {
     public func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         let facetValue = viewModel.facetForRow(at: indexPath)
         let isRefined = viewModel.isRefined(at: indexPath)
-        return collectionDataSource?.collectionView(collectionView, cellForItemAt: indexPath, containing: facetValue.value, with: facetValue.count, is: isRefined) ?? UICollectionViewCell()
+        return collectionDataSource?.collectionView(collectionView,
+                                                    cellForItemAt: indexPath,
+                                                    containing: facetValue.value,
+                                                    with: facetValue.count,
+                                                    is: isRefined) ?? UICollectionViewCell()
     }
 }
 

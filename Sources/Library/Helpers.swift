@@ -43,7 +43,10 @@ extension UILabel {
         set {
             let textColor = highlightedTextColor ?? self.tintColor ?? UIColor.blue
             let backgroundColor = highlightedBackgroundColor ?? UIColor.clear
-            attributedText = newValue == nil ? nil : Highlighter(highlightAttrs: [NSForegroundColorAttributeName: textColor, NSBackgroundColorAttributeName: backgroundColor]).render(text: newValue!)
+            attributedText = newValue == nil
+                ? nil
+                : Highlighter(highlightAttrs: [NSForegroundColorAttributeName: textColor,
+                                               NSBackgroundColorAttributeName: backgroundColor]).render(text: newValue!)
         }
     }
 }
@@ -70,7 +73,6 @@ private class WeakObject<T: AnyObject>: Hashable {
 private func == <T> (lhs: WeakObject<T>, rhs: WeakObject<T>) -> Bool {
     return lhs.object === rhs.object
 }
-
 
 public struct WeakSet<T: AnyObject>: Sequence {
     

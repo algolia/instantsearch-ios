@@ -74,7 +74,6 @@ import InstantSearchCore
 //
 // ------------------------------------------------------------------------------------------------------
 
-
 // ---------------------------------------------------------------------------------
 // InstantSearchBinder NOTES
 // ---------------------------------------------------------------------------------
@@ -89,7 +88,7 @@ import InstantSearchCore
 // ---------------------------------------------------------------------------------
 
 /// Binds the Searcher to the widgets through delegation.
-@objc public class InstantSearchBinder : NSObject, SearcherDelegate {
+@objc public class InstantSearchBinder: NSObject, SearcherDelegate {
     
     // MARK: - Properties
     
@@ -114,8 +113,15 @@ import InstantSearchCore
         self.searcher.delegate = self
         
         // TODO: should we use nil sefor queue (OperationQueue) synchronous or not? Check..
-        NotificationCenter.default.addObserver(self, selector: #selector(reset), name: clearAllFiltersNotification, object: nil)
-        NotificationCenter.default.addObserver(self, selector: #selector(onRefinementNotification(notification:)), name: Searcher.RefinementChangeNotification, object: nil)
+        NotificationCenter.default.addObserver(self,
+                                               selector: #selector(reset),
+                                               name: clearAllFiltersNotification,
+                                               object: nil)
+        
+        NotificationCenter.default.addObserver(self,
+                                               selector: #selector(onRefinementNotification(notification:)),
+                                               name: Searcher.RefinementChangeNotification,
+                                               object: nil)
         
         if let view = view {
             addAllWidgets(in: view)
@@ -135,7 +141,7 @@ import InstantSearchCore
     }
     
     // Recursively iterate the sub views.
-    private func addWidgets(in view: UIView){
+    private func addWidgets(in view: UIView) {
         
         // Get the subviews of the view
         let subviews = view.subviews
@@ -146,7 +152,6 @@ import InstantSearchCore
         }
         
         for subView in subviews as [UIView] {
-            
             
             if let algoliaWidget = subView as? AlgoliaWidget {
                 add(widget: algoliaWidget, doSearch: false)
@@ -245,7 +250,6 @@ import InstantSearchCore
         callSpecificFacetChanges(facetRefinementMap: facetRefinementMap)
     }
     
-    
     // MARK: - SearcherDelegate
     
     public func searcher(_ searcher: Searcher, didReceive results: SearchResults?, error: Error?, userInfo: [String : Any]) {
@@ -256,14 +260,16 @@ import InstantSearchCore
     
     // MARK: - Helper methods
     
-    private func callGeneralRefinementChanges(numericRefinementMap:[String: [NumericRefinement]]?, facetRefinementMap: [String: [FacetRefinement]]?) {
+    private func callGeneralRefinementChanges(
+        numericRefinementMap: [String: [NumericRefinement]]?,
+        facetRefinementMap: [String: [FacetRefinement]]?) {
         for refinementControlWidget in refinableDelegates {
             refinementControlWidget.onRefinementChange?(numericMap: numericRefinementMap)
             refinementControlWidget.onRefinementChange?(facetMap: facetRefinementMap)
         }
     }
     
-    private func callSpecificNumericChanges(numericRefinementMap:[String: [NumericRefinement]]?) {
+    private func callSpecificNumericChanges(numericRefinementMap: [String: [NumericRefinement]]?) {
         if let numericRefinementMap = numericRefinementMap {
             for (refinementName, numericRefinement) in numericRefinementMap {
                 if let widgets = refinableDelegateMap[refinementName] {
@@ -275,7 +281,7 @@ import InstantSearchCore
         }
     }
     
-    private func callSpecificFacetChanges(facetRefinementMap:[String: [FacetRefinement]]?) {
+    private func callSpecificFacetChanges(facetRefinementMap: [String: [FacetRefinement]]?) {
         if let facetRefinementMap = facetRefinementMap {
             for (refinementName, facetRefinement) in facetRefinementMap {
                 if let widgets = refinableDelegateMap[refinementName] {

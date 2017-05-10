@@ -9,7 +9,8 @@
 import Foundation
 import UIKit
 
-@objc open class HitsTableViewController: UIViewController, UITableViewDataSource, UITableViewDelegate, HitTableViewDataSource, HitTableViewDelegate {
+@objc open class HitsTableViewController: UIViewController,
+    UITableViewDataSource, UITableViewDelegate, HitTableViewDataSource, HitTableViewDelegate {
     
     var hitsViewController: HitsViewController!
     

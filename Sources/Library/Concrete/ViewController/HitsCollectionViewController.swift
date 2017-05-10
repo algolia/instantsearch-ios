@@ -9,7 +9,8 @@
 import Foundation
 import UIKit
 
-@objc open class HitsCollectionViewController: UIViewController, UICollectionViewDataSource, UICollectionViewDelegate, HitCollectionViewDataSource, HitCollectionViewDelegate {
+@objc open class HitsCollectionViewController: UIViewController,
+    UICollectionViewDataSource, UICollectionViewDelegate, HitCollectionViewDataSource, HitCollectionViewDelegate {
     
     var hitsViewController: HitsViewController!
     
@@ -39,7 +40,9 @@ import UIKit
     
     // The follow methods are to be implemented by the class extending HitsCollectionViewController
     
-    open func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath, containing hit: [String : Any]) -> UICollectionViewCell {
+    open func collectionView(_ collectionView: UICollectionView,
+                             cellForItemAt indexPath: IndexPath,
+                             containing hit: [String : Any]) -> UICollectionViewCell {
         fatalError("Must Override cellForItem:indexpath:containing:")
     }
     

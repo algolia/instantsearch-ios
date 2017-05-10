@@ -18,7 +18,9 @@ import UIKit
 }
 
 @objc public protocol HitCollectionViewDataSource: class {
-    func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath, containing hit: [String: Any]) -> UICollectionViewCell
+    func collectionView(_ collectionView: UICollectionView,
+                        cellForItemAt indexPath: IndexPath,
+                        containing hit: [String: Any]) -> UICollectionViewCell
 }
 
 @objc public protocol HitCollectionViewDelegate: class {

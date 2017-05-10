@@ -42,8 +42,11 @@ import InstantSearchCore
 }
 
 extension RefinementMenuViewModel {
-    @objc public func getRefinementList(searcher: Searcher, facetCounts: [String: Int]?, andFacetName facetName: String, transformRefinementList:
-        TransformRefinementList, areRefinedValuesFirst: Bool) -> [FacetValue] {
+    @objc public func getRefinementList(searcher: Searcher,
+                                        facetCounts: [String: Int]?,
+                                        andFacetName facetName: String,
+                                        transformRefinementList: TransformRefinementList,
+                                        areRefinedValuesFirst: Bool) -> [FacetValue] {
         
         let allRefinements = searcher.params.buildFacetRefinements()
         let refinementsForFacetName = allRefinements[facetName]

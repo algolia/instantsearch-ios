@@ -14,37 +14,27 @@ internal class RefinementMenuViewModel: RefinementMenuViewModelDelegate, Searcha
     // MARK: - Properties
     
     var attribute: String {
-        get {
-            return view.attribute
-        }
+        return view.attribute
     }
     
     var refinedFirst: Bool {
-        get {
-            return view.refinedFirst
-        }
+        return view.refinedFirst
     }
     
     var isDisjunctive: Bool {
-        get {
-            switch view.operator {
-                case "or", "OR", "|", "||": return true
-                case "and", "AND", "&", "&&": return false
-            default: fatalError("operator of RefinementMenu cannot be interpreted. Please chose one of: 'or', 'and'")
-            }
+        switch view.operator {
+        case "or", "OR", "|", "||": return true
+        case "and", "AND", "&", "&&": return false
+        default: fatalError("operator of RefinementMenu cannot be interpreted. Please chose one of: 'or', 'and'")
         }
     }
     
     var limit: Int {
-        get {
-            return view.limit
-        }
+        return view.limit
     }
     
     var transformRefinementList: TransformRefinementList {
-        get {
-            return TransformRefinementList(named: view.sortBy.lowercased())
-        }
+        return TransformRefinementList(named: view.sortBy.lowercased())
     }
     
     // TODO: Should we move this to the InstantSearch Core level?
