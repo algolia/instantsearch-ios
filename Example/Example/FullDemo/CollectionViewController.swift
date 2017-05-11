@@ -26,7 +26,7 @@ class CollectionViewController: UIViewController, HitCollectionViewDataSource {
         // hitsViewController.collectionDelegate = self
         
         hitCollectionWidget.register(UINib(nibName: "CollectionViewCell", bundle: nil) , forCellWithReuseIdentifier: "collectionViewCell")
-        instantSearchBinder = AlgoliaSearchManager.instance.instantSearchBinder
+        instantSearchBinder = InstantSearch.reference
         instantSearchBinder.addAllWidgets(in: self.view)
     }
     

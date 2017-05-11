@@ -14,6 +14,6 @@ class StatsViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
 
-        AlgoliaSearchManager.instance.instantSearchBinder.addAllWidgets(in: self.view)
+        InstantSearch.reference.addAllWidgets(in: self.view)
     }
 }

@@ -21,7 +21,7 @@ class HitsTableViewControllerDemo: HitsTableViewController {
         hitsTableView.register(UITableViewCell.self, forCellReuseIdentifier: "hitTableCell")
         
         self.view.addSubview(hitsTableView)
-        AlgoliaSearchManager.instance.instantSearchBinder.addAllWidgets(in: self.view)
+        InstantSearch.reference.addAllWidgets(in: self.view)
         
     }
 

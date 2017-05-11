@@ -17,7 +17,7 @@ class ViewController: UIViewController, HitTableViewDataSource, HitTableViewDele
         hitsViewController.tableDataSource = self
         hitsViewController.tableDelegate = self
         
-        instantSearchBinder = AlgoliaSearchManager.instance.instantSearchBinder
+        instantSearchBinder = InstantSearch.reference
         instantSearchBinder.addAllWidgets(in: self.view)
     }
     

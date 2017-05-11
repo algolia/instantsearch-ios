@@ -8,6 +8,7 @@
 
 import Foundation
 import InstantSearchCore
+import AlgoliaSearch
 
 // ------------------------------------------------------------------------------------------------------
 // IMPLEMENTATION NOTES
@@ -76,6 +77,9 @@ public typealias InstantSearch = InstantSearchBinder
 /// Binds the Searcher to the widgets through delegation.
 @objc public class InstantSearchBinder: NSObject, SearcherDelegate {
     
+    /// The singleton instance.
+    public static let reference = InstantSearch()
+    
     // MARK: - Properties
     
     // All widgets, including the specific ones such as refinementControlWidget
@@ -85,17 +89,17 @@ public typealias InstantSearch = InstantSearchBinder
     private var refinableDelegates = WeakSet<RefinableDelegate>()
     private var refinableDelegateMap = [String: WeakSet<RefinableDelegate>]()
     
-    public var searcher: Searcher
+    public var searcher: Searcher!
     
     private lazy var viewModelFetcher: ViewModelFetcher = {
        return ViewModelFetcher()
     }()
     
     // MARK: - Init
-    
-    @objc public init(searcher: Searcher, view: UIView? = nil) {
-        self.searcher = searcher
-        super.init()
+    @objc public func configure(appID: String, apiKey: String, index: String) {
+        let client = Client(appID: appID, apiKey: apiKey)
+        let index = client.index(withName: index)
+        self.searcher = Searcher(index: index)
         self.searcher.delegate = self
         
         // TODO: should we use nil sefor queue (OperationQueue) synchronous or not? Check..
@@ -108,10 +112,6 @@ public typealias InstantSearch = InstantSearchBinder
                                                selector: #selector(onRefinementNotification(notification:)),
                                                name: Searcher.RefinementChangeNotification,
                                                object: nil)
-        
-        if let view = view {
-            addAllWidgets(in: view)
-        }
     }
     
     // MARK: Add widget methods

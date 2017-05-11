@@ -23,7 +23,7 @@ class RefinementTableViewControllerDemo: RefinementTableViewController {
         //refinementTableView.register(UITableViewCell.self, forCellReuseIdentifier: "facetCell")
         
         self.view.addSubview(refinementTableView)
-        AlgoliaSearchManager.instance.instantSearchBinder.addAllWidgets(in: self.view)
+        InstantSearch.reference.addAllWidgets(in: self.view)
         
     }
     

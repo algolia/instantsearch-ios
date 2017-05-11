@@ -27,7 +27,7 @@ class FacetController: UIViewController, RefinementTableViewDataSource {
         refinementViewController.tableDataSource = self
         // refinementViewController.tableDelegate = self
         
-        instantSearchBinder = AlgoliaSearchManager.instance.instantSearchBinder
+        instantSearchBinder = InstantSearch.reference
         instantSearchBinder.add(widget: refinementList)
         statLabelController = LabelStatsController(label: statLabel)
         instantSearchBinder.add(widget: statLabelController)
