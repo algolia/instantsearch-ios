@@ -16,11 +16,9 @@ import UIKit
     private var actualSegmentedIndex: Int = UISegmentedControlNoSegment
     
     @IBInspectable public var attributeName: String = ""
+    @IBInspectable public var inclusive: Bool = true
     
     internal var operation: String = "equal"
-    
-    // TODO: Do something about this...
-    public var inclusive: Bool = false
     
     var viewModel: FacetControlViewModelDelegate
     

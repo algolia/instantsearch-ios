@@ -45,14 +45,17 @@ internal class FacetControlViewModel: FacetControlViewModelDelegate, SearchableV
     
     func addFacet(value: String, doSearch: Bool) {
         guard !self.searcher.params.hasFacetRefinement(name: self.attributeName, value: value) else { return }
-        self.searcher.params.addFacetRefinement(name: self.attributeName, value: value)
+        self.searcher.params.addFacetRefinement(name: self.attributeName, value: value, inclusive: inclusive)
         if doSearch {
             self.searcher.search()
         }
     }
     
     func updatefacet(oldValue: String, newValue: String, doSearch: Bool) {
-        self.searcher.params.updatefacetRefinement(attributeName: self.attributeName, oldValue: oldValue, newValue: newValue)
+        self.searcher.params.updatefacetRefinement(attributeName: self.attributeName,
+                                                   oldValue: oldValue,
+                                                   newValue: newValue,
+                                                   inclusive: inclusive)
         
         if doSearch {
             self.searcher.search()
@@ -98,10 +101,9 @@ extension SearchParameters {
         return numericRefinements[filterName]?.first(where: { $0.op == operation && $0.inclusive == inclusive})
     }
     
-    func updatefacetRefinement(attributeName: String, oldValue: String, newValue: String) {
+    func updatefacetRefinement(attributeName: String, oldValue: String, newValue: String, inclusive: Bool = true) {
         guard !hasFacetRefinement(name: attributeName, value: newValue) else { return }
-        
         removeFacetRefinement(name: attributeName, value: oldValue)
-        addFacetRefinement(name: attributeName, value: newValue)
+        addFacetRefinement(name: attributeName, value: newValue, inclusive: inclusive)
     }
 }

@@ -43,8 +43,7 @@ internal class NumericControlViewModel: NumericControlViewModelDelegate, Searcha
 
     func configure(with searcher: Searcher) {
         self.searcher = searcher
-
-        if let numeric = self.searcher.params.getNumericRefinement(name: attributeName, operation: operation) {
+        if let numeric = self.searcher.params.getNumericRefinement(name: attributeName, operation: operation, inclusive: inclusive) {
             view.set(value: numeric.value)
         }
 
@@ -57,7 +56,7 @@ internal class NumericControlViewModel: NumericControlViewModelDelegate, Searcha
 
     func updateNumeric(value: NSNumber, doSearch: Bool) {
         
-        self.searcher.params.updateNumericRefinement(self.attributeName, self.operation, value)
+        self.searcher.params.updateNumericRefinement(self.attributeName, self.operation, value, inclusive: inclusive)
         
         if doSearch {
             self.searcher.search()
@@ -65,7 +64,7 @@ internal class NumericControlViewModel: NumericControlViewModelDelegate, Searcha
     }
 
     func removeNumeric(value: NSNumber) {
-        self.searcher.params.removeNumericRefinement(self.attributeName, self.operation, value)
+        self.searcher.params.removeNumericRefinement(self.attributeName, self.operation, value, inclusive: inclusive)
         self.searcher.search()
     }
 }

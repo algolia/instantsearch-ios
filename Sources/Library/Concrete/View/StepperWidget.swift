@@ -14,13 +14,11 @@ import UIKit
     
     @IBInspectable public var attributeName: String = ""
     @IBInspectable public var operation: String = "<"
+    @IBInspectable public var inclusive: Bool = true
     
     // Note: can't have optional Float because IBInspectable have to be bridgable to objc
     // and value types optional cannot be bridged.
     internal var clearValue: NSNumber = 0
-    
-    // TODO: Do something about this...
-    public var inclusive: Bool = false
     
     var viewModel: NumericControlViewModelDelegate
     

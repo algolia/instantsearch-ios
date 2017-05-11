@@ -15,8 +15,7 @@ import UIKit
     @IBInspectable public var attributeName: String = ""
     
     @IBInspectable public var operation: String = "equal"
-    // TODO: Do something about this...
-    public var inclusive: Bool = false
+    @IBInspectable public var inclusive: Bool = true
     
     // Note: can't have optional Float because IBInspectable have to be bridgable to objc
     // and value types optional cannot be bridged.

@@ -178,6 +178,7 @@
                                 </segments>
                                 <userDefinedRuntimeAttributes>
                                     <userDefinedRuntimeAttribute type="string" keyPath="attributeName" value="type"/>
+                                    <userDefinedRuntimeAttribute type="boolean" keyPath="inclusive" value="NO"/>
                                 </userDefinedRuntimeAttributes>
                             </segmentedControl>
                             <segmentedControl opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="left" contentVerticalAlignment="top" segmentControlStyle="plain" translatesAutoresizingMaskIntoConstraints="NO" id="jfN-A1-PN2" customClass="SegmentedControlWidget" customModule="InstantSearch">
