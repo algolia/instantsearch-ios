@@ -77,7 +77,7 @@ extension NumericControlViewModel: RefinableDelegate {
     }
 
     func onRefinementChange(numerics: [NumericRefinement]) {
-        for numeric in numerics where numeric.op == operation {
+        for numeric in numerics where numeric.op == operation && numeric.inclusive == inclusive {
             view.set(value: numeric.value)
         }
     }

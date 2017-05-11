@@ -168,7 +168,7 @@
                                     <userDefinedRuntimeAttribute type="string" keyPath="operation" value="&gt;"/>
                                 </userDefinedRuntimeAttributes>
                             </stepper>
-                            <segmentedControl opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="left" contentVerticalAlignment="top" segmentControlStyle="plain" selectedSegmentIndex="1" translatesAutoresizingMaskIntoConstraints="NO" id="qZK-Ug-pv8" customClass="SegmentedControlWidget" customModule="InstantSearch">
+                            <segmentedControl opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="left" contentVerticalAlignment="top" segmentControlStyle="plain" selectedSegmentIndex="0" translatesAutoresizingMaskIntoConstraints="NO" id="qZK-Ug-pv8" customClass="SegmentedControlWidget" customModule="InstantSearch">
                                 <rect key="frame" x="16" y="211" width="233" height="29"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <segments>
@@ -191,6 +191,7 @@
                                 </segments>
                                 <userDefinedRuntimeAttributes>
                                     <userDefinedRuntimeAttribute type="string" keyPath="attributeName" value="type"/>
+                                    <userDefinedRuntimeAttribute type="boolean" keyPath="inclusive" value="NO"/>
                                 </userDefinedRuntimeAttributes>
                             </segmentedControl>
                         </subviews>

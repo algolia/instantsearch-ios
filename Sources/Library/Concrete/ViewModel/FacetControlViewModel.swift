@@ -76,7 +76,7 @@ extension FacetControlViewModel: RefinableDelegate {
     }
     
     func onRefinementChange(facets: [FacetRefinement]) {
-        for facet in facets where facet.name == self.attributeName {
+        for facet in facets where facet.name == self.attributeName && facet.inclusive == inclusive {
             view.set(value: facet.value)
             return
         }
