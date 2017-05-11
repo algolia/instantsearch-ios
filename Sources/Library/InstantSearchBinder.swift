@@ -298,7 +298,9 @@ extension InstantSearchBinder: UISearchResultsUpdating {
     }
     
     public func searchBarTextDidBeginEditing(_ searchBar: UISearchBar) {
-        search(with: "")
+        guard let searchText = searchBar.text else { return }
+        
+        search(with: searchText)
     }
 }
 

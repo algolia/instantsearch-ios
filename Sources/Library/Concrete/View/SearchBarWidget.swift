@@ -24,7 +24,7 @@ import InstantSearchCore
     }
     
     public func searchBarTextDidBeginEditing(_ searchBar: UISearchBar) {
-        searcher.params.query = ""
+        searcher.params.query = searchBar.text
         searcher.search()
     }
     
