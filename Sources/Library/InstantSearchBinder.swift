@@ -71,6 +71,8 @@ import InstantSearchCore
 // - Searcher and WidgetVVM
 // ---------------------------------------------------------------------------------
 
+public typealias InstantSearch = InstantSearchBinder
+
 /// Binds the Searcher to the widgets through delegation.
 @objc public class InstantSearchBinder: NSObject, SearcherDelegate {
     
