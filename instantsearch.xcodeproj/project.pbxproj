@@ -62,6 +62,7 @@
 		E28B07E61EAF9FFE003AAE47 /* RefinementCollectionViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E28B07E51EAF9FFE003AAE47 /* RefinementCollectionViewController.swift */; };
 		E28B08011EB0F459003AAE47 /* CustomSlider.swift in Sources */ = {isa = PBXBuildFile; fileRef = E28B08001EB0F459003AAE47 /* CustomSlider.swift */; };
 		E28B08051EB0F501003AAE47 /* CustomSlider.xib in Resources */ = {isa = PBXBuildFile; fileRef = E28B08041EB0F501003AAE47 /* CustomSlider.xib */; };
+		E2A476FA1EC5DFC1007CA367 /* ObjectiveCBridging.m in Sources */ = {isa = PBXBuildFile; fileRef = E2A476F81EC5DEDE007CA367 /* ObjectiveCBridging.m */; };
 		E2CA327C1EA77BC90057A3D3 /* HitsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E2CA327B1EA77BC90057A3D3 /* HitsViewController.swift */; };
 /* End PBXBuildFile section */
 
@@ -139,6 +140,7 @@
 		E28B07E51EAF9FFE003AAE47 /* RefinementCollectionViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RefinementCollectionViewController.swift; sourceTree = "<group>"; };
 		E28B08001EB0F459003AAE47 /* CustomSlider.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CustomSlider.swift; sourceTree = "<group>"; };
 		E28B08041EB0F501003AAE47 /* CustomSlider.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = CustomSlider.xib; sourceTree = "<group>"; };
+		E2A476F81EC5DEDE007CA367 /* ObjectiveCBridging.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ObjectiveCBridging.m; sourceTree = "<group>"; };
 		E2CA327B1EA77BC90057A3D3 /* HitsViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HitsViewController.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -189,6 +191,7 @@
 			children = (
 				28F8288E1C494B2C00330CF4 /* Info.plist */,
 				287D0A6D1C4B73BD004566D6 /* InstantSearchTests.swift */,
+				E2A476F81EC5DEDE007CA367 /* ObjectiveCBridging.m */,
 			);
 			path = Tests;
 			sourceTree = "<group>";
@@ -651,6 +654,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				287D0A6E1C4B73BD004566D6 /* InstantSearchTests.swift in Sources */,
+				E2A476FA1EC5DFC1007CA367 /* ObjectiveCBridging.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
