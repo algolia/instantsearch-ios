@@ -95,11 +95,27 @@ public typealias InstantSearch = InstantSearchBinder
        return ViewModelFetcher()
     }()
     
-    // MARK: - Init
+    // MARK: - Init and Configure
+    
+    public convenience init(appID: String, apiKey: String, index: String) {
+        self.init()
+        self.configure(appID: appID, apiKey: apiKey, index: index)
+    }
+    
+    public convenience init(searcher: Searcher) {
+        self.init()
+        configure(searcher: searcher)
+    }
+    
     @objc public func configure(appID: String, apiKey: String, index: String) {
         let client = Client(appID: appID, apiKey: apiKey)
         let index = client.index(withName: index)
-        self.searcher = Searcher(index: index)
+        let searcher = Searcher(index: index)
+        configure(searcher: searcher)
+    }
+    
+    private func configure(searcher: Searcher) {
+        self.searcher = searcher
         self.searcher.delegate = self
         
         // TODO: should we use nil sefor queue (OperationQueue) synchronous or not? Check..
