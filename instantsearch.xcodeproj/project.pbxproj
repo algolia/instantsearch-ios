@@ -47,7 +47,7 @@
 		E27C16441E9394250091D79E /* SliderWidget.swift in Sources */ = {isa = PBXBuildFile; fileRef = E27C16381E9394250091D79E /* SliderWidget.swift */; };
 		E27C16451E9394250091D79E /* SearchBarWidget.swift in Sources */ = {isa = PBXBuildFile; fileRef = E27C16391E9394250091D79E /* SearchBarWidget.swift */; };
 		E27C16461E9394250091D79E /* StatsLabelWidget.swift in Sources */ = {isa = PBXBuildFile; fileRef = E27C163A1E9394250091D79E /* StatsLabelWidget.swift */; };
-		E27C16471E9394250091D79E /* InstantSearchBinder.swift in Sources */ = {isa = PBXBuildFile; fileRef = E27C163B1E9394250091D79E /* InstantSearchBinder.swift */; };
+		E27C16471E9394250091D79E /* InstantSearch.swift in Sources */ = {isa = PBXBuildFile; fileRef = E27C163B1E9394250091D79E /* InstantSearch.swift */; };
 		E27C16481E9394250091D79E /* InstantSearchMultiplePresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = E27C163C1E9394250091D79E /* InstantSearchMultiplePresenter.swift */; };
 		E27C16491E9394250091D79E /* ClearAllWidget.swift in Sources */ = {isa = PBXBuildFile; fileRef = E27C163D1E9394250091D79E /* ClearAllWidget.swift */; };
 		E27C164A1E9394250091D79E /* ActivityIndicatorView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E27C163E1E9394250091D79E /* ActivityIndicatorView.swift */; };
@@ -125,7 +125,7 @@
 		E27C16381E9394250091D79E /* SliderWidget.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SliderWidget.swift; sourceTree = "<group>"; };
 		E27C16391E9394250091D79E /* SearchBarWidget.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SearchBarWidget.swift; sourceTree = "<group>"; };
 		E27C163A1E9394250091D79E /* StatsLabelWidget.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = StatsLabelWidget.swift; sourceTree = "<group>"; };
-		E27C163B1E9394250091D79E /* InstantSearchBinder.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = InstantSearchBinder.swift; sourceTree = "<group>"; };
+		E27C163B1E9394250091D79E /* InstantSearch.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = InstantSearch.swift; sourceTree = "<group>"; };
 		E27C163C1E9394250091D79E /* InstantSearchMultiplePresenter.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = InstantSearchMultiplePresenter.swift; sourceTree = "<group>"; };
 		E27C163D1E9394250091D79E /* ClearAllWidget.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ClearAllWidget.swift; sourceTree = "<group>"; };
 		E27C163E1E9394250091D79E /* ActivityIndicatorView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ActivityIndicatorView.swift; sourceTree = "<group>"; };
@@ -362,7 +362,7 @@
 				E27A7C001E97B83C005B2506 /* Protocols */,
 				E27C16411E9394250091D79E /* Helpers.swift */,
 				28F828821C494B2C00330CF4 /* Info.plist */,
-				E27C163B1E9394250091D79E /* InstantSearchBinder.swift */,
+				E27C163B1E9394250091D79E /* InstantSearch.swift */,
 				E27C163C1E9394250091D79E /* InstantSearchMultiplePresenter.swift */,
 				E27A7BF01E97931E005B2506 /* ViewModelFetcher.swift */,
 				28F828801C494B2C00330CF4 /* instantsearch.h */,
@@ -604,7 +604,7 @@
 				E27A7BFF1E97B7AA005B2506 /* AlgoliaWidget.swift in Sources */,
 				E27C164B1E9394250091D79E /* RefinableDelegate.swift in Sources */,
 				E28B07E21EAF9F27003AAE47 /* RefinementCollectionWidget.swift in Sources */,
-				E27C16471E9394250091D79E /* InstantSearchBinder.swift in Sources */,
+				E27C16471E9394250091D79E /* InstantSearch.swift in Sources */,
 				E2738FBD1E9BD9ED002C002D /* StatsViewModel.swift in Sources */,
 				E2CA327C1EA77BC90057A3D3 /* HitsViewController.swift in Sources */,
 				E28B07E41EAF9FF2003AAE47 /* RefinementTableViewController.swift in Sources */,

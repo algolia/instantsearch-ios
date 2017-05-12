@@ -9,6 +9,8 @@
 #import <XCTest/XCTest.h>
 
 @import InstantSearch;
+@import AlgoliaSearch;
+@import InstantSearchCore;
 
 
 /// Verifies that all the features are accessible from Objective-C.
@@ -31,8 +33,23 @@
     [super tearDown];
 }
 
-- (void)testInstantSearch {
-    //InstantSearch* instantSearch = [[InstantSearch alloc] init]
+- (void)testInitInstantSearchWithConfigure {
+    InstantSearch* instantSearch = [[InstantSearch alloc] initWithAppID:@"appID" apiKey:@"apiKey" index:@"index"];
+    
+    XCTAssertNotNil(instantSearch.searcher);
+}
+
+- (void)testInitInstantSearchWithSearcher {
+    InstantSearch* instantSearch = [[InstantSearch alloc] initWithSearcher: [self getSearcher]];
+    
+    XCTAssertNotNil(instantSearch.searcher);
+}
+
+- (Searcher*)getSearcher {
+    Client* client = [[Client alloc] initWithAppID:@"APPID" apiKey:@"APIKEY"];
+    Index* index = [client indexWithName:@"INDEX_NAME"];
+    Searcher* searcher = [[Searcher alloc] initWithIndex:index];
+    return searcher;
 }
 
 @end

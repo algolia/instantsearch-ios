@@ -95,6 +95,10 @@ import AlgoliaSearch
     
     // MARK: - Init and Configure
     
+    private override init() {
+        super.init()
+    }
+    
     public convenience init(appID: String, apiKey: String, index: String) {
         self.init()
         self.configure(appID: appID, apiKey: apiKey, index: index)
