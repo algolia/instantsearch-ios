@@ -13,7 +13,7 @@ import InstantSearch
 
 class FacetController: UIViewController, RefinementTableViewDataSource {
     
-    var instantSearchBinder: InstantSearchBinder!
+    var instantSearch: InstantSearch!
     @IBOutlet weak var refinementList: RefinementTableWidget!
     @IBOutlet weak var statLabel: UILabel!
     var statLabelController: LabelStatsController!
@@ -27,10 +27,10 @@ class FacetController: UIViewController, RefinementTableViewDataSource {
         refinementViewController.tableDataSource = self
         // refinementViewController.tableDelegate = self
         
-        instantSearchBinder = InstantSearch.reference
-        instantSearchBinder.add(widget: refinementList)
+        instantSearch = InstantSearch.reference
+        instantSearch.add(widget: refinementList)
         statLabelController = LabelStatsController(label: statLabel)
-        instantSearchBinder.add(widget: statLabelController)
+        instantSearch.add(widget: statLabelController)
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath, containing facet: String, with count: Int, is refined: Bool) -> UITableViewCell {

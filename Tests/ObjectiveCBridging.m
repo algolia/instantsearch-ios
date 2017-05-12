@@ -16,7 +16,7 @@
 /// Warning: This tests mostly **compilation**! The behavior is already tested in Swift test cases.
 ///
 /// Note: Only the public API is tested here.
-@interface ObjectiveCBridging : XCTestCase
+@interface ObjectiveCBridging: XCTestCase
 
 @end
 
@@ -24,16 +24,15 @@
 @implementation ObjectiveCBridging
 
 - (void)setUp {
-        [super setUp];
-    }
+    [super setUp];
+}
 
 - (void)tearDown {
-        [super tearDown];
-    }
+    [super tearDown];
+}
 
-- (void)testClient {
-    XCTAssertTrue(1==1);
-    XCTAssertTrue(2==2);
+- (void)testInstantSearch {
+    //InstantSearch* instantSearch = [[InstantSearch alloc] init]
 }
 
 @end

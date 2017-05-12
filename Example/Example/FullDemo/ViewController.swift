@@ -4,7 +4,7 @@ import InstantSearch
 
 class ViewController: UIViewController, HitTableViewDataSource, HitTableViewDelegate {
     
-    var instantSearchBinder: InstantSearch!
+    var instantSearch: InstantSearch!
     @IBOutlet weak var hitsTable: HitsTableWidget!
     var hitsViewController: HitsViewController!
 
@@ -17,8 +17,8 @@ class ViewController: UIViewController, HitTableViewDataSource, HitTableViewDele
         hitsViewController.tableDataSource = self
         hitsViewController.tableDelegate = self
         
-        instantSearchBinder = InstantSearch.reference
-        instantSearchBinder.addAllWidgets(in: self.view)
+        instantSearch = InstantSearch.reference
+        instantSearch.addAllWidgets(in: self.view)
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath, containing hit: [String : Any]) -> UITableViewCell {

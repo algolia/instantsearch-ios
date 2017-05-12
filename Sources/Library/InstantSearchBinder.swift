@@ -1,5 +1,5 @@
 //
-//  InstantSearchBinder.swift
+//  InstantSearch.swift
 //  ecommerce
 //
 //  Created by Guy Daher on 08/03/2017.
@@ -60,22 +60,20 @@ import AlgoliaSearch
 // ------------------------------------------------------------------------------------------------------
 
 // ---------------------------------------------------------------------------------
-// InstantSearchBinder NOTES
+// InstantSearch NOTES
 // ---------------------------------------------------------------------------------
-// InstantSearchBinder does mainly 3 things:
+// InstantSearch does mainly 3 things:
 // 1. Scans the View to find Algolia Widgets
 // 2. Knows about all search events, whether coming from the Searcher or other widgets
 // 3. Binds Searcher - Widgets through delegation
 //
-// For the 3rd point, InstantSearchBinder binds the following:
+// For the 3rd point, InstantSearch binds the following:
 // - Searcher and WidgetV through a ViewModelFetcher that creates the appropriate WidgetVM
 // - Searcher and WidgetVVM
 // ---------------------------------------------------------------------------------
 
-public typealias InstantSearch = InstantSearchBinder
-
 /// Binds the Searcher to the widgets through delegation.
-@objc public class InstantSearchBinder: NSObject, SearcherDelegate {
+@objc public class InstantSearch: NSObject, SearcherDelegate {
     
     /// The singleton instance.
     public static let reference = InstantSearch()
@@ -301,7 +299,7 @@ public typealias InstantSearch = InstantSearchBinder
     }
 }
 
-extension InstantSearchBinder: UISearchResultsUpdating {
+extension InstantSearch: UISearchResultsUpdating {
     
     @objc public func add(searchController: UISearchController) {
         searchController.searchResultsUpdater = self
@@ -320,7 +318,7 @@ extension InstantSearchBinder: UISearchResultsUpdating {
     }
 }
 
-extension InstantSearchBinder: UISearchBarDelegate {
+extension InstantSearch: UISearchBarDelegate {
     @objc public func add(searchBar: UISearchBar) {
         searchBar.delegate = self
     }

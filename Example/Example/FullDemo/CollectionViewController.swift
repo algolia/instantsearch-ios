@@ -14,7 +14,7 @@ class CollectionViewController: UIViewController, HitCollectionViewDataSource {
 
     @IBOutlet var hitCollectionWidget: HitsCollectionWidget!
     var hitsViewController: HitsViewController!
-    var instantSearchBinder: InstantSearchBinder!
+    var instantSearch: InstantSearch!
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -26,8 +26,8 @@ class CollectionViewController: UIViewController, HitCollectionViewDataSource {
         // hitsViewController.collectionDelegate = self
         
         hitCollectionWidget.register(UINib(nibName: "CollectionViewCell", bundle: nil) , forCellWithReuseIdentifier: "collectionViewCell")
-        instantSearchBinder = InstantSearch.reference
-        instantSearchBinder.addAllWidgets(in: self.view)
+        instantSearch = InstantSearch.reference
+        instantSearch.addAllWidgets(in: self.view)
     }
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath, containing hit: [String: Any]) -> UICollectionViewCell {
