@@ -12,7 +12,6 @@
 @import AlgoliaSearch;
 @import InstantSearchCore;
 
-
 /// Verifies that all the features are accessible from Objective-C.
 ///
 /// Warning: This tests mostly **compilation**! The behavior is already tested in Swift test cases.
@@ -121,7 +120,7 @@ CGRect defaultRect;
     ActivityIndicatorWidget* activityIndicatorWidget = [[ActivityIndicatorWidget alloc] initWithFrame: defaultRect];
     SearchBarWidget* searchBarWidget = [[SearchBarWidget alloc] initWithFrame: defaultRect];
     activityIndicatorWidget.hidden = false;
-    searchBarWidget.placeholder = @"Search here...";
+    searchBarWidget.placeholder = @"Search here...";    
 }
 
 - (void)testAddWidgets {
@@ -132,6 +131,15 @@ CGRect defaultRect;
     [view addSubview:hitsTableWidget];
     
     [instantSearch addAllWidgetsIn: view doSearch: false];
+    
+    StatsLabelWidget* statsLabelWidget = [[StatsLabelWidget alloc] initWithFrame: defaultRect];
+    [instantSearch addWithWidget:statsLabelWidget];
+    
+    StatsButtonWidget* statsButtonWidget = [[StatsButtonWidget alloc] initWithFrame: defaultRect];
+    [instantSearch addWithWidget: statsButtonWidget doSearch:true];
+    
+    [instantSearch addWithSearchBar: [[UISearchBar alloc] initWithFrame: defaultRect]];
+    [instantSearch addWithSearchController: [[UISearchController alloc] init]];
 }
 
 - (Searcher*)getSearcher {
@@ -141,6 +149,14 @@ CGRect defaultRect;
     return searcher;
 }
 
-
+- (void)testViewControllers {
+    HitsViewController* hitsViewController __unused = [[HitsViewController alloc] initWithTable: [[HitsTableWidget alloc] initWithFrame: defaultRect]];
+    RefinementViewController* refinementViewController __unused = [[RefinementViewController alloc] initWithTable: [[RefinementTableWidget alloc] initWithFrame: defaultRect]];
+    
+    HitsCollectionViewController* hitsCollectionViewController __unused = [[HitsCollectionViewController alloc] init];
+    HitsTableViewController* hitsTableViewController __unused = [[HitsTableViewController alloc] init];
+    RefinementCollectionViewController* refinementCollectionViewController __unused = [[RefinementCollectionViewController alloc] init];
+    RefinementTableViewController* refinementTableViewController __unused = [[RefinementTableViewController alloc] init];
+}
 
 @end
