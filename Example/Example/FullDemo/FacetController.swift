@@ -16,7 +16,7 @@ class FacetController: UIViewController, RefinementTableViewDataSource {
     var instantSearch: InstantSearch!
     @IBOutlet weak var refinementList: RefinementTableWidget!
     @IBOutlet weak var statLabel: UILabel!
-    var statLabelController: LabelStatsController!
+    var statLabelController: StatsLabelController!
     
     var refinementViewController: RefinementViewController!
     
@@ -29,7 +29,7 @@ class FacetController: UIViewController, RefinementTableViewDataSource {
         
         instantSearch = InstantSearch.reference
         instantSearch.add(widget: refinementList)
-        statLabelController = LabelStatsController(label: statLabel)
+        statLabelController = StatsLabelController(label: statLabel)
         instantSearch.add(widget: statLabelController)
     }
     

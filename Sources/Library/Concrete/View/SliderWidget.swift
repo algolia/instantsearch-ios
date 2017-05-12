@@ -13,7 +13,6 @@ import UIKit
 @objc public class SliderWidget: UISlider, NumericControlViewDelegate, AlgoliaWidget {
     
     @IBInspectable public var attributeName: String = ""
-    
     @IBInspectable public var operation: String = "equal"
     @IBInspectable public var inclusive: Bool = true
     

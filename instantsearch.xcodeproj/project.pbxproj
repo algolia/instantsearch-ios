@@ -328,9 +328,9 @@
 				E233BC0D1EBC786B00F5F5E1 /* SegmentedControlWidget.swift */,
 				E27141C91E9E237200959294 /* StatsButtonWidget.swift */,
 				E27C163A1E9394250091D79E /* StatsLabelWidget.swift */,
-				E27C163D1E9394250091D79E /* ClearAllWidget.swift */,
 				E27C163E1E9394250091D79E /* ActivityIndicatorView.swift */,
 				E27C16391E9394250091D79E /* SearchBarWidget.swift */,
+				E27C163D1E9394250091D79E /* ClearAllWidget.swift */,
 			);
 			path = View;
 			sourceTree = "<group>";
