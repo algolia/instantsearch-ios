@@ -70,17 +70,17 @@ CGRect defaultRect;
     
     SliderWidget* sliderWidget = [[SliderWidget alloc] initWithFrame: defaultRect];
     sliderWidget.attribute = @"attribute";
-    sliderWidget.operation = @">";
+    sliderWidget.operator = @">";
     sliderWidget.inclusive = true;
     
     StepperWidget* stepperWidget = [[StepperWidget alloc] initWithFrame: defaultRect];
     stepperWidget.attribute = @"attribute";
-    stepperWidget.operation = @">";
+    stepperWidget.operator = @">";
     stepperWidget.inclusive = true;
     
     DatePickerWidget* datePickerWidget = [[DatePickerWidget alloc] initWithFrame: defaultRect];
     datePickerWidget.attribute = @"attribute";
-    datePickerWidget.operation = @">";
+    datePickerWidget.operator = @">";
     datePickerWidget.inclusive = true;
     
     OneValueSwitchWidget* oneValueSwitchWidget = [[OneValueSwitchWidget alloc] initWithFrame: defaultRect];

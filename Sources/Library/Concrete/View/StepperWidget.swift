@@ -13,7 +13,7 @@ import UIKit
 @objc public class StepperWidget: UIStepper, NumericControlViewDelegate, AlgoliaWidget {
     
     @IBInspectable public var attribute: String = ""
-    @IBInspectable public var operation: String = "<"
+    @IBInspectable public var `operator`: String = "<"
     @IBInspectable public var inclusive: Bool = true
     
     // Note: can't have optional Float because IBInspectable have to be bridgable to objc

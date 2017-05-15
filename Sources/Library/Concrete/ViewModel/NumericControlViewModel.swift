@@ -17,15 +17,15 @@ internal class NumericControlViewModel: NumericControlViewModelDelegate, Searcha
         return view.clearValue
     }
 
-    var operation: NumericRefinement.Operator {
-        switch view.operation {
+    var `operator`: NumericRefinement.Operator {
+        switch view.operator {
         case "lessThan", "<": return .lessThan
         case "lessThanOrEqual", "<=": return .lessThanOrEqual
         case "equal", "==": return .equal
         case "notEqual", "!=": return .notEqual
         case "greaterThanOrEqual", ">=": return .greaterThanOrEqual
         case "greaterThan", ">": return .greaterThan
-        default: fatalError("No valid operation")
+        default: fatalError("No valid operator")
         }
     }
 
@@ -43,7 +43,7 @@ internal class NumericControlViewModel: NumericControlViewModelDelegate, Searcha
 
     func configure(with searcher: Searcher) {
         self.searcher = searcher
-        if let numeric = self.searcher.params.getNumericRefinement(name: attribute, operation: operation, inclusive: inclusive) {
+        if let numeric = self.searcher.params.getNumericRefinement(name: attribute, operator: `operator`, inclusive: inclusive) {
             view.set(value: numeric.value)
         }
 
@@ -56,7 +56,7 @@ internal class NumericControlViewModel: NumericControlViewModelDelegate, Searcha
 
     func updateNumeric(value: NSNumber, doSearch: Bool) {
         
-        self.searcher.params.updateNumericRefinement(self.attribute, self.operation, value, inclusive: inclusive)
+        self.searcher.params.updateNumericRefinement(self.attribute, self.operator, value, inclusive: inclusive)
         
         if doSearch {
             self.searcher.search()
@@ -64,7 +64,7 @@ internal class NumericControlViewModel: NumericControlViewModelDelegate, Searcha
     }
 
     func removeNumeric(value: NSNumber) {
-        self.searcher.params.removeNumericRefinement(self.attribute, self.operation, value, inclusive: inclusive)
+        self.searcher.params.removeNumericRefinement(self.attribute, self.operator, value, inclusive: inclusive)
         self.searcher.search()
     }
 }
@@ -74,7 +74,7 @@ internal class NumericControlViewModel: NumericControlViewModelDelegate, Searcha
 extension NumericControlViewModel: RefinableDelegate {
 
     func onRefinementChange(numerics: [NumericRefinement]) {
-        for numeric in numerics where numeric.op == operation && numeric.inclusive == inclusive {
+        for numeric in numerics where numeric.op == `operator` && numeric.inclusive == inclusive {
             view.set(value: numeric.value)
         }
     }

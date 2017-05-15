@@ -19,7 +19,7 @@ import Foundation
     func set(value: NSNumber)
     
     var clearValue: NSNumber { get set }
-    var operation: String { get set }
+    var `operator`: String { get set }
     var inclusive: Bool { get set }
     var attribute: String { get set }
 }

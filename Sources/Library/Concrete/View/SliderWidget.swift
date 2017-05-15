@@ -13,7 +13,7 @@ import UIKit
 @objc public class SliderWidget: UISlider, NumericControlViewDelegate, AlgoliaWidget {
     
     @IBInspectable public var attribute: String = ""
-    @IBInspectable public var operation: String = "equal"
+    @IBInspectable public var `operator`: String = "equal"
     @IBInspectable public var inclusive: Bool = true
     
     // Note: can't have optional Float because IBInspectable have to be bridgable to objc

@@ -93,9 +93,9 @@ extension SearchParameters {
     }
     
     func getNumericRefinement(name filterName: String,
-                              operation: NumericRefinement.Operator,
+                              operator: NumericRefinement.Operator,
                               inclusive: Bool = true) -> NumericRefinement? {
-        return numericRefinements[filterName]?.first(where: { $0.op == operation && $0.inclusive == inclusive})
+        return numericRefinements[filterName]?.first(where: { $0.op == `operator` && $0.inclusive == inclusive})
     }
     
     func updatefacetRefinement(attribute: String, oldValue: String, newValue: String, inclusive: Bool = true) {
