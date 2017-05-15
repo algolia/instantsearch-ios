@@ -89,6 +89,10 @@ import AlgoliaSearch
     
     public var searcher: Searcher!
     
+    public var params: SearchParameters {
+        return searcher.params
+    }
+    
     private lazy var viewModelFetcher: ViewModelFetcher = {
        return ViewModelFetcher()
     }()
