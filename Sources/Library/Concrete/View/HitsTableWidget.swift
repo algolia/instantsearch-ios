@@ -11,7 +11,7 @@ import UIKit
 
 @objc public class HitsTableWidget: UITableView, HitsViewDelegate, AlgoliaWidget {
     
-    @IBInspectable public var hitsPerPage: UInt = 20
+    @IBInspectable public var hitsPerPage: UInt = Constants.Defaults.hitsPerPage
     @IBInspectable public var infiniteScrolling: Bool = true
     @IBInspectable public var remainingItemsBeforeLoading: UInt = 5
     

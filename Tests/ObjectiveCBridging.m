@@ -36,15 +36,11 @@ CGRect defaultRect;
 }
 
 - (void)testInitInstantSearchWithConfigure {
-    InstantSearch* instantSearch = [[InstantSearch alloc] initWithAppID:@"appID" apiKey:@"apiKey" index:@"index"];
-    
-    XCTAssertNotNil(instantSearch.searcher);
+    InstantSearch* instantSearch __unused = [[InstantSearch alloc] initWithAppID:@"appID" apiKey:@"apiKey" index:@"index"];
 }
 
 - (void)testInitInstantSearchWithSearcher {
-    InstantSearch* instantSearch = [[InstantSearch alloc] initWithSearcher: [self getSearcher]];
-    
-    XCTAssertNotNil(instantSearch.searcher);
+    InstantSearch* instantSearch __unused = [[InstantSearch alloc] initWithSearcher: [self getSearcher]];
 }
 
 - (void) testWidgets {

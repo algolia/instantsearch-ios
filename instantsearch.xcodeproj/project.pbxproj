@@ -11,6 +11,8 @@
 		28F828881C494B2C00330CF4 /* InstantSearch.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 28F8287D1C494B2C00330CF4 /* InstantSearch.framework */; };
 		6B3F1A5AC5B19AB0F4FC9B3C /* Pods_InstantSearchTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 33749566A6B791EB78B9A2F5 /* Pods_InstantSearchTests.framework */; };
 		BC2BDF7408F80426E13BBB47 /* Pods_InstantSearch.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C5E2FC6F7BC12D4C7904D4D8 /* Pods_InstantSearch.framework */; };
+		E2231E951EC9DC0D002FCF82 /* ConfigureInstantSearch.swift in Sources */ = {isa = PBXBuildFile; fileRef = E2231E931EC9DBC4002FCF82 /* ConfigureInstantSearch.swift */; };
+		E2231E971EC9F5A7002FCF82 /* Constants.swift in Sources */ = {isa = PBXBuildFile; fileRef = E2231E961EC9F5A7002FCF82 /* Constants.swift */; };
 		E233BBFD1EBA18C200F5F5E1 /* SwitchWidget.swift in Sources */ = {isa = PBXBuildFile; fileRef = E233BBFC1EBA18C200F5F5E1 /* SwitchWidget.swift */; };
 		E233BBFF1EBA43F500F5F5E1 /* OneValueSwitchWidget.swift in Sources */ = {isa = PBXBuildFile; fileRef = E233BBFE1EBA43F500F5F5E1 /* OneValueSwitchWidget.swift */; };
 		E233BC011EBA43FF00F5F5E1 /* TwoValuesSwitchWidget.swift in Sources */ = {isa = PBXBuildFile; fileRef = E233BC001EBA43FF00F5F5E1 /* TwoValuesSwitchWidget.swift */; };
@@ -90,6 +92,8 @@
 		A41C629CA0D1EB7443B828C6 /* Pods-InstantSearchTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-InstantSearchTests.release.xcconfig"; path = "Pods/Target Support Files/Pods-InstantSearchTests/Pods-InstantSearchTests.release.xcconfig"; sourceTree = "<group>"; };
 		C5E2FC6F7BC12D4C7904D4D8 /* Pods_InstantSearch.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_InstantSearch.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		CFF04E06E7D4D0CDE5F6CF30 /* Pods-InstantSearch.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-InstantSearch.release.xcconfig"; path = "Pods/Target Support Files/Pods-InstantSearch/Pods-InstantSearch.release.xcconfig"; sourceTree = "<group>"; };
+		E2231E931EC9DBC4002FCF82 /* ConfigureInstantSearch.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ConfigureInstantSearch.swift; sourceTree = "<group>"; };
+		E2231E961EC9F5A7002FCF82 /* Constants.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Constants.swift; sourceTree = "<group>"; };
 		E233BBFC1EBA18C200F5F5E1 /* SwitchWidget.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SwitchWidget.swift; sourceTree = "<group>"; };
 		E233BBFE1EBA43F500F5F5E1 /* OneValueSwitchWidget.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = OneValueSwitchWidget.swift; sourceTree = "<group>"; };
 		E233BC001EBA43FF00F5F5E1 /* TwoValuesSwitchWidget.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TwoValuesSwitchWidget.swift; sourceTree = "<group>"; };
@@ -194,6 +198,7 @@
 			children = (
 				28F8288E1C494B2C00330CF4 /* Info.plist */,
 				287D0A6D1C4B73BD004566D6 /* InstantSearchTests.swift */,
+				E2231E931EC9DBC4002FCF82 /* ConfigureInstantSearch.swift */,
 				E2A477021EC62031007CA367 /* InstantSearch-Tests-Bridging-Header.h */,
 				E2A476F81EC5DEDE007CA367 /* ObjectiveCBridging.m */,
 				E2A476FD1EC60BD7007CA367 /* CustomWidget.m */,
@@ -366,6 +371,7 @@
 				E27A7C021E97B913005B2506 /* Concrete */,
 				E27A7C001E97B83C005B2506 /* Protocols */,
 				E27C16411E9394250091D79E /* Helpers.swift */,
+				E2231E961EC9F5A7002FCF82 /* Constants.swift */,
 				28F828821C494B2C00330CF4 /* Info.plist */,
 				E27C163B1E9394250091D79E /* InstantSearch.swift */,
 				E27C163C1E9394250091D79E /* InstantSearchMultiplePresenter.swift */,
@@ -636,6 +642,7 @@
 				E233BC051EBB78D400F5F5E1 /* FacetControlViewDelegate.swift in Sources */,
 				E27C164A1E9394250091D79E /* ActivityIndicatorView.swift in Sources */,
 				E27141D51E9F764100959294 /* HitsTableViewController.swift in Sources */,
+				E2231E971EC9F5A7002FCF82 /* Constants.swift in Sources */,
 				E28B08011EB0F459003AAE47 /* CustomSlider.swift in Sources */,
 				E27A7BEF1E962768005B2506 /* HitsViewModel.swift in Sources */,
 				E233BBFD1EBA18C200F5F5E1 /* SwitchWidget.swift in Sources */,
@@ -658,6 +665,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				E2231E951EC9DC0D002FCF82 /* ConfigureInstantSearch.swift in Sources */,
 				287D0A6E1C4B73BD004566D6 /* InstantSearchTests.swift in Sources */,
 				E2A476FA1EC5DFC1007CA367 /* ObjectiveCBridging.m in Sources */,
 				E2A476FE1EC60BD7007CA367 /* CustomWidget.m in Sources */,
