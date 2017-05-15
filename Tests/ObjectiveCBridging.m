@@ -55,47 +55,47 @@ CGRect defaultRect;
     hitsCollectionWidget.remainingItemsBeforeLoading = 5;
     
     RefinementTableWidget* refinementTableWidget = [[RefinementTableWidget alloc] initWithFrame: defaultRect];
-    refinementTableWidget.attribute = @"attributeName";
+    refinementTableWidget.attribute = @"attribute";
     refinementTableWidget.refinedFirst = true;
     refinementTableWidget.operator = @"and";
     refinementTableWidget.sortBy = @"count:desc";
     refinementTableWidget.limit = 5;
     
     RefinementCollectionWidget* refinementCollectionWidget = [[RefinementCollectionWidget alloc] initWithFrame: defaultRect collectionViewLayout:[[UICollectionViewFlowLayout alloc] init]];
-    refinementCollectionWidget.attribute = @"attributeName";
+    refinementCollectionWidget.attribute = @"attribute";
     refinementCollectionWidget.refinedFirst = true;
     refinementCollectionWidget.operator = @"and";
     refinementCollectionWidget.sortBy = @"count:desc";
     refinementCollectionWidget.limit = 5;
     
     SliderWidget* sliderWidget = [[SliderWidget alloc] initWithFrame: defaultRect];
-    sliderWidget.attributeName = @"attributeName";
+    sliderWidget.attribute = @"attribute";
     sliderWidget.operation = @">";
     sliderWidget.inclusive = true;
     
     StepperWidget* stepperWidget = [[StepperWidget alloc] initWithFrame: defaultRect];
-    stepperWidget.attributeName = @"attributeName";
+    stepperWidget.attribute = @"attribute";
     stepperWidget.operation = @">";
     stepperWidget.inclusive = true;
     
     DatePickerWidget* datePickerWidget = [[DatePickerWidget alloc] initWithFrame: defaultRect];
-    datePickerWidget.attributeName = @"attributeName";
+    datePickerWidget.attribute = @"attribute";
     datePickerWidget.operation = @">";
     datePickerWidget.inclusive = true;
     
     OneValueSwitchWidget* oneValueSwitchWidget = [[OneValueSwitchWidget alloc] initWithFrame: defaultRect];
-    oneValueSwitchWidget.attributeName = @"attributeName";
+    oneValueSwitchWidget.attribute = @"attribute";
     oneValueSwitchWidget.valueOn = @"true";
     oneValueSwitchWidget.inclusive = true;
     
     TwoValuesSwitchWidget* twoValueSwitchWidget = [[TwoValuesSwitchWidget alloc] initWithFrame: defaultRect];
-    twoValueSwitchWidget.attributeName = @"attributeName";
+    twoValueSwitchWidget.attribute = @"attribute";
     twoValueSwitchWidget.valueOn = @"true";
     twoValueSwitchWidget.valueOff = @"false";
     twoValueSwitchWidget.inclusive = true;
     
     SegmentedControlWidget* segmentedControlWidget = [[SegmentedControlWidget alloc] initWithFrame: defaultRect];
-    segmentedControlWidget.attributeName = @"attributeName";
+    segmentedControlWidget.attribute = @"attribute";
     segmentedControlWidget.inclusive = true;
     
     StatsButtonWidget* statsButtonWidget = [[StatsButtonWidget alloc] initWithFrame: defaultRect];

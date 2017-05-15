@@ -109,7 +109,7 @@
                                     <constraint firstAttribute="width" constant="114" id="l8w-RL-fsr"/>
                                 </constraints>
                                 <userDefinedRuntimeAttributes>
-                                    <userDefinedRuntimeAttribute type="string" keyPath="attributeName" value="salePrice"/>
+                                    <userDefinedRuntimeAttribute type="string" keyPath="attribute" value="salePrice"/>
                                     <userDefinedRuntimeAttribute type="string" keyPath="operation" value="lessThan"/>
                                 </userDefinedRuntimeAttributes>
                             </slider>
@@ -134,21 +134,21 @@
                             <switch opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" contentHorizontalAlignment="center" contentVerticalAlignment="center" translatesAutoresizingMaskIntoConstraints="NO" id="w9W-tp-hXt" customClass="OneValueSwitchWidget" customModule="InstantSearch">
                                 <rect key="frame" x="13" y="158" width="51" height="31"/>
                                 <userDefinedRuntimeAttributes>
-                                    <userDefinedRuntimeAttribute type="string" keyPath="attributeName" value="shipping"/>
+                                    <userDefinedRuntimeAttribute type="string" keyPath="attribute" value="shipping"/>
                                     <userDefinedRuntimeAttribute type="string" keyPath="valueOn" value="Free shipping"/>
                                 </userDefinedRuntimeAttributes>
                             </switch>
                             <switch opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" contentHorizontalAlignment="center" contentVerticalAlignment="center" translatesAutoresizingMaskIntoConstraints="NO" id="cXt-GI-ToO" customClass="OneValueSwitchWidget" customModule="InstantSearch">
                                 <rect key="frame" x="127" y="158" width="51" height="31"/>
                                 <userDefinedRuntimeAttributes>
-                                    <userDefinedRuntimeAttribute type="string" keyPath="attributeName" value="shipping"/>
+                                    <userDefinedRuntimeAttribute type="string" keyPath="attribute" value="shipping"/>
                                     <userDefinedRuntimeAttribute type="string" keyPath="valueOn" value="Free shipping"/>
                                 </userDefinedRuntimeAttributes>
                             </switch>
                             <switch opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" contentHorizontalAlignment="center" contentVerticalAlignment="center" translatesAutoresizingMaskIntoConstraints="NO" id="0ii-o3-h6a" customClass="TwoValuesSwitchWidget" customModule="InstantSearch">
                                 <rect key="frame" x="70" y="158" width="51" height="31"/>
                                 <userDefinedRuntimeAttributes>
-                                    <userDefinedRuntimeAttribute type="string" keyPath="attributeName" value="manufacturer"/>
+                                    <userDefinedRuntimeAttribute type="string" keyPath="attribute" value="manufacturer"/>
                                     <userDefinedRuntimeAttribute type="string" keyPath="valueOn" value="Google"/>
                                     <userDefinedRuntimeAttribute type="string" keyPath="valueOff" value="Logitech"/>
                                 </userDefinedRuntimeAttributes>
@@ -156,7 +156,7 @@
                             <switch opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" contentHorizontalAlignment="center" contentVerticalAlignment="center" translatesAutoresizingMaskIntoConstraints="NO" id="dn5-23-Tsk" customClass="TwoValuesSwitchWidget" customModule="InstantSearch">
                                 <rect key="frame" x="191" y="158" width="51" height="31"/>
                                 <userDefinedRuntimeAttributes>
-                                    <userDefinedRuntimeAttribute type="string" keyPath="attributeName" value="manufacturer"/>
+                                    <userDefinedRuntimeAttribute type="string" keyPath="attribute" value="manufacturer"/>
                                     <userDefinedRuntimeAttribute type="string" keyPath="valueOn" value="Google"/>
                                     <userDefinedRuntimeAttribute type="string" keyPath="valueOff" value="Logitech"/>
                                 </userDefinedRuntimeAttributes>
@@ -164,7 +164,7 @@
                             <stepper opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" contentHorizontalAlignment="center" contentVerticalAlignment="center" maximumValue="100" translatesAutoresizingMaskIntoConstraints="NO" id="dky-gt-ybb" customClass="StepperWidget" customModule="InstantSearch">
                                 <rect key="frame" x="248" y="158" width="94" height="29"/>
                                 <userDefinedRuntimeAttributes>
-                                    <userDefinedRuntimeAttribute type="string" keyPath="attributeName" value="salePrice"/>
+                                    <userDefinedRuntimeAttribute type="string" keyPath="attribute" value="salePrice"/>
                                     <userDefinedRuntimeAttribute type="string" keyPath="operation" value="&gt;"/>
                                 </userDefinedRuntimeAttributes>
                             </stepper>
@@ -177,7 +177,7 @@
                                     <segment title="Music"/>
                                 </segments>
                                 <userDefinedRuntimeAttributes>
-                                    <userDefinedRuntimeAttribute type="string" keyPath="attributeName" value="type"/>
+                                    <userDefinedRuntimeAttribute type="string" keyPath="attribute" value="type"/>
                                     <userDefinedRuntimeAttribute type="boolean" keyPath="inclusive" value="NO"/>
                                 </userDefinedRuntimeAttributes>
                             </segmentedControl>
@@ -190,7 +190,7 @@
                                     <segment title="Music"/>
                                 </segments>
                                 <userDefinedRuntimeAttributes>
-                                    <userDefinedRuntimeAttribute type="string" keyPath="attributeName" value="type"/>
+                                    <userDefinedRuntimeAttribute type="string" keyPath="attribute" value="type"/>
                                     <userDefinedRuntimeAttribute type="boolean" keyPath="inclusive" value="NO"/>
                                 </userDefinedRuntimeAttributes>
                             </segmentedControl>

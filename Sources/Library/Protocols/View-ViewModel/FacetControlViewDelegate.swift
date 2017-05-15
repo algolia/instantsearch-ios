@@ -18,5 +18,5 @@ import Foundation
     func set(value: String)
     
     var inclusive: Bool { get set }
-    var attributeName: String { get set }
+    var attribute: String { get set }
 }

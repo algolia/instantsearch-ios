@@ -15,7 +15,7 @@ import UIKit
     private var oldSegmentedIndex: Int = UISegmentedControlNoSegment
     private var actualSegmentedIndex: Int = UISegmentedControlNoSegment
     
-    @IBInspectable public var attributeName: String = ""
+    @IBInspectable public var attribute: String = ""
     @IBInspectable public var inclusive: Bool = true
     
     internal var operation: String = "equal"

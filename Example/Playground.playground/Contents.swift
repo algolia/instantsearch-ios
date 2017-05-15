@@ -13,6 +13,6 @@ import InstantSearch
 var str = "Hello, playground"
 
 var sliderWidget = SliderWidget()
-sliderWidget.attributeName = "salePrice"
+sliderWidget.attribute = "salePrice"
 
 

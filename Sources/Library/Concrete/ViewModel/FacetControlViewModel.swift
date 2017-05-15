@@ -17,8 +17,8 @@ internal class FacetControlViewModel: FacetControlViewModelDelegate, SearchableV
         return view.inclusive
     }
     
-    var attributeName: String {
-        return view.attributeName
+    var attribute: String {
+        return view.attribute
     }
     
     // MARK: - SearchableViewModel
@@ -32,8 +32,8 @@ internal class FacetControlViewModel: FacetControlViewModelDelegate, SearchableV
         // of facetControl (contrary to facetMenu), will we only have at the maximum one value?
         // Right now, taknig the first refinement in getFacetRefinement but can do better...
         // since now we ll have bugs
-        if self.searcher.params.hasFacetRefinements(name: self.attributeName) {
-            view.set(value: self.searcher.params.getFacetRefinement(name: attributeName)!.value)
+        if self.searcher.params.hasFacetRefinements(name: self.attribute) {
+            view.set(value: self.searcher.params.getFacetRefinement(name: attribute)!.value)
         }
         
         view.configureView()
@@ -44,15 +44,15 @@ internal class FacetControlViewModel: FacetControlViewModelDelegate, SearchableV
     weak var view: FacetControlViewDelegate!
     
     func addFacet(value: String, doSearch: Bool) {
-        guard !self.searcher.params.hasFacetRefinement(name: self.attributeName, value: value) else { return }
-        self.searcher.params.addFacetRefinement(name: self.attributeName, value: value, inclusive: inclusive)
+        guard !self.searcher.params.hasFacetRefinement(name: self.attribute, value: value) else { return }
+        self.searcher.params.addFacetRefinement(name: self.attribute, value: value, inclusive: inclusive)
         if doSearch {
             self.searcher.search()
         }
     }
     
     func updatefacet(oldValue: String, newValue: String, doSearch: Bool) {
-        self.searcher.params.updatefacetRefinement(attributeName: self.attributeName,
+        self.searcher.params.updatefacetRefinement(attribute: self.attribute,
                                                    oldValue: oldValue,
                                                    newValue: newValue,
                                                    inclusive: inclusive)
@@ -63,7 +63,7 @@ internal class FacetControlViewModel: FacetControlViewModelDelegate, SearchableV
     }
     
     func removeFacet(value: String) {
-        self.searcher.params.removeFacetRefinement(name: self.attributeName, value: value)
+        self.searcher.params.removeFacetRefinement(name: self.attribute, value: value)
         self.searcher.search()
     }
 }
@@ -71,12 +71,9 @@ internal class FacetControlViewModel: FacetControlViewModelDelegate, SearchableV
 // MARK: - RefinableDelegate
 
 extension FacetControlViewModel: RefinableDelegate {
-    var attribute: String {
-        return attributeName
-    }
     
     func onRefinementChange(facets: [FacetRefinement]) {
-        for facet in facets where facet.name == self.attributeName && facet.inclusive == inclusive {
+        for facet in facets where facet.name == self.attribute && facet.inclusive == inclusive {
             view.set(value: facet.value)
             return
         }
@@ -101,9 +98,9 @@ extension SearchParameters {
         return numericRefinements[filterName]?.first(where: { $0.op == operation && $0.inclusive == inclusive})
     }
     
-    func updatefacetRefinement(attributeName: String, oldValue: String, newValue: String, inclusive: Bool = true) {
-        guard !hasFacetRefinement(name: attributeName, value: newValue) else { return }
-        removeFacetRefinement(name: attributeName, value: oldValue)
-        addFacetRefinement(name: attributeName, value: newValue, inclusive: inclusive)
+    func updatefacetRefinement(attribute: String, oldValue: String, newValue: String, inclusive: Bool = true) {
+        guard !hasFacetRefinement(name: attribute, value: newValue) else { return }
+        removeFacetRefinement(name: attribute, value: oldValue)
+        addFacetRefinement(name: attribute, value: newValue, inclusive: inclusive)
     }
 }

@@ -33,8 +33,8 @@ internal class NumericControlViewModel: NumericControlViewModelDelegate, Searcha
         return view.inclusive
     }
 
-    var attributeName: String {
-        return view.attributeName
+    var attribute: String {
+        return view.attribute
     }
 
     // MARK: - SearchableViewModel
@@ -43,7 +43,7 @@ internal class NumericControlViewModel: NumericControlViewModelDelegate, Searcha
 
     func configure(with searcher: Searcher) {
         self.searcher = searcher
-        if let numeric = self.searcher.params.getNumericRefinement(name: attributeName, operation: operation, inclusive: inclusive) {
+        if let numeric = self.searcher.params.getNumericRefinement(name: attribute, operation: operation, inclusive: inclusive) {
             view.set(value: numeric.value)
         }
 
@@ -56,7 +56,7 @@ internal class NumericControlViewModel: NumericControlViewModelDelegate, Searcha
 
     func updateNumeric(value: NSNumber, doSearch: Bool) {
         
-        self.searcher.params.updateNumericRefinement(self.attributeName, self.operation, value, inclusive: inclusive)
+        self.searcher.params.updateNumericRefinement(self.attribute, self.operation, value, inclusive: inclusive)
         
         if doSearch {
             self.searcher.search()
@@ -64,7 +64,7 @@ internal class NumericControlViewModel: NumericControlViewModelDelegate, Searcha
     }
 
     func removeNumeric(value: NSNumber) {
-        self.searcher.params.removeNumericRefinement(self.attributeName, self.operation, value, inclusive: inclusive)
+        self.searcher.params.removeNumericRefinement(self.attribute, self.operation, value, inclusive: inclusive)
         self.searcher.search()
     }
 }
@@ -72,9 +72,6 @@ internal class NumericControlViewModel: NumericControlViewModelDelegate, Searcha
 // MARK: - RefinableDelegate
 
 extension NumericControlViewModel: RefinableDelegate {
-    var attribute: String {
-        return attributeName
-    }
 
     func onRefinementChange(numerics: [NumericRefinement]) {
         for numeric in numerics where numeric.op == operation && numeric.inclusive == inclusive {

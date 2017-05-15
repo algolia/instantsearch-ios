@@ -231,13 +231,13 @@ import AlgoliaSearch
         if let refinableWidget = widgetVM as? RefinableDelegate {
             refinableDelegates.add(refinableWidget)
 
-            let attributeName = refinableWidget.attribute
+            let attribute = refinableWidget.attribute
 
-            if refinableDelegateMap[attributeName] == nil {
-                refinableDelegateMap[attributeName] = WeakSet<RefinableDelegate>()
+            if refinableDelegateMap[attribute] == nil {
+                refinableDelegateMap[attribute] = WeakSet<RefinableDelegate>()
             }
 
-            refinableDelegateMap[attributeName]!.add(refinableWidget)
+            refinableDelegateMap[attribute]!.add(refinableWidget)
         }
     }
 

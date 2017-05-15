@@ -12,7 +12,7 @@ import UIKit
 @IBDesignable
 @objc public class SwitchWidget: UISwitch, FacetControlViewDelegate, AlgoliaWidget {
     
-    @IBInspectable public var attributeName: String = ""
+    @IBInspectable public var attribute: String = ""
     @IBInspectable public var valueOn: String = "true"
     @IBInspectable public var inclusive: Bool = true
     internal var operation: String = "equal"

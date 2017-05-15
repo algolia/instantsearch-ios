@@ -12,7 +12,7 @@ import UIKit
 @IBDesignable
 @objc public class DatePickerWidget: UIDatePicker, NumericControlViewDelegate, AlgoliaWidget {
     
-    @IBInspectable public var attributeName: String = ""
+    @IBInspectable public var attribute: String = ""
     @IBInspectable public var operation: String = "equal"
     @IBInspectable public var inclusive: Bool = true
     
