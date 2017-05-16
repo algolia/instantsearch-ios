@@ -67,6 +67,7 @@ extension StatsViewModel: ResultingDelegate {
         if error != nil {
             let text = errorText
             view.set(text: text)
+            print(error!)
         }
     }
 }

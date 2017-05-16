@@ -71,9 +71,9 @@ internal class RefinementMenuViewModel: RefinementMenuViewModelDelegate, Searcha
         // TODO: Bug of storing state at this level instead of Searcher level.
         // Think if have 2 refinement menu widgets on same screen refereing 2 different viewmodels,
         // so the state of facetResults will not be shared between them. careful...
-        if let results = searcher.results, searcher.hits.isEmpty {
+        if let results = searcher.results, searcher.hits.isEmpty, let facetCounts = results.facets(name: attribute) {
             facetResults = getRefinementList(searcher: searcher,
-                                             facetCounts: results.facets(name: attribute),
+                                             facetCounts: facetCounts,
                                              andFacetName: attribute,
                                              transformRefinementList: transformRefinementList,
                                              areRefinedValuesFirst: refinedFirst)
@@ -109,13 +109,19 @@ internal class RefinementMenuViewModel: RefinementMenuViewModelDelegate, Searcha
 
 extension RefinementMenuViewModel: ResultingDelegate {
     func on(results: SearchResults?, error: Error?, userInfo: [String : Any]) {
-        guard let searcher = searcher else { return }
-        // TODO: Fix that cause for some reason, can't find the facet refinement.
-        //,searcher.params.hasFacetRefinements(name: facet)
-        // else { return }
+        
+        guard let results = results else {
+            print(error ?? "")
+            return
+        }
+        
+        guard let facetCounts = results.facets(name: attribute) else {
+            print("No facet counts found for attribute: \(attribute)")
+            return
+        }
         
         facetResults = getRefinementList(searcher: searcher,
-                                         facetCounts: results?.facets(name: attribute),
+                                         facetCounts: facetCounts,
                                          andFacetName: attribute,
                                          transformRefinementList: transformRefinementList,
                                          areRefinedValuesFirst: refinedFirst)

@@ -43,7 +43,7 @@ import InstantSearchCore
 
 extension RefinementMenuViewModel {
     @objc public func getRefinementList(searcher: Searcher,
-                                        facetCounts: [String: Int]?,
+                                        facetCounts: [String: Int],
                                         andFacetName facetName: String,
                                         transformRefinementList: TransformRefinementList,
                                         areRefinedValuesFirst: Bool) -> [FacetValue] {

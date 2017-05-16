@@ -76,9 +76,15 @@ extension HitsViewModel: ResultingDelegate {
     // MARK: - ResultingDelegate
     
     func on(results: SearchResults?, error: Error?, userInfo: [String: Any]) {
+        
+        guard let results = results else {
+            print(error ?? "")
+            return
+        }
+        
         view.reloadHits()
         
-        if results?.page == 0 {
+        if results.page == 0 {
             view.scrollTop()
         }
     }
