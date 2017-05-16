@@ -31,31 +31,59 @@ class InstantSearchTests: XCTestCase {
         super.tearDown()
     }
     
-    func testAddWidgets() {
+    func testAddHitsWidgets() {
         let view = UIView(frame: CGRect(x: 0, y: 0, width: 100, height: 100))
         let hitsTableWidget = HitsTableWidget(frame: defaultRect)
         
         view.addSubview(hitsTableWidget)
         
+        // Make sure that we didn't set the hitsPerPage param before adding the widget.
         XCTAssertNil(instantSearch.searcher.params.hitsPerPage)
-        instantSearch.addAllWidgets(in: view)
+        
+        instantSearch.addAllWidgets(in: view, doSearch: false)
+        
+        // Make sure params.hitsPerPage was correctly set to the default by just adding the hits widget.
         XCTAssertEqual(instantSearch.searcher.params.hitsPerPage, Constants.Defaults.hitsPerPage)
     }
     
-    func testAddWidgetsWithCustomParameters() {
+    func testAddRefinementMenu() {
+        let refinementTableWidget = RefinementTableWidget(frame: defaultRect)
+        refinementTableWidget.attribute = "attributeName"
+        let r = Hits
+        var didSearch = false
+        
+        XCTAssertNil(instantSearch.params.facets)
+        XCTAssertTrue(instantSearch.params.facetRefinements.isEmpty)
+        
+        instantSearch.searcher.addResultHandler { results,_,_ in
+            if !didSearch {
+                refinementTableWidget.selectRow(at: IndexPath(row: 0, section: 0), animated: false, scrollPosition: .none)
+                didSearch = true
+            } else {
+                XCTAssertEqual(results?.nbHits, 1574)
+            }
+        }
+        
+        instantSearch.add(widget: refinementTableWidget, doSearch: true)
+        XCTAssertEqual(instantSearch.params.facets!, ["attributeName"])
+        
+        
+    }
+    
+    func testAddHitsWidgetsWithCustomParameters() {
         let view = UIView(frame: CGRect(x: 0, y: 0, width: 100, height: 100))
         let hitsTableWidget = HitsTableWidget(frame: defaultRect)
         hitsTableWidget.hitsPerPage = 5
         
         view.addSubview(hitsTableWidget)
         
+        // Make sure that we didn't set the hitsPerPage param before adding the widget.
         XCTAssertNil(instantSearch.searcher.params.hitsPerPage)
-        instantSearch.addAllWidgets(in: view)
+        
+        instantSearch.addAllWidgets(in: view, doSearch: false)
+        
+        // Make sure params.hitsPerPage was correctly set by just adding the hits widget.
         XCTAssertEqual(instantSearch.searcher.params.hitsPerPage, 5)
-    }
-    
-    func resultHandler(_ results: SearchResults?, _ error: Error?, _ userInfo: [String: Any]) {
-        expectation.fulfill()
     }
     
 //    func testExample() {

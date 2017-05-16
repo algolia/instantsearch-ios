@@ -30,12 +30,18 @@ class ConfigureInstantSearch: XCTestCase {
         InstantSearch.reference.params.attributesToRetrieve = ["name", "salePrice"]
         InstantSearch.reference.params.attributesToHighlight = ["name"]
         
+        // Make sure a Searcher was actually created
         XCTAssertNotNil(InstantSearch.reference.searcher)
+        
+        // Make sure params of InstantSearch are linked to searcher.params
         XCTAssertEqual(InstantSearch.reference.params, InstantSearch.reference.searcher.params)
+        
         InstantSearch.reference.searcher.addResultHandler(resultHandler(_:_:_:))
         
         // TODO: This needs to be mocked!
         InstantSearch.reference.searcher.search()
+        
+        // Expect that search goes well
         expectation = self.expectation(description: "Search in \(ALGOLIA_INDEX_NAME)")
         waitForExpectations(timeout: 3, handler: nil)
     }
@@ -48,12 +54,18 @@ class ConfigureInstantSearch: XCTestCase {
         instantSearch.params.attributesToRetrieve = ["name", "salePrice"]
         instantSearch.params.attributesToHighlight = ["name"]
         
+        // Make sure that Searcher of the singleton is not set
         XCTAssertNil(InstantSearch.reference.searcher)
+        
+        // Make sure that searcher in InstantSearch instance is set
         XCTAssertNotNil(instantSearch.searcher)
+        
         instantSearch.searcher.addResultHandler(resultHandler(_:_:_:))
         
         // TODO: This needs to be mocked!
         instantSearch.searcher.search()
+        
+        // Expect that search goes well
         expectation = self.expectation(description: "Search in \(ALGOLIA_INDEX_NAME)")
         waitForExpectations(timeout: 3, handler: nil)
     }
