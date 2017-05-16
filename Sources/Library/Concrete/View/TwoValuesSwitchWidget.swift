@@ -9,7 +9,7 @@
 import Foundation
 
 @objc public class TwoValuesSwitchWidget: SwitchWidget {
-    @IBInspectable public var valueOff: String = "false"
+    @IBInspectable public var valueOff: String = Constants.Defaults.valueOff
     
     override public func configureView() {
         addTarget(self, action: #selector(facetValueChanged), for: .valueChanged)

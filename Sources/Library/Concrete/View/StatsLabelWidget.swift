@@ -11,9 +11,9 @@ import UIKit
 @IBDesignable
 @objc public class StatsLabelWidget: UILabel, StatsViewDelegate, AlgoliaWidget {
     
-    @IBInspectable public var resultTemplate: String = "{nbHits} results"
-    @IBInspectable public var clearText: String = ""
-    @IBInspectable public var errorText: String = "Error in fetching results"
+    @IBInspectable public var resultTemplate: String = Constants.Defaults.resultTemplate
+    @IBInspectable public var errorText: String = Constants.Defaults.errorText
+    @IBInspectable internal var clearText: String = Constants.Defaults.clearText
     
     var viewModel: StatsViewModelDelegate
     
@@ -40,9 +40,9 @@ import UIKit
     
     var viewModel: StatsViewModelDelegate
     
-    public var resultTemplate: String = "{nbHits} results"
-    public var clearText: String = ""
-    public var errorText: String = "Error in fetching results"
+    public var resultTemplate: String = Constants.Defaults.resultTemplate
+    public var errorText: String = Constants.Defaults.errorText
+    internal var clearText: String = Constants.Defaults.clearText
     
     public init(label: UILabel) {
         self.label = label

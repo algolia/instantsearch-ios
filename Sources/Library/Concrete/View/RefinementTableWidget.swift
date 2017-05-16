@@ -12,11 +12,11 @@ import UIKit
 @IBDesignable
 @objc public class RefinementTableWidget: UITableView, RefinementMenuViewDelegate, AlgoliaWidget {
     
-    @IBInspectable public var attribute: String = ""
-    @IBInspectable public var refinedFirst: Bool = true
-    @IBInspectable public var `operator`: String = "or"
-    @IBInspectable public var sortBy: String = "count:desc"
-    @IBInspectable public var limit: Int = 10
+    @IBInspectable public var attribute: String = Constants.Defaults.attribute
+    @IBInspectable public var refinedFirst: Bool = Constants.Defaults.refinedFirst
+    @IBInspectable public var `operator`: String = Constants.Defaults.operatorRefinement
+    @IBInspectable public var sortBy: String = Constants.Defaults.sortBy
+    @IBInspectable public var limit: Int = Constants.Defaults.limit
     
     var viewModel: RefinementMenuViewModelDelegate
     

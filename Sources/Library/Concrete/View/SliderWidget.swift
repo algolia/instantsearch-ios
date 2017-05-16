@@ -12,9 +12,9 @@ import UIKit
 @IBDesignable
 @objc public class SliderWidget: UISlider, NumericControlViewDelegate, AlgoliaWidget {
     
-    @IBInspectable public var attribute: String = ""
-    @IBInspectable public var `operator`: String = ">"
-    @IBInspectable public var inclusive: Bool = true
+    @IBInspectable public var attribute: String = Constants.Defaults.attribute
+    @IBInspectable public var `operator`: String = Constants.Defaults.operatorNumericControl
+    @IBInspectable public var inclusive: Bool = Constants.Defaults.inclusive
     
     // Note: can't have optional Float because IBInspectable have to be bridgable to objc
     // and value types optional cannot be bridged.

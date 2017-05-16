@@ -12,9 +12,9 @@ import UIKit
 @IBDesignable
 @objc public class SwitchWidget: UISwitch, FacetControlViewDelegate, AlgoliaWidget {
     
-    @IBInspectable public var attribute: String = ""
-    @IBInspectable public var valueOn: String = "true"
-    @IBInspectable public var inclusive: Bool = true
+    @IBInspectable public var attribute: String = Constants.Defaults.attribute
+    @IBInspectable public var valueOn: String = Constants.Defaults.valueOn
+    @IBInspectable public var inclusive: Bool = Constants.Defaults.inclusive
     
     var viewModel: FacetControlViewModelDelegate
     

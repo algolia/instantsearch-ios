@@ -11,9 +11,9 @@ import UIKit
 @IBDesignable
 @objc public class StatsButtonWidget: UIButton, StatsViewDelegate, AlgoliaWidget {
     
-    @IBInspectable public var resultTemplate: String = "{nbHits} results"
-    @IBInspectable internal var clearText: String = ""
-    @IBInspectable public var errorText: String = "Error in fetching results"
+    @IBInspectable public var resultTemplate: String = Constants.Defaults.resultTemplate
+    @IBInspectable public var errorText: String = Constants.Defaults.errorText
+    @IBInspectable internal var clearText: String = Constants.Defaults.clearText
     
     var viewModel: StatsViewModelDelegate
     

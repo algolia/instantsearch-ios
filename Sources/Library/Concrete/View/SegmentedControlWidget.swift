@@ -15,8 +15,8 @@ import UIKit
     private var oldSegmentedIndex: Int = UISegmentedControlNoSegment
     private var actualSegmentedIndex: Int = UISegmentedControlNoSegment
     
-    @IBInspectable public var attribute: String = ""
-    @IBInspectable public var inclusive: Bool = true
+    @IBInspectable public var attribute: String = Constants.Defaults.attribute
+    @IBInspectable public var inclusive: Bool = Constants.Defaults.inclusive
         
     var viewModel: FacetControlViewModelDelegate
     
