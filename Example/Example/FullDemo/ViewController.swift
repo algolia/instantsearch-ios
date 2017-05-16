@@ -6,16 +6,16 @@ class ViewController: UIViewController, HitTableViewDataSource, HitTableViewDele
     
     var instantSearch: InstantSearch!
     @IBOutlet weak var hitsTable: HitsTableWidget!
-    var hitsViewController: HitsViewController!
+    var hitsController: HitsController!
 
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        hitsViewController = HitsViewController(table: hitsTable)
-        hitsTable.dataSource = hitsViewController
-        hitsTable.delegate = hitsViewController
-        hitsViewController.tableDataSource = self
-        hitsViewController.tableDelegate = self
+        hitsController = HitsController(table: hitsTable)
+        hitsTable.dataSource = hitsController
+        hitsTable.delegate = hitsController
+        hitsController.tableDataSource = self
+        hitsController.tableDelegate = self
         
         instantSearch = InstantSearch.reference
         instantSearch.addAllWidgets(in: self.view)

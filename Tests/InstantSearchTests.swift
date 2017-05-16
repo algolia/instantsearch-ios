@@ -49,7 +49,6 @@ class InstantSearchTests: XCTestCase {
     func testAddRefinementMenu() {
         let refinementTableWidget = RefinementTableWidget(frame: defaultRect)
         refinementTableWidget.attribute = "attributeName"
-        let r = Hits
         var didSearch = false
         
         XCTAssertNil(instantSearch.params.facets)

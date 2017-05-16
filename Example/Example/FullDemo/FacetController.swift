@@ -18,14 +18,14 @@ class FacetController: UIViewController, RefinementTableViewDataSource {
     @IBOutlet weak var statLabel: UILabel!
     var statLabelController: StatsLabelController!
     
-    var refinementViewController: RefinementViewController!
+    var refinementController: RefinementController!
     
     override func viewDidLoad() {
-        refinementViewController = RefinementViewController(table: refinementList)
-        refinementList.dataSource = refinementViewController
-        refinementList.delegate = refinementViewController
-        refinementViewController.tableDataSource = self
-        // refinementViewController.tableDelegate = self
+        refinementController = RefinementController(table: refinementList)
+        refinementList.dataSource = refinementController
+        refinementList.delegate = refinementController
+        refinementController.tableDataSource = self
+        // refinementController.tableDelegate = self
         
         instantSearch = InstantSearch.reference
         instantSearch.add(widget: refinementList)

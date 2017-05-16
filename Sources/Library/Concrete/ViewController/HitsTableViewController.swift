@@ -12,30 +12,30 @@ import UIKit
 @objc open class HitsTableViewController: UIViewController,
     UITableViewDataSource, UITableViewDelegate, HitTableViewDataSource, HitTableViewDelegate {
     
-    var hitsViewController: HitsViewController!
+    var hitsController: HitsController!
     
     public var hitsTableView: HitsTableWidget! {
         didSet {
-            hitsViewController = HitsViewController(table: hitsTableView)
+            hitsController = HitsController(table: hitsTableView)
             hitsTableView.dataSource = self
             hitsTableView.delegate = self
-            hitsViewController.tableDataSource = self
-            hitsViewController.tableDelegate = self
+            hitsController.tableDataSource = self
+            hitsController.tableDelegate = self
         }
     }
     
     // Forward the 3 important dataSource and delegate methods to the HitsTableWidget
     
     public func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return self.hitsViewController.tableView(self.hitsTableView, numberOfRowsInSection: section)
+        return self.hitsController.tableView(self.hitsTableView, numberOfRowsInSection: section)
     }
     
     public func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        return self.hitsViewController.tableView(self.hitsTableView, cellForRowAt: indexPath)
+        return self.hitsController.tableView(self.hitsTableView, cellForRowAt: indexPath)
     }
     
     public func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        self.hitsViewController.tableView(self.hitsTableView, didSelectRowAt: indexPath)
+        self.hitsController.tableView(self.hitsTableView, didSelectRowAt: indexPath)
     }
     
     // The follow methods are to be implemented by the class extending HitsTableViewController

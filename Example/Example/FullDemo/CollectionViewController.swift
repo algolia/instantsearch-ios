@@ -13,17 +13,17 @@ import InstantSearchCore
 class CollectionViewController: UIViewController, HitCollectionViewDataSource {
 
     @IBOutlet var hitCollectionWidget: HitsCollectionWidget!
-    var hitsViewController: HitsViewController!
+    var hitsController: HitsController!
     var instantSearch: InstantSearch!
     
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        hitsViewController = HitsViewController(collection: hitCollectionWidget)
-        hitCollectionWidget.dataSource = hitsViewController
-        hitCollectionWidget.delegate = hitsViewController
-        hitsViewController.collectionDataSource = self
-        // hitsViewController.collectionDelegate = self
+        hitsController = HitsController(collection: hitCollectionWidget)
+        hitCollectionWidget.dataSource = hitsController
+        hitCollectionWidget.delegate = hitsController
+        hitsController.collectionDataSource = self
+        // hitsController.collectionDelegate = self
         
         hitCollectionWidget.register(UINib(nibName: "CollectionViewCell", bundle: nil) , forCellWithReuseIdentifier: "collectionViewCell")
         instantSearch = InstantSearch.reference

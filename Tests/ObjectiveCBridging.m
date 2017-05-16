@@ -146,8 +146,8 @@ CGRect defaultRect;
 }
 
 - (void)testViewControllers {
-    HitsViewController* hitsViewController __unused = [[HitsViewController alloc] initWithTable: [[HitsTableWidget alloc] initWithFrame: defaultRect]];
-    RefinementViewController* refinementViewController __unused = [[RefinementViewController alloc] initWithTable: [[RefinementTableWidget alloc] initWithFrame: defaultRect]];
+    HitsController* hitsController __unused = [[HitsController alloc] initWithTable: [[HitsTableWidget alloc] initWithFrame: defaultRect]];
+    RefinementController* refinementController __unused = [[RefinementController alloc] initWithTable: [[RefinementTableWidget alloc] initWithFrame: defaultRect]];
     
     HitsCollectionViewController* hitsCollectionViewController __unused = [[HitsCollectionViewController alloc] init];
     HitsTableViewController* hitsTableViewController __unused = [[HitsTableViewController alloc] init];

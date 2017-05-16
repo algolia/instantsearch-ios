@@ -12,30 +12,30 @@ import UIKit
 @objc open class HitsCollectionViewController: UIViewController,
     UICollectionViewDataSource, UICollectionViewDelegate, HitCollectionViewDataSource, HitCollectionViewDelegate {
     
-    var hitsViewController: HitsViewController!
+    var hitsController: HitsController!
     
     public var hitsCollectionView: HitsCollectionWidget! {
         didSet {
-            hitsViewController = HitsViewController(collection: hitsCollectionView)
+            hitsController = HitsController(collection: hitsCollectionView)
             hitsCollectionView.dataSource = self
             hitsCollectionView.delegate = self
-            hitsViewController.collectionDataSource = self
-            hitsViewController.collectionDelegate = self
+            hitsController.collectionDataSource = self
+            hitsController.collectionDelegate = self
         }
     }
     
     // Forward the 3 important dataSource and delegate methods to the HitsCollectionWidget
     
     public func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        return self.hitsViewController.collectionView(collectionView, numberOfItemsInSection: section)
+        return self.hitsController.collectionView(collectionView, numberOfItemsInSection: section)
     }
     
     public func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
-        return self.hitsViewController.collectionView(collectionView, cellForItemAt: indexPath)
+        return self.hitsController.collectionView(collectionView, cellForItemAt: indexPath)
     }
     
     public func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
-        return self.hitsViewController.collectionView(collectionView, didSelectItemAt: indexPath)
+        return self.hitsController.collectionView(collectionView, didSelectItemAt: indexPath)
     }
     
     // The follow methods are to be implemented by the class extending HitsCollectionViewController

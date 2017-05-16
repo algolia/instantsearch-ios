@@ -1,5 +1,5 @@
 //
-//  RefinementViewController
+//  RefinementController
 //  InstantSearch
 //
 //  Created by Guy Daher on 19/04/2017.
@@ -8,7 +8,7 @@
 
 import UIKit
 
-@objc public class RefinementViewController: NSObject {
+@objc public class RefinementController: NSObject {
     
     var viewModel: RefinementMenuViewModelDelegate
     
@@ -31,7 +31,7 @@ import UIKit
     }
 }
 
-extension RefinementViewController: UITableViewDataSource {
+extension RefinementController: UITableViewDataSource {
     
     public func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let facetValue = viewModel.facetForRow(at: indexPath)
@@ -48,13 +48,13 @@ extension RefinementViewController: UITableViewDataSource {
     }
 }
 
-extension RefinementViewController: UITableViewDelegate {
+extension RefinementController: UITableViewDelegate {
     public func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         viewModel.didSelectRow(at: indexPath)
     }
 }
 
-extension RefinementViewController: UICollectionViewDataSource {
+extension RefinementController: UICollectionViewDataSource {
     
     public func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
         return viewModel.numberOfRows(in: section)
@@ -71,7 +71,7 @@ extension RefinementViewController: UICollectionViewDataSource {
     }
 }
 
-extension RefinementViewController: UICollectionViewDelegate {
+extension RefinementController: UICollectionViewDelegate {
     public func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
         viewModel.didSelectRow(at: indexPath)
     }

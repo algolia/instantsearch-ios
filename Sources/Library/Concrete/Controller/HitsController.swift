@@ -1,5 +1,5 @@
 //
-//  HitsViewController.swift
+//  HitsController.swift
 //  InstantSearch
 //
 //  Created by Guy Daher on 19/04/2017.
@@ -8,7 +8,7 @@
 
 import UIKit
 
-@objc public class HitsViewController: NSObject {
+@objc public class HitsController: NSObject {
 
     var viewModel: HitsViewModelDelegate
     
@@ -31,7 +31,7 @@ import UIKit
     }
 }
 
-extension HitsViewController: UITableViewDataSource {
+extension HitsController: UITableViewDataSource {
     public func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return viewModel.numberOfRows()
     }
@@ -43,7 +43,7 @@ extension HitsViewController: UITableViewDataSource {
     }
 }
 
-extension HitsViewController: UITableViewDelegate {
+extension HitsController: UITableViewDelegate {
     public func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         let hit = viewModel.hitForRow(at: indexPath)
         
@@ -51,7 +51,7 @@ extension HitsViewController: UITableViewDelegate {
     }
 }
 
-extension HitsViewController: UICollectionViewDataSource {
+extension HitsController: UICollectionViewDataSource {
     public func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
         return viewModel.numberOfRows()
     }
@@ -64,7 +64,7 @@ extension HitsViewController: UICollectionViewDataSource {
     }
 }
 
-extension HitsViewController: UICollectionViewDelegate {
+extension HitsController: UICollectionViewDelegate {
     public func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
         let hit = viewModel.hitForRow(at: indexPath)
         

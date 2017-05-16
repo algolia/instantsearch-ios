@@ -57,7 +57,7 @@
 		E27C164D1E9394250091D79E /* Helpers.swift in Sources */ = {isa = PBXBuildFile; fileRef = E27C16411E9394250091D79E /* Helpers.swift */; };
 		E28B07DA1EAF71D9003AAE47 /* Hits.swift in Sources */ = {isa = PBXBuildFile; fileRef = E28B07D91EAF71D9003AAE47 /* Hits.swift */; };
 		E28B07DC1EAF8423003AAE47 /* Refinement.swift in Sources */ = {isa = PBXBuildFile; fileRef = E28B07DB1EAF8423003AAE47 /* Refinement.swift */; };
-		E28B07E01EAF88D9003AAE47 /* RefinementViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E28B07DF1EAF88D9003AAE47 /* RefinementViewController.swift */; };
+		E28B07E01EAF88D9003AAE47 /* RefinementController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E28B07DF1EAF88D9003AAE47 /* RefinementController.swift */; };
 		E28B07E21EAF9F27003AAE47 /* RefinementCollectionWidget.swift in Sources */ = {isa = PBXBuildFile; fileRef = E28B07E11EAF9F27003AAE47 /* RefinementCollectionWidget.swift */; };
 		E28B07E41EAF9FF2003AAE47 /* RefinementTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E28B07E31EAF9FF2003AAE47 /* RefinementTableViewController.swift */; };
 		E28B07E61EAF9FFE003AAE47 /* RefinementCollectionViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E28B07E51EAF9FFE003AAE47 /* RefinementCollectionViewController.swift */; };
@@ -66,7 +66,7 @@
 		E2A476FA1EC5DFC1007CA367 /* ObjectiveCBridging.m in Sources */ = {isa = PBXBuildFile; fileRef = E2A476F81EC5DEDE007CA367 /* ObjectiveCBridging.m */; };
 		E2A476FE1EC60BD7007CA367 /* CustomWidget.m in Sources */ = {isa = PBXBuildFile; fileRef = E2A476FD1EC60BD7007CA367 /* CustomWidget.m */; };
 		E2A477011EC61B43007CA367 /* InstantSearch-Bridging-Header.h in Headers */ = {isa = PBXBuildFile; fileRef = E2A477001EC61B43007CA367 /* InstantSearch-Bridging-Header.h */; };
-		E2CA327C1EA77BC90057A3D3 /* HitsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E2CA327B1EA77BC90057A3D3 /* HitsViewController.swift */; };
+		E2CA327C1EA77BC90057A3D3 /* HitsController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E2CA327B1EA77BC90057A3D3 /* HitsController.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -138,7 +138,7 @@
 		E27C16411E9394250091D79E /* Helpers.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Helpers.swift; sourceTree = "<group>"; };
 		E28B07D91EAF71D9003AAE47 /* Hits.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Hits.swift; sourceTree = "<group>"; };
 		E28B07DB1EAF8423003AAE47 /* Refinement.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Refinement.swift; sourceTree = "<group>"; };
-		E28B07DF1EAF88D9003AAE47 /* RefinementViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RefinementViewController.swift; sourceTree = "<group>"; };
+		E28B07DF1EAF88D9003AAE47 /* RefinementController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RefinementController.swift; sourceTree = "<group>"; };
 		E28B07E11EAF9F27003AAE47 /* RefinementCollectionWidget.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RefinementCollectionWidget.swift; sourceTree = "<group>"; };
 		E28B07E31EAF9FF2003AAE47 /* RefinementTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RefinementTableViewController.swift; sourceTree = "<group>"; };
 		E28B07E51EAF9FFE003AAE47 /* RefinementCollectionViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RefinementCollectionViewController.swift; sourceTree = "<group>"; };
@@ -148,7 +148,7 @@
 		E2A476FD1EC60BD7007CA367 /* CustomWidget.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CustomWidget.m; sourceTree = "<group>"; };
 		E2A477001EC61B43007CA367 /* InstantSearch-Bridging-Header.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "InstantSearch-Bridging-Header.h"; sourceTree = "<group>"; };
 		E2A477021EC62031007CA367 /* InstantSearch-Tests-Bridging-Header.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "InstantSearch-Tests-Bridging-Header.h"; sourceTree = "<group>"; };
-		E2CA327B1EA77BC90057A3D3 /* HitsViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HitsViewController.swift; sourceTree = "<group>"; };
+		E2CA327B1EA77BC90057A3D3 /* HitsController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HitsController.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -393,8 +393,8 @@
 		E2CA327D1EA797480057A3D3 /* Controller */ = {
 			isa = PBXGroup;
 			children = (
-				E2CA327B1EA77BC90057A3D3 /* HitsViewController.swift */,
-				E28B07DF1EAF88D9003AAE47 /* RefinementViewController.swift */,
+				E2CA327B1EA77BC90057A3D3 /* HitsController.swift */,
+				E28B07DF1EAF88D9003AAE47 /* RefinementController.swift */,
 			);
 			path = Controller;
 			sourceTree = "<group>";
@@ -617,7 +617,7 @@
 				E28B07E21EAF9F27003AAE47 /* RefinementCollectionWidget.swift in Sources */,
 				E27C16471E9394250091D79E /* InstantSearch.swift in Sources */,
 				E2738FBD1E9BD9ED002C002D /* StatsViewModel.swift in Sources */,
-				E2CA327C1EA77BC90057A3D3 /* HitsViewController.swift in Sources */,
+				E2CA327C1EA77BC90057A3D3 /* HitsController.swift in Sources */,
 				E28B07E41EAF9FF2003AAE47 /* RefinementTableViewController.swift in Sources */,
 				E27A7BEC1E9556C6005B2506 /* ResultingDelegate.swift in Sources */,
 				E27A7BFD1E97B781005B2506 /* HitsViewDelegate.swift in Sources */,
@@ -657,7 +657,7 @@
 				E2738FD21E9D1AFF002C002D /* RefinementListHelper.swift in Sources */,
 				E27A7BF11E97931E005B2506 /* ViewModelFetcher.swift in Sources */,
 				E28B07DA1EAF71D9003AAE47 /* Hits.swift in Sources */,
-				E28B07E01EAF88D9003AAE47 /* RefinementViewController.swift in Sources */,
+				E28B07E01EAF88D9003AAE47 /* RefinementController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
