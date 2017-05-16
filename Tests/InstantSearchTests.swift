@@ -47,8 +47,12 @@ class InstantSearchTests: XCTestCase {
     }
     
     func testAddRefinementMenu() {
+        let expectation = self.expectation(description: "\(#function)\(#line)")
         let refinementTableWidget = RefinementTableWidget(frame: defaultRect)
-        refinementTableWidget.attribute = "attributeName"
+        refinementTableWidget.attribute = "category"
+        let refinementController = RefinementController(table: refinementTableWidget)
+        refinementTableWidget.dataSource = refinementController
+        refinementTableWidget.delegate = refinementController
         var didSearch = false
         
         XCTAssertNil(instantSearch.params.facets)
@@ -57,16 +61,18 @@ class InstantSearchTests: XCTestCase {
         instantSearch.searcher.addResultHandler { results,_,_ in
             if !didSearch {
                 refinementTableWidget.selectRow(at: IndexPath(row: 0, section: 0), animated: false, scrollPosition: .none)
+                refinementController.tableView(refinementTableWidget, didSelectRowAt: IndexPath(row: 0, section: 0))
                 didSearch = true
             } else {
                 XCTAssertEqual(results?.nbHits, 1574)
+                expectation.fulfill()
             }
         }
         
         instantSearch.add(widget: refinementTableWidget, doSearch: true)
-        XCTAssertEqual(instantSearch.params.facets!, ["attributeName"])
+        XCTAssertEqual(instantSearch.params.facets!, ["category"])
         
-        
+        waitForExpectations(timeout: 5, handler: nil)
     }
     
     func testAddHitsWidgetsWithCustomParameters() {
