@@ -42,21 +42,21 @@ import InstantSearchCore
 }
 
 extension RefinementMenuViewModel {
-    @objc public func getRefinementList(searcher: Searcher,
+    @objc public func getRefinementList(params: SearchParameters,
                                         facetCounts: [String: Int],
                                         andFacetName facetName: String,
                                         transformRefinementList: TransformRefinementList,
                                         areRefinedValuesFirst: Bool) -> [FacetValue] {
         
-        let allRefinements = searcher.params.buildFacetRefinements()
+        let allRefinements = params.buildFacetRefinements()
         let refinementsForFacetName = allRefinements[facetName]
         
         let facetList = FacetValue.listFrom(facetCounts: facetCounts, refinements: refinementsForFacetName)
         
         let sortedFacetList = facetList.sorted { (lhs, rhs) in
             
-            let lhsChecked = searcher.params.hasFacetRefinement(name: facetName, value: lhs.value)
-            let rhsChecked = searcher.params.hasFacetRefinement(name: facetName, value: rhs.value)
+            let lhsChecked = params.hasFacetRefinement(name: facetName, value: lhs.value)
+            let rhsChecked = params.hasFacetRefinement(name: facetName, value: rhs.value)
             
             if areRefinedValuesFirst && lhsChecked != rhsChecked { // Refined wins
                 return lhsChecked

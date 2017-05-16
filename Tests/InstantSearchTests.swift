@@ -48,23 +48,27 @@ class InstantSearchTests: XCTestCase {
     
     func testAddRefinementMenu() {
         let expectation = self.expectation(description: "\(#function)\(#line)")
+        
+        // Setup refinement widget along with its controller
         let refinementTableWidget = RefinementTableWidget(frame: defaultRect)
         refinementTableWidget.attribute = "category"
         let refinementController = RefinementController(table: refinementTableWidget)
         refinementTableWidget.dataSource = refinementController
         refinementTableWidget.delegate = refinementController
         var didSearch = false
+        let MoviesAndTvShowsCount = 1574
         
         XCTAssertNil(instantSearch.params.facets)
         XCTAssertTrue(instantSearch.params.facetRefinements.isEmpty)
         
         instantSearch.searcher.addResultHandler { results,_,_ in
-            if !didSearch {
+            if !didSearch { // First search: adding the widget
+                // select the first item in the category refinement list
                 refinementTableWidget.selectRow(at: IndexPath(row: 0, section: 0), animated: false, scrollPosition: .none)
                 refinementController.tableView(refinementTableWidget, didSelectRowAt: IndexPath(row: 0, section: 0))
                 didSearch = true
-            } else {
-                XCTAssertEqual(results?.nbHits, 1574)
+            } else { // Second search: selecting the refinement
+                XCTAssertEqual(results?.nbHits, MoviesAndTvShowsCount)
                 expectation.fulfill()
             }
         }
