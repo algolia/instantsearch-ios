@@ -12,7 +12,7 @@ import UIKit
 @objc public class StatsButtonWidget: UIButton, StatsViewDelegate, AlgoliaWidget {
     
     @IBInspectable public var resultTemplate: String = "{nbHits} results"
-    @IBInspectable public var clearText: String = ""
+    @IBInspectable internal var clearText: String = ""
     @IBInspectable public var errorText: String = "Error in fetching results"
     
     var viewModel: StatsViewModelDelegate

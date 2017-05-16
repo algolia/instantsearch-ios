@@ -15,7 +15,6 @@ import UIKit
     @IBInspectable public var attribute: String = ""
     @IBInspectable public var valueOn: String = "true"
     @IBInspectable public var inclusive: Bool = true
-    internal var `operator`: String = "equal"
     
     var viewModel: FacetControlViewModelDelegate
     
