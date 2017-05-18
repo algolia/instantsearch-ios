@@ -94,25 +94,4 @@ class InstantSearchTests: XCTestCase {
         // Make sure params.hitsPerPage was correctly set by just adding the hits widget.
         XCTAssertEqual(instantSearch.searcher.params.hitsPerPage, 5)
     }
-    
-//    func testExample() {
-//        let refinementVM = RefinementMenuViewModel()
-//        refinementVM.searcher = MockSearcher(index: )
-//        
-//        let facetCounts = [
-//            "Headphones" : 188,
-//            "Flat-Panel TVs" : 190,
-//            "Movies & TV Shows" : 1574,
-//            "Cell Phone Cases & Clips" : 572,
-//            "iPad Cases, Covers & Sleeves" : 165,
-//            "Tablet Cases, Covers & Sleeves" : 146,
-//        ]
-//        
-//        let facetName = "category"
-//        let transformRefinementList = TransformRefinementList.countDesc
-//        let areRefinedValuesFirst = true
-//        
-//        refinementVM.getRefinementList(facetCounts: facetCounts, andFacetName: facetName, transformRefinementList: transformRefinementList, areRefinedValuesFirst: areRefinedValuesFirst)
-//    }
-//
 }

@@ -62,33 +62,38 @@ extension RefinementMenuViewModel {
                 return lhsChecked
             }
             
+            let leftCount = lhs.count
+            let rightCount = rhs.count
+            let leftValueLowercased = lhs.value.lowercased()
+            let rightValueLowercased = rhs.value.lowercased()
+            
             switch transformRefinementList {
             case .countDesc:
-                if lhs.count != rhs.count { // Biggest Count wins
-                    return lhs.count > rhs.count
+                if leftCount != rightCount { // Biggest Count wins
+                    return leftCount > rightCount
                 } else {
-                    return lhs.value < rhs.value // Name ascending wins by default
+                    return leftValueLowercased < rightValueLowercased // Name ascending wins by default
                 }
                 
             case .countAsc:
-                if lhs.count != rhs.count { // Smallest Count wins
-                    return lhs.count < rhs.count
+                if leftCount != rightCount { // Smallest Count wins
+                    return leftCount < rightCount
                 } else {
-                    return lhs.value < rhs.value // Name ascending wins by default
+                    return leftValueLowercased < rightValueLowercased // Name ascending wins by default
                 }
                 
             case .nameAsc:
-                if lhs.value != rhs.value {
-                    return lhs.value < rhs.value // Name ascending
+                if leftValueLowercased != rightValueLowercased {
+                    return leftValueLowercased < rightValueLowercased // Name ascending
                 } else {
-                    return lhs.count > rhs.count // Biggest Count wins by default
+                    return leftCount > rightCount // Biggest Count wins by default
                 }
                 
             case .nameDsc:
-                if lhs.value != rhs.value {
-                    return lhs.value > rhs.value // Name descending
+                if leftValueLowercased != rightValueLowercased {
+                    return leftValueLowercased > rightValueLowercased // Name descending
                 } else {
-                    return lhs.count > rhs.count // Biggest Count wins by default
+                    return leftCount > rightCount // Biggest Count wins by default
                 }
             }
         }

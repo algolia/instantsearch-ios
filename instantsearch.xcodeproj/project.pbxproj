@@ -22,6 +22,7 @@
 		E233BC091EBC71F500F5F5E1 /* StepperWidget.swift in Sources */ = {isa = PBXBuildFile; fileRef = E233BC081EBC71F500F5F5E1 /* StepperWidget.swift */; };
 		E233BC0C1EBC756500F5F5E1 /* DatePickerWidget.swift in Sources */ = {isa = PBXBuildFile; fileRef = E233BC0B1EBC756500F5F5E1 /* DatePickerWidget.swift */; };
 		E233BC0E1EBC786B00F5F5E1 /* SegmentedControlWidget.swift in Sources */ = {isa = PBXBuildFile; fileRef = E233BC0D1EBC786B00F5F5E1 /* SegmentedControlWidget.swift */; };
+		E25FB07A1ECD86E8006B8CED /* RefinementMenuViewModelTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = E25FB0791ECD86E8006B8CED /* RefinementMenuViewModelTests.swift */; };
 		E27141CA1E9E237200959294 /* StatsButtonWidget.swift in Sources */ = {isa = PBXBuildFile; fileRef = E27141C91E9E237200959294 /* StatsButtonWidget.swift */; };
 		E27141D51E9F764100959294 /* HitsTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E27141D41E9F764100959294 /* HitsTableViewController.swift */; };
 		E27141F51EA0F20700959294 /* HitsCollectionViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E27141F41EA0F20700959294 /* HitsCollectionViewController.swift */; };
@@ -103,6 +104,7 @@
 		E233BC081EBC71F500F5F5E1 /* StepperWidget.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = StepperWidget.swift; sourceTree = "<group>"; };
 		E233BC0B1EBC756500F5F5E1 /* DatePickerWidget.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DatePickerWidget.swift; sourceTree = "<group>"; };
 		E233BC0D1EBC786B00F5F5E1 /* SegmentedControlWidget.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SegmentedControlWidget.swift; sourceTree = "<group>"; };
+		E25FB0791ECD86E8006B8CED /* RefinementMenuViewModelTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RefinementMenuViewModelTests.swift; sourceTree = "<group>"; };
 		E27141C91E9E237200959294 /* StatsButtonWidget.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = StatsButtonWidget.swift; sourceTree = "<group>"; };
 		E27141D41E9F764100959294 /* HitsTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HitsTableViewController.swift; sourceTree = "<group>"; };
 		E27141F41EA0F20700959294 /* HitsCollectionViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HitsCollectionViewController.swift; sourceTree = "<group>"; };
@@ -198,6 +200,7 @@
 			children = (
 				28F8288E1C494B2C00330CF4 /* Info.plist */,
 				287D0A6D1C4B73BD004566D6 /* InstantSearchTests.swift */,
+				E25FB0791ECD86E8006B8CED /* RefinementMenuViewModelTests.swift */,
 				E2231E931EC9DBC4002FCF82 /* ConfigureInstantSearch.swift */,
 				E2A477021EC62031007CA367 /* InstantSearch-Tests-Bridging-Header.h */,
 				E2A476F81EC5DEDE007CA367 /* ObjectiveCBridging.m */,
@@ -669,6 +672,7 @@
 				287D0A6E1C4B73BD004566D6 /* InstantSearchTests.swift in Sources */,
 				E2A476FA1EC5DFC1007CA367 /* ObjectiveCBridging.m in Sources */,
 				E2A476FE1EC60BD7007CA367 /* CustomWidget.m in Sources */,
+				E25FB07A1ECD86E8006B8CED /* RefinementMenuViewModelTests.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
