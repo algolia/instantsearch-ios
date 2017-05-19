@@ -23,6 +23,7 @@
 		E233BC0C1EBC756500F5F5E1 /* DatePickerWidget.swift in Sources */ = {isa = PBXBuildFile; fileRef = E233BC0B1EBC756500F5F5E1 /* DatePickerWidget.swift */; };
 		E233BC0E1EBC786B00F5F5E1 /* SegmentedControlWidget.swift in Sources */ = {isa = PBXBuildFile; fileRef = E233BC0D1EBC786B00F5F5E1 /* SegmentedControlWidget.swift */; };
 		E25FB07A1ECD86E8006B8CED /* RefinementMenuViewModelTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = E25FB0791ECD86E8006B8CED /* RefinementMenuViewModelTests.swift */; };
+		E25FB0A31ECF550C006B8CED /* Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = E25FB0A21ECF550C006B8CED /* Info.plist */; };
 		E27141CA1E9E237200959294 /* StatsButtonWidget.swift in Sources */ = {isa = PBXBuildFile; fileRef = E27141C91E9E237200959294 /* StatsButtonWidget.swift */; };
 		E27141D51E9F764100959294 /* HitsTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E27141D41E9F764100959294 /* HitsTableViewController.swift */; };
 		E27141F51EA0F20700959294 /* HitsCollectionViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E27141F41EA0F20700959294 /* HitsCollectionViewController.swift */; };
@@ -85,7 +86,6 @@
 		28F8287D1C494B2C00330CF4 /* InstantSearch.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = InstantSearch.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		28F828821C494B2C00330CF4 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		28F828871C494B2C00330CF4 /* InstantSearchTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = InstantSearchTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
-		28F8288E1C494B2C00330CF4 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist; name = Info.plist; path = Tests/Info.plist; sourceTree = "<group>"; };
 		28F8289B1C494BF100330CF4 /* Playground.playground */ = {isa = PBXFileReference; lastKnownFileType = file.playground; name = Playground.playground; path = Example/Playground.playground; sourceTree = "<group>"; };
 		33749566A6B791EB78B9A2F5 /* Pods_InstantSearchTests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_InstantSearchTests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		95AABD24AC80EDEEA69D9324 /* Pods-InstantSearchTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-InstantSearchTests.debug.xcconfig"; path = "Pods/Target Support Files/Pods-InstantSearchTests/Pods-InstantSearchTests.debug.xcconfig"; sourceTree = "<group>"; };
@@ -105,6 +105,7 @@
 		E233BC0B1EBC756500F5F5E1 /* DatePickerWidget.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DatePickerWidget.swift; sourceTree = "<group>"; };
 		E233BC0D1EBC786B00F5F5E1 /* SegmentedControlWidget.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SegmentedControlWidget.swift; sourceTree = "<group>"; };
 		E25FB0791ECD86E8006B8CED /* RefinementMenuViewModelTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RefinementMenuViewModelTests.swift; sourceTree = "<group>"; };
+		E25FB0A21ECF550C006B8CED /* Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		E27141C91E9E237200959294 /* StatsButtonWidget.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = StatsButtonWidget.swift; sourceTree = "<group>"; };
 		E27141D41E9F764100959294 /* HitsTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HitsTableViewController.swift; sourceTree = "<group>"; };
 		E27141F41EA0F20700959294 /* HitsCollectionViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HitsCollectionViewController.swift; sourceTree = "<group>"; };
@@ -198,7 +199,7 @@
 		28F8288B1C494B2C00330CF4 /* Tests */ = {
 			isa = PBXGroup;
 			children = (
-				28F8288E1C494B2C00330CF4 /* Info.plist */,
+				E25FB0A21ECF550C006B8CED /* Info.plist */,
 				287D0A6D1C4B73BD004566D6 /* WidgetTests.swift */,
 				E25FB0791ECD86E8006B8CED /* RefinementMenuViewModelTests.swift */,
 				E2231E931EC9DBC4002FCF82 /* ConfigureInstantSearchTests.swift */,
@@ -501,6 +502,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				E25FB0A31ECF550C006B8CED /* Info.plist in Resources */,
 				E28B08051EB0F501003AAE47 /* CustomSlider.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

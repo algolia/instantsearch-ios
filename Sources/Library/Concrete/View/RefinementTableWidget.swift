@@ -14,6 +14,8 @@ import UIKit
     
     @IBInspectable public var attribute: String = Constants.Defaults.attribute
     @IBInspectable public var refinedFirst: Bool = Constants.Defaults.refinedFirst
+    
+    /// operator used for the refinementList
     @IBInspectable public var `operator`: String = Constants.Defaults.operatorRefinement
     @IBInspectable public var sortBy: String = Constants.Defaults.sortBy
     @IBInspectable public var limit: Int = Constants.Defaults.limit

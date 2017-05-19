@@ -13,6 +13,7 @@ import UIKit
 @objc public class SliderWidget: UISlider, NumericControlViewDelegate, AlgoliaWidget {
     
     @IBInspectable public var attribute: String = Constants.Defaults.attribute
+    
     @IBInspectable public var `operator`: String = Constants.Defaults.operatorNumericControl
     @IBInspectable public var inclusive: Bool = Constants.Defaults.inclusive
     
