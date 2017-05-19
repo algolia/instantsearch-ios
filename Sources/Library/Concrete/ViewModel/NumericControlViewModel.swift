@@ -25,7 +25,7 @@ internal class NumericControlViewModel: NumericControlViewModelDelegate, Searcha
         case "notEqual", "!=": return .notEqual
         case "greaterThanOrEqual", ">=": return .greaterThanOrEqual
         case "greaterThan", ">": return .greaterThan
-        default: fatalError("No valid operator")
+        default: fatalError("No valid operator for the numeric control. Use something like < or >=")
         }
     }
 
@@ -43,6 +43,11 @@ internal class NumericControlViewModel: NumericControlViewModelDelegate, Searcha
 
     func configure(with searcher: Searcher) {
         self.searcher = searcher
+        
+        guard !attribute.isEmpty else {
+            fatalError("you must assign a value to the attribute of a numeric control before adding it to InstantSearch")
+        }
+        
         if let numeric = self.searcher.params.getNumericRefinement(name: attribute, operator: `operator`, inclusive: inclusive) {
             view.set(value: numeric.value)
         }

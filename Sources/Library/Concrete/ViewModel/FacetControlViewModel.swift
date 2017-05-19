@@ -28,6 +28,10 @@ internal class FacetControlViewModel: FacetControlViewModelDelegate, SearchableV
     func configure(with searcher: Searcher) {
         self.searcher = searcher
         
+        guard !attribute.isEmpty else {
+            fatalError("you must assign a value to the attribute of a Facet Control before adding it to InstantSearch")
+        }
+        
         // TODO: A specific facet can have many refinements. But in the case
         // of facetControl (contrary to facetMenu), will we only have at the maximum one value?
         // Right now, taknig the first refinement in getFacetRefinement but can do better...
