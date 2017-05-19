@@ -7,11 +7,11 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		287D0A6E1C4B73BD004566D6 /* InstantSearchTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 287D0A6D1C4B73BD004566D6 /* InstantSearchTests.swift */; };
+		287D0A6E1C4B73BD004566D6 /* WidgetTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 287D0A6D1C4B73BD004566D6 /* WidgetTests.swift */; };
 		28F828881C494B2C00330CF4 /* InstantSearch.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 28F8287D1C494B2C00330CF4 /* InstantSearch.framework */; };
 		6B3F1A5AC5B19AB0F4FC9B3C /* Pods_InstantSearchTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 33749566A6B791EB78B9A2F5 /* Pods_InstantSearchTests.framework */; };
 		BC2BDF7408F80426E13BBB47 /* Pods_InstantSearch.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C5E2FC6F7BC12D4C7904D4D8 /* Pods_InstantSearch.framework */; };
-		E2231E951EC9DC0D002FCF82 /* ConfigureInstantSearch.swift in Sources */ = {isa = PBXBuildFile; fileRef = E2231E931EC9DBC4002FCF82 /* ConfigureInstantSearch.swift */; };
+		E2231E951EC9DC0D002FCF82 /* ConfigureInstantSearchTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = E2231E931EC9DBC4002FCF82 /* ConfigureInstantSearchTests.swift */; };
 		E2231E971EC9F5A7002FCF82 /* Constants.swift in Sources */ = {isa = PBXBuildFile; fileRef = E2231E961EC9F5A7002FCF82 /* Constants.swift */; };
 		E233BBFD1EBA18C200F5F5E1 /* SwitchWidget.swift in Sources */ = {isa = PBXBuildFile; fileRef = E233BBFC1EBA18C200F5F5E1 /* SwitchWidget.swift */; };
 		E233BBFF1EBA43F500F5F5E1 /* OneValueSwitchWidget.swift in Sources */ = {isa = PBXBuildFile; fileRef = E233BBFE1EBA43F500F5F5E1 /* OneValueSwitchWidget.swift */; };
@@ -64,7 +64,7 @@
 		E28B07E61EAF9FFE003AAE47 /* RefinementCollectionViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E28B07E51EAF9FFE003AAE47 /* RefinementCollectionViewController.swift */; };
 		E28B08011EB0F459003AAE47 /* CustomSlider.swift in Sources */ = {isa = PBXBuildFile; fileRef = E28B08001EB0F459003AAE47 /* CustomSlider.swift */; };
 		E28B08051EB0F501003AAE47 /* CustomSlider.xib in Resources */ = {isa = PBXBuildFile; fileRef = E28B08041EB0F501003AAE47 /* CustomSlider.xib */; };
-		E2A476FA1EC5DFC1007CA367 /* ObjectiveCBridging.m in Sources */ = {isa = PBXBuildFile; fileRef = E2A476F81EC5DEDE007CA367 /* ObjectiveCBridging.m */; };
+		E2A476FA1EC5DFC1007CA367 /* ObjectiveCBridgingTests.m in Sources */ = {isa = PBXBuildFile; fileRef = E2A476F81EC5DEDE007CA367 /* ObjectiveCBridgingTests.m */; };
 		E2A476FE1EC60BD7007CA367 /* CustomWidget.m in Sources */ = {isa = PBXBuildFile; fileRef = E2A476FD1EC60BD7007CA367 /* CustomWidget.m */; };
 		E2A477011EC61B43007CA367 /* InstantSearch-Bridging-Header.h in Headers */ = {isa = PBXBuildFile; fileRef = E2A477001EC61B43007CA367 /* InstantSearch-Bridging-Header.h */; };
 		E2CA327C1EA77BC90057A3D3 /* HitsController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E2CA327B1EA77BC90057A3D3 /* HitsController.swift */; };
@@ -81,7 +81,7 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
-		287D0A6D1C4B73BD004566D6 /* InstantSearchTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = InstantSearchTests.swift; sourceTree = "<group>"; };
+		287D0A6D1C4B73BD004566D6 /* WidgetTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = WidgetTests.swift; sourceTree = "<group>"; };
 		28F8287D1C494B2C00330CF4 /* InstantSearch.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = InstantSearch.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		28F828821C494B2C00330CF4 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		28F828871C494B2C00330CF4 /* InstantSearchTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = InstantSearchTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -93,7 +93,7 @@
 		A41C629CA0D1EB7443B828C6 /* Pods-InstantSearchTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-InstantSearchTests.release.xcconfig"; path = "Pods/Target Support Files/Pods-InstantSearchTests/Pods-InstantSearchTests.release.xcconfig"; sourceTree = "<group>"; };
 		C5E2FC6F7BC12D4C7904D4D8 /* Pods_InstantSearch.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_InstantSearch.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		CFF04E06E7D4D0CDE5F6CF30 /* Pods-InstantSearch.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-InstantSearch.release.xcconfig"; path = "Pods/Target Support Files/Pods-InstantSearch/Pods-InstantSearch.release.xcconfig"; sourceTree = "<group>"; };
-		E2231E931EC9DBC4002FCF82 /* ConfigureInstantSearch.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ConfigureInstantSearch.swift; sourceTree = "<group>"; };
+		E2231E931EC9DBC4002FCF82 /* ConfigureInstantSearchTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ConfigureInstantSearchTests.swift; sourceTree = "<group>"; };
 		E2231E961EC9F5A7002FCF82 /* Constants.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Constants.swift; sourceTree = "<group>"; };
 		E233BBFC1EBA18C200F5F5E1 /* SwitchWidget.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SwitchWidget.swift; sourceTree = "<group>"; };
 		E233BBFE1EBA43F500F5F5E1 /* OneValueSwitchWidget.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = OneValueSwitchWidget.swift; sourceTree = "<group>"; };
@@ -146,7 +146,7 @@
 		E28B07E51EAF9FFE003AAE47 /* RefinementCollectionViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RefinementCollectionViewController.swift; sourceTree = "<group>"; };
 		E28B08001EB0F459003AAE47 /* CustomSlider.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CustomSlider.swift; sourceTree = "<group>"; };
 		E28B08041EB0F501003AAE47 /* CustomSlider.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = CustomSlider.xib; sourceTree = "<group>"; };
-		E2A476F81EC5DEDE007CA367 /* ObjectiveCBridging.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ObjectiveCBridging.m; sourceTree = "<group>"; };
+		E2A476F81EC5DEDE007CA367 /* ObjectiveCBridgingTests.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ObjectiveCBridgingTests.m; sourceTree = "<group>"; };
 		E2A476FD1EC60BD7007CA367 /* CustomWidget.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CustomWidget.m; sourceTree = "<group>"; };
 		E2A477001EC61B43007CA367 /* InstantSearch-Bridging-Header.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "InstantSearch-Bridging-Header.h"; sourceTree = "<group>"; };
 		E2A477021EC62031007CA367 /* InstantSearch-Tests-Bridging-Header.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "InstantSearch-Tests-Bridging-Header.h"; sourceTree = "<group>"; };
@@ -199,12 +199,12 @@
 			isa = PBXGroup;
 			children = (
 				28F8288E1C494B2C00330CF4 /* Info.plist */,
-				287D0A6D1C4B73BD004566D6 /* InstantSearchTests.swift */,
+				287D0A6D1C4B73BD004566D6 /* WidgetTests.swift */,
 				E25FB0791ECD86E8006B8CED /* RefinementMenuViewModelTests.swift */,
-				E2231E931EC9DBC4002FCF82 /* ConfigureInstantSearch.swift */,
-				E2A477021EC62031007CA367 /* InstantSearch-Tests-Bridging-Header.h */,
-				E2A476F81EC5DEDE007CA367 /* ObjectiveCBridging.m */,
+				E2231E931EC9DBC4002FCF82 /* ConfigureInstantSearchTests.swift */,
+				E2A476F81EC5DEDE007CA367 /* ObjectiveCBridgingTests.m */,
 				E2A476FD1EC60BD7007CA367 /* CustomWidget.m */,
+				E2A477021EC62031007CA367 /* InstantSearch-Tests-Bridging-Header.h */,
 			);
 			path = Tests;
 			sourceTree = "<group>";
@@ -668,9 +668,9 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				E2231E951EC9DC0D002FCF82 /* ConfigureInstantSearch.swift in Sources */,
-				287D0A6E1C4B73BD004566D6 /* InstantSearchTests.swift in Sources */,
-				E2A476FA1EC5DFC1007CA367 /* ObjectiveCBridging.m in Sources */,
+				E2231E951EC9DC0D002FCF82 /* ConfigureInstantSearchTests.swift in Sources */,
+				287D0A6E1C4B73BD004566D6 /* WidgetTests.swift in Sources */,
+				E2A476FA1EC5DFC1007CA367 /* ObjectiveCBridgingTests.m in Sources */,
 				E2A476FE1EC60BD7007CA367 /* CustomWidget.m in Sources */,
 				E25FB07A1ECD86E8006B8CED /* RefinementMenuViewModelTests.swift in Sources */,
 			);

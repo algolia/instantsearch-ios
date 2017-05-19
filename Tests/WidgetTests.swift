@@ -1,6 +1,6 @@
 //
-//  InstantSearchTests.swift
-//  InstantSearchTests
+//  WidgetTests.swift
+//  WidgetTests
 //
 //  Copyright © 2016 Algolia. All rights reserved.
 //
@@ -10,7 +10,7 @@ import XCTest
 import InstantSearchCore
 import AlgoliaSearch
 
-class InstantSearchTests: XCTestCase {
+class WidgetTests: XCTestCase {
     
     var instantSearch: InstantSearch!
     private let ALGOLIA_APP_ID = "latency"

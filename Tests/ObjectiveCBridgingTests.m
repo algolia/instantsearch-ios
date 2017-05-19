@@ -17,12 +17,12 @@
 /// Warning: This tests mostly **compilation**! The behavior is already tested in Swift test cases.
 ///
 /// Note: Only the public API is tested here.
-@interface ObjectiveCBridging: XCTestCase
+@interface ObjectiveCBridgingTests: XCTestCase
 
 @end
 
 
-@implementation ObjectiveCBridging
+@implementation ObjectiveCBridgingTests
 
 CGRect defaultRect;
 

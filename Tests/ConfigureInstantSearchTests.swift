@@ -1,6 +1,6 @@
 //
-//  ConfigureInstantSearch.swift
-//  ConfigureInstantSearch
+//  ConfigureInstantSearchTests.swift
+//  ConfigureInstantSearchTests
 //
 //  Copyright © 2016 Algolia. All rights reserved.
 //
@@ -10,7 +10,7 @@ import XCTest
 import InstantSearchCore
 import AlgoliaSearch
 
-class ConfigureInstantSearch: XCTestCase {
+class ConfigureInstantSearchTests: XCTestCase {
     
     private let ALGOLIA_APP_ID = "latency"
     private let ALGOLIA_INDEX_NAME = "bestbuy_promo"
