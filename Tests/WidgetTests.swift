@@ -200,6 +200,10 @@ class WidgetTests: XCTestCase {
         //TODO: emulate turning off the switch, and confirm that facetRefinements updated to Off
     }
 
+    // TODO: Need to find a way to expect fatalError to uncomment the below
+    // Right now these tests work as expected: the throw a fatal error, but 
+    // we need to find a way to catch it.
+    
 //    func testAddRefinementMenu_NoAttribute_FatalError() {
 //        let refinementTableWidget = RefinementTableWidget(frame: defaultRect)
 //        instantSearch.add(widget: refinementTableWidget, doSearch: false)
