@@ -175,10 +175,10 @@ class WidgetTests: XCTestCase {
         XCTAssertTrue(instantSearch.params.facetRefinements.isEmpty) // still empty since oneValue Widget should not add
         
         //TODO: emulate changing value and then confirm that facetRefinements got the param
-//        oneValueSwitchWidget.setOn(true, animated: false)
-//        oneValueSwitchWidget.sendActions(for: .valueChanged)
-//        
-//        XCTAssertEqual(instantSearch.params.facetRefinements["shipping"]![0], FacetRefinement(name: "shipping", value: "premium", inclusive: Constants.Defaults.inclusive))
+        oneValueSwitchWidget.setOn(true, animated: false)
+        oneValueSwitchWidget.sendActions(for: .valueChanged)
+        
+        XCTAssertEqual(instantSearch.params.facetRefinements["shipping"]![0], FacetRefinement(name: "shipping", value: "premium", inclusive: Constants.Defaults.inclusive))
         
         //TODO: emulate turning off the switch, and confirm that facetRefinements removed the param
     }
