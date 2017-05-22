@@ -75,24 +75,31 @@ import AlgoliaSearch
 /// Binds the Searcher to the widgets through delegation.
 @objc public class InstantSearch: NSObject, SearcherDelegate {
 
-    /// The singleton instance.
+    /// The singleton reference of InstantSearch.
+    /// It is advised to use this reference in case you're dealing with a single index in your app.
     public static let reference = InstantSearch()
 
     // MARK: - Properties
 
-    // All widgets, including the specific ones such as refinementControlWidget
-    // Note: Wish we could do a Set, but Swift doesn't support Set<GenericProtocol> for now.
+    // All widgets, including the specific ones such as refinementControlWidget.
+    // We use a weak set so that we don't retain the views. 
+    // The lifecycle of a view is not our concern, this should be left to VC.
     private var resultingDelegates = WeakSet<ResultingDelegate>()
     private var resettableDelegates = WeakSet<ResettableDelegate>()
     private var refinableDelegates = WeakSet<RefinableDelegate>()
     private var refinableDelegateMap = [String: WeakSet<RefinableDelegate>]()
 
+    /// The Searcher used by this InstantSearch.
     public var searcher: Searcher!
 
+    /// The search parameters of the Searcher.
+    ///
+    /// + Note: This is just a quick access to `searcher.params`.
     public var params: SearchParameters {
         return searcher.params
     }
 
+    // This helps specify the viewmodel associated with a particular WidgetV.
     private lazy var viewModelFetcher: ViewModelFetcher = {
         return ViewModelFetcher()
     }()
@@ -103,16 +110,29 @@ import AlgoliaSearch
         super.init()
     }
 
+    /// Create a new InstantSearch reference with the given configurations.
+    ///
+    /// - parameter appID: the Algolia AppID.
+    /// - parameter apiKey: the Algolia ApiKeyl
+    /// - parameter index: the name of the index.
     public convenience init(appID: String, apiKey: String, index: String) {
         self.init()
         self.configure(appID: appID, apiKey: apiKey, index: index)
     }
 
+    /// Create a new InstantSearch reference.
+    ///
+    /// - parameter searcher: the `Searcher` used by InstantSearch
     public convenience init(searcher: Searcher) {
         self.init()
         configure(searcher: searcher)
     }
 
+    /// Configure the InstantSearch reference with the given configurations.
+    ///
+    /// - parameter appID: the Algolia AppID.
+    /// - parameter apiKey: the Algolia ApiKeyl
+    /// - parameter index: the name of the index.
     @objc public func configure(appID: String, apiKey: String, index: String) {
         let client = Client(appID: appID, apiKey: apiKey)
         let index = client.index(withName: index)
@@ -120,6 +140,8 @@ import AlgoliaSearch
         configure(searcher: searcher)
     }
 
+    // Helper method to configure the searcher, assign the searcher delegate to the InstantSearch reference,
+    // and subscribe to Notifications that are interesting to InstantSearch.
     private func configure(searcher: Searcher) {
         self.searcher = searcher
         self.searcher.delegate = self
@@ -138,6 +160,12 @@ import AlgoliaSearch
 
     // MARK: Add widget methods
 
+    /// Add all InstantSearch widgets inside a particular view.
+    ///
+    /// - param view: the view containnig the InstantSearch widgets.
+    /// - param doSearch: do a new search to Algolia if true (default), nothing otherwise.
+    ///
+    /// + Note: InstantSearch widgets are simply the components that implement the `AlgoliaWidget` marker protocol.
     @objc public func addAllWidgets(in view: UIView, doSearch: Bool = true) {
         addWidgets(in: view)
 
@@ -148,7 +176,7 @@ import AlgoliaSearch
         }
     }
 
-    // Recursively iterate the sub views.
+    // Recursively iterate the sub views in order to find `AlgoliaWidget` components.
     private func addWidgets(in view: UIView) {
 
         // Get the subviews of the view
@@ -170,6 +198,12 @@ import AlgoliaSearch
         }
     }
 
+    /// Add a widget to InstantSearch.
+    ///
+    /// - param widget: the `AlgoliaWidget` to be added to InstantSearch.
+    ///
+    /// + Note: if `doSearch` parameter is not specified, then we will automatically do a search if the `AlgoliaWidget`
+    /// is an "input control" (changes the params of the Searcher), otherwise we don't do a search.
     @objc public func add(widget: AlgoliaWidget) {
 
         if widget is RefinementMenuViewDelegate
@@ -182,6 +216,10 @@ import AlgoliaSearch
 
     }
 
+    /// Add a widget to InstantSearch.
+    ///
+    /// - param widget: the `AlgoliaWidget` to be added to InstantSearch.
+    /// - param doSearch: whether or not to do a new search to Algolia after adding the widget.
     @objc public func add(widget: AlgoliaWidget, doSearch: Bool) {
 
         var widgetVM: Any?
@@ -215,6 +253,14 @@ import AlgoliaSearch
         }
     }
 
+    // Binds the widgetVM to the different events emitted by the Searcher
+    // We do this binding by adding the WidgetVM to the corresponding delegates
+    // owned by InstantSearch, as well as assigning the Searcher to the VMs who implement `SearchableViewModel`.
+    // The list of delegates are:
+    //
+    // - ResultingDelegate: to send results coming from Algolia's search
+    // - resettableDelegate: to send reset/clear event
+    // - refinableDelegate: to send changes to the Searcher's parameters.
     private func bind(searcher: Searcher, to widgetVM: Any?) {
         if let searchableWidget = widgetVM as? SearchableViewModel {
             searchableWidget.configure(with: searcher)
@@ -243,12 +289,14 @@ import AlgoliaSearch
 
     // MARK: - Notification Observers
 
-    public func reset() {
+    /// Send reset event to all registered viewModels that implement the `resettableDelegate` protocol.
+    func reset() {
         for algoliaWidget in resettableDelegates {
             algoliaWidget.onReset()
         }
     }
 
+    /// Refinement Notification handler sent when either a Numeric or a Facet Refinement is changed.
     func onRefinementNotification(notification: Notification) {
         let numericRefinementMap = notification.userInfo?[Searcher.userInfoNumericRefinementChangeKey] as? [String: [NumericRefinement]]
         let facetRefinementMap = notification.userInfo?[Searcher.userInfoFacetRefinementChangeKey] as? [String: [FacetRefinement]]
@@ -260,14 +308,17 @@ import AlgoliaSearch
 
     // MARK: - SearcherDelegate
 
+    /// Delegate method called when new search results arrive from Algolia
+    /// This function forwards all results, errors and userInfo to the resultDelegates.
     public func searcher(_ searcher: Searcher, didReceive results: SearchResults?, error: Error?, userInfo: [String: Any]) {
         for algoliaWidget in resultingDelegates {
             algoliaWidget.on(results: results, error: error, userInfo: userInfo)
         }
     }
 
-    // MARK: - Helper methods
-
+    // MARK: - Param Notifications Methods
+    
+    // Forwards any param change to the widget implementing the `RefinableDelegate` protocol.
     private func callGeneralRefinementChanges(
         numericRefinementMap: [String: [NumericRefinement]]?,
         facetRefinementMap: [String: [FacetRefinement]]?) {
@@ -277,6 +328,7 @@ import AlgoliaSearch
         }
     }
 
+    // Forwards any numeric param change to the widget implementing the `RefinableDelegate` protocol.
     private func callSpecificNumericChanges(numericRefinementMap: [String: [NumericRefinement]]?) {
         if let numericRefinementMap = numericRefinementMap {
             for (refinementName, numericRefinement) in numericRefinementMap {
@@ -289,6 +341,7 @@ import AlgoliaSearch
         }
     }
 
+    // Forwards any facet param change to the widget implementing the `RefinableDelegate` protocol.
     private func callSpecificFacetChanges(facetRefinementMap: [String: [FacetRefinement]]?) {
         if let facetRefinementMap = facetRefinementMap {
             for (refinementName, facetRefinement) in facetRefinementMap {
@@ -300,7 +353,9 @@ import AlgoliaSearch
             }
         }
     }
-
+    
+    // MARK: - Helper methods
+    
     internal func search(with searchText: String) {
         searcher.params.query = searchText
         searcher.search()
@@ -309,16 +364,20 @@ import AlgoliaSearch
 
 extension InstantSearch: UISearchResultsUpdating {
 
+    /// Forwards a `SearchController` to `InstantSearch` so that it takes care of updating search results
+    /// on every new keystroke inside the `UISearchBar` linked to it.
     @objc public func add(searchController: UISearchController) {
         searchController.searchResultsUpdater = self
     }
 
+    /// Handler called on each keystroke change in the `UISearchBar`
     public func updateSearchResults(for searchController: UISearchController) {
         guard let searchText = searchController.searchBar.text else { return }
 
         search(with: searchText)
     }
 
+    /// Handler called when searchBar becomes first responder
     public func searchBarTextDidBeginEditing(_ searchBar: UISearchBar) {
         guard let searchText = searchBar.text else { return }
 
@@ -327,10 +386,13 @@ extension InstantSearch: UISearchResultsUpdating {
 }
 
 extension InstantSearch: UISearchBarDelegate {
+    /// Forwards a `UISearchBar` to `InstantSearch` so that it takes care of updating search results
+    /// on every new keystroke
     @objc public func add(searchBar: UISearchBar) {
         searchBar.delegate = self
     }
 
+    /// Handler called on each keystroke change in the `UISearchBar`
     public func searchBar(_ searchBar: UISearchBar, textDidChange searchText: String) {
         search(with: searchText)
     }
