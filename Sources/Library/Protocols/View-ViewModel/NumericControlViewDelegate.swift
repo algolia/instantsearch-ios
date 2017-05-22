@@ -9,17 +9,28 @@
 import Foundation
 
 /*
- * Protocol that defines the view input methods and propreties
+ * Protocol that defines the numeric control view input methods and propreties.
  */
-@objc internal protocol NumericControlViewDelegate: class {
+@objc internal protocol NumericControlViewDelegate: RefinementViewDelegate {
     
+    /// The viewModel assocaited with the WidgetV.
     var viewModel: NumericControlViewModelDelegate { get set }
     
+    /// Configure the view when it is added in InstantSearch.
+    /// Example of things that are done here are `addTarget` and set Searcher params.
     func configureView()
+    
+    /// Called when the viewModel instructs the widget to update itself with a new value.
     func set(value: NSNumber)
     
+    /// The value to use when the clear button is clicked.
     var clearValue: NSNumber { get set }
+    
+    /// The Numeric Operator used for the numeric control.
+    /// This is basically a String representing `NumericRefinement.Operator`.
+    /// Possible values: `<`, `<=`, `==`, `!=`, `>=`, `>`.
     var `operator`: String { get set }
+    
+    /// Whether the refinement is inclusive (default) or exclusive (value prefixed with a dash).
     var inclusive: Bool { get set }
-    var attribute: String { get set }
 }

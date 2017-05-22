@@ -9,16 +9,25 @@
 import Foundation
 
 /*
- * Protocol that defines the view input methods and propreties
+ * Protocol that defines the hits view input methods and propreties.
  */
 @objc internal protocol HitsViewDelegate: class {
 
+    /// The viewModel assocaited with the WidgetV.
     var viewModel: HitsViewModelDelegate! { get set }
     
+    /// Called when the viewModel instructs the widget to reload itself.
     func reloadHits()
+    
+    /// Called when the viewModel instructs the widget to scroll to the top.
     func scrollTop()
     
+    /// Number of hits to load per page.
     var hitsPerPage: UInt { get set }
+    
+    /// Whether or not the hits widget loads new entries automatically.
     var infiniteScrolling: Bool { get set }
+    
+    /// The minimum number of items remaining below the fold before loading more.
     var remainingItemsBeforeLoading: UInt { get set }
 }

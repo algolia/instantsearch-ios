@@ -8,7 +8,7 @@
 
 import Foundation
 
-/// Marker protocol used to link the class (widget) with InstantSearch
+/// Marker protocol used to link the class (widget) with InstantSearch.
 ///
 /// InstantSearch uses this protocol in 2 ways:
 ///

@@ -49,7 +49,6 @@ import AlgoliaSearch
 // to the searcher and all of its method. The downside here is that we can't reuse the business logic
 // through a VM. The upside is that it's easy for 3rd party devs to create their own widgets and plug into IS.
 // In that case, the Widget is dependent on both InstantSearchCore and UIKit.
-//
 // We note that the View and the ViewModel depend on abstract delegates, which makes them reusable and testable.
 //
 // Finally, the Binder plays a role of exposing all possible search events, whether from the Searcher or other widgets,
@@ -72,7 +71,9 @@ import AlgoliaSearch
 // - Searcher and WidgetVVM
 // ---------------------------------------------------------------------------------
 
-/// Binds the Searcher to the widgets through delegation.
+/// Main class used for interacting with the InstantSearch library.
+/// The most important thing that it does is binding the Searcher/Index to the widgets.
+/// It also takes care of managing search components: `UISearchBar` and `UISearchController`.
 @objc public class InstantSearch: NSObject, SearcherDelegate {
 
     /// The singleton reference of InstantSearch.
@@ -206,9 +207,7 @@ import AlgoliaSearch
     /// is an "input control" (changes the params of the Searcher), otherwise we don't do a search.
     @objc public func add(widget: AlgoliaWidget) {
 
-        if widget is RefinementMenuViewDelegate
-            || widget is NumericControlViewDelegate
-            || widget is FacetControlViewDelegate {
+        if widget is RefinementViewDelegate {
             add(widget: widget, doSearch: true)
         } else {
             add(widget: widget, doSearch: false)
@@ -393,7 +392,7 @@ extension InstantSearch: UISearchBarDelegate {
     }
 
     /// Handler called on each keystroke change in the `UISearchBar`
-    public func searchBar(_ searchBar: UISearchBar, textDidChange searchText: String) {
+    public func searchBar(_ searchBar: UISearchBar, textDidChange searchText: String) {        
         search(with: searchText)
     }
 }
