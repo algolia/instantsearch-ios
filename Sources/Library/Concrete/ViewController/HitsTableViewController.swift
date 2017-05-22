@@ -10,7 +10,7 @@ import Foundation
 import UIKit
 
 @objc open class HitsTableViewController: UIViewController,
-    UITableViewDataSource, UITableViewDelegate, HitTableViewDataSource, HitTableViewDelegate {
+    UITableViewDataSource, UITableViewDelegate, HitsTableViewDataSource, HitsTableViewDelegate {
     
     var hitsController: HitsController!
     

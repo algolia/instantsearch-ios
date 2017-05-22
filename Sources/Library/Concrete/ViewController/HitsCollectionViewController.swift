@@ -10,7 +10,7 @@ import Foundation
 import UIKit
 
 @objc open class HitsCollectionViewController: UIViewController,
-    UICollectionViewDataSource, UICollectionViewDelegate, HitCollectionViewDataSource, HitCollectionViewDelegate {
+    UICollectionViewDataSource, UICollectionViewDelegate, HitsCollectionViewDataSource, HitsCollectionViewDelegate {
     
     var hitsController: HitsController!
     

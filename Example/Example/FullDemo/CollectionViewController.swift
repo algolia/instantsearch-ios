@@ -10,7 +10,7 @@ import UIKit
 import InstantSearch
 import InstantSearchCore
 
-class CollectionViewController: UIViewController, HitCollectionViewDataSource {
+class CollectionViewController: UIViewController, HitsCollectionViewDataSource {
 
     @IBOutlet var hitCollectionWidget: HitsCollectionWidget!
     var hitsController: HitsController!

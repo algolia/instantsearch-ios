@@ -2,7 +2,7 @@ import UIKit
 import InstantSearchCore
 import InstantSearch
 
-class ViewController: UIViewController, HitTableViewDataSource, HitTableViewDelegate {
+class ViewController: UIViewController, HitsTableViewDataSource, HitsTableViewDelegate {
     
     var instantSearch: InstantSearch!
     @IBOutlet weak var hitsTable: HitsTableWidget!

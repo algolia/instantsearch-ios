@@ -12,10 +12,10 @@ import UIKit
 
     var viewModel: HitsViewModelDelegate
     
-    @objc public weak var tableDataSource: HitTableViewDataSource?
-    @objc public weak var tableDelegate: HitTableViewDelegate?
-    @objc public weak var collectionDataSource: HitCollectionViewDataSource?
-    @objc public weak var collectionDelegate: HitCollectionViewDelegate?
+    @objc public weak var tableDataSource: HitsTableViewDataSource?
+    @objc public weak var tableDelegate: HitsTableViewDelegate?
+    @objc public weak var collectionDataSource: HitsCollectionViewDataSource?
+    @objc public weak var collectionDelegate: HitsCollectionViewDelegate?
     
     convenience public init(table: HitsTableWidget) {
         self.init(hitsView: table)
