@@ -9,6 +9,7 @@
 import Foundation
 import UIKit
 
+/// Widget that displays your search results. Built over a `UICollectionView`.
 @objc public class HitsCollectionWidget: UICollectionView, HitsViewDelegate, AlgoliaWidget {
     
     @IBInspectable public var hitsPerPage: UInt = Constants.Defaults.hitsPerPage

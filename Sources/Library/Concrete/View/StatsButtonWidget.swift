@@ -8,7 +8,6 @@
 
 import UIKit
 
-@IBDesignable
 @objc public class StatsButtonWidget: UIButton, StatsViewDelegate, AlgoliaWidget {
     
     @IBInspectable public var resultTemplate: String = Constants.Defaults.resultTemplate

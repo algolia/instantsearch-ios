@@ -8,7 +8,6 @@
 
 import UIKit
 
-@IBDesignable
 @objc public class StatsLabelWidget: UILabel, StatsViewDelegate, AlgoliaWidget {
     
     @IBInspectable public var resultTemplate: String = Constants.Defaults.resultTemplate

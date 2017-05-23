@@ -9,7 +9,6 @@
 import Foundation
 import UIKit
 
-@IBDesignable
 @objc public class DatePickerWidget: UIDatePicker, NumericControlViewDelegate, AlgoliaWidget {
     
     @IBInspectable public var attribute: String = Constants.Defaults.attribute

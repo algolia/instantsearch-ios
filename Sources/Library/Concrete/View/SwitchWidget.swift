@@ -9,7 +9,6 @@
 import Foundation
 import UIKit
 
-@IBDesignable
 @objc public class SwitchWidget: UISwitch, FacetControlViewDelegate, AlgoliaWidget {
     
     @IBInspectable public var attribute: String = Constants.Defaults.attribute

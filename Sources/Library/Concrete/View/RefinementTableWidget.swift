@@ -9,7 +9,6 @@
 import Foundation
 import UIKit
 
-@IBDesignable
 @objc public class RefinementTableWidget: UITableView, RefinementMenuViewDelegate, AlgoliaWidget {
     
     @IBInspectable public var attribute: String = Constants.Defaults.attribute

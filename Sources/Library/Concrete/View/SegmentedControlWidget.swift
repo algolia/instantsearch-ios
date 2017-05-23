@@ -9,7 +9,6 @@
 import Foundation
 import UIKit
 
-@IBDesignable
 @objc public class SegmentedControlWidget: UISegmentedControl, FacetControlViewDelegate, AlgoliaWidget {
     
     private var oldSegmentedIndex: Int = UISegmentedControlNoSegment
