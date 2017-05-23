@@ -74,6 +74,7 @@
 		E2A476FA1EC5DFC1007CA367 /* ObjectiveCBridgingTests.m in Sources */ = {isa = PBXBuildFile; fileRef = E2A476F81EC5DEDE007CA367 /* ObjectiveCBridgingTests.m */; };
 		E2A476FE1EC60BD7007CA367 /* CustomWidget.m in Sources */ = {isa = PBXBuildFile; fileRef = E2A476FD1EC60BD7007CA367 /* CustomWidget.m */; };
 		E2A477011EC61B43007CA367 /* InstantSearch-Bridging-Header.h in Headers */ = {isa = PBXBuildFile; fileRef = E2A477001EC61B43007CA367 /* InstantSearch-Bridging-Header.h */; };
+		E2AFE55B1ED488C700B6A5A7 /* TextFieldWidget.swift in Sources */ = {isa = PBXBuildFile; fileRef = E2AFE55A1ED488C700B6A5A7 /* TextFieldWidget.swift */; };
 		E2CA327C1EA77BC90057A3D3 /* HitsController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E2CA327B1EA77BC90057A3D3 /* HitsController.swift */; };
 /* End PBXBuildFile section */
 
@@ -172,6 +173,7 @@
 		E2A476FD1EC60BD7007CA367 /* CustomWidget.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CustomWidget.m; sourceTree = "<group>"; };
 		E2A477001EC61B43007CA367 /* InstantSearch-Bridging-Header.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "InstantSearch-Bridging-Header.h"; sourceTree = "<group>"; };
 		E2A477021EC62031007CA367 /* InstantSearch-Tests-Bridging-Header.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "InstantSearch-Tests-Bridging-Header.h"; sourceTree = "<group>"; };
+		E2AFE55A1ED488C700B6A5A7 /* TextFieldWidget.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TextFieldWidget.swift; sourceTree = "<group>"; };
 		E2CA327B1EA77BC90057A3D3 /* HitsController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HitsController.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -388,6 +390,7 @@
 				E27C163A1E9394250091D79E /* StatsLabelWidget.swift */,
 				E27C163E1E9394250091D79E /* ActivityIndicatorView.swift */,
 				E27C16391E9394250091D79E /* SearchBarWidget.swift */,
+				E2AFE55A1ED488C700B6A5A7 /* TextFieldWidget.swift */,
 				E27C163D1E9394250091D79E /* ClearAllWidget.swift */,
 			);
 			path = View;
@@ -692,6 +695,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				E2AFE55B1ED488C700B6A5A7 /* TextFieldWidget.swift in Sources */,
 				E27C16431E9394250091D79E /* HitsTableWidget.swift in Sources */,
 				E27A7BFA1E97B729005B2506 /* HitsViewModelDelegate.swift in Sources */,
 				E27A7BF31E97947C005B2506 /* HitsCollectionWidget.swift in Sources */,
@@ -1059,6 +1063,7 @@
 				E27B67F11ED339290001FFA7 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 	};
