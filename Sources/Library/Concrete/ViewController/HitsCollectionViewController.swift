@@ -14,6 +14,7 @@ import UIKit
     
     var hitsController: HitsController!
     
+    /// Reference to the Hits Collection Widget
     public var hitsCollectionView: HitsCollectionWidget! {
         didSet {
             hitsController = HitsController(collection: hitsCollectionView)

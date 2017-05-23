@@ -9,9 +9,9 @@
 import Foundation
 import InstantSearchCore
 
-/// ViewModel - View: HitsViewModelDelegate
+/// ViewModel - View: HitsViewModelDelegate.
 ///
-/// ViewModel - Searcher: SearchableViewModel, ResultingDelegate
+/// ViewModel - Searcher: SearchableViewModel, ResultingDelegate, ResettableDelegate.
 internal class HitsViewModel: HitsViewModelDelegate, SearchableViewModel {
     
     // MARK: - Properties

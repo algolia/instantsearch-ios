@@ -8,13 +8,27 @@
 
 import UIKit
 
+/// A controller object that manages a Hits Widget.
+/// It takes care of interacting with InstantSearch and offer clear and easy to use dataSource and delegate methods.
+/// - tableDataSource: DataSource to specify the layout of a table hit cell.
+/// - tableDelegate: Delegate to specify the behavior when a table hit cell is selected.
+/// - collectionDataSource: DataSource to specify the layout of a collection hit cell.
+/// - collectionDelegate: Delegate to specify the behavior when a collection hit cell is selected.
 @objc public class HitsController: NSObject {
 
+    /// Reference to the viewModel associated with the hits widget.
     var viewModel: HitsViewModelDelegate
     
+    /// DataSource that takes care of the content of the table hits widget.
     @objc public weak var tableDataSource: HitsTableViewDataSource?
+    
+    /// Delegate that takes care of the behavior of the table hits widget.
     @objc public weak var tableDelegate: HitsTableViewDelegate?
+    
+    /// DataSource that takes care of the content of the collection hits widget.
     @objc public weak var collectionDataSource: HitsCollectionViewDataSource?
+    
+    /// Delegate that takes care of the behavior of the collection hits widget.
     @objc public weak var collectionDelegate: HitsCollectionViewDelegate?
     
     convenience public init(table: HitsTableWidget) {

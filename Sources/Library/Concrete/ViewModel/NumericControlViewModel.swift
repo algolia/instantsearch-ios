@@ -9,6 +9,9 @@
 import Foundation
 import InstantSearchCore
 
+/// ViewModel - View: NumericControlViewModelDelegate.
+///
+/// ViewModel - Searcher: SearchableViewModel, RefinableDelegate, ResettableDelegate.
 internal class NumericControlViewModel: NumericControlViewModelDelegate, SearchableViewModel {
 
     // MARK: - Properties

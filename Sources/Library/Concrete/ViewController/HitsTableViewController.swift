@@ -14,6 +14,7 @@ import UIKit
     
     var hitsController: HitsController!
     
+    /// Reference to the Hits Table Widget
     public var hitsTableView: HitsTableWidget! {
         didSet {
             hitsController = HitsController(table: hitsTableView)

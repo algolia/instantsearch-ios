@@ -14,6 +14,7 @@ import UIKit
     
     var refinementController: RefinementController!
     
+    /// Reference to the Refinement Table Widget
     public var refinementTableView: RefinementTableWidget! {
         didSet {
             refinementController = RefinementController(table: refinementTableView)

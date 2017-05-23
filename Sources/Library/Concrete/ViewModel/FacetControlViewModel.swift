@@ -9,6 +9,9 @@
 import Foundation
 import InstantSearchCore
 
+/// ViewModel - View: FacetControlViewModelDelegate.
+///
+/// ViewModel - Searcher: SearchableViewModel, RefinableDelegate, ResettableDelegate.
 internal class FacetControlViewModel: FacetControlViewModelDelegate, SearchableViewModel {
     
     // MARK: - Properties

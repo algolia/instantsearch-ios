@@ -8,13 +8,27 @@
 
 import UIKit
 
+/// A controller object that manages a Refinement Widget.
+/// It takes care of interacting with InstantSearch and offer clear and easy to use dataSource and delegate methods.
+/// - tableDataSource: DataSource to specify the layout of a table refinement cell.
+/// - tableDelegate: Delegate to specify the behavior when a table refinement cell is selected.
+/// - collectionDataSource: DataSource to specify the layout of a collection refinement cell.
+/// - collectionDelegate: Delegate to specify the behavior when a collection refinement cell is selected.
 @objc public class RefinementController: NSObject {
     
+    /// Reference to the viewModel associated with the refinement widget.
     var viewModel: RefinementMenuViewModelDelegate
     
+    /// DataSource that takes care of the content of the table refinement widget.
     @objc public weak var tableDataSource: RefinementTableViewDataSource?
+    
+    /// Delegate that takes care of the behavior of the table refinement widget.
     @objc public weak var tableDelegate: RefinementTableViewDelegate?
+    
+    /// DataSource that takes care of the content of the collection refinement widget.
     @objc public weak var collectionDataSource: RefinementCollectionViewDataSource?
+    
+    /// Delegate that takes care of the behavior of the collection refinement widget.
     @objc public weak var collectionDelegate: RefinementCollectionViewDelegate?
     
     convenience public init(table: RefinementTableWidget) {

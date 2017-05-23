@@ -9,6 +9,9 @@
 import Foundation
 import InstantSearchCore
 
+/// ViewModel - View: RefinementMenuViewModelDelegate.
+///
+/// ViewModel - Searcher: SearchableViewModel, ResultingDelegate, ResettableDelegate.
 internal class RefinementMenuViewModel: RefinementMenuViewModelDelegate, SearchableViewModel {
     
     // MARK: - Properties

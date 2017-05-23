@@ -272,10 +272,10 @@
 		E27141D31E9F762F00959294 /* ViewController */ = {
 			isa = PBXGroup;
 			children = (
-				E27141F41EA0F20700959294 /* HitsCollectionViewController.swift */,
 				E27141D41E9F764100959294 /* HitsTableViewController.swift */,
-				E28B07E51EAF9FFE003AAE47 /* RefinementCollectionViewController.swift */,
+				E27141F41EA0F20700959294 /* HitsCollectionViewController.swift */,
 				E28B07E31EAF9FF2003AAE47 /* RefinementTableViewController.swift */,
+				E28B07E51EAF9FFE003AAE47 /* RefinementCollectionViewController.swift */,
 			);
 			path = ViewController;
 			sourceTree = "<group>";

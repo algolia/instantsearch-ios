@@ -14,6 +14,7 @@ import UIKit
     
     var refinementController: RefinementController!
     
+    /// Reference to the Refinement Collection Widget
     public var refinementCollectionView: RefinementCollectionWidget! {
         didSet {
             refinementController = RefinementController(collection: refinementCollectionView)
