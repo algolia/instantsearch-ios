@@ -10,6 +10,11 @@ import Foundation
 import UIKit
 
 /// Widget that displays your search results. Built over a `UICollectionView`.
+/// Possible configurable parameters are:
+/// - hitsPerPage
+/// - infiniteScrolling
+/// - remainingItemsBeforeLoading
+/// + Note: This is best used with a HitsController (through composition) or a HitsCollectionViewController (through inheritance).
 @objc public class HitsCollectionWidget: UICollectionView, HitsViewDelegate, AlgoliaWidget {
     
     @IBInspectable public var hitsPerPage: UInt = Constants.Defaults.hitsPerPage

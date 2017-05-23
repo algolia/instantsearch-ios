@@ -9,7 +9,12 @@
 import Foundation
 import UIKit
 
-/// Widget that displays your search results. Built over a `UITableView`. 
+/// Widget that displays your search results. Built over a `UITableView`.
+/// Possible configurable parameters are:
+/// - hitsPerPage
+/// - infiniteScrolling
+/// - remainingItemsBeforeLoading
+/// + Note: This is best used with a HitsController (through composition) or a HitsTableViewController (through inheritance).
 @objc public class HitsTableWidget: UITableView, HitsViewDelegate, AlgoliaWidget {
     
     @IBInspectable public var hitsPerPage: UInt = Constants.Defaults.hitsPerPage

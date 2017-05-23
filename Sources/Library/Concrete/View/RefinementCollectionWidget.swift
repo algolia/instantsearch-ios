@@ -9,6 +9,16 @@
 import Foundation
 import UIKit
 
+/// Widget that displays facet values for an attribute and lets the user filter the results using these values. 
+/// Built over a `UICollectionView`.
+/// Possible configurable parameters are:
+/// - attribute
+/// - refinedFirst
+/// - operator
+/// - sortBy
+/// - limit
+/// + Note: This is best used with a RefinementController (through composition) 
+/// or a RefinementCollectionViewController (through inheritance).
 @objc public class RefinementCollectionWidget: UICollectionView, RefinementMenuViewDelegate, AlgoliaWidget {
         
     @IBInspectable public var attribute: String = Constants.Defaults.attribute

@@ -9,6 +9,12 @@
 import Foundation
 import UIKit
 
+/// Widget that controls the Numeric value of attribute. Built on top of `UISlider`.
+/// Possible configurable parameters are:
+/// - attribute
+/// - operator
+/// - inclusive
+/// + Note: Use this for continuous values. The operator usually is `>`, `>=`, `<`, `<=`
 @objc public class SliderWidget: UISlider, NumericControlViewDelegate, AlgoliaWidget {
     
     @IBInspectable public var attribute: String = Constants.Defaults.attribute

@@ -9,6 +9,11 @@
 import Foundation
 import UIKit
 
+/// Widget that controls the facet value of attribute. Built on top of `UISegmentedControl`.
+/// Possible configurable parameters are:
+/// - attribute
+/// - inclusive
+/// + Note: Use this for multiple facet values.
 @objc public class SegmentedControlWidget: UISegmentedControl, FacetControlViewDelegate, AlgoliaWidget {
     
     private var oldSegmentedIndex: Int = UISegmentedControlNoSegment

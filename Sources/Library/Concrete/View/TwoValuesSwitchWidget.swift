@@ -8,6 +8,13 @@
 
 import Foundation
 
+/// Widget that controls the facet value of attribute. Built on top of `UISwitch`.
+/// Possible configurable parameters are:
+/// - attribute
+/// - valueOn
+/// - valueOff
+/// - inclusive
+/// + Note: Use this for boolean values. (Example: "Sale" and "no sale")
 @objc public class TwoValuesSwitchWidget: SwitchWidget {
     @IBInspectable public var valueOff: String = Constants.Defaults.valueOff
     

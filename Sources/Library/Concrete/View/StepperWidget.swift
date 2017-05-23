@@ -9,6 +9,11 @@
 import Foundation
 import UIKit
 
+/// Widget that controls the Numeric value of attribute. Built on top of `UIStepper`.
+/// Possible configurable parameters are:
+/// - attribute
+/// - operator
+/// - inclusive
 @objc public class StepperWidget: UIStepper, NumericControlViewDelegate, AlgoliaWidget {
     
     @IBInspectable public var attribute: String = Constants.Defaults.attribute

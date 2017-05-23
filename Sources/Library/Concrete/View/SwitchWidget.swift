@@ -9,6 +9,7 @@
 import Foundation
 import UIKit
 
+/// + Warning: Do Not use this class. Only use `OneValueSwitchWidget` or `TwoValuesSwitchWidget`.
 @objc public class SwitchWidget: UISwitch, FacetControlViewDelegate, AlgoliaWidget {
     
     @IBInspectable public var attribute: String = Constants.Defaults.attribute
@@ -29,7 +30,6 @@ import UIKit
         viewModel.view = self
     }
     
-    // TODO: Need to override for TwoValuesSwitch
     open func set(value: String) {
         setOn(value == valueOn, animated: true)
     }
