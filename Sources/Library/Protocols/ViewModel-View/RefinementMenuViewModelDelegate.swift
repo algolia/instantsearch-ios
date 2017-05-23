@@ -14,10 +14,18 @@ import InstantSearchCore
  */
 @objc internal protocol RefinementMenuViewModelDelegate: class {
     
+    /// View associated with the WidgetVM.
     var view: RefinementMenuViewDelegate! { get set }
     
+    /// Query the number of Rows to show.
     func numberOfRows(in section: Int) -> Int
+    
+    /// Query the facet to show for a row at a specific indexPath.
     func facetForRow(at indexPath: IndexPath) -> FacetValue
+    
+    /// Query whether facet at specific indexPath is refined or not.
     func isRefined(at indexPath: IndexPath) -> Bool
+    
+    /// Callback when a row at a specific indexPath is selected.
     func didSelectRow(at indexPath: IndexPath)
 }

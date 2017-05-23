@@ -13,5 +13,6 @@ import Foundation
  */
 @objc internal protocol StatsViewModelDelegate: class {
     
+    /// View associated with the WidgetVM.
     var view: StatsViewDelegate! { get set }
 }

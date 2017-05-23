@@ -9,5 +9,7 @@
 import Foundation
 
 @objc public protocol ResettableDelegate: class {
+    
+    /// Callback on a reset/clear event.
     @objc func onReset()
 }

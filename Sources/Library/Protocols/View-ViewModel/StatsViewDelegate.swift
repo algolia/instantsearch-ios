@@ -13,7 +13,7 @@ import Foundation
  */
 @objc internal protocol StatsViewDelegate: class {
     
-    /// The viewModel associated with the WidgetV.
+    /// ViewModel associated with the WidgetV.
     var viewModel: StatsViewModelDelegate! { get set }
     
     /// Called when the viewModel instructs the widget to update itself with a new text.

@@ -10,5 +10,7 @@ import Foundation
 import InstantSearchCore
 
 @objc public protocol ResultingDelegate: class {
+    
+    /// Callback for handling search results and errors.
     @objc func on(results: SearchResults?, error: Error?, userInfo: [String: Any])
 }

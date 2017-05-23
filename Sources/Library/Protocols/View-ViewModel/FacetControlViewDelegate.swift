@@ -13,7 +13,7 @@ import Foundation
  */
 @objc internal protocol FacetControlViewDelegate: RefinementViewDelegate {
     
-    /// The viewModel assocaited with the WidgetV
+    /// ViewModel associated with the WidgetV.
     var viewModel: FacetControlViewModelDelegate { get set }
     
     /// Configure the view when it is added in InstantSearch.

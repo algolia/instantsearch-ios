@@ -13,7 +13,7 @@ import Foundation
  */
 @objc internal protocol HitsViewDelegate: class {
 
-    /// The viewModel assocaited with the WidgetV.
+    /// ViewModel associated with the WidgetV.
     var viewModel: HitsViewModelDelegate! { get set }
     
     /// Called when the viewModel instructs the widget to reload itself.

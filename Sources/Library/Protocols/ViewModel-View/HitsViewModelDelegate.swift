@@ -13,8 +13,12 @@ import Foundation
  */
 @objc internal protocol HitsViewModelDelegate: class {
     
+    /// View associated with the WidgetVM.
     var view: HitsViewDelegate! { get set }
     
+    /// Query the number of Rows to show.
     func numberOfRows() -> Int
+    
+    /// Query the hit to show for a row at a specific indexPath.
     func hitForRow(at indexPath: IndexPath) -> [String: Any]
 }
