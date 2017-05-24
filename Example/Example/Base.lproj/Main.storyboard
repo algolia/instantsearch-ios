@@ -109,8 +109,8 @@
                                     <constraint firstAttribute="width" constant="114" id="l8w-RL-fsr"/>
                                 </constraints>
                                 <userDefinedRuntimeAttributes>
-                                    <userDefinedRuntimeAttribute type="string" keyPath="attribute" value="salePrice"/>
                                     <userDefinedRuntimeAttribute type="string" keyPath="operator" value="lessThan"/>
+                                    <userDefinedRuntimeAttribute type="string" keyPath="attribute" value="salePrice"/>
                                 </userDefinedRuntimeAttributes>
                             </slider>
                             <button opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="3F8-q9-cVL">
@@ -296,13 +296,13 @@
                                     </tableViewCell>
                                 </prototypes>
                                 <userDefinedRuntimeAttributes>
-                                    <userDefinedRuntimeAttribute type="string" keyPath="attribute" value="category"/>
                                     <userDefinedRuntimeAttribute type="boolean" keyPath="refinedFirst" value="YES"/>
                                     <userDefinedRuntimeAttribute type="string" keyPath="operator" value="or"/>
                                     <userDefinedRuntimeAttribute type="string" keyPath="sortBy" value="count:desc"/>
                                     <userDefinedRuntimeAttribute type="number" keyPath="limit">
                                         <integer key="value" value="15"/>
                                     </userDefinedRuntimeAttribute>
+                                    <userDefinedRuntimeAttribute type="string" keyPath="attribute" value="category"/>
                                 </userDefinedRuntimeAttributes>
                             </tableView>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Label" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="XLw-ef-W7f">

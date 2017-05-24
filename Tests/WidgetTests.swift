@@ -132,16 +132,15 @@ class WidgetTests: XCTestCase {
         // Make sure correct param was added to searcher
         XCTAssertEqual(instantSearch.searcher.params.numericRefinements["salePrice"]![0], NumericRefinement("salePrice", NumericRefinement.Operator.greaterThanOrEqual, NSNumber(value: slider.minimumValue), inclusive: Constants.Defaults.inclusive))
 
-        //TODO: Complete this part. The sendActions was not working for some reason, asked on SO
         // Now change the value of slider
-//        slider.setValue(5.5, animated: false)
-//        slider.sendActions(for: [.touchUpInside, .touchUpOutside])
-//
-//        // Make sure of updated value in searcher
-//        XCTAssertEqual(instantSearch.searcher.params.numericRefinements["salePrice"]![0], NumericRefinement("salePrice", NumericRefinement.Operator.greaterThanOrEqual, NSNumber(value: 5.5), inclusive: Constants.Defaults.inclusive))
-//        
-//        // Make sure only the updated one is added, and the old one removed
-//        XCTAssertEqual(instantSearch.searcher.params.numericRefinements["salePrice"]!.count, 1)
+        slider.setValue(5.5, animated: false)
+        slider.sendActions(for: [.touchUpInside, .touchUpOutside])
+
+        // Make sure of updated value in searcher
+        XCTAssertEqual(instantSearch.searcher.params.numericRefinements["salePrice"]![0], NumericRefinement("salePrice", NumericRefinement.Operator.greaterThanOrEqual, NSNumber(value: 5.5), inclusive: Constants.Defaults.inclusive))
+        
+        // Make sure only the updated one is added, and the old one removed
+        XCTAssertEqual(instantSearch.searcher.params.numericRefinements["salePrice"]!.count, 1)
 
     }
     
@@ -174,13 +173,17 @@ class WidgetTests: XCTestCase {
         XCTAssertNil(instantSearch.params.facets)
         XCTAssertTrue(instantSearch.params.facetRefinements.isEmpty) // still empty since oneValue Widget should not add
         
-        //TODO: emulate changing value and then confirm that facetRefinements got the param
+        // Set switch widget On
         oneValueSwitchWidget.setOn(true, animated: false)
         oneValueSwitchWidget.sendActions(for: .valueChanged)
         
         XCTAssertEqual(instantSearch.params.facetRefinements["shipping"]![0], FacetRefinement(name: "shipping", value: "premium", inclusive: Constants.Defaults.inclusive))
         
-        //TODO: emulate turning off the switch, and confirm that facetRefinements removed the param
+        
+        // Set switch widget Off
+        oneValueSwitchWidget.setOn(false, animated: false)
+        oneValueSwitchWidget.sendActions(for: .valueChanged)
+        XCTAssertTrue(instantSearch.params.facetRefinements.isEmpty)
     }
     
     func testTwoValueSwitchWidget_defaultCase_FacetAddedToSearcher() {
@@ -196,18 +199,25 @@ class WidgetTests: XCTestCase {
         XCTAssertNil(instantSearch.params.facets)
         XCTAssertEqual(instantSearch.params.facetRefinements["shipping"]![0], FacetRefinement(name: "shipping", value: "standard", inclusive: Constants.Defaults.inclusive))
         
-        //TODO: emulate changing value and then confirm that facetRefinements got the param
-        //TODO: emulate turning off the switch, and confirm that facetRefinements updated to Off
+        // Set switch widget On
+        twoValueSwitchWidget.setOn(true, animated: false)
+        twoValueSwitchWidget.sendActions(for: .valueChanged)
+        XCTAssertEqual(instantSearch.params.facetRefinements["shipping"]![0], FacetRefinement(name: "shipping", value: "premium", inclusive: Constants.Defaults.inclusive))
+        
+        // Set switch widget Off
+        twoValueSwitchWidget.setOn(false, animated: false)
+        twoValueSwitchWidget.sendActions(for: .valueChanged)
+        XCTAssertEqual(instantSearch.params.facetRefinements["shipping"]![0], FacetRefinement(name: "shipping", value: "standard", inclusive: Constants.Defaults.inclusive))
     }
-
-    // TODO: Need to find a way to expect fatalError to uncomment the below
-    // Right now these tests work as expected: the throw a fatal error, but 
-    // we need to find a way to catch it.
     
-//    func testAddRefinementMenu_NoAttribute_FatalError() {
-//        let refinementTableWidget = RefinementTableWidget(frame: defaultRect)
-//        instantSearch.add(widget: refinementTableWidget, doSearch: false)
-//    }
+    func testAddRefinementMenu_NoAttribute_FatalError() {
+
+        let refinementTableWidget = RefinementTableWidget(frame: self.defaultRect)
+
+        expectFatalError(expectedMessage: "you must assign a value to the attribute of a refinement before adding it to InstantSearch") {
+            self.instantSearch.add(widget: refinementTableWidget, doSearch: false)
+        }
+    }
 
 //    func testAddSlider_NoAttribute_FatalError() {
 //        let slider = SliderWidget(frame: defaultRect)

@@ -75,6 +75,8 @@
 		E2A476FE1EC60BD7007CA367 /* CustomWidget.m in Sources */ = {isa = PBXBuildFile; fileRef = E2A476FD1EC60BD7007CA367 /* CustomWidget.m */; };
 		E2A477011EC61B43007CA367 /* InstantSearch-Bridging-Header.h in Headers */ = {isa = PBXBuildFile; fileRef = E2A477001EC61B43007CA367 /* InstantSearch-Bridging-Header.h */; };
 		E2AFE55B1ED488C700B6A5A7 /* TextFieldWidget.swift in Sources */ = {isa = PBXBuildFile; fileRef = E2AFE55A1ED488C700B6A5A7 /* TextFieldWidget.swift */; };
+		E2AFE5661ED49B3900B6A5A7 /* FatalError.swift in Sources */ = {isa = PBXBuildFile; fileRef = E2AFE5651ED49B3900B6A5A7 /* FatalError.swift */; };
+		E2AFE56B1ED5709A00B6A5A7 /* FatalError.swift in Sources */ = {isa = PBXBuildFile; fileRef = E2AFE56A1ED5709A00B6A5A7 /* FatalError.swift */; };
 		E2CA327C1EA77BC90057A3D3 /* HitsController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E2CA327B1EA77BC90057A3D3 /* HitsController.swift */; };
 /* End PBXBuildFile section */
 
@@ -174,6 +176,8 @@
 		E2A477001EC61B43007CA367 /* InstantSearch-Bridging-Header.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "InstantSearch-Bridging-Header.h"; sourceTree = "<group>"; };
 		E2A477021EC62031007CA367 /* InstantSearch-Tests-Bridging-Header.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "InstantSearch-Tests-Bridging-Header.h"; sourceTree = "<group>"; };
 		E2AFE55A1ED488C700B6A5A7 /* TextFieldWidget.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TextFieldWidget.swift; sourceTree = "<group>"; };
+		E2AFE5651ED49B3900B6A5A7 /* FatalError.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FatalError.swift; sourceTree = "<group>"; };
+		E2AFE56A1ED5709A00B6A5A7 /* FatalError.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FatalError.swift; sourceTree = "<group>"; };
 		E2CA327B1EA77BC90057A3D3 /* HitsController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HitsController.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -231,6 +235,7 @@
 		28F8288B1C494B2C00330CF4 /* Tests */ = {
 			isa = PBXGroup;
 			children = (
+				E2AFE5641ED49B2C00B6A5A7 /* Helpers */,
 				E25FB0A21ECF550C006B8CED /* Info.plist */,
 				287D0A6D1C4B73BD004566D6 /* WidgetTests.swift */,
 				E25FB0791ECD86E8006B8CED /* RefinementMenuViewModelTests.swift */,
@@ -245,6 +250,7 @@
 		28F828971C494B4200330CF4 /* Sources */ = {
 			isa = PBXGroup;
 			children = (
+				E2AFE5691ED5709A00B6A5A7 /* TestHelpers */,
 				E28B07FF1EB0F435003AAE47 /* CustomWidgets */,
 				E28B07F81EB0F0BD003AAE47 /* Library */,
 			);
@@ -439,6 +445,22 @@
 				E28B08041EB0F501003AAE47 /* CustomSlider.xib */,
 			);
 			path = CustomWidgets;
+			sourceTree = "<group>";
+		};
+		E2AFE5641ED49B2C00B6A5A7 /* Helpers */ = {
+			isa = PBXGroup;
+			children = (
+				E2AFE5651ED49B3900B6A5A7 /* FatalError.swift */,
+			);
+			name = Helpers;
+			sourceTree = "<group>";
+		};
+		E2AFE5691ED5709A00B6A5A7 /* TestHelpers */ = {
+			isa = PBXGroup;
+			children = (
+				E2AFE56A1ED5709A00B6A5A7 /* FatalError.swift */,
+			);
+			path = TestHelpers;
 			sourceTree = "<group>";
 		};
 		E2CA327D1EA797480057A3D3 /* Controller */ = {
@@ -716,6 +738,7 @@
 				E28B07DC1EAF8423003AAE47 /* Refinement.swift in Sources */,
 				E27C16491E9394250091D79E /* ClearAllWidget.swift in Sources */,
 				E27C164C1E9394250091D79E /* SearchableViewModel.swift in Sources */,
+				E2AFE56B1ED5709A00B6A5A7 /* FatalError.swift in Sources */,
 				E27141F51EA0F20700959294 /* HitsCollectionViewController.swift in Sources */,
 				E27141CA1E9E237200959294 /* StatsButtonWidget.swift in Sources */,
 				E27B67DB1ED314100001FFA7 /* RefinementViewDelegate.swift in Sources */,
@@ -758,6 +781,7 @@
 				E2231E951EC9DC0D002FCF82 /* ConfigureInstantSearchTests.swift in Sources */,
 				287D0A6E1C4B73BD004566D6 /* WidgetTests.swift in Sources */,
 				E2A476FA1EC5DFC1007CA367 /* ObjectiveCBridgingTests.m in Sources */,
+				E2AFE5661ED49B3900B6A5A7 /* FatalError.swift in Sources */,
 				E2A476FE1EC60BD7007CA367 /* CustomWidget.m in Sources */,
 				E25FB07A1ECD86E8006B8CED /* RefinementMenuViewModelTests.swift in Sources */,
 			);
@@ -917,6 +941,7 @@
 			buildSettings = {
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = NO;
 				CLANG_ENABLE_MODULES = YES;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "";
 				DEFINES_MODULE = YES;
 				DEVELOPMENT_TEAM = 5RDFJYUV23;
@@ -941,6 +966,7 @@
 			buildSettings = {
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = NO;
 				CLANG_ENABLE_MODULES = YES;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "";
 				DEFINES_MODULE = YES;
 				DEVELOPMENT_TEAM = 5RDFJYUV23;
