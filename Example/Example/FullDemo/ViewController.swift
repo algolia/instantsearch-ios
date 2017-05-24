@@ -39,4 +39,14 @@ class ViewController: UIViewController, HitsTableViewDataSource, HitsTableViewDe
         print("hit \(String(describing: hit["name"]!)) has been clicked")
     }
     
+    func viewForNoResults(in tableView: UITableView) -> UIView {
+        let noDataLabel: UILabel = UILabel(frame: CGRect(x: 0, y: 0,
+                                                         width: tableView.bounds.size.width,
+                                                         height: tableView.bounds.size.height))
+        noDataLabel.text          = "HEY! NO RESULTS!"
+        noDataLabel.textColor     = UIColor.black
+        noDataLabel.textAlignment = .left
+        
+        return noDataLabel
+    }
 }

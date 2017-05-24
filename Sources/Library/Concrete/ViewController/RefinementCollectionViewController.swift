@@ -57,6 +57,5 @@ import UIKit
                              containing facet: String,
                              with count: Int,
                              is refined: Bool) {
-        
     }
 }

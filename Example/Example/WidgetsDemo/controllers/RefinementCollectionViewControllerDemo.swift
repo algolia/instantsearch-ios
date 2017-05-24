@@ -39,6 +39,17 @@ class RefinementCollectionViewControllerDemo: RefinementCollectionViewController
     override func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath, containing facet: String, with count: Int, is refined: Bool) {
         
     }
+    
+    func viewForNoResults(in collectionView: UICollectionView) -> UIView {
+        let noDataLabel: UILabel = UILabel(frame: CGRect(x: 0, y: 0,
+                                                         width: collectionView.bounds.size.width,
+                                                         height: collectionView.bounds.size.height))
+        noDataLabel.text          = "HEY! NO RESULTS!"
+        noDataLabel.textColor     = UIColor.black
+        noDataLabel.textAlignment = .left
+        
+        return noDataLabel
+    }
 }
 
 fileprivate let itemsPerRow: CGFloat = 3

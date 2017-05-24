@@ -64,14 +64,19 @@ extension HitsController: UITableViewDataSource {
             numOfSections            = 1
             tableView.backgroundView = nil
         } else {
-            let noDataLabel: UILabel = UILabel(frame: CGRect(x: 0, y: 0,
-                                                             width: tableView.bounds.size.width,
-                                                             height: tableView.bounds.size.height))
-            noDataLabel.text          = "No results available"
-            noDataLabel.textColor     = UIColor.black
-            noDataLabel.textAlignment = .center
-            tableView.backgroundView  = noDataLabel
             tableView.separatorStyle  = .none
+            
+            if let noResultView = tableDataSource?.viewForNoResults?(in: tableView) {
+                tableView.backgroundView  = noResultView
+            } else { // Default view
+                let noDataLabel: UILabel = UILabel(frame: CGRect(x: 0, y: 0,
+                                                                 width: tableView.bounds.size.width,
+                                                                 height: tableView.bounds.size.height))
+                noDataLabel.text          = "No results available"
+                noDataLabel.textColor     = UIColor.black
+                noDataLabel.textAlignment = .center
+                tableView.backgroundView  = noDataLabel
+            }
         }
         return numOfSections
     }
@@ -104,13 +109,17 @@ extension HitsController: UICollectionViewDataSource {
             numOfSections            = 1
             collectionView.backgroundView = nil
         } else {
-            let noDataLabel: UILabel = UILabel(frame: CGRect(x: 0, y: 0,
-                                                             width: collectionView.bounds.size.width,
-                                                             height: collectionView.bounds.size.height))
-            noDataLabel.text          = "No results available"
-            noDataLabel.textColor     = UIColor.black
-            noDataLabel.textAlignment = .center
-            collectionView.backgroundView  = noDataLabel
+            if let noResultView = collectionDataSource?.viewForNoResults?(in: collectionView) {
+                collectionView.backgroundView  = noResultView
+            } else { // Default View
+                let noDataLabel: UILabel = UILabel(frame: CGRect(x: 0, y: 0,
+                                                                 width: collectionView.bounds.size.width,
+                                                                 height: collectionView.bounds.size.height))
+                noDataLabel.text          = "No results available"
+                noDataLabel.textColor     = UIColor.black
+                noDataLabel.textAlignment = .center
+                collectionView.backgroundView  = noDataLabel
+            }
         }
         return numOfSections
         

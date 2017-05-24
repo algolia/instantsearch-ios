@@ -18,6 +18,9 @@ import UIKit
                    containing facet: String,
                    with count: Int,
                    is refined: Bool) -> UITableViewCell
+    
+    /// DataSource method called to specify the no result view when 0 results are returned from Algolia.
+    @objc optional func viewForNoResults(in tableView: UITableView) -> UIView
 }
 
 /// Delegate for a Table Refinement Menu Widget.
@@ -40,6 +43,9 @@ import UIKit
                         containing facet: String,
                         with count: Int,
                         is refined: Bool) -> UICollectionViewCell
+    
+    /// DataSource method called to specify the no result view when 0 results are returned from Algolia.
+    @objc optional func viewForNoResults(in collectionView: UICollectionView) -> UIView
 }
 
 /// Delegate for a Collection Refinement Menu Widget.
