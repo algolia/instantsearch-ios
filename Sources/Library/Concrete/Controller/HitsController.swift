@@ -15,7 +15,7 @@ import UIKit
 /// - collectionDataSource: DataSource to specify the layout of a collection hit cell.
 /// - collectionDelegate: Delegate to specify the behavior when a collection hit cell is selected.
 @objc public class HitsController: NSObject {
-
+    
     /// Reference to the viewModel associated with the hits widget.
     var viewModel: HitsViewModelDelegate
     
@@ -55,6 +55,26 @@ extension HitsController: UITableViewDataSource {
         
         return tableDataSource?.tableView(tableView, cellForRowAt: indexPath, containing: hit) ?? UITableViewCell()
     }
+    
+    public func numberOfSections(in tableView: UITableView) -> Int {
+        var numOfSections: Int = 0
+        
+        if viewModel.numberOfRows() > 0 {
+            tableView.separatorStyle = .singleLine
+            numOfSections            = 1
+            tableView.backgroundView = nil
+        } else {
+            let noDataLabel: UILabel = UILabel(frame: CGRect(x: 0, y: 0,
+                                                             width: tableView.bounds.size.width,
+                                                             height: tableView.bounds.size.height))
+            noDataLabel.text          = "No results available"
+            noDataLabel.textColor     = UIColor.black
+            noDataLabel.textAlignment = .center
+            tableView.backgroundView  = noDataLabel
+            tableView.separatorStyle  = .none
+        }
+        return numOfSections
+    }
 }
 
 extension HitsController: UITableViewDelegate {
@@ -75,6 +95,25 @@ extension HitsController: UICollectionViewDataSource {
         
         return collectionDataSource?.collectionView(collectionView, cellForItemAt: indexPath, containing: hit)
             ?? UICollectionViewCell()
+    }
+    
+    public func numberOfSections(in collectionView: UICollectionView) -> Int {
+        var numOfSections: Int = 0
+        
+        if viewModel.numberOfRows() > 0 {
+            numOfSections            = 1
+            collectionView.backgroundView = nil
+        } else {
+            let noDataLabel: UILabel = UILabel(frame: CGRect(x: 0, y: 0,
+                                                             width: collectionView.bounds.size.width,
+                                                             height: collectionView.bounds.size.height))
+            noDataLabel.text          = "No results available"
+            noDataLabel.textColor     = UIColor.black
+            noDataLabel.textAlignment = .center
+            collectionView.backgroundView  = noDataLabel
+        }
+        return numOfSections
+        
     }
 }
 

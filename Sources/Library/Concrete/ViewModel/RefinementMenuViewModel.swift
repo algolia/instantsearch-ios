@@ -89,7 +89,7 @@ internal class RefinementMenuViewModel: RefinementMenuViewModelDelegate, Searcha
     
     weak var view: RefinementMenuViewDelegate!
     
-    func numberOfRows(in section: Int) -> Int {
+    func numberOfRows() -> Int {
         return min(facetResults.count, limit)
     }
     

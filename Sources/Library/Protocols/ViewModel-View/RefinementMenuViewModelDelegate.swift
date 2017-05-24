@@ -18,7 +18,7 @@ import InstantSearchCore
     var view: RefinementMenuViewDelegate! { get set }
     
     /// Query the number of Rows to show.
-    func numberOfRows(in section: Int) -> Int
+    func numberOfRows() -> Int
     
     /// Query the facet to show for a row at a specific indexPath.
     func facetForRow(at indexPath: IndexPath) -> FacetValue

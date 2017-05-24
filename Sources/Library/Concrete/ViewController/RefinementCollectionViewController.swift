@@ -38,6 +38,10 @@ import UIKit
         self.refinementController.collectionView(collectionView, didSelectItemAt: indexPath)
     }
     
+    public func numberOfSections(in collectionView: UICollectionView) -> Int {
+        return self.refinementController.numberOfSections(in: collectionView)
+    }
+    
     // The follow methods are to be implemented by the class extending HitsCollectionViewController
     
     open func collectionView(_ collectionView: UICollectionView,

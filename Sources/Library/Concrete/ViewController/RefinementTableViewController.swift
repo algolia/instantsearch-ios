@@ -28,15 +28,19 @@ import UIKit
     // Forward the 3 important dataSource and delegate methods to the HitsTableWidget
     
     public func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return self.refinementController.tableView(self.refinementTableView, numberOfRowsInSection: section)
+        return self.refinementController.tableView(tableView, numberOfRowsInSection: section)
     }
     
     public func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        return self.refinementController.tableView(self.refinementTableView, cellForRowAt: indexPath)
+        return self.refinementController.tableView(tableView, cellForRowAt: indexPath)
     }
     
     public func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        self.refinementController.tableView(self.refinementTableView, didSelectRowAt: indexPath)
+        self.refinementController.tableView(tableView, didSelectRowAt: indexPath)
+    }
+    
+    public func numberOfSections(in tableView: UITableView) -> Int {
+        return self.refinementController.numberOfSections(in: tableView)
     }
     
     // The follow methods are to be implemented by the class extending HitsTableViewController
