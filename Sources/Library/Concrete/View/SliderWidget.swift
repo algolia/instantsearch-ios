@@ -15,7 +15,8 @@ import UIKit
 /// - operator
 /// - inclusive
 /// + Note: Use this for continuous values. The operator usually is `>`, `>=`, `<`, `<=`
-/// + Remark: You must assign a value to the `attribute` property since the refinement table cannot operate without one. A FatalError will be thrown if you don't specify anything.
+/// + Remark: You must assign a value to the `attribute` property since the refinement table cannot operate without one.
+/// A FatalError will be thrown if you don't specify anything.
 @objc public class SliderWidget: UISlider, NumericControlViewDelegate, AlgoliaWidget {
     
     @IBInspectable public var attribute: String = Constants.Defaults.attribute
