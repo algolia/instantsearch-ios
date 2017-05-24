@@ -48,7 +48,7 @@ internal class NumericControlViewModel: NumericControlViewModelDelegate, Searcha
         self.searcher = searcher
         
         guard !attribute.isEmpty else {
-            fatalError("you must assign a value to the attribute of a numeric control before adding it to InstantSearch")
+            fatalError("you must assign a value to the attribute of a Numeric Control before adding it to InstantSearch")
         }
         
         if let numeric = self.searcher.params.getNumericRefinement(name: attribute, operator: `operator`, inclusive: inclusive) {
