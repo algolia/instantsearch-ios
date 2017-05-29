@@ -78,3 +78,5 @@ If you want finer control over what you add, then you can use `InstantSearch.add
 If you're not using InstantSearch and using either the API client or InstantSearchCore, you're probably familiar with the `Query` or `SearchParameters` classes. These usually specify the query string and the parameters used for the search request to Algolia. 
 
 With InstantSearch widgets, you don't have to worry about these classes anymore. In fact, the widgets will set all the parameters for you behind the scenes, without you having to worry about it. All what you will have to do on your side is specify a few properties linked to a specific widget, and you'll be good to go!
+
+However, sometimes, you will still want to modify and configure some functionalities available on the `Searcher` level but not on the `InstantSearch` level. In that case, `InstantSearch` still gives you access to a reference to its `Searcher` in order for you to do just that.
