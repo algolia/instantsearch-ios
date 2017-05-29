@@ -25,6 +25,7 @@ import InstantSearchCore
 import UIKit
 
 private var highlightedBackgroundColorKey: Void?
+private var isHighlightingInversedKey: Void?
 
 extension UILabel {
     @objc public var highlightedBackgroundColor: UIColor? {
@@ -36,17 +37,33 @@ extension UILabel {
         }
     }
     
+    @objc public var isHighlightingInversed: Bool {
+        get {
+            guard let isHighlightingInversed = objc_getAssociatedObject(self, &isHighlightingInversedKey) as? Bool else {
+                return false
+            }
+            
+            return isHighlightingInversed
+        }
+        set(newValue) {
+            objc_setAssociatedObject(self, &isHighlightingInversedKey, newValue, objc_AssociationPolicy.OBJC_ASSOCIATION_RETAIN)
+        }
+    }
+    
     @objc public var highlightedText: String? {
         get {
             return attributedText?.string
         }
         set {
+            guard let newValue = newValue, !newValue.isEmpty else { return }
+            
+            let text = isHighlightingInversed ? Highlighter(highlightAttrs: [:]).inverseHighlights(in: newValue) : newValue
+            
             let textColor = highlightedTextColor ?? self.tintColor ?? UIColor.blue
             let backgroundColor = highlightedBackgroundColor ?? UIColor.clear
-            attributedText = newValue == nil
-                ? nil
-                : Highlighter(highlightAttrs: [NSForegroundColorAttributeName: textColor,
-                                               NSBackgroundColorAttributeName: backgroundColor]).render(text: newValue!)
+            
+            attributedText = Highlighter(highlightAttrs: [NSForegroundColorAttributeName: textColor,
+                                               NSBackgroundColorAttributeName: backgroundColor]).render(text: text)
         }
     }
 }

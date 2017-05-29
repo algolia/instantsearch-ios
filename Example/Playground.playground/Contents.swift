@@ -12,7 +12,3 @@ import InstantSearch
 
 var str = "Hello, playground"
 
-var sliderWidget = SliderWidget()
-sliderWidget.attribute = "salePrice"
-
-
