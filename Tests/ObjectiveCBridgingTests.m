@@ -48,11 +48,13 @@ CGRect defaultRect;
     hitsTableWidget.hitsPerPage = 10;
     hitsTableWidget.infiniteScrolling = true;
     hitsTableWidget.remainingItemsBeforeLoading = 5;
+    hitsTableWidget.showItemsOnEmptyQuery = true;
     
     HitsCollectionWidget* hitsCollectionWidget = [[HitsCollectionWidget alloc] initWithFrame: defaultRect collectionViewLayout:[[UICollectionViewFlowLayout alloc] init]];
     hitsCollectionWidget.hitsPerPage = 10;
     hitsCollectionWidget.infiniteScrolling = true;
     hitsCollectionWidget.remainingItemsBeforeLoading = 5;
+    hitsCollectionWidget.showItemsOnEmptyQuery = true;
     
     RefinementTableWidget* refinementTableWidget = [[RefinementTableWidget alloc] initWithFrame: defaultRect];
     refinementTableWidget.attribute = @"attribute";

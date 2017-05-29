@@ -15,6 +15,7 @@ struct Constants {
         static let hitsPerPage: UInt = 20
         static let infiniteScrolling: Bool = true
         static let remainingItemsBeforeLoading: UInt = 5
+        static let showItemsOnEmptyQuery: Bool = true
         
         // Refinement, Numeric Control, Facet Control
         static let attribute = ""

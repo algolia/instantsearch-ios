@@ -20,6 +20,7 @@ import UIKit
     @IBInspectable public var hitsPerPage: UInt = Constants.Defaults.hitsPerPage
     @IBInspectable public var infiniteScrolling: Bool = Constants.Defaults.infiniteScrolling
     @IBInspectable public var remainingItemsBeforeLoading: UInt = Constants.Defaults.remainingItemsBeforeLoading
+    @IBInspectable public var showItemsOnEmptyQuery: Bool = Constants.Defaults.showItemsOnEmptyQuery
     
     var viewModel: HitsViewModelDelegate
     

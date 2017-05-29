@@ -272,4 +272,18 @@ class WidgetTests: XCTestCase {
         // Make sure params.hitsPerPage was correctly set by just adding the hits widget.
         XCTAssertEqual(instantSearch.searcher.params.hitsPerPage, 5)
     }
+    
+    func testAddHitsWidget_DontShowItemsOnEmptyQuery_EmptyTable() {
+        let view = UIView(frame: CGRect(x: 0, y: 0, width: 100, height: 100))
+        let hitsTableWidget = HitsTableWidget(frame: defaultRect)
+        hitsTableWidget.showItemsOnEmptyQuery = false
+        
+        view.addSubview(hitsTableWidget)
+        
+        // Need to make the search here!
+        instantSearch.addAllWidgets(in: view, doSearch: true)
+        
+        // Make sure params.hitsPerPage was correctly set by just adding the hits widget.
+        XCTAssertEqual(hitsTableWidget.viewModel.numberOfRows(), 0)
+    }
 }

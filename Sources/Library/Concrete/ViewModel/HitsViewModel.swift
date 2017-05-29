@@ -28,6 +28,10 @@ internal class HitsViewModel: HitsViewModelDelegate, SearchableViewModel {
         return view.remainingItemsBeforeLoading
     }
     
+    var showItemsOnEmptyQuery: Bool {
+        return view.showItemsOnEmptyQuery
+    }
+    
     // MARK: - SearchableViewModel
     
     var searcher: Searcher!
@@ -49,7 +53,16 @@ internal class HitsViewModel: HitsViewModelDelegate, SearchableViewModel {
     func numberOfRows() -> Int {
         guard let searcher = searcher else { return 0 }
         
-        return searcher.hits.count
+        if showItemsOnEmptyQuery {
+            return searcher.hits.count
+        } else {
+            if searcher.params.query == nil || searcher.params.query!.isEmpty {
+                return 0
+            } else {
+                return searcher.hits.count
+            }
+        }
+        
     }
     
     func hitForRow(at indexPath: IndexPath) -> [String: Any] {
