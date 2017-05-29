@@ -10,7 +10,15 @@ navWeight: 2
 ## SearchBar
 <img src="assets/img/widget_SearchBox.png" class="img-object" align="right" />
 
-The **SearchBarWidget** is a specialized `UISearchBar` which takes care of querying the Algolia service on each keystroke. Since it inherits from `UISearchBar`, it supports all of its existing attributes. As with any `UIView`, you can specify it in two ways:
+The **SearchBar** widgets are made to takes care of querying the Algolia service on each keystroke. It is the main component of a search experience.
+
+There are 3 ways to use a **SearchBar** in your app with InstantSearch.
+
+- The **SearchBarWidget** which is a specialized `UISearchBar`. Since it inherits from `UISearchBar`, it supports all of its existing attributes. 
+- The **TextFieldWidget** which is a specialized `UITextField`. Since it inherits from `UITextField`, it supports all of its existing attributes. 
+- Using `InstantSearch.add(searchController: UISearchController)` for a `UISearchController` or `InstantSearch.add(searchBar: UISearchBar)` for a `UISearchBar` in order for InstantSearch to subscribe to typing events and automatically send search events to Algolia on each new keystroke.
+
+As with any `UIView`, you can specify the first 2 widgets in two ways:
 
 - **Interface builder** by drag and dropping a Search Bar from the _Object library_, and then specifying `SearchBarWidget` as its Custom class inside the _Identity Inspector_.
 
@@ -18,6 +26,7 @@ The **SearchBarWidget** is a specialized `UISearchBar` which takes care of query
 
 ```swift
 var searchBar = SearchBarWidget(frame: CGRect)
+// var searchBar = TextFieldWidget(frame: CGRect)
 self.view.addSubview(searchBar)
 ```
 
@@ -29,6 +38,7 @@ self.view.addSubview(searchBar)
 A useful pattern to improve your user's experience consists in displaying a progress indicator when there are ongoing requests still waiting to complete. This activity indicator will spin as long as some requests are still incomplete. 
 
 You can use the `ActivityIndicatorWidget` for that purpose. you can specify it in two ways:
+
 - **Interface builder** by drag and dropping an Activity Indicator View from the _Object library_, and then specifying `ActivityIndicatorWidget` as its Custom class inside the _Identity Inspector_.
 
 - **Programatically** with the following snippet of code: 
@@ -45,25 +55,15 @@ The **Hits** widgets are made to display your search results in a flexible way. 
 
 
 
-This widget exposes a few attributes that you can set in its xml definition:
+This widget exposes a few attributes that you can set either in Interface Builder or programatically
 
-```xml
-<com.algolia.instantsearch.views.Hits
-    android:id="@+id/hits"
-    android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    algolia:autoHideKeyboard="true"
-    algolia:hitsPerPage="10"
-    algolia:disableInfiniteScroll="false"
-    algolia:remainingItemsBeforeLoading="10"
-    algolia:itemLayout="@layout/hits_item">
-```
-
-- **`autoHideKeyboard`**, when `true`, closes the keyboard when the Hits are scrolled. (defaults to `false`)
 - **`hitsPerPage`** controls how many hits are requested and displayed with each search query. (defaults to 20)
-- **`disableInfiniteScroll`**, when `true`, disables the [**Infinite scroll**][infinite-scroll] feature (defaults to `false`)
+- **`infiniteScrolling`**, when `false`, disables the infinite scroll of the hits widget (defaults to `true`)
 - **`remainingItemsBeforeLoading`** sets the minimum number of remaining hits to load the next page: if you set it to 10, the next page will be loaded when there are less than 10 items below the last visible item. (defaults to 5)
-- **`itemLayout`**, finally, is used to determine the appearance of the search results.
+- **`showItemsOnEmptyQuery`**, when `false`, will display an empty hits widget when there is no query text entered by the user (defaults to `true`)
+
+
+
 
 This last attribute should reference a layout file in which you will [describe how a search result will be displayed][guide-layout]. When receiving results from its `Searcher`, this widget will bind the given layout to each result to display its attributes in the appropriate Views.
 
