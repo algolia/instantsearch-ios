@@ -8,19 +8,15 @@
 
 import UIKit
 import InstantSearch
-// TODO: Should remove that when moved highlight logic in IS
-import InstantSearchCore
 
 class RefinementTableViewControllerDemo: RefinementTableViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        
         refinementTableView = RefinementTableWidget()
         refinementTableView.attribute = "category"
         refinementTableView.frame = self.view.frame
-        //refinementTableView.register(UITableViewCell.self, forCellReuseIdentifier: "facetCell")
         
         self.view.addSubview(refinementTableView)
         InstantSearch.reference.addAllWidgets(in: self.view)

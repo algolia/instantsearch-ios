@@ -24,7 +24,7 @@ class ViewController: UIViewController, HitsTableViewDataSource, HitsTableViewDe
         let cell = hitsTable.dequeueReusableCell(withIdentifier: "hitCell", for: indexPath)
         
         cell.textLabel?.text = hit["name"] as? String
-        cell.textLabel?.isHighlightingInversed = true
+        //cell.textLabel?.isHighlightingInversed = true // uncomment this to reverse highlighting
         cell.textLabel?.highlightedTextColor = .black
         cell.textLabel?.highlightedBackgroundColor = .yellow
         cell.textLabel?.highlightedText = SearchResults.highlightResult(hit: hit, path: "name")?.value

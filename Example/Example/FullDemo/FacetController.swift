@@ -8,7 +8,6 @@
 
 import Foundation
 import UIKit
-import InstantSearchCore
 import InstantSearch
 
 class FacetController: UIViewController, RefinementTableViewDataSource {
