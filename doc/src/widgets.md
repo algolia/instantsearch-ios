@@ -332,19 +332,48 @@ class RefinementTableViewDataSourceDemo: UIViewController, RefinementTableViewDa
 }
 ```
 
+## Numeric Refinements
+
+**Numeric Refinements** are widgets which take care of numeric filters. Possible ones are:
+
+- **`SliderWidget`** inherits from `UISlider`.
+- **`StepperWidget`** inherits from `UIStepper`.
+- **`DatePickerWidget`** inherits from `UIDatePicker`.
+
+You can configure them with three attributes:
+
+- **`attribute`** defines which faceted attribute will be used by the widget.
+- **``operator``** defines the numeric operator to apply to the filter. Possible ones are `<`, `<=`, `==`, `!=`, `>=`, `>`.
+- **`inclusive`** defines whether the refinement is inclusive (default) or exclusive.
+
+## Facet Refinements
+
+**Facet Refinements** are widgets which take care of facet filters. Possible ones are:
+
+- **`OneValueSwitchWidget`** inherits from `UISwitch`.
+- **`TwoValuesSwitchWidget`** inherits from `UISwitch `.
+- **`SegmentedControlWidget`** inherits from `UISegmentedControl`.
+
+You can configure them with two attributes:
+
+- **`attribute`** defines which faceted attribute will be used by the widget.
+- **`inclusive`** defines whether the refinement is inclusive (default) or exclusive.
+
+You also have to configure the SwitchWidgets with more parameters: 
+
+- **`valueOn`** Used for faceting when the Switch is on. Example "Free Shipping".
+- **`valueOff`** Used for faceting when the Switch is off. Example "isAdmin" for `valueOff` and "isUser" for `valueOn`.
+ 
 ## Stats
 <img src="assets/img/widget_Stats.png" class="img-object" align="right"/>
 
-**Stats** is a widget for displaying statistics about the current search result. You can configure it with two attributes:
+**Stats** are widgets for displaying statistics about the current search result. Possible ones are: 
 
-```xml
-<com.algolia.instantsearch.views.Stats
-            android:id="@+id/stats"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            algolia:resultTemplate="{nbHits} results found in {processingTimeMS} ms"
-            algolia:errorTemplate="Error, please try again"/>
-```
+- **`StatsButtonWidget`** inherits from `UIButton`
+- **`StatsLabelWidget`** inherits from `UILabel`
+
+You can configure them with two attributes:
+
 - **`resultTemplate`** defines what this widget will display when a search request returns successfully. It takes the form of a templated string where we will replace the following templates:
   - `{nbHits}` will be replaced by the hit count for the current query
   - `{processingTimeMS}` will be replaced by the time the server took to process the request, in milliseconds
@@ -353,13 +382,9 @@ class RefinementTableViewDataSourceDemo: UIViewController, RefinementTableViewDa
   - `{page}` will be replaced by the index of the current page (zero-based)
   - `{query}` will be replaced by the query text
 
-  The default `resultTemplate` is `"{nbHits} results found in {processingTimeMS} ms"`.
+  The default `resultTemplate` is `"{nbHits} results"`.
 
-- **`errorTemplate`** defines what this widget will display when a search query returns with an error. It takes the form of a templated string where we will replace the following templates:
-  - `{error}` will be replaced by the error message
-  - `{query}` will be replaced by the query text
-
-  If you don't specify an `errorTemplate`, the Stats widget will be hidden when a query returns an error.
+- **`errorText`** defines what this widget will display when a search query returns with an error.
 
 ## Custom widgets
 
