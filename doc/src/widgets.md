@@ -51,123 +51,162 @@ self.view.addSubview(activityIndicator)
 ## Hits
 <img src="assets/img/widget_Hits.png" class="img-object" align="right"/>
 
-The **Hits** widgets are made to display your search results in a flexible way. We offer two Hits widget in InstantSearch: A `HitsTableWidget` built over a `UITableView`, and a `HitsCollectionWidget` built over a `UICollectionView`.
+The **Hits** widgets are made to display your search results in a flexible way. They are reloaded automatically when new hits are fetched from Algolia so you don't have to worry about that. We offer two Hits widget in InstantSearch: A `HitsTableWidget` built over a `UITableView`, and a `HitsCollectionWidget` built over a `UICollectionView`.
 
-
-
-This widget exposes a few attributes that you can set either in Interface Builder or programatically
+This widget exposes a few attributes that you can set either in Interface Builder or programatically:
 
 - **`hitsPerPage`** controls how many hits are requested and displayed with each search query. (defaults to 20)
 - **`infiniteScrolling`**, when `false`, disables the infinite scroll of the hits widget (defaults to `true`)
 - **`remainingItemsBeforeLoading`** sets the minimum number of remaining hits to load the next page: if you set it to 10, the next page will be loaded when there are less than 10 items below the last visible item. (defaults to 5)
 - **`showItemsOnEmptyQuery`**, when `false`, will display an empty hits widget when there is no query text entered by the user (defaults to `true`)
 
+If you are familiar with how `UITableview` and `UICollectionView` work, you know that their `delegate` and `dataSource` methods need to be handled in order to specify their layout and data. InstantSearch will help you take care of that with the `HitsController` class, while still letting you specify the look and feel of your widget.
 
+### Delegate and DataSource
 
+In order to handle the Delegate and DataSource of a Hits widget, we provide 2 ways to achieve that:
 
-This last attribute should reference a layout file in which you will [describe how a search result will be displayed][guide-layout]. When receiving results from its `Searcher`, this widget will bind the given layout to each result to display its attributes in the appropriate Views.
+#### ViewController Inheritance
+In this method, your `ViewController` will inherit from `HitsTableViewController` or `HitsCollectionViewController`. These **bases classes** will take care of a lot of things for you like creating the necessary properties under the hood, hooking the `delegate` and the `dataSource` of the hits widget behind the scenes. What you need to do on your end is the following: 
 
-[infinite-scroll]: widgets.html#infinite-scroll
-[guide-layout]: getting-started.html#itemlayout
-### Data Binding
+- Have your `ViewController` inherit from `HitsTableViewController` or `HitsCollectionViewController`.
+- In `viewDidLoad`, assign `hitsTableView` to your hits widget, whether it was created programatically or through Interface Builder.
+- At the end of `ViewDidLoad`, call `InstantSearch.reference.addAllWidgets(in: self.view)` to add your widget to `InstantSearch`.
+- override method `tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath, containing hit: [String : Any]) -> UITableViewCell` or `override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath, containing hit: [String : Any]) -> UITableViewCell` to specify the look and feel of your cell. Note that the method will pass in the hit in one of the params so that you can use it to display the content. 
+- *Optional*: override method `tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath, containing hit: [String : Any]) -> UITableViewCell` or `collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath, containing hit: [String : Any])` to specify what happens when a hit is selected. Also, the hit is provided in the param.
 
-This binding is done using the [Android DataBinding Library](https://developer.android.com/topic/libraries/data-binding/index.html), which allows to link a layout to an application's data. To enable this feature, add `dataBinding.enabled true` to your app's `build.gradle` under `android`:
-```groovy
-android {
-    dataBinding.enabled true
-    //...
-}
+Here is an example:
+
+```swift
+class HitsTableViewControllerDemo: HitsTableViewController {
+    
+    override func viewDidLoad() {
+        super.viewDidLoad()
+        
+        hitsTableView = HitsTableWidget()
+        hitsTableView.frame = self.view.frame
+        hitsTableView.register(UITableViewCell.self, forCellReuseIdentifier: "hitTableCell")
+        
+        self.view.addSubview(hitsTableView)
+        
+        InstantSearch.reference.addAllWidgets(in: self.view)
+    }
+
+    override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath, containing hit: [String : Any]) -> UITableViewCell {
+        let cell = hitsTableView.dequeueReusableCell(withIdentifier: "hitTableCell", for: indexPath)
+        cell.textLabel?.text = hit["name"] as? String   
+        
+        return cell
+    }
+
+    override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath, containing hit: [String : Any]) {
+        print("hit \(String(describing: hit["name"]!)) has been clicked")
+    }
+    
+    func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
+        print("I can also edit height! or any other method")
+        return 50
+    }
+
 ```
 
-You can now create the hit layout. The layout file should use a `<layout></layout>` root node, followed by a regular ViewGroup (such as a `LinearLayout`). You can then describe what attributes should be mapped to each View as follows:
+Note that you can override any `delegate` or `dataSource` method like `heightForRowAt`. So you have full control over every aspect of your UITableView/UICollectionView by using this method.
 
-```xml
-<layout
-    xmlns:algolia="http://schemas.android.com/apk/res-auto"
-    xmlns:android="http://schemas.android.com/apk/res/android">
 
-    <RelativeLayout
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:orientation="vertical">
+#### ViewController Composition
 
-        <ImageView
-            android:id="@+id/contactFace"
-            style="@style/AppTheme.View.ContactImage"
-            algolia:attribute='@{"img"}'/>
+In this method, your `ViewController` will own a `HitsController` object. You will need to specify what hit widget is _controlled_ by the `HitsController`, whether a `HitsTableWidget` or `HitsCollectionWidget`, and then assign the `dataSource` and `delegate` properties of the widget to the `HitsController`. In that way, you are telling the `HitsController`: _Hey, please take care of the `delegate` and `dataSource` methods for me please_.
 
-        <TextView
-            android:id="@+id/contactCompany"
-            style="@style/AppTheme.View.ContactText.Small"
-            algolia:attribute='@{"company"}'/>
+There is still one thing we talked about in the previous section: specifying the data and the behaviour of the widget. The `HitsController` provides `tableDataSource` and `tableDelegate` properties for the `HitsTableWidget`, as well as `collectionDataSource` and `collectionDelegate` for the `HitsCollectionWidget`. The `ViewController` will therefore need to implement a few protocols to be able to specify the hit cells and their onClick behaviour. The protocols to implement are:
 
-        <RatingBar
-            android:id="@+id/contactScore"
-            style="@style/AppTheme.View"
-            algolia:attribute='@{"score"}'/>
-    </RelativeLayout>
-</layout>
+- HitsTableViewDataSource: Specify the rendering of the table hit cells
+- HitsTableViewDelegate: Specify what happens when table hit cell is clicked
+- HitsCollectionViewDataSource: Specify the rendering of the collection hit cells
+- HitsCollectionViewDelegate: Specify what happens when collection hit cell is clicked
+
+Here is an example:
+
+```swift
+import InstantSearch
+
+class ViewController: UIViewController, HitsTableViewDataSource, HitsTableViewDelegate {
+    
+    var instantSearch: InstantSearch!
+    @IBOutlet weak var hitsTable: HitsTableWidget!
+    var hitsController: HitsController!
+
+    override func viewDidLoad() {
+        super.viewDidLoad()
+        
+        hitsController = HitsController(table: hitsTable)
+        hitsTable.dataSource = hitsController
+        hitsTable.delegate = hitsController
+        hitsController.tableDataSource = self
+        hitsController.tableDelegate = self
+        
+        InstantSearch.reference.addAllWidgets(in: self.view)
+    }
+    
+    func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath, containing hit: [String : Any]) -> UITableViewCell {
+        let cell = hitsTable.dequeueReusableCell(withIdentifier: "hitCell", for: indexPath)
+        cell.textLabel?.text = hit["name"] as? String
+        
+        return cell
+    }
+    
+    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath, containing hit: [String: Any]) {
+        print("hit \(String(describing: hit["name"]!)) has been clicked")
+    }
+    
+    func viewForNoResults(in tableView: UITableView) -> UIView {
+    	// Specify a View when no results are returned from Algolia
+    }
 ```
 
-For each `View` which should receive a result's attribute, you can specify `algolia:attribute='@{"foo"}'` to map the record's `foo` attribute to this View.
-
-Currently, the Hits widget handles natively the following Views and their subclasses:
-
-
-|View Class | Use of the attribute | Method called | Notes|
-| --------- | -------------------- | ------------- | ---- |
-|TextView   | text content | setText(attributeValue) | Can be highlighted
-|EditText   | hint content | setHint(attributeValue) | Can be highlighted
-|ImageView  | bitmap image URL | setBitmapImage(attributeBitmap)| Parsed to an URL, then loaded asynchronously
-|RatingBar  | rating value| setRating(attributeValue)| Parsed as Float
-|ProgressBar| progress value | setProgress(attributeValue)| Parsed as Float and rounded to the nearest Integer
-
-### Custom hit views
-
-Apart from these ones, any `View` can be used to hold an attribute if it implements the [`AlgoliaHitView`](/instantsearch/src/main/java/com/algolia/instantsearch/ui/views/AlgoliaHitView.java) interface. In this case, we will call `onUpdateView(JSONObject result)` and the view will be responsible of using the result's JSON to display the hit.
-
-*See for example the [media app][media-url]'s [`TimestampHitView`](https://github.com/algolia/instantsearch-android-examples/blob/master/media/src/main/java/com/algolia/instantsearch/examples/media/views/TimestampHitView.java), a TextView which transforms a timestamp attribute to display a human-readable date instead.*
+The downside of using this method is that it's hard to specify additional `delegate` and `dataSource` methods since they are assigned to the `HitsController` and not to the `ViewController` itself. If you want to do that, then it's preferable that you use the first inheritance method. 
 
 ### Infinite scroll
 
 An infinite scroll mechanism is built-in to load more results as the user scrolls.
 Enabled by default, it will watch the state of the Hits to load more results before the user reaches the end of the current page.
 
-As explained [in the attributes description](#hits), you can use the attributes `remainingItemsBeforeLoading` and `disableInfiniteScroll` to control or disable this feature.
+As explained [in the attributes description](#hits), you can use the attributes `remainingItemsBeforeLoading` and `infiniteScrolling` to control or disable this feature.
 
 ### Empty View
 
-The Hits widget implements an empty view mechanism to display an alternative View if there are no results to display, following the [AdapterView's interface](https://developer.android.com/reference/android/widget/AdapterView.html#setEmptyView(android.view.View)).
-If you add a View to your layout with the id **`@android:id/empty`**, it will be displayed instead of the Hits when there is no data to display.  You can also set it programmatically using `Hits#setEmptyView(View)`.
+The Hits widget implements an empty view mechanism to display an alternative View if there are no results to display. For that, you can use the `HitsTableViewDataSource` method `viewForNoResults(in tableView: UITableView) -> UIView` or the `HitsCollectionViewDataSource` method `viewForNoResults(in collectionView: UICollectionView) -> UIView`.
 
 ### Highlighting
 <img src="assets/img/highlighting.png" class="img-object" align="right"/>
 
 Visually highlighting the search result is [an essential feature of a great search interface][explain-highlighting]. It will help your users understand your results by explaining them why a result is relevant to their query.
 
-The `Hits` widget automatically handles highlighting. To highlight a textual attribute, simply add the `highlighted` attribute on its view:
+In order to add highlighting to your Hits widget, we offer a utility method and `UILabel` stored properties. Note that you have to import `InstantSearchCore` in order to have access to the utility method. There are a few attributes that you can specify to your highlighted label:
 
-```xml
-<TextView
-    android:id="@+id/name"
-    algolia:attribute='@{"city"}'
-    algolia:highlighted="@{true}"/>
+- **`isHighlightingInversed`**: whether the highlighting is reversed or not.
+- **`highlightedTextColor `**: The text color of the highlighting (optional).
+- **`highlightedBackgroundColor `**: The background color of the highlighting (optional).
+- **`highlightedText `**: The text that is highlighted. Here we need to use the utility method `SearchResults.highlightResult(hit: hit, path: "your_attribute")?.value` 
+
+Here is an example:
+
+```swift
+import InstantSearchCore
+
+    func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath, containing hit: [String : Any]) -> UITableViewCell {
+        let cell = hitsTable.dequeueReusableCell(withIdentifier: "hitCell", for: indexPath)
+        
+        cell.textLabel?.text = hit["name"] as? String
+        cell.textLabel?.isHighlightingInversed = true
+        cell.textLabel?.highlightedTextColor = .black
+        cell.textLabel?.highlightedBackgroundColor = .yellow
+        cell.textLabel?.highlightedText = SearchResults.highlightResult(hit: hit, path: "name")?.value
+        
+        return cell
+    }
 ```
-This will highlight the attribute according to the query term, like you can see in the screenshot. The color used by default for highlighting is `R.color.colorHighlighting`, which you can override in your application.
 
-You can also specify `algolia:highlightingColor='@{"color/appDefinedColor"}'` on a `View` to use a specific color for this one only.
-
-Note that highlighting **only works automatically on TextViews**. if you implement a [custom hit view](#custom-hit-views) or to highlight results received by your [custom widget](#anatomy-of-an-algoliawidget), you should use the [`Highlighter`](javadoc/com/algolia/instantsearch/helpers/Highlighter.html).
-This tool will let you build a highlighted [`Spannable`](https://developer.android.com/reference/android/text/Spannable.html) from a search result and an optional highlight color:
-
-```java
-final Spannable highlightedAttribute = Highlighter.getDefault().renderHighlightColor(result, attributeToHighlight, context);
-```
-
-The default Highlighter will highlight anything between `<em>` and `</em>`. You can configure the Highlighter to highlight between any pair of terms with `Highlighter.setDefault(newPrefix, newSuffix)`, or use a RegExp pattern to highlight any captured part with `Highlighter.setDefault(newPattern)`.
-
-*See for example the [e-commerce app][ecommerce-url]'s [`CategoryOrTypeView`](https://github.com/algolia/instantsearch-android-examples/blob/master/ecommerce/src/main/java/com/algolia/instantsearch/examples/ecommerce/views/CategoryOrTypeView.java), a TextView which takes either the `category` or the `type` attribute of a record and [highlights it](https://github.com/algolia/instantsearch-android-examples/blob/master/ecommerce/src/main/java/com/algolia/instantsearch/examples/ecommerce/views/CategoryOrTypeView.java#L25) before displaying.*
-
+For more info, check the guide on highlighting in the [InstantSearch Core guide](https://community.algolia.com/instantsearch-core-swift/guide/highlighting.html).
 
 ## RefinementList
 <img src="assets/img/widget_RefinementList.png" class="img-object" align="right"/>
