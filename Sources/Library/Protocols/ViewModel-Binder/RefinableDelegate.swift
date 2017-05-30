@@ -9,6 +9,7 @@
 import Foundation
 import InstantSearchCore
 
+/// Protocol that gives callbacks when search parameters are being altered in the `Searcher`.
 @objc public protocol RefinableDelegate: class {
     
     /// The attribute name associated with the refinement widget.

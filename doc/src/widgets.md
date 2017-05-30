@@ -390,11 +390,18 @@ You can configure them with two attributes:
 
 If none of these widgets fits your use-case, you can implement your own!
 
-Any `View` implementing the [`AlgoliaResultsListener`](javadoc/com/algolia/instantsearch/model/AlgoliaResultsListener.html) interface will be picked-up by `InstantSearchHelper` at instantiation. You simply need to implement two methods:
-- `onResults` will be called when new results are received
-- `onError` will be called when there is an error
+Any class implementing the `AlgoliaWidget`protocol can be added to InstantSearch and will be able to manage the search state or receive specific search events.
 
-This interface also specifies `setSearcher`, to give a reference to the `Searcher` used in your search interface. It will enable your widget to uses the [Searcher's programmatic API][docs-searcher].
+These are the protocols that you can add to your class:
+
+- **`SearchableViewModel`**: the widget will have a reference to `Searcher` by implementing function `configure(with searcher: Searcher)`, and will therefore be able to use it to trigger methods such as `#search()` (e.g: `UISearchBar`), or `#params.updateNumericRefinement` (e.g: `UISlider`).
+- **`ResultingDelegate`**: the widget can process the results or handle the error of a search request to Algolia by implementing `on(results: SearchResults?, error: Error?, userInfo: [String: Any])`.
+- **`RefinableDelegate`**: the widget receives events when search parameters are being altered in the `Searcher`. The widget will have to specify the refinement `attribute` that it is associated with, and then can subscribe to 4 different methods:
+	- `onRefinementChange(numericMap: [String: [NumericRefinement]]?)` for a change in any numeric refinements.
+	- `onRefinementChange(numerics: [NumericRefinement])` for a change in the numeric refinement associated with the widget's attribute.
+	- `onRefinementChange(facetMap: [String: [FacetRefinement]]?)` for a change in any facet refinements.
+	- `onRefinementChange(facets: [FacetRefinement])` for a change in the facet refinement associated with the widget's attribute. 
+
 
 [media-url]: https://github.com/algolia/instantsearch-android-examples/tree/master/media
 [ecommerce-url]: https://github.com/algolia/instantsearch-android-examples/tree/master/ecommerce

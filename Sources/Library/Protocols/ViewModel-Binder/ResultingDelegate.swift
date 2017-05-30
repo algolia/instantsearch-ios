@@ -9,6 +9,7 @@
 import Foundation
 import InstantSearchCore
 
+/// Protocol that gives a callback to new search results and errors.
 @objc public protocol ResultingDelegate: class {
     
     /// Callback for handling search results and errors.
