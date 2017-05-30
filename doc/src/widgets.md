@@ -72,7 +72,7 @@ In this method, your `ViewController` will inherit from `HitsTableViewController
 - Have your `ViewController` inherit from `HitsTableViewController` or `HitsCollectionViewController`.
 - In `viewDidLoad`, assign `hitsTableView` to your hits widget, whether it was created programatically or through Interface Builder.
 - At the end of `ViewDidLoad`, call `InstantSearch.reference.addAllWidgets(in: self.view)` to add your widget to `InstantSearch`.
-- override method `tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath, containing hit: [String : Any]) -> UITableViewCell` or `override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath, containing hit: [String : Any]) -> UITableViewCell` to specify the look and feel of your cell. Note that the method will pass in the hit in one of the params so that you can use it to display the content. 
+- override method `tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath, containing hit: [String : Any]) -> UITableViewCell` or `tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath, containing hit: [String : Any]) -> UITableViewCell` to specify the look and feel of your cell. Note that the method will pass in the hit in one of the params so that you can use it to display the content. 
 - *Optional*: override method `tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath, containing hit: [String : Any]) -> UITableViewCell` or `collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath, containing hit: [String : Any])` to specify what happens when a hit is selected. Also, the hit is provided in the param.
 
 Here is an example:
@@ -211,35 +211,126 @@ For more info, check the guide on highlighting in the [InstantSearch Core guide]
 ## RefinementList
 <img src="assets/img/widget_RefinementList.png" class="img-object" align="right"/>
 
-The **RefinementList** is a filtering widget made to display your [facets](https://www.algolia.com/doc/guides/search/filtering-faceting#faceting) and let the user refine the search results.
+The **RefinementList** is a filtering widget made to display your [facets](https://www.algolia.com/doc/guides/search/filtering-faceting#faceting) and let the user refine the search results. We offer two RefinementList widget in InstantSearch: A `RefinementTableWidget` built over a `UITableView`, and a `RefinementCollectionWidget` built over a `UICollectionView`.
 
-Four attributes allow you to configure how it will filter your results:
+Five attributes allow you to configure how it will filter your results:
 <br /><br /><br /><br /> <!-- Line breaks to avoid code sample being squeezed by the floating image -->
-
-```xml
-<com.algolia.instantsearch.views.RefinementList
-            android:id="@+id/refinements"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            algolia:attribute="city"
-            algolia:limit="10"
-            algolia:operator="or"
-            algolia:sortBy="['isRefined', 'count:desc']"/>
-```
 
 - **`attribute`** defines which faceted attribute will be used by the widget.
 - **`operator`** can either be `"or"` or `"and"`, to control if the results should match *any* selected value or *all* selected values. (defaults to `"or"`)
 - **`limit`** is the maximum amount of facet values we will display (defaults to 10). If there are more values, we will display those with the bigger counts.
+- **`isRefined`** defines whether the refined values are displayed first or not (defaults to `true`)
 - **`sortBy`** controls the sort order of the attributes. You can either specify a single value or an array of values to apply one after another.
 
   This attribute accepts the following values:
-  - `"isRefined"` to sort the facets by displaying first currently refined facets
   - `"count:asc"` to sort the facets by increasing count
   - `"count:desc"` to sort the facets by decreasing count
   - `"name:asc"` to sort the facet values by alphabetical order
   - `"name:desc"` to sort the facet values by reverse alphabetical order
 
-In the previous code sample, `sortBy="['isRefined', 'count']"` will display the refined facets before the non-refined ones, and will then sort them by decreasing count.
+For specifying the layout of your refinement cells, we follow the exact same methodology as the one described in the Hits section above. Here is a stripped down version: 
+
+### Delegate and DataSource
+
+In order to handle the Delegate and DataSource of a RefinementList widget, we provide 2 ways to achieve that:
+
+#### ViewController Inheritance
+
+- Have your `ViewController` inherit from `RefinementTableViewController` or `RefinementCollectionViewController`.
+- In `viewDidLoad`, assign `refinementTableView` to your refinement widget, whether it was created programatically or through Interface Builder.
+- At the end of `ViewDidLoad`, call `InstantSearch.reference.addAllWidgets(in: self.view)` to add your widget to `InstantSearch`.
+- override method `tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath, containing facet: String, with count: Int, is refined: Bool) -> UITableViewCell` or `collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath, containing facet: String, with count: Int, is refined: Bool) -> UICollectionViewCell` to specify the look and feel of your cell. 
+- *Optional*: override method `tableView(_ tableView: UITableView,
+                   didSelectRowAt indexPath: IndexPath,
+                   containing facet: String,
+                   with count: Int,
+                   is refined: Bool)` or `collectionView(_ collectionView: UICollectionView,
+                        didSelectItemAt indexPath: IndexPath,
+                        containing facet: String,
+                        with count: Int,
+                        is refined: Bool` to specify what happens when a refinement is selected.
+
+Here is an example:
+
+```swift
+import InstantSearch
+
+class RefinementTableViewControllerDemo: RefinementTableViewController {
+    
+    override func viewDidLoad() {
+        super.viewDidLoad()
+        
+        refinementTableView = RefinementTableWidget()
+        refinementTableView.attribute = "category"
+        refinementTableView.frame = self.view.frame
+        
+        self.view.addSubview(refinementTableView)
+        InstantSearch.reference.addAllWidgets(in: self.view)
+        
+    }
+    
+    override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath, containing facet: String, with count: Int, is refined: Bool) -> UITableViewCell {
+        var cell = refinementTableView.dequeueReusableCell(withIdentifier: "refinementCell")
+        
+        if cell == nil {
+            cell = UITableViewCell(style: .subtitle, reuseIdentifier: "refinementCell")
+        }
+        
+        cell!.textLabel?.text = facet
+        cell!.detailTextLabel?.text = String(count)
+        cell!.accessoryType = refined ? .checkmark : .none
+        
+        return cell!
+    }
+}
+```
+
+#### ViewController Composition
+In this method, your `ViewController` will own a `RefinementController` object.
+
+he `RefinementController` provides `tableDataSource` and `tableDelegate` properties for the `RefinementTableWidget`, as well as `collectionDataSource` and `collectionDelegate` for the `RefinementCollectionWidget`.
+
+The protocols to implement are:
+
+- RefinementTableViewDataSource: Specify the rendering of the table refinement cells
+- RefinementTableViewDelegate: Specify what happens when table refinement cell is clicked
+- RefinementCollectionViewDataSource: Specify the rendering of the collection refinement cells
+- RefinementCollectionViewDelegate: Specify what happens when collection refinement cell is clicked
+
+Here is an example:
+
+```swift
+import InstantSearch
+
+class RefinementTableViewDataSourceDemo: UIViewController, RefinementTableViewDataSource {
+    
+    var instantSearch: InstantSearch!
+    @IBOutlet weak var refinementList: RefinementTableWidget!
+    
+    var refinementController: RefinementController!
+    
+    override func viewDidLoad() {
+        refinementController = RefinementController(table: refinementList)
+        refinementList.dataSource = refinementController
+        refinementList.delegate = refinementController
+        refinementController.tableDataSource = self
+        // refinementController.tableDelegate = self
+        
+        instantSearch = InstantSearch.reference
+        instantSearch.add(widget: refinementList)
+    }
+    
+    func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath, containing facet: String, with count: Int, is refined: Bool) -> UITableViewCell {
+        let cell = refinementList.dequeueReusableCell(withIdentifier: "facetCell", for: indexPath)
+        
+        cell.textLabel?.text = facet
+        cell.detailTextLabel?.text = String(count)
+        cell.accessoryType = refined ? .checkmark : .none
+        
+        return cell
+    }
+}
+```
 
 ## Stats
 <img src="assets/img/widget_Stats.png" class="img-object" align="right"/>
