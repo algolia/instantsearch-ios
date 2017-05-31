@@ -16,12 +16,16 @@ class HitsTableViewControllerDemo: HitsTableViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        hitsTableView = HitsTableWidget()
-        hitsTableView.frame = self.view.frame
+        let searchBar = SearchBarWidget()
+        searchBar.sizeToFit()
+        navigationItem.titleView = searchBar
+        
+        hitsTableView = HitsTableWidget(frame: self.view.frame)
         hitsTableView.register(UITableViewCell.self, forCellReuseIdentifier: "hitTableCell")
         
         self.view.addSubview(hitsTableView)
         InstantSearch.reference.addAllWidgets(in: self.view)
+        InstantSearch.reference.add(widget: searchBar)
         
     }
 

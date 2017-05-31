@@ -14,8 +14,11 @@ class RefinementCollectionViewControllerDemo: RefinementCollectionViewController
     override func viewDidLoad() {
         super.viewDidLoad()
         
+        let searchBar = SearchBarWidget(frame: CGRect(x: 20, y: 60, width: self.view.frame.width - 40, height: 40))
+        self.view.addSubview(searchBar)
+        
         let layout: UICollectionViewFlowLayout = UICollectionViewFlowLayout()
-        refinementCollectionView = RefinementCollectionWidget(frame: self.navigationController?.view.bounds ?? self.view.bounds, collectionViewLayout: layout)
+        refinementCollectionView = RefinementCollectionWidget(frame: CGRect(x: 10, y: 100, width: self.view.frame.width - 20, height: self.view.frame.height - 100), collectionViewLayout: layout)
         
         refinementCollectionView.register(UINib(nibName: "CollectionViewCell", bundle: nil) , forCellWithReuseIdentifier: "collectionViewCell")
         refinementCollectionView.backgroundColor = .white

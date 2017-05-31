@@ -16,8 +16,11 @@ class HitsCollectionViewControllerDemo: HitsCollectionViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
+        let searchBar = SearchBarWidget(frame: CGRect(x: 20, y: 70, width: self.view.frame.width - 40, height: 40))
+        self.view.addSubview(searchBar)
+        
         let layout: UICollectionViewFlowLayout = UICollectionViewFlowLayout()
-        hitsCollectionView = HitsCollectionWidget(frame: self.navigationController?.view.bounds ?? self.view.bounds, collectionViewLayout: layout)
+        hitsCollectionView = HitsCollectionWidget(frame: CGRect(x: 10, y: 110, width: self.view.frame.width - 20, height: self.view.frame.height - 100), collectionViewLayout: layout)
 
         hitsCollectionView.register(UINib(nibName: "CollectionViewCell", bundle: nil) , forCellWithReuseIdentifier: "collectionViewCell")
         hitsCollectionView.backgroundColor = .white
