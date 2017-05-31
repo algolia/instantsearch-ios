@@ -7,41 +7,44 @@ withHeadings: true
 navWeight: 100
 ---
 
-*This guide will walk you through the few steps needed to start a project with InstantSearch Android.
-We will start from an empty Android project, and create from scratch a full search interface!*
+*This guide will walk you through the few steps needed to start a project with InstantSearch iOS.
+We will start from an empty iOS project, and create from scratch a full search interface!*
 
 ## Before we start
-To use InstantSearch Android, you need an Algolia account. You can create one by clicking [here](https://www.algolia.com/users/sign_up), or use the following credentials:
+To use InstantSearch iOS, you need an Algolia account. You can create one by clicking [here](https://www.algolia.com/users/sign_up), or use the following credentials:
 - APP ID: `latency`
 - Search API Key: `3d9875e51fbd20c7754e65422f7ce5e1`
 - Index name: `bestbuy`
 
 *These credentials will let you use a preloaded dataset of products appropriate for this guide.*
 
-## Create a new Project and add InstantSearch Android
-In Android Studio, create a new Project:
-- On the Target screen, select **Phone and Tablet**
-- On the Add an Activity screen, select **Empty Activity**
+## Create a new Project and add InstantSearch iOS
+In Xcode, create a new Project:
+- On the Template screen, select **Single View Application** and click next
+- Specify your Product name, select Swift as the language, and iPhone as the Device. Then create.
 
-in your app's `build.gradle`, add the following dependency:
-```groovy
-compile 'com.algolia:instantsearch-android:0.5.1'
-```
+We will use CocoaPods for adding the dependency to `InstantSearch`.
+
+- On your terminal, go to the root of your project then type `pod init`. A PodFile will be created for you.
+- Add pod 'AlgoliaSearch-InstantSearch-Swift', '~> 0.1.0' to your Podfile below your target.
+- On your terminal, type `pod install`
+- Open your .xcworkspace project created at the root of your project
+
 
 ## Build the User Interface and display your data: Hits and helpers
 
-InstantSearch Android is based on a system of [widgets][widgets] that communicate when an user interacts with your app. The first widget we'll add is **[Hits][widgets-hits]**, which will display your search results.
+InstantSearch iOS is based on a system of [widgets][widgets] that communicate when an user interacts with your app. The first widget we'll add is **[Hits][widgets-hits]**, which will display your search results.
 
 
 - To keep this guide simple, we'll replace the main activity's layout by a vertical `LinearLayout`:
 ```xml
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout
-    android:id="@+id/activity_main"
-    xmlns:android="http://schemas.android.com/apk/res/android"
-    android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    android:orientation="vertical">
+    iOS:id="@+id/activity_main"
+    xmlns:iOS="http://schemas.iOS.com/apk/res/iOS"
+    iOS:layout_width="match_parent"
+    iOS:layout_height="match_parent"
+    iOS:orientation="vertical">
 </LinearLayout>
 ```
 
@@ -50,8 +53,8 @@ InstantSearch Android is based on a system of [widgets][widgets] that communicat
 - You can then add the `Hits` widget to your layout:
 ```xml
 <com.algolia.instantsearch.ui.views.Hits
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
+        iOS:layout_width="match_parent"
+        iOS:layout_height="wrap_content"
         algolia:itemLayout="@layout/hits_item"/>
 ```
 
@@ -59,29 +62,29 @@ The `itemLayout` attribute references a layout that will be used to display each
 - Let's create a new layout called **`hits_item.xml`**:
 ```xml
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-              android:orientation="horizontal"
-              android:layout_width="match_parent"
-              android:layout_height="match_parent">
+<LinearLayout xmlns:iOS="http://schemas.iOS.com/apk/res/iOS"
+              iOS:orientation="horizontal"
+              iOS:layout_width="match_parent"
+              iOS:layout_height="match_parent">
     <ImageView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:id="@+id/product_image"/>
+        iOS:layout_width="wrap_content"
+        iOS:layout_height="wrap_content"
+        iOS:id="@+id/product_image"/>
     <TextView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:id="@+id/product_name"/>
+        iOS:layout_width="wrap_content"
+        iOS:layout_height="wrap_content"
+        iOS:id="@+id/product_name"/>
     <TextView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:id="@+id/product_price"/>
+        iOS:layout_width="wrap_content"
+        iOS:layout_height="wrap_content"
+        iOS:id="@+id/product_price"/>
 </LinearLayout>
 ```
 
-- InstantSearch Android will automatically bind your records to these Views using the [Data Binding Library][dbl].
+- InstantSearch iOS will automatically bind your records to these Views using the [Data Binding Library][dbl].
 First, enable it in your app's `build.gradle`:
 ```groovy
-android {
+iOS {
     dataBinding.enabled true
     //...
 }
@@ -91,28 +94,28 @@ You can then specify which View will hold each record's attribute:
 add **`algolia:attribute='@{"foo"}'`** on a View to bind it to the `foo` attribute of your data:
 ```xml
 <?xml version="1.0" encoding="utf-8"?>
-<layout xmlns:algolia="http://schemas.android.com/apk/res-auto">
-    <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-                  android:layout_width="match_parent"
-                  android:layout_height="match_parent"
-                  android:orientation="horizontal">
+<layout xmlns:algolia="http://schemas.iOS.com/apk/res-auto">
+    <LinearLayout xmlns:iOS="http://schemas.iOS.com/apk/res/iOS"
+                  iOS:layout_width="match_parent"
+                  iOS:layout_height="match_parent"
+                  iOS:orientation="horizontal">
 
         <ImageView
-            android:id="@+id/product_image"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
+            iOS:id="@+id/product_image"
+            iOS:layout_width="wrap_content"
+            iOS:layout_height="wrap_content"
             algolia:attribute='@{"image"}'/>
 
         <TextView
-            android:id="@+id/product_name"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
+            iOS:id="@+id/product_name"
+            iOS:layout_width="wrap_content"
+            iOS:layout_height="wrap_content"
             algolia:attribute='@{"name"}'/>
 
         <TextView
-            android:id="@+id/product_price"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
+            iOS:id="@+id/product_price"
+            iOS:layout_width="wrap_content"
+            iOS:layout_height="wrap_content"
             algolia:attribute='@{"price"}'/>
     </LinearLayout>
 </layout>
@@ -160,7 +163,7 @@ public class MainActivity extends AppCompatActivity {
 
 <img src="assets/img/mvp/step1.png" class="img-object" align="right"/>
 
-**Build and run your application: you now have an InstantSearch Android app displaying your data!**
+**Build and run your application: you now have an InstantSearch iOS app displaying your data!**
 
 <p class="cb">In this part you've learned:</p>
 
@@ -186,8 +189,8 @@ This will be the role of another Widget: the **[`SearchBox`][widgets-searchbox]*
 - Add a `SearchBox` to your `main_activity.xml`:
 ```xml
 <com.algolia.instantsearch.ui.views.SearchBox
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"/>
+        iOS:layout_width="match_parent"
+        iOS:layout_height="wrap_content"/>
 ```
 
 InstantSearch will automatically recognize your SearchBox as a source of search queries.
@@ -203,9 +206,9 @@ You can improve it by using the [Highlighting][highlighting] feature: just add `
 
 ```xml
 <TextView
-    android:id="@+id/product_name"
-    android:layout_width="wrap_content"
-    android:layout_height="wrap_content"
+    iOS:id="@+id/product_name"
+    iOS:layout_width="wrap_content"
+    iOS:layout_height="wrap_content"
     algolia:attribute='@{"name"}'
     algolia:highlighted='@{true}'/>
 ```
@@ -230,14 +233,14 @@ You now know how to:
 
 Your application now displays your data, lets your users enter a query and displays search results as-they-type: you just built an instant-search interface! Congratulations 🎉
 
-This is only an introduction to what you can do with InstantSearch Android: have a look at our [examples][examples] to see more complex examples of applications built with InstantSearch.
+This is only an introduction to what you can do with InstantSearch iOS: have a look at our [examples][examples] to see more complex examples of applications built with InstantSearch.
 You can also head to our [Widgets page][widgets] to see the other components that you could use.
 
 [examples]: examples.html
 [widgets]: widgets.html
 [widgets-hits]: widgets.html#hits
 [widgets-searchbox]: widgets.html#hits
-[dbl]: https://developer.android.com/topic/libraries/data-binding/index.html
+[dbl]: https://developer.iOS.com/topic/libraries/data-binding/index.html
 [searcher]: concepts.html#searcher
 [instantsearchhelper]: concepts.html#instantsearchhelper
 [highlighting]: widgets.html#highlighting
