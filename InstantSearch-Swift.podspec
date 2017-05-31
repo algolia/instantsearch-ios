@@ -1,5 +1,6 @@
 Pod::Spec.new do |s|
   s.name             = "InstantSearch-Swift"
+  s.module_name      = 'InstantSearch'
   s.version          = "1.0.0-beta1"
   s.summary          = "A library of widgets and helpers to build instant-search applications on iOS."
   s.homepage         = "https://github.com/algolia/instantsearch-ios"
