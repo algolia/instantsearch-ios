@@ -36,7 +36,7 @@ let statsWidget = StatsLabelWidget(frame: CGRect(...))
 self.view.addSubview(searchBar)
 self.view.addSubview(statsWidget)
 
-// Add all widgets in view to InstantSearch
+// Add all widgets in view to InstantSearch in your ViewController
 InstantSearch.reference.addAllWidgets(in: self.view)
 
 // Run your app and write a query in the searchBar.
@@ -72,7 +72,7 @@ You can also experiment and learn with the *InstantSearch Playground* which is c
 To install InstantSearch, simply add the following line to your Podfile:
 
 ```ruby
-pod 'InstantSearch', '~> 0.1'
+pod 'InstantSearch-Swift', '~> 1.0.0-beta1'
 ```
 
 #### Carthage
@@ -82,7 +82,7 @@ pod 'InstantSearch', '~> 0.1'
 To install InstantSearch, simply add the following line to your Cartfile:
 
 ```ogdl
-github "algolia/InstantSearch" ~> 0.1
+github "algolia/InstantSearch-ios" ~> 1.0.0-beta1
 ```
 
 ## Author
