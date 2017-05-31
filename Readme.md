@@ -12,7 +12,9 @@
 By [Algolia](http://algolia.com).
 
 
+## Warning
 
+**This repo is a WIP**. Do not use it in production as the APIs can still change. Stay tuned for a beta release soon :)
 
 ## Introduction
 
@@ -24,8 +26,20 @@ InstantSearch iOS is a library providing widgets and helpers to help you build t
 
 ```swift
 import InstantSearch
-..
-.
+
+// Configure InstantSearch AppDelegate 
+InstantSearch.reference.configure(appID: APP_ID, apiKey: API_KEY, index: INDEX)
+
+// Declare your widgets (IB or programatically) in your ViewController
+let searchBar = SearchBarWidget(frame: CGRect(...))
+let statsWidget = StatsLabelWidget(frame: CGRect(...))
+self.view.addSubview(searchBar)
+self.view.addSubview(statsWidget)
+
+// Add all widgets in view to InstantSearch
+InstantSearch.reference.addAllWidgets(in: self.view)
+
+// Run your app and write a query in the searchBar.
 ```
 
 ## Requirements
@@ -37,11 +51,11 @@ import InstantSearch
 
 * If you **want to contribute** please feel free to **submit pull requests**.
 * If you **have a feature request** please **open an issue**.
-* If you **found a bug** or **need help** please **check older issues, [FAQ](#faq) and threads on [StackOverflow](http://stackoverflow.com/questions/tagged/InstantSearch) (Tag 'InstantSearch') before submitting an issue.**.
+* If you **found a bug** or **need help** please **check older issues, [FAQ](#faq) and threads on [StackOverflow](http://stackoverflow.com/questions/tagged/Algolia) (Tag 'Algolia') before submitting an issue.**.
 
 Before contribute check the [CONTRIBUTING](https://github.com/algolia/InstantSearch/blob/master/CONTRIBUTING.md) file for more info.
 
-If you use **InstantSearch** in your app We would love to hear about it! Drop us a line on [twitter](https://twitter.com/algolia).
+If you use **InstantSearch** in your app, we would love to hear about it! Drop us a line on [discourse](https://discourse.algolia.com/) or [twitter](https://twitter.com/algolia).
 
 ## Examples
 
@@ -58,7 +72,7 @@ You can also experiment and learn with the *InstantSearch Playground* which is c
 To install InstantSearch, simply add the following line to your Podfile:
 
 ```ruby
-pod 'InstantSearch', '~> 1.0'
+pod 'InstantSearch', '~> 0.1'
 ```
 
 #### Carthage
@@ -68,7 +82,7 @@ pod 'InstantSearch', '~> 1.0'
 To install InstantSearch, simply add the following line to your Cartfile:
 
 ```ogdl
-github "algolia/InstantSearch" ~> 1.0
+github "algolia/InstantSearch" ~> 0.1
 ```
 
 ## Author
@@ -77,9 +91,8 @@ github "algolia/InstantSearch" ~> 1.0
 
 ## FAQ
 
-#### How to .....
-
-You can do it by conforming to .....
+#### Where can I search for general questions about Algolia?
+You can search our [FAQ in our website](https://www.algolia.com/doc/faq/).
 
 # Change Log
 
