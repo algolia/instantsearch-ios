@@ -18,22 +18,79 @@ To use InstantSearch iOS, you need an Algolia account. You can create one by cli
 
 *These credentials will let you use a preloaded dataset of products appropriate for this guide.*
 
+Another thing to point out is that this getting started guide will show you two ways of building your search experience: one is using storyboards (or xibs), and the other is writing your UI programatically. Depending on what your prefer, you can follow one track and ignore the other. 
+
 ## Create a new Project and add InstantSearch iOS
 In Xcode, create a new Project:
+
 - On the Template screen, select **Single View Application** and click next
 - Specify your Product name, select Swift as the language, and iPhone as the Device. Then create.
 
 We will use CocoaPods for adding the dependency to `InstantSearch`.
 
-- On your terminal, go to the root of your project then type `pod init`. A PodFile will be created for you.
-- Add pod 'AlgoliaSearch-InstantSearch-Swift', '~> 0.1.0' to your Podfile below your target.
-- On your terminal, type `pod install`
-- Open your .xcworkspace project created at the root of your project
+- Open your terminal and run `sudo gem install cocoapods` if you don't have cocoapods installed on your machine.
+- Go to the root of your project then type `pod init`. A `Podfile` will be created for you.
+- Open your `Podfile` and add `pod 'AlgoliaSearch-InstantSearch-Swift', '~> 0.1.0'` below your target.
+- On your terminal, run `pod install`.
+- Close you Xcode project and then at the root of your project, open `projectName.xcworkspace`.
 
+## Initialization
 
-## Build the User Interface and display your data: Hits and helpers
+To initialize InstantSearch, you need an Algolia account with a configured and non-empty index. 
 
-InstantSearch iOS is based on a system of [widgets][widgets] that communicate when an user interacts with your app. The first widget we'll add is **[Hits][widgets-hits]**, which will display your search results.
+Go to your `AppDelegate.swift` file and add the following under the `didFinishLaunchingWithOptions:` method:
+
+```swift
+InstantSearch.reference.configure(appID: "latency", apiKey: "1f6fd3a6fb973cb08419fe7d288fa4db", index: "bestbuy_promo")
+InstantSearch.reference.params.attributesToRetrieve = ["name", "salePrice"]
+InstantSearch.reference.params.attributesToHighlight = ["name"]
+```
+
+This will initialize InstantSearch with the credentials proposed at the beginning. You can also chose to replace them with the credentials of your own app.
+
+To understand the above, we are using the singleton `InstantSearch.reference` to configure InstantSearch with our Algolia credentials. `InstantSearch.reference` will be used throughout our app to easily deal with InstantSearch. Note that you can also create your own instance of `InstantSearch` and pass it around your Controllers, but we won't do that in this guide.
+
+Next, we added the attributes that we want to retrieve and highlight. Note that this can be specified in the Algolia dashboard by going to Indices -> Display tab. If you added the configuration there, then you do not need to specify the `attributesToRetrieve` and `attributesToHighlight` as shown above.
+
+## Search your data: the SearchBar
+
+Any search experience requires a SearchBar, and this is what we're going to start with. We will also add a `Stats` widget to show how the number of results change when you type a query in your SearchBar. 
+
+### Programatically
+
+Go to your `ViewController.swift` file and then inside your `viewDidLoad` method, add the following: 
+
+```swift
+// Create your Search and Stat widget.
+let searchBar = SearchBarWidget(frame: CGRect(x: 10, y: 30, width: self.view.frame.width - 20, height: 40))
+let statsWidget = StatsLabelWidget(frame: CGRect(x: 10, y: 75, width: 150, height: 50))
+
+// Add them to the ViewController's view.
+self.view.addSubview(searchBar)
+self.view.addSubview(statsWidget)
+    
+// Add all widgets to InstantSearch
+InstantSearch.reference.addAllWidgets(in: self.view)
+```
+
+Run your app with `Cmd` + `r`, and then search in the SearchBar on the screen. You should see that the results are changing on each key stroke. Nice stuff with so little code!
+
+### Storyboard
+
+### Recap
+
+Fantastic! You just used your very first widgets from InstantSearch.
+InstantSearch will automatically recognize your SearchBar as a source of search queries.
+
+In this part, you've learned:
+
+- How to create a SearchBar Widget
+- How to create a StatsLabel Widget
+- How to add widgets to InstantSearch
+
+## Display your data: Hits and helpers
+
+InstantSearch iOS is based on a system of [widgets][widgets] that communicate when a user interacts with your app. The first widget we'll add is **[Hits][widgets-hits]**, which will display your search results.
 
 
 - To keep this guide simple, we'll replace the main activity's layout by a vertical `LinearLayout`:
@@ -172,29 +229,6 @@ public class MainActivity extends AppCompatActivity {
 - How to initialize Algolia with your credentials
 - How to trigger a search programmatically
 
-## Search your data: the SearchBox
-
-Your application displays search results, but for now the user cannot input anything.
-This will be the role of another Widget: the **[`SearchBox`][widgets-searchbox]**.
-
-
-<br />
-<img src="assets/img/widget_SearchBox.png" class="img-object" align="right"/>
-<br />
-<br />
-<br />
-
-
-
-- Add a `SearchBox` to your `main_activity.xml`:
-```xml
-<com.algolia.instantsearch.ui.views.SearchBox
-        iOS:layout_width="match_parent"
-        iOS:layout_height="wrap_content"/>
-```
-
-InstantSearch will automatically recognize your SearchBox as a source of search queries.
-Restart your app and tap a few characters: you now have a fully functional search interface!
 
 ## Help the user understand your results: Highlighting
 
