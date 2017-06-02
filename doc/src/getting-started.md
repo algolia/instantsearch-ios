@@ -38,7 +38,7 @@ We will use CocoaPods for adding the dependency to `InstantSearch`.
 
 To initialize InstantSearch, you need an Algolia account with a configured and non-empty index. 
 
-Go to your `AppDelegate.swift` file and add the following under the `didFinishLaunchingWithOptions:` method:
+Go to your `AppDelegate.swift` file and then add `import InstantSearch` at the top. Then inside your `didFinishLaunchingWithOptions:` method, add the following:
 
 ```swift
 InstantSearch.reference.configure(appID: "latency", apiKey: "1f6fd3a6fb973cb08419fe7d288fa4db", index: "bestbuy_promo")
@@ -54,11 +54,11 @@ Next, we added the attributes that we want to retrieve and highlight. Note that 
 
 ## Search your data: the SearchBar
 
-Any search experience requires a SearchBar, and this is what we're going to start with. We will also add a `Stats` widget to show how the number of results change when you type a query in your SearchBar. 
+InstantSearch iOS is based on a system of [widgets][widgets] that communicate when a user interacts with your app. The first widget we'll add is a SearchBar since any search experience requires one. InstantSearch will automatically recognize your SearchBar as a source of search queries. We will also add a `Stats` widget to show how the number of results change when you type a query in your SearchBar. 
 
 ### Programatically
 
-Go to your `ViewController.swift` file and then inside your `viewDidLoad` method, add the following: 
+Go to your `ViewController.swift` file and then add `import InstantSearch` at the top. Then inside your `viewDidLoad` method, add the following: 
 
 ```swift
 // Create your Search and Stat widget.
@@ -73,14 +73,28 @@ self.view.addSubview(statsWidget)
 InstantSearch.reference.addAllWidgets(in: self.view)
 ```
 
-Run your app with `Cmd` + `r`, and then search in the SearchBar on the screen. You should see that the results are changing on each key stroke. Nice stuff with so little code!
-
 ### Storyboard
+
+Go to your `ViewController.swift` file and then add `import InstantSearch` at the top. Then inside your `viewDidLoad` method, add the following: 
+
+```swift    
+// Add all widgets in view to InstantSearch
+InstantSearch.reference.addAllWidgets(in: self.view)
+```
+
+Here, we're telling InstantSearch to inspect all the subviews in the `ViewController`'s view. So what we need to do now is add the widgets to our view! 
+
+So let's open our `Main.storyboard` and then on the Utility Tab on your right, Go to the Object Library on the bottom and then drag a drop a `Search Bar` to your view. Click on the `Search Bar` and then on the identity inspector, add the custom class `SearchBarWidget`. 
+
+Now repeat the process but this time add a `Label` to the view, and then let the custom class be a `StatsLabelWidget`. Finally, make the width of the label bigger so that the text appears clearly.
+
+### Common
+
+Run your app with `Cmd` + `r`, and then search in the SearchBar on the screen. You should see that the results are changing on each key stroke. Nice stuff with so little code!
 
 ### Recap
 
 Fantastic! You just used your very first widgets from InstantSearch.
-InstantSearch will automatically recognize your SearchBar as a source of search queries.
 
 In this part, you've learned:
 
@@ -88,135 +102,48 @@ In this part, you've learned:
 - How to create a StatsLabel Widget
 - How to add widgets to InstantSearch
 
-## Display your data: Hits and helpers
+## Display your data: Hits
 
-InstantSearch iOS is based on a system of [widgets][widgets] that communicate when a user interacts with your app. The first widget we'll add is **[Hits][widgets-hits]**, which will display your search results.
+The whole point of a search experience is to display the dataset that matches best the query entered by the user. That's what we will implement in this section 
 
+### Programatically
 
-- To keep this guide simple, we'll replace the main activity's layout by a vertical `LinearLayout`:
-```xml
-<?xml version="1.0" encoding="utf-8"?>
-<LinearLayout
-    iOS:id="@+id/activity_main"
-    xmlns:iOS="http://schemas.iOS.com/apk/res/iOS"
-    iOS:layout_width="match_parent"
-    iOS:layout_height="match_parent"
-    iOS:orientation="vertical">
-</LinearLayout>
+// TODO: need to see how to specify identifier here.
+
+### Storyboard
+
+In your `Main.Storyboard`, drag and drop a `Table View` from the Object Library and resize it to make it bigger. Then, select the `Table View` and change its custom class to `HitsTableWidget`. Now if you go to the identity inspector, you will see that there are at the top 4 configuration parameters that you can apply like `Hits Pet Page` and `Infinite Scrolling`. Feel free to change them to your needs, or keep the default values.
+
+After that, click on your tableView, and in the identity inspector, add a prototype cell. Then, select the Table View Cell and in the identity inspector, specify `hitCell` as the identifier.
+
+Next, we need to have a reference to this HitsTableView in your `ViewController`. For that, go ahead and create an `IBOutlet` and call it `tableView`.
+
+### Common
+
+Now that we have our `Table View` setup, we still need to specify what fields from the Algolia response we want to show, as well as the layout of our cells. InstantSearch provides both base classes and helper classes in order to achieve this. Here, we will look at the easiest and most flexible way: using the base class.
+
+In your `ViewController` class, replace `UIViewController` with `HitsTableViewController`. This class will help you setup a lot of boilerplate code for you. Next, in your `viewDidLoad` method and before adding your widgets to InstantSearch, add the following:
+
+```swift
+hitsTableView = tableView
 ```
 
-<div id="itemlayout" />
+This will associate the `hitsTableView` in the base class to the tableView that you just created. Behind the scenes, your `ViewController` class will become the `delegate` and `dataSource` of the tableView, the same way the UIKit base class `UITableViewController` does that for you.
 
-- You can then add the `Hits` widget to your layout:
-```xml
-<com.algolia.instantsearch.ui.views.Hits
-        iOS:layout_width="match_parent"
-        iOS:layout_height="wrap_content"
-        algolia:itemLayout="@layout/hits_item"/>
-```
+Next, we can specify our cells with a method provided by the base class, which contains the hit for the specific row.
 
-The `itemLayout` attribute references a layout that will be used to display each item of the results. This layout will contain a `View` for each attribute of our data that we want to display.
-- Let's create a new layout called **`hits_item.xml`**:
-```xml
-<?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:iOS="http://schemas.iOS.com/apk/res/iOS"
-              iOS:orientation="horizontal"
-              iOS:layout_width="match_parent"
-              iOS:layout_height="match_parent">
-    <ImageView
-        iOS:layout_width="wrap_content"
-        iOS:layout_height="wrap_content"
-        iOS:id="@+id/product_image"/>
-    <TextView
-        iOS:layout_width="wrap_content"
-        iOS:layout_height="wrap_content"
-        iOS:id="@+id/product_name"/>
-    <TextView
-        iOS:layout_width="wrap_content"
-        iOS:layout_height="wrap_content"
-        iOS:id="@+id/product_price"/>
-</LinearLayout>
-```
-
-- InstantSearch iOS will automatically bind your records to these Views using the [Data Binding Library][dbl].
-First, enable it in your app's `build.gradle`:
-```groovy
-iOS {
-    dataBinding.enabled true
-    //...
-}
-```
-- To use data binding in your layout, wrap it in a **`<layout>`** root tag.
-You can then specify which View will hold each record's attribute:
-add **`algolia:attribute='@{"foo"}'`** on a View to bind it to the `foo` attribute of your data:
-```xml
-<?xml version="1.0" encoding="utf-8"?>
-<layout xmlns:algolia="http://schemas.iOS.com/apk/res-auto">
-    <LinearLayout xmlns:iOS="http://schemas.iOS.com/apk/res/iOS"
-                  iOS:layout_width="match_parent"
-                  iOS:layout_height="match_parent"
-                  iOS:orientation="horizontal">
-
-        <ImageView
-            iOS:id="@+id/product_image"
-            iOS:layout_width="wrap_content"
-            iOS:layout_height="wrap_content"
-            algolia:attribute='@{"image"}'/>
-
-        <TextView
-            iOS:id="@+id/product_name"
-            iOS:layout_width="wrap_content"
-            iOS:layout_height="wrap_content"
-            algolia:attribute='@{"name"}'/>
-
-        <TextView
-            iOS:id="@+id/product_price"
-            iOS:layout_width="wrap_content"
-            iOS:layout_height="wrap_content"
-            algolia:attribute='@{"price"}'/>
-    </LinearLayout>
-</layout>
-```
-*Beware of the data binding attributes' syntax: **@'{"string"}'**.*
-
-You have now a main activity layout containing your `Hits` widget, and a data-binding layout ready to display your search results. You just miss a search query to display its results!
-As your application has no input for now, we will trigger the search programmatically.
-
-- In your `MainActivity`, create a [`Searcher`][searcher] with your credentials:
-```java
-Searcher searcher = new Searcher(ALGOLIA_APP_ID, ALGOLIA_SEARCH_API_KEY, ALGOLIA_INDEX_NAME);
-```
-
-- Instantiate an [`InstantSearchHelper`][instantsearchhelper] to link your `Searcher` to your Activity:
-```java
-InstantSearchHelper helper = new InstantSearchHelper(this, searcher);
-```
-
-- Now your Activity is connected to Algolia through the Searcher, you can trigger a search using [`InstantSearchHelper#search(String)`][doc-instantsearch-search]:
-```java
-helper.search(); // Search with empty query
-```
-
-Your activity should now look like this:
-
-```java
-public class MainActivity extends AppCompatActivity {
-    private static final String ALGOLIA_APP_ID = "latency";
-    private static final String ALGOLIA_SEARCH_API_KEY = "3d9875e51fbd20c7754e65422f7ce5e1";
-    private static final String ALGOLIA_INDEX_NAME = "bestbuy";
-
-    @Override
-    protected void onCreate(Bundle savedInstanceState) {
-        super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_main);
-        Searcher searcher = new Searcher(ALGOLIA_APP_ID, ALGOLIA_SEARCH_API_KEY, ALGOLIA_INDEX_NAME);
-        InstantSearchHelper helper = new InstantSearchHelper(this, searcher);
-        helper.search();
-    }
+```swift
+override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath, containing hit: [String : Any]) -> UITableViewCell {
+    let cell = tableView.dequeueReusableCell(withIdentifier: "hitCell", for: indexPath)
+    
+    cell.textLabel?.text = hit["name"] as? String
+    cell.detailTextLabel?.text = String(hit["salePrice"] as! Double)
+    
+    return cell
 }
 ```
 
-----
+Here we use the json hit, extract the `name` and `salePrice`, and assign it to the `text` property of the labels.
 
 <img src="assets/img/mvp/step1.png" class="img-object" align="right"/>
 
@@ -225,10 +152,8 @@ public class MainActivity extends AppCompatActivity {
 <p class="cb">In this part you've learned:</p>
 
 - How to build your interface with Widgets by adding the `Hits` widget
-- How to create a data-binding `<layout>` for displaying search results
-- How to initialize Algolia with your credentials
-- How to trigger a search programmatically
-
+- How to configure widgets
+- How to specify the look and feel of your cells.
 
 ## Help the user understand your results: Highlighting
 
