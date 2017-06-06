@@ -18,7 +18,7 @@ By [Algolia](http://algolia.com).
 
 ## Introduction
 
-InstantSearch iOS is a library providing widgets and helpers to help you build the best instant-search experience on iOS with Algolia. It is built on top of Algolia's [Swift API Client](https://github.com/algolia/algoliasearch-client-swift) to provide you a high-level solution to quickly build various search interfaces.
+InstantSearch iOS is a library providing widgets and helpers to help you build the best instant-search experience on iOS with Algolia. It is built on top of Algolia's [Swift API Client](https://github.com/algolia/algoliasearch-client-swift) to provide you a high-level solution to quickly build various search interfaces. For 
 
 <!-- <img src="Example/InstantSearch.gif" width="300"/> -->
 
@@ -41,6 +41,10 @@ InstantSearch.reference.addAllWidgets(in: self.view)
 
 // Run your app and write a query in the searchBar.
 ```
+
+# Demo
+
+You can see InstantSearch iOS in action in our [Examples repository](https://github.com/algolia/instantsearch-swift-examples), in which we published example apps built with InstantSearch and written in Swift:
 
 ## Requirements
 
