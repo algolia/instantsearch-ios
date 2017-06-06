@@ -58,19 +58,42 @@ InstantSearch iOS is based on a system of [widgets][widgets] that communicate wh
 
 ### Programatically
 
-Go to your `ViewController.swift` file and then add `import InstantSearch` at the top. Then inside your `viewDidLoad` method, add the following: 
+Go to your `ViewController.swift` file and then add `import InstantSearch` at the top. Then, below your class definition, declare your SearchBar and Stats widget:
 
 ```swift
-// Create your Search and Stat widget.
-let searchBar = SearchBarWidget(frame: CGRect(x: 10, y: 30, width: self.view.frame.width - 20, height: 40))
-let statsWidget = StatsLabelWidget(frame: CGRect(x: 10, y: 75, width: 150, height: 50))
+// Create your widgets
+let searchBar = SearchBarWidget(frame: .zero)
+let stats = StatsLabelWidget(frame: .zero)
+```
 
-// Add them to the ViewController's view.
-self.view.addSubview(searchBar)
-self.view.addSubview(statsWidget)
+Then inside your `viewDidLoad` method, add the following: 
+
+```swift
+initUI()
     
 // Add all widgets to InstantSearch
 InstantSearch.reference.addAllWidgets(in: self.view)
+```
+
+Finally, we need to add the views to the `ViewController`'s view and specify the autolayout constraints so that the layout looks good on any device. You don't have to focus too much on understanding this part since it is not related to InstantSearch, and more related to iOS layout. Add this function to your file:
+
+```swift
+func initUI() {
+    // Add the declared views to the main view
+    self.view.addSubview(searchBar)
+    self.view.addSubview(stats)
+    
+    // Add autolayout constraints
+    searchBar.translatesAutoresizingMaskIntoConstraints = false
+    stats.translatesAutoresizingMaskIntoConstraints = false
+    
+    let views = ["searchBar": searchBar, "stats": stats]
+    var constraints = [NSLayoutConstraint]()
+    constraints += NSLayoutConstraint.constraints(withVisualFormat: "V:|-30-[searchBar]-10-[stats]", options: [], metrics: nil, views:views)
+    constraints += NSLayoutConstraint.constraints(withVisualFormat: "H:|-25-[searchBar]-25-|", options: [], metrics: nil, views:views)
+    constraints += NSLayoutConstraint.constraints(withVisualFormat: "H:|-25-[stats]-25-|", options: [], metrics: nil, views:views)
+    NSLayoutConstraint.activate(constraints)
+}
 ```
 
 ### Storyboard
@@ -90,7 +113,7 @@ Now repeat the process but this time add a `Label` to the view, and then let the
 
 ### Common
 
-Run your app with `Cmd` + `r`, and then search in the SearchBar on the screen. You should see that the results are changing on each key stroke. Nice stuff with so little code!
+**Build and run your application: you now have the most basic search experience!**. You should see that the results are changing on each key stroke. Nice stuff!
 
 ### Recap
 
@@ -108,13 +131,44 @@ The whole point of a search experience is to display the dataset that matches be
 
 ### Programatically
 
-// TODO: need to see how to specify identifier here.
+We will now create our tableView. Next to your properties declared, add the following:
+
+```swift
+let tableView = HitsTableWidget(frame: .zero)
+```
+
+Then we will specify the layout constraint of the table to fill the most of the page. **Replace** your `initUI` method with the following (again, no need to worry about understanding this part):
+
+```swift
+func initUI() {
+    // Add the declared views to the main view
+    self.view.addSubview(searchBar)
+    self.view.addSubview(stats)
+    self.view.addSubview(tableView)
+    
+    // Add autolayout constraints
+    searchBar.translatesAutoresizingMaskIntoConstraints = false
+    stats.translatesAutoresizingMaskIntoConstraints = false
+    tableView.translatesAutoresizingMaskIntoConstraints = false
+
+    let views = ["searchBar": searchBar, "stats": stats, "tableView": tableView]
+    var constraints = [NSLayoutConstraint]()
+    constraints += NSLayoutConstraint.constraints(withVisualFormat: "V:|-30-[searchBar]-10-[stats]-10-[tableView]-|", options: [], metrics: nil, views:views)
+    constraints += NSLayoutConstraint.constraints(withVisualFormat: "H:|-25-[searchBar]-25-|", options: [], metrics: nil, views:views)
+    constraints += NSLayoutConstraint.constraints(withVisualFormat: "H:|-25-[stats]-25-|", options: [], metrics: nil, views:views)
+    constraints += NSLayoutConstraint.constraints(withVisualFormat: "H:|-[tableView]-|", options: [], metrics: nil, views:views)
+    NSLayoutConstraint.activate(constraints)
+    
+    // Register tableView identifier
+    tableView.register(UITableViewCell.self, forCellReuseIdentifier: "hitCell")
+}
+```
 
 ### Storyboard
 
-In your `Main.Storyboard`, drag and drop a `Table View` from the Object Library and resize it to make it bigger. Then, select the `Table View` and change its custom class to `HitsTableWidget`. Now if you go to the identity inspector, you will see that there are at the top 4 configuration parameters that you can apply like `Hits Pet Page` and `Infinite Scrolling`. Feel free to change them to your needs, or keep the default values.
+In your `Main.Storyboard`, drag and drop a `Table View` from the Object Library and resize it to make it bigger. Then, select the `Table View` and change its custom class to `HitsTableWidget`. Now if you go to the attributes inspector, you will see that there are at the top 4 configuration parameters that you can apply like `Hits Pet Page` and `Infinite Scrolling`. Feel free to change them to your needs, or keep the default values.
 
-After that, click on your tableView, and in the identity inspector, add a prototype cell. Then, select the Table View Cell and in the identity inspector, specify `hitCell` as the identifier.
+After that, click on your tableView, and in the attributes inspector, add a prototype cell. Then, select the Table View Cell and in the attributes inspector, specify `hitCell` as the identifier.
 
 Next, we need to have a reference to this HitsTableView in your `ViewController`. For that, go ahead and create an `IBOutlet` and call it `tableView`.
 
@@ -122,7 +176,7 @@ Next, we need to have a reference to this HitsTableView in your `ViewController`
 
 Now that we have our `Table View` setup, we still need to specify what fields from the Algolia response we want to show, as well as the layout of our cells. InstantSearch provides both base classes and helper classes in order to achieve this. Here, we will look at the easiest and most flexible way: using the base class.
 
-In your `ViewController` class, replace `UIViewController` with `HitsTableViewController`. This class will help you setup a lot of boilerplate code for you. Next, in your `viewDidLoad` method and before adding your widgets to InstantSearch, add the following:
+In your `ViewController` class, replace `UIViewController` with `HitsTableViewController`. This class will help you setup a lot of boilerplate code for you. Next, in your `viewDidLoad` method after initializing the view and before adding your widgets to InstantSearch, add the following:
 
 ```swift
 hitsTableView = tableView
@@ -137,7 +191,6 @@ override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexP
     let cell = tableView.dequeueReusableCell(withIdentifier: "hitCell", for: indexPath)
     
     cell.textLabel?.text = hit["name"] as? String
-    cell.detailTextLabel?.text = String(hit["salePrice"] as! Double)
     
     return cell
 }
@@ -147,9 +200,9 @@ Here we use the json hit, extract the `name` and `salePrice`, and assign it to t
 
 <img src="assets/img/mvp/step1.png" class="img-object" align="right"/>
 
-**Build and run your application: you now have an InstantSearch iOS app displaying your data!**
+**Build and run your application: you now have an InstantSearch iOS app displaying your data!** You can also enjoy the infinite scrolling of the table as well!
 
-<p class="cb">In this part you've learned:</p>
+In this part, you've learned:
 
 - How to build your interface with Widgets by adding the `Hits` widget
 - How to configure widgets
@@ -161,31 +214,30 @@ Here we use the json hit, extract the `name` and `salePrice`, and assign it to t
 
 Your application lets the user search and displays results, but doesn't explain _why_ these results match the user's query.
 
-You can improve it by using the [Highlighting][highlighting] feature: just add `algolia:highlighted="@{true}"` to every Views where the query should be highlighted:
+You can improve it by using the [Highlighting][highlighting] feature: InstantSearchCore offers a helper method just for that. 
+At the top of you file, add `import InstantSearchCore`. Then, in your `cellForRowAt` method, add the following before the `return cell` statement:
 
-```xml
-<TextView
-    iOS:id="@+id/product_name"
-    iOS:layout_width="wrap_content"
-    iOS:layout_height="wrap_content"
-    algolia:attribute='@{"name"}'
-    algolia:highlighted='@{true}'/>
+```swift
+cell.textLabel?.highlightedTextColor = .blue
+cell.textLabel?.highlightedBackgroundColor = .yellow
+cell.textLabel?.highlightedText = SearchResults.highlightResult(hit: hit, path: "name")?.value
 ```
 
 <br />
 
-Restart your application and type something in the SearchBox: the results are displayed with your keywords highlighted in these Views!
+Restart your application and type something in the SearchBar: the results are displayed with your keywords highlighted in these views!
 
-<!-- TODO: Add Filtering when RefinementList is a mobile-ready component
-## Filter your data: the RefinementList
--->
+In this part, you've learned:
 
-
-You now know how to:
-- Add a search input with the `SearchBox` widget
-- Highlight search results with `algolia:highlighted`
+- Highlight search results
 
 ----
+
+## Let the user filter his results: RefinementList
+
+In order to avoid letting you write a lot of boilerplate code for navigating between screens, we have created a project that you can start with. This project contains the exact same things that we just implemented, as well as the boilerplate code for navigating between screens. You can check the storyboard approach [here]() and the programatic approach [here]()
+
+We can implement a RefinementList with the exact same idea as the Hits widgets: using a base class and then implementing some delegate methods. However, this time, we will implement it using the helper class in order to show you how things can be done differently. That will help you use InstantSearch in the case where your ViewController already inherits from a subclass of `UIViewController`, and not `UIViewController` itself. Also, since You cannot subclass a Swift class in Objective-C, then this method will be useful if you decide to write your app in Objective-C. 
 
 
 ## Go further

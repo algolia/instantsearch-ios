@@ -29,7 +29,6 @@ class ViewController: UIViewController, HitsTableViewDataSource, HitsTableViewDe
         cell.textLabel?.highlightedBackgroundColor = .yellow
         cell.textLabel?.highlightedText = SearchResults.highlightResult(hit: hit, path: "name")?.value
         
-        
         cell.detailTextLabel?.text = String(hit["salePrice"] as! Double)
         
         return cell
