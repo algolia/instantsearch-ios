@@ -233,16 +233,51 @@ In this part, you've learned:
 
 ----
 
-## Let the user filter his results: RefinementList
+## (Bonus) Let the user filter his results: RefinementList
 
-In order to avoid letting you write a lot of boilerplate code for navigating between screens, we have created a project that you can start with. This project contains the exact same things that we just implemented, as well as the boilerplate code for navigating between screens. You can check the storyboard approach [here]() and the programatic approach [here]()
+In order to avoid letting you write a lot of boilerplate code for navigating between screens, we have created a project that you can start with. This project contains the exact same thing that we just implemented, as well as the boilerplate code for navigating between screens. We will only go through the storyboard approach in this section. 
 
-We can implement a RefinementList with the exact same idea as the Hits widgets: using a base class and then implementing some delegate methods. However, this time, we will implement it using the helper class in order to show you how things can be done differently. That will help you use InstantSearch in the case where your ViewController already inherits from a subclass of `UIViewController`, and not `UIViewController` itself. Also, since You cannot subclass a Swift class in Objective-C, then this method will be useful if you decide to write your app in Objective-C. 
+To get started, go ahead and clone this [repo](https://github.com/algolia/instantsearch-swift-examples), and then checkout branch `getting_started_storyboard_refinement`. Run the app and you will see that we have the same app as before, with a Filter button at the top that navigates to your Refinement screen. 
 
+We can implement a RefinementList with the exact same idea as the Hits widgets: using a base class and then implementing some delegate methods. However, this time, we will implement it using the helper class in order to show you how things can be done differently. That will help you use InstantSearch in the case where your ViewController already inherits from a subclass of `UIViewController`, and not `UIViewController` itself. Also, since you cannot subclass a Swift class in Objective-C, then this method will be useful if you decide to write your app in Objective-C. 
+
+First thing first, go to `Main.Storyboard` and then select the `tableView` in the last screen on your right. This will be your `refinementList`. Note that we already changed the class of the table to be a `RefinementTableWidget`. Now, go to the Attributes Inspector pane and then at the top, specify the `attribute` to be equal to `category`. This will associate the `refinementList` with the attribute `category`.
+
+Next, go to the `RefinementViewController.swift` class, and then add protocol `, RefinementTableViewDataSource` next to `UIViewController`. Then, add the following property below the declared `tableView`:
+
+```swift
+var refinementController: RefinementController!
+```
+
+This `refinementController` will take care of the `dataSource` and `delegate` methods of the `tableView`, and will provide other advanced `dataSource` and `delegate` methods that contain information about the refinement. To achieve that, add the following in your `viewDidLoad` method:
+
+```swift
+refinementController = RefinementController(table: tableView)
+tableView.dataSource = refinementController
+tableView.delegate = refinementController
+refinementController.tableDataSource = self
+// refinementController.tableDelegate = self
+    
+InstantSearch.reference.add(widget: tableView)
+```
+Remember at the end to always add the widget to `InstantSearch` so that it receives interesting search events from it. Finally, we need to add our dataSource method to specify the look and feel of the refinementList cell.
+
+```swift
+func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath, containing facet: String, with count: Int, is refined: Bool) -> UITableViewCell {
+    let cell = tableView.dequeueReusableCell(withIdentifier: "refinementCell", for: indexPath)
+    
+    cell.textLabel?.text = facet
+    cell.detailTextLabel?.text = String(count)
+    cell.accessoryType = refined ? .checkmark : .none
+    
+    return cell
+}
+```
+We're done! **Build and run your application: you now have an InstantSearch iOS app that can filter data!**. Click on Filter and select refinements then go back. You will see that the stats and hits widget automatically update with the new data. Sweet! You can also go to your `storyboard` and play around with the custom parameters of each widgets which are available in the attributes inspector.
 
 ## Go further
 
-Your application now displays your data, lets your users enter a query and displays search results as-they-type: you just built an instant-search interface! Congratulations 🎉
+Your application now displays your data, lets your users enter a query, displays search results as-they-type and lets users filter by refinements: you just built a full instant-search interface! Congratulations 🎉
 
 This is only an introduction to what you can do with InstantSearch iOS: have a look at our [examples][examples] to see more complex examples of applications built with InstantSearch.
 You can also head to our [Widgets page][widgets] to see the other components that you could use.
