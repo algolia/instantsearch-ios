@@ -21,22 +21,22 @@ To use InstantSearch iOS, you need an Algolia account. You can create one by cli
 Another thing to point out is that this getting started guide will show you two ways of building your search experience: one is using storyboards (or xibs), and the other is writing your UI programatically. Depending on what your prefer, you can follow one track and ignore the other. 
 
 ## Create a new Project and add InstantSearch iOS
-In Xcode, create a new Project:
+Let's get started! In Xcode, create a new Project:
 
 - On the Template screen, select **Single View Application** and click next
 - Specify your Product name, select Swift as the language, and iPhone as the Device. Then create.
 
 We will use CocoaPods for adding the dependency to `InstantSearch`.
 
-- Open your terminal and run `sudo gem install cocoapods` if you don't have cocoapods installed on your machine.
+- If you don't have cocoapods installed on your machine, open your terminal and run `sudo gem install cocoapods`.
 - Go to the root of your project then type `pod init`. A `Podfile` will be created for you.
-- Open your `Podfile` and add `pod 'AlgoliaSearch-InstantSearch-Swift', '~> 0.1.0'` below your target.
+- Open your `Podfile` and add `pod 'InstantSearch-Swift', '~> 1.0.0-beta1'` below your target.
 - On your terminal, run `pod install`.
 - Close you Xcode project and then at the root of your project, open `projectName.xcworkspace`.
 
 ## Initialization
 
-To initialize InstantSearch, you need an Algolia account with a configured and non-empty index. 
+To initialize InstantSearch, you need an Algolia account with a configured non-empty index. 
 
 Go to your `AppDelegate.swift` file and then add `import InstantSearch` at the top. Then inside your `didFinishLaunchingWithOptions:` method, add the following:
 
@@ -48,9 +48,9 @@ InstantSearch.reference.params.attributesToHighlight = ["name"]
 
 This will initialize InstantSearch with the credentials proposed at the beginning. You can also chose to replace them with the credentials of your own app.
 
-To understand the above, we are using the singleton `InstantSearch.reference` to configure InstantSearch with our Algolia credentials. `InstantSearch.reference` will be used throughout our app to easily deal with InstantSearch. Note that you can also create your own instance of `InstantSearch` and pass it around your Controllers, but we won't do that in this guide.
+To understand the above, we are using the singleton `InstantSearch.reference` to configure InstantSearch with our Algolia credentials. `InstantSearch.reference` will be used throughout our app to easily deal with InstantSearch. You could also have created your own instance of `InstantSearch` and passed it around your Controllers, but we won't do that in this guide.
 
-Next, we added the attributes that we want to retrieve and highlight. Note that this can be specified in the Algolia dashboard by going to Indices -> Display tab. If you added the configuration there, then you do not need to specify the `attributesToRetrieve` and `attributesToHighlight` as shown above.
+Next, we added the attributes that we want to retrieve and highlight. This can also be specified in the Algolia dashboard by going to Indices -> Display tab. If you added the configuration there, then you do not need to specify the `attributesToRetrieve` and `attributesToHighlight` as shown above.
 
 ## Search your data: the SearchBar
 
@@ -98,7 +98,7 @@ func initUI() {
 
 ### Storyboard
 
-Go to your `ViewController.swift` file and then add `import InstantSearch` at the top. Then inside your `viewDidLoad` method, add the following: 
+If you don't want to write your layout programatically, then follow this storyboard track. Go to your `ViewController.swift` file and then add `import InstantSearch` at the top. Then inside your `viewDidLoad` method, add the following: 
 
 ```swift    
 // Add all widgets in view to InstantSearch
@@ -107,19 +107,17 @@ InstantSearch.reference.addAllWidgets(in: self.view)
 
 Here, we're telling InstantSearch to inspect all the subviews in the `ViewController`'s view. So what we need to do now is add the widgets to our view! 
 
-So let's open our `Main.storyboard` and then on the Utility Tab on your right, Go to the Object Library on the bottom and then drag a drop a `Search Bar` to your view. Click on the `Search Bar` and then on the identity inspector, add the custom class `SearchBarWidget`. 
+So let's open our `Main.storyboard` and then on the Utility Tab on your right, Go to the Object Library on the bottom and then drag and drop a `Search Bar` to your view. Click on the `Search Bar` and then on the identity inspector, add the custom class `SearchBarWidget`. 
 
-Now repeat the process but this time add a `Label` to the view, and then let the custom class be a `StatsLabelWidget`. Finally, make the width of the label bigger so that the text appears clearly.
+Now repeat the process but this time add a `Label` to the view, and then let the custom class be a `StatsLabelWidget`. Finally, make the width of the label bigger so that the text can clearly appear.
 
 ### Common
 
-**Build and run your application: you now have the most basic search experience!**. You should see that the results are changing on each key stroke. Nice stuff!
+**Build and run your application: you now have the most basic search experience!** You should see that the results are changing on each key stroke. Fantastic!
 
 ### Recap
 
-Fantastic! You just used your very first widgets from InstantSearch.
-
-In this part, you've learned:
+You just used your very first widgets from InstantSearch. In this part, you've learned:
 
 - How to create a SearchBar Widget
 - How to create a StatsLabel Widget
@@ -166,11 +164,11 @@ func initUI() {
 
 ### Storyboard
 
-In your `Main.Storyboard`, drag and drop a `Table View` from the Object Library and resize it to make it bigger. Then, select the `Table View` and change its custom class to `HitsTableWidget`. Now if you go to the attributes inspector, you will see that there are at the top 4 configuration parameters that you can apply like `Hits Pet Page` and `Infinite Scrolling`. Feel free to change them to your needs, or keep the default values.
+If you don't want to write your layout programatically, then follow this storyboard track. In your `Main.Storyboard`, drag and drop a `Table View` from the Object Library and resize it to make it bigger. Then, select the `Table View` and change its custom class to `HitsTableWidget`. Now if you go to the attributes inspector, you will see that there are at the top 4 configuration parameters that you can apply like `Hits Pet Page` and `Infinite Scrolling`. Feel free to change them to your needs, or keep the default values.
 
-After that, click on your tableView, and in the attributes inspector, add a prototype cell. Then, select the Table View Cell and in the attributes inspector, specify `hitCell` as the identifier.
+Then, click on your `Table View`, and in the attributes inspector, add a prototype cell. Then, select the Table View Cell and in the attributes inspector, specify `hitCell` as the identifier.
 
-Next, we need to have a reference to this HitsTableView in your `ViewController`. For that, go ahead and create an `IBOutlet` and call it `tableView`.
+Finally, we need to have a reference to this HitsTableView in your `ViewController`. For that, go ahead and create an `IBOutlet` and call it `tableView`.
 
 ### Common
 
@@ -196,11 +194,11 @@ override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexP
 }
 ```
 
-Here we use the json hit, extract the `name` and `salePrice`, and assign it to the `text` property of the labels.
+Here we use the json hit, extract the `name` of the product, and assign it to the `text` property of the cell's `textLabel`.
 
 <img src="assets/img/mvp/step1.png" class="img-object" align="right"/>
 
-**Build and run your application: you now have an InstantSearch iOS app displaying your data!** You can also enjoy the infinite scrolling of the table as well!
+**Build and run your application: you now have an InstantSearch iOS app displaying your data!** You can also enjoy the infinite scrolling of the table as well if you set it to true!
 
 In this part, you've learned:
 
@@ -215,15 +213,13 @@ In this part, you've learned:
 Your application lets the user search and displays results, but doesn't explain _why_ these results match the user's query.
 
 You can improve it by using the [Highlighting][highlighting] feature: InstantSearchCore offers a helper method just for that. 
-At the top of you file, add `import InstantSearchCore`. Then, in your `cellForRowAt` method, add the following before the `return cell` statement:
+At the top of your file, add `import InstantSearchCore`. Then, in your `cellForRowAt` method, add the following before the `return cell` statement:
 
 ```swift
 cell.textLabel?.highlightedTextColor = .blue
 cell.textLabel?.highlightedBackgroundColor = .yellow
 cell.textLabel?.highlightedText = SearchResults.highlightResult(hit: hit, path: "name")?.value
 ```
-
-<br />
 
 Restart your application and type something in the SearchBar: the results are displayed with your keywords highlighted in these views!
 
@@ -241,7 +237,7 @@ To get started, go ahead and clone this [repo](https://github.com/algolia/instan
 
 We can implement a RefinementList with the exact same idea as the Hits widgets: using a base class and then implementing some delegate methods. However, this time, we will implement it using the helper class in order to show you how things can be done differently. That will help you use InstantSearch in the case where your ViewController already inherits from a subclass of `UIViewController`, and not `UIViewController` itself. Also, since you cannot subclass a Swift class in Objective-C, then this method will be useful if you decide to write your app in Objective-C. 
 
-First thing first, go to `Main.Storyboard` and then select the `tableView` in the last screen on your right. This will be your `refinementList`. Note that we already changed the class of the table to be a `RefinementTableWidget`. Now, go to the Attributes Inspector pane and then at the top, specify the `attribute` to be equal to `category`. This will associate the `refinementList` with the attribute `category`.
+First things first, go to `Main.Storyboard` and then select the `tableView` in the last screen on your right. This will be your `refinementList`. Note that we already changed the class of the table to be a `RefinementTableWidget`. Now, go to the Attributes Inspector pane and then at the top, specify the `attribute` to be equal to `category`. This will associate the `refinementList` with the attribute `category`.
 
 Next, go to the `RefinementViewController.swift` class, and then add protocol `, RefinementTableViewDataSource` next to `UIViewController`. Then, add the following property below the declared `tableView`:
 
@@ -273,7 +269,7 @@ func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath, cont
     return cell
 }
 ```
-We're done! **Build and run your application: you now have an InstantSearch iOS app that can filter data!**. Click on Filter and select refinements then go back. You will see that the stats and hits widget automatically update with the new data. Sweet! You can also go to your `storyboard` and play around with the custom parameters of each widgets which are available in the attributes inspector.
+We're done! **Build and run your application: you now have an InstantSearch iOS app that can filter data!**. Click on Filter and select refinements then go back. You will see that the stats and hits widget automatically update with the new data. Sweet! You can also go to your `Main.storyboard` and play around with the custom parameters of each widgets which are available in the attributes inspector.
 
 ## Go further
 
