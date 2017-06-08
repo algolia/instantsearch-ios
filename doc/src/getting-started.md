@@ -11,7 +11,7 @@ navWeight: 100
 We will start from an empty iOS project, and create from scratch a full search interface!*
 
 ## Before we start
-To use InstantSearch iOS, you need an Algolia account. You can create one by clicking [here](https://www.algolia.com/users/sign_up), or use the following credentials:
+To use InstantSearch iOS, you need an Algolia account. You can create one by clicking [here][algolia_sign_up], or use the following credentials:
 - APP ID: `latency`
 - Search API Key: `3d9875e51fbd20c7754e65422f7ce5e1`
 - Index name: `bestbuy`
@@ -54,7 +54,7 @@ Next, we added the attributes that we want to retrieve and highlight. This can a
 
 ## Search your data: the SearchBar
 
-InstantSearch iOS is based on a system of [widgets][widgets] that communicate when a user interacts with your app. The first widget we'll add is a SearchBar since any search experience requires one. InstantSearch will automatically recognize your SearchBar as a source of search queries. We will also add a `Stats` widget to show how the number of results change when you type a query in your SearchBar. 
+InstantSearch iOS is based on a system of [widgets][widgets] that communicate when a user interacts with your app. The first widget we'll add is a [SearchBar][widgets-searchbox] since any search experience requires one. InstantSearch will automatically recognize your SearchBar as a source of search queries. We will also add a `Stats` widget to show how the number of results change when you type a query in your SearchBar. 
 
 ### Programatically
 
@@ -125,7 +125,7 @@ You just used your very first widgets from InstantSearch. In this part, you've l
 
 ## Display your data: Hits
 
-The whole point of a search experience is to display the dataset that matches best the query entered by the user. That's what we will implement in this section 
+The whole point of a search experience is to display the dataset that matches best the query entered by the user. That's what we will implement in this section with the [hits][widgets-hits] widget.
 
 ### Programatically
 
@@ -212,7 +212,7 @@ In this part, you've learned:
 
 Your application lets the user search and displays results, but doesn't explain _why_ these results match the user's query.
 
-You can improve it by using the [Highlighting][highlighting] feature: InstantSearchCore offers a helper method just for that. 
+You can improve it by using the Highlighting feature: InstantSearchCore offers a helper method just for that. 
 At the top of your file, add `import InstantSearchCore`. Then, in your `cellForRowAt` method, add the following before the `return cell` statement:
 
 ```swift
@@ -278,12 +278,8 @@ Your application now displays your data, lets your users enter a query, displays
 This is only an introduction to what you can do with InstantSearch iOS: have a look at our [examples][examples] to see more complex examples of applications built with InstantSearch.
 You can also head to our [Widgets page][widgets] to see the other components that you could use.
 
-[examples]: examples.html
+[algolia_sign_up]: https://www.algolia.com/users/sign_up
 [widgets]: widgets.html
+[examples]: examples.html
 [widgets-hits]: widgets.html#hits
-[widgets-searchbox]: widgets.html#hits
-[dbl]: https://developer.iOS.com/topic/libraries/data-binding/index.html
-[searcher]: concepts.html#searcher
-[instantsearchhelper]: concepts.html#instantsearchhelper
-[highlighting]: widgets.html#highlighting
-[doc-instantsearch-search]: javadoc/com/algolia/instantsearch/ui/InstantSearchHelper.html#search--
+[widgets-searchbox]: widgets.html#searchbar
