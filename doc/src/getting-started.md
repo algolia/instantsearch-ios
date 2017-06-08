@@ -208,7 +208,7 @@ In this part, you've learned:
 
 ## Help the user understand your results: Highlighting
 
-<img src="assets/img/mvp/step2.png" class="img-object" align="right"/>
+<img src="../img/guide-highlighting.png" class="img-object" align="right"/>
 
 Your application lets the user search and displays results, but doesn't explain _why_ these results match the user's query.
 
