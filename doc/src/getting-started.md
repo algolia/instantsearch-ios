@@ -54,7 +54,7 @@ Next, we added the attributes that we want to retrieve and highlight. This can a
 
 ## Search your data: the SearchBar
 
-<img src="../img/guide-searchbox.png" width="200"/>
+<img src="../img/guide-searchbar.png" width="200"/>
 
 InstantSearch iOS is based on a system of [widgets][widgets] that communicate when a user interacts with your app. The first widget we'll add is a [SearchBar][widgets-searchbox] since any search experience requires one. InstantSearch will automatically recognize your SearchBar as a source of search queries. We will also add a `Stats` widget to show how the number of results change when you type a query in your SearchBar. 
 
