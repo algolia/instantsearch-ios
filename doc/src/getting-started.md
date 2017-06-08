@@ -54,6 +54,8 @@ Next, we added the attributes that we want to retrieve and highlight. This can a
 
 ## Search your data: the SearchBar
 
+<img src="../img/guide-searchbox.png" width="200"/>
+
 InstantSearch iOS is based on a system of [widgets][widgets] that communicate when a user interacts with your app. The first widget we'll add is a [SearchBar][widgets-searchbox] since any search experience requires one. InstantSearch will automatically recognize your SearchBar as a source of search queries. We will also add a `Stats` widget to show how the number of results change when you type a query in your SearchBar. 
 
 ### Programatically
@@ -124,6 +126,8 @@ You just used your very first widgets from InstantSearch. In this part, you've l
 - How to add widgets to InstantSearch
 
 ## Display your data: Hits
+
+<img src="../img/guide-hits.png" width="200"/>
 
 The whole point of a search experience is to display the dataset that matches best the query entered by the user. That's what we will implement in this section with the [hits][widgets-hits] widget.
 
@@ -208,7 +212,7 @@ In this part, you've learned:
 
 ## Help the user understand your results: Highlighting
 
-<img src="../img/guide-highlighting.png" class="img-object" align="right"/>
+<img src="../img/guide-highlighting.png" width="200"/>
 
 Your application lets the user search and displays results, but doesn't explain _why_ these results match the user's query.
 
@@ -230,6 +234,8 @@ In this part, you've learned:
 ----
 
 ## (Bonus) Let the user filter his results: RefinementList
+
+<img src="../img/guide-refinementlist.png" width="200"/>
 
 In order to avoid letting you write a lot of boilerplate code for navigating between screens, we have created a project that you can start with. This project contains the exact same thing that we just implemented, as well as the boilerplate code for navigating between screens. We will only go through the storyboard approach in this section. 
 
