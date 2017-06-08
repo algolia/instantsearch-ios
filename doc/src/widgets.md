@@ -10,12 +10,12 @@ navWeight: 2
 ## SearchBar
 <img src="assets/img/widget_SearchBox.png" class="img-object" align="right" />
 
-The **SearchBar** widgets are made to takes care of querying the Algolia service on each keystroke. It is the main component of a search experience.
+The **SearchBar** widgets are made to query the Algolia service on each keystroke. It is the main component of a search experience.
 
 There are 3 ways to use a **SearchBar** in your app with InstantSearch.
 
 - The **SearchBarWidget** which is a specialized `UISearchBar`. Since it inherits from `UISearchBar`, it supports all of its existing attributes. 
-- The **TextFieldWidget** which is a specialized `UITextField`. Since it inherits from `UITextField`, it supports all of its existing attributes. 
+- The **TextFieldWidget** which is a specialized `UITextField`. Also, it supports all of `UITextField`'s existing attributes.
 - Using `InstantSearch.add(searchController: UISearchController)` for a `UISearchController` or `InstantSearch.add(searchBar: UISearchBar)` for a `UISearchBar` in order for InstantSearch to subscribe to typing events and automatically send search events to Algolia on each new keystroke.
 
 As with any `UIView`, you can specify the first 2 widgets in two ways:
@@ -60,7 +60,7 @@ This widget exposes a few attributes that you can set either in Interface Builde
 - **`remainingItemsBeforeLoading`** sets the minimum number of remaining hits to load the next page: if you set it to 10, the next page will be loaded when there are less than 10 items below the last visible item. (defaults to 5)
 - **`showItemsOnEmptyQuery`**, when `false`, will display an empty hits widget when there is no query text entered by the user (defaults to `true`)
 
-If you are familiar with how `UITableview` and `UICollectionView` work, you know that their `delegate` and `dataSource` methods need to be handled in order to specify their layout and data. InstantSearch will help you take care of that with the `HitsController` class, while still letting you specify the look and feel of your widget.
+If you are familiar with how `UITableview` and `UICollectionView` work, you know that their `delegate` and `dataSource` methods need to be handled in order to specify their layout and data. InstantSearch will help you take care of that while still letting you specify the look and feel of your widget.
 
 ### Delegate and DataSource
 
@@ -72,8 +72,12 @@ In this method, your `ViewController` will inherit from `HitsTableViewController
 - Have your `ViewController` inherit from `HitsTableViewController` or `HitsCollectionViewController`.
 - In `viewDidLoad`, assign `hitsTableView` to your hits widget, whether it was created programatically or through Interface Builder.
 - At the end of `ViewDidLoad`, call `InstantSearch.reference.addAllWidgets(in: self.view)` to add your widget to `InstantSearch`.
-- override method `tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath, containing hit: [String : Any]) -> UITableViewCell` or `tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath, containing hit: [String : Any]) -> UITableViewCell` to specify the look and feel of your cell. Note that the method will pass in the hit in one of the params so that you can use it to display the content. 
-- *Optional*: override method `tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath, containing hit: [String : Any]) -> UITableViewCell` or `collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath, containing hit: [String : Any])` to specify what happens when a hit is selected. Also, the hit is provided in the param.
+- To specify the look and feel of your cell, override one of the two methods which will give you access to the hit:
+	-  `tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath, containing hit: [String : Any]) -> UITableViewCell`
+	-  `tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath, containing hit: [String : Any]) -> UITableViewCell`
+- *Optional*: To specify what happens when a hit is selected, override one of the two methods:
+	- `tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath, containing hit: [String : Any]) -> UITableViewCell`
+	- `collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath, containing hit: [String : Any])`
 
 Here is an example:
 
@@ -115,14 +119,14 @@ Note that you can override any `delegate` or `dataSource` method like `heightFor
 
 #### ViewController Composition
 
-In this method, your `ViewController` will own a `HitsController` object. You will need to specify what hit widget is _controlled_ by the `HitsController`, whether a `HitsTableWidget` or `HitsCollectionWidget`, and then assign the `dataSource` and `delegate` properties of the widget to the `HitsController`. In that way, you are telling the `HitsController`: _Hey, please take care of the `delegate` and `dataSource` methods for me please_.
+In this method, your `ViewController` will own a `HitsController` object. You will need to specify what hit widget is _controlled_ by the `HitsController`, whether a `HitsTableWidget` or `HitsCollectionWidget`, and then assign the `dataSource` and `delegate` properties of the widget to the `HitsController`. In that way, you are telling the `HitsController`: _please take care of the `delegate` and `dataSource` methods for me please_.
 
 There is still one thing we talked about in the previous section: specifying the data and the behaviour of the widget. The `HitsController` provides `tableDataSource` and `tableDelegate` properties for the `HitsTableWidget`, as well as `collectionDataSource` and `collectionDelegate` for the `HitsCollectionWidget`. The `ViewController` will therefore need to implement a few protocols to be able to specify the hit cells and their onClick behaviour. The protocols to implement are:
 
-- HitsTableViewDataSource: Specify the rendering of the table hit cells
-- HitsTableViewDelegate: Specify what happens when table hit cell is clicked
-- HitsCollectionViewDataSource: Specify the rendering of the collection hit cells
-- HitsCollectionViewDelegate: Specify what happens when collection hit cell is clicked
+- **`HitsTableViewDataSource`**: Specify the rendering of the table hit cells
+- **`HitsTableViewDelegate`**: Specify what happens when table hit cell is clicked
+- **`HitsCollectionViewDataSource`**: Specify the rendering of the collection hit cells
+- **`HitsCollectionViewDelegate`**: Specify what happens when collection hit cell is clicked
 
 Here is an example:
 
@@ -174,7 +178,10 @@ As explained [in the attributes description](#hits), you can use the attributes 
 
 ### Empty View
 
-The Hits widget implements an empty view mechanism to display an alternative View if there are no results to display. For that, you can use the `HitsTableViewDataSource` method `viewForNoResults(in tableView: UITableView) -> UIView` or the `HitsCollectionViewDataSource` method `viewForNoResults(in collectionView: UICollectionView) -> UIView`.
+The Hits widget implements an empty view mechanism to display an alternative View if there are no results to display. For that, you can use the `HitsTableViewDataSource` or the `HitsCollectionViewDataSource` method:
+
+- `viewForNoResults(in tableView: UITableView) -> UIView` 
+- `viewForNoResults(in collectionView: UICollectionView) -> UIView`.
 
 ### Highlighting
 <img src="assets/img/highlighting.png" class="img-object" align="right"/>
@@ -214,7 +221,6 @@ For more info, check the guide on highlighting in the [InstantSearch Core guide]
 The **RefinementList** is a filtering widget made to display your [facets](https://www.algolia.com/doc/guides/search/filtering-faceting#faceting) and let the user refine the search results. We offer two RefinementList widget in InstantSearch: A `RefinementTableWidget` built over a `UITableView`, and a `RefinementCollectionWidget` built over a `UICollectionView`.
 
 Five attributes allow you to configure how it will filter your results:
-<br /><br /><br /><br /> <!-- Line breaks to avoid code sample being squeezed by the floating image -->
 
 - **`attribute`** defines which faceted attribute will be used by the widget.
 - **`operator`** can either be `"or"` or `"and"`, to control if the results should match *any* selected value or *all* selected values. (defaults to `"or"`)
@@ -223,10 +229,10 @@ Five attributes allow you to configure how it will filter your results:
 - **`sortBy`** controls the sort order of the attributes. You can either specify a single value or an array of values to apply one after another.
 
   This attribute accepts the following values:
-  - `"count:asc"` to sort the facets by increasing count
-  - `"count:desc"` to sort the facets by decreasing count
-  - `"name:asc"` to sort the facet values by alphabetical order
-  - `"name:desc"` to sort the facet values by reverse alphabetical order
+  - `count:asc` to sort the facets by ascending count
+  - `count:desc` to sort the facets by descending count
+  - `name:asc` to sort the facet values by alphabetical order
+  - `name:desc` to sort the facet values by reverse alphabetical order
 
 For specifying the layout of your refinement cells, we follow the exact same methodology as the one described in the Hits section above. Here is a stripped down version: 
 
@@ -239,16 +245,20 @@ In order to handle the Delegate and DataSource of a RefinementList widget, we pr
 - Have your `ViewController` inherit from `RefinementTableViewController` or `RefinementCollectionViewController`.
 - In `viewDidLoad`, assign `refinementTableView` to your refinement widget, whether it was created programatically or through Interface Builder.
 - At the end of `ViewDidLoad`, call `InstantSearch.reference.addAllWidgets(in: self.view)` to add your widget to `InstantSearch`.
-- override method `tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath, containing facet: String, with count: Int, is refined: Bool) -> UITableViewCell` or `collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath, containing facet: String, with count: Int, is refined: Bool) -> UICollectionViewCell` to specify the look and feel of your cell. 
-- *Optional*: override method `tableView(_ tableView: UITableView,
+- To specify the look and feel of your cell, override one of the two methods:
+	- `tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath, containing facet: String, with count: Int, is refined: Bool) -> UITableViewCell`
+	- `collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath, containing facet: String, with count: Int, is refined: Bool) -> UICollectionViewCell` 
+- *Optional*: To specify what happens when a refinement is selected, override one of the two methods: 
+	- `tableView(_ tableView: UITableView,
                    didSelectRowAt indexPath: IndexPath,
                    containing facet: String,
                    with count: Int,
-                   is refined: Bool)` or `collectionView(_ collectionView: UICollectionView,
+                   is refined: Bool)`          
+	- `collectionView(_ collectionView: UICollectionView,
                         didSelectItemAt indexPath: IndexPath,
                         containing facet: String,
                         with count: Int,
-                        is refined: Bool` to specify what happens when a refinement is selected.
+                        is refined: Bool` 
 
 Here is an example:
 
@@ -292,10 +302,10 @@ he `RefinementController` provides `tableDataSource` and `tableDelegate` propert
 
 The protocols to implement are:
 
-- RefinementTableViewDataSource: Specify the rendering of the table refinement cells
-- RefinementTableViewDelegate: Specify what happens when table refinement cell is clicked
-- RefinementCollectionViewDataSource: Specify the rendering of the collection refinement cells
-- RefinementCollectionViewDelegate: Specify what happens when collection refinement cell is clicked
+- **`RefinementTableViewDataSource`**: Specify the rendering of the table refinement cells
+- **`RefinementTableViewDelegate`**: Specify what happens when table refinement cell is clicked
+- **`RefinementCollectionViewDataSource`**: Specify the rendering of the collection refinement cells
+- **`RefinementCollectionViewDelegate`**: Specify what happens when collection refinement cell is clicked
 
 Here is an example:
 
