@@ -30,7 +30,7 @@ We will use CocoaPods for adding the dependency to `InstantSearch`.
 
 - If you don't have cocoapods installed on your machine, open your terminal and run `sudo gem install cocoapods`.
 - Go to the root of your project then type `pod init`. A `Podfile` will be created for you.
-- Open your `Podfile` and add `pod 'InstantSearch-Swift', '~> 1.0.0-beta2'` below your target.
+- Open your `Podfile` and add `pod 'InstantSearch-Swift', '~> 1.0.0-beta3'` below your target.
 - On your terminal, run `pod update`.
 - Close you Xcode project and then at the root of your project, open `projectName.xcworkspace`.
 
@@ -48,9 +48,9 @@ InstantSearch.shared.params.attributesToHighlight = ["name"]
 
 This will initialize InstantSearch with the credentials proposed at the beginning. You can also chose to replace them with the credentials of your own app.
 
-To understand the above, we are using the singleton `InstantSearch.shared` to configure InstantSearch with our Algolia credentials. `InstantSearch.shared` will be used throughout our app to easily deal with InstantSearch. You could also have created your own instance of `InstantSearch` and passed it around your Controllers, but we won't do that in this guide.
+To understand the above, we are using the singleton `InstantSearch.shared` to configure InstantSearch with our Algolia credentials. `InstantSearch.shared` will be used throughout our app to easily deal with InstantSearch. You could also have created your own instance of `InstantSearch` and passed it around your controllers, but we won't do that in this guide.
 
-Next, we added the attributes that we want to retrieve and highlight. This can also be specified in the Algolia dashboard by going to Indices -> Display tab. If you added the configuration there, then you do not need to specify the `attributesToRetrieve` and `attributesToHighlight` as shown above.
+Next, we added the attributes that we want to retrieve and highlight. As a side note, some search parameters can be defaulted in the Algolia dashboard by going to Indices -> Display tab. If you add the configuration there, then you do not need to specify the `attributesToRetrieve` and `attributesToHighlight` as shown above.
 
 ## Search your data: the SearchBar
 
@@ -170,9 +170,9 @@ func initUI() {
 
 If you don't want to write your layout programatically, then follow this storyboard track. In your `Main.Storyboard`, drag and drop a `Table View` from the Object Library and resize it to make it bigger. Then, select the `Table View` and change its custom class to `HitsTableWidget`. Now if you go to the attributes inspector, you will see that there are at the top 4 configuration parameters that you can apply like `Hits Pet Page` and `Infinite Scrolling`. Feel free to change them to your needs, or keep the default values.
 
-Then, click on your `Table View`, and in the attributes inspector, add a prototype cell. Then, select the Table View Cell and in the attributes inspector, specify `hitCell` as the identifier.
+Then, click on your `Table View`, and in the attributes inspector, add a prototype cell under the `Table View` section by replacing `0` with `1`. You should now be able to see a `Table View Cell` (under your `Table View`) in the Document Outline on the left of the storyboard file. Select that, and in the attributes inspector, specify `hitCell` as the identifier.
 
-Finally, we need to have a reference to this HitsTableView in your `ViewController`. For that, go ahead and create an `IBOutlet` and call it `tableView`.
+Finally, we need to have a reference to the `HitsTableView` in your `ViewController`. For that, go ahead and create an `IBOutlet` and call it `tableView`.
 
 ### Common
 
