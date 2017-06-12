@@ -114,7 +114,7 @@ import AlgoliaSearch
     /// Create a new InstantSearch reference with the given configurations.
     ///
     /// - parameter appID: the Algolia AppID.
-    /// - parameter apiKey: the Algolia ApiKeyl
+    /// - parameter apiKey: the Algolia ApiKey.
     /// - parameter index: the name of the index.
     public convenience init(appID: String, apiKey: String, index: String) {
         self.init()
@@ -365,7 +365,7 @@ extension InstantSearch: UISearchResultsUpdating {
 
     /// Forwards a `SearchController` to `InstantSearch` so that it takes care of updating search results
     /// on every new keystroke inside the `UISearchBar` linked to it.
-    @objc public func add(searchController: UISearchController) {
+    @objc public func register(searchController: UISearchController) {
         searchController.searchResultsUpdater = self
     }
 
@@ -387,7 +387,7 @@ extension InstantSearch: UISearchResultsUpdating {
 extension InstantSearch: UISearchBarDelegate {
     /// Forwards a `UISearchBar` to `InstantSearch` so that it takes care of updating search results
     /// on every new keystroke
-    @objc public func add(searchBar: UISearchBar) {
+    @objc public func register(searchBar: UISearchBar) {
         searchBar.delegate = self
     }
 

@@ -30,7 +30,7 @@ We will use CocoaPods for adding the dependency to `InstantSearch`.
 
 - If you don't have cocoapods installed on your machine, open your terminal and run `sudo gem install cocoapods`.
 - Go to the root of your project then type `pod init`. A `Podfile` will be created for you.
-- Open your `Podfile` and add `pod 'InstantSearch-Swift', '~> 1.0.0-beta1'` below your target.
+- Open your `Podfile` and add `pod 'InstantSearch-Swift', '~> 1.0.0-beta2'` below your target.
 - On your terminal, run `pod update`.
 - Close you Xcode project and then at the root of your project, open `projectName.xcworkspace`.
 
@@ -38,17 +38,17 @@ We will use CocoaPods for adding the dependency to `InstantSearch`.
 
 To initialize InstantSearch, you need an Algolia account with a configured non-empty index. 
 
-Go to your `AppDelegate.swift` file and then add `import InstantSearch` at the top. Then inside your `didFinishLaunchingWithOptions:` method, add the following:
+Go to your `AppDelegate.swift` file and then add `import InstantSearch` at the top. Then inside your `application(_:didFinishLaunchingWithOptions:)` method, add the following:
 
 ```swift
-InstantSearch.reference.configure(appID: "latency", apiKey: "1f6fd3a6fb973cb08419fe7d288fa4db", index: "bestbuy_promo")
-InstantSearch.reference.params.attributesToRetrieve = ["name", "salePrice"]
-InstantSearch.reference.params.attributesToHighlight = ["name"]
+InstantSearch.shared.configure(appID: "latency", apiKey: "1f6fd3a6fb973cb08419fe7d288fa4db", index: "bestbuy_promo")
+InstantSearch.shared.params.attributesToRetrieve = ["name", "salePrice"]
+InstantSearch.shared.params.attributesToHighlight = ["name"]
 ```
 
 This will initialize InstantSearch with the credentials proposed at the beginning. You can also chose to replace them with the credentials of your own app.
 
-To understand the above, we are using the singleton `InstantSearch.reference` to configure InstantSearch with our Algolia credentials. `InstantSearch.reference` will be used throughout our app to easily deal with InstantSearch. You could also have created your own instance of `InstantSearch` and passed it around your Controllers, but we won't do that in this guide.
+To understand the above, we are using the singleton `InstantSearch.shared` to configure InstantSearch with our Algolia credentials. `InstantSearch.shared` will be used throughout our app to easily deal with InstantSearch. You could also have created your own instance of `InstantSearch` and passed it around your Controllers, but we won't do that in this guide.
 
 Next, we added the attributes that we want to retrieve and highlight. This can also be specified in the Algolia dashboard by going to Indices -> Display tab. If you added the configuration there, then you do not need to specify the `attributesToRetrieve` and `attributesToHighlight` as shown above.
 
@@ -74,7 +74,7 @@ Then inside your `viewDidLoad` method, add the following:
 initUI()
     
 // Add all widgets to InstantSearch
-InstantSearch.reference.addAllWidgets(in: self.view)
+InstantSearch.shared.registerAllWidgets(in: self.view)
 ```
 
 Finally, we need to add the views to the `ViewController`'s view and specify the autolayout constraints so that the layout looks good on any device. You don't have to focus too much on understanding this part since it is not related to InstantSearch, and more related to iOS layout. Add this function to your file:
@@ -103,8 +103,8 @@ func initUI() {
 If you don't want to write your layout programatically, then follow this storyboard track. Go to your `ViewController.swift` file and then add `import InstantSearch` at the top. Then inside your `viewDidLoad` method, add the following: 
 
 ```swift    
-// Add all widgets in view to InstantSearch
-InstantSearch.reference.addAllWidgets(in: self.view)
+// Register all widgets in view to InstantSearch
+InstantSearch.shared.registerAllWidgets(in: self.view)
 ```
 
 Here, we're telling InstantSearch to inspect all the subviews in the `ViewController`'s view. So what we need to do now is add the widgets to our view! 
@@ -123,7 +123,7 @@ You just used your very first widgets from InstantSearch. In this part, you've l
 
 - How to create a SearchBar Widget
 - How to create a StatsLabel Widget
-- How to add widgets to InstantSearch
+- How to register widgets to InstantSearch
 
 ## Display your data: Hits
 
@@ -217,7 +217,8 @@ In this part, you've learned:
 Your application lets the user search and displays results, but doesn't explain _why_ these results match the user's query.
 
 You can improve it by using the Highlighting feature: InstantSearchCore offers a helper method just for that. 
-At the top of your file, add `import InstantSearchCore`. Then, in your `cellForRowAt` method, add the following before the `return cell` statement:
+At the top of your file, add `import InstantSearchCore`. Then, in your `tableView(_:cellForRowAt:)` method, remove the statement `cell.textLabel?.text = hit["name"] as? String` as we don't need it anymore, and add the following before the `return cell` statement:
+
 
 ```swift
 cell.textLabel?.highlightedTextColor = .blue
@@ -239,7 +240,7 @@ In this part, you've learned:
 
 In order to avoid letting you write a lot of boilerplate code for navigating between screens, we have created a project that you can start with. This project contains the exact same thing that we just implemented, as well as the boilerplate code for navigating between screens. We will only go through the storyboard approach in this section. 
 
-To get started, go ahead and clone this [repo](https://github.com/algolia/instantsearch-swift-examples), and then checkout branch `getting_started_storyboard_refinement`. Run the app and you will see that we have the same app as before, with a Filter button at the top that navigates to your Refinement screen. 
+To get started, go ahead and clone this [repo](https://github.com/algolia/instantsearch-swift-examples), and then checkout branch `getting_started_refinement`. Run the app and you will see that we have the same app as before, with a Filter button at the top that navigates to your Refinement screen. 
 
 We can implement a RefinementList with the exact same idea as the Hits widgets: using a base class and then implementing some delegate methods. However, this time, we will implement it using the helper class in order to show you how things can be done differently. That will help you use InstantSearch in the case where your ViewController already inherits from a subclass of `UIViewController`, and not `UIViewController` itself. Also, since you cannot subclass a Swift class in Objective-C, then this method will be useful if you decide to write your app in Objective-C. 
 
@@ -260,9 +261,9 @@ tableView.delegate = refinementController
 refinementController.tableDataSource = self
 // refinementController.tableDelegate = self
     
-InstantSearch.reference.add(widget: tableView)
+InstantSearch.shared.register(widget: tableView)
 ```
-Remember at the end to always add the widget to `InstantSearch` so that it receives interesting search events from it. Finally, we need to add our dataSource method to specify the look and feel of the refinementList cell.
+Remember at the end to always register the widget to `InstantSearch` so that it receives interesting search events from it. Finally, we need to add our dataSource method to specify the look and feel of the refinementList cell.
 
 ```swift
 func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath, containing facet: String, with count: Int, is refined: Bool) -> UITableViewCell {

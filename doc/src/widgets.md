@@ -16,7 +16,7 @@ There are 3 ways to use a **SearchBar** in your app with InstantSearch.
 
 - The **SearchBarWidget** which is a specialized `UISearchBar`. Since it inherits from `UISearchBar`, it supports all of its existing attributes. 
 - The **TextFieldWidget** which is a specialized `UITextField`. Also, it supports all of `UITextField`'s existing attributes.
-- Using `InstantSearch.add(searchController: UISearchController)` for a `UISearchController` or `InstantSearch.add(searchBar: UISearchBar)` for a `UISearchBar` in order for InstantSearch to subscribe to typing events and automatically send search events to Algolia on each new keystroke.
+- Using `InstantSearch.register(searchController: UISearchController)` for a `UISearchController` or `InstantSearch.register(searchBar: UISearchBar)` for a `UISearchBar` in order for InstantSearch to subscribe to typing events and automatically send search events to Algolia on each new keystroke.
 
 As with any `UIView`, you can specify the first 2 widgets in two ways:
 
@@ -71,7 +71,7 @@ In this method, your `ViewController` will inherit from `HitsTableViewController
 
 - Have your `ViewController` inherit from `HitsTableViewController` or `HitsCollectionViewController`.
 - In `viewDidLoad`, assign `hitsTableView` to your hits widget, whether it was created programatically or through Interface Builder.
-- At the end of `ViewDidLoad`, call `InstantSearch.reference.addAllWidgets(in: self.view)` to add your widget to `InstantSearch`.
+- At the end of `ViewDidLoad`, call `InstantSearch.shared.registerAllWidgets(in: self.view)` to add your widget to `InstantSearch`.
 - To specify the look and feel of your cell, override one of the two methods which will give you access to the hit:
 	-  `tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath, containing hit: [String : Any]) -> UITableViewCell`
 	-  `tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath, containing hit: [String : Any]) -> UITableViewCell`
@@ -93,7 +93,7 @@ class HitsTableViewControllerDemo: HitsTableViewController {
         
         self.view.addSubview(hitsTableView)
         
-        InstantSearch.reference.addAllWidgets(in: self.view)
+        InstantSearch.shared.registerAllWidgets(in: self.view)
     }
 
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath, containing hit: [String : Any]) -> UITableViewCell {
@@ -148,7 +148,7 @@ class ViewController: UIViewController, HitsTableViewDataSource, HitsTableViewDe
         hitsController.tableDataSource = self
         hitsController.tableDelegate = self
         
-        InstantSearch.reference.addAllWidgets(in: self.view)
+        InstantSearch.shared.registerAllWidgets(in: self.view)
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath, containing hit: [String : Any]) -> UITableViewCell {
@@ -244,7 +244,7 @@ In order to handle the Delegate and DataSource of a RefinementList widget, we pr
 
 - Have your `ViewController` inherit from `RefinementTableViewController` or `RefinementCollectionViewController`.
 - In `viewDidLoad`, assign `refinementTableView` to your refinement widget, whether it was created programatically or through Interface Builder.
-- At the end of `ViewDidLoad`, call `InstantSearch.reference.addAllWidgets(in: self.view)` to add your widget to `InstantSearch`.
+- At the end of `ViewDidLoad`, call `InstantSearch.shared.registerAllWidgets(in: self.view)` to add your widget to `InstantSearch`.
 - To specify the look and feel of your cell, override one of the two methods:
 	- `tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath, containing facet: String, with count: Int, is refined: Bool) -> UITableViewCell`
 	- `collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath, containing facet: String, with count: Int, is refined: Bool) -> UICollectionViewCell` 
@@ -275,7 +275,7 @@ class RefinementTableViewControllerDemo: RefinementTableViewController {
         refinementTableView.frame = self.view.frame
         
         self.view.addSubview(refinementTableView)
-        InstantSearch.reference.addAllWidgets(in: self.view)
+        InstantSearch.shared.registerAllWidgets(in: self.view)
         
     }
     
@@ -326,8 +326,8 @@ class RefinementTableViewDataSourceDemo: UIViewController, RefinementTableViewDa
         refinementController.tableDataSource = self
         // refinementController.tableDelegate = self
         
-        instantSearch = InstantSearch.reference
-        instantSearch.add(widget: refinementList)
+        instantSearch = InstantSearch.shared
+        instantSearch.register(widget: refinementList)
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath, containing facet: String, with count: Int, is refined: Bool) -> UITableViewCell {

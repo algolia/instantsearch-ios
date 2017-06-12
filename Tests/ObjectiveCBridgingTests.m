@@ -136,8 +136,8 @@ CGRect defaultRect;
     StatsButtonWidget* statsButtonWidget = [[StatsButtonWidget alloc] initWithFrame: defaultRect];
     [instantSearch registerWithWidget: statsButtonWidget doSearch:true];
     
-    [instantSearch addWithSearchBar: [[UISearchBar alloc] initWithFrame: defaultRect]];
-    [instantSearch addWithSearchController: [[UISearchController alloc] init]];
+    [instantSearch registerWithSearchBar: [[UISearchBar alloc] initWithFrame: defaultRect]];
+    [instantSearch registerWithSearchController: [[UISearchController alloc] init]];
 }
 
 - (Searcher*)getSearcher {
