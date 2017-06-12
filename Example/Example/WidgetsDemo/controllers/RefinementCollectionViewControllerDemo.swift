@@ -26,7 +26,7 @@ class RefinementCollectionViewControllerDemo: RefinementCollectionViewController
         
         self.view.addSubview(refinementCollectionView)
         
-        InstantSearch.reference.addAllWidgets(in: self.view)
+        InstantSearch.shared.addAllWidgets(in: self.view)
     }
     
     override func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath, containing facet: String, with count: Int, is refined: Bool) -> UICollectionViewCell {

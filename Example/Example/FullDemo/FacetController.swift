@@ -26,7 +26,7 @@ class FacetController: UIViewController, RefinementTableViewDataSource {
         refinementController.tableDataSource = self
         // refinementController.tableDelegate = self
         
-        instantSearch = InstantSearch.reference
+        instantSearch = InstantSearch.shared
         instantSearch.add(widget: refinementList)
         statLabelController = StatsLabelController(label: statLabel)
         instantSearch.add(widget: statLabelController)

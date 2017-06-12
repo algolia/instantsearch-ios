@@ -17,7 +17,7 @@ class ViewController: UIViewController, HitsTableViewDataSource, HitsTableViewDe
         hitsController.tableDataSource = self
         hitsController.tableDelegate = self
         
-        InstantSearch.reference.addAllWidgets(in: self.view)
+        InstantSearch.shared.addAllWidgets(in: self.view)
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath, containing hit: [String : Any]) -> UITableViewCell {

@@ -77,8 +77,8 @@ import AlgoliaSearch
 @objc public class InstantSearch: NSObject, SearcherDelegate {
 
     /// The singleton reference of InstantSearch.
-    /// It is advised to use this reference in case you're dealing with a single index in your app.
-    public static let reference = InstantSearch()
+    /// It is advised to use this shared reference in case you're dealing with a single index in your app.
+    public static let shared = InstantSearch()
 
     // MARK: - Properties
 

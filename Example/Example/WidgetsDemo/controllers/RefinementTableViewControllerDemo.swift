@@ -19,7 +19,7 @@ class RefinementTableViewControllerDemo: RefinementTableViewController {
         refinementTableView.frame = self.view.frame
         
         self.view.addSubview(refinementTableView)
-        InstantSearch.reference.addAllWidgets(in: self.view)
+        InstantSearch.shared.addAllWidgets(in: self.view)
         
     }
     

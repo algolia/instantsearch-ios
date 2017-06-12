@@ -26,20 +26,20 @@ class ConfigureInstantSearchTests: XCTestCase {
     }
     
     func testInitInstantSearchWithSingletonConfigure() {
-        InstantSearch.reference.configure(appID: ALGOLIA_APP_ID, apiKey: ALGOLIA_API_KEY, index: ALGOLIA_INDEX_NAME)
-        InstantSearch.reference.params.attributesToRetrieve = ["name", "salePrice"]
-        InstantSearch.reference.params.attributesToHighlight = ["name"]
+        InstantSearch.shared.configure(appID: ALGOLIA_APP_ID, apiKey: ALGOLIA_API_KEY, index: ALGOLIA_INDEX_NAME)
+        InstantSearch.shared.params.attributesToRetrieve = ["name", "salePrice"]
+        InstantSearch.shared.params.attributesToHighlight = ["name"]
         
         // Make sure a Searcher was actually created
-        XCTAssertNotNil(InstantSearch.reference.searcher)
+        XCTAssertNotNil(InstantSearch.shared.searcher)
         
         // Make sure params of InstantSearch are linked to searcher.params
-        XCTAssertEqual(InstantSearch.reference.params, InstantSearch.reference.searcher.params)
+        XCTAssertEqual(InstantSearch.shared.params, InstantSearch.shared.searcher.params)
         
-        InstantSearch.reference.searcher.addResultHandler(resultHandler(_:_:_:))
+        InstantSearch.shared.searcher.addResultHandler(resultHandler(_:_:_:))
         
         // TODO: This needs to be mocked!
-        InstantSearch.reference.searcher.search()
+        InstantSearch.shared.searcher.search()
         
         // Expect that search goes well
         expectation = self.expectation(description: "Search in \(ALGOLIA_INDEX_NAME)")
@@ -55,7 +55,7 @@ class ConfigureInstantSearchTests: XCTestCase {
         instantSearch.params.attributesToHighlight = ["name"]
         
         // Make sure that Searcher of the singleton is not set
-        XCTAssertNil(InstantSearch.reference.searcher)
+        XCTAssertNil(InstantSearch.shared.searcher)
         
         // Make sure that searcher in InstantSearch instance is set
         XCTAssertNotNil(instantSearch.searcher)
