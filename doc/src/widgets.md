@@ -16,7 +16,7 @@ There are 3 ways to use a **SearchBar** in your app with InstantSearch.
 
 - The **SearchBarWidget** which is a specialized `UISearchBar`. Since it inherits from `UISearchBar`, it supports all of its existing attributes. 
 - The **TextFieldWidget** which is a specialized `UITextField`. Also, it supports all of `UITextField`'s existing attributes.
-- Using `InstantSearch.register(searchController: UISearchController)` for a `UISearchController` or `InstantSearch.register(searchBar: UISearchBar)` for a `UISearchBar` in order for InstantSearch to subscribe to typing events and automatically send search events to Algolia on each new keystroke.
+- Using `InstantSearch.register(searchController:)` for a `UISearchController` or `InstantSearch.register(searchBar:)` for a `UISearchBar` in order for InstantSearch to subscribe to typing events and automatically send search events to Algolia on each new keystroke.
 
 As with any `UIView`, you can specify the first 2 widgets in two ways:
 
@@ -73,11 +73,11 @@ In this method, your `ViewController` will inherit from `HitsTableViewController
 - In `viewDidLoad`, assign `hitsTableView` to your hits widget, whether it was created programatically or through Interface Builder.
 - At the end of `ViewDidLoad`, call `InstantSearch.shared.registerAllWidgets(in: self.view)` to add your widget to `InstantSearch`.
 - To specify the look and feel of your cell, override one of the two methods which will give you access to the hit:
-	-  `tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath, containing hit: [String : Any]) -> UITableViewCell`
-	-  `tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath, containing hit: [String : Any]) -> UITableViewCell`
+	-  `tableView(_:cellForRowAt:containing:)`
+	-  `collectionView(_:cellForItemAt:containing:)`
 - *Optional*: To specify what happens when a hit is selected, override one of the two methods:
-	- `tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath, containing hit: [String : Any]) -> UITableViewCell`
-	- `collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath, containing hit: [String : Any])`
+	- `tableView(_:didSelectRowAt:containing:)`
+	- `collectionView(:didSelectItemAt:containing:)`
 
 Here is an example:
 
@@ -203,7 +203,6 @@ import InstantSearchCore
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath, containing hit: [String : Any]) -> UITableViewCell {
         let cell = hitsTable.dequeueReusableCell(withIdentifier: "hitCell", for: indexPath)
         
-        cell.textLabel?.text = hit["name"] as? String
         cell.textLabel?.isHighlightingInversed = true
         cell.textLabel?.highlightedTextColor = .black
         cell.textLabel?.highlightedBackgroundColor = .yellow
@@ -244,21 +243,13 @@ In order to handle the Delegate and DataSource of a RefinementList widget, we pr
 
 - Have your `ViewController` inherit from `RefinementTableViewController` or `RefinementCollectionViewController`.
 - In `viewDidLoad`, assign `refinementTableView` to your refinement widget, whether it was created programatically or through Interface Builder.
-- At the end of `ViewDidLoad`, call `InstantSearch.shared.registerAllWidgets(in: self.view)` to add your widget to `InstantSearch`.
+- At the end of `ViewDidLoad`, call `InstantSearch.shared.registerAllWidgets(in:)` to add your widget to `InstantSearch`.
 - To specify the look and feel of your cell, override one of the two methods:
-	- `tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath, containing facet: String, with count: Int, is refined: Bool) -> UITableViewCell`
-	- `collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath, containing facet: String, with count: Int, is refined: Bool) -> UICollectionViewCell` 
+	- `tableView(_:cellForRowAt:containing:with:is:)`
+	- `collectionView(_:cellForItemAt:containing:with:is:) -> UICollectionViewCell` 
 - *Optional*: To specify what happens when a refinement is selected, override one of the two methods: 
-	- `tableView(_ tableView: UITableView,
-                   didSelectRowAt indexPath: IndexPath,
-                   containing facet: String,
-                   with count: Int,
-                   is refined: Bool)`          
-	- `collectionView(_ collectionView: UICollectionView,
-                        didSelectItemAt indexPath: IndexPath,
-                        containing facet: String,
-                        with count: Int,
-                        is refined: Bool` 
+	- `tableView(_:didSelectRowAt:containing:with:is:)`          
+	- `collectionView(_:didSelectItemAt:containing:with:is:)` 
 
 Here is an example:
 
@@ -404,13 +395,13 @@ Any class implementing the `AlgoliaWidget`protocol can be added to InstantSearch
 
 These are the protocols that you can add to your class:
 
-- **`SearchableViewModel`**: the widget will have a reference to `Searcher` by implementing function `configure(with searcher: Searcher)`, and will therefore be able to use it to trigger methods such as `#search()` (e.g: `UISearchBar`), or `#params.updateNumericRefinement` (e.g: `UISlider`).
-- **`ResultingDelegate`**: the widget can process the results or handle the error of a search request to Algolia by implementing `on(results: SearchResults?, error: Error?, userInfo: [String: Any])`.
+- **`SearchableViewModel`**: the widget will have a reference to `Searcher` by implementing function `configure(with:)`, and will therefore be able to use it to trigger methods such as `search()` (e.g: `UISearchBar`), or `updateNumericRefinement()` (e.g: `UISlider`).
+- **`ResultingDelegate`**: the widget can process the results or handle the error of a search request to Algolia by implementing `on(results:error:userInfo:)`.
 - **`RefinableDelegate`**: the widget receives events when search parameters are being altered in the `Searcher`. The widget will have to specify the refinement `attribute` that it is associated with, and then can subscribe to 4 different methods:
-	- `onRefinementChange(numericMap: [String: [NumericRefinement]]?)` for a change in any numeric refinements.
-	- `onRefinementChange(numerics: [NumericRefinement])` for a change in the numeric refinement associated with the widget's attribute.
-	- `onRefinementChange(facetMap: [String: [FacetRefinement]]?)` for a change in any facet refinements.
-	- `onRefinementChange(facets: [FacetRefinement])` for a change in the facet refinement associated with the widget's attribute. 
+	- `onRefinementChange(numericMap:)` for a change in any numeric refinements.
+	- `onRefinementChange(numerics:)` for a change in the numeric refinement associated with the widget's attribute.
+	- `onRefinementChange(facetMap:)` for a change in any facet refinements.
+	- `onRefinementChange(facets:)` for a change in the facet refinement associated with the widget's attribute. 
 
 
 [media-url]: https://github.com/algolia/instantsearch-android-examples/tree/master/media
