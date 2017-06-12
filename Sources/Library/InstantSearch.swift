@@ -167,8 +167,8 @@ import AlgoliaSearch
     /// - param doSearch: do a new search to Algolia if true (default), nothing otherwise.
     ///
     /// + Note: InstantSearch widgets are simply the components that implement the `AlgoliaWidget` marker protocol.
-    @objc public func addAllWidgets(in view: UIView, doSearch: Bool = true) {
-        addWidgets(in: view)
+    @objc public func registerAllWidgets(in view: UIView, doSearch: Bool = true) {
+        registerWidgets(in: view)
 
         // After added all widgets, the widgets might have added
         // parameters to the searcher.params. So we need to trigger a new search
@@ -178,7 +178,7 @@ import AlgoliaSearch
     }
 
     // Recursively iterate the sub views in order to find `AlgoliaWidget` components.
-    private func addWidgets(in view: UIView) {
+    private func registerWidgets(in view: UIView) {
 
         // Get the subviews of the view
         let subviews = view.subviews
@@ -191,11 +191,11 @@ import AlgoliaSearch
         for subView in subviews as [UIView] {
 
             if let algoliaWidget = subView as? AlgoliaWidget {
-                add(widget: algoliaWidget, doSearch: false)
+                register(widget: algoliaWidget, doSearch: false)
             }
 
             // List the subviews of subview
-            addWidgets(in: subView)
+            registerWidgets(in: subView)
         }
     }
 
@@ -205,12 +205,12 @@ import AlgoliaSearch
     ///
     /// + Note: if `doSearch` parameter is not specified, then we will automatically do a search if the `AlgoliaWidget`
     /// is an "input control" (changes the params of the Searcher), otherwise we don't do a search.
-    @objc public func add(widget: AlgoliaWidget) {
+    @objc public func register(widget: AlgoliaWidget) {
 
         if widget is RefinementViewDelegate {
-            add(widget: widget, doSearch: true)
+            register(widget: widget, doSearch: true)
         } else {
-            add(widget: widget, doSearch: false)
+            register(widget: widget, doSearch: false)
         }
 
     }
@@ -219,7 +219,7 @@ import AlgoliaSearch
     ///
     /// - param widget: the `AlgoliaWidget` to be added to InstantSearch.
     /// - param doSearch: whether or not to do a new search to Algolia after adding the widget.
-    @objc public func add(widget: AlgoliaWidget, doSearch: Bool) {
+    @objc public func register(widget: AlgoliaWidget, doSearch: Bool) {
 
         var widgetVM: Any?
 

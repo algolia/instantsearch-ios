@@ -131,10 +131,10 @@ CGRect defaultRect;
     [instantSearch addAllWidgetsIn: view doSearch: false];
     
     StatsLabelWidget* statsLabelWidget = [[StatsLabelWidget alloc] initWithFrame: defaultRect];
-    [instantSearch addWithWidget:statsLabelWidget];
+    [instantSearch registerWithWidget:statsLabelWidget];
     
     StatsButtonWidget* statsButtonWidget = [[StatsButtonWidget alloc] initWithFrame: defaultRect];
-    [instantSearch addWithWidget: statsButtonWidget doSearch:true];
+    [instantSearch registerWithWidget: statsButtonWidget doSearch:true];
     
     [instantSearch addWithSearchBar: [[UISearchBar alloc] initWithFrame: defaultRect]];
     [instantSearch addWithSearchController: [[UISearchController alloc] init]];

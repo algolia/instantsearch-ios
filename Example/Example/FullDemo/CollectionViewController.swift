@@ -27,7 +27,7 @@ class CollectionViewController: UIViewController, HitsCollectionViewDataSource {
         
         hitCollectionWidget.register(UINib(nibName: "CollectionViewCell", bundle: nil) , forCellWithReuseIdentifier: "collectionViewCell")
         instantSearch = InstantSearch.shared
-        instantSearch.addAllWidgets(in: self.view)
+        instantSearch.registerAllWidgets(in: self.view)
     }
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath, containing hit: [String: Any]) -> UICollectionViewCell {

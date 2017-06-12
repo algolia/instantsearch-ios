@@ -48,7 +48,7 @@ class WidgetTests: XCTestCase {
         // Make sure that we didn't set the hitsPerPage param before adding the widget.
         XCTAssertNil(instantSearch.searcher.params.hitsPerPage)
         
-        instantSearch.addAllWidgets(in: view, doSearch: false)
+        instantSearch.registerAllWidgets(in: view, doSearch: false)
         
         // Make sure params.hitsPerPage was correctly set to the default by just adding the hits widget.
         XCTAssertEqual(instantSearch.searcher.params.hitsPerPage, Constants.Defaults.hitsPerPage)
@@ -68,7 +68,7 @@ class WidgetTests: XCTestCase {
         XCTAssertNil(instantSearch.params.facets)
         XCTAssertTrue(instantSearch.params.facetRefinements.isEmpty)
         
-        instantSearch.add(widget: refinementTableWidget, doSearch: false)
+        instantSearch.register(widget: refinementTableWidget, doSearch: false)
         XCTAssertEqual(instantSearch.params.facets!, ["category"])
         XCTAssertTrue(instantSearch.params.facetRefinements.isEmpty)
         
@@ -101,7 +101,7 @@ class WidgetTests: XCTestCase {
         XCTAssertNil(instantSearch.params.facets)
         XCTAssertTrue(instantSearch.params.facetRefinements.isEmpty)
         
-        instantSearch.add(widget: refinementTableWidget)
+        instantSearch.register(widget: refinementTableWidget)
         XCTAssertEqual(instantSearch.params.facets!, ["category"])
         XCTAssertTrue(instantSearch.params.facetRefinements.isEmpty)
         
@@ -127,7 +127,7 @@ class WidgetTests: XCTestCase {
         
         XCTAssertNil(instantSearch.params.numericFilters)
         XCTAssertTrue(instantSearch.params.numericRefinements.isEmpty)
-        instantSearch.add(widget: slider)
+        instantSearch.register(widget: slider)
         
         // Make sure correct param was added to searcher
         XCTAssertEqual(instantSearch.searcher.params.numericRefinements["salePrice"]![0], NumericRefinement("salePrice", NumericRefinement.Operator.greaterThanOrEqual, NSNumber(value: slider.minimumValue), inclusive: Constants.Defaults.inclusive))
@@ -155,7 +155,7 @@ class WidgetTests: XCTestCase {
         
         XCTAssertNil(instantSearch.params.numericFilters)
         XCTAssertTrue(instantSearch.params.numericRefinements.isEmpty)
-        instantSearch.add(widget: slider)
+        instantSearch.register(widget: slider)
         
         // Make sure correct param was added to searcher
         XCTAssertEqual(instantSearch.searcher.params.numericRefinements["salePrice"]![0], NumericRefinement("salePrice", NumericRefinement.Operator.lessThan, NSNumber(value: 5.5), inclusive: false))
@@ -169,7 +169,7 @@ class WidgetTests: XCTestCase {
         XCTAssertNil(instantSearch.params.facets)
         XCTAssertTrue(instantSearch.params.facetRefinements.isEmpty)
         
-        instantSearch.add(widget: oneValueSwitchWidget)
+        instantSearch.register(widget: oneValueSwitchWidget)
         XCTAssertNil(instantSearch.params.facets)
         XCTAssertTrue(instantSearch.params.facetRefinements.isEmpty) // still empty since oneValue Widget should not add
         
@@ -195,7 +195,7 @@ class WidgetTests: XCTestCase {
         XCTAssertNil(instantSearch.params.facets)
         XCTAssertTrue(instantSearch.params.facetRefinements.isEmpty)
         
-        instantSearch.add(widget: twoValueSwitchWidget)
+        instantSearch.register(widget: twoValueSwitchWidget)
         XCTAssertNil(instantSearch.params.facets)
         XCTAssertEqual(instantSearch.params.facetRefinements["shipping"]![0], FacetRefinement(name: "shipping", value: "standard", inclusive: Constants.Defaults.inclusive))
         
@@ -214,21 +214,21 @@ class WidgetTests: XCTestCase {
         
         expectFatalError(expectedMessage: "you must assign a value to the attribute of a refinement before adding it to InstantSearch") {
             let refinementTableWidget = RefinementTableWidget(frame: self.defaultRect)
-            self.instantSearch.add(widget: refinementTableWidget, doSearch: false)
+            self.instantSearch.register(widget: refinementTableWidget, doSearch: false)
         }
     }
     
     func testAddSlider_NoAttribute_FatalError() {
         expectFatalError(expectedMessage: "you must assign a value to the attribute of a Numeric Control before adding it to InstantSearch") {
             let slider = SliderWidget(frame: self.defaultRect)
-            self.instantSearch.add(widget: slider, doSearch: false)
+            self.instantSearch.register(widget: slider, doSearch: false)
         }
     }
     
     func testAddSwitch_NoAttribute_FatalError() {
         expectFatalError(expectedMessage: "you must assign a value to the attribute of a Facet Control before adding it to InstantSearch") {
             let oneValueSwitchWidget = OneValueSwitchWidget(frame: self.defaultRect)
-            self.instantSearch.add(widget: oneValueSwitchWidget)
+            self.instantSearch.register(widget: oneValueSwitchWidget)
         }
     }
     
@@ -243,7 +243,7 @@ class WidgetTests: XCTestCase {
             refinementTableWidget.dataSource = refinementController
             refinementTableWidget.delegate = refinementController
             
-            self.instantSearch.add(widget: refinementTableWidget, doSearch: false)
+            self.instantSearch.register(widget: refinementTableWidget, doSearch: false)
             
             // Insert dummy row
             refinementTableWidget.beginUpdates()
@@ -267,7 +267,7 @@ class WidgetTests: XCTestCase {
         // Make sure that we didn't set the hitsPerPage param before adding the widget.
         XCTAssertNil(instantSearch.searcher.params.hitsPerPage)
         
-        instantSearch.addAllWidgets(in: view, doSearch: false)
+        instantSearch.registerAllWidgets(in: view, doSearch: false)
         
         // Make sure params.hitsPerPage was correctly set by just adding the hits widget.
         XCTAssertEqual(instantSearch.searcher.params.hitsPerPage, 5)
@@ -281,7 +281,7 @@ class WidgetTests: XCTestCase {
         view.addSubview(hitsTableWidget)
         
         // Need to make the search here!
-        instantSearch.addAllWidgets(in: view, doSearch: true)
+        instantSearch.registerAllWidgets(in: view, doSearch: true)
         
         // Make sure params.hitsPerPage was correctly set by just adding the hits widget.
         XCTAssertEqual(hitsTableWidget.viewModel.numberOfRows(), 0)

@@ -14,6 +14,6 @@ class StatsViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
 
-        InstantSearch.shared.addAllWidgets(in: self.view)
+        InstantSearch.shared.registerAllWidgets(in: self.view)
     }
 }

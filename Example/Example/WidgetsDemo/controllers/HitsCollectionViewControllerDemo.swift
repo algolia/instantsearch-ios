@@ -27,7 +27,7 @@ class HitsCollectionViewControllerDemo: HitsCollectionViewController {
         
         self.view.addSubview(hitsCollectionView)
         
-        InstantSearch.shared.addAllWidgets(in: self.view)
+        InstantSearch.shared.registerAllWidgets(in: self.view)
     }
     
     override func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath, containing hit: [String : Any]) -> UICollectionViewCell {

@@ -24,8 +24,8 @@ class HitsTableViewControllerDemo: HitsTableViewController {
         hitsTableView.register(UITableViewCell.self, forCellReuseIdentifier: "hitTableCell")
         
         self.view.addSubview(hitsTableView)
-        InstantSearch.shared.addAllWidgets(in: self.view)
-        InstantSearch.shared.add(widget: searchBar)
+        InstantSearch.shared.registerAllWidgets(in: self.view)
+        InstantSearch.shared.register(widget: searchBar)
         
     }
 
