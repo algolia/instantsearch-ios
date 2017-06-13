@@ -234,7 +234,7 @@ In this part, you've learned:
 
 ----
 
-## (Bonus) Let the user filter his results: RefinementList
+## (Bonus) Let users filter their results: RefinementList
 
 <img src="../img/guide-refinementlist.png" width="200"/>
 
@@ -242,7 +242,7 @@ In order to avoid letting you write a lot of boilerplate code for navigating bet
 
 To get started, go ahead and clone this [repo](https://github.com/algolia/instantsearch-swift-examples), and then checkout branch `getting_started_refinement`. Run the app and you will see that we have the same app as before, with a Filter button at the top that navigates to your Refinement screen. 
 
-We can implement a RefinementList with the exact same idea as the Hits widgets: using a base class and then implementing some delegate methods. However, this time, we will implement it using the helper class in order to show you how things can be done differently. That will help you use InstantSearch in the case where your ViewController already inherits from a subclass of `UIViewController`, and not `UIViewController` itself. Also, since you cannot subclass a Swift class in Objective-C, then this method will be useful if you decide to write your app in Objective-C. 
+We can implement a `RefinementList` with the exact same idea as the Hits widgets: using a base class and then implementing some delegate methods. However, this time, we will implement it using the helper class in order to show you how things can be done differently. That will help you use InstantSearch in the case where your `ViewController` already inherits from a subclass of `UIViewController`, and not `UIViewController` itself. Also, since you cannot subclass a Swift class in Objective-C, then this method will be useful if you decide to write your app in Objective-C. 
 
 First things first, go to `Main.Storyboard` and then select the `tableView` in the last screen on your right. This will be your `refinementList`. Note that we already changed the class of the table to be a `RefinementTableWidget`. Now, go to the Attributes Inspector pane and then at the top, specify the `attribute` to be equal to `category`. This will associate the `refinementList` with the attribute `category`.
 
