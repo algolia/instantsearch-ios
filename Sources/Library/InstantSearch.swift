@@ -161,7 +161,7 @@ import AlgoliaSearch
 
     // MARK: Add widget methods
 
-    /// Add all InstantSearch widgets inside a particular view.
+    /// Register all InstantSearch widgets inside a particular view.
     ///
     /// - param view: the view containnig the InstantSearch widgets.
     /// - param doSearch: do a new search to Algolia if true (default), nothing otherwise.
@@ -199,9 +199,9 @@ import AlgoliaSearch
         }
     }
 
-    /// Add a widget to InstantSearch.
+    /// Register a widget to InstantSearch.
     ///
-    /// - param widget: the `AlgoliaWidget` to be added to InstantSearch.
+    /// - param widget: the `AlgoliaWidget` to be registered to InstantSearch.
     ///
     /// + Note: if `doSearch` parameter is not specified, then we will automatically do a search if the `AlgoliaWidget`
     /// is an "input control" (changes the params of the Searcher), otherwise we don't do a search.
@@ -215,9 +215,9 @@ import AlgoliaSearch
 
     }
 
-    /// Add a widget to InstantSearch.
+    /// Register a widget to InstantSearch.
     ///
-    /// - param widget: the `AlgoliaWidget` to be added to InstantSearch.
+    /// - param widget: the `AlgoliaWidget` to be registered to InstantSearch.
     /// - param doSearch: whether or not to do a new search to Algolia after adding the widget.
     @objc public func register(widget: AlgoliaWidget, doSearch: Bool) {
 
