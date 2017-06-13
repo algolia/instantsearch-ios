@@ -58,7 +58,7 @@ Next, we added the attributes that we want to retrieve and highlight. As a side 
 
 InstantSearch iOS is based on a system of [widgets][widgets] that communicate when a user interacts with your app. The first widget we'll add is a [SearchBar][widgets-searchbox] since any search experience requires one. InstantSearch will automatically recognize your SearchBar as a source of search queries. We will also add a `Stats` widget to show how the number of results change when you type a query in your SearchBar. 
 
-### Programatically
+### Option 1 - Programatically
 
 Go to your `ViewController.swift` file and then add `import InstantSearch` at the top. Then, below your class definition, declare your SearchBar and Stats widget:
 
@@ -98,7 +98,7 @@ func initUI() {
 }
 ```
 
-### Storyboard
+### Option 2 - Storyboard
 
 If you don't want to write your layout programatically, then follow this storyboard track. Go to your `ViewController.swift` file and then add `import InstantSearch` at the top. Then inside your `viewDidLoad` method, add the following: 
 
@@ -131,7 +131,7 @@ You just used your very first widgets from InstantSearch. In this part, you've l
 
 The whole point of a search experience is to display the dataset that matches best the query entered by the user. That's what we will implement in this section with the [hits][widgets-hits] widget.
 
-### Programatically
+### Option 1 - Programatically
 
 We will now create our tableView. Next to your properties declared, add the following:
 
@@ -166,7 +166,7 @@ func initUI() {
 }
 ```
 
-### Storyboard
+### Option 2 - Storyboard
 
 If you don't want to write your layout programatically, then follow this storyboard track. In your `Main.Storyboard`, drag and drop a `Table View` from the Object Library and resize it to make it bigger. Then, select the `Table View` and change its custom class to `HitsTableWidget`. Now if you go to the attributes inspector, you will see that there are at the top 4 configuration parameters that you can apply like `Hits Pet Page` and `Infinite Scrolling`. Feel free to change them to your needs, or keep the default values.
 
@@ -208,7 +208,7 @@ In this part, you've learned:
 
 - How to build your interface with Widgets by adding the `Hits` widget
 - How to configure widgets
-- How to specify the look and feel of your cells.
+- How to specify the look and feel of your hit cells.
 
 ## Help the user understand your results: Highlighting
 
@@ -234,13 +234,29 @@ In this part, you've learned:
 
 ----
 
-## (Bonus) Let users filter their results: RefinementList
+## Bonus - Let users filter their results: RefinementList
 
 <img src="../img/guide-refinementlist.png" width="200"/>
 
-In order to avoid letting you write a lot of boilerplate code for navigating between screens, we have created a project that you can start with. This project contains the exact same thing that we just implemented, as well as the boilerplate code for navigating between screens. We will only go through the storyboard approach in this section. 
+In this section, we give you the option to either go through a few instructions to write some boilerplate code for navigating between screens, or download a project that you can start with. This project contains the exact same thing that we just implemented, as well as the boilerplate code for navigating between screens. **We will only go through the storyboard approach in this section**. 
 
-To get started, go ahead and clone this [repo](https://github.com/algolia/instantsearch-swift-examples), and then checkout branch `getting_started_refinement`. Run the app and you will see that we have the same app as before, with a Filter button at the top that navigates to your Refinement screen. 
+### Option 1 - Download Project
+
+To get started, go ahead and clone this [repo](https://github.com/algolia/instantsearch-swift-examples), and then checkout branch `getting_started_refinement`. Go ahead and `pod install`, then run the app and you will see that we have the same app as before, with a Filter button at the top that navigates to your Refinement screen. 
+
+### Option 2 - Setup New Screen and Navigation
+
+First, go to File -> New -> File, then select Cocoa Touch Class, and name it RefinementViewController, then create it. 
+
+Let's first setup the navigation controller. In your `Main.storyboard` file, click on your `ViewController`, then in your menu bar at the top, go to Editor -> Embed in -> Navigation Controller. Then, in your Utilities bar on your right, drag and drop a "View Controller" from the Object library to your storyboard. Click on it and then in the Identity Inspector, change its custom class to `RefinementViewController`. 
+
+Now, In your Object library again, drag and drop a Bar Button Item to the Navigation bar of the first ViewController. Double click on it to change its name to "Filter". Then from this button, hold on Ctrl, and drag it to the `RefinementViewConroller` view, and select Show as the Action Segue. 
+
+Next, drag and drop a Table View from the Object Library onto the `RefinementViewController` view, and change its custom class to be `RefinementTableWidget`. Then, create an `IBOutlet` of that tableView into RefinementViewController.swift, and call it `tableView`.
+
+Finally, add the `import InstantSearch` statement at the top of RefinementViewController.swift.
+
+### Common - RefinementList
 
 We can implement a `RefinementList` with the exact same idea as the Hits widgets: using a base class and then implementing some delegate methods. However, this time, we will implement it using the helper class in order to show you how things can be done differently. That will help you use InstantSearch in the case where your `ViewController` already inherits from a subclass of `UIViewController`, and not `UIViewController` itself. Also, since you cannot subclass a Swift class in Objective-C, then this method will be useful if you decide to write your app in Objective-C. 
 
@@ -277,6 +293,12 @@ func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath, cont
 }
 ```
 We're done! **Build and run your application: you now have an InstantSearch iOS app that can filter data!**. Click on Filter and select refinements then go back. You will see that the stats and hits widget automatically update with the new data. Sweet! You can also go to your `Main.storyboard` and play around with the custom parameters of each widgets which are available in the attributes inspector.
+
+In this part, you've learned:
+
+- How to add the `RefinementList` widget
+- How to configure the widget
+- How to specify the look and feel of your refinement cells.
 
 ## Go further
 
