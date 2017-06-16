@@ -44,6 +44,11 @@ import UIKit
         self.setDate(Date(timeIntervalSince1970: value.doubleValue), animated: false)
     }
     
+    func set(min: NSNumber, max: NSNumber) {
+        minimumDate = Date(timeIntervalSince1970: min.doubleValue)
+        maximumDate = Date(timeIntervalSince1970: max.doubleValue)
+    }
+    
     public func configureView() {
         addTarget(self, action: #selector(numericFilterValueChanged), for: .valueChanged)
         

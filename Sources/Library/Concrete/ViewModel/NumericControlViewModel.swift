@@ -51,6 +51,10 @@ internal class NumericControlViewModel: NumericControlViewModelDelegate, Searcha
             fatalError("you must assign a value to the attribute of a Numeric Control before adding it to InstantSearch")
         }
         
+        if let facetStats = searcher.results?.facetStats(name: attribute) {
+            view.set(min: facetStats.min, max: facetStats.max)
+        }
+        
         if let numeric = self.searcher.params.getNumericRefinement(name: attribute, operator: `operator`, inclusive: inclusive) {
             view.set(value: numeric.value)
         }
@@ -63,7 +67,7 @@ internal class NumericControlViewModel: NumericControlViewModelDelegate, Searcha
     weak var view: NumericControlViewDelegate!
 
     func updateNumeric(value: NSNumber, doSearch: Bool) {
-        
+        guard value.intValue != 0 else { return }
         self.searcher.params.updateNumericRefinement(self.attribute, self.operator, value, inclusive: inclusive)
         
         if doSearch {
@@ -95,4 +99,13 @@ extension NumericControlViewModel: ResettableDelegate {
     func onReset() {
         view.set(value: clearValue)
     }
+}
+
+extension NumericControlViewModel: ResultingDelegate {
+    func on(results: SearchResults?, error: Error?, userInfo: [String: Any]) {
+        if let facetStats = results?.facetStats(name: attribute) {
+            view.set(min: facetStats.min, max: facetStats.max)
+        }
+    }
+
 }

@@ -23,6 +23,9 @@ import Foundation
     /// Called when the viewModel instructs the widget to update itself with a new value.
     func set(value: NSNumber)
     
+    /// Called when the viewModel gives the widget its minimum and maximum values.
+    func set(min: NSNumber, max: NSNumber)
+    
     /// The value to use when the clear button is clicked.
     var clearValue: NSNumber { get set }
     

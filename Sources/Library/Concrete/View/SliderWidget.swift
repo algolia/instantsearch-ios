@@ -45,6 +45,11 @@ import UIKit
         setValue(value.floatValue, animated: false)
     }
     
+    func set(min: NSNumber, max: NSNumber) {
+        minimumValue = min.floatValue
+        maximumValue = max.floatValue
+    }
+    
     public func configureView() {
         addTarget(self, action: #selector(numericFilterValueChanged), for: [.touchUpInside, .touchUpOutside])
         

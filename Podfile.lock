@@ -1,22 +1,18 @@
 PODS:
   - AlgoliaSearch-Client-Swift (4.8.1)
-  - InstantSearch-Core-Swift (1.0):
+  - InstantSearch-Core-Swift (2.0.0-beta1):
     - AlgoliaSearch-Client-Swift (~> 4.0)
-  - SwiftLint (0.18.1)
+  - SwiftLint (0.19.0)
 
 DEPENDENCIES:
-  - InstantSearch-Core-Swift (from `/Users/guydaher/Developer/Algolia/iOS/instantsearch-core-swift`)
+  - InstantSearch-Core-Swift (~> 2.0.0-beta1)
   - SwiftLint
-
-EXTERNAL SOURCES:
-  InstantSearch-Core-Swift:
-    :path: /Users/guydaher/Developer/Algolia/iOS/instantsearch-core-swift
 
 SPEC CHECKSUMS:
   AlgoliaSearch-Client-Swift: 5bdfbc8727f203773245e2410edd7a9c8e831637
-  InstantSearch-Core-Swift: c0c088acabf2da91b14d138677128cec689c2e77
-  SwiftLint: b467d08f5b25dc3b3cfed243d8e1b74b91714c67
+  InstantSearch-Core-Swift: 39baf4378e48028ce3f7137cfc3067ad80e7b732
+  SwiftLint: 3537a05b34060e78e7510f04fb7537d738247803
 
-PODFILE CHECKSUM: 2dcfe2306336e7ea728a5e98b7837ab202bea4b8
+PODFILE CHECKSUM: 66b8ff9fe7cc126a233bb60fefad308ed8d21188
 
-COCOAPODS: 1.2.0
+COCOAPODS: 1.2.1

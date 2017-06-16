@@ -4,7 +4,7 @@
 use_frameworks!
 
 def instantsearch_core
-    pod "InstantSearch-Core-Swift", :path => '/Users/guydaher/Developer/Algolia/iOS/instantsearch-core-swift'
+    pod 'InstantSearch-Core-Swift', '~> 2.0.0-beta1'
 end
 
 target 'InstantSearch' do
@@ -14,10 +14,10 @@ target 'InstantSearch' do
   target 'InstantSearchTests' do
       inherit! :search_paths
   end
-  
-  target 'Example' do
-      workspace 'InstantSearch.xcworkspace'
-      project 'Example/Example.xcodeproj'
-      instantsearch_core
-  end
+end
+
+target 'Example' do
+    workspace 'InstantSearch.xcworkspace'
+    project 'Example/Example.xcodeproj'
+    instantsearch_core
 end

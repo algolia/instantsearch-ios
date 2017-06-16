@@ -22,6 +22,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         InstantSearch.shared.configure(appID: ALGOLIA_APP_ID, apiKey: ALGOLIA_API_KEY, index: ALGOLIA_INDEX_NAME)
         InstantSearch.shared.params.attributesToRetrieve = ["name", "salePrice"]
         InstantSearch.shared.params.attributesToHighlight = ["name"]
+        InstantSearch.shared.params.getRankingInfo = true
         return true
     }
 

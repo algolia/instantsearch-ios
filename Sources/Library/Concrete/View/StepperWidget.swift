@@ -44,6 +44,11 @@ import UIKit
         self.value = value.doubleValue
     }
     
+    func set(min: NSNumber, max: NSNumber) {
+        minimumValue = min.doubleValue
+        maximumValue = max.doubleValue
+    }
+    
     public func configureView() {
         addTarget(self, action: #selector(numericFilterValueChanged), for: .valueChanged)
         
