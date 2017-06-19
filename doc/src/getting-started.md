@@ -242,7 +242,7 @@ In this section, we give you the option to either go through a few instructions 
 
 ### Option 1 - Download Project
 
-To get started, go ahead and clone this [repo](https://github.com/algolia/instantsearch-swift-examples), and then checkout branch `getting_started_refinement`. Go ahead and `pod install`, then run the app and you will see that we have the same app as before, with a Filter button at the top that navigates to your Refinement screen. 
+To get started, go ahead and clone this [repo](https://github.com/algolia/instantsearch-swift-examples), and then checkout branch `getting_started_refinement`. Go ahead and navigate to the `Getting Started Storyboard` project and then run `pod install`. Open the workspace project, and then run the app. You will see that we have the same app as before, with a Filter button at the top that navigates to your Refinement screen. 
 
 ### Option 2 - Setup New Screen and Navigation
 
