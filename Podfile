@@ -4,7 +4,7 @@
 use_frameworks!
 
 def instantsearch_core
-    pod "InstantSearch-Core-Swift", :path => '/Users/guydaher/Developer/Algolia/iOS/instantsearch-core-swift'
+    pod 'InstantSearch-Core-Swift', '~> 2.0.0-beta1'
 end
 
 target 'InstantSearch' do
