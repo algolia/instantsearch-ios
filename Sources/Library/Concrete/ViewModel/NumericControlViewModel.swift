@@ -51,6 +51,12 @@ internal class NumericControlViewModel: NumericControlViewModelDelegate, Searcha
             fatalError("you must assign a value to the attribute of a Numeric Control before adding it to InstantSearch")
         }
         
+        if searcher.params.facets == nil {
+            searcher.params.facets = [attribute]
+        } else if !searcher.params.facets!.contains(attribute) {
+            searcher.params.facets! += [attribute]
+        }
+        
         if let facetStats = searcher.results?.facetStats(name: attribute) {
             view.set(min: facetStats.min, max: facetStats.max)
         }

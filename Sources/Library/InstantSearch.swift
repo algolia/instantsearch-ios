@@ -207,7 +207,9 @@ import AlgoliaSearch
     /// is an "input control" (changes the params of the Searcher), otherwise we don't do a search.
     @objc public func register(widget: AlgoliaWidget) {
 
-        if widget is RefinementViewDelegate {
+        // When adding a RefinementViewDelegate, the facets array change so that we receive the facets and facets_stats info.
+        // Hence, we need to search the index again to get those in the response.
+        if widget is RefinementViewDelegate || widget is NumericControlViewDelegate {
             register(widget: widget, doSearch: true)
         } else {
             register(widget: widget, doSearch: false)

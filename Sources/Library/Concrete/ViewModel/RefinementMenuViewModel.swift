@@ -54,8 +54,6 @@ internal class RefinementMenuViewModel: RefinementMenuViewModelDelegate, Searcha
             fatalError("you must assign a value to the attribute of a refinement before adding it to InstantSearch")
         }
         
-        // check if need to search again, if we didn't search with the facet added
-        
         guard let facets = searcher.params.facets else {
             searcher.params.facets = [attribute]
             
