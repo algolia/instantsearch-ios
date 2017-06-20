@@ -151,12 +151,12 @@ import AlgoliaSearch
         NotificationCenter.default.addObserver(self,
                                                selector: #selector(reset),
                                                name: clearAllFiltersNotification,
-                                               object: nil)
+                                               object: searcher.params)
 
         NotificationCenter.default.addObserver(self,
                                                selector: #selector(onRefinementNotification(notification:)),
                                                name: Searcher.RefinementChangeNotification,
-                                               object: nil)
+                                               object: searcher.params)
     }
 
     // MARK: Add widget methods

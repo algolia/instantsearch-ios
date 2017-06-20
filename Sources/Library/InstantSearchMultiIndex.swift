@@ -11,7 +11,7 @@ import InstantSearchCore
 
 /// Manages Multiple InstantSearch references.
 /// It also takes care of managing search components: `UISearchBar` and `UISearchController`.
-@objc public class InstantSearchMultiIndex: NSObject {
+@objc private class InstantSearchMultiIndex: NSObject {
     var instantSearchRefs: [InstantSearch]
     
     @objc init(instantSearch: InstantSearch) {
