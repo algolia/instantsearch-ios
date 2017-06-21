@@ -403,6 +403,7 @@ These are the protocols that you can add to your class:
 	- `onRefinementChange(facetMap:)` for a change in any facet refinements.
 	- `onRefinementChange(facets:)` for a change in the facet refinement associated with the widget's attribute. 
 
+**Note**: In order to deal with Custom widgets, you need to import `InstantSearchCore`.
 
 [media-url]: https://github.com/algolia/instantsearch-android-examples/tree/master/media
 [ecommerce-url]: https://github.com/algolia/instantsearch-android-examples/tree/master/ecommerce
