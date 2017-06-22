@@ -12,7 +12,6 @@ import markdown from './plugins/markdown.js';
 import onlyChanged from './plugins/onlyChanged.js';
 import webpackEntryMetadata from './plugins/webpackEntryMetadata.js';
 import autoprefixer from './plugins/autoprefixer.js';
-import documentationjs from './plugins/documentationjs-data.js';
 
 // performance and debug info for metalsmith, when needed see usage below
 // import {start as perfStart, stop as perfStop} from './plugins/perf.js';
@@ -27,18 +26,6 @@ const common = [
   assets({
     source: './assets/',
     destination: './assets/',
-  }),
-  assets({
-    source: '../dist',
-    destination: './examples/media',
-  }),
-  assets({
-    source: '../dist',
-    destination: './examples/e-commerce',
-  }),
-  assets({
-    source: '../dist',
-    destination: './examples/tourism',
   }),
   ignore(fileName => {
     // This is a fix for VIM swp files inside src/,
@@ -61,7 +48,6 @@ const common = [
     // otherwise, keep file
     return false;
   }),
-  documentationjs({rootJSFile: rootPath('src/lib/main.js')}),
   markdown,
   headings('h2'),
   nav(),
