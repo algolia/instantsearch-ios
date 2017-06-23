@@ -95,6 +95,10 @@ func initUI() {
     constraints += NSLayoutConstraint.constraints(withVisualFormat: "H:|-25-[searchBar]-25-|", options: [], metrics: nil, views:views)
     constraints += NSLayoutConstraint.constraints(withVisualFormat: "H:|-25-[stats]-25-|", options: [], metrics: nil, views:views)
     NSLayoutConstraint.activate(constraints)
+    
+    // Style the stats label
+    stats.textAlignment = .center
+    stats.font = UIFont.boldSystemFont(ofSize:18.0)
 }
 ```
 
@@ -252,7 +256,7 @@ Let's first setup the navigation controller. In your `Main.storyboard` file, cli
 
 Now, In your Object library again, drag and drop a Bar Button Item to the Navigation bar of the first ViewController. Double click on it to change its name to "Filter". Then from this button, hold on Ctrl, and drag it to the `RefinementViewConroller` view, and select Show as the Action Segue. 
 
-Next, drag and drop a Table View from the Object Library onto the `RefinementViewController` view, and change its custom class to be `RefinementTableWidget`. Then, create an `IBOutlet` of that tableView into RefinementViewController.swift, and call it `tableView`.
+Next, drag and drop a Table View from the Object Library onto the `RefinementViewController` view, and change its custom class to be `RefinementTableWidget`. Go ahead and create a prototype cell for this table and specify `refinementCell` as the identifier. Then, create an `IBOutlet` of that tableView into RefinementViewController.swift, and call it `tableView`.
 
 Finally, add the `import InstantSearch` statement at the top of RefinementViewController.swift.
 
@@ -260,7 +264,7 @@ Finally, add the `import InstantSearch` statement at the top of RefinementViewCo
 
 We can implement a `RefinementList` with the exact same idea as the Hits widgets: using a base class and then implementing some delegate methods. However, this time, we will implement it using the helper class in order to show you how things can be done differently. That will help you use InstantSearch in the case where your `ViewController` already inherits from a subclass of `UIViewController`, and not `UIViewController` itself. Also, since you cannot subclass a Swift class in Objective-C, then this method will be useful if you decide to write your app in Objective-C. 
 
-First things first, go to `Main.Storyboard` and then select the `tableView` in the last screen on your right. This will be your `refinementList`. Note that we already changed the class of the table to be a `RefinementTableWidget`. Now, go to the Attributes Inspector pane and then at the top, specify the `attribute` to be equal to `category`. This will associate the `refinementList` with the attribute `category`.
+First things first, go to `Main.Storyboard` and then select the `tableView` in the screen containing your `refinementList`. This will be your `refinementList`. Note that we already changed the class of the table to be a `RefinementTableWidget`. Now, go to the Attributes Inspector pane and then at the top, specify the `attribute` to be equal to `category`. This will associate the `refinementList` with the attribute `category`.
 
 Next, go to the `RefinementViewController.swift` class, and then add protocol `, RefinementTableViewDataSource` next to `UIViewController`. Then, add the following property below the declared `tableView`:
 
