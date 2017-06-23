@@ -128,7 +128,7 @@ CGRect defaultRect;
     HitsTableWidget* hitsTableWidget = [[HitsTableWidget alloc] initWithFrame: defaultRect];
     [view addSubview:hitsTableWidget];
     
-    [instantSearch addAllWidgetsIn: view doSearch: false];
+    [instantSearch registerAllWidgetsIn: view doSearch: false];
     
     StatsLabelWidget* statsLabelWidget = [[StatsLabelWidget alloc] initWithFrame: defaultRect];
     [instantSearch registerWithWidget:statsLabelWidget];

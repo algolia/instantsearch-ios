@@ -1026,7 +1026,7 @@
 				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
 				DEVELOPMENT_TEAM = K3DV6EU9CV;
 				INFOPLIST_FILE = InstantSearchTestsHost/Info.plist;
-				IPHONEOS_DEPLOYMENT_TARGET = 10.3;
+				IPHONEOS_DEPLOYMENT_TARGET = 10.2;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = io.daher.InstantSearchTestsHost;
 				PRODUCT_NAME = "$(TARGET_NAME)";
@@ -1044,7 +1044,7 @@
 				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
 				DEVELOPMENT_TEAM = K3DV6EU9CV;
 				INFOPLIST_FILE = InstantSearchTestsHost/Info.plist;
-				IPHONEOS_DEPLOYMENT_TARGET = 10.3;
+				IPHONEOS_DEPLOYMENT_TARGET = 10.2;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = io.daher.InstantSearchTestsHost;
 				PRODUCT_NAME = "$(TARGET_NAME)";
