@@ -161,6 +161,15 @@ import AlgoliaSearch
 
     // MARK: Add widget methods
 
+    /// Register all InstantSearch widgets inside a particular view, and then execute a search to Algolia
+    ///
+    /// - param view: the view containnig the InstantSearch widgets.
+    ///
+    /// + Note: InstantSearch widgets are simply the components that implement the `AlgoliaWidget` marker protocol.
+    @objc public func registerAllWidgets(in view: UIView) {
+        registerAllWidgets(in: view, doSearch: true)
+    }
+    
     /// Register all InstantSearch widgets inside a particular view.
     ///
     /// - param view: the view containnig the InstantSearch widgets.
