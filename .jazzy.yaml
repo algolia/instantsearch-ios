@@ -1,0 +1,22 @@
+# The Xcode project is not standalone: we need the Cocoapods-generated workspace to draw dependencies.
+xcodebuild_arguments:
+    - -workspace
+    - InstantSearch.xcworkspace
+    - -scheme
+    - InstantSearch
+output: doc/build/reference
+# Avoid putting the DocSet within the HTML docs.
+# WARNING: The path is relative to the output directory.
+docset_path: ../../../build/docset
+hide_documentation_coverage: true
+abstract:
+    - LICENSE
+readme: doc/jazzy/index.md
+custom_categories:
+    - name: Core
+      children:
+        - InstantSearch
+
+    - name: Widgets
+      children:
+        - HitsTableWidget
