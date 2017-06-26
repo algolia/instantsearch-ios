@@ -10,5 +10,6 @@ included: # paths to include during linting. `--path` is ignored if present.
   - Sources
 
 line_length: 140
+file_length: 500
 identifier_name:
   min_length: 2
