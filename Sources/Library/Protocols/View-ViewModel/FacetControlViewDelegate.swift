@@ -8,9 +8,7 @@
 
 import Foundation
 
-/*
- * Protocol that defines the facet control view input methods and propreties.
- */
+/// Protocol that defines the facet control view input methods and propreties.
 @objc internal protocol FacetControlViewDelegate: RefinementViewDelegate {
     
     /// ViewModel associated with the WidgetV.

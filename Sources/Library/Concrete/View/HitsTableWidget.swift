@@ -14,6 +14,7 @@ import UIKit
 /// - hitsPerPage
 /// - infiniteScrolling
 /// - remainingItemsBeforeLoading
+/// - showItemsOnEmptyQuery
 /// + Note: This is best used with a HitsController (through composition) or a HitsTableViewController (through inheritance).
 @objc public class HitsTableWidget: UITableView, HitsViewDelegate, AlgoliaWidget {
     

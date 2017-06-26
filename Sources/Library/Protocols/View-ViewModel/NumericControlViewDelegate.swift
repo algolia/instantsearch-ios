@@ -8,9 +8,7 @@
 
 import Foundation
 
-/*
- * Protocol that defines the numeric control view input methods and propreties.
- */
+/// Protocol that defines the numeric control view input methods and propreties.
 @objc internal protocol NumericControlViewDelegate: RefinementViewDelegate {
     
     /// ViewModel associated with the WidgetV.

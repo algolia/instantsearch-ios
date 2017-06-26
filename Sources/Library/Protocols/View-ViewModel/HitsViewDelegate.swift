@@ -8,9 +8,7 @@
 
 import Foundation
 
-/*
- * Protocol that defines the hits view input methods and propreties.
- */
+/// Protocol that defines the hits view input methods and propreties.
 @objc internal protocol HitsViewDelegate: class {
 
     /// ViewModel associated with the WidgetV.

@@ -8,9 +8,7 @@
 
 import Foundation
 
-/*
- * Protocol that defines the refinement view input methods and propreties.
- */
+/// Protocol that defines the refinement view input methods and propreties.
 @objc internal protocol RefinementViewDelegate: class {
     
     /// Attribute name of the control.

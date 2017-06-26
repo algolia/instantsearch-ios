@@ -8,9 +8,7 @@
 
 import Foundation
 
-/*
- * Protocol that defines the stats view input methods and propreties.
- */
+/// Protocol that defines the stats view input methods and propreties.
 @objc internal protocol StatsViewDelegate: class {
     
     /// ViewModel associated with the WidgetV.
