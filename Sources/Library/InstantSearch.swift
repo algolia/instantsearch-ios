@@ -180,7 +180,7 @@ import AlgoliaSearch
         registerWidgets(in: view)
 
         // After added all widgets, the widgets might have added
-        // parameters to the searcher.params. So we need to trigger a new search
+        // parameters to the searcher.params. So we need to trigger a new search.
         if doSearch {
             self.searcher.search()
         }
@@ -261,7 +261,7 @@ import AlgoliaSearch
         }
     }
 
-    // Binds the widgetVM to the different events emitted by the Searcher
+    // Binds the widgetVM to the different events emitted by the Searcher.
     // We do this binding by adding the WidgetVM to the corresponding delegates
     // owned by InstantSearch, as well as assigning the Searcher to the VMs who implement `SearchableViewModel`.
     // The list of delegates are:

@@ -28,6 +28,9 @@ private var highlightedBackgroundColorKey: Void?
 private var isHighlightingInversedKey: Void?
 
 extension UILabel {
+    
+    /// The highlighted background color of the string that matches the search query in Algolia's index.
+    /// + Note: This can only be used with the InstantSearch library.
     @objc public var highlightedBackgroundColor: UIColor? {
         get {
             return objc_getAssociatedObject(self, &highlightedBackgroundColorKey) as? UIColor
@@ -37,6 +40,8 @@ extension UILabel {
         }
     }
     
+    /// Whether or not the highlighted background color of the string that matches the search query is inverted or not.
+    /// + Note: This can only be used with the InstantSearch library.
     @objc public var isHighlightingInversed: Bool {
         get {
             guard let isHighlightingInversed = objc_getAssociatedObject(self, &isHighlightingInversedKey) as? Bool else {
@@ -50,6 +55,8 @@ extension UILabel {
         }
     }
     
+    /// The text to be highlighte. This should be the string that matches the search query in Algolia's index.
+    /// + Note: This can only be used with the InstantSearch library.
     @objc public var highlightedText: String? {
         get {
             return attributedText?.string
