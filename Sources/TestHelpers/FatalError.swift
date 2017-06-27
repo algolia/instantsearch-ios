@@ -9,20 +9,20 @@
 import Foundation
 
 // overrides Swift global `fatalError`
-public func fatalError(_ message: @autoclosure () -> String = "", file: StaticString = #file, line: UInt = #line) -> Never {
+internal func fatalError(_ message: @autoclosure () -> String = "", file: StaticString = #file, line: UInt = #line) -> Never {
     FatalErrorUtil.fatalErrorClosure(message(), file, line)
     unreachable()
 }
 
 /// This is a `noreturn` function that pauses forever
-public func unreachable() -> Never {
+internal func unreachable() -> Never {
     repeat {
         RunLoop.current.run()
     } while (true)
 }
 
 /// Utility functions that can replace and restore the `fatalError` global function.
-public struct FatalErrorUtil {
+internal struct FatalErrorUtil {
     
     // Called by the custom implementation of `fatalError`.
     static var fatalErrorClosure: (String, StaticString, UInt) -> Never = defaultFatalErrorClosure

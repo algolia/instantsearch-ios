@@ -15,7 +15,6 @@ class FacetController: UIViewController, RefinementTableViewDataSource {
     var instantSearch: InstantSearch!
     @IBOutlet weak var refinementList: RefinementTableWidget!
     @IBOutlet weak var statLabel: UILabel!
-    var statLabelController: StatsLabelController!
     
     var refinementController: RefinementController!
     
@@ -28,8 +27,6 @@ class FacetController: UIViewController, RefinementTableViewDataSource {
         
         instantSearch = InstantSearch.shared
         instantSearch.register(widget: refinementList)
-        statLabelController = StatsLabelController(label: statLabel)
-        instantSearch.register(widget: statLabelController)
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath, containing facet: String, with count: Int, is refined: Bool) -> UITableViewCell {

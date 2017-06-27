@@ -7,7 +7,7 @@
 //
 
 import Foundation
-import InstantSearch
+@testable import InstantSearch
 import XCTest
 
 extension XCTestCase {

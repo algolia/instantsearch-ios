@@ -57,7 +57,6 @@
 		E27C16451E9394250091D79E /* SearchBarWidget.swift in Sources */ = {isa = PBXBuildFile; fileRef = E27C16391E9394250091D79E /* SearchBarWidget.swift */; };
 		E27C16461E9394250091D79E /* StatsLabelWidget.swift in Sources */ = {isa = PBXBuildFile; fileRef = E27C163A1E9394250091D79E /* StatsLabelWidget.swift */; };
 		E27C16471E9394250091D79E /* InstantSearch.swift in Sources */ = {isa = PBXBuildFile; fileRef = E27C163B1E9394250091D79E /* InstantSearch.swift */; };
-		E27C16481E9394250091D79E /* InstantSearchMultiIndex.swift in Sources */ = {isa = PBXBuildFile; fileRef = E27C163C1E9394250091D79E /* InstantSearchMultiIndex.swift */; };
 		E27C16491E9394250091D79E /* ClearAllWidget.swift in Sources */ = {isa = PBXBuildFile; fileRef = E27C163D1E9394250091D79E /* ClearAllWidget.swift */; };
 		E27C164A1E9394250091D79E /* ActivityIndicatorView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E27C163E1E9394250091D79E /* ActivityIndicatorView.swift */; };
 		E27C164B1E9394250091D79E /* RefinableDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = E27C163F1E9394250091D79E /* RefinableDelegate.swift */; };
@@ -157,7 +156,6 @@
 		E27C16391E9394250091D79E /* SearchBarWidget.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SearchBarWidget.swift; sourceTree = "<group>"; };
 		E27C163A1E9394250091D79E /* StatsLabelWidget.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = StatsLabelWidget.swift; sourceTree = "<group>"; };
 		E27C163B1E9394250091D79E /* InstantSearch.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = InstantSearch.swift; sourceTree = "<group>"; };
-		E27C163C1E9394250091D79E /* InstantSearchMultiIndex.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = InstantSearchMultiIndex.swift; sourceTree = "<group>"; };
 		E27C163D1E9394250091D79E /* ClearAllWidget.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ClearAllWidget.swift; sourceTree = "<group>"; };
 		E27C163E1E9394250091D79E /* ActivityIndicatorView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ActivityIndicatorView.swift; sourceTree = "<group>"; };
 		E27C163F1E9394250091D79E /* RefinableDelegate.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RefinableDelegate.swift; sourceTree = "<group>"; };
@@ -431,7 +429,6 @@
 				E2231E961EC9F5A7002FCF82 /* Constants.swift */,
 				28F828821C494B2C00330CF4 /* Info.plist */,
 				E27C163B1E9394250091D79E /* InstantSearch.swift */,
-				E27C163C1E9394250091D79E /* InstantSearchMultiIndex.swift */,
 				E27A7BF01E97931E005B2506 /* ViewModelFetcher.swift */,
 				E2A477001EC61B43007CA367 /* InstantSearch-Bridging-Header.h */,
 			);
@@ -764,7 +761,6 @@
 				E2738FC71E9CC3F8002C002D /* RefinementMenuViewModelDelegate.swift in Sources */,
 				E2738FCB1E9CDDA0002C002D /* NumericControlViewModelDelegate.swift in Sources */,
 				E233BC031EBB78B600F5F5E1 /* FacetControlViewModel.swift in Sources */,
-				E27C16481E9394250091D79E /* InstantSearchMultiIndex.swift in Sources */,
 				E27C16451E9394250091D79E /* SearchBarWidget.swift in Sources */,
 				E27A7BEA1E955612005B2506 /* ResettableDelegate.swift in Sources */,
 				E2738FD21E9D1AFF002C002D /* RefinementListHelper.swift in Sources */,

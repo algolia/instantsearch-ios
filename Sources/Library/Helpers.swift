@@ -97,7 +97,7 @@ private func == <T> (lhs: WeakObject<T>, rhs: WeakObject<T>) -> Bool {
     return lhs.object === rhs.object
 }
 
-public struct WeakSet<T: AnyObject>: Sequence {
+internal struct WeakSet<T: AnyObject>: Sequence {
     
     private var _objects: Set<WeakObject<T>>
     

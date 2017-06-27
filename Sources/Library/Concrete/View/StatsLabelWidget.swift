@@ -37,7 +37,7 @@ import UIKit
     }
 }
 
-@objc public class StatsLabelController: NSObject, StatsViewDelegate, AlgoliaWidget {
+@objc internal class StatsLabelController: NSObject, StatsViewDelegate, AlgoliaWidget {
     
     var label: UILabel
     
