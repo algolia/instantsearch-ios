@@ -45,12 +45,14 @@ import UIKit
     
     // The follow methods are to be implemented by the class extending HitsCollectionViewController
     
+    /// DataSource method called to specify the layout of a hit cell.
     open func collectionView(_ collectionView: UICollectionView,
                              cellForItemAt indexPath: IndexPath,
                              containing hit: [String : Any]) -> UICollectionViewCell {
         fatalError("Must Override cellForItem:indexpath:containing:")
     }
     
+    /// Delegate method called when a hit cell is selected.
     open func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath, containing hit: [String : Any]) {
         
     }

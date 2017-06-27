@@ -45,6 +45,7 @@ import UIKit
     
     // The follow methods are to be implemented by the class extending HitsTableViewController
     
+    /// DataSource method called to specify the layout of a facet cell.
     open func tableView(_ tableView: UITableView,
                         cellForRowAt indexPath: IndexPath,
                         containing facet: String,
@@ -53,6 +54,7 @@ import UIKit
         fatalError("Must Override cellForHit:indexpath:containing:with:is:")
     }
     
+    /// Delegate method called when a facet cell is selected.
     open func tableView(_ tableView: UITableView,
                         didSelectRowAt indexPath: IndexPath,
                         containing facet: String,

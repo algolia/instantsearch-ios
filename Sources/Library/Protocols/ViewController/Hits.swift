@@ -34,6 +34,8 @@ import UIKit
                         cellForItemAt indexPath: IndexPath,
                         containing hit: [String: Any]) -> UICollectionViewCell
     
+    /// DataSource method called to specify the view when there are no results returned from Algolia,
+    /// or if an error occured when doing the request.
     @objc optional func viewForNoResults(in collectionView: UICollectionView) -> UIView
 }
 

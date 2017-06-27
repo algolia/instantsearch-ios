@@ -44,6 +44,7 @@ import UIKit
     
     // The follow methods are to be implemented by the class extending HitsCollectionViewController
     
+    /// DataSource method called to specify the layout of a facet cell.
     open func collectionView(_ collectionView: UICollectionView,
                              cellForItemAt indexPath: IndexPath,
                              containing facet: String,
@@ -52,6 +53,7 @@ import UIKit
         fatalError("Must Override cellForHit:indexpath:containing:with:is:")
     }
     
+    /// Delegate method called when a facet cell is selected.
     open func collectionView(_ collectionView: UICollectionView,
                              didSelectItemAt indexPath: IndexPath,
                              containing facet: String,
