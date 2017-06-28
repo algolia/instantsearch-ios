@@ -147,7 +147,6 @@ import AlgoliaSearch
         self.searcher = searcher
         self.searcher.delegate = self
 
-        // TODO: should we use nil sefor queue (OperationQueue) synchronous or not? Check..
         NotificationCenter.default.addObserver(self,
                                                selector: #selector(reset),
                                                name: clearAllFiltersNotification,

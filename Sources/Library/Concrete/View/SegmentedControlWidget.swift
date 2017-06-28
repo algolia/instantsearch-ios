@@ -40,7 +40,6 @@ import UIKit
         actualSegmentedIndex = self.selectedSegmentIndex
     }
     
-    // TODO: Do we need this? when is this actually being called? careful...
     public required init?(coder aDecoder: NSCoder) {
         viewModel = FacetControlViewModel()
         super.init(coder: aDecoder)
@@ -48,7 +47,6 @@ import UIKit
         actualSegmentedIndex = self.selectedSegmentIndex
     }
     
-    // TODO: Need to override for TwoValuesSwitch
     open func set(value: String) {
         for index in 0..<numberOfSegments {
             if value == titleForSegment(at: index) {

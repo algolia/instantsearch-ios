@@ -40,7 +40,6 @@ internal class RefinementMenuViewModel: RefinementMenuViewModelDelegate, Searcha
         return TransformRefinementList(named: view.sortBy.lowercased())
     }
     
-    // TODO: Should we move this to the InstantSearch Core level?
     var facetResults: [FacetValue] = []
     
     // MARK: - SearchableViewModel
@@ -71,9 +70,6 @@ internal class RefinementMenuViewModel: RefinementMenuViewModelDelegate, Searcha
         // If facet variable has been set beforehand, then we fill
         // the refinement List with the facets that are already fetched from Algolia
         
-        // TODO: Bug of storing state at this level instead of Searcher level.
-        // Think if have 2 refinement menu widgets on same screen refereing 2 different viewmodels,
-        // so the state of facetResults will not be shared between them. careful...
         if let results = searcher.results, searcher.hits.isEmpty, let facetCounts = results.facets(name: attribute) {
             facetResults = getRefinementList(params: searcher.params,
                                              facetCounts: facetCounts,

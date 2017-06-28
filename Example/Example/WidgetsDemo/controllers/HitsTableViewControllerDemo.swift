@@ -8,7 +8,6 @@
 
 import UIKit
 import InstantSearch
-// TODO: Should remove that when moved highlight logic in IS
 import InstantSearchCore
 
 class HitsTableViewControllerDemo: HitsTableViewController {
