@@ -9,6 +9,12 @@
 import Foundation
 import UIKit
 
+/// Base class that is meant to be inherited from a ViewController.
+/// This class gives you the boilerplate needed to have a refinement view linked to InstantSearch.
+/// It imlpements the collectionView dataSource and delegate protocols, 
+/// and exposes the methods from `RefinementCollectionViewDataSource` and `RefinementCollectionViewDelegate`.
+/// + Note: You **have** to implement the `collectionView(_:cellForItemAt:containing:with:is:)` method in your class
+/// to specify the layout of your refinement cells, or else you will get a fatalError.
 @objc open class RefinementCollectionViewController: UIViewController,
     UICollectionViewDataSource, UICollectionViewDelegate, RefinementCollectionViewDataSource, RefinementCollectionViewDelegate {
     
@@ -50,7 +56,7 @@ import UIKit
                              containing facet: String,
                              with count: Int,
                              is refined: Bool) -> UICollectionViewCell {
-        fatalError("Must Override cellForHit:indexpath:containing:with:is:")
+        fatalError("Must Override collectionView(_:cellForItemAt:containing:with:is:)")
     }
     
     /// Delegate method called when a facet cell is selected.

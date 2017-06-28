@@ -9,6 +9,12 @@
 import Foundation
 import UIKit
 
+/// Base class that is meant to be inherited from a ViewController.
+/// This class gives you the boilerplate needed to have a refinementList view linked to InstantSearch.
+/// It imlpements the tableView dataSource and delegate protocols, 
+/// and exposes the methods from `RefinementTableViewDataSource` and `RefinementTableViewDelegate`.
+/// + Note: You **have** to implement the `tableView(_:cellForRowAt:containing:with:is:)` method in your class
+/// to specify the layout of your refinement cells, or else you will get a fatalError.
 @objc open class RefinementTableViewController: UIViewController,
     UITableViewDataSource, UITableViewDelegate, RefinementTableViewDataSource, RefinementTableViewDelegate {
     
@@ -51,7 +57,7 @@ import UIKit
                         containing facet: String,
                         with count: Int,
                         is refined: Bool) -> UITableViewCell {
-        fatalError("Must Override cellForHit:indexpath:containing:with:is:")
+        fatalError("Must Override tableView(_:cellForRowAt:containing:with:is:)")
     }
     
     /// Delegate method called when a facet cell is selected.

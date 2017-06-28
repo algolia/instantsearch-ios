@@ -9,6 +9,8 @@
 import UIKit
 import InstantSearchCore
 
+/// Custom Algolia Widget that contains a Slider and a Label to represent the value of the Slider.
+/// This widget demos how you can implement `RefinableDelegate` so that it reacts to change in a particular refinement
 @objc public class CustomSlider: UIView {
     
     // MARK: - Initializers

@@ -27,6 +27,7 @@ import UIKit
 private var highlightedBackgroundColorKey: Void?
 private var isHighlightingInversedKey: Void?
 
+/// Extension menthods for UILabel used to highlight hits
 extension UILabel {
     
     /// The highlighted background color of the string that matches the search query in Algolia's index.
