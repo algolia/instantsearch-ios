@@ -16,7 +16,48 @@ custom_categories:
     - name: Core
       children:
         - InstantSearch
-
     - name: Widgets
       children:
-        - HitsTableWidget
+        - ActivityIndicatorWidget
+        - CustomSlider
+        - DatePickerWidget
+        - HitsCollectionWidget
+        - OneValueSwitchWidget
+        - RefinementCollectionWidget
+        - RefinementTableWidget
+        - SearchBarWidget
+        - SegmentedControlWidget
+        - SliderWidget
+        - StatsButtonWidget
+        - StatsLabelWidget
+        - StepperWidget
+        - SwitchWidget
+        - TextFieldWidget
+        - TwoValuesSwitchWidget
+    - name: Base ViewController
+      children:
+        - HitsCollectionViewController
+        - HitsTableViewController
+        - RefinementCollectionViewController
+        - RefinementTableViewController
+    - name: Controllers
+      children:
+        - HitsController
+        - RefinementController
+    - name: Protocols
+      children:
+        - AlgoliaWidget
+        - HitsCollectionViewDataSource
+        - HitsCollectionViewDelegate
+        - HitsTableViewDataSource
+        - HitsTableViewDelegate
+        - RefinableDelegate
+        - RefinementCollectionViewDataSource
+        - RefinementCollectionViewDelegate
+        - RefinementTableViewDataSource
+        - RefinementTableViewDelegate
+        - ResultingDelegate
+        - SearchableViewModel
+    - name: Helpers
+      children:
+        - UILabel
