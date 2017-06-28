@@ -109,7 +109,17 @@ import AlgoliaSearch
 
     private override init() {
         super.init()
+        InstantSearch._updateClientUserAgents
     }
+    
+    /// Add the library's version to the client's user agents, if not already present.
+    private static let _updateClientUserAgents: Void = {
+        let bundleInfo = Bundle(for: InstantSearch.self).infoDictionary!
+        let name = bundleInfo["CFBundleName"] as! String
+        let version = bundleInfo["CFBundleShortVersionString"] as! String
+        let libraryVersion = LibraryVersion(name: name, version: version)
+        Client.addUserAgent(libraryVersion)
+    }()
 
     /// Create a new InstantSearch reference with the given configurations.
     ///
