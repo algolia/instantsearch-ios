@@ -10,6 +10,6 @@ var header = algoliaComponents.communityHeader(content);
 
 export default {
   docsDist:  rootPath('docs'),
-  publicPath: prod ? '/instantsearch.js/v2/' : '/',
+  publicPath: prod ? '/instantsearch-ios/' : '/',
   header: header
 };

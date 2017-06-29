@@ -5,6 +5,7 @@ import 'codemirror/mode/clike/clike';
 import 'codemirror/mode/jsx/jsx';
 import 'codemirror/mode/htmlmixed/htmlmixed';
 import 'codemirror/mode/javascript/javascript';
+import 'codemirror/mode/swift/swift';
 import 'codemirror/mode/shell/shell';
 import escape from 'escape-html';
 
