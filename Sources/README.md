@@ -1,7 +1,7 @@
 # InstantSearch iOS
 
-InstantSearch iOS is a library of widgets and helpers for building native, component-driven UIs with Algolia.
-It is built on top of Algolia's Swift API Client to provide you a high-level solution to quickly build various search interfaces
+**InstantSearch iOS** is a declarative UI library providing widgets and helpers for building native, component-driven UIs with Algolia.
+It is built on top of Algolia's [iOS API Client](https://github.com/algolia/algoliasearch-client-swift) and [iOS InstantSearch Core Client](https://github.com/algolia/instantsearch-core-swift) to provide you a high-level solution to quickly build various search interfaces.
 
 ## Widgets
 

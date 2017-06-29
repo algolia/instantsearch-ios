@@ -1,29 +1,26 @@
 ---
-title: Demos
+title: Examples
 layout: examples.pug
-category: examples
-navWeight: 1000
-examplesCTA: 'Go to live demo'
-examples: [{
-    id: 'e-commerce',
-    title: 'E-commerce',
-    description: 'This demos shows the usage of react-instantsearch in the context of an e-commerce website.'
-  }, {
-    id: 'media',
-    title: 'Media',
-    description: 'This demos shows the usage of react-instantsearch in the context of a media website'
-  }, {
-    id: 'tourism',
-    title: 'Tourism',
-    description: 'This demos shows the usage of react-instantsearch in the context of a home renting website'
-  }]
-examplesEndpoint: examples
+name: examples
+category: main
+withHeadings: true
+navWeight: 0
 editable: true
 githubSource: docgen/src/examples.md
 ---
 
-## Demos
+We made a demo application to give you an idea of what you can build with InstantSearch iOS:
 
-Demos are non trivial examples of what you can do with InstantSearch.js. They 
+## E-commerce application
+<img src="assets/img/ecommerce.gif" class="img-object" align="right"/>
 
-If you think about a new example or have any questions about them, [come talk to us](https://discourse.algolia.com/c/instantsearch).
+This example imitates a product search interface like well-known e-commerce applications.
+
+- Search in the **product's name**, **type**, and **category**
+- Filter with RefinementList by *type* or *category*
+- Filter with Numeric filters by *price* or *rating*
+- Custom views using `AlgoliaWidget` for filtering by *price* and *rating*.
+
+<a href="https://github.com/algolia/instantsearch-swift-examples" class="btn btn-static-primary">See example <i class="icon icon-arrow-right"></i></a>
+
+[ecommerce-url]: https://github.com/algolia/instantsearch-swift-examples/tree/master/ecommerce%20Ikea

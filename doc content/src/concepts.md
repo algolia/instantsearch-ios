@@ -80,3 +80,15 @@ If you're not using InstantSearch and using either the API client or InstantSear
 With InstantSearch widgets, you don't have to worry about these classes anymore. In fact, the widgets will set all the parameters for you behind the scenes, without you having to worry about it. All what you will have to do on your side is specify a few properties linked to a specific widget, and you'll be good to go!
 
 However, sometimes, you will still want to modify and configure some functionalities available on the `Searcher` level but not on the `InstantSearch` level. In that case, `InstantSearch` still gives you access to a reference to its `Searcher` in order for you to do just that.
+
+## Configuring InstantSearch
+
+There are two ways you can configure and initialize InstantSearch in iOS.
+
+### Singleton
+
+You can use the singleton shared reference of InstantSearch throughout your app. For that, you can simply use the publicly available `InstantSearch.shared`.
+
+### Instance 
+
+Another way to deal with InstantSearch is to just instantiate an `InstantSearch` instance with one of its constructors. Note that in this case, you will have to take the responsibility of passing that reference between different screens.
