@@ -17,9 +17,9 @@ We made a demo application to give you an idea of what you can build with Instan
 This example imitates a product search interface like well-known e-commerce applications.
 
 - Search in the **product's name**, **type**, and **category**
-- Filter with RefinementList by *type* or *category*
-- Filter with Numeric filters by *price* or *rating*
-- Custom views using `AlgoliaWidget` for filtering by *price* and *rating*.
+- Filter with RefinementList by **type** or **category**
+- Filter with Numeric filters by **price** or **rating**
+- Custom views using `AlgoliaWidget` for filtering by **price** and **rating**.
 
 <a href="https://github.com/algolia/instantsearch-swift-examples" class="btn btn-static-primary">See example <i class="icon icon-arrow-right"></i></a>
 

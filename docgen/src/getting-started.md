@@ -32,7 +32,7 @@ We will use CocoaPods for adding the dependency to `InstantSearch`.
 
 - If you don't have cocoapods installed on your machine, open your terminal and run `sudo gem install cocoapods`.
 - Go to the root of your project then type `pod init`. A `Podfile` will be created for you.
-- Open your `Podfile` and add `pod 'InstantSearch-Swift', '~> 1.0.0-beta3'` below your target.
+- Open your `Podfile` and add `pod 'InstantSearch-Swift', '~> 1.0.0-beta5'` below your target.
 - On your terminal, run `pod update`.
 - Close you Xcode project and then at the root of your project, open `projectName.xcworkspace`.
 
@@ -62,7 +62,7 @@ InstantSearch iOS is based on a system of [widgets][widgets] that communicate wh
 
 ### Option 1 - Programatically
 
-Go to your `ViewController.swift` file and then add `import InstantSearch` at the top. Then, below your class definition, declare your SearchBar and Stats widget:
+Go to your `ViewController.swift` file and then add `import InstantSearch` at the top. Then, below your class definition, declare your [SearchBar][widgets-searchbox] and [Stats][widgets-stats] widget:
 
 ```swift
 // Create your widgets
@@ -268,7 +268,7 @@ Finally, add the `import InstantSearch` statement at the top of RefinementViewCo
 
 ### Common - RefinementList
 
-We can implement a `RefinementList` with the exact same idea as the Hits widgets: using a base class and then implementing some delegate methods. However, this time, we will implement it using the helper class in order to show you how things can be done differently. That will help you use InstantSearch in the case where your `ViewController` already inherits from a subclass of `UIViewController`, and not `UIViewController` itself. Also, since you cannot subclass a Swift class in Objective-C, then this method will be useful if you decide to write your app in Objective-C. 
+We can implement a [RefinementList][widgets-refinementlist] with the exact same idea as the Hits widgets: using a base class and then implementing some delegate methods. However, this time, we will implement it using the helper class in order to show you how things can be done differently. That will help you use InstantSearch in the case where your `ViewController` already inherits from a subclass of `UIViewController`, and not `UIViewController` itself. Also, since you cannot subclass a Swift class in Objective-C, then this method will be useful if you decide to write your app in Objective-C. 
 
 First things first, go to `Main.Storyboard` and then select the `tableView` in the screen containing your `refinementList`. This will be your `refinementList`. Note that we already changed the class of the table to be a `RefinementTableWidget`. Now, go to the Attributes Inspector pane and then at the top, specify the `attribute` to be equal to `category`. This will associate the `refinementList` with the attribute `category`.
 
@@ -322,3 +322,5 @@ You can also head to our [Widgets page][widgets] to see the other components tha
 [examples]: examples.html
 [widgets-hits]: widgets.html#hits
 [widgets-searchbox]: widgets.html#searchbar
+[widgets-refinementlist]: widgets.html#refinementlist
+[widgets-stats]: widgets.html#stats
