@@ -53,7 +53,7 @@ import InstantSearch
 
 func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplicationLaunchOptionsKey: Any]?) -> Bool {
     // Configure InstantSearch
-    InstantSearch.reference.configure(appID: latency, apiKey: 1f6fd3a6fb973cb08419fe7d288fa4db, index: bestbuy_promo)
+    InstantSearch.reference.configure(appID: "latency", apiKey: "1f6fd3a6fb973cb08419fe7d288fa4db", index: "bestbuy_promo")
 }
 ```
 
