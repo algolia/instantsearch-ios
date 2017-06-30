@@ -18,11 +18,11 @@ In this guide, you will learn the key concepts of InstantSearch iOS.
 
 ## InstantSearch Core
 
-The InstantSearch library is built on top of InstantSearch Core. At the core of InstantSearch core is the **Searcher**, which will wrap an [Algolia API `Client`](hhttps://github.com/algolia/algoliasearch-client-swift/blob/master/Source/Client.swift) and provide a level of abstraction over it. You can think of InstantSearch Core as the UIKit agnostic library that takes care of everything related to the search session, while InstantSearch is a UIKit dependent library uses InstantSearch Core to offer ready-made configurable widgets that are "search aware" and automatically react to all kinds of search events. For more info about InstantSearchCore, checkout its [community website](https://community.algolia.com/instantsearch-core-swift/).
+The InstantSearch library is built on top of InstantSearch Core. The essence of InstantSearch Core is the **Searcher**, which will wrap an [Algolia API Client](https://github.com/algolia/algoliasearch-client-swift/blob/master/Source/Client.swift) and provide a level of abstraction over it. You can think of InstantSearch Core as the UIKit agnostic library that takes care of everything related to the search session, while InstantSearch is a UIKit dependent library uses InstantSearch Core to offer ready-made configurable widgets that are "search aware" and automatically react to all kinds of search events. For more info about InstantSearchCore, checkout its [community website](https://community.algolia.com/instantsearch-core-swift/).
 
 ## Overview of Widgets
 
-The core part of InstantSearch iOS are the widgets, which are search-aware UI components that are binded to search events coming from Algolia. We provide some universal widgets such as the **`SearchBarWidget`**, the **`HitsWidget`** or the **`RefinementListWidget`**, and you can easily create new ones by implementing the a few protocols (discussed below).
+The core part of InstantSearch iOS are the widgets, which are search-aware UI components that are binded to search events coming from Algolia. We provide some universal widgets such as the [`SearchBar`][widgets-searchbar], the [`Hits`][widgets-hits] or the [`RefinementList`][widgets-refinementlist], and you can easily create new ones by implementing the a few protocols (discussed below).
 
 Widgets inherit from the different UIKit `UIViews`, whether it is an advanced `UICollectionView`, or a simple `UISlider`. They are also customizable by exposing `IBInspectable` parameters that can be set right through Interface Builder.
 
@@ -43,8 +43,8 @@ class SliderWidget: UISlider, AlgoliaWidget {}
 An input widget will implement `SearchableViewModel`. By implementing this protocol, the widget will have a reference to `Searcher`, and will therefore be able to use it to trigger methods such as `#search()` (e.g: `UISearchBar`), or `#params.updateNumericRefinement` (e.g: `UISlider`).
 
 ```swift
-A implements SearchableViewModel -> Searcher.search(query)
-B implements SearchableViewModel -> Searcher.updateRefinement()
+A implements SearchableViewModel -> searcher.search(query)
+B implements SearchableViewModel -> searcher.updateRefinement()
 ```
 
 An output widget is basically a delegate that reacts to new "search events" that are triggered by the user interacting with an input widget, whether it is writing in a search bar or selecting a new filter. An output widget can implement one of the 2 following protocols: 
@@ -53,7 +53,7 @@ An output widget is basically a delegate that reacts to new "search events" that
 
 ```swift
                                           ┌-> A implements ResultingDelegate
-Searcher.search(query) -> InstantSearch --┤
+searcher.search(query) -> InstantSearch --┤
                                           └-> B implements ResultingDelegate
 ```
 
@@ -63,7 +63,7 @@ Searcher.search(query) -> InstantSearch --┤
 
 ```swift
                                                ┌-> A implements RefinableDelegate
-Searcher.updateRefinement() -> InstantSearch --┤
+searcher.updateRefinement() -> InstantSearch --┤
                                                └-> B implements RefinableDelegate
 ```
 
@@ -94,3 +94,8 @@ You can use the singleton shared reference of InstantSearch throughout your app.
 ### Instance 
 
 Another way to deal with InstantSearch is to just instantiate an `InstantSearch` instance with one of its constructors. Note that in this case, you will have to take the responsibility of passing that reference between different screens.
+
+[widgets-hits]: widgets.html#hits
+[widgets-searchbar]: widgets.html#searchbar
+[widgets-refinementlist]: widgets.html#refinementlist
+[widgets-stats]: widgets.html#stats

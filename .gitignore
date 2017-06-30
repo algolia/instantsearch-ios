@@ -5,6 +5,7 @@
 build/
 DerivedData
 docs/
+docgen/src/jazzydoc
 
 ## Various settings
 *.pbxuser
