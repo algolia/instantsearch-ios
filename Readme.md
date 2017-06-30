@@ -22,15 +22,14 @@ InstantSearch iOS is a library providing widgets and helpers to help you build t
 
 ## Demo
 
+You can see InstantSearch iOS in action in our [Examples repository][ecommerce-url], in which we published example apps built with InstantSearch and written in Swift:
+
 <p align="center">
   <img src="./docgen/assets/img/ikea.gif"/>
 </p>
 
 [ecommerce-gif]: ./docgen/assets/img/ikea.gif
 [ecommerce-url]: https://github.com/algolia/instantsearch-swift-examples
-
-
-You can see InstantSearch iOS in action in our [Examples repository][ecommerce-url], in which we published example apps built with InstantSearch and written in Swift:
 
 ## Installation
 
