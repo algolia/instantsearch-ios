@@ -1,11 +1,9 @@
 # InstantSearch
 
 <p align="left">
-<a href="https://travis-ci.org/algolia/InstantSearch"><img src="https://travis-ci.org/algolia/InstantSearch.svg?branch=master" alt="Build status" /></a>
 <img src="https://img.shields.io/badge/platform-iOS-blue.svg?style=flat" alt="Platform iOS" />
 <a href="https://developer.apple.com/swift"><img src="https://img.shields.io/badge/swift3-compatible-4BC51D.svg?style=flat" alt="Swift 3 compatible" /></a>
-<a href="https://github.com/Carthage/Carthage"><img src="https://img.shields.io/badge/Carthage-compatible-4BC51D.svg?style=flat" alt="Carthage compatible" /></a>
-<a href="https://cocoapods.org/pods/XLActionController"><img src="https://img.shields.io/cocoapods/v/InstantSearch.svg" alt="CocoaPods compatible" /></a>
+<a href="https://cocoapods.org/pods/XLActionController"><img src="https://img.shields.io/cocoapods/v/InstantSearch-Swift.svg" alt="CocoaPods compatible" /></a>
 <a href="https://raw.githubusercontent.com/algolia/InstantSearch/master/LICENSE"><img src="http://img.shields.io/badge/license-MIT-blue.svg?style=flat" alt="License: MIT" /></a>
 </p>
 
@@ -14,58 +12,25 @@ By [Algolia](http://algolia.com).
 
 ## Warning
 
-**This repo is a WIP**. Do not use it in production as the APIs can still change. Stay tuned for a beta release soon :)
+**This repo is still in beta**. Do not use it in production as the APIs can still change. Stay tuned for a beta release soon :)
 
-## Introduction
+-----
 
 InstantSearch iOS is a library providing widgets and helpers to help you build the best instant-search experience on iOS with Algolia. It is built on top of Algolia's [Swift API Client](https://github.com/algolia/algoliasearch-client-swift) to provide you a high-level solution to quickly build various search interfaces. For 
 
 <!-- <img src="Example/InstantSearch.gif" width="300"/> -->
 
-## Usage
+## Demo
 
-```swift
-import InstantSearch
+<p align="center">
+  <img src="./docgen/assets/img/ikea.gif"/>
+</p>
 
-// Configure InstantSearch AppDelegate 
-InstantSearch.reference.configure(appID: APP_ID, apiKey: API_KEY, index: INDEX)
+[ecommerce-gif]: ./docgen/assets/img/ikea.gif
+[ecommerce-url]: https://github.com/algolia/instantsearch-swift-examples
 
-// Declare your widgets (IB or programatically) in your ViewController
-let searchBar = SearchBarWidget(frame: CGRect(...))
-let statsWidget = StatsLabelWidget(frame: CGRect(...))
-self.view.addSubview(searchBar)
-self.view.addSubview(statsWidget)
 
-// Add all widgets in view to InstantSearch in your ViewController
-InstantSearch.reference.addAllWidgets(in: self.view)
-
-// Run your app and write a query in the searchBar.
-```
-
-# Demo
-
-You can see InstantSearch iOS in action in our [Examples repository](https://github.com/algolia/instantsearch-swift-examples), in which we published example apps built with InstantSearch and written in Swift:
-
-## Requirements
-
-* iOS 9.0+
-* Xcode 8.0+
-
-## Getting involved
-
-* If you **want to contribute** please feel free to **submit pull requests**.
-* If you **have a feature request** please **open an issue**.
-* If you **found a bug** or **need help** please **check older issues, [FAQ](#faq) and threads on [StackOverflow](http://stackoverflow.com/questions/tagged/Algolia) (Tag 'Algolia') before submitting an issue.**.
-
-Before contribute check the [CONTRIBUTING](https://github.com/algolia/InstantSearch/blob/master/CONTRIBUTING.md) file for more info.
-
-If you use **InstantSearch** in your app, we would love to hear about it! Drop us a line on [discourse](https://discourse.algolia.com/) or [twitter](https://twitter.com/algolia).
-
-## Examples
-
-Follow these 3 steps to run Example project: Clone InstantSearch repository, open InstantSearch workspace and run the *Example* project.
-
-You can also experiment and learn with the *InstantSearch Playground* which is contained in *InstantSearch.workspace*.
+You can see InstantSearch iOS in action in our [Examples repository][ecommerce-url], in which we published example apps built with InstantSearch and written in Swift:
 
 ## Installation
 
@@ -76,28 +41,57 @@ You can also experiment and learn with the *InstantSearch Playground* which is c
 To install InstantSearch, simply add the following line to your Podfile:
 
 ```ruby
-pod 'InstantSearch-Swift', '~> 1.0.0-beta1'
+pod 'InstantSearch-Swift', '~> 1.0.0-beta3'
 ```
 
-#### Carthage
+## Usage
 
-[Carthage](https://github.com/Carthage/Carthage) is a simple, decentralized dependency manager for Cocoa.
+In your `AppDelegate.swift`: 
 
-To install InstantSearch, simply add the following line to your Cartfile:
+```swift
+import InstantSearch
 
-```ogdl
-github "algolia/InstantSearch-ios" ~> 1.0.0-beta1
+func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplicationLaunchOptionsKey: Any]?) -> Bool {
+    // Configure InstantSearch
+    InstantSearch.reference.configure(appID: latency, apiKey: 1f6fd3a6fb973cb08419fe7d288fa4db, index: bestbuy_promo)
+}
 ```
 
-## Author
+In your `ViewController.swift`:
 
-* [Algolia](https://github.com/algolia) ([@algolia](https://twitter.com/algolia))
+```swift
+import InstantSearch
 
-## FAQ
+override func viewDidLoad() {
+    super.viewDidLoad()
 
-#### Where can I search for general questions about Algolia?
-You can search our [FAQ in our website](https://www.algolia.com/doc/faq/).
+    let searchBar = SearchBarWidget(frame: CGRect(x: 20, y: 30, width: 300, height: 40))
+    let statsWidget = StatsLabelWidget(frame: CGRect(x: 20, y: 80, width: 300, height: 50))
+    self.view.addSubview(searchBar)
+    self.view.addSubview(statsWidget)
 
-# Change Log
+    // Add all widgets in view to InstantSearch
+    InstantSearch.reference.addAllWidgets(in: self.view)
+}
+```
 
-This can be found in the [CHANGELOG.md](CHANGELOG.md) file.
+Run your app and you will the most basic search experience: a searchbar with the number of results each time you write a query.
+
+## Getting Help
+
+- **Need help**? Ask a question to the [Algolia Community](https://discourse.algolia.com/) or on [Stack Overflow](http://stackoverflow.com/questions/tagged/algolia).
+- **Found a bug?** You can open a [GitHub issue](https://github.com/algolia/algoliasearch-client-swift/issues)
+.
+- **Questions about Algolia?** You can search our [FAQ in our website](https://www.algolia.com/doc/faq/).
+
+
+## Getting involved
+
+* If you **want to contribute** please feel free to **submit pull requests**.
+* If you **have a feature request** please **open an issue**.
+
+If you use **InstantSearch** in your app, we would love to hear about it! Drop us a line on [discourse](https://discourse.algolia.com/) or [twitter](https://twitter.com/algolia).
+
+# License
+
+InstantSearch iOS is [MIT licensed](LICENSE.md).
