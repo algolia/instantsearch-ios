@@ -74,13 +74,12 @@ override func viewDidLoad() {
 }
 ```
 
-Run your app and you will the most basic search experience: a searchbar with the number of results each time you write a query.
+Run your app and you will the most basic search experience: a `UISearchBar` with the number of results each time you write a query.
 
 ## Getting Help
 
 - **Need help**? Ask a question to the [Algolia Community](https://discourse.algolia.com/) or on [Stack Overflow](http://stackoverflow.com/questions/tagged/algolia).
-- **Found a bug?** You can open a [GitHub issue](https://github.com/algolia/algoliasearch-client-swift/issues)
-.
+- **Found a bug?** You can open a [GitHub issue](https://github.com/algolia/algoliasearch-client-swift/issues).
 - **Questions about Algolia?** You can search our [FAQ in our website](https://www.algolia.com/doc/faq/).
 
 
@@ -88,8 +87,7 @@ Run your app and you will the most basic search experience: a searchbar with the
 
 * If you **want to contribute** please feel free to **submit pull requests**.
 * If you **have a feature request** please **open an issue**.
-
-If you use **InstantSearch** in your app, we would love to hear about it! Drop us a line on [discourse](https://discourse.algolia.com/) or [twitter](https://twitter.com/algolia).
+* If you use **InstantSearch** in your app, we would love to hear about it! Drop us a line on [discourse](https://discourse.algolia.com/) or [twitter](https://twitter.com/algolia).
 
 # License
 
