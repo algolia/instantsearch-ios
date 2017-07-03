@@ -12,11 +12,11 @@ By [Algolia](http://algolia.com).
 
 ## Warning
 
-**This repo is still in beta**. Do not use it in production as the APIs can still change. Stay tuned for a beta release soon :)
+**This repo is still in beta**. Do not use it in production as the APIs can still change.
 
 -----
 
-InstantSearch iOS is a library providing widgets and helpers to help you build the best instant-search experience on iOS with Algolia. It is built on top of Algolia's [Swift API Client](https://github.com/algolia/algoliasearch-client-swift) to provide you a high-level solution to quickly build various search interfaces. For 
+**InstantSearch iOS** is a library providing widgets and helpers to help you build the best instant-search experience on iOS with Algolia. It is built on top of Algolia's [Swift API Client](https://github.com/algolia/algoliasearch-client-swift) to provide you a high-level solution to quickly build various search interfaces.
 
 <!-- <img src="Example/InstantSearch.gif" width="300"/> -->
 
