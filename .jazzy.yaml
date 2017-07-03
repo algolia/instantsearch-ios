@@ -4,14 +4,14 @@ xcodebuild_arguments:
     - InstantSearch.xcworkspace
     - -scheme
     - InstantSearch
-output: doc/build/reference
+output: docs/jazzydoc
 # Avoid putting the DocSet within the HTML docs.
 # WARNING: The path is relative to the output directory.
-docset_path: ../../../build/docset
+docset_path: ../../build/docset
 hide_documentation_coverage: true
 abstract:
     - LICENSE
-readme: doc/jazzy/index.md
+readme: docgen/jazzy/index.md
 custom_categories:
     - name: Core
       children:
