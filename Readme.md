@@ -40,7 +40,7 @@ You can see InstantSearch iOS in action in our [Examples repository][ecommerce-u
 To install InstantSearch, simply add the following line to your Podfile:
 
 ```ruby
-pod 'InstantSearch-Swift', '~> 1.0.0-beta3'
+pod 'InstantSearch-Swift', '~> 1.0.0-beta4'
 ```
 
 ## Usage
