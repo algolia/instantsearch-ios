@@ -5,6 +5,8 @@
 build/
 DerivedData
 docs/
+node_modules
+yarn.lock
 
 ## Various settings
 *.pbxuser
