@@ -1,5 +1,5 @@
 # Uncomment the next line to define a global platform for your project
-# platform :ios, '9.0'
+platform :ios, '8.0'
 
 use_frameworks!
 
@@ -15,9 +15,10 @@ target 'InstantSearch' do
       inherit! :search_paths
   end
   
-  target 'Example' do
-      workspace 'InstantSearch.xcworkspace'
-      project 'Example/Example.xcodeproj'
-      instantsearch_core
-  end
+end
+
+target 'Example' do
+    workspace 'InstantSearch.xcworkspace'
+    project 'Example/Example.xcodeproj'
+    instantsearch_core
 end
