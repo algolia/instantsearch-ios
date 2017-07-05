@@ -22,6 +22,6 @@ Pod::Spec.new do |s|
       'Sources/Library/**/*.{swift}',
       'Sources/CustomWidgets/**/*.{swift}'
     ]
-    ss.dependency 'InstantSearch-Core-Swift', '~> 2.0.0-beta1'
+    ss.dependency 'InstantSearch-Core-Swift', '~> 2.0.0-beta2'
   end
 end

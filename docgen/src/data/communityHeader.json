@@ -11,24 +11,32 @@
     "community": {
       "dropdownItems": [
       {
-        "name": "React InstantSearch",
-        "url": "https://community.algolia.com/instantsearch.js/react",
-        "logo": "InstantSearchReact",
-        "backgroundColor": "linear-gradient(to bottom left, #2C5EE2 0%, #17204F 150%)"
+        "name": "instantsearch.js",
+        "url": "https://community.algolia.com/instantsearch.js/v2",
+        "logo": "assets/img/InstantSearch-JS-icon.svg",
+        "backgroundColor": "#fff"
       },
       {
-        "name": "instantsearch.js",
-        "url": "https://community.algolia.com/instantsearch.js/",
-        "logo": "https://community.algolia.com/img/logo-is.svg",
-        "backgroundColor": "#385D72"
-      },{},{
+        "name": "React InstantSearch",
+        "url": "https://community.algolia.com/instantsearch.js/react",
+        "logo": "assets/img/InstantSearch-React-icon.svg",
+        "backgroundColor": "#fff"
+      },
+      {
+        "name": "Android InstantSearch",
+        "url": "https://community.algolia.com/instantsearch-android/",
+        "logo": "assets/img/InstantSear-Android.svg",
+        "backgroundColor": "#fff"
+      },
+      {
         "name": "Helper.js",
         "url": "https://community.algolia.com/algoliasearch-helper-js/",
         "logo": "https://community.algolia.com/img/logo-helper.svg",
         "backgroundColor": "#FDBD57"
-      },{
-        "name": "wordpress",
-        "url": "https://community.algolia.com/wordpress",
+      },
+      {
+        "name": "Wordpress",
+        "url": "https://community.algolia.com/wordpress/",
         "logo": "https://community.algolia.com/wordpress/img/icons/wp-icon.svg",
         "backgroundColor": "linear-gradient(to bottom right, #4041B2, #516ED1)"
       }]
