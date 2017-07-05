@@ -13,7 +13,7 @@
       {
         "name": "React InstantSearch",
         "url": "https://community.algolia.com/instantsearch.js/react",
-        "logo": "InstantSearchReact",
+        "logo": "assets/img/react-instantsearch.svg",
         "backgroundColor": "linear-gradient(to bottom left, #2C5EE2 0%, #17204F 150%)"
       },
       {
