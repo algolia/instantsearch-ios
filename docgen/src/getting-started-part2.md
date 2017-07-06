@@ -65,6 +65,11 @@ Now that we have our navigation setup, let's add our refinementList as a `tableV
 * Then, create an `IBOutlet` of that tableView into `RefinementViewController.swift`, and call it `tableView`.
 * Finally, add the `import InstantSearch` statement at the top of `RefinementViewController.swift`.
 
+<br/>
+<img src="assets/img/getting-started/xcode-refinementlist.png" width="800"/>
+<br/>
+<br/>
+
 ### The RefinementList
 
 We can implement a [RefinementList][widgets-refinementlist] with the exact same idea as the Hits widgets: using a base class and then implementing some delegate methods. However, this time, we will implement it using the helper class in order to show you how things can be done differently. That will help you use InstantSearch in the case where your `ViewController` already inherits from a subclass of `UIViewController`, and not `UIViewController` itself. Also, since you cannot subclass a Swift class in Objective-C, then this method will be useful if you decide to write your app in Objective-C. 

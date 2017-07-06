@@ -28,6 +28,11 @@ Let's get started! In Xcode, create a new Project:
 - On the Template screen, select **Single View Application** and click next
 - Specify your Product name, select Swift as the language, and iPhone as the Device. Then create.
 
+<br/>
+<img src="assets/img/getting-started/xcode-newproject.png" />
+<br/>
+<br/>
+
 We will use CocoaPods for adding the dependency to `InstantSearch`.
 
 - If you don't have CocoaPods installed on your machine, open your terminal and run `sudo gem install cocoapods`.

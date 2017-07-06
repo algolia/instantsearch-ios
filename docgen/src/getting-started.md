@@ -28,6 +28,11 @@ Let's get started! In Xcode, create a new Project:
 - On the Template screen, select **Single View Application** and click next
 - Specify your Product name, select Swift as the language, and iPhone as the Device. Then create.
 
+<br/>
+<img src="assets/img/getting-started/xcode-newproject.png" />
+<br/>
+<br/>
+
 We will use CocoaPods for adding the dependency to `InstantSearch`.
 
 - If you don't have CocoaPods installed on your machine, open your terminal and run `sudo gem install cocoapods`.
@@ -75,6 +80,11 @@ Here, we're telling InstantSearch to inspect all the subviews in the `ViewContro
 - Now repeat the process but this time add a `Label` to the view, and then let the custom class be a `StatsLabelWidget`.
 - Finally, make the width of the label bigger so that the text can clearly appear.
 
+<br/>
+<img src="assets/img/getting-started/xcode-searchbar.png" width="800"/>
+<br/>
+<br/>
+
 **Build and run your application: you now have the most basic search experience!** You should see that the results are changing on each key stroke. Fantastic!
 
 ### Recap
@@ -94,11 +104,22 @@ The whole point of a search experience is to display the dataset that matches be
 - In your `Main.Storyboard`, drag and drop a `Table View` from the Object Library and resize it to make it bigger.
 - Select the `Table View` and change its custom class to `HitsTableWidget`.
 
+
+
 > *If you go to the attributes inspector, you will see that at the top, there are 4 configuration parameters that you can change, like `Hits Pet Page` and `Infinite Scrolling`. Feel free to change them to your needs, or keep the default values.*
+
+<p align="center">
+<img src="assets/img/getting-started/xcode-configurewidgets.png" />
+</p>
 
 - Click on your `Table View`, and in the attributes inspector, add a prototype cell under the `Table View` section by replacing `0` with `1`.
 - You should now be able to see a `Table View Cell` (under your `Table View`) in the Document Outline on the left of the storyboard file. Select that, and in the attributes inspector, specify `hitCell` as the identifier.
 - Finally, we need to have a reference to the `HitsTableView` in your `ViewController`. For that, go ahead and create an `IBOutlet` and call it `tableView`.
+
+<br/>
+<img src="assets/img/getting-started/xcode-hits.png" width="800"/>
+<br/>
+<br/>
 
 Now that we have our `Table View` setup, we still need to specify what fields from the Algolia response we want to show, as well as the layout of our cells. InstantSearch provides both base classes and helper classes in order to achieve this. Here, we will look at the easiest and most flexible way: using the base class `HitsTableViewController`.
 
