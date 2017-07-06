@@ -1,18 +1,18 @@
 ---
-title: Getting Started
+title: Getting Started Programmatically
 layout: main.pug
-name: getting-started
+name: getting-started-programmatic
 category: main
 withHeadings: true
 navWeight: 100
 editable: true
-githubSource: docgen/src/getting-started.md
+githubSource: docgen/src/getting-started-programmatic.md
 ---
 
 *This guide will walk you through the few steps needed to start a project with InstantSearch iOS.
 We will start from an empty iOS project, and create from scratch a full search interface!*
 
-*Another thing to point out is that this getting started guide will show you how to build your search experience using storyboards (or xibs). However, if you prefer to write your UI programatically, you can follow the [programmatic getting started guide](getting-started-programmatic.html).*
+*Another thing to point out is that this getting started guide will show you how to build your search experience programmatically. However, if you prefer to write your UI using storyboards and xibs, you can follow the [getting started guide with storyboard](getting-started.html).*
 
 ## Before we start
 To use InstantSearch iOS, you need an Algolia account. You can create one by clicking [here][algolia_sign_up], or use the following credentials:
@@ -60,18 +60,47 @@ Next, we added the attributes that we want to retrieve and highlight. As a side 
 
 InstantSearch iOS is based on a system of [widgets][widgets] that communicate when a user interacts with your app. The first widget we'll add is a [SearchBar][widgets-searchbox] since any search experience requires one. InstantSearch will automatically recognize your SearchBar as a source of search queries. We will also add a `Stats` widget to show how the number of results change when you type a query in your SearchBar. 
 
-Start by going to your `ViewController.swift` file and then add `import InstantSearch` at the top. Then inside your `viewDidLoad` method, add the following: 
+Go to your `ViewController.swift` file and then add `import InstantSearch` at the top. Then, below your class definition, declare your [SearchBar][widgets-searchbox] and [Stats][widgets-stats] widget:
 
-```swift    
-// Register all widgets in view to InstantSearch
+```swift
+// Create your widgets
+let searchBar = SearchBarWidget(frame: .zero)
+let stats = StatsLabelWidget(frame: .zero)
+```
+
+Then inside your `viewDidLoad` method, add the following: 
+
+```swift
+initUI()
+    
+// Add all widgets to InstantSearch
 InstantSearch.shared.registerAllWidgets(in: self.view)
 ```
 
-Here, we're telling InstantSearch to inspect all the subviews in the `ViewController`'s view. So what we need to do now is add the widgets to our view! 
+Finally, we need to add the views to the `ViewController`'s view and specify the autolayout constraints so that the layout looks good on any device. You don't have to focus too much on understanding this part since it is not related to InstantSearch, and more related to iOS layout. Add this function to your file:
 
-So let's open our `Main.storyboard` and then on the Utility Tab on your right, Go to the Object Library on the bottom and then drag and drop a `Search Bar` to your view. Click on the `Search Bar` and then on the identity inspector, add the custom class `SearchBarWidget`. 
-
-Now repeat the process but this time add a `Label` to the view, and then let the custom class be a `StatsLabelWidget`. Finally, make the width of the label bigger so that the text can clearly appear.
+```swift
+func initUI() {
+    // Add the declared views to the main view
+    self.view.addSubview(searchBar)
+    self.view.addSubview(stats)
+    
+    // Add autolayout constraints
+    searchBar.translatesAutoresizingMaskIntoConstraints = false
+    stats.translatesAutoresizingMaskIntoConstraints = false
+    
+    let views = ["searchBar": searchBar, "stats": stats]
+    var constraints = [NSLayoutConstraint]()
+    constraints += NSLayoutConstraint.constraints(withVisualFormat: "V:|-30-[searchBar]-10-[stats]", options: [], metrics: nil, views:views)
+    constraints += NSLayoutConstraint.constraints(withVisualFormat: "H:|-25-[searchBar]-25-|", options: [], metrics: nil, views:views)
+    constraints += NSLayoutConstraint.constraints(withVisualFormat: "H:|-25-[stats]-25-|", options: [], metrics: nil, views:views)
+    NSLayoutConstraint.activate(constraints)
+    
+    // Style the stats label
+    stats.textAlignment = .center
+    stats.font = UIFont.boldSystemFont(ofSize:18.0)
+}
+```
 
 **Build and run your application: you now have the most basic search experience!** You should see that the results are changing on each key stroke. Fantastic!
 
@@ -89,11 +118,42 @@ You just used your very first widgets from InstantSearch. In this part, you've l
 
 The whole point of a search experience is to display the dataset that matches best the query entered by the user. That's what we will implement in this section with the [hits][widgets-hits] widget.
 
-In your `Main.Storyboard`, drag and drop a `Table View` from the Object Library and resize it to make it bigger. Then, select the `Table View` and change its custom class to `HitsTableWidget`. Now if you go to the attributes inspector, you will see that there are at the top 4 configuration parameters that you can apply like `Hits Pet Page` and `Infinite Scrolling`. Feel free to change them to your needs, or keep the default values.
+We will now create our tableView. Next to your properties declared, add the following:
 
-Then, click on your `Table View`, and in the attributes inspector, add a prototype cell under the `Table View` section by replacing `0` with `1`. You should now be able to see a `Table View Cell` (under your `Table View`) in the Document Outline on the left of the storyboard file. Select that, and in the attributes inspector, specify `hitCell` as the identifier.
+```swift
+let tableView = HitsTableWidget(frame: .zero)
+```
 
-Finally, we need to have a reference to the `HitsTableView` in your `ViewController`. For that, go ahead and create an `IBOutlet` and call it `tableView`.
+Then we will specify the layout constraint of the table to fill the most of the page. **Replace** your `initUI` method with the following (again, no need to worry about understanding this part):
+
+```swift
+func initUI() {
+    // Add the declared views to the main view
+    self.view.addSubview(searchBar)
+    self.view.addSubview(stats)
+    self.view.addSubview(tableView)
+    
+    // Add autolayout constraints
+    searchBar.translatesAutoresizingMaskIntoConstraints = false
+    stats.translatesAutoresizingMaskIntoConstraints = false
+    tableView.translatesAutoresizingMaskIntoConstraints = false
+
+    let views = ["searchBar": searchBar, "stats": stats, "tableView": tableView]
+    var constraints = [NSLayoutConstraint]()
+    constraints += NSLayoutConstraint.constraints(withVisualFormat: "V:|-30-[searchBar]-10-[stats]-10-[tableView]-|", options: [], metrics: nil, views:views)
+    constraints += NSLayoutConstraint.constraints(withVisualFormat: "H:|-25-[searchBar]-25-|", options: [], metrics: nil, views:views)
+    constraints += NSLayoutConstraint.constraints(withVisualFormat: "H:|-25-[stats]-25-|", options: [], metrics: nil, views:views)
+    constraints += NSLayoutConstraint.constraints(withVisualFormat: "H:|-[tableView]-|", options: [], metrics: nil, views:views)
+    NSLayoutConstraint.activate(constraints)
+    
+    // Register tableView identifier
+    tableView.register(UITableViewCell.self, forCellReuseIdentifier: "hitCell")
+    
+    // Style the stats label
+    stats.textAlignment = .center
+    stats.font = UIFont.boldSystemFont(ofSize:18.0)
+}
+```
 
 Now that we have our `Table View` setup, we still need to specify what fields from the Algolia response we want to show, as well as the layout of our cells. InstantSearch provides both base classes and helper classes in order to achieve this. Here, we will look at the easiest and most flexible way: using the base class.
 
@@ -127,9 +187,9 @@ In this part, you've learned:
 - How to configure widgets
 - How to specify the look and feel of your hit cells.
 
-## Go Further
+## Go further
 
-Your application now displays your data, lets your users enter a query and displays search results as-they-type. That is pretty nice already! However, we can go further and improve on that. In [part 2](getting-started-part2.html), you will learn about properly highlighting results, as well as filtering results which is essential for a complete search experience. 
+Your application now displays your data, lets your users enter a query and displays search results as-they-type. That is pretty nice already! However, we can go further and improve on that. In [part 2](getting-started-part2.html), you will learn about properly highlighting results, as well as filtering results which is essential for a complete search experience. Note that part 2 will use the storyboard for simplicity.
 
 Also, you can have a look at our [examples][examples] to see more complex examples of applications built with InstantSearch.
 You can also head to our [Widgets page][widgets] to see the other components that you could use.
