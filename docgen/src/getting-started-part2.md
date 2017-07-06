@@ -18,7 +18,7 @@ githubSource: docgen/src/getting-started-part2.md
 Your starting project can be one of the following: 
 
 - The project you used in the [getting started part 1](getting-started.html)
-- Download this project as a starting point and run `pod install`.
+- Download [this project](https://github.com/algolia/instantsearch-swift-examples/tree/master/Getting%20Started%20Part%202%20Start) as a starting point and run `pod update`.
 
 ## Highlight your results
 
