@@ -27,7 +27,8 @@ Your starting project can be one of the following:
 Your current application lets the user search and displays results, but doesn't explain _why_ these results match the user's query.
 
 You can improve it by using the Highlighting feature: InstantSearchCore offers a helper method just for that. 
-At the top of your file, add `import InstantSearchCore`. Then, in your `tableView(_:cellForRowAt:)` method, remove the statement `cell.textLabel?.text = hit["name"] as? String` as we don't need it anymore, and add the following before the `return cell` statement:
+- At the top of your file, add `import InstantSearchCore`. 
+- In your `tableView(_:cellForRowAt:)` method, remove the statement `cell.textLabel?.text = hit["name"] as? String` as we don't need it anymore, and add the following before the `return cell` statement:
 
 
 ```swift
@@ -40,7 +41,7 @@ Restart your application and type something in the SearchBar: the results are di
 
 In this part, you've learned:
 
-- Highlighting search results
+- Highlighting search results.
 
 ----
 
@@ -48,27 +49,30 @@ In this part, you've learned:
 
 <img src="assets/img/getting-started/guide-refinementlist.png" class="img-object" align="right"/>
 
-In this section, we give you the option to either go through a few instructions to write some boilerplate code for navigating between screens, or download a project that you can start with. This project contains the exact same thing that we just implemented, as well as the boilerplate code for navigating between screens. **We will only go through the storyboard approach in this section**. 
+In this section, we will build a refinementList to filter results based on the categories selected. **We will only go through the storyboard approach here**. 
 
 ### Setup New Screen and Navigation
 
-First, go to File -> New -> File, then select Cocoa Touch Class, and name it RefinementViewController, then create it. 
+- Go to File -> New -> File, then select Cocoa Touch Class, and name it RefinementViewController, then create it. 
+- Let's first setup the navigation controller. In your `Main.storyboard` file, click on your `ViewController`, then in your menu bar at the top, go to Editor -> Embed in -> Navigation Controller. 
+- In your Utilities bar on your right, drag and drop a "View Controller" from the Object library to your storyboard. Click on it and then in the Identity Inspector, change its custom class to `RefinementViewController`. 
+- In your Object library again, drag and drop a Bar Button Item to the Navigation bar of the first ViewController. Double click on it to change its name to "Filter". 
+- From this button, hold on Ctrl, and drag it to the `RefinementViewConroller` view, and select Show as the Action Segue. 
 
-Let's first setup the navigation controller. In your `Main.storyboard` file, click on your `ViewController`, then in your menu bar at the top, go to Editor -> Embed in -> Navigation Controller. Then, in your Utilities bar on your right, drag and drop a "View Controller" from the Object library to your storyboard. Click on it and then in the Identity Inspector, change its custom class to `RefinementViewController`. 
+Now that we have our navigation setup, let's add our refinementList as a `tableView`.
 
-Now, In your Object library again, drag and drop a Bar Button Item to the Navigation bar of the first ViewController. Double click on it to change its name to "Filter". Then from this button, hold on Ctrl, and drag it to the `RefinementViewConroller` view, and select Show as the Action Segue. 
-
-Next, drag and drop a Table View from the Object Library onto the `RefinementViewController` view, and change its custom class to be `RefinementTableWidget`. Go ahead and create a prototype cell for this table and specify `refinementCell` as the identifier. Then, create an `IBOutlet` of that tableView into `RefinementViewController.swift`, and call it `tableView`.
-
-Finally, add the `import InstantSearch` statement at the top of `RefinementViewController.swift`.
+* Drag and drop a Table View from the Object Library onto the `RefinementViewController` view, and change its custom class to be `RefinementTableWidget`. Go ahead and create a prototype cell for this table and specify `refinementCell` as the identifier. 
+* Then, create an `IBOutlet` of that tableView into `RefinementViewController.swift`, and call it `tableView`.
+* Finally, add the `import InstantSearch` statement at the top of `RefinementViewController.swift`.
 
 ### The RefinementList
 
 We can implement a [RefinementList][widgets-refinementlist] with the exact same idea as the Hits widgets: using a base class and then implementing some delegate methods. However, this time, we will implement it using the helper class in order to show you how things can be done differently. That will help you use InstantSearch in the case where your `ViewController` already inherits from a subclass of `UIViewController`, and not `UIViewController` itself. Also, since you cannot subclass a Swift class in Objective-C, then this method will be useful if you decide to write your app in Objective-C. 
 
-First things first, go to `Main.Storyboard` and then select the `tableView` in the screen containing your `refinementList`. This will be your `refinementList`. Note that we already changed the class of the table to be a `RefinementTableWidget`. Now, go to the Attributes Inspector pane and then at the top, specify the `attribute` to be equal to `category`. This will associate the `refinementList` with the attribute `category`.
-
-Next, go to the `RefinementViewController.swift` class, and then add protocol `, RefinementTableViewDataSource` next to `UIViewController`. Then, add the following property below the declared `tableView`:
+- First things first, go to `Main.Storyboard` and then select the `tableView` in the screen containing your `refinementList`. This will be your `refinementList`. Note that we already changed the class of the table to be a `RefinementTableWidget`. 
+- Now, go to the Attributes Inspector pane and then at the top, specify the `attribute` to be equal to `category`. This will associate the `refinementList` with the attribute `category`.
+- Next, go to the `RefinementViewController.swift` class, and then add protocol `, RefinementTableViewDataSource` next to `UIViewController`. 
+- Add the following property below the declared `tableView`:
 
 ```swift
 var refinementController: RefinementController!
@@ -102,16 +106,17 @@ We're done! **Build and run your application: you now have an InstantSearch iOS 
 
 In this part, you've learned:
 
-- How to add the `RefinementList` widget
-- How to configure the widget
+- How to add the `RefinementList` widget.
+- How to configure the widget.
 - How to specify the look and feel of your refinement cells.
 
 ## Go further
 
 Your application now displays your data, lets your users enter a query, displays search results as-they-type and lets users filter by refinements: you just built a full instant-search interface! Congratulations 🎉
 
-This is only an introduction to what you can do with InstantSearch iOS: have a look at our [examples][examples] to see more complex examples of applications built with InstantSearch.
-You can also head to our [Widgets page][widgets] to see the other components that you could use.
+This is only an introduction to what you can do with InstantSearch iOS: 
+- Have a look at our [examples][examples] to see more complex examples of applications built with InstantSearch.
+- You can also head to our [Widgets page][widgets] to see the other components that you could use.
 
 [algolia_sign_up]: https://www.algolia.com/users/sign_up
 [widgets]: widgets.html

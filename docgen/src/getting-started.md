@@ -60,7 +60,8 @@ Next, we added the attributes that we want to retrieve and highlight. As a side 
 
 InstantSearch iOS is based on a system of [widgets][widgets] that communicate when a user interacts with your app. The first widget we'll add is a [SearchBar][widgets-searchbox] since any search experience requires one. InstantSearch will automatically recognize your SearchBar as a source of search queries. We will also add a `Stats` widget to show how the number of results change when you type a query in your SearchBar. 
 
-Start by going to your `ViewController.swift` file and then add `import InstantSearch` at the top. Then inside your `viewDidLoad` method, add the following: 
+- Start by going to your `ViewController.swift` file and then add `import InstantSearch` at the top. 
+- Then inside your `viewDidLoad` method, add the following: 
 
 ```swift    
 // Register all widgets in view to InstantSearch
@@ -69,9 +70,10 @@ InstantSearch.shared.registerAllWidgets(in: self.view)
 
 Here, we're telling InstantSearch to inspect all the subviews in the `ViewController`'s view. So what we need to do now is add the widgets to our view! 
 
-So let's open our `Main.storyboard` and then on the Utility Tab on your right, Go to the Object Library on the bottom and then drag and drop a `Search Bar` to your view. Click on the `Search Bar` and then on the identity inspector, add the custom class `SearchBarWidget`. 
-
-Now repeat the process but this time add a `Label` to the view, and then let the custom class be a `StatsLabelWidget`. Finally, make the width of the label bigger so that the text can clearly appear.
+- Open your `Main.storyboard` file, and on the Utility Tab on your right, go to the Object Library at the bottom.
+- Drag and drop a `Search Bar` to your view. Click on it and then on the identity inspector, add the custom class `SearchBarWidget`. 
+- Now repeat the process but this time add a `Label` to the view, and then let the custom class be a `StatsLabelWidget`.
+- Finally, make the width of the label bigger so that the text can clearly appear.
 
 **Build and run your application: you now have the most basic search experience!** You should see that the results are changing on each key stroke. Fantastic!
 
@@ -79,9 +81,9 @@ Now repeat the process but this time add a `Label` to the view, and then let the
 
 You just used your very first widgets from InstantSearch. In this part, you've learned:
 
-- How to create a SearchBar Widget
-- How to create a StatsLabel Widget
-- How to register widgets to InstantSearch
+- How to create a SearchBar Widget.
+- How to create a StatsLabel Widget.
+- How to register widgets to InstantSearch.
 
 ## Display your data: Hits
 
@@ -89,21 +91,25 @@ You just used your very first widgets from InstantSearch. In this part, you've l
 
 The whole point of a search experience is to display the dataset that matches best the query entered by the user. That's what we will implement in this section with the [hits][widgets-hits] widget.
 
-In your `Main.Storyboard`, drag and drop a `Table View` from the Object Library and resize it to make it bigger. Then, select the `Table View` and change its custom class to `HitsTableWidget`. Now if you go to the attributes inspector, you will see that there are at the top 4 configuration parameters that you can apply like `Hits Pet Page` and `Infinite Scrolling`. Feel free to change them to your needs, or keep the default values.
+- In your `Main.Storyboard`, drag and drop a `Table View` from the Object Library and resize it to make it bigger.
+- Select the `Table View` and change its custom class to `HitsTableWidget`.
 
-Then, click on your `Table View`, and in the attributes inspector, add a prototype cell under the `Table View` section by replacing `0` with `1`. You should now be able to see a `Table View Cell` (under your `Table View`) in the Document Outline on the left of the storyboard file. Select that, and in the attributes inspector, specify `hitCell` as the identifier.
+> *If you go to the attributes inspector, you will see that at the top, there are 4 configuration parameters that you can change, like `Hits Pet Page` and `Infinite Scrolling`. Feel free to change them to your needs, or keep the default values.*
 
-Finally, we need to have a reference to the `HitsTableView` in your `ViewController`. For that, go ahead and create an `IBOutlet` and call it `tableView`.
+- Click on your `Table View`, and in the attributes inspector, add a prototype cell under the `Table View` section by replacing `0` with `1`.
+- You should now be able to see a `Table View Cell` (under your `Table View`) in the Document Outline on the left of the storyboard file. Select that, and in the attributes inspector, specify `hitCell` as the identifier.
+- Finally, we need to have a reference to the `HitsTableView` in your `ViewController`. For that, go ahead and create an `IBOutlet` and call it `tableView`.
 
-Now that we have our `Table View` setup, we still need to specify what fields from the Algolia response we want to show, as well as the layout of our cells. InstantSearch provides both base classes and helper classes in order to achieve this. Here, we will look at the easiest and most flexible way: using the base class.
+Now that we have our `Table View` setup, we still need to specify what fields from the Algolia response we want to show, as well as the layout of our cells. InstantSearch provides both base classes and helper classes in order to achieve this. Here, we will look at the easiest and most flexible way: using the base class `HitsTableViewController`.
 
-In your `ViewController` class, replace `UIViewController` with `HitsTableViewController`. This class will help you setup a lot of boilerplate code for you. Next, in your `viewDidLoad` method after initializing the view and before adding your widgets to InstantSearch, add the following:
+- In your `ViewController` class, replace `UIViewController` with `HitsTableViewController`. This class will help you setup a lot of boilerplate code for you.
+- Next, in your `viewDidLoad` method, before registering your widgets to InstantSearch, add the following:
 
 ```swift
 hitsTableView = tableView
 ```
 
-This will associate the `hitsTableView` in the base class to the tableView that you just created. Behind the scenes, your `ViewController` class will become the `delegate` and `dataSource` of the tableView, the same way the UIKit base class `UITableViewController` does that for you.
+This will associate the `hitsTableView` in the base class to the `tableView` that we just created. Behind the scenes, your `ViewController` class will become the `delegate` and `dataSource` of the tableView, the same way the UIKit base class `UITableViewController` does that for you.
 
 Next, we can specify our cells with a method provided by the base class, which contains the hit for the specific row.
 
@@ -123,16 +129,17 @@ Here we use the json hit, extract the `name` of the product, and assign it to th
 
 In this part, you've learned:
 
-- How to build your interface with Widgets by adding the `Hits` widget
-- How to configure widgets
+- How to build your interface with Widgets by adding the `Hits` widget.
+- How to configure widgets.
 - How to specify the look and feel of your hit cells.
 
 ## Go Further
 
-Your application now displays your data, lets your users enter a query and displays search results as-they-type. That is pretty nice already! However, we can go further and improve on that. In [part 2](getting-started-part2.html), you will learn about properly highlighting results, as well as filtering results which is essential for a complete search experience. 
+Your application now displays your data, lets your users enter a query and displays search results as-they-type. That is pretty nice already! However, we can go further and improve on that. 
 
-Also, you can have a look at our [examples][examples] to see more complex examples of applications built with InstantSearch.
-You can also head to our [Widgets page][widgets] to see the other components that you could use.
+- In the [getting started part 2](getting-started-part2.html), you will learn about properly highlighting results, as well as filtering results which is essential for a complete search experience. 
+- You can also have a look at our [examples][examples] to see more complex examples of applications built with InstantSearch.
+- Finally, You can head to our [widgets page][widgets] to see other components that you could use.
 
 [algolia_sign_up]: https://www.algolia.com/users/sign_up
 [widgets]: widgets.html

@@ -60,7 +60,8 @@ Next, we added the attributes that we want to retrieve and highlight. As a side 
 
 InstantSearch iOS is based on a system of [widgets][widgets] that communicate when a user interacts with your app. The first widget we'll add is a [SearchBar][widgets-searchbox] since any search experience requires one. InstantSearch will automatically recognize your SearchBar as a source of search queries. We will also add a `Stats` widget to show how the number of results change when you type a query in your SearchBar. 
 
-Go to your `ViewController.swift` file and then add `import InstantSearch` at the top. Then, below your class definition, declare your [SearchBar][widgets-searchbox] and [Stats][widgets-stats] widget:
+- Go to your `ViewController.swift` file and then add `import InstantSearch` at the top.
+- Below your class definition, declare your [SearchBar][widgets-searchbox] and [Stats][widgets-stats] widget:
 
 ```swift
 // Create your widgets
@@ -68,7 +69,7 @@ let searchBar = SearchBarWidget(frame: .zero)
 let stats = StatsLabelWidget(frame: .zero)
 ```
 
-Then inside your `viewDidLoad` method, add the following: 
+- Then, inside your `viewDidLoad` method, add the following: 
 
 ```swift
 initUI()
@@ -77,7 +78,7 @@ initUI()
 InstantSearch.shared.registerAllWidgets(in: self.view)
 ```
 
-Finally, we need to add the views to the `ViewController`'s view and specify the autolayout constraints so that the layout looks good on any device. You don't have to focus too much on understanding this part since it is not related to InstantSearch, and more related to iOS layout. Add this function to your file:
+- Finally, we need to add the views to the `ViewController`'s view and specify the autolayout constraints so that the layout looks good on any device. You don't have to focus too much on understanding this part since it is not related to InstantSearch, and more related to iOS layout. Add this function to your file:
 
 ```swift
 func initUI() {
@@ -108,9 +109,9 @@ func initUI() {
 
 You just used your very first widgets from InstantSearch. In this part, you've learned:
 
-- How to create a SearchBar Widget
-- How to create a StatsLabel Widget
-- How to register widgets to InstantSearch
+- How to create a SearchBar Widget.
+- How to create a StatsLabel Widget.
+- How to register widgets to InstantSearch.
 
 ## Display your data: Hits
 
@@ -118,13 +119,13 @@ You just used your very first widgets from InstantSearch. In this part, you've l
 
 The whole point of a search experience is to display the dataset that matches best the query entered by the user. That's what we will implement in this section with the [hits][widgets-hits] widget.
 
-We will now create our tableView. Next to your properties declared, add the following:
+- Let's go ahead and create our tableView. Next to your properties declared, add the following:
 
 ```swift
 let tableView = HitsTableWidget(frame: .zero)
 ```
 
-Then we will specify the layout constraint of the table to fill the most of the page. **Replace** your `initUI` method with the following (again, no need to worry about understanding this part):
+- Then we will specify the layout constraint of the table to fill the most of the page. **Replace** your `initUI` method with the following (again, no need to worry about understanding this part):
 
 ```swift
 func initUI() {
@@ -157,7 +158,8 @@ func initUI() {
 
 Now that we have our `Table View` setup, we still need to specify what fields from the Algolia response we want to show, as well as the layout of our cells. InstantSearch provides both base classes and helper classes in order to achieve this. Here, we will look at the easiest and most flexible way: using the base class.
 
-In your `ViewController` class, replace `UIViewController` with `HitsTableViewController`. This class will help you setup a lot of boilerplate code for you. Next, in your `viewDidLoad` method after initializing the view and before adding your widgets to InstantSearch, add the following:
+- In your `ViewController` class, replace `UIViewController` with `HitsTableViewController`. This class will help you setup a lot of boilerplate code for you. 
+- Next, in your `viewDidLoad` method, before registering your widgets to InstantSearch, add the following:
 
 ```swift
 hitsTableView = tableView
@@ -183,16 +185,17 @@ Here we use the json hit, extract the `name` of the product, and assign it to th
 
 In this part, you've learned:
 
-- How to build your interface with Widgets by adding the `Hits` widget
-- How to configure widgets
+- How to build your interface with Widgets by adding the `Hits` widget.
+- How to configure widgets.
 - How to specify the look and feel of your hit cells.
 
 ## Go further
 
-Your application now displays your data, lets your users enter a query and displays search results as-they-type. That is pretty nice already! However, we can go further and improve on that. In [part 2](getting-started-part2.html), you will learn about properly highlighting results, as well as filtering results which is essential for a complete search experience. Note that part 2 will use the storyboard for simplicity.
+Your application now displays your data, lets your users enter a query and displays search results as-they-type. That is pretty nice already! However, we can go further and improve on that. 
 
-Also, you can have a look at our [examples][examples] to see more complex examples of applications built with InstantSearch.
-You can also head to our [Widgets page][widgets] to see the other components that you could use.
+- In the [getting started part 2](getting-started-part2.html), you will learn about properly highlighting results, as well as filtering results which is essential for a complete search experience. Note that part 2 will use the storyboard for simplicity.
+- You can also have a look at our [examples][examples] to see more complex examples of applications built with InstantSearch.
+- Finally, You can head to our [widgets page][widgets] to see other components that you could use.
 
 [algolia_sign_up]: https://www.algolia.com/users/sign_up
 [widgets]: widgets.html
