@@ -61,7 +61,7 @@
       },
       {
         "name": "API Reference",
-        "url": "jazzydoc/"
+        "url": "reference/"
       },
       {
         "name": "Troubleshooting",
@@ -90,7 +90,7 @@
   },
   {
     "name": "API Reference",
-    "url": "jazzydoc/"
+    "url": "reference/"
   },
   {
     "name": "Troubleshooting",
