@@ -1,0 +1,831 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <title>InstantSearch Class Reference</title>
+    <link rel="stylesheet" type="text/css" href="../css/jazzy.css" />
+    <link rel="stylesheet" type="text/css" href="../css/highlight.css" />
+    <meta charset='utf-8'>
+    <script src="../js/jquery.min.js" defer></script>
+    <script src="../js/jazzy.js" defer></script>
+    
+  </head>
+  <body>
+    <a name="//apple_ref/swift/Class/InstantSearch" class="dashAnchor"></a>
+    <a title="InstantSearch Class Reference"></a>
+    <header>
+      <div class="content-wrapper">
+        <p><a href="../index.html">InstantSearch Docs</a></p>
+      </div>
+    </header>
+    <div class="content-wrapper">
+      <p id="breadcrumbs">
+        <a href="../index.html">InstantSearch Reference</a>
+        <img id="carat" src="../img/carat.png" />
+        InstantSearch Class Reference
+      </p>
+    </div>
+    <div class="content-wrapper">
+      <nav class="sidebar">
+        <ul class="nav-groups">
+          <li class="nav-group-name">
+            <a href="../Core.html">Core</a>
+            <ul class="nav-group-tasks">
+              <li class="nav-group-task">
+                <a href="../Classes/InstantSearch.html">InstantSearch</a>
+              </li>
+            </ul>
+          </li>
+          <li class="nav-group-name">
+            <a href="../Widgets.html">Widgets</a>
+            <ul class="nav-group-tasks">
+              <li class="nav-group-task">
+                <a href="../Classes/ActivityIndicatorWidget.html">ActivityIndicatorWidget</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Classes/CustomSlider.html">CustomSlider</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Classes/DatePickerWidget.html">DatePickerWidget</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Classes/HitsCollectionWidget.html">HitsCollectionWidget</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Classes/OneValueSwitchWidget.html">OneValueSwitchWidget</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Classes/RefinementCollectionWidget.html">RefinementCollectionWidget</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Classes/RefinementTableWidget.html">RefinementTableWidget</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Classes/SearchBarWidget.html">SearchBarWidget</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Classes/SegmentedControlWidget.html">SegmentedControlWidget</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Classes/SliderWidget.html">SliderWidget</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Classes/StatsButtonWidget.html">StatsButtonWidget</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Classes/StatsLabelWidget.html">StatsLabelWidget</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Classes/StepperWidget.html">StepperWidget</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Classes/SwitchWidget.html">SwitchWidget</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Classes/TextFieldWidget.html">TextFieldWidget</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Classes/TwoValuesSwitchWidget.html">TwoValuesSwitchWidget</a>
+              </li>
+            </ul>
+          </li>
+          <li class="nav-group-name">
+            <a href="../Base ViewController.html">Base ViewController</a>
+            <ul class="nav-group-tasks">
+              <li class="nav-group-task">
+                <a href="../Classes/HitsCollectionViewController.html">HitsCollectionViewController</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Classes/HitsTableViewController.html">HitsTableViewController</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Classes/RefinementCollectionViewController.html">RefinementCollectionViewController</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Classes/RefinementTableViewController.html">RefinementTableViewController</a>
+              </li>
+            </ul>
+          </li>
+          <li class="nav-group-name">
+            <a href="../Controllers.html">Controllers</a>
+            <ul class="nav-group-tasks">
+              <li class="nav-group-task">
+                <a href="../Classes/HitsController.html">HitsController</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Classes/RefinementController.html">RefinementController</a>
+              </li>
+            </ul>
+          </li>
+          <li class="nav-group-name">
+            <a href="../Protocols.html">Protocols</a>
+            <ul class="nav-group-tasks">
+              <li class="nav-group-task">
+                <a href="../Protocols.html#/s:P13InstantSearch13AlgoliaWidget">AlgoliaWidget</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Protocols/HitsCollectionViewDataSource.html">HitsCollectionViewDataSource</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Protocols/HitsCollectionViewDelegate.html">HitsCollectionViewDelegate</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Protocols/HitsTableViewDataSource.html">HitsTableViewDataSource</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Protocols/HitsTableViewDelegate.html">HitsTableViewDelegate</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Protocols/RefinableDelegate.html">RefinableDelegate</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Protocols/RefinementCollectionViewDataSource.html">RefinementCollectionViewDataSource</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Protocols/RefinementCollectionViewDelegate.html">RefinementCollectionViewDelegate</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Protocols/RefinementTableViewDataSource.html">RefinementTableViewDataSource</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Protocols/RefinementTableViewDelegate.html">RefinementTableViewDelegate</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Protocols/ResultingDelegate.html">ResultingDelegate</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Protocols/SearchableViewModel.html">SearchableViewModel</a>
+              </li>
+            </ul>
+          </li>
+          <li class="nav-group-name">
+            <a href="../Helpers.html">Helpers</a>
+            <ul class="nav-group-tasks">
+              <li class="nav-group-task">
+                <a href="../Extensions/UILabel.html">UILabel</a>
+              </li>
+            </ul>
+          </li>
+          <li class="nav-group-name">
+            <a href="../Other Classes.html">Other Classes</a>
+            <ul class="nav-group-tasks">
+              <li class="nav-group-task">
+                <a href="../Classes/HitsTableWidget.html">HitsTableWidget</a>
+              </li>
+            </ul>
+          </li>
+        </ul>
+      </nav>
+      <article class="main-content">
+        <section>
+          <section class="section">
+            <h1>InstantSearch</h1>
+              <div class="declaration">
+                <div class="language">
+                  <pre class="highlight"><code><span class="kd">@objc</span> <span class="kd">public</span> <span class="kd">class</span> <span class="kt">InstantSearch</span><span class="p">:</span> <span class="kt">NSObject</span><span class="p">,</span> <span class="kt">SearcherDelegate</span></code></pre>
+
+                </div>
+              </div>
+            <p>Main class used for interacting with the InstantSearch library.
+The most important thing that it does is binding the Searcher/Index to the widgets.
+It also takes care of managing search components: <code>UISearchBar</code> and <code>UISearchController</code>.</p>
+
+          </section>
+          <section class="section task-group-section">
+            <div class="task-group">
+              <ul>
+                <li class="item">
+                  <div>
+                    <code>
+                    <a name="/s:ZvC13InstantSearch13InstantSearch6sharedS0_"></a>
+                    <a name="//apple_ref/swift/Variable/shared" class="dashAnchor"></a>
+                    <a class="token" href="#/s:ZvC13InstantSearch13InstantSearch6sharedS0_">shared</a>
+                    </code>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        <p>The singleton reference of InstantSearch.
+It is advised to use this shared reference in case you&rsquo;re dealing with a single index in your app.</p>
+
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="language">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight"><code><span class="kd">public</span> <span class="kd">static</span> <span class="k">let</span> <span class="nv">shared</span> <span class="o">=</span> <span class="kt">InstantSearch</span><span class="p">()</span></code></pre>
+
+                        </div>
+                      </div>
+                    </section>
+                  </div>
+                </li>
+              </ul>
+            </div>
+            <div class="task-group">
+              <div class="task-name-container">
+                <a name="/Properties"></a>
+                <a name="//apple_ref/swift/Section/Properties" class="dashAnchor"></a>
+                <a href="#/Properties">
+                  <h3 class="section-name">Properties</h3>
+                </a>
+              </div>
+              <ul>
+                <li class="item">
+                  <div>
+                    <code>
+                    <a name="/s:vC13InstantSearch13InstantSearch8searcherGSQC17InstantSearchCore8Searcher_"></a>
+                    <a name="//apple_ref/swift/Property/searcher" class="dashAnchor"></a>
+                    <a class="token" href="#/s:vC13InstantSearch13InstantSearch8searcherGSQC17InstantSearchCore8Searcher_">searcher</a>
+                    </code>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        <p>The Searcher used by this InstantSearch.</p>
+
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="language">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight"><code><span class="kd">public</span> <span class="k">var</span> <span class="nv">searcher</span><span class="p">:</span> <span class="kt">Searcher</span><span class="o">!</span></code></pre>
+
+                        </div>
+                      </div>
+                    </section>
+                  </div>
+                </li>
+                <li class="item">
+                  <div>
+                    <code>
+                    <a name="/s:vC13InstantSearch13InstantSearch6paramsC17InstantSearchCore16SearchParameters"></a>
+                    <a name="//apple_ref/swift/Property/params" class="dashAnchor"></a>
+                    <a class="token" href="#/s:vC13InstantSearch13InstantSearch6paramsC17InstantSearchCore16SearchParameters">params</a>
+                    </code>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        <p>The search parameters of the Searcher.</p>
+<div class="aside aside-note">
+    <p class="aside-title">Note</p>
+    This is just a quick access to <code>searcher.params</code>.
+
+</div>
+
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="language">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight"><code><span class="kd">public</span> <span class="k">var</span> <span class="nv">params</span><span class="p">:</span> <span class="kt">SearchParameters</span></code></pre>
+
+                        </div>
+                      </div>
+                    </section>
+                  </div>
+                </li>
+              </ul>
+            </div>
+            <div class="task-group">
+              <div class="task-name-container">
+                <a name="/Init%20and%20Configure"></a>
+                <a name="//apple_ref/swift/Section/Init and Configure" class="dashAnchor"></a>
+                <a href="#/Init%20and%20Configure">
+                  <h3 class="section-name">Init and Configure</h3>
+                </a>
+              </div>
+              <ul>
+                <li class="item">
+                  <div>
+                    <code>
+                    <a name="/s:FC13InstantSearch13InstantSearchcFT5appIDSS6apiKeySS5indexSS_S0_"></a>
+                    <a name="//apple_ref/swift/Method/init(appID:apiKey:index:)" class="dashAnchor"></a>
+                    <a class="token" href="#/s:FC13InstantSearch13InstantSearchcFT5appIDSS6apiKeySS5indexSS_S0_">init(appID:apiKey:index:)</a>
+                    </code>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        <p>Create a new InstantSearch reference with the given configurations.</p>
+
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="language">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight"><code><span class="kd">public</span> <span class="n">convenience</span> <span class="nf">init</span><span class="p">(</span><span class="nv">appID</span><span class="p">:</span> <span class="kt">String</span><span class="p">,</span> <span class="nv">apiKey</span><span class="p">:</span> <span class="kt">String</span><span class="p">,</span> <span class="nv">index</span><span class="p">:</span> <span class="kt">String</span><span class="p">)</span></code></pre>
+
+                        </div>
+                      </div>
+                      <div>
+                        <h4>Parameters</h4>
+                        <table class="graybox">
+                          <tbody>
+                            <tr>
+                              <td>
+                                <code>
+                                <em>appID</em>
+                                </code>
+                              </td>
+                              <td>
+                                <div>
+                                  <p>the Algolia AppID.</p>
+                                </div>
+                              </td>
+                            </tr>
+                            <tr>
+                              <td>
+                                <code>
+                                <em>apiKey</em>
+                                </code>
+                              </td>
+                              <td>
+                                <div>
+                                  <p>the Algolia ApiKey.</p>
+                                </div>
+                              </td>
+                            </tr>
+                            <tr>
+                              <td>
+                                <code>
+                                <em>index</em>
+                                </code>
+                              </td>
+                              <td>
+                                <div>
+                                  <p>the name of the index.</p>
+                                </div>
+                              </td>
+                            </tr>
+                          </tbody>
+                        </table>
+                      </div>
+                    </section>
+                  </div>
+                </li>
+                <li class="item">
+                  <div>
+                    <code>
+                    <a name="/s:FC13InstantSearch13InstantSearchcFT8searcherC17InstantSearchCore8Searcher_S0_"></a>
+                    <a name="//apple_ref/swift/Method/init(searcher:)" class="dashAnchor"></a>
+                    <a class="token" href="#/s:FC13InstantSearch13InstantSearchcFT8searcherC17InstantSearchCore8Searcher_S0_">init(searcher:)</a>
+                    </code>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        <p>Create a new InstantSearch reference.</p>
+
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="language">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight"><code><span class="kd">public</span> <span class="n">convenience</span> <span class="nf">init</span><span class="p">(</span><span class="nv">searcher</span><span class="p">:</span> <span class="kt">Searcher</span><span class="p">)</span></code></pre>
+
+                        </div>
+                      </div>
+                      <div>
+                        <h4>Parameters</h4>
+                        <table class="graybox">
+                          <tbody>
+                            <tr>
+                              <td>
+                                <code>
+                                <em>searcher</em>
+                                </code>
+                              </td>
+                              <td>
+                                <div>
+                                  <p>the <code>Searcher</code> used by InstantSearch</p>
+                                </div>
+                              </td>
+                            </tr>
+                          </tbody>
+                        </table>
+                      </div>
+                    </section>
+                  </div>
+                </li>
+                <li class="item">
+                  <div>
+                    <code>
+                    <a name="/s:FC13InstantSearch13InstantSearch9configureFT5appIDSS6apiKeySS5indexSS_T_"></a>
+                    <a name="//apple_ref/swift/Method/configure(appID:apiKey:index:)" class="dashAnchor"></a>
+                    <a class="token" href="#/s:FC13InstantSearch13InstantSearch9configureFT5appIDSS6apiKeySS5indexSS_T_">configure(appID:apiKey:index:)</a>
+                    </code>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        <p>Configure the InstantSearch reference with the given configurations.</p>
+
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="language">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight"><code><span class="kd">@objc</span> <span class="kd">public</span> <span class="kd">func</span> <span class="nf">configure</span><span class="p">(</span><span class="nv">appID</span><span class="p">:</span> <span class="kt">String</span><span class="p">,</span> <span class="nv">apiKey</span><span class="p">:</span> <span class="kt">String</span><span class="p">,</span> <span class="nv">index</span><span class="p">:</span> <span class="kt">String</span><span class="p">)</span></code></pre>
+
+                        </div>
+                      </div>
+                      <div>
+                        <h4>Parameters</h4>
+                        <table class="graybox">
+                          <tbody>
+                            <tr>
+                              <td>
+                                <code>
+                                <em>appID</em>
+                                </code>
+                              </td>
+                              <td>
+                                <div>
+                                  <p>the Algolia AppID.</p>
+                                </div>
+                              </td>
+                            </tr>
+                            <tr>
+                              <td>
+                                <code>
+                                <em>apiKey</em>
+                                </code>
+                              </td>
+                              <td>
+                                <div>
+                                  <p>the Algolia ApiKeyl</p>
+                                </div>
+                              </td>
+                            </tr>
+                            <tr>
+                              <td>
+                                <code>
+                                <em>index</em>
+                                </code>
+                              </td>
+                              <td>
+                                <div>
+                                  <p>the name of the index.</p>
+                                </div>
+                              </td>
+                            </tr>
+                          </tbody>
+                        </table>
+                      </div>
+                    </section>
+                  </div>
+                </li>
+              </ul>
+            </div>
+            <div class="task-group">
+              <div class="task-name-container">
+                <a name="/Add%20widget%20methods"></a>
+                <a name="//apple_ref/swift/Section/Add widget methods" class="dashAnchor"></a>
+                <a href="#/Add%20widget%20methods">
+                  <h3 class="section-name">Add widget methods</h3>
+                </a>
+              </div>
+              <ul>
+                <li class="item">
+                  <div>
+                    <code>
+                    <a name="/s:FC13InstantSearch13InstantSearch18registerAllWidgetsFT2inCSo6UIView_T_"></a>
+                    <a name="//apple_ref/swift/Method/registerAllWidgets(in:)" class="dashAnchor"></a>
+                    <a class="token" href="#/s:FC13InstantSearch13InstantSearch18registerAllWidgetsFT2inCSo6UIView_T_">registerAllWidgets(in:)</a>
+                    </code>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        <p>Register all InstantSearch widgets inside a particular view, and then execute a search to Algolia</p>
+<li><p>param view: the view containnig the InstantSearch widgets.</p></li>
+<div class="aside aside-note">
+    <p class="aside-title">Note</p>
+    <p>InstantSearch widgets are simply the components that implement the <code><a href="../Protocols.html#/s:P13InstantSearch13AlgoliaWidget">AlgoliaWidget</a></code> marker protocol.</p>
+
+</div>
+
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="language">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight"><code><span class="kd">@objc</span> <span class="kd">public</span> <span class="kd">func</span> <span class="nf">registerAllWidgets</span><span class="p">(</span><span class="k">in</span> <span class="nv">view</span><span class="p">:</span> <span class="kt">UIView</span><span class="p">)</span></code></pre>
+
+                        </div>
+                      </div>
+                    </section>
+                  </div>
+                </li>
+                <li class="item">
+                  <div>
+                    <code>
+                    <a name="/s:FC13InstantSearch13InstantSearch18registerAllWidgetsFT2inCSo6UIView8doSearchSb_T_"></a>
+                    <a name="//apple_ref/swift/Method/registerAllWidgets(in:doSearch:)" class="dashAnchor"></a>
+                    <a class="token" href="#/s:FC13InstantSearch13InstantSearch18registerAllWidgetsFT2inCSo6UIView8doSearchSb_T_">registerAllWidgets(in:doSearch:)</a>
+                    </code>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        <p>Register all InstantSearch widgets inside a particular view.</p>
+<li>param view: the view containnig the InstantSearch widgets.</li>
+<li><p>param doSearch: do a new search to Algolia if true (default), nothing otherwise.</p></li>
+<div class="aside aside-note">
+    <p class="aside-title">Note</p>
+    <p>InstantSearch widgets are simply the components that implement the <code><a href="../Protocols.html#/s:P13InstantSearch13AlgoliaWidget">AlgoliaWidget</a></code> marker protocol.</p>
+
+</div>
+
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="language">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight"><code><span class="kd">@objc</span> <span class="kd">public</span> <span class="kd">func</span> <span class="nf">registerAllWidgets</span><span class="p">(</span><span class="k">in</span> <span class="nv">view</span><span class="p">:</span> <span class="kt">UIView</span><span class="p">,</span> <span class="nv">doSearch</span><span class="p">:</span> <span class="kt">Bool</span> <span class="o">=</span> <span class="kc">true</span><span class="p">)</span></code></pre>
+
+                        </div>
+                      </div>
+                    </section>
+                  </div>
+                </li>
+                <li class="item">
+                  <div>
+                    <code>
+                    <a name="/s:FC13InstantSearch13InstantSearch8registerFT6widgetPS_13AlgoliaWidget__T_"></a>
+                    <a name="//apple_ref/swift/Method/register(widget:)" class="dashAnchor"></a>
+                    <a class="token" href="#/s:FC13InstantSearch13InstantSearch8registerFT6widgetPS_13AlgoliaWidget__T_">register(widget:)</a>
+                    </code>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        <p>Register a widget to InstantSearch.</p>
+<li><p>param widget: the <code><a href="../Protocols.html#/s:P13InstantSearch13AlgoliaWidget">AlgoliaWidget</a></code> to be registered to InstantSearch.</p></li>
+<div class="aside aside-note">
+    <p class="aside-title">Note</p>
+    <p>if <code>doSearch</code> parameter is not specified, then we will automatically do a search if the <code><a href="../Protocols.html#/s:P13InstantSearch13AlgoliaWidget">AlgoliaWidget</a></code>
+is an <q>input control</q> (changes the params of the Searcher), otherwise we don&rsquo;t do a search.</p>
+
+</div>
+
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="language">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight"><code><span class="kd">@objc</span> <span class="kd">public</span> <span class="kd">func</span> <span class="nf">register</span><span class="p">(</span><span class="nv">widget</span><span class="p">:</span> <span class="kt"><a href="../Protocols.html#/s:P13InstantSearch13AlgoliaWidget">AlgoliaWidget</a></span><span class="p">)</span></code></pre>
+
+                        </div>
+                      </div>
+                    </section>
+                  </div>
+                </li>
+                <li class="item">
+                  <div>
+                    <code>
+                    <a name="/s:FC13InstantSearch13InstantSearch8registerFT6widgetPS_13AlgoliaWidget_8doSearchSb_T_"></a>
+                    <a name="//apple_ref/swift/Method/register(widget:doSearch:)" class="dashAnchor"></a>
+                    <a class="token" href="#/s:FC13InstantSearch13InstantSearch8registerFT6widgetPS_13AlgoliaWidget_8doSearchSb_T_">register(widget:doSearch:)</a>
+                    </code>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        <p>Register a widget to InstantSearch.</p>
+
+<ul>
+<li>param widget: the <code><a href="../Protocols.html#/s:P13InstantSearch13AlgoliaWidget">AlgoliaWidget</a></code> to be registered to InstantSearch.</li>
+<li>param doSearch: whether or not to do a new search to Algolia after adding the widget.</li>
+</ul>
+
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="language">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight"><code><span class="kd">@objc</span> <span class="kd">public</span> <span class="kd">func</span> <span class="nf">register</span><span class="p">(</span><span class="nv">widget</span><span class="p">:</span> <span class="kt"><a href="../Protocols.html#/s:P13InstantSearch13AlgoliaWidget">AlgoliaWidget</a></span><span class="p">,</span> <span class="nv">doSearch</span><span class="p">:</span> <span class="kt">Bool</span><span class="p">)</span></code></pre>
+
+                        </div>
+                      </div>
+                    </section>
+                  </div>
+                </li>
+              </ul>
+            </div>
+            <div class="task-group">
+              <div class="task-name-container">
+                <a name="/SearcherDelegate"></a>
+                <a name="//apple_ref/swift/Section/SearcherDelegate" class="dashAnchor"></a>
+                <a href="#/SearcherDelegate">
+                  <h3 class="section-name">SearcherDelegate</h3>
+                </a>
+              </div>
+              <ul>
+                <li class="item">
+                  <div>
+                    <code>
+                    <a name="/s:FC13InstantSearch13InstantSearch8searcherFTC17InstantSearchCore8Searcher10didReceiveGSqCS1_13SearchResults_5errorGSqPs5Error__8userInfoGVs10DictionarySSP___T_"></a>
+                    <a name="//apple_ref/swift/Method/searcher(_:didReceive:error:userInfo:)" class="dashAnchor"></a>
+                    <a class="token" href="#/s:FC13InstantSearch13InstantSearch8searcherFTC17InstantSearchCore8Searcher10didReceiveGSqCS1_13SearchResults_5errorGSqPs5Error__8userInfoGVs10DictionarySSP___T_">searcher(_:didReceive:error:userInfo:)</a>
+                    </code>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        <p>Delegate method called when new search results arrive from Algolia
+This function forwards all results, errors and userInfo to the resultDelegates.</p>
+
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="language">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight"><code><span class="kd">public</span> <span class="kd">func</span> <span class="nf">searcher</span><span class="p">(</span><span class="n">_</span> <span class="nv">searcher</span><span class="p">:</span> <span class="kt">Searcher</span><span class="p">,</span> <span class="n">didReceive</span> <span class="nv">results</span><span class="p">:</span> <span class="kt">SearchResults</span><span class="p">?,</span> <span class="nv">error</span><span class="p">:</span> <span class="kt">Error</span><span class="p">?,</span> <span class="nv">userInfo</span><span class="p">:</span> <span class="p">[</span><span class="kt">String</span><span class="p">:</span> <span class="kt">Any</span><span class="p">])</span></code></pre>
+
+                        </div>
+                      </div>
+                    </section>
+                  </div>
+                </li>
+              </ul>
+            </div>
+            <div class="task-group">
+              <ul>
+                <li class="item">
+                  <div>
+                    <code>
+                    <a name="/s:FC13InstantSearch13InstantSearch8registerFT16searchControllerCSo18UISearchController_T_"></a>
+                    <a name="//apple_ref/swift/Method/register(searchController:)" class="dashAnchor"></a>
+                    <a class="token" href="#/s:FC13InstantSearch13InstantSearch8registerFT16searchControllerCSo18UISearchController_T_">register(searchController:)</a>
+                    </code>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        <p>Forwards a <code>SearchController</code> to <code>InstantSearch</code> so that it takes care of updating search results
+on every new keystroke inside the <code>UISearchBar</code> linked to it.</p>
+
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="language">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight"><code><span class="kd">@objc</span> <span class="kd">public</span> <span class="kd">func</span> <span class="nf">register</span><span class="p">(</span><span class="nv">searchController</span><span class="p">:</span> <span class="kt">UISearchController</span><span class="p">)</span></code></pre>
+
+                        </div>
+                      </div>
+                    </section>
+                  </div>
+                </li>
+                <li class="item">
+                  <div>
+                    <code>
+                    <a name="/s:FC13InstantSearch13InstantSearch19updateSearchResultsFT3forCSo18UISearchController_T_"></a>
+                    <a name="//apple_ref/swift/Method/updateSearchResults(for:)" class="dashAnchor"></a>
+                    <a class="token" href="#/s:FC13InstantSearch13InstantSearch19updateSearchResultsFT3forCSo18UISearchController_T_">updateSearchResults(for:)</a>
+                    </code>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        <p>Handler called on each keystroke change in the <code>UISearchBar</code></p>
+
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="language">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight"><code><span class="kd">public</span> <span class="kd">func</span> <span class="nf">updateSearchResults</span><span class="p">(</span><span class="k">for</span> <span class="nv">searchController</span><span class="p">:</span> <span class="kt">UISearchController</span><span class="p">)</span></code></pre>
+
+                        </div>
+                      </div>
+                    </section>
+                  </div>
+                </li>
+                <li class="item">
+                  <div>
+                    <code>
+                    <a name="/s:FC13InstantSearch13InstantSearch28searchBarTextDidBeginEditingFCSo11UISearchBarT_"></a>
+                    <a name="//apple_ref/swift/Method/searchBarTextDidBeginEditing(_:)" class="dashAnchor"></a>
+                    <a class="token" href="#/s:FC13InstantSearch13InstantSearch28searchBarTextDidBeginEditingFCSo11UISearchBarT_">searchBarTextDidBeginEditing(_:)</a>
+                    </code>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        <p>Handler called when searchBar becomes first responder</p>
+
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="language">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight"><code><span class="kd">public</span> <span class="kd">func</span> <span class="nf">searchBarTextDidBeginEditing</span><span class="p">(</span><span class="n">_</span> <span class="nv">searchBar</span><span class="p">:</span> <span class="kt">UISearchBar</span><span class="p">)</span></code></pre>
+
+                        </div>
+                      </div>
+                    </section>
+                  </div>
+                </li>
+              </ul>
+            </div>
+            <div class="task-group">
+              <ul>
+                <li class="item">
+                  <div>
+                    <code>
+                    <a name="/s:FC13InstantSearch13InstantSearch8registerFT9searchBarCSo11UISearchBar_T_"></a>
+                    <a name="//apple_ref/swift/Method/register(searchBar:)" class="dashAnchor"></a>
+                    <a class="token" href="#/s:FC13InstantSearch13InstantSearch8registerFT9searchBarCSo11UISearchBar_T_">register(searchBar:)</a>
+                    </code>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        <p>Forwards a <code>UISearchBar</code> to <code>InstantSearch</code> so that it takes care of updating search results
+on every new keystroke</p>
+
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="language">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight"><code><span class="kd">@objc</span> <span class="kd">public</span> <span class="kd">func</span> <span class="nf">register</span><span class="p">(</span><span class="nv">searchBar</span><span class="p">:</span> <span class="kt">UISearchBar</span><span class="p">)</span></code></pre>
+
+                        </div>
+                      </div>
+                    </section>
+                  </div>
+                </li>
+                <li class="item">
+                  <div>
+                    <code>
+                    <a name="/s:FC13InstantSearch13InstantSearch9searchBarFTCSo11UISearchBar13textDidChangeSS_T_"></a>
+                    <a name="//apple_ref/swift/Method/searchBar(_:textDidChange:)" class="dashAnchor"></a>
+                    <a class="token" href="#/s:FC13InstantSearch13InstantSearch9searchBarFTCSo11UISearchBar13textDidChangeSS_T_">searchBar(_:textDidChange:)</a>
+                    </code>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        <p>Handler called on each keystroke change in the <code>UISearchBar</code></p>
+
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="language">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight"><code><span class="kd">public</span> <span class="kd">func</span> <span class="nf">searchBar</span><span class="p">(</span><span class="n">_</span> <span class="nv">searchBar</span><span class="p">:</span> <span class="kt">UISearchBar</span><span class="p">,</span> <span class="n">textDidChange</span> <span class="nv">searchText</span><span class="p">:</span> <span class="kt">String</span><span class="p">)</span></code></pre>
+
+                        </div>
+                      </div>
+                    </section>
+                  </div>
+                </li>
+              </ul>
+            </div>
+          </section>
+        </section>
+        <section id="footer">
+          <p>&copy; 2017 <a class="link" href="https://github.com/algolia/instantsearch-ios" target="_blank" rel="external">Algolia</a>. All rights reserved. (Last updated: 2017-07-12)</p>
+          <p>Generated by <a class="link" href="https://github.com/realm/jazzy" target="_blank" rel="external">jazzy ♪♫ v0.8.2</a>, a <a class="link" href="http://realm.io" target="_blank" rel="external">Realm</a> project.</p>
+        </section>
+      </article>
+    </div>
+  </body>
+</div>
+</html>

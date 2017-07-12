@@ -1,0 +1,608 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <title>RefinementController Class Reference</title>
+    <link rel="stylesheet" type="text/css" href="../css/jazzy.css" />
+    <link rel="stylesheet" type="text/css" href="../css/highlight.css" />
+    <meta charset='utf-8'>
+    <script src="../js/jquery.min.js" defer></script>
+    <script src="../js/jazzy.js" defer></script>
+    
+  </head>
+  <body>
+    <a name="//apple_ref/swift/Class/RefinementController" class="dashAnchor"></a>
+    <a title="RefinementController Class Reference"></a>
+    <header>
+      <div class="content-wrapper">
+        <p><a href="../index.html">InstantSearch Docs</a></p>
+      </div>
+    </header>
+    <div class="content-wrapper">
+      <p id="breadcrumbs">
+        <a href="../index.html">InstantSearch Reference</a>
+        <img id="carat" src="../img/carat.png" />
+        RefinementController Class Reference
+      </p>
+    </div>
+    <div class="content-wrapper">
+      <nav class="sidebar">
+        <ul class="nav-groups">
+          <li class="nav-group-name">
+            <a href="../Core.html">Core</a>
+            <ul class="nav-group-tasks">
+              <li class="nav-group-task">
+                <a href="../Classes/InstantSearch.html">InstantSearch</a>
+              </li>
+            </ul>
+          </li>
+          <li class="nav-group-name">
+            <a href="../Widgets.html">Widgets</a>
+            <ul class="nav-group-tasks">
+              <li class="nav-group-task">
+                <a href="../Classes/ActivityIndicatorWidget.html">ActivityIndicatorWidget</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Classes/CustomSlider.html">CustomSlider</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Classes/DatePickerWidget.html">DatePickerWidget</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Classes/HitsCollectionWidget.html">HitsCollectionWidget</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Classes/OneValueSwitchWidget.html">OneValueSwitchWidget</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Classes/RefinementCollectionWidget.html">RefinementCollectionWidget</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Classes/RefinementTableWidget.html">RefinementTableWidget</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Classes/SearchBarWidget.html">SearchBarWidget</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Classes/SegmentedControlWidget.html">SegmentedControlWidget</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Classes/SliderWidget.html">SliderWidget</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Classes/StatsButtonWidget.html">StatsButtonWidget</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Classes/StatsLabelWidget.html">StatsLabelWidget</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Classes/StepperWidget.html">StepperWidget</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Classes/SwitchWidget.html">SwitchWidget</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Classes/TextFieldWidget.html">TextFieldWidget</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Classes/TwoValuesSwitchWidget.html">TwoValuesSwitchWidget</a>
+              </li>
+            </ul>
+          </li>
+          <li class="nav-group-name">
+            <a href="../Base ViewController.html">Base ViewController</a>
+            <ul class="nav-group-tasks">
+              <li class="nav-group-task">
+                <a href="../Classes/HitsCollectionViewController.html">HitsCollectionViewController</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Classes/HitsTableViewController.html">HitsTableViewController</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Classes/RefinementCollectionViewController.html">RefinementCollectionViewController</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Classes/RefinementTableViewController.html">RefinementTableViewController</a>
+              </li>
+            </ul>
+          </li>
+          <li class="nav-group-name">
+            <a href="../Controllers.html">Controllers</a>
+            <ul class="nav-group-tasks">
+              <li class="nav-group-task">
+                <a href="../Classes/HitsController.html">HitsController</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Classes/RefinementController.html">RefinementController</a>
+              </li>
+            </ul>
+          </li>
+          <li class="nav-group-name">
+            <a href="../Protocols.html">Protocols</a>
+            <ul class="nav-group-tasks">
+              <li class="nav-group-task">
+                <a href="../Protocols.html#/s:P13InstantSearch13AlgoliaWidget">AlgoliaWidget</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Protocols/HitsCollectionViewDataSource.html">HitsCollectionViewDataSource</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Protocols/HitsCollectionViewDelegate.html">HitsCollectionViewDelegate</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Protocols/HitsTableViewDataSource.html">HitsTableViewDataSource</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Protocols/HitsTableViewDelegate.html">HitsTableViewDelegate</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Protocols/RefinableDelegate.html">RefinableDelegate</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Protocols/RefinementCollectionViewDataSource.html">RefinementCollectionViewDataSource</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Protocols/RefinementCollectionViewDelegate.html">RefinementCollectionViewDelegate</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Protocols/RefinementTableViewDataSource.html">RefinementTableViewDataSource</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Protocols/RefinementTableViewDelegate.html">RefinementTableViewDelegate</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Protocols/ResultingDelegate.html">ResultingDelegate</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Protocols/SearchableViewModel.html">SearchableViewModel</a>
+              </li>
+            </ul>
+          </li>
+          <li class="nav-group-name">
+            <a href="../Helpers.html">Helpers</a>
+            <ul class="nav-group-tasks">
+              <li class="nav-group-task">
+                <a href="../Extensions/UILabel.html">UILabel</a>
+              </li>
+            </ul>
+          </li>
+          <li class="nav-group-name">
+            <a href="../Other Classes.html">Other Classes</a>
+            <ul class="nav-group-tasks">
+              <li class="nav-group-task">
+                <a href="../Classes/HitsTableWidget.html">HitsTableWidget</a>
+              </li>
+            </ul>
+          </li>
+        </ul>
+      </nav>
+      <article class="main-content">
+        <section>
+          <section class="section">
+            <h1>RefinementController</h1>
+              <div class="declaration">
+                <div class="language">
+                  <pre class="highlight"><code><span class="kd">@objc</span> <span class="kd">public</span> <span class="kd">class</span> <span class="kt">RefinementController</span><span class="p">:</span> <span class="kt">NSObject</span></code></pre>
+
+                </div>
+              </div>
+            <p>A controller object that manages a Refinement Widget.
+It takes care of interacting with InstantSearch and offer clear and easy to use dataSource and delegate methods.</p>
+
+<ul>
+<li>tableDataSource: DataSource to specify the layout of a table refinement cell.</li>
+<li>tableDelegate: Delegate to specify the behavior when a table refinement cell is selected.</li>
+<li>collectionDataSource: DataSource to specify the layout of a collection refinement cell.</li>
+<li>collectionDelegate: Delegate to specify the behavior when a collection refinement cell is selected.</li>
+</ul>
+
+          </section>
+          <section class="section task-group-section">
+            <div class="task-group">
+              <ul>
+                <li class="item">
+                  <div>
+                    <code>
+                    <a name="/s:vC13InstantSearch20RefinementController15tableDataSourceXwGSqPS_29RefinementTableViewDataSource__"></a>
+                    <a name="//apple_ref/swift/Property/tableDataSource" class="dashAnchor"></a>
+                    <a class="token" href="#/s:vC13InstantSearch20RefinementController15tableDataSourceXwGSqPS_29RefinementTableViewDataSource__">tableDataSource</a>
+                    </code>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        <p>DataSource that takes care of the content of the table refinement widget.</p>
+
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="language">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight"><code><span class="kd">@objc</span> <span class="kd">public</span> <span class="k">weak</span> <span class="k">var</span> <span class="nv">tableDataSource</span><span class="p">:</span> <span class="kt"><a href="../Protocols/RefinementTableViewDataSource.html">RefinementTableViewDataSource</a></span><span class="p">?</span></code></pre>
+
+                        </div>
+                      </div>
+                    </section>
+                  </div>
+                </li>
+                <li class="item">
+                  <div>
+                    <code>
+                    <a name="/s:vC13InstantSearch20RefinementController13tableDelegateXwGSqPS_27RefinementTableViewDelegate__"></a>
+                    <a name="//apple_ref/swift/Property/tableDelegate" class="dashAnchor"></a>
+                    <a class="token" href="#/s:vC13InstantSearch20RefinementController13tableDelegateXwGSqPS_27RefinementTableViewDelegate__">tableDelegate</a>
+                    </code>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        <p>Delegate that takes care of the behavior of the table refinement widget.</p>
+
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="language">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight"><code><span class="kd">@objc</span> <span class="kd">public</span> <span class="k">weak</span> <span class="k">var</span> <span class="nv">tableDelegate</span><span class="p">:</span> <span class="kt"><a href="../Protocols/RefinementTableViewDelegate.html">RefinementTableViewDelegate</a></span><span class="p">?</span></code></pre>
+
+                        </div>
+                      </div>
+                    </section>
+                  </div>
+                </li>
+                <li class="item">
+                  <div>
+                    <code>
+                    <a name="/s:vC13InstantSearch20RefinementController20collectionDataSourceXwGSqPS_34RefinementCollectionViewDataSource__"></a>
+                    <a name="//apple_ref/swift/Property/collectionDataSource" class="dashAnchor"></a>
+                    <a class="token" href="#/s:vC13InstantSearch20RefinementController20collectionDataSourceXwGSqPS_34RefinementCollectionViewDataSource__">collectionDataSource</a>
+                    </code>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        <p>DataSource that takes care of the content of the collection refinement widget.</p>
+
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="language">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight"><code><span class="kd">@objc</span> <span class="kd">public</span> <span class="k">weak</span> <span class="k">var</span> <span class="nv">collectionDataSource</span><span class="p">:</span> <span class="kt"><a href="../Protocols/RefinementCollectionViewDataSource.html">RefinementCollectionViewDataSource</a></span><span class="p">?</span></code></pre>
+
+                        </div>
+                      </div>
+                    </section>
+                  </div>
+                </li>
+                <li class="item">
+                  <div>
+                    <code>
+                    <a name="/s:vC13InstantSearch20RefinementController18collectionDelegateXwGSqPS_32RefinementCollectionViewDelegate__"></a>
+                    <a name="//apple_ref/swift/Property/collectionDelegate" class="dashAnchor"></a>
+                    <a class="token" href="#/s:vC13InstantSearch20RefinementController18collectionDelegateXwGSqPS_32RefinementCollectionViewDelegate__">collectionDelegate</a>
+                    </code>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        <p>Delegate that takes care of the behavior of the collection refinement widget.</p>
+
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="language">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight"><code><span class="kd">@objc</span> <span class="kd">public</span> <span class="k">weak</span> <span class="k">var</span> <span class="nv">collectionDelegate</span><span class="p">:</span> <span class="kt"><a href="../Protocols/RefinementCollectionViewDelegate.html">RefinementCollectionViewDelegate</a></span><span class="p">?</span></code></pre>
+
+                        </div>
+                      </div>
+                    </section>
+                  </div>
+                </li>
+                <li class="item">
+                  <div>
+                    <code>
+                    <a name="/s:FC13InstantSearch20RefinementControllercFT5tableCS_21RefinementTableWidget_S0_"></a>
+                    <a name="//apple_ref/swift/Method/init(table:)" class="dashAnchor"></a>
+                    <a class="token" href="#/s:FC13InstantSearch20RefinementControllercFT5tableCS_21RefinementTableWidget_S0_">init(table:)</a>
+                    </code>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        <p>Undocumented</p>
+
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="language">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight"><code><span class="kd">@objc</span> <span class="kd">public</span> <span class="kd">class</span> <span class="kt">RefinementController</span><span class="p">:</span> <span class="kt">NSObject</span></code></pre>
+
+                        </div>
+                      </div>
+                    </section>
+                  </div>
+                </li>
+                <li class="item">
+                  <div>
+                    <code>
+                    <a name="/s:FC13InstantSearch20RefinementControllercFT10collectionCS_26RefinementCollectionWidget_S0_"></a>
+                    <a name="//apple_ref/swift/Method/init(collection:)" class="dashAnchor"></a>
+                    <a class="token" href="#/s:FC13InstantSearch20RefinementControllercFT10collectionCS_26RefinementCollectionWidget_S0_">init(collection:)</a>
+                    </code>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        <p>Undocumented</p>
+
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="language">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight"><code><span class="kd">@objc</span> <span class="kd">public</span> <span class="kd">class</span> <span class="kt">RefinementController</span><span class="p">:</span> <span class="kt">NSObject</span></code></pre>
+
+                        </div>
+                      </div>
+                    </section>
+                  </div>
+                </li>
+              </ul>
+            </div>
+            <div class="task-group">
+              <ul>
+                <li class="item">
+                  <div>
+                    <code>
+                    <a name="/s:FC13InstantSearch20RefinementController9tableViewFTCSo11UITableView12cellForRowAtV10Foundation9IndexPath_CSo15UITableViewCell"></a>
+                    <a name="//apple_ref/swift/Method/tableView(_:cellForRowAt:)" class="dashAnchor"></a>
+                    <a class="token" href="#/s:FC13InstantSearch20RefinementController9tableViewFTCSo11UITableView12cellForRowAtV10Foundation9IndexPath_CSo15UITableViewCell">tableView(_:cellForRowAt:)</a>
+                    </code>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        <p>Undocumented</p>
+
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="language">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight"><code><span class="kd">@objc</span> <span class="kd">public</span> <span class="kd">class</span> <span class="kt">RefinementController</span><span class="p">:</span> <span class="kt">NSObject</span></code></pre>
+
+                        </div>
+                      </div>
+                    </section>
+                  </div>
+                </li>
+                <li class="item">
+                  <div>
+                    <code>
+                    <a name="/s:FC13InstantSearch20RefinementController9tableViewFTCSo11UITableView21numberOfRowsInSectionSi_Si"></a>
+                    <a name="//apple_ref/swift/Method/tableView(_:numberOfRowsInSection:)" class="dashAnchor"></a>
+                    <a class="token" href="#/s:FC13InstantSearch20RefinementController9tableViewFTCSo11UITableView21numberOfRowsInSectionSi_Si">tableView(_:numberOfRowsInSection:)</a>
+                    </code>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        <p>Undocumented</p>
+
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="language">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight"><code><span class="kd">@objc</span> <span class="kd">public</span> <span class="kd">class</span> <span class="kt">RefinementController</span><span class="p">:</span> <span class="kt">NSObject</span></code></pre>
+
+                        </div>
+                      </div>
+                    </section>
+                  </div>
+                </li>
+                <li class="item">
+                  <div>
+                    <code>
+                    <a name="/s:FC13InstantSearch20RefinementController16numberOfSectionsFT2inCSo11UITableView_Si"></a>
+                    <a name="//apple_ref/swift/Method/numberOfSections(in:)" class="dashAnchor"></a>
+                    <a class="token" href="#/s:FC13InstantSearch20RefinementController16numberOfSectionsFT2inCSo11UITableView_Si">numberOfSections(in:)</a>
+                    </code>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        <p>Undocumented</p>
+
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="language">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight"><code><span class="kd">@objc</span> <span class="kd">public</span> <span class="kd">class</span> <span class="kt">RefinementController</span><span class="p">:</span> <span class="kt">NSObject</span></code></pre>
+
+                        </div>
+                      </div>
+                    </section>
+                  </div>
+                </li>
+              </ul>
+            </div>
+            <div class="task-group">
+              <ul>
+                <li class="item">
+                  <div>
+                    <code>
+                    <a name="/s:FC13InstantSearch20RefinementController9tableViewFTCSo11UITableView14didSelectRowAtV10Foundation9IndexPath_T_"></a>
+                    <a name="//apple_ref/swift/Method/tableView(_:didSelectRowAt:)" class="dashAnchor"></a>
+                    <a class="token" href="#/s:FC13InstantSearch20RefinementController9tableViewFTCSo11UITableView14didSelectRowAtV10Foundation9IndexPath_T_">tableView(_:didSelectRowAt:)</a>
+                    </code>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        <p>Undocumented</p>
+
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="language">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight"><code><span class="kd">@objc</span> <span class="kd">public</span> <span class="kd">class</span> <span class="kt">RefinementController</span><span class="p">:</span> <span class="kt">NSObject</span></code></pre>
+
+                        </div>
+                      </div>
+                    </section>
+                  </div>
+                </li>
+              </ul>
+            </div>
+            <div class="task-group">
+              <ul>
+                <li class="item">
+                  <div>
+                    <code>
+                    <a name="/s:FC13InstantSearch20RefinementController14collectionViewFTCSo16UICollectionView22numberOfItemsInSectionSi_Si"></a>
+                    <a name="//apple_ref/swift/Method/collectionView(_:numberOfItemsInSection:)" class="dashAnchor"></a>
+                    <a class="token" href="#/s:FC13InstantSearch20RefinementController14collectionViewFTCSo16UICollectionView22numberOfItemsInSectionSi_Si">collectionView(_:numberOfItemsInSection:)</a>
+                    </code>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        <p>Undocumented</p>
+
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="language">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight"><code><span class="kd">@objc</span> <span class="kd">public</span> <span class="kd">class</span> <span class="kt">RefinementController</span><span class="p">:</span> <span class="kt">NSObject</span></code></pre>
+
+                        </div>
+                      </div>
+                    </section>
+                  </div>
+                </li>
+                <li class="item">
+                  <div>
+                    <code>
+                    <a name="/s:FC13InstantSearch20RefinementController14collectionViewFTCSo16UICollectionView13cellForItemAtV10Foundation9IndexPath_CSo20UICollectionViewCell"></a>
+                    <a name="//apple_ref/swift/Method/collectionView(_:cellForItemAt:)" class="dashAnchor"></a>
+                    <a class="token" href="#/s:FC13InstantSearch20RefinementController14collectionViewFTCSo16UICollectionView13cellForItemAtV10Foundation9IndexPath_CSo20UICollectionViewCell">collectionView(_:cellForItemAt:)</a>
+                    </code>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        <p>Undocumented</p>
+
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="language">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight"><code><span class="kd">@objc</span> <span class="kd">public</span> <span class="kd">class</span> <span class="kt">RefinementController</span><span class="p">:</span> <span class="kt">NSObject</span></code></pre>
+
+                        </div>
+                      </div>
+                    </section>
+                  </div>
+                </li>
+                <li class="item">
+                  <div>
+                    <code>
+                    <a name="/s:FC13InstantSearch20RefinementController16numberOfSectionsFT2inCSo16UICollectionView_Si"></a>
+                    <a name="//apple_ref/swift/Method/numberOfSections(in:)" class="dashAnchor"></a>
+                    <a class="token" href="#/s:FC13InstantSearch20RefinementController16numberOfSectionsFT2inCSo16UICollectionView_Si">numberOfSections(in:)</a>
+                    </code>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        <p>Undocumented</p>
+
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="language">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight"><code><span class="kd">@objc</span> <span class="kd">public</span> <span class="kd">class</span> <span class="kt">RefinementController</span><span class="p">:</span> <span class="kt">NSObject</span></code></pre>
+
+                        </div>
+                      </div>
+                    </section>
+                  </div>
+                </li>
+              </ul>
+            </div>
+            <div class="task-group">
+              <ul>
+                <li class="item">
+                  <div>
+                    <code>
+                    <a name="/s:FC13InstantSearch20RefinementController14collectionViewFTCSo16UICollectionView15didSelectItemAtV10Foundation9IndexPath_T_"></a>
+                    <a name="//apple_ref/swift/Method/collectionView(_:didSelectItemAt:)" class="dashAnchor"></a>
+                    <a class="token" href="#/s:FC13InstantSearch20RefinementController14collectionViewFTCSo16UICollectionView15didSelectItemAtV10Foundation9IndexPath_T_">collectionView(_:didSelectItemAt:)</a>
+                    </code>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        <p>Undocumented</p>
+
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="language">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight"><code><span class="kd">@objc</span> <span class="kd">public</span> <span class="kd">class</span> <span class="kt">RefinementController</span><span class="p">:</span> <span class="kt">NSObject</span></code></pre>
+
+                        </div>
+                      </div>
+                    </section>
+                  </div>
+                </li>
+              </ul>
+            </div>
+          </section>
+        </section>
+        <section id="footer">
+          <p>&copy; 2017 <a class="link" href="https://github.com/algolia/instantsearch-ios" target="_blank" rel="external">Algolia</a>. All rights reserved. (Last updated: 2017-07-12)</p>
+          <p>Generated by <a class="link" href="https://github.com/realm/jazzy" target="_blank" rel="external">jazzy ♪♫ v0.8.2</a>, a <a class="link" href="http://realm.io" target="_blank" rel="external">Realm</a> project.</p>
+        </section>
+      </article>
+    </div>
+  </body>
+</div>
+</html>
