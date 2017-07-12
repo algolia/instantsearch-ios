@@ -1,11 +1,12 @@
 {
-  "name": "instantsearch.js-docgen",
+  "name": "instantsearch-ios-docgen",
   "version": "0.1.0",
   "main": "index.js",
   "license": "MIT",
   "scripts": {
     "dev": "babel-node start.js",
-    "build": "babel-node build.js"
+    "build": "babel-node build.js",
+    "deploy": "cd ../Tools && ./deploy-gh-pages.sh"
   },
   "dependencies": {
     "algolia-frontend-components": "^0.0.24",
@@ -20,6 +21,7 @@
     "codemirror": "^5.22.0",
     "compression": "^1.6.2",
     "documentation": "^4.0.0-rc.1",
+    "gh-pages": "^1.0.0",
     "json-loader": "^0.5.4",
     "markdown-it": "^8.2.2",
     "markdown-it-anchor": "^2.6.0",

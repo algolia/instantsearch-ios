@@ -4,7 +4,7 @@ xcodebuild_arguments:
     - InstantSearch.xcworkspace
     - -scheme
     - InstantSearch
-output: docs/jazzydoc
+output: docs/reference
 # Avoid putting the DocSet within the HTML docs.
 # WARNING: The path is relative to the output directory.
 docset_path: ../../build/docset
