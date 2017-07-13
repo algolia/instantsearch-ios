@@ -46,7 +46,27 @@
     "name": "<span class='visible-sm-inline'>Getting Started</span>",
     "url": "getting-started.html",
     "dropdownItems": null
-  },{
+  },
+  {
+    "name": "Guides",
+    "url": "",
+    "image": "",
+    "dropdownItems": [
+      {
+        "name": "Getting Started",
+        "url": "getting-started.html"
+      },
+      {
+        "name": "Getting Started Part 2",
+        "url": "getting-started-part2.html"
+      },
+      {
+        "name": "Getting Started Programatically",
+        "url": "getting-started-programmatic.html"
+      }
+    ]
+  },
+  {
     "name": "Documentation",
     "url": "",
     "image": "",
@@ -69,7 +89,7 @@
       }
     ]
   },{
-    "name": "<span class='visible-sm-inline'>Examples</span>",
+    "name": "Examples",
     "url": "examples.html"
   },{
     "name": "Github",
