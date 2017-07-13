@@ -1,103 +1,132 @@
 {
   "menu": {
-    "project": {
-      "view": "links",
-      "label": "InstantSearch iOS",
-      "logo": "",
+     "community": {
+      "style": "widelist",
+      "view": "integrations",
+      "label": "",
       "caret": "",
-      "url":"https://community.algolia.com/instantsearch-ios",
-      "dropdownItems": []
-    },
-    "community": {
-      "dropdownItems": [
-      {
-        "name": "instantsearch.js",
-        "url": "https://community.algolia.com/instantsearch.js/v2",
-        "logo": "assets/img/InstantSearch-JS-icon.svg",
-        "backgroundColor": "#fff"
-      },
-      {
-        "name": "React InstantSearch",
+      "dropdownItems": [{
+        "name": "places.js",
+        "url": "https://community.algolia.com/places/",
+        "logo": "https://community.algolia.com/places/images/svg/places-illustration-65745839.svg",
+        "backgroundColor": "#3a5395"
+      }, {
+        "name": "wordpress",
+        "url": "https://community.algolia.com/wordpress",
+        "logo": "https://community.algolia.com/wordpress/img/icons/wp-icon.svg",
+        "backgroundColor": "linear-gradient(to bottom right, #4041B2, #516ED1)"
+      }, {
+        "name": "Autocomplete.js",
+        "url": "https://github.com/algolia/autocomplete.js",
+        "logo": "https://community.algolia.com/img/illus-autocomplete.svg",
+        "backgroundColor": "#00587f"
+      }, {
+        "name": "InstantSearch React",
         "url": "https://community.algolia.com/instantsearch.js/react",
-        "logo": "assets/img/InstantSearch-React-icon.svg",
-        "backgroundColor": "#fff"
-      },
-      {
-        "name": "Android InstantSearch",
-        "url": "https://community.algolia.com/instantsearch-android/",
-        "logo": "assets/img/InstantSear-Android.svg",
-        "backgroundColor": "#fff"
-      },
-      {
+        "logo": "https://community.algolia.com/img/logo-react-instantsearch.svg",
+        "backgroundColor": "linear-gradient(45deg, #3369e7, #00aeff), linear-gradient(#fafafa, #fafafa)"
+      }, {
         "name": "Helper.js",
         "url": "https://community.algolia.com/algoliasearch-helper-js/",
         "logo": "https://community.algolia.com/img/logo-helper.svg",
         "backgroundColor": "#FDBD57"
-      },
-      {
-        "name": "Wordpress",
-        "url": "https://community.algolia.com/wordpress/",
-        "logo": "https://community.algolia.com/wordpress/img/icons/wp-icon.svg",
-        "backgroundColor": "linear-gradient(to bottom right, #4041B2, #516ED1)"
+      }, {
+        "name": "magento",
+        "url": "https://community.algolia.com/magento/",
+        "logo": "https://res.cloudinary.com/hilnmyskv/image/upload/v1477318624/magento-icon-white.svg",
+        "backgroundColor": "linear-gradient(to bottom right, #ed9259, #e76d22)"
       }]
+    },
+    "project": {
+      "view": "links",
+      "label": "InstantSearch.js",
+      "logo": "",
+      "caret": "",
+      "url":"https://community.algolia.com/instantsearch.js/v2/",
+      "dropdownItems": []
     }
   },
   "sideMenu": [{
-    "name": "<span class='visible-sm-inline'>Getting Started</span>",
+    "name": "<span class='hidden-sm'>Getting Started</span>",
     "url": "getting-started.html",
     "dropdownItems": null
-  },{
-    "name": "Documentation",
+  },
+  {
+    "name": "Guides",
     "url": "",
     "image": "",
     "dropdownItems": [
       {
-        "name": "Concepts",
-        "url": "concepts.html"
+        "name": "Use InstantSearch.js",
+        "url": "guides/usage.html"
+      },
+      {
+        "name": "Customize widgets",
+        "url": "guides/customization.html"
+      },
+      {
+        "name": "Migrate from V1",
+        "url": "guides/migration.html"
+      }
+    ]
+  },
+  {
+    "name": "API",
+    "url": "",
+    "image": "",
+    "dropdownItems": [
+      {
+        "name": "instantsearch()",
+        "url": "instantsearch.html"
       },
       {
         "name": "Widgets",
         "url": "widgets.html"
       },
       {
-        "name": "API Reference",
-        "url": "jazzydoc/"
-      },
-      {
-        "name": "Troubleshooting",
-        "url": "troubleshooting.html"
+        "name": "Connectors",
+        "url": "connectors.html"
       }
     ]
-  },{
-    "name": "<span class='visible-sm-inline'>Examples</span>",
+  },
+  {
+    "name": "<span class='hidden-sm'>Demos</span>",
     "url": "examples.html"
   },{
     "name": "Github",
     "image": "<img src='assets/img/github-icon.svg'/>",
-    "url": "https://github.com/algolia/instantsearch-ios"
+    "url": "https://github.com/algolia/instantsearch.js/v2/"
   }],
   "mobileMenu": [{
     "name": "Getting Started",
     "url": "getting-started.html"
   },
   {
-    "name": "Concepts",
-    "url": "concepts.html"
+    "name": "Use InstantSearch.js",
+    "url": "guides/usage.html"
+  },
+  {
+    "name": "Customize widgets",
+    "url": "/guides/customization.html"
+  },
+  {
+    "name": "Migrate from V1",
+    "url": "/guides/migration.html"
+  },
+  {
+    "name": "instantsearch()",
+    "url": "/instantsearch.html"
   },
   {
     "name": "Widgets",
-    "url": "widgets.html"
+    "url": "/widgets.html"
   },
   {
-    "name": "API Reference",
-    "url": "jazzydoc/"
+    "name": "Connectors",
+    "url": "connectors.html"
   },
   {
-    "name": "Troubleshooting",
-    "url": "troubleshooting.html"
-  },
-  {
-    "name": "Examples",
+    "name": "Demos",
     "url": "examples.html"
   }],
   "docSearch": {
@@ -106,3 +135,5 @@
     "input_mobile_selector": "mobile-searchbox"
   }
 }
+
+
