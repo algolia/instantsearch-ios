@@ -9,11 +9,6 @@
 import Foundation
 
 /// Widget that controls the facet value of attribute. Built on top of `UISwitch`.
-/// Possible configurable parameters are:
-/// - attribute
-/// - valueOn
-/// - valueOff
-/// - inclusive
 /// + Note: Use this for boolean values. (Example: "Sale" and "no sale")
 /// + Remark: You must assign a value to the `attribute` property since the refinement table cannot operate without one. 
 /// A FatalError will be thrown if you don't specify anything.

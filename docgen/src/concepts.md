@@ -20,13 +20,13 @@ In this guide, you will learn the key concepts of InstantSearch iOS.
 
 The InstantSearch library is built on top of InstantSearch Core. The essence of InstantSearch Core is the **Searcher**, which will wrap an [Algolia API Client](https://github.com/algolia/algoliasearch-client-swift/blob/master/Source/Client.swift) and provide a level of abstraction over it. You can think of InstantSearch Core as the UIKit agnostic library that takes care of everything related to the search session, while InstantSearch is a UIKit dependent library uses InstantSearch Core to offer ready-made configurable widgets that are "search aware" and automatically react to all kinds of search events. For more info about InstantSearchCore, checkout its [community website](https://community.algolia.com/instantsearch-core-swift/).
 
-## Overview of Widgets
+## Widgets
 
-The core part of InstantSearch iOS are the widgets, which are search-aware UI components that are binded to search events coming from Algolia. We provide some universal widgets such as the [`SearchBar`][widgets-searchbar], the [`Hits`][widgets-hits] or the [`RefinementList`][widgets-refinementlist], and you can easily create new ones by implementing the a few protocols (discussed below).
+The core part of InstantSearch iOS are the widgets, which are search-aware UI components that are bound to search events coming from Algolia. We provide some universal widgets such as the [`SearchBar`][widgets-searchbar], the [`Hits`][widgets-hits] or the [`RefinementList`][widgets-refinementlist], and you can easily create new ones by implementing a few protocols (discussed below).
 
 Widgets inherit from the different UIKit `UIViews`, whether it is an advanced `UICollectionView`, or a simple `UISlider`. They are also customizable by exposing `IBInspectable` parameters that can be set right through Interface Builder.
 
-The nice thing about InstantSearch iOS is that you don't have to rewrite your existing `UIViews` to start using the library. In fact, the architecture of the library is mostly protocol-oriented, making it extendible and compatible with your existing UI. It follows Plugin Architecture conventions by providing most of the business logic mostly through protocols, and sometimes through base UIViewController classes.
+The nice thing about InstantSearch iOS is that you don't have to rewrite your existing `UIViews` to start using the library. In fact, the architecture of the library is mostly protocol-oriented, making it extendible and compatible with your existing UI. It follows Plugin Architecture conventions by providing most of the business logic mostly through protocols, and sometimes through base `UIViewController` classes.
 
 In that way, it is also very easy to create your own search-aware custom widgets. All it takes is implementing one or more protocols depending on the purpose of the widget, and then writing the business logic using the provided properties and methods coming from the protocols.
 
@@ -44,7 +44,7 @@ An input widget will implement `SearchableViewModel`. By implementing this proto
 
 ```swift
 A implements SearchableViewModel -> searcher.search(query)
-B implements SearchableViewModel -> searcher.updateRefinement()
+B implements SearchableViewModel -> searcher.params.updateNumericRefinement()
 ```
 
 An output widget is basically a delegate that reacts to new "search events" that are triggered by the user interacting with an input widget, whether it is writing in a search bar or selecting a new filter. An output widget can implement one of the 2 following protocols: 
@@ -62,9 +62,9 @@ searcher.search(query) -> InstantSearch --┤
 
 
 ```swift
-                                               ┌-> A implements RefinableDelegate
-searcher.updateRefinement() -> InstantSearch --┤
-                                               └-> B implements RefinableDelegate
+                                                             ┌-> A implements RefinableDelegate
+searcher.params.updateNumericRefinement() -> InstantSearch --┤
+                                                             └-> B implements RefinableDelegate
 ```
 
 

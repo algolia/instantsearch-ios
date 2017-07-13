@@ -9,9 +9,6 @@
 import UIKit
 
 /// Widget that stats about Algolia search results. Built on top of `UIButton`.
-/// Possible configurable parameters are:
-/// - attribute
-/// - inclusive
 @objc public class StatsButtonWidget: UIButton, StatsViewDelegate, AlgoliaWidget {
     
     @IBInspectable public var resultTemplate: String = Constants.Defaults.resultTemplate

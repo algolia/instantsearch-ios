@@ -18,7 +18,7 @@ We will start from an empty iOS project, and create from scratch a full search i
 To use InstantSearch iOS, you need an Algolia account. You can create one by clicking [here][algolia_sign_up], or use the following credentials:
 - APP ID: `latency`
 - Search API Key: `3d9875e51fbd20c7754e65422f7ce5e1`
-- Index name: `bestbuy`
+- Index name: `bestbuy_promo`
 
 *These credentials will let you use a preloaded dataset of products appropriate for this guide.*
 
