@@ -1,7 +1,7 @@
 Pod::Spec.new do |s|
   s.name             = "InstantSearch-iOS"
   s.module_name      = 'InstantSearch'
-  s.version          = "1.0.0-beta4"
+  s.version          = "1.0.0"
   s.summary          = "A library of widgets and helpers to build instant-search applications on iOS."
   s.homepage         = "https://github.com/algolia/instantsearch-ios"
   s.license          = { type: 'MIT', file: 'LICENSE.md' }
@@ -14,7 +14,7 @@ Pod::Spec.new do |s|
 
   s.subspec "InstantSearch-iOS" do |ss|
     ss.source_files = 'Sources/Library/**/*.{swift}'
-    ss.dependency 'InstantSearch-Core-Swift', '~> 2.0.0-beta1'
+    ss.dependency 'InstantSearch-Core-Swift', '~> 2.0.0'
   end
 
   s.subspec "CustomWidgets" do |ss|
@@ -22,6 +22,6 @@ Pod::Spec.new do |s|
       'Sources/Library/**/*.{swift}',
       'Sources/CustomWidgets/**/*.{swift}'
     ]
-    ss.dependency 'InstantSearch-Core-Swift', '~> 2.0.0-beta2'
+    ss.dependency 'InstantSearch-Core-Swift', '~> 2.0.0'
   end
 end
