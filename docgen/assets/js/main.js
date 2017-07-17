@@ -8,8 +8,8 @@ import {fixSidebar, followSidebarNavigation} from './fix-sidebar.js';
 var alg = require('algolia-frontend-components/javascripts.js');
 
 const docSearch = {
-  apiKey: '3f0cb81a0ea7daf31be25eff0cc017c4',
-  indexName: 'instant_search_ios',
+  apiKey: 'e47d19f42b12dcc310b1eb10a524379d',
+  indexName: 'instantsearch-ios',
   inputSelector: '#searchbox',
 };
 
