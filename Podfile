@@ -4,7 +4,7 @@ platform :ios, '8.0'
 use_frameworks!
 
 def instantsearch_core
-    pod 'InstantSearch-Core-Swift', '~> 2.0.0-beta1'
+    pod 'InstantSearch-Core-Swift', '~> 2.0.0'
 end
 
 target 'InstantSearch' do
