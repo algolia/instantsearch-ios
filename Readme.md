@@ -36,6 +36,12 @@ To install InstantSearch, simply add the following line to your Podfile:
 pod 'InstantSearch-iOS', '~> 1.0.0'
 ```
 
+Then, run the following command:
+
+```bash
+$ pod update
+```
+
 ## Usage
 
 In your `AppDelegate.swift`: 
