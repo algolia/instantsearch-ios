@@ -42,7 +42,13 @@ Then, run the following command:
 $ pod update
 ```
 
-## Usage
+## Documentation
+
+**You can start with the [Getting Started Guide](https://community.algolia.com/instantsearch-ios/getting-started.html).**
+
+Learn more about instantSearch iOS in the [dedicated documentation website](https://community.algolia.com/instantsearch-ios).
+
+## Basic Usage
 
 In your `AppDelegate.swift`: 
 
@@ -51,7 +57,7 @@ import InstantSearch
 
 func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplicationLaunchOptionsKey: Any]?) -> Bool {
     // Configure InstantSearch
-    InstantSearch.reference.configure(appID: "latency", apiKey: "1f6fd3a6fb973cb08419fe7d288fa4db", index: "bestbuy_promo")
+    InstantSearch.shared.configure(appID: "latency", apiKey: "1f6fd3a6fb973cb08419fe7d288fa4db", index: "bestbuy_promo")
 }
 ```
 
@@ -69,7 +75,7 @@ override func viewDidLoad() {
     self.view.addSubview(statsWidget)
 
     // Add all widgets in view to InstantSearch
-    InstantSearch.reference.addAllWidgets(in: self.view)
+    InstantSearch.shared.registerAllWidgets(in: self.view)
 }
 ```
 
