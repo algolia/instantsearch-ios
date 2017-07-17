@@ -10,7 +10,7 @@ githubSource: docgen/src/widgets.md
 ---
 
 ## SearchBar
-<img src="assets/img/widget_SearchBox.png" class="img-object" align="right" />
+<img src="assets/img/widgets/searchbox.png" class="img-object" align="right" width="300"/>
 
 The **SearchBar** widgets are made to query the Algolia service on each keystroke. It is the main component of a search experience.
 
@@ -33,9 +33,6 @@ self.view.addSubview(searchBar)
 ```
 
 ### ActivityIndicator
-<img src="assets/img/progress.gif" class="img-object" align="right" />
-<!-- TODO: Move to separate guide -->
-
 
 A useful pattern to improve your user's experience consists in displaying a progress indicator when there are ongoing requests still waiting to complete. This activity indicator will spin as long as some requests are still incomplete. 
 
@@ -51,7 +48,7 @@ self.view.addSubview(activityIndicator)
 ```
 
 ## Hits
-<img src="assets/img/widget_Hits.png" class="img-object" align="right"/>
+<img src="assets/img/widgets/hits.png" class="img-object" align="right" width="250"/>
 
 The **Hits** widgets are made to display your search results in a flexible way. They are reloaded automatically when new hits are fetched from Algolia so you don't have to worry about that. We offer two Hits widget in InstantSearch: A `HitsTableWidget` built over a `UITableView`, and a `HitsCollectionWidget` built over a `UICollectionView`.
 
@@ -186,7 +183,7 @@ The Hits widget implements an empty view mechanism to display an alternative Vie
 - `viewForNoResults(in collectionView: UICollectionView) -> UIView`.
 
 ### Highlighting
-<img src="assets/img/highlighting.png" class="img-object" align="right"/>
+<img src="assets/img/widgets/highlighting.png" class="img-object" align="right" width="300"/>
 
 Visually highlighting the search result is [an essential feature of a great search interface][explain-highlighting]. It will help your users understand your results by explaining them why a result is relevant to their query.
 
@@ -217,7 +214,7 @@ import InstantSearchCore
 For more info, check the guide on highlighting in the [InstantSearch Core guide](https://community.algolia.com/instantsearch-core-swift/guide/highlighting.html).
 
 ## RefinementList
-<img src="assets/img/widget_RefinementList.png" class="img-object" align="right"/>
+<img src="assets/img/widgets/refinement-list.png" class="img-object" align="right" width="250"/>
 
 The **RefinementList** is a filtering widget made to display your [facets](https://www.algolia.com/doc/guides/search/filtering-faceting#faceting) and let the user refine the search results. We offer two RefinementList widget in InstantSearch: A `RefinementTableWidget` built over a `UITableView`, and a `RefinementCollectionWidget` built over a `UICollectionView`.
 
@@ -368,7 +365,7 @@ You also have to configure the SwitchWidgets with more parameters:
 - **`valueOff`** Used for faceting when the Switch is off. Example "isAdmin" for `valueOff` and "isUser" for `valueOn`.
  
 ## Stats
-<img src="assets/img/widget_Stats.png" class="img-object" align="right"/>
+<img src="assets/img/widgets/stats.png" class="img-object" align="right" width="250"/>
 
 **Stats** are widgets for displaying statistics about the current search result. Possible ones are: 
 
