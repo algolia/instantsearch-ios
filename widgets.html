@@ -249,7 +249,7 @@
 
     </nav>
     <!-- End community_header --> </div><script src="https://cdn.jsdelivr.net/docsearch.js/2/docsearch.min.js"></script><section class="hero hero-doc fill-titan"><div class="spacer120"></div><div class="container"><div class="col-md-12 h200 text-left"><h1 class="text-heading text-thin color-white">Widgets</h1></div></div></section><section class="documentation-section"><div class="container"><nav class="sidebar pos-abt"><div class="sidebar-container"><h2 class="sidebar-header">Widgets</h2><ul class="sidebar-elements"><li class="sidebar-element level-h2 navItem widgets.html"><a href="getting-started.html">Getting Started</a><ul></ul></li><li class="sidebar-element level-h2 navItem widgets.html"><a href="getting-started-part2.html">Getting Started Part 2</a><ul></ul></li><li class="sidebar-element level-h2 navItem widgets.html"><a href="getting-started-programmatic.html">Getting Started Programmatically</a><ul></ul></li><li class="sidebar-element level-h2 navItem widgets.html"><a href="concepts.html">Main Concepts</a><ul></ul></li><li class="sidebar-element level-h2 navItem-active widgets.html"><a class="navItem-active" href="widgets.html">Widgets</a><ul><li class="sidebar-element level-h3"><a href="widgets.html#searchbar">SearchBar </a></li><li class="sidebar-element level-h3"><a href="widgets.html#hits">Hits </a></li><li class="sidebar-element level-h3"><a href="widgets.html#refinementlist">RefinementList </a></li><li class="sidebar-element level-h3"><a href="widgets.html#numeric-refinements">Numeric Refinements </a></li><li class="sidebar-element level-h3"><a href="widgets.html#facet-refinements">Facet Refinements </a></li><li class="sidebar-element level-h3"><a href="widgets.html#stats">Stats </a></li><li class="sidebar-element level-h3"><a href="widgets.html#custom-widgets">Custom widgets </a></li></ul></li><li class="sidebar-element level-h2 navItem widgets.html"><a href="examples.html">Examples</a><ul></ul></li><li class="sidebar-element level-h2 navItem widgets.html"><a href="troubleshooting.html">Troubleshooting</a><ul></ul></li></ul></div></nav><a class="sidebar-opener"></a><div class="documentation-container"><a class="editThisPage" href="http://github.com/algolia/instantsearch.js/edit/master/docgen/src/widgets.md">Edit this page</a><div class="content"><h2 id="searchbar">SearchBar <a class="anchor" href="widgets.html#searchbar" aria-hidden="true"></a></h2>
-<img src="assets/img/widget_SearchBox.png" class="img-object" align="right" />
+<img src="assets/img/widgets/searchbox.png" class="img-object" align="right" width="300"/>
 <p>The <strong>SearchBar</strong> widgets are made to query the Algolia service on each keystroke. It is the main component of a search experience.</p>
 <p>There are 3 ways to use a <strong>SearchBar</strong> in your app with InstantSearch.</p>
 <ul>
@@ -271,8 +271,6 @@
 <span class="cm-atom">self</span><span class="cm-property">.view</span><span class="cm-property">.addSubview</span><span class="cm-punctuation">(</span><span class="cm-variable">searchBar</span><span class="cm-punctuation">)</span>
 </code></pre>
 <h3 id="activityindicator">ActivityIndicator <a class="anchor" href="widgets.html#activityindicator" aria-hidden="true"></a></h3>
-<img src="assets/img/progress.gif" class="img-object" align="right" />
-<!-- TODO: Move to separate guide -->
 <p>A useful pattern to improve your user’s experience consists in displaying a progress indicator when there are ongoing requests still waiting to complete. This activity indicator will spin as long as some requests are still incomplete.</p>
 <p>You can use the <code>ActivityIndicatorWidget</code> for that purpose. you can specify it in two ways:</p>
 <ul>
@@ -287,7 +285,7 @@
 <span class="cm-atom">self</span><span class="cm-property">.view</span><span class="cm-property">.addSubview</span><span class="cm-punctuation">(</span><span class="cm-variable">activityIndicator</span><span class="cm-punctuation">)</span>
 </code></pre>
 <h2 id="hits">Hits <a class="anchor" href="widgets.html#hits" aria-hidden="true"></a></h2>
-<img src="assets/img/widget_Hits.png" class="img-object" align="right"/>
+<img src="assets/img/widgets/hits.png" class="img-object" align="right" width="250"/>
 <p>The <strong>Hits</strong> widgets are made to display your search results in a flexible way. They are reloaded automatically when new hits are fetched from Algolia so you don’t have to worry about that. We offer two Hits widget in InstantSearch: A <code>HitsTableWidget</code> built over a <code>UITableView</code>, and a <code>HitsCollectionWidget</code> built over a <code>UICollectionView</code>.</p>
 <p>This widget exposes a few attributes that you can set either in Interface Builder or programatically:</p>
 <ul>
@@ -408,7 +406,7 @@ Enabled by default, it will watch the state of the Hits to load more results bef
 <li><code>viewForNoResults(in collectionView: UICollectionView) -&gt; UIView</code>.</li>
 </ul>
 <h3 id="highlighting">Highlighting <a class="anchor" href="widgets.html#highlighting" aria-hidden="true"></a></h3>
-<img src="assets/img/highlighting.png" class="img-object" align="right"/>
+<img src="assets/img/widgets/highlighting.png" class="img-object" align="right" width="300"/>
 <p>Visually highlighting the search result is <a href="https://www.algolia.com/doc/faq/searching/what-is-the-highlighting/">an essential feature of a great search interface</a>. It will help your users understand your results by explaining them why a result is relevant to their query.</p>
 <p>In order to add highlighting to your Hits widget, we offer a utility method and <code>UILabel</code> stored properties. Note that you have to import <code>InstantSearchCore</code> in order to have access to the utility method. There are a few attributes that you can specify to your highlighted label:</p>
 <ul>
@@ -433,7 +431,7 @@ Enabled by default, it will watch the state of the Hits to load more results bef
 </code></pre>
 <p>For more info, check the guide on highlighting in the <a href="https://community.algolia.com/instantsearch-core-swift/guide/highlighting.html">InstantSearch Core guide</a>.</p>
 <h2 id="refinementlist">RefinementList <a class="anchor" href="widgets.html#refinementlist" aria-hidden="true"></a></h2>
-<img src="assets/img/widget_RefinementList.png" class="img-object" align="right"/>
+<img src="assets/img/widgets/refinement-list.png" class="img-object" align="right" width="250"/>
 <p>The <strong>RefinementList</strong> is a filtering widget made to display your <a href="https://www.algolia.com/doc/guides/search/filtering-faceting#faceting">facets</a> and let the user refine the search results. We offer two RefinementList widget in InstantSearch: A <code>RefinementTableWidget</code> built over a <code>UITableView</code>, and a <code>RefinementCollectionWidget</code> built over a <code>UICollectionView</code>.</p>
 <p>Five attributes allow you to configure how it will filter your results:</p>
 <ul>
@@ -586,7 +584,7 @@ Enabled by default, it will watch the state of the Hits to load more results bef
 <li><strong><code>valueOff</code></strong> Used for faceting when the Switch is off. Example “isAdmin” for <code>valueOff</code> and “isUser” for <code>valueOn</code>.</li>
 </ul>
 <h2 id="stats">Stats <a class="anchor" href="widgets.html#stats" aria-hidden="true"></a></h2>
-<img src="assets/img/widget_Stats.png" class="img-object" align="right"/>
+<img src="assets/img/widgets/stats.png" class="img-object" align="right" width="250"/>
 <p><strong>Stats</strong> are widgets for displaying statistics about the current search result. Possible ones are:</p>
 <ul>
 <li><strong><code>StatsButtonWidget</code></strong> inherits from <code>UIButton</code></li>
