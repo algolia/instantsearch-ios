@@ -4262,6 +4262,11 @@ strong {
   .algc-mobilemenu .algc-mobilemenu__item:after {
     background: linear-gradient(76deg, rgba(33, 30, 57, 0.01) 0%, rgba(33, 30, 57, 0) 18%, #211e39 46%, rgba(106, 117, 153, 0.7) 93%, rgba(106, 117, 153, 0) 100%); }
 
+@media only screen and (max-width: 768px) {
+  .algc-navigation__brands .algc-navigation__li.algc-navigation__li--community {
+    width: 45px !important;
+    overflow: hidden !important; } }
+
 .hero {
   padding-top: 56px;
   text-align: center;
@@ -5477,7 +5482,13 @@ div.cm-s-mdn-like span.CodeMirror-matchingbracket {
   color: inherit; }
 
 .screen-mockup {
-  top: -200px; }
+  top: -260px; }
+  @media (max-width: 768px) {
+    .screen-mockup {
+      top: -180px; }
+      .screen-mockup img {
+        max-width: 80% !important;
+        width: inherit !important; } }
 
 @media (max-width: 768px) {
   .section-best-practices .img-responsive {
