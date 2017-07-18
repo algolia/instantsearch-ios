@@ -5487,6 +5487,11 @@ div.cm-s-mdn-like span.CodeMirror-matchingbracket {
 
 .screen-mockup {
   top: -260px; }
+  .screen-mockup img {
+    max-width: 40%; }
+  @media (max-height: 730px) {
+    .screen-mockup {
+      top: -120px; } }
   @media (max-width: 768px) {
     .screen-mockup {
       top: -180px; }
@@ -5642,4 +5647,6 @@ div.cm-s-mdn-like span.CodeMirror-matchingbracket {
     max-width: 600px; } }
 
 * {
-  box-sizing: border-box; }
+  box-sizing: border-box;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale; }
