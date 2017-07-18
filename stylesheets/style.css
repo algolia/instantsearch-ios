@@ -4696,6 +4696,10 @@ strong {
   width: 22px;
   height: 42px;
   vertical-align: middle; }
+  @media (max-width: 768px) {
+    .search-icon,
+    .arrow-icon {
+      display: none; } }
 
 .arrow-icon {
   width: 16px; }
