@@ -1,4 +1,4 @@
-# InstantSearch
+![InstantSearch iOS](./docgen/assets/img/InstantSearch-iOS-ReadMe.png)
 
 <p align="left">
 <img src="https://img.shields.io/badge/platform-iOS-blue.svg?style=flat" alt="Platform iOS" />
