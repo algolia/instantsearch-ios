@@ -49,19 +49,19 @@ In this part, you've learned:
 
 <img src="assets/img/getting-started/guide-refinementlist.png" class="img-object" align="right"/>
 
-In this section, we will build a refinementList to filter results based on the categories selected. **We will only go through the storyboard approach here**. 
+A refinementList lets the user refine the search results by choosing filters from a list of filters. In this section, we will build a refinementList to filter results based on the categories selected. **We will only go through the storyboard approach here**. 
 
 ### Setup New Screen and Navigation
 
 - Go to File -> New -> File, then select Cocoa Touch Class, and name it RefinementViewController, then create it. 
 - Let's first setup the navigation controller. In your `Main.storyboard` file, click on your `ViewController`, then in your menu bar at the top, go to Editor -> Embed in -> Navigation Controller. 
-- In your Utilities bar on your right, drag and drop a "View Controller" from the Object library to your storyboard. Click on it and then in the Identity Inspector, change its custom class to `RefinementViewController`. 
-- In your Object library again, drag and drop a Bar Button Item to the Navigation bar of the first ViewController. Double click on it to change its name to "Filter". 
-- From this button, hold on Ctrl, and drag it to the `RefinementViewConroller` view, and select Show as the Action Segue. 
+- In your Utilities bar on your right, drag and drop a `View Controller` from the Object library to your storyboard. Click on it and then in the Identity Inspector, change its custom class to `RefinementViewController`. 
+- In your Object library again, drag and drop a `Bar Button Item` to the Navigation bar of the first ViewController. Double click on it to change its name to "Filter". 
+- From this button, hold on Ctrl, and drag it to the `RefinementViewConroller` view, and select `Show` as the Action Segue. 
 
 Now that we have our navigation setup, let's add our refinementList as a `tableView`.
 
-* Drag and drop a Table View from the Object Library onto the `RefinementViewController` view, and change its custom class to be `RefinementTableWidget`. Go ahead and create a prototype cell for this table and specify `refinementCell` as the identifier. 
+* Drag and drop a Table View from the Object Library onto the `RefinementViewController` view, and change its custom class to be `RefinementTableWidget`. Go ahead and create a prototype cell for this table and specify `refinementCell` as the identifier. Also, change the `Style` of the cell in the identity inspector to `Subtitle`.
 * Then, create an `IBOutlet` of that tableView into `RefinementViewController.swift`, and call it `tableView`.
 * Finally, add the `import InstantSearch` statement at the top of `RefinementViewController.swift`.
 
