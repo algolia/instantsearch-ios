@@ -21,6 +21,6 @@ This example imitates a product search interface like well-known e-commerce appl
 - Filter with Numeric filters by **price** or **rating**
 - Custom views using `AlgoliaWidget` for filtering by **price** and **rating**.
 
-<a href="https://github.com/algolia/instantsearch-swift-examples" class="btn btn-static-primary">See example <i class="icon icon-arrow-right"></i></a>
+<a href="https://github.com/algolia/instantsearch-swift-examples" class="btn btn-static-primary" target="_blank">View source code on GitHub <i class="icon icon-arrow-right"></i></a>
 
 [ecommerce-url]: https://github.com/algolia/instantsearch-swift-examples/tree/master/ecommerce%20Ikea
