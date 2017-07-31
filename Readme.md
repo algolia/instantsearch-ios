@@ -43,6 +43,16 @@ Then, run the following command:
 $ pod update
 ```
 
+#### Carthage
+
+[Carthage](https://github.com/Carthage/Carthage) is a simple, decentralized dependency manager for Cocoa.
+
+To install InstantSearch, simply add the following line to your Cartfile:
+
+```ogdl
+github "algolia/instantsearch-ios" ~> 1.0
+```
+
 ## Documentation
 
 **You can start with the [Getting Started Guide](https://community.algolia.com/instantsearch-ios/getting-started.html).**
