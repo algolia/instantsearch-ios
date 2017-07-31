@@ -1,6 +1,12 @@
 Change Log
 ==========
 
+## 1.0.1 (2017-07-31)
+
+### Dependency Managers
+
+- Add support for Carthage
+
 ## 1.0.0 (2017-07-17)
 
 **First official release of InstantSearch iOS!**
