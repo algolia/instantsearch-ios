@@ -1,0 +1,2 @@
+github "algolia/algoliasearch-client-swift" "4.8.1"
+github "algolia/instantsearch-core-swift" "2.0.1"

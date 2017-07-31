@@ -9,6 +9,7 @@
 import Foundation
 import InstantSearchCore
 import AlgoliaSearch
+import UIKit
 
 // ------------------------------------------------------------------------------------------------------
 // IMPLEMENTATION NOTES
