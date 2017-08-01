@@ -105,6 +105,8 @@ import UIKit
     private lazy var viewModelFetcher: ViewModelFetcher = {
         return ViewModelFetcher()
     }()
+    
+    private static let instantSearchUserAgent = "InstantSearch iOS"
 
     // MARK: - Init and Configure
 
@@ -116,7 +118,7 @@ import UIKit
     /// Add the library's version to the client's user agents, if not already present.
     private static let _updateClientUserAgents: Void = {
         let bundleInfo = Bundle(for: InstantSearch.self).infoDictionary!
-        let name = bundleInfo["CFBundleName"] as! String
+        let name = instantSearchUserAgent
         let version = bundleInfo["CFBundleShortVersionString"] as! String
         let libraryVersion = LibraryVersion(name: name, version: version)
         Client.addUserAgent(libraryVersion)
