@@ -55,3 +55,6 @@ Carthage/
 
 # AppCode from JetBrains
 .idea
+
+# Example App
+Example/
