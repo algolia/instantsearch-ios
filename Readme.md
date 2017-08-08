@@ -10,6 +10,8 @@
 
 By [Algolia](http://algolia.com).
 
+InstantSearch family: **InstantSearch iOS** | [InstantSearch Android][instantsearch-android-github] | [React InstantSearch][react-instantsearch-github] | [InstantSearch.js][instantsearch-js-github].
+
 **InstantSearch iOS** is a library providing widgets and helpers to help you build the best instant-search experience on iOS with Algolia. It is built on top of Algolia's [Swift API Client](https://github.com/algolia/algoliasearch-client-swift) to provide you a high-level solution to quickly build various search interfaces.
 
 <!-- <img src="Example/InstantSearch.gif" width="300"/> -->
@@ -108,3 +110,7 @@ Run your app and you will the most basic search experience: a `UISearchBar` with
 # License
 
 InstantSearch iOS is [MIT licensed](LICENSE.md).
+
+[react-instantsearch-github]: https://github.com/algolia/react-instantsearch/
+[instantsearch-android-github]: https://github.com/algolia/instantsearch-android
+[instantsearch-js-github]: https://github.com/algolia/instantsearch.js
