@@ -94,6 +94,8 @@ override func viewDidLoad() {
 
 Run your app and you will the most basic search experience: a `UISearchBar` with the number of results each time you write a query.
 
+To get a more meaningful search experience, please follow our [Getting Started Guide](https://community.algolia.com/instantsearch-ios/getting-started.html).
+
 ## Getting Help
 
 - **Need help**? Ask a question to the [Algolia Community](https://discourse.algolia.com/) or on [Stack Overflow](http://stackoverflow.com/questions/tagged/algolia).
