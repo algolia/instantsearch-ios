@@ -32,7 +32,7 @@ var searchBar = SearchBarWidget(frame: CGRect)
 self.view.addSubview(searchBar)
 ```
 
-### ActivityIndicator
+## ActivityIndicator
 
 A useful pattern to improve your user's experience consists in displaying a progress indicator when there are ongoing requests still waiting to complete. This activity indicator will spin as long as some requests are still incomplete. 
 
