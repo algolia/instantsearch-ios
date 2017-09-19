@@ -20,7 +20,7 @@ let clearAllFiltersNotification = Notification.Name(rawValue: "clearAllFiltersNo
         addTarget(self, action: #selector(self.clearFilter), for: .touchUpInside)
     }
     
-    internal func clearFilter() {
+    @objc internal func clearFilter() {
         searcher.reset()
         NotificationCenter.default.post(name: clearAllFiltersNotification, object: nil)
     }

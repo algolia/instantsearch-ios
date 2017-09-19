@@ -70,8 +70,8 @@ extension UILabel {
             let textColor = highlightedTextColor ?? self.tintColor ?? UIColor.blue
             let backgroundColor = highlightedBackgroundColor ?? UIColor.clear
             
-            attributedText = Highlighter(highlightAttrs: [NSForegroundColorAttributeName: textColor,
-                                               NSBackgroundColorAttributeName: backgroundColor]).render(text: text)
+            attributedText = Highlighter(highlightAttrs: [NSAttributedStringKey.foregroundColor: textColor,
+                                                          NSAttributedStringKey.backgroundColor: backgroundColor]).render(text: text)
         }
     }
 }

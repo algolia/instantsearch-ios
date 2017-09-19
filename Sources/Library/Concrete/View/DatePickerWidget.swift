@@ -47,7 +47,7 @@ import UIKit
         viewModel.updateNumeric(value: NSNumber(value: date.timeIntervalSince1970), doSearch: false)
     }
     
-    func numericFilterValueChanged() {
+    @objc func numericFilterValueChanged() {
         viewModel.updateNumeric(value: NSNumber(value: date.timeIntervalSince1970), doSearch: true)
     }
 }

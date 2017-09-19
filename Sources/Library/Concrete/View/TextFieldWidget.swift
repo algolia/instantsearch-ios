@@ -21,7 +21,7 @@ import UIKit
         addTarget(self, action: #selector(textFieldDidChange(textField:)), for: .editingChanged)
     }
     
-    func textFieldDidChange(textField: UITextField) {
+    @objc func textFieldDidChange(textField: UITextField) {
         guard let searchText = textField.text else { return }
         
         searcher.params.query = searchText

@@ -310,14 +310,14 @@ import UIKit
     // MARK: - Notification Observers
 
     /// Send reset event to all registered viewModels that implement the `resettableDelegate` protocol.
-    func reset() {
+    @objc func reset() {
         for algoliaWidget in resettableDelegates {
             algoliaWidget.onReset()
         }
     }
 
     /// Refinement Notification handler sent when either a Numeric or a Facet Refinement is changed.
-    func onRefinementNotification(notification: Notification) {
+    @objc func onRefinementNotification(notification: Notification) {
         let numericRefinementMap = notification.userInfo?[Searcher.userInfoNumericRefinementChangeKey] as? [String: [NumericRefinement]]
         let facetRefinementMap = notification.userInfo?[Searcher.userInfoFacetRefinementChangeKey] as? [String: [FacetRefinement]]
 
