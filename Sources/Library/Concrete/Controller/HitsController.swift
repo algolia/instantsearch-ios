@@ -31,15 +31,15 @@ import UIKit
     /// Delegate that takes care of the behavior of the collection hits widget.
     @objc public weak var collectionDelegate: HitsCollectionViewDelegate?
     
-    convenience public init(table: HitsTableWidget) {
+    @objc convenience public init(table: HitsTableWidget) {
         self.init(hitsView: table)
     }
     
-    convenience public init(collection: HitsCollectionWidget) {
+    @objc convenience public init(collection: HitsCollectionWidget) {
         self.init(hitsView: collection)
     }
     
-    init(hitsView: HitsViewDelegate) {
+    @objc init(hitsView: HitsViewDelegate) {
         self.viewModel = hitsView.viewModel
         super.init()
     }

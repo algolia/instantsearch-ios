@@ -7,7 +7,7 @@
 
 import XCTest
 @testable import InstantSearch
-@testable import InstantSearchCore
+import InstantSearchCore
 import AlgoliaSearch
 
 class WidgetTests: XCTestCase {

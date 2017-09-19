@@ -129,7 +129,7 @@ import UIKit
     /// - parameter appID: the Algolia AppID.
     /// - parameter apiKey: the Algolia ApiKey.
     /// - parameter index: the name of the index.
-    public convenience init(appID: String, apiKey: String, index: String) {
+    @objc public convenience init(appID: String, apiKey: String, index: String) {
         self.init()
         self.configure(appID: appID, apiKey: apiKey, index: index)
     }
@@ -137,7 +137,7 @@ import UIKit
     /// Create a new InstantSearch reference.
     ///
     /// - parameter searcher: the `Searcher` used by InstantSearch
-    public convenience init(searcher: Searcher) {
+    @objc public convenience init(searcher: Searcher) {
         self.init()
         configure(searcher: searcher)
     }

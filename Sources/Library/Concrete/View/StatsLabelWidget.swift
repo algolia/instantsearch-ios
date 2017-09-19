@@ -17,13 +17,13 @@ import UIKit
     
     var viewModel: StatsViewModelDelegate
     
-    public override init(frame: CGRect) {
+    @objc public override init(frame: CGRect) {
         viewModel = StatsViewModel()
         super.init(frame: frame)
         viewModel.view = self
     }
     
-    public required init?(coder aDecoder: NSCoder) {
+    @objc public required init?(coder aDecoder: NSCoder) {
         viewModel = StatsViewModel()
         super.init(coder: aDecoder)
         viewModel.view = self
@@ -44,7 +44,7 @@ import UIKit
     public var errorText: String = Constants.Defaults.errorText
     internal var clearText: String = Constants.Defaults.clearText
     
-    public init(label: UILabel) {
+    @objc public init(label: UILabel) {
         self.label = label
         viewModel = StatsViewModel()
         super.init()
