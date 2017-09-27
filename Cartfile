@@ -1,1 +1,1 @@
-github "algolia/instantsearch-core-swift" "swift-4"
+github "algolia/instantsearch-core-swift" ~> 3.0

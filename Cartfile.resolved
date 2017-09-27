@@ -1,2 +1,2 @@
-github "algolia/algoliasearch-client-swift" "6edb7adf9e5108ca2910e17232a8639a23aa0b2e"
-github "algolia/instantsearch-core-swift" "45a2fe1d42a0f695bf8fe71cf4f75cdd16e091c9"
+github "algolia/algoliasearch-client-swift" "5.0.2"
+github "algolia/instantsearch-core-swift" "3.0.0"

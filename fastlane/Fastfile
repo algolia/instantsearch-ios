@@ -1,0 +1,71 @@
+# More documentation about how to customize your build
+# can be found here:
+# https://docs.fastlane.tools
+fastlane_version "1.109.0"
+
+before_all do
+	
+end
+
+platform :ios do
+	lane :test do
+		carthage(
+			command: "update",
+			platform: "iOS",
+			configuration: "Release",
+			cache_builds: true
+		)
+		scan(
+			scheme: "InstantSearch",
+			configuration: "Debug",
+			clean: true
+		)
+	end
+end
+
+
+desc "Available options: type:major|minor|patch"
+lane :deploy do |options|
+	prepare_git('master')
+	pod_lib_lint(verbose: true)
+	increment_version_number(
+  		bump_type: options[:type]
+	)
+	new_build_number = version_bump_podspec(
+		bump_type: options[:type],
+		path: "InstantSearch-iOS.podspec"
+	)
+
+	#puts changelog_from_git_commits
+	git_commit(
+		path: ["InstantSearch-iOS.podspec", "Sources/Info.plist" ,"Tests/Info.plist"], 
+		message: "Version #{new_build_number}"
+	)
+	add_git_tag(
+		build_number: new_build_number,
+		tag: new_build_number
+	)
+	push_to_git_remote(remote: "origin")
+	pod_push(
+		path: "InstantSearch-iOS.podspec"
+	)
+
+end
+
+desc "Upgrade Swift Version in .swift-version"
+# Force cocoapods to compile with 'swift-version'
+lane :upgrade_swift do |options|
+	version = options[:version]
+	sh("echo #{version} > ../.swift-version")
+	puts "\e[31m\e[5mDon't forget to update the swift version in the dependecies: .podspecs & cartfile'\e[0m"
+end
+
+def prepare_git(branch)
+	ensure_git_status_clean
+	ensure_git_branch(branch:branch)
+	git_pull
+end
+
+after_all do
+  #slack
+end
