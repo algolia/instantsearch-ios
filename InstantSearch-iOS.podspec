@@ -14,7 +14,7 @@ Pod::Spec.new do |s|
 
   s.subspec "InstantSearch-iOS" do |ss|
     ss.source_files = 'Sources/Library/**/*.{swift}'
-    ss.dependency 'InstantSearch-Core-Swift', '~> 2.0.0'
+    ss.dependency 'InstantSearch-Core-Swift', '~> 3.0.0'
   end
 
   s.subspec "CustomWidgets" do |ss|
@@ -22,6 +22,6 @@ Pod::Spec.new do |s|
       'Sources/Library/**/*.{swift}',
       'Sources/CustomWidgets/**/*.{swift}'
     ]
-    ss.dependency 'InstantSearch-Core-Swift', '~> 2.0.0'
+    ss.dependency 'InstantSearch-Core-Swift', '~> 3.0.0'
   end
 end
