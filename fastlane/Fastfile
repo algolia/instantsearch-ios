@@ -27,7 +27,10 @@ end
 desc "Available options: type:major|minor|patch"
 lane :deploy do |options|
 	prepare_git('master')
-	pod_lib_lint(verbose: true)
+	pod_lib_lint(
+		verbose: true,
+		allow_warnings: true
+	)
 	increment_version_number(
   		bump_type: options[:type]
 	)
@@ -47,7 +50,8 @@ lane :deploy do |options|
 	)
 	push_to_git_remote(remote: "origin")
 	pod_push(
-		path: "InstantSearch-iOS.podspec"
+		path: "InstantSearch-iOS.podspec",
+		allow_warnings: true
 	)
 
 end
