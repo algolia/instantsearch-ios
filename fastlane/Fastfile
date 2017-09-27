@@ -41,7 +41,7 @@ lane :deploy do |options|
 
 	#puts changelog_from_git_commits
 	git_commit(
-		path: ["InstantSearch-iOS.podspec", "Sources/Info.plist" ,"Tests/Info.plist"], 
+		path: ["InstantSearch-iOS.podspec", "Sources/Info.plist" ,"Tests/Info.plist", "InstantSearchTestsHost/Info.plist"], 
 		message: "Version #{new_build_number}"
 	)
 	add_git_tag(
