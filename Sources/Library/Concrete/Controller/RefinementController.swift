@@ -31,15 +31,15 @@ import UIKit
     /// Delegate that takes care of the behavior of the collection refinement widget.
     @objc public weak var collectionDelegate: RefinementCollectionViewDelegate?
     
-    convenience public init(table: RefinementTableWidget) {
+    @objc convenience public init(table: RefinementTableWidget) {
         self.init(refinementView: table)
     }
     
-    convenience public init(collection: RefinementCollectionWidget) {
+    @objc convenience public init(collection: RefinementCollectionWidget) {
         self.init(refinementView: collection)
     }
     
-    init(refinementView: RefinementMenuViewDelegate) {
+    @objc init(refinementView: RefinementMenuViewDelegate) {
         self.viewModel = refinementView.viewModel
         super.init()
     }

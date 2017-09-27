@@ -44,7 +44,7 @@ CGRect defaultRect;
 }
 
 - (void) testWidgets {
-    HitsTableWidget* hitsTableWidget = [[HitsTableWidget alloc] initWithFrame: defaultRect];
+    HitsTableWidget* hitsTableWidget = [[HitsTableWidget alloc] initWithFrame:defaultRect style:UITableViewStylePlain];
     hitsTableWidget.hitsPerPage = 10;
     hitsTableWidget.infiniteScrolling = true;
     hitsTableWidget.remainingItemsBeforeLoading = 5;
