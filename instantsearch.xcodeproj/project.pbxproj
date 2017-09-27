@@ -68,8 +68,6 @@
 		E28B07E21EAF9F27003AAE47 /* RefinementCollectionWidget.swift in Sources */ = {isa = PBXBuildFile; fileRef = E28B07E11EAF9F27003AAE47 /* RefinementCollectionWidget.swift */; };
 		E28B07E41EAF9FF2003AAE47 /* RefinementTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E28B07E31EAF9FF2003AAE47 /* RefinementTableViewController.swift */; };
 		E28B07E61EAF9FFE003AAE47 /* RefinementCollectionViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E28B07E51EAF9FFE003AAE47 /* RefinementCollectionViewController.swift */; };
-		E28B08011EB0F459003AAE47 /* CustomSlider.swift in Sources */ = {isa = PBXBuildFile; fileRef = E28B08001EB0F459003AAE47 /* CustomSlider.swift */; };
-		E28B08051EB0F501003AAE47 /* CustomSlider.xib in Resources */ = {isa = PBXBuildFile; fileRef = E28B08041EB0F501003AAE47 /* CustomSlider.xib */; };
 		E2A476FA1EC5DFC1007CA367 /* ObjectiveCBridgingTests.m in Sources */ = {isa = PBXBuildFile; fileRef = E2A476F81EC5DEDE007CA367 /* ObjectiveCBridgingTests.m */; };
 		E2A476FE1EC60BD7007CA367 /* CustomWidget.m in Sources */ = {isa = PBXBuildFile; fileRef = E2A476FD1EC60BD7007CA367 /* CustomWidget.m */; };
 		E2A477011EC61B43007CA367 /* InstantSearch-Bridging-Header.h in Headers */ = {isa = PBXBuildFile; fileRef = E2A477001EC61B43007CA367 /* InstantSearch-Bridging-Header.h */; };
@@ -165,8 +163,6 @@
 		E28B07E11EAF9F27003AAE47 /* RefinementCollectionWidget.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RefinementCollectionWidget.swift; sourceTree = "<group>"; };
 		E28B07E31EAF9FF2003AAE47 /* RefinementTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RefinementTableViewController.swift; sourceTree = "<group>"; };
 		E28B07E51EAF9FFE003AAE47 /* RefinementCollectionViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RefinementCollectionViewController.swift; sourceTree = "<group>"; };
-		E28B08001EB0F459003AAE47 /* CustomSlider.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CustomSlider.swift; sourceTree = "<group>"; };
-		E28B08041EB0F501003AAE47 /* CustomSlider.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = CustomSlider.xib; sourceTree = "<group>"; };
 		E2A476F81EC5DEDE007CA367 /* ObjectiveCBridgingTests.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ObjectiveCBridgingTests.m; sourceTree = "<group>"; };
 		E2A476FD1EC60BD7007CA367 /* CustomWidget.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CustomWidget.m; sourceTree = "<group>"; };
 		E2A477001EC61B43007CA367 /* InstantSearch-Bridging-Header.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "InstantSearch-Bridging-Header.h"; sourceTree = "<group>"; };
@@ -248,8 +244,14 @@
 			isa = PBXGroup;
 			children = (
 				E2AFE5691ED5709A00B6A5A7 /* TestHelpers */,
-				E28B07FF1EB0F435003AAE47 /* CustomWidgets */,
-				E28B07F81EB0F0BD003AAE47 /* Library */,
+				E27A7C021E97B913005B2506 /* Concrete */,
+				E27A7C001E97B83C005B2506 /* Protocols */,
+				E27C16411E9394250091D79E /* Helpers.swift */,
+				E2231E961EC9F5A7002FCF82 /* Constants.swift */,
+				28F828821C494B2C00330CF4 /* Info.plist */,
+				E27C163B1E9394250091D79E /* InstantSearch.swift */,
+				E27A7BF01E97931E005B2506 /* ViewModelFetcher.swift */,
+				E2A477001EC61B43007CA367 /* InstantSearch-Bridging-Header.h */,
 			);
 			path = Sources;
 			sourceTree = "<group>";
@@ -408,30 +410,6 @@
 			path = ViewController;
 			sourceTree = "<group>";
 		};
-		E28B07F81EB0F0BD003AAE47 /* Library */ = {
-			isa = PBXGroup;
-			children = (
-				E27A7C021E97B913005B2506 /* Concrete */,
-				E27A7C001E97B83C005B2506 /* Protocols */,
-				E27C16411E9394250091D79E /* Helpers.swift */,
-				E2231E961EC9F5A7002FCF82 /* Constants.swift */,
-				28F828821C494B2C00330CF4 /* Info.plist */,
-				E27C163B1E9394250091D79E /* InstantSearch.swift */,
-				E27A7BF01E97931E005B2506 /* ViewModelFetcher.swift */,
-				E2A477001EC61B43007CA367 /* InstantSearch-Bridging-Header.h */,
-			);
-			path = Library;
-			sourceTree = "<group>";
-		};
-		E28B07FF1EB0F435003AAE47 /* CustomWidgets */ = {
-			isa = PBXGroup;
-			children = (
-				E28B08001EB0F459003AAE47 /* CustomSlider.swift */,
-				E28B08041EB0F501003AAE47 /* CustomSlider.xib */,
-			);
-			path = CustomWidgets;
-			sourceTree = "<group>";
-		};
 		E2AFE5641ED49B2C00B6A5A7 /* Helpers */ = {
 			isa = PBXGroup;
 			children = (
@@ -580,7 +558,6 @@
 			buildActionMask = 2147483647;
 			files = (
 				E25FB0A31ECF550C006B8CED /* Info.plist in Resources */,
-				E28B08051EB0F501003AAE47 /* CustomSlider.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -679,7 +656,6 @@
 				E27C164A1E9394250091D79E /* ActivityIndicatorView.swift in Sources */,
 				E27141D51E9F764100959294 /* HitsTableViewController.swift in Sources */,
 				E2231E971EC9F5A7002FCF82 /* Constants.swift in Sources */,
-				E28B08011EB0F459003AAE47 /* CustomSlider.swift in Sources */,
 				E27A7BEF1E962768005B2506 /* HitsViewModel.swift in Sources */,
 				E233BBFD1EBA18C200F5F5E1 /* SwitchWidget.swift in Sources */,
 				E233BC0E1EBC786B00F5F5E1 /* SegmentedControlWidget.swift in Sources */,
@@ -887,13 +863,13 @@
 					"$(inherited)",
 					"$(PROJECT_DIR)/Carthage/Build/iOS",
 				);
-				INFOPLIST_FILE = "$(SRCROOT)/Sources/Library/Info.plist";
+				INFOPLIST_FILE = "$(SRCROOT)/Sources/Info.plist";
 				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = com.algolia.InstantSearch;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SKIP_INSTALL = YES;
-				SWIFT_OBJC_BRIDGING_HEADER = "Sources/Library/InstantSearch-Bridging-Header.h";
+				SWIFT_OBJC_BRIDGING_HEADER = "Sources/InstantSearch-Bridging-Header.h";
 				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
 				SWIFT_SWIFT3_OBJC_INFERENCE = Off;
 				SWIFT_VERSION = 4.0;
@@ -916,13 +892,13 @@
 					"$(inherited)",
 					"$(PROJECT_DIR)/Carthage/Build/iOS",
 				);
-				INFOPLIST_FILE = "$(SRCROOT)/Sources/Library/Info.plist";
+				INFOPLIST_FILE = "$(SRCROOT)/Sources/Info.plist";
 				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = com.algolia.InstantSearch;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SKIP_INSTALL = YES;
-				SWIFT_OBJC_BRIDGING_HEADER = "Sources/Library/InstantSearch-Bridging-Header.h";
+				SWIFT_OBJC_BRIDGING_HEADER = "Sources/InstantSearch-Bridging-Header.h";
 				SWIFT_SWIFT3_OBJC_INFERENCE = Off;
 				SWIFT_VERSION = 4.0;
 			};
