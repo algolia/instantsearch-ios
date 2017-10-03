@@ -52,7 +52,7 @@ $ pod update
 To install InstantSearch, simply add the following line to your Cartfile:
 
 ```ogdl
-github "algolia/instantsearch-ios" ~> 1.0
+github "algolia/instantsearch-ios" ~> 2.0
 ```
 
 ## Documentation
