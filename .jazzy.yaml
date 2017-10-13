@@ -1,7 +1,4 @@
-# The Xcode project is not standalone: we need the Cocoapods-generated workspace to draw dependencies.
 xcodebuild_arguments:
-    - -workspace
-    - InstantSearch.xcworkspace
     - -scheme
     - InstantSearch
 output: docs/reference
