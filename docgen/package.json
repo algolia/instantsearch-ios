@@ -6,7 +6,7 @@
   "scripts": {
     "dev": "babel-node start.js",
     "build": "babel-node build.js",
-    "deploy": "cd ../Tools && ./deploy-gh-pages.sh"
+    "deploy": "gh-pages -d ../docs"
   },
   "dependencies": {
     "algolia-frontend-components": "^0.0.24",
