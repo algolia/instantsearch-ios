@@ -6,6 +6,7 @@ output: docs/reference
 # WARNING: The path is relative to the output directory.
 docset_path: ../../build/docset
 hide_documentation_coverage: true
+clean: true
 abstract:
     - LICENSE
 readme: docgen/jazzy/index.md
