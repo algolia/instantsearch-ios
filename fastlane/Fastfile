@@ -54,6 +54,7 @@ lane :deploy do |options|
 		allow_warnings: true
 	)
 
+	publish_community_website
 end
 
 desc "Upgrade Swift Version in .swift-version"
@@ -68,6 +69,15 @@ def prepare_git(branch)
 	ensure_git_status_clean
 	ensure_git_branch(branch:branch)
 	git_pull
+end
+
+lane :publish_community_website do
+	# build community website
+	sh("cd ../docgen && yarn add gh-pages && NODE_ENV='production' npm run build")
+	# Generate API reference
+	jazzy
+	# Publish community website and API reference to gh pages
+	sh("cd ../docgen && npm run deploy")
 end
 
 after_all do
