@@ -10,7 +10,7 @@ githubSource: docgen/src/getting-started.md
 ---
 
 *This guide will walk you through the few steps needed to start a project with InstantSearch iOS.
-We will start from an empty iOS project, and create from scratch a full search interface!*
+We will start from an empty iOS project, and then create a full search interface!*
 
 *Another thing to point out is that this getting started guide will show you how to build your search experience using storyboards (or xibs). However, if you prefer to write your UI programatically, you can follow the [programmatic getting started guide](getting-started-programmatic.html).*
 
