@@ -2,7 +2,7 @@
 
 <p align="left">
 <img src="https://img.shields.io/badge/platform-iOS-blue.svg?style=flat" alt="Platform iOS" />
-<a href="https://developer.apple.com/swift"><img src="https://img.shields.io/badge/swift3-compatible-blue.svg?style=flat" alt="Swift 3 compatible" /></a>
+<a href="https://developer.apple.com/swift"><img src="https://img.shields.io/badge/Swift-4.0-blue.svg" alt="Swift 4 compatible" /></a>
 <a href="https://developer.apple.com/documentation/objectivec"><img src="https://img.shields.io/badge/Objective--C-compatible-blue.svg" alt="Objective-C compatible" /></a>
 <a href="https://cocoapods.org/pods/XLActionController"><img src="https://img.shields.io/cocoapods/v/InstantSearch-iOS.svg" alt="CocoaPods compatible" /></a>
 <a href="https://raw.githubusercontent.com/algolia/InstantSearch/master/LICENSE"><img src="http://img.shields.io/badge/license-MIT-blue.svg?style=flat" alt="License: MIT" /></a>
