@@ -58,7 +58,6 @@ Carthage/
 
 # Example App
 Example/
-InstantSearchDemo/
 
 # fastlane specific
 fastlane/report.xml
