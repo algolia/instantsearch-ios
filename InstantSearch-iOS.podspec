@@ -15,5 +15,5 @@ Pod::Spec.new do |s|
         'Sources/**/*.{swift}'
     ]
 
-    s.dependency 'InstantSearch-Core-Swift', '~> 3.0.0'
+    s.dependency 'InstantSearch-Core-Swift', '~> 3.0'
 end
