@@ -91,8 +91,13 @@ import UIKit
     private var refinableDelegates = WeakSet<RefinableDelegate>()
     private var refinableDelegateMap = [String: WeakSet<RefinableDelegate>]()
 
-    /// The Searcher used by this InstantSearch.
+    /// The Searchers used in the case of multi-indexing.
+    private var searchers: [IndexId: Searcher]
+    
+    // The Searcher used in the case of single-indexing.
     public var searcher: Searcher!
+    
+    private var isMultiIndexActive = false
 
     /// The search parameters of the Searcher.
     ///
@@ -111,6 +116,7 @@ import UIKit
     // MARK: - Init and Configure
 
     private override init() {
+        self.searchers = [:]
         super.init()
         InstantSearch._updateClientUserAgents
     }
@@ -153,22 +159,59 @@ import UIKit
         let searcher = Searcher(index: index)
         configure(searcher: searcher)
     }
-
+    
     // Helper method to configure the searcher, assign the searcher delegate to the InstantSearch reference,
     // and subscribe to Notifications that are interesting to InstantSearch.
     private func configure(searcher: Searcher) {
         self.searcher = searcher
         self.searcher.delegate = self
-
+        
         NotificationCenter.default.addObserver(self,
                                                selector: #selector(reset),
                                                name: clearAllFiltersNotification,
                                                object: searcher.params)
-
+        
         NotificationCenter.default.addObserver(self,
                                                selector: #selector(onRefinementNotification(notification:)),
                                                name: Searcher.RefinementChangeNotification,
                                                object: searcher.params)
+    }
+    
+    // Multi-Index init
+    
+    /// Create a new InstantSearch reference with the given configurations.
+    ///
+    /// - parameter appID: the Algolia AppID.
+    /// - parameter apiKey: the Algolia ApiKey.
+    /// - parameter indexIds: the identifications for each index
+    @objc public convenience init(appID: String, apiKey: String, indexIds: [IndexId]) {
+        self.init()
+        self.configure(appID: appID, apiKey: apiKey, indexIds: indexIds)
+    }
+    
+    /// Configure the InstantSearch reference with the given configurations.
+    ///
+    /// - parameter appID: the Algolia AppID.
+    /// - parameter apiKey: the Algolia ApiKey.
+    /// - parameter indexIds: identifiers for the different indices.
+    @objc public func configure(appID: String, apiKey: String, indexIds: [IndexId]) {
+        let client = Client(appID: appID, apiKey: apiKey)
+        
+        for indexId in indexIds {
+            let index = client.index(withName: indexId.name)
+            let searcher = Searcher(index: index)
+            searchers[indexId] = searcher
+        }
+        
+        configureMulti(searchers: searchers)
+    }
+    
+    private func configureMulti(searchers: [IndexId: Searcher]) {
+        self.searchers = searchers
+        isMultiIndexActive = true
+        for (_, searcher) in searchers {
+            searcher.delegate = self
+        }
     }
 
     // MARK: Add widget methods
@@ -194,7 +237,7 @@ import UIKit
         // After added all widgets, the widgets might have added
         // parameters to the searcher.params. So we need to trigger a new search.
         if doSearch {
-            self.searcher.search()
+            search()
         }
     }
 
@@ -269,7 +312,7 @@ import UIKit
         // After a widget is added, we can decide to make a search. This is when
         // a widget modifies the state of the searcher.params
         if doSearch {
-            searcher.search()
+            search()
         }
     }
 
@@ -377,8 +420,26 @@ import UIKit
     // MARK: - Helper methods
     
     internal func search(with searchText: String) {
-        searcher.params.query = searchText
-        searcher.search()
+        
+        if isMultiIndexActive {
+            for (_, searcher) in searchers {
+                searcher.params.query = searchText
+            }
+        } else {
+            searcher.params.query = searchText
+        }
+        
+        search()
+    }
+    
+    internal func search() {
+        if isMultiIndexActive {
+            for (_, searcher) in searchers {
+                searcher.search()
+            }
+        } else {
+            self.searcher.search()
+        }
     }
 }
 

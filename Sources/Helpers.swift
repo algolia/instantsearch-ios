@@ -150,3 +150,14 @@ internal struct WeakSet<T: AnyObject>: Sequence {
         }
     }
 }
+
+// TODO: move to own file when it's set.
+@objc public class IndexId: NSObject  {
+    var name: String
+    var id: String
+    
+    public init(name: String, id: String) {
+        self.name = name
+        self.id = id
+    }
+}
