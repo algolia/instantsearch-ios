@@ -23,6 +23,9 @@ import UIKit
     @IBInspectable public var sortBy: String = Constants.Defaults.sortBy
     @IBInspectable public var limit: Int = Constants.Defaults.limit
     
+    @IBInspectable public var indexName: String = Constants.Defaults.indexName
+    @IBInspectable public var indexId: String = Constants.Defaults.indexId
+    
     var viewModel: RefinementMenuViewModelDelegate
     
     public override init(frame: CGRect, style: UITableViewStyle) {

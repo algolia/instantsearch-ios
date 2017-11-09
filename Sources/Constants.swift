@@ -11,6 +11,10 @@ import Foundation
 struct Constants {
     struct Defaults {
         
+        // Multi Index
+        static let indexName: String = ""
+        static let indexId: String = ""
+        
         // Hits
         static let hitsPerPage: UInt = 20
         static let infiniteScrolling: Bool = true

@@ -18,6 +18,9 @@ import UIKit
     @IBInspectable public var remainingItemsBeforeLoading: UInt = Constants.Defaults.remainingItemsBeforeLoading
     @IBInspectable public var showItemsOnEmptyQuery: Bool = Constants.Defaults.showItemsOnEmptyQuery
     
+    @IBInspectable public var indexName: String = Constants.Defaults.indexName
+    @IBInspectable public var indexId: String = Constants.Defaults.indexId
+    
     var viewModel: HitsViewModelDelegate
     
     public override init(frame: CGRect, style: UITableViewStyle) {

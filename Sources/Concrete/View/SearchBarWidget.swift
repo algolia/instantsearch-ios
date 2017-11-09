@@ -15,6 +15,9 @@ import UIKit
     
     public var searcher: Searcher!
     
+    @IBInspectable public var indexName: String = Constants.Defaults.indexName
+    @IBInspectable public var indexId: String = Constants.Defaults.indexId
+    
     public func configure(with searcher: Searcher) {
         self.searcher = searcher
         delegate = self

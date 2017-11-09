@@ -13,6 +13,9 @@ let clearAllFiltersNotification = Notification.Name(rawValue: "clearAllFiltersNo
 
 @objc private class ClearAllWidget: UIButton, SearchableViewModel, AlgoliaWidget {
 
+    @IBInspectable public var indexName: String = Constants.Defaults.indexName
+    @IBInspectable public var indexId: String = Constants.Defaults.indexId
+    
     public var searcher: Searcher!
     
     func configure(with searcher: Searcher) {

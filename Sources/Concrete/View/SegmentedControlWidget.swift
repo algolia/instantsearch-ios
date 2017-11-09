@@ -20,6 +20,9 @@ import UIKit
     
     @IBInspectable public var attribute: String = Constants.Defaults.attribute
     @IBInspectable public var inclusive: Bool = Constants.Defaults.inclusive
+    
+    @IBInspectable public var indexName: String = Constants.Defaults.indexName
+    @IBInspectable public var indexId: String = Constants.Defaults.indexId
         
     var viewModel: FacetControlViewModelDelegate
     
