@@ -19,6 +19,7 @@ class StartingTableViewController: UITableViewController {
              HitsCollectionViewControllerDemo.self),
             ("Refinement Collection View Controller", "RefinementCollectionViewControllerDemo", RefinementCollectionViewControllerDemo.self),
             ("Refinement Table View Controller", "RefinementTableViewControllerDemo", RefinementTableViewControllerDemo.self),
+            ("MultiIndex TableviewController Demo", "MultiIndexTableviewControllerDemo", MultiIndexTableviewControllerDemo.self),
          ]
 
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {

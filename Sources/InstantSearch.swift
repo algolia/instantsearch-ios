@@ -91,6 +91,9 @@ import UIKit
     private var refinableDelegates = WeakSet<RefinableDelegate>()
     private var refinableDelegateMap = [String: WeakSet<RefinableDelegate>]()
 
+    // TODO: change to weakSet
+    private var multiIndexResultingDelegates: [IndexId: WeakSet<ResultingDelegate>] = [:]
+    
     /// The Searchers used in the case of multi-indexing.
     private var searchers: [IndexId: Searcher]
     
@@ -200,6 +203,8 @@ import UIKit
         for indexId in indexIds {
             let index = client.index(withName: indexId.name)
             let searcher = Searcher(index: index)
+            searcher.name = indexId.name
+            searcher.id = indexId.id
             searchers[indexId] = searcher
         }
         
@@ -207,7 +212,6 @@ import UIKit
     }
     
     private func configureMulti(searchers: [IndexId: Searcher]) {
-        self.searchers = searchers
         isMultiIndexActive = true
         for (_, searcher) in searchers {
             searcher.delegate = self
@@ -307,7 +311,11 @@ import UIKit
         // - Pure VM created by the ViewModelFetcher
         // - A WidgetVVM.
         // --------------------------------------------------------------------------------------
-        bind(searcher: searcher, to: widgetVM)
+        if isMultiIndexActive {
+            bind(searchers: searchers, to: widgetVM)
+        } else {
+            bind(searcher: searcher, to: widgetVM)
+        }
 
         // After a widget is added, we can decide to make a search. This is when
         // a widget modifies the state of the searcher.params
@@ -349,6 +357,41 @@ import UIKit
             refinableDelegateMap[attribute]!.add(refinableWidget)
         }
     }
+    
+    private func bind(searchers: [IndexId: Searcher], to widgetVM: Any?) {
+//        if let searchableWidget = widgetVM as? SearchableViewModel {
+//            searchableWidget.configure(with: searcher)
+//        }
+        
+        // TODO: for now only doing multiindex for resulting widget. also need to fix the algoliaWidget thingy
+        if let resultingWidget = widgetVM as? ResultingDelegate,
+            let hitsViewModel = widgetVM as? HitsViewModelDelegate {
+            let indexId = IndexId(name: hitsViewModel.indexName, id: hitsViewModel.indexId)
+            if multiIndexResultingDelegates[indexId] == nil {
+                multiIndexResultingDelegates[indexId] = WeakSet<ResultingDelegate>()
+            }
+            
+            multiIndexResultingDelegates[indexId]!.add(resultingWidget)
+        }
+        
+        
+        
+//        if let resettableWidget = widgetVM as? ResettableDelegate {
+//            resettableDelegates.add(resettableWidget)
+//        }
+//
+//        if let refinableWidget = widgetVM as? RefinableDelegate {
+//            refinableDelegates.add(refinableWidget)
+//
+//            let attribute = refinableWidget.attribute
+//
+//            if refinableDelegateMap[attribute] == nil {
+//                refinableDelegateMap[attribute] = WeakSet<RefinableDelegate>()
+//            }
+//
+//            refinableDelegateMap[attribute]!.add(refinableWidget)
+//        }
+    }
 
     // MARK: - Notification Observers
 
@@ -374,8 +417,18 @@ import UIKit
     /// Delegate method called when new search results arrive from Algolia
     /// This function forwards all results, errors and userInfo to the resultDelegates.
     public func searcher(_ searcher: Searcher, didReceive results: SearchResults?, error: Error?, userInfo: [String: Any]) {
-        for algoliaWidget in resultingDelegates {
-            algoliaWidget.on(results: results, error: error, userInfo: userInfo)
+        
+        if isMultiIndexActive {
+            let indexId = IndexId(name: searcher.name, id: searcher.id)
+            // TODO: remove force cast as well here
+            let multiIndexResultingDelegates = self.multiIndexResultingDelegates[indexId]!
+            for algoliaWidget in multiIndexResultingDelegates {
+                algoliaWidget.on(results: results, error: error, userInfo: userInfo)
+            }
+        } else {
+            for algoliaWidget in resultingDelegates {
+                algoliaWidget.on(results: results, error: error, userInfo: userInfo)
+            }
         }
     }
 

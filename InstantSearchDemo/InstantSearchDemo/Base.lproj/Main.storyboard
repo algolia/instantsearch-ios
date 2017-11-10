@@ -1,11 +1,11 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="12121" systemVersion="16G24b" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES" initialViewController="nKo-gB-O3h">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="13529" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES" initialViewController="Up6-KE-EtY">
     <device id="retina4_7" orientation="portrait">
         <adaptation id="fullscreen"/>
     </device>
     <dependencies>
         <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="12089"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="13527"/>
         <capability name="Constraints to layout margins" minToolsVersion="6.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
@@ -13,7 +13,7 @@
         <!--Starting Table View Controller-->
         <scene sceneID="Lfl-Cv-xNJ">
             <objects>
-                <tableViewController id="4lU-Kv-1SQ" customClass="StartingTableViewController" customModule="Example" customModuleProvider="target" sceneMemberID="viewController">
+                <tableViewController id="4lU-Kv-1SQ" customClass="StartingTableViewController" customModule="InstantSearchDemo" customModuleProvider="target" sceneMemberID="viewController">
                     <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="44" sectionHeaderHeight="28" sectionFooterHeight="28" id="n23-Y0-XEw">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -27,7 +27,7 @@
                                     <autoresizingMask key="autoresizingMask"/>
                                     <subviews>
                                         <label opaque="NO" multipleTouchEnabled="YES" contentMode="left" text="Title" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="97P-N9-2fM">
-                                            <rect key="frame" x="15" y="0.0" width="345" height="43.5"/>
+                                            <rect key="frame" x="16" y="0.0" width="343" height="43.5"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                             <nil key="textColor"/>
@@ -51,7 +51,7 @@
         <!--View Controller-->
         <scene sceneID="tne-QT-ifu">
             <objects>
-                <viewController storyboardIdentifier="viewControllerID" id="BYZ-38-t0r" customClass="ViewController" customModule="Example" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="viewControllerID" id="BYZ-38-t0r" customClass="ViewController" customModule="InstantSearchDemo" customModuleProvider="target" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="y3c-jy-aDJ"/>
                         <viewControllerLayoutGuide type="bottom" id="wfy-db-euE"/>
@@ -61,11 +61,11 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <searchBar contentMode="redraw" translatesAutoresizingMaskIntoConstraints="NO" id="dHQ-Hn-J9e" customClass="SearchBarWidget" customModule="InstantSearch">
-                                <rect key="frame" x="0.0" y="72" width="375" height="44"/>
+                                <rect key="frame" x="0.0" y="72" width="375" height="56"/>
                                 <textInputTraits key="textInputTraits"/>
                             </searchBar>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="QrE-Xr-5us" customClass="StatsLabelWidget" customModule="InstantSearch">
-                                <rect key="frame" x="16" y="129" width="42" height="21"/>
+                                <rect key="frame" x="16" y="141" width="42" height="21"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                 <nil key="textColor"/>
                                 <nil key="highlightedColor"/>
@@ -117,14 +117,14 @@
                                 </userDefinedRuntimeAttributes>
                             </slider>
                             <button opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="3F8-q9-cVL">
-                                <rect key="frame" x="134" y="124" width="106" height="30"/>
+                                <rect key="frame" x="134" y="136" width="106" height="30"/>
                                 <state key="normal" title="Collection View"/>
                                 <connections>
                                     <segue destination="PUv-pY-9Yv" kind="show" id="fGg-Lz-CZt"/>
                                 </connections>
                             </button>
                             <activityIndicatorView opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" style="gray" translatesAutoresizingMaskIntoConstraints="NO" id="cYN-LF-7Rg" customClass="ActivityIndicatorWidget" customModule="InstantSearch">
-                                <rect key="frame" x="84" y="129" width="20" height="20"/>
+                                <rect key="frame" x="84" y="141" width="20" height="20"/>
                             </activityIndicatorView>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="lgO-Qn-w2W" customClass="CustomSlider" customModule="InstantSearch">
                                 <rect key="frame" x="195" y="312" width="164" height="57"/>
@@ -135,21 +135,21 @@
                                 </constraints>
                             </view>
                             <switch opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" contentHorizontalAlignment="center" contentVerticalAlignment="center" translatesAutoresizingMaskIntoConstraints="NO" id="w9W-tp-hXt" customClass="OneValueSwitchWidget" customModule="InstantSearch">
-                                <rect key="frame" x="13" y="158" width="51" height="31"/>
+                                <rect key="frame" x="13" y="170" width="51" height="31"/>
                                 <userDefinedRuntimeAttributes>
                                     <userDefinedRuntimeAttribute type="string" keyPath="attribute" value="shipping"/>
                                     <userDefinedRuntimeAttribute type="string" keyPath="valueOn" value="Free shipping"/>
                                 </userDefinedRuntimeAttributes>
                             </switch>
                             <switch opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" contentHorizontalAlignment="center" contentVerticalAlignment="center" translatesAutoresizingMaskIntoConstraints="NO" id="cXt-GI-ToO" customClass="OneValueSwitchWidget" customModule="InstantSearch">
-                                <rect key="frame" x="127" y="158" width="51" height="31"/>
+                                <rect key="frame" x="127" y="170" width="51" height="31"/>
                                 <userDefinedRuntimeAttributes>
                                     <userDefinedRuntimeAttribute type="string" keyPath="attribute" value="shipping"/>
                                     <userDefinedRuntimeAttribute type="string" keyPath="valueOn" value="Free shipping"/>
                                 </userDefinedRuntimeAttributes>
                             </switch>
                             <switch opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" contentHorizontalAlignment="center" contentVerticalAlignment="center" translatesAutoresizingMaskIntoConstraints="NO" id="0ii-o3-h6a" customClass="TwoValuesSwitchWidget" customModule="InstantSearch">
-                                <rect key="frame" x="70" y="158" width="51" height="31"/>
+                                <rect key="frame" x="70" y="170" width="51" height="31"/>
                                 <userDefinedRuntimeAttributes>
                                     <userDefinedRuntimeAttribute type="string" keyPath="attribute" value="manufacturer"/>
                                     <userDefinedRuntimeAttribute type="string" keyPath="valueOn" value="Google"/>
@@ -157,7 +157,7 @@
                                 </userDefinedRuntimeAttributes>
                             </switch>
                             <switch opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" contentHorizontalAlignment="center" contentVerticalAlignment="center" translatesAutoresizingMaskIntoConstraints="NO" id="dn5-23-Tsk" customClass="TwoValuesSwitchWidget" customModule="InstantSearch">
-                                <rect key="frame" x="191" y="158" width="51" height="31"/>
+                                <rect key="frame" x="191" y="170" width="51" height="31"/>
                                 <userDefinedRuntimeAttributes>
                                     <userDefinedRuntimeAttribute type="string" keyPath="attribute" value="manufacturer"/>
                                     <userDefinedRuntimeAttribute type="string" keyPath="valueOn" value="Google"/>
@@ -165,7 +165,7 @@
                                 </userDefinedRuntimeAttributes>
                             </switch>
                             <stepper opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" contentHorizontalAlignment="center" contentVerticalAlignment="center" maximumValue="100" translatesAutoresizingMaskIntoConstraints="NO" id="dky-gt-ybb" customClass="StepperWidget" customModule="InstantSearch">
-                                <rect key="frame" x="248" y="158" width="94" height="29"/>
+                                <rect key="frame" x="248" y="170" width="94" height="29"/>
                                 <userDefinedRuntimeAttributes>
                                     <userDefinedRuntimeAttribute type="string" keyPath="attribute" value="salePrice"/>
                                     <userDefinedRuntimeAttribute type="string" keyPath="operator" value="&gt;"/>
@@ -259,7 +259,7 @@
         <!--Facet Controller-->
         <scene sceneID="GQA-T5-aZh">
             <objects>
-                <viewController id="8lo-zt-ub9" customClass="FacetController" customModule="Example" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController id="8lo-zt-ub9" customClass="FacetController" customModule="InstantSearchDemo" customModuleProvider="target" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="Na6-Cn-JSJ"/>
                         <viewControllerLayoutGuide type="bottom" id="5uG-N3-4o2"/>
@@ -330,7 +330,7 @@
         <!--Collection View Controller-->
         <scene sceneID="g3T-Xt-IwG">
             <objects>
-                <viewController id="PUv-pY-9Yv" customClass="CollectionViewController" customModule="Example" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController id="PUv-pY-9Yv" customClass="CollectionViewController" customModule="InstantSearchDemo" customModuleProvider="target" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="z1u-qf-h4s"/>
                         <viewControllerLayoutGuide type="bottom" id="zc8-dD-mSZ"/>
@@ -350,7 +350,7 @@
                                     <inset key="sectionInset" minX="0.0" minY="0.0" maxX="0.0" maxY="0.0"/>
                                 </collectionViewFlowLayout>
                                 <cells>
-                                    <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" reuseIdentifier="hitsCollectionView" id="pmC-eH-tGq" customClass="CollectionViewCell" customModule="Example" customModuleProvider="target">
+                                    <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" reuseIdentifier="hitsCollectionView" id="pmC-eH-tGq" customClass="CollectionViewCell" customModule="InstantSearchDemo" customModuleProvider="target">
                                         <rect key="frame" x="0.0" y="0.0" width="114" height="117"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <view key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center">
@@ -377,7 +377,7 @@
                 <navigationController automaticallyAdjustsScrollViewInsets="NO" id="nKo-gB-O3h" sceneMemberID="viewController">
                     <toolbarItems/>
                     <navigationBar key="navigationBar" contentMode="scaleToFill" id="dPI-71-obt">
-                        <rect key="frame" x="0.0" y="0.0" width="375" height="44"/>
+                        <rect key="frame" x="0.0" y="20" width="375" height="44"/>
                         <autoresizingMask key="autoresizingMask"/>
                     </navigationBar>
                     <nil name="viewControllers"/>
@@ -388,6 +388,84 @@
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Fnx-t3-W5w" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="-817" y="32"/>
+        </scene>
+        <!--Multi Index Tableview Controller Demo-->
+        <scene sceneID="8JD-RI-vfP">
+            <objects>
+                <viewController id="Up6-KE-EtY" customClass="MultiIndexTableviewControllerDemo" customModule="InstantSearchDemo" customModuleProvider="target" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="Kz9-mF-CEv"/>
+                        <viewControllerLayoutGuide type="bottom" id="IqJ-Vm-1LA"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="Sif-t5-CLq">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <searchBar contentMode="redraw" translatesAutoresizingMaskIntoConstraints="NO" id="Haq-lU-pWZ" customClass="SearchBarWidget" customModule="InstantSearch">
+                                <rect key="frame" x="0.0" y="0.0" width="375" height="56"/>
+                                <textInputTraits key="textInputTraits"/>
+                            </searchBar>
+                            <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="zGv-qx-Mnc" customClass="HitsTableWidget" customModule="InstantSearch">
+                                <rect key="frame" x="16" y="417" width="343" height="250"/>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="250" id="FBf-9N-Kgh"/>
+                                </constraints>
+                                <prototypes>
+                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" selectionStyle="blue" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="bestbuyCell" id="JMh-rd-d38">
+                                        <rect key="frame" x="0.0" y="28" width="343" height="44"/>
+                                        <autoresizingMask key="autoresizingMask"/>
+                                        <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="JMh-rd-d38" id="ytE-Zy-yEd">
+                                            <rect key="frame" x="0.0" y="0.0" width="343" height="43.5"/>
+                                            <autoresizingMask key="autoresizingMask"/>
+                                        </tableViewCellContentView>
+                                    </tableViewCell>
+                                </prototypes>
+                                <userDefinedRuntimeAttributes>
+                                    <userDefinedRuntimeAttribute type="string" keyPath="indexName" value="bestbuy"/>
+                                </userDefinedRuntimeAttributes>
+                            </tableView>
+                            <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="dbf-lh-HaE" customClass="HitsTableWidget" customModule="InstantSearch">
+                                <rect key="frame" x="16" y="61" width="343" height="351"/>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <prototypes>
+                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" selectionStyle="blue" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="ikeaCell" id="Q5p-v8-MLc">
+                                        <rect key="frame" x="0.0" y="28" width="343" height="44"/>
+                                        <autoresizingMask key="autoresizingMask"/>
+                                        <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="Q5p-v8-MLc" id="rgR-a3-Hww">
+                                            <rect key="frame" x="0.0" y="0.0" width="343" height="43.5"/>
+                                            <autoresizingMask key="autoresizingMask"/>
+                                        </tableViewCellContentView>
+                                    </tableViewCell>
+                                </prototypes>
+                                <userDefinedRuntimeAttributes>
+                                    <userDefinedRuntimeAttribute type="string" keyPath="indexName" value="ikea"/>
+                                </userDefinedRuntimeAttributes>
+                            </tableView>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        <constraints>
+                            <constraint firstItem="dbf-lh-HaE" firstAttribute="top" secondItem="Haq-lU-pWZ" secondAttribute="bottom" constant="5" id="0tZ-xE-hez"/>
+                            <constraint firstItem="Haq-lU-pWZ" firstAttribute="leading" secondItem="Sif-t5-CLq" secondAttribute="leading" id="2bN-qX-Q9Z"/>
+                            <constraint firstAttribute="trailingMargin" secondItem="zGv-qx-Mnc" secondAttribute="trailing" id="Rf3-sC-yhe"/>
+                            <constraint firstItem="zGv-qx-Mnc" firstAttribute="leading" secondItem="Sif-t5-CLq" secondAttribute="leadingMargin" id="WCB-fA-Ihf"/>
+                            <constraint firstItem="IqJ-Vm-1LA" firstAttribute="top" secondItem="zGv-qx-Mnc" secondAttribute="bottom" id="Zdw-bN-bqp"/>
+                            <constraint firstAttribute="trailingMargin" secondItem="dbf-lh-HaE" secondAttribute="trailing" id="ah5-7T-2VE"/>
+                            <constraint firstItem="zGv-qx-Mnc" firstAttribute="top" secondItem="dbf-lh-HaE" secondAttribute="bottom" constant="5" id="jP4-W1-043"/>
+                            <constraint firstAttribute="trailing" secondItem="Haq-lU-pWZ" secondAttribute="trailing" id="pqH-GB-ilO"/>
+                            <constraint firstItem="Haq-lU-pWZ" firstAttribute="top" secondItem="Sif-t5-CLq" secondAttribute="top" id="smA-0i-cl0"/>
+                            <constraint firstItem="dbf-lh-HaE" firstAttribute="leading" secondItem="Sif-t5-CLq" secondAttribute="leadingMargin" id="t0X-kV-pah"/>
+                        </constraints>
+                    </view>
+                    <connections>
+                        <outlet property="bestbuyTableView" destination="zGv-qx-Mnc" id="UOM-fV-Gfn"/>
+                        <outlet property="ikeaTableView" destination="dbf-lh-HaE" id="aKE-nb-ZUO"/>
+                        <outlet property="searchBar" destination="Haq-lU-pWZ" id="H2u-aC-MC4"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="Yoo-JP-Crf" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="-823" y="797"/>
         </scene>
     </scenes>
 </document>
