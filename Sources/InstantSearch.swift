@@ -359,9 +359,18 @@ import UIKit
     }
     
     private func bind(searchers: [IndexId: Searcher], to widgetVM: Any?) {
-//        if let searchableWidget = widgetVM as? SearchableViewModel {
-//            searchableWidget.configure(with: searcher)
-//        }
+        if let searchableWidget = widgetVM as? SearchableViewModel,
+            let hitsViewModel = widgetVM as? HitsViewModelDelegate {
+            let indexId = IndexId(name: hitsViewModel.indexName, id: hitsViewModel.indexId)
+            let searcher = searchers[indexId]!
+            searchableWidget.configure(with: searcher)
+        }
+        
+        if let searchBarWidget = widgetVM as? SearchBarWidget {
+            
+            let searchersArray = searchers.map { $0.value }
+            searchBarWidget.configure(withSearchers: searchersArray)
+        }
         
         // TODO: for now only doing multiindex for resulting widget. also need to fix the algoliaWidget thingy
         if let resultingWidget = widgetVM as? ResultingDelegate,

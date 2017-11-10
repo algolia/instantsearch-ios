@@ -14,4 +14,7 @@ import InstantSearchCore
     
     /// Configures the ViewModel with the reference to the Searcher associated with InstantSearch.
     func configure(with searcher: Searcher)
+    
+    // TODO: merge with above
+    @objc optional func configure(withSearchers searchers: [Searcher])
 }
