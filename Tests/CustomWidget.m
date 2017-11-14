@@ -29,5 +29,7 @@
 }
 
 @synthesize attribute;
+@synthesize indexId;
+@synthesize indexName;
 
 @end

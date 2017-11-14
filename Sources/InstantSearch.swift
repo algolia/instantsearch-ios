@@ -11,67 +11,6 @@ import InstantSearchCore
 import AlgoliaSearch
 import UIKit
 
-// ------------------------------------------------------------------------------------------------------
-// IMPLEMENTATION NOTES
-// ------------------------------------------------------------------------------------------------------
-//
-// # Architecture of InstantSearch
-//
-// InstantSearch is inspired by both MVVM architecture.
-//
-// This is an overview of the architecture:
-//
-// ```
-// View <--> ViewModel <--> Binder <--> Interactor/Model
-// ```
-//
-// Widgets can mean two things, depending on how modular you want your components to be:
-//
-//
-// 1. It can be the View
-//
-// ```
-// WidgetV <--> WidgetVM <--> Binder <--> Searcher
-// ```
-//
-// In this first case, we offer a better modular architecture where a WidgetVM can be reused
-// for different kind of widgets, for example: a collectionView and tableView can share
-// the same VM since the business logic is exactly the same, only the layout changes.
-// In that case, the Widget is independent of InstantSearchCore and WidgetVM is independent of UIKit.
-//
-//
-// 2. It can be the View and the ViewModel
-//
-// ```
-// WidgetVVM <--> Binder <--> Searcher
-// ```
-//
-// In this second case, we offer an easier way to create new widgets since the widget has access
-// to the searcher and all of its method. The downside here is that we can't reuse the business logic
-// through a VM. The upside is that it's easy for 3rd party devs to create their own widgets and plug into IS.
-// In that case, the Widget is dependent on both InstantSearchCore and UIKit.
-// We note that the View and the ViewModel depend on abstract delegates, which makes them reusable and testable.
-//
-// Finally, the Binder plays a role of exposing all possible search events, whether from the Searcher or other widgets,
-// and making them available for ViewModels or Views so that they can tune in.
-// In a way, it is like an observable that knows about all search events, and it will send the search events to
-// the observers that decided to tune in. We decided to go with delegation to offer a clean safe interface.
-//
-// ------------------------------------------------------------------------------------------------------
-
-// ---------------------------------------------------------------------------------
-// InstantSearch NOTES
-// ---------------------------------------------------------------------------------
-// InstantSearch does mainly 3 things:
-// 1. Scans the View to find Algolia Widgets
-// 2. Knows about all search events, whether coming from the Searcher or other widgets
-// 3. Binds Searcher - Widgets through delegation
-//
-// For the 3rd point, InstantSearch binds the following:
-// - Searcher and WidgetV through a ViewModelFetcher that creates the appropriate WidgetVM
-// - Searcher and WidgetVVM
-// ---------------------------------------------------------------------------------
-
 /// Main class used for interacting with the InstantSearch library.
 /// The most important thing that it does is binding the Searcher/Index to the widgets.
 /// It also takes care of managing search components: `UISearchBar` and `UISearchController`.
@@ -91,7 +30,6 @@ import UIKit
     private var refinableDelegates = WeakSet<RefinableDelegate>()
     private var refinableDelegateMap = [String: WeakSet<RefinableDelegate>]()
 
-    // TODO: change to weakSet
     private var multiIndexResultingDelegates: [IndexId: WeakSet<ResultingDelegate>] = [:]
     
     /// The Searchers used in the case of multi-indexing.
@@ -203,8 +141,8 @@ import UIKit
         for indexId in indexIds {
             let index = client.index(withName: indexId.name)
             let searcher = Searcher(index: index)
-            searcher.name = indexId.name
-            searcher.id = indexId.id
+            searcher.indexName = indexId.name
+            searcher.indexId = indexId.id
             searchers[indexId] = searcher
         }
         
@@ -360,7 +298,8 @@ import UIKit
     
     // TODO: all this needs to be cleaned
     private func bind(searchers: [IndexId: Searcher], to widgetVM: Any?) {
-        // TODO (important): It shouldn't be only searchabableViewModel. Should also be the View widgets that act as viewmodel (like custom widgets)
+        // TODO (important): It shouldn't be only searchabableViewModel.
+        // Should also be the View widgets that act as viewmodel (like custom widgets)
         if let widget = widgetVM as? SearchableViewModel {
             // if we don't specify an index name and index id, it means we need to target all indices for this widget
             if widget.indexName.isEmpty && widget.indexId.isEmpty {
@@ -384,8 +323,6 @@ import UIKit
             
             multiIndexResultingDelegates[indexId]!.add(resultingWidget)
         }
-        
-        
         
 //        if let resettableWidget = widgetVM as? ResettableDelegate {
 //            resettableDelegates.add(resettableWidget)
@@ -430,7 +367,7 @@ import UIKit
     public func searcher(_ searcher: Searcher, didReceive results: SearchResults?, error: Error?, userInfo: [String: Any]) {
         
         if isMultiIndexActive {
-            let indexId = IndexId(name: searcher.name, id: searcher.id)
+            let indexId = IndexId(name: searcher.indexName, id: searcher.indexId)
             // TODO: remove force cast as well here
             let multiIndexResultingDelegates = self.multiIndexResultingDelegates[indexId]!
             for algoliaWidget in multiIndexResultingDelegates {

@@ -7,7 +7,7 @@
 
 import Foundation
 
-@objc public class IndexId: NSObject  {
+@objc public class IndexId: NSObject {
     var name: String
     var id: String
     
