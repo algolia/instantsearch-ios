@@ -18,11 +18,11 @@ internal class HitsViewModel: HitsViewModelDelegate, SearchableViewModel {
     
     // TODO: Ofc find a better "protocol" way to pass those things
     var indexId: String {
-        return (view as! AlgoliaWidget).indexId
+        return view.indexId
     }
     
     var indexName: String {
-        return (view as! AlgoliaWidget).indexName
+        return view.indexName
     }
     
     var hitsPerPage: UInt {
