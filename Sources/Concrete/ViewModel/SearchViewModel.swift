@@ -13,6 +13,14 @@ import InstantSearchCore
 internal class SearchViewModel: SearchViewModelDelegate, SearchableViewModel {
     
     // MARK: - Properties
+    var indexId: String {
+        return view.indexId
+    }
+    
+    var indexName: String {
+        return view.indexName
+    }
+    
     public var searchers: [Searcher] = []
     
     // MARK: - SearchableViewModel

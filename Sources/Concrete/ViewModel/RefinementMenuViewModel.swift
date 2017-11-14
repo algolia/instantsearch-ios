@@ -15,6 +15,13 @@ import InstantSearchCore
 internal class RefinementMenuViewModel: RefinementMenuViewModelDelegate, SearchableViewModel {
     
     // MARK: - Properties
+    var indexId: String {
+        return view.indexId
+    }
+    
+    var indexName: String {
+        return view.indexName
+    }
     
     var attribute: String {
         return view.attribute

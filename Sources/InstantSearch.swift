@@ -360,23 +360,24 @@ import UIKit
     
     // TODO: all this needs to be cleaned
     private func bind(searchers: [IndexId: Searcher], to widgetVM: Any?) {
-        if let searchableWidget = widgetVM as? SearchableViewModel,
-            let hitsViewModel = widgetVM as? HitsViewModelDelegate {
-            let indexId = IndexId(name: hitsViewModel.indexName, id: hitsViewModel.indexId)
-            let searcher = searchers[indexId]!
-            searchableWidget.configure(with: searcher)
-        }
-        
-        if let searchBarWidget = widgetVM as? SearchViewModel {
-            
-            let searchersArray = searchers.map { $0.value }
-            searchBarWidget.configure(withSearchers: searchersArray)
+        // TODO (important): It shouldn't be only searchabableViewModel. Should also be the View widgets that act as viewmodel (like custom widgets)
+        if let widget = widgetVM as? SearchableViewModel {
+            // if we don't specify an index name and index id, it means we need to target all indices for this widget
+            if widget.indexName.isEmpty && widget.indexId.isEmpty {
+                let searchersArray = searchers.map { $0.value }
+                // TODO: This optional needs to change for sure
+                widget.configure?(withSearchers: searchersArray)
+            } else {
+                let indexId = IndexId(name: widget.indexName, id: widget.indexId)
+                let searcher = searchers[indexId]!
+                widget.configure(with: searcher)
+            }
         }
         
         // TODO: for now only doing multiindex for resulting widget. also need to fix the algoliaWidget thingy
         if let resultingWidget = widgetVM as? ResultingDelegate,
-            let hitsViewModel = widgetVM as? HitsViewModelDelegate {
-            let indexId = IndexId(name: hitsViewModel.indexName, id: hitsViewModel.indexId)
+            let searchableWidget = widgetVM as? SearchableViewModel {
+            let indexId = IndexId(name: searchableWidget.indexName, id: searchableWidget.indexId)
             if multiIndexResultingDelegates[indexId] == nil {
                 multiIndexResultingDelegates[indexId] = WeakSet<ResultingDelegate>()
             }

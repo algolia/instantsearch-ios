@@ -15,6 +15,14 @@ internal class StatsViewModel: StatsViewModelDelegate, SearchableViewModel {
     
     // MARK: - Properties
     
+    var indexId: String {
+        return view.indexId
+    }
+    
+    var indexName: String {
+        return view.indexName
+    }
+    
     var resultTemplate: String {
         return view.resultTemplate
     }

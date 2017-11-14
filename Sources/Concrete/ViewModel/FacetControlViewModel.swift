@@ -15,6 +15,13 @@ import InstantSearchCore
 internal class FacetControlViewModel: FacetControlViewModelDelegate, SearchableViewModel {
     
     // MARK: - Properties
+    var indexId: String {
+        return view.indexId
+    }
+    
+    var indexName: String {
+        return view.indexName
+    }
     
     var inclusive: Bool {
         return view.inclusive

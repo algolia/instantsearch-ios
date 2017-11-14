@@ -15,7 +15,14 @@ import InstantSearchCore
 internal class NumericControlViewModel: NumericControlViewModelDelegate, SearchableViewModel {
 
     // MARK: - Properties
-
+    var indexId: String {
+        return view.indexId
+    }
+    
+    var indexName: String {
+        return view.indexName
+    }
+    
     var clearValue: NSNumber {
         return view.clearValue
     }
