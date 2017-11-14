@@ -78,6 +78,7 @@
 		E2D5890E1FBB266B00526C33 /* SearchViewModelDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = E2D5890D1FBB266B00526C33 /* SearchViewModelDelegate.swift */; };
 		E2D589101FBB279200526C33 /* SearchViewDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = E2D5890F1FBB279200526C33 /* SearchViewDelegate.swift */; };
 		E2D589121FBB295700526C33 /* SearchViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = E2D589111FBB295700526C33 /* SearchViewModel.swift */; };
+		E2D589171FBB42A600526C33 /* IndexId.swift in Sources */ = {isa = PBXBuildFile; fileRef = E2D589161FBB42A600526C33 /* IndexId.swift */; };
 		E2E060571F717A7B0026358B /* InstantSearchCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E21DE94E1F2F7DB400EFC4F5 /* InstantSearchCore.framework */; };
 		E2E060581F717A810026358B /* AlgoliaSearch.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E21DE9501F2F7DCA00EFC4F5 /* AlgoliaSearch.framework */; };
 /* End PBXBuildFile section */
@@ -176,6 +177,7 @@
 		E2D5890D1FBB266B00526C33 /* SearchViewModelDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchViewModelDelegate.swift; sourceTree = "<group>"; };
 		E2D5890F1FBB279200526C33 /* SearchViewDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchViewDelegate.swift; sourceTree = "<group>"; };
 		E2D589111FBB295700526C33 /* SearchViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchViewModel.swift; sourceTree = "<group>"; };
+		E2D589161FBB42A600526C33 /* IndexId.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = IndexId.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -250,11 +252,9 @@
 				E2AFE5691ED5709A00B6A5A7 /* TestHelpers */,
 				E27A7C021E97B913005B2506 /* Concrete */,
 				E27A7C001E97B83C005B2506 /* Protocols */,
-				E27C16411E9394250091D79E /* Helpers.swift */,
-				E2231E961EC9F5A7002FCF82 /* Constants.swift */,
+				E2D589131FBB41C700526C33 /* Models and Helpers */,
 				28F828821C494B2C00330CF4 /* Info.plist */,
 				E27C163B1E9394250091D79E /* InstantSearch.swift */,
-				E27A7BF01E97931E005B2506 /* ViewModelFetcher.swift */,
 				E2A477001EC61B43007CA367 /* InstantSearch-Bridging-Header.h */,
 			);
 			path = Sources;
@@ -440,6 +440,17 @@
 				E28B07DF1EAF88D9003AAE47 /* RefinementController.swift */,
 			);
 			path = Controller;
+			sourceTree = "<group>";
+		};
+		E2D589131FBB41C700526C33 /* Models and Helpers */ = {
+			isa = PBXGroup;
+			children = (
+				E2D589161FBB42A600526C33 /* IndexId.swift */,
+				E2231E961EC9F5A7002FCF82 /* Constants.swift */,
+				E27C16411E9394250091D79E /* Helpers.swift */,
+				E27A7BF01E97931E005B2506 /* ViewModelFetcher.swift */,
+			);
+			path = "Models and Helpers";
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -669,6 +680,7 @@
 				E233BBFD1EBA18C200F5F5E1 /* SwitchWidget.swift in Sources */,
 				E233BC0E1EBC786B00F5F5E1 /* SegmentedControlWidget.swift in Sources */,
 				E2738FBF1E9BDA28002C002D /* StatsViewModelDelegate.swift in Sources */,
+				E2D589171FBB42A600526C33 /* IndexId.swift in Sources */,
 				E2738FC71E9CC3F8002C002D /* RefinementMenuViewModelDelegate.swift in Sources */,
 				E2D5890E1FBB266B00526C33 /* SearchViewModelDelegate.swift in Sources */,
 				E2738FCB1E9CDDA0002C002D /* NumericControlViewModelDelegate.swift in Sources */,

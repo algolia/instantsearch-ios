@@ -8,6 +8,7 @@
 
 import UIKit
 import InstantSearch
+import InstantSearchCore
 
 class MultiIndexTableviewControllerDemo: UIViewController, HitsTableViewDataSource {
     
@@ -48,6 +49,7 @@ class MultiIndexTableviewControllerDemo: UIViewController, HitsTableViewDataSour
             cell = tableView.dequeueReusableCell(withIdentifier: "bestbuyCell", for: indexPath)
         }
         
+        cell.textLabel?.highlightedText = SearchResults.highlightResult(hit: hit, path: "name")?.value
         cell.textLabel?.text = hit["name"] as? String
         
         return cell
