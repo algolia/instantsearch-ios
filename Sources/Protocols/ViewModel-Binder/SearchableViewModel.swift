@@ -13,8 +13,10 @@ import InstantSearchCore
 @objc public protocol SearchableViewModel: class {
     
     /// Configures the ViewModel with the reference to the Searcher associated with InstantSearch.
+    /// This is used in the base of single index
     func configure(with searcher: Searcher)
     
-    // TODO: merge with above
+    /// Configures the ViewModel with the reference to the Searchers associated with InstantSearch.
+    /// This is used in the case of multi-index
     @objc optional func configure(withSearchers searchers: [Searcher])
 }

@@ -22,6 +22,7 @@ import Foundation
     /// Query the hit to show for a row at a specific indexPath.
     func hitForRow(at indexPath: IndexPath) -> [String: Any]
     
+    // TODO: Remove?
     var indexName: String { get }
     var indexId: String { get }
 }

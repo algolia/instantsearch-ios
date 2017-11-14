@@ -16,7 +16,6 @@ internal class HitsViewModel: HitsViewModelDelegate, SearchableViewModel {
     
     // MARK: - Properties
     
-    // TODO: Ofc find a better "protocol" way to pass those things
     var indexId: String {
         return view.indexId
     }

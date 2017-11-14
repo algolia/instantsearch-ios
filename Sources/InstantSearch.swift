@@ -358,6 +358,7 @@ import UIKit
         }
     }
     
+    // TODO: all this needs to be cleaned
     private func bind(searchers: [IndexId: Searcher], to widgetVM: Any?) {
         if let searchableWidget = widgetVM as? SearchableViewModel,
             let hitsViewModel = widgetVM as? HitsViewModelDelegate {
@@ -366,7 +367,7 @@ import UIKit
             searchableWidget.configure(with: searcher)
         }
         
-        if let searchBarWidget = widgetVM as? SearchBarWidget {
+        if let searchBarWidget = widgetVM as? SearchViewModel {
             
             let searchersArray = searchers.map { $0.value }
             searchBarWidget.configure(withSearchers: searchersArray)

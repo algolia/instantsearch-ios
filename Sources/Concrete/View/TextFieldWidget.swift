@@ -11,15 +11,25 @@ import InstantSearchCore
 import UIKit
 
 /// Widget that provides a user input for search queries that are directly sent to the Algolia engine. Built on top of `UITextField`.
-@objc public class TextFieldWidget: UITextField, SearchableViewModel, ResettableDelegate, AlgoliaWidget, UITextFieldDelegate {
-    
-    public var searcher: Searcher!
+@objc public class TextFieldWidget: UITextField, SearchViewDelegate, AlgoliaWidget, UITextFieldDelegate {
     
     @IBInspectable public var indexName: String = Constants.Defaults.indexName
     @IBInspectable public var indexId: String = Constants.Defaults.indexId
     
-    public func configure(with searcher: Searcher) {
-        self.searcher = searcher
+    var viewModel: SearchViewModelDelegate
+    
+    @objc public override init(frame: CGRect) {
+        viewModel = SearchViewModel()
+        super.init(frame: frame)
+        viewModel.view = self
+        delegate = self
+        addTarget(self, action: #selector(textFieldDidChange(textField:)), for: .editingChanged)
+    }
+    
+    @objc public required init?(coder aDecoder: NSCoder) {
+        viewModel = SearchViewModel()
+        super.init(coder: aDecoder)
+        viewModel.view = self
         delegate = self
         addTarget(self, action: #selector(textFieldDidChange(textField:)), for: .editingChanged)
     }
@@ -27,19 +37,19 @@ import UIKit
     @objc func textFieldDidChange(textField: UITextField) {
         guard let searchText = textField.text else { return }
         
-        searcher.params.query = searchText
-        searcher.search()
+        viewModel.search(query: searchText)
     }
     
     public func textFieldDidBeginEditing(_ textField: UITextField) {
         guard let searchText = textField.text else { return }
         
-        searcher.params.query = searchText
-        searcher.search()
+        viewModel.search(query: searchText)
     }
     
-    public func onReset() {
-        resignFirstResponder()
-        text = ""
+    func set(text: String, andResignFirstResponder resignFirstResponder: Bool) {
+        self.text = text
+        if resignFirstResponder {
+            self.resignFirstResponder()
+        }
     }
 }

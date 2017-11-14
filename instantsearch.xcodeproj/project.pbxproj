@@ -75,6 +75,9 @@
 		E2AFE5661ED49B3900B6A5A7 /* FatalError.swift in Sources */ = {isa = PBXBuildFile; fileRef = E2AFE5651ED49B3900B6A5A7 /* FatalError.swift */; };
 		E2AFE56B1ED5709A00B6A5A7 /* FatalError.swift in Sources */ = {isa = PBXBuildFile; fileRef = E2AFE56A1ED5709A00B6A5A7 /* FatalError.swift */; };
 		E2CA327C1EA77BC90057A3D3 /* HitsController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E2CA327B1EA77BC90057A3D3 /* HitsController.swift */; };
+		E2D5890E1FBB266B00526C33 /* SearchViewModelDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = E2D5890D1FBB266B00526C33 /* SearchViewModelDelegate.swift */; };
+		E2D589101FBB279200526C33 /* SearchViewDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = E2D5890F1FBB279200526C33 /* SearchViewDelegate.swift */; };
+		E2D589121FBB295700526C33 /* SearchViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = E2D589111FBB295700526C33 /* SearchViewModel.swift */; };
 		E2E060571F717A7B0026358B /* InstantSearchCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E21DE94E1F2F7DB400EFC4F5 /* InstantSearchCore.framework */; };
 		E2E060581F717A810026358B /* AlgoliaSearch.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E21DE9501F2F7DCA00EFC4F5 /* AlgoliaSearch.framework */; };
 /* End PBXBuildFile section */
@@ -170,6 +173,9 @@
 		E2AFE5651ED49B3900B6A5A7 /* FatalError.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FatalError.swift; sourceTree = "<group>"; };
 		E2AFE56A1ED5709A00B6A5A7 /* FatalError.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FatalError.swift; sourceTree = "<group>"; };
 		E2CA327B1EA77BC90057A3D3 /* HitsController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HitsController.swift; sourceTree = "<group>"; };
+		E2D5890D1FBB266B00526C33 /* SearchViewModelDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchViewModelDelegate.swift; sourceTree = "<group>"; };
+		E2D5890F1FBB279200526C33 /* SearchViewDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchViewDelegate.swift; sourceTree = "<group>"; };
+		E2D589111FBB295700526C33 /* SearchViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchViewModel.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -291,6 +297,7 @@
 				E233BC021EBB78B600F5F5E1 /* FacetControlViewModel.swift */,
 				E2738FC81E9CC418002C002D /* RefinementMenuViewModel.swift */,
 				E2738FBC1E9BD9ED002C002D /* StatsViewModel.swift */,
+				E2D589111FBB295700526C33 /* SearchViewModel.swift */,
 			);
 			path = ViewModel;
 			sourceTree = "<group>";
@@ -298,6 +305,7 @@
 		E27A7BF81E97B6DE005B2506 /* ViewModel-View */ = {
 			isa = PBXGroup;
 			children = (
+				E2D5890D1FBB266B00526C33 /* SearchViewModelDelegate.swift */,
 				E27A7BF91E97B729005B2506 /* HitsViewModelDelegate.swift */,
 				E2738FCA1E9CDDA0002C002D /* NumericControlViewModelDelegate.swift */,
 				E233BC061EBB796600F5F5E1 /* FacetControlViewModelDelegate.swift */,
@@ -310,6 +318,7 @@
 		E27A7BFB1E97B74C005B2506 /* View-ViewModel */ = {
 			isa = PBXGroup;
 			children = (
+				E2D5890F1FBB279200526C33 /* SearchViewDelegate.swift */,
 				E27A7BFC1E97B781005B2506 /* HitsViewDelegate.swift */,
 				E27B67DA1ED314100001FFA7 /* RefinementViewDelegate.swift */,
 				E2738FCC1E9CDE04002C002D /* NumericControlViewDelegate.swift */,
@@ -618,6 +627,7 @@
 				E2AFE55B1ED488C700B6A5A7 /* TextFieldWidget.swift in Sources */,
 				E27C16431E9394250091D79E /* HitsTableWidget.swift in Sources */,
 				E27A7BFA1E97B729005B2506 /* HitsViewModelDelegate.swift in Sources */,
+				E2D589101FBB279200526C33 /* SearchViewDelegate.swift in Sources */,
 				E27A7BF31E97947C005B2506 /* HitsCollectionWidget.swift in Sources */,
 				E28B07E61EAF9FFE003AAE47 /* RefinementCollectionViewController.swift in Sources */,
 				E27C16461E9394250091D79E /* StatsLabelWidget.swift in Sources */,
@@ -625,6 +635,7 @@
 				E27C164B1E9394250091D79E /* RefinableDelegate.swift in Sources */,
 				E28B07E21EAF9F27003AAE47 /* RefinementCollectionWidget.swift in Sources */,
 				E27C16471E9394250091D79E /* InstantSearch.swift in Sources */,
+				E2D589121FBB295700526C33 /* SearchViewModel.swift in Sources */,
 				E2738FBD1E9BD9ED002C002D /* StatsViewModel.swift in Sources */,
 				E2CA327C1EA77BC90057A3D3 /* HitsController.swift in Sources */,
 				E28B07E41EAF9FF2003AAE47 /* RefinementTableViewController.swift in Sources */,
@@ -659,6 +670,7 @@
 				E233BC0E1EBC786B00F5F5E1 /* SegmentedControlWidget.swift in Sources */,
 				E2738FBF1E9BDA28002C002D /* StatsViewModelDelegate.swift in Sources */,
 				E2738FC71E9CC3F8002C002D /* RefinementMenuViewModelDelegate.swift in Sources */,
+				E2D5890E1FBB266B00526C33 /* SearchViewModelDelegate.swift in Sources */,
 				E2738FCB1E9CDDA0002C002D /* NumericControlViewModelDelegate.swift in Sources */,
 				E233BC031EBB78B600F5F5E1 /* FacetControlViewModel.swift in Sources */,
 				E27C16451E9394250091D79E /* SearchBarWidget.swift in Sources */,

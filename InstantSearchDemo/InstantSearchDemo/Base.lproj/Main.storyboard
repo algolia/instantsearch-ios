@@ -401,10 +401,6 @@
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <searchBar contentMode="redraw" translatesAutoresizingMaskIntoConstraints="NO" id="Haq-lU-pWZ" customClass="SearchBarWidget" customModule="InstantSearch">
-                                <rect key="frame" x="0.0" y="0.0" width="375" height="56"/>
-                                <textInputTraits key="textInputTraits"/>
-                            </searchBar>
                             <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="zGv-qx-Mnc" customClass="HitsTableWidget" customModule="InstantSearch">
                                 <rect key="frame" x="16" y="317" width="343" height="350"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
@@ -426,7 +422,7 @@
                                 </userDefinedRuntimeAttributes>
                             </tableView>
                             <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="dbf-lh-HaE" customClass="HitsTableWidget" customModule="InstantSearch">
-                                <rect key="frame" x="16" y="61" width="343" height="251"/>
+                                <rect key="frame" x="16" y="101" width="343" height="211"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <prototypes>
                                     <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" selectionStyle="blue" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="ikeaCell" id="Q5p-v8-MLc">
@@ -442,18 +438,34 @@
                                     <userDefinedRuntimeAttribute type="string" keyPath="indexName" value="ikea"/>
                                 </userDefinedRuntimeAttributes>
                             </tableView>
+                            <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="TuK-ae-HV9" customClass="TextFieldWidget" customModule="InstantSearch">
+                                <rect key="frame" x="0.0" y="0.0" width="375" height="40"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="40" id="9zR-Af-EKz"/>
+                                </constraints>
+                                <nil key="textColor"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                <textInputTraits key="textInputTraits"/>
+                            </textField>
+                            <searchBar contentMode="redraw" translatesAutoresizingMaskIntoConstraints="NO" id="Haq-lU-pWZ" customClass="SearchBarWidget" customModule="InstantSearch">
+                                <rect key="frame" x="0.0" y="40" width="375" height="56"/>
+                                <textInputTraits key="textInputTraits"/>
+                            </searchBar>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <constraints>
                             <constraint firstItem="dbf-lh-HaE" firstAttribute="top" secondItem="Haq-lU-pWZ" secondAttribute="bottom" constant="5" id="0tZ-xE-hez"/>
                             <constraint firstItem="Haq-lU-pWZ" firstAttribute="leading" secondItem="Sif-t5-CLq" secondAttribute="leading" id="2bN-qX-Q9Z"/>
+                            <constraint firstAttribute="trailing" secondItem="TuK-ae-HV9" secondAttribute="trailing" id="CHQ-au-kLR"/>
                             <constraint firstAttribute="trailingMargin" secondItem="zGv-qx-Mnc" secondAttribute="trailing" id="Rf3-sC-yhe"/>
                             <constraint firstItem="zGv-qx-Mnc" firstAttribute="leading" secondItem="Sif-t5-CLq" secondAttribute="leadingMargin" id="WCB-fA-Ihf"/>
                             <constraint firstItem="IqJ-Vm-1LA" firstAttribute="top" secondItem="zGv-qx-Mnc" secondAttribute="bottom" id="Zdw-bN-bqp"/>
                             <constraint firstAttribute="trailingMargin" secondItem="dbf-lh-HaE" secondAttribute="trailing" id="ah5-7T-2VE"/>
+                            <constraint firstItem="TuK-ae-HV9" firstAttribute="top" secondItem="Sif-t5-CLq" secondAttribute="top" id="idh-k9-GBj"/>
+                            <constraint firstItem="Haq-lU-pWZ" firstAttribute="top" secondItem="TuK-ae-HV9" secondAttribute="bottom" id="j6D-pm-BS6"/>
                             <constraint firstItem="zGv-qx-Mnc" firstAttribute="top" secondItem="dbf-lh-HaE" secondAttribute="bottom" constant="5" id="jP4-W1-043"/>
+                            <constraint firstItem="TuK-ae-HV9" firstAttribute="leading" secondItem="Sif-t5-CLq" secondAttribute="leading" id="pEz-TH-Q8Z"/>
                             <constraint firstAttribute="trailing" secondItem="Haq-lU-pWZ" secondAttribute="trailing" id="pqH-GB-ilO"/>
-                            <constraint firstItem="Haq-lU-pWZ" firstAttribute="top" secondItem="Sif-t5-CLq" secondAttribute="top" id="smA-0i-cl0"/>
                             <constraint firstItem="dbf-lh-HaE" firstAttribute="leading" secondItem="Sif-t5-CLq" secondAttribute="leadingMargin" id="t0X-kV-pah"/>
                         </constraints>
                     </view>
@@ -465,7 +477,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Yoo-JP-Crf" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-823" y="797"/>
+            <point key="canvasLocation" x="-823.20000000000005" y="796.55172413793105"/>
         </scene>
     </scenes>
 </document>
