@@ -19,4 +19,10 @@ import InstantSearchCore
     /// Configures the ViewModel with the reference to the Searchers associated with InstantSearch.
     /// This is used in the case of multi-index
     @objc optional func configure(withSearchers searchers: [Searcher])
+    
+    /// The index name extracted from the view. Note that this is immutable, with the source of truth coming from the view only.
+    var indexName: String { get }
+    
+    /// The index id extracted from the view. Note that this is immutable, with the source of truth coming from the view only.
+    var indexId: String { get }
 }
