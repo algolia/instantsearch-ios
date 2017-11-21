@@ -165,6 +165,10 @@ import UIKit
                                                    object: searcher.params)
         }
     }
+    
+    public func getSearcher(named name:String, withId id:String = "") -> Searcher? {
+        return searchers[IndexId(name: name, id: id)]
+    }
 
     // MARK: Add widget methods
 

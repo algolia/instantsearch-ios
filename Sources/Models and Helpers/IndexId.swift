@@ -8,7 +8,13 @@
 import Foundation
 
 @objc public class IndexId: NSObject {
+    
+    /// The name of the index.
     var name: String
+    
+    /// A unique id of your choice.
+    ///
+    /// + NOTE: Only useful to fill when different widgets are targeting the same index but with different configurations.
     var id: String
     
     public convenience init(name: String) {
