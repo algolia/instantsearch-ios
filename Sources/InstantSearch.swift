@@ -326,6 +326,7 @@ import UIKit
             widget.configure?(withSearchers: searchersArray)
         } else {
             let indexId = IndexId(name: widget.indexName, id: widget.indexId)
+            // TODO: Remove force unwrapping, throw a better error when getting wrong IndexId
             let searcher = searchers[indexId]!
             widget.configure(with: searcher)
         }
