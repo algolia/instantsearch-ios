@@ -18,7 +18,7 @@ import InstantSearchCore
     
     /// Configures the ViewModel with the reference to the Searchers associated with InstantSearch.
     /// This is used in the case of multi-index
-    // TODO: This optional needs to be removed once all components are configurable with multiple searchers.
+    // TODO: This optional needs to be removed once all components are configurable with multiple searchers. Or keep optional?
     @objc optional func configure(withSearchers searchers: [Searcher])
     
     /// The index name extracted from the view. Note that this is immutable, with the source of truth coming from the view only.

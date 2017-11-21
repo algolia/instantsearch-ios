@@ -306,7 +306,6 @@ import UIKit
         }
     }
     
-    // TODO: all this needs to be cleaned
     private func bind(searchers: [IndexId: Searcher], to widgetVM: Any?) {
         
         guard let widget = widgetVM as? SearchableViewModel else { return }
@@ -316,18 +315,17 @@ import UIKit
         }
         
         // First configure the searchers
-        
         // if we don't specify an index name and index id, it means we need to target all indices for this widget.
+        // Else, target the specific index.
         if widget.indexName.isEmpty && widget.indexId.isEmpty {
             let searchersArray = searchers.map { $0.value }
             widget.configure?(withSearchers: searchersArray)
-        } else { // Else target the specific index.
+        } else {
             let indexId = IndexId(name: widget.indexName, id: widget.indexId)
             let searcher = searchers[indexId]!
             widget.configure(with: searcher)
         }
         
-        // TODO: for now only doing multiindex for resulting widget. also need to fix the algoliaWidget thingy
         if let resultingWidget = widgetVM as? ResultingDelegate {
             let indexId = IndexId(name: widget.indexName, id: widget.indexId)
             if multiIndexResultingDelegates[indexId] == nil {
@@ -377,10 +375,12 @@ import UIKit
         
         if isMultiIndexActive {
             let indexId = IndexId(name: searcher.indexName, id: searcher.indexId)
-            // TODO: remove force cast as well here
-            let multiIndexResultingDelegates = self.multiIndexResultingDelegates[indexId]!
-            for algoliaWidget in multiIndexResultingDelegates {
-                algoliaWidget.on(results: results, error: error, userInfo: userInfo)
+            if let multiIndexResultingDelegates = self.multiIndexResultingDelegates[indexId] {
+                for algoliaWidget in multiIndexResultingDelegates {
+                    algoliaWidget.on(results: results, error: error, userInfo: userInfo)
+                }
+            } else {
+                print("Unexpected case where the searcher index name and id don't map to any resulting delegate.")
             }
         } else {
             for algoliaWidget in resultingDelegates {
