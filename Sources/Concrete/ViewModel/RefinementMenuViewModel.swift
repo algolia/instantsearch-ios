@@ -47,6 +47,7 @@ internal class RefinementMenuViewModel: RefinementMenuViewModelDelegate, Searcha
         return TransformRefinementList(named: view.sortBy.lowercased())
     }
     
+    // TODO" The state for this should be on IS Core, not in the VM.
     var facetResults: [FacetValue] = []
     
     // MARK: - SearchableViewModel

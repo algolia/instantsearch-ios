@@ -402,18 +402,41 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="zGv-qx-Mnc" customClass="HitsTableWidget" customModule="InstantSearch">
-                                <rect key="frame" x="16" y="317" width="343" height="350"/>
+                                <rect key="frame" x="16" y="417" width="343" height="250"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <constraints>
-                                    <constraint firstAttribute="height" constant="350" id="FBf-9N-Kgh"/>
+                                    <constraint firstAttribute="height" constant="250" id="FBf-9N-Kgh"/>
                                 </constraints>
+                                <label key="tableHeaderView" opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Bestbuy" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="0ga-3I-qUN">
+                                    <rect key="frame" x="0.0" y="0.0" width="343" height="21"/>
+                                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                    <fontDescription key="fontDescription" type="boldSystem" pointSize="17"/>
+                                    <nil key="textColor"/>
+                                    <nil key="highlightedColor"/>
+                                </label>
                                 <prototypes>
-                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" selectionStyle="blue" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="bestbuyCell" id="JMh-rd-d38">
-                                        <rect key="frame" x="0.0" y="28" width="343" height="44"/>
+                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" selectionStyle="blue" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="bestbuyCell" textLabel="vaQ-Nc-fht" detailTextLabel="n6f-M3-gb5" style="IBUITableViewCellStyleSubtitle" id="JMh-rd-d38">
+                                        <rect key="frame" x="0.0" y="49" width="343" height="44"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="JMh-rd-d38" id="ytE-Zy-yEd">
                                             <rect key="frame" x="0.0" y="0.0" width="343" height="43.5"/>
                                             <autoresizingMask key="autoresizingMask"/>
+                                            <subviews>
+                                                <label opaque="NO" multipleTouchEnabled="YES" contentMode="left" insetsLayoutMarginsFromSafeArea="NO" text="Title" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="vaQ-Nc-fht">
+                                                    <rect key="frame" x="15" y="5" width="33.5" height="20.5"/>
+                                                    <autoresizingMask key="autoresizingMask"/>
+                                                    <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                                    <nil key="textColor"/>
+                                                    <nil key="highlightedColor"/>
+                                                </label>
+                                                <label opaque="NO" multipleTouchEnabled="YES" contentMode="left" insetsLayoutMarginsFromSafeArea="NO" text="Subtitle" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="n6f-M3-gb5">
+                                                    <rect key="frame" x="15" y="25.5" width="44" height="14.5"/>
+                                                    <autoresizingMask key="autoresizingMask"/>
+                                                    <fontDescription key="fontDescription" type="system" pointSize="12"/>
+                                                    <nil key="textColor"/>
+                                                    <nil key="highlightedColor"/>
+                                                </label>
+                                            </subviews>
                                         </tableViewCellContentView>
                                     </tableViewCell>
                                 </prototypes>
@@ -422,15 +445,38 @@
                                 </userDefinedRuntimeAttributes>
                             </tableView>
                             <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="dbf-lh-HaE" customClass="HitsTableWidget" customModule="InstantSearch">
-                                <rect key="frame" x="16" y="101" width="343" height="211"/>
+                                <rect key="frame" x="16" y="185" width="343" height="222"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <label key="tableHeaderView" opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Ikea" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="GnW-Sh-OVT">
+                                    <rect key="frame" x="0.0" y="0.0" width="343" height="21"/>
+                                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                    <fontDescription key="fontDescription" type="boldSystem" pointSize="17"/>
+                                    <nil key="textColor"/>
+                                    <nil key="highlightedColor"/>
+                                </label>
                                 <prototypes>
-                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" selectionStyle="blue" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="ikeaCell" id="Q5p-v8-MLc">
-                                        <rect key="frame" x="0.0" y="28" width="343" height="44"/>
+                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" selectionStyle="blue" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="ikeaCell" textLabel="AoP-Sk-bsv" detailTextLabel="tku-ZM-PGs" style="IBUITableViewCellStyleSubtitle" id="Q5p-v8-MLc">
+                                        <rect key="frame" x="0.0" y="49" width="343" height="44"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="Q5p-v8-MLc" id="rgR-a3-Hww">
                                             <rect key="frame" x="0.0" y="0.0" width="343" height="43.5"/>
                                             <autoresizingMask key="autoresizingMask"/>
+                                            <subviews>
+                                                <label opaque="NO" multipleTouchEnabled="YES" contentMode="left" insetsLayoutMarginsFromSafeArea="NO" text="Title" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="AoP-Sk-bsv">
+                                                    <rect key="frame" x="15" y="5" width="33.5" height="20.5"/>
+                                                    <autoresizingMask key="autoresizingMask"/>
+                                                    <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                                    <nil key="textColor"/>
+                                                    <nil key="highlightedColor"/>
+                                                </label>
+                                                <label opaque="NO" multipleTouchEnabled="YES" contentMode="left" insetsLayoutMarginsFromSafeArea="NO" text="Subtitle" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="tku-ZM-PGs">
+                                                    <rect key="frame" x="15" y="25.5" width="44" height="14.5"/>
+                                                    <autoresizingMask key="autoresizingMask"/>
+                                                    <fontDescription key="fontDescription" type="system" pointSize="12"/>
+                                                    <nil key="textColor"/>
+                                                    <nil key="highlightedColor"/>
+                                                </label>
+                                            </subviews>
                                         </tableViewCellContentView>
                                     </tableViewCell>
                                 </prototypes>
@@ -451,26 +497,72 @@
                                 <rect key="frame" x="0.0" y="40" width="375" height="56"/>
                                 <textInputTraits key="textInputTraits"/>
                             </searchBar>
+                            <slider opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" minValue="0.0" maxValue="100" translatesAutoresizingMaskIntoConstraints="NO" id="UiE-xZ-yMp" customClass="SliderWidget" customModule="InstantSearch">
+                                <rect key="frame" x="16" y="133" width="118" height="31"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" constant="114" id="uRD-IB-YjW"/>
+                                </constraints>
+                                <userDefinedRuntimeAttributes>
+                                    <userDefinedRuntimeAttribute type="string" keyPath="attribute" value="price"/>
+                                    <userDefinedRuntimeAttribute type="string" keyPath="operator" value="&gt;"/>
+                                    <userDefinedRuntimeAttribute type="string" keyPath="indexName" value="ikea"/>
+                                </userDefinedRuntimeAttributes>
+                            </slider>
+                            <slider opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" minValue="0.0" maxValue="100" translatesAutoresizingMaskIntoConstraints="NO" id="uHB-l9-t83" customClass="SliderWidget" customModule="InstantSearch">
+                                <rect key="frame" x="228" y="132.5" width="118" height="31"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" constant="114" id="gjB-YZ-zfy"/>
+                                </constraints>
+                                <userDefinedRuntimeAttributes>
+                                    <userDefinedRuntimeAttribute type="string" keyPath="indexName" value="bestbuy"/>
+                                    <userDefinedRuntimeAttribute type="string" keyPath="attribute" value="salePrice"/>
+                                    <userDefinedRuntimeAttribute type="string" keyPath="operator" value="&gt;"/>
+                                </userDefinedRuntimeAttributes>
+                            </slider>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="EBS-IJ-tZy">
+                                <rect key="frame" x="54" y="104" width="42" height="21"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Hgv-HR-jgw">
+                                <rect key="frame" x="266" y="104" width="42" height="21"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <constraints>
-                            <constraint firstItem="dbf-lh-HaE" firstAttribute="top" secondItem="Haq-lU-pWZ" secondAttribute="bottom" constant="5" id="0tZ-xE-hez"/>
+                            <constraint firstItem="Hgv-HR-jgw" firstAttribute="centerX" secondItem="uHB-l9-t83" secondAttribute="centerX" id="14l-TE-jC6"/>
                             <constraint firstItem="Haq-lU-pWZ" firstAttribute="leading" secondItem="Sif-t5-CLq" secondAttribute="leading" id="2bN-qX-Q9Z"/>
                             <constraint firstAttribute="trailing" secondItem="TuK-ae-HV9" secondAttribute="trailing" id="CHQ-au-kLR"/>
+                            <constraint firstItem="Hgv-HR-jgw" firstAttribute="centerY" secondItem="EBS-IJ-tZy" secondAttribute="centerY" id="JdQ-5O-l4N"/>
+                            <constraint firstItem="EBS-IJ-tZy" firstAttribute="centerX" secondItem="UiE-xZ-yMp" secondAttribute="centerX" id="Jgk-xb-quK"/>
+                            <constraint firstItem="EBS-IJ-tZy" firstAttribute="top" secondItem="Haq-lU-pWZ" secondAttribute="bottom" constant="8" id="KvU-4T-5hg"/>
+                            <constraint firstAttribute="trailing" secondItem="uHB-l9-t83" secondAttribute="trailing" constant="31" id="Nqc-eS-Yb7"/>
                             <constraint firstAttribute="trailingMargin" secondItem="zGv-qx-Mnc" secondAttribute="trailing" id="Rf3-sC-yhe"/>
+                            <constraint firstItem="UiE-xZ-yMp" firstAttribute="top" secondItem="EBS-IJ-tZy" secondAttribute="bottom" constant="8" id="UmL-a5-91U"/>
                             <constraint firstItem="zGv-qx-Mnc" firstAttribute="leading" secondItem="Sif-t5-CLq" secondAttribute="leadingMargin" id="WCB-fA-Ihf"/>
+                            <constraint firstItem="uHB-l9-t83" firstAttribute="centerY" secondItem="UiE-xZ-yMp" secondAttribute="centerY" id="Y0a-eJ-q0l"/>
+                            <constraint firstItem="UiE-xZ-yMp" firstAttribute="leading" secondItem="Sif-t5-CLq" secondAttribute="leading" constant="18" id="Y0f-bg-MMT"/>
                             <constraint firstItem="IqJ-Vm-1LA" firstAttribute="top" secondItem="zGv-qx-Mnc" secondAttribute="bottom" id="Zdw-bN-bqp"/>
                             <constraint firstAttribute="trailingMargin" secondItem="dbf-lh-HaE" secondAttribute="trailing" id="ah5-7T-2VE"/>
                             <constraint firstItem="TuK-ae-HV9" firstAttribute="top" secondItem="Sif-t5-CLq" secondAttribute="top" id="idh-k9-GBj"/>
                             <constraint firstItem="Haq-lU-pWZ" firstAttribute="top" secondItem="TuK-ae-HV9" secondAttribute="bottom" id="j6D-pm-BS6"/>
-                            <constraint firstItem="zGv-qx-Mnc" firstAttribute="top" secondItem="dbf-lh-HaE" secondAttribute="bottom" constant="5" id="jP4-W1-043"/>
                             <constraint firstItem="TuK-ae-HV9" firstAttribute="leading" secondItem="Sif-t5-CLq" secondAttribute="leading" id="pEz-TH-Q8Z"/>
+                            <constraint firstItem="dbf-lh-HaE" firstAttribute="top" secondItem="UiE-xZ-yMp" secondAttribute="bottom" constant="22" id="pnp-qO-1Sv"/>
                             <constraint firstAttribute="trailing" secondItem="Haq-lU-pWZ" secondAttribute="trailing" id="pqH-GB-ilO"/>
                             <constraint firstItem="dbf-lh-HaE" firstAttribute="leading" secondItem="Sif-t5-CLq" secondAttribute="leadingMargin" id="t0X-kV-pah"/>
+                            <constraint firstItem="zGv-qx-Mnc" firstAttribute="top" secondItem="dbf-lh-HaE" secondAttribute="bottom" constant="10" id="xaU-Qg-NX4"/>
                         </constraints>
                     </view>
                     <connections>
+                        <outlet property="bestBuyPriceSlider" destination="uHB-l9-t83" id="aaB-h2-oT2"/>
+                        <outlet property="bestbuyPriceLabel" destination="Hgv-HR-jgw" id="ZGW-Wx-PQf"/>
                         <outlet property="bestbuyTableView" destination="zGv-qx-Mnc" id="UOM-fV-Gfn"/>
+                        <outlet property="ikeaPriceLabel" destination="EBS-IJ-tZy" id="aVy-XF-511"/>
+                        <outlet property="ikeaPriceSlider" destination="UiE-xZ-yMp" id="9mB-RY-M5g"/>
                         <outlet property="ikeaTableView" destination="dbf-lh-HaE" id="aKE-nb-ZUO"/>
                         <outlet property="searchBar" destination="Haq-lU-pWZ" id="H2u-aC-MC4"/>
                     </connections>

@@ -31,6 +31,7 @@ import UIKit
     private var refinableDelegateMap = [String: WeakSet<RefinableDelegate>]()
 
     private var multiIndexResultingDelegates: [IndexId: WeakSet<ResultingDelegate>] = [:]
+    //private var multiIndexRefinableDelegates: [IndexId: [String: WeakSet<RefinableDelegate>]] = [:]
     
     /// The Searchers used in the case of multi-indexing.
     private var searchers: [IndexId: Searcher]
@@ -153,6 +154,15 @@ import UIKit
         isMultiIndexActive = true
         for (_, searcher) in searchers {
             searcher.delegate = self
+            NotificationCenter.default.addObserver(self,
+                                                   selector: #selector(reset),
+                                                   name: clearAllFiltersNotification,
+                                                   object: searcher.params)
+            
+            NotificationCenter.default.addObserver(self,
+                                                   selector: #selector(onRefinementNotification(notification:)),
+                                                   name: Searcher.RefinementChangeNotification,
+                                                   object: searcher.params)
         }
     }
 
@@ -298,25 +308,28 @@ import UIKit
     
     // TODO: all this needs to be cleaned
     private func bind(searchers: [IndexId: Searcher], to widgetVM: Any?) {
-        // TODO (important): It shouldn't be only searchabableViewModel.
-        // Should also be the View widgets that act as viewmodel (like custom widgets)
-        if let widget = widgetVM as? SearchableViewModel {
-            // if we don't specify an index name and index id, it means we need to target all indices for this widget
-            if widget.indexName.isEmpty && widget.indexId.isEmpty {
-                let searchersArray = searchers.map { $0.value }
-                // TODO: This optional needs to change for sure
-                widget.configure?(withSearchers: searchersArray)
-            } else {
-                let indexId = IndexId(name: widget.indexName, id: widget.indexId)
-                let searcher = searchers[indexId]!
-                widget.configure(with: searcher)
-            }
+        
+        guard let widget = widgetVM as? SearchableViewModel else { return }
+        
+        if widget is RefinableDelegate && widget.indexId.isEmpty && widget.indexName.isEmpty {
+            fatalError("For the multi-index case, all refinable widgets should target a specific index")
+        }
+        
+        // First configure the searchers
+        
+        // if we don't specify an index name and index id, it means we need to target all indices for this widget.
+        if widget.indexName.isEmpty && widget.indexId.isEmpty {
+            let searchersArray = searchers.map { $0.value }
+            widget.configure?(withSearchers: searchersArray)
+        } else { // Else target the specific index.
+            let indexId = IndexId(name: widget.indexName, id: widget.indexId)
+            let searcher = searchers[indexId]!
+            widget.configure(with: searcher)
         }
         
         // TODO: for now only doing multiindex for resulting widget. also need to fix the algoliaWidget thingy
-        if let resultingWidget = widgetVM as? ResultingDelegate,
-            let searchableWidget = widgetVM as? SearchableViewModel {
-            let indexId = IndexId(name: searchableWidget.indexName, id: searchableWidget.indexId)
+        if let resultingWidget = widgetVM as? ResultingDelegate {
+            let indexId = IndexId(name: widget.indexName, id: widget.indexId)
             if multiIndexResultingDelegates[indexId] == nil {
                 multiIndexResultingDelegates[indexId] = WeakSet<ResultingDelegate>()
             }
@@ -324,21 +337,17 @@ import UIKit
             multiIndexResultingDelegates[indexId]!.add(resultingWidget)
         }
         
-//        if let resettableWidget = widgetVM as? ResettableDelegate {
-//            resettableDelegates.add(resettableWidget)
-//        }
-//
-//        if let refinableWidget = widgetVM as? RefinableDelegate {
-//            refinableDelegates.add(refinableWidget)
-//
-//            let attribute = refinableWidget.attribute
-//
-//            if refinableDelegateMap[attribute] == nil {
-//                refinableDelegateMap[attribute] = WeakSet<RefinableDelegate>()
-//            }
-//
-//            refinableDelegateMap[attribute]!.add(refinableWidget)
-//        }
+        if let refinableWidget = widgetVM as? RefinableDelegate {
+            refinableDelegates.add(refinableWidget)
+            
+            let attribute = refinableWidget.attribute
+            
+            if refinableDelegateMap[attribute] == nil {
+                refinableDelegateMap[attribute] = WeakSet<RefinableDelegate>()
+            }
+            
+            refinableDelegateMap[attribute]!.add(refinableWidget)
+        }
     }
 
     // MARK: - Notification Observers
@@ -394,6 +403,7 @@ import UIKit
 
     // Forwards any numeric param change to the widget implementing the `RefinableDelegate` protocol.
     private func callSpecificNumericChanges(numericRefinementMap: [String: [NumericRefinement]]?) {
+        
         if let numericRefinementMap = numericRefinementMap {
             for (refinementName, numericRefinement) in numericRefinementMap {
                 if let widgets = refinableDelegateMap[refinementName] {

@@ -16,6 +16,11 @@ class MultiIndexTableviewControllerDemo: UIViewController, HitsTableViewDataSour
     @IBOutlet weak var bestbuyTableView: HitsTableWidget!
     @IBOutlet weak var searchBar: SearchBarWidget!
     
+    @IBOutlet weak var ikeaPriceSlider: SliderWidget!
+    @IBOutlet weak var bestBuyPriceSlider: SliderWidget!
+    @IBOutlet weak var ikeaPriceLabel: UILabel!
+    @IBOutlet weak var bestbuyPriceLabel: UILabel!
+    
     var ikeaHitsController: HitsController!
     var bestbuyHitsController: HitsController!
 
@@ -38,19 +43,34 @@ class MultiIndexTableviewControllerDemo: UIViewController, HitsTableViewDataSour
         bestbuyTableView.dataSource = bestbuyHitsController
         bestbuyTableView.delegate = bestbuyHitsController
         bestbuyHitsController.tableDataSource = self
-        // Do any additional setup after loading the view.
+        
+        
+        ikeaPriceSlider.addTarget(self, action: #selector(sliderChanged(sender:)), for: .valueChanged)
+        bestBuyPriceSlider.addTarget(self, action: #selector(sliderChanged(sender:)), for: .valueChanged)
+        ikeaPriceLabel.text = "Ikea > \(ikeaPriceSlider.value.rounded())$"
+        bestbuyPriceLabel.text = "Bestbuy > \(bestBuyPriceSlider.value.rounded())$"
+    }
+    
+    @objc func sliderChanged(sender: UISlider) {
+        ikeaPriceLabel.text = "Ikea > \(ikeaPriceSlider.value.rounded())$"
+        bestbuyPriceLabel.text = "Bestbuy > \(bestBuyPriceSlider.value.rounded())$"
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath, containing hit: [String : Any]) -> UITableViewCell {
         let cell: UITableViewCell!
+        let salesPrice: String!
         if tableView == ikeaTableView {
             cell = tableView.dequeueReusableCell(withIdentifier: "ikeaCell", for: indexPath)
+            salesPrice = String(hit["price"] as! Double)
+            
         } else {
             cell = tableView.dequeueReusableCell(withIdentifier: "bestbuyCell", for: indexPath)
+            salesPrice = String(hit["salePrice"] as! Double)
         }
         
         cell.textLabel?.highlightedText = SearchResults.highlightResult(hit: hit, path: "name")?.value
         cell.textLabel?.text = hit["name"] as? String
+        cell.detailTextLabel?.text = salesPrice
         
         return cell
     }
