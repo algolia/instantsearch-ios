@@ -1,0 +1,522 @@
+// !$*UTF8*$!
+{
+	archiveVersion = 1;
+	classes = {
+	};
+	objectVersion = 48;
+	objects = {
+
+/* Begin PBXBuildFile section */
+		7CDEB63A5116DBF1529A2ABD /* Pods_InstantSearchDemo.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C009A6E7D9A0EEBF22E4E571 /* Pods_InstantSearchDemo.framework */; };
+		E20CEF6C1FB2242800813D0F /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = E20CEF511FB2242800813D0F /* Assets.xcassets */; };
+		E20CEF6D1FB2242800813D0F /* StartingTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E20CEF521FB2242800813D0F /* StartingTableViewController.swift */; };
+		E20CEF6E1FB2242800813D0F /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = E20CEF541FB2242800813D0F /* LaunchScreen.storyboard */; };
+		E20CEF6F1FB2242800813D0F /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = E20CEF561FB2242800813D0F /* Main.storyboard */; };
+		E20CEF701FB2242800813D0F /* CollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = E20CEF5A1FB2242800813D0F /* CollectionViewCell.swift */; };
+		E20CEF711FB2242800813D0F /* HitsCollectionViewControllerDemo.swift in Sources */ = {isa = PBXBuildFile; fileRef = E20CEF5B1FB2242800813D0F /* HitsCollectionViewControllerDemo.swift */; };
+		E20CEF721FB2242800813D0F /* HitsTableViewControllerDemo.swift in Sources */ = {isa = PBXBuildFile; fileRef = E20CEF5C1FB2242800813D0F /* HitsTableViewControllerDemo.swift */; };
+		E20CEF731FB2242800813D0F /* RefinementCollectionViewControllerDemo.swift in Sources */ = {isa = PBXBuildFile; fileRef = E20CEF5D1FB2242800813D0F /* RefinementCollectionViewControllerDemo.swift */; };
+		E20CEF741FB2242800813D0F /* RefinementTableViewControllerDemo.swift in Sources */ = {isa = PBXBuildFile; fileRef = E20CEF5E1FB2242800813D0F /* RefinementTableViewControllerDemo.swift */; };
+		E20CEF751FB2242800813D0F /* StatsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E20CEF5F1FB2242800813D0F /* StatsViewController.swift */; };
+		E20CEF761FB2242800813D0F /* CollectionViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = E20CEF611FB2242800813D0F /* CollectionViewCell.xib */; };
+		E20CEF771FB2242800813D0F /* HitsCollectionViewControllerDemo.xib in Resources */ = {isa = PBXBuildFile; fileRef = E20CEF621FB2242800813D0F /* HitsCollectionViewControllerDemo.xib */; };
+		E20CEF781FB2242800813D0F /* HitsTableViewControllerDemo.xib in Resources */ = {isa = PBXBuildFile; fileRef = E20CEF631FB2242800813D0F /* HitsTableViewControllerDemo.xib */; };
+		E20CEF791FB2242800813D0F /* RefinementCollectionViewControllerDemo.xib in Resources */ = {isa = PBXBuildFile; fileRef = E20CEF641FB2242800813D0F /* RefinementCollectionViewControllerDemo.xib */; };
+		E20CEF7A1FB2242800813D0F /* RefinementTableViewControllerDemo.xib in Resources */ = {isa = PBXBuildFile; fileRef = E20CEF651FB2242800813D0F /* RefinementTableViewControllerDemo.xib */; };
+		E20CEF7B1FB2242800813D0F /* StatsView.xib in Resources */ = {isa = PBXBuildFile; fileRef = E20CEF661FB2242800813D0F /* StatsView.xib */; };
+		E20CEF7C1FB2242800813D0F /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = E20CEF671FB2242800813D0F /* AppDelegate.swift */; };
+		E20CEF7D1FB2242800813D0F /* CollectionViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E20CEF691FB2242800813D0F /* CollectionViewController.swift */; };
+		E20CEF7E1FB2242800813D0F /* FacetController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E20CEF6A1FB2242800813D0F /* FacetController.swift */; };
+		E20CEF7F1FB2242800813D0F /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E20CEF6B1FB2242800813D0F /* ViewController.swift */; };
+		E2C1E68D1FB4A66E00E0136E /* MultiIndexTableviewControllerDemo.swift in Sources */ = {isa = PBXBuildFile; fileRef = E2C1E68B1FB4A66E00E0136E /* MultiIndexTableviewControllerDemo.swift */; };
+/* End PBXBuildFile section */
+
+/* Begin PBXFileReference section */
+		38EA7C0A822689DCE96FCCB4 /* Pods-InstantSearchDemo.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-InstantSearchDemo.release.xcconfig"; path = "Pods/Target Support Files/Pods-InstantSearchDemo/Pods-InstantSearchDemo.release.xcconfig"; sourceTree = "<group>"; };
+		5269F7AF6D0EDD567E429227 /* Pods-InstantSearchDemo.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-InstantSearchDemo.debug.xcconfig"; path = "Pods/Target Support Files/Pods-InstantSearchDemo/Pods-InstantSearchDemo.debug.xcconfig"; sourceTree = "<group>"; };
+		C009A6E7D9A0EEBF22E4E571 /* Pods_InstantSearchDemo.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_InstantSearchDemo.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		E20CEF0D1FB2119500813D0F /* InstantSearchDemo.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = InstantSearchDemo.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		E20CEF1C1FB2119500813D0F /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		E20CEF511FB2242800813D0F /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
+		E20CEF521FB2242800813D0F /* StartingTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = StartingTableViewController.swift; sourceTree = "<group>"; };
+		E20CEF551FB2242800813D0F /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = LaunchScreen.storyboard; sourceTree = "<group>"; };
+		E20CEF571FB2242800813D0F /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Main.storyboard; sourceTree = "<group>"; };
+		E20CEF5A1FB2242800813D0F /* CollectionViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CollectionViewCell.swift; sourceTree = "<group>"; };
+		E20CEF5B1FB2242800813D0F /* HitsCollectionViewControllerDemo.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HitsCollectionViewControllerDemo.swift; sourceTree = "<group>"; };
+		E20CEF5C1FB2242800813D0F /* HitsTableViewControllerDemo.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HitsTableViewControllerDemo.swift; sourceTree = "<group>"; };
+		E20CEF5D1FB2242800813D0F /* RefinementCollectionViewControllerDemo.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RefinementCollectionViewControllerDemo.swift; sourceTree = "<group>"; };
+		E20CEF5E1FB2242800813D0F /* RefinementTableViewControllerDemo.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RefinementTableViewControllerDemo.swift; sourceTree = "<group>"; };
+		E20CEF5F1FB2242800813D0F /* StatsViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = StatsViewController.swift; sourceTree = "<group>"; };
+		E20CEF611FB2242800813D0F /* CollectionViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = CollectionViewCell.xib; sourceTree = "<group>"; };
+		E20CEF621FB2242800813D0F /* HitsCollectionViewControllerDemo.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = HitsCollectionViewControllerDemo.xib; sourceTree = "<group>"; };
+		E20CEF631FB2242800813D0F /* HitsTableViewControllerDemo.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = HitsTableViewControllerDemo.xib; sourceTree = "<group>"; };
+		E20CEF641FB2242800813D0F /* RefinementCollectionViewControllerDemo.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = RefinementCollectionViewControllerDemo.xib; sourceTree = "<group>"; };
+		E20CEF651FB2242800813D0F /* RefinementTableViewControllerDemo.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = RefinementTableViewControllerDemo.xib; sourceTree = "<group>"; };
+		E20CEF661FB2242800813D0F /* StatsView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = StatsView.xib; sourceTree = "<group>"; };
+		E20CEF671FB2242800813D0F /* AppDelegate.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
+		E20CEF691FB2242800813D0F /* CollectionViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CollectionViewController.swift; sourceTree = "<group>"; };
+		E20CEF6A1FB2242800813D0F /* FacetController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FacetController.swift; sourceTree = "<group>"; };
+		E20CEF6B1FB2242800813D0F /* ViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
+		E2C1E68B1FB4A66E00E0136E /* MultiIndexTableviewControllerDemo.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MultiIndexTableviewControllerDemo.swift; sourceTree = "<group>"; };
+/* End PBXFileReference section */
+
+/* Begin PBXFrameworksBuildPhase section */
+		E20CEF0A1FB2119500813D0F /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				7CDEB63A5116DBF1529A2ABD /* Pods_InstantSearchDemo.framework in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXFrameworksBuildPhase section */
+
+/* Begin PBXGroup section */
+		07A5F6E2605EDFB0952C66EE /* Pods */ = {
+			isa = PBXGroup;
+			children = (
+				5269F7AF6D0EDD567E429227 /* Pods-InstantSearchDemo.debug.xcconfig */,
+				38EA7C0A822689DCE96FCCB4 /* Pods-InstantSearchDemo.release.xcconfig */,
+			);
+			name = Pods;
+			sourceTree = "<group>";
+		};
+		631400DAF212244B26E68535 /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				C009A6E7D9A0EEBF22E4E571 /* Pods_InstantSearchDemo.framework */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
+		E20CEF041FB2119500813D0F = {
+			isa = PBXGroup;
+			children = (
+				E20CEF0F1FB2119500813D0F /* InstantSearchDemo */,
+				E20CEF0E1FB2119500813D0F /* Products */,
+				07A5F6E2605EDFB0952C66EE /* Pods */,
+				631400DAF212244B26E68535 /* Frameworks */,
+			);
+			sourceTree = "<group>";
+		};
+		E20CEF0E1FB2119500813D0F /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				E20CEF0D1FB2119500813D0F /* InstantSearchDemo.app */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+		E20CEF0F1FB2119500813D0F /* InstantSearchDemo */ = {
+			isa = PBXGroup;
+			children = (
+				E20CEF671FB2242800813D0F /* AppDelegate.swift */,
+				E20CEF511FB2242800813D0F /* Assets.xcassets */,
+				E20CEF531FB2242800813D0F /* Base.lproj */,
+				E20CEF681FB2242800813D0F /* FullDemo */,
+				E20CEF521FB2242800813D0F /* StartingTableViewController.swift */,
+				E20CEF581FB2242800813D0F /* WidgetsDemo */,
+				E20CEF1C1FB2119500813D0F /* Info.plist */,
+			);
+			path = InstantSearchDemo;
+			sourceTree = "<group>";
+		};
+		E20CEF531FB2242800813D0F /* Base.lproj */ = {
+			isa = PBXGroup;
+			children = (
+				E20CEF541FB2242800813D0F /* LaunchScreen.storyboard */,
+				E20CEF561FB2242800813D0F /* Main.storyboard */,
+			);
+			path = Base.lproj;
+			sourceTree = "<group>";
+		};
+		E20CEF581FB2242800813D0F /* WidgetsDemo */ = {
+			isa = PBXGroup;
+			children = (
+				E20CEF591FB2242800813D0F /* controllers */,
+				E20CEF601FB2242800813D0F /* xib */,
+			);
+			path = WidgetsDemo;
+			sourceTree = "<group>";
+		};
+		E20CEF591FB2242800813D0F /* controllers */ = {
+			isa = PBXGroup;
+			children = (
+				E20CEF5A1FB2242800813D0F /* CollectionViewCell.swift */,
+				E20CEF5B1FB2242800813D0F /* HitsCollectionViewControllerDemo.swift */,
+				E20CEF5C1FB2242800813D0F /* HitsTableViewControllerDemo.swift */,
+				E20CEF5D1FB2242800813D0F /* RefinementCollectionViewControllerDemo.swift */,
+				E20CEF5E1FB2242800813D0F /* RefinementTableViewControllerDemo.swift */,
+				E20CEF5F1FB2242800813D0F /* StatsViewController.swift */,
+				E2C1E68B1FB4A66E00E0136E /* MultiIndexTableviewControllerDemo.swift */,
+			);
+			path = controllers;
+			sourceTree = "<group>";
+		};
+		E20CEF601FB2242800813D0F /* xib */ = {
+			isa = PBXGroup;
+			children = (
+				E20CEF611FB2242800813D0F /* CollectionViewCell.xib */,
+				E20CEF621FB2242800813D0F /* HitsCollectionViewControllerDemo.xib */,
+				E20CEF631FB2242800813D0F /* HitsTableViewControllerDemo.xib */,
+				E20CEF641FB2242800813D0F /* RefinementCollectionViewControllerDemo.xib */,
+				E20CEF651FB2242800813D0F /* RefinementTableViewControllerDemo.xib */,
+				E20CEF661FB2242800813D0F /* StatsView.xib */,
+			);
+			path = xib;
+			sourceTree = "<group>";
+		};
+		E20CEF681FB2242800813D0F /* FullDemo */ = {
+			isa = PBXGroup;
+			children = (
+				E20CEF691FB2242800813D0F /* CollectionViewController.swift */,
+				E20CEF6A1FB2242800813D0F /* FacetController.swift */,
+				E20CEF6B1FB2242800813D0F /* ViewController.swift */,
+			);
+			path = FullDemo;
+			sourceTree = "<group>";
+		};
+/* End PBXGroup section */
+
+/* Begin PBXNativeTarget section */
+		E20CEF0C1FB2119500813D0F /* InstantSearchDemo */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = E20CEF1F1FB2119500813D0F /* Build configuration list for PBXNativeTarget "InstantSearchDemo" */;
+			buildPhases = (
+				EB98E909889904F34BDFAFCA /* [CP] Check Pods Manifest.lock */,
+				E20CEF091FB2119500813D0F /* Sources */,
+				E20CEF0A1FB2119500813D0F /* Frameworks */,
+				E20CEF0B1FB2119500813D0F /* Resources */,
+				7A3069DC452BD68A5F3FEEC9 /* [CP] Embed Pods Frameworks */,
+				2A879186AC3CDBA363D7F167 /* [CP] Copy Pods Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = InstantSearchDemo;
+			productName = InstantSearchDemo;
+			productReference = E20CEF0D1FB2119500813D0F /* InstantSearchDemo.app */;
+			productType = "com.apple.product-type.application";
+		};
+/* End PBXNativeTarget section */
+
+/* Begin PBXProject section */
+		E20CEF051FB2119500813D0F /* Project object */ = {
+			isa = PBXProject;
+			attributes = {
+				LastSwiftUpdateCheck = 0910;
+				LastUpgradeCheck = 0910;
+				ORGANIZATIONNAME = Algolia;
+				TargetAttributes = {
+					E20CEF0C1FB2119500813D0F = {
+						CreatedOnToolsVersion = 9.1;
+						LastSwiftMigration = 0910;
+						ProvisioningStyle = Automatic;
+					};
+				};
+			};
+			buildConfigurationList = E20CEF081FB2119500813D0F /* Build configuration list for PBXProject "InstantSearchDemo" */;
+			compatibilityVersion = "Xcode 8.0";
+			developmentRegion = en;
+			hasScannedForEncodings = 0;
+			knownRegions = (
+				en,
+				Base,
+			);
+			mainGroup = E20CEF041FB2119500813D0F;
+			productRefGroup = E20CEF0E1FB2119500813D0F /* Products */;
+			projectDirPath = "";
+			projectRoot = "";
+			targets = (
+				E20CEF0C1FB2119500813D0F /* InstantSearchDemo */,
+			);
+		};
+/* End PBXProject section */
+
+/* Begin PBXResourcesBuildPhase section */
+		E20CEF0B1FB2119500813D0F /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				E20CEF6F1FB2242800813D0F /* Main.storyboard in Resources */,
+				E20CEF771FB2242800813D0F /* HitsCollectionViewControllerDemo.xib in Resources */,
+				E20CEF791FB2242800813D0F /* RefinementCollectionViewControllerDemo.xib in Resources */,
+				E20CEF6C1FB2242800813D0F /* Assets.xcassets in Resources */,
+				E20CEF761FB2242800813D0F /* CollectionViewCell.xib in Resources */,
+				E20CEF7B1FB2242800813D0F /* StatsView.xib in Resources */,
+				E20CEF781FB2242800813D0F /* HitsTableViewControllerDemo.xib in Resources */,
+				E20CEF6E1FB2242800813D0F /* LaunchScreen.storyboard in Resources */,
+				E20CEF7A1FB2242800813D0F /* RefinementTableViewControllerDemo.xib in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXResourcesBuildPhase section */
+
+/* Begin PBXShellScriptBuildPhase section */
+		2A879186AC3CDBA363D7F167 /* [CP] Copy Pods Resources */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "[CP] Copy Pods Resources";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-InstantSearchDemo/Pods-InstantSearchDemo-resources.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+		7A3069DC452BD68A5F3FEEC9 /* [CP] Embed Pods Frameworks */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+				"${SRCROOT}/Pods/Target Support Files/Pods-InstantSearchDemo/Pods-InstantSearchDemo-frameworks.sh",
+				"${BUILT_PRODUCTS_DIR}/AlgoliaSearch-Client-Swift/AlgoliaSearch.framework",
+				"${BUILT_PRODUCTS_DIR}/InstantSearch-Core-Swift/InstantSearchCore.framework",
+				"${BUILT_PRODUCTS_DIR}/InstantSearch-iOS/InstantSearch.framework",
+			);
+			name = "[CP] Embed Pods Frameworks";
+			outputPaths = (
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/AlgoliaSearch.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/InstantSearchCore.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/InstantSearch.framework",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-InstantSearchDemo/Pods-InstantSearchDemo-frameworks.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+		EB98E909889904F34BDFAFCA /* [CP] Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+				"${PODS_PODFILE_DIR_PATH}/Podfile.lock",
+				"${PODS_ROOT}/Manifest.lock",
+			);
+			name = "[CP] Check Pods Manifest.lock";
+			outputPaths = (
+				"$(DERIVED_FILE_DIR)/Pods-InstantSearchDemo-checkManifestLockResult.txt",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
+			showEnvVarsInLog = 0;
+		};
+/* End PBXShellScriptBuildPhase section */
+
+/* Begin PBXSourcesBuildPhase section */
+		E20CEF091FB2119500813D0F /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				E20CEF7D1FB2242800813D0F /* CollectionViewController.swift in Sources */,
+				E20CEF7E1FB2242800813D0F /* FacetController.swift in Sources */,
+				E20CEF7C1FB2242800813D0F /* AppDelegate.swift in Sources */,
+				E20CEF721FB2242800813D0F /* HitsTableViewControllerDemo.swift in Sources */,
+				E20CEF7F1FB2242800813D0F /* ViewController.swift in Sources */,
+				E20CEF741FB2242800813D0F /* RefinementTableViewControllerDemo.swift in Sources */,
+				E20CEF711FB2242800813D0F /* HitsCollectionViewControllerDemo.swift in Sources */,
+				E20CEF731FB2242800813D0F /* RefinementCollectionViewControllerDemo.swift in Sources */,
+				E20CEF751FB2242800813D0F /* StatsViewController.swift in Sources */,
+				E2C1E68D1FB4A66E00E0136E /* MultiIndexTableviewControllerDemo.swift in Sources */,
+				E20CEF701FB2242800813D0F /* CollectionViewCell.swift in Sources */,
+				E20CEF6D1FB2242800813D0F /* StartingTableViewController.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXSourcesBuildPhase section */
+
+/* Begin PBXVariantGroup section */
+		E20CEF541FB2242800813D0F /* LaunchScreen.storyboard */ = {
+			isa = PBXVariantGroup;
+			children = (
+				E20CEF551FB2242800813D0F /* Base */,
+			);
+			name = LaunchScreen.storyboard;
+			sourceTree = "<group>";
+		};
+		E20CEF561FB2242800813D0F /* Main.storyboard */ = {
+			isa = PBXVariantGroup;
+			children = (
+				E20CEF571FB2242800813D0F /* Base */,
+			);
+			name = Main.storyboard;
+			sourceTree = "<group>";
+		};
+/* End PBXVariantGroup section */
+
+/* Begin XCBuildConfiguration section */
+		E20CEF1D1FB2119500813D0F /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++14";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_WARN_BLOCK_CAPTURE_AUTORELEASING = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_COMMA = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
+				CLANG_WARN_STRICT_PROTOTYPES = YES;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
+				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				CODE_SIGN_IDENTITY = "iPhone Developer";
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = dwarf;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				ENABLE_TESTABILITY = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu11;
+				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"DEBUG=1",
+					"$(inherited)",
+				);
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 11.1;
+				MTL_ENABLE_DEBUG_INFO = YES;
+				ONLY_ACTIVE_ARCH = YES;
+				SDKROOT = iphoneos;
+				SWIFT_ACTIVE_COMPILATION_CONDITIONS = DEBUG;
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
+			};
+			name = Debug;
+		};
+		E20CEF1E1FB2119500813D0F /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++14";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_WARN_BLOCK_CAPTURE_AUTORELEASING = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_COMMA = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
+				CLANG_WARN_STRICT_PROTOTYPES = YES;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
+				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				CODE_SIGN_IDENTITY = "iPhone Developer";
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				ENABLE_NS_ASSERTIONS = NO;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu11;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 11.1;
+				MTL_ENABLE_DEBUG_INFO = NO;
+				SDKROOT = iphoneos;
+				SWIFT_OPTIMIZATION_LEVEL = "-Owholemodule";
+				VALIDATE_PRODUCT = YES;
+			};
+			name = Release;
+		};
+		E20CEF201FB2119500813D0F /* Debug */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = 5269F7AF6D0EDD567E429227 /* Pods-InstantSearchDemo.debug.xcconfig */;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CLANG_ENABLE_MODULES = YES;
+				CODE_SIGN_STYLE = Automatic;
+				DEVELOPMENT_TEAM = 5RDFJYUV23;
+				INFOPLIST_FILE = InstantSearchDemo/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = com.algolia.InstantSearchDemo;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
+				SWIFT_VERSION = 4.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+			};
+			name = Debug;
+		};
+		E20CEF211FB2119500813D0F /* Release */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = 38EA7C0A822689DCE96FCCB4 /* Pods-InstantSearchDemo.release.xcconfig */;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CLANG_ENABLE_MODULES = YES;
+				CODE_SIGN_STYLE = Automatic;
+				DEVELOPMENT_TEAM = 5RDFJYUV23;
+				INFOPLIST_FILE = InstantSearchDemo/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = com.algolia.InstantSearchDemo;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_VERSION = 4.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+			};
+			name = Release;
+		};
+/* End XCBuildConfiguration section */
+
+/* Begin XCConfigurationList section */
+		E20CEF081FB2119500813D0F /* Build configuration list for PBXProject "InstantSearchDemo" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				E20CEF1D1FB2119500813D0F /* Debug */,
+				E20CEF1E1FB2119500813D0F /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		E20CEF1F1FB2119500813D0F /* Build configuration list for PBXNativeTarget "InstantSearchDemo" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				E20CEF201FB2119500813D0F /* Debug */,
+				E20CEF211FB2119500813D0F /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+/* End XCConfigurationList section */
+	};
+	rootObject = E20CEF051FB2119500813D0F /* Project object */;
+}
