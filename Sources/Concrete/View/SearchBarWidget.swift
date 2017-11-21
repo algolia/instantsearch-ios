@@ -11,12 +11,12 @@ import InstantSearchCore
 import UIKit
 
 /// Widget that provides a user input for search queries that are directly sent to the Algolia engine. Built on top of `UISearchBar`.
-@objc public class SearchBarWidget: UISearchBar, SearchViewDelegate, AlgoliaWidget, UISearchBarDelegate {
+@objc public class SearchBarWidget: UISearchBar, SearchControlViewDelegate, AlgoliaWidget, UISearchBarDelegate {
     
     @IBInspectable public var indexName: String = Constants.Defaults.indexName
     @IBInspectable public var indexId: String = Constants.Defaults.indexId
     
-    var viewModel: SearchViewModelDelegate
+    var viewModel: SearchControlViewModelDelegate
     
     @objc public override init(frame: CGRect) {
         viewModel = SearchViewModel()

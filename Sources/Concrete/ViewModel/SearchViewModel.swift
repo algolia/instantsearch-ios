@@ -10,7 +10,7 @@ import InstantSearchCore
 /// ViewModel - View: StatsViewModelDelegate.
 ///
 /// ViewModel - Searcher: SearchableViewModel, ResultingDelegate, ResettableDelegate.
-internal class SearchViewModel: SearchViewModelDelegate, SearchableViewModel {
+internal class SearchViewModel: SearchControlViewModelDelegate, SearchableViewModel {
     
     // MARK: - Properties
     var indexId: String {
@@ -37,7 +37,7 @@ internal class SearchViewModel: SearchViewModelDelegate, SearchableViewModel {
     
     // MARK: - StatsViewModelDelegate
     
-    weak var view: SearchViewDelegate!
+    weak var view: SearchControlViewDelegate!
     
     /// search with a given query text
     func search(query: String?) {

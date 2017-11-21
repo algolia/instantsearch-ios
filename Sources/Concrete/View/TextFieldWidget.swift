@@ -11,12 +11,12 @@ import InstantSearchCore
 import UIKit
 
 /// Widget that provides a user input for search queries that are directly sent to the Algolia engine. Built on top of `UITextField`.
-@objc public class TextFieldWidget: UITextField, SearchViewDelegate, AlgoliaWidget, UITextFieldDelegate {
+@objc public class TextFieldWidget: UITextField, SearchControlViewDelegate, AlgoliaWidget, UITextFieldDelegate {
     
     @IBInspectable public var indexName: String = Constants.Defaults.indexName
     @IBInspectable public var indexId: String = Constants.Defaults.indexId
     
-    var viewModel: SearchViewModelDelegate
+    var viewModel: SearchControlViewModelDelegate
     
     @objc public override init(frame: CGRect) {
         viewModel = SearchViewModel()

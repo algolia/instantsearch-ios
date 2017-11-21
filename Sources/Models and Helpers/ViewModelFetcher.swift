@@ -24,7 +24,7 @@ class ViewModelFetcher {
             return widgetV.viewModel
         case let widgetV as FacetControlViewDelegate:
             return widgetV.viewModel
-        case let widgetV as SearchViewDelegate:
+        case let widgetV as SearchControlViewDelegate:
             return widgetV.viewModel
         default: return nil
         }
