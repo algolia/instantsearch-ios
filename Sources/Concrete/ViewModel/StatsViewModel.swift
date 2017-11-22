@@ -11,7 +11,7 @@ import InstantSearchCore
 /// ViewModel - View: StatsViewModelDelegate.
 ///
 /// ViewModel - Searcher: SearchableViewModel, ResultingDelegate, ResettableDelegate.
-internal class StatsViewModel: StatsViewModelDelegate, SearchableViewModel {
+internal class StatsViewModel: StatsViewModelDelegate, SearchableMultiIndexViewModel {
     
     // MARK: - Properties
     

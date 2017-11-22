@@ -8,7 +8,7 @@
 import Foundation
 
 /// Protocol that defines the hits view input methods and propreties.
-@objc internal protocol SearchControlViewDelegate: AlgoliaWidget {
+@objc internal protocol SearchControlViewDelegate: AlgoliaMultiIndexWidget {
     
     /// ViewModel associated with the WidgetV.
     var viewModel: SearchControlViewModelDelegate! { get set }

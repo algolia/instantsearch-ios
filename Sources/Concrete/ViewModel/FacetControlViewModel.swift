@@ -12,7 +12,7 @@ import InstantSearchCore
 /// ViewModel - View: FacetControlViewModelDelegate.
 ///
 /// ViewModel - Searcher: SearchableViewModel, RefinableDelegate, ResettableDelegate.
-internal class FacetControlViewModel: FacetControlViewModelDelegate, SearchableViewModel {
+internal class FacetControlViewModel: FacetControlViewModelDelegate, SearchableMultiIndexViewModel {
     
     // MARK: - Properties
     var indexId: String {

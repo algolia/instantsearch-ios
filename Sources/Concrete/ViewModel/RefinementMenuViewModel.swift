@@ -12,7 +12,7 @@ import InstantSearchCore
 /// ViewModel - View: RefinementMenuViewModelDelegate.
 ///
 /// ViewModel - Searcher: SearchableViewModel, ResultingDelegate, ResettableDelegate.
-internal class RefinementMenuViewModel: RefinementMenuViewModelDelegate, SearchableViewModel {
+internal class RefinementMenuViewModel: RefinementMenuViewModelDelegate, SearchableMultiIndexViewModel {
     
     // MARK: - Properties
     var indexId: String {

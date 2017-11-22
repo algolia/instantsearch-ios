@@ -12,7 +12,7 @@ import InstantSearchCore
 /// ViewModel - View: HitsViewModelDelegate.
 ///
 /// ViewModel - Searcher: SearchableViewModel, ResultingDelegate, ResettableDelegate.
-internal class HitsViewModel: HitsViewModelDelegate, SearchableViewModel {
+internal class HitsViewModel: HitsViewModelDelegate, SearchableMultiIndexViewModel {
     
     // MARK: - Properties
     
