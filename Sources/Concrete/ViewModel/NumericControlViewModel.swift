@@ -12,7 +12,7 @@ import InstantSearchCore
 /// ViewModel - View: NumericControlViewModelDelegate.
 ///
 /// ViewModel - Searcher: SearchableViewModel, RefinableDelegate, ResettableDelegate.
-internal class NumericControlViewModel: NumericControlViewModelDelegate, SearchableViewModel {
+internal class NumericControlViewModel: NumericControlViewModelDelegate, SearchableMultiIndexViewModel {
 
     // MARK: - Properties
     var indexId: String {

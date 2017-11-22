@@ -10,7 +10,7 @@ import InstantSearchCore
 /// ViewModel - View: StatsViewModelDelegate.
 ///
 /// ViewModel - Searcher: SearchableViewModel, ResultingDelegate, ResettableDelegate.
-internal class SearchViewModel: SearchControlViewModelDelegate, SearchableViewModel {
+internal class SearchViewModel: SearchControlViewModelDelegate, SearchableMultiIndexViewModel {
     
     // MARK: - Properties
     var indexId: String {

@@ -312,7 +312,7 @@ import UIKit
     
     private func bind(searchers: [IndexId: Searcher], to widgetVM: Any?) {
         
-        guard let widget = widgetVM as? SearchableViewModel else { return }
+        guard let widget = widgetVM as? SearchableMultiIndexViewModel else { return }
         
         if widget is RefinableDelegate && widget.indexId.isEmpty && widget.indexName.isEmpty {
             fatalError("For the multi-index case, all refinable widgets should target a specific index")
