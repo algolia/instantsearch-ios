@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="13529" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES" initialViewController="Up6-KE-EtY">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="13529" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES" initialViewController="nKo-gB-O3h">
     <device id="retina4_7" orientation="portrait">
         <adaptation id="fullscreen"/>
     </device>
@@ -389,10 +389,10 @@
             </objects>
             <point key="canvasLocation" x="-817" y="32"/>
         </scene>
-        <!--Multi Index Tableview Controller Demo-->
+        <!--Multi Index Table View Controller Demo-->
         <scene sceneID="8JD-RI-vfP">
             <objects>
-                <viewController id="Up6-KE-EtY" customClass="MultiIndexTableviewControllerDemo" customModule="InstantSearchDemo" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController id="Up6-KE-EtY" customClass="MultiIndexTableViewControllerDemo" customModule="InstantSearchDemo" customModuleProvider="target" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="Kz9-mF-CEv"/>
                         <viewControllerLayoutGuide type="bottom" id="IqJ-Vm-1LA"/>
@@ -569,7 +569,189 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Yoo-JP-Crf" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-823.20000000000005" y="796.55172413793105"/>
+            <point key="canvasLocation" x="-572" y="797"/>
+        </scene>
+        <!--Multi Index Table Controller Demo-->
+        <scene sceneID="CUh-ap-9qM">
+            <objects>
+                <viewController id="X9M-UF-qef" customClass="MultiIndexTableControllerDemo" customModule="InstantSearchDemo" customModuleProvider="target" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="RcD-NP-fnm"/>
+                        <viewControllerLayoutGuide type="bottom" id="gya-oT-jVg"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="GRK-Vr-ZKp">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="eBL-Uy-5mf" customClass="HitsTableWidget" customModule="InstantSearch">
+                                <rect key="frame" x="16" y="417" width="343" height="250"/>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="250" id="mpB-Yy-2ep"/>
+                                </constraints>
+                                <label key="tableHeaderView" opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Bestbuy" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="WXS-Vb-9Iq">
+                                    <rect key="frame" x="0.0" y="0.0" width="343" height="21"/>
+                                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                    <fontDescription key="fontDescription" type="boldSystem" pointSize="17"/>
+                                    <nil key="textColor"/>
+                                    <nil key="highlightedColor"/>
+                                </label>
+                                <prototypes>
+                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" selectionStyle="blue" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="bestbuyCell" textLabel="Xsr-pX-75J" detailTextLabel="8dK-jS-O7h" style="IBUITableViewCellStyleSubtitle" id="284-Ye-cra">
+                                        <rect key="frame" x="0.0" y="49" width="343" height="44"/>
+                                        <autoresizingMask key="autoresizingMask"/>
+                                        <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="284-Ye-cra" id="l7w-FG-RAn">
+                                            <rect key="frame" x="0.0" y="0.0" width="343" height="43.5"/>
+                                            <autoresizingMask key="autoresizingMask"/>
+                                            <subviews>
+                                                <label opaque="NO" multipleTouchEnabled="YES" contentMode="left" insetsLayoutMarginsFromSafeArea="NO" text="Title" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="Xsr-pX-75J">
+                                                    <rect key="frame" x="15" y="5" width="33.5" height="20.5"/>
+                                                    <autoresizingMask key="autoresizingMask"/>
+                                                    <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                                    <nil key="textColor"/>
+                                                    <nil key="highlightedColor"/>
+                                                </label>
+                                                <label opaque="NO" multipleTouchEnabled="YES" contentMode="left" insetsLayoutMarginsFromSafeArea="NO" text="Subtitle" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="8dK-jS-O7h">
+                                                    <rect key="frame" x="15" y="25.5" width="44" height="14.5"/>
+                                                    <autoresizingMask key="autoresizingMask"/>
+                                                    <fontDescription key="fontDescription" type="system" pointSize="12"/>
+                                                    <nil key="textColor"/>
+                                                    <nil key="highlightedColor"/>
+                                                </label>
+                                            </subviews>
+                                        </tableViewCellContentView>
+                                    </tableViewCell>
+                                </prototypes>
+                                <userDefinedRuntimeAttributes>
+                                    <userDefinedRuntimeAttribute type="string" keyPath="indexName" value="bestbuy"/>
+                                </userDefinedRuntimeAttributes>
+                            </tableView>
+                            <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="wM9-Kq-shA" customClass="HitsTableWidget" customModule="InstantSearch">
+                                <rect key="frame" x="16" y="185" width="343" height="222"/>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <label key="tableHeaderView" opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Ikea" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="hg4-BN-BCq">
+                                    <rect key="frame" x="0.0" y="0.0" width="343" height="21"/>
+                                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                    <fontDescription key="fontDescription" type="boldSystem" pointSize="17"/>
+                                    <nil key="textColor"/>
+                                    <nil key="highlightedColor"/>
+                                </label>
+                                <prototypes>
+                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" selectionStyle="blue" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="ikeaCell" textLabel="aRi-zl-Hii" detailTextLabel="ISx-GS-za3" style="IBUITableViewCellStyleSubtitle" id="ncg-vu-aEW">
+                                        <rect key="frame" x="0.0" y="49" width="343" height="44"/>
+                                        <autoresizingMask key="autoresizingMask"/>
+                                        <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="ncg-vu-aEW" id="6xr-zd-3yd">
+                                            <rect key="frame" x="0.0" y="0.0" width="343" height="43.5"/>
+                                            <autoresizingMask key="autoresizingMask"/>
+                                            <subviews>
+                                                <label opaque="NO" multipleTouchEnabled="YES" contentMode="left" insetsLayoutMarginsFromSafeArea="NO" text="Title" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="aRi-zl-Hii">
+                                                    <rect key="frame" x="15" y="5" width="33.5" height="20.5"/>
+                                                    <autoresizingMask key="autoresizingMask"/>
+                                                    <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                                    <nil key="textColor"/>
+                                                    <nil key="highlightedColor"/>
+                                                </label>
+                                                <label opaque="NO" multipleTouchEnabled="YES" contentMode="left" insetsLayoutMarginsFromSafeArea="NO" text="Subtitle" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="ISx-GS-za3">
+                                                    <rect key="frame" x="15" y="25.5" width="44" height="14.5"/>
+                                                    <autoresizingMask key="autoresizingMask"/>
+                                                    <fontDescription key="fontDescription" type="system" pointSize="12"/>
+                                                    <nil key="textColor"/>
+                                                    <nil key="highlightedColor"/>
+                                                </label>
+                                            </subviews>
+                                        </tableViewCellContentView>
+                                    </tableViewCell>
+                                </prototypes>
+                                <userDefinedRuntimeAttributes>
+                                    <userDefinedRuntimeAttribute type="string" keyPath="indexName" value="ikea"/>
+                                </userDefinedRuntimeAttributes>
+                            </tableView>
+                            <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="AE4-xT-tOY" customClass="TextFieldWidget" customModule="InstantSearch">
+                                <rect key="frame" x="0.0" y="0.0" width="375" height="40"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="40" id="quS-Wr-rgh"/>
+                                </constraints>
+                                <nil key="textColor"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                <textInputTraits key="textInputTraits"/>
+                            </textField>
+                            <searchBar contentMode="redraw" translatesAutoresizingMaskIntoConstraints="NO" id="2Zc-XM-yuy" customClass="SearchBarWidget" customModule="InstantSearch">
+                                <rect key="frame" x="0.0" y="40" width="375" height="56"/>
+                                <textInputTraits key="textInputTraits"/>
+                            </searchBar>
+                            <slider opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" minValue="0.0" maxValue="100" translatesAutoresizingMaskIntoConstraints="NO" id="Aoc-BR-LZl" customClass="SliderWidget" customModule="InstantSearch">
+                                <rect key="frame" x="16" y="133" width="118" height="31"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" constant="114" id="TrD-AX-wmp"/>
+                                </constraints>
+                                <userDefinedRuntimeAttributes>
+                                    <userDefinedRuntimeAttribute type="string" keyPath="attribute" value="price"/>
+                                    <userDefinedRuntimeAttribute type="string" keyPath="operator" value="&gt;"/>
+                                    <userDefinedRuntimeAttribute type="string" keyPath="indexName" value="ikea"/>
+                                </userDefinedRuntimeAttributes>
+                            </slider>
+                            <slider opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" minValue="0.0" maxValue="100" translatesAutoresizingMaskIntoConstraints="NO" id="Tt2-mw-u3C" customClass="SliderWidget" customModule="InstantSearch">
+                                <rect key="frame" x="228" y="132.5" width="118" height="31"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" constant="114" id="jcK-P3-hts"/>
+                                </constraints>
+                                <userDefinedRuntimeAttributes>
+                                    <userDefinedRuntimeAttribute type="string" keyPath="indexName" value="bestbuy"/>
+                                    <userDefinedRuntimeAttribute type="string" keyPath="attribute" value="salePrice"/>
+                                    <userDefinedRuntimeAttribute type="string" keyPath="operator" value="&gt;"/>
+                                </userDefinedRuntimeAttributes>
+                            </slider>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="7an-z6-Bcm">
+                                <rect key="frame" x="54" y="104" width="42" height="21"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="YgH-tf-vOt">
+                                <rect key="frame" x="266" y="104" width="42" height="21"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        <constraints>
+                            <constraint firstAttribute="trailingMargin" secondItem="eBL-Uy-5mf" secondAttribute="trailing" id="3Sd-zx-fHg"/>
+                            <constraint firstItem="gya-oT-jVg" firstAttribute="top" secondItem="eBL-Uy-5mf" secondAttribute="bottom" id="BGY-HG-SZu"/>
+                            <constraint firstItem="YgH-tf-vOt" firstAttribute="centerX" secondItem="Tt2-mw-u3C" secondAttribute="centerX" id="G4C-Dg-HWc"/>
+                            <constraint firstItem="2Zc-XM-yuy" firstAttribute="top" secondItem="AE4-xT-tOY" secondAttribute="bottom" id="GN4-Eb-VHp"/>
+                            <constraint firstItem="eBL-Uy-5mf" firstAttribute="leading" secondItem="GRK-Vr-ZKp" secondAttribute="leadingMargin" id="IDI-pn-zGI"/>
+                            <constraint firstItem="Tt2-mw-u3C" firstAttribute="centerY" secondItem="Aoc-BR-LZl" secondAttribute="centerY" id="JA5-pe-0eh"/>
+                            <constraint firstAttribute="trailing" secondItem="AE4-xT-tOY" secondAttribute="trailing" id="JEQ-2E-L4M"/>
+                            <constraint firstItem="AE4-xT-tOY" firstAttribute="leading" secondItem="GRK-Vr-ZKp" secondAttribute="leading" id="KDy-df-kVB"/>
+                            <constraint firstAttribute="trailing" secondItem="Tt2-mw-u3C" secondAttribute="trailing" constant="31" id="NON-oT-fGc"/>
+                            <constraint firstItem="AE4-xT-tOY" firstAttribute="top" secondItem="GRK-Vr-ZKp" secondAttribute="top" id="OcW-y7-0Z7"/>
+                            <constraint firstItem="7an-z6-Bcm" firstAttribute="centerX" secondItem="Aoc-BR-LZl" secondAttribute="centerX" id="WWH-t2-WYb"/>
+                            <constraint firstItem="wM9-Kq-shA" firstAttribute="leading" secondItem="GRK-Vr-ZKp" secondAttribute="leadingMargin" id="a29-yD-28L"/>
+                            <constraint firstItem="7an-z6-Bcm" firstAttribute="top" secondItem="2Zc-XM-yuy" secondAttribute="bottom" constant="8" id="eFm-ft-EAc"/>
+                            <constraint firstItem="Aoc-BR-LZl" firstAttribute="leading" secondItem="GRK-Vr-ZKp" secondAttribute="leading" constant="18" id="hdk-mA-bPa"/>
+                            <constraint firstAttribute="trailingMargin" secondItem="wM9-Kq-shA" secondAttribute="trailing" id="k4E-aP-jOB"/>
+                            <constraint firstItem="YgH-tf-vOt" firstAttribute="centerY" secondItem="7an-z6-Bcm" secondAttribute="centerY" id="m88-NF-pzO"/>
+                            <constraint firstItem="Aoc-BR-LZl" firstAttribute="top" secondItem="7an-z6-Bcm" secondAttribute="bottom" constant="8" id="nbe-rW-T38"/>
+                            <constraint firstItem="eBL-Uy-5mf" firstAttribute="top" secondItem="wM9-Kq-shA" secondAttribute="bottom" constant="10" id="rQ4-VY-Ix1"/>
+                            <constraint firstItem="2Zc-XM-yuy" firstAttribute="leading" secondItem="GRK-Vr-ZKp" secondAttribute="leading" id="s5A-PS-jbD"/>
+                            <constraint firstItem="wM9-Kq-shA" firstAttribute="top" secondItem="Aoc-BR-LZl" secondAttribute="bottom" constant="22" id="sAE-cE-RgA"/>
+                            <constraint firstAttribute="trailing" secondItem="2Zc-XM-yuy" secondAttribute="trailing" id="vGd-jU-bQu"/>
+                        </constraints>
+                    </view>
+                    <connections>
+                        <outlet property="bestBuyPriceSlider" destination="Tt2-mw-u3C" id="68p-nV-VvD"/>
+                        <outlet property="bestbuyPriceLabel" destination="YgH-tf-vOt" id="uga-CX-bbZ"/>
+                        <outlet property="bestbuyTableView" destination="eBL-Uy-5mf" id="GLw-Gi-X7Y"/>
+                        <outlet property="ikeaPriceLabel" destination="7an-z6-Bcm" id="JlM-k7-fqc"/>
+                        <outlet property="ikeaPriceSlider" destination="Aoc-BR-LZl" id="7BY-oc-51A"/>
+                        <outlet property="ikeaTableView" destination="wM9-Kq-shA" id="Yc4-KG-Ojq"/>
+                        <outlet property="searchBar" destination="2Zc-XM-yuy" id="LPn-YZ-juR"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="yL0-GA-4mH" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="-1393" y="797"/>
         </scene>
     </scenes>
 </document>

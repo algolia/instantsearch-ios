@@ -18,35 +18,57 @@ import UIKit
 @objc open class HitsTableViewController: UIViewController,
     UITableViewDataSource, UITableViewDelegate, HitsTableViewDataSource, HitsTableViewDelegate {
     
-    var hitsController: HitsController!
-    
     /// Reference to the Hits Table Widget
     public var hitsTableView: HitsTableWidget! {
         didSet {
-            hitsController = HitsController(table: hitsTableView)
-            hitsTableView.dataSource = self
-            hitsTableView.delegate = self
-            hitsController.tableDataSource = self
-            hitsController.tableDelegate = self
+            hitsTableViews = [hitsTableView]
+        }
+    }
+    
+    var hitsControllers: [HitsController] = []
+    
+    /// Reference to the Hits Table Widgets if there are more than one.
+    public var hitsTableViews: [HitsTableWidget] = [] {
+        didSet {
+            for hitsTableView in hitsTableViews {
+                let hitsController = HitsController(table: hitsTableView)
+                hitsControllers.append(hitsController)
+                hitsTableView.dataSource = self
+                hitsTableView.delegate = self
+                hitsController.tableDataSource = self
+                hitsController.tableDelegate = self
+            }
         }
     }
     
     // Forward the 3 important dataSource and delegate methods to the HitsTableWidget
     
     public func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return self.hitsController.tableView(tableView, numberOfRowsInSection: section)
+        guard let tableView = tableView as? HitsTableWidget,
+            let index = self.hitsTableViews.index(of: tableView) else { return 0 }
+        
+        return self.hitsControllers[index].tableView(tableView, numberOfRowsInSection: section)
     }
     
     public func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        return self.hitsController.tableView(tableView, cellForRowAt: indexPath)
+        guard let tableView = tableView as? HitsTableWidget,
+            let index = self.hitsTableViews.index(of: tableView) else { return UITableViewCell() }
+        
+        return self.hitsControllers[index].tableView(tableView, cellForRowAt: indexPath)
     }
     
     public func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        self.hitsController.tableView(tableView, didSelectRowAt: indexPath)
+        guard let tableView = tableView as? HitsTableWidget,
+            let index = self.hitsTableViews.index(of: tableView) else { return }
+        
+        self.hitsControllers[index].tableView(tableView, didSelectRowAt: indexPath)
     }
     
     public func numberOfSections(in tableView: UITableView) -> Int {
-        return self.hitsController.numberOfSections(in: tableView)
+        guard let tableView = tableView as? HitsTableWidget,
+            let index = self.hitsTableViews.index(of: tableView) else { return 0 }
+        
+        return self.hitsControllers[index].numberOfSections(in: tableView)
     }
     
     // The follow methods are to be implemented by the class extending HitsTableViewController

@@ -36,8 +36,8 @@ import UIKit
     }
     
     public func scrollTop() {
-        let desiredOffset = CGPoint(x: 0, y: -contentInset.top)
-        setContentOffset(desiredOffset, animated: true)
+        let indexPath = IndexPath(row: 0, section: 0)
+        scrollToRow(at: indexPath, at: .top, animated: true)
     }
     
     public func reloadHits() {

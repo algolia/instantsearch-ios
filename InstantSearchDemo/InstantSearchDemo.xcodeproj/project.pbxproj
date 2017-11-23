@@ -28,7 +28,8 @@
 		E20CEF7D1FB2242800813D0F /* CollectionViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E20CEF691FB2242800813D0F /* CollectionViewController.swift */; };
 		E20CEF7E1FB2242800813D0F /* FacetController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E20CEF6A1FB2242800813D0F /* FacetController.swift */; };
 		E20CEF7F1FB2242800813D0F /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E20CEF6B1FB2242800813D0F /* ViewController.swift */; };
-		E2C1E68D1FB4A66E00E0136E /* MultiIndexTableviewControllerDemo.swift in Sources */ = {isa = PBXBuildFile; fileRef = E2C1E68B1FB4A66E00E0136E /* MultiIndexTableviewControllerDemo.swift */; };
+		E296D1121FC7168F009F7A67 /* MultiIndexTableviewControllerDemo.swift in Sources */ = {isa = PBXBuildFile; fileRef = E296D1111FC7168F009F7A67 /* MultiIndexTableviewControllerDemo.swift */; };
+		E2C1E68D1FB4A66E00E0136E /* MultiIndexTableControllerDemo.swift in Sources */ = {isa = PBXBuildFile; fileRef = E2C1E68B1FB4A66E00E0136E /* MultiIndexTableControllerDemo.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -57,7 +58,8 @@
 		E20CEF691FB2242800813D0F /* CollectionViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CollectionViewController.swift; sourceTree = "<group>"; };
 		E20CEF6A1FB2242800813D0F /* FacetController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FacetController.swift; sourceTree = "<group>"; };
 		E20CEF6B1FB2242800813D0F /* ViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
-		E2C1E68B1FB4A66E00E0136E /* MultiIndexTableviewControllerDemo.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MultiIndexTableviewControllerDemo.swift; sourceTree = "<group>"; };
+		E296D1111FC7168F009F7A67 /* MultiIndexTableviewControllerDemo.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MultiIndexTableviewControllerDemo.swift; sourceTree = "<group>"; };
+		E2C1E68B1FB4A66E00E0136E /* MultiIndexTableControllerDemo.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MultiIndexTableControllerDemo.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -148,7 +150,8 @@
 				E20CEF5D1FB2242800813D0F /* RefinementCollectionViewControllerDemo.swift */,
 				E20CEF5E1FB2242800813D0F /* RefinementTableViewControllerDemo.swift */,
 				E20CEF5F1FB2242800813D0F /* StatsViewController.swift */,
-				E2C1E68B1FB4A66E00E0136E /* MultiIndexTableviewControllerDemo.swift */,
+				E2C1E68B1FB4A66E00E0136E /* MultiIndexTableControllerDemo.swift */,
+				E296D1111FC7168F009F7A67 /* MultiIndexTableviewControllerDemo.swift */,
 			);
 			path = controllers;
 			sourceTree = "<group>";
@@ -324,8 +327,9 @@
 				E20CEF741FB2242800813D0F /* RefinementTableViewControllerDemo.swift in Sources */,
 				E20CEF711FB2242800813D0F /* HitsCollectionViewControllerDemo.swift in Sources */,
 				E20CEF731FB2242800813D0F /* RefinementCollectionViewControllerDemo.swift in Sources */,
+				E296D1121FC7168F009F7A67 /* MultiIndexTableviewControllerDemo.swift in Sources */,
 				E20CEF751FB2242800813D0F /* StatsViewController.swift in Sources */,
-				E2C1E68D1FB4A66E00E0136E /* MultiIndexTableviewControllerDemo.swift in Sources */,
+				E2C1E68D1FB4A66E00E0136E /* MultiIndexTableControllerDemo.swift in Sources */,
 				E20CEF701FB2242800813D0F /* CollectionViewCell.swift in Sources */,
 				E20CEF6D1FB2242800813D0F /* StartingTableViewController.swift in Sources */,
 			);

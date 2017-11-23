@@ -19,7 +19,7 @@ class HitsTableViewControllerDemo: HitsTableViewController {
         searchBar.sizeToFit()
         navigationItem.titleView = searchBar
         
-        hitsTableView = HitsTableWidget(frame: self.view.frame)
+        hitsTableView = HitsTableWidget(frame: self.view.bounds)
         hitsTableView.register(UITableViewCell.self, forCellReuseIdentifier: "hitTableCell")
         
         self.view.addSubview(hitsTableView)
