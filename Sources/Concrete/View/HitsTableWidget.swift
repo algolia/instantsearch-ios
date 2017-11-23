@@ -36,6 +36,7 @@ import UIKit
     }
     
     public func scrollTop() {
+        guard viewModel.numberOfRows() > 0 else { return }
         let indexPath = IndexPath(row: 0, section: 0)
         scrollToRow(at: indexPath, at: .top, animated: true)
     }

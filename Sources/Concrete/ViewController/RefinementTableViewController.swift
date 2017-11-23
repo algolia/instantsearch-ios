@@ -18,38 +18,55 @@ import UIKit
 @objc open class RefinementTableViewController: UIViewController,
     UITableViewDataSource, UITableViewDelegate, RefinementTableViewDataSource, RefinementTableViewDelegate {
     
-    var refinementController: RefinementController!
-    
-    /// Reference to the Refinement Table Widget
     public var refinementTableView: RefinementTableWidget! {
         didSet {
-            refinementController = RefinementController(table: refinementTableView)
-            refinementTableView.dataSource = self
-            refinementTableView.delegate = self
-            refinementController.tableDataSource = self
-            refinementController.tableDelegate = self
+            refinementTableViews = [refinementTableView]
         }
     }
     
-    // Forward the 3 important dataSource and delegate methods to the HitsTableWidget
+    var refinementControllers: [RefinementController] = []
+    
+    /// Reference to the Refinement Table Widgets if there are more than one.
+    public var refinementTableViews: [RefinementTableWidget] = [] {
+        didSet {
+            for refinementTableView in refinementTableViews {
+                let refinementController = RefinementController(table: refinementTableView)
+                refinementControllers.append(refinementController)
+                refinementTableView.dataSource = self
+                refinementTableView.delegate = self
+                refinementController.tableDataSource = self
+                refinementController.tableDelegate = self
+            }
+        }
+    }
+    
+    // Forward the 3 important dataSource and delegate methods to the RefinementTableWidget
     
     public func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return self.refinementController.tableView(tableView, numberOfRowsInSection: section)
+        guard let tableView = tableView as? RefinementTableWidget,
+            let index = self.refinementTableViews.index(of: tableView) else { return 0 }
+        return self.refinementControllers[index].tableView(tableView, numberOfRowsInSection: section)
     }
     
     public func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        return self.refinementController.tableView(tableView, cellForRowAt: indexPath)
+        guard let tableView = tableView as? RefinementTableWidget,
+            let index = self.refinementTableViews.index(of: tableView) else { return UITableViewCell() }
+        return self.refinementControllers[index].tableView(tableView, cellForRowAt: indexPath)
     }
     
     public func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        self.refinementController.tableView(tableView, didSelectRowAt: indexPath)
+        guard let tableView = tableView as? RefinementTableWidget,
+            let index = self.refinementTableViews.index(of: tableView) else { return }
+        self.refinementControllers[index].tableView(tableView, didSelectRowAt: indexPath)
     }
     
     public func numberOfSections(in tableView: UITableView) -> Int {
-        return self.refinementController.numberOfSections(in: tableView)
+        guard let tableView = tableView as? RefinementTableWidget,
+            let index = self.refinementTableViews.index(of: tableView) else { return 0 }
+        return self.refinementControllers[index].numberOfSections(in: tableView)
     }
     
-    // The follow methods are to be implemented by the class extending HitsTableViewController
+    // The follow methods are to be implemented by the class extending RefinementTableViewController
     
     /// DataSource method called to specify the layout of a facet cell.
     open func tableView(_ tableView: UITableView,
