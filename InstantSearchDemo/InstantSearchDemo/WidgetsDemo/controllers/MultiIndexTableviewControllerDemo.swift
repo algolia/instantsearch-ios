@@ -30,7 +30,7 @@ class MultiIndexTableviewControllerDemo: UIViewController, HitsTableViewDataSour
     override func viewDidLoad() {
         super.viewDidLoad()
 
-        let indexIds: [IndexId] = [IndexId.init(name: "bestbuy"), IndexId.init(name: "ikea")]
+        let indexIds: [SearcherId] = [SearcherId.init(name: "bestbuy"), SearcherId.init(name: "ikea")]
         InstantSearch.shared.configure(appID: ALGOLIA_APP_ID, apiKey: ALGOLIA_API_KEY, indexIds: indexIds)
         InstantSearch.shared.registerAllWidgets(in: self.view)
         

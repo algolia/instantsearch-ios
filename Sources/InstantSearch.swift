@@ -30,11 +30,11 @@ import UIKit
     private var refinableDelegates = WeakSet<RefinableDelegate>()
     private var refinableDelegateMap = [String: WeakSet<RefinableDelegate>]()
 
-    private var multiIndexResultingDelegates: [IndexId: WeakSet<ResultingDelegate>] = [:]
+    private var multiIndexResultingDelegates: [SearcherId: WeakSet<ResultingDelegate>] = [:]
     //private var multiIndexRefinableDelegates: [IndexId: [String: WeakSet<RefinableDelegate>]] = [:]
     
     /// The Searchers used in the case of multi-indexing.
-    private var searchers: [IndexId: Searcher]
+    private var searchers: [SearcherId: Searcher]
     
     // The Searcher used in the case of single-indexing.
     public var searcher: Searcher!
@@ -126,7 +126,7 @@ import UIKit
     /// - parameter appID: the Algolia AppID.
     /// - parameter apiKey: the Algolia ApiKey.
     /// - parameter indexIds: the identifications for each index
-    @objc public convenience init(appID: String, apiKey: String, indexIds: [IndexId]) {
+    @objc public convenience init(appID: String, apiKey: String, indexIds: [SearcherId]) {
         self.init()
         self.configure(appID: appID, apiKey: apiKey, indexIds: indexIds)
     }
@@ -136,7 +136,7 @@ import UIKit
     /// - parameter appID: the Algolia AppID.
     /// - parameter apiKey: the Algolia ApiKey.
     /// - parameter indexIds: identifiers for the different indices.
-    @objc public func configure(appID: String, apiKey: String, indexIds: [IndexId]) {
+    @objc public func configure(appID: String, apiKey: String, indexIds: [SearcherId]) {
         let client = Client(appID: appID, apiKey: apiKey)
         
         for indexId in indexIds {
@@ -150,7 +150,7 @@ import UIKit
         configureMulti(searchers: searchers)
     }
     
-    private func configureMulti(searchers: [IndexId: Searcher]) {
+    private func configureMulti(searchers: [SearcherId: Searcher]) {
         isMultiIndexActive = true
         for (_, searcher) in searchers {
             searcher.delegate = self
@@ -167,7 +167,7 @@ import UIKit
     }
     
     public func getSearcher(named name:String, withId id:String = "") -> Searcher? {
-        return searchers[IndexId(name: name, id: id)]
+        return searchers[SearcherId(name: name, id: id)]
     }
 
     // MARK: Add widget methods
@@ -310,7 +310,7 @@ import UIKit
         }
     }
     
-    private func bind(searchers: [IndexId: Searcher], to widgetVM: Any?) {
+    private func bind(searchers: [SearcherId: Searcher], to widgetVM: Any?) {
         
         guard let widget = widgetVM as? SearchableMultiIndexViewModel else { return }
         
@@ -325,14 +325,14 @@ import UIKit
             let searchersArray = searchers.map { $0.value }
             widget.configure?(withSearchers: searchersArray)
         } else {
-            let indexId = IndexId(name: widget.indexName, id: widget.indexId)
+            let indexId = SearcherId(name: widget.indexName, id: widget.indexId)
             // TODO: Remove force unwrapping, throw a better error when getting wrong IndexId
             let searcher = searchers[indexId]!
             widget.configure(with: searcher)
         }
         
         if let resultingWidget = widgetVM as? ResultingDelegate {
-            let indexId = IndexId(name: widget.indexName, id: widget.indexId)
+            let indexId = SearcherId(name: widget.indexName, id: widget.indexId)
             if multiIndexResultingDelegates[indexId] == nil {
                 multiIndexResultingDelegates[indexId] = WeakSet<ResultingDelegate>()
             }
@@ -379,7 +379,7 @@ import UIKit
     public func searcher(_ searcher: Searcher, didReceive results: SearchResults?, error: Error?, userInfo: [String: Any]) {
         
         if isMultiIndexActive {
-            let indexId = IndexId(name: searcher.indexName, id: searcher.indexId)
+            let indexId = SearcherId(name: searcher.indexName, id: searcher.indexId)
             if let multiIndexResultingDelegates = self.multiIndexResultingDelegates[indexId] {
                 for algoliaWidget in multiIndexResultingDelegates {
                     algoliaWidget.on(results: results, error: error, userInfo: userInfo)

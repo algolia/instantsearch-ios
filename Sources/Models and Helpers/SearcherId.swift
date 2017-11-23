@@ -7,7 +7,7 @@
 
 import Foundation
 
-@objc public class IndexId: NSObject {
+@objc public class SearcherId: NSObject {
     
     /// The name of the index.
     var name: String
@@ -31,7 +31,7 @@ import Foundation
     }
     
     override public func isEqual(_ object: Any?) -> Bool {
-        guard let rhs = object as? IndexId else { return false }
+        guard let rhs = object as? SearcherId else { return false }
         
         return (name == rhs.name) && (id == rhs.id)
     }
