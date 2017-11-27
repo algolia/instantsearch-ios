@@ -17,7 +17,7 @@ import InstantSearchCore
     func configure(with searcher: Searcher)
 }
 
-@objc public protocol SearchableMultiIndexViewModel: SearchableViewModel {
+@objc public protocol SearchableIndexViewModel: SearchableViewModel {
     /// Configures the ViewModel with the reference to the Searchers associated with InstantSearch.
     /// This is used in the case of multi-index
     @objc optional func configure(withSearchers searchers: [Searcher])
@@ -27,4 +27,16 @@ import InstantSearchCore
     
     /// The index id extracted from the view. Note that this is immutable, with the source of truth coming from the view only.
     var indexId: String { get }
+}
+
+@objc public protocol SearchableMultiIndexViewModel: class {
+    /// Configures the ViewModel with the reference to the Searchers associated with InstantSearch.
+    /// This is used in the case of multi-index
+    func configure(withSearchers searchers: [Searcher])
+    
+    /// The index name extracted from the view. Note that this is immutable, with the source of truth coming from the view only.
+    var indexNamesArray: [String] { get }
+    
+    /// The index id extracted from the view. Note that this is immutable, with the source of truth coming from the view only.
+    var indexIdsArray: [String] { get }
 }

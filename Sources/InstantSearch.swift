@@ -312,27 +312,29 @@ import UIKit
     
     private func bind(searchers: [SearcherId: Searcher], to widgetVM: Any?) {
         
-        guard let widget = widgetVM as? SearchableMultiIndexViewModel else { return }
+        // use SearchableMultiIndexViewModel to extract the indexNames etc
         
-        if widget is RefinableDelegate && widget.indexId.isEmpty && widget.indexName.isEmpty {
+        guard let widgetVM = widgetVM as? SearchableIndexViewModel else { return }
+        
+        if widgetVM is RefinableDelegate && widgetVM.indexId.isEmpty && widgetVM.indexName.isEmpty {
             fatalError("For the multi-index case, all refinable widgets should target a specific index")
         }
         
         // First configure the searchers
         // if we don't specify an index name and index id, it means we need to target all indices for this widget.
         // Else, target the specific index.
-        if widget.indexName.isEmpty && widget.indexId.isEmpty {
+        if widgetVM.indexName.isEmpty && widgetVM.indexId.isEmpty {
             let searchersArray = searchers.map { $0.value }
-            widget.configure?(withSearchers: searchersArray)
+            widgetVM.configure?(withSearchers: searchersArray)
         } else {
-            let indexId = SearcherId(name: widget.indexName, id: widget.indexId)
+            let indexId = SearcherId(name: widgetVM.indexName, id: widgetVM.indexId)
             // TODO: Remove force unwrapping, throw a better error when getting wrong IndexId
             let searcher = searchers[indexId]!
-            widget.configure(with: searcher)
+            widgetVM.configure(with: searcher)
         }
         
         if let resultingWidget = widgetVM as? ResultingDelegate {
-            let indexId = SearcherId(name: widget.indexName, id: widget.indexId)
+            let indexId = SearcherId(name: widgetVM.indexName, id: widgetVM.indexId)
             if multiIndexResultingDelegates[indexId] == nil {
                 multiIndexResultingDelegates[indexId] = WeakSet<ResultingDelegate>()
             }

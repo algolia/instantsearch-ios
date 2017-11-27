@@ -24,7 +24,13 @@ import Foundation
 @objc public protocol AlgoliaWidget: class {}
 
 /// This is an AlgoliaWidget that is used to link a widget to a specific index in the case of multi-indexing.
-@objc public protocol AlgoliaMultiIndexWidget: AlgoliaWidget {
+@objc public protocol AlgoliaIndexWidget: AlgoliaWidget {
     var indexName: String { get set }
     var indexId: String { get set }
 }
+
+@objc public protocol AlgoliaMultiIndexWidget: AlgoliaWidget {
+    var indexNamesArray: [String] { get set }
+    var indexIdsArray: [String] { get set }
+}
+

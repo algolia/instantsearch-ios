@@ -1,9 +1,8 @@
 //
-//  HitsViewModel.swift
-//  InstantSearch
+//  MultiHitsViewModel.swift
+//  InstantSearch-iOS
 //
-//  Created by Guy Daher on 06/04/2017.
-//
+//  Created by Guy Daher on 24/11/2017.
 //
 
 import Foundation
@@ -12,54 +11,50 @@ import InstantSearchCore
 /// ViewModel - View: HitsViewModelDelegate.
 ///
 /// ViewModel - Searcher: SearchableViewModel, ResultingDelegate, ResettableDelegate.
-internal class HitsViewModel: HitsViewModelDelegate, SearchableIndexViewModel {
+internal class MultiHitsViewModel: MultiHitsViewModelDelegate, SearchableMultiIndexViewModel {
     
     // MARK: - Properties
     
-    var indexId: String {
-        return view.indexId
+    var indexNamesArray: [String] {
+        return view.indexNamesArray
     }
     
-    var indexName: String {
-        return view.indexName
+    var indexIdsArray: [String] {
+        return view.indexIdsArray
     }
     
-    var hitsPerPage: UInt {
-        return view.hitsPerPage
+    var hitsPerSection: UInt {
+        return view.hitsPerSection
     }
-    
-    var infiniteScrolling: Bool {
-        return view.infiniteScrolling
-    }
-    
-    var remainingItemsBeforeLoading: UInt {
-        return view.remainingItemsBeforeLoading
-    }
-    
+
     var showItemsOnEmptyQuery: Bool {
         return view.showItemsOnEmptyQuery
     }
+
+    // MARK: - SearchableMultiIndexViewModel
     
-    // MARK: - SearchableViewModel
+    var searchers: [Searcher] = []
     
-    var searcher: Searcher!
-    
-    func configure(with searcher: Searcher) {
-        self.searcher = searcher
+    func configure(withSearchers searchers: [Searcher]) {
+        guard !searchers.isEmpty else { return }
+        self.searchers = searchers
+        for searcher in searchers {
+            searcher.params.hitsPerPage = hitsPerSection
+        }
         
-        searcher.params.hitsPerPage = hitsPerPage
-        
-        if searcher.hits.isEmpty {
+        // we're sure it's not empty since we check at the beginning
+        if searchers.first!.hits.isEmpty {
             view.reloadHits()
         }
     }
-    
+
     // MARK: - HitsViewModelDelegate
+
+    var view: MultiHitsViewDelegate!
     
-    weak var view: HitsViewDelegate!
-    
-    func numberOfRows() -> Int {
-        guard let searcher = searcher else { return 0 }
+    func numberOfRows(in section: Int) -> Int {
+        // guard let searchers.count
+        let searcher = searchers[section]
         
         if showItemsOnEmptyQuery {
             return searcher.hits.count
@@ -70,20 +65,20 @@ internal class HitsViewModel: HitsViewModelDelegate, SearchableIndexViewModel {
                 return searcher.hits.count
             }
         }
-        
+
     }
-    
+
     func hitForRow(at indexPath: IndexPath) -> [String: Any] {
-        guard let searcher = searcher else { return [:]}
-        
+        let searcher = searchers[indexPath.section]
+
         loadMoreIfNecessary(rowNumber: indexPath.row)
         return searcher.hits[indexPath.row]
     }
-    
+
     func loadMoreIfNecessary(rowNumber: Int) {
         guard let searcher = searcher else { return }
         guard infiniteScrolling else { return }
-        
+
         if rowNumber + Int(remainingItemsBeforeLoading) >= searcher.hits.count {
             searcher.loadMore()
         }
@@ -92,27 +87,28 @@ internal class HitsViewModel: HitsViewModelDelegate, SearchableIndexViewModel {
 
 // MARK: - ResultingDelegate
 
-extension HitsViewModel: ResultingDelegate {
-    
+extension MultiHitsViewModel: ResultingDelegate {
+
     // MARK: - ResultingDelegate
-    
+
     func on(results: SearchResults?, error: Error?, userInfo: [String: Any]) {
-        
+
         guard let results = results else {
             print(error ?? "")
             return
         }
-        
+
         view.reloadHits()
-        
+
         if results.page == 0 {
             view.scrollTop()
         }
     }
 }
 
-extension HitsViewModel: ResettableDelegate {
+extension MultiHitsViewModel: ResettableDelegate {
     func onReset() {
         view.reloadHits()
     }
 }
+
