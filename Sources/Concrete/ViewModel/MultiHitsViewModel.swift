@@ -37,7 +37,14 @@ internal class MultiHitsViewModel: MultiHitsViewModelDelegate, SearchableMultiIn
     
     func configure(withSearchers searchers: [Searcher]) {
         guard !searchers.isEmpty else { return }
-        self.searchers = searchers
+        
+        // Deal only with the searchers that have been specified in the widget
+        for i in 0..<indexIdsArray.count {
+            //let searcherId = SearcherId(name: indexNamesArray[i], id: indexIdsArray[section])
+            guard let searcher = searchers.first(where: { $0.indexName == indexNamesArray[i] && $0.indexId == indexIdsArray[i] }) else {fatalError("Index name not declared when configuring InstantSearch") }
+            self.searchers.append(searcher)
+        }
+        
         for searcher in searchers {
             searcher.params.hitsPerPage = hitsPerSection
         }
@@ -65,23 +72,16 @@ internal class MultiHitsViewModel: MultiHitsViewModelDelegate, SearchableMultiIn
                 return searcher.hits.count
             }
         }
-
+    }
+    
+    func numberOfSections() -> Int {
+        return searchers.count
     }
 
     func hitForRow(at indexPath: IndexPath) -> [String: Any] {
         let searcher = searchers[indexPath.section]
 
-        loadMoreIfNecessary(rowNumber: indexPath.row)
         return searcher.hits[indexPath.row]
-    }
-
-    func loadMoreIfNecessary(rowNumber: Int) {
-        guard let searcher = searcher else { return }
-        guard infiniteScrolling else { return }
-
-        if rowNumber + Int(remainingItemsBeforeLoading) >= searcher.hits.count {
-            searcher.loadMore()
-        }
     }
 }
 
@@ -93,16 +93,12 @@ extension MultiHitsViewModel: ResultingDelegate {
 
     func on(results: SearchResults?, error: Error?, userInfo: [String: Any]) {
 
-        guard let results = results else {
+        guard results != nil else {
             print(error ?? "")
             return
         }
 
         view.reloadHits()
-
-        if results.page == 0 {
-            view.scrollTop()
-        }
     }
 }
 

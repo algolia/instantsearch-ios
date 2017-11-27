@@ -18,6 +18,8 @@ import Foundation
     /// Query the number of Rows to show.
     func numberOfRows(in section: Int) -> Int
     
+    func numberOfSections() -> Int
+    
     /// Query the hit to show for a row at a specific indexPath.
     func hitForRow(at indexPath: IndexPath) -> [String: Any]
 }

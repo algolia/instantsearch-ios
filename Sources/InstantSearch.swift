@@ -312,6 +312,25 @@ import UIKit
     
     private func bind(searchers: [SearcherId: Searcher], to widgetVM: Any?) {
         
+        // TODO: Can do the searcher Id parsing in here instead of in the View Model
+        // Refactor all this to combine with single indexing
+        if let widgetVM = widgetVM as? SearchableMultiIndexViewModel {
+            let searchersArray = searchers.map { $0.value }
+            widgetVM.configure(withSearchers: searchersArray)
+            
+            if let resultingWidget = widgetVM as? ResultingDelegate {
+                for i in 0..<widgetVM.indexIdsArray.count {
+                    let indexId = SearcherId(name: widgetVM.indexNamesArray[i], id: widgetVM.indexIdsArray[i])
+                    if multiIndexResultingDelegates[indexId] == nil {
+                        multiIndexResultingDelegates[indexId] = WeakSet<ResultingDelegate>()
+                    }
+                    
+                    multiIndexResultingDelegates[indexId]!.add(resultingWidget)
+                }
+            }
+            
+            return
+        }
         // use SearchableMultiIndexViewModel to extract the indexNames etc
         
         guard let widgetVM = widgetVM as? SearchableIndexViewModel else { return }
@@ -328,7 +347,9 @@ import UIKit
             widgetVM.configure?(withSearchers: searchersArray)
         } else {
             let indexId = SearcherId(name: widgetVM.indexName, id: widgetVM.indexId)
-            // TODO: Remove force unwrapping, throw a better error when getting wrong IndexId
+            // TODO: Remove force unwrapping, throw a better error when getting wrong IndexId.
+            // Throw fatal error and say inconcsistency with what was configured with instantsearch and
+            // what was specified in the widgets
             let searcher = searchers[indexId]!
             widgetVM.configure(with: searcher)
         }

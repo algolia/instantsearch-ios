@@ -6,20 +6,20 @@ PODS:
     - InstantSearch-Core-Swift (~> 3.0)
 
 DEPENDENCIES:
-  - InstantSearch-Core-Swift (from `/Users/guydaher/Developer/Algolia/iOS/instantsearch-core-swift`)
-  - InstantSearch-iOS (from `/Users/guydaher/Developer/Algolia/iOS/instantsearch-ios`)
+  - InstantSearch-Core-Swift (from `/Users/guydaher/Developer/Algolia/instantsearch-core-swift`)
+  - InstantSearch-iOS (from `/Users/guydaher/Developer/Algolia/instantsearch-ios`)
 
 EXTERNAL SOURCES:
   InstantSearch-Core-Swift:
-    :path: /Users/guydaher/Developer/Algolia/iOS/instantsearch-core-swift
+    :path: /Users/guydaher/Developer/Algolia/instantsearch-core-swift
   InstantSearch-iOS:
-    :path: /Users/guydaher/Developer/Algolia/iOS/instantsearch-ios
+    :path: /Users/guydaher/Developer/Algolia/instantsearch-ios
 
 SPEC CHECKSUMS:
   AlgoliaSearch-Client-Swift: 9cd63f85d45c6e50f06c267439928c2211c1bfe4
   InstantSearch-Core-Swift: 9866bde91655e3bc2a82053b1d06ad7a5a595629
   InstantSearch-iOS: 326929c65ac7fdc0055aa06178d79d8043791d50
 
-PODFILE CHECKSUM: b9657af6426bbf0767e3e28225cf2c1c07cf12bf
+PODFILE CHECKSUM: 67cf0ed489400da0947c1eea62f0ba88cb1202d7
 
-COCOAPODS: 1.3.1
+COCOAPODS: 1.2.1

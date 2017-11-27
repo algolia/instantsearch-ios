@@ -16,6 +16,8 @@ class ViewModelFetcher {
         switch widgetV {
         case let widgetV as HitsViewDelegate:
             return widgetV.viewModel
+        case let widgetV as MultiHitsViewDelegate:
+            return widgetV.viewModel
         case let widgetV as StatsViewDelegate:
             return widgetV.viewModel
         case let widgetV as RefinementMenuViewDelegate:
