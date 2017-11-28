@@ -49,6 +49,7 @@ internal class MultiHitsViewModel: MultiHitsViewModelDelegate, SearchableMultiIn
             searcher.params.hitsPerPage = hitsPerSection
         }
         
+        // TODO: Throw better error is no searcher is associated with this view.
         if !self.searchers.isEmpty && self.searchers.first!.hits.isEmpty {
             view.reloadHits()
         }

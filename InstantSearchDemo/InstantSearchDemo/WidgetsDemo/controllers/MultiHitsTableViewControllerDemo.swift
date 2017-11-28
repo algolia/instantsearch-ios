@@ -71,6 +71,26 @@ class MultiHitstableViewControllerDemo: MultiHitsTableViewController {
         return cell
     }
     
+    func tableView(_ tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
+        
+        let label = UILabel(frame: CGRect(x: 0, y: 0, width: 300, height: 30))
+        if tableView == self.tableView {
+            if section == 0 {
+                label.text = "Ikea"
+            } else {
+                label.text = "BestBuy"
+            }
+        } else {
+            label.text = "BestBuy2"
+        }
+        
+        let view = UIView()
+        view.addSubview(label)
+        view.backgroundColor = UIColor.gray
+        return view
+    }
+    
+    
     
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
