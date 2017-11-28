@@ -8,6 +8,7 @@
 
 /* Begin PBXBuildFile section */
 		7CDEB63A5116DBF1529A2ABD /* Pods_InstantSearchDemo.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C009A6E7D9A0EEBF22E4E571 /* Pods_InstantSearchDemo.framework */; };
+		E206D9431FCD68FF00713664 /* MultiHitsTableViewControllerDemo.swift in Sources */ = {isa = PBXBuildFile; fileRef = E206D9421FCD68FF00713664 /* MultiHitsTableViewControllerDemo.swift */; };
 		E20CEF6C1FB2242800813D0F /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = E20CEF511FB2242800813D0F /* Assets.xcassets */; };
 		E20CEF6D1FB2242800813D0F /* StartingTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E20CEF521FB2242800813D0F /* StartingTableViewController.swift */; };
 		E20CEF6E1FB2242800813D0F /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = E20CEF541FB2242800813D0F /* LaunchScreen.storyboard */; };
@@ -37,6 +38,7 @@
 		38EA7C0A822689DCE96FCCB4 /* Pods-InstantSearchDemo.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-InstantSearchDemo.release.xcconfig"; path = "Pods/Target Support Files/Pods-InstantSearchDemo/Pods-InstantSearchDemo.release.xcconfig"; sourceTree = "<group>"; };
 		5269F7AF6D0EDD567E429227 /* Pods-InstantSearchDemo.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-InstantSearchDemo.debug.xcconfig"; path = "Pods/Target Support Files/Pods-InstantSearchDemo/Pods-InstantSearchDemo.debug.xcconfig"; sourceTree = "<group>"; };
 		C009A6E7D9A0EEBF22E4E571 /* Pods_InstantSearchDemo.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_InstantSearchDemo.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		E206D9421FCD68FF00713664 /* MultiHitsTableViewControllerDemo.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MultiHitsTableViewControllerDemo.swift; sourceTree = "<group>"; };
 		E20CEF0D1FB2119500813D0F /* InstantSearchDemo.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = InstantSearchDemo.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		E20CEF1C1FB2119500813D0F /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		E20CEF511FB2242800813D0F /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
@@ -155,6 +157,7 @@
 				E2C1E68B1FB4A66E00E0136E /* MultiIndexTableControllerDemo.swift */,
 				E296D1111FC7168F009F7A67 /* MultiIndexTableviewControllerDemo.swift */,
 				E296D1131FC73225009F7A67 /* MultiIndexTableDemo.swift */,
+				E206D9421FCD68FF00713664 /* MultiHitsTableViewControllerDemo.swift */,
 			);
 			path = controllers;
 			sourceTree = "<group>";
@@ -312,7 +315,7 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
-			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n";
+			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
 			showEnvVarsInLog = 0;
 		};
 /* End PBXShellScriptBuildPhase section */
@@ -324,6 +327,7 @@
 			files = (
 				E20CEF7D1FB2242800813D0F /* CollectionViewController.swift in Sources */,
 				E20CEF7E1FB2242800813D0F /* FacetController.swift in Sources */,
+				E206D9431FCD68FF00713664 /* MultiHitsTableViewControllerDemo.swift in Sources */,
 				E20CEF7C1FB2242800813D0F /* AppDelegate.swift in Sources */,
 				E20CEF721FB2242800813D0F /* HitsTableViewControllerDemo.swift in Sources */,
 				E20CEF7F1FB2242800813D0F /* ViewController.swift in Sources */,

@@ -45,12 +45,11 @@ internal class MultiHitsViewModel: MultiHitsViewModelDelegate, SearchableMultiIn
             self.searchers.append(searcher)
         }
         
-        for searcher in searchers {
+        for searcher in self.searchers {
             searcher.params.hitsPerPage = hitsPerSection
         }
         
-        // we're sure it's not empty since we check at the beginning
-        if searchers.first!.hits.isEmpty {
+        if !self.searchers.isEmpty && self.searchers.first!.hits.isEmpty {
             view.reloadHits()
         }
     }

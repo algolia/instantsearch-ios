@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="13529" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES" initialViewController="X9M-UF-qef">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="13529" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES" initialViewController="e9f-Qz-knC">
     <device id="retina4_7" orientation="portrait">
         <adaptation id="fullscreen"/>
     </device>
@@ -876,6 +876,150 @@
                 <placeholder placeholderIdentifier="IBFirstResponder" id="bXl-yH-frk" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="196" y="797"/>
+        </scene>
+        <!--Multi Hitstable View Controller Demo-->
+        <scene sceneID="TlI-eX-sGL">
+            <objects>
+                <viewController id="e9f-Qz-knC" customClass="MultiHitstableViewControllerDemo" customModule="InstantSearchDemo" customModuleProvider="target" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="v0d-XO-jDz"/>
+                        <viewControllerLayoutGuide type="bottom" id="pqP-FC-mgN"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="dj5-pC-BHh">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="z3v-Ex-TTE" customClass="TextFieldWidget" customModule="InstantSearch">
+                                <rect key="frame" x="0.0" y="0.0" width="375" height="40"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="40" id="WMY-eY-t74"/>
+                                </constraints>
+                                <nil key="textColor"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                <textInputTraits key="textInputTraits"/>
+                            </textField>
+                            <searchBar contentMode="redraw" translatesAutoresizingMaskIntoConstraints="NO" id="Ch5-oM-mN5" customClass="SearchBarWidget" customModule="InstantSearch">
+                                <rect key="frame" x="0.0" y="40" width="375" height="56"/>
+                                <textInputTraits key="textInputTraits"/>
+                            </searchBar>
+                            <slider opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" minValue="0.0" maxValue="100" translatesAutoresizingMaskIntoConstraints="NO" id="Ybw-QF-5Jc" customClass="SliderWidget" customModule="InstantSearch">
+                                <rect key="frame" x="16" y="133" width="118" height="31"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" constant="114" id="fsp-AT-t7e"/>
+                                </constraints>
+                                <userDefinedRuntimeAttributes>
+                                    <userDefinedRuntimeAttribute type="string" keyPath="attribute" value="price"/>
+                                    <userDefinedRuntimeAttribute type="string" keyPath="operator" value="&gt;"/>
+                                    <userDefinedRuntimeAttribute type="string" keyPath="indexName" value="ikea"/>
+                                    <userDefinedRuntimeAttribute type="string" keyPath="indexId" value="0"/>
+                                </userDefinedRuntimeAttributes>
+                            </slider>
+                            <slider opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" minValue="0.0" maxValue="100" translatesAutoresizingMaskIntoConstraints="NO" id="TJ2-sw-tuH" customClass="SliderWidget" customModule="InstantSearch">
+                                <rect key="frame" x="228" y="132.5" width="118" height="31"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" constant="114" id="oLa-oR-JhR"/>
+                                </constraints>
+                                <userDefinedRuntimeAttributes>
+                                    <userDefinedRuntimeAttribute type="string" keyPath="indexName" value="bestbuy"/>
+                                    <userDefinedRuntimeAttribute type="string" keyPath="attribute" value="salePrice"/>
+                                    <userDefinedRuntimeAttribute type="string" keyPath="operator" value="&gt;"/>
+                                    <userDefinedRuntimeAttribute type="string" keyPath="indexId" value="0"/>
+                                </userDefinedRuntimeAttributes>
+                            </slider>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="b4y-CW-Cxd">
+                                <rect key="frame" x="54" y="104" width="42" height="21"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="vU7-jT-28S">
+                                <rect key="frame" x="266" y="104" width="42" height="21"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <tableView clipsSubviews="YES" contentMode="scaleToFill" fixedFrame="YES" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="YNl-kP-Rbk" customClass="MultiHitsTableWidget" customModule="InstantSearch">
+                                <rect key="frame" x="16" y="201" width="343" height="206"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                <prototypes>
+                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" selectionStyle="blue" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="ikeaCell" id="4Yt-eZ-Yqt">
+                                        <rect key="frame" x="0.0" y="28" width="343" height="44"/>
+                                        <autoresizingMask key="autoresizingMask"/>
+                                        <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="4Yt-eZ-Yqt" id="UZf-Eb-BQ5">
+                                            <rect key="frame" x="0.0" y="0.0" width="343" height="43.5"/>
+                                            <autoresizingMask key="autoresizingMask"/>
+                                        </tableViewCellContentView>
+                                    </tableViewCell>
+                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" selectionStyle="blue" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="bestbuyCell" id="9o7-vU-X5m">
+                                        <rect key="frame" x="0.0" y="72" width="343" height="44"/>
+                                        <autoresizingMask key="autoresizingMask"/>
+                                        <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="9o7-vU-X5m" id="x1o-UT-vXY">
+                                            <rect key="frame" x="0.0" y="0.0" width="343" height="43.5"/>
+                                            <autoresizingMask key="autoresizingMask"/>
+                                        </tableViewCellContentView>
+                                    </tableViewCell>
+                                </prototypes>
+                                <userDefinedRuntimeAttributes>
+                                    <userDefinedRuntimeAttribute type="number" keyPath="hitsPerSection">
+                                        <integer key="value" value="7"/>
+                                    </userDefinedRuntimeAttribute>
+                                    <userDefinedRuntimeAttribute type="boolean" keyPath="showItemsOnEmptyQuery" value="YES"/>
+                                    <userDefinedRuntimeAttribute type="string" keyPath="indexNames" value="ikea,bestbuy"/>
+                                    <userDefinedRuntimeAttribute type="string" keyPath="indexIds" value="0,0"/>
+                                </userDefinedRuntimeAttributes>
+                            </tableView>
+                            <tableView clipsSubviews="YES" contentMode="scaleToFill" fixedFrame="YES" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="BLD-e0-fdh" customClass="MultiHitsTableWidget" customModule="InstantSearch">
+                                <rect key="frame" x="18" y="434" width="341" height="213"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <prototypes>
+                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" selectionStyle="blue" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="bestbuyCell" id="drt-vE-qTm">
+                                        <rect key="frame" x="0.0" y="28" width="341" height="44"/>
+                                        <autoresizingMask key="autoresizingMask"/>
+                                        <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="drt-vE-qTm" id="MEw-qq-ZVL">
+                                            <rect key="frame" x="0.0" y="0.0" width="341" height="43.5"/>
+                                            <autoresizingMask key="autoresizingMask"/>
+                                        </tableViewCellContentView>
+                                    </tableViewCell>
+                                </prototypes>
+                                <userDefinedRuntimeAttributes>
+                                    <userDefinedRuntimeAttribute type="string" keyPath="indexNames" value="bestbuy"/>
+                                    <userDefinedRuntimeAttribute type="string" keyPath="indexIds" value="1"/>
+                                </userDefinedRuntimeAttributes>
+                            </tableView>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        <constraints>
+                            <constraint firstAttribute="trailing" secondItem="Ch5-oM-mN5" secondAttribute="trailing" id="1NY-Fn-cQD"/>
+                            <constraint firstItem="vU7-jT-28S" firstAttribute="centerX" secondItem="TJ2-sw-tuH" secondAttribute="centerX" id="6d8-zf-7hu"/>
+                            <constraint firstItem="z3v-Ex-TTE" firstAttribute="top" secondItem="dj5-pC-BHh" secondAttribute="top" id="Eac-OU-T94"/>
+                            <constraint firstAttribute="trailing" secondItem="z3v-Ex-TTE" secondAttribute="trailing" id="INb-GP-RHZ"/>
+                            <constraint firstItem="Ch5-oM-mN5" firstAttribute="leading" secondItem="dj5-pC-BHh" secondAttribute="leading" id="Nkt-Z9-cqc"/>
+                            <constraint firstItem="TJ2-sw-tuH" firstAttribute="centerY" secondItem="Ybw-QF-5Jc" secondAttribute="centerY" id="aCl-r0-cpf"/>
+                            <constraint firstItem="vU7-jT-28S" firstAttribute="centerY" secondItem="b4y-CW-Cxd" secondAttribute="centerY" id="aDX-kH-Unr"/>
+                            <constraint firstItem="b4y-CW-Cxd" firstAttribute="centerX" secondItem="Ybw-QF-5Jc" secondAttribute="centerX" id="fsc-Ef-AhY"/>
+                            <constraint firstItem="Ybw-QF-5Jc" firstAttribute="leading" secondItem="dj5-pC-BHh" secondAttribute="leading" constant="18" id="kc8-Xy-IJv"/>
+                            <constraint firstAttribute="trailing" secondItem="TJ2-sw-tuH" secondAttribute="trailing" constant="31" id="lUt-Xh-1Vl"/>
+                            <constraint firstItem="Ybw-QF-5Jc" firstAttribute="top" secondItem="b4y-CW-Cxd" secondAttribute="bottom" constant="8" id="mQr-HA-UlI"/>
+                            <constraint firstItem="z3v-Ex-TTE" firstAttribute="leading" secondItem="dj5-pC-BHh" secondAttribute="leading" id="r9g-qc-rbx"/>
+                            <constraint firstItem="Ch5-oM-mN5" firstAttribute="top" secondItem="z3v-Ex-TTE" secondAttribute="bottom" id="u34-bT-cYH"/>
+                            <constraint firstItem="b4y-CW-Cxd" firstAttribute="top" secondItem="Ch5-oM-mN5" secondAttribute="bottom" constant="8" id="yLF-x3-EMP"/>
+                        </constraints>
+                    </view>
+                    <connections>
+                        <outlet property="bestBuyPriceSlider" destination="TJ2-sw-tuH" id="9TU-sT-q5J"/>
+                        <outlet property="bestbuyPriceLabel" destination="vU7-jT-28S" id="phi-d5-Oda"/>
+                        <outlet property="ikeaPriceLabel" destination="b4y-CW-Cxd" id="W4v-r2-ohx"/>
+                        <outlet property="ikeaPriceSlider" destination="Ybw-QF-5Jc" id="s9N-he-g3J"/>
+                        <outlet property="searchBar" destination="Ch5-oM-mN5" id="w8E-Ec-0ec"/>
+                        <outlet property="tableView" destination="YNl-kP-Rbk" id="CcP-vR-uCF"/>
+                        <outlet property="tableView2" destination="BLD-e0-fdh" id="Pjk-ce-HEE"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="Bab-bJ-ORa" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="-2223.1999999999998" y="796.55172413793105"/>
         </scene>
     </scenes>
 </document>
