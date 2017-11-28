@@ -15,13 +15,13 @@ import UIKit
 /// The most important thing that it does is binding the Searcher/Index to the widgets.
 /// It also takes care of managing search components: `UISearchBar` and `UISearchController`.
 @objc public class InstantSearch: NSObject, SearcherDelegate {
-
+    
     /// The singleton reference of InstantSearch.
     /// It is advised to use this shared reference in case you're dealing with a single index in your app.
     public static let shared = InstantSearch()
-
+    
     // MARK: - Properties
-
+    
     // All widgets, including the specific ones such as refinementControlWidget.
     // We use a weak set so that we don't retain the views. 
     // The lifecycle of a view is not our concern, this should be left to VC.
@@ -29,7 +29,7 @@ import UIKit
     private var resettableDelegates = WeakSet<ResettableDelegate>()
     private var refinableDelegates = WeakSet<RefinableDelegate>()
     private var refinableDelegateMap = [String: WeakSet<RefinableDelegate>]()
-
+    
     private var multiIndexResultingDelegates: [SearcherId: WeakSet<ResultingDelegate>] = [:]
     //private var multiIndexRefinableDelegates: [IndexId: [String: WeakSet<RefinableDelegate>]] = [:]
     
@@ -40,23 +40,23 @@ import UIKit
     public var searcher: Searcher!
     
     private var isMultiIndexActive = false
-
+    
     /// The search parameters of the Searcher.
     ///
     /// + Note: This is just a quick access to `searcher.params`.
     public var params: SearchParameters {
         return searcher.params
     }
-
+    
     // This helps specify the viewmodel associated with a particular WidgetV.
     private lazy var viewModelFetcher: ViewModelFetcher = {
         return ViewModelFetcher()
     }()
     
     private static let instantSearchUserAgent = "InstantSearch iOS"
-
+    
     // MARK: - Init and Configure
-
+    
     private override init() {
         self.searchers = [:]
         super.init()
@@ -71,7 +71,7 @@ import UIKit
         let libraryVersion = LibraryVersion(name: name, version: version)
         Client.addUserAgent(libraryVersion)
     }()
-
+    
     /// Create a new InstantSearch reference with the given configurations.
     ///
     /// - parameter appID: the Algolia AppID.
@@ -81,7 +81,7 @@ import UIKit
         self.init()
         self.configure(appID: appID, apiKey: apiKey, index: index)
     }
-
+    
     /// Create a new InstantSearch reference.
     ///
     /// - parameter searcher: the `Searcher` used by InstantSearch
@@ -89,7 +89,7 @@ import UIKit
         self.init()
         configure(searcher: searcher)
     }
-
+    
     /// Configure the InstantSearch reference with the given configurations.
     ///
     /// - parameter appID: the Algolia AppID.
@@ -169,9 +169,9 @@ import UIKit
     public func getSearcher(named name:String, withId id:String = "") -> Searcher? {
         return searchers[SearcherId(name: name, id: id)]
     }
-
+    
     // MARK: Add widget methods
-
+    
     /// Register all InstantSearch widgets inside a particular view, and then execute a search to Algolia
     ///
     /// - param view: the view containnig the InstantSearch widgets.
@@ -189,36 +189,36 @@ import UIKit
     /// + Note: InstantSearch widgets are simply the components that implement the `AlgoliaWidget` marker protocol.
     @objc public func registerAllWidgets(in view: UIView, doSearch: Bool = true) {
         registerWidgets(in: view)
-
+        
         // After added all widgets, the widgets might have added
         // parameters to the searcher.params. So we need to trigger a new search.
         if doSearch {
             search()
         }
     }
-
+    
     // Recursively iterate the sub views in order to find `AlgoliaWidget` components.
     private func registerWidgets(in view: UIView) {
-
+        
         // Get the subviews of the view
         let subviews = view.subviews
-
+        
         // Return if there are no subviews
         if subviews.isEmpty {
             return
         }
-
+        
         for subView in subviews as [UIView] {
-
+            
             if let algoliaWidget = subView as? AlgoliaWidget {
                 register(widget: algoliaWidget, doSearch: false)
             }
-
+            
             // List the subviews of subview
             registerWidgets(in: subView)
         }
     }
-
+    
     /// Register a widget to InstantSearch.
     ///
     /// - param widget: the `AlgoliaWidget` to be registered to InstantSearch.
@@ -226,23 +226,23 @@ import UIKit
     /// + Note: if `doSearch` parameter is not specified, then we will automatically do a search if the `AlgoliaWidget`
     /// is an "input control" (changes the params of the Searcher), otherwise we don't do a search.
     @objc public func register(widget: AlgoliaWidget) {
-
+        
         if widget is RefinementViewDelegate {
             register(widget: widget, doSearch: true)
         } else {
             register(widget: widget, doSearch: false)
         }
-
+        
     }
-
+    
     /// Register a widget to InstantSearch.
     ///
     /// - param widget: the `AlgoliaWidget` to be registered to InstantSearch.
     /// - param doSearch: whether or not to do a new search to Algolia after adding the widget.
     @objc public func register(widget: AlgoliaWidget, doSearch: Bool) {
-
+        
         var widgetVM: Any?
-
+        
         // -------------------------------------------------------------------------------------
         // Widgets that act only as Views (WidgetV)
         // We spin off a ViewModel associated to the particular View (WidgetVM)
@@ -250,14 +250,14 @@ import UIKit
         // In that case, the ViewModel is the delegate to the events emitted by the Searcher
         // -------------------------------------------------------------------------------------
         widgetVM = viewModelFetcher.tryFetchWidgetVM(with: widget)
-
+        
         // --------------------------------------------------------------------------------------
         // If the widget doesn't have a specific WidgetVM, that means that it is itself
         // acting both as a View and a ViewModel (WidgetVVM), so we assign it to the WidgetVM
         // in order to hook it up to search events
         // --------------------------------------------------------------------------------------
         widgetVM = widgetVM ?? widget
-
+        
         // --------------------------------------------------------------------------------------
         // Hook the search events to the ViewModel. Reminder of the kinds of ViewModels:
         // - Pure VM created by the ViewModelFetcher
@@ -268,14 +268,14 @@ import UIKit
         } else {
             bind(searcher: searcher, to: widgetVM)
         }
-
+        
         // After a widget is added, we can decide to make a search. This is when
         // a widget modifies the state of the searcher.params
         if doSearch {
             search()
         }
     }
-
+    
     // Binds the widgetVM to the different events emitted by the Searcher.
     // We do this binding by adding the WidgetVM to the corresponding delegates
     // owned by InstantSearch, as well as assigning the Searcher to the VMs who implement `SearchableViewModel`.
@@ -288,115 +288,107 @@ import UIKit
         if let searchableWidget = widgetVM as? SearchableViewModel {
             searchableWidget.configure(with: searcher)
         }
-
+        
         if let resultingWidget = widgetVM as? ResultingDelegate {
             resultingDelegates.add(resultingWidget)
         }
-
+        
         if let resettableWidget = widgetVM as? ResettableDelegate {
             resettableDelegates.add(resettableWidget)
         }
-
+        
         if let refinableWidget = widgetVM as? RefinableDelegate {
-            refinableDelegates.add(refinableWidget)
-
-            let attribute = refinableWidget.attribute
-
-            if refinableDelegateMap[attribute] == nil {
-                refinableDelegateMap[attribute] = WeakSet<RefinableDelegate>()
-            }
-
-            refinableDelegateMap[attribute]!.add(refinableWidget)
+            registerAsRefinableDelegate(widget: refinableWidget)
         }
     }
     
     private func bind(searchers: [SearcherId: Searcher], to widgetVM: Any?) {
         
-        // TODO: Can do the searcher Id parsing in here instead of in the View Model
-        // Refactor all this to combine with single indexing
         if let widgetVM = widgetVM as? SearchableMultiIndexViewModel {
+            
+            // 1- Configure the searchers
             let searchersArray = searchers.map { $0.value }
             widgetVM.configure(withSearchers: searchersArray)
             
+            // 2- Register Resulting Delegates
             if let resultingWidget = widgetVM as? ResultingDelegate {
                 for i in 0..<widgetVM.indexIdsArray.count {
-                    let indexId = SearcherId(name: widgetVM.indexNamesArray[i], id: widgetVM.indexIdsArray[i])
-                    if multiIndexResultingDelegates[indexId] == nil {
-                        multiIndexResultingDelegates[indexId] = WeakSet<ResultingDelegate>()
-                    }
-                    
-                    multiIndexResultingDelegates[indexId]!.add(resultingWidget)
+                    let searcherId = SearcherId(name: widgetVM.indexNamesArray[i], id: widgetVM.indexIdsArray[i])
+                    registerAsResultingDelegate(widget: resultingWidget, with: searcherId)
                 }
             }
+        } else if let widgetVM = widgetVM as? SearchableIndexViewModel {
             
-            return
-        }
-        // use SearchableMultiIndexViewModel to extract the indexNames etc
-        
-        guard let widgetVM = widgetVM as? SearchableIndexViewModel else { return }
-        
-        if widgetVM is RefinableDelegate && widgetVM.indexId.isEmpty && widgetVM.indexName.isEmpty {
-            fatalError("For the multi-index case, all refinable widgets should target a specific index")
-        }
-        
-        // First configure the searchers
-        // if we don't specify an index name and index id, it means we need to target all indices for this widget.
-        // Else, target the specific index.
-        if widgetVM.indexName.isEmpty && widgetVM.indexId.isEmpty {
-            let searchersArray = searchers.map { $0.value }
-            widgetVM.configure?(withSearchers: searchersArray)
-        } else {
-            let indexId = SearcherId(name: widgetVM.indexName, id: widgetVM.indexId)
-            // TODO: Remove force unwrapping, throw a better error when getting wrong IndexId.
-            // Throw fatal error and say inconcsistency with what was configured with instantsearch and
-            // what was specified in the widgets
-            let searcher = searchers[indexId]!
-            widgetVM.configure(with: searcher)
-        }
-        
-        if let resultingWidget = widgetVM as? ResultingDelegate {
-            let indexId = SearcherId(name: widgetVM.indexName, id: widgetVM.indexId)
-            if multiIndexResultingDelegates[indexId] == nil {
-                multiIndexResultingDelegates[indexId] = WeakSet<ResultingDelegate>()
+            if widgetVM is RefinableDelegate && widgetVM.indexId.isEmpty && widgetVM.indexName.isEmpty {
+                fatalError("For the multi-index case, all refinable widgets should target a specific index")
             }
             
-            multiIndexResultingDelegates[indexId]!.add(resultingWidget)
-        }
-        
-        if let refinableWidget = widgetVM as? RefinableDelegate {
-            refinableDelegates.add(refinableWidget)
-            
-            let attribute = refinableWidget.attribute
-            
-            if refinableDelegateMap[attribute] == nil {
-                refinableDelegateMap[attribute] = WeakSet<RefinableDelegate>()
+            // 1- Configure the searchers. If we don't specify an index name and index id, it means we need to target all indices for this widget.
+            if widgetVM.indexName.isEmpty && widgetVM.indexId.isEmpty {
+                let searchersArray = searchers.map { $0.value }
+                widgetVM.configure?(withSearchers: searchersArray)
+            } else { // Else, target the specific index.
+                let searcherId = SearcherId(name: widgetVM.indexName, id: widgetVM.indexId)
+                guard let searcher = searchers[searcherId] else {
+                    fatalError("Index name not declared when configuring InstantSearch")
+                }
+                widgetVM.configure(with: searcher)
             }
             
-            refinableDelegateMap[attribute]!.add(refinableWidget)
+            // 2- Register resulting delegates
+            if let resultingWidget = widgetVM as? ResultingDelegate {
+                let searcherId = SearcherId(name: widgetVM.indexName, id: widgetVM.indexId)
+                registerAsResultingDelegate(widget: resultingWidget, with: searcherId)
+            }
+            
+            // 3- Register Refinable delegates
+            if let refinableWidget = widgetVM as? RefinableDelegate {
+                registerAsRefinableDelegate(widget: refinableWidget)
+            }
         }
     }
-
+    
+    fileprivate func registerAsRefinableDelegate(widget refinableWidget: RefinableDelegate) {
+        refinableDelegates.add(refinableWidget)
+        
+        let attribute = refinableWidget.attribute
+        
+        if refinableDelegateMap[attribute] == nil {
+            refinableDelegateMap[attribute] = WeakSet<RefinableDelegate>()
+        }
+        
+        refinableDelegateMap[attribute]!.add(refinableWidget)
+    }
+    
+    fileprivate func registerAsResultingDelegate(widget resultingDelegate: ResultingDelegate, with searcherId: SearcherId) {
+        if multiIndexResultingDelegates[searcherId] == nil {
+            multiIndexResultingDelegates[searcherId] = WeakSet<ResultingDelegate>()
+        }
+        
+        multiIndexResultingDelegates[searcherId]!.add(resultingDelegate)
+    }
+    
     // MARK: - Notification Observers
-
+    
     /// Send reset event to all registered viewModels that implement the `resettableDelegate` protocol.
     @objc func reset() {
         for algoliaWidget in resettableDelegates {
             algoliaWidget.onReset()
         }
     }
-
+    
     /// Refinement Notification handler sent when either a Numeric or a Facet Refinement is changed.
     @objc func onRefinementNotification(notification: Notification) {
         let numericRefinementMap = notification.userInfo?[Searcher.userInfoNumericRefinementChangeKey] as? [String: [NumericRefinement]]
         let facetRefinementMap = notification.userInfo?[Searcher.userInfoFacetRefinementChangeKey] as? [String: [FacetRefinement]]
-
+        
         callGeneralRefinementChanges(numericRefinementMap: numericRefinementMap, facetRefinementMap: facetRefinementMap)
         callSpecificNumericChanges(numericRefinementMap: numericRefinementMap)
         callSpecificFacetChanges(facetRefinementMap: facetRefinementMap)
     }
-
+    
     // MARK: - SearcherDelegate
-
+    
     /// Delegate method called when new search results arrive from Algolia
     /// This function forwards all results, errors and userInfo to the resultDelegates.
     public func searcher(_ searcher: Searcher, didReceive results: SearchResults?, error: Error?, userInfo: [String: Any]) {
@@ -416,7 +408,7 @@ import UIKit
             }
         }
     }
-
+    
     // MARK: - Param Notifications Methods
     
     // Forwards any param change to the widget implementing the `RefinableDelegate` protocol.
@@ -428,7 +420,7 @@ import UIKit
             refinementControlWidget.onRefinementChange?(facetMap: facetRefinementMap)
         }
     }
-
+    
     // Forwards any numeric param change to the widget implementing the `RefinableDelegate` protocol.
     private func callSpecificNumericChanges(numericRefinementMap: [String: [NumericRefinement]]?) {
         
@@ -442,7 +434,7 @@ import UIKit
             }
         }
     }
-
+    
     // Forwards any facet param change to the widget implementing the `RefinableDelegate` protocol.
     private func callSpecificFacetChanges(facetRefinementMap: [String: [FacetRefinement]]?) {
         if let facetRefinementMap = facetRefinementMap {
@@ -483,24 +475,24 @@ import UIKit
 }
 
 extension InstantSearch: UISearchResultsUpdating {
-
+    
     /// Forwards a `SearchController` to `InstantSearch` so that it takes care of updating search results
     /// on every new keystroke inside the `UISearchBar` linked to it.
     @objc public func register(searchController: UISearchController) {
         searchController.searchResultsUpdater = self
     }
-
+    
     /// Handler called on each keystroke change in the `UISearchBar`
     public func updateSearchResults(for searchController: UISearchController) {
         guard let searchText = searchController.searchBar.text else { return }
-
+        
         search(with: searchText)
     }
-
+    
     /// Handler called when searchBar becomes first responder
     public func searchBarTextDidBeginEditing(_ searchBar: UISearchBar) {
         guard let searchText = searchBar.text else { return }
-
+        
         search(with: searchText)
     }
 }
@@ -511,7 +503,7 @@ extension InstantSearch: UISearchBarDelegate {
     @objc public func register(searchBar: UISearchBar) {
         searchBar.delegate = self
     }
-
+    
     /// Handler called on each keystroke change in the `UISearchBar`
     public func searchBar(_ searchBar: UISearchBar, textDidChange searchText: String) {        
         search(with: searchText)
