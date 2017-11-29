@@ -312,8 +312,11 @@ import UIKit
             
             // 2- Register Resulting Delegates
             if let resultingWidget = widgetVM as? ResultingDelegate {
-                for i in 0..<widgetVM.indexIdsArray.count {
-                    let searcherId = SearcherId(name: widgetVM.indexNamesArray[i], id: widgetVM.indexIdsArray[i])
+                for i in 0..<widgetVM.indexNamesArray.count {
+                    let id = widgetVM.indexIdsArray.count == widgetVM.indexNamesArray.count
+                        ? widgetVM.indexIdsArray[i]
+                        : ""
+                    let searcherId = SearcherId(name: widgetVM.indexNamesArray[i], id: id)
                     registerAsResultingDelegate(widget: resultingWidget, with: searcherId)
                 }
             }

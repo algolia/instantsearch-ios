@@ -18,6 +18,10 @@ import UIKit
     
     @IBInspectable public var indexNames: String = Constants.Defaults.indexName {
         didSet {
+            if indexNames.isEmpty {
+                fatalError("indexNames cannot be empty, you need to fill it with the index names")
+            }
+            
             indexNamesArray = indexNames.components(separatedBy: ",")
         }
     }
@@ -26,7 +30,11 @@ import UIKit
     // TODO: and support case where nothing is inputted in the indexIds!!
     @IBInspectable public var indexIds: String = Constants.Defaults.indexId {
         didSet {
-            indexIdsArray = indexIds.components(separatedBy: ",")
+            if indexIds.isEmpty {
+                indexIdsArray = []
+            } else {
+                indexIdsArray = indexIds.components(separatedBy: ",")
+            }
         }
     }
     
