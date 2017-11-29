@@ -38,6 +38,5 @@ import InstantSearchCore
     var indexNamesArray: [String] { get }
     
     /// The index id extracted from the view. Note that this is immutable, with the source of truth coming from the view only.
-    /// TODO: Rename to searcherId or something else consistent
     var indexIdsArray: [String] { get }
 }

@@ -28,8 +28,8 @@ class MultiIndexTableDemo: UIViewController, HitsTableViewDataSource {
     override func viewDidLoad() {
         super.viewDidLoad()
 
-        let indexIds: [SearcherId] = [SearcherId.init(name: "bestbuy", id: "0"), SearcherId.init(name: "ikea", id: "0")]
-        InstantSearch.shared.configure(appID: ALGOLIA_APP_ID, apiKey: ALGOLIA_API_KEY, indexIds: indexIds)
+        let searcherIds: [SearcherId] = [SearcherId.init(indexName: "bestbuy", id: "0"), SearcherId.init(indexName: "ikea", id: "0")]
+        InstantSearch.shared.configure(appID: ALGOLIA_APP_ID, apiKey: ALGOLIA_API_KEY, searcherIds: searcherIds)
         InstantSearch.shared.registerAllWidgets(in: self.view)
         
         hitsController = MultiHitsController(table: tableView)

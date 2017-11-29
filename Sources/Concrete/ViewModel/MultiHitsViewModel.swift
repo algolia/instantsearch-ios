@@ -49,12 +49,15 @@ internal class MultiHitsViewModel: MultiHitsViewModelDelegate, SearchableMultiIn
             self.searchers.append(searcher)
         }
         
+        if self.searchers.isEmpty { // not supposed to have this case
+            fatalError("No index associated with this widget. Please add at least one index.")
+        }
+        
         for searcher in self.searchers {
             searcher.params.hitsPerPage = hitsPerSection
         }
         
-        // TODO: Throw better error is no searcher is associated with this view.
-        if !self.searchers.isEmpty && self.searchers.first!.hits.isEmpty {
+        if self.searchers.first!.hits.isEmpty {
             view.reloadHits()
         }
     }

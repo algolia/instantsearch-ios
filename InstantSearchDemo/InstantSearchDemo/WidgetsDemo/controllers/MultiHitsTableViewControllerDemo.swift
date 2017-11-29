@@ -29,8 +29,8 @@ class MultiHitstableViewControllerDemo: MultiHitsTableViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        let indexIds: [SearcherId] = [SearcherId.init(name: "bestbuy", id: ""), SearcherId.init(name: "ikea", id: ""), SearcherId.init(name: "bestbuy", id: "")]
-        InstantSearch.shared.configure(appID: ALGOLIA_APP_ID, apiKey: ALGOLIA_API_KEY, indexIds: indexIds)
+        let searcherIds: [SearcherId] = [SearcherId.init(indexName: "bestbuy", id: ""), SearcherId.init(indexName: "ikea", id: ""), SearcherId.init(indexName: "bestbuy", id: "")]
+        InstantSearch.shared.configure(appID: ALGOLIA_APP_ID, apiKey: ALGOLIA_API_KEY, searcherIds: searcherIds)
         InstantSearch.shared.registerAllWidgets(in: self.view)
         
         hitsTableViews = [tableView, tableView2]

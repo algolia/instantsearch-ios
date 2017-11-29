@@ -29,8 +29,8 @@ class MultiIndexTableViewControllerDemo: HitsTableViewController {
 
         hitsTableViews = [ikeaTableView, bestbuyTableView]
         
-        let searcherIds: [SearcherId] = [SearcherId.init(name: "bestbuy"), SearcherId.init(name: "ikea")]
-        InstantSearch.shared.configure(appID: ALGOLIA_APP_ID, apiKey: ALGOLIA_API_KEY, indexIds: searcherIds)
+        let searcherIds: [SearcherId] = [SearcherId.init(indexName: "bestbuy"), SearcherId.init(indexName: "ikea")]
+        InstantSearch.shared.configure(appID: ALGOLIA_APP_ID, apiKey: ALGOLIA_API_KEY, searcherIds: searcherIds)
         InstantSearch.shared.registerAllWidgets(in: self.view)
         
         ikeaPriceSlider.addTarget(self, action: #selector(sliderChanged(sender:)), for: .valueChanged)
