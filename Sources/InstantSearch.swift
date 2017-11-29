@@ -166,7 +166,7 @@ import UIKit
         }
     }
     
-    public func getSearcher(named name:String, withId id:String = "") -> Searcher? {
+    public func getSearcher(named name: String, withId id: String = "") -> Searcher? {
         return searchers[SearcherId(name: name, id: id)]
     }
     
@@ -326,7 +326,8 @@ import UIKit
                 fatalError("For the multi-index case, all refinable widgets should target a specific index")
             }
             
-            // 1- Configure the searchers. If we don't specify an index name and index id, it means we need to target all indices for this widget.
+            // 1- Configure the searchers. If we don't specify an index name and index id,
+            // it means we need to target all indices for this widget.
             if widgetVM.indexName.isEmpty && widgetVM.indexId.isEmpty {
                 let searchersArray = searchers.map { $0.value }
                 widgetVM.configure?(withSearchers: searchersArray)

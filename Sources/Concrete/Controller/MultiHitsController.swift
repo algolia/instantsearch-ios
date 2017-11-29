@@ -94,4 +94,3 @@ extension MultiHitsController: UICollectionViewDelegate {
         collectionDelegate?.collectionView(collectionView, didSelectItemAt: indexPath, containing: hit)
     }
 }
-

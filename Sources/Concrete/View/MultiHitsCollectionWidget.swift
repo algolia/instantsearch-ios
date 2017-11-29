@@ -1,4 +1,3 @@
-
 //
 //  MultiHitsTablWidget.swift
 //  InstantSearch-iOS
@@ -59,5 +58,3 @@ import UIKit
         reloadData()
     }
 }
-
-

@@ -33,4 +33,3 @@ import Foundation
     var indexNamesArray: [String] { get set }
     var indexIdsArray: [String] { get set }
 }
-

@@ -111,4 +111,3 @@ extension MultiHitsViewModel: ResettableDelegate {
         view.reloadHits()
     }
 }
-

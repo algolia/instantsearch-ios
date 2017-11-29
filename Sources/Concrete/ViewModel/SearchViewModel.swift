@@ -6,6 +6,7 @@
 //
 
 import InstantSearchCore
+import Foundation
 
 /// ViewModel - View: StatsViewModelDelegate.
 ///
@@ -23,6 +24,8 @@ internal class SearchViewModel: NSObject, SearchControlViewModelDelegate, Search
     
     public var searchers: [Searcher] = []
     
+    private var observations: [NSKeyValueObservation] = []
+    
     // MARK: - SearchableViewModel
     
     var searcher: Searcher!
@@ -34,15 +37,12 @@ internal class SearchViewModel: NSObject, SearchControlViewModelDelegate, Search
     func configure(withSearchers searchers: [Searcher]) {
         self.searchers = searchers
         for searcher in self.searchers {
-            searcher.params.addObserver(self, forKeyPath: "query", options: [.new, .old], context: nil)
-        }
-    }
-    
-    override func observeValue(forKeyPath keyPath: String?, of object: Any?, change: [NSKeyValueChangeKey : Any]?, context: UnsafeMutableRawPointer?) {
-        if keyPath == "query" {
-            if let change = change, let newQuery = change[.newKey] as? String {
-                view.set(text: newQuery, andResignFirstResponder: false)
-            }
+            let observation = searcher.params.observe(\.query, changeHandler: { (searchparams, _) in
+                if let query = searchparams.query {
+                    self.view.set(text: query, andResignFirstResponder: false)
+                }
+            })
+            observations.append(observation)
         }
     }
     

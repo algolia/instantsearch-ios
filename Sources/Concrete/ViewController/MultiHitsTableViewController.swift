@@ -82,4 +82,3 @@ UITableViewDataSource, UITableViewDelegate, HitsTableViewDataSource, HitsTableVi
         
     }
 }
-
