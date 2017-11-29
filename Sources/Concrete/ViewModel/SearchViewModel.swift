@@ -10,7 +10,7 @@ import InstantSearchCore
 /// ViewModel - View: StatsViewModelDelegate.
 ///
 /// ViewModel - Searcher: SearchableViewModel, ResultingDelegate, ResettableDelegate.
-internal class SearchViewModel: SearchControlViewModelDelegate, SearchableIndexViewModel {
+internal class SearchViewModel: NSObject, SearchControlViewModelDelegate, SearchableIndexViewModel {
     
     // MARK: - Properties
     var indexId: String {
@@ -28,14 +28,25 @@ internal class SearchViewModel: SearchControlViewModelDelegate, SearchableIndexV
     var searcher: Searcher!
     
     func configure(with searcher: Searcher) {
-        self.searchers = [searcher]
+        configure(withSearchers: [searcher])
     }
     
     func configure(withSearchers searchers: [Searcher]) {
         self.searchers = searchers
+        for searcher in self.searchers {
+            searcher.params.addObserver(self, forKeyPath: "query", options: [.new, .old], context: nil)
+        }
     }
     
-    // MARK: - StatsViewModelDelegate
+    override func observeValue(forKeyPath keyPath: String?, of object: Any?, change: [NSKeyValueChangeKey : Any]?, context: UnsafeMutableRawPointer?) {
+        if keyPath == "query" {
+            if let change = change, let newQuery = change[.newKey] as? String {
+                view.set(text: newQuery, andResignFirstResponder: false)
+            }
+        }
+    }
+    
+    // MARK: - SearchViewModelDelegate
     
     weak var view: SearchControlViewDelegate!
     

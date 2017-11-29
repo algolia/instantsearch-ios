@@ -35,10 +35,9 @@ import UIKit
         self.init(hitsView: table)
     }
     
-    // TODO: Do same thing for collectionView
-//    @objc convenience public init(collection: HitsCollectionWidget) {
-//        self.init(hitsView: collection)
-//    }
+    @objc convenience public init(collection: MultiHitsCollectionWidget) {
+        self.init(hitsView: collection)
+    }
     
     @objc init(hitsView: MultiHitsViewDelegate) {
         self.viewModel = hitsView.viewModel
