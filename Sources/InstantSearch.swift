@@ -405,6 +405,7 @@ import UIKit
                 }
             } else {
                 print("Unexpected case where the searcher index name and id don't map to any resulting delegate.")
+                print("This is probably due to using searcher.search() instead of getSearcher(named:withId:).search)")
             }
         } else {
             for algoliaWidget in resultingDelegates {
@@ -454,7 +455,7 @@ import UIKit
     
     // MARK: - Helper methods
     
-    internal func search(with searchText: String) {
+    public func search(with searchText: String) {
         
         if isMultiIndexActive {
             for (_, searcher) in searchers {
@@ -467,7 +468,7 @@ import UIKit
         search()
     }
     
-    internal func search() {
+    public func search() {
         if isMultiIndexActive {
             for (_, searcher) in searchers {
                 searcher.search()

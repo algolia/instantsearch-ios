@@ -29,6 +29,7 @@
 		E20CEF7D1FB2242800813D0F /* CollectionViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E20CEF691FB2242800813D0F /* CollectionViewController.swift */; };
 		E20CEF7E1FB2242800813D0F /* FacetController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E20CEF6A1FB2242800813D0F /* FacetController.swift */; };
 		E20CEF7F1FB2242800813D0F /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E20CEF6B1FB2242800813D0F /* ViewController.swift */; };
+		E2818C621FCF1113003A0FF1 /* QuerySuggestionDemo.swift in Sources */ = {isa = PBXBuildFile; fileRef = E2818C611FCF1113003A0FF1 /* QuerySuggestionDemo.swift */; };
 		E296D1121FC7168F009F7A67 /* MultiIndexTableviewControllerDemo.swift in Sources */ = {isa = PBXBuildFile; fileRef = E296D1111FC7168F009F7A67 /* MultiIndexTableviewControllerDemo.swift */; };
 		E296D1141FC73225009F7A67 /* MultiIndexTableDemo.swift in Sources */ = {isa = PBXBuildFile; fileRef = E296D1131FC73225009F7A67 /* MultiIndexTableDemo.swift */; };
 		E2C1E68D1FB4A66E00E0136E /* MultiIndexTableControllerDemo.swift in Sources */ = {isa = PBXBuildFile; fileRef = E2C1E68B1FB4A66E00E0136E /* MultiIndexTableControllerDemo.swift */; };
@@ -61,6 +62,7 @@
 		E20CEF691FB2242800813D0F /* CollectionViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CollectionViewController.swift; sourceTree = "<group>"; };
 		E20CEF6A1FB2242800813D0F /* FacetController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FacetController.swift; sourceTree = "<group>"; };
 		E20CEF6B1FB2242800813D0F /* ViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
+		E2818C611FCF1113003A0FF1 /* QuerySuggestionDemo.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = QuerySuggestionDemo.swift; sourceTree = "<group>"; };
 		E296D1111FC7168F009F7A67 /* MultiIndexTableviewControllerDemo.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MultiIndexTableviewControllerDemo.swift; sourceTree = "<group>"; };
 		E296D1131FC73225009F7A67 /* MultiIndexTableDemo.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MultiIndexTableDemo.swift; sourceTree = "<group>"; };
 		E2C1E68B1FB4A66E00E0136E /* MultiIndexTableControllerDemo.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MultiIndexTableControllerDemo.swift; sourceTree = "<group>"; };
@@ -158,6 +160,7 @@
 				E296D1111FC7168F009F7A67 /* MultiIndexTableviewControllerDemo.swift */,
 				E296D1131FC73225009F7A67 /* MultiIndexTableDemo.swift */,
 				E206D9421FCD68FF00713664 /* MultiHitsTableViewControllerDemo.swift */,
+				E2818C611FCF1113003A0FF1 /* QuerySuggestionDemo.swift */,
 			);
 			path = controllers;
 			sourceTree = "<group>";
@@ -332,6 +335,7 @@
 				E20CEF721FB2242800813D0F /* HitsTableViewControllerDemo.swift in Sources */,
 				E20CEF7F1FB2242800813D0F /* ViewController.swift in Sources */,
 				E20CEF741FB2242800813D0F /* RefinementTableViewControllerDemo.swift in Sources */,
+				E2818C621FCF1113003A0FF1 /* QuerySuggestionDemo.swift in Sources */,
 				E296D1141FC73225009F7A67 /* MultiIndexTableDemo.swift in Sources */,
 				E20CEF711FB2242800813D0F /* HitsCollectionViewControllerDemo.swift in Sources */,
 				E20CEF731FB2242800813D0F /* RefinementCollectionViewControllerDemo.swift in Sources */,

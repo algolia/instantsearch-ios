@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="13529" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES" initialViewController="e9f-Qz-knC">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="13529" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES" initialViewController="NOj-EW-aeb">
     <device id="retina4_7" orientation="portrait">
         <adaptation id="fullscreen"/>
     </device>
@@ -1016,6 +1016,74 @@
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Bab-bJ-ORa" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="-2223.1999999999998" y="796.55172413793105"/>
+        </scene>
+        <!--Query Suggestion Demo-->
+        <scene sceneID="Q6F-Xo-LVw">
+            <objects>
+                <viewController id="NOj-EW-aeb" customClass="QuerySuggestionDemo" customModule="InstantSearchDemo" customModuleProvider="target" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="p5H-Fk-8HT"/>
+                        <viewControllerLayoutGuide type="bottom" id="5hN-Ir-UVK"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="dv3-WO-YdR">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="9lB-9m-nn0" customClass="MultiHitsTableWidget" customModule="InstantSearch">
+                                <rect key="frame" x="0.0" y="72" width="375" height="595"/>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                <prototypes>
+                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" selectionStyle="blue" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="querySuggestionCell" id="OVe-SV-Egq">
+                                        <rect key="frame" x="0.0" y="28" width="375" height="44"/>
+                                        <autoresizingMask key="autoresizingMask"/>
+                                        <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="OVe-SV-Egq" id="Ky8-Im-aC2">
+                                            <rect key="frame" x="0.0" y="0.0" width="375" height="43.5"/>
+                                            <autoresizingMask key="autoresizingMask"/>
+                                        </tableViewCellContentView>
+                                    </tableViewCell>
+                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" selectionStyle="blue" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="hitCell" id="yGB-O5-JAc">
+                                        <rect key="frame" x="0.0" y="72" width="375" height="44"/>
+                                        <autoresizingMask key="autoresizingMask"/>
+                                        <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="yGB-O5-JAc" id="N7U-J8-Psz">
+                                            <rect key="frame" x="0.0" y="0.0" width="375" height="43.5"/>
+                                            <autoresizingMask key="autoresizingMask"/>
+                                        </tableViewCellContentView>
+                                    </tableViewCell>
+                                </prototypes>
+                                <userDefinedRuntimeAttributes>
+                                    <userDefinedRuntimeAttribute type="number" keyPath="hitsPerSection">
+                                        <integer key="value" value="7"/>
+                                    </userDefinedRuntimeAttribute>
+                                    <userDefinedRuntimeAttribute type="boolean" keyPath="showItemsOnEmptyQuery" value="YES"/>
+                                    <userDefinedRuntimeAttribute type="string" keyPath="indexNames" value="instantsearch_query_suggestions,instant_search"/>
+                                </userDefinedRuntimeAttributes>
+                            </tableView>
+                            <searchBar contentMode="redraw" translatesAutoresizingMaskIntoConstraints="NO" id="RyK-tA-6QK" customClass="SearchBarWidget" customModule="InstantSearch">
+                                <rect key="frame" x="0.0" y="16" width="375" height="56"/>
+                                <textInputTraits key="textInputTraits"/>
+                            </searchBar>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        <constraints>
+                            <constraint firstItem="RyK-tA-6QK" firstAttribute="top" secondItem="dv3-WO-YdR" secondAttribute="top" constant="16" id="56p-hI-uiB"/>
+                            <constraint firstItem="9lB-9m-nn0" firstAttribute="top" secondItem="RyK-tA-6QK" secondAttribute="bottom" id="5Tu-YB-bMQ"/>
+                            <constraint firstAttribute="trailing" secondItem="RyK-tA-6QK" secondAttribute="trailing" id="8nZ-gt-idW"/>
+                            <constraint firstItem="5hN-Ir-UVK" firstAttribute="top" secondItem="9lB-9m-nn0" secondAttribute="bottom" id="MsL-2Y-pzs"/>
+                            <constraint firstItem="RyK-tA-6QK" firstAttribute="leading" secondItem="dv3-WO-YdR" secondAttribute="leading" id="QaX-lZ-BOJ"/>
+                            <constraint firstItem="9lB-9m-nn0" firstAttribute="leading" secondItem="dv3-WO-YdR" secondAttribute="leading" id="Xbw-sX-9DL"/>
+                            <constraint firstAttribute="trailing" secondItem="9lB-9m-nn0" secondAttribute="trailing" id="miP-wn-P1q"/>
+                            <constraint firstItem="RyK-tA-6QK" firstAttribute="leading" secondItem="dv3-WO-YdR" secondAttribute="leading" id="sf6-WK-htW"/>
+                            <constraint firstAttribute="trailing" secondItem="RyK-tA-6QK" secondAttribute="trailing" id="uPT-jK-SLb"/>
+                        </constraints>
+                    </view>
+                    <connections>
+                        <outlet property="searchBar" destination="RyK-tA-6QK" id="OeX-ED-OlB"/>
+                        <outlet property="tableView" destination="9lB-9m-nn0" id="wqP-8F-End"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="Q9d-vt-1az" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="-3031" y="797"/>
         </scene>
     </scenes>
 </document>
