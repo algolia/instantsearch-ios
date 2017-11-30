@@ -34,16 +34,18 @@ import UIKit
     //private var multiIndexRefinableDelegates: [IndexId: [String: WeakSet<RefinableDelegate>]] = [:]
     
     /// The Searchers used in the case of multi-indexing.
-    private var searchers: [SearcherId: Searcher]
+    public var searchers: [SearcherId: Searcher]
     
-    // The Searcher used in the case of single-indexing.
+    /// The Searcher used in the case of single-indexing.
+    /// + NOTE: It is safer to use the getSearcher() method
+    /// + WARNING: Don't use this in the case of configuring with multi-index.
     public var searcher: Searcher!
     
     private var isMultiIndexActive = false
     
-    /// The search parameters of the Searcher.
-    ///
-    /// + Note: This is just a quick access to `searcher.params`.
+    /// The search parameters of the Searcher. This is just a quick access to `searcher.params`.
+    /// + NOTE: It is safer to use the getSearcher().params method
+    /// + WARNING: Don't use this in the case of configuring with multi-index.
     public var params: SearchParameters {
         return searcher.params
     }
@@ -166,6 +168,16 @@ import UIKit
         }
     }
     
+    /// Get the searcher associated to the index used for InstantSearch
+    public func getSearcher() -> Searcher {
+        if isMultiIndexActive {
+            fatalError("Since you are using multi-index, you should use getSearcher(named:withId:)")
+        }
+        
+        return searcher
+    }
+    
+    /// Get the searcher associated to the specific index with name and id used for InstantSearch
     public func getSearcher(named name: String, withId id: String = "") -> Searcher? {
         return searchers[SearcherId(indexName: name, id: id)]
     }
