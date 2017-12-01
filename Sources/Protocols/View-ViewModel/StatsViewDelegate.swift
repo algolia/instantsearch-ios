@@ -9,7 +9,7 @@
 import Foundation
 
 /// Protocol that defines the stats view input methods and propreties.
-@objc internal protocol StatsViewDelegate: AlgoliaIndexWidget {
+@objc public protocol StatsViewDelegate: AlgoliaIndexWidget {
     
     /// ViewModel associated with the WidgetV.
     var viewModel: StatsViewModelDelegate! { get set }

@@ -67,7 +67,13 @@ public class NumericControlViewModel: NumericControlViewModelDelegate, Searchabl
 
     // MARK: - NumericControlViewModelDelegate
 
-    weak var view: NumericControlViewDelegate!
+    public weak var view: NumericControlViewDelegate!
+    
+    init() { }
+    
+    public init(view: NumericControlViewDelegate) {
+        self.view = view
+    }
 
     public func updateNumeric(value: NSNumber, doSearch: Bool) {
         

@@ -48,7 +48,7 @@ import UIKit
         }
     }
     
-    var viewModel: MultiHitsViewModelDelegate!
+    public var viewModel: MultiHitsViewModelDelegate!
     
     public var indexNamesArray: [String] = []
     public var indexIdsArray: [String] = []

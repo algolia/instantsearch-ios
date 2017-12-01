@@ -11,7 +11,7 @@ import InstantSearchCore
 /*
  * Protocol that defines the commands sent from the View to the ViewModel
  */
-@objc internal protocol SearchControlViewModelDelegate: class {
+@objc public protocol SearchControlViewModelDelegate: class {
     
     /// View associated with the WidgetVM.
     var view: SearchControlViewDelegate! { get set }

@@ -55,7 +55,13 @@ public class StatsViewModel: StatsViewModelDelegate, SearchableIndexViewModel {
     
     // MARK: - StatsViewModelDelegate
     
-    weak var view: StatsViewDelegate!
+    public weak var view: StatsViewDelegate!
+    
+    init() { }
+    
+    public init(view: StatsViewDelegate) {
+        self.view = view
+    }
 }
 
 // MARK: - ResettableDelegate

@@ -26,7 +26,7 @@ import UIKit
     @IBInspectable public var indexName: String = Constants.Defaults.indexName
     @IBInspectable public var indexId: String = Constants.Defaults.indexId
     
-    var viewModel: RefinementMenuViewModelDelegate
+    public var viewModel: RefinementMenuViewModelDelegate
     
     public override init(frame: CGRect, collectionViewLayout layout: UICollectionViewLayout) {
         viewModel = RefinementMenuViewModel()
@@ -44,7 +44,7 @@ import UIKit
         reloadData()
     }
     
-    func deselectRow(at indexPath: IndexPath) {
+    public func deselectRow(at indexPath: IndexPath) {
         deselectItem(at: indexPath, animated: true)
     }
 }

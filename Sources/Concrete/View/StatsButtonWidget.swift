@@ -13,12 +13,12 @@ import UIKit
     
     @IBInspectable public var resultTemplate: String = Constants.Defaults.resultTemplate
     @IBInspectable public var errorText: String = Constants.Defaults.errorText
-    @IBInspectable internal var clearText: String = Constants.Defaults.clearText
+    @IBInspectable public var clearText: String = Constants.Defaults.clearText
     
     @IBInspectable public var indexName: String = Constants.Defaults.indexName
     @IBInspectable public var indexId: String = Constants.Defaults.indexId
     
-    var viewModel: StatsViewModelDelegate
+    public var viewModel: StatsViewModelDelegate
     
     public override init(frame: CGRect) {
         viewModel = StatsViewModel()

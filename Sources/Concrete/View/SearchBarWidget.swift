@@ -16,7 +16,7 @@ import UIKit
     @IBInspectable public var indexName: String = Constants.Defaults.indexName
     @IBInspectable public var indexId: String = Constants.Defaults.indexId
     
-    var viewModel: SearchControlViewModelDelegate
+    public var viewModel: SearchControlViewModelDelegate
     
     @objc public override init(frame: CGRect) {
         viewModel = SearchViewModel()
@@ -40,7 +40,7 @@ import UIKit
         viewModel.search(query: searchBar.text)
     }
     
-    func set(text: String, andResignFirstResponder resignFirstResponder: Bool) {
+    public func set(text: String, andResignFirstResponder resignFirstResponder: Bool) {
         self.text = text
         if resignFirstResponder {
             self.resignFirstResponder()

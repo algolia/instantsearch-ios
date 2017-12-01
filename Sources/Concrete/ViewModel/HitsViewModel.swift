@@ -56,7 +56,13 @@ public class HitsViewModel: HitsViewModelDelegate, SearchableIndexViewModel {
     
     // MARK: - HitsViewModelDelegate
     
-    weak var view: HitsViewDelegate!
+    public weak var view: HitsViewDelegate!
+    
+    init() { }
+    
+    public init(view: HitsViewDelegate) {
+        self.view = view
+    }
     
     public func numberOfRows() -> Int {
         guard let searcher = searcher else { return 0 }

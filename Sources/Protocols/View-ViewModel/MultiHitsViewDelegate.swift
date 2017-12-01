@@ -8,7 +8,7 @@
 import Foundation
 
 /// Protocol that defines the hits view input methods and propreties.
-@objc internal protocol MultiHitsViewDelegate: AlgoliaMultiIndexWidget {
+@objc public protocol MultiHitsViewDelegate: AlgoliaMultiIndexWidget {
     
     /// ViewModels associated with the WidgetV.
     var viewModel: MultiHitsViewModelDelegate! { get set }

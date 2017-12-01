@@ -91,7 +91,13 @@ public class RefinementMenuViewModel: RefinementMenuViewModelDelegate, Searchabl
     
     // MARK: - RefinementMenuViewModelDelegate
     
-    weak var view: RefinementMenuViewDelegate!
+    public weak var view: RefinementMenuViewDelegate!
+    
+    init() { }
+    
+    public init(view: RefinementMenuViewDelegate) {
+        self.view = view
+    }
     
     public func numberOfRows() -> Int {
         return min(facetResults.count, limit)

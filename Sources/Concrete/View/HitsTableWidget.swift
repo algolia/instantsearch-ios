@@ -21,7 +21,7 @@ import UIKit
     @IBInspectable public var indexName: String = Constants.Defaults.indexName
     @IBInspectable public var indexId: String = Constants.Defaults.indexId
     
-    var viewModel: HitsViewModelDelegate
+    public var viewModel: HitsViewModelDelegate
     
     public override init(frame: CGRect, style: UITableViewStyle) {
         viewModel = HitsViewModel()

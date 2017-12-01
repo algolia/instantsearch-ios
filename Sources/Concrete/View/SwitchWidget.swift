@@ -20,7 +20,7 @@ import UIKit
     @IBInspectable public var indexName: String = Constants.Defaults.indexName
     @IBInspectable public var indexId: String = Constants.Defaults.indexId
     
-    var viewModel: FacetControlViewModelDelegate
+    public var viewModel: FacetControlViewModelDelegate
     
     public override init(frame: CGRect) {
         viewModel = FacetControlViewModel()

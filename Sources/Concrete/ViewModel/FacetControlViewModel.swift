@@ -55,7 +55,13 @@ public class FacetControlViewModel: FacetControlViewModelDelegate, SearchableInd
     
     // MARK: - NumericControlViewModelDelegate
     
-    weak var view: FacetControlViewDelegate!
+    public weak var view: FacetControlViewDelegate!
+    
+    init() { }
+    
+    public init(view: FacetControlViewDelegate) {
+        self.view = view
+    }
     
     public func addFacet(value: String, doSearch: Bool) {
         guard !self.searcher.params.hasFacetRefinement(name: self.attribute, value: value) else { return }

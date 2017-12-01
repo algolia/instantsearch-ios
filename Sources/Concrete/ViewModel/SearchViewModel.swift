@@ -48,7 +48,16 @@ public class SearchViewModel: NSObject, SearchControlViewModelDelegate, Searchab
     
     // MARK: - SearchViewModelDelegate
     
-    weak var view: SearchControlViewDelegate!
+    public weak var view: SearchControlViewDelegate!
+    
+    override init() {
+        super.init()
+    }
+    
+    convenience public init(view: SearchControlViewDelegate) {
+        self.init()
+        self.view = view
+    }
     
     /// search with a given query text
     public func search(query: String?) {

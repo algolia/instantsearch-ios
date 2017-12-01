@@ -10,7 +10,7 @@ import Foundation
 /*
  * Protocol that defines the commands sent from the View to the ViewModel
  */
-@objc internal protocol MultiHitsViewModelDelegate: class {
+@objc public protocol MultiHitsViewModelDelegate: class {
     
     /// View associated with the WidgetVM.
     var view: MultiHitsViewDelegate! { get set }

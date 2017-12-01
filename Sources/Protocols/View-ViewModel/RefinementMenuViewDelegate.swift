@@ -9,7 +9,7 @@
 import Foundation
 
 /// Protocol that defines the refinement menu view input methods and propreties.
-@objc internal protocol RefinementMenuViewDelegate: RefinementViewDelegate {
+@objc public protocol RefinementMenuViewDelegate: RefinementViewDelegate {
     
     /// ViewModel associated with the WidgetV.
     var viewModel: RefinementMenuViewModelDelegate! { get set }

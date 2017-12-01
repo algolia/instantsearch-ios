@@ -71,7 +71,13 @@ public class MultiHitsViewModel: MultiHitsViewModelDelegate, SearchableMultiInde
 
     // MARK: - HitsViewModelDelegate
 
-    var view: MultiHitsViewDelegate!
+    public var view: MultiHitsViewDelegate!
+    
+    init() { }
+    
+    public init(view: MultiHitsViewDelegate) {
+        self.view = view
+    }
     
     public func numberOfRows(in section: Int) -> Int {
         // guard let searchers.count
