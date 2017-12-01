@@ -17,7 +17,7 @@ import Foundation
     func reloadHits()
     
     /// Number of hits to load per page.
-    var hitsPerSection: UInt { get set }
+    var hitsPerSectionArray: [UInt] { get set }
     
     /// Whether the show items when the query string is empty or not.
     var showItemsOnEmptyQuery: Bool { get set }

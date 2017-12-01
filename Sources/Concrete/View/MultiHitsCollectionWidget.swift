@@ -20,8 +20,20 @@ import UIKit
 /// Widget that displays the search results of multi index. Built over a `UITableView`.
 @objc public class MultiHitsCollectionWidget: UICollectionView, MultiHitsViewDelegate, AlgoliaWidget {
     
-    @IBInspectable public var hitsPerSection: UInt = Constants.Defaults.hitsPerPage
     @IBInspectable public var showItemsOnEmptyQuery: Bool = Constants.Defaults.showItemsOnEmptyQuery
+    
+    @IBInspectable public var hitsPerSection: String = String(Constants.Defaults.hitsPerPage) {
+        didSet {
+            hitsPerSectionArray = hitsPerSection.components(separatedBy: ",").map({ (hitsPerSection) in
+                guard let hitsPerSectionUInt = UInt(hitsPerSection) else {
+                    fatalError("hitsPerSection should be comma seperated numbers")
+                }
+                
+                return hitsPerSectionUInt
+                }
+            )
+        }
+    }
     
     @IBInspectable public var indexNames: String = Constants.Defaults.indexName {
         didSet {
@@ -43,6 +55,7 @@ import UIKit
     
     public var indexNamesArray: [String] = []
     public var indexIdsArray: [String] = []
+    public var hitsPerSectionArray: [UInt] = []
     
     public override init(frame: CGRect, collectionViewLayout layout: UICollectionViewLayout) {
         viewModel = MultiHitsViewModel()

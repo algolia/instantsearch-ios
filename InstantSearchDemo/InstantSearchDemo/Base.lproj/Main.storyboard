@@ -1051,9 +1051,7 @@
                                     </tableViewCell>
                                 </prototypes>
                                 <userDefinedRuntimeAttributes>
-                                    <userDefinedRuntimeAttribute type="number" keyPath="hitsPerSection">
-                                        <integer key="value" value="7"/>
-                                    </userDefinedRuntimeAttribute>
+                                    <userDefinedRuntimeAttribute type="string" keyPath="hitsPerSection" value="5,20"/>
                                     <userDefinedRuntimeAttribute type="boolean" keyPath="showItemsOnEmptyQuery" value="YES"/>
                                     <userDefinedRuntimeAttribute type="string" keyPath="indexNames" value="instantsearch_query_suggestions,instant_search"/>
                                 </userDefinedRuntimeAttributes>

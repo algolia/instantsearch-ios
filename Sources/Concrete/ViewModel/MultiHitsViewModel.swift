@@ -23,8 +23,8 @@ internal class MultiHitsViewModel: MultiHitsViewModelDelegate, SearchableMultiIn
         return view.indexIdsArray
     }
     
-    var hitsPerSection: UInt {
-        return view.hitsPerSection
+    var hitsPerSectionArray: [UInt] {
+        return view.hitsPerSectionArray
     }
 
     var showItemsOnEmptyQuery: Bool {
@@ -53,8 +53,15 @@ internal class MultiHitsViewModel: MultiHitsViewModelDelegate, SearchableMultiIn
             fatalError("No index associated with this widget. Please add at least one index.")
         }
         
-        for searcher in self.searchers {
-            searcher.params.hitsPerPage = hitsPerSection
+        for (index, searcher) in self.searchers.enumerated() {
+            var hitsPerPage: UInt = 0
+            if index < hitsPerSectionArray.count {
+                hitsPerPage = hitsPerSectionArray[index]
+            } else {
+                hitsPerPage = hitsPerSectionArray.last ?? Constants.Defaults.hitsPerPage
+            }
+            
+            searcher.params.hitsPerPage = hitsPerPage
         }
         
         if self.searchers.first!.hits.isEmpty {
