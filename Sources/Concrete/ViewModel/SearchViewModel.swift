@@ -11,7 +11,7 @@ import Foundation
 /// ViewModel - View: StatsViewModelDelegate.
 ///
 /// ViewModel - Searcher: SearchableViewModel, ResultingDelegate, ResettableDelegate.
-internal class SearchViewModel: NSObject, SearchControlViewModelDelegate, SearchableIndexViewModel {
+internal class SearchViewModel: NSObject, SearchControlViewModelDelegate, SearchableIndexViewModel, MultiSearchableViewModel {
     
     // MARK: - Properties
     var indexId: String {

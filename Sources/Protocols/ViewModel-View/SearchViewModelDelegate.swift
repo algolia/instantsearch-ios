@@ -6,6 +6,7 @@
 //
 
 import Foundation
+import InstantSearchCore
 
 /*
  * Protocol that defines the commands sent from the View to the ViewModel

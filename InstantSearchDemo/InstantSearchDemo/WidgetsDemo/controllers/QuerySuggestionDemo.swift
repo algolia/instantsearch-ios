@@ -68,6 +68,39 @@ class QuerySuggestionDemo: MultiHitsTableViewController {
         return view
     }
 
+    func tableView(_ tableView: UITableView, viewForFooterInSection section: Int) -> UIView? {
+        
+        let footerView = UIView(frame: CGRect(x: 0, y: 0, width: tableView.frame.width, height: 40))
+        let button = UIButton(frame: CGRect(x: 0, y: 0, width: tableView.frame.width, height: 40))
+        if section == 0 {
+            button.setTitle("Load more suggestions", for: .normal)
+            button.setTitleColor(UIColor.white, for: .normal)
+            button.backgroundColor = UIColor.blue
+            button.tag = 0
+        } else {
+            button.setTitle("Load more results", for: .normal)
+            button.setTitleColor(UIColor.white, for: .normal)
+            button.backgroundColor = UIColor.blue
+            button.tag = 1
+        }
+     
+        button.addTarget(self, action: #selector(loadMoreButtonTapped(sender:)), for: .touchUpInside)
+        footerView.addSubview(button)
+        
+        return footerView
+    }
+    
+    func tableView(_ tableView: UITableView, heightForFooterInSection section: Int) -> CGFloat {
+        return 40
+    }
+    
+    @objc func loadMoreButtonTapped(sender: UIButton) {
+        if sender.tag == 0 {
+            print("suggestion button clicked")
+        } else {
+            print("results button clicked")
+        }
+    }
 
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
