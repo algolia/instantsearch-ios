@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="13529" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES" initialViewController="NOj-EW-aeb">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="13529" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES" initialViewController="Up6-KE-EtY">
     <device id="retina4_7" orientation="portrait">
         <adaptation id="fullscreen"/>
     </device>
@@ -531,6 +531,24 @@
                                 <nil key="textColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="X12-bG-gae" customClass="StatsLabelWidget" customModule="InstantSearch">
+                                <rect key="frame" x="121" y="104" width="42" height="21"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                                <userDefinedRuntimeAttributes>
+                                    <userDefinedRuntimeAttribute type="string" keyPath="indexName" value="ikea"/>
+                                </userDefinedRuntimeAttributes>
+                            </label>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="OuT-g5-Akh" customClass="StatsLabelWidget" customModule="InstantSearch">
+                                <rect key="frame" x="324" y="104" width="42" height="21"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                                <userDefinedRuntimeAttributes>
+                                    <userDefinedRuntimeAttribute type="string" keyPath="indexName" value="bestbuy"/>
+                                </userDefinedRuntimeAttributes>
+                            </label>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <constraints>
@@ -548,12 +566,16 @@
                             <constraint firstItem="UiE-xZ-yMp" firstAttribute="leading" secondItem="Sif-t5-CLq" secondAttribute="leading" constant="18" id="Y0f-bg-MMT"/>
                             <constraint firstItem="IqJ-Vm-1LA" firstAttribute="top" secondItem="zGv-qx-Mnc" secondAttribute="bottom" id="Zdw-bN-bqp"/>
                             <constraint firstAttribute="trailingMargin" secondItem="dbf-lh-HaE" secondAttribute="trailing" id="ah5-7T-2VE"/>
+                            <constraint firstItem="X12-bG-gae" firstAttribute="centerY" secondItem="EBS-IJ-tZy" secondAttribute="centerY" id="bH2-vV-c8f"/>
+                            <constraint firstItem="X12-bG-gae" firstAttribute="leading" secondItem="EBS-IJ-tZy" secondAttribute="trailing" constant="25" id="er2-4o-uX4"/>
+                            <constraint firstItem="OuT-g5-Akh" firstAttribute="leading" secondItem="Hgv-HR-jgw" secondAttribute="trailing" constant="16" id="g9e-kD-a8q"/>
                             <constraint firstItem="TuK-ae-HV9" firstAttribute="top" secondItem="Sif-t5-CLq" secondAttribute="top" id="idh-k9-GBj"/>
                             <constraint firstItem="Haq-lU-pWZ" firstAttribute="top" secondItem="TuK-ae-HV9" secondAttribute="bottom" id="j6D-pm-BS6"/>
                             <constraint firstItem="TuK-ae-HV9" firstAttribute="leading" secondItem="Sif-t5-CLq" secondAttribute="leading" id="pEz-TH-Q8Z"/>
                             <constraint firstItem="dbf-lh-HaE" firstAttribute="top" secondItem="UiE-xZ-yMp" secondAttribute="bottom" constant="22" id="pnp-qO-1Sv"/>
                             <constraint firstAttribute="trailing" secondItem="Haq-lU-pWZ" secondAttribute="trailing" id="pqH-GB-ilO"/>
                             <constraint firstItem="dbf-lh-HaE" firstAttribute="leading" secondItem="Sif-t5-CLq" secondAttribute="leadingMargin" id="t0X-kV-pah"/>
+                            <constraint firstItem="OuT-g5-Akh" firstAttribute="centerY" secondItem="Hgv-HR-jgw" secondAttribute="centerY" id="wyR-bq-zy9"/>
                             <constraint firstItem="zGv-qx-Mnc" firstAttribute="top" secondItem="dbf-lh-HaE" secondAttribute="bottom" constant="10" id="xaU-Qg-NX4"/>
                         </constraints>
                     </view>

@@ -335,18 +335,25 @@ import UIKit
         } else if let widgetVM = widgetVM as? SearchableIndexViewModel {
             
             if widgetVM is RefinableDelegate && widgetVM.indexId.isEmpty && widgetVM.indexName.isEmpty {
-                fatalError("For the multi-index case, all refinable widgets should target a specific index")
+                fatalError("When using multi-indexing, refinable widgets should target a specific index")
+            }
+            
+            if !(widgetVM is MultiSearchableViewModel) && widgetVM.indexName.isEmpty && widgetVM.indexId.isEmpty {
+               fatalError("When using multi-indexing, All output widgets have to target a specific index")
             }
             
             // 1- Configure the searchers. If we don't specify an index name and index id,
             // it means we need to target all indices for this widget.
-            if widgetVM.indexName.isEmpty && widgetVM.indexId.isEmpty {
+            if let widget = widgetVM as? MultiSearchableViewModel,
+                widgetVM.indexName.isEmpty,
+                widgetVM.indexId.isEmpty {
+                
                 let searchersArray = searchers.map { $0.value }
-                widgetVM.configure?(withSearchers: searchersArray)
+                widget.configure(withSearchers: searchersArray)
             } else { // Else, target the specific index.
                 let searcherId = SearcherId(indexName: widgetVM.indexName, id: widgetVM.indexId)
                 guard let searcher = searchers[searcherId] else {
-                    fatalError("Index name not declared when configuring InstantSearch")
+                    fatalError("Index name/Id not declared when configuring InstantSearch. Please make sure to add all of them.")
                 }
                 widgetVM.configure(with: searcher)
             }
