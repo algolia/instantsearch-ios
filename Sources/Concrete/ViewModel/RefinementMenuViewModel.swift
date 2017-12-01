@@ -12,14 +12,14 @@ import InstantSearchCore
 /// ViewModel - View: RefinementMenuViewModelDelegate.
 ///
 /// ViewModel - Searcher: SearchableViewModel, ResultingDelegate, ResettableDelegate.
-internal class RefinementMenuViewModel: RefinementMenuViewModelDelegate, SearchableIndexViewModel {
+public class RefinementMenuViewModel: RefinementMenuViewModelDelegate, SearchableIndexViewModel {
     
     // MARK: - Properties
-    var indexId: String {
+    public var indexId: String {
         return view.indexId
     }
     
-    var indexName: String {
+    public var indexName: String {
         return view.indexName
     }
     
@@ -54,7 +54,7 @@ internal class RefinementMenuViewModel: RefinementMenuViewModelDelegate, Searcha
     
     var searcher: Searcher!
     
-    func configure(with searcher: Searcher) {
+    public func configure(with searcher: Searcher) {
         self.searcher = searcher
         
         guard !attribute.isEmpty else {
@@ -93,19 +93,19 @@ internal class RefinementMenuViewModel: RefinementMenuViewModelDelegate, Searcha
     
     weak var view: RefinementMenuViewDelegate!
     
-    func numberOfRows() -> Int {
+    public func numberOfRows() -> Int {
         return min(facetResults.count, limit)
     }
     
-    func facetForRow(at indexPath: IndexPath) -> FacetValue {
+    public func facetForRow(at indexPath: IndexPath) -> FacetValue {
         return facetResults[indexPath.row]
     }
     
-    func isRefined(at indexPath: IndexPath) -> Bool {
+    public func isRefined(at indexPath: IndexPath) -> Bool {
         return searcher.params.hasFacetRefinement(name: attribute, value: facetResults[indexPath.item].value)
     }
     
-    func didSelectRow(at indexPath: IndexPath) {
+    public func didSelectRow(at indexPath: IndexPath) {
         
         searcher.params.setFacet(withName: attribute, disjunctive: isDisjunctive)
         searcher.params.toggleFacetRefinement(name: attribute, value: facetResults[indexPath.item].value)
@@ -115,7 +115,7 @@ internal class RefinementMenuViewModel: RefinementMenuViewModelDelegate, Searcha
 }
 
 extension RefinementMenuViewModel: ResultingDelegate {
-    func on(results: SearchResults?, error: Error?, userInfo: [String : Any]) {
+    public func on(results: SearchResults?, error: Error?, userInfo: [String : Any]) {
         
         guard let results = results else {
             print(error ?? "")

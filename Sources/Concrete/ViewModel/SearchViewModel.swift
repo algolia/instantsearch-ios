@@ -11,14 +11,14 @@ import Foundation
 /// ViewModel - View: StatsViewModelDelegate.
 ///
 /// ViewModel - Searcher: SearchableViewModel, ResultingDelegate, ResettableDelegate.
-internal class SearchViewModel: NSObject, SearchControlViewModelDelegate, SearchableIndexViewModel, MultiSearchableViewModel {
+public class SearchViewModel: NSObject, SearchControlViewModelDelegate, SearchableIndexViewModel, MultiSearchableViewModel {
     
     // MARK: - Properties
-    var indexId: String {
+    public var indexId: String {
         return view.indexId
     }
     
-    var indexName: String {
+    public var indexName: String {
         return view.indexName
     }
     
@@ -30,11 +30,11 @@ internal class SearchViewModel: NSObject, SearchControlViewModelDelegate, Search
     
     var searcher: Searcher!
     
-    func configure(with searcher: Searcher) {
+    public func configure(with searcher: Searcher) {
         configure(withSearchers: [searcher])
     }
     
-    func configure(withSearchers searchers: [Searcher]) {
+    public func configure(withSearchers searchers: [Searcher]) {
         self.searchers = searchers
         for searcher in self.searchers {
             let observation = searcher.params.observe(\.query, changeHandler: { (searchparams, _) in
@@ -51,7 +51,7 @@ internal class SearchViewModel: NSObject, SearchControlViewModelDelegate, Search
     weak var view: SearchControlViewDelegate!
     
     /// search with a given query text
-    func search(query: String?) {
+    public func search(query: String?) {
         for searcher in searchers {
             searcher.params.query = query
             searcher.search()

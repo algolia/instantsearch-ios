@@ -11,31 +11,31 @@ import InstantSearchCore
 /// ViewModel - View: HitsViewModelDelegate.
 ///
 /// ViewModel - Searcher: SearchableViewModel, ResultingDelegate, ResettableDelegate.
-internal class MultiHitsViewModel: MultiHitsViewModelDelegate, SearchableMultiIndexViewModel {
+public class MultiHitsViewModel: MultiHitsViewModelDelegate, SearchableMultiIndexViewModel {
     
     // MARK: - Properties
     
-    var indexNamesArray: [String] {
+    public var indexNamesArray: [String] {
         return view.indexNamesArray
     }
     
-    var indexIdsArray: [String] {
+    public var indexIdsArray: [String] {
         return view.indexIdsArray
     }
     
-    var hitsPerSectionArray: [UInt] {
+    public var hitsPerSectionArray: [UInt] {
         return view.hitsPerSectionArray
     }
 
-    var showItemsOnEmptyQuery: Bool {
+    public var showItemsOnEmptyQuery: Bool {
         return view.showItemsOnEmptyQuery
     }
 
     // MARK: - SearchableMultiIndexViewModel
     
-    var searchers: [Searcher] = []
+    public var searchers: [Searcher] = []
     
-    func configure(withSearchers searchers: [Searcher]) {
+    public func configure(withSearchers searchers: [Searcher]) {
         guard !searchers.isEmpty else { return }
         
         // Deal only with the searchers that have been specified in the widget
@@ -73,7 +73,7 @@ internal class MultiHitsViewModel: MultiHitsViewModelDelegate, SearchableMultiIn
 
     var view: MultiHitsViewDelegate!
     
-    func numberOfRows(in section: Int) -> Int {
+    public func numberOfRows(in section: Int) -> Int {
         // guard let searchers.count
         let searcher = searchers[section]
         
@@ -88,11 +88,11 @@ internal class MultiHitsViewModel: MultiHitsViewModelDelegate, SearchableMultiIn
         }
     }
     
-    func numberOfSections() -> Int {
+    public func numberOfSections() -> Int {
         return searchers.count
     }
 
-    func hitForRow(at indexPath: IndexPath) -> [String: Any] {
+    public func hitForRow(at indexPath: IndexPath) -> [String: Any] {
         let searcher = searchers[indexPath.section]
 
         return searcher.hits[indexPath.row]
@@ -105,7 +105,7 @@ extension MultiHitsViewModel: ResultingDelegate {
 
     // MARK: - ResultingDelegate
 
-    func on(results: SearchResults?, error: Error?, userInfo: [String: Any]) {
+    public func on(results: SearchResults?, error: Error?, userInfo: [String: Any]) {
 
         guard results != nil else {
             print(error ?? "")

@@ -288,6 +288,18 @@ import UIKit
         }
     }
     
+    /// Register a viewModel to InstantSearch so that it subscribes to search events.
+    ///
+    /// - param widget: the `AlgoliaWidget` to be registered to InstantSearch.
+    /// - param doSearch: whether or not to do a new search to Algolia after adding the widget.
+    @objc public func register(viewModel widgetVM: AlgoliaViewModel) {
+        if isMultiIndexActive {
+            bind(searchers: searchers, to: widgetVM)
+        } else {
+            bind(searcher: searcher, to: widgetVM)
+        }
+    }
+    
     // Binds the widgetVM to the different events emitted by the Searcher.
     // We do this binding by adding the WidgetVM to the corresponding delegates
     // owned by InstantSearch, as well as assigning the Searcher to the VMs who implement `SearchableViewModel`.

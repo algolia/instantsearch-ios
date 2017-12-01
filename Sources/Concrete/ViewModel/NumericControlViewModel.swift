@@ -12,14 +12,14 @@ import InstantSearchCore
 /// ViewModel - View: NumericControlViewModelDelegate.
 ///
 /// ViewModel - Searcher: SearchableViewModel, RefinableDelegate, ResettableDelegate.
-internal class NumericControlViewModel: NumericControlViewModelDelegate, SearchableIndexViewModel {
+public class NumericControlViewModel: NumericControlViewModelDelegate, SearchableIndexViewModel {
 
     // MARK: - Properties
-    var indexId: String {
+    public var indexId: String {
         return view.indexId
     }
     
-    var indexName: String {
+    public var indexName: String {
         return view.indexName
     }
     
@@ -43,7 +43,7 @@ internal class NumericControlViewModel: NumericControlViewModelDelegate, Searcha
         return view.inclusive
     }
 
-    var attribute: String {
+    public var attribute: String {
         return view.attribute
     }
 
@@ -51,7 +51,7 @@ internal class NumericControlViewModel: NumericControlViewModelDelegate, Searcha
 
     var searcher: Searcher!
 
-    func configure(with searcher: Searcher) {
+    public func configure(with searcher: Searcher) {
         self.searcher = searcher
         
         guard !attribute.isEmpty else {
@@ -69,7 +69,7 @@ internal class NumericControlViewModel: NumericControlViewModelDelegate, Searcha
 
     weak var view: NumericControlViewDelegate!
 
-    func updateNumeric(value: NSNumber, doSearch: Bool) {
+    public func updateNumeric(value: NSNumber, doSearch: Bool) {
         
         self.searcher.params.updateNumericRefinement(self.attribute, self.operator, value, inclusive: inclusive)
         
@@ -78,7 +78,7 @@ internal class NumericControlViewModel: NumericControlViewModelDelegate, Searcha
         }
     }
 
-    func removeNumeric(value: NSNumber) {
+    public func removeNumeric(value: NSNumber) {
         self.searcher.params.removeNumericRefinement(self.attribute, self.operator, value, inclusive: inclusive)
         self.searcher.search()
     }
@@ -88,7 +88,7 @@ internal class NumericControlViewModel: NumericControlViewModelDelegate, Searcha
 
 extension NumericControlViewModel: RefinableDelegate {
 
-    func onRefinementChange(numerics: [NumericRefinement]) {
+    public func onRefinementChange(numerics: [NumericRefinement]) {
         for numeric in numerics where numeric.op == `operator` && numeric.inclusive == inclusive {
             view.set(value: numeric.value)
         }
