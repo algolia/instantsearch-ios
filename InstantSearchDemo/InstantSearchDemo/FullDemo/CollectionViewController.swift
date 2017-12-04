@@ -23,7 +23,6 @@ class CollectionViewController: UIViewController, HitsCollectionViewDataSource {
         hitCollectionWidget.dataSource = hitsController
         hitCollectionWidget.delegate = hitsController
         hitsController.collectionDataSource = self
-        // hitsController.collectionDelegate = self
         
         hitCollectionWidget.register(UINib(nibName: "CollectionViewCell", bundle: nil) , forCellWithReuseIdentifier: "collectionViewCell")
         instantSearch = InstantSearch.shared

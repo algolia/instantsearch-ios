@@ -16,12 +16,8 @@ public class HitsViewModel: HitsViewModelDelegate, SearchableIndexViewModel {
     
     // MARK: - Properties
     
-    public var indexId: String {
-        return view.indexId
-    }
-    
-    public var indexName: String {
-        return view.indexName
+    public var searcherId: SearcherId {
+        return SearcherId(indexName:  view.indexName, id: view.indexId)
     }
     
     public var hitsPerPage: UInt {

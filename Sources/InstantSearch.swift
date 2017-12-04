@@ -336,34 +336,32 @@ import UIKit
             
             // 2- Register Resulting Delegates
             if let resultingWidget = widgetVM as? ResultingDelegate {
-                for i in 0..<widgetVM.indexNamesArray.count {
-                    let id = widgetVM.indexIdsArray.count == widgetVM.indexNamesArray.count
-                        ? widgetVM.indexIdsArray[i]
-                        : ""
-                    let searcherId = SearcherId(indexName: widgetVM.indexNamesArray[i], id: id)
+                widgetVM.searcherIds.forEach({ (searcherId) in
                     registerAsResultingDelegate(widget: resultingWidget, with: searcherId)
-                }
+                })
             }
         } else if let widgetVM = widgetVM as? SearchableIndexViewModel {
             
-            if widgetVM is RefinableDelegate && widgetVM.indexId.isEmpty && widgetVM.indexName.isEmpty {
+            if widgetVM is RefinableDelegate && widgetVM.searcherId.id.isEmpty
+                && widgetVM.searcherId.indexName.isEmpty {
                 fatalError("When using multi-indexing, refinable widgets should target a specific index")
             }
             
-            if !(widgetVM is MultiSearchableViewModel) && widgetVM.indexName.isEmpty && widgetVM.indexId.isEmpty {
+            if !(widgetVM is MultiSearchableViewModel) && widgetVM.searcherId.indexName.isEmpty
+                && widgetVM.searcherId.id.isEmpty {
                fatalError("When using multi-indexing, All output widgets have to target a specific index")
             }
             
             // 1- Configure the searchers. If we don't specify an index name and index id,
             // it means we need to target all indices for this widget.
             if let widget = widgetVM as? MultiSearchableViewModel,
-                widgetVM.indexName.isEmpty,
-                widgetVM.indexId.isEmpty {
+                widgetVM.searcherId.indexName.isEmpty,
+                widgetVM.searcherId.id.isEmpty {
                 
                 let searchersArray = searchers.map { $0.value }
                 widget.configure(withSearchers: searchersArray)
             } else { // Else, target the specific index.
-                let searcherId = SearcherId(indexName: widgetVM.indexName, id: widgetVM.indexId)
+                let searcherId = SearcherId(indexName: widgetVM.searcherId.indexName, id: widgetVM.searcherId.id)
                 guard let searcher = searchers[searcherId] else {
                     fatalError("Index name/Id not declared when configuring InstantSearch. Please make sure to add all of them.")
                 }
@@ -372,7 +370,7 @@ import UIKit
             
             // 2- Register resulting delegates
             if let resultingWidget = widgetVM as? ResultingDelegate {
-                let searcherId = SearcherId(indexName: widgetVM.indexName, id: widgetVM.indexId)
+                let searcherId = SearcherId(indexName: widgetVM.searcherId.indexName, id: widgetVM.searcherId.id)
                 registerAsResultingDelegate(widget: resultingWidget, with: searcherId)
             }
             

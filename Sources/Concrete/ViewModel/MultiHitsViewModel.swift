@@ -15,22 +15,27 @@ public class MultiHitsViewModel: MultiHitsViewModelDelegate, SearchableMultiInde
     
     // MARK: - Properties
     
-    public var indexNamesArray: [String] {
-        return view.indexNamesArray
-    }
-    
-    public var indexIdsArray: [String] {
-        return view.indexIdsArray
+    public var searcherIds: [SearcherId] {
+        var result: [SearcherId] = []
+        for i in 0..<view.indexNamesArray.count {
+            let id = view.indexIdsArray.count == view.indexNamesArray.count
+                ? view.indexIdsArray[i]
+                : ""
+            let indexName = view.indexNamesArray[i]
+            result.append(SearcherId(indexName: indexName, id: id))
+        }
+        
+        return result
     }
     
     public var hitsPerSectionArray: [UInt] {
         return view.hitsPerSectionArray
     }
-
+    
     public var showItemsOnEmptyQuery: Bool {
         return view.showItemsOnEmptyQuery
     }
-
+    
     // MARK: - SearchableMultiIndexViewModel
     
     public var searchers: [Searcher] = []
@@ -39,13 +44,13 @@ public class MultiHitsViewModel: MultiHitsViewModelDelegate, SearchableMultiInde
         guard !searchers.isEmpty else { return }
         
         // Deal only with the searchers that have been specified in the widget
-        for i in 0..<indexNamesArray.count {
-            let id = indexIdsArray.count == indexNamesArray.count
-                ? indexIdsArray[i]
-                : ""
-            guard let searcher = searchers.first(where: { $0.indexName == indexNamesArray[i] && $0.indexId == id }) else {
+        searcherIds.forEach { (searcherId) in
+            guard let searcher = searchers.first(where: {
+                $0.indexName == searcherId.indexName && $0.indexId == searcherId.id
+            }) else {
                 fatalError("Index name not declared when configuring InstantSearch")
             }
+            
             self.searchers.append(searcher)
         }
         
@@ -68,9 +73,9 @@ public class MultiHitsViewModel: MultiHitsViewModelDelegate, SearchableMultiInde
             view.reloadHits()
         }
     }
-
+    
     // MARK: - HitsViewModelDelegate
-
+    
     public var view: MultiHitsViewDelegate!
     
     init() { }
@@ -97,10 +102,10 @@ public class MultiHitsViewModel: MultiHitsViewModelDelegate, SearchableMultiInde
     public func numberOfSections() -> Int {
         return searchers.count
     }
-
+    
     public func hitForRow(at indexPath: IndexPath) -> [String: Any] {
         let searcher = searchers[indexPath.section]
-
+        
         return searcher.hits[indexPath.row]
     }
 }
@@ -108,16 +113,16 @@ public class MultiHitsViewModel: MultiHitsViewModelDelegate, SearchableMultiInde
 // MARK: - ResultingDelegate
 
 extension MultiHitsViewModel: ResultingDelegate {
-
+    
     // MARK: - ResultingDelegate
-
+    
     public func on(results: SearchResults?, error: Error?, userInfo: [String: Any]) {
-
+        
         guard results != nil else {
             print(error ?? "")
             return
         }
-
+        
         view.reloadHits()
     }
 }

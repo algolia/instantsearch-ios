@@ -26,18 +26,11 @@ import InstantSearchCore
 }
 
 @objc public protocol SearchableIndexViewModel: SearchableViewModel {
-    /// The index name extracted from the view. Note that this is immutable, with the source of truth coming from the view only.
-    var indexName: String { get }
-    
-    /// The index id extracted from the view. Note that this is immutable, with the source of truth coming from the view only.
-    var indexId: String { get }
+    /// The index name and id extracted from the view. Note that this is immutable, with the source of truth coming from the view only.
+    var searcherId: SearcherId { get }
 }
 
 @objc public protocol SearchableMultiIndexViewModel: MultiSearchableViewModel {
-
-    /// The index name extracted from the view. Note that this is immutable, with the source of truth coming from the view only.
-    var indexNamesArray: [String] { get }
-    
-    /// The index id extracted from the view. Note that this is immutable, with the source of truth coming from the view only.
-    var indexIdsArray: [String] { get }
+    /// The index names and ids extracted from the view. Note that this is immutable, with the source of truth coming from the view only.
+    var searcherIds: [SearcherId] { get }
 }

@@ -14,12 +14,8 @@ import Foundation
 public class SearchViewModel: NSObject, SearchControlViewModelDelegate, SearchableIndexViewModel, MultiSearchableViewModel {
     
     // MARK: - Properties
-    public var indexId: String {
-        return view.indexId
-    }
-    
-    public var indexName: String {
-        return view.indexName
+    public var searcherId: SearcherId {
+        return SearcherId(indexName:  view.indexName, id: view.indexId)
     }
     
     public var searchers: [Searcher] = []
