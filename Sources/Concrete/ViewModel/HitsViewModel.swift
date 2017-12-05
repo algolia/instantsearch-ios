@@ -107,7 +107,7 @@ extension HitsViewModel: ResultingDelegate {
         
         view.reloadHits()
         
-        if results.page == 0 {
+        if results.page == 0 && numberOfRows() > 0 {
             view.scrollTop()
         }
     }

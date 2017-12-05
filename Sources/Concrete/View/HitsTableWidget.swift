@@ -36,9 +36,7 @@ import UIKit
     }
     
     public func scrollTop() {
-        guard viewModel.numberOfRows() > 0 else { return }
-        let indexPath = IndexPath(row: 0, section: 0)
-        scrollToRow(at: indexPath, at: .top, animated: true)
+        scrollRectToVisible(CGRect(x: 0, y: 0, width: 1, height: 1), animated: true)
     }
     
     public func reloadHits() {
