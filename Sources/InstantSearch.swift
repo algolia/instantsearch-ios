@@ -427,15 +427,12 @@ import UIKit
     public func searcher(_ searcher: Searcher, didReceive results: SearchResults?, error: Error?, userInfo: [String: Any]) {
         
         if isMultiIndexActive {
-            let indexId = SearcherId(indexName: searcher.indexName, id: searcher.indexId)
-            if let multiIndexResultingDelegates = self.multiIndexResultingDelegates[indexId] {
+            let searcherId = SearcherId(indexName: searcher.indexName, id: searcher.indexId)
+            if let multiIndexResultingDelegates = self.multiIndexResultingDelegates[searcherId] {
                 for algoliaWidget in multiIndexResultingDelegates {
                     algoliaWidget.on(results: results, error: error, userInfo: userInfo)
                 }
-            } else {
-                print("Unexpected case where the searcher index name and id don't map to any resulting delegate.")
-                print("This is probably due to using searcher.search() instead of getSearcher(named:withId:).search)")
-            }
+            } // else the widget is not mounted yet on the screen
         } else {
             for algoliaWidget in resultingDelegates {
                 algoliaWidget.on(results: results, error: error, userInfo: userInfo)
