@@ -142,10 +142,10 @@ import UIKit
         let client = Client(appID: appID, apiKey: apiKey)
         
         for searcherId in searcherIds {
-            let index = client.index(withName: searcherId.indexName)
+            let index = client.index(withName: searcherId.index)
             let searcher = Searcher(index: index)
-            searcher.indexName = searcherId.indexName
-            searcher.indexId = searcherId.id
+            searcher.indexName = searcherId.index
+            searcher.indexId = searcherId.variant
             searchers[searcherId] = searcher
         }
         
@@ -179,7 +179,7 @@ import UIKit
     
     /// Get the searcher associated to the specific index with name and id used for InstantSearch
     public func getSearcher(named name: String, withId id: String = "") -> Searcher? {
-        return searchers[SearcherId(indexName: name, id: id)]
+        return searchers[SearcherId(index: name, variant: id)]
     }
     
     // MARK: Add widget methods
@@ -342,26 +342,26 @@ import UIKit
             }
         } else if let widgetVM = widgetVM as? SearchableIndexViewModel {
             
-            if widgetVM is RefinableDelegate && widgetVM.searcherId.id.isEmpty
-                && widgetVM.searcherId.indexName.isEmpty {
+            if widgetVM is RefinableDelegate && widgetVM.searcherId.variant.isEmpty
+                && widgetVM.searcherId.index.isEmpty {
                 fatalError("When using multi-indexing, refinable widgets should target a specific index")
             }
             
-            if !(widgetVM is MultiSearchableViewModel) && widgetVM.searcherId.indexName.isEmpty
-                && widgetVM.searcherId.id.isEmpty {
+            if !(widgetVM is MultiSearchableViewModel) && widgetVM.searcherId.index.isEmpty
+                && widgetVM.searcherId.variant.isEmpty {
                fatalError("When using multi-indexing, All output widgets have to target a specific index")
             }
             
             // 1- Configure the searchers. If we don't specify an index name and index id,
             // it means we need to target all indices for this widget.
             if let widget = widgetVM as? MultiSearchableViewModel,
-                widgetVM.searcherId.indexName.isEmpty,
-                widgetVM.searcherId.id.isEmpty {
+                widgetVM.searcherId.index.isEmpty,
+                widgetVM.searcherId.variant.isEmpty {
                 
                 let searchersArray = searchers.map { $0.value }
                 widget.configure(withSearchers: searchersArray)
             } else { // Else, target the specific index.
-                let searcherId = SearcherId(indexName: widgetVM.searcherId.indexName, id: widgetVM.searcherId.id)
+                let searcherId = SearcherId(index: widgetVM.searcherId.index, variant: widgetVM.searcherId.variant)
                 guard let searcher = searchers[searcherId] else {
                     fatalError("Index name/Id not declared when configuring InstantSearch. Please make sure to add all of them.")
                 }
@@ -370,7 +370,7 @@ import UIKit
             
             // 2- Register resulting delegates
             if let resultingWidget = widgetVM as? ResultingDelegate {
-                let searcherId = SearcherId(indexName: widgetVM.searcherId.indexName, id: widgetVM.searcherId.id)
+                let searcherId = SearcherId(index: widgetVM.searcherId.index, variant: widgetVM.searcherId.variant)
                 registerAsResultingDelegate(widget: resultingWidget, with: searcherId)
             }
             
@@ -427,7 +427,7 @@ import UIKit
     public func searcher(_ searcher: Searcher, didReceive results: SearchResults?, error: Error?, userInfo: [String: Any]) {
         
         if isMultiIndexActive {
-            let searcherId = SearcherId(indexName: searcher.indexName, id: searcher.indexId)
+            let searcherId = SearcherId(index: searcher.indexName, variant: searcher.indexId)
             if let multiIndexResultingDelegates = self.multiIndexResultingDelegates[searcherId] {
                 for algoliaWidget in multiIndexResultingDelegates {
                     algoliaWidget.on(results: results, error: error, userInfo: userInfo)

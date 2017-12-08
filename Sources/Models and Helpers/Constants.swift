@@ -12,8 +12,8 @@ struct Constants {
     struct Defaults {
         
         // Multi Index
-        static let indexName: String = ""
-        static let indexId: String = ""
+        static let index: String = ""
+        static let variant: String = ""
         
         // Hits
         static let hitsPerPage: UInt = 20

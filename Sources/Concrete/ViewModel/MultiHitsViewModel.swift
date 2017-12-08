@@ -17,12 +17,12 @@ public class MultiHitsViewModel: MultiHitsViewModelDelegate, SearchableMultiInde
     
     public var searcherIds: [SearcherId] {
         var result: [SearcherId] = []
-        for i in 0..<view.indexNamesArray.count {
-            let id = view.indexIdsArray.count == view.indexNamesArray.count
-                ? view.indexIdsArray[i]
+        for i in 0..<view.indicesArray.count {
+            let id = view.variantsArray.count == view.indicesArray.count
+                ? view.variantsArray[i]
                 : ""
-            let indexName = view.indexNamesArray[i]
-            result.append(SearcherId(indexName: indexName, id: id))
+            let indexName = view.indicesArray[i]
+            result.append(SearcherId(index: indexName, variant: id))
         }
         
         return result
@@ -46,7 +46,7 @@ public class MultiHitsViewModel: MultiHitsViewModelDelegate, SearchableMultiInde
         // Deal only with the searchers that have been specified in the widget
         searcherIds.forEach { (searcherId) in
             guard let searcher = searchers.first(where: {
-                $0.indexName == searcherId.indexName && $0.indexId == searcherId.id
+                $0.indexName == searcherId.index && $0.indexId == searcherId.variant
             }) else {
                 fatalError("Index name not declared when configuring InstantSearch")
             }

@@ -16,7 +16,7 @@ public class NumericControlViewModel: NumericControlViewModelDelegate, Searchabl
 
     // MARK: - Properties
     public var searcherId: SearcherId {
-        return SearcherId(indexName:  view.indexName, id: view.indexId)
+        return SearcherId(index:  view.index, variant: view.variant)
     }
     
     var clearValue: NSNumber {

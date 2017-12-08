@@ -18,8 +18,8 @@ import UIKit
     @IBInspectable public var remainingItemsBeforeLoading: UInt = Constants.Defaults.remainingItemsBeforeLoading
     @IBInspectable public var showItemsOnEmptyQuery: Bool = Constants.Defaults.showItemsOnEmptyQuery
     
-    @IBInspectable public var indexName: String = Constants.Defaults.indexName
-    @IBInspectable public var indexId: String = Constants.Defaults.indexId
+    @IBInspectable public var index: String = Constants.Defaults.index
+    @IBInspectable public var variant: String = Constants.Defaults.variant
     
     public var viewModel: HitsViewModelDelegate
     

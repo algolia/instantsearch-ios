@@ -22,7 +22,7 @@ class QuerySuggestionDemo: MultiHitsTableViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        let searcherIds: [SearcherId] = [SearcherId.init(indexName: "instant_search"), SearcherId.init(indexName: "instantsearch_query_suggestions")]
+        let searcherIds: [SearcherId] = [SearcherId.init(index: "instant_search"), SearcherId.init(index: "instantsearch_query_suggestions")]
         InstantSearch.shared.configure(appID: ALGOLIA_APP_ID, apiKey: ALGOLIA_API_KEY, searcherIds: searcherIds)
         InstantSearch.shared.registerAllWidgets(in: self.view)
         

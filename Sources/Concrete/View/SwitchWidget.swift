@@ -17,8 +17,8 @@ import UIKit
     @IBInspectable public var valueOn: String = Constants.Defaults.valueOn
     @IBInspectable public var inclusive: Bool = Constants.Defaults.inclusive
     
-    @IBInspectable public var indexName: String = Constants.Defaults.indexName
-    @IBInspectable public var indexId: String = Constants.Defaults.indexId
+    @IBInspectable public var index: String = Constants.Defaults.index
+    @IBInspectable public var variant: String = Constants.Defaults.variant
     
     public var viewModel: FacetControlViewModelDelegate
     

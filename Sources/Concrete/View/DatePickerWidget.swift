@@ -18,8 +18,8 @@ import UIKit
     @IBInspectable public var `operator`: String = Constants.Defaults.operatorNumericControl
     @IBInspectable public var inclusive: Bool = Constants.Defaults.inclusive
     
-    @IBInspectable public var indexName: String = Constants.Defaults.indexName
-    @IBInspectable public var indexId: String = Constants.Defaults.indexId
+    @IBInspectable public var index: String = Constants.Defaults.index
+    @IBInspectable public var variant: String = Constants.Defaults.variant
     
     // Note: can't have optional Float because IBInspectable have to be bridgable to objc
     // and value types optional cannot be bridged.

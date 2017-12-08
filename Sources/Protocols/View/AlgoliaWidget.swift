@@ -25,11 +25,11 @@ import Foundation
 
 /// This is an AlgoliaWidget that is used to link a widget to a specific index in the case of multi-indexing.
 @objc public protocol AlgoliaIndexWidget: AlgoliaWidget {
-    var indexName: String { get set }
-    var indexId: String { get set }
+    var index: String { get set }
+    var variant: String { get set }
 }
 
 @objc public protocol AlgoliaMultiIndexWidget: AlgoliaWidget {
-    var indexNamesArray: [String] { get set }
-    var indexIdsArray: [String] { get set }
+    var indicesArray: [String] { get set }
+    var variantsArray: [String] { get set }
 }

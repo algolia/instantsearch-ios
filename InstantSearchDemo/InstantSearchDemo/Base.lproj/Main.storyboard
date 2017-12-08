@@ -1,11 +1,11 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="13529" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES" initialViewController="e9f-Qz-knC">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="13771" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES" initialViewController="NOj-EW-aeb">
     <device id="retina4_7" orientation="portrait">
         <adaptation id="fullscreen"/>
     </device>
     <dependencies>
         <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="13527"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="13772"/>
         <capability name="Constraints to layout margins" minToolsVersion="6.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
@@ -441,7 +441,7 @@
                                     </tableViewCell>
                                 </prototypes>
                                 <userDefinedRuntimeAttributes>
-                                    <userDefinedRuntimeAttribute type="string" keyPath="indexName" value="bestbuy"/>
+                                    <userDefinedRuntimeAttribute type="string" keyPath="index" value="bestbuy"/>
                                 </userDefinedRuntimeAttributes>
                             </tableView>
                             <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="dbf-lh-HaE" customClass="HitsTableWidget" customModule="InstantSearch">
@@ -481,7 +481,7 @@
                                     </tableViewCell>
                                 </prototypes>
                                 <userDefinedRuntimeAttributes>
-                                    <userDefinedRuntimeAttribute type="string" keyPath="indexName" value="ikea"/>
+                                    <userDefinedRuntimeAttribute type="string" keyPath="index" value="ikea"/>
                                 </userDefinedRuntimeAttributes>
                             </tableView>
                             <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="TuK-ae-HV9" customClass="TextFieldWidget" customModule="InstantSearch">
@@ -505,7 +505,7 @@
                                 <userDefinedRuntimeAttributes>
                                     <userDefinedRuntimeAttribute type="string" keyPath="attribute" value="price"/>
                                     <userDefinedRuntimeAttribute type="string" keyPath="operator" value="&gt;"/>
-                                    <userDefinedRuntimeAttribute type="string" keyPath="indexName" value="ikea"/>
+                                    <userDefinedRuntimeAttribute type="string" keyPath="index" value="ikea"/>
                                 </userDefinedRuntimeAttributes>
                             </slider>
                             <slider opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" minValue="0.0" maxValue="100" translatesAutoresizingMaskIntoConstraints="NO" id="uHB-l9-t83" customClass="SliderWidget" customModule="InstantSearch">
@@ -514,7 +514,7 @@
                                     <constraint firstAttribute="width" constant="114" id="gjB-YZ-zfy"/>
                                 </constraints>
                                 <userDefinedRuntimeAttributes>
-                                    <userDefinedRuntimeAttribute type="string" keyPath="indexName" value="bestbuy"/>
+                                    <userDefinedRuntimeAttribute type="string" keyPath="index" value="bestbuy"/>
                                     <userDefinedRuntimeAttribute type="string" keyPath="attribute" value="salePrice"/>
                                     <userDefinedRuntimeAttribute type="string" keyPath="operator" value="&gt;"/>
                                 </userDefinedRuntimeAttributes>
@@ -537,7 +537,7 @@
                                 <nil key="textColor"/>
                                 <nil key="highlightedColor"/>
                                 <userDefinedRuntimeAttributes>
-                                    <userDefinedRuntimeAttribute type="string" keyPath="indexName" value="ikea"/>
+                                    <userDefinedRuntimeAttribute type="string" keyPath="index" value="ikea"/>
                                 </userDefinedRuntimeAttributes>
                             </label>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="OuT-g5-Akh" customClass="StatsLabelWidget" customModule="InstantSearch">
@@ -546,7 +546,7 @@
                                 <nil key="textColor"/>
                                 <nil key="highlightedColor"/>
                                 <userDefinedRuntimeAttributes>
-                                    <userDefinedRuntimeAttribute type="string" keyPath="indexName" value="bestbuy"/>
+                                    <userDefinedRuntimeAttribute type="string" keyPath="index" value="bestbuy"/>
                                 </userDefinedRuntimeAttributes>
                             </label>
                         </subviews>
@@ -626,8 +626,8 @@
                                 <userDefinedRuntimeAttributes>
                                     <userDefinedRuntimeAttribute type="string" keyPath="attribute" value="price"/>
                                     <userDefinedRuntimeAttribute type="string" keyPath="operator" value="&gt;"/>
-                                    <userDefinedRuntimeAttribute type="string" keyPath="indexName" value="ikea"/>
-                                    <userDefinedRuntimeAttribute type="string" keyPath="indexId" value="0"/>
+                                    <userDefinedRuntimeAttribute type="string" keyPath="index" value="ikea"/>
+                                    <userDefinedRuntimeAttribute type="string" keyPath="variant" value="0"/>
                                 </userDefinedRuntimeAttributes>
                             </slider>
                             <slider opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" minValue="0.0" maxValue="100" translatesAutoresizingMaskIntoConstraints="NO" id="Tt2-mw-u3C" customClass="SliderWidget" customModule="InstantSearch">
@@ -636,10 +636,10 @@
                                     <constraint firstAttribute="width" constant="114" id="jcK-P3-hts"/>
                                 </constraints>
                                 <userDefinedRuntimeAttributes>
-                                    <userDefinedRuntimeAttribute type="string" keyPath="indexName" value="bestbuy"/>
+                                    <userDefinedRuntimeAttribute type="string" keyPath="index" value="bestbuy"/>
                                     <userDefinedRuntimeAttribute type="string" keyPath="attribute" value="salePrice"/>
                                     <userDefinedRuntimeAttribute type="string" keyPath="operator" value="&gt;"/>
-                                    <userDefinedRuntimeAttribute type="string" keyPath="indexId" value="0"/>
+                                    <userDefinedRuntimeAttribute type="string" keyPath="variant" value="0"/>
                                 </userDefinedRuntimeAttributes>
                             </slider>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="7an-z6-Bcm">
@@ -681,8 +681,8 @@
                                         <integer key="value" value="7"/>
                                     </userDefinedRuntimeAttribute>
                                     <userDefinedRuntimeAttribute type="boolean" keyPath="showItemsOnEmptyQuery" value="YES"/>
-                                    <userDefinedRuntimeAttribute type="string" keyPath="indexNames" value="ikea,bestbuy"/>
-                                    <userDefinedRuntimeAttribute type="string" keyPath="indexIds" value="0,0"/>
+                                    <userDefinedRuntimeAttribute type="string" keyPath="indices" value="ikea,bestbuy"/>
+                                    <userDefinedRuntimeAttribute type="string" keyPath="variants" value="0,0"/>
                                 </userDefinedRuntimeAttributes>
                             </tableView>
                         </subviews>
@@ -769,7 +769,7 @@
                                     </tableViewCell>
                                 </prototypes>
                                 <userDefinedRuntimeAttributes>
-                                    <userDefinedRuntimeAttribute type="string" keyPath="indexName" value="bestbuy"/>
+                                    <userDefinedRuntimeAttribute type="string" keyPath="index" value="bestbuy"/>
                                 </userDefinedRuntimeAttributes>
                             </tableView>
                             <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="Emc-gB-CX5" customClass="HitsTableWidget" customModule="InstantSearch">
@@ -809,7 +809,7 @@
                                     </tableViewCell>
                                 </prototypes>
                                 <userDefinedRuntimeAttributes>
-                                    <userDefinedRuntimeAttribute type="string" keyPath="indexName" value="ikea"/>
+                                    <userDefinedRuntimeAttribute type="string" keyPath="index" value="ikea"/>
                                 </userDefinedRuntimeAttributes>
                             </tableView>
                             <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="x27-Xz-cH5" customClass="TextFieldWidget" customModule="InstantSearch">
@@ -833,7 +833,7 @@
                                 <userDefinedRuntimeAttributes>
                                     <userDefinedRuntimeAttribute type="string" keyPath="attribute" value="price"/>
                                     <userDefinedRuntimeAttribute type="string" keyPath="operator" value="&gt;"/>
-                                    <userDefinedRuntimeAttribute type="string" keyPath="indexName" value="ikea"/>
+                                    <userDefinedRuntimeAttribute type="string" keyPath="index" value="ikea"/>
                                 </userDefinedRuntimeAttributes>
                             </slider>
                             <slider opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" minValue="0.0" maxValue="100" translatesAutoresizingMaskIntoConstraints="NO" id="CYE-Ag-cSz" customClass="SliderWidget" customModule="InstantSearch">
@@ -842,7 +842,7 @@
                                     <constraint firstAttribute="width" constant="114" id="lb8-h9-Aie"/>
                                 </constraints>
                                 <userDefinedRuntimeAttributes>
-                                    <userDefinedRuntimeAttribute type="string" keyPath="indexName" value="bestbuy"/>
+                                    <userDefinedRuntimeAttribute type="string" keyPath="index" value="bestbuy"/>
                                     <userDefinedRuntimeAttribute type="string" keyPath="attribute" value="salePrice"/>
                                     <userDefinedRuntimeAttribute type="string" keyPath="operator" value="&gt;"/>
                                 </userDefinedRuntimeAttributes>
@@ -932,7 +932,7 @@
                                 <userDefinedRuntimeAttributes>
                                     <userDefinedRuntimeAttribute type="string" keyPath="attribute" value="price"/>
                                     <userDefinedRuntimeAttribute type="string" keyPath="operator" value="&gt;"/>
-                                    <userDefinedRuntimeAttribute type="string" keyPath="indexName" value="ikea"/>
+                                    <userDefinedRuntimeAttribute type="string" keyPath="index" value="ikea"/>
                                 </userDefinedRuntimeAttributes>
                             </slider>
                             <slider opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" minValue="0.0" maxValue="100" translatesAutoresizingMaskIntoConstraints="NO" id="TJ2-sw-tuH" customClass="SliderWidget" customModule="InstantSearch">
@@ -941,7 +941,7 @@
                                     <constraint firstAttribute="width" constant="114" id="oLa-oR-JhR"/>
                                 </constraints>
                                 <userDefinedRuntimeAttributes>
-                                    <userDefinedRuntimeAttribute type="string" keyPath="indexName" value="bestbuy"/>
+                                    <userDefinedRuntimeAttribute type="string" keyPath="index" value="bestbuy"/>
                                     <userDefinedRuntimeAttribute type="string" keyPath="attribute" value="salePrice"/>
                                     <userDefinedRuntimeAttribute type="string" keyPath="operator" value="&gt;"/>
                                 </userDefinedRuntimeAttributes>
@@ -985,7 +985,7 @@
                                         <integer key="value" value="7"/>
                                     </userDefinedRuntimeAttribute>
                                     <userDefinedRuntimeAttribute type="boolean" keyPath="showItemsOnEmptyQuery" value="YES"/>
-                                    <userDefinedRuntimeAttribute type="string" keyPath="indexNames" value="ikea,bestbuy"/>
+                                    <userDefinedRuntimeAttribute type="string" keyPath="indices" value="ikea,bestbuy"/>
                                 </userDefinedRuntimeAttributes>
                             </tableView>
                             <tableView clipsSubviews="YES" contentMode="scaleToFill" fixedFrame="YES" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="BLD-e0-fdh" customClass="MultiHitsTableWidget" customModule="InstantSearch">
@@ -1003,7 +1003,7 @@
                                     </tableViewCell>
                                 </prototypes>
                                 <userDefinedRuntimeAttributes>
-                                    <userDefinedRuntimeAttribute type="string" keyPath="indexNames" value="bestbuy"/>
+                                    <userDefinedRuntimeAttribute type="string" keyPath="indices" value="bestbuy"/>
                                 </userDefinedRuntimeAttributes>
                             </tableView>
                         </subviews>
@@ -1075,7 +1075,7 @@
                                 <userDefinedRuntimeAttributes>
                                     <userDefinedRuntimeAttribute type="string" keyPath="hitsPerSection" value="5,20"/>
                                     <userDefinedRuntimeAttribute type="boolean" keyPath="showItemsOnEmptyQuery" value="YES"/>
-                                    <userDefinedRuntimeAttribute type="string" keyPath="indexNames" value="instantsearch_query_suggestions,instant_search"/>
+                                    <userDefinedRuntimeAttribute type="string" keyPath="indices" value="instantsearch_query_suggestions,instant_search"/>
                                 </userDefinedRuntimeAttributes>
                             </tableView>
                             <searchBar contentMode="redraw" translatesAutoresizingMaskIntoConstraints="NO" id="RyK-tA-6QK" customClass="SearchBarWidget" customModule="InstantSearch">

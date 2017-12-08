@@ -15,8 +15,8 @@ import UIKit
     @IBInspectable public var errorText: String = Constants.Defaults.errorText
     @IBInspectable public var clearText: String = Constants.Defaults.clearText
     
-    @IBInspectable public var indexName: String = Constants.Defaults.indexName
-    @IBInspectable public var indexId: String = Constants.Defaults.indexId
+    @IBInspectable public var index: String = Constants.Defaults.index
+    @IBInspectable public var variant: String = Constants.Defaults.variant
     
     public var viewModel: StatsViewModelDelegate
     
@@ -43,8 +43,8 @@ import UIKit
     
     var viewModel: StatsViewModelDelegate
     
-    @IBInspectable public var indexName: String = Constants.Defaults.indexName
-    @IBInspectable public var indexId: String = Constants.Defaults.indexId
+    @IBInspectable public var index: String = Constants.Defaults.index
+    @IBInspectable public var variant: String = Constants.Defaults.variant
     
     public var resultTemplate: String = Constants.Defaults.resultTemplate
     public var errorText: String = Constants.Defaults.errorText

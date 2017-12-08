@@ -29,7 +29,7 @@ class MultiIndexTableViewControllerDemo: HitsTableViewController {
 
         hitsTableViews = [ikeaTableView, bestbuyTableView]
         
-        let searcherIds: [SearcherId] = [SearcherId.init(indexName: "bestbuy"), SearcherId.init(indexName: "ikea")]
+        let searcherIds: [SearcherId] = [SearcherId.init(index: "bestbuy"), SearcherId.init(index: "ikea")]
         InstantSearch.shared.configure(appID: ALGOLIA_APP_ID, apiKey: ALGOLIA_API_KEY, searcherIds: searcherIds)
         InstantSearch.shared.registerAllWidgets(in: self.view)
         

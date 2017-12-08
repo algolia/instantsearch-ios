@@ -15,7 +15,7 @@ public class SearchViewModel: NSObject, SearchControlViewModelDelegate, Searchab
     
     // MARK: - Properties
     public var searcherId: SearcherId {
-        return SearcherId(indexName:  view.indexName, id: view.indexId)
+        return SearcherId(index: view.index, variant: view.variant)
     }
     
     public var searchers: [Searcher] = []
@@ -33,8 +33,7 @@ public class SearchViewModel: NSObject, SearchControlViewModelDelegate, Searchab
     public func configure(withSearchers searchers: [Searcher]) {
         self.searchers = searchers
         for searcher in self.searchers {
-            let observation = searcher.params.observe(\.query, changeHandler: {
-                [unowned self] (searchparams, _) in
+            let observation = searcher.params.observe(\.query, changeHandler: { [unowned self] (searchparams, _) in
                 if let query = searchparams.query {
                     self.view.set(text: query, andResignFirstResponder: false)
                 }

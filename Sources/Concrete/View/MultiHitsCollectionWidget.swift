@@ -35,26 +35,26 @@ import UIKit
         }
     }
     
-    @IBInspectable public var indexNames: String = Constants.Defaults.indexName {
+    @IBInspectable public var indices: String = Constants.Defaults.index {
         didSet {
-            indexNamesArray = indexNames.components(separatedBy: ",")
+            indicesArray = indices.components(separatedBy: ",")
         }
     }
     
-    @IBInspectable public var indexIds: String = Constants.Defaults.indexId {
+    @IBInspectable public var variants: String = Constants.Defaults.variant {
         didSet {
-            if indexIds.isEmpty {
-                indexIdsArray = []
+            if variants.isEmpty {
+                variantsArray = []
             } else {
-                indexIdsArray = indexIds.components(separatedBy: ",")
+                variantsArray = variants.components(separatedBy: ",")
             }
         }
     }
     
     public var viewModel: MultiHitsViewModelDelegate!
     
-    public var indexNamesArray: [String] = []
-    public var indexIdsArray: [String] = []
+    public var indicesArray: [String] = []
+    public var variantsArray: [String] = []
     public var hitsPerSectionArray: [UInt] = []
     
     public override init(frame: CGRect, collectionViewLayout layout: UICollectionViewLayout) {
