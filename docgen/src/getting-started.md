@@ -17,7 +17,7 @@ We will start from an empty iOS project, and then create from scratch a full sea
 ## Before we start
 To use InstantSearch iOS, you need an Algolia account. You can create one by clicking [here][algolia_sign_up], or use the following credentials:
 - APP ID: `latency`
-- Search API Key: `3d9875e51fbd20c7754e65422f7ce5e1`
+- Search API Key: `1f6fd3a6fb973cb08419fe7d288fa4db`
 - Index name: `bestbuy_promo`
 
 *These credentials will let you use a preloaded dataset of products appropriate for this guide.*
@@ -37,7 +37,7 @@ We will use CocoaPods for adding the dependency to `InstantSearch`.
 
 - If you don't have CocoaPods installed on your machine, open your terminal and run `sudo gem install cocoapods`.
 - Go to the root of your project then type `pod init`. A `Podfile` will be created for you.
-- Open your `Podfile` and add `pod 'InstantSearch-iOS', '~> 1.0.0'` below your target.
+- Open your `Podfile` and add `pod 'InstantSearch-iOS'` below your target.
 - On your terminal, run `pod update`.
 - Close you Xcode project and then at the root of your project, open `projectName.xcworkspace`.
 
@@ -158,7 +158,7 @@ In this part, you've learned:
 
 Your application now displays your data, lets your users enter a query and displays search results as-they-type. That is pretty nice already! However, we can go further and improve on that. 
 
-- In the [getting started part 2](getting-started-part2.html), you will learn about properly highlighting results, as well as filtering results which is essential for a complete search experience. 
+- In the [getting started part 2](getting-started-part2.html), you will learn about properly highlighting results, as well as filtering results which is essential for a complete search experience. Finally, you will see how you can target multiple indices.
 - You can also have a look at our [examples][examples] to see more complex examples of applications built with InstantSearch.
 - Finally, You can head to our [widgets page][widgets] to see other components that you could use.
 

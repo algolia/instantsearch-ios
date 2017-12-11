@@ -107,6 +107,8 @@ public class RefinementMenuViewModel: RefinementMenuViewModelDelegate, Searchabl
         return searcher.params.hasFacetRefinement(name: attribute, value: facetResults[indexPath.item].value)
     }
     
+    /// This simulated selecting a facet
+    /// it will tggle the facet refinement, deselect the row and then execute a search
     public func didSelectRow(at indexPath: IndexPath) {
         
         searcher.params.setFacet(withName: attribute, disjunctive: isDisjunctive)

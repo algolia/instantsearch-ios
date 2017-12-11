@@ -74,7 +74,7 @@ import UIKit
         if self.oldSegmentedIndex == UISegmentedControlNoSegment {
             viewModel.addFacet(value: titleForSegment(at: self.actualSegmentedIndex)!, doSearch: true)
         } else {
-            viewModel.updatefacet(oldValue: titleForSegment(at: self.oldSegmentedIndex)!,
+            viewModel.updateFacet(oldValue: titleForSegment(at: self.oldSegmentedIndex)!,
                                   newValue: titleForSegment(at: self.actualSegmentedIndex)!,
                                   doSearch: true)
         }

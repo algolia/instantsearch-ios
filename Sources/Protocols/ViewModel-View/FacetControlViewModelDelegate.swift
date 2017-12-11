@@ -27,7 +27,7 @@ import Foundation
     /// - parameter oldValue: the old Value to remove.
     /// - parameter newValie: the new value to add.
     /// - parameter doSearch: whether to do a new search or not.
-    func updatefacet(oldValue: String, newValue: String, doSearch: Bool)
+    func updateFacet(oldValue: String, newValue: String, doSearch: Bool)
     
     /// Remove a Facet refinement.
     ///

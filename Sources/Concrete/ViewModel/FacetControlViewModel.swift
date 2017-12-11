@@ -67,8 +67,8 @@ public class FacetControlViewModel: FacetControlViewModelDelegate, SearchableInd
         }
     }
     
-    public func updatefacet(oldValue: String, newValue: String, doSearch: Bool) {
-        self.searcher.params.updatefacetRefinement(attribute: self.attribute,
+    public func updateFacet(oldValue: String, newValue: String, doSearch: Bool) {
+        self.searcher.params.updateFacetRefinement(attribute: self.attribute,
                                                    oldValue: oldValue,
                                                    newValue: newValue,
                                                    inclusive: inclusive)
@@ -114,7 +114,7 @@ extension SearchParameters {
         return numericRefinements[filterName]?.first(where: { $0.op == `operator` && $0.inclusive == inclusive})
     }
     
-    func updatefacetRefinement(attribute: String, oldValue: String, newValue: String, inclusive: Bool = true) {
+    func updateFacetRefinement(attribute: String, oldValue: String, newValue: String, inclusive: Bool = true) {
         guard !hasFacetRefinement(name: attribute, value: newValue) else { return }
         removeFacetRefinement(name: attribute, value: oldValue)
         addFacetRefinement(name: attribute, value: newValue, inclusive: inclusive)

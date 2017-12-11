@@ -20,17 +20,17 @@ import Foundation
     override public func configureView() {
         addTarget(self, action: #selector(facetValueChanged), for: .valueChanged)
         if isOn {
-            viewModel.updatefacet(oldValue: valueOff, newValue: valueOn, doSearch: false)
+            viewModel.updateFacet(oldValue: valueOff, newValue: valueOn, doSearch: false)
         } else {
-            viewModel.updatefacet(oldValue: valueOn, newValue: valueOff, doSearch: false)
+            viewModel.updateFacet(oldValue: valueOn, newValue: valueOff, doSearch: false)
         }
     }
     
     @objc private func facetValueChanged() {
         if isOn {
-            viewModel.updatefacet(oldValue: valueOff, newValue: valueOn, doSearch: true)
+            viewModel.updateFacet(oldValue: valueOff, newValue: valueOn, doSearch: true)
         } else {
-            viewModel.updatefacet(oldValue: valueOn, newValue: valueOff, doSearch: true)
+            viewModel.updateFacet(oldValue: valueOn, newValue: valueOff, doSearch: true)
         }
     }
     
