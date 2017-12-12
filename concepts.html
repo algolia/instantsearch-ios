@@ -249,7 +249,7 @@
       </li></ul></div></div>
 
     </nav>
-    <!-- End community_header --> </div><script src="https://cdn.jsdelivr.net/docsearch.js/2/docsearch.min.js"></script><section class="hero hero-doc fill-titan"><div class="spacer120"></div><div class="container"><div class="col-md-12 h200 text-left"><h1 class="text-heading text-thin color-white">Main Concepts</h1></div></div></section><section class="documentation-section"><div class="container"><nav class="sidebar pos-abt"><div class="sidebar-container"><h2 class="sidebar-header">Main Concepts</h2><ul class="sidebar-elements"><li class="sidebar-element level-h2 navItem concepts.html"><a href="getting-started.html">Getting Started</a><ul></ul></li><li class="sidebar-element level-h2 navItem concepts.html"><a href="getting-started-part2.html">Getting Started Part 2</a><ul></ul></li><li class="sidebar-element level-h2 navItem concepts.html"><a href="getting-started-programmatic.html">Getting Started Programmatically</a><ul></ul></li><li class="sidebar-element level-h2 navItem-active concepts.html"><a class="navItem-active" href="concepts.html">Main Concepts</a><ul><li class="sidebar-element level-h3"><a href="concepts.html#instantsearch-core">InstantSearch Core </a></li><li class="sidebar-element level-h3"><a href="concepts.html#widgets">Widgets </a></li><li class="sidebar-element level-h3"><a href="concepts.html#protocols">Protocols </a></li><li class="sidebar-element level-h3"><a href="concepts.html#add-widgets">Add Widgets </a></li><li class="sidebar-element level-h3"><a href="concepts.html#query-params">Query params </a></li><li class="sidebar-element level-h3"><a href="concepts.html#configuring-instantsearch">Configuring InstantSearch </a></li></ul></li><li class="sidebar-element level-h2 navItem concepts.html"><a href="widgets.html">Widgets</a><ul></ul></li><li class="sidebar-element level-h2 navItem concepts.html"><a href="examples.html">Examples</a><ul></ul></li><li class="sidebar-element level-h2 navItem concepts.html"><a href="troubleshooting.html">Troubleshooting</a><ul></ul></li></ul></div></nav><a class="sidebar-opener"></a><div class="documentation-container"><a class="editThisPage" href="http://github.com/algolia/instantsearch-ios/edit/master/docgen/src/concepts.md">Edit this page</a><div class="content"><p><strong>InstantSearch iOS</strong> is a declarative UI library providing widgets and helpers for building native, component-driven UIs with Algolia.
+    <!-- End community_header --> </div><script src="https://cdn.jsdelivr.net/docsearch.js/2/docsearch.min.js"></script><section class="hero hero-doc fill-titan"><div class="spacer120"></div><div class="container"><div class="col-md-12 h200 text-left"><h1 class="text-heading text-thin color-white">Main Concepts</h1></div></div></section><section class="documentation-section"><div class="container"><nav class="sidebar pos-abt"><div class="sidebar-container"><h2 class="sidebar-header">Main Concepts</h2><ul class="sidebar-elements"><li class="sidebar-element level-h2 navItem concepts.html"><a href="getting-started.html">Getting Started</a><ul></ul></li><li class="sidebar-element level-h2 navItem concepts.html"><a href="getting-started-part2.html">Getting Started Part 2</a><ul></ul></li><li class="sidebar-element level-h2 navItem concepts.html"><a href="getting-started-programmatic.html">Getting Started Programmatically</a><ul></ul></li><li class="sidebar-element level-h2 navItem-active concepts.html"><a class="navItem-active" href="concepts.html">Main Concepts</a><ul><li class="sidebar-element level-h3"><a href="concepts.html#instantsearch-core">InstantSearch Core </a></li><li class="sidebar-element level-h3"><a href="concepts.html#widgets">Widgets </a></li><li class="sidebar-element level-h3"><a href="concepts.html#protocols">Protocols </a></li><li class="sidebar-element level-h3"><a href="concepts.html#add-widgets">Add Widgets </a></li><li class="sidebar-element level-h3"><a href="concepts.html#query-params">Query params </a></li><li class="sidebar-element level-h3"><a href="concepts.html#configuring-instantsearch">Configuring InstantSearch </a></li><li class="sidebar-element level-h3"><a href="concepts.html#viewmodels">ViewModels </a></li></ul></li><li class="sidebar-element level-h2 navItem concepts.html"><a href="widgets.html">Widgets</a><ul></ul></li><li class="sidebar-element level-h2 navItem concepts.html"><a href="examples.html">Examples</a><ul></ul></li><li class="sidebar-element level-h2 navItem concepts.html"><a href="troubleshooting.html">Troubleshooting</a><ul></ul></li></ul></div></nav><a class="sidebar-opener"></a><div class="documentation-container"><a class="editThisPage" href="http://github.com/algolia/instantsearch-ios/edit/master/docgen/src/concepts.md">Edit this page</a><div class="content"><p><strong>InstantSearch iOS</strong> is a declarative UI library providing widgets and helpers for building native, component-driven UIs with Algolia.
 It is built on top of Algolia’s <a href="https://github.com/algolia/algoliasearch-client-swift">iOS API Client</a> and <a href="https://github.com/algolia/instantsearch-core-swift">iOS InstantSearch Core Client</a> to provide you a high-level solution to quickly build various search interfaces.</p>
 <p>In this guide, you will learn the key concepts of InstantSearch iOS.</p>
 <h2 id="instantsearch-core">InstantSearch Core <a class="anchor" href="concepts.html#instantsearch-core" aria-hidden="true"></a></h2>
@@ -280,8 +280,8 @@ It is built on top of Algolia’s <a href="https://github.com/algolia/algoliasea
                                                              └<span class="cm-operator">-</span><span class="cm-operator">&gt;</span> <span class="cm-variable">B</span> <span class="cm-variable">implements</span> <span class="cm-variable">RefinableDelegate</span>
 </code></pre>
 <h2 id="add-widgets">Add Widgets <a class="anchor" href="concepts.html#add-widgets" aria-hidden="true"></a></h2>
-<p>In order to add a widget to InstantSearch, there are 2 methods you can call. First you can call <code>InstantSearch.addAllWidgets(in view: UIView)</code>, which will add all the <code>AlgoliaWidget</code> subviews found inside the <code>view</code> param. This is usually useful when your widgets are added to your ViewController, so all you have to do inside your ViewController is calling <code>InstantSearch.addAllWidgets(in self.view)</code>.
-If you want finer control over what you add, then you can use <code>InstantSearch.add(widget: AlgoliaWidget)</code>.</p>
+<p>In order to add a widget to InstantSearch, there are 2 methods you can call. First you can call <code>InstantSearch.registerAllWidgets(in view: UIView)</code>, which will add all the <code>AlgoliaWidget</code> subviews found inside the <code>view</code> param. This is usually useful when your widgets are added to your ViewController, so all you have to do inside your ViewController is calling <code>InstantSearch.registerAllWidgets(in self.view)</code>.
+If you want finer control over what you add, then you can use <code>InstantSearch.register(widget: AlgoliaWidget)</code>.</p>
 <h2 id="query-params">Query params <a class="anchor" href="concepts.html#query-params" aria-hidden="true"></a></h2>
 <p>If you’re not using InstantSearch and using either the API client or InstantSearchCore, you’re probably familiar with the <code>Query</code> or <code>SearchParameters</code> classes. These usually specify the query string and the parameters used for the search request to Algolia.</p>
 <p>With InstantSearch widgets, you don’t have to worry about these classes anymore. In fact, the widgets will set all the parameters for you behind the scenes, without you having to worry about it. All what you will have to do on your side is specify a few properties linked to a specific widget, and you’ll be good to go!</p>
@@ -292,6 +292,139 @@ If you want finer control over what you add, then you can use <code>InstantSearc
 <p>You can use the singleton shared reference of InstantSearch throughout your app. For that, you can simply use the publicly available <code>InstantSearch.shared</code>.</p>
 <h3 id="instance">Instance <a class="anchor" href="concepts.html#instance" aria-hidden="true"></a></h3>
 <p>Another way to deal with InstantSearch is to just instantiate an <code>InstantSearch</code> instance with one of its constructors. Note that in this case, you will have to take the responsibility of passing that reference between different screens.</p>
+<h2 id="viewmodels">ViewModels <a class="anchor" href="concepts.html#viewmodels" aria-hidden="true"></a></h2>
+<p>As we’ve seen, InstantSearch iOS provides widgets out of the box. Those are great when you want a default style to be applied and you do not need heavy customization of the behavior of the widget.</p>
+<p>Hence come the idea of ViewModels, which are used when you want to have full control on the rendering without having to reimplement business logic. As soon as you hit a feature wall using our default widgets, you can use ViewModels to have more flexibility.</p>
+<p>At the end of the day, the ViewModels encapsulate the logic for a specific search concept and provide a way to interact with InstantSearch.</p>
+<h3 id="searchviewmodel">SearchViewModel <a class="anchor" href="concepts.html#searchviewmodel" aria-hidden="true"></a></h3>
+<p>Use this to customize any kind of search box.</p>
+<h4 id="methods">Methods <a class="anchor" href="concepts.html#methods" aria-hidden="true"></a></h4>
+<ul>
+<li><code>search(query:)</code></li>
+</ul>
+<h4 id="example">Example <a class="anchor" href="concepts.html#example" aria-hidden="true"></a></h4>
+<pre class="CodeMirror cm-s-mdn-like code-sample"><code><span class="cm-attribute">@IBOutlet</span> <span class="cm-keyword">weak</span> <span class="cm-keyword">var</span> <span class="cm-def">searchBar</span><span class="cm-punctuation">:</span> <span class="cm-variable">SearchBarWidget</span><span class="cm-operator">!</span>
+<span class="cm-keyword">var</span> <span class="cm-def">searchViewModel</span><span class="cm-punctuation">:</span> <span class="cm-variable">SearchViewModel</span><span class="cm-operator">!</span>
+
+<span class="cm-keyword">override</span> <span class="cm-keyword">func</span> <span class="cm-def">viewDidLoad</span><span class="cm-punctuation">(</span><span class="cm-punctuation">)</span> <span class="cm-punctuation">{</span>
+        <span class="cm-atom">super</span><span class="cm-property">.viewDidLoad</span><span class="cm-punctuation">(</span><span class="cm-punctuation">)</span>
+        
+        <span class="cm-variable">searchViewModel</span> <span class="cm-operator">=</span> <span class="cm-variable">SearchViewModel</span><span class="cm-punctuation">(</span><span class="cm-variable">view</span><span class="cm-punctuation">:</span> <span class="cm-variable">searchBar</span><span class="cm-punctuation">)</span>
+        <span class="cm-variable">InstantSearch</span><span class="cm-property">.shared</span><span class="cm-property">.register</span><span class="cm-punctuation">(</span><span class="cm-variable">viewModel</span><span class="cm-punctuation">:</span> <span class="cm-variable">searchViewModel</span><span class="cm-punctuation">)</span>
+
+        <span class="cm-comment">// Now can access access the searchBar&#39;s delegate</span>
+        <span class="cm-variable">searchBar</span><span class="cm-property">.delegate</span> <span class="cm-operator">=</span> <span class="cm-atom">self</span>
+    <span class="cm-punctuation">}</span>
+
+    <span class="cm-keyword">public</span> <span class="cm-keyword">func</span> <span class="cm-def">searchBar</span><span class="cm-punctuation">(</span><span class="cm-atom">_</span> <span class="cm-variable">searchBar</span><span class="cm-punctuation">:</span> <span class="cm-variable">UISearchBar</span><span class="cm-punctuation">,</span> <span class="cm-variable">textDidChange</span> <span class="cm-variable">searchText</span><span class="cm-punctuation">:</span> <span class="cm-variable-2">String</span><span class="cm-punctuation">)</span> <span class="cm-punctuation">{</span>
+        <span class="cm-comment">// Call the search function of the viewModel. It will take care of changing the </span>
+        <span class="cm-comment">// search state and sending search events when new results arrive.</span>
+        <span class="cm-variable">searchViewModel</span><span class="cm-property">.search</span><span class="cm-punctuation">(</span><span class="cm-variable">query</span><span class="cm-punctuation">:</span> <span class="cm-variable">searchText</span><span class="cm-punctuation">)</span>
+    <span class="cm-punctuation">}</span>
+</code></pre>
+<h3 id="hitsviewmodel">HitsViewModel <a class="anchor" href="concepts.html#hitsviewmodel" aria-hidden="true"></a></h3>
+<p>Use this to customize a hits view with only 1 index.</p>
+<h4 id="methods-2">Methods <a class="anchor" href="concepts.html#methods-2" aria-hidden="true"></a></h4>
+<ul>
+<li><code>numberOfRows()</code></li>
+<li><code>hitForRow(at:)</code></li>
+</ul>
+<h4 id="example-2">Example <a class="anchor" href="concepts.html#example-2" aria-hidden="true"></a></h4>
+<pre class="CodeMirror cm-s-mdn-like code-sample"><code><span class="cm-attribute">@IBOutlet</span> <span class="cm-keyword">weak</span> <span class="cm-keyword">var</span> <span class="cm-def">tableView</span><span class="cm-punctuation">:</span> <span class="cm-variable">HitsTableWidget</span><span class="cm-operator">!</span>
+<span class="cm-keyword">var</span> <span class="cm-def">hitsViewModel</span><span class="cm-punctuation">:</span> <span class="cm-variable">HitsViewModel</span><span class="cm-operator">!</span>
+
+<span class="cm-keyword">override</span> <span class="cm-keyword">func</span> <span class="cm-def">viewDidLoad</span><span class="cm-punctuation">(</span><span class="cm-punctuation">)</span> <span class="cm-punctuation">{</span>
+        <span class="cm-atom">super</span><span class="cm-property">.viewDidLoad</span><span class="cm-punctuation">(</span><span class="cm-punctuation">)</span>
+        
+        <span class="cm-variable">hitsViewModel</span> <span class="cm-operator">=</span> <span class="cm-variable">HitsViewModel</span><span class="cm-punctuation">(</span><span class="cm-variable">view</span><span class="cm-punctuation">:</span> <span class="cm-variable">tableView</span><span class="cm-punctuation">)</span>
+        <span class="cm-variable">InstantSearch</span><span class="cm-property">.shared</span><span class="cm-property">.register</span><span class="cm-punctuation">(</span><span class="cm-variable">viewModel</span><span class="cm-punctuation">:</span> <span class="cm-variable">hitsViewModel</span><span class="cm-punctuation">)</span>
+
+        <span class="cm-comment">// Now can access access the tableView&#39;s delegate and datasource methods.</span>
+        <span class="cm-variable">tableView</span><span class="cm-property">.dataSource</span> <span class="cm-operator">=</span> <span class="cm-atom">self</span>
+        <span class="cm-variable">tableView</span><span class="cm-property">.delegate</span> <span class="cm-operator">=</span> <span class="cm-atom">self</span>
+    <span class="cm-punctuation">}</span>
+    
+    <span class="cm-keyword">func</span> <span class="cm-def">tableView</span><span class="cm-punctuation">(</span><span class="cm-atom">_</span> <span class="cm-variable">tableView</span><span class="cm-punctuation">:</span> <span class="cm-variable">UITableView</span><span class="cm-punctuation">,</span> <span class="cm-variable">numberOfRowsInSection</span> <span class="cm-variable">section</span><span class="cm-punctuation">:</span> <span class="cm-variable-2">Int</span><span class="cm-punctuation">)</span> <span class="cm-operator">-</span><span class="cm-operator">&gt;</span> <span class="cm-variable-2">Int</span> <span class="cm-punctuation">{</span>
+        <span class="cm-keyword">return</span> <span class="cm-variable">hitsViewModel</span><span class="cm-property">.numberOfRows</span><span class="cm-punctuation">(</span><span class="cm-punctuation">)</span>
+    <span class="cm-punctuation">}</span>
+
+    <span class="cm-keyword">func</span> <span class="cm-def">tableView</span><span class="cm-punctuation">(</span><span class="cm-atom">_</span> <span class="cm-variable">tableView</span><span class="cm-punctuation">:</span> <span class="cm-variable">UITableView</span><span class="cm-punctuation">,</span> <span class="cm-variable">cellForRowAt</span> <span class="cm-variable">indexPath</span><span class="cm-punctuation">:</span> <span class="cm-variable">IndexPath</span><span class="cm-punctuation">)</span> <span class="cm-operator">-</span><span class="cm-operator">&gt;</span> <span class="cm-variable">UITableViewCell</span> <span class="cm-punctuation">{</span>
+        <span class="cm-keyword">let</span> <span class="cm-def">cell</span> <span class="cm-operator">=</span> <span class="cm-variable">tableView</span><span class="cm-property">.dequeueReusableCell</span><span class="cm-punctuation">(</span><span class="cm-variable">withIdentifier</span><span class="cm-punctuation">:</span> <span class="cm-string">&quot;Cell&quot;</span><span class="cm-punctuation">,</span> <span class="cm-keyword">for</span><span class="cm-punctuation">:</span> <span class="cm-variable">indexPath</span><span class="cm-punctuation">)</span>
+        
+        <span class="cm-keyword">let</span> <span class="cm-def">hit</span> <span class="cm-operator">=</span> <span class="cm-variable">hitsViewModel</span><span class="cm-property">.hitForRow</span><span class="cm-punctuation">(</span><span class="cm-variable">at</span><span class="cm-punctuation">:</span> <span class="cm-variable">indexPath</span><span class="cm-punctuation">)</span>
+        <span class="cm-variable">cell</span><span class="cm-property">.textLabel</span><span class="cm-operator">?</span><span class="cm-property">.text</span> <span class="cm-operator">=</span> <span class="cm-variable">getTextOutOfHit</span><span class="cm-punctuation">(</span><span class="cm-variable">hit</span><span class="cm-punctuation">)</span>
+        
+        <span class="cm-keyword">return</span> <span class="cm-variable">cell</span>
+    <span class="cm-punctuation">}</span>
+</code></pre>
+<h3 id="multihitsviewmodel">MultiHitsViewModel <a class="anchor" href="concepts.html#multihitsviewmodel" aria-hidden="true"></a></h3>
+<p>Use this to customize a hits view with only multiple indices.</p>
+<h4 id="methods-3">Methods <a class="anchor" href="concepts.html#methods-3" aria-hidden="true"></a></h4>
+<ul>
+<li><code>numberOfRows(in:)</code></li>
+<li><code>hitForRow(at:)</code></li>
+<li><code>numberOfSections()</code></li>
+</ul>
+<h4 id="example-3">Example <a class="anchor" href="concepts.html#example-3" aria-hidden="true"></a></h4>
+<pre class="CodeMirror cm-s-mdn-like code-sample"><code><span class="cm-attribute">@IBOutlet</span> <span class="cm-keyword">weak</span> <span class="cm-keyword">var</span> <span class="cm-def">tableView</span><span class="cm-punctuation">:</span> <span class="cm-variable">MultiHitsTableWidget</span><span class="cm-operator">!</span>
+<span class="cm-keyword">var</span> <span class="cm-def">multiHitsViewModel</span><span class="cm-punctuation">:</span> <span class="cm-variable">MultiHitsViewModel</span><span class="cm-operator">!</span>
+
+<span class="cm-keyword">override</span> <span class="cm-keyword">func</span> <span class="cm-def">viewDidLoad</span><span class="cm-punctuation">(</span><span class="cm-punctuation">)</span> <span class="cm-punctuation">{</span>
+        <span class="cm-atom">super</span><span class="cm-property">.viewDidLoad</span><span class="cm-punctuation">(</span><span class="cm-punctuation">)</span>
+        
+        <span class="cm-variable">multiHitsViewModel</span> <span class="cm-operator">=</span> <span class="cm-variable">MultiHitsViewModel</span><span class="cm-punctuation">(</span><span class="cm-variable">view</span><span class="cm-punctuation">:</span> <span class="cm-variable">tableView</span><span class="cm-punctuation">)</span>
+        <span class="cm-variable">InstantSearch</span><span class="cm-property">.shared</span><span class="cm-property">.register</span><span class="cm-punctuation">(</span><span class="cm-variable">viewModel</span><span class="cm-punctuation">:</span> <span class="cm-variable">multiHitsViewModel</span><span class="cm-punctuation">)</span>
+
+        <span class="cm-comment">// Now can access access the tableView&#39;s delegate and datasource methods.</span>
+        <span class="cm-variable">tableView</span><span class="cm-property">.dataSource</span> <span class="cm-operator">=</span> <span class="cm-atom">self</span>
+        <span class="cm-variable">tableView</span><span class="cm-property">.delegate</span> <span class="cm-operator">=</span> <span class="cm-atom">self</span>
+    <span class="cm-punctuation">}</span>
+
+    <span class="cm-keyword">func</span> <span class="cm-def">numberOfSections</span><span class="cm-punctuation">(</span><span class="cm-keyword">in</span> <span class="cm-variable">tableView</span><span class="cm-punctuation">:</span> <span class="cm-variable">UITableView</span><span class="cm-punctuation">)</span> <span class="cm-operator">-</span><span class="cm-operator">&gt;</span> <span class="cm-variable-2">Int</span> <span class="cm-punctuation">{</span>
+        <span class="cm-keyword">return</span> <span class="cm-variable">multiHitsViewModel</span><span class="cm-property">.numberOfSections</span><span class="cm-punctuation">(</span><span class="cm-punctuation">)</span>
+    <span class="cm-punctuation">}</span>
+    
+    <span class="cm-keyword">func</span> <span class="cm-def">tableView</span><span class="cm-punctuation">(</span><span class="cm-atom">_</span> <span class="cm-variable">tableView</span><span class="cm-punctuation">:</span> <span class="cm-variable">UITableView</span><span class="cm-punctuation">,</span> <span class="cm-variable">numberOfRowsInSection</span> <span class="cm-variable">section</span><span class="cm-punctuation">:</span> <span class="cm-variable-2">Int</span><span class="cm-punctuation">)</span> <span class="cm-operator">-</span><span class="cm-operator">&gt;</span> <span class="cm-variable-2">Int</span> <span class="cm-punctuation">{</span>
+        <span class="cm-keyword">return</span> <span class="cm-variable">multiHitsViewModel</span><span class="cm-property">.numberOfRows</span><span class="cm-punctuation">(</span><span class="cm-keyword">in</span><span class="cm-punctuation">:</span> <span class="cm-variable">section</span><span class="cm-punctuation">)</span>
+    <span class="cm-punctuation">}</span>
+
+        <span class="cm-keyword">func</span> <span class="cm-def">tableView</span><span class="cm-punctuation">(</span><span class="cm-atom">_</span> <span class="cm-variable">tableView</span><span class="cm-punctuation">:</span> <span class="cm-variable">UITableView</span><span class="cm-punctuation">,</span> <span class="cm-variable">cellForRowAt</span> <span class="cm-variable">indexPath</span><span class="cm-punctuation">:</span> <span class="cm-variable">IndexPath</span><span class="cm-punctuation">)</span> <span class="cm-operator">-</span><span class="cm-operator">&gt;</span> <span class="cm-variable">UITableViewCell</span> <span class="cm-punctuation">{</span>
+        <span class="cm-keyword">let</span> <span class="cm-def">cell</span> <span class="cm-operator">=</span> <span class="cm-variable">tableView</span><span class="cm-property">.dequeueReusableCell</span><span class="cm-punctuation">(</span><span class="cm-variable">withIdentifier</span><span class="cm-punctuation">:</span> <span class="cm-string">&quot;Cell&quot;</span><span class="cm-punctuation">,</span> <span class="cm-keyword">for</span><span class="cm-punctuation">:</span> <span class="cm-variable">indexPath</span><span class="cm-punctuation">)</span>
+        <span class="cm-keyword">let</span> <span class="cm-def">hit</span> <span class="cm-operator">=</span> <span class="cm-variable">multiHitsViewModel</span><span class="cm-property">.hitForRow</span><span class="cm-punctuation">(</span><span class="cm-variable">at</span><span class="cm-punctuation">:</span> <span class="cm-variable">indexPath</span><span class="cm-punctuation">)</span>
+
+        <span class="cm-keyword">if</span> <span class="cm-variable">indexPath</span><span class="cm-property">.section</span> <span class="cm-operator">=</span><span class="cm-operator">=</span> <span class="cm-number">0</span> <span class="cm-punctuation">{</span> <span class="cm-comment">// First index</span>
+            <span class="cm-variable">cell</span><span class="cm-property">.textLabel</span><span class="cm-operator">?</span><span class="cm-property">.text</span> <span class="cm-operator">=</span> <span class="cm-variable">getTextOutOfHitWithFirstIndex</span><span class="cm-punctuation">(</span><span class="cm-variable">hit</span><span class="cm-punctuation">)</span>
+        <span class="cm-punctuation">}</span> <span class="cm-keyword">else</span> <span class="cm-punctuation">{</span> <span class="cm-comment">// Second index</span>
+            <span class="cm-variable">cell</span><span class="cm-property">.textLabel</span><span class="cm-operator">?</span><span class="cm-property">.text</span> <span class="cm-operator">=</span> <span class="cm-variable">getTextOutOfHitWithSecondIndex</span><span class="cm-punctuation">(</span><span class="cm-variable">hit</span><span class="cm-punctuation">)</span>
+        <span class="cm-punctuation">}</span>
+        
+        <span class="cm-keyword">return</span> <span class="cm-variable">cell</span>
+    <span class="cm-punctuation">}</span>
+</code></pre>
+<h3 id="numericcontrolviewmodel">NumericControlViewModel <a class="anchor" href="concepts.html#numericcontrolviewmodel" aria-hidden="true"></a></h3>
+<p>Use this to customize any kind of numeric control view.</p>
+<h4 id="methods-4">Methods <a class="anchor" href="concepts.html#methods-4" aria-hidden="true"></a></h4>
+<ul>
+<li><code>updateNumeric(value:doSearch:)</code></li>
+<li><code>removeNumeric(value:)</code></li>
+</ul>
+<h3 id="facetcontrolviewmodel">FacetControlViewModel <a class="anchor" href="concepts.html#facetcontrolviewmodel" aria-hidden="true"></a></h3>
+<p>Use this to customize any kind of facet control view.</p>
+<h4 id="methods-5">Methods <a class="anchor" href="concepts.html#methods-5" aria-hidden="true"></a></h4>
+<ul>
+<li><code>addFacet(value:doSearch:)</code></li>
+<li><code>updatefacet(oldValue:newValue:doSearch:)</code></li>
+<li><code>removeFacet(value:)</code></li>
+</ul>
+<h3 id="refinementmenuviewmodel">RefinementMenuViewModel <a class="anchor" href="concepts.html#refinementmenuviewmodel" aria-hidden="true"></a></h3>
+<p>Use this to customize any kind of refinement menu view.</p>
+<h4 id="methods-6">Methods <a class="anchor" href="concepts.html#methods-6" aria-hidden="true"></a></h4>
+<ul>
+<li><code>numberOfRows()</code></li>
+<li><code>facetForRow(at:)</code></li>
+<li><code>isRefined(at:)</code></li>
+<li><code>didSelectRow(at:)</code></li>
+</ul>
 </div></div></div></section><section class="footer-new-cta footer-new h300 pos-rel"><div class="container color-white stellar-container vh-center"><div class="col-md-5"><div class="spacer120 hidden-sm"></div><div class="spacer32 visible-xs"></div><header><h2 class="text-normal m-t-none">Start creating stellar search,<span class="cf hidden-xs"></span>no strings attached.</h2><p>Dive into Algolia with our 14-day trial - No credit card required. Plenty of time to see how Algolia can change your business.</p></header></div><div class="col-md-7 pos-rel z-10"><div class="spacer120 inline hidden-sm"></div><div class="spacer32 inline hidden-sm"></div><div class="spacer16 visible-sm"></div><div class="button-holder h200 p-r-large"><div class="spacer16 hidden-md hidden-sm"></div><span class="inline pos-rel"><a class="btn btn-static-primary btn-static-shadow-dark" href="https://algolia.com/users/sign_up">Get Started<svg class="arrow-icon" width="22"><use xlink:href="#arrow-right"></use></svg></a><svg class="search-icon" width="22"><use xlink:href="#search-icon"></use></svg></span></div></div></div></section><div id="footer"><div class="credits"><div class="container pos-rel"><div class="row"><div class="col-md-12 text-center"><a data-no-turbolink="true" href="/"><img width="40" src="https://www.algolia.com/static_assets/images/flat2/algolia/algolia-logo_badge-598a1fe6.svg"/></a></div></div><div class="spacer40"></div></div></div></div><svg style="display: none;"><symbol width="40" height="40" viewbox="0 0 40 40" xmlns="http://www.w3.org/2000/svg" id="search-icon"><path d="M26.806 29.012a16.312 16.312 0 0 1-10.427 3.746C7.33 32.758 0 25.425 0 16.378 0 7.334 7.333 0 16.38 0c9.045 0 16.378 7.333 16.378 16.38 0 3.96-1.406 7.593-3.746 10.426L39.547 37.34c.607.608.61 1.59-.004 2.203a1.56 1.56 0 0 1-2.202.004L26.808 29.012zm-10.427.627c7.32 0 13.26-5.94 13.26-13.26 0-7.325-5.94-13.26-13.26-13.26-7.325 0-13.26 5.935-13.26 13.26 0 7.32 5.935 13.26 13.26 13.26z" fill-rule="evenodd"></path></symbol><symbol width="46" height="38" viewbox="0 0 46 38" xmlns="http://www.w3.org/2000/svg" id="arrow-right"><path d="M34.852 15.725l-8.624-9.908L24.385 3.7 28.62.014l1.84 2.116 13.1 15.05 1.606 1.846-1.61 1.844-13.1 15.002-1.845 2.114-4.23-3.692 1.85-2.114 9.465-10.84h-24.66v-5.615h23.817zm-26.774 0h-.002 2.96v5.614H0v-5.615h8.078z" fill-rule="evenodd"></path></symbol><symbol xmlns="http://www.w3.org/2000/svg" viewbox="0 0 708.8 717" id="icon-copy"><path d="M658.8 158H490.2c-13.3 0-26 5.3-35.4 14.6l-4.6 4.6V25c0-13.8-11.2-25-25-25H235.6c-6.6 0-13 2.6-17.7 7.3L7.3 218C2.6 222.6 0 229 0 235.6V541c0 13.8 11.2 25 25 25h227.8v101c0 27.6 22.4 50 50 50h356c27.6 0 50-22.4 50-50V208c0-27.6-22.4-50-50-50zm-204 85.4V360H338.2l116.6-116.6zm-253-149.2V209H87L201.8 94.2zM50 516V259h176.8c13.8 0 25-11.2 25-25V50h148.4v177.3L267.5 360c-9.4 9.4-14.6 22.1-14.6 35.4V516H50zm608.8 151h-356V410h177c13.8 0 25-11.2 25-25V208h154v459z"></path></symbol></svg><!-- Google Tag Manager --><noscript><iframe src="//www.googletagmanager.com/ns.html?id=GTM-N8JP8G" height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript><script>(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
 new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
 j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
