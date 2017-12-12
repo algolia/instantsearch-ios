@@ -22,3 +22,14 @@ import Foundation
 /// Since InstantSearch is very protocol oriented, it doesn't really care about the nature of
 /// the class (widget), whether it's the actual view on the screen or a controller wrapper class.
 @objc public protocol AlgoliaWidget: class {}
+
+/// This is an AlgoliaWidget that is used to link a widget to a specific index in the case of multi-indexing.
+@objc public protocol AlgoliaIndexWidget: AlgoliaWidget {
+    var index: String { get set }
+    var variant: String { get set }
+}
+
+@objc public protocol AlgoliaMultiIndexWidget: AlgoliaWidget {
+    var indicesArray: [String] { get set }
+    var variantsArray: [String] { get set }
+}

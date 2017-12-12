@@ -20,8 +20,11 @@ import UIKit
     
     @IBInspectable public var attribute: String = Constants.Defaults.attribute
     @IBInspectable public var inclusive: Bool = Constants.Defaults.inclusive
+    
+    @IBInspectable public var index: String = Constants.Defaults.index
+    @IBInspectable public var variant: String = Constants.Defaults.variant
         
-    var viewModel: FacetControlViewModelDelegate
+    public var viewModel: FacetControlViewModelDelegate
     
     public override init(items: [Any]?) {
         viewModel = FacetControlViewModel()
@@ -71,7 +74,7 @@ import UIKit
         if self.oldSegmentedIndex == UISegmentedControlNoSegment {
             viewModel.addFacet(value: titleForSegment(at: self.actualSegmentedIndex)!, doSearch: true)
         } else {
-            viewModel.updatefacet(oldValue: titleForSegment(at: self.oldSegmentedIndex)!,
+            viewModel.updateFacet(oldValue: titleForSegment(at: self.oldSegmentedIndex)!,
                                   newValue: titleForSegment(at: self.actualSegmentedIndex)!,
                                   doSearch: true)
         }

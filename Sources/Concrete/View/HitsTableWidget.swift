@@ -18,7 +18,10 @@ import UIKit
     @IBInspectable public var remainingItemsBeforeLoading: UInt = Constants.Defaults.remainingItemsBeforeLoading
     @IBInspectable public var showItemsOnEmptyQuery: Bool = Constants.Defaults.showItemsOnEmptyQuery
     
-    var viewModel: HitsViewModelDelegate
+    @IBInspectable public var index: String = Constants.Defaults.index
+    @IBInspectable public var variant: String = Constants.Defaults.variant
+    
+    public var viewModel: HitsViewModelDelegate
     
     public override init(frame: CGRect, style: UITableViewStyle) {
         viewModel = HitsViewModel()
@@ -33,8 +36,7 @@ import UIKit
     }
     
     public func scrollTop() {
-        let desiredOffset = CGPoint(x: 0, y: -contentInset.top)
-        setContentOffset(desiredOffset, animated: true)
+        scrollRectToVisible(CGRect(x: 0, y: 0, width: 1, height: 1), animated: true)
     }
     
     public func reloadHits() {

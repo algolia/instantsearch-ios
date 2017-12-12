@@ -12,10 +12,13 @@ import InstantSearchCore
 /// ViewModel - View: NumericControlViewModelDelegate.
 ///
 /// ViewModel - Searcher: SearchableViewModel, RefinableDelegate, ResettableDelegate.
-internal class NumericControlViewModel: NumericControlViewModelDelegate, SearchableViewModel {
+public class NumericControlViewModel: NumericControlViewModelDelegate, SearchableIndexViewModel {
 
     // MARK: - Properties
-
+    public var searcherId: SearcherId {
+        return SearcherId(index:  view.index, variant: view.variant)
+    }
+    
     var clearValue: NSNumber {
         return view.clearValue
     }
@@ -36,7 +39,7 @@ internal class NumericControlViewModel: NumericControlViewModelDelegate, Searcha
         return view.inclusive
     }
 
-    var attribute: String {
+    public var attribute: String {
         return view.attribute
     }
 
@@ -44,7 +47,7 @@ internal class NumericControlViewModel: NumericControlViewModelDelegate, Searcha
 
     var searcher: Searcher!
 
-    func configure(with searcher: Searcher) {
+    public func configure(with searcher: Searcher) {
         self.searcher = searcher
         
         guard !attribute.isEmpty else {
@@ -60,9 +63,15 @@ internal class NumericControlViewModel: NumericControlViewModelDelegate, Searcha
 
     // MARK: - NumericControlViewModelDelegate
 
-    weak var view: NumericControlViewDelegate!
+    public weak var view: NumericControlViewDelegate!
+    
+    init() { }
+    
+    public init(view: NumericControlViewDelegate) {
+        self.view = view
+    }
 
-    func updateNumeric(value: NSNumber, doSearch: Bool) {
+    public func updateNumeric(value: NSNumber, doSearch: Bool) {
         
         self.searcher.params.updateNumericRefinement(self.attribute, self.operator, value, inclusive: inclusive)
         
@@ -71,7 +80,7 @@ internal class NumericControlViewModel: NumericControlViewModelDelegate, Searcha
         }
     }
 
-    func removeNumeric(value: NSNumber) {
+    public func removeNumeric(value: NSNumber) {
         self.searcher.params.removeNumericRefinement(self.attribute, self.operator, value, inclusive: inclusive)
         self.searcher.search()
     }
@@ -81,7 +90,7 @@ internal class NumericControlViewModel: NumericControlViewModelDelegate, Searcha
 
 extension NumericControlViewModel: RefinableDelegate {
 
-    func onRefinementChange(numerics: [NumericRefinement]) {
+    public func onRefinementChange(numerics: [NumericRefinement]) {
         for numeric in numerics where numeric.op == `operator` && numeric.inclusive == inclusive {
             view.set(value: numeric.value)
         }

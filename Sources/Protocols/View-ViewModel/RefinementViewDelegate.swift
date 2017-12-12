@@ -9,7 +9,7 @@
 import Foundation
 
 /// Protocol that defines the refinement view input methods and propreties.
-@objc internal protocol RefinementViewDelegate: class {
+@objc public protocol RefinementViewDelegate: AlgoliaIndexWidget {
     
     /// Attribute name of the control.
     var attribute: String { get set }

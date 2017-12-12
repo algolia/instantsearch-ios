@@ -13,13 +13,14 @@ import UIKit
 @objc public class SwitchWidget: UISwitch, FacetControlViewDelegate, AlgoliaWidget {
     
     @IBInspectable public var attribute: String = Constants.Defaults.attribute
-    
     /// Value used for facet when the Switch is on
     @IBInspectable public var valueOn: String = Constants.Defaults.valueOn
-    
     @IBInspectable public var inclusive: Bool = Constants.Defaults.inclusive
     
-    var viewModel: FacetControlViewModelDelegate
+    @IBInspectable public var index: String = Constants.Defaults.index
+    @IBInspectable public var variant: String = Constants.Defaults.variant
+    
+    public var viewModel: FacetControlViewModelDelegate
     
     public override init(frame: CGRect) {
         viewModel = FacetControlViewModel()

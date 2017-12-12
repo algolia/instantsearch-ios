@@ -115,13 +115,104 @@ In this part, you've learned:
 - How to configure the widget.
 - How to specify the look and feel of your refinement cells.
 
+### Multi-index
+
+It is probable that your app is targeting multiple indices: for example, you want to search through bestbuy items, as well as IKEA items. Let's see how this is possible.
+
+First make sure that you're using the latest version of InstantSearch (after 2.1.0).
+
+In order to specify to InstantSearch which index you want to target, go to your `AppDelegate` and then inside your `application(_:didFinishLaunchingWithOptions:)` method, replace what is in it with:
+
+```swift
+let searcherIds = [SearcherId(index: "bestbuy_promo"), SearcherId(index: "ikea")]
+InstantSearch.shared.configure(appID: ALGOLIA_APP_ID, apiKey: ALGOLIA_API_KEY, searcherIds: searcherIds)
+```
+
+In that way, InstantSearch is aware of the indices that it has to deal with. Next, go to your `ViewController` and replace all of it with the following: 
+
+```swift
+import UIKit
+import InstantSearch
+import InstantSearchCore
+
+class HitsViewController: MultiHitsTableViewController {
+
+    @IBOutlet weak var tableView: MultiHitsTableWidget!
+    
+    override func viewDidLoad() {
+        super.viewDidLoad()
+        // Do any additional setup after loading the view, typically from a nib.
+        
+        hitsTableView = tableView
+        
+        InstantSearch.shared.registerAllWidgets(in: self.view)
+    }
+    
+    override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath, containing hit: [String : Any]) -> UITableViewCell {
+        let cell = tableView.dequeueReusableCell(withIdentifier: "hitCell", for: indexPath)
+        
+        if indexPath.section == 0 { // bestbuy
+            cell.textLabel?.highlightedTextColor = .blue
+            cell.textLabel?.highlightedBackgroundColor = .yellow
+            cell.textLabel?.highlightedText = SearchResults.highlightResult(hit: hit, path: "name")?.value
+        } else { // ikea
+            cell.textLabel?.highlightedTextColor = .white
+            cell.textLabel?.highlightedBackgroundColor = .black
+            cell.textLabel?.highlightedText = SearchResults.highlightResult(hit: hit, path: "name")?.value
+        }
+        
+        return cell
+    }
+
+    func tableView(_ tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
+        
+        let label = UILabel(frame: CGRect(x: 0, y: 0, width: 300, height: 30))
+        
+        let view = UIView()
+        view.addSubview(label)
+        view.backgroundColor = UIColor.gray
+        return view
+    }
+}
+```
+
+Things to note: 
+
+First, from the previous single-index implementation, we changed changed some classes from `HitsXYZ` to `MultiHitsXYZ`. These are `MultiHitsTableViewController` and `MultiHitsTableWidget`, 
+Nothing changed in the `ViewDidLoad`, and in the `cellForRowAt` method, we now have to deal with 2 sections since we'll have one for bestbuy, and one for ikea. Finally, we specify a `viewForHeaderInSection` to put a separator between these 2 sections.
+
+Now, head into the `Main.Storyboard`, select your stat widget, and then in the property inspector, add `ikea` to the `index` field. This specifies that the stats label shows number of results for ikea products. Next, click on the tableView which show the hits, and then in the identity inspector, change the class to `MultiHitsTableWidget`. Then, head to the identity inspector and specify the following:
+
+- Indices: `bestbuy_promo,ikea`
+- Hits Per Section: `5,10`
+
+Here, we are saying that we want to show the `bestbuy_promo` index in the first section and the `ikea` index in the second. 
+We also specify that we want 5 hits to appear for the `bestbuy_promo` index and 10 for the `ikea` index.
+
+Note: Variant would be used (for example: `main,details`) if you want 2 widgets to use the same index but with different configurations. You also have to specify those variants when configuring InstantSearch using the `SearcherId(index:variant)` constructor instead of `SearcherId(index:)`.
+
+Great, now **run your app**, search in the search bar and you should see results appearing from the indices!
+
+There's still one more thing: If you click on the filter button, the app will crash. Why is that? This is because we are in "multi-index" mode and the refinement list doesn't have a clue what index to target: is it bestbuy_promo or ikea? In order to specify this, go to your `main.storyboard` class, then click on the refinement list. In the attribute inspector, specify `bestbuy_promo` as the index.
+
+A Note on the `SearchBarWidet`: by not specifying any index there, InstantSearch will conclude that the Search bar should search in all index. If an index was specified, then the `SearchBarWidget` would only trigger a search in that particular widget. 
+
+Now go ahead and **run your app again**. When going to the filters screen and selecting a filter, you'll notice in the main screen that the refinements are only being applied to the `bestbuy_promo` index.
+
+In this part, you've learned:
+
+- How to configure InstantSearch for Multi-indexing.
+- How to use the `MultiHitsTableWidget` which can show different indices.
+- How to specify an index for widgets such as the `StatsLabelWidget` and the `RefinementTableWidget`.
+
 ## Go further
 
-Your application now displays your data, lets your users enter a query, displays search results as-they-type and lets users filter by refinements: you just built a full instant-search interface! Congratulations 🎉
+Your application now displays your data from multiple indices, lets your users enter a query, displays search results as-they-type and lets users filter by refinements: you just built a full instant-search interface! Congratulations 🎉
 
 This is only an introduction to what you can do with InstantSearch iOS: 
 - Have a look at our [examples][examples] to see more complex examples of applications built with InstantSearch.
 - You can also head to our [Widgets page][widgets] to see the other components that you could use.
+- You can check how to customise further your widgets and view controllers with [ViewModels](viewmodels).
 
 [algolia_sign_up]: https://www.algolia.com/users/sign_up
 [widgets]: widgets.html
@@ -130,3 +221,4 @@ This is only an introduction to what you can do with InstantSearch iOS:
 [widgets-searchbox]: widgets.html#searchbar
 [widgets-refinementlist]: widgets.html#refinementlist
 [widgets-stats]: widgets.html#stats
+[viewmodels]: concepts#viewmodels

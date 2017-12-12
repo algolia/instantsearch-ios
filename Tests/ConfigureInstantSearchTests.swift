@@ -38,7 +38,7 @@ class ConfigureInstantSearchTests: XCTestCase {
         
         InstantSearch.shared.searcher.addResultHandler(resultHandler(_:_:_:))
         
-        // TODO: This needs to be mocked!
+        // TODO(test): This needs to be mocked!
         InstantSearch.shared.searcher.search()
         
         // Expect that search goes well
@@ -62,7 +62,7 @@ class ConfigureInstantSearchTests: XCTestCase {
         
         instantSearch.searcher.addResultHandler(resultHandler(_:_:_:))
         
-        // TODO: This needs to be mocked!
+        // TODO(test): This needs to be mocked!
         instantSearch.searcher.search()
         
         // Expect that search goes well

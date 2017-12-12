@@ -11,7 +11,7 @@ import Foundation
 /*
  * Protocol that defines the commands sent from the View to the ViewModel
  */
-@objc internal protocol NumericControlViewModelDelegate: class {
+@objc public protocol NumericControlViewModelDelegate: class {
     
     /// View associated with the WidgetVM.
     var view: NumericControlViewDelegate! { get set }

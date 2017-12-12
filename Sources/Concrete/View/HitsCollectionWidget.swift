@@ -18,7 +18,10 @@ import UIKit
     @IBInspectable public var remainingItemsBeforeLoading: UInt = Constants.Defaults.remainingItemsBeforeLoading
     @IBInspectable public var showItemsOnEmptyQuery: Bool = Constants.Defaults.showItemsOnEmptyQuery
     
-    var viewModel: HitsViewModelDelegate
+    @IBInspectable public var index: String = Constants.Defaults.index
+    @IBInspectable public var variant: String = Constants.Defaults.variant
+    
+    public var viewModel: HitsViewModelDelegate
     
     public override init(frame: CGRect, collectionViewLayout layout: UICollectionViewLayout) {
         viewModel = HitsViewModel()

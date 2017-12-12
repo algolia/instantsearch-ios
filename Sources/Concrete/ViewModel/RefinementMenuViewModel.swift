@@ -12,9 +12,12 @@ import InstantSearchCore
 /// ViewModel - View: RefinementMenuViewModelDelegate.
 ///
 /// ViewModel - Searcher: SearchableViewModel, ResultingDelegate, ResettableDelegate.
-internal class RefinementMenuViewModel: RefinementMenuViewModelDelegate, SearchableViewModel {
+public class RefinementMenuViewModel: RefinementMenuViewModelDelegate, SearchableIndexViewModel {
     
     // MARK: - Properties
+    public var searcherId: SearcherId {
+        return SearcherId(index:  view.index, variant: view.variant)
+    }
     
     var attribute: String {
         return view.attribute
@@ -40,13 +43,14 @@ internal class RefinementMenuViewModel: RefinementMenuViewModelDelegate, Searcha
         return TransformRefinementList(named: view.sortBy.lowercased())
     }
     
+    // TODO" The state for this should be on IS Core, not in the VM.
     var facetResults: [FacetValue] = []
     
     // MARK: - SearchableViewModel
     
     var searcher: Searcher!
     
-    func configure(with searcher: Searcher) {
+    public func configure(with searcher: Searcher) {
         self.searcher = searcher
         
         guard !attribute.isEmpty else {
@@ -83,21 +87,29 @@ internal class RefinementMenuViewModel: RefinementMenuViewModelDelegate, Searcha
     
     // MARK: - RefinementMenuViewModelDelegate
     
-    weak var view: RefinementMenuViewDelegate!
+    public weak var view: RefinementMenuViewDelegate!
     
-    func numberOfRows() -> Int {
+    init() { }
+    
+    public init(view: RefinementMenuViewDelegate) {
+        self.view = view
+    }
+    
+    public func numberOfRows() -> Int {
         return min(facetResults.count, limit)
     }
     
-    func facetForRow(at indexPath: IndexPath) -> FacetValue {
+    public func facetForRow(at indexPath: IndexPath) -> FacetValue {
         return facetResults[indexPath.row]
     }
     
-    func isRefined(at indexPath: IndexPath) -> Bool {
+    public func isRefined(at indexPath: IndexPath) -> Bool {
         return searcher.params.hasFacetRefinement(name: attribute, value: facetResults[indexPath.item].value)
     }
     
-    func didSelectRow(at indexPath: IndexPath) {
+    /// This simulated selecting a facet
+    /// it will tggle the facet refinement, deselect the row and then execute a search
+    public func didSelectRow(at indexPath: IndexPath) {
         
         searcher.params.setFacet(withName: attribute, disjunctive: isDisjunctive)
         searcher.params.toggleFacetRefinement(name: attribute, value: facetResults[indexPath.item].value)
@@ -107,7 +119,7 @@ internal class RefinementMenuViewModel: RefinementMenuViewModelDelegate, Searcha
 }
 
 extension RefinementMenuViewModel: ResultingDelegate {
-    func on(results: SearchResults?, error: Error?, userInfo: [String : Any]) {
+    public func on(results: SearchResults?, error: Error?, userInfo: [String : Any]) {
         
         guard let results = results else {
             print(error ?? "")

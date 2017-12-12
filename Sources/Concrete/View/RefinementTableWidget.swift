@@ -23,7 +23,10 @@ import UIKit
     @IBInspectable public var sortBy: String = Constants.Defaults.sortBy
     @IBInspectable public var limit: Int = Constants.Defaults.limit
     
-    var viewModel: RefinementMenuViewModelDelegate
+    @IBInspectable public var index: String = Constants.Defaults.index
+    @IBInspectable public var variant: String = Constants.Defaults.variant
+    
+    public var viewModel: RefinementMenuViewModelDelegate
     
     public override init(frame: CGRect, style: UITableViewStyle) {
         viewModel = RefinementMenuViewModel()
@@ -41,7 +44,7 @@ import UIKit
         reloadData()
     }
     
-    func deselectRow(at indexPath: IndexPath) {
+    public func deselectRow(at indexPath: IndexPath) {
         deselectRow(at: indexPath, animated: true)
     }
 }

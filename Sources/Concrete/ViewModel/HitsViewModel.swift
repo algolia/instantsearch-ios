@@ -12,23 +12,27 @@ import InstantSearchCore
 /// ViewModel - View: HitsViewModelDelegate.
 ///
 /// ViewModel - Searcher: SearchableViewModel, ResultingDelegate, ResettableDelegate.
-internal class HitsViewModel: HitsViewModelDelegate, SearchableViewModel {
+public class HitsViewModel: HitsViewModelDelegate, SearchableIndexViewModel {
     
     // MARK: - Properties
     
-    var hitsPerPage: UInt {
+    public var searcherId: SearcherId {
+        return SearcherId(index:  view.index, variant: view.variant)
+    }
+    
+    public var hitsPerPage: UInt {
         return view.hitsPerPage
     }
     
-    var infiniteScrolling: Bool {
+    public var infiniteScrolling: Bool {
         return view.infiniteScrolling
     }
     
-    var remainingItemsBeforeLoading: UInt {
+    public var remainingItemsBeforeLoading: UInt {
         return view.remainingItemsBeforeLoading
     }
     
-    var showItemsOnEmptyQuery: Bool {
+    public var showItemsOnEmptyQuery: Bool {
         return view.showItemsOnEmptyQuery
     }
     
@@ -36,7 +40,7 @@ internal class HitsViewModel: HitsViewModelDelegate, SearchableViewModel {
     
     var searcher: Searcher!
     
-    func configure(with searcher: Searcher) {
+    public func configure(with searcher: Searcher) {
         self.searcher = searcher
         
         searcher.params.hitsPerPage = hitsPerPage
@@ -48,9 +52,15 @@ internal class HitsViewModel: HitsViewModelDelegate, SearchableViewModel {
     
     // MARK: - HitsViewModelDelegate
     
-    weak var view: HitsViewDelegate!
+    public weak var view: HitsViewDelegate!
     
-    func numberOfRows() -> Int {
+    init() { }
+    
+    public init(view: HitsViewDelegate) {
+        self.view = view
+    }
+    
+    public func numberOfRows() -> Int {
         guard let searcher = searcher else { return 0 }
         
         if showItemsOnEmptyQuery {
@@ -65,7 +75,7 @@ internal class HitsViewModel: HitsViewModelDelegate, SearchableViewModel {
         
     }
     
-    func hitForRow(at indexPath: IndexPath) -> [String: Any] {
+    public func hitForRow(at indexPath: IndexPath) -> [String: Any] {
         guard let searcher = searcher else { return [:]}
         
         loadMoreIfNecessary(rowNumber: indexPath.row)
@@ -88,7 +98,7 @@ extension HitsViewModel: ResultingDelegate {
     
     // MARK: - ResultingDelegate
     
-    func on(results: SearchResults?, error: Error?, userInfo: [String: Any]) {
+    public func on(results: SearchResults?, error: Error?, userInfo: [String: Any]) {
         
         guard let results = results else {
             print(error ?? "")
@@ -97,7 +107,7 @@ extension HitsViewModel: ResultingDelegate {
         
         view.reloadHits()
         
-        if results.page == 0 {
+        if results.page == 0 && numberOfRows() > 0 {
             view.scrollTop()
         }
     }

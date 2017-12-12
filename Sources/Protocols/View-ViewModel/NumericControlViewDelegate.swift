@@ -9,7 +9,7 @@
 import Foundation
 
 /// Protocol that defines the numeric control view input methods and propreties.
-@objc internal protocol NumericControlViewDelegate: RefinementViewDelegate {
+@objc public protocol NumericControlViewDelegate: RefinementViewDelegate {
     
     /// ViewModel associated with the WidgetV.
     var viewModel: NumericControlViewModelDelegate { get set }

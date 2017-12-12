@@ -11,7 +11,7 @@ import Foundation
 /*
  * Protocol that defines the commands sent from the View to the ViewModel
  */
-@objc internal protocol HitsViewModelDelegate: class {
+@objc public protocol HitsViewModelDelegate: class {
     
     /// View associated with the WidgetVM.
     var view: HitsViewDelegate! { get set }

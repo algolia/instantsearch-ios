@@ -11,19 +11,23 @@ import InstantSearchCore
 /// ViewModel - View: StatsViewModelDelegate.
 ///
 /// ViewModel - Searcher: SearchableViewModel, ResultingDelegate, ResettableDelegate.
-internal class StatsViewModel: StatsViewModelDelegate, SearchableViewModel {
+public class StatsViewModel: StatsViewModelDelegate, SearchableIndexViewModel {
     
     // MARK: - Properties
     
-    var resultTemplate: String {
+    public var searcherId: SearcherId {
+        return SearcherId(index: view.index, variant: view.variant)
+    }
+    
+    public var resultTemplate: String {
         return view.resultTemplate
     }
     
-    var errorText: String {
+    public var errorText: String {
         return view.errorText
     }
     
-    var clearText: String {
+    public var clearText: String {
         return view.clearText
     }
     
@@ -31,7 +35,7 @@ internal class StatsViewModel: StatsViewModelDelegate, SearchableViewModel {
     
     var searcher: Searcher!
     
-    func configure(with searcher: Searcher) {
+    public func configure(with searcher: Searcher) {
         self.searcher = searcher
         
         // Initial value of label in case a search was made.
@@ -47,7 +51,13 @@ internal class StatsViewModel: StatsViewModelDelegate, SearchableViewModel {
     
     // MARK: - StatsViewModelDelegate
     
-    weak var view: StatsViewDelegate!
+    public weak var view: StatsViewDelegate!
+    
+    init() { }
+    
+    public init(view: StatsViewDelegate) {
+        self.view = view
+    }
 }
 
 // MARK: - ResettableDelegate
@@ -61,7 +71,7 @@ extension StatsViewModel: ResettableDelegate {
 // MARK: - ResultingDelegate
 
 extension StatsViewModel: ResultingDelegate {
-    func on(results: SearchResults?, error: Error?, userInfo: [String: Any]) {
+    public func on(results: SearchResults?, error: Error?, userInfo: [String: Any]) {
         if let results = results {
             let text = applyTemplate(resultTemplate: resultTemplate, results: results)
             view.set(text: text)

@@ -13,9 +13,12 @@ import UIKit
     
     @IBInspectable public var resultTemplate: String = Constants.Defaults.resultTemplate
     @IBInspectable public var errorText: String = Constants.Defaults.errorText
-    @IBInspectable internal var clearText: String = Constants.Defaults.clearText
+    @IBInspectable public var clearText: String = Constants.Defaults.clearText
     
-    var viewModel: StatsViewModelDelegate
+    @IBInspectable public var index: String = Constants.Defaults.index
+    @IBInspectable public var variant: String = Constants.Defaults.variant
+    
+    public var viewModel: StatsViewModelDelegate
     
     @objc public override init(frame: CGRect) {
         viewModel = StatsViewModel()
@@ -39,6 +42,9 @@ import UIKit
     var label: UILabel
     
     var viewModel: StatsViewModelDelegate
+    
+    @IBInspectable public var index: String = Constants.Defaults.index
+    @IBInspectable public var variant: String = Constants.Defaults.variant
     
     public var resultTemplate: String = Constants.Defaults.resultTemplate
     public var errorText: String = Constants.Defaults.errorText

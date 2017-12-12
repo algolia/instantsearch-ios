@@ -19,11 +19,14 @@ import UIKit
     @IBInspectable public var `operator`: String = Constants.Defaults.operatorNumericControl
     @IBInspectable public var inclusive: Bool = Constants.Defaults.inclusive
     
+    @IBInspectable public var index: String = Constants.Defaults.index
+    @IBInspectable public var variant: String = Constants.Defaults.variant
+    
     // Note: can't have optional Float because IBInspectable have to be bridgable to objc
     // and value types optional cannot be bridged.
-    internal var clearValue: NSNumber = 0
+    public var clearValue: NSNumber = 0
     
-    var viewModel: NumericControlViewModelDelegate
+    public var viewModel: NumericControlViewModelDelegate
     
     public override init(frame: CGRect) {
         viewModel = NumericControlViewModel()

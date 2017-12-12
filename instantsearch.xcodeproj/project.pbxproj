@@ -22,6 +22,14 @@
 		E233BC091EBC71F500F5F5E1 /* StepperWidget.swift in Sources */ = {isa = PBXBuildFile; fileRef = E233BC081EBC71F500F5F5E1 /* StepperWidget.swift */; };
 		E233BC0C1EBC756500F5F5E1 /* DatePickerWidget.swift in Sources */ = {isa = PBXBuildFile; fileRef = E233BC0B1EBC756500F5F5E1 /* DatePickerWidget.swift */; };
 		E233BC0E1EBC786B00F5F5E1 /* SegmentedControlWidget.swift in Sources */ = {isa = PBXBuildFile; fileRef = E233BC0D1EBC786B00F5F5E1 /* SegmentedControlWidget.swift */; };
+		E25F5C871FCEF3B5002C8A8D /* SearcherId.swift in Sources */ = {isa = PBXBuildFile; fileRef = E25F5C861FCEF3B5002C8A8D /* SearcherId.swift */; };
+		E25F5C8A1FCEF3DA002C8A8D /* MultiHitsCollectionWidget.swift in Sources */ = {isa = PBXBuildFile; fileRef = E25F5C881FCEF3DA002C8A8D /* MultiHitsCollectionWidget.swift */; };
+		E25F5C8B1FCEF3DA002C8A8D /* MultiHitsTableWidget.swift in Sources */ = {isa = PBXBuildFile; fileRef = E25F5C891FCEF3DA002C8A8D /* MultiHitsTableWidget.swift */; };
+		E25F5C8D1FCEF3EA002C8A8D /* MultiHitsTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E25F5C8C1FCEF3EA002C8A8D /* MultiHitsTableViewController.swift */; };
+		E25F5C8F1FCEF3F0002C8A8D /* MultiHitsViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = E25F5C8E1FCEF3F0002C8A8D /* MultiHitsViewModel.swift */; };
+		E25F5C911FCEF3FA002C8A8D /* MultiHitsController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E25F5C901FCEF3F9002C8A8D /* MultiHitsController.swift */; };
+		E25F5CE11FCEF450002C8A8D /* MultiHitsViewDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = E25F5CE01FCEF450002C8A8D /* MultiHitsViewDelegate.swift */; };
+		E25F5CE31FCEF463002C8A8D /* MultiHitsViewModelDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = E25F5CE21FCEF463002C8A8D /* MultiHitsViewModelDelegate.swift */; };
 		E25FB07A1ECD86E8006B8CED /* RefinementMenuViewModelTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = E25FB0791ECD86E8006B8CED /* RefinementMenuViewModelTests.swift */; };
 		E25FB0A31ECF550C006B8CED /* Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = E25FB0A21ECF550C006B8CED /* Info.plist */; };
 		E27141CA1E9E237200959294 /* StatsButtonWidget.swift in Sources */ = {isa = PBXBuildFile; fileRef = E27141C91E9E237200959294 /* StatsButtonWidget.swift */; };
@@ -75,6 +83,9 @@
 		E2AFE5661ED49B3900B6A5A7 /* FatalError.swift in Sources */ = {isa = PBXBuildFile; fileRef = E2AFE5651ED49B3900B6A5A7 /* FatalError.swift */; };
 		E2AFE56B1ED5709A00B6A5A7 /* FatalError.swift in Sources */ = {isa = PBXBuildFile; fileRef = E2AFE56A1ED5709A00B6A5A7 /* FatalError.swift */; };
 		E2CA327C1EA77BC90057A3D3 /* HitsController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E2CA327B1EA77BC90057A3D3 /* HitsController.swift */; };
+		E2D5890E1FBB266B00526C33 /* SearchViewModelDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = E2D5890D1FBB266B00526C33 /* SearchViewModelDelegate.swift */; };
+		E2D589101FBB279200526C33 /* SearchViewDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = E2D5890F1FBB279200526C33 /* SearchViewDelegate.swift */; };
+		E2D589121FBB295700526C33 /* SearchViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = E2D589111FBB295700526C33 /* SearchViewModel.swift */; };
 		E2E060571F717A7B0026358B /* InstantSearchCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E21DE94E1F2F7DB400EFC4F5 /* InstantSearchCore.framework */; };
 		E2E060581F717A810026358B /* AlgoliaSearch.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E21DE9501F2F7DCA00EFC4F5 /* AlgoliaSearch.framework */; };
 /* End PBXBuildFile section */
@@ -101,7 +112,6 @@
 		28F8287D1C494B2C00330CF4 /* InstantSearch.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = InstantSearch.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		28F828821C494B2C00330CF4 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		28F828871C494B2C00330CF4 /* InstantSearchTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = InstantSearchTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
-		28F8289B1C494BF100330CF4 /* Playground.playground */ = {isa = PBXFileReference; lastKnownFileType = file.playground; name = Playground.playground; path = Example/Playground.playground; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.swift; };
 		E21DE94E1F2F7DB400EFC4F5 /* InstantSearchCore.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = InstantSearchCore.framework; path = Carthage/Build/iOS/InstantSearchCore.framework; sourceTree = "<group>"; };
 		E21DE9501F2F7DCA00EFC4F5 /* AlgoliaSearch.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AlgoliaSearch.framework; path = Carthage/Build/iOS/AlgoliaSearch.framework; sourceTree = "<group>"; };
 		E2231E931EC9DBC4002FCF82 /* ConfigureInstantSearchTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ConfigureInstantSearchTests.swift; sourceTree = "<group>"; };
@@ -115,6 +125,14 @@
 		E233BC081EBC71F500F5F5E1 /* StepperWidget.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = StepperWidget.swift; sourceTree = "<group>"; };
 		E233BC0B1EBC756500F5F5E1 /* DatePickerWidget.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DatePickerWidget.swift; sourceTree = "<group>"; };
 		E233BC0D1EBC786B00F5F5E1 /* SegmentedControlWidget.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SegmentedControlWidget.swift; sourceTree = "<group>"; };
+		E25F5C861FCEF3B5002C8A8D /* SearcherId.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SearcherId.swift; sourceTree = "<group>"; };
+		E25F5C881FCEF3DA002C8A8D /* MultiHitsCollectionWidget.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MultiHitsCollectionWidget.swift; sourceTree = "<group>"; };
+		E25F5C891FCEF3DA002C8A8D /* MultiHitsTableWidget.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MultiHitsTableWidget.swift; sourceTree = "<group>"; };
+		E25F5C8C1FCEF3EA002C8A8D /* MultiHitsTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MultiHitsTableViewController.swift; sourceTree = "<group>"; };
+		E25F5C8E1FCEF3F0002C8A8D /* MultiHitsViewModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MultiHitsViewModel.swift; sourceTree = "<group>"; };
+		E25F5C901FCEF3F9002C8A8D /* MultiHitsController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MultiHitsController.swift; sourceTree = "<group>"; };
+		E25F5CE01FCEF450002C8A8D /* MultiHitsViewDelegate.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MultiHitsViewDelegate.swift; sourceTree = "<group>"; };
+		E25F5CE21FCEF463002C8A8D /* MultiHitsViewModelDelegate.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MultiHitsViewModelDelegate.swift; sourceTree = "<group>"; };
 		E25FB0791ECD86E8006B8CED /* RefinementMenuViewModelTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RefinementMenuViewModelTests.swift; sourceTree = "<group>"; };
 		E25FB0A21ECF550C006B8CED /* Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		E27141C91E9E237200959294 /* StatsButtonWidget.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = StatsButtonWidget.swift; sourceTree = "<group>"; };
@@ -171,6 +189,9 @@
 		E2AFE5651ED49B3900B6A5A7 /* FatalError.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FatalError.swift; sourceTree = "<group>"; };
 		E2AFE56A1ED5709A00B6A5A7 /* FatalError.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FatalError.swift; sourceTree = "<group>"; };
 		E2CA327B1EA77BC90057A3D3 /* HitsController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HitsController.swift; sourceTree = "<group>"; };
+		E2D5890D1FBB266B00526C33 /* SearchViewModelDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchViewModelDelegate.swift; sourceTree = "<group>"; };
+		E2D5890F1FBB279200526C33 /* SearchViewDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchViewDelegate.swift; sourceTree = "<group>"; };
+		E2D589111FBB295700526C33 /* SearchViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchViewModel.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -210,7 +231,6 @@
 				28F828971C494B4200330CF4 /* Sources */,
 				28F8288B1C494B2C00330CF4 /* Tests */,
 				E27B67E21ED339290001FFA7 /* InstantSearchTestsHost */,
-				28F8289B1C494BF100330CF4 /* Playground.playground */,
 				E21DE94D1F2F7DB400EFC4F5 /* Frameworks */,
 			);
 			sourceTree = "<group>";
@@ -246,11 +266,9 @@
 				E2AFE5691ED5709A00B6A5A7 /* TestHelpers */,
 				E27A7C021E97B913005B2506 /* Concrete */,
 				E27A7C001E97B83C005B2506 /* Protocols */,
-				E27C16411E9394250091D79E /* Helpers.swift */,
-				E2231E961EC9F5A7002FCF82 /* Constants.swift */,
+				E2D589131FBB41C700526C33 /* Models and Helpers */,
 				28F828821C494B2C00330CF4 /* Info.plist */,
 				E27C163B1E9394250091D79E /* InstantSearch.swift */,
-				E27A7BF01E97931E005B2506 /* ViewModelFetcher.swift */,
 				E2A477001EC61B43007CA367 /* InstantSearch-Bridging-Header.h */,
 			);
 			path = Sources;
@@ -268,6 +286,7 @@
 		E27141D31E9F762F00959294 /* ViewController */ = {
 			isa = PBXGroup;
 			children = (
+				E25F5C8C1FCEF3EA002C8A8D /* MultiHitsTableViewController.swift */,
 				E27141D41E9F764100959294 /* HitsTableViewController.swift */,
 				E27141F41EA0F20700959294 /* HitsCollectionViewController.swift */,
 				E28B07E31EAF9FF2003AAE47 /* RefinementTableViewController.swift */,
@@ -287,12 +306,14 @@
 		E27A7BED1E96271B005B2506 /* ViewModel */ = {
 			isa = PBXGroup;
 			children = (
+				E25F5C8E1FCEF3F0002C8A8D /* MultiHitsViewModel.swift */,
 				E2738FD01E9D1AED002C002D /* Helpers */,
 				E27A7BEE1E962768005B2506 /* HitsViewModel.swift */,
 				E2738FCE1E9CDE32002C002D /* NumericControlViewModel.swift */,
 				E233BC021EBB78B600F5F5E1 /* FacetControlViewModel.swift */,
 				E2738FC81E9CC418002C002D /* RefinementMenuViewModel.swift */,
 				E2738FBC1E9BD9ED002C002D /* StatsViewModel.swift */,
+				E2D589111FBB295700526C33 /* SearchViewModel.swift */,
 			);
 			path = ViewModel;
 			sourceTree = "<group>";
@@ -300,6 +321,8 @@
 		E27A7BF81E97B6DE005B2506 /* ViewModel-View */ = {
 			isa = PBXGroup;
 			children = (
+				E25F5CE21FCEF463002C8A8D /* MultiHitsViewModelDelegate.swift */,
+				E2D5890D1FBB266B00526C33 /* SearchViewModelDelegate.swift */,
 				E27A7BF91E97B729005B2506 /* HitsViewModelDelegate.swift */,
 				E2738FCA1E9CDDA0002C002D /* NumericControlViewModelDelegate.swift */,
 				E233BC061EBB796600F5F5E1 /* FacetControlViewModelDelegate.swift */,
@@ -312,6 +335,8 @@
 		E27A7BFB1E97B74C005B2506 /* View-ViewModel */ = {
 			isa = PBXGroup;
 			children = (
+				E25F5CE01FCEF450002C8A8D /* MultiHitsViewDelegate.swift */,
+				E2D5890F1FBB279200526C33 /* SearchViewDelegate.swift */,
 				E27A7BFC1E97B781005B2506 /* HitsViewDelegate.swift */,
 				E27B67DA1ED314100001FFA7 /* RefinementViewDelegate.swift */,
 				E2738FCC1E9CDE04002C002D /* NumericControlViewDelegate.swift */,
@@ -369,6 +394,8 @@
 		E27C16541E939B430091D79E /* View */ = {
 			isa = PBXGroup;
 			children = (
+				E25F5C881FCEF3DA002C8A8D /* MultiHitsCollectionWidget.swift */,
+				E25F5C891FCEF3DA002C8A8D /* MultiHitsTableWidget.swift */,
 				E27C16371E9394250091D79E /* HitsTableWidget.swift */,
 				E27A7BF21E97947C005B2506 /* HitsCollectionWidget.swift */,
 				E27C16361E9394250091D79E /* RefinementTableWidget.swift */,
@@ -429,10 +456,22 @@
 		E2CA327D1EA797480057A3D3 /* Controller */ = {
 			isa = PBXGroup;
 			children = (
+				E25F5C901FCEF3F9002C8A8D /* MultiHitsController.swift */,
 				E2CA327B1EA77BC90057A3D3 /* HitsController.swift */,
 				E28B07DF1EAF88D9003AAE47 /* RefinementController.swift */,
 			);
 			path = Controller;
+			sourceTree = "<group>";
+		};
+		E2D589131FBB41C700526C33 /* Models and Helpers */ = {
+			isa = PBXGroup;
+			children = (
+				E25F5C861FCEF3B5002C8A8D /* SearcherId.swift */,
+				E2231E961EC9F5A7002FCF82 /* Constants.swift */,
+				E27C16411E9394250091D79E /* Helpers.swift */,
+				E27A7BF01E97931E005B2506 /* ViewModelFetcher.swift */,
+			);
+			path = "Models and Helpers";
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -620,15 +659,21 @@
 				E2AFE55B1ED488C700B6A5A7 /* TextFieldWidget.swift in Sources */,
 				E27C16431E9394250091D79E /* HitsTableWidget.swift in Sources */,
 				E27A7BFA1E97B729005B2506 /* HitsViewModelDelegate.swift in Sources */,
+				E2D589101FBB279200526C33 /* SearchViewDelegate.swift in Sources */,
 				E27A7BF31E97947C005B2506 /* HitsCollectionWidget.swift in Sources */,
 				E28B07E61EAF9FFE003AAE47 /* RefinementCollectionViewController.swift in Sources */,
+				E25F5C8B1FCEF3DA002C8A8D /* MultiHitsTableWidget.swift in Sources */,
 				E27C16461E9394250091D79E /* StatsLabelWidget.swift in Sources */,
 				E27A7BFF1E97B7AA005B2506 /* AlgoliaWidget.swift in Sources */,
 				E27C164B1E9394250091D79E /* RefinableDelegate.swift in Sources */,
+				E25F5CE31FCEF463002C8A8D /* MultiHitsViewModelDelegate.swift in Sources */,
 				E28B07E21EAF9F27003AAE47 /* RefinementCollectionWidget.swift in Sources */,
 				E27C16471E9394250091D79E /* InstantSearch.swift in Sources */,
+				E2D589121FBB295700526C33 /* SearchViewModel.swift in Sources */,
 				E2738FBD1E9BD9ED002C002D /* StatsViewModel.swift in Sources */,
+				E25F5C871FCEF3B5002C8A8D /* SearcherId.swift in Sources */,
 				E2CA327C1EA77BC90057A3D3 /* HitsController.swift in Sources */,
+				E25F5C8D1FCEF3EA002C8A8D /* MultiHitsTableViewController.swift in Sources */,
 				E28B07E41EAF9FF2003AAE47 /* RefinementTableViewController.swift in Sources */,
 				E27A7BEC1E9556C6005B2506 /* ResultingDelegate.swift in Sources */,
 				E27A7BFD1E97B781005B2506 /* HitsViewDelegate.swift in Sources */,
@@ -641,9 +686,11 @@
 				E2AFE56B1ED5709A00B6A5A7 /* FatalError.swift in Sources */,
 				E27141F51EA0F20700959294 /* HitsCollectionViewController.swift in Sources */,
 				E27141CA1E9E237200959294 /* StatsButtonWidget.swift in Sources */,
+				E25F5CE11FCEF450002C8A8D /* MultiHitsViewDelegate.swift in Sources */,
 				E27B67DB1ED314100001FFA7 /* RefinementViewDelegate.swift in Sources */,
 				E2738FC11E9BDA31002C002D /* StatsViewDelegate.swift in Sources */,
 				E27C16441E9394250091D79E /* SliderWidget.swift in Sources */,
+				E25F5C911FCEF3FA002C8A8D /* MultiHitsController.swift in Sources */,
 				E233BC011EBA43FF00F5F5E1 /* TwoValuesSwitchWidget.swift in Sources */,
 				E2738FC51E9CC3E0002C002D /* RefinementMenuViewDelegate.swift in Sources */,
 				E27C164D1E9394250091D79E /* Helpers.swift in Sources */,
@@ -652,6 +699,7 @@
 				E2738FCD1E9CDE04002C002D /* NumericControlViewDelegate.swift in Sources */,
 				E233BC0C1EBC756500F5F5E1 /* DatePickerWidget.swift in Sources */,
 				E233BBFF1EBA43F500F5F5E1 /* OneValueSwitchWidget.swift in Sources */,
+				E25F5C8A1FCEF3DA002C8A8D /* MultiHitsCollectionWidget.swift in Sources */,
 				E233BC051EBB78D400F5F5E1 /* FacetControlViewDelegate.swift in Sources */,
 				E27C164A1E9394250091D79E /* ActivityIndicatorView.swift in Sources */,
 				E27141D51E9F764100959294 /* HitsTableViewController.swift in Sources */,
@@ -661,6 +709,7 @@
 				E233BC0E1EBC786B00F5F5E1 /* SegmentedControlWidget.swift in Sources */,
 				E2738FBF1E9BDA28002C002D /* StatsViewModelDelegate.swift in Sources */,
 				E2738FC71E9CC3F8002C002D /* RefinementMenuViewModelDelegate.swift in Sources */,
+				E2D5890E1FBB266B00526C33 /* SearchViewModelDelegate.swift in Sources */,
 				E2738FCB1E9CDDA0002C002D /* NumericControlViewModelDelegate.swift in Sources */,
 				E233BC031EBB78B600F5F5E1 /* FacetControlViewModel.swift in Sources */,
 				E27C16451E9394250091D79E /* SearchBarWidget.swift in Sources */,
@@ -668,6 +717,7 @@
 				E2738FD21E9D1AFF002C002D /* RefinementListHelper.swift in Sources */,
 				E27A7BF11E97931E005B2506 /* ViewModelFetcher.swift in Sources */,
 				E28B07DA1EAF71D9003AAE47 /* Hits.swift in Sources */,
+				E25F5C8F1FCEF3F0002C8A8D /* MultiHitsViewModel.swift in Sources */,
 				E28B07E01EAF88D9003AAE47 /* RefinementController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
