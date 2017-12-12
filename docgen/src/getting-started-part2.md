@@ -228,4 +228,4 @@ This is only an introduction to what you can do with InstantSearch iOS:
 [widgets-searchbox]: widgets.html#searchbar
 [widgets-refinementlist]: widgets.html#refinementlist
 [widgets-stats]: widgets.html#stats
-[viewmodels]: concepts#viewmodels
+[viewmodels]: concepts.html#viewmodels
