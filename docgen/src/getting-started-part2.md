@@ -115,11 +115,13 @@ In this part, you've learned:
 - How to configure the widget.
 - How to specify the look and feel of your refinement cells.
 
-### Multi-index
+## Display your data from multiple hits
 
 It is probable that your app is targeting multiple indices: for example, you want to search through bestbuy items, as well as IKEA items. Let's see how this is possible.
 
 First make sure that you're using the latest version of InstantSearch (after 2.1.0).
+
+### Code
 
 In order to specify to InstantSearch which index you want to target, go to your `AppDelegate` and then inside your `application(_:didFinishLaunchingWithOptions:)` method, replace what is in it with:
 
@@ -181,6 +183,8 @@ Things to note:
 First, from the previous single-index implementation, we changed changed some classes from `HitsXYZ` to `MultiHitsXYZ`. These are `MultiHitsTableViewController` and `MultiHitsTableWidget`, 
 Nothing changed in the `ViewDidLoad`, and in the `cellForRowAt` method, we now have to deal with 2 sections since we'll have one for bestbuy, and one for ikea. Finally, we specify a `viewForHeaderInSection` to put a separator between these 2 sections.
 
+### Storyboard
+
 Now, head into the `Main.Storyboard`, select your stat widget, and then in the property inspector, add `ikea` to the `index` field. This specifies that the stats label shows number of results for ikea products. Next, click on the tableView which show the hits, and then in the identity inspector, change the class to `MultiHitsTableWidget`. Then, head to the identity inspector and specify the following:
 
 - Indices: `bestbuy_promo,ikea`
@@ -189,13 +193,11 @@ Now, head into the `Main.Storyboard`, select your stat widget, and then in the p
 Here, we are saying that we want to show the `bestbuy_promo` index in the first section and the `ikea` index in the second. 
 We also specify that we want 5 hits to appear for the `bestbuy_promo` index and 10 for the `ikea` index.
 
-Note: Variant would be used (for example: `main,details`) if you want 2 widgets to use the same index but with different configurations. You also have to specify those variants when configuring InstantSearch using the `SearcherId(index:variant)` constructor instead of `SearcherId(index:)`.
-
 Great, now **run your app**, search in the search bar and you should see results appearing from the indices!
 
-There's still one more thing: If you click on the filter button, the app will crash. Why is that? This is because we are in "multi-index" mode and the refinement list doesn't have a clue what index to target: is it bestbuy_promo or ikea? In order to specify this, go to your `main.storyboard` class, then click on the refinement list. In the attribute inspector, specify `bestbuy_promo` as the index.
+There's still one more thing: If you click on the filter button, **the app will crash**. Why is that? This is because we are in "multi-index" mode and the refinement list doesn't have a clue what index to target: is it bestbuy_promo or ikea? 
 
-A Note on the `SearchBarWidet`: by not specifying any index there, InstantSearch will conclude that the Search bar should search in all index. If an index was specified, then the `SearchBarWidget` would only trigger a search in that particular widget. 
+In order to specify this, go to your `main.storyboard` class, then click on the refinement list. In the attribute inspector, specify `bestbuy_promo` as the index.
 
 Now go ahead and **run your app again**. When going to the filters screen and selecting a filter, you'll notice in the main screen that the refinements are only being applied to the `bestbuy_promo` index.
 
@@ -204,6 +206,11 @@ In this part, you've learned:
 - How to configure InstantSearch for Multi-indexing.
 - How to use the `MultiHitsTableWidget` which can show different indices.
 - How to specify an index for widgets such as the `StatsLabelWidget` and the `RefinementTableWidget`.
+
+### Notes
+
+- You might have seen `Variant` or `Variants` attributes in the identity inspector (variants example: `main,details`). These are used in case you want 2 widgets to use the same index but with different configurations. You also have to specify those variants when configuring InstantSearch using the `SearcherId(index:variant)` constructor instead of `SearcherId(index:)`.
+- Concerning the `SearchBarWidet`: by not specifying any index there, InstantSearch will conclude that the Search bar should search in all index. If an index was specified, then the `SearchBarWidget` would only trigger a search in that particular widget. 
 
 ## Go further
 
