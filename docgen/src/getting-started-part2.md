@@ -115,7 +115,7 @@ In this part, you've learned:
 - How to configure the widget.
 - How to specify the look and feel of your refinement cells.
 
-## Display your data from multiple hits
+## Display data from multiple hits
 
 It is probable that your app is targeting multiple indices: for example, you want to search through bestbuy items, as well as IKEA items. Let's see how this is possible.
 
