@@ -46,7 +46,7 @@ public class MultiHitsViewModel: MultiHitsViewModelDelegate, SearchableMultiInde
         // Deal only with the searchers that have been specified in the widget
         searcherIds.forEach { (searcherId) in
             guard let searcher = searchers.first(where: {
-                $0.indexName == searcherId.index && $0.indexId == searcherId.variant
+                $0.indexName == searcherId.index && $0.variant == searcherId.variant
             }) else {
                 fatalError("Index name not declared when configuring InstantSearch")
             }

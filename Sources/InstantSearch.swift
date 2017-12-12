@@ -145,7 +145,7 @@ import UIKit
             let index = client.index(withName: searcherId.index)
             let searcher = Searcher(index: index)
             searcher.indexName = searcherId.index
-            searcher.indexId = searcherId.variant
+            searcher.variant = searcherId.variant
             searchers[searcherId] = searcher
         }
         
@@ -427,7 +427,7 @@ import UIKit
     public func searcher(_ searcher: Searcher, didReceive results: SearchResults?, error: Error?, userInfo: [String: Any]) {
         
         if isMultiIndexActive {
-            let searcherId = SearcherId(index: searcher.indexName, variant: searcher.indexId)
+            let searcherId = SearcherId(index: searcher.indexName, variant: searcher.variant)
             if let multiIndexResultingDelegates = self.multiIndexResultingDelegates[searcherId] {
                 for algoliaWidget in multiIndexResultingDelegates {
                     algoliaWidget.on(results: results, error: error, userInfo: userInfo)
