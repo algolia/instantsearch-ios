@@ -1,7 +1,7 @@
 Pod::Spec.new do |s|
     s.name             = "InstantSearch-iOS"
     s.module_name      = 'InstantSearch'
-    s.version          = "2.0.0"
+    s.version          = "2.0.1"
     s.summary          = "A library of widgets and helpers to build instant-search applications on iOS."
     s.homepage         = "https://github.com/algolia/instantsearch-ios"
     s.license          = { type: 'MIT', file: 'LICENSE.md' }
