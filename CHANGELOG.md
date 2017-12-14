@@ -1,5 +1,11 @@
 Change Log
 ==========
+## 2.1.0 (2017-12-12)
+
+- Multi-Index functionality added to all widgets with the introduction of the index and variant field.
+- Adding 2 new widgets: `MultiHitsTableWidget` and `MultiHitsCollectionWidget` that can handle multiple indices in different sections.
+- Introduction of 6 ViewModels that encapsulate the business logic of the widgets. You can use them to easily access the search state for better customization.
+`SearchViewModel`, `HitsViewModel`, `MultiHitsViewModel`, `NumericControlViewModel`, `FacetControlViewModel`, `RefinementMenuViewModel`.
 
 ## 2.0.0 (2017-10-01)
 
