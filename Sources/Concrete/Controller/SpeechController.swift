@@ -8,12 +8,15 @@
 import UIKit
 import Speech
 
-/// A controller object that manages the speech recognition to text
-/// `SpeechController` is using the Speech framework, so it can only be used with iOS 10+
-
 public typealias SpeechTextHandler = (String, Bool) -> Void
 public typealias SpeechErrorHandler = (Error?) -> Void
 
+/// A controller object that manages the speech recognition to text
+/// `SpeechController` is using the Speech framework, so it can only be used with iOS 10+
+/// Simply initilise the controller with the desired `locale` or the device's `default` one
+/// let speechController = SpeechController()
+/// let speechController = SpeechController(locale: Locale(identifier: "fr_FR"))
+/// Do not forget to add `NSSpeechRecognitionUsageDescription` and `NSMicrophoneUsageDescription` to your Info.plist
 @available(iOS 10.0, *)
 @objc public class SpeechController: NSObject, SFSpeechRecognizerDelegate {
   
@@ -22,24 +25,22 @@ public typealias SpeechErrorHandler = (Error?) -> Void
   private var speechTask: SFSpeechRecognitionTask?
   private let audioEngine = AVAudioEngine()
   
-  public func isRecording() -> Bool {
-      return audioEngine.isRunning
+  /// Init with the device's default locale
+  override public convenience init() {
+    self.init(speechRecognizer: SFSpeechRecognizer())
   }
   
-  /// Init with a locale or use the device's default one
-  public init(locale: Locale?) {
-    var recognizer: SFSpeechRecognizer?
-    if locale != nil {
-      recognizer = SFSpeechRecognizer(locale: locale!)
-    } else {
-      recognizer = SFSpeechRecognizer()
-    }
-    if recognizer == nil {
+  /// Init with a locale
+  public convenience init(locale: Locale) {
+    self.init(speechRecognizer: SFSpeechRecognizer(locale: locale))
+  }
+  
+  private init(speechRecognizer: SFSpeechRecognizer?) {
+    guard let speechRecognizer = speechRecognizer else {
       fatalError("Locale not supported. Check SpeechController.supportedLocales() or  SpeechController.localeSupported(locale: Locale)")
     }
-    speechRecognizer = recognizer!
+    self.speechRecognizer = speechRecognizer
     super.init()
-    speechRecognizer.delegate = self
   }
   
   /// Helper to get a list of supported locales
@@ -64,12 +65,15 @@ public typealias SpeechErrorHandler = (Error?) -> Void
     }
   }
   
-  /// Start recording: the method is going to give infinite stream of speech-to-text until `stopRecording` is called or an error is encounter
+  public func isRecording() -> Bool {
+    return audioEngine.isRunning
+  }
   
+  /// The method is going to give an infinite stream of speech-to-text until `stopRecording` is called or an error is encounter
   public func startRecording(textHandler: @escaping SpeechTextHandler, errorHandler: @escaping SpeechErrorHandler) {
-    requestAuthorization { (status) in
-      if status {
-        if (!self.audioEngine.isRunning) {
+    requestAuthorization { (authStatus) in
+      if authStatus {
+        if !self.audioEngine.isRunning {
             self.record(textHandler: textHandler, errorHandler: errorHandler)
         }
       } else {
