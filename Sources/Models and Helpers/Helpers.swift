@@ -86,8 +86,8 @@ private class WeakObject<T: AnyObject>: Hashable {
     
     weak var object: T?
     
-    init(_ object: T) {
-        self.object = object
+    init(_ obj: T?) {
+        object = obj
     }
     
     var hashValue: Int {
@@ -105,7 +105,7 @@ private func == <T> (lhs: WeakObject<T>, rhs: WeakObject<T>) -> Bool {
     return lhs.object === rhs.object
 }
 
-internal struct WeakSet<T: AnyObject>: Sequence {
+internal struct WeakSet<T>: Sequence where T : AnyObject{
     
     private var _objects: Set<WeakObject<T>>
     
@@ -125,11 +125,13 @@ internal struct WeakSet<T: AnyObject>: Sequence {
         return self._objects.contains(WeakObject(object))
     }
     
-    public mutating func add(_ object: T) {
+    public mutating func add(_ object: T?) {
+        clean()
         _objects.insert(WeakObject(object))
     }
     
     public mutating func add(_ objects: [T]) {
+        clean()
         _objects.formUnion(objects.map { WeakObject($0) })
     }
     
@@ -139,6 +141,10 @@ internal struct WeakSet<T: AnyObject>: Sequence {
     
     public mutating func remove(_ objects: [T]) {
         _objects.subtract(objects.map { WeakObject($0) })
+    }
+  
+    private mutating func clean() {
+        _objects = _objects.filter { $0.object != nil }
     }
     
     public func makeIterator() -> AnyIterator<T> {
