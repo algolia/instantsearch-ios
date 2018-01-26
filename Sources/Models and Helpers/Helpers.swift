@@ -82,77 +82,49 @@ func print(_ item: @autoclosure () -> Any, separator: String = " ", terminator: 
     #endif
 }
 
-private class WeakObject<T: AnyObject>: Hashable {
-    
-    weak var object: T?
-    
-    init(_ obj: T?) {
-        object = obj
-    }
-    
-    var hashValue: Int {
-        var hashValue = 0
-        if var object = object {
-            withUnsafePointer(to: &object, {
-                hashValue = $0.hashValue
-            })
-        }
-        return hashValue
-    }
-}
-
-private func == <T> (lhs: WeakObject<T>, rhs: WeakObject<T>) -> Bool {
-    return lhs.object === rhs.object
-}
-
 internal struct WeakSet<T>: Sequence where T : AnyObject{
     
-    private var _objects: Set<WeakObject<T>>
-    
-    public init() {
-        _objects = Set<WeakObject<T>>()
-    }
-    
-    public init(_ objects: [T]) {
-        self._objects = Set<WeakObject<T>>(objects.map { WeakObject($0) })
-    }
-    
-    public var objects: [T] {
-        return _objects.flatMap { $0.object }
-    }
-    
-    public func contains(object: T) -> Bool {
-        return self._objects.contains(WeakObject(object))
-    }
-    
-    public mutating func add(_ object: T?) {
-        clean()
-        _objects.insert(WeakObject(object))
-    }
-    
-    public mutating func add(_ objects: [T]) {
-        clean()
-        _objects.formUnion(objects.map { WeakObject($0) })
-    }
-    
-    public mutating func remove(_ object: T) {
-        _objects.remove(WeakObject(object))
-    }
-    
-    public mutating func remove(_ objects: [T]) {
-        _objects.subtract(objects.map { WeakObject($0) })
-    }
+  private var _objects: NSHashTable<T>
   
-    private mutating func clean() {
-        _objects = _objects.filter { $0.object != nil }
+  public init() {
+    _objects = NSHashTable<T>.weakObjects()
+  }
+  
+  public init(_ objects: [T]) {
+    self.init()
+    add(objects)
+  }
+  
+  public var objects: [T] {
+    return _objects.allObjects
+  }
+  
+  public func contains(object: T) -> Bool {
+    return _objects.contains(object)
+  }
+  
+  public mutating func add(_ object: T) {
+    _objects.add(object)
+  }
+  
+  public mutating func add(_ objects: [T]) {
+    objects.forEach({ self._objects.add($0)})
+  }
+  
+  public mutating func remove(_ object: T) {
+    _objects.remove(object)
+  }
+  
+  public mutating func remove(_ objects: [T]) {
+    objects.forEach({ self._objects.remove($0)})
+  }
+  
+  public func makeIterator() -> AnyIterator<T> {
+    let objects = self.objects
+    var index = 0
+    return AnyIterator {
+      defer { index += 1 }
+      return index < objects.count ? objects[index] : nil
     }
-    
-    public func makeIterator() -> AnyIterator<T> {
-        let objects = self.objects
-        var index = 0
-        return AnyIterator {
-            defer { index += 1 }
-            return index < objects.count ? objects[index] : nil
-        }
-    }
+  }
 }
