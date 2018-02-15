@@ -64,6 +64,8 @@ Example of a query suggestion search interface.
 - When clicking a query suggestion, the search bar is filled with that suggestion and results are refreshed
 - Showing how you can use the ViewModels for customization of your widgets
 
+To learn how you can setup Query Suggestion on your Algolia application, [read this guide](https://www.algolia.com/doc/guides/analytics/query-suggestions/).
+
 <a href="https://github.com/algolia/instantsearch-ios-examples/tree/master/Query%20Suggestions" class="btn btn-static-primary" target="_blank">View source code on GitHub <i class="icon icon-arrow-right"></i></a>
 
 <br />
