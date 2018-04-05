@@ -133,6 +133,15 @@ import UIKit
         self.configure(appID: appID, apiKey: apiKey, searcherIds: searcherIds)
     }
     
+    /// Create a new InstantSearch reference with the given configurations.
+    ///
+    /// - parameter searchables: an array of searchables
+    /// - parameter searchersIds: an array of searcherId that identifies a specific index
+    @objc public convenience init(searchables: [Searchable], searcherIds: [SearcherId]) {
+        self.init()
+        self.configure(searchables: searchables, searcherIds: searcherIds)
+    }
+    
     /// Configure the InstantSearch reference with the given configurations.
     ///
     /// - parameter appID: the Algolia AppID.
@@ -144,6 +153,21 @@ import UIKit
         for searcherId in searcherIds {
             let index = client.index(withName: searcherId.index)
             let searcher = Searcher(index: index)
+            searcher.indexName = searcherId.index
+            searcher.variant = searcherId.variant
+            searchers[searcherId] = searcher
+        }
+        
+        configureMulti(searchers: searchers)
+    }
+    
+    /// Configure the InstantSearch reference with the given configurations.
+    ///
+    /// - parameter searchables: an array of searchables
+    /// - parameter searchersIds: an array of searcherId that identifies a specific index
+    @objc public func configure(searchables: [Searchable], searcherIds: [SearcherId]) {
+        for (searchable, searcherId) in zip(searchables, searcherIds) {
+            let searcher = Searcher(index: searchable)
             searcher.indexName = searcherId.index
             searcher.variant = searcherId.variant
             searchers[searcherId] = searcher

@@ -69,14 +69,14 @@ end
 def prepare_git(branch)
 	ensure_git_status_clean
 	# ensure_git_branch(branch:branch)
-	masterHash = sh("git rev-parse origin/master")
+	masterHash = sh("git rev-parse origin/#{branch}")
 	headHash = sh("git rev-parse HEAD")
 	
 	if masterHash != headHash 
 		raise "Error: Master and Head Hashes do not match, meaning that we are probably not on Master and therefore can't deploy"
 	end
 
-	sh("git checkout master")
+	sh("git checkout #{branch}")
 	
 	# git_pull
 end
