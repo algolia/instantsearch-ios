@@ -37,12 +37,12 @@ lane :deploy do |options|
 	)
 	new_build_number = version_bump_podspec(
 		bump_type: options[:type],
-		path: "InstantSearch-iOS.podspec"
+		path: "InstantSearch.podspec"
 	)
 
 	#puts changelog_from_git_commits
 	git_commit(
-		path: ["InstantSearch-iOS.podspec", "Sources/Info.plist" ,"Tests/Info.plist", "InstantSearchTestsHost/Info.plist"], 
+		path: ["InstantSearch.podspec", "Sources/Info.plist" ,"Tests/Info.plist", "InstantSearchTestsHost/Info.plist"], 
 		message: "Version #{new_build_number}"
 	)
 	add_git_tag(
@@ -51,7 +51,7 @@ lane :deploy do |options|
 	)
 	push_to_git_remote(remote: "origin")
 	pod_push(
-		path: "InstantSearch-iOS.podspec",
+		path: "InstantSearch.podspec",
 		allow_warnings: true
 	)
 

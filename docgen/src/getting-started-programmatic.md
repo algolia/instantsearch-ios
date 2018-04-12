@@ -37,7 +37,7 @@ We will use CocoaPods for adding the dependency to `InstantSearch`.
 
 - If you don't have CocoaPods installed on your machine, open your terminal and run `sudo gem install cocoapods`.
 - Go to the root of your project then type `pod init`. A `Podfile` will be created for you.
-- Open your `Podfile` and add `pod 'InstantSearch-iOS'` below your target.
+- Open your `Podfile` and add `pod 'InstantSearch'` below your target.
 - On your terminal, run `pod update`.
 - Close you Xcode project and then at the root of your project, open `projectName.xcworkspace`.
 
