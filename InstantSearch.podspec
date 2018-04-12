@@ -1,5 +1,5 @@
 Pod::Spec.new do |s|
-    s.name             = "InstantSearch-iOS"
+    s.name             = "InstantSearch"
     s.module_name      = 'InstantSearch'
     s.version          = "2.1.1"
     s.summary          = "A library of widgets and helpers to build instant-search applications on iOS."
@@ -10,10 +10,18 @@ Pod::Spec.new do |s|
     s.social_media_url = 'https://twitter.com/algolia'
     s.ios.deployment_target = '8.0'
     s.requires_arc = true
+    s.default_subspec = "Widgets"
 
-    s.source_files = [
-        'Sources/**/*.{swift}'
-    ]
+    s.subspec "Widgets" do |ss|
+        ss.source_files = 'Sources/**/*.{swift}'
+        ss.dependency 'InstantSearch-Core-Swift', '~> 3.2'
+    end
 
-    s.dependency 'InstantSearch-Core-Swift', '~> 3.2'
+    s.subspec "Core" do |ss|
+        ss.dependency 'InstantSearch-Core-Swift', '~> 3.2'
+    end
+
+    s.subspec "Client" do |ss|
+        ss.dependency 'AlgoliaSearch-Client-Swift', '~> 5.0'
+    end
 end
