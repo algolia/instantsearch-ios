@@ -10,18 +10,18 @@ Pod::Spec.new do |s|
     s.social_media_url = 'https://twitter.com/algolia'
     s.ios.deployment_target = '8.0'
     s.requires_arc = true
-    s.default_subspec = "Widgets"
+    s.default_subspec = "UI"
 
-    s.subspec "Widgets" do |ss|
+    s.subspec "UI" do |ss|
         ss.source_files = 'Sources/**/*.{swift}'
-        ss.dependency 'InstantSearch-Core-Swift', '~> 3.2'
+        ss.dependency 'InstantSearchCore', '~> 3.2'
     end
 
     s.subspec "Core" do |ss|
-        ss.dependency 'InstantSearch-Core-Swift', '~> 3.2'
+        ss.dependency 'InstantSearchCore', '~> 3.2'
     end
 
     s.subspec "Client" do |ss|
-        ss.dependency 'AlgoliaSearch-Client-Swift', '~> 5.0'
+        ss.dependency 'InstantSearchClient', '~> 5.0'
     end
 end
