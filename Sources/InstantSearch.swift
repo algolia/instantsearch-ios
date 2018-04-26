@@ -7,8 +7,8 @@
 //
 
 import Foundation
-import InstantSearchCore
-import AlgoliaSearch
+@_exported import InstantSearchCore
+@_exported import AlgoliaSearch
 import UIKit
 
 /// Main class used for interacting with the InstantSearch library.
