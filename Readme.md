@@ -12,7 +12,7 @@ By [Algolia](http://algolia.com).
 
 InstantSearch family: **InstantSearch iOS** | [InstantSearch Android][instantsearch-android-github] | [React InstantSearch][react-instantsearch-github] | [InstantSearch.js][instantsearch-js-github].
 
-**InstantSearch iOS** is a library providing widgets and helpers to help you build the best instant-search experience on iOS with Algolia. It is built on top of Algolia's [Swift API Client](https://github.com/algolia/algoliasearch-client-swift) to provide you a high-level solution to quickly build various search interfaces.
+**InstantSearch iOS** is a framework providing widgets and helpers to help you build the best instant-search experience on iOS with Algolia. It is built on top of Algolia's [Swift API Client](https://github.com/algolia/algoliasearch-client-swift) library to provide you a high-level solution to quickly build various search interfaces.
 
 <!-- <img src="Example/InstantSearch.gif" width="300"/> -->
 
@@ -36,7 +36,7 @@ You can see InstantSearch iOS in action in our [Examples repository][ecommerce-u
 To install InstantSearch, simply add the following line to your Podfile:
 
 ```ruby
-pod 'InstantSearch', '~> 2.0.0'
+pod 'InstantSearch', '~> 2.0'
 # pod 'InstantSearch/Widgets' for access to everything
 # pod 'InstantSearch/Core' for access to everything except the UI widgets
 # pod 'InstantSearch/Client' for access only to the API Client
@@ -54,9 +54,17 @@ $ pod update
 
 To install InstantSearch, simply add the following line to your Cartfile:
 
-```ogdl
-github "algolia/instantsearch-ios" ~> 2.0
+```ruby
+github "algolia/instantsearch-ios" ~> 2.0 # for access to everything
+# github "algolia/instantsearch-core-swift" for access to everything except the UI widgets
+# github "algolia/algoliasearch-client-swift" for access only to the API Client
 ```
+
+#### SwiftPM 
+
+The API client is the only library of the framework available on SwiftPM.
+
+To install the API Client, add `.package(url:"https://github.com/algolia/algoliasearch-client-swift", from: "5.0.0")` to your package dependencies array in Package.swift, then add `AlgoliaSearch` to your target dependencies.
 
 ## Documentation
 
