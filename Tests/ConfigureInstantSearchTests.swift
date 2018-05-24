@@ -8,7 +8,7 @@
 import XCTest
 @testable import InstantSearch
 import InstantSearchCore
-import AlgoliaSearch
+import InstantSearchClient
 
 class ConfigureInstantSearchTests: XCTestCase {
     
