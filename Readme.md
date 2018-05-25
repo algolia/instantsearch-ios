@@ -56,8 +56,8 @@ To install InstantSearch, simply add the following line to your Cartfile:
 
 ```ruby
 github "algolia/instantsearch-ios" ~> 2.0 # for access to everything
-# github "algolia/instantsearch-core-swift" for access to everything except the UI widgets
-# github "algolia/algoliasearch-client-swift" for access only to the API Client
+# github "algolia/instantsearch-core-swift" ~> 3.0 # for access to everything except the UI widgets
+# github "algolia/algoliasearch-client-swift" ~> 5.0 # for access only to the API Client
 ```
 
 #### SwiftPM 
