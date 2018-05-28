@@ -22,10 +22,10 @@ InstantSearch, as you probably know, offers reactive UI widgets that automatical
 
 ## A basic implementation of using a custom backend
 
-The most basic implementation of using a custom backend uses the `DefaultSearchTransformer` and requires you to implement just one method: `search(query:searchResultsHandler:)`. In this function, you use the query passed to you, make a network request to your backend server, transform the response into a `SearchResults` instance, and then finally call the `searchResultsHandler` callback with the searchResults. In case of error, you call the callback with the error. Here is an example using the Alamofire networking library.
+The most basic implementation of using a custom backend uses the `DefaultSearchClient` and requires you to implement just one method: `search(query:searchResultsHandler:)`. In this function, you use the query passed to you, make a network request to your backend server, transform the response into a `SearchResults` instance, and then finally call the `searchResultsHandler` callback with the searchResults. In case of error, you call the callback with the error. Here is an example using the Alamofire networking library.
 
 ``` swift
-public class DefaultCustomBackend: DefaultSearchTransformer {
+public class DefaultCustomBackend: DefaultSearchClient {
     override public func search(_ query: Query, searchResultsHandler: @escaping SearchResultsHandler) {
         // 1
         let queryText = query.query ?? ""
@@ -79,7 +79,7 @@ public struct ElasticSearchResults {
 }
 
 // 2
-public class ElasticImplementation: SearchTransformer<ElasticSearchParameters, ElasticSearchResults> {
+public class ElasticImplementation: SearchClient<ElasticSearchParameters, ElasticSearchResults> {
 
     // 3
     public override func map(query: Query) -> ElasticSearchParameters {
@@ -139,7 +139,7 @@ public class ElasticImplementation: SearchTransformer<ElasticSearchParameters, E
 
 1- Create your models that will hold the query parameters and results that you need in order to make your custom backend call
 
-2- Create your class that inherits from `SearchTransformer`. Use your 2 models created in 1 for the generics of that class. This is will ensure strong typing and good practices throughout this implementation.
+2- Create your class that inherits from `SearchClient`. Use your 2 models created in 1 for the generics of that class. This is will ensure strong typing and good practices throughout this implementation.
 
 3- Implement the basic param mapper function that converts a query to your parameter model. Make sure to take all the fields you need from the query parameter.
 
