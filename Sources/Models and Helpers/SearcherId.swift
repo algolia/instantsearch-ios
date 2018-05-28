@@ -7,7 +7,7 @@
 
 import Foundation
 
-@objc public class SearcherId: NSObject {
+@objcMembers public class SearcherId: NSObject {
     
     /// The name of the index.
     var index: String

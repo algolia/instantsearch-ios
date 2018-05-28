@@ -9,7 +9,7 @@
 import UIKit
 
 /// Widget that stats about Algolia search results. Built on top of `UIButton`.
-@objc public class StatsButtonWidget: UIButton, StatsViewDelegate, AlgoliaWidget {
+@objcMembers public class StatsButtonWidget: UIButton, StatsViewDelegate, AlgoliaWidget {
     
     @IBInspectable public var resultTemplate: String = Constants.Defaults.resultTemplate
     @IBInspectable public var errorText: String = Constants.Defaults.errorText

@@ -11,7 +11,7 @@ import UIKit
 
 /// Widget that displays your search results. Built over a `UITableView`.
 /// + Note: This is best used with a HitsController (through composition) or a HitsTableViewController (through inheritance).
-@objc public class HitsTableWidget: UITableView, HitsViewDelegate, AlgoliaWidget {
+@objcMembers public class HitsTableWidget: UITableView, HitsViewDelegate, AlgoliaWidget {
     
     @IBInspectable public var hitsPerPage: UInt = Constants.Defaults.hitsPerPage
     @IBInspectable public var infiniteScrolling: Bool = Constants.Defaults.infiniteScrolling
