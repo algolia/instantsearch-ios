@@ -12,7 +12,7 @@ import Foundation
 /// + Note: Use this for boolean values. (Example: "Sale" and "no sale")
 /// + Remark: You must assign a value to the `attribute` property since the refinement table cannot operate without one. 
 /// A FatalError will be thrown if you don't specify anything.
-@objc public class TwoValuesSwitchWidget: SwitchWidget {
+@objcMembers public class TwoValuesSwitchWidget: SwitchWidget {
     
     /// Value used for facet when the Switch is off
     @IBInspectable public var valueOff: String = Constants.Defaults.valueOff

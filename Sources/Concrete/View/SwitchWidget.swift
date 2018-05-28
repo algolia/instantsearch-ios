@@ -10,7 +10,7 @@ import Foundation
 import UIKit
 
 /// + Warning: Do Not use this class. Only use `OneValueSwitchWidget` or `TwoValuesSwitchWidget`.
-@objc public class SwitchWidget: UISwitch, FacetControlViewDelegate, AlgoliaWidget {
+@objcMembers public class SwitchWidget: UISwitch, FacetControlViewDelegate, AlgoliaWidget {
     
     @IBInspectable public var attribute: String = Constants.Defaults.attribute
     /// Value used for facet when the Switch is on

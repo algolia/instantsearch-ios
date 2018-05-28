@@ -10,7 +10,7 @@ import UIKit
 import InstantSearchCore
 
 /// Widget that spins when an Algolia request is ongoing. Built on top of `UIActivityIndicatorView`.
-@objc public class ActivityIndicatorWidget: UIActivityIndicatorView,
+@objcMembers public class ActivityIndicatorWidget: UIActivityIndicatorView,
 SearchableViewModel, SearchProgressDelegate, AlgoliaIndexWidget {
     
     @IBInspectable public var index: String = Constants.Defaults.index

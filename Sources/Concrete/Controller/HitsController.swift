@@ -14,7 +14,7 @@ import UIKit
 /// - tableDelegate: Delegate to specify the behavior when a table hit cell is selected.
 /// - collectionDataSource: DataSource to specify the layout of a collection hit cell.
 /// - collectionDelegate: Delegate to specify the behavior when a collection hit cell is selected.
-@objc public class HitsController: NSObject {
+@objcMembers public class HitsController: NSObject {
     
     /// Reference to the viewModel associated with the hits widget.
     var viewModel: HitsViewModelDelegate

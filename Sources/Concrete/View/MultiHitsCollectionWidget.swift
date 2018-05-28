@@ -18,7 +18,7 @@ import Foundation
 import UIKit
 
 /// Widget that displays the search results of multi index. Built over a `UITableView`.
-@objc public class MultiHitsCollectionWidget: UICollectionView, MultiHitsViewDelegate, AlgoliaWidget {
+@objcMembers public class MultiHitsCollectionWidget: UICollectionView, MultiHitsViewDelegate, AlgoliaWidget {
     
     @IBInspectable public var showItemsOnEmptyQuery: Bool = Constants.Defaults.showItemsOnEmptyQuery
     

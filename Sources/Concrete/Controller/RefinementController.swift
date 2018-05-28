@@ -14,7 +14,7 @@ import UIKit
 /// - tableDelegate: Delegate to specify the behavior when a table refinement cell is selected.
 /// - collectionDataSource: DataSource to specify the layout of a collection refinement cell.
 /// - collectionDelegate: Delegate to specify the behavior when a collection refinement cell is selected.
-@objc public class RefinementController: NSObject {
+@objcMembers public class RefinementController: NSObject {
     
     /// Reference to the viewModel associated with the refinement widget.
     var viewModel: RefinementMenuViewModelDelegate
