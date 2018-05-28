@@ -69,34 +69,34 @@ let's start with the code snippet
 ```swift
 
 // 1
-public struct ElasticSearchParameters {
+public struct BackendSearchParameters {
     var q: String?
     var disjunctiveFacets: [String]?
 }
-public struct ElasticSearchResults {
+public struct BackendSearchResults {
     var total: Int
     var hits: [[String: Any]]
 }
 
 // 2
-public class ElasticImplementation: SearchClient<ElasticSearchParameters, ElasticSearchResults> {
+public class BackendImplementation: SearchClient<BackendSearchParameters, BackendSearchResults> {
 
     // 3
-    public override func map(query: Query) -> ElasticSearchParameters {
+    public override func map(query: Query) -> BackendSearchParameters {
         let queryText = query.query
         
-        return ElasticSearchParameters(q: queryText, disjunctiveFacets: nil)
+        return BackendSearchParameters(q: queryText, disjunctiveFacets: nil)
     }
     
     // 4
-    public override func map(query: Query, disjunctiveFacets: [String], refinements: [String : [String]]) -> ElasticSearchParameters {
+    public override func map(query: Query, disjunctiveFacets: [String], refinements: [String : [String]]) -> BackendSearchParameters {
         let queryText = query.query
         
-        return ElasticSearchParameters(q: queryText, disjunctiveFacets: disjunctiveFacets)
+        return BackendSearchParameters(q: queryText, disjunctiveFacets: disjunctiveFacets)
     }
     
     // 5
-    public override func map(results: ElasticSearchResults) -> SearchResults {
+    public override func map(results: BackendSearchResults) -> SearchResults {
         let nbHits = results.total
         let hits = results.hits
         
@@ -109,7 +109,7 @@ public class ElasticImplementation: SearchClient<ElasticSearchParameters, Elasti
     }
     
     // 7
-    public override func search(_ query: ElasticSearchParameters, searchResultsHandler: @escaping SearchResultsHandler) {
+    public override func search(_ query: BackendSearchParameters, searchResultsHandler: @escaping SearchResultsHandler) {
         
         let queryText = query.q ?? ""
         
@@ -122,10 +122,10 @@ public class ElasticImplementation: SearchClient<ElasticSearchParameters, Elasti
                     let total = hitsJson["total"] as! Int
                     let hits = hitsJson["hits"] as! [[String: Any]]
                     
-                    let elasticSearchResults = ElasticSearchResults(total: total, hits: hits)
+                    let backendSearchResults = BackendSearchResults(total: total, hits: hits)
                     
                     // 8
-                    searchResultsHandler(elasticSearchResults, nil)
+                    searchResultsHandler(backendSearchResults, nil)
                     
                 } catch let error {
                     searchResultsHandler(nil, error)
