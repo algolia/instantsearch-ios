@@ -180,7 +180,7 @@ class HitsViewController: MultiHitsTableViewController {
 
 Things to note: 
 
-First, from the previous single-index implementation, we changed changed some classes from `HitsXYZ` to `MultiHitsXYZ`. These are `MultiHitsTableViewController` and `MultiHitsTableWidget`, 
+First, from the previous single-index implementation, we changed some classes from `HitsXYZ` to `MultiHitsXYZ`. These are `MultiHitsTableViewController` and `MultiHitsTableWidget`, 
 Nothing changed in the `ViewDidLoad`, and in the `cellForRowAt` method, we now have to deal with 2 sections since we'll have one for bestbuy, and one for ikea. Finally, we specify a `viewForHeaderInSection` to put a separator between these 2 sections.
 
 ### Storyboard
