@@ -13,7 +13,7 @@ import UIKit
 /// + Note: Use this for multiple facet values.
 /// + Remark: You must assign a value to the `attribute` property since the refinement table cannot operate without one. 
 /// A FatalError will be thrown if you don't specify anything.
-@objc public class SegmentedControlWidget: UISegmentedControl, FacetControlViewDelegate, AlgoliaWidget {
+@objcMembers public class SegmentedControlWidget: UISegmentedControl, FacetControlViewDelegate, AlgoliaWidget {
     
     private var oldSegmentedIndex: Int = UISegmentedControlNoSegment
     private var actualSegmentedIndex: Int = UISegmentedControlNoSegment

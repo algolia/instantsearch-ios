@@ -7,14 +7,14 @@
 //
 
 import Foundation
-import InstantSearchCore
-import AlgoliaSearch
+@_exported import InstantSearchCore
+@_exported import InstantSearchClient
 import UIKit
 
 /// Main class used for interacting with the InstantSearch library.
 /// The most important thing that it does is binding the Searcher/Index to the widgets.
 /// It also takes care of managing search components: `UISearchBar` and `UISearchController`.
-@objc public class InstantSearch: NSObject, SearcherDelegate {
+@objcMembers public class InstantSearch: NSObject, SearcherDelegate {
     
     /// The singleton reference of InstantSearch.
     /// It is advised to use this shared reference in case you're dealing with a single index in your app.

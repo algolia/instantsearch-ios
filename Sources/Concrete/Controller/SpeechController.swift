@@ -18,7 +18,7 @@ public typealias SpeechErrorHandler = (Error?) -> Void
 /// let speechController = SpeechController(locale: Locale(identifier: "fr_FR"))
 /// Do not forget to add `NSSpeechRecognitionUsageDescription` and `NSMicrophoneUsageDescription` to your Info.plist
 @available(iOS 10.0, *)
-@objc public class SpeechController: NSObject, SFSpeechRecognizerDelegate {
+@objcMembers public class SpeechController: NSObject, SFSpeechRecognizerDelegate {
   
   private let speechRecognizer: SFSpeechRecognizer
   private var speechRequest: SFSpeechAudioBufferRecognitionRequest?

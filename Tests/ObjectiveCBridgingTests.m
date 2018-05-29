@@ -9,7 +9,7 @@
 #import <XCTest/XCTest.h>
 
 @import InstantSearch;
-@import AlgoliaSearch;
+@import InstantSearchClient;
 @import InstantSearchCore;
 
 /// Verifies that all the features are accessible from Objective-C.

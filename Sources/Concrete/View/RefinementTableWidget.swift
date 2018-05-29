@@ -13,7 +13,7 @@ import UIKit
 /// + Note: This is best used with a RefinementController (through composition) or a RefinementTableViewController (through inheritance).
 /// + Remark: You must assign a value to the `attribute` property since the refinement table cannot operate without one.
 /// A FatalError will be thrown if you don't specify anything.
-@objc public class RefinementTableWidget: UITableView, RefinementMenuViewDelegate, AlgoliaWidget {
+@objcMembers public class RefinementTableWidget: UITableView, RefinementMenuViewDelegate, AlgoliaWidget {
     
     @IBInspectable public var attribute: String = Constants.Defaults.attribute
     @IBInspectable public var refinedFirst: Bool = Constants.Defaults.refinedFirst

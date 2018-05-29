@@ -37,12 +37,12 @@ lane :deploy do |options|
 	)
 	new_build_number = version_bump_podspec(
 		bump_type: options[:type],
-		path: "InstantSearch-iOS.podspec"
+		path: "InstantSearch.podspec"
 	)
 
 	#puts changelog_from_git_commits
 	git_commit(
-		path: ["InstantSearch-iOS.podspec", "Sources/Info.plist" ,"Tests/Info.plist", "InstantSearchTestsHost/Info.plist"], 
+		path: ["InstantSearch.podspec", "Sources/Info.plist" ,"Tests/Info.plist", "InstantSearchTestsHost/Info.plist"], 
 		message: "Version #{new_build_number}"
 	)
 	add_git_tag(
@@ -51,7 +51,7 @@ lane :deploy do |options|
 	)
 	push_to_git_remote(remote: "origin")
 	pod_push(
-		path: "InstantSearch-iOS.podspec",
+		path: "InstantSearch.podspec",
 		allow_warnings: true
 	)
 
@@ -83,8 +83,13 @@ end
 
 def update_cartfile_with_core_commit_hash_if_workflow_triggered_by_core()
 	if ENV['GIT_DEPENDENT_COMMIT_HASH']
-		File.write("../Cartfile", "github \"algolia/instantsearch-core-swift\" \"#{ENV["GIT_DEPENDENT_COMMIT_HASH"]}\"")
+		if !ENV['pull_request_repository_url'].to_s.empty?
+			File.write("../Cartfile", "git \"#{ENV["pull_request_repository_url"]}\" \"#{ENV["GIT_DEPENDENT_COMMIT_HASH"]}\"")
+			puts "Changed Cartfile to refer to #{ENV["pull_request_repository_url"]} with commit #{ENV["GIT_DEPENDENT_COMMIT_HASH"]}"
+		else
+			File.write("../Cartfile", "github \"algolia/instantsearch-core-swift\" \"#{ENV["GIT_DEPENDENT_COMMIT_HASH"]}\"")
 		puts "Changed Cartfile to refer to algolia/instantsearch-core-swift with commit #{ENV["GIT_DEPENDENT_COMMIT_HASH"]}"
+		end
 	else 
 		puts "No specific dependencies to test, proceeding with latest release of dependent library"
 	end

@@ -9,7 +9,7 @@
 import UIKit
 
 /// Widget that stats about Algolia search results. Built on top of `UILabel`.
-@objc public class StatsLabelWidget: UILabel, StatsViewDelegate, AlgoliaWidget {
+@objcMembers public class StatsLabelWidget: UILabel, StatsViewDelegate, AlgoliaWidget {
     
     @IBInspectable public var resultTemplate: String = Constants.Defaults.resultTemplate
     @IBInspectable public var errorText: String = Constants.Defaults.errorText
