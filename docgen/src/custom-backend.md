@@ -12,9 +12,9 @@ githubSource: docgen/src/custom-backend.md
 
 ## Who should use this guide
 
-The default behavior of InstantSearch is making calls to Algolia right from the mobile app. However, we are aware that a lot of mobile apps make calls exclusively to a certain backend, such as their own or a BaaS like Firebase.
+Advanced InstantSearch users may have the need to query Algolia’s servers from their backend instead of the frontend, while still being able to reuse InstantSearch widgets. Possible motivations could be for security restrictions, for SEO purposes or to enrich the data sent by the custom server (i.e. fetch Algolia data and data from their own servers). If this sounds appealing to you, feel free to follow this guide. Keep in mind though that we, at Algolia, recommend doing frontend search for performance and high availability reasons.
 
-If this is your case and you prefer calling Algolia from your backend instead of from the mobile app, then this guide is for you. Even if you're not using Algolia on your backend and still want to benefit from using InstantSearch, then this guide is also for you.
+By the end of this guide, you will have learned how to leverage InstantSearch with your own backend architecture to query Algolia. Even if you're not using Algolia on your backend and still want to benefit from using InstantSearch, then this guide is also for you.
 
 ## A quick overview on how InstantSearch works
 
