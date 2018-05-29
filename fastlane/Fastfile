@@ -97,7 +97,7 @@ end
 
 lane :publish_community_website do
 	# build community website
-	sh("cd ../docgen && yarn add gh-pages && NODE_ENV='production' npm run build")
+	sh("cd ../docgen && npm install && yarn add gh-pages && NODE_ENV='production' npm run build")
 	# Generate API reference
 	jazzy
 	# Publish community website and API reference to gh pages

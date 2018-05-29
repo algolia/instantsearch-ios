@@ -9,13 +9,11 @@
     "deploy": "gh-pages -d ../docs"
   },
   "dependencies": {
-    "algolia-frontend-components": "^0.0.24",
+    "algolia-frontend-components": "0.0.24",
     "autoprefixer": "^6.6.0",
     "babel-cli": "^6.18.0",
     "babel-loader": "^6.2.10",
-    "babel-preset-env": "^1.2.1",
-    "babel-preset-latest": "^6.22.0",
-    "babel-preset-stage-2": "^6.18.0",
+    "babel-preset-env": "^1.7.0",
     "browser-sync": "^2.18.5",
     "clipboard": "^1.6.1",
     "codemirror": "^5.22.0",
@@ -38,5 +36,10 @@
     "webpack": "^1.14.0",
     "webpack-dev-middleware": "^1.9.0",
     "webpack-hot-middleware": "^2.14.0"
+  },
+  "devDependencies": {
+    "@babel/preset-env": "^7.0.0-beta.49",
+    "babel-preset-latest": "^6.24.1",
+    "babel-preset-stage-2": "^6.24.1"
   }
 }
