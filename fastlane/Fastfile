@@ -67,7 +67,9 @@ lane :upgrade_swift do |options|
 end
 
 def prepare_git(branch)
-	ensure_git_status_clean
+	if !ENV['BITRISE_BUILD_NUMBER'] # ensure git clean locally but not on Bitrise.
+		ensure_git_status_clean
+	end
 	# ensure_git_branch(branch:branch)
 	masterHash = sh("git rev-parse origin/#{branch}")
 	headHash = sh("git rev-parse HEAD")
