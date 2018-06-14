@@ -193,7 +193,7 @@ import UIKit
     }
     
     /// Get the searcher associated to the index used for InstantSearch
-    public func getSearcher() -> Searcher {
+    @objc public func getSearcher() -> Searcher {
         if isMultiIndexActive {
             fatalError("Since you are using multi-index, you should use getSearcher(named:withId:)")
         }
@@ -202,8 +202,26 @@ import UIKit
     }
     
     /// Get the searcher associated to the specific index with name and id used for InstantSearch
-    public func getSearcher(named name: String, withId id: String = "") -> Searcher? {
+    @objc public func getSearcher(named name: String, withId id: String = "") -> Searcher? {
         return searchers[SearcherId(index: name, variant: id)]
+    }
+    
+    // MARK: Caching
+    
+    @objc public var searchCacheEnabled: Bool = false {
+        didSet {
+            if isMultiIndexActive {
+                searchers.forEach {
+                    if let index = $1.index as? Index {
+                        index.searchCacheEnabled = searchCacheEnabled
+                    }
+                }
+            } else {
+                if let index = getSearcher().index as? Index {
+                    index.searchCacheEnabled = searchCacheEnabled
+                }
+            }
+        }
     }
     
     // MARK: Add widget methods
