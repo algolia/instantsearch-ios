@@ -208,6 +208,8 @@ import UIKit
     
     // MARK: Caching
     
+    /// Whether the search cache is enabled on this index. Default: `false`.
+    ///
     @objc public var searchCacheEnabled: Bool = false {
         didSet {
             if isMultiIndexActive {
@@ -219,6 +221,26 @@ import UIKit
             } else {
                 if let index = getSearcher().index as? Index {
                     index.searchCacheEnabled = searchCacheEnabled
+                }
+            }
+        }
+    }
+    
+    /// Expiration delay for items in the search cache. Default: 2 minutes.
+    ///
+    /// + Note: The delay is a minimum threshold. Items may survive longer in cache.
+    ///
+    @objc public var searchCacheExpiringTimeInterval: TimeInterval = 120 {
+        didSet {
+            if isMultiIndexActive {
+                searchers.forEach {
+                    if let index = $1.index as? Index {
+                        index.searchCacheExpiringTimeInterval = searchCacheExpiringTimeInterval
+                    }
+                }
+            } else {
+                if let index = getSearcher().index as? Index {
+                    index.searchCacheExpiringTimeInterval = searchCacheExpiringTimeInterval
                 }
             }
         }
