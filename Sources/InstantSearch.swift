@@ -246,6 +246,34 @@ import UIKit
         }
     }
     
+    @objc public func searchCacheEnabled(_ searchCacheEnabled: Bool, for searcherIds: [SearcherId]) {
+        guard isMultiIndexActive else { return }
+        
+        searcherIds.forEach { (searcherId) in
+            let searcher = searchers.filter {
+                $0.key == searcherId
+            }.first // Should only have one searcher associated to the specific searcherId
+            
+            if let index = searcher?.value.index as? Index {
+                index.searchCacheEnabled = searchCacheEnabled
+            }
+        }
+    }
+    
+    @objc public func searchCacheExpiringTimeInterval(_ searchCacheExpiringTimeInterval: TimeInterval, for searcherIds: [SearcherId]) {
+        guard isMultiIndexActive else { return }
+        
+        searcherIds.forEach { (searcherId) in
+            let searcher = searchers.filter {
+                $0.key == searcherId
+            }.first // Should only have one searcher associated to the specific searcherId
+            
+            if let index = searcher?.value.index as? Index {
+                index.searchCacheExpiringTimeInterval = searchCacheExpiringTimeInterval
+            }
+        }
+    }
+    
     // MARK: Add widget methods
     
     /// Register all InstantSearch widgets inside a particular view, and then execute a search to Algolia
