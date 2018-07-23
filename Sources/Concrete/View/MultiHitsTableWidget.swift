@@ -54,7 +54,7 @@ import UIKit
     public var variantsArray: [String] = []
     public var hitsPerSectionArray: [UInt] = []
     
-    public override init(frame: CGRect, style: UITableViewStyle) {
+  public override init(frame: CGRect, style: UITableView.Style) {
         viewModel = MultiHitsViewModel()
         super.init(frame: frame, style: style)
         viewModel.view = self

@@ -17,11 +17,11 @@ public class MultiHitsViewModel: MultiHitsViewModelDelegate, SearchableMultiInde
     
     public var searcherIds: [SearcherId] {
         var result: [SearcherId] = []
-        for i in 0..<view.indicesArray.count {
+        for it in 0..<view.indicesArray.count {
             let id = view.variantsArray.count == view.indicesArray.count
-                ? view.variantsArray[i]
+                ? view.variantsArray[it]
                 : ""
-            let indexName = view.indicesArray[i]
+            let indexName = view.indicesArray[it]
             result.append(SearcherId(index: indexName, variant: id))
         }
         

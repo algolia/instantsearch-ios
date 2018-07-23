@@ -23,7 +23,7 @@ import UIKit
     
     public var viewModel: HitsViewModelDelegate
     
-    public override init(frame: CGRect, style: UITableViewStyle) {
+  public override init(frame: CGRect, style: UITableView.Style) {
         viewModel = HitsViewModel()
         super.init(frame: frame, style: style)
         viewModel.view = self
