@@ -28,7 +28,7 @@ import UIKit
     
     public var viewModel: RefinementMenuViewModelDelegate
     
-    public override init(frame: CGRect, style: UITableViewStyle) {
+  public override init(frame: CGRect, style: UITableView.Style) {
         viewModel = RefinementMenuViewModel()
         super.init(frame: frame, style: style)
         viewModel.view = self

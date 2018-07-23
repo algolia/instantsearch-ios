@@ -15,8 +15,8 @@ import UIKit
 /// A FatalError will be thrown if you don't specify anything.
 @objcMembers public class SegmentedControlWidget: UISegmentedControl, FacetControlViewDelegate, AlgoliaWidget {
     
-    private var oldSegmentedIndex: Int = UISegmentedControlNoSegment
-    private var actualSegmentedIndex: Int = UISegmentedControlNoSegment
+  private var oldSegmentedIndex: Int = UISegmentedControl.noSegment
+  private var actualSegmentedIndex: Int = UISegmentedControl.noSegment
     
     @IBInspectable public var attribute: String = Constants.Defaults.attribute
     @IBInspectable public var inclusive: Bool = Constants.Defaults.inclusive
@@ -60,18 +60,18 @@ import UIKit
     
     open func configureView() {
         addTarget(self, action: #selector(facetValueChanged), for: .valueChanged)
-        if selectedSegmentIndex != UISegmentedControlNoSegment {
+      if selectedSegmentIndex != UISegmentedControl.noSegment {
             viewModel.addFacet(value: titleForSegment(at: self.actualSegmentedIndex)!, doSearch: false)
         }
     }
     
     @objc private func facetValueChanged() {
-        guard self.selectedSegmentIndex != UISegmentedControlNoSegment else { return }
+      guard self.selectedSegmentIndex != UISegmentedControl.noSegment else { return }
         
         self.oldSegmentedIndex = self.actualSegmentedIndex
         self.actualSegmentedIndex = self.selectedSegmentIndex
         
-        if self.oldSegmentedIndex == UISegmentedControlNoSegment {
+      if self.oldSegmentedIndex == UISegmentedControl.noSegment {
             viewModel.addFacet(value: titleForSegment(at: self.actualSegmentedIndex)!, doSearch: true)
         } else {
             viewModel.updateFacet(oldValue: titleForSegment(at: self.oldSegmentedIndex)!,
