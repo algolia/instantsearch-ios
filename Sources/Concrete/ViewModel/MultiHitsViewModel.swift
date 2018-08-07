@@ -89,12 +89,12 @@ public class MultiHitsViewModel: MultiHitsViewModelDelegate, SearchableMultiInde
         let searcher = searchers[section]
         
         if showItemsOnEmptyQuery {
-            return searcher.hits.count
+            return min(searcher.hits.count, Int(hitsPerSectionArray[section]))
         } else {
             if searcher.params.query == nil || searcher.params.query!.isEmpty {
                 return 0
             } else {
-                return searcher.hits.count
+                return min(searcher.hits.count, Int(hitsPerSectionArray[section]))
             }
         }
     }

@@ -35,7 +35,11 @@ public class HitsViewModel: HitsViewModelDelegate, SearchableIndexViewModel {
     public var showItemsOnEmptyQuery: Bool {
         return view.showItemsOnEmptyQuery
     }
-    
+  
+    public var params: SearchParameters {
+        return searcher.params
+    }
+  
     // MARK: - SearchableViewModel
     
     var searcher: Searcher!
@@ -64,12 +68,12 @@ public class HitsViewModel: HitsViewModelDelegate, SearchableIndexViewModel {
         guard let searcher = searcher else { return 0 }
         
         if showItemsOnEmptyQuery {
-            return searcher.hits.count
+            return min(searcher.hits.count, Int(hitsPerPage))
         } else {
             if searcher.params.query == nil || searcher.params.query!.isEmpty {
                 return 0
             } else {
-                return searcher.hits.count
+                return min(searcher.hits.count, Int(hitsPerPage))
             }
         }
         
