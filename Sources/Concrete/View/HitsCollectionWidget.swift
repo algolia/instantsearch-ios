@@ -8,6 +8,7 @@
 
 import Foundation
 import UIKit
+import InstantSearchCore
 
 /// Widget that displays your search results. Built over a `UICollectionView`.
 /// + Note: This is best used with a HitsController (through composition) or a HitsCollectionViewController (through inheritance).

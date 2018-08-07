@@ -40,8 +40,18 @@ import UIKit
     /// + NOTE: It is safer to use the getSearcher() method
     /// + WARNING: Don't use this in the case of configuring with multi-index.
     public var searcher: Searcher!
+  
+    public var history: LocalHistory = {
+      // Store the history in a `history.dat` file inside the `Application Support` directory.
+      let appSupportDir = NSSearchPathForDirectoriesInDomains(.documentDirectory, .userDomainMask, true).first!
+      let historyFile = URL(fileURLWithPath: appSupportDir).appendingPathComponent("history.dat").path
+      let history = LocalHistory(filePath: historyFile)
+      return history
+    }()
     
     private var isMultiIndexActive = false
+  
+    public var isRecordingHistory = false
     
     /// The search parameters of the Searcher. This is just a quick access to `searcher.params`.
     /// + NOTE: It is safer to use the getSearcher().params method
@@ -595,6 +605,27 @@ import UIKit
             self.searcher.search()
         }
     }
+  
+  public func search(with searchText: String, in searcherIds: [SearcherId]) {
+    searcherIds.forEach { (searcherId) in
+      if let searcher = searchers[searcherId] {
+        searcher.params.query = searchText
+        searcher.search()
+      } else {
+        print("tried to search with inexistent searchId")
+      }
+    }
+  }
+  
+  public func clearParameters() {
+    if isMultiIndexActive {
+      for (_, searcher) in searchers {
+        searcher.reset()
+      }
+    } else {
+      self.searcher.reset()
+    }
+  }
 }
 
 extension InstantSearch: UISearchResultsUpdating {
@@ -631,4 +662,46 @@ extension InstantSearch: UISearchBarDelegate {
     public func searchBar(_ searchBar: UISearchBar, textDidChange searchText: String) {        
         search(with: searchText)
     }
+}
+
+extension InstantSearch {
+  public func addToHistory(queryText: String) {
+    guard isRecordingHistory else {
+      print("need to set isRecordingHistory to true to record history")
+      return
+    }
+    
+    let params = SearchParameters()
+    params.query = queryText
+    history.add(params)
+    history.saveAsync()
+  }
+  
+  public func clearAllHistory() {
+    history.clear()
+  }
+  
+  public func clearQueryInHistory(queryText: String) {
+    let filteredQueries = history.contents.filter { (query) -> Bool in
+      return query != queryText
+    }
+    
+    clearAllHistory()
+    
+    filteredQueries.forEach { (query) in
+      let params = SearchParameters()
+      params.query = query
+      history.add(params)
+    }
+  }
+  
+  public func searchHistory(queryText: String, maxhits: Int = 2) -> [HistoryHit] {
+    let params = SearchParameters()
+    params.query = queryText
+    let options = HistorySearchOptions()
+    options.maxHits =  maxhits
+    let hits = history.search(query: params, options: options)
+    
+    return hits
+  }
 }
