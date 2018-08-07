@@ -68,12 +68,12 @@ public class HitsViewModel: HitsViewModelDelegate, SearchableIndexViewModel {
         guard let searcher = searcher else { return 0 }
         
         if showItemsOnEmptyQuery {
-            return min(searcher.hits.count, Int(hitsPerPage))
+            return searcher.hits.count
         } else {
             if searcher.params.query == nil || searcher.params.query!.isEmpty {
                 return 0
             } else {
-                return min(searcher.hits.count, Int(hitsPerPage))
+                return searcher.hits.count
             }
         }
         
