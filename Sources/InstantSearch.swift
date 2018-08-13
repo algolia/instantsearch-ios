@@ -52,7 +52,30 @@ import UIKit
     private var isMultiIndexActive = false
   
     public var isRecordingHistory = false
-    
+  
+  public var debuggingEnabled = false {
+    didSet {
+      if searcher != nil {
+        searcher.debuggingEnabled = debuggingEnabled
+      }
+      searchers.forEach { (_, searcher) in
+        searcher.debuggingEnabled = debuggingEnabled
+      }
+    }
+  }
+  
+    //TODO: these 2 fields below might have to be moved to another class dedicated for state management of searcher Ids.
+  
+    @objc dynamic public var selectedSearcherId: SearcherId?
+  
+    public var selectedSearcher: Searcher? {
+      guard let selectedSearcherId = selectedSearcherId else {
+        print("need to fill the selected SearchedId to use this")
+        return nil
+      }
+      return getSearcher(named: selectedSearcherId.index, withId: selectedSearcherId.variant)
+    }
+  
     /// The search parameters of the Searcher. This is just a quick access to `searcher.params`.
     /// + NOTE: It is safer to use the getSearcher().params method
     /// + WARNING: Don't use this in the case of configuring with multi-index.
@@ -613,6 +636,24 @@ import UIKit
         searcher.search()
       } else {
         print("tried to search with inexistent searchId")
+      }
+    }
+  }
+  
+  public func clearParameters(in searcherIds: [SearcherId]) {
+    searcherIds.forEach { (searcherId) in
+      if let searcher = searchers[searcherId] {
+        searcher.reset()
+      } else {
+        print("tried to clear params with inexistent searchId")
+      }
+    }
+  }
+  
+  public func clearParameters(exceptIn searcherIds: [SearcherId]) {
+    searchers.forEach { (searcherId, searcher) in
+      if !searcherIds.contains(searcherId) {
+        searcher.reset()
       }
     }
   }

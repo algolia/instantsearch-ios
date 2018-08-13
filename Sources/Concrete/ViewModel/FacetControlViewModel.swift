@@ -102,19 +102,22 @@ extension FacetControlViewModel: RefinableDelegate {
 
 // MARK: - ResettableDelegate
 
+// TODO: These needs to be tested, improved, and moved to InstantSearch Core.
 extension SearchParameters {
-    
-    func getFacetRefinement(name facetName: String) -> FacetRefinement? {
+  
+    /// Gets only the first one it finds
+    public func getFacetRefinement(name facetName: String) -> FacetRefinement? {
         return facetRefinements[facetName]?.first
     }
-    
-    func getNumericRefinement(name filterName: String,
+  
+    /// Gets only the first one it finds
+    public func getNumericRefinement(name filterName: String,
                               operator: NumericRefinement.Operator,
                               inclusive: Bool = true) -> NumericRefinement? {
         return numericRefinements[filterName]?.first(where: { $0.op == `operator` && $0.inclusive == inclusive})
     }
     
-    func updateFacetRefinement(attribute: String, oldValue: String, newValue: String, inclusive: Bool = true) {
+    public func updateFacetRefinement(attribute: String, oldValue: String, newValue: String, inclusive: Bool = true) {
         guard !hasFacetRefinement(name: attribute, value: newValue) else { return }
         removeFacetRefinement(name: attribute, value: oldValue)
         addFacetRefinement(name: attribute, value: newValue, inclusive: inclusive)
