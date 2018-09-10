@@ -16,17 +16,6 @@ InstantSearch family: **InstantSearch iOS** | [InstantSearch Android][instantsea
 
 <!-- <img src="Example/InstantSearch.gif" width="300"/> -->
 
-## Demo
-
-You can see InstantSearch iOS in action in our [Examples repository][ecommerce-url], in which we published example apps built with InstantSearch and written in Swift:
-
-<p align="center">
-  <img src="./docgen/assets/img/ikea.gif"/>
-</p>
-
-[ecommerce-gif]: ./docgen/assets/img/ikea.gif
-[ecommerce-url]: https://github.com/algolia/instantsearch-swift-examples
-
 ## Installation
 
 #### CocoaPods
