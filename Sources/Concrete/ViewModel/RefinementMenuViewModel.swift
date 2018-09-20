@@ -44,7 +44,7 @@ public class RefinementMenuViewModel: RefinementMenuViewModelDelegate, Searchabl
     }
     
     // TODO" The state for this should be on IS Core, not in the VM.
-    var facetResults: [FacetValue] = []
+    public var facetResults: [FacetValue] = []
     
     // MARK: - SearchableViewModel
     
@@ -111,8 +111,22 @@ public class RefinementMenuViewModel: RefinementMenuViewModelDelegate, Searchabl
     /// it will tggle the facet refinement, deselect the row and then execute a search
     public func didSelectRow(at indexPath: IndexPath) {
         
-        searcher.params.setFacet(withName: attribute, disjunctive: isDisjunctive)
-        searcher.params.toggleFacetRefinement(name: attribute, value: facetResults[indexPath.item].value)
+        searcher.params.setFacet(withName: attribute, disjunctive: true)
+        if isDisjunctive { // when disjunctive, just add it
+          searcher.params.toggleFacetRefinement(name: attribute, value: facetResults[indexPath.item].value)
+        } else {
+          // when conjunctive, need to keep the other visible, so we still do a disjunctive facet to get
+          // all facet values, but make sure only 1 selected result
+          let value = facetResults[indexPath.item].value
+          
+          if searcher.params.hasFacetRefinement(name: attribute, value: value) { // deselect if already selected
+            searcher.params.clearFacetRefinements(name: attribute)
+          } else { // select new one only.
+            searcher.params.clearFacetRefinements(name: attribute)
+            searcher.params.addFacetRefinement(name: attribute, value: value)
+          }
+          
+        }
         view.deselectRow(at: indexPath)
         searcher.search()
     }
