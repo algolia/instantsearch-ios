@@ -115,7 +115,7 @@ public class RefinementMenuViewModel: RefinementMenuViewModelDelegate, Searchabl
         if isDisjunctive { // when disjunctive, just add it
           searcher.params.toggleFacetRefinement(name: attribute, value: facetResults[indexPath.item].value)
         } else {
-          // when conjunctive, need to keep the other visible, so we still do a disjunctive facet to get
+          // when conjunctive, need to keep the other values visible, so we still do a disjunctive facet to get
           // all facet values, but make sure only 1 selected result
           let value = facetResults[indexPath.item].value
           
