@@ -26,7 +26,7 @@ import Foundation
         self.variant = variant
     }
     
-    override public var hashValue: Int {
+    override public var hash: Int {
         return "\(index)\(variant)".hashValue
     }
     

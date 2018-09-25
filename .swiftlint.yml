@@ -2,6 +2,10 @@ disabled_rules: # rule identifiers to exclude from running
   - trailing_whitespace
   - force_cast
   - todo
+  - weak_delegate
+  - class_delegate_protocol
+  - type_body_length
+  - file_length
 opt_in_rules: # some rules are only opt-in
   - empty_count
   # Find all the available rules by running:
