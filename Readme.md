@@ -65,15 +65,32 @@ $ pod update
 
 To install InstantSearch, simply add the following line to your Cartfile:
 
+#### Swift 4.2
+
+```ruby
+github "algolia/instantsearch-ios" ~> 3.0 # for access to everything
+# github "algolia/instantsearch-core-swift" ~> 4.0 # for access to everything except the UI widgets
+# github "algolia/algoliasearch-client-swift" ~> 6.0 # for access only to the API Client
+```
+
+#### Swift 4.1
+
 ```ruby
 github "algolia/instantsearch-ios" ~> 2.0 # for access to everything
 # github "algolia/instantsearch-core-swift" ~> 3.0 # for access to everything except the UI widgets
 # github "algolia/algoliasearch-client-swift" ~> 5.0 # for access only to the API Client
 ```
 
-#### SwiftPM 
+### SwiftPM 
 
 The API client is the only library of the framework available on SwiftPM.
+
+#### Swift 4.2
+
+To install the API Client, add `.package(url:"https://github.com/algolia/algoliasearch-client-swift", from: "6.0.0")` to your package dependencies array in Package.swift, then add `AlgoliaSearch` to your target dependencies.
+
+
+#### Swift 4.1
 
 To install the API Client, add `.package(url:"https://github.com/algolia/algoliasearch-client-swift", from: "5.0.0")` to your package dependencies array in Package.swift, then add `AlgoliaSearch` to your target dependencies.
 
