@@ -14,14 +14,14 @@ Pod::Spec.new do |s|
 
     s.subspec "UI" do |ss|
         ss.source_files = 'Sources/**/*.{swift}'
-        ss.dependency 'InstantSearchCore', '~> 3.2'
+        ss.dependency 'InstantSearchCore', '~> 4.0'
     end
 
     s.subspec "Core" do |ss|
-        ss.dependency 'InstantSearchCore', '~> 3.2'
+        ss.dependency 'InstantSearchCore', '~> 4.0'
     end
 
     s.subspec "Client" do |ss|
-        ss.dependency 'InstantSearchClient', '~> 5.0'
+        ss.dependency 'InstantSearchClient', '~> 6.0'
     end
 end

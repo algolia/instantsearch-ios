@@ -29,11 +29,22 @@ You can see InstantSearch iOS in action in our [Examples repository][ecommerce-u
 
 ## Installation
 
-#### CocoaPods
+### CocoaPods
 
 [CocoaPods](https://cocoapods.org/) is a dependency manager for Cocoa projects.
 
 To install InstantSearch, simply add the following line to your Podfile:
+
+#### Swift 4.2
+
+```ruby
+pod 'InstantSearch', '~> 3.0'
+# pod 'InstantSearch/Widgets' for access to everything
+# pod 'InstantSearch/Core' for access to everything except the UI widgets
+# pod 'InstantSearch/Client' for access only to the API Client
+```
+
+#### Swift 4.1
 
 ```ruby
 pod 'InstantSearch', '~> 2.0'
@@ -48,7 +59,7 @@ Then, run the following command:
 $ pod update
 ```
 
-#### Carthage
+### Carthage
 
 [Carthage](https://github.com/Carthage/Carthage) is a simple, decentralized dependency manager for Cocoa.
 
