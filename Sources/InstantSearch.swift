@@ -409,6 +409,8 @@ import UIKit
         // After a widget is added, we can decide to make a search. This is when
         // a widget modifies the state of the searcher.params
         if doSearch {
+          // TODO: more efficient search need to be done: only do a search to
+          // the corresponding searcher(s) of the widget
             search()
         }
     }
