@@ -91,6 +91,8 @@ extension RefinementController: UITableViewDataSource {
 extension RefinementController: UITableViewDelegate {
     public func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         viewModel.didSelectRow(at: indexPath)
+        let facet = viewModel.facetForRow(at: indexPath)
+        tableDelegate?.tableView(tableView, didSelectRowAt: indexPath, containing: facet.value , with: facet.count, is: viewModel.isRefined(at: indexPath))
     }
 }
 
@@ -137,5 +139,7 @@ extension RefinementController: UICollectionViewDataSource {
 extension RefinementController: UICollectionViewDelegate {
     public func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
         viewModel.didSelectRow(at: indexPath)
+        let facet = viewModel.facetForRow(at: indexPath)
+        collectionDelegate?.collectionView(collectionView, didSelectItemAt: indexPath, containing: facet.value, with: facet.count, is: viewModel.isRefined(at: indexPath))
     }
 }
