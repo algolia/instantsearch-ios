@@ -74,7 +74,7 @@ public class RefinementMenuViewModel: RefinementMenuViewModelDelegate, Searchabl
         // If facet variable has been set beforehand, then we fill
         // the refinement List with the facets that are already fetched from Algolia
         
-        if let results = searcher.results, searcher.hits.isEmpty, let facetCounts = results.facets(name: attribute) {
+        if let results = searcher.results, let facetCounts = results.facets(name: attribute) {
             facetResults = getRefinementList(params: searcher.params,
                                              facetCounts: facetCounts,
                                              andFacetName: attribute,
