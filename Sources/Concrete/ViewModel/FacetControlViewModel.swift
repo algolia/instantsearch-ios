@@ -112,8 +112,8 @@ extension SearchParameters {
   
     /// Gets only the first one it finds
     public func getNumericRefinement(name filterName: String,
-                              operator: NumericRefinement.Operator,
-                              inclusive: Bool = true) -> NumericRefinement? {
+                                     operator: NumericRefinement.Operator,
+                                     inclusive: Bool = true) -> NumericRefinement? {
         return numericRefinements[filterName]?.first(where: { $0.op == `operator` && $0.inclusive == inclusive})
     }
     
