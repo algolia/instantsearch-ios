@@ -51,7 +51,7 @@ import UIKit
     
     private var isMultiIndexActive = false
   
-    public var isRecordingHistory = false
+    public var recordHistory = false
   
   public var debuggingEnabled = false {
     didSet {
@@ -708,9 +708,9 @@ extension InstantSearch: UISearchBarDelegate {
 }
 
 extension InstantSearch {
-  public func addToHistory(queryText: String) {
-    guard isRecordingHistory else {
-      print("need to set isRecordingHistory to true to record history")
+  public func appendHistory(queryText: String) {
+    guard recordHistory else {
+      print("need to set recordHistory to true to record history")
       return
     }
     
@@ -738,11 +738,11 @@ extension InstantSearch {
     }
   }
   
-  public func searchHistory(queryText: String, maxhits: Int = 2) -> [HistoryHit] {
+  public func searchHistory(queryText: String, maxHits: Int = 2) -> [HistoryHit] {
     let params = SearchParameters()
     params.query = queryText
     let options = HistorySearchOptions()
-    options.maxHits =  maxhits
+    options.maxHits =  maxHits
     let hits = history.search(query: params, options: options)
     
     return hits
