@@ -76,12 +76,12 @@ import UIKit
     /// DataSource method called to specify the layout of a hit cell.
     open func collectionView(_ collectionView: UICollectionView,
                              cellForItemAt indexPath: IndexPath,
-                             containing hit: [String : Any]) -> UICollectionViewCell {
+                             containing hit: [String: Any]) -> UICollectionViewCell {
         fatalError("Must Override collectionView(_:cellForItemAt:containing:)")
     }
     
     /// Delegate method called when a hit cell is selected.
-    open func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath, containing hit: [String : Any]) {
+    open func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath, containing hit: [String: Any]) {
         
     }
 }

@@ -12,6 +12,7 @@ end
 platform :ios do
 	lane :test do
 		update_cartfile_with_core_commit_hash_if_workflow_triggered_by_core
+		bundle_install
 		carthage(
 			command: "update",
 			platform: "iOS",
@@ -27,6 +28,9 @@ platform :ios do
 	end
 end
 
+lane :test_swift_lint do
+	run_swift_lint
+end
 
 desc "Available options: type:major|minor|patch"
 lane :deploy do |options|

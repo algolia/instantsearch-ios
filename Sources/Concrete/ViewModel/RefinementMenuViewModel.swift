@@ -16,7 +16,7 @@ public class RefinementMenuViewModel: RefinementMenuViewModelDelegate, Searchabl
     
     // MARK: - Properties
     public var searcherId: SearcherId {
-        return SearcherId(index:  view.index, variant: view.variant)
+        return SearcherId(index: view.index, variant: view.variant)
     }
     
     var attribute: String {
@@ -133,7 +133,7 @@ public class RefinementMenuViewModel: RefinementMenuViewModelDelegate, Searchabl
 }
 
 extension RefinementMenuViewModel: ResultingDelegate {
-    public func on(results: SearchResults?, error: Error?, userInfo: [String : Any]) {
+    public func on(results: SearchResults?, error: Error?, userInfo: [String: Any]) {
         
         guard let results = results else {
             print(error ?? "")

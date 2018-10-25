@@ -17,7 +17,7 @@ public class HitsViewModel: HitsViewModelDelegate, SearchableIndexViewModel {
     // MARK: - Properties
     
     public var searcherId: SearcherId {
-        return SearcherId(index:  view.index, variant: view.variant)
+        return SearcherId(index: view.index, variant: view.variant)
     }
     
     public var hitsPerPage: UInt {

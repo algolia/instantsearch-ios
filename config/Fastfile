@@ -9,6 +9,7 @@ lane :run_swift_lint do
     config_file: "config/.swiftlint.yml",       # Custom configuration file of SwiftLint (optional)
     # output_file: "swiftlint.result.json", # The path of the output file (optional)
     # config_file: ".swiftlint-ci.yml",     # The path of the configuration file (optional)
-    strict: false # Fail on warnings? (true/false)
+    strict: false, # Fail on warnings? (true/false)
+    executable: "config/swiftlint"
   )
 end

@@ -78,11 +78,11 @@ extension UILabel {
 
 func print(_ item: @autoclosure () -> Any, separator: String = " ", terminator: String = "\n") {
     #if DEBUG
-        Swift.print(item(), separator:separator, terminator: terminator)
+        Swift.print(item(), separator: separator, terminator: terminator)
     #endif
 }
 
-internal struct WeakSet<T>: Sequence where T : AnyObject {
+internal struct WeakSet<T>: Sequence where T: AnyObject {
     
   private var _objects: NSHashTable<T>
   

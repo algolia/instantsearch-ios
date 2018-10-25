@@ -74,12 +74,12 @@ import UIKit
     // The follow methods are to be implemented by the class extending HitsTableViewController
     
     /// DataSource method called to specify the layout of a hit cell.
-    open func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath, containing hit: [String : Any]) -> UITableViewCell {
+    open func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath, containing hit: [String: Any]) -> UITableViewCell {
         fatalError("Must Override tableView(_:cellForRowAt:containing:)")
     }
     
     /// Delegate method called when a hit cell is selected.
-    open func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath, containing hit: [String : Any]) {
+    open func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath, containing hit: [String: Any]) {
         
     }
 }
