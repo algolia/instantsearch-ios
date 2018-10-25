@@ -3,6 +3,8 @@
 # https://docs.fastlane.tools
 fastlane_version "1.109.0"
 
+import '../config/Fastfile'
+
 before_all do
 	
 end
@@ -21,6 +23,7 @@ platform :ios do
 			configuration: "Debug",
 			clean: true
 		)
+		run_swift_lint
 	end
 end
 
