@@ -48,7 +48,6 @@ self.view.addSubview(activityIndicator)
 ```
 
 ## Hits
-<img src="assets/img/widgets/hits.png" class="img-object" align="right" width="250"/>
 
 The **Hits** widgets are made to display your search results in a flexible way. They are reloaded automatically when new hits are fetched from Algolia so you don't have to worry about that. We offer two Hits widget in InstantSearch: A `HitsTableWidget` built over a `UITableView`, and a `HitsCollectionWidget` built over a `UICollectionView`.
 
@@ -183,7 +182,6 @@ The Hits widget implements an empty view mechanism to display an alternative Vie
 - `viewForNoResults(in collectionView: UICollectionView) -> UIView`.
 
 ### Highlighting
-<img src="assets/img/widgets/highlighting.png" class="img-object" align="right" width="300"/>
 
 Visually highlighting the search result is [an essential feature of a great search interface][explain-highlighting]. It will help your users understand your results by explaining them why a result is relevant to their query.
 
@@ -214,7 +212,6 @@ import InstantSearchCore
 For more info, check the guide on highlighting in the [InstantSearch Core guide](https://community.algolia.com/instantsearch-core-swift/guide/highlighting.html).
 
 ## RefinementList
-<img src="assets/img/widgets/refinement-list.png" class="img-object" align="right" width="250"/>
 
 The **RefinementList** is a filtering widget made to display your [facets](https://www.algolia.com/doc/guides/search/filtering-faceting#faceting) and let the user refine the search results. We offer two RefinementList widget in InstantSearch: A `RefinementTableWidget` built over a `UITableView`, and a `RefinementCollectionWidget` built over a `UICollectionView`.
 
