@@ -85,7 +85,7 @@
       },
       {
         "name": "API Reference",
-        "url": "reference/"
+        "url": "https://community.algolia.com/algoliasearch-client-swift"
       },
       {
         "name": "Troubleshooting",
