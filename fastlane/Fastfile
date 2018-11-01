@@ -108,7 +108,7 @@ lane :publish_community_website do
 	# build community website
 	sh("cd ../docgen && npm install && npm add gh-pages && NODE_ENV='production' npm run build")
 	# Generate API reference
-	jazzy
+	sh("cd ../docgen && jazzy")
 	# Publish community website and API reference to gh pages
 	sh("cd ../docgen && npm run deploy")
 end
