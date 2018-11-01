@@ -1,0 +1,425 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <title>FacetControlViewDelegate Protocol Reference</title>
+    <link rel="stylesheet" type="text/css" href="../css/jazzy.css" />
+    <link rel="stylesheet" type="text/css" href="../css/highlight.css" />
+    <meta charset='utf-8'>
+    <script src="../js/jquery.min.js" defer></script>
+    <script src="../js/jazzy.js" defer></script>
+    
+  </head>
+  <body>
+    <a name="//apple_ref/swift/Protocol/FacetControlViewDelegate" class="dashAnchor"></a>
+    <a title="FacetControlViewDelegate Protocol Reference"></a>
+    <header>
+      <div class="content-wrapper">
+        <p><a href="../index.html">InstantSearch Docs</a></p>
+      </div>
+    </header>
+    <div class="content-wrapper">
+      <p id="breadcrumbs">
+        <a href="../index.html">InstantSearch Reference</a>
+        <img id="carat" src="../img/carat.png" />
+        FacetControlViewDelegate Protocol Reference
+      </p>
+    </div>
+    <div class="content-wrapper">
+      <nav class="sidebar">
+        <ul class="nav-groups">
+          <li class="nav-group-name">
+            <a href="../Core.html">Core</a>
+            <ul class="nav-group-tasks">
+              <li class="nav-group-task">
+                <a href="../Classes/InstantSearch.html">InstantSearch</a>
+              </li>
+            </ul>
+          </li>
+          <li class="nav-group-name">
+            <a href="../Widgets.html">Widgets</a>
+            <ul class="nav-group-tasks">
+              <li class="nav-group-task">
+                <a href="../Classes/ActivityIndicatorWidget.html">ActivityIndicatorWidget</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Classes/DatePickerWidget.html">DatePickerWidget</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Classes/HitsCollectionWidget.html">HitsCollectionWidget</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Classes/OneValueSwitchWidget.html">OneValueSwitchWidget</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Classes/RefinementCollectionWidget.html">RefinementCollectionWidget</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Classes/RefinementTableWidget.html">RefinementTableWidget</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Classes/SearchBarWidget.html">SearchBarWidget</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Classes/SegmentedControlWidget.html">SegmentedControlWidget</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Classes/SliderWidget.html">SliderWidget</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Classes/StatsButtonWidget.html">StatsButtonWidget</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Classes/StatsLabelWidget.html">StatsLabelWidget</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Classes/StepperWidget.html">StepperWidget</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Classes/SwitchWidget.html">SwitchWidget</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Classes/TextFieldWidget.html">TextFieldWidget</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Classes/TwoValuesSwitchWidget.html">TwoValuesSwitchWidget</a>
+              </li>
+            </ul>
+          </li>
+          <li class="nav-group-name">
+            <a href="../Base ViewController.html">Base ViewController</a>
+            <ul class="nav-group-tasks">
+              <li class="nav-group-task">
+                <a href="../Classes/HitsCollectionViewController.html">HitsCollectionViewController</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Classes/HitsTableViewController.html">HitsTableViewController</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Classes/RefinementCollectionViewController.html">RefinementCollectionViewController</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Classes/RefinementTableViewController.html">RefinementTableViewController</a>
+              </li>
+            </ul>
+          </li>
+          <li class="nav-group-name">
+            <a href="../Controllers.html">Controllers</a>
+            <ul class="nav-group-tasks">
+              <li class="nav-group-task">
+                <a href="../Classes/HitsController.html">HitsController</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Classes/RefinementController.html">RefinementController</a>
+              </li>
+            </ul>
+          </li>
+          <li class="nav-group-name">
+            <a href="../Protocols.html">Protocols</a>
+            <ul class="nav-group-tasks">
+              <li class="nav-group-task">
+                <a href="../Protocols.html#/c:@M@InstantSearch@objc(pl)AlgoliaWidget">AlgoliaWidget</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Protocols/HitsCollectionViewDataSource.html">HitsCollectionViewDataSource</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Protocols/HitsCollectionViewDelegate.html">HitsCollectionViewDelegate</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Protocols/HitsTableViewDataSource.html">HitsTableViewDataSource</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Protocols/HitsTableViewDelegate.html">HitsTableViewDelegate</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Protocols/RefinableDelegate.html">RefinableDelegate</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Protocols/RefinementCollectionViewDataSource.html">RefinementCollectionViewDataSource</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Protocols/RefinementCollectionViewDelegate.html">RefinementCollectionViewDelegate</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Protocols/RefinementTableViewDataSource.html">RefinementTableViewDataSource</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Protocols/RefinementTableViewDelegate.html">RefinementTableViewDelegate</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Protocols/ResultingDelegate.html">ResultingDelegate</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Protocols/SearchableViewModel.html">SearchableViewModel</a>
+              </li>
+            </ul>
+          </li>
+          <li class="nav-group-name">
+            <a href="../Helpers.html">Helpers</a>
+            <ul class="nav-group-tasks">
+              <li class="nav-group-task">
+                <a href="../Extensions/UILabel.html">UILabel</a>
+              </li>
+            </ul>
+          </li>
+          <li class="nav-group-name">
+            <a href="../Other Classes.html">Other Classes</a>
+            <ul class="nav-group-tasks">
+              <li class="nav-group-task">
+                <a href="../Classes/FacetControlViewModel.html">FacetControlViewModel</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Classes/HitsTableWidget.html">HitsTableWidget</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Classes/HitsViewModel.html">HitsViewModel</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Classes/MultiHitsCollectionWidget.html">MultiHitsCollectionWidget</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Classes/MultiHitsController.html">MultiHitsController</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Classes/MultiHitsTableViewController.html">MultiHitsTableViewController</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Classes/MultiHitsTableWidget.html">MultiHitsTableWidget</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Classes/MultiHitsViewModel.html">MultiHitsViewModel</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Classes/NumericControlViewModel.html">NumericControlViewModel</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Classes/RefinementMenuViewModel.html">RefinementMenuViewModel</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Classes/SearchViewModel.html">SearchViewModel</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Classes/SearcherId.html">SearcherId</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Classes/StatsViewModel.html">StatsViewModel</a>
+              </li>
+            </ul>
+          </li>
+          <li class="nav-group-name">
+            <a href="../Other Extensions.html">Other Extensions</a>
+            <ul class="nav-group-tasks">
+              <li class="nav-group-task">
+                <a href="../Extensions/SearchParameters.html">SearchParameters</a>
+              </li>
+            </ul>
+          </li>
+          <li class="nav-group-name">
+            <a href="../Other Protocols.html">Other Protocols</a>
+            <ul class="nav-group-tasks">
+              <li class="nav-group-task">
+                <a href="../Protocols/AlgoliaIndexWidget.html">AlgoliaIndexWidget</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Protocols/AlgoliaMultiIndexWidget.html">AlgoliaMultiIndexWidget</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Other Protocols.html#/c:@M@InstantSearch@objc(pl)AlgoliaViewModel">AlgoliaViewModel</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Protocols/FacetControlViewDelegate.html">FacetControlViewDelegate</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Protocols/FacetControlViewModelDelegate.html">FacetControlViewModelDelegate</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Protocols/HitsViewDelegate.html">HitsViewDelegate</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Protocols/HitsViewModelDelegate.html">HitsViewModelDelegate</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Protocols/MultiHitsViewDelegate.html">MultiHitsViewDelegate</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Protocols/MultiHitsViewModelDelegate.html">MultiHitsViewModelDelegate</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Protocols/MultiSearchableViewModel.html">MultiSearchableViewModel</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Protocols/NumericControlViewDelegate.html">NumericControlViewDelegate</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Protocols/NumericControlViewModelDelegate.html">NumericControlViewModelDelegate</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Protocols/RefinementMenuViewDelegate.html">RefinementMenuViewDelegate</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Protocols/RefinementMenuViewModelDelegate.html">RefinementMenuViewModelDelegate</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Protocols/RefinementViewDelegate.html">RefinementViewDelegate</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Protocols/SearchControlViewDelegate.html">SearchControlViewDelegate</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Protocols/SearchControlViewModelDelegate.html">SearchControlViewModelDelegate</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Protocols/SearchableIndexViewModel.html">SearchableIndexViewModel</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Protocols/SearchableMultiIndexViewModel.html">SearchableMultiIndexViewModel</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Protocols/StatsViewDelegate.html">StatsViewDelegate</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Protocols/StatsViewModelDelegate.html">StatsViewModelDelegate</a>
+              </li>
+            </ul>
+          </li>
+        </ul>
+      </nav>
+      <article class="main-content">
+        <section>
+          <section class="section">
+            <h1>FacetControlViewDelegate</h1>
+              <div class="declaration">
+                <div class="language">
+                  <pre class="highlight swift"><code><span class="kd">@objc</span>
+<span class="kd">public</span> <span class="kd">protocol</span> <span class="kt">FacetControlViewDelegate</span> <span class="p">:</span> <span class="kt"><a href="../Protocols/RefinementViewDelegate.html">RefinementViewDelegate</a></span></code></pre>
+
+                </div>
+              </div>
+            <p>Protocol that defines the facet control view input methods and propreties.</p>
+
+          </section>
+          <section class="section task-group-section">
+            <div class="task-group">
+              <ul>
+                <li class="item">
+                  <div>
+                    <code>
+                    <a name="/c:@M@InstantSearch@objc(pl)FacetControlViewDelegate(py)viewModel"></a>
+                    <a name="//apple_ref/swift/Property/viewModel" class="dashAnchor"></a>
+                    <a class="token" href="#/c:@M@InstantSearch@objc(pl)FacetControlViewDelegate(py)viewModel">viewModel</a>
+                    </code>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        <p>ViewModel associated with the WidgetV.</p>
+
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="language">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight swift"><code><span class="k">var</span> <span class="nv">viewModel</span><span class="p">:</span> <span class="kt"><a href="../Protocols/FacetControlViewModelDelegate.html">FacetControlViewModelDelegate</a></span> <span class="p">{</span> <span class="k">get</span> <span class="k">set</span> <span class="p">}</span></code></pre>
+
+                        </div>
+                      </div>
+                    </section>
+                  </div>
+                </li>
+                <li class="item">
+                  <div>
+                    <code>
+                    <a name="/c:@M@InstantSearch@objc(pl)FacetControlViewDelegate(im)configureView"></a>
+                    <a name="//apple_ref/swift/Method/configureView()" class="dashAnchor"></a>
+                    <a class="token" href="#/c:@M@InstantSearch@objc(pl)FacetControlViewDelegate(im)configureView">configureView()</a>
+                    </code>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        <p>Configure the view when it is added in InstantSearch.
+Example of things that are done here are <code>addTarget</code> and set Searcher params.</p>
+
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="language">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight swift"><code><span class="kd">func</span> <span class="nf">configureView</span><span class="p">()</span></code></pre>
+
+                        </div>
+                      </div>
+                    </section>
+                  </div>
+                </li>
+                <li class="item">
+                  <div>
+                    <code>
+                    <a name="/c:@M@InstantSearch@objc(pl)FacetControlViewDelegate(im)setWithValue:"></a>
+                    <a name="//apple_ref/swift/Method/set(value:)" class="dashAnchor"></a>
+                    <a class="token" href="#/c:@M@InstantSearch@objc(pl)FacetControlViewDelegate(im)setWithValue:">set(value:)</a>
+                    </code>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        <p>Called when the viewModel instructs the widget to update itself with a new value.</p>
+
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="language">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight swift"><code><span class="kd">func</span> <span class="nf">set</span><span class="p">(</span><span class="nv">value</span><span class="p">:</span> <span class="kt">String</span><span class="p">)</span></code></pre>
+
+                        </div>
+                      </div>
+                    </section>
+                  </div>
+                </li>
+                <li class="item">
+                  <div>
+                    <code>
+                    <a name="/c:@M@InstantSearch@objc(pl)FacetControlViewDelegate(py)inclusive"></a>
+                    <a name="//apple_ref/swift/Property/inclusive" class="dashAnchor"></a>
+                    <a class="token" href="#/c:@M@InstantSearch@objc(pl)FacetControlViewDelegate(py)inclusive">inclusive</a>
+                    </code>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        <p>Whether the refinement is inclusive (default) or exclusive (value prefixed with a dash).</p>
+
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="language">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight swift"><code><span class="k">var</span> <span class="nv">inclusive</span><span class="p">:</span> <span class="kt">Bool</span> <span class="p">{</span> <span class="k">get</span> <span class="k">set</span> <span class="p">}</span></code></pre>
+
+                        </div>
+                      </div>
+                    </section>
+                  </div>
+                </li>
+              </ul>
+            </div>
+          </section>
+        </section>
+        <section id="footer">
+          <p>&copy; 2018 <a class="link" href="https://github.com/algolia/instantsearch-ios" target="_blank" rel="external">Algolia</a>. All rights reserved. (Last updated: 2018-11-01)</p>
+          <p>Generated by <a class="link" href="https://github.com/realm/jazzy" target="_blank" rel="external">jazzy ♪♫ v0.9.3</a>, a <a class="link" href="https://realm.io" target="_blank" rel="external">Realm</a> project.</p>
+        </section>
+      </article>
+    </div>
+  </body>
+</div>
+</html>

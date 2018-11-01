@@ -1,0 +1,1890 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <title>InstantSearch Class Reference</title>
+    <link rel="stylesheet" type="text/css" href="../css/jazzy.css" />
+    <link rel="stylesheet" type="text/css" href="../css/highlight.css" />
+    <meta charset='utf-8'>
+    <script src="../js/jquery.min.js" defer></script>
+    <script src="../js/jazzy.js" defer></script>
+    
+  </head>
+  <body>
+    <a name="//apple_ref/swift/Class/InstantSearch" class="dashAnchor"></a>
+    <a title="InstantSearch Class Reference"></a>
+    <header>
+      <div class="content-wrapper">
+        <p><a href="../index.html">InstantSearch Docs</a></p>
+      </div>
+    </header>
+    <div class="content-wrapper">
+      <p id="breadcrumbs">
+        <a href="../index.html">InstantSearch Reference</a>
+        <img id="carat" src="../img/carat.png" />
+        InstantSearch Class Reference
+      </p>
+    </div>
+    <div class="content-wrapper">
+      <nav class="sidebar">
+        <ul class="nav-groups">
+          <li class="nav-group-name">
+            <a href="../Core.html">Core</a>
+            <ul class="nav-group-tasks">
+              <li class="nav-group-task">
+                <a href="../Classes/InstantSearch.html">InstantSearch</a>
+              </li>
+            </ul>
+          </li>
+          <li class="nav-group-name">
+            <a href="../Widgets.html">Widgets</a>
+            <ul class="nav-group-tasks">
+              <li class="nav-group-task">
+                <a href="../Classes/ActivityIndicatorWidget.html">ActivityIndicatorWidget</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Classes/DatePickerWidget.html">DatePickerWidget</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Classes/HitsCollectionWidget.html">HitsCollectionWidget</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Classes/OneValueSwitchWidget.html">OneValueSwitchWidget</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Classes/RefinementCollectionWidget.html">RefinementCollectionWidget</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Classes/RefinementTableWidget.html">RefinementTableWidget</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Classes/SearchBarWidget.html">SearchBarWidget</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Classes/SegmentedControlWidget.html">SegmentedControlWidget</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Classes/SliderWidget.html">SliderWidget</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Classes/StatsButtonWidget.html">StatsButtonWidget</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Classes/StatsLabelWidget.html">StatsLabelWidget</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Classes/StepperWidget.html">StepperWidget</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Classes/SwitchWidget.html">SwitchWidget</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Classes/TextFieldWidget.html">TextFieldWidget</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Classes/TwoValuesSwitchWidget.html">TwoValuesSwitchWidget</a>
+              </li>
+            </ul>
+          </li>
+          <li class="nav-group-name">
+            <a href="../Base ViewController.html">Base ViewController</a>
+            <ul class="nav-group-tasks">
+              <li class="nav-group-task">
+                <a href="../Classes/HitsCollectionViewController.html">HitsCollectionViewController</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Classes/HitsTableViewController.html">HitsTableViewController</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Classes/RefinementCollectionViewController.html">RefinementCollectionViewController</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Classes/RefinementTableViewController.html">RefinementTableViewController</a>
+              </li>
+            </ul>
+          </li>
+          <li class="nav-group-name">
+            <a href="../Controllers.html">Controllers</a>
+            <ul class="nav-group-tasks">
+              <li class="nav-group-task">
+                <a href="../Classes/HitsController.html">HitsController</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Classes/RefinementController.html">RefinementController</a>
+              </li>
+            </ul>
+          </li>
+          <li class="nav-group-name">
+            <a href="../Protocols.html">Protocols</a>
+            <ul class="nav-group-tasks">
+              <li class="nav-group-task">
+                <a href="../Protocols.html#/c:@M@InstantSearch@objc(pl)AlgoliaWidget">AlgoliaWidget</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Protocols/HitsCollectionViewDataSource.html">HitsCollectionViewDataSource</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Protocols/HitsCollectionViewDelegate.html">HitsCollectionViewDelegate</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Protocols/HitsTableViewDataSource.html">HitsTableViewDataSource</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Protocols/HitsTableViewDelegate.html">HitsTableViewDelegate</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Protocols/RefinableDelegate.html">RefinableDelegate</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Protocols/RefinementCollectionViewDataSource.html">RefinementCollectionViewDataSource</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Protocols/RefinementCollectionViewDelegate.html">RefinementCollectionViewDelegate</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Protocols/RefinementTableViewDataSource.html">RefinementTableViewDataSource</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Protocols/RefinementTableViewDelegate.html">RefinementTableViewDelegate</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Protocols/ResultingDelegate.html">ResultingDelegate</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Protocols/SearchableViewModel.html">SearchableViewModel</a>
+              </li>
+            </ul>
+          </li>
+          <li class="nav-group-name">
+            <a href="../Helpers.html">Helpers</a>
+            <ul class="nav-group-tasks">
+              <li class="nav-group-task">
+                <a href="../Extensions/UILabel.html">UILabel</a>
+              </li>
+            </ul>
+          </li>
+          <li class="nav-group-name">
+            <a href="../Other Classes.html">Other Classes</a>
+            <ul class="nav-group-tasks">
+              <li class="nav-group-task">
+                <a href="../Classes/FacetControlViewModel.html">FacetControlViewModel</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Classes/HitsTableWidget.html">HitsTableWidget</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Classes/HitsViewModel.html">HitsViewModel</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Classes/MultiHitsCollectionWidget.html">MultiHitsCollectionWidget</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Classes/MultiHitsController.html">MultiHitsController</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Classes/MultiHitsTableViewController.html">MultiHitsTableViewController</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Classes/MultiHitsTableWidget.html">MultiHitsTableWidget</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Classes/MultiHitsViewModel.html">MultiHitsViewModel</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Classes/NumericControlViewModel.html">NumericControlViewModel</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Classes/RefinementMenuViewModel.html">RefinementMenuViewModel</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Classes/SearchViewModel.html">SearchViewModel</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Classes/SearcherId.html">SearcherId</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Classes/StatsViewModel.html">StatsViewModel</a>
+              </li>
+            </ul>
+          </li>
+          <li class="nav-group-name">
+            <a href="../Other Extensions.html">Other Extensions</a>
+            <ul class="nav-group-tasks">
+              <li class="nav-group-task">
+                <a href="../Extensions/SearchParameters.html">SearchParameters</a>
+              </li>
+            </ul>
+          </li>
+          <li class="nav-group-name">
+            <a href="../Other Protocols.html">Other Protocols</a>
+            <ul class="nav-group-tasks">
+              <li class="nav-group-task">
+                <a href="../Protocols/AlgoliaIndexWidget.html">AlgoliaIndexWidget</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Protocols/AlgoliaMultiIndexWidget.html">AlgoliaMultiIndexWidget</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Other Protocols.html#/c:@M@InstantSearch@objc(pl)AlgoliaViewModel">AlgoliaViewModel</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Protocols/FacetControlViewDelegate.html">FacetControlViewDelegate</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Protocols/FacetControlViewModelDelegate.html">FacetControlViewModelDelegate</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Protocols/HitsViewDelegate.html">HitsViewDelegate</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Protocols/HitsViewModelDelegate.html">HitsViewModelDelegate</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Protocols/MultiHitsViewDelegate.html">MultiHitsViewDelegate</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Protocols/MultiHitsViewModelDelegate.html">MultiHitsViewModelDelegate</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Protocols/MultiSearchableViewModel.html">MultiSearchableViewModel</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Protocols/NumericControlViewDelegate.html">NumericControlViewDelegate</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Protocols/NumericControlViewModelDelegate.html">NumericControlViewModelDelegate</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Protocols/RefinementMenuViewDelegate.html">RefinementMenuViewDelegate</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Protocols/RefinementMenuViewModelDelegate.html">RefinementMenuViewModelDelegate</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Protocols/RefinementViewDelegate.html">RefinementViewDelegate</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Protocols/SearchControlViewDelegate.html">SearchControlViewDelegate</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Protocols/SearchControlViewModelDelegate.html">SearchControlViewModelDelegate</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Protocols/SearchableIndexViewModel.html">SearchableIndexViewModel</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Protocols/SearchableMultiIndexViewModel.html">SearchableMultiIndexViewModel</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Protocols/StatsViewDelegate.html">StatsViewDelegate</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Protocols/StatsViewModelDelegate.html">StatsViewModelDelegate</a>
+              </li>
+            </ul>
+          </li>
+        </ul>
+      </nav>
+      <article class="main-content">
+        <section>
+          <section class="section">
+            <h1>InstantSearch</h1>
+              <div class="declaration">
+                <div class="language">
+                  <pre class="highlight swift"><code><span class="kd">@objcMembers</span>
+<span class="kd">public</span> <span class="kd">class</span> <span class="kt">InstantSearch</span> <span class="p">:</span> <span class="kt">NSObject</span><span class="p">,</span> <span class="kt">SearcherDelegate</span></code></pre>
+
+                </div>
+              </div>
+            <p>Main class used for interacting with the InstantSearch library.
+The most important thing that it does is binding the Searcher/Index to the widgets.
+It also takes care of managing search components: <code>UISearchBar</code> and <code>UISearchController</code>.</p>
+
+          </section>
+          <section class="section task-group-section">
+            <div class="task-group">
+              <ul>
+                <li class="item">
+                  <div>
+                    <code>
+                    <a name="/c:@M@InstantSearch@objc(cs)InstantSearch(cpy)shared"></a>
+                    <a name="//apple_ref/swift/Variable/shared" class="dashAnchor"></a>
+                    <a class="token" href="#/c:@M@InstantSearch@objc(cs)InstantSearch(cpy)shared">shared</a>
+                    </code>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        <p>The singleton reference of InstantSearch.
+It is advised to use this shared reference in case you&rsquo;re dealing with a single index in your app.</p>
+
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="language">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight swift"><code><span class="kd">public</span> <span class="kd">static</span> <span class="k">let</span> <span class="nv">shared</span><span class="p">:</span> <span class="kt">InstantSearch</span></code></pre>
+
+                        </div>
+                      </div>
+                    </section>
+                  </div>
+                </li>
+              </ul>
+            </div>
+            <div class="task-group">
+              <div class="task-name-container">
+                <a name="/Properties"></a>
+                <a name="//apple_ref/swift/Section/Properties" class="dashAnchor"></a>
+                <a href="#/Properties">
+                  <h3 class="section-name">Properties</h3>
+                </a>
+              </div>
+              <ul>
+                <li class="item">
+                  <div>
+                    <code>
+                    <a name="/c:@M@InstantSearch@objc(cs)InstantSearch(py)searchers"></a>
+                    <a name="//apple_ref/swift/Property/searchers" class="dashAnchor"></a>
+                    <a class="token" href="#/c:@M@InstantSearch@objc(cs)InstantSearch(py)searchers">searchers</a>
+                    </code>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        <p>The Searchers used in the case of multi-indexing.</p>
+
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="language">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight swift"><code><span class="kd">public</span> <span class="k">var</span> <span class="nv">searchers</span><span class="p">:</span> <span class="p">[</span><span class="kt"><a href="../Classes/SearcherId.html">SearcherId</a></span> <span class="p">:</span> <span class="kt">Searcher</span><span class="p">]</span></code></pre>
+
+                        </div>
+                      </div>
+                    </section>
+                  </div>
+                </li>
+                <li class="item">
+                  <div>
+                    <code>
+                    <a name="/c:@M@InstantSearch@objc(cs)InstantSearch(py)searcher"></a>
+                    <a name="//apple_ref/swift/Property/searcher" class="dashAnchor"></a>
+                    <a class="token" href="#/c:@M@InstantSearch@objc(cs)InstantSearch(py)searcher">searcher</a>
+                    </code>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        <p>The Searcher used in the case of single-indexing.</p>
+<div class="aside aside-note">
+    <p class="aside-title">Note</p>
+    It is safer to use the getSearcher() method
+
+</div>
+<div class="aside aside-warning">
+    <p class="aside-title">Warning</p>
+    Don&rsquo;t use this in the case of configuring with multi-index.
+
+</div>
+
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="language">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight swift"><code><span class="kd">public</span> <span class="k">var</span> <span class="nv">searcher</span><span class="p">:</span> <span class="kt">Searcher</span><span class="o">!</span></code></pre>
+
+                        </div>
+                      </div>
+                    </section>
+                  </div>
+                </li>
+                <li class="item">
+                  <div>
+                    <code>
+                    <a name="/c:@M@InstantSearch@objc(cs)InstantSearch(py)history"></a>
+                    <a name="//apple_ref/swift/Property/history" class="dashAnchor"></a>
+                    <a class="token" href="#/c:@M@InstantSearch@objc(cs)InstantSearch(py)history">history</a>
+                    </code>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        <p>Undocumented</p>
+
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="language">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight swift"><code><span class="kd">public</span> <span class="k">var</span> <span class="nv">history</span><span class="p">:</span> <span class="kt">LocalHistory</span></code></pre>
+
+                        </div>
+                      </div>
+                    </section>
+                  </div>
+                </li>
+                <li class="item">
+                  <div>
+                    <code>
+                    <a name="/c:@M@InstantSearch@objc(cs)InstantSearch(py)recordHistory"></a>
+                    <a name="//apple_ref/swift/Property/recordHistory" class="dashAnchor"></a>
+                    <a class="token" href="#/c:@M@InstantSearch@objc(cs)InstantSearch(py)recordHistory">recordHistory</a>
+                    </code>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        <p>Undocumented</p>
+
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="language">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight swift"><code><span class="kd">public</span> <span class="k">var</span> <span class="nv">recordHistory</span><span class="p">:</span> <span class="kt">Bool</span></code></pre>
+
+                        </div>
+                      </div>
+                    </section>
+                  </div>
+                </li>
+                <li class="item">
+                  <div>
+                    <code>
+                    <a name="/c:@M@InstantSearch@objc(cs)InstantSearch(py)debuggingEnabled"></a>
+                    <a name="//apple_ref/swift/Property/debuggingEnabled" class="dashAnchor"></a>
+                    <a class="token" href="#/c:@M@InstantSearch@objc(cs)InstantSearch(py)debuggingEnabled">debuggingEnabled</a>
+                    </code>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        <p>Undocumented</p>
+
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="language">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight swift"><code><span class="kd">public</span> <span class="k">var</span> <span class="nv">debuggingEnabled</span><span class="p">:</span> <span class="kt">Bool</span> <span class="p">{</span> <span class="k">get</span> <span class="k">set</span> <span class="p">}</span></code></pre>
+
+                        </div>
+                      </div>
+                    </section>
+                  </div>
+                </li>
+                <li class="item">
+                  <div>
+                    <code>
+                    <a name="/c:@M@InstantSearch@objc(cs)InstantSearch(py)selectedSearcherId"></a>
+                    <a name="//apple_ref/swift/Property/selectedSearcherId" class="dashAnchor"></a>
+                    <a class="token" href="#/c:@M@InstantSearch@objc(cs)InstantSearch(py)selectedSearcherId">selectedSearcherId</a>
+                    </code>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        <p>Undocumented</p>
+
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="language">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight swift"><code><span class="kd">@objc</span>
+<span class="kd">dynamic</span> <span class="kd">public</span> <span class="k">var</span> <span class="nv">selectedSearcherId</span><span class="p">:</span> <span class="kt"><a href="../Classes/SearcherId.html">SearcherId</a></span><span class="p">?</span></code></pre>
+
+                        </div>
+                      </div>
+                    </section>
+                  </div>
+                </li>
+                <li class="item">
+                  <div>
+                    <code>
+                    <a name="/c:@M@InstantSearch@objc(cs)InstantSearch(py)selectedSearcher"></a>
+                    <a name="//apple_ref/swift/Property/selectedSearcher" class="dashAnchor"></a>
+                    <a class="token" href="#/c:@M@InstantSearch@objc(cs)InstantSearch(py)selectedSearcher">selectedSearcher</a>
+                    </code>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        <p>Undocumented</p>
+
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="language">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight swift"><code><span class="kd">public</span> <span class="k">var</span> <span class="nv">selectedSearcher</span><span class="p">:</span> <span class="kt">Searcher</span><span class="p">?</span> <span class="p">{</span> <span class="k">get</span> <span class="p">}</span></code></pre>
+
+                        </div>
+                      </div>
+                    </section>
+                  </div>
+                </li>
+                <li class="item">
+                  <div>
+                    <code>
+                    <a name="/c:@M@InstantSearch@objc(cs)InstantSearch(py)params"></a>
+                    <a name="//apple_ref/swift/Property/params" class="dashAnchor"></a>
+                    <a class="token" href="#/c:@M@InstantSearch@objc(cs)InstantSearch(py)params">params</a>
+                    </code>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        <p>The search parameters of the Searcher. This is just a quick access to <code>searcher.params</code>.</p>
+<div class="aside aside-note">
+    <p class="aside-title">Note</p>
+    It is safer to use the getSearcher().params method
+
+</div>
+<div class="aside aside-warning">
+    <p class="aside-title">Warning</p>
+    Don&rsquo;t use this in the case of configuring with multi-index.
+
+</div>
+
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="language">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight swift"><code><span class="kd">public</span> <span class="k">var</span> <span class="nv">params</span><span class="p">:</span> <span class="kt">SearchParameters</span> <span class="p">{</span> <span class="k">get</span> <span class="p">}</span></code></pre>
+
+                        </div>
+                      </div>
+                    </section>
+                  </div>
+                </li>
+              </ul>
+            </div>
+            <div class="task-group">
+              <div class="task-name-container">
+                <a name="/Init%20and%20Configure"></a>
+                <a name="//apple_ref/swift/Section/Init and Configure" class="dashAnchor"></a>
+                <a href="#/Init%20and%20Configure">
+                  <h3 class="section-name">Init and Configure</h3>
+                </a>
+              </div>
+              <ul>
+                <li class="item">
+                  <div>
+                    <code>
+                    <a name="/c:@M@InstantSearch@objc(cs)InstantSearch(im)initWithAppID:apiKey:index:"></a>
+                    <a name="//apple_ref/swift/Method/init(appID:apiKey:index:)" class="dashAnchor"></a>
+                    <a class="token" href="#/c:@M@InstantSearch@objc(cs)InstantSearch(im)initWithAppID:apiKey:index:">init(appID:apiKey:index:)</a>
+                    </code>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        <p>Create a new InstantSearch reference with the given configurations.</p>
+
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="language">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight swift"><code><span class="kd">@objc</span>
+<span class="kd">public</span> <span class="n">convenience</span> <span class="nf">init</span><span class="p">(</span><span class="nv">appID</span><span class="p">:</span> <span class="kt">String</span><span class="p">,</span> <span class="nv">apiKey</span><span class="p">:</span> <span class="kt">String</span><span class="p">,</span> <span class="nv">index</span><span class="p">:</span> <span class="kt">String</span><span class="p">)</span></code></pre>
+
+                        </div>
+                      </div>
+                      <div>
+                        <h4>Parameters</h4>
+                        <table class="graybox">
+                          <tbody>
+                            <tr>
+                              <td>
+                                <code>
+                                <em>appID</em>
+                                </code>
+                              </td>
+                              <td>
+                                <div>
+                                  <p>the Algolia AppID.</p>
+                                </div>
+                              </td>
+                            </tr>
+                            <tr>
+                              <td>
+                                <code>
+                                <em>apiKey</em>
+                                </code>
+                              </td>
+                              <td>
+                                <div>
+                                  <p>the Algolia ApiKey.</p>
+                                </div>
+                              </td>
+                            </tr>
+                            <tr>
+                              <td>
+                                <code>
+                                <em>index</em>
+                                </code>
+                              </td>
+                              <td>
+                                <div>
+                                  <p>the name of the index.</p>
+                                </div>
+                              </td>
+                            </tr>
+                          </tbody>
+                        </table>
+                      </div>
+                    </section>
+                  </div>
+                </li>
+                <li class="item">
+                  <div>
+                    <code>
+                    <a name="/c:@M@InstantSearch@objc(cs)InstantSearch(im)initWithSearcher:"></a>
+                    <a name="//apple_ref/swift/Method/init(searcher:)" class="dashAnchor"></a>
+                    <a class="token" href="#/c:@M@InstantSearch@objc(cs)InstantSearch(im)initWithSearcher:">init(searcher:)</a>
+                    </code>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        <p>Create a new InstantSearch reference.</p>
+
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="language">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight swift"><code><span class="kd">@objc</span>
+<span class="kd">public</span> <span class="n">convenience</span> <span class="nf">init</span><span class="p">(</span><span class="nv">searcher</span><span class="p">:</span> <span class="kt">Searcher</span><span class="p">)</span></code></pre>
+
+                        </div>
+                      </div>
+                      <div>
+                        <h4>Parameters</h4>
+                        <table class="graybox">
+                          <tbody>
+                            <tr>
+                              <td>
+                                <code>
+                                <em>searcher</em>
+                                </code>
+                              </td>
+                              <td>
+                                <div>
+                                  <p>the <code>Searcher</code> used by InstantSearch</p>
+                                </div>
+                              </td>
+                            </tr>
+                          </tbody>
+                        </table>
+                      </div>
+                    </section>
+                  </div>
+                </li>
+                <li class="item">
+                  <div>
+                    <code>
+                    <a name="/c:@M@InstantSearch@objc(cs)InstantSearch(im)configureWithAppID:apiKey:index:"></a>
+                    <a name="//apple_ref/swift/Method/configure(appID:apiKey:index:)" class="dashAnchor"></a>
+                    <a class="token" href="#/c:@M@InstantSearch@objc(cs)InstantSearch(im)configureWithAppID:apiKey:index:">configure(appID:apiKey:index:)</a>
+                    </code>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        <p>Configure the InstantSearch reference with the given configurations.</p>
+
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="language">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight swift"><code><span class="kd">@objc</span>
+<span class="kd">public</span> <span class="kd">func</span> <span class="nf">configure</span><span class="p">(</span><span class="nv">appID</span><span class="p">:</span> <span class="kt">String</span><span class="p">,</span> <span class="nv">apiKey</span><span class="p">:</span> <span class="kt">String</span><span class="p">,</span> <span class="nv">index</span><span class="p">:</span> <span class="kt">String</span><span class="p">)</span></code></pre>
+
+                        </div>
+                      </div>
+                      <div>
+                        <h4>Parameters</h4>
+                        <table class="graybox">
+                          <tbody>
+                            <tr>
+                              <td>
+                                <code>
+                                <em>appID</em>
+                                </code>
+                              </td>
+                              <td>
+                                <div>
+                                  <p>the Algolia AppID.</p>
+                                </div>
+                              </td>
+                            </tr>
+                            <tr>
+                              <td>
+                                <code>
+                                <em>apiKey</em>
+                                </code>
+                              </td>
+                              <td>
+                                <div>
+                                  <p>the Algolia ApiKeyl</p>
+                                </div>
+                              </td>
+                            </tr>
+                            <tr>
+                              <td>
+                                <code>
+                                <em>index</em>
+                                </code>
+                              </td>
+                              <td>
+                                <div>
+                                  <p>the name of the index.</p>
+                                </div>
+                              </td>
+                            </tr>
+                          </tbody>
+                        </table>
+                      </div>
+                    </section>
+                  </div>
+                </li>
+                <li class="item">
+                  <div>
+                    <code>
+                    <a name="/c:@M@InstantSearch@objc(cs)InstantSearch(im)initWithAppID:apiKey:searcherIds:"></a>
+                    <a name="//apple_ref/swift/Method/init(appID:apiKey:searcherIds:)" class="dashAnchor"></a>
+                    <a class="token" href="#/c:@M@InstantSearch@objc(cs)InstantSearch(im)initWithAppID:apiKey:searcherIds:">init(appID:apiKey:searcherIds:)</a>
+                    </code>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        <p>Create a new InstantSearch reference with the given configurations.</p>
+
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="language">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight swift"><code><span class="kd">@objc</span>
+<span class="kd">public</span> <span class="n">convenience</span> <span class="nf">init</span><span class="p">(</span><span class="nv">appID</span><span class="p">:</span> <span class="kt">String</span><span class="p">,</span> <span class="nv">apiKey</span><span class="p">:</span> <span class="kt">String</span><span class="p">,</span> <span class="nv">searcherIds</span><span class="p">:</span> <span class="p">[</span><span class="kt"><a href="../Classes/SearcherId.html">SearcherId</a></span><span class="p">])</span></code></pre>
+
+                        </div>
+                      </div>
+                      <div>
+                        <h4>Parameters</h4>
+                        <table class="graybox">
+                          <tbody>
+                            <tr>
+                              <td>
+                                <code>
+                                <em>appID</em>
+                                </code>
+                              </td>
+                              <td>
+                                <div>
+                                  <p>the Algolia AppID.</p>
+                                </div>
+                              </td>
+                            </tr>
+                            <tr>
+                              <td>
+                                <code>
+                                <em>apiKey</em>
+                                </code>
+                              </td>
+                              <td>
+                                <div>
+                                  <p>the Algolia ApiKey.</p>
+                                </div>
+                              </td>
+                            </tr>
+                            <tr>
+                              <td>
+                                <code>
+                                <em>indexIds</em>
+                                </code>
+                              </td>
+                              <td>
+                                <div>
+                                  <p>the identifications for each index</p>
+                                </div>
+                              </td>
+                            </tr>
+                          </tbody>
+                        </table>
+                      </div>
+                    </section>
+                  </div>
+                </li>
+                <li class="item">
+                  <div>
+                    <code>
+                    <a name="/c:@M@InstantSearch@objc(cs)InstantSearch(im)initWithSearchables:searcherIds:"></a>
+                    <a name="//apple_ref/swift/Method/init(searchables:searcherIds:)" class="dashAnchor"></a>
+                    <a class="token" href="#/c:@M@InstantSearch@objc(cs)InstantSearch(im)initWithSearchables:searcherIds:">init(searchables:searcherIds:)</a>
+                    </code>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        <p>Create a new InstantSearch reference with the given configurations.</p>
+
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="language">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight swift"><code><span class="kd">@objc</span>
+<span class="kd">public</span> <span class="n">convenience</span> <span class="nf">init</span><span class="p">(</span><span class="nv">searchables</span><span class="p">:</span> <span class="p">[</span><span class="kt">Searchable</span><span class="p">],</span> <span class="nv">searcherIds</span><span class="p">:</span> <span class="p">[</span><span class="kt"><a href="../Classes/SearcherId.html">SearcherId</a></span><span class="p">])</span></code></pre>
+
+                        </div>
+                      </div>
+                      <div>
+                        <h4>Parameters</h4>
+                        <table class="graybox">
+                          <tbody>
+                            <tr>
+                              <td>
+                                <code>
+                                <em>searchables</em>
+                                </code>
+                              </td>
+                              <td>
+                                <div>
+                                  <p>an array of searchables</p>
+                                </div>
+                              </td>
+                            </tr>
+                            <tr>
+                              <td>
+                                <code>
+                                <em>searchersIds</em>
+                                </code>
+                              </td>
+                              <td>
+                                <div>
+                                  <p>an array of searcherId that identifies a specific index</p>
+                                </div>
+                              </td>
+                            </tr>
+                          </tbody>
+                        </table>
+                      </div>
+                    </section>
+                  </div>
+                </li>
+                <li class="item">
+                  <div>
+                    <code>
+                    <a name="/c:@M@InstantSearch@objc(cs)InstantSearch(im)configureWithAppID:apiKey:searcherIds:"></a>
+                    <a name="//apple_ref/swift/Method/configure(appID:apiKey:searcherIds:)" class="dashAnchor"></a>
+                    <a class="token" href="#/c:@M@InstantSearch@objc(cs)InstantSearch(im)configureWithAppID:apiKey:searcherIds:">configure(appID:apiKey:searcherIds:)</a>
+                    </code>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        <p>Configure the InstantSearch reference with the given configurations.</p>
+
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="language">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight swift"><code><span class="kd">@objc</span>
+<span class="kd">public</span> <span class="kd">func</span> <span class="nf">configure</span><span class="p">(</span><span class="nv">appID</span><span class="p">:</span> <span class="kt">String</span><span class="p">,</span> <span class="nv">apiKey</span><span class="p">:</span> <span class="kt">String</span><span class="p">,</span> <span class="nv">searcherIds</span><span class="p">:</span> <span class="p">[</span><span class="kt"><a href="../Classes/SearcherId.html">SearcherId</a></span><span class="p">])</span></code></pre>
+
+                        </div>
+                      </div>
+                      <div>
+                        <h4>Parameters</h4>
+                        <table class="graybox">
+                          <tbody>
+                            <tr>
+                              <td>
+                                <code>
+                                <em>appID</em>
+                                </code>
+                              </td>
+                              <td>
+                                <div>
+                                  <p>the Algolia AppID.</p>
+                                </div>
+                              </td>
+                            </tr>
+                            <tr>
+                              <td>
+                                <code>
+                                <em>apiKey</em>
+                                </code>
+                              </td>
+                              <td>
+                                <div>
+                                  <p>the Algolia ApiKey.</p>
+                                </div>
+                              </td>
+                            </tr>
+                            <tr>
+                              <td>
+                                <code>
+                                <em>indexIds</em>
+                                </code>
+                              </td>
+                              <td>
+                                <div>
+                                  <p>identifiers for the different indices.</p>
+                                </div>
+                              </td>
+                            </tr>
+                          </tbody>
+                        </table>
+                      </div>
+                    </section>
+                  </div>
+                </li>
+                <li class="item">
+                  <div>
+                    <code>
+                    <a name="/c:@M@InstantSearch@objc(cs)InstantSearch(im)configureWithSearchables:searcherIds:"></a>
+                    <a name="//apple_ref/swift/Method/configure(searchables:searcherIds:)" class="dashAnchor"></a>
+                    <a class="token" href="#/c:@M@InstantSearch@objc(cs)InstantSearch(im)configureWithSearchables:searcherIds:">configure(searchables:searcherIds:)</a>
+                    </code>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        <p>Configure the InstantSearch reference with the given configurations.</p>
+
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="language">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight swift"><code><span class="kd">@objc</span>
+<span class="kd">public</span> <span class="kd">func</span> <span class="nf">configure</span><span class="p">(</span><span class="nv">searchables</span><span class="p">:</span> <span class="p">[</span><span class="kt">Searchable</span><span class="p">],</span> <span class="nv">searcherIds</span><span class="p">:</span> <span class="p">[</span><span class="kt"><a href="../Classes/SearcherId.html">SearcherId</a></span><span class="p">])</span></code></pre>
+
+                        </div>
+                      </div>
+                      <div>
+                        <h4>Parameters</h4>
+                        <table class="graybox">
+                          <tbody>
+                            <tr>
+                              <td>
+                                <code>
+                                <em>searchables</em>
+                                </code>
+                              </td>
+                              <td>
+                                <div>
+                                  <p>an array of searchables</p>
+                                </div>
+                              </td>
+                            </tr>
+                            <tr>
+                              <td>
+                                <code>
+                                <em>searchersIds</em>
+                                </code>
+                              </td>
+                              <td>
+                                <div>
+                                  <p>an array of searcherId that identifies a specific index</p>
+                                </div>
+                              </td>
+                            </tr>
+                          </tbody>
+                        </table>
+                      </div>
+                    </section>
+                  </div>
+                </li>
+                <li class="item">
+                  <div>
+                    <code>
+                    <a name="/c:@M@InstantSearch@objc(cs)InstantSearch(im)getSearcher"></a>
+                    <a name="//apple_ref/swift/Method/getSearcher()" class="dashAnchor"></a>
+                    <a class="token" href="#/c:@M@InstantSearch@objc(cs)InstantSearch(im)getSearcher">getSearcher()</a>
+                    </code>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        <p>Get the searcher associated to the index used for InstantSearch</p>
+
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="language">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight swift"><code><span class="kd">@objc</span>
+<span class="kd">public</span> <span class="kd">func</span> <span class="nf">getSearcher</span><span class="p">()</span> <span class="o">-&gt;</span> <span class="kt">Searcher</span></code></pre>
+
+                        </div>
+                      </div>
+                    </section>
+                  </div>
+                </li>
+                <li class="item">
+                  <div>
+                    <code>
+                    <a name="/c:@M@InstantSearch@objc(cs)InstantSearch(im)getSearcherWithNamed:withId:"></a>
+                    <a name="//apple_ref/swift/Method/getSearcher(named:withId:)" class="dashAnchor"></a>
+                    <a class="token" href="#/c:@M@InstantSearch@objc(cs)InstantSearch(im)getSearcherWithNamed:withId:">getSearcher(named:withId:)</a>
+                    </code>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        <p>Get the searcher associated to the specific index with name and id used for InstantSearch</p>
+
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="language">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight swift"><code><span class="kd">@objc</span>
+<span class="kd">public</span> <span class="kd">func</span> <span class="nf">getSearcher</span><span class="p">(</span><span class="n">named</span> <span class="nv">name</span><span class="p">:</span> <span class="kt">String</span><span class="p">,</span> <span class="n">withId</span> <span class="nv">id</span><span class="p">:</span> <span class="kt">String</span> <span class="o">=</span> <span class="s">""</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kt">Searcher</span><span class="p">?</span></code></pre>
+
+                        </div>
+                      </div>
+                    </section>
+                  </div>
+                </li>
+              </ul>
+            </div>
+            <div class="task-group">
+              <div class="task-name-container">
+                <a name="/Caching"></a>
+                <a name="//apple_ref/swift/Section/Caching" class="dashAnchor"></a>
+                <a href="#/Caching">
+                  <h3 class="section-name">Caching</h3>
+                </a>
+              </div>
+              <ul>
+                <li class="item">
+                  <div>
+                    <code>
+                    <a name="/c:@M@InstantSearch@objc(cs)InstantSearch(py)searchCacheEnabled"></a>
+                    <a name="//apple_ref/swift/Property/searchCacheEnabled" class="dashAnchor"></a>
+                    <a class="token" href="#/c:@M@InstantSearch@objc(cs)InstantSearch(py)searchCacheEnabled">searchCacheEnabled</a>
+                    </code>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        <p>Whether the search cache is enabled on this index. Default: <code>false</code>.</p>
+
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="language">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight swift"><code><span class="kd">@objc</span>
+<span class="kd">public</span> <span class="k">var</span> <span class="nv">searchCacheEnabled</span><span class="p">:</span> <span class="kt">Bool</span> <span class="p">{</span> <span class="k">get</span> <span class="k">set</span> <span class="p">}</span></code></pre>
+
+                        </div>
+                      </div>
+                    </section>
+                  </div>
+                </li>
+                <li class="item">
+                  <div>
+                    <code>
+                    <a name="/c:@M@InstantSearch@objc(cs)InstantSearch(py)searchCacheExpiringTimeInterval"></a>
+                    <a name="//apple_ref/swift/Property/searchCacheExpiringTimeInterval" class="dashAnchor"></a>
+                    <a class="token" href="#/c:@M@InstantSearch@objc(cs)InstantSearch(py)searchCacheExpiringTimeInterval">searchCacheExpiringTimeInterval</a>
+                    </code>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        <p>Expiration delay for items in the search cache. Default: 2 minutes.</p>
+<div class="aside aside-note">
+    <p class="aside-title">Note</p>
+    The delay is a minimum threshold. Items may survive longer in cache.
+
+</div>
+
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="language">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight swift"><code><span class="kd">@objc</span>
+<span class="kd">public</span> <span class="k">var</span> <span class="nv">searchCacheExpiringTimeInterval</span><span class="p">:</span> <span class="kt">TimeInterval</span> <span class="p">{</span> <span class="k">get</span> <span class="k">set</span> <span class="p">}</span></code></pre>
+
+                        </div>
+                      </div>
+                    </section>
+                  </div>
+                </li>
+                <li class="item">
+                  <div>
+                    <code>
+                    <a name="/c:@M@InstantSearch@objc(cs)InstantSearch(im)searchCacheEnabled:for:"></a>
+                    <a name="//apple_ref/swift/Method/searchCacheEnabled(_:for:)" class="dashAnchor"></a>
+                    <a class="token" href="#/c:@M@InstantSearch@objc(cs)InstantSearch(im)searchCacheEnabled:for:">searchCacheEnabled(_:for:)</a>
+                    </code>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        <p>Undocumented</p>
+
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="language">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight swift"><code><span class="kd">@objc</span>
+<span class="kd">public</span> <span class="kd">func</span> <span class="nf">searchCacheEnabled</span><span class="p">(</span><span class="n">_</span> <span class="nv">searchCacheEnabled</span><span class="p">:</span> <span class="kt">Bool</span><span class="p">,</span> <span class="k">for</span> <span class="nv">searcherIds</span><span class="p">:</span> <span class="p">[</span><span class="kt"><a href="../Classes/SearcherId.html">SearcherId</a></span><span class="p">])</span></code></pre>
+
+                        </div>
+                      </div>
+                    </section>
+                  </div>
+                </li>
+                <li class="item">
+                  <div>
+                    <code>
+                    <a name="/c:@M@InstantSearch@objc(cs)InstantSearch(im)searchCacheExpiringTimeInterval:for:"></a>
+                    <a name="//apple_ref/swift/Method/searchCacheExpiringTimeInterval(_:for:)" class="dashAnchor"></a>
+                    <a class="token" href="#/c:@M@InstantSearch@objc(cs)InstantSearch(im)searchCacheExpiringTimeInterval:for:">searchCacheExpiringTimeInterval(_:for:)</a>
+                    </code>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        <p>Undocumented</p>
+
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="language">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight swift"><code><span class="kd">@objc</span>
+<span class="kd">public</span> <span class="kd">func</span> <span class="nf">searchCacheExpiringTimeInterval</span><span class="p">(</span><span class="n">_</span> <span class="nv">searchCacheExpiringTimeInterval</span><span class="p">:</span> <span class="kt">TimeInterval</span><span class="p">,</span> <span class="k">for</span> <span class="nv">searcherIds</span><span class="p">:</span> <span class="p">[</span><span class="kt"><a href="../Classes/SearcherId.html">SearcherId</a></span><span class="p">])</span></code></pre>
+
+                        </div>
+                      </div>
+                    </section>
+                  </div>
+                </li>
+              </ul>
+            </div>
+            <div class="task-group">
+              <div class="task-name-container">
+                <a name="/Add%20widget%20methods"></a>
+                <a name="//apple_ref/swift/Section/Add widget methods" class="dashAnchor"></a>
+                <a href="#/Add%20widget%20methods">
+                  <h3 class="section-name">Add widget methods</h3>
+                </a>
+              </div>
+              <ul>
+                <li class="item">
+                  <div>
+                    <code>
+                    <a name="/c:@M@InstantSearch@objc(cs)InstantSearch(im)registerAllWidgetsIn:"></a>
+                    <a name="//apple_ref/swift/Method/registerAllWidgets(in:)" class="dashAnchor"></a>
+                    <a class="token" href="#/c:@M@InstantSearch@objc(cs)InstantSearch(im)registerAllWidgetsIn:">registerAllWidgets(in:)</a>
+                    </code>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        <p>Register all InstantSearch widgets inside a particular view, and then execute a search to Algolia</p>
+<li><p>param view: the view containnig the InstantSearch widgets.</p></li>
+<div class="aside aside-note">
+    <p class="aside-title">Note</p>
+    <p>InstantSearch widgets are simply the components that implement the <code><a href="../Protocols.html#/c:@M@InstantSearch@objc(pl)AlgoliaWidget">AlgoliaWidget</a></code> marker protocol.</p>
+
+</div>
+
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="language">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight swift"><code><span class="kd">@objc</span>
+<span class="kd">public</span> <span class="kd">func</span> <span class="nf">registerAllWidgets</span><span class="p">(</span><span class="k">in</span> <span class="nv">view</span><span class="p">:</span> <span class="kt">UIView</span><span class="p">)</span></code></pre>
+
+                        </div>
+                      </div>
+                    </section>
+                  </div>
+                </li>
+                <li class="item">
+                  <div>
+                    <code>
+                    <a name="/c:@M@InstantSearch@objc(cs)InstantSearch(im)registerAllWidgetsIn:doSearch:"></a>
+                    <a name="//apple_ref/swift/Method/registerAllWidgets(in:doSearch:)" class="dashAnchor"></a>
+                    <a class="token" href="#/c:@M@InstantSearch@objc(cs)InstantSearch(im)registerAllWidgetsIn:doSearch:">registerAllWidgets(in:doSearch:)</a>
+                    </code>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        <p>Register all InstantSearch widgets inside a particular view.</p>
+<li>param view: the view containnig the InstantSearch widgets.</li>
+<li><p>param doSearch: do a new search to Algolia if true (default), nothing otherwise.</p></li>
+<div class="aside aside-note">
+    <p class="aside-title">Note</p>
+    <p>InstantSearch widgets are simply the components that implement the <code><a href="../Protocols.html#/c:@M@InstantSearch@objc(pl)AlgoliaWidget">AlgoliaWidget</a></code> marker protocol.</p>
+
+</div>
+
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="language">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight swift"><code><span class="kd">@objc</span>
+<span class="kd">public</span> <span class="kd">func</span> <span class="nf">registerAllWidgets</span><span class="p">(</span><span class="k">in</span> <span class="nv">view</span><span class="p">:</span> <span class="kt">UIView</span><span class="p">,</span> <span class="nv">doSearch</span><span class="p">:</span> <span class="kt">Bool</span> <span class="o">=</span> <span class="kc">true</span><span class="p">)</span></code></pre>
+
+                        </div>
+                      </div>
+                    </section>
+                  </div>
+                </li>
+                <li class="item">
+                  <div>
+                    <code>
+                    <a name="/c:@M@InstantSearch@objc(cs)InstantSearch(im)registerWithWidget:"></a>
+                    <a name="//apple_ref/swift/Method/register(widget:)" class="dashAnchor"></a>
+                    <a class="token" href="#/c:@M@InstantSearch@objc(cs)InstantSearch(im)registerWithWidget:">register(widget:)</a>
+                    </code>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        <p>Register a widget to InstantSearch.</p>
+<li><p>param widget: the <code><a href="../Protocols.html#/c:@M@InstantSearch@objc(pl)AlgoliaWidget">AlgoliaWidget</a></code> to be registered to InstantSearch.</p></li>
+<div class="aside aside-note">
+    <p class="aside-title">Note</p>
+    <p>if <code>doSearch</code> parameter is not specified, then we will automatically do a search if the <code><a href="../Protocols.html#/c:@M@InstantSearch@objc(pl)AlgoliaWidget">AlgoliaWidget</a></code>
+is an <q>input control</q> (changes the params of the Searcher), otherwise we don&rsquo;t do a search.</p>
+
+</div>
+
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="language">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight swift"><code><span class="kd">@objc</span>
+<span class="kd">public</span> <span class="kd">func</span> <span class="nf">register</span><span class="p">(</span><span class="nv">widget</span><span class="p">:</span> <span class="kt"><a href="../Protocols.html#/c:@M@InstantSearch@objc(pl)AlgoliaWidget">AlgoliaWidget</a></span><span class="p">)</span></code></pre>
+
+                        </div>
+                      </div>
+                    </section>
+                  </div>
+                </li>
+                <li class="item">
+                  <div>
+                    <code>
+                    <a name="/c:@M@InstantSearch@objc(cs)InstantSearch(im)registerWithWidget:doSearch:"></a>
+                    <a name="//apple_ref/swift/Method/register(widget:doSearch:)" class="dashAnchor"></a>
+                    <a class="token" href="#/c:@M@InstantSearch@objc(cs)InstantSearch(im)registerWithWidget:doSearch:">register(widget:doSearch:)</a>
+                    </code>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        <p>Register a widget to InstantSearch.</p>
+
+<ul>
+<li>param widget: the <code><a href="../Protocols.html#/c:@M@InstantSearch@objc(pl)AlgoliaWidget">AlgoliaWidget</a></code> to be registered to InstantSearch.</li>
+<li>param doSearch: whether or not to do a new search to Algolia after adding the widget.</li>
+</ul>
+
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="language">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight swift"><code><span class="kd">@objc</span>
+<span class="kd">public</span> <span class="kd">func</span> <span class="nf">register</span><span class="p">(</span><span class="nv">widget</span><span class="p">:</span> <span class="kt"><a href="../Protocols.html#/c:@M@InstantSearch@objc(pl)AlgoliaWidget">AlgoliaWidget</a></span><span class="p">,</span> <span class="nv">doSearch</span><span class="p">:</span> <span class="kt">Bool</span><span class="p">)</span></code></pre>
+
+                        </div>
+                      </div>
+                    </section>
+                  </div>
+                </li>
+                <li class="item">
+                  <div>
+                    <code>
+                    <a name="/c:@M@InstantSearch@objc(cs)InstantSearch(im)registerWithViewModel:"></a>
+                    <a name="//apple_ref/swift/Method/register(viewModel:)" class="dashAnchor"></a>
+                    <a class="token" href="#/c:@M@InstantSearch@objc(cs)InstantSearch(im)registerWithViewModel:">register(viewModel:)</a>
+                    </code>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        <p>Register a viewModel to InstantSearch so that it subscribes to search events.</p>
+
+<ul>
+<li>param widget: the <code><a href="../Protocols.html#/c:@M@InstantSearch@objc(pl)AlgoliaWidget">AlgoliaWidget</a></code> to be registered to InstantSearch.</li>
+<li>param doSearch: whether or not to do a new search to Algolia after adding the widget.</li>
+</ul>
+
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="language">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight swift"><code><span class="kd">@objc</span>
+<span class="kd">public</span> <span class="kd">func</span> <span class="nf">register</span><span class="p">(</span><span class="n">viewModel</span> <span class="nv">widgetVM</span><span class="p">:</span> <span class="kt"><a href="../Other Protocols.html#/c:@M@InstantSearch@objc(pl)AlgoliaViewModel">AlgoliaViewModel</a></span><span class="p">)</span></code></pre>
+
+                        </div>
+                      </div>
+                    </section>
+                  </div>
+                </li>
+              </ul>
+            </div>
+            <div class="task-group">
+              <div class="task-name-container">
+                <a name="/SearcherDelegate"></a>
+                <a name="//apple_ref/swift/Section/SearcherDelegate" class="dashAnchor"></a>
+                <a href="#/SearcherDelegate">
+                  <h3 class="section-name">SearcherDelegate</h3>
+                </a>
+              </div>
+              <ul>
+                <li class="item">
+                  <div>
+                    <code>
+                    <a name="/c:@M@InstantSearch@objc(cs)InstantSearch(im)searcher:didReceiveResults:error:userInfo:"></a>
+                    <a name="//apple_ref/swift/Method/searcher(_:didReceive:error:userInfo:)" class="dashAnchor"></a>
+                    <a class="token" href="#/c:@M@InstantSearch@objc(cs)InstantSearch(im)searcher:didReceiveResults:error:userInfo:">searcher(_:didReceive:error:userInfo:)</a>
+                    </code>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        <p>Delegate method called when new search results arrive from Algolia
+This function forwards all results, errors and userInfo to the resultDelegates.</p>
+
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="language">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight swift"><code><span class="kd">public</span> <span class="kd">func</span> <span class="nf">searcher</span><span class="p">(</span><span class="n">_</span> <span class="nv">searcher</span><span class="p">:</span> <span class="kt">Searcher</span><span class="p">,</span> <span class="n">didReceive</span> <span class="nv">results</span><span class="p">:</span> <span class="kt">SearchResults</span><span class="p">?,</span> <span class="nv">error</span><span class="p">:</span> <span class="kt">Error</span><span class="p">?,</span> <span class="nv">userInfo</span><span class="p">:</span> <span class="p">[</span><span class="kt">String</span> <span class="p">:</span> <span class="kt">Any</span><span class="p">])</span></code></pre>
+
+                        </div>
+                      </div>
+                    </section>
+                  </div>
+                </li>
+              </ul>
+            </div>
+            <div class="task-group">
+              <div class="task-name-container">
+                <a name="/Helper%20methods"></a>
+                <a name="//apple_ref/swift/Section/Helper methods" class="dashAnchor"></a>
+                <a href="#/Helper%20methods">
+                  <h3 class="section-name">Helper methods</h3>
+                </a>
+              </div>
+              <ul>
+                <li class="item">
+                  <div>
+                    <code>
+                    <a name="/c:@M@InstantSearch@objc(cs)InstantSearch(im)searchWith:"></a>
+                    <a name="//apple_ref/swift/Method/search(with:)" class="dashAnchor"></a>
+                    <a class="token" href="#/c:@M@InstantSearch@objc(cs)InstantSearch(im)searchWith:">search(with:)</a>
+                    </code>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        <p>Undocumented</p>
+
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="language">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight swift"><code><span class="kd">public</span> <span class="kd">func</span> <span class="nf">search</span><span class="p">(</span><span class="n">with</span> <span class="nv">searchText</span><span class="p">:</span> <span class="kt">String</span><span class="p">)</span></code></pre>
+
+                        </div>
+                      </div>
+                    </section>
+                  </div>
+                </li>
+                <li class="item">
+                  <div>
+                    <code>
+                    <a name="/c:@M@InstantSearch@objc(cs)InstantSearch(im)search"></a>
+                    <a name="//apple_ref/swift/Method/search()" class="dashAnchor"></a>
+                    <a class="token" href="#/c:@M@InstantSearch@objc(cs)InstantSearch(im)search">search()</a>
+                    </code>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        <p>Undocumented</p>
+
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="language">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight swift"><code><span class="kd">public</span> <span class="kd">func</span> <span class="nf">search</span><span class="p">()</span></code></pre>
+
+                        </div>
+                      </div>
+                    </section>
+                  </div>
+                </li>
+                <li class="item">
+                  <div>
+                    <code>
+                    <a name="/c:@M@InstantSearch@objc(cs)InstantSearch(im)searchWith:in:"></a>
+                    <a name="//apple_ref/swift/Method/search(with:in:)" class="dashAnchor"></a>
+                    <a class="token" href="#/c:@M@InstantSearch@objc(cs)InstantSearch(im)searchWith:in:">search(with:in:)</a>
+                    </code>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        <p>Undocumented</p>
+
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="language">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight swift"><code><span class="kd">public</span> <span class="kd">func</span> <span class="nf">search</span><span class="p">(</span><span class="n">with</span> <span class="nv">searchText</span><span class="p">:</span> <span class="kt">String</span><span class="p">,</span> <span class="k">in</span> <span class="nv">searcherIds</span><span class="p">:</span> <span class="p">[</span><span class="kt"><a href="../Classes/SearcherId.html">SearcherId</a></span><span class="p">])</span></code></pre>
+
+                        </div>
+                      </div>
+                    </section>
+                  </div>
+                </li>
+                <li class="item">
+                  <div>
+                    <code>
+                    <a name="/c:@M@InstantSearch@objc(cs)InstantSearch(im)clearParametersIn:"></a>
+                    <a name="//apple_ref/swift/Method/clearParameters(in:)" class="dashAnchor"></a>
+                    <a class="token" href="#/c:@M@InstantSearch@objc(cs)InstantSearch(im)clearParametersIn:">clearParameters(in:)</a>
+                    </code>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        <p>Undocumented</p>
+
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="language">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight swift"><code><span class="kd">public</span> <span class="kd">func</span> <span class="nf">clearParameters</span><span class="p">(</span><span class="k">in</span> <span class="nv">searcherIds</span><span class="p">:</span> <span class="p">[</span><span class="kt"><a href="../Classes/SearcherId.html">SearcherId</a></span><span class="p">])</span></code></pre>
+
+                        </div>
+                      </div>
+                    </section>
+                  </div>
+                </li>
+                <li class="item">
+                  <div>
+                    <code>
+                    <a name="/c:@M@InstantSearch@objc(cs)InstantSearch(im)clearParametersWithExceptIn:"></a>
+                    <a name="//apple_ref/swift/Method/clearParameters(exceptIn:)" class="dashAnchor"></a>
+                    <a class="token" href="#/c:@M@InstantSearch@objc(cs)InstantSearch(im)clearParametersWithExceptIn:">clearParameters(exceptIn:)</a>
+                    </code>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        <p>Undocumented</p>
+
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="language">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight swift"><code><span class="kd">public</span> <span class="kd">func</span> <span class="nf">clearParameters</span><span class="p">(</span><span class="n">exceptIn</span> <span class="nv">searcherIds</span><span class="p">:</span> <span class="p">[</span><span class="kt"><a href="../Classes/SearcherId.html">SearcherId</a></span><span class="p">])</span></code></pre>
+
+                        </div>
+                      </div>
+                    </section>
+                  </div>
+                </li>
+                <li class="item">
+                  <div>
+                    <code>
+                    <a name="/c:@M@InstantSearch@objc(cs)InstantSearch(im)clearParameters"></a>
+                    <a name="//apple_ref/swift/Method/clearParameters()" class="dashAnchor"></a>
+                    <a class="token" href="#/c:@M@InstantSearch@objc(cs)InstantSearch(im)clearParameters">clearParameters()</a>
+                    </code>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        <p>Undocumented</p>
+
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="language">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight swift"><code><span class="kd">public</span> <span class="kd">func</span> <span class="nf">clearParameters</span><span class="p">()</span></code></pre>
+
+                        </div>
+                      </div>
+                    </section>
+                  </div>
+                </li>
+              </ul>
+            </div>
+            <div class="task-group">
+              <ul>
+                <li class="item">
+                  <div>
+                    <code>
+                    <a name="/c:@CM@InstantSearch@objc(cs)InstantSearch(im)registerWithSearchController:"></a>
+                    <a name="//apple_ref/swift/Method/register(searchController:)" class="dashAnchor"></a>
+                    <a class="token" href="#/c:@CM@InstantSearch@objc(cs)InstantSearch(im)registerWithSearchController:">register(searchController:)</a>
+                    </code>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        <p>Forwards a <code>SearchController</code> to <code>InstantSearch</code> so that it takes care of updating search results
+on every new keystroke inside the <code>UISearchBar</code> linked to it.</p>
+
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="language">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight swift"><code><span class="kd">@objc</span>
+<span class="kd">public</span> <span class="kd">func</span> <span class="nf">register</span><span class="p">(</span><span class="nv">searchController</span><span class="p">:</span> <span class="kt">UISearchController</span><span class="p">)</span></code></pre>
+
+                        </div>
+                      </div>
+                    </section>
+                  </div>
+                </li>
+                <li class="item">
+                  <div>
+                    <code>
+                    <a name="/c:@CM@InstantSearch@objc(cs)InstantSearch(im)updateSearchResultsForSearchController:"></a>
+                    <a name="//apple_ref/swift/Method/updateSearchResults(for:)" class="dashAnchor"></a>
+                    <a class="token" href="#/c:@CM@InstantSearch@objc(cs)InstantSearch(im)updateSearchResultsForSearchController:">updateSearchResults(for:)</a>
+                    </code>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        <p>Handler called on each keystroke change in the <code>UISearchBar</code></p>
+
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="language">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight swift"><code><span class="kd">public</span> <span class="kd">func</span> <span class="nf">updateSearchResults</span><span class="p">(</span><span class="k">for</span> <span class="nv">searchController</span><span class="p">:</span> <span class="kt">UISearchController</span><span class="p">)</span></code></pre>
+
+                        </div>
+                      </div>
+                    </section>
+                  </div>
+                </li>
+                <li class="item">
+                  <div>
+                    <code>
+                    <a name="/c:@CM@InstantSearch@objc(cs)InstantSearch(im)searchBarTextDidBeginEditing:"></a>
+                    <a name="//apple_ref/swift/Method/searchBarTextDidBeginEditing(_:)" class="dashAnchor"></a>
+                    <a class="token" href="#/c:@CM@InstantSearch@objc(cs)InstantSearch(im)searchBarTextDidBeginEditing:">searchBarTextDidBeginEditing(_:)</a>
+                    </code>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        <p>Handler called when searchBar becomes first responder</p>
+
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="language">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight swift"><code><span class="kd">public</span> <span class="kd">func</span> <span class="nf">searchBarTextDidBeginEditing</span><span class="p">(</span><span class="n">_</span> <span class="nv">searchBar</span><span class="p">:</span> <span class="kt">UISearchBar</span><span class="p">)</span></code></pre>
+
+                        </div>
+                      </div>
+                    </section>
+                  </div>
+                </li>
+              </ul>
+            </div>
+            <div class="task-group">
+              <ul>
+                <li class="item">
+                  <div>
+                    <code>
+                    <a name="/c:@CM@InstantSearch@objc(cs)InstantSearch(im)registerWithSearchBar:"></a>
+                    <a name="//apple_ref/swift/Method/register(searchBar:)" class="dashAnchor"></a>
+                    <a class="token" href="#/c:@CM@InstantSearch@objc(cs)InstantSearch(im)registerWithSearchBar:">register(searchBar:)</a>
+                    </code>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        <p>Forwards a <code>UISearchBar</code> to <code>InstantSearch</code> so that it takes care of updating search results
+on every new keystroke</p>
+
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="language">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight swift"><code><span class="kd">@objc</span>
+<span class="kd">public</span> <span class="kd">func</span> <span class="nf">register</span><span class="p">(</span><span class="nv">searchBar</span><span class="p">:</span> <span class="kt">UISearchBar</span><span class="p">)</span></code></pre>
+
+                        </div>
+                      </div>
+                    </section>
+                  </div>
+                </li>
+                <li class="item">
+                  <div>
+                    <code>
+                    <a name="/c:@CM@InstantSearch@objc(cs)InstantSearch(im)searchBar:textDidChange:"></a>
+                    <a name="//apple_ref/swift/Method/searchBar(_:textDidChange:)" class="dashAnchor"></a>
+                    <a class="token" href="#/c:@CM@InstantSearch@objc(cs)InstantSearch(im)searchBar:textDidChange:">searchBar(_:textDidChange:)</a>
+                    </code>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        <p>Handler called on each keystroke change in the <code>UISearchBar</code></p>
+
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="language">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight swift"><code><span class="kd">public</span> <span class="kd">func</span> <span class="nf">searchBar</span><span class="p">(</span><span class="n">_</span> <span class="nv">searchBar</span><span class="p">:</span> <span class="kt">UISearchBar</span><span class="p">,</span> <span class="n">textDidChange</span> <span class="nv">searchText</span><span class="p">:</span> <span class="kt">String</span><span class="p">)</span></code></pre>
+
+                        </div>
+                      </div>
+                    </section>
+                  </div>
+                </li>
+              </ul>
+            </div>
+            <div class="task-group">
+              <ul>
+                <li class="item">
+                  <div>
+                    <code>
+                    <a name="/c:@CM@InstantSearch@objc(cs)InstantSearch(im)appendHistoryWithQueryText:"></a>
+                    <a name="//apple_ref/swift/Method/appendHistory(queryText:)" class="dashAnchor"></a>
+                    <a class="token" href="#/c:@CM@InstantSearch@objc(cs)InstantSearch(im)appendHistoryWithQueryText:">appendHistory(queryText:)</a>
+                    </code>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        <p>Undocumented</p>
+
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="language">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight swift"><code><span class="kd">public</span> <span class="kd">func</span> <span class="nf">appendHistory</span><span class="p">(</span><span class="nv">queryText</span><span class="p">:</span> <span class="kt">String</span><span class="p">)</span></code></pre>
+
+                        </div>
+                      </div>
+                    </section>
+                  </div>
+                </li>
+                <li class="item">
+                  <div>
+                    <code>
+                    <a name="/c:@CM@InstantSearch@objc(cs)InstantSearch(im)clearAllHistory"></a>
+                    <a name="//apple_ref/swift/Method/clearAllHistory()" class="dashAnchor"></a>
+                    <a class="token" href="#/c:@CM@InstantSearch@objc(cs)InstantSearch(im)clearAllHistory">clearAllHistory()</a>
+                    </code>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        <p>Undocumented</p>
+
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="language">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight swift"><code><span class="kd">public</span> <span class="kd">func</span> <span class="nf">clearAllHistory</span><span class="p">()</span></code></pre>
+
+                        </div>
+                      </div>
+                    </section>
+                  </div>
+                </li>
+                <li class="item">
+                  <div>
+                    <code>
+                    <a name="/c:@CM@InstantSearch@objc(cs)InstantSearch(im)clearQueryInHistoryWithQueryText:"></a>
+                    <a name="//apple_ref/swift/Method/clearQueryInHistory(queryText:)" class="dashAnchor"></a>
+                    <a class="token" href="#/c:@CM@InstantSearch@objc(cs)InstantSearch(im)clearQueryInHistoryWithQueryText:">clearQueryInHistory(queryText:)</a>
+                    </code>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        <p>Undocumented</p>
+
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="language">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight swift"><code><span class="kd">public</span> <span class="kd">func</span> <span class="nf">clearQueryInHistory</span><span class="p">(</span><span class="nv">queryText</span><span class="p">:</span> <span class="kt">String</span><span class="p">)</span></code></pre>
+
+                        </div>
+                      </div>
+                    </section>
+                  </div>
+                </li>
+                <li class="item">
+                  <div>
+                    <code>
+                    <a name="/c:@CM@InstantSearch@objc(cs)InstantSearch(im)searchHistoryWithQueryText:maxHits:"></a>
+                    <a name="//apple_ref/swift/Method/searchHistory(queryText:maxHits:)" class="dashAnchor"></a>
+                    <a class="token" href="#/c:@CM@InstantSearch@objc(cs)InstantSearch(im)searchHistoryWithQueryText:maxHits:">searchHistory(queryText:maxHits:)</a>
+                    </code>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        <p>Undocumented</p>
+
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="language">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight swift"><code><span class="kd">public</span> <span class="kd">func</span> <span class="nf">searchHistory</span><span class="p">(</span><span class="nv">queryText</span><span class="p">:</span> <span class="kt">String</span><span class="p">,</span> <span class="nv">maxHits</span><span class="p">:</span> <span class="kt">Int</span> <span class="o">=</span> <span class="mi">2</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="p">[</span><span class="kt">HistoryHit</span><span class="p">]</span></code></pre>
+
+                        </div>
+                      </div>
+                    </section>
+                  </div>
+                </li>
+              </ul>
+            </div>
+          </section>
+        </section>
+        <section id="footer">
+          <p>&copy; 2018 <a class="link" href="https://github.com/algolia/instantsearch-ios" target="_blank" rel="external">Algolia</a>. All rights reserved. (Last updated: 2018-11-01)</p>
+          <p>Generated by <a class="link" href="https://github.com/realm/jazzy" target="_blank" rel="external">jazzy ♪♫ v0.9.3</a>, a <a class="link" href="https://realm.io" target="_blank" rel="external">Realm</a> project.</p>
+        </section>
+      </article>
+    </div>
+  </body>
+</div>
+</html>
