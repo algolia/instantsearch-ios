@@ -13,3 +13,22 @@ lane :run_swift_lint do
     executable: "config/swiftlint"
   )
 end
+
+lane :check_alpha_beta_dependencies do
+  podfilePath = Dir.pwd + "/../Podfile"
+  cartfilePath = Dir.pwd + "/../Cartfile"
+
+  
+
+  if ( 
+    (File.file?(podfilePath) && File.foreach(podfilePath).grep(/alpha/).any?) ||
+    (File.file?(podfilePath) && File.foreach(podfilePath).grep(/beta/).any?) ||
+    (File.file?(cartfilePath) && File.foreach(cartfilePath).grep(/beta/).any?) ||
+    (File.file?(cartfilePath) && File.foreach(cartfilePath).grep(/alpha/).any?)
+  )
+    raise "Error: There is an alpha or beta dependency in your Podfile. It is dangerous to deploy a new version of the library with unstable dependencies."
+  else
+    puts "No Alpha or Beta dependencies found in Podfile, proceeding..."
+  end
+
+end
