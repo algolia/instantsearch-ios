@@ -12,35 +12,78 @@ import InstantSearchCore
 /// ViewModel - View: RefinementMenuViewModelDelegate.
 ///
 /// ViewModel - Searcher: SearchableViewModel, ResultingDelegate, ResettableDelegate.
-public class RefinementMenuViewModel: RefinementMenuViewModelDelegate, SearchableIndexViewModel {
+@objcMembers public class RefinementMenuViewModel: NSObject, RefinementMenuViewModelDelegate, SearchableIndexViewModel {
     
     // MARK: - Properties
+    private var _searcherId: SearcherId?
+
     public var searcherId: SearcherId {
-        return SearcherId(index: view.index, variant: view.variant)
-    }
-    
-    var attribute: String {
-        return view.attribute
-    }
-    
-    var refinedFirst: Bool {
-        return view.refinedFirst
-    }
-    
-    var isDisjunctive: Bool {
-        switch view.operator {
-        case "or", "OR", "|", "||": return true
-        case "and", "AND", "&", "&&": return false
-        default: fatalError("operator of RefinementMenu cannot be interpreted. Please chose one of: 'or', 'and'")
+        set {
+            _searcherId = newValue
+        } get {
+            if let strongSearcherId = _searcherId { return strongSearcherId}
+
+            if let view = view {
+                return SearcherId(index: view.index, variant: view.variant)
+            } else {
+                print("ERROR - ViewModel not associated to any searcherId or View, so it cannot operate")
+                return SearcherId(index: "")
+            }
         }
     }
     
-    var limit: Int {
-        return view.limit
+    private var _refinedFirst: Bool?
+
+    public var refinedFirst: Bool {
+        set {
+            _refinedFirst = newValue
+        } get {
+            return _refinedFirst ?? view?.refinedFirst ?? Constants.Defaults.refinedFirst
+        }
+    }
+
+    private var _attribute: String?
+
+    public var attribute: String {
+        set {
+            _attribute = newValue
+        } get {
+            return _attribute ?? view?.attribute ?? Constants.Defaults.attribute
+        }
+    }
+
+    private var _isDisjunctive: Bool?
+
+    var isDisjunctive: Bool {
+        set {
+            _isDisjunctive = newValue
+        } get {
+            if let strongIsDisjunctive = _isDisjunctive { return strongIsDisjunctive}
+            switch view?.operator ?? Constants.Defaults.operatorRefinement {
+            case "or", "OR", "|", "||": return true
+            case "and", "AND", "&", "&&": return false
+            default: fatalError("operator of RefinementMenu cannot be interpreted. Please chose one of: 'or', 'and'")
+            }
+        }
+
+    }
+
+    private var _limit: Int?
+
+    public var limit: Int {
+        set {
+            _limit = newValue
+        } get {
+            return _limit ?? view?.limit ?? Constants.Defaults.limit
+        }
     }
     
     var transformRefinementList: TransformRefinementList {
-        return TransformRefinementList(named: view.sortBy.lowercased())
+        if let view = view {
+            return TransformRefinementList(named: view.sortBy.lowercased())
+        } else {
+            return TransformRefinementList(named: Constants.Defaults.sortBy.lowercased())
+        }
     }
     
     // TODO" The state for this should be on IS Core, not in the VM.
@@ -81,15 +124,15 @@ public class RefinementMenuViewModel: RefinementMenuViewModelDelegate, Searchabl
                                              transformRefinementList: transformRefinementList,
                                              areRefinedValuesFirst: refinedFirst)
             
-            view.reloadRefinements()
+            view?.reloadRefinements()
         }
     }
     
     // MARK: - RefinementMenuViewModelDelegate
     
-    public weak var view: RefinementMenuViewDelegate!
+    public weak var view: RefinementMenuViewDelegate?
     
-    init() { }
+    override init() { }
     
     public init(view: RefinementMenuViewDelegate) {
         self.view = view
@@ -127,7 +170,7 @@ public class RefinementMenuViewModel: RefinementMenuViewModelDelegate, Searchabl
           }
           
         }
-        view.deselectRow(at: indexPath)
+        view?.deselectRow(at: indexPath)
         searcher.search()
     }
 }
@@ -150,12 +193,12 @@ extension RefinementMenuViewModel: ResultingDelegate {
                                          andFacetName: attribute,
                                          transformRefinementList: transformRefinementList,
                                          areRefinedValuesFirst: refinedFirst)
-        view.reloadRefinements()
+        view?.reloadRefinements()
     }
 }
 
 extension RefinementMenuViewModel: ResettableDelegate {
     func onReset() {
-        view.reloadRefinements()
+        view?.reloadRefinements()
     }
 }

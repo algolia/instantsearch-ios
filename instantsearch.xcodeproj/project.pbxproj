@@ -307,8 +307,8 @@
 		E27A7BED1E96271B005B2506 /* ViewModel */ = {
 			isa = PBXGroup;
 			children = (
-				E25F5C8E1FCEF3F0002C8A8D /* MultiHitsViewModel.swift */,
 				E2738FD01E9D1AED002C002D /* Helpers */,
+				E25F5C8E1FCEF3F0002C8A8D /* MultiHitsViewModel.swift */,
 				E27A7BEE1E962768005B2506 /* HitsViewModel.swift */,
 				E2738FCE1E9CDE32002C002D /* NumericControlViewModel.swift */,
 				E233BC021EBB78B600F5F5E1 /* FacetControlViewModel.swift */,

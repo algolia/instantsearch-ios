@@ -44,6 +44,7 @@ CGRect defaultRect;
 }
 
 - (void) testWidgets {
+
     HitsTableWidget* hitsTableWidget = [[HitsTableWidget alloc] initWithFrame:defaultRect style:UITableViewStylePlain];
     hitsTableWidget.hitsPerPage = 10;
     hitsTableWidget.infiniteScrolling = true;
@@ -145,6 +146,60 @@ CGRect defaultRect;
     Index* index = [client indexWithName:@"INDEX_NAME"];
     Searcher* searcher = [[Searcher alloc] initWithIndex:index];
     return searcher;
+}
+
+- (void)testViewModels {
+
+    Client* client = [[Client alloc] initWithAppID:@"" apiKey:@""];
+    Index* index = [client indexWithName:@""];
+    Searcher* searcher = [[Searcher alloc] initWithIndex: index];
+
+    NSIndexPath* indexPath = [[NSIndexPath alloc] initWithIndex:0];
+
+    #pragma clang diagnostic push
+    #pragma clang diagnostic ignored "-Wunused-result"
+
+    HitsViewModel* hitsViewModel = [[HitsViewModel alloc] init];
+    [hitsViewModel numberOfRows];
+    [hitsViewModel hitForRowAt: indexPath];
+
+    MultiHitsViewModel* multiHitsViewModel = [[MultiHitsViewModel alloc] init];
+    [multiHitsViewModel numberOfRowsIn:0];
+    [multiHitsViewModel numberOfSections];
+    [hitsViewModel hitForRowAt: indexPath];
+
+    NumericControlViewModel* numericControlViewModel = [[NumericControlViewModel alloc] init];
+    numericControlViewModel.attribute = @"attribute";
+    numericControlViewModel.operator = OperatorLessThan;
+    numericControlViewModel.inclusive = YES;
+    [numericControlViewModel configureWith:searcher];
+    [numericControlViewModel updateNumericWithValue: [[NSNumber alloc] initWithInt:0]  doSearch:NO];
+    [numericControlViewModel removeNumericWithValue: [[NSNumber alloc] initWithInt:0]];
+
+
+    FacetControlViewModel* facetControlViewModel = [[FacetControlViewModel alloc] init];
+    facetControlViewModel.attribute = @"attribute";
+    facetControlViewModel.inclusive = YES;
+    [facetControlViewModel configureWith:searcher];
+    [facetControlViewModel addFacetWithValue:@"someFacet" doSearch:NO];
+    [facetControlViewModel updateFacetWithOldValue:@"oldValue" newValue:@"newValue" doSearch:NO];
+    [facetControlViewModel removeFacetWithValue:@"value"];
+
+    RefinementMenuViewModel* refinementMenuViewModel = [[RefinementMenuViewModel alloc] init];
+    refinementMenuViewModel.attribute = @"attribute";
+    refinementMenuViewModel.refinedFirst = YES;
+    refinementMenuViewModel.isDisjunctive = YES;
+    refinementMenuViewModel.limit = 10;
+    [refinementMenuViewModel configureWith:searcher];
+    [refinementMenuViewModel numberOfRows];
+//    [refinementMenuViewModel facetForRowAt:indexPath]; // This needs facetResults to be filled
+//    [refinementMenuViewModel isRefinedAt:indexPath]; // This needs facetResults to be filled
+
+    SearchViewModel* searchViewModel = [[SearchViewModel alloc] init];
+    [searchViewModel configureWith:searcher];
+    [searchViewModel searchWithQuery:@"query"];
+
+    #pragma clang diagnostic pop
 }
 
 - (void)testViewControllers {

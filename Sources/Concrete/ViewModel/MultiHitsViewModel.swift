@@ -11,29 +11,42 @@ import InstantSearchCore
 /// ViewModel - View: HitsViewModelDelegate.
 ///
 /// ViewModel - Searcher: SearchableViewModel, ResultingDelegate, ResettableDelegate.
-public class MultiHitsViewModel: MultiHitsViewModelDelegate, SearchableMultiIndexViewModel {
+@objcMembers public class MultiHitsViewModel: NSObject, MultiHitsViewModelDelegate, SearchableMultiIndexViewModel {
     
     // MARK: - Properties
-    
+
+    private var _searcherIds: [SearcherId]?
+
     public var searcherIds: [SearcherId] {
-        var result: [SearcherId] = []
-        for it in 0..<view.indicesArray.count {
-            let id = view.variantsArray.count == view.indicesArray.count
-                ? view.variantsArray[it]
-                : ""
-            let indexName = view.indicesArray[it]
-            result.append(SearcherId(index: indexName, variant: id))
+        set {
+            _searcherIds = newValue
+        } get {
+            if let strongSearcherIds = _searcherIds { return strongSearcherIds}
+            if let view = view {
+                var result: [SearcherId] = []
+                for it in 0..<view.indicesArray.count {
+                    let id = view.variantsArray.count == view.indicesArray.count
+                        ? view.variantsArray[it]
+                        : ""
+                    let indexName = view.indicesArray[it]
+                    result.append(SearcherId(index: indexName, variant: id))
+                }
+
+                return result
+            } else {
+                print("ERROR - ViewModel not associated to any searcherId or View, so it cannot operate")
+                return []
+            }
         }
-        
-        return result
+
     }
     
     public var hitsPerSectionArray: [UInt] {
-        return view.hitsPerSectionArray
+        return view?.hitsPerSectionArray ?? [Constants.Defaults.hitsPerPage]
     }
     
     public var showItemsOnEmptyQuery: Bool {
-        return view.showItemsOnEmptyQuery
+        return view?.showItemsOnEmptyQuery ?? Constants.Defaults.showItemsOnEmptyQuery
     }
     
     // MARK: - SearchableMultiIndexViewModel
@@ -70,22 +83,25 @@ public class MultiHitsViewModel: MultiHitsViewModelDelegate, SearchableMultiInde
         }
         
         if self.searchers.first!.hits.isEmpty {
-            view.reloadHits()
+            view?.reloadHits()
         }
     }
     
     // MARK: - HitsViewModelDelegate
     
-    public var view: MultiHitsViewDelegate!
+    public var view: MultiHitsViewDelegate?
     
-    init() { }
+    override init() { }
     
     public init(view: MultiHitsViewDelegate) {
         self.view = view
     }
     
     public func numberOfRows(in section: Int) -> Int {
-        // guard let searchers.count
+        guard searchers.count > section else {
+            print("Warning - When accessing numberOfRows in MultiHitsViewModel, the section number provided is bigger than the number of provided indices")
+            return 0
+        }
         let searcher = searchers[section]
         
         if showItemsOnEmptyQuery {
@@ -123,12 +139,12 @@ extension MultiHitsViewModel: ResultingDelegate {
             return
         }
         
-        view.reloadHits()
+        view?.reloadHits()
     }
 }
 
 extension MultiHitsViewModel: ResettableDelegate {
     func onReset() {
-        view.reloadHits()
+        view?.reloadHits()
     }
 }

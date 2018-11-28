@@ -13,7 +13,7 @@ import Foundation
 @objc public protocol MultiHitsViewModelDelegate: class {
     
     /// View associated with the WidgetVM.
-    var view: MultiHitsViewDelegate! { get set }
+    var view: MultiHitsViewDelegate? { get set }
     
     /// Query the number of Rows to show.
     func numberOfRows(in section: Int) -> Int

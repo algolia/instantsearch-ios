@@ -14,7 +14,7 @@ import InstantSearchCore
 @objc public protocol SearchControlViewModelDelegate: class {
     
     /// View associated with the WidgetVM.
-    var view: SearchControlViewDelegate! { get set }
+    var view: SearchControlViewDelegate? { get set }
     
     /// search with a given query text
     func search(query: String?)

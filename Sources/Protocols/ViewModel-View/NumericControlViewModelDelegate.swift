@@ -14,7 +14,7 @@ import Foundation
 @objc public protocol NumericControlViewModelDelegate: class {
     
     /// View associated with the WidgetVM.
-    var view: NumericControlViewDelegate! { get set }
+    var view: NumericControlViewDelegate? { get set }
     
     /// Update the numeric refinement with a value.
     ///

@@ -12,35 +12,64 @@ import InstantSearchCore
 /// ViewModel - View: NumericControlViewModelDelegate.
 ///
 /// ViewModel - Searcher: SearchableViewModel, RefinableDelegate, ResettableDelegate.
-public class NumericControlViewModel: NumericControlViewModelDelegate, SearchableIndexViewModel {
+@objcMembers public class NumericControlViewModel: NSObject, NumericControlViewModelDelegate, SearchableIndexViewModel {
 
     // MARK: - Properties
-    public var searcherId: SearcherId {
-        return SearcherId(index: view.index, variant: view.variant)
-    }
-    
-    var clearValue: NSNumber {
-        return view.clearValue
-    }
+    private var _searcherId: SearcherId?
 
-    var `operator`: NumericRefinement.Operator {
-        switch view.operator {
-        case "lessThan", "<": return .lessThan
-        case "lessThanOrEqual", "<=": return .lessThanOrEqual
-        case "equal", "==": return .equal
-        case "notEqual", "!=": return .notEqual
-        case "greaterThanOrEqual", ">=": return .greaterThanOrEqual
-        case "greaterThan", ">": return .greaterThan
-        default: fatalError("No valid operator for the numeric control. Use something like < or >=")
+    public var searcherId: SearcherId {
+        set {
+            _searcherId = newValue
+        } get {
+            if let strongSearcherId = _searcherId { return strongSearcherId}
+
+            if let view = view {
+                return SearcherId(index: view.index, variant: view.variant)
+            } else {
+                print("ERROR - ViewModel not associated to any searcherId or View, so it cannot operate")
+                return SearcherId(index: "")
+            }
         }
     }
 
-    var inclusive: Bool {
-        return view.inclusive
+    private var _operator: NumericRefinement.Operator?
+
+    var `operator`: NumericRefinement.Operator {
+        set {
+            _operator = newValue
+        }
+        get {
+            if let strongOperator = _operator { return strongOperator }
+            switch view?.operator {
+            case "lessThan", "<": return .lessThan
+            case "lessThanOrEqual", "<=": return .lessThanOrEqual
+            case "equal", "==": return .equal
+            case "notEqual", "!=": return .notEqual
+            case "greaterThanOrEqual", ">=": return .greaterThanOrEqual
+            case "greaterThan", ">": return .greaterThan
+            default: fatalError("No valid operator for the numeric control. Use something like < or >=")
+            }
+        }
     }
 
+    private var _inclusive: Bool?
+
+    public var inclusive: Bool {
+        set {
+            _inclusive = newValue
+        } get {
+            return _inclusive ?? view?.inclusive ?? Constants.Defaults.inclusive
+        }
+    }
+
+    private var _attribute: String?
+
     public var attribute: String {
-        return view.attribute
+        set {
+            _attribute = newValue
+        } get {
+            return _attribute ?? view?.attribute ?? Constants.Defaults.attribute
+        }
     }
 
     // MARK: - SearchableViewModel
@@ -55,17 +84,17 @@ public class NumericControlViewModel: NumericControlViewModelDelegate, Searchabl
         }
         
         if let numeric = self.searcher.params.getNumericRefinement(name: attribute, operator: `operator`, inclusive: inclusive) {
-            view.set(value: numeric.value)
+            view?.set(value: numeric.value)
         }
 
-        view.configureView()
+        view?.configureView()
     }
 
     // MARK: - NumericControlViewModelDelegate
 
-    public weak var view: NumericControlViewDelegate!
+    public weak var view: NumericControlViewDelegate?
     
-    init() { }
+    override init() { }
     
     public init(view: NumericControlViewDelegate) {
         self.view = view
@@ -92,16 +121,8 @@ extension NumericControlViewModel: RefinableDelegate {
 
     public func onRefinementChange(numerics: [NumericRefinement]) {
         for numeric in numerics where numeric.op == `operator` && numeric.inclusive == inclusive {
-            view.set(value: numeric.value)
+            view?.set(value: numeric.value)
         }
     }
 
-}
-
-// MARK: - ResettableDelegate
-
-extension NumericControlViewModel: ResettableDelegate {
-    func onReset() {
-        view.set(value: clearValue)
-    }
 }

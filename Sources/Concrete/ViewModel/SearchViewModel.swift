@@ -11,11 +11,24 @@ import Foundation
 /// ViewModel - View: StatsViewModelDelegate.
 ///
 /// ViewModel - Searcher: SearchableViewModel, ResultingDelegate, ResettableDelegate.
-public class SearchViewModel: NSObject, SearchControlViewModelDelegate, SearchableIndexViewModel, MultiSearchableViewModel {
+@objcMembers public class SearchViewModel: NSObject, SearchControlViewModelDelegate, SearchableIndexViewModel, MultiSearchableViewModel {
     
     // MARK: - Properties
+    private var _searcherId: SearcherId?
+
     public var searcherId: SearcherId {
-        return SearcherId(index: view.index, variant: view.variant)
+        set {
+            _searcherId = newValue
+        } get {
+            if let strongSearcherId = _searcherId { return strongSearcherId}
+
+            if let view = view {
+                return SearcherId(index: view.index, variant: view.variant)
+            } else {
+                print("ERROR - ViewModel not associated to any searcherId or View, so it cannot operate")
+                return SearcherId(index: "")
+            }
+        }
     }
     
     public var searchers: [Searcher] = []
@@ -35,7 +48,7 @@ public class SearchViewModel: NSObject, SearchControlViewModelDelegate, Searchab
         for searcher in self.searchers {
             let observation = searcher.params.observe(\.query, changeHandler: { [unowned self] (searchparams, _) in
                 if let query = searchparams.query {
-                    self.view.set(text: query, andResignFirstResponder: false)
+                    self.view?.set(text: query, andResignFirstResponder: false)
                 }
             })
             observations.append(observation)
@@ -44,7 +57,7 @@ public class SearchViewModel: NSObject, SearchControlViewModelDelegate, Searchab
     
     // MARK: - SearchViewModelDelegate
     
-    public weak var view: SearchControlViewDelegate!
+    public weak var view: SearchControlViewDelegate?
     
     override init() {
         super.init()
@@ -66,6 +79,6 @@ public class SearchViewModel: NSObject, SearchControlViewModelDelegate, Searchab
 
 extension SearchViewModel: ResettableDelegate {
     func onReset() {
-        view.set(text: "", andResignFirstResponder: true)
+        view?.set(text: "", andResignFirstResponder: true)
     }
 }

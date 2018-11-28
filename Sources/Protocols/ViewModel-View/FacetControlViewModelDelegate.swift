@@ -14,7 +14,7 @@ import Foundation
 @objc public protocol FacetControlViewModelDelegate: class {
     
     /// View associated with the WidgetVM.
-    var view: FacetControlViewDelegate! { get set }
+    var view: FacetControlViewDelegate? { get set }
     
     /// Add a facet value.
     ///

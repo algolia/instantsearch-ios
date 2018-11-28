@@ -15,7 +15,7 @@ import InstantSearchCore
 @objc public protocol RefinementMenuViewModelDelegate: class {
     
     /// View associated with the WidgetVM.
-    var view: RefinementMenuViewDelegate! { get set }
+    var view: RefinementMenuViewDelegate? { get set }
     
     /// Query the number of Rows to show.
     func numberOfRows() -> Int

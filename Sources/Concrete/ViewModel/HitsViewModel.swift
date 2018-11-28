@@ -12,28 +12,42 @@ import InstantSearchCore
 /// ViewModel - View: HitsViewModelDelegate.
 ///
 /// ViewModel - Searcher: SearchableViewModel, ResultingDelegate, ResettableDelegate.
-public class HitsViewModel: HitsViewModelDelegate, SearchableIndexViewModel {
+@objcMembers public class HitsViewModel: NSObject, HitsViewModelDelegate, SearchableIndexViewModel {
     
     // MARK: - Properties
-    
+
+    private var _searcherId: SearcherId?
+
     public var searcherId: SearcherId {
-        return SearcherId(index: view.index, variant: view.variant)
+        set {
+            _searcherId = newValue
+        } get {
+            if let strongSearcherId = _searcherId { return strongSearcherId}
+
+            if let view = view {
+                return SearcherId(index: view.index, variant: view.variant)
+            } else {
+                print("ERROR - ViewModel not associated to any searcherId or View, so it cannot operate")
+                return SearcherId(index: "")
+            }
+        }
     }
-    
+
+    // TODO: Those should be settable in the long run, same idea as when we do a private _var and var everywhere. Note that they can always create a virtual view that is not added to the UI, that has all the necessary properties set. 
     public var hitsPerPage: UInt {
-        return view.hitsPerPage
+        return view?.hitsPerPage ?? Constants.Defaults.hitsPerPage
     }
     
     public var infiniteScrolling: Bool {
-        return view.infiniteScrolling
+        return view?.infiniteScrolling ?? Constants.Defaults.infiniteScrolling
     }
     
     public var remainingItemsBeforeLoading: UInt {
-        return view.remainingItemsBeforeLoading
+        return view?.remainingItemsBeforeLoading ?? Constants.Defaults.remainingItemsBeforeLoading
     }
     
     public var showItemsOnEmptyQuery: Bool {
-        return view.showItemsOnEmptyQuery
+        return view?.showItemsOnEmptyQuery ?? Constants.Defaults.showItemsOnEmptyQuery
     }
   
     public var params: SearchParameters {
@@ -50,15 +64,15 @@ public class HitsViewModel: HitsViewModelDelegate, SearchableIndexViewModel {
         searcher.params.hitsPerPage = hitsPerPage
         
         if searcher.hits.isEmpty {
-            view.reloadHits()
+            view?.reloadHits()
         }
     }
     
     // MARK: - HitsViewModelDelegate
     
-    public weak var view: HitsViewDelegate!
+    public weak var view: HitsViewDelegate?
     
-    init() { }
+    override init() { }
     
     public init(view: HitsViewDelegate) {
         self.view = view
@@ -109,16 +123,16 @@ extension HitsViewModel: ResultingDelegate {
             return
         }
         
-        view.reloadHits()
+        view?.reloadHits()
         
         if results.page == 0 && numberOfRows() > 0 {
-            view.scrollTop()
+            view?.scrollTop()
         }
     }
 }
 
 extension HitsViewModel: ResettableDelegate {
     func onReset() {
-        view.reloadHits()
+        view?.reloadHits()
     }
 }

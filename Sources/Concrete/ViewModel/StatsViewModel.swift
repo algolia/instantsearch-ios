@@ -6,29 +6,43 @@
 //
 //
 
+import Foundation
 import InstantSearchCore
 
 /// ViewModel - View: StatsViewModelDelegate.
 ///
 /// ViewModel - Searcher: SearchableViewModel, ResultingDelegate, ResettableDelegate.
-public class StatsViewModel: StatsViewModelDelegate, SearchableIndexViewModel {
+@objcMembers public class StatsViewModel: NSObject, StatsViewModelDelegate, SearchableIndexViewModel {
     
     // MARK: - Properties
     
+    private var _searcherId: SearcherId?
+
     public var searcherId: SearcherId {
-        return SearcherId(index: view.index, variant: view.variant)
+        set {
+            _searcherId = newValue
+        } get {
+            if let strongSearcherId = _searcherId { return strongSearcherId}
+
+            if let view = view {
+                return SearcherId(index: view.index, variant: view.variant)
+            } else {
+                print("ERROR - ViewModel not associated to any searcherId or View, so it cannot operate")
+                return SearcherId(index: "")
+            }
+        }
     }
     
     public var resultTemplate: String {
-        return view.resultTemplate
+        return view?.resultTemplate ?? Constants.Defaults.resultTemplate
     }
     
     public var errorText: String {
-        return view.errorText
+        return view?.errorText ?? Constants.Defaults.errorText
     }
     
     public var clearText: String {
-        return view.clearText
+        return view?.clearText ?? Constants.Defaults.clearText
     }
     
     // MARK: - SearchableViewModel
@@ -42,18 +56,18 @@ public class StatsViewModel: StatsViewModelDelegate, SearchableIndexViewModel {
         // If a search wasn't made yet and it is still ongoing, then the label will get initialized in the onResult method
         if let results = searcher.results {
             let text = applyTemplate(resultTemplate: resultTemplate, results: results)
-            view.set(text: text)
+            view?.set(text: text)
         } else {
             let text = clearText
-            view.set(text: text)
+            view?.set(text: text)
         }
     }
     
     // MARK: - StatsViewModelDelegate
     
-    public weak var view: StatsViewDelegate!
+    public weak var view: StatsViewDelegate?
     
-    init() { }
+    override init() { }
     
     public init(view: StatsViewDelegate) {
         self.view = view
@@ -64,7 +78,7 @@ public class StatsViewModel: StatsViewModelDelegate, SearchableIndexViewModel {
 
 extension StatsViewModel: ResettableDelegate {
     func onReset() {
-        view.set(text: clearText)
+        view?.set(text: clearText)
     }
 }
 
@@ -74,12 +88,12 @@ extension StatsViewModel: ResultingDelegate {
     public func on(results: SearchResults?, error: Error?, userInfo: [String: Any]) {
         if let results = results {
             let text = applyTemplate(resultTemplate: resultTemplate, results: results)
-            view.set(text: text)
+            view?.set(text: text)
         }
         
         if error != nil {
             let text = errorText
-            view.set(text: text)
+            view?.set(text: text)
             print(error!)
         }
     }

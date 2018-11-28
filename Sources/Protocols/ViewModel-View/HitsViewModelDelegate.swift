@@ -14,7 +14,7 @@ import Foundation
 @objc public protocol HitsViewModelDelegate: class {
     
     /// View associated with the WidgetVM.
-    var view: HitsViewDelegate! { get set }
+    var view: HitsViewDelegate? { get set }
     
     /// Query the number of Rows to show.
     func numberOfRows() -> Int
