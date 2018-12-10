@@ -185,6 +185,8 @@ extension RefinementMenuViewModel: ResultingDelegate {
         
         guard let facetCounts = results.facets(name: attribute) else {
             print("No facet counts found for attribute: \(attribute)")
+            facetResults = []
+            view?.reloadRefinements()
             return
         }
         
