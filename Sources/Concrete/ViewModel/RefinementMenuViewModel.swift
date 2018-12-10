@@ -177,7 +177,11 @@ import InstantSearchCore
 
 extension RefinementMenuViewModel: ResultingDelegate {
     public func on(results: SearchResults?, error: Error?, userInfo: [String: Any]) {
-        
+
+        defer {
+            view?.reloadRefinements()
+        }
+
         guard let results = results else {
             print(error ?? "")
             return
@@ -195,9 +199,6 @@ extension RefinementMenuViewModel: ResultingDelegate {
                                          andFacetName: attribute,
                                          transformRefinementList: transformRefinementList,
                                          areRefinedValuesFirst: refinedFirst)
-        defer {
-            view?.reloadRefinements()
-        }
     }
 }
 
