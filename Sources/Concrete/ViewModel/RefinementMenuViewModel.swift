@@ -186,7 +186,7 @@ extension RefinementMenuViewModel: ResultingDelegate {
         guard let facetCounts = results.facets(name: attribute) else {
             print("No facet counts found for attribute: \(attribute)")
             facetResults = []
-            view?.reloadRefinements()
+
             return
         }
         
@@ -195,7 +195,9 @@ extension RefinementMenuViewModel: ResultingDelegate {
                                          andFacetName: attribute,
                                          transformRefinementList: transformRefinementList,
                                          areRefinedValuesFirst: refinedFirst)
-        view?.reloadRefinements()
+        defer {
+            view?.reloadRefinements()
+        }
     }
 }
 
