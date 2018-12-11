@@ -35,6 +35,8 @@ end
 desc "Available options: type:major|minor|patch"
 lane :deploy do |options|
 	prepare_git('master')
+	git_pull
+	
 	pod_lib_lint(
 		verbose: true,
 		allow_warnings: true
