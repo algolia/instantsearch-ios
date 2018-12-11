@@ -56,7 +56,17 @@ lane :deploy do |options|
 		build_number: new_build_number,
 		tag: new_build_number
 	)
-	push_to_git_remote(remote: "origin")
+	# push_to_git_remote(remote: "origin") # We can't anymore as we require 1 approver
+	create_pull_request(
+		# api_token: "secret",      # optional, defaults to ENV["GITHUB_API_TOKEN"]
+		repo: "algolia/instantsearch-ios",
+		title: "Deploying new #{options[:type]} version #{new_build_number}",
+		head: "version-#{new_build_number}",       # optional, defaults to current branch name
+		base: "master", # optional, defaults to "master"
+		body: "Please check the files before merging in case I've overidden something accidentally.",       # optional
+		# api_url: "http://yourdomain/api/v3" # optional, for GitHub Enterprise, defaults to "https://api.github.com"
+	)
+
 	pod_push(
 		path: "InstantSearch.podspec",
 		allow_warnings: true
@@ -111,6 +121,25 @@ lane :publish_community_website do
 	sh("cd ../docgen && jazzy")
 	# Publish community website and API reference to gh pages
 	sh("cd ../docgen && npm run deploy")
+end
+
+lane :test_pr do
+
+	# TODO might need to checkout a new branch before doing head
+	git_commit(
+		path: ["fastlane/Fastfile"], 
+		message: "Version 0.1.2 Test"
+	)
+
+	create_pull_request(
+		# api_token: "secret",      # optional, defaults to ENV["GITHUB_API_TOKEN"]
+		repo: "algolia/instantsearch-ios",
+		title: "Deploying new patch version 0.1.2",
+		head: "version-0.1.2",       # optional, defaults to current branch name
+		base: "master", # optional, defaults to "master"
+		body: "Please check the files before merging in case I've overidden something accidentally.",       # optional
+		# api_url: "http://yourdomain/api/v3" # optional, for GitHub Enterprise, defaults to "https://api.github.com"
+	)
 end
 
 after_all do
