@@ -65,7 +65,18 @@ import InstantSearchCore
             default: fatalError("operator of RefinementMenu cannot be interpreted. Please chose one of: 'or', 'and'")
             }
         }
+    }
 
+    private var _areMultipleSelectionsAllowed: Bool?
+
+    var areMultipleSelectionsAllowed: Bool {
+        set {
+            _areMultipleSelectionsAllowed = newValue
+        } get {
+            return _areMultipleSelectionsAllowed
+                ?? view?.areMultipleSelectionsAllowed
+                ?? Constants.Defaults.areMultipleSelectionsAllowed
+        }
     }
 
     private var _limit: Int?
@@ -153,13 +164,17 @@ import InstantSearchCore
     /// This simulated selecting a facet
     /// it will tggle the facet refinement, deselect the row and then execute a search
     public func didSelectRow(at indexPath: IndexPath) {
-        
-        searcher.params.setFacet(withName: attribute, disjunctive: true)
-        if isDisjunctive { // when disjunctive, just add it
+
+        if isDisjunctive {
+          searcher.params.setFacet(withName: attribute, disjunctive: true)
+          searcher.params.toggleFacetRefinement(name: attribute, value: facetResults[indexPath.item].value)
+        } else if !isDisjunctive && areMultipleSelectionsAllowed {
+          searcher.params.setFacet(withName: attribute, disjunctive: false)
           searcher.params.toggleFacetRefinement(name: attribute, value: facetResults[indexPath.item].value)
         } else {
-          // when conjunctive, need to keep the other values visible, so we still do a disjunctive facet to get
-          // all facet values, but make sure only 1 selected result
+          // when conjunctive and one single value can be selected,
+          // we need to keep the other values visible, so we still do a disjunctive facet
+          searcher.params.setFacet(withName: attribute, disjunctive: true)
           let value = facetResults[indexPath.item].value
           
           if searcher.params.hasFacetRefinement(name: attribute, value: value) { // deselect if already selected

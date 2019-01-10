@@ -34,4 +34,6 @@ import Foundation
     
     /// Number of facets to show in the menu.
     var limit: Int { get set }
+
+    var areMultipleSelectionsAllowed: Bool { get set }
 }

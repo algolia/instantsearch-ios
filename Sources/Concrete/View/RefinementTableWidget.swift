@@ -22,6 +22,7 @@ import UIKit
     @IBInspectable public var `operator`: String = Constants.Defaults.operatorRefinement
     @IBInspectable public var sortBy: String = Constants.Defaults.sortBy
     @IBInspectable public var limit: Int = Constants.Defaults.limit
+    @IBInspectable public var areMultipleSelectionsAllowed: Bool = Constants.Defaults.areMultipleSelectionsAllowed
     
     @IBInspectable public var index: String = Constants.Defaults.index
     @IBInspectable public var variant: String = Constants.Defaults.variant

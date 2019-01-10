@@ -32,6 +32,7 @@ struct Constants {
         static let refinedFirst = true
         static let sortBy = "count:desc"
         static let limit = 10
+        static let areMultipleSelectionsAllowed = true
         
         // Numeric Control
         static let operatorNumericControl = ">="
