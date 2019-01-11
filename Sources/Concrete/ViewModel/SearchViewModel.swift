@@ -45,6 +45,7 @@ import Foundation
     
     public func configure(withSearchers searchers: [Searcher]) {
         self.searchers = searchers
+        guard #available(iOS 11.0, *) else { return }
         for searcher in self.searchers {
             let observation = searcher.params.observe(\.query, changeHandler: { [unowned self] (searchparams, _) in
                 if let query = searchparams.query {
