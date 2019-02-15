@@ -14,7 +14,7 @@ const md =
     permalink: true,
     permalinkClass: 'anchor',
     permalinkSymbol: '',
-    // generate proper getting-started.html#install hrefs since we are
+    // generate proper https://www.algolia.com/doc/guides/building-search-ui/getting-started/ios/#install hrefs since we are
     // using the base href trick to handle different base urls (dev, prod)
     permalinkHref: (slug, {env: {path}}) => `${path}#${slug}`,
   });

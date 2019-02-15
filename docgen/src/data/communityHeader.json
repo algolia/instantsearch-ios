@@ -44,7 +44,7 @@
   },
   "sideMenu": [{
     "name": "<span class='visible-sm-inline'>Getting Started</span>",
-    "url": "getting-started.html",
+    "url": "https://www.algolia.com/doc/guides/building-search-ui/getting-started/ios/",
     "dropdownItems": null
   },
   {
@@ -54,19 +54,19 @@
     "dropdownItems": [
       {
         "name": "Getting Started",
-        "url": "getting-started.html"
+        "url": "https://www.algolia.com/doc/guides/building-search-ui/getting-started/ios/"
       },
       {
         "name": "Getting Started Part 2",
-        "url": "getting-started-part2.html"
+        "url": "https://www.algolia.com/doc/guides/building-search-ui/getting-started/ios/"
       },
       {
         "name": "Getting Started Programatically",
-        "url": "getting-started-programmatic.html"
+        "url": "https://www.algolia.com/doc/guides/building-search-ui/getting-started/ios/"
       },
       {
         "name": "Use a Custom Backend",
-        "url": "custom-backend.html"
+        "url": "https://www.algolia.com/doc/guides/building-search-ui/going-further/backend-search/ios/"
       }
     ]
   },
@@ -77,24 +77,24 @@
     "dropdownItems": [
       {
         "name": "Concepts",
-        "url": "concepts.html"
+        "url": "https://www.algolia.com/doc/guides/building-search-ui/getting-started/ios/"
       },
       {
         "name": "Widgets",
-        "url": "widgets.html"
+        "url": "https://www.algolia.com/doc/guides/building-search-ui/getting-started/ios/"
       },
       {
         "name": "API Reference",
-        "url": "reference/"
+        "url": "https://www.algolia.com/doc/guides/building-search-ui/getting-started/ios/"
       },
       {
         "name": "Troubleshooting",
-        "url": "troubleshooting.html"
+        "url": "https://www.algolia.com/doc/guides/building-search-ui/getting-started/ios/"
       }
     ]
   },{
     "name": "Examples",
-    "url": "examples.html"
+    "url": "https://www.algolia.com/doc/guides/building-search-ui/resources/demos/ios/"
   },{
     "name": "Github",
     "image": "<img src='assets/img/github-icon.svg'/>",
@@ -102,7 +102,7 @@
   }],
   "mobileMenu": [{
     "name": "Getting Started",
-    "url": "getting-started.html"
+    "url": "https://www.algolia.com/doc/guides/building-search-ui/getting-started/ios/"
   },
   {
     "name": "Concepts",

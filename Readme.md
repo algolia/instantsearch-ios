@@ -96,7 +96,7 @@ To install the API Client, add `.package(url:"https://github.com/algolia/algolia
 
 ## Documentation
 
-**You can start with the [Getting Started Guide](https://community.algolia.com/instantsearch-ios/getting-started.html).**
+**You can start with the [Getting Started Guide](https://www.algolia.com/doc/guides/building-search-ui/getting-started/ios/).**
 
 Learn more about instantSearch iOS in the [dedicated documentation website](https://community.algolia.com/instantsearch-ios).
 
@@ -133,7 +133,7 @@ override func viewDidLoad() {
 
 Run your app and you will the most basic search experience: a `UISearchBar` with the number of results each time you write a query.
 
-To get a more meaningful search experience, please follow our [Getting Started Guide](https://community.algolia.com/instantsearch-ios/getting-started.html).
+To get a more meaningful search experience, please follow our [Getting Started Guide](https://www.algolia.com/doc/guides/building-search-ui/getting-started/ios/).
 
 ## Getting Help
 

@@ -12,7 +12,7 @@ githubSource: docgen/src/getting-started-programmatic.md
 *This guide will walk you through the few steps needed to start a project with InstantSearch iOS.
 We will start from an empty iOS project, and create from scratch a full search interface!*
 
-*Another thing to point out is that this getting started guide will show you how to build your search experience programmatically. However, if you prefer to write your UI using storyboards and xibs, you can follow the [getting started guide with storyboard](getting-started.html).*
+*Another thing to point out is that this getting started guide will show you how to build your search experience programmatically. However, if you prefer to write your UI using storyboards and xibs, you can follow the [getting started guide with storyboard](https://www.algolia.com/doc/guides/building-search-ui/getting-started/ios/).*
 
 ## Before we start
 To use InstantSearch iOS, you need an Algolia account. You can create one by clicking [here][algolia_sign_up], or use the following credentials:

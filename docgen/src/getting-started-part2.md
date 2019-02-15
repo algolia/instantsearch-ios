@@ -9,7 +9,7 @@ editable: true
 githubSource: docgen/src/getting-started-part2.md
 ---
 
-*This guide is a followup to the [first part of the getting started guide](getting-started.html). Make sure to go through it first before moving to this one.*
+*This guide is a followup to the [first part of the getting started guide](https://www.algolia.com/doc/guides/building-search-ui/getting-started/ios/). Make sure to go through it first before moving to this one.*
 
 *This guide will walk you through how to properly highlight results, as well as filter results which is essential for a complete search experience.*
 
@@ -17,7 +17,7 @@ githubSource: docgen/src/getting-started-part2.md
 
 Your starting project can be one of the following: 
 
-- The project you used in the [getting started part 1](getting-started.html)
+- The project you used in the [getting started part 1](https://www.algolia.com/doc/guides/building-search-ui/getting-started/ios/)
 - Download [this project](https://github.com/algolia/instantsearch-swift-examples/tree/master/Getting%20Started%20Part%202%20Start) as a starting point and run `pod update`.
 
 ## Highlight your results
