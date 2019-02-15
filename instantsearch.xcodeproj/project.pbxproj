@@ -9,6 +9,8 @@
 /* Begin PBXBuildFile section */
 		287D0A6E1C4B73BD004566D6 /* WidgetTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 287D0A6D1C4B73BD004566D6 /* WidgetTests.swift */; };
 		28F828881C494B2C00330CF4 /* InstantSearch.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 28F8287D1C494B2C00330CF4 /* InstantSearch.framework */; };
+		E208E2F022172779000D88ED /* HitsViewModelV2.swift in Sources */ = {isa = PBXBuildFile; fileRef = E208E2EF22172779000D88ED /* HitsViewModelV2.swift */; };
+		E208E2F2221727A2000D88ED /* HitsControllerV2.swift in Sources */ = {isa = PBXBuildFile; fileRef = E208E2F1221727A2000D88ED /* HitsControllerV2.swift */; };
 		E21DE94F1F2F7DB400EFC4F5 /* InstantSearchCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E21DE94E1F2F7DB400EFC4F5 /* InstantSearchCore.framework */; };
 		E2231E951EC9DC0D002FCF82 /* ConfigureInstantSearchTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = E2231E931EC9DBC4002FCF82 /* ConfigureInstantSearchTests.swift */; };
 		E2231E971EC9F5A7002FCF82 /* Constants.swift in Sources */ = {isa = PBXBuildFile; fileRef = E2231E961EC9F5A7002FCF82 /* Constants.swift */; };
@@ -111,6 +113,8 @@
 		28F8287D1C494B2C00330CF4 /* InstantSearch.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = InstantSearch.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		28F828821C494B2C00330CF4 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		28F828871C494B2C00330CF4 /* InstantSearchTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = InstantSearchTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
+		E208E2EF22172779000D88ED /* HitsViewModelV2.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HitsViewModelV2.swift; sourceTree = "<group>"; };
+		E208E2F1221727A2000D88ED /* HitsControllerV2.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HitsControllerV2.swift; sourceTree = "<group>"; };
 		E21DE94E1F2F7DB400EFC4F5 /* InstantSearchCore.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = InstantSearchCore.framework; path = Carthage/Build/iOS/InstantSearchCore.framework; sourceTree = "<group>"; };
 		E21DE9501F2F7DCA00EFC4F5 /* AlgoliaSearch.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AlgoliaSearch.framework; path = Carthage/Build/iOS/AlgoliaSearch.framework; sourceTree = "<group>"; };
 		E2231E931EC9DBC4002FCF82 /* ConfigureInstantSearchTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ConfigureInstantSearchTests.swift; sourceTree = "<group>"; };
@@ -263,6 +267,7 @@
 		28F828971C494B4200330CF4 /* Sources */ = {
 			isa = PBXGroup;
 			children = (
+				E208E2EE22172763000D88ED /* v2 */,
 				E2AFE5691ED5709A00B6A5A7 /* TestHelpers */,
 				E27A7C021E97B913005B2506 /* Concrete */,
 				E27A7C001E97B83C005B2506 /* Protocols */,
@@ -272,6 +277,15 @@
 				E2A477001EC61B43007CA367 /* InstantSearch-Bridging-Header.h */,
 			);
 			path = Sources;
+			sourceTree = "<group>";
+		};
+		E208E2EE22172763000D88ED /* v2 */ = {
+			isa = PBXGroup;
+			children = (
+				E208E2EF22172779000D88ED /* HitsViewModelV2.swift */,
+				E208E2F1221727A2000D88ED /* HitsControllerV2.swift */,
+			);
+			path = v2;
 			sourceTree = "<group>";
 		};
 		E21DE94D1F2F7DB400EFC4F5 /* Frameworks */ = {
@@ -667,6 +681,7 @@
 				E27C16461E9394250091D79E /* StatsLabelWidget.swift in Sources */,
 				E27A7BFF1E97B7AA005B2506 /* AlgoliaWidget.swift in Sources */,
 				E27C164B1E9394250091D79E /* RefinableDelegate.swift in Sources */,
+				E208E2F2221727A2000D88ED /* HitsControllerV2.swift in Sources */,
 				E25F5CE31FCEF463002C8A8D /* MultiHitsViewModelDelegate.swift in Sources */,
 				E28B07E21EAF9F27003AAE47 /* RefinementCollectionWidget.swift in Sources */,
 				E27C16471E9394250091D79E /* InstantSearch.swift in Sources */,
@@ -685,6 +700,7 @@
 				E27C16491E9394250091D79E /* ClearAllWidget.swift in Sources */,
 				E27C164C1E9394250091D79E /* SearchableViewModel.swift in Sources */,
 				E2AFE56B1ED5709A00B6A5A7 /* FatalError.swift in Sources */,
+				E208E2F022172779000D88ED /* HitsViewModelV2.swift in Sources */,
 				E27141F51EA0F20700959294 /* HitsCollectionViewController.swift in Sources */,
 				E27141CA1E9E237200959294 /* StatsButtonWidget.swift in Sources */,
 				E25F5CE11FCEF450002C8A8D /* MultiHitsViewDelegate.swift in Sources */,
