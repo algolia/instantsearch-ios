@@ -11,18 +11,15 @@ import UIKit
 
 public class HitsViewModelV2 {
 
-  public typealias SearchPageHandler = (_ page: UInt, _ resultHandler: ResultHandler) -> Void
-  // Can replace results+error with the new Result class.
-  public typealias ResultHandler = (_ results: SearchResults?, _ error: Error?, _ userInfo: [String: Any]) -> Void
+  // DISCUSSION: Another way is to remove the resultHandler, and let the user to vm.update()... but he will need access to the vm inside the closure, leading to weak self...
+  public typealias SearchPageHandler = (_ page: UInt, _ resultHandler: @escaping SearchPageResultHandler) -> Void
+  public typealias SearchPageResultHandler = (_ result: Result<SearchResults>) -> Void
 
-  // public var hitsPerPage: UInt // this can be directly settable to the query
-  public let infiniteScrolling: Bool
-  public let remainingItemsBeforeLoading: UInt
-  public let showItemsOnEmptyQuery: Bool
+  let hitsSettings: HitsSettings
 
   var hitsResult: HitsResult?
 
-  var searchHandler: SearchPageHandler
+  var searchPageObservations = [SearchPageHandler]()
 
   struct HitsResult {
     public var nbHits: Int
@@ -34,23 +31,35 @@ public class HitsViewModelV2 {
     public var queryId: String
   }
 
-  public init(infiniteScrolling: Bool = true, remainingItemsBeforeLoading: UInt = 10, showItemsOnEmptyQuery: Bool = true, searchPageHandler: @escaping SearchPageHandler) {
-    self.infiniteScrolling = infiniteScrolling
-    self.remainingItemsBeforeLoading = remainingItemsBeforeLoading
-    self.showItemsOnEmptyQuery = showItemsOnEmptyQuery
-    self.searchHandler = searchPageHandler
-
-    self.searchHandler(0, setNewSearchResults)
+  public init(infiniteScrolling: Bool = true,
+              remainingItemsBeforeLoading: UInt = 5,
+              showItemsOnEmptyQuery: Bool = true) {
+    self.hitsSettings = HitsSettings(infiniteScrolling: infiniteScrolling,
+                                     remainingItemsBeforeLoading: remainingItemsBeforeLoading,
+                                     showItemsOnEmptyQuery: showItemsOnEmptyQuery)
   }
 
-  private func setNewSearchResults(_ results: SearchResults?, _ error: Error?, _ userInfo: [String: Any]) {
+  public init(hitsSettings: HitsSettings? = nil) {
+    self.hitsSettings = hitsSettings ?? HitsSettings()
+  }
+
+  public func observeSearchPage(using closure: @escaping SearchPageHandler) {
+    searchPageObservations.append(closure)
+    closure(0, update(_:))
+  }
+
+  public func clearSearchPageObservations() {
+    searchPageObservations = []
+  }
+
+  public func update(_ searchResults: Result<SearchResults>) {
     // use results to build a hitsResult.
   }
 
   public func numberOfRows() -> Int {
     guard let hitsResult = hitsResult else { return 0 }
 
-    if hitsResult.query.isEmpty && !showItemsOnEmptyQuery {
+    if hitsResult.query.isEmpty && !hitsSettings.showItemsOnEmptyQuery {
       return 0
     } else {
       return hitsResult.allHits.count
@@ -61,21 +70,9 @@ public class HitsViewModelV2 {
     return hasMorePages()
   }
 
-  private func hasMorePages() -> Bool {
-    guard let hitsResult = hitsResult else { return false }
-
-    return hitsResult.nbPages > hitsResult.page + 1
-  }
-
   public func loadMoreResults() {
     guard hasMorePages() else { return } // Throw error?
     loadNextPage()
-  }
-
-  private func loadNextPage() {
-    guard let hitsResult = hitsResult else { return }
-
-    self.searchHandler(hitsResult.page + 1, setNewSearchResults)
   }
 
   public func hitForRow(at indexPath: IndexPath) -> [String: Any] {
@@ -84,11 +81,29 @@ public class HitsViewModelV2 {
     return hitsResult!.allHits[indexPath.row]
   }
 
-  func loadMoreIfNecessary(rowNumber: Int) {
-    guard infiniteScrolling else { return }
+  private func hasMorePages() -> Bool {
+    guard let hitsResult = hitsResult else { return false }
 
-    if rowNumber + Int(remainingItemsBeforeLoading) >= hitsResult!.allHits.count {
+    return hitsResult.nbPages > hitsResult.page + 1
+  }
+
+  private func loadNextPage() {
+    guard let hitsResult = hitsResult else { return }
+
+    searchPageObservations.forEach { $0(hitsResult.page + 1, update(_:)) }
+  }
+
+  private func loadMoreIfNecessary(rowNumber: Int) {
+    guard hitsSettings.infiniteScrolling else { return }
+
+    if rowNumber + Int(hitsSettings.remainingItemsBeforeLoading) >= hitsResult!.allHits.count {
       loadNextPage()
     }
   }
+}
+
+public struct HitsSettings {
+  public var infiniteScrolling: Bool = Constants.Defaults.infiniteScrolling
+  public var remainingItemsBeforeLoading: UInt = Constants.Defaults.remainingItemsBeforeLoading
+  public var showItemsOnEmptyQuery: Bool = Constants.Defaults.showItemsOnEmptyQuery
 }
