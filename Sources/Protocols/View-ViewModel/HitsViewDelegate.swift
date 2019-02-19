@@ -31,4 +31,11 @@ import Foundation
     
     /// Whether the show items when the query string is empty or not.
     var showItemsOnEmptyQuery: Bool { get set }
+    
+    /// Whetever or not Click Analytics activated for this widget
+    var isClickAnalyticsOn: Bool { get set }
+    
+    /// Analytics event name for hit click used by Insights
+    var hitClickEventName: String? { get set }
+    
 }

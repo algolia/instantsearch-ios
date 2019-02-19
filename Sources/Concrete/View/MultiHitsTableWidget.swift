@@ -13,6 +13,18 @@ import UIKit
 /// Widget that displays the search results of multi index. Built over a `UITableView`.
 @objcMembers public class MultiHitsTableWidget: UITableView, MultiHitsViewDelegate, AlgoliaWidget {
     
+    public var isClickAnalyticsOn: Bool = false
+    
+    private var hitClickEventNames: [Int: String] = [:]
+    
+    public func hitClickEventName(forSection section: Int) -> String? {
+        return hitClickEventNames[section]
+    }
+    
+    public func setHitClickEventName(_ eventName: String, forSection section: Int) {
+        hitClickEventNames[section] = eventName
+    }
+    
     @IBInspectable public var showItemsOnEmptyQuery: Bool = Constants.Defaults.showItemsOnEmptyQuery
     
     @IBInspectable public var hitsPerSection: String = String(Constants.Defaults.hitsPerPage) {

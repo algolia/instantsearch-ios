@@ -9,6 +9,7 @@
 import Foundation
 @_exported import InstantSearchCore
 @_exported import InstantSearchClient
+@_exported import InstantSearchInsights
 import UIKit
 
 /// Main class used for interacting with the InstantSearch library.
@@ -135,6 +136,7 @@ import UIKit
         let index = client.index(withName: index)
         let searcher = Searcher(index: index)
         configure(searcher: searcher)
+        Insights.register(appId: appID, apiKey: apiKey)
     }
     
     // Helper method to configure the searcher, assign the searcher delegate to the InstantSearch reference,

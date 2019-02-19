@@ -8,6 +8,7 @@
 
 import Foundation
 import InstantSearchCore
+import InstantSearchInsights
 
 /// ViewModel - View: HitsViewModelDelegate.
 ///
@@ -19,10 +20,13 @@ import InstantSearchCore
     private var _searcherId: SearcherId?
 
     public var searcherId: SearcherId {
+        
         set {
             _searcherId = newValue
-        } get {
-            if let strongSearcherId = _searcherId { return strongSearcherId}
+        }
+        
+        get {
+            if let strongSearcherId = _searcherId { return strongSearcherId }
 
             if let view = view {
                 return SearcherId(index: view.index, variant: view.variant)
@@ -31,6 +35,15 @@ import InstantSearchCore
                 return SearcherId(index: "")
             }
         }
+        
+    }
+    
+    public var queryID: String? {
+        return resultsManager.results?.queryID
+    }
+    
+    public var isClickAnalyticsOn: Bool {
+        return view?.isClickAnalyticsOn ?? Constants.Defaults.isClickAnalyticsOn
     }
 
     // TODO: Those should be settable in the long run, same idea as when we do a private _var and var everywhere. Note that they can always create a virtual view that is not added to the UI, that has all the necessary properties set. 
@@ -51,19 +64,33 @@ import InstantSearchCore
     }
   
     public var params: SearchParameters {
-        return searcher.params
+        return resultsManager.params
+    }
+    
+    public var hitClickEventName: String? {
+        return view?.hitClickEventName
     }
   
     // MARK: - SearchableViewModel
     
-    var searcher: Searcher!
+    var resultsManager: SearchResultsManageable!
+    
+    public func configure(with resultsManager: SearchResultsManageable) {
+        self.resultsManager = resultsManager
+        
+        resultsManager.params.hitsPerPage = hitsPerPage
+        
+        if resultsManager.hits.isEmpty {
+            view?.reloadHits()
+        }
+    }
     
     public func configure(with searcher: Searcher) {
-        self.searcher = searcher
+        self.resultsManager = searcher
         
-        searcher.params.hitsPerPage = hitsPerPage
+        resultsManager.params.hitsPerPage = hitsPerPage
         
-        if searcher.hits.isEmpty {
+        if resultsManager.hits.isEmpty {
             view?.reloadHits()
         }
     }
@@ -71,6 +98,7 @@ import InstantSearchCore
     // MARK: - HitsViewModelDelegate
     
     public weak var view: HitsViewDelegate?
+    public weak var clickAnalyticsDelegate: ClickAnalyticsDelegate? = Insights.shared
     
     override init() { }
     
@@ -79,33 +107,54 @@ import InstantSearchCore
     }
     
     public func numberOfRows() -> Int {
-        guard let searcher = searcher else { return 0 }
+        guard let resultsManager = resultsManager else { return 0 }
         
         if showItemsOnEmptyQuery {
-            return searcher.hits.count
+            return resultsManager.hits.count
         } else {
-            if searcher.params.query == nil || searcher.params.query!.isEmpty {
+            if resultsManager.params.query == nil || resultsManager.params.query!.isEmpty {
                 return 0
             } else {
-                return searcher.hits.count
+                return resultsManager.hits.count
             }
         }
         
     }
     
     public func hitForRow(at indexPath: IndexPath) -> [String: Any] {
-        guard let searcher = searcher else { return [:]}
+        guard let resultsManager = resultsManager else { return [:]}
         
         loadMoreIfNecessary(rowNumber: indexPath.row)
-        return searcher.hits[indexPath.row]
+        return resultsManager.hits[indexPath.row]
+    }
+    
+    public func captureClickAnalyticsForHit(at indexPath: IndexPath) {
+        
+        guard isClickAnalyticsOn else { return }
+        
+        let hit = hitForRow(at: indexPath)
+        let position = indexPath.row + 1
+        
+        if
+            let queryID = queryID,
+            let indexName = view?.index,
+            let eventName = view?.hitClickEventName,
+            let objectID = hit["objectID"] as? String {
+            clickAnalyticsDelegate?.clickedAfterSearch(eventName: eventName,
+                                                       indexName: indexName,
+                                                       objectID: objectID,
+                                                       position: position,
+                                                       queryID: queryID)
+        }
+
     }
     
     func loadMoreIfNecessary(rowNumber: Int) {
-        guard let searcher = searcher else { return }
+        guard let resultsManager = resultsManager else { return }
         guard infiniteScrolling else { return }
         
-        if rowNumber + Int(remainingItemsBeforeLoading) >= searcher.hits.count {
-            searcher.loadMore()
+        if rowNumber + Int(remainingItemsBeforeLoading) >= resultsManager.hits.count {
+            resultsManager.loadMore()
         }
     }
 }

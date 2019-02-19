@@ -21,6 +21,10 @@ struct Constants {
         static let remainingItemsBeforeLoading: UInt = 5
         static let showItemsOnEmptyQuery: Bool = true
         
+        // Analytics
+        static let isClickAnalyticsOn = false
+        static let hitClickEventName = "result clicked"
+        
         // Refinement, Numeric Control, Facet Control
         static let attribute = ""
         

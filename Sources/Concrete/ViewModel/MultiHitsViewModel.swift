@@ -18,10 +18,13 @@ import InstantSearchCore
     private var _searcherIds: [SearcherId]?
 
     public var searcherIds: [SearcherId] {
+        
         set {
             _searcherIds = newValue
-        } get {
-            if let strongSearcherIds = _searcherIds { return strongSearcherIds}
+        }
+        
+        get {
+            if let strongSearcherIds = _searcherIds { return strongSearcherIds }
             if let view = view {
                 var result: [SearcherId] = []
                 for it in 0..<view.indicesArray.count {
@@ -41,6 +44,10 @@ import InstantSearchCore
 
     }
     
+    public var isClickAnalyticsOn: Bool {
+        return view?.isClickAnalyticsOn ?? Constants.Defaults.isClickAnalyticsOn
+    }
+    
     public var hitsPerSectionArray: [UInt] {
         return view?.hitsPerSectionArray ?? [Constants.Defaults.hitsPerPage]
     }
@@ -51,27 +58,27 @@ import InstantSearchCore
     
     // MARK: - SearchableMultiIndexViewModel
     
-    public var searchers: [Searcher] = []
+    public var resultsManagers: [SearchResultsManageable] = []
     
-    public func configure(withSearchers searchers: [Searcher]) {
-        guard !searchers.isEmpty else { return }
+    public func configure(with resultsManagers: [SearchResultsManageable]) {
+        guard !resultsManagers.isEmpty else { return }
         
-        // Deal only with the searchers that have been specified in the widget
-        searcherIds.forEach { (searcherId) in
-            guard let searcher = searchers.first(where: {
+        // Deal only with the result managers that have been specified in the widget
+        searcherIds.forEach { searcherId in
+            guard let searcher = resultsManagers.first(where: {
                 $0.indexName == searcherId.index && $0.variant == searcherId.variant
             }) else {
                 fatalError("Index name not declared when configuring InstantSearch")
             }
             
-            self.searchers.append(searcher)
+            self.resultsManagers.append(searcher)
         }
         
-        if self.searchers.isEmpty { // not supposed to have this case
+        if self.resultsManagers.isEmpty { // not supposed to have this case
             fatalError("No index associated with this widget. Please add at least one index.")
         }
         
-        for (index, searcher) in self.searchers.enumerated() {
+        for (index, resultManager) in self.resultsManagers.enumerated() {
             var hitsPerPage: UInt = 0
             if index < hitsPerSectionArray.count {
                 hitsPerPage = hitsPerSectionArray[index]
@@ -79,10 +86,45 @@ import InstantSearchCore
                 hitsPerPage = hitsPerSectionArray.last ?? Constants.Defaults.hitsPerPage
             }
             
-            searcher.params.hitsPerPage = hitsPerPage
+            resultManager.params.hitsPerPage = hitsPerPage
         }
         
-        if self.searchers.first!.hits.isEmpty {
+        if self.resultsManagers.first!.hits.isEmpty {
+            view?.reloadHits()
+        }
+        
+    }
+    
+    public func configure(withSearchers searchers: [Searcher]) {
+        guard !resultsManagers.isEmpty else { return }
+        
+        // Deal only with the searchers that have been specified in the widget
+        searcherIds.forEach { searcherId in
+            guard let searcher = searchers.first(where: {
+                $0.indexName == searcherId.index && $0.variant == searcherId.variant
+            }) else {
+                fatalError("Index name not declared when configuring InstantSearch")
+            }
+            
+            self.resultsManagers.append(searcher)
+        }
+        
+        if self.resultsManagers.isEmpty { // not supposed to have this case
+            fatalError("No index associated with this widget. Please add at least one index.")
+        }
+        
+        for (index, resultManager) in self.resultsManagers.enumerated() {
+            var hitsPerPage: UInt = 0
+            if index < hitsPerSectionArray.count {
+                hitsPerPage = hitsPerSectionArray[index]
+            } else {
+                hitsPerPage = hitsPerSectionArray.last ?? Constants.Defaults.hitsPerPage
+            }
+            
+            resultManager.params.hitsPerPage = hitsPerPage
+        }
+        
+        if self.resultsManagers.first!.hits.isEmpty {
             view?.reloadHits()
         }
     }
@@ -90,7 +132,8 @@ import InstantSearchCore
     // MARK: - HitsViewModelDelegate
     
     public var view: MultiHitsViewDelegate?
-    
+    public weak var clickAnalyticsDelegate: ClickAnalyticsDelegate? = Insights.shared
+
     override init() { }
     
     public init(view: MultiHitsViewDelegate) {
@@ -98,11 +141,11 @@ import InstantSearchCore
     }
     
     public func numberOfRows(in section: Int) -> Int {
-        guard searchers.count > section else {
+        guard resultsManagers.count > section else {
             print("Warning - When accessing numberOfRows in MultiHitsViewModel, the section number provided is bigger than the number of provided indices")
             return 0
         }
-        let searcher = searchers[section]
+        let searcher = resultsManagers[section]
         
         if showItemsOnEmptyQuery {
             return searcher.hits.count
@@ -116,14 +159,42 @@ import InstantSearchCore
     }
     
     public func numberOfSections() -> Int {
-        return searchers.count
+        return resultsManagers.count
     }
     
     public func hitForRow(at indexPath: IndexPath) -> [String: Any] {
-        let searcher = searchers[indexPath.section]
+        let resultManager = resultsManagers[indexPath.section]
         
-        return searcher.hits[indexPath.row]
+        return resultManager.hits[indexPath.row]
     }
+    
+    public func queryIDForHits(in section: Int) -> String? {
+        guard section < resultsManagers.count else { return .none }
+        return resultsManagers[section].results?.queryID
+    }
+    
+    public func captureClickAnalyticsForHit(at indexPath: IndexPath) {
+
+        guard isClickAnalyticsOn else { return }
+
+        let hit = hitForRow(at: indexPath)
+        let position = indexPath.row + 1
+        let queryID = queryIDForHits(in: indexPath.section)
+
+        if
+            let queryID = queryID,
+            let indexName = view?.indicesArray[indexPath.section],
+            let eventName = view?.hitClickEventName(forSection: indexPath.section),
+            let objectID = hit["objectID"] as? String {
+            clickAnalyticsDelegate?.clickedAfterSearch(eventName: eventName,
+                                                       indexName: indexName,
+                                                       objectID: objectID,
+                                                       position: position,
+                                                       queryID: queryID)
+        }
+
+    }
+
 }
 
 // MARK: - ResultingDelegate
@@ -138,7 +209,7 @@ extension MultiHitsViewModel: ResultingDelegate {
             print(error ?? "")
             return
         }
-        
+
         view?.reloadHits()
     }
 }

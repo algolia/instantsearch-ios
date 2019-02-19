@@ -22,4 +22,11 @@ import Foundation
     
     /// Query the hit to show for a row at a specific indexPath.
     func hitForRow(at indexPath: IndexPath) -> [String: Any]
+    
+    /// Query identifier of last result in specified section
+    func queryIDForHits(in section: Int) -> String?
+    
+    /// Captures Click Analytics event
+    func captureClickAnalyticsForHit(at indexPath: IndexPath)
+
 }

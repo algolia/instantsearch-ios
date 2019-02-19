@@ -9,6 +9,10 @@
 /* Begin PBXBuildFile section */
 		287D0A6E1C4B73BD004566D6 /* WidgetTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 287D0A6D1C4B73BD004566D6 /* WidgetTests.swift */; };
 		28F828881C494B2C00330CF4 /* InstantSearch.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 28F8287D1C494B2C00330CF4 /* InstantSearch.framework */; };
+		AF263882221C5BE50038483D /* AnalyticsTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = AF263880221C5BB80038483D /* AnalyticsTests.swift */; };
+		AF75602C22171775008C5DDF /* InstantSearchInsights.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = AF75602B22171774008C5DDF /* InstantSearchInsights.framework */; };
+		AF75602E221AC6B9008C5DDF /* ClickAnalyticsDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = AF75602D221AC6B9008C5DDF /* ClickAnalyticsDelegate.swift */; };
+		AF756030221B25E7008C5DDF /* SearchResultsManageable.swift in Sources */ = {isa = PBXBuildFile; fileRef = AF75602F221B25E7008C5DDF /* SearchResultsManageable.swift */; };
 		E21DE94F1F2F7DB400EFC4F5 /* InstantSearchCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E21DE94E1F2F7DB400EFC4F5 /* InstantSearchCore.framework */; };
 		E2231E951EC9DC0D002FCF82 /* ConfigureInstantSearchTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = E2231E931EC9DBC4002FCF82 /* ConfigureInstantSearchTests.swift */; };
 		E2231E971EC9F5A7002FCF82 /* Constants.swift in Sources */ = {isa = PBXBuildFile; fileRef = E2231E961EC9F5A7002FCF82 /* Constants.swift */; };
@@ -111,6 +115,10 @@
 		28F8287D1C494B2C00330CF4 /* InstantSearch.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = InstantSearch.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		28F828821C494B2C00330CF4 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		28F828871C494B2C00330CF4 /* InstantSearchTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = InstantSearchTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
+		AF263880221C5BB80038483D /* AnalyticsTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AnalyticsTests.swift; sourceTree = "<group>"; };
+		AF75602B22171774008C5DDF /* InstantSearchInsights.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = InstantSearchInsights.framework; path = Carthage/Build/iOS/InstantSearchInsights.framework; sourceTree = "<group>"; };
+		AF75602D221AC6B9008C5DDF /* ClickAnalyticsDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ClickAnalyticsDelegate.swift; sourceTree = "<group>"; };
+		AF75602F221B25E7008C5DDF /* SearchResultsManageable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchResultsManageable.swift; sourceTree = "<group>"; };
 		E21DE94E1F2F7DB400EFC4F5 /* InstantSearchCore.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = InstantSearchCore.framework; path = Carthage/Build/iOS/InstantSearchCore.framework; sourceTree = "<group>"; };
 		E21DE9501F2F7DCA00EFC4F5 /* AlgoliaSearch.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AlgoliaSearch.framework; path = Carthage/Build/iOS/AlgoliaSearch.framework; sourceTree = "<group>"; };
 		E2231E931EC9DBC4002FCF82 /* ConfigureInstantSearchTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ConfigureInstantSearchTests.swift; sourceTree = "<group>"; };
@@ -199,6 +207,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				AF75602C22171775008C5DDF /* InstantSearchInsights.framework in Frameworks */,
 				E2F2073B20B6E3F60066AF12 /* InstantSearchClient.framework in Frameworks */,
 				E21DE94F1F2F7DB400EFC4F5 /* InstantSearchCore.framework in Frameworks */,
 			);
@@ -251,6 +260,7 @@
 				E2AFE5641ED49B2C00B6A5A7 /* Helpers */,
 				E25FB0A21ECF550C006B8CED /* Info.plist */,
 				287D0A6D1C4B73BD004566D6 /* WidgetTests.swift */,
+				AF263880221C5BB80038483D /* AnalyticsTests.swift */,
 				E25FB0791ECD86E8006B8CED /* RefinementMenuViewModelTests.swift */,
 				E2231E931EC9DBC4002FCF82 /* ConfigureInstantSearchTests.swift */,
 				E2A476F81EC5DEDE007CA367 /* ObjectiveCBridgingTests.m */,
@@ -277,6 +287,7 @@
 		E21DE94D1F2F7DB400EFC4F5 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				AF75602B22171774008C5DDF /* InstantSearchInsights.framework */,
 				E2F2073A20B6E3F60066AF12 /* InstantSearchClient.framework */,
 				E21DE9501F2F7DCA00EFC4F5 /* AlgoliaSearch.framework */,
 				E21DE94E1F2F7DB400EFC4F5 /* InstantSearchCore.framework */,
@@ -425,6 +436,7 @@
 				E27A7BE91E955612005B2506 /* ResettableDelegate.swift */,
 				E27A7BEB1E9556C6005B2506 /* ResultingDelegate.swift */,
 				E27C16401E9394250091D79E /* SearchableViewModel.swift */,
+				AF75602D221AC6B9008C5DDF /* ClickAnalyticsDelegate.swift */,
 			);
 			path = "ViewModel-Binder";
 			sourceTree = "<group>";
@@ -471,6 +483,7 @@
 				E2231E961EC9F5A7002FCF82 /* Constants.swift */,
 				E27C16411E9394250091D79E /* Helpers.swift */,
 				E27A7BF01E97931E005B2506 /* ViewModelFetcher.swift */,
+				AF75602F221B25E7008C5DDF /* SearchResultsManageable.swift */,
 			);
 			path = "Models and Helpers";
 			sourceTree = "<group>";
@@ -641,13 +654,14 @@
 			inputPaths = (
 				"$(SRCROOT)/Carthage/Build/iOS/InstantSearchClient.framework",
 				"$(SRCROOT)/Carthage/Build/iOS/InstantSearchCore.framework",
+				"$(SRCROOT)/Carthage/Build/iOS/InstantSearchInsights.framework",
 			);
 			name = "Carthage Copy Frameworks";
 			outputPaths = (
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
-			shellScript = "/usr/local/bin/carthage copy-frameworks";
+			shellScript = "/usr/local/bin/carthage copy-frameworks\n";
 		};
 /* End PBXShellScriptBuildPhase section */
 
@@ -688,6 +702,7 @@
 				E27141CA1E9E237200959294 /* StatsButtonWidget.swift in Sources */,
 				E25F5CE11FCEF450002C8A8D /* MultiHitsViewDelegate.swift in Sources */,
 				E27B67DB1ED314100001FFA7 /* RefinementViewDelegate.swift in Sources */,
+				AF75602E221AC6B9008C5DDF /* ClickAnalyticsDelegate.swift in Sources */,
 				E2738FC11E9BDA31002C002D /* StatsViewDelegate.swift in Sources */,
 				E27C16441E9394250091D79E /* SliderWidget.swift in Sources */,
 				E25F5C911FCEF3FA002C8A8D /* MultiHitsController.swift in Sources */,
@@ -701,6 +716,7 @@
 				E233BBFF1EBA43F500F5F5E1 /* OneValueSwitchWidget.swift in Sources */,
 				E25F5C8A1FCEF3DA002C8A8D /* MultiHitsCollectionWidget.swift in Sources */,
 				E233BC051EBB78D400F5F5E1 /* FacetControlViewDelegate.swift in Sources */,
+				AF756030221B25E7008C5DDF /* SearchResultsManageable.swift in Sources */,
 				E27C164A1E9394250091D79E /* ActivityIndicatorView.swift in Sources */,
 				E27141D51E9F764100959294 /* HitsTableViewController.swift in Sources */,
 				E2231E971EC9F5A7002FCF82 /* Constants.swift in Sources */,
@@ -728,6 +744,7 @@
 			files = (
 				E2231E951EC9DC0D002FCF82 /* ConfigureInstantSearchTests.swift in Sources */,
 				287D0A6E1C4B73BD004566D6 /* WidgetTests.swift in Sources */,
+				AF263882221C5BE50038483D /* AnalyticsTests.swift in Sources */,
 				E2A476FA1EC5DFC1007CA367 /* ObjectiveCBridgingTests.m in Sources */,
 				E2AFE5661ED49B3900B6A5A7 /* FatalError.swift in Sources */,
 				E2A476FE1EC60BD7007CA367 /* CustomWidget.m in Sources */,

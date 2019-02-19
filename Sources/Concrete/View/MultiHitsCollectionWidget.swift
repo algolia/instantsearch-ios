@@ -20,6 +20,18 @@ import UIKit
 /// Widget that displays the search results of multi index. Built over a `UITableView`.
 @objcMembers public class MultiHitsCollectionWidget: UICollectionView, MultiHitsViewDelegate, AlgoliaWidget {
     
+    public var isClickAnalyticsOn: Bool
+    
+    private var hitClickEventNames: [Int: String]
+    
+    public func hitClickEventName(forSection section: Int) -> String? {
+        return hitClickEventNames[section]
+    }
+    
+    public func setHitClickEventName(_ eventName: String, forSection section: Int) {
+        hitClickEventNames[section] = eventName
+    }
+    
     @IBInspectable public var showItemsOnEmptyQuery: Bool = Constants.Defaults.showItemsOnEmptyQuery
     
     @IBInspectable public var hitsPerSection: String = String(Constants.Defaults.hitsPerPage) {
@@ -59,12 +71,16 @@ import UIKit
     
     public override init(frame: CGRect, collectionViewLayout layout: UICollectionViewLayout) {
         viewModel = MultiHitsViewModel()
+        isClickAnalyticsOn = false
+        hitClickEventNames = [:]
         super.init(frame: frame, collectionViewLayout: layout)
         viewModel.view = self
     }
     
     public required init?(coder aDecoder: NSCoder) {
         viewModel = MultiHitsViewModel()
+        isClickAnalyticsOn = false
+        hitClickEventNames = [:]
         super.init(coder: aDecoder)
         viewModel.view = self
     }

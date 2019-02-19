@@ -286,4 +286,8 @@ class WidgetTests: XCTestCase {
         // Make sure params.hitsPerPage was correctly set by just adding the hits widget.
         XCTAssertEqual(hitsTableWidget.viewModel.numberOfRows(), 0)
     }
+    
+   
+    
 }
+
