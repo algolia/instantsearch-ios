@@ -28,4 +28,4 @@ Change Log
 - 15 customizable widgets to use in your apps. Checkout the documentation of those widgets in the [community website](https://community.algolia.com/instantsearch-ios/widgets.html).
 - 4 base controllers: `HitsTableViewController`, `RefinementTableViewController`, `HitsCollectionViewController`, `RefinementCollectionViewController`.
 - Custom widget creation. [Follow documentation](https://community.algolia.com/instantsearch-ios/widgets.html#custom-widgets).
-- Getting Started Guide. [Follow guide](https://community.algolia.com/instantsearch-ios/https://www.algolia.com/doc/guides/building-search-ui/getting-started/ios/).
+- Getting Started Guide. [Follow guide](https://www.algolia.com/doc/guides/building-search-ui/getting-started/ios/).
