@@ -13,15 +13,15 @@ import UIKit
 /// Widget that displays the search results of multi index. Built over a `UITableView`.
 @objcMembers public class MultiHitsTableWidget: UITableView, MultiHitsViewDelegate, AlgoliaWidget {
     
-    public var isClickAnalyticsOn: Bool = false
+    public var enableClickAnalytics: Bool
     
-    private var hitClickEventNames: [Int: String] = [:]
+    private var hitClickEventNames: [Int: String]
     
     public func hitClickEventName(forSection section: Int) -> String? {
         return hitClickEventNames[section]
     }
     
-    public func setHitClickEventName(_ eventName: String, forSection section: Int) {
+    public func setHitClick(eventName: String, forSection section: Int) {
         hitClickEventNames[section] = eventName
     }
     
@@ -68,12 +68,16 @@ import UIKit
     
   public override init(frame: CGRect, style: UITableView.Style) {
         viewModel = MultiHitsViewModel()
+        enableClickAnalytics = Constants.Defaults.enableClickAnalytics
+    	hitClickEventNames = [:]
         super.init(frame: frame, style: style)
         viewModel.view = self
     }
     
     public required init?(coder aDecoder: NSCoder) {
         viewModel = MultiHitsViewModel()
+        enableClickAnalytics = Constants.Defaults.enableClickAnalytics
+        hitClickEventNames = [:]
         super.init(coder: aDecoder)
         viewModel.view = self
     }

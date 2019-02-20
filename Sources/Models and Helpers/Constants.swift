@@ -22,7 +22,7 @@ struct Constants {
         static let showItemsOnEmptyQuery: Bool = true
         
         // Analytics
-        static let isClickAnalyticsOn = false
+        static let enableClickAnalytics = false
         static let hitClickEventName = "result clicked"
         
         // Refinement, Numeric Control, Facet Control

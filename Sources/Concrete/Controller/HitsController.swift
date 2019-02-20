@@ -86,8 +86,8 @@ extension HitsController: UITableViewDelegate {
     public func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         let hit = viewModel.hitForRow(at: indexPath)
         
-        tableDelegate?.tableView(tableView, didSelectRowAt: indexPath, containing: hit)
         viewModel.captureClickAnalyticsForHit(at: indexPath)
+        tableDelegate?.tableView(tableView, didSelectRowAt: indexPath, containing: hit)
     }
 }
 

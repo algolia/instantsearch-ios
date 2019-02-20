@@ -33,7 +33,7 @@ import Foundation
     var showItemsOnEmptyQuery: Bool { get set }
     
     /// Whetever or not Click Analytics activated for this widget
-    var isClickAnalyticsOn: Bool { get set }
+    var enableClickAnalytics: Bool { get set }
     
     /// Analytics event name for hit click used by Insights
     var hitClickEventName: String? { get set }

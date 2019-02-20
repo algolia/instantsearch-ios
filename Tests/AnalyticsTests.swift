@@ -18,7 +18,7 @@ class AnalyticsTests: XCTestCase {
         
         let widget = HitsTableWidget(frame: .zero)
         
-        widget.isClickAnalyticsOn = true
+        widget.enableClickAnalytics = true
         widget.index = "testIndex"
         widget.hitClickEventName = "testEventName"
         
@@ -57,7 +57,7 @@ class AnalyticsTests: XCTestCase {
         
         let widget = HitsCollectionWidget(frame: .zero, collectionViewLayout: UICollectionViewFlowLayout())
         
-        widget.isClickAnalyticsOn = true
+        widget.enableClickAnalytics = true
         widget.index = "testIndex"
         widget.hitClickEventName = "testEventName"
         
@@ -97,10 +97,10 @@ class AnalyticsTests: XCTestCase {
         
         let widget = MultiHitsTableWidget(frame: .zero)
         
-        widget.isClickAnalyticsOn = true
+        widget.enableClickAnalytics = true
         widget.indicesArray = ["testIndex1", "testIndex2"]
-        widget.setHitClickEventName("testEventName1", forSection: 0)
-        widget.setHitClickEventName("testEventName2", forSection: 1)
+        widget.setHitClick(eventName: "testEventName1", forSection: 0)
+        widget.setHitClick(eventName: "testEventName2", forSection: 1)
         
         let viewModel = MultiHitsViewModel(view: widget)
         viewModel.searcherIds = [
@@ -171,10 +171,10 @@ class AnalyticsTests: XCTestCase {
         
         let widget = MultiHitsCollectionWidget(frame: .zero, collectionViewLayout: UICollectionViewFlowLayout())
         
-        widget.isClickAnalyticsOn = true
+        widget.enableClickAnalytics = true
         widget.indicesArray = ["testIndex1", "testIndex2"]
-        widget.setHitClickEventName("testEventName1", forSection: 0)
-        widget.setHitClickEventName("testEventName2", forSection: 1)
+        widget.setHitClick(eventName: "testEventName1", forSection: 0)
+        widget.setHitClick(eventName: "testEventName2", forSection: 1)
         
         let viewModel = MultiHitsViewModel(view: widget)
         viewModel.searcherIds = [
@@ -243,7 +243,7 @@ class AnalyticsTests: XCTestCase {
         
         let widget = HitsTableWidget(frame: .zero)
         
-        widget.isClickAnalyticsOn = true
+        widget.enableClickAnalytics = true
         widget.index = "testIndex"
         widget.hitClickEventName = "testEventName"
         

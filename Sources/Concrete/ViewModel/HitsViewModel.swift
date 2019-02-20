@@ -42,8 +42,8 @@ import InstantSearchInsights
         return resultsManager.results?.queryID
     }
     
-    public var isClickAnalyticsOn: Bool {
-        return view?.isClickAnalyticsOn ?? Constants.Defaults.isClickAnalyticsOn
+    public var enableClickAnalytics: Bool {
+        return view?.enableClickAnalytics ?? Constants.Defaults.enableClickAnalytics
     }
 
     // TODO: Those should be settable in the long run, same idea as when we do a private _var and var everywhere. Note that they can always create a virtual view that is not added to the UI, that has all the necessary properties set. 
@@ -130,7 +130,7 @@ import InstantSearchInsights
     
     public func captureClickAnalyticsForHit(at indexPath: IndexPath) {
         
-        guard isClickAnalyticsOn else { return }
+        guard enableClickAnalytics else { return }
         
         let hit = hitForRow(at: indexPath)
         let position = indexPath.row + 1

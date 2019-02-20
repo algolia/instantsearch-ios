@@ -44,8 +44,8 @@ import InstantSearchCore
 
     }
     
-    public var isClickAnalyticsOn: Bool {
-        return view?.isClickAnalyticsOn ?? Constants.Defaults.isClickAnalyticsOn
+    public var enableClickAnalytics: Bool {
+        return view?.enableClickAnalytics ?? Constants.Defaults.enableClickAnalytics
     }
     
     public var hitsPerSectionArray: [UInt] {
@@ -175,7 +175,7 @@ import InstantSearchCore
     
     public func captureClickAnalyticsForHit(at indexPath: IndexPath) {
 
-        guard isClickAnalyticsOn else { return }
+        guard enableClickAnalytics else { return }
 
         let hit = hitForRow(at: indexPath)
         let position = indexPath.row + 1

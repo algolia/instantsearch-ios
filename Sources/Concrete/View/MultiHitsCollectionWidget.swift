@@ -20,7 +20,7 @@ import UIKit
 /// Widget that displays the search results of multi index. Built over a `UITableView`.
 @objcMembers public class MultiHitsCollectionWidget: UICollectionView, MultiHitsViewDelegate, AlgoliaWidget {
     
-    public var isClickAnalyticsOn: Bool
+    public var enableClickAnalytics: Bool
     
     private var hitClickEventNames: [Int: String]
     
@@ -28,7 +28,7 @@ import UIKit
         return hitClickEventNames[section]
     }
     
-    public func setHitClickEventName(_ eventName: String, forSection section: Int) {
+    public func setHitClick(eventName: String, forSection section: Int) {
         hitClickEventNames[section] = eventName
     }
     
@@ -71,7 +71,7 @@ import UIKit
     
     public override init(frame: CGRect, collectionViewLayout layout: UICollectionViewLayout) {
         viewModel = MultiHitsViewModel()
-        isClickAnalyticsOn = false
+        enableClickAnalytics = Constants.Defaults.enableClickAnalytics
         hitClickEventNames = [:]
         super.init(frame: frame, collectionViewLayout: layout)
         viewModel.view = self
@@ -79,7 +79,7 @@ import UIKit
     
     public required init?(coder aDecoder: NSCoder) {
         viewModel = MultiHitsViewModel()
-        isClickAnalyticsOn = false
+        enableClickAnalytics = Constants.Defaults.enableClickAnalytics
         hitClickEventNames = [:]
         super.init(coder: aDecoder)
         viewModel.view = self

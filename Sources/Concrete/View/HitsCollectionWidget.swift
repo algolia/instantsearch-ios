@@ -22,21 +22,21 @@ import InstantSearchCore
     @IBInspectable public var index: String = Constants.Defaults.index
     @IBInspectable public var variant: String = Constants.Defaults.variant
     
-    @IBInspectable public var isClickAnalyticsOn: Bool
+    @IBInspectable public var enableClickAnalytics: Bool
     @IBInspectable public var hitClickEventName: String?
     
     public var viewModel: HitsViewModelDelegate
     
     public override init(frame: CGRect, collectionViewLayout layout: UICollectionViewLayout) {
         viewModel = HitsViewModel()
-        isClickAnalyticsOn = false
+        enableClickAnalytics = Constants.Defaults.enableClickAnalytics
         super.init(frame: frame, collectionViewLayout: layout)
         viewModel.view = self
     }
     
     public required init?(coder aDecoder: NSCoder) {
         viewModel = HitsViewModel()
-        isClickAnalyticsOn = false
+        enableClickAnalytics = Constants.Defaults.enableClickAnalytics
         super.init(coder: aDecoder)
         viewModel.view = self
     }
