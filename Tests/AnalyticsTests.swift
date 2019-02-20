@@ -237,7 +237,7 @@ class AnalyticsTests: XCTestCase {
         
     }
     
-    func testHitsControllerCACapturing() {
+    func testHitsControllerTableWidgetCACapturing() {
         
         let exp = expectation(description: #function)
         
@@ -281,6 +281,52 @@ class AnalyticsTests: XCTestCase {
         waitForExpectations(timeout: 2, handler: .none)
         
     }
+    
+    func testHitsControllerCollectionWidgetCACapturing() {
+     
+        let exp = expectation(description: #function)
+        
+        let widget = HitsCollectionWidget(frame: .zero, collectionViewLayout: UICollectionViewFlowLayout())
+        
+        widget.enableClickAnalytics = true
+        widget.index = "testIndex"
+        widget.hitClickEventName = "testEventName"
+        
+        let viewModel = HitsViewModel(view: widget)
+        widget.viewModel = viewModel
+        let caTestHelper = TestClickAnalyticsHelper()
+        
+        caTestHelper.handler = { eventName, indexName, objectID, position, queryID in
+            XCTAssertEqual(eventName, "testEventName")
+            XCTAssertEqual(indexName, "testIndex")
+            XCTAssertEqual(objectID, "testObjectID")
+            XCTAssertEqual(position, 1)
+            XCTAssertEqual(queryID, "testQueryID")
+            exp.fulfill()
+        }
+        
+        viewModel.clickAnalyticsDelegate = caTestHelper
+        let params = SearchParameters()
+        let results = try! SearchResults(content: ["nbHits": 1 ,
+                                                   "hits": [["objectID": "testObjectID"]],
+                                                   "queryID": "testQueryID"],
+                                         disjunctiveFacets: [])
+        let searchResultsManager = TestSearchResultsManager(indexName: "testIndex",
+                                                            variant: "testVariant",
+                                                            params: params,
+                                                            results: results)
+        viewModel.configure(with: searchResultsManager)
+        
+        let hitsController = HitsController(collection: widget)
+        
+        let indexPath = IndexPath(row: 0, section: 0)
+        
+        hitsController.collectionView(widget, didSelectItemAt: indexPath)
+        
+        waitForExpectations(timeout: 2, handler: .none)
+        
+    }
+
     
 }
 
