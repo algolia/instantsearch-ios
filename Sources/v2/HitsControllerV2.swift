@@ -24,43 +24,153 @@ extension UICollectionView: HitsWidgetV2 {
   }
 }
 
+@objc protocol SearchWidgetV2: class {
+  func observeSearchEvents(searchHandler: SearchHandler)
+}
+
+extension UISearchBar: SearchWidgetV2 {
+  func observeSearchEvents(searchHandler: SearchHandler) {
+
+  }
+}
+
+extension UITextField: SearchWidgetV2 {
+  func observeSearchEvents(searchHandler: (String) -> ()) {
+    self.addTarget(self, action: #selector(textFieldTextChanged), for: .editingChanged)
+  }
+
+  @objc func textFieldTextChanged(textField: UITextField) {
+    let text = textField.text
+    // DISCUSSION: Somehow get it back to the searchHandler? there is always the hack of storing the thing inside the class with assoicate object.
+  }
+
+}
+
+public typealias SearchHandler = (String) -> ()
 public typealias Hit = [String: Any] // could also be strongly typed if we use the power of generics
 public typealias HitsTableViewCellHandler = (Hit) -> UITableViewCell
 public typealias HitsCollectionViewCellHandler = (Hit) -> UICollectionViewCell
+public typealias HitsTableViewOnClickHandler = (Hit) -> Void
+public typealias HitsCollectionViewOnClickHandler = (Hit) -> Void
 
 class HitsControllerV2 {
 
   let hitsViewModel: HitsViewModelV2
-  let hitsWidgets = WeakSet<HitsWidgetV2>()
+  let searchViewModel: SearchViewModelV2
+  var hitsWidgets: WeakSet<HitsWidgetV2>
+  var searchWidgets: WeakSet<SearchWidgetV2>
   let index: Index
   let query: Query
 
   var hitsTableViewDataSource: HitsTableViewDataSourceV2?
+  var hitsTableViewDelegate: HitsTableViewDelegateV2?
+  var hitsCollectionViewDataSource: HitsCollectionViewDataSourceV2?
+  var hitsCollectionViewDelegate: HitsCollectionViewDelegateV2?
 
   // DISCUSSION: it s confusing to have hitsPerPage not in hitsSettings for the dev, although one is at the query level, the other at the viewModel level.
-  public init(index: Index, query: Query, hitsWidgets: [HitsWidgetV2] = [], hitsSettings: HitsSettings? = nil, querySettings: QuerySettings? = nil) {
+  public init(index: Index, query: Query, searchWidgets: [SearchWidgetV2], hitsWidgets: [HitsWidgetV2] = [], hitsSettings: HitsSettings? = nil, querySettings: QuerySettings? = nil) {
 
     self.index = index
     self.query = query
+    self.hitsViewModel = HitsViewModelV2(hitsSettings: hitsSettings)
+    self.searchViewModel = SearchViewModelV2()
+    self.hitsWidgets = WeakSet<HitsWidgetV2>()
+    self.hitsWidgets.add(hitsWidgets)
+    self.searchWidgets = WeakSet<SearchWidgetV2>()
+    self.searchWidgets.add(searchWidgets)
     query.hitsPerPage = querySettings?.hitsPerPage
-    hitsViewModel = HitsViewModelV2(hitsSettings: hitsSettings)
-    // DISCUSSION: the controller owns the viewmodel, so if it is deallocated, then viewmodel is deallocated so this should not be called
+
+    // Discussion: if we can't easily have clean searchWidgets where we can observe new query changes, then the controller might have to just have methods to link
+    // to UITextField, UISearchBar and custom delegate.
+    searchWidgets.forEach {
+      $0.observeSearchEvents { text in
+
+        // We're observing new searches so we need to reset the page to 0?
+        query.query = text
+        query.page = 0
+
+        self.searchViewModel.search(index: index, query, completionHandler: { (result, _) in
+          self.hitsViewModel.update(result) // Discussion: first way to update result of the hitsViewModel
+          self.hitsWidgets.forEach { $0.reload() }
+        })
+      }
+    }
+
+    // DISCUSSION: concerning unowned: the controller owns the viewmodel, so if it is deallocated, then viewmodel is deallocated so this should not be called
     hitsViewModel.observeSearchPage { [unowned self] page, update in
 
       query.page = page
 
-      // TODO: Once ready, use the searchCoordinator + index + query to search here and get the appropriate results
-      self.index.search(query) { _, _ in
-        update(Result(value: SearchResults(nbHits: 0, hits: [[:]])))
+      self.searchViewModel.search(index: index, query, completionHandler: { (result, _) in
+        update(result) // Discussion: Second way to update the result of the hitsViewModel
         self.hitsWidgets.forEach { $0.reload() }
-        // TODO: Scroll top if first page?
-      }
+      })
+
     }
 
-    func setupDataSource(for tableView: UITableView, with hitsTableViewCellHandler: @escaping HitsTableViewCellHandler) {
+    func setupDataSourceForTableView(_ tableView: UITableView, with hitsTableViewCellHandler: @escaping HitsTableViewCellHandler) {
       hitsTableViewDataSource = HitsTableViewDataSourceV2(hitsViewModel: hitsViewModel, hitsTableViewCellHandler: hitsTableViewCellHandler)
       tableView.dataSource = hitsTableViewDataSource
     }
+
+    func setupDelegateForTableView(_ tableView: UITableView, with hitsTableViewOnClickHandler: @escaping HitsTableViewOnClickHandler) {
+      hitsTableViewDelegate = HitsTableViewDelegateV2(hitsViewModel: hitsViewModel, hitsTableViewOnClickHandler: hitsTableViewOnClickHandler)
+      tableView.delegate = hitsTableViewDelegate
+    }
+
+    func setupDataSourceForCollectionView(_ collectionView: UICollectionView, with hitsCollectionViewCellHandler: @escaping HitsCollectionViewCellHandler) {
+      hitsCollectionViewDataSource = HitsCollectionViewDataSourceV2(hitsViewModel: hitsViewModel, hitsCollectionViewCellHandler: hitsCollectionViewCellHandler)
+      collectionView.dataSource = hitsCollectionViewDataSource
+    }
+
+    func setupDelegateForCollectionView(_ collectionView: UICollectionView, with hitsCollectionViewOnClickHandler: @escaping HitsCollectionViewOnClickHandler) {
+      hitsCollectionViewDelegate = HitsCollectionViewDelegateV2(hitsViewModel: hitsViewModel, hitsCollectionViewOnClickHandler: hitsCollectionViewOnClickHandler)
+      collectionView.delegate = hitsCollectionViewDelegate
+    }
+  }
+}
+
+public struct QuerySettings {
+  public var hitsPerPage: UInt?
+}
+
+// TODO: Add more methods such as viewForNoResults etc.. for both TableView and CollectionView. 
+class HitsCollectionViewDataSourceV2: NSObject, UICollectionViewDataSource {
+
+  var hitsCollectionViewCellHandler: HitsCollectionViewCellHandler
+  var hitsViewModel: HitsViewModelV2
+
+  init(hitsViewModel: HitsViewModelV2, hitsCollectionViewCellHandler: @escaping HitsCollectionViewCellHandler) {
+    self.hitsCollectionViewCellHandler = hitsCollectionViewCellHandler
+    self.hitsViewModel = hitsViewModel
+  }
+
+  func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
+    let hit = hitsViewModel.hitForRow(at: indexPath)
+
+    return hitsCollectionViewCellHandler(hit)
+  }
+
+  func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
+    return hitsViewModel.numberOfRows()
+  }
+
+}
+
+class HitsCollectionViewDelegateV2: NSObject, UICollectionViewDelegate {
+
+  var hitsCollectionViewOnClickHandler: HitsCollectionViewOnClickHandler
+  var hitsViewModel: HitsViewModelV2
+
+  init(hitsViewModel: HitsViewModelV2, hitsCollectionViewOnClickHandler: @escaping HitsCollectionViewOnClickHandler) {
+    self.hitsCollectionViewOnClickHandler = hitsCollectionViewOnClickHandler
+    self.hitsViewModel = hitsViewModel
+  }
+
+  func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
+    let hit = hitsViewModel.hitForRow(at: indexPath)
+
+    hitsCollectionViewOnClickHandler(hit)
   }
 }
 
@@ -86,6 +196,20 @@ class HitsTableViewDataSourceV2: NSObject, UITableViewDataSource {
 
 }
 
-public struct QuerySettings {
-  public var hitsPerPage: UInt?
+class HitsTableViewDelegateV2: NSObject, UITableViewDelegate {
+
+  var hitsTableViewOnClickHandler: HitsTableViewOnClickHandler
+  var hitsViewModel: HitsViewModelV2
+
+  init(hitsViewModel: HitsViewModelV2, hitsTableViewOnClickHandler: @escaping HitsTableViewOnClickHandler) {
+    self.hitsTableViewOnClickHandler = hitsTableViewOnClickHandler
+    self.hitsViewModel = hitsViewModel
+  }
+
+  func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+    let hit = hitsViewModel.hitForRow(at: indexPath)
+
+    hitsTableViewOnClickHandler(hit)
+  }
+
 }

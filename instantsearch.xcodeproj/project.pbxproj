@@ -12,6 +12,8 @@
 		E208E2F022172779000D88ED /* HitsViewModelV2.swift in Sources */ = {isa = PBXBuildFile; fileRef = E208E2EF22172779000D88ED /* HitsViewModelV2.swift */; };
 		E208E2F2221727A2000D88ED /* HitsControllerV2.swift in Sources */ = {isa = PBXBuildFile; fileRef = E208E2F1221727A2000D88ED /* HitsControllerV2.swift */; };
 		E208E2F4221AEF26000D88ED /* Result.swift in Sources */ = {isa = PBXBuildFile; fileRef = E208E2F3221AEF26000D88ED /* Result.swift */; };
+		E208E2F6221DA130000D88ED /* SearchViewModelV2.swift in Sources */ = {isa = PBXBuildFile; fileRef = E208E2F5221DA130000D88ED /* SearchViewModelV2.swift */; };
+		E208E2F8221DBD58000D88ED /* RefinementMenuViewModelV2.swift in Sources */ = {isa = PBXBuildFile; fileRef = E208E2F7221DBD58000D88ED /* RefinementMenuViewModelV2.swift */; };
 		E21DE94F1F2F7DB400EFC4F5 /* InstantSearchCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E21DE94E1F2F7DB400EFC4F5 /* InstantSearchCore.framework */; };
 		E2231E951EC9DC0D002FCF82 /* ConfigureInstantSearchTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = E2231E931EC9DBC4002FCF82 /* ConfigureInstantSearchTests.swift */; };
 		E2231E971EC9F5A7002FCF82 /* Constants.swift in Sources */ = {isa = PBXBuildFile; fileRef = E2231E961EC9F5A7002FCF82 /* Constants.swift */; };
@@ -117,6 +119,8 @@
 		E208E2EF22172779000D88ED /* HitsViewModelV2.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HitsViewModelV2.swift; sourceTree = "<group>"; };
 		E208E2F1221727A2000D88ED /* HitsControllerV2.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HitsControllerV2.swift; sourceTree = "<group>"; };
 		E208E2F3221AEF26000D88ED /* Result.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Result.swift; sourceTree = "<group>"; };
+		E208E2F5221DA130000D88ED /* SearchViewModelV2.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchViewModelV2.swift; sourceTree = "<group>"; };
+		E208E2F7221DBD58000D88ED /* RefinementMenuViewModelV2.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RefinementMenuViewModelV2.swift; sourceTree = "<group>"; };
 		E21DE94E1F2F7DB400EFC4F5 /* InstantSearchCore.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = InstantSearchCore.framework; path = Carthage/Build/iOS/InstantSearchCore.framework; sourceTree = "<group>"; };
 		E21DE9501F2F7DCA00EFC4F5 /* AlgoliaSearch.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AlgoliaSearch.framework; path = Carthage/Build/iOS/AlgoliaSearch.framework; sourceTree = "<group>"; };
 		E2231E931EC9DBC4002FCF82 /* ConfigureInstantSearchTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ConfigureInstantSearchTests.swift; sourceTree = "<group>"; };
@@ -285,8 +289,10 @@
 			isa = PBXGroup;
 			children = (
 				E208E2EF22172779000D88ED /* HitsViewModelV2.swift */,
+				E208E2F5221DA130000D88ED /* SearchViewModelV2.swift */,
 				E208E2F1221727A2000D88ED /* HitsControllerV2.swift */,
 				E208E2F3221AEF26000D88ED /* Result.swift */,
+				E208E2F7221DBD58000D88ED /* RefinementMenuViewModelV2.swift */,
 			);
 			path = v2;
 			sourceTree = "<group>";
@@ -681,6 +687,7 @@
 				E27A7BF31E97947C005B2506 /* HitsCollectionWidget.swift in Sources */,
 				E28B07E61EAF9FFE003AAE47 /* RefinementCollectionViewController.swift in Sources */,
 				E25F5C8B1FCEF3DA002C8A8D /* MultiHitsTableWidget.swift in Sources */,
+				E208E2F6221DA130000D88ED /* SearchViewModelV2.swift in Sources */,
 				E27C16461E9394250091D79E /* StatsLabelWidget.swift in Sources */,
 				E27A7BFF1E97B7AA005B2506 /* AlgoliaWidget.swift in Sources */,
 				E27C164B1E9394250091D79E /* RefinableDelegate.swift in Sources */,
@@ -689,6 +696,7 @@
 				E28B07E21EAF9F27003AAE47 /* RefinementCollectionWidget.swift in Sources */,
 				E27C16471E9394250091D79E /* InstantSearch.swift in Sources */,
 				E2D589121FBB295700526C33 /* SearchViewModel.swift in Sources */,
+				E208E2F8221DBD58000D88ED /* RefinementMenuViewModelV2.swift in Sources */,
 				E2738FBD1E9BD9ED002C002D /* StatsViewModel.swift in Sources */,
 				E25F5C871FCEF3B5002C8A8D /* SearcherId.swift in Sources */,
 				E2CA327C1EA77BC90057A3D3 /* HitsController.swift in Sources */,

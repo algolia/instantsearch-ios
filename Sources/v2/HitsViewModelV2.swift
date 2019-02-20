@@ -19,8 +19,11 @@ public class HitsViewModelV2 {
 
   var hitsResult: HitsResult?
 
+  // DISCUSSION: is closure based observation the simplest DX to understand or should we think or reactive paradigm.
   var searchPageObservations = [SearchPageHandler]()
 
+  // DISCUSSION: should we expose those through KVO? dynamic var in case someone wants to listen to them?
+  // something like: viewModel.bind(\.navigationTitle, to: navigationItem, at: \.title),
   struct HitsResult {
     public var nbHits: Int
     public var allHits: [[String: Any]]
