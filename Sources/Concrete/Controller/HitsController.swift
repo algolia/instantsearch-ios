@@ -131,6 +131,7 @@ extension HitsController: UICollectionViewDelegate {
     public func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
         let hit = viewModel.hitForRow(at: indexPath)
         
+        viewModel.captureClickAnalyticsForHit(at: indexPath)
         collectionDelegate?.collectionView(collectionView, didSelectItemAt: indexPath, containing: hit)
     }
 }
