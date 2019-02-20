@@ -15,6 +15,7 @@ Pod::Spec.new do |s|
     s.subspec "UI" do |ss|
         ss.source_files = 'Sources/**/*.{swift}'
         ss.dependency 'InstantSearchCore', '~> 4.0'
+	ss.dependency 'InstantSearchInsights', '~> 2.0'
     end
 
     s.subspec "Core" do |ss|
