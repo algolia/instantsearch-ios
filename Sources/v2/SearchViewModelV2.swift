@@ -9,13 +9,14 @@ import Foundation
 import InstantSearchCore
 
 public typealias ResultHandler = (_ result: Result<SearchResults>, _ userInfo: [String: Any]) -> Void
+public typealias MultipleResultHandler = (_ result: [Result<SearchResults>], _ userInfo: [String: Any]) -> Void
 
 public protocol SearchViewModelDelegate {
   func search(index: Searchable, _ query: Query, requestOptions: RequestOptions?, completionHandler: @escaping ResultHandler)
   //func searchDisjunctiveFaceting // We don't need this one as the search above can check whether the query needs to do a disjunctive faceting or not.
   func searchForFacetValues(index: Searchable, of facetName: String, matching text: String, query: Query?, requestOptions: RequestOptions?, completionHandler: @escaping ResultHandler)
 
-  func multipleQueries(_ queries: [IndexQuery], strategy: String?, requestOptions: RequestOptions?, completionHandler: @escaping ResultHandler)
+  func multipleQueries(_ queries: [IndexQuery], strategy: String?, requestOptions: RequestOptions?, completionHandler: @escaping MultipleResultHandler)
 }
 
 class SearchViewModelV2: SearchViewModelDelegate {
@@ -37,7 +38,7 @@ class SearchViewModelV2: SearchViewModelDelegate {
 
   }
 
-  func multipleQueries(_ queries: [IndexQuery], strategy: String?, requestOptions: RequestOptions? = nil, completionHandler: @escaping ResultHandler) {
+  func multipleQueries(_ queries: [IndexQuery], strategy: String?, requestOptions: RequestOptions? = nil, completionHandler: @escaping MultipleResultHandler) {
 
   }
 }

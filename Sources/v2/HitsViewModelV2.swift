@@ -57,7 +57,7 @@ public class HitsViewModelV2 {
   }
 
   public func update(_ searchResults: Result<SearchResults>) {
-
+    // use searchResults and transform to Result<Hits>
   }
 
   public func numberOfRows() -> Int {
@@ -76,7 +76,7 @@ public class HitsViewModelV2 {
 
   public func loadMoreResults() {
     guard hasMorePages() else { return } // Throw error?
-    loadNextPage()
+    notifyNextPage()
   }
 
   public func hitForRow(at indexPath: IndexPath) -> [String: Any] {
@@ -92,7 +92,7 @@ public class HitsViewModelV2 {
     return hits.nbPages > hits.page + 1
   }
 
-  private func loadNextPage() {
+  private func notifyNextPage() {
     guard let hits = hitsResult?.value else { return }
 
     searchPageObservations.forEach { $0(hits.page + 1, update(_:)) }
@@ -102,7 +102,7 @@ public class HitsViewModelV2 {
     guard hitsSettings.infiniteScrolling, let hits = hitsResult?.value else { return }
 
     if rowNumber + Int(hitsSettings.remainingItemsBeforeLoading) >= hits.allHits.count {
-      loadNextPage()
+      notifyNextPage()
     }
   }
 }
