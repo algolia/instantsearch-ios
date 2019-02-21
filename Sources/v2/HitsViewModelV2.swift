@@ -17,14 +17,15 @@ public class HitsViewModelV2 {
 
   let hitsSettings: HitsSettings
 
-  var hitsResult: HitsResult?
+  var hitsResult: Result<Hits>?
 
   // DISCUSSION: is closure based observation the simplest DX to understand or should we think or reactive paradigm.
   var searchPageObservations = [SearchPageHandler]()
 
   // DISCUSSION: should we expose those through KVO? dynamic var in case someone wants to listen to them?
   // something like: viewModel.bind(\.navigationTitle, to: navigationItem, at: \.title),
-  struct HitsResult {
+
+  struct Hits {
     public var nbHits: Int
     public var allHits: [[String: Any]]
     public var latestHits: [[String: Any]]
@@ -48,7 +49,7 @@ public class HitsViewModelV2 {
 
   public func observeSearchPage(using closure: @escaping SearchPageHandler) {
     searchPageObservations.append(closure)
-    closure(0, update(_:))
+    closure(0, update(_:)) // call the closure with page 0
   }
 
   public func clearSearchPageObservations() {
@@ -56,16 +57,16 @@ public class HitsViewModelV2 {
   }
 
   public func update(_ searchResults: Result<SearchResults>) {
-    // use results to build a hitsResult.
+
   }
 
   public func numberOfRows() -> Int {
-    guard let hitsResult = hitsResult else { return 0 }
+    guard let hits = hitsResult?.value else { return 0 }
 
-    if hitsResult.query.isEmpty && !hitsSettings.showItemsOnEmptyQuery {
+    if hits.query.isEmpty && !hitsSettings.showItemsOnEmptyQuery {
       return 0
     } else {
-      return hitsResult.allHits.count
+      return hits.allHits.count
     }
   }
 
@@ -79,27 +80,28 @@ public class HitsViewModelV2 {
   }
 
   public func hitForRow(at indexPath: IndexPath) -> [String: Any] {
+    guard let hits = hitsResult?.value else { return [:] }
 
     loadMoreIfNecessary(rowNumber: indexPath.row)
-    return hitsResult!.allHits[indexPath.row]
+    return hits.allHits[indexPath.row]
   }
 
   private func hasMorePages() -> Bool {
-    guard let hitsResult = hitsResult else { return false }
+    guard let hits = hitsResult?.value else { return false }
 
-    return hitsResult.nbPages > hitsResult.page + 1
+    return hits.nbPages > hits.page + 1
   }
 
   private func loadNextPage() {
-    guard let hitsResult = hitsResult else { return }
+    guard let hits = hitsResult?.value else { return }
 
-    searchPageObservations.forEach { $0(hitsResult.page + 1, update(_:)) }
+    searchPageObservations.forEach { $0(hits.page + 1, update(_:)) }
   }
 
   private func loadMoreIfNecessary(rowNumber: Int) {
-    guard hitsSettings.infiniteScrolling else { return }
+    guard hitsSettings.infiniteScrolling, let hits = hitsResult?.value else { return }
 
-    if rowNumber + Int(hitsSettings.remainingItemsBeforeLoading) >= hitsResult!.allHits.count {
+    if rowNumber + Int(hitsSettings.remainingItemsBeforeLoading) >= hits.allHits.count {
       loadNextPage()
     }
   }
