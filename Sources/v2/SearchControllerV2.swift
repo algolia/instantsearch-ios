@@ -52,12 +52,13 @@ public typealias HitsTableViewCellHandler = (Hit) -> UITableViewCell
 public typealias HitsCollectionViewCellHandler = (Hit) -> UICollectionViewCell
 public typealias HitsTableViewOnClickHandler = (Hit) -> Void
 public typealias HitsCollectionViewOnClickHandler = (Hit) -> Void
+public typealias ReloadHandler = () -> Void
 
-class HitsControllerV2 {
+///
+class SearchControllerV2 {
 
   let hitsViewModel: HitsViewModelV2
   let searchViewModel: SearchViewModelV2
-  weak var hitsWidget: HitsWidgetV2?
   let index: Index
   let query: Query
 
@@ -67,24 +68,29 @@ class HitsControllerV2 {
   var hitsCollectionViewDelegate: HitsCollectionViewDelegateV2?
   private var observations: [NSKeyValueObservation] = []
 
+  // TODOTODOTODO: This should change to updateHandler with the SearchResults? in that way, other hits controller, refinement controller etc can tune to that search controller
+  var reloadObservations = [ReloadHandler]()
+
   // DISCUSSION: it s confusing to have hitsPerPage not in hitsSettings for the dev, although one is at the query level, the other at the viewModel level.
-  public init(index: Index, query: Query, hitsWidget: HitsWidgetV2, hitsSettings: HitsSettings? = nil, querySettings: QuerySettings? = nil) {
+  public init(index: Index, query: Query, hitsSettings: HitsSettings? = nil, querySettings: QuerySettings? = nil) {
 
     self.index = index
     self.query = query
     self.hitsViewModel = HitsViewModelV2(hitsSettings: hitsSettings)
     self.searchViewModel = SearchViewModelV2()
-    self.hitsWidget = hitsWidget
     query.hitsPerPage = querySettings?.hitsPerPage
 
     // Discussion: if we can't easily have clean searchWidgets where we can observe new query changes, then the controller might have to just have methods to link
     // to UITextField, UISearchBar and custom delegate.
 
-    let observation = query.observe(\.query, changeHandler: { [unowned self] (query, _) in
-      self.query.page = 0 // When query changes and we execute a new search, we want to get back to page 0
-      self.searchViewModel.search(index: index, query, completionHandler: { (result, _) in
-        self.hitsViewModel.update(result) // Discussion: first way to update result of the hitsViewModel
-        self.hitsWidget?.reload()
+    let observation = query.observe(\.query, changeHandler: { [weak self] (query, _) in
+      guard let strongSelf = self else { return }
+      strongSelf.query.page = 0 // When query changes and we execute a new search, we want to get back to page 0
+      strongSelf.searchViewModel.search(index: index, query, completionHandler: { (result, _) in
+
+        // TODO: remove the hitsViewModel reload, and create a new hits Controller
+        strongSelf.hitsViewModel.update(result) // Discussion: first way to update result of the hitsViewModel
+        strongSelf.reloadObservations.forEach { $0() }
       })
     })
     observations.append(observation)
@@ -92,36 +98,42 @@ class HitsControllerV2 {
     // TODO: do the same for reacting to filterBuilder changes, and just launching new searches.
 
     // DISCUSSION: concerning unowned: the controller owns the viewmodel, so if it is deallocated, then viewmodel is deallocated so this should not be called
-    hitsViewModel.observeSearchPage { [weak self] page, update in
+    hitsViewModel.subscribePageReload { [weak self] page, update in
       guard let strongSelf = self else { return }
       query.page = page
 
       strongSelf.searchViewModel.search(index: index, query, completionHandler: { (result, _) in
         strongSelf.hitsViewModel.update(result) // Discussion: Second way to update the result of the hitsViewModel Decision: Remove the closure method.
-        strongSelf.hitsWidget?.reload()
+        strongSelf.reloadObservations.forEach { $0() }
       })
 
     }
+  }
 
-    func setupDataSourceForTableView(_ tableView: UITableView, with hitsTableViewCellHandler: @escaping HitsTableViewCellHandler) {
-      hitsTableViewDataSource = HitsTableViewDataSourceV2(hitsViewModel: hitsViewModel, hitsTableViewCellHandler: hitsTableViewCellHandler)
-      tableView.dataSource = hitsTableViewDataSource
-    }
+  /// Use this to reload your table views and what not when 
+  public func subscribeReload(using closure: @escaping ReloadHandler) {
+    reloadObservations.append(closure)
+  }
 
-    func setupDelegateForTableView(_ tableView: UITableView, with hitsTableViewOnClickHandler: @escaping HitsTableViewOnClickHandler) {
-      hitsTableViewDelegate = HitsTableViewDelegateV2(hitsViewModel: hitsViewModel, hitsTableViewOnClickHandler: hitsTableViewOnClickHandler)
-      tableView.delegate = hitsTableViewDelegate
-    }
+  // Move this to the actual HitsController?
+  func setupDataSourceForTableView(_ tableView: UITableView, with hitsTableViewCellHandler: @escaping HitsTableViewCellHandler) {
+    hitsTableViewDataSource = HitsTableViewDataSourceV2(hitsViewModel: hitsViewModel, hitsTableViewCellHandler: hitsTableViewCellHandler)
+    tableView.dataSource = hitsTableViewDataSource
+  }
 
-    func setupDataSourceForCollectionView(_ collectionView: UICollectionView, with hitsCollectionViewCellHandler: @escaping HitsCollectionViewCellHandler) {
-      hitsCollectionViewDataSource = HitsCollectionViewDataSourceV2(hitsViewModel: hitsViewModel, hitsCollectionViewCellHandler: hitsCollectionViewCellHandler)
-      collectionView.dataSource = hitsCollectionViewDataSource
-    }
+  func setupDelegateForTableView(_ tableView: UITableView, with hitsTableViewOnClickHandler: @escaping HitsTableViewOnClickHandler) {
+    hitsTableViewDelegate = HitsTableViewDelegateV2(hitsViewModel: hitsViewModel, hitsTableViewOnClickHandler: hitsTableViewOnClickHandler)
+    tableView.delegate = hitsTableViewDelegate
+  }
 
-    func setupDelegateForCollectionView(_ collectionView: UICollectionView, with hitsCollectionViewOnClickHandler: @escaping HitsCollectionViewOnClickHandler) {
-      hitsCollectionViewDelegate = HitsCollectionViewDelegateV2(hitsViewModel: hitsViewModel, hitsCollectionViewOnClickHandler: hitsCollectionViewOnClickHandler)
-      collectionView.delegate = hitsCollectionViewDelegate
-    }
+  func setupDataSourceForCollectionView(_ collectionView: UICollectionView, with hitsCollectionViewCellHandler: @escaping HitsCollectionViewCellHandler) {
+    hitsCollectionViewDataSource = HitsCollectionViewDataSourceV2(hitsViewModel: hitsViewModel, hitsCollectionViewCellHandler: hitsCollectionViewCellHandler)
+    collectionView.dataSource = hitsCollectionViewDataSource
+  }
+
+  func setupDelegateForCollectionView(_ collectionView: UICollectionView, with hitsCollectionViewOnClickHandler: @escaping HitsCollectionViewOnClickHandler) {
+    hitsCollectionViewDelegate = HitsCollectionViewDelegateV2(hitsViewModel: hitsViewModel, hitsCollectionViewOnClickHandler: hitsCollectionViewOnClickHandler)
+    collectionView.delegate = hitsCollectionViewDelegate
   }
 }
 

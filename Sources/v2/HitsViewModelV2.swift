@@ -47,7 +47,7 @@ public class HitsViewModelV2 {
     self.hitsSettings = hitsSettings ?? HitsSettings()
   }
 
-  public func observeSearchPage(using closure: @escaping SearchPageHandler) {
+  public func subscribePageReload(using closure: @escaping SearchPageHandler) {
     searchPageObservations.append(closure)
     closure(0, update(_:)) // call the closure with page 0
   }
@@ -58,6 +58,7 @@ public class HitsViewModelV2 {
 
   public func update(_ searchResults: Result<SearchResults>) {
     // use searchResults and transform to Result<Hits>
+    // TODO: Attention: Depending of the page of the result, we need to decide if we append or not for allHits
   }
 
   public func numberOfRows() -> Int {

@@ -10,7 +10,7 @@
 		287D0A6E1C4B73BD004566D6 /* WidgetTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 287D0A6D1C4B73BD004566D6 /* WidgetTests.swift */; };
 		28F828881C494B2C00330CF4 /* InstantSearch.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 28F8287D1C494B2C00330CF4 /* InstantSearch.framework */; };
 		E208E2F022172779000D88ED /* HitsViewModelV2.swift in Sources */ = {isa = PBXBuildFile; fileRef = E208E2EF22172779000D88ED /* HitsViewModelV2.swift */; };
-		E208E2F2221727A2000D88ED /* HitsControllerV2.swift in Sources */ = {isa = PBXBuildFile; fileRef = E208E2F1221727A2000D88ED /* HitsControllerV2.swift */; };
+		E208E2F2221727A2000D88ED /* SearchControllerV2.swift in Sources */ = {isa = PBXBuildFile; fileRef = E208E2F1221727A2000D88ED /* SearchControllerV2.swift */; };
 		E208E2F4221AEF26000D88ED /* Result.swift in Sources */ = {isa = PBXBuildFile; fileRef = E208E2F3221AEF26000D88ED /* Result.swift */; };
 		E208E2F6221DA130000D88ED /* SearchViewModelV2.swift in Sources */ = {isa = PBXBuildFile; fileRef = E208E2F5221DA130000D88ED /* SearchViewModelV2.swift */; };
 		E208E2F8221DBD58000D88ED /* RefinementMenuViewModelV2.swift in Sources */ = {isa = PBXBuildFile; fileRef = E208E2F7221DBD58000D88ED /* RefinementMenuViewModelV2.swift */; };
@@ -118,7 +118,7 @@
 		28F828821C494B2C00330CF4 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		28F828871C494B2C00330CF4 /* InstantSearchTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = InstantSearchTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		E208E2EF22172779000D88ED /* HitsViewModelV2.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HitsViewModelV2.swift; sourceTree = "<group>"; };
-		E208E2F1221727A2000D88ED /* HitsControllerV2.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HitsControllerV2.swift; sourceTree = "<group>"; };
+		E208E2F1221727A2000D88ED /* SearchControllerV2.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchControllerV2.swift; sourceTree = "<group>"; };
 		E208E2F3221AEF26000D88ED /* Result.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Result.swift; sourceTree = "<group>"; };
 		E208E2F5221DA130000D88ED /* SearchViewModelV2.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchViewModelV2.swift; sourceTree = "<group>"; };
 		E208E2F7221DBD58000D88ED /* RefinementMenuViewModelV2.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RefinementMenuViewModelV2.swift; sourceTree = "<group>"; };
@@ -292,7 +292,7 @@
 			children = (
 				E208E2F5221DA130000D88ED /* SearchViewModelV2.swift */,
 				E208E2EF22172779000D88ED /* HitsViewModelV2.swift */,
-				E208E2F1221727A2000D88ED /* HitsControllerV2.swift */,
+				E208E2F1221727A2000D88ED /* SearchControllerV2.swift */,
 				E208E2F9221ECEAD000D88ED /* MultiHitsControllerV2.swift */,
 				E208E2F3221AEF26000D88ED /* Result.swift */,
 				E208E2F7221DBD58000D88ED /* RefinementMenuViewModelV2.swift */,
@@ -694,7 +694,7 @@
 				E27C16461E9394250091D79E /* StatsLabelWidget.swift in Sources */,
 				E27A7BFF1E97B7AA005B2506 /* AlgoliaWidget.swift in Sources */,
 				E27C164B1E9394250091D79E /* RefinableDelegate.swift in Sources */,
-				E208E2F2221727A2000D88ED /* HitsControllerV2.swift in Sources */,
+				E208E2F2221727A2000D88ED /* SearchControllerV2.swift in Sources */,
 				E25F5CE31FCEF463002C8A8D /* MultiHitsViewModelDelegate.swift in Sources */,
 				E28B07E21EAF9F27003AAE47 /* RefinementCollectionWidget.swift in Sources */,
 				E27C16471E9394250091D79E /* InstantSearch.swift in Sources */,
