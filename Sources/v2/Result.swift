@@ -9,7 +9,7 @@ import Foundation
 
 public enum Result<T> {
 
-  case success(T?), fail(Error)
+  case success(T), fail(Error)
 
   public init(value: T) {
     self = .success(value)

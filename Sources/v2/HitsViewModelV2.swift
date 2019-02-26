@@ -11,9 +11,7 @@ import UIKit
 
 public class HitsViewModelV2 {
 
-  // DISCUSSION: Another way is to remove the resultHandler, and let the user to vm.update()... but he will need access to the vm inside the closure, leading to weak self...
-  public typealias SearchPageHandler = (_ page: UInt, _ resultHandler: @escaping SearchPageResultHandler) -> Void
-  public typealias SearchPageResultHandler = (_ result: Result<SearchResults>) -> Void
+  public typealias SearchPageHandler = (_ page: Int) -> Void
 
   let hitsSettings: HitsSettings
 
@@ -29,10 +27,10 @@ public class HitsViewModelV2 {
     public var nbHits: Int
     public var allHits: [[String: Any]]
     public var latestHits: [[String: Any]]
-    public var page: UInt
+    public var page: Int
     public var nbPages: Int
-    public var query: String
-    public var queryId: String
+    public var query: String?
+    public var queryId: String?
   }
 
   public init(infiniteScrolling: Bool = true,
@@ -49,7 +47,7 @@ public class HitsViewModelV2 {
 
   public func subscribePageReload(using closure: @escaping SearchPageHandler) {
     searchPageObservations.append(closure)
-    closure(0, update(_:)) // call the closure with page 0
+    closure(0) // DISCUSSION: Do we really call for 1?
   }
 
   public func clearSearchPageObservations() {
@@ -57,14 +55,24 @@ public class HitsViewModelV2 {
   }
 
   public func update(_ searchResults: Result<SearchResults>) {
-    // use searchResults and transform to Result<Hits>
+
+    func extractHitsFromSearchResults(searchResults: SearchResults) -> Hits {
+      return Hits(nbHits: searchResults.nbHits, allHits: searchResults.allHits, latestHits: searchResults.latestHits, page: searchResults.page, nbPages: searchResults.nbPages, query: searchResults.query, queryId: searchResults.queryID)
+    }
+
+    switch searchResults {
+    case .fail(let error): hitsResult = Result(error: error)
+    case .success(let results):
+      hitsResult = Result(value: extractHitsFromSearchResults(searchResults: results))
+    }
+
     // TODO: Attention: Depending of the page of the result, we need to decide if we append or not for allHits
   }
 
   public func numberOfRows() -> Int {
     guard let hits = hitsResult?.value else { return 0 }
 
-    if hits.query.isEmpty && !hitsSettings.showItemsOnEmptyQuery {
+    if let query = hits.query, query.isEmpty, !hitsSettings.showItemsOnEmptyQuery {
       return 0
     } else {
       return hits.allHits.count
@@ -96,7 +104,7 @@ public class HitsViewModelV2 {
   private func notifyNextPage() {
     guard let hits = hitsResult?.value else { return }
 
-    searchPageObservations.forEach { $0(hits.page + 1, update(_:)) }
+    searchPageObservations.forEach { $0(hits.page + 1) }
   }
 
   private func loadMoreIfNecessary(rowNumber: Int) {

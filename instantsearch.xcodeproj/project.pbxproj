@@ -86,6 +86,8 @@
 		E2AFE55B1ED488C700B6A5A7 /* TextFieldWidget.swift in Sources */ = {isa = PBXBuildFile; fileRef = E2AFE55A1ED488C700B6A5A7 /* TextFieldWidget.swift */; };
 		E2AFE5661ED49B3900B6A5A7 /* FatalError.swift in Sources */ = {isa = PBXBuildFile; fileRef = E2AFE5651ED49B3900B6A5A7 /* FatalError.swift */; };
 		E2AFE56B1ED5709A00B6A5A7 /* FatalError.swift in Sources */ = {isa = PBXBuildFile; fileRef = E2AFE56A1ED5709A00B6A5A7 /* FatalError.swift */; };
+		E2B48DE42224533D00B36F66 /* Searchers.swift in Sources */ = {isa = PBXBuildFile; fileRef = E2B48DE32224533D00B36F66 /* Searchers.swift */; };
+		E2B48DE622258C3300B36F66 /* main.swift in Sources */ = {isa = PBXBuildFile; fileRef = E2B48DE522258C3300B36F66 /* main.swift */; };
 		E2CA327C1EA77BC90057A3D3 /* HitsController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E2CA327B1EA77BC90057A3D3 /* HitsController.swift */; };
 		E2D5890E1FBB266B00526C33 /* SearchViewModelDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = E2D5890D1FBB266B00526C33 /* SearchViewModelDelegate.swift */; };
 		E2D589101FBB279200526C33 /* SearchViewDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = E2D5890F1FBB279200526C33 /* SearchViewDelegate.swift */; };
@@ -199,6 +201,8 @@
 		E2AFE55A1ED488C700B6A5A7 /* TextFieldWidget.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TextFieldWidget.swift; sourceTree = "<group>"; };
 		E2AFE5651ED49B3900B6A5A7 /* FatalError.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FatalError.swift; sourceTree = "<group>"; };
 		E2AFE56A1ED5709A00B6A5A7 /* FatalError.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FatalError.swift; sourceTree = "<group>"; };
+		E2B48DE32224533D00B36F66 /* Searchers.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Searchers.swift; sourceTree = "<group>"; };
+		E2B48DE522258C3300B36F66 /* main.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = main.swift; sourceTree = "<group>"; };
 		E2CA327B1EA77BC90057A3D3 /* HitsController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HitsController.swift; sourceTree = "<group>"; };
 		E2D5890D1FBB266B00526C33 /* SearchViewModelDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchViewModelDelegate.swift; sourceTree = "<group>"; };
 		E2D5890F1FBB279200526C33 /* SearchViewDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchViewDelegate.swift; sourceTree = "<group>"; };
@@ -291,11 +295,13 @@
 			isa = PBXGroup;
 			children = (
 				E208E2F5221DA130000D88ED /* SearchViewModelV2.swift */,
+				E2B48DE32224533D00B36F66 /* Searchers.swift */,
 				E208E2EF22172779000D88ED /* HitsViewModelV2.swift */,
 				E208E2F1221727A2000D88ED /* SearchControllerV2.swift */,
 				E208E2F9221ECEAD000D88ED /* MultiHitsControllerV2.swift */,
 				E208E2F3221AEF26000D88ED /* Result.swift */,
 				E208E2F7221DBD58000D88ED /* RefinementMenuViewModelV2.swift */,
+				E2B48DE522258C3300B36F66 /* main.swift */,
 			);
 			path = v2;
 			sourceTree = "<group>";
@@ -708,6 +714,7 @@
 				E27A7BEC1E9556C6005B2506 /* ResultingDelegate.swift in Sources */,
 				E27A7BFD1E97B781005B2506 /* HitsViewDelegate.swift in Sources */,
 				E233BC071EBB796600F5F5E1 /* FacetControlViewModelDelegate.swift in Sources */,
+				E2B48DE622258C3300B36F66 /* main.swift in Sources */,
 				E233BC091EBC71F500F5F5E1 /* StepperWidget.swift in Sources */,
 				E2738FC91E9CC418002C002D /* RefinementMenuViewModel.swift in Sources */,
 				E28B07DC1EAF8423003AAE47 /* Refinement.swift in Sources */,
@@ -717,6 +724,7 @@
 				E208E2F022172779000D88ED /* HitsViewModelV2.swift in Sources */,
 				E27141F51EA0F20700959294 /* HitsCollectionViewController.swift in Sources */,
 				E27141CA1E9E237200959294 /* StatsButtonWidget.swift in Sources */,
+				E2B48DE42224533D00B36F66 /* Searchers.swift in Sources */,
 				E25F5CE11FCEF450002C8A8D /* MultiHitsViewDelegate.swift in Sources */,
 				E27B67DB1ED314100001FFA7 /* RefinementViewDelegate.swift in Sources */,
 				E2738FC11E9BDA31002C002D /* StatsViewDelegate.swift in Sources */,
