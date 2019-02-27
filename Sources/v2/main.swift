@@ -36,13 +36,17 @@ class Main: UIViewController, UITableViewDataSource, UICollectionViewDataSource,
     }
 
     self.searcher.subscribeToSearchResults { (result) in
-      self.hitsViewModel.update(result)
+      switch result {
+      case .success(let result): self.hitsViewModel.update(result)
+      case .fail(let error): // TODO: Do something with error
+        break
+      }
 
       self.hitsView.reload()
     }
 
     self.hitsViewModel.subscribePageReload { (page) in
-      self.searcher.query.page = page
+      self.searcher.query.page = UInt(page)
       self.searcher.search()
     }
   }
