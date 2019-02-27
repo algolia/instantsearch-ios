@@ -8,29 +8,29 @@
 import Foundation
 import UIKit
 
-protocol HitsWidgetV2: class {
-  func reload()
-}
-
-extension UITableView: HitsWidgetV2 {
-  func reload() {
-    reloadData()
-  }
-}
-
-extension UICollectionView: HitsWidgetV2 {
-  func reload() {
-    reloadData()
-  }
-}
-
-public typealias SearchHandler = (String) -> Void
-public typealias Hit = [String: Any] // could also be strongly typed if we use the power of generics
-public typealias HitsTableViewCellHandler = (Hit) -> UITableViewCell
-public typealias HitsCollectionViewCellHandler = (Hit) -> UICollectionViewCell
-public typealias HitsTableViewOnClickHandler = (Hit) -> Void
-public typealias HitsCollectionViewOnClickHandler = (Hit) -> Void
-public typealias ReloadHandler = () -> Void
+//protocol HitsWidgetV2: class {
+//  func reload()
+//}
+//
+//extension UITableView: HitsWidgetV2 {
+//  func reload() {
+//    reloadData()
+//  }
+//}
+//
+//extension UICollectionView: HitsWidgetV2 {
+//  func reload() {
+//    reloadData()
+//  }
+//}
+//
+//public typealias SearchHandler = (String) -> Void
+//public typealias Hit = [String: Any] // could also be strongly typed if we use the power of generics
+//public typealias HitsTableViewCellHandler = (Hit) -> UITableViewCell
+//public typealias HitsCollectionViewCellHandler = (Hit) -> UICollectionViewCell
+//public typealias HitsTableViewOnClickHandler = (Hit) -> Void
+//public typealias HitsCollectionViewOnClickHandler = (Hit) -> Void
+//public typealias ReloadHandler = () -> Void
 
 
 //class SearchControllerV2 {

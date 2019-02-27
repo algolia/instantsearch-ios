@@ -9,6 +9,8 @@
 /* Begin PBXBuildFile section */
 		287D0A6E1C4B73BD004566D6 /* WidgetTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 287D0A6D1C4B73BD004566D6 /* WidgetTests.swift */; };
 		28F828881C494B2C00330CF4 /* InstantSearch.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 28F8287D1C494B2C00330CF4 /* InstantSearch.framework */; };
+		AF15FCA7222692AD006D0D2B /* HitsControllerV2.swift in Sources */ = {isa = PBXBuildFile; fileRef = AF15FCA6222692AC006D0D2B /* HitsControllerV2.swift */; };
+		AF1A148D2225867A003F4398 /* GenericHitsController.swift in Sources */ = {isa = PBXBuildFile; fileRef = AF1A148C2225867A003F4398 /* GenericHitsController.swift */; };
 		E208E2F022172779000D88ED /* HitsViewModelV2.swift in Sources */ = {isa = PBXBuildFile; fileRef = E208E2EF22172779000D88ED /* HitsViewModelV2.swift */; };
 		E208E2F2221727A2000D88ED /* SearchControllerV2.swift in Sources */ = {isa = PBXBuildFile; fileRef = E208E2F1221727A2000D88ED /* SearchControllerV2.swift */; };
 		E208E2F4221AEF26000D88ED /* Result.swift in Sources */ = {isa = PBXBuildFile; fileRef = E208E2F3221AEF26000D88ED /* Result.swift */; };
@@ -120,6 +122,8 @@
 		28F8287D1C494B2C00330CF4 /* InstantSearch.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = InstantSearch.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		28F828821C494B2C00330CF4 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		28F828871C494B2C00330CF4 /* InstantSearchTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = InstantSearchTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
+		AF15FCA6222692AC006D0D2B /* HitsControllerV2.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HitsControllerV2.swift; sourceTree = "<group>"; };
+		AF1A148C2225867A003F4398 /* GenericHitsController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GenericHitsController.swift; sourceTree = "<group>"; };
 		E208E2EF22172779000D88ED /* HitsViewModelV2.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HitsViewModelV2.swift; sourceTree = "<group>"; };
 		E208E2F1221727A2000D88ED /* SearchControllerV2.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchControllerV2.swift; sourceTree = "<group>"; };
 		E208E2F3221AEF26000D88ED /* Result.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Result.swift; sourceTree = "<group>"; };
@@ -299,7 +303,9 @@
 				E208E2F5221DA130000D88ED /* SearchViewModelV2.swift */,
 				E2B48DE32224533D00B36F66 /* Searchers.swift */,
 				E208E2EF22172779000D88ED /* HitsViewModelV2.swift */,
+				AF15FCA6222692AC006D0D2B /* HitsControllerV2.swift */,
 				E208E2F1221727A2000D88ED /* SearchControllerV2.swift */,
+				AF1A148C2225867A003F4398 /* GenericHitsController.swift */,
 				E208E2F9221ECEAD000D88ED /* MultiHitsControllerV2.swift */,
 				E208E2F3221AEF26000D88ED /* Result.swift */,
 				E208E2F7221DBD58000D88ED /* RefinementMenuViewModelV2.swift */,
@@ -693,6 +699,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				E2AFE55B1ED488C700B6A5A7 /* TextFieldWidget.swift in Sources */,
+				AF15FCA7222692AD006D0D2B /* HitsControllerV2.swift in Sources */,
 				E27C16431E9394250091D79E /* HitsTableWidget.swift in Sources */,
 				E27A7BFA1E97B729005B2506 /* HitsViewModelDelegate.swift in Sources */,
 				E2D589101FBB279200526C33 /* SearchViewDelegate.swift in Sources */,
@@ -748,6 +755,7 @@
 				E27141D51E9F764100959294 /* HitsTableViewController.swift in Sources */,
 				E2231E971EC9F5A7002FCF82 /* Constants.swift in Sources */,
 				E27A7BEF1E962768005B2506 /* HitsViewModel.swift in Sources */,
+				AF1A148D2225867A003F4398 /* GenericHitsController.swift in Sources */,
 				E233BBFD1EBA18C200F5F5E1 /* SwitchWidget.swift in Sources */,
 				E233BC0E1EBC786B00F5F5E1 /* SegmentedControlWidget.swift in Sources */,
 				E2738FBF1E9BDA28002C002D /* StatsViewModelDelegate.swift in Sources */,
