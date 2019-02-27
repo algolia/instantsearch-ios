@@ -8,6 +8,7 @@
 import Foundation
 
 public protocol SearcherV2 {
+  // TODO: AssociatedType
   func search()
   func cancel()
 }
@@ -19,8 +20,8 @@ public typealias MultiSearchResultHandler = (_ result: [Result<SearchResults>]) 
 
 public class SingleIndexSearcher: SearcherV2 {
 
-  let index: Index
-  let query: Query
+  var index: Index
+  var query: Query
 
   var searchResultHandlers = [SearchResultHandler]()
 

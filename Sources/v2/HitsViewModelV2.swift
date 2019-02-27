@@ -11,7 +11,7 @@ import UIKit
 
 public class HitsViewModelV2 {
 
-  public typealias SearchPageHandler = (_ page: Int) -> Void
+  public typealias SearchPageHandler = (_ page: UInt) -> Void
 
   let hitsSettings: HitsSettings
 
@@ -104,7 +104,7 @@ public class HitsViewModelV2 {
   private func notifyNextPage() {
     guard let hits = hitsResult?.value else { return }
 
-    searchPageObservations.forEach { $0(hits.page + 1) }
+    searchPageObservations.forEach { $0(UInt(hits.page + 1)) }
   }
 
   private func loadMoreIfNecessary(rowNumber: Int) {

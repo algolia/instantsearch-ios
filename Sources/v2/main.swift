@@ -8,52 +8,71 @@
 import Foundation
 import UIKit
 
-public typealias TextChangeHandler = (String) -> Void
+class Main: UIViewController, UITableViewDataSource, UICollectionViewDataSource, UICollectionViewDelegate {
 
-protocol TextChangeDelegate {
-  var textChangeObservations: [TextChangeHandler] { get set }
-  mutating func subscribeToTextChangeHandler(using closure: @escaping TextChangeHandler)
-  mutating func clearTextChangeObservations()
-}
+  let hitsViewModel = HitsViewModelV2()
+  let refinementViewModel = RefinementMenuViewModel()
+  let textField = UITextField()
+  let hitsView = UITableView()
+  let refinementView = UICollectionView()
+  var searcher: SingleIndexSearcher!
 
-extension TextChangeDelegate {
-  public mutating func subscribeToTextChangeHandler(using closure: @escaping TextChangeHandler) {
-    textChangeObservations.append(closure)
+  override func viewDidLoad() {
+    hitsView.dataSource = self
+    refinementView.dataSource = self
+    refinementView.delegate = self
+
+    let textFieldWidget = TextFieldWidgetV2(textField: textField)
+
+    let client = Client(appID: "", apiKey: "")
+    let index = client.index(withName: "")
+    let query = Query()
+
+    searcher = SingleIndexSearcher(index: index, query: query)
+
+    textFieldWidget.subscribeToTextChangeHandler { (text) in
+      self.searcher.query.query = text
+      self.searcher.search()
+    }
+
+    self.searcher.subscribeToSearchResults { (result) in
+      self.hitsViewModel.update(result)
+
+      self.hitsView.reload()
+    }
+
+    self.hitsViewModel.subscribePageReload { (page) in
+      self.searcher.query.page = page
+      self.searcher.search()
+    }
   }
 
-  public mutating func clearTextChangeObservations() {
-    textChangeObservations = []
-  }
-}
-
-public class SearchBarWidgetV2: NSObject, UISearchBarDelegate, TextChangeDelegate {
-
-  var textChangeObservations = [TextChangeHandler]()
-
-  public init (searchBar: UISearchBar) {
-    super.init()
-    searchBar.delegate = self
+  func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
+    let refinement = refinementViewModel.facetForRow(at: indexPath)
+    searcher.query.query = refinement.value // Modify filter with filterBuilder
+    self.searcher.search()
   }
 
-  public func searchBar(_ searchBar: UISearchBar, textDidChange searchText: String) {
-    textChangeObservations.forEach { $0(searchText) }
-  }
-}
-
-public class TextFieldWidgetV2 {
-
-  var textChangeObservations = [TextChangeHandler]()
-
-  public init (textField: UITextField) {
-    textField.addTarget(self, action: #selector(textFieldTextChanged), for: .editingChanged)
+  func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+    return hitsViewModel.numberOfRows()
   }
 
-  @objc func textFieldTextChanged(textField: UITextField) {
-    guard let searchText = textField.text else { return }
-    textChangeObservations.forEach { $0(searchText) }
+  func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+    let cell = tableView.dequeueReusableCell(withIdentifier: "", for: indexPath)
+    let hit = hitsViewModel.hitForRow(at: indexPath)
+    cell.textLabel?.text = hit["name"] as? String
+
+    return cell
   }
 
-  public func subscribeToTextChangeHandler(using closure: @escaping TextChangeHandler) {
-    textChangeObservations.append(closure)
+  func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
+      let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "", for: indexPath)
+      _ = refinementViewModel.facetForRow(at: indexPath)
+      cell.backgroundColor = .red
+      return cell
+  }
+
+  func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
+    return refinementViewModel.numberOfRows()
   }
 }
