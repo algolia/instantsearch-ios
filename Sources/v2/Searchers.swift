@@ -13,12 +13,31 @@ public protocol SearcherV2 {
   func cancel()
 }
 
+extension SearcherV2 {
+  public func serializeToSearchResults(content: [String: Any]?, error: Error?, disjunctiveFacets: [String]) -> Result<SearchResults> {
+    if let error = error {
+      return Result(error: error)
+    }
+
+    do {
+      // TODO: Also can modify SearchResulys to make it more modern with codable?
+      let searchResults = try SearchResults(content: content!, disjunctiveFacets: disjunctiveFacets)
+
+      return Result(value: searchResults)
+    } catch let error {
+      return Result(error: error)
+    }
+  }
+}
+
 // TODO: don t forget to add RequestOption everywhere
 
 public typealias SearchResultHandler = (_ result: Result<SearchResults>) -> Void
-public typealias MultiSearchResultHandler = (_ result: [Result<SearchResults>]) -> Void
+public typealias MultiSearchResultHandler = (_ result: Result<[SearchResults]>) -> Void
 
 public class SingleIndexSearcher: SearcherV2 {
+
+  let sequencer: Sequencer
 
   var index: Index
   var query: Query
@@ -30,35 +49,40 @@ public class SingleIndexSearcher: SearcherV2 {
   public init(index: Index, query: Query) {
     self.index = index
     self.query = query
+    sequencer = Sequencer()
   }
 
   public func search() {
-    // if index has disjunctive faceting
-    if applyDisjunctiveFacetingWhenNecessary && true {
-      self.index.searchDisjunctiveFaceting(query, disjunctiveFacets: [], refinements: [:]) { (content, _) in
-        // convert content + error to Result<SearchResults>
-        let result = try? SearchResults(content: content!, disjunctiveFacets: []) // TODO: Get disjunctive facets from filterbuilder
-        // TODO: Also can modify SearchResulys to make it more modern with codable?
-        self.searchResultHandlers.forEach { $0(Result(value: result!)) }
-      }
-    } else {
-      self.index.search(query) { (content, _) in
-        // convert content + error to Result<SearchResults>
-        let result = try? SearchResults(content: content!, disjunctiveFacets: []) // TODO: Get disjunctive facets from filterbuilder
-        // TODO: Also can modify SearchResulys to make it more modern with codable?
-        self.searchResultHandlers.forEach { $0(Result(value: result!)) }
+
+    sequencer.orderOperation {
+
+      if applyDisjunctiveFacetingWhenNecessary && query.filterBuilder.isDisjunctiveFacetingAvailable() {
+        let disjunctiveFacets = Array(query.filterBuilder.getDisjunctiveFacetsAttributes()).map { $0.description }
+        let refinements = query.filterBuilder.getRawFacetFilters()
+
+        return self.index.searchDisjunctiveFaceting(query, disjunctiveFacets: disjunctiveFacets, refinements: refinements) { (content, error) in
+          let result = self.serializeToSearchResults(content: content, error: error, disjunctiveFacets: disjunctiveFacets)
+          self.searchResultHandlers.forEach { $0(result) }
+        }
+
+      } else {
+        return self.index.search(query) { (content, error) in
+          let result = self.serializeToSearchResults(content: content, error: error, disjunctiveFacets: [])
+          self.searchResultHandlers.forEach { $0(result) }
+        }
       }
     }
   }
 
   public func cancel() {
-
+    sequencer.cancelPendingRequests()
   }
 
   public func subscribeToSearchResults(using closure: @escaping SearchResultHandler) {
     self.searchResultHandlers.append(closure)
   }
 }
+
 
 public class MultiIndexSearcher: SearcherV2 {
 
@@ -69,15 +93,25 @@ public class MultiIndexSearcher: SearcherV2 {
 
   public var applyDisjunctiveFacetingWhenNecessary = true
 
+  public convenience init(client: Client, indices: [Index], queries: [Query]) {
+    self.init(client: client, indexQueries: zip(indices, queries).map { IndexQuery(index: $0, query: $1) } )
+  }
+
+  public convenience init(client: Client, indices: [Index], query: Query) {
+    self.init(client: client, indexQueries: indices.map { IndexQuery(index: $0, query: query) })
+  }
+
   public init(client: Client, indexQueries: [IndexQuery]) {
     self.indexQueries = indexQueries
     self.client = client
   }
 
   public func search() {
-    self.client.multipleQueries(indexQueries) { (result, error) in
+    self.client.multipleQueries(indexQueries) { (content, error) in
       // convert content + error to [Result<SearchResults>]
-      // // then call all searchResultHandlers
+//      var results:
+//      let indicesResults = content as?
+//      self.searchResultHandlers.forEach { $0(results) }
     }
   }
 

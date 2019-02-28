@@ -83,7 +83,13 @@ class HitsControllerV2 {
     let observation = query.observe(\.query, changeHandler: { [unowned self] (query, _) in
       self.query.page = 0 // When query changes and we execute a new search, we want to get back to page 0
       self.searchViewModel.search(index: index, query, completionHandler: { (result, _) in
-        self.hitsViewModel.update(result) // Discussion: first way to update result of the hitsViewModel
+        switch result {
+        case .success(let result):
+          self.hitsViewModel.update(result) // Discussion: first way to update result of the hitsViewModel
+        case .fail: // TODO: Decide where we do the error handling. 
+          break
+        }
+
         self.hitsWidget?.reload()
       })
     })

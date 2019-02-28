@@ -51,6 +51,7 @@
 		E2738FCD1E9CDE04002C002D /* NumericControlViewDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = E2738FCC1E9CDE04002C002D /* NumericControlViewDelegate.swift */; };
 		E2738FCF1E9CDE32002C002D /* NumericControlViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = E2738FCE1E9CDE32002C002D /* NumericControlViewModel.swift */; };
 		E2738FD21E9D1AFF002C002D /* RefinementListHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = E2738FD11E9D1AFF002C002D /* RefinementListHelper.swift */; };
+		E278CA2E2227DD60005A072C /* SearchController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E278CA2D2227DD60005A072C /* SearchController.swift */; };
 		E27A7BEA1E955612005B2506 /* ResettableDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = E27A7BE91E955612005B2506 /* ResettableDelegate.swift */; };
 		E27A7BEC1E9556C6005B2506 /* ResultingDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = E27A7BEB1E9556C6005B2506 /* ResultingDelegate.swift */; };
 		E27A7BEF1E962768005B2506 /* HitsViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = E27A7BEE1E962768005B2506 /* HitsViewModel.swift */; };
@@ -166,6 +167,7 @@
 		E2738FCC1E9CDE04002C002D /* NumericControlViewDelegate.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NumericControlViewDelegate.swift; sourceTree = "<group>"; };
 		E2738FCE1E9CDE32002C002D /* NumericControlViewModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NumericControlViewModel.swift; sourceTree = "<group>"; };
 		E2738FD11E9D1AFF002C002D /* RefinementListHelper.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RefinementListHelper.swift; sourceTree = "<group>"; };
+		E278CA2D2227DD60005A072C /* SearchController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchController.swift; sourceTree = "<group>"; };
 		E27A7BE91E955612005B2506 /* ResettableDelegate.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ResettableDelegate.swift; sourceTree = "<group>"; };
 		E27A7BEB1E9556C6005B2506 /* ResultingDelegate.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ResultingDelegate.swift; sourceTree = "<group>"; };
 		E27A7BEE1E962768005B2506 /* HitsViewModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HitsViewModel.swift; sourceTree = "<group>"; };
@@ -301,6 +303,7 @@
 			isa = PBXGroup;
 			children = (
 				E208E2F5221DA130000D88ED /* SearchViewModelV2.swift */,
+				E278CA2D2227DD60005A072C /* SearchController.swift */,
 				E2B48DE32224533D00B36F66 /* Searchers.swift */,
 				E208E2EF22172779000D88ED /* HitsViewModelV2.swift */,
 				AF15FCA6222692AC006D0D2B /* HitsControllerV2.swift */,
@@ -699,6 +702,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				E2AFE55B1ED488C700B6A5A7 /* TextFieldWidget.swift in Sources */,
+				E278CA2E2227DD60005A072C /* SearchController.swift in Sources */,
 				AF15FCA7222692AD006D0D2B /* HitsControllerV2.swift in Sources */,
 				E27C16431E9394250091D79E /* HitsTableWidget.swift in Sources */,
 				E27A7BFA1E97B729005B2506 /* HitsViewModelDelegate.swift in Sources */,

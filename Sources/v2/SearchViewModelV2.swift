@@ -42,11 +42,3 @@ class SearchViewModelV2: SearchViewModelDelegate {
 
   }
 }
-
-protocol Sequencer {
-  func cancelPendingRequests()
-
-  func hasPendingRequests()
-
-  var maxPendingRequests: Int { get set }
-}
