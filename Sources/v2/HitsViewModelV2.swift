@@ -7,7 +7,7 @@
 
 import Foundation
 
-import UIKit
+import Signals
 
 struct ItemsPages<Item> {
 
@@ -112,7 +112,6 @@ struct QueryMetaData {
 
 public class HitsViewModelV2 {
 
-  public typealias SearchPageHandler = (_ page: UInt) -> Void
   typealias Entity = [String: Any]
 
   let hitsSettings: HitsSettings
@@ -120,8 +119,8 @@ public class HitsViewModelV2 {
   var hits: ItemsPages<Entity>?
 
   var queryMetaData: QueryMetaData?
-  // DISCUSSION: is closure based observation the simplest DX to understand or should we think or reactive paradigm.
-  var searchPageObservations = [SearchPageHandler]()
+
+  let onNewPage = Signal<UInt>()
 
   // DISCUSSION: should we expose those through KVO? dynamic var in case someone wants to listen to them?
   // something like: viewModel.bind(\.navigationTitle, to: navigationItem, at: \.title),
@@ -150,15 +149,6 @@ public class HitsViewModelV2 {
     self.hitsSettings = hitsSettings ?? HitsSettings()
   }
 
-  public func subscribePageReload(using closure: @escaping SearchPageHandler) {
-    searchPageObservations.append(closure)
-    closure(0) // DISCUSSION: Do we really call for 1?
-  }
-
-  public func clearSearchPageObservations() {
-    searchPageObservations = []
-  }
-
   var pages: ItemsPages<Entity>?
 
   func extractHitsPage(from searchResults: SearchResults) -> (pageNumber: Int, hits: [Entity]) {
@@ -178,21 +168,6 @@ public class HitsViewModelV2 {
     }
 
     self.queryMetaData = queryMetaData
-
-//    let (pageNumber, hits) = extractHitsPage(from: searchResults)
-//
-//    guard var existingPages = pages else {
-//
-//      return
-//    }
-//
-//    existingPages.insert(hits, withNumber: pageNumber)
-//
-//
-//    hitsResult = Result(value: extractHitsModelFromSearchResults(searchResults: searchResults))
-//
-
-    // TODO: Attention: Depending of the page of the result, we need to decide if we append or not for allHits
   }
 
   public func numberOfRows() -> Int {
@@ -215,17 +190,17 @@ public class HitsViewModelV2 {
     notifyNextPage()
   }
 
-  public func hitForRow(at indexPath: IndexPath) -> [String: Any] {
+  public func hitForRow(_ row: Int) -> [String: Any] {
     guard let hits = hits else { return [:] }
 
-    loadMoreIfNecessary(rowNumber: indexPath.row)
-    return hits[indexPath.row]
+    loadMoreIfNecessary(rowNumber: row)
+    return hits[row]
   }
 
   private func notifyNextPage() {
     guard let hits = hits else { return }
 
-    searchPageObservations.forEach { $0(hits.latestPage + 1) }
+    onNewPage.fire(hits.latestPage + 1)
   }
 
   // TODO: Here we're always loading the next page, but we don't handle the case where a page is missing in the middle for some reason

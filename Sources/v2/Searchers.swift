@@ -6,11 +6,12 @@
 //
 
 import Foundation
+import Signals
 
 public protocol SearcherV2 {
-  // TODO: AssociatedType
   func search()
   func cancel()
+  func setQuery(text: String)
 }
 
 extension SearcherV2 {
@@ -20,7 +21,7 @@ extension SearcherV2 {
     }
 
     do {
-      // TODO: Also can modify SearchResulys to make it more modern with codable?
+      // TODO: Use what the new SearchResults of Vlad
       let searchResults = try SearchResults(content: content!, disjunctiveFacets: disjunctiveFacets)
 
       return Result(value: searchResults)
@@ -32,9 +33,6 @@ extension SearcherV2 {
 
 // TODO: don t forget to add RequestOption everywhere
 
-public typealias SearchResultHandler = (_ result: Result<SearchResults>) -> Void
-public typealias MultiSearchResultHandler = (_ result: Result<[SearchResults]>) -> Void
-
 public class SingleIndexSearcher: SearcherV2 {
 
   let sequencer: Sequencer
@@ -42,7 +40,7 @@ public class SingleIndexSearcher: SearcherV2 {
   var index: Index
   var query: Query
 
-  var searchResultHandlers = [SearchResultHandler]()
+  let onSearchResults = Signal<Result<SearchResults>>()
 
   public var applyDisjunctiveFacetingWhenNecessary = true
 
@@ -50,6 +48,11 @@ public class SingleIndexSearcher: SearcherV2 {
     self.index = index
     self.query = query
     sequencer = Sequencer()
+
+  }
+
+  public func setQuery(text: String) {
+    self.query.query = text
   }
 
   public func search() {
@@ -62,13 +65,13 @@ public class SingleIndexSearcher: SearcherV2 {
 
         return self.index.searchDisjunctiveFaceting(query, disjunctiveFacets: disjunctiveFacets, refinements: refinements) { (content, error) in
           let result = self.serializeToSearchResults(content: content, error: error, disjunctiveFacets: disjunctiveFacets)
-          self.searchResultHandlers.forEach { $0(result) }
+          self.onSearchResults.fire(result)
         }
 
       } else {
         return self.index.search(query) { (content, error) in
           let result = self.serializeToSearchResults(content: content, error: error, disjunctiveFacets: [])
-          self.searchResultHandlers.forEach { $0(result) }
+          self.onSearchResults.fire(result)
         }
       }
     }
@@ -77,10 +80,6 @@ public class SingleIndexSearcher: SearcherV2 {
   public func cancel() {
     sequencer.cancelPendingRequests()
   }
-
-  public func subscribeToSearchResults(using closure: @escaping SearchResultHandler) {
-    self.searchResultHandlers.append(closure)
-  }
 }
 
 
@@ -88,8 +87,9 @@ public class MultiIndexSearcher: SearcherV2 {
 
   let indexQueries: [IndexQuery]
   let client: Client
+  let sequencer: Sequencer
 
-  var searchResultHandlers = [MultiSearchResultHandler]()
+  var onSearchResults = Signal<[Result<SearchResults>]>()
 
   public var applyDisjunctiveFacetingWhenNecessary = true
 
@@ -104,27 +104,33 @@ public class MultiIndexSearcher: SearcherV2 {
   public init(client: Client, indexQueries: [IndexQuery]) {
     self.indexQueries = indexQueries
     self.client = client
+    self.sequencer = Sequencer()
+  }
+
+  public func setQuery(text: String) {
+    self.indexQueries.forEach { $0.query.query = text }
   }
 
   public func search() {
-    self.client.multipleQueries(indexQueries) { (content, error) in
-      // convert content + error to [Result<SearchResults>]
-//      var results:
-//      let indicesResults = content as?
-//      self.searchResultHandlers.forEach { $0(results) }
+    sequencer.orderOperation {
+      self.client.multipleQueries(indexQueries) { (content, error) in
+        var results: [Result<SearchResults>]
+        if let content = content, let contentResults = content["results"] as? [[String: Any]] {
+          results = contentResults.map { self.serializeToSearchResults(content: $0, error: error, disjunctiveFacets: []) }
+
+        } else {
+          // Here error should be non-nil, and anyways content is not a valid SearchResults since it's supposed to be a [SearchResults], so it will throw an error
+          results = Array(repeating: self.serializeToSearchResults(content: content, error: error, disjunctiveFacets: []), count: self.indexQueries.count)
+        } 
+        self.onSearchResults.fire(results)
+      }
     }
   }
 
   public func cancel() {
-
-  }
-
-  public func subscribeToSearchResults(using closure: @escaping MultiSearchResultHandler) {
-    self.searchResultHandlers.append(closure)
+    sequencer.cancelPendingRequests()
   }
 }
-
-// Factory class creating those different kind of MultiIndexSearcher
 
 public class SearchForFacetValueSearcher: SearcherV2 {
 
@@ -132,25 +138,39 @@ public class SearchForFacetValueSearcher: SearcherV2 {
   public let query: Query
   public var facetName: String
   public var text: String
+  let sequencer: Sequencer
+  let onSearchResults = Signal<Result<[String: Any]>>()
 
   public init(index: Index, query: Query, facetName: String, text: String) {
     self.index = index
     self.query = query
     self.facetName = facetName
     self.text = text
+    self.sequencer = Sequencer()
   }
 
-  // DISCSUSSION: A bit weird not having the text and facetName as param, but it's to respect the new Searcher protocol
-  public func search() {
-    self.index.searchForFacetValues(of: facetName, matching: text) { (_, _) in
+  public func setQuery(text: String) {
+    self.text = text
+  }
 
+  public func search() {
+    sequencer.orderOperation {
+      self.index.searchForFacetValues(of: facetName, matching: text) { (content, error) in
+        if let error = error {
+          self.onSearchResults.fire(Result(error: error))
+        } else if let content = content {
+          self.onSearchResults.fire(Result(value: content))
+        }
+      }
     }
   }
 
   public func cancel() {
-
+    sequencer.cancelPendingRequests()
   }
 }
+
+// Factory class creating those different kind of MultiIndexSearcher
 
 public class SearcherFactory {
 

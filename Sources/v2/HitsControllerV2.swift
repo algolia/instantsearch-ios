@@ -95,18 +95,12 @@ class HitsControllerV2 {
     })
     observations.append(observation)
 
-    // TODO: do the same for reacting to filterBuilder changes, and just launching new searches.
+    hitsViewModel.onNewPage.subscribe(with: self) { [weak self] (page) in
+      query.page = page
 
-    // DISCUSSION: concerning unowned: the controller owns the viewmodel, so if it is deallocated, then viewmodel is deallocated so this should not be called
-    hitsViewModel.searchPageObservations.append { [weak self] page in
-        guard let strongSelf = self else { return }
-        query.page = page
-        
-        strongSelf.searchViewModel.search(index: index, query, completionHandler: { (result, _) in
-//            strongSelf.hitsViewModel.update(result) // Discussion: Second way to update the result of the hitsViewModel Decision: Remove the closure method.
-            strongSelf.hitsWidget?.reload()
-        })
-
+      self?.searchViewModel.search(index: index, query, completionHandler: { (result, _) in
+        self?.hitsWidget?.reload()
+      })
     }
 
 
@@ -148,7 +142,7 @@ class HitsCollectionViewDataSourceV2: NSObject, UICollectionViewDataSource {
   }
 
   func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
-    let hit = hitsViewModel.hitForRow(at: indexPath)
+    let hit = hitsViewModel.hitForRow(indexPath.row)
 
     return hitsCollectionViewCellHandler(hit)
   }
@@ -170,7 +164,7 @@ class HitsCollectionViewDelegateV2: NSObject, UICollectionViewDelegate {
   }
 
   func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
-    let hit = hitsViewModel.hitForRow(at: indexPath)
+    let hit = hitsViewModel.hitForRow(indexPath.row)
 
     hitsCollectionViewOnClickHandler(hit)
   }
@@ -191,7 +185,7 @@ class HitsTableViewDataSourceV2: NSObject, UITableViewDataSource {
   }
 
   func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-    let hit = hitsViewModel.hitForRow(at: indexPath)
+    let hit = hitsViewModel.hitForRow(indexPath.row)
 
     return hitsTableViewCellHandler(hit)
   }
@@ -209,7 +203,7 @@ class HitsTableViewDelegateV2: NSObject, UITableViewDelegate {
   }
 
   func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-    let hit = hitsViewModel.hitForRow(at: indexPath)
+    let hit = hitsViewModel.hitForRow(indexPath.row)
 
     hitsTableViewOnClickHandler(hit)
   }

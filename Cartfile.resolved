@@ -1,2 +1,3 @@
 github "algolia/algoliasearch-client-swift" "6.3.0"
 github "algolia/instantsearch-core-swift" "4.0.0"
+github "artman/Signals" "6.0.0"

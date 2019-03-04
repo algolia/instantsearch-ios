@@ -1,1 +1,6 @@
+<<<<<<< HEAD
 github "algolia/instantsearch-core-swift" ~> 5.0
+=======
+github "algolia/instantsearch-core-swift" ~> 4.0
+github "artman/Signals" ~> 6.0
+>>>>>>> - Introduced Signals

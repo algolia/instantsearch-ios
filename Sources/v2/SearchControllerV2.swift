@@ -49,12 +49,12 @@ class SearchControllerV2 {
   }
 }
 
-class NewHitsController {
-  public init(searcher: SingleIndexSearcher) {
-    searcher.subscribeToSearchResults { (result) in
-      // use hitsViewModel and update with result and launch a reload ?
-    }
-  }
-}
+//class NewHitsController {
+//  public init(searcher: SingleIndexSearcher) {
+//    searcher.subscribeToSearchResults { (result) in
+//      // use hitsViewModel and update with result and launch a reload ?
+//    }
+//  }
+//}
 
 

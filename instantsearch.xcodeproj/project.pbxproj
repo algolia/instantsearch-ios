@@ -17,6 +17,7 @@
 		E208E2F6221DA130000D88ED /* SearchViewModelV2.swift in Sources */ = {isa = PBXBuildFile; fileRef = E208E2F5221DA130000D88ED /* SearchViewModelV2.swift */; };
 		E208E2F8221DBD58000D88ED /* RefinementMenuViewModelV2.swift in Sources */ = {isa = PBXBuildFile; fileRef = E208E2F7221DBD58000D88ED /* RefinementMenuViewModelV2.swift */; };
 		E208E2FA221ECEAD000D88ED /* MultiHitsControllerV2.swift in Sources */ = {isa = PBXBuildFile; fileRef = E208E2F9221ECEAD000D88ED /* MultiHitsControllerV2.swift */; };
+		E20A5C3E22293D7200B027D5 /* Event.swift in Sources */ = {isa = PBXBuildFile; fileRef = E20A5C3D22293D7200B027D5 /* Event.swift */; };
 		E21DE94F1F2F7DB400EFC4F5 /* InstantSearchCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E21DE94E1F2F7DB400EFC4F5 /* InstantSearchCore.framework */; };
 		E2231E951EC9DC0D002FCF82 /* ConfigureInstantSearchTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = E2231E931EC9DBC4002FCF82 /* ConfigureInstantSearchTests.swift */; };
 		E2231E971EC9F5A7002FCF82 /* Constants.swift in Sources */ = {isa = PBXBuildFile; fileRef = E2231E961EC9F5A7002FCF82 /* Constants.swift */; };
@@ -131,6 +132,7 @@
 		E208E2F5221DA130000D88ED /* SearchViewModelV2.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchViewModelV2.swift; sourceTree = "<group>"; };
 		E208E2F7221DBD58000D88ED /* RefinementMenuViewModelV2.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RefinementMenuViewModelV2.swift; sourceTree = "<group>"; };
 		E208E2F9221ECEAD000D88ED /* MultiHitsControllerV2.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MultiHitsControllerV2.swift; sourceTree = "<group>"; };
+		E20A5C3D22293D7200B027D5 /* Event.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Event.swift; sourceTree = "<group>"; };
 		E21DE94E1F2F7DB400EFC4F5 /* InstantSearchCore.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = InstantSearchCore.framework; path = Carthage/Build/iOS/InstantSearchCore.framework; sourceTree = "<group>"; };
 		E21DE9501F2F7DCA00EFC4F5 /* AlgoliaSearch.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AlgoliaSearch.framework; path = Carthage/Build/iOS/AlgoliaSearch.framework; sourceTree = "<group>"; };
 		E2231E931EC9DBC4002FCF82 /* ConfigureInstantSearchTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ConfigureInstantSearchTests.swift; sourceTree = "<group>"; };
@@ -314,6 +316,7 @@
 				E208E2F7221DBD58000D88ED /* RefinementMenuViewModelV2.swift */,
 				E2B48DE522258C3300B36F66 /* main.swift */,
 				E2B48DE7222598E700B36F66 /* SearchWidgets.swift */,
+				E20A5C3D22293D7200B027D5 /* Event.swift */,
 			);
 			path = v2;
 			sourceTree = "<group>";
@@ -745,6 +748,7 @@
 				E2738FC11E9BDA31002C002D /* StatsViewDelegate.swift in Sources */,
 				E27C16441E9394250091D79E /* SliderWidget.swift in Sources */,
 				E25F5C911FCEF3FA002C8A8D /* MultiHitsController.swift in Sources */,
+				E20A5C3E22293D7200B027D5 /* Event.swift in Sources */,
 				E233BC011EBA43FF00F5F5E1 /* TwoValuesSwitchWidget.swift in Sources */,
 				E2738FC51E9CC3E0002C002D /* RefinementMenuViewDelegate.swift in Sources */,
 				E27C164D1E9394250091D79E /* Helpers.swift in Sources */,
