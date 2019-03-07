@@ -29,6 +29,7 @@ struct Constants {
         
         // Refinement
         static let operatorRefinement = "or"
+        //static let refinementOperator: RefinementListViewModel.Settings.RefinementOperator = .or
         static let refinedFirst = true
         static let sortBy = "count:desc"
         static let limit = 10

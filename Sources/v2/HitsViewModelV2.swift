@@ -6,8 +6,138 @@
 //
 
 import Foundation
-
 import Signals
+
+// DISCUSSION: should we expose those through KVO? dynamic var in case someone wants to listen to them?
+// something like: viewModel.bind(\.navigationTitle, to: navigationItem, at: \.title),
+
+public class HitsViewModelV2 {
+
+  public struct Settings {
+    public var infiniteScrolling: Bool = Constants.Defaults.infiniteScrolling
+    public var remainingItemsBeforeLoading: UInt = Constants.Defaults.remainingItemsBeforeLoading
+    public var showItemsOnEmptyQuery: Bool = Constants.Defaults.showItemsOnEmptyQuery
+  }
+
+  typealias Entity = [String: Any]
+
+  public var hitsSettings: Settings
+
+  var hits: ItemsPages<Entity>?
+  var queryMetaData: QueryMetaData?
+
+  let onNewPage = Signal<UInt>()
+
+  public init(infiniteScrolling: Bool = true,
+              remainingItemsBeforeLoading: UInt = 5,
+              showItemsOnEmptyQuery: Bool = true) {
+    self.hitsSettings = Settings(infiniteScrolling: infiniteScrolling,
+                                     remainingItemsBeforeLoading: remainingItemsBeforeLoading,
+                                     showItemsOnEmptyQuery: showItemsOnEmptyQuery)
+  }
+
+  public init(hitsSettings: Settings? = nil) {
+    self.hitsSettings = hitsSettings ?? Settings()
+  }
+
+  func extractHitsPage(from searchResults: SearchResults) -> (pageNumber: Int, hits: [Entity]) {
+    return (searchResults.page, searchResults.latestHits)
+  }
+
+  public func update(with searchResults: SearchResults) {
+
+    let queryMetaData = QueryMetaData(searchResults: searchResults)
+
+    let (pageNumber, pageHits) = extractHitsPage(from: searchResults)
+
+    if let currentHits = hits, let currentQueryMedata = self.queryMetaData, queryMetaData.rawQuery == currentQueryMedata.rawQuery {
+      hits = currentHits.inserting(pageHits, withNumber: pageNumber)
+    } else {
+      hits = ItemsPages(searchResults: searchResults)
+    }
+
+    self.queryMetaData = queryMetaData
+  }
+
+  public func numberOfRows() -> Int {
+    guard let hits = hits else { return 0 }
+
+    if let queryText = queryMetaData?.queryText, queryText.isEmpty, !hitsSettings.showItemsOnEmptyQuery {
+      return 0
+    } else {
+      return hits.count
+    }
+  }
+
+  public func hasMoreResults() -> Bool {
+    guard let hits = hits else { return false }
+    return hits.hasMorePages
+  }
+
+  public func loadMoreResults() {
+    guard let hits = hits, hits.hasMorePages else { return } // Throw error?
+    notifyNextPage()
+  }
+
+  public func hitForRow(_ row: Int) -> [String: Any] {
+    guard let hits = hits else { return [:] }
+
+    loadMoreIfNecessary(rowNumber: row)
+    return hits[row]
+  }
+
+  private func notifyNextPage() {
+    guard let hits = hits else { return }
+
+    onNewPage.fire(hits.latestPage + 1)
+  }
+
+  // TODO: Here we're always loading the next page, but we don't handle the case where a page is missing in the middle for some reason
+  // So we will need to detect which page the row corresponds at, and check if we're missing the page. then check the threshold offset to determine
+  // if we load previous or next page (in case we don't have them loaded/cached already in our itemsPage struct
+  private func loadMoreIfNecessary(rowNumber: Int) {
+
+    guard hitsSettings.infiniteScrolling, let hits = hits else { return }
+
+    if rowNumber + Int(hitsSettings.remainingItemsBeforeLoading) >= hits.count {
+      // TODO: Check if already loaded the page, we don t want to reload when scrolling back up
+      // ALSO IF WE RE IN LAST PAGE
+      notifyNextPage()
+    }
+  }
+}
+
+extension HitsViewModelV2 {
+
+  // Easy accessor for common settings
+
+  public var infiniteScrolling: Bool {
+    set {
+      hitsSettings.infiniteScrolling = newValue
+    }
+    get {
+      return hitsSettings.infiniteScrolling
+    }
+  }
+
+  public var remainingItemsBeforeLoading: UInt {
+    set {
+      hitsSettings.remainingItemsBeforeLoading = newValue
+    }
+    get {
+      return hitsSettings.remainingItemsBeforeLoading
+    }
+  }
+
+  public var showItemsOnEmptyQuery: Bool {
+    set {
+      hitsSettings.showItemsOnEmptyQuery = newValue
+    }
+    get {
+      return hitsSettings.showItemsOnEmptyQuery
+    }
+  }
+}
 
 struct ItemsPages<Item> {
 
@@ -108,118 +238,4 @@ struct QueryMetaData {
     rawQuery = searchResults.params?.build()
   }
 
-}
-
-public class HitsViewModelV2 {
-
-  typealias Entity = [String: Any]
-
-  let hitsSettings: HitsSettings
-
-  var hits: ItemsPages<Entity>?
-
-  var queryMetaData: QueryMetaData?
-
-  let onNewPage = Signal<UInt>()
-
-  // DISCUSSION: should we expose those through KVO? dynamic var in case someone wants to listen to them?
-  // something like: viewModel.bind(\.navigationTitle, to: navigationItem, at: \.title),
-
-  struct HitsModel {
-    // Cached hits that we received
-    public var hitsForPage: [Int: Entity] = [:]
-
-    // Metadata for the latest search result
-    public var latestPage: Int
-    public var totalPageCount: Int
-    public var totalHitsCount: Int
-    public var query: String?
-    public var queryId: String?
-  }
-
-  public init(infiniteScrolling: Bool = true,
-              remainingItemsBeforeLoading: UInt = 5,
-              showItemsOnEmptyQuery: Bool = true) {
-    self.hitsSettings = HitsSettings(infiniteScrolling: infiniteScrolling,
-                                     remainingItemsBeforeLoading: remainingItemsBeforeLoading,
-                                     showItemsOnEmptyQuery: showItemsOnEmptyQuery)
-  }
-
-  public init(hitsSettings: HitsSettings? = nil) {
-    self.hitsSettings = hitsSettings ?? HitsSettings()
-  }
-
-  var pages: ItemsPages<Entity>?
-
-  func extractHitsPage(from searchResults: SearchResults) -> (pageNumber: Int, hits: [Entity]) {
-    return (0, [])
-  }
-
-  public func update(_ searchResults: SearchResults) {
-
-    let queryMetaData = QueryMetaData(searchResults: searchResults)
-
-    let (pageNumber, pageHits) = extractHitsPage(from: searchResults)
-
-    if let currentHits = hits, let currentQueryMedata = self.queryMetaData, queryMetaData.rawQuery == currentQueryMedata.rawQuery {
-      hits = currentHits.inserting(pageHits, withNumber: pageNumber)
-    } else {
-      hits = ItemsPages(searchResults: searchResults)
-    }
-
-    self.queryMetaData = queryMetaData
-  }
-
-  public func numberOfRows() -> Int {
-    guard let hits = hits else { return 0 }
-
-    if let queryText = queryMetaData?.queryText, queryText.isEmpty, !hitsSettings.showItemsOnEmptyQuery {
-      return 0
-    } else {
-      return hits.count
-    }
-  }
-
-  public func hasMoreResults() -> Bool {
-    guard let hits = hits else { return false }
-    return hits.hasMorePages
-  }
-
-  public func loadMoreResults() {
-    guard let hits = hits, hits.hasMorePages else { return } // Throw error?
-    notifyNextPage()
-  }
-
-  public func hitForRow(_ row: Int) -> [String: Any] {
-    guard let hits = hits else { return [:] }
-
-    loadMoreIfNecessary(rowNumber: row)
-    return hits[row]
-  }
-
-  private func notifyNextPage() {
-    guard let hits = hits else { return }
-
-    onNewPage.fire(hits.latestPage + 1)
-  }
-
-  // TODO: Here we're always loading the next page, but we don't handle the case where a page is missing in the middle for some reason
-  // So we will need to detect which page the row corresponds at, and check if we're missing the page. then check the threshold offset to determine
-  // if we load previous or next page (in case we don't have them loaded/cached already in our itemsPage struct
-  private func loadMoreIfNecessary(rowNumber: Int) {
-
-    guard hitsSettings.infiniteScrolling, let hits = hits else { return }
-
-    if rowNumber + Int(hitsSettings.remainingItemsBeforeLoading) >= hits.count {
-      // TODO: Check if already loaded the page, we don t want to reload when scrolling back up
-      // ALSO IF WE RE IN LAST PAGE
-      notifyNextPage()
-    }
-  }
-}
-
-public struct HitsSettings {
-  public var infiniteScrolling: Bool = Constants.Defaults.infiniteScrolling
-  public var remainingItemsBeforeLoading: UInt = Constants.Defaults.remainingItemsBeforeLoading
-  public var showItemsOnEmptyQuery: Bool = Constants.Defaults.showItemsOnEmptyQuery
 }

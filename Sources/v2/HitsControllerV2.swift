@@ -68,7 +68,7 @@ class HitsControllerV2 {
   private var observations: [NSKeyValueObservation] = []
 
   // DISCUSSION: it s confusing to have hitsPerPage not in hitsSettings for the dev, although one is at the query level, the other at the viewModel level.
-  public init(index: Index, query: Query, hitsWidget: HitsWidgetV2, hitsSettings: HitsSettings? = nil, querySettings: QuerySettings? = nil) {
+  public init(index: Index, query: Query, hitsWidget: HitsWidgetV2, hitsSettings: HitsViewModelV2.Settings? = nil, querySettings: QuerySettings? = nil) {
 
     self.index = index
     self.query = query
@@ -85,7 +85,7 @@ class HitsControllerV2 {
       self.searchViewModel.search(index: index, query, completionHandler: { (result, _) in
         switch result {
         case .success(let result):
-          self.hitsViewModel.update(result) // Discussion: first way to update result of the hitsViewModel
+          self.hitsViewModel.update(with: result) // Discussion: first way to update result of the hitsViewModel
         case .fail: // TODO: Decide where we do the error handling. 
           break
         }

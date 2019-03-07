@@ -24,7 +24,7 @@
 import Foundation
 import InstantSearchCore
 
-@objc internal enum TransformRefinementList: Int {
+@objc public enum TransformRefinementList: Int {
     case countAsc
     case countDesc
     case nameAsc

@@ -12,9 +12,15 @@ public protocol SearcherV2 {
   func search()
   func cancel()
   func setQuery(text: String)
+  var sequencer: Sequencer { get }
 }
 
 extension SearcherV2 {
+
+  public func cancel() {
+    sequencer.cancelPendingOperations()
+  }
+
   public func serializeToSearchResults(content: [String: Any]?, error: Error?, disjunctiveFacets: [String]) -> Result<SearchResults> {
     if let error = error {
       return Result(error: error)
@@ -35,7 +41,7 @@ extension SearcherV2 {
 
 public class SingleIndexSearcher: SearcherV2 {
 
-  let sequencer: Sequencer
+  public let sequencer: Sequencer
 
   var index: Index
   var query: Query
@@ -78,7 +84,7 @@ public class SingleIndexSearcher: SearcherV2 {
   }
 
   public func cancel() {
-    sequencer.cancelPendingRequests()
+    sequencer.cancelPendingOperations()
   }
 }
 
@@ -87,7 +93,7 @@ public class MultiIndexSearcher: SearcherV2 {
 
   let indexQueries: [IndexQuery]
   let client: Client
-  let sequencer: Sequencer
+  public let sequencer: Sequencer
 
   var onSearchResults = Signal<[Result<SearchResults>]>()
 
@@ -128,7 +134,7 @@ public class MultiIndexSearcher: SearcherV2 {
   }
 
   public func cancel() {
-    sequencer.cancelPendingRequests()
+    sequencer.cancelPendingOperations()
   }
 }
 
@@ -138,7 +144,7 @@ public class SearchForFacetValueSearcher: SearcherV2 {
   public let query: Query
   public var facetName: String
   public var text: String
-  let sequencer: Sequencer
+  public let sequencer: Sequencer
   let onSearchResults = Signal<Result<[String: Any]>>()
 
   public init(index: Index, query: Query, facetName: String, text: String) {
@@ -163,10 +169,6 @@ public class SearchForFacetValueSearcher: SearcherV2 {
         }
       }
     }
-  }
-
-  public func cancel() {
-    sequencer.cancelPendingRequests()
   }
 }
 

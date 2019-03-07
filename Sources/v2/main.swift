@@ -10,7 +10,7 @@ import UIKit
 
 class Main: UIViewController, UITableViewDataSource, UICollectionViewDataSource, UICollectionViewDelegate {
 
-  let hitsViewModel = HitsViewModelV2()
+  let hitsViewModel = HitsViewModelV2(hitsSettings: HitsViewModelV2.Settings())
   let refinementViewModel = RefinementMenuViewModel()
   let textField = UITextField()
   let hitsView = UITableView()
@@ -35,14 +35,14 @@ class Main: UIViewController, UITableViewDataSource, UICollectionViewDataSource,
       self.searcher.search()
     }
 
-    self.searcher.onSearchResults.subscribe(with: self) { (result) in
+    self.searcher.onSearchResults.subscribe(with: self) { [weak self] (result) in
       switch result {
-      case .success(let result): self.hitsViewModel.update(result)
+      case .success(let result): self?.hitsViewModel.update(with: result)
       case .fail: // TODO: Do something with let error? Or should we put it in hitsViewModel?
         break
       }
 
-      self.hitsView.reload()
+      self?.hitsView.reload()
     }
 
     self.hitsViewModel.onNewPage.subscribe(with: self) { [weak self] (page) in
@@ -109,10 +109,10 @@ class Main2: UIViewController, UITableViewDataSource {
     }
 
     self.searcher.onSearchResults.subscribe(with: self) { (results) in
-
+      // Potentially could have a helper class MultiHitsViewModel if we want..
       for (searchResults, hitsViewModel) in zip(results, self.hitsViewModels) {
         switch searchResults {
-        case .success(let result): hitsViewModel.update(result)
+        case .success(let result): hitsViewModel.update(with: result)
         case .fail: // TODO: Do something with let error? Or should we put it in hitsViewModel?
           break
         }
@@ -139,7 +139,7 @@ class Main3: UIViewController {
 
   override func viewDidLoad() {
     let tableView = UITableView()
-    let hitsController = GenericHitsController.HitsController(tableView: tableView, settings: HitsSettings())
+    let hitsController = GenericHitsController.HitsController(tableView: tableView, settings: HitsViewModelV2.Settings())
 
     hitsController.hitsViewHandler = { hit in
       // TODO: pass in the indexpath? Or he can specify identifier in the init, and we can just create it for him.

@@ -120,12 +120,12 @@ enum GenericHitsController {
             }
         }
         
-        init(widget: HV, settings: HitsSettings, viewModel: HitsViewModelV2) {
+        init(widget: HV, settings: HitsViewModelV2.Settings, viewModel: HitsViewModelV2) {
             self.viewModel = viewModel
             self.widget = widget
         }
         
-        convenience init(widget: HV, settings: HitsSettings) {
+        convenience init(widget: HV, settings: HitsViewModelV2.Settings) {
             let viewModel = HitsViewModelV2(hitsSettings: settings)
             self.init(widget: widget, settings: settings, viewModel: viewModel)
         }
@@ -138,8 +138,8 @@ enum GenericHitsController {
     class Playground {
         
         func play() {
-            _ = GenericHitsController.HitsController(collectionView: UICollectionView(), settings: HitsSettings())
-            _ = GenericHitsController.HitsController(tableView: UITableView(), settings: HitsSettings())
+            _ = GenericHitsController.HitsController(collectionView: UICollectionView(), settings: HitsViewModelV2.Settings())
+            _ = GenericHitsController.HitsController(tableView: UITableView(), settings: HitsViewModelV2.Settings())
         }
         
     }
@@ -148,7 +148,7 @@ enum GenericHitsController {
 
 extension GenericHitsController.HitsController where HV == GenericHitsController.TableViewHitsWidget {
     
-    convenience init(tableView: UITableView, settings: HitsSettings) {
+    convenience init(tableView: UITableView, settings: HitsViewModelV2.Settings) {
         let viewModel = HitsViewModelV2(hitsSettings: settings)
         let widget = GenericHitsController.TableViewHitsWidget(tableView: tableView, viewModel: viewModel)
         self.init(widget: widget, settings: settings, viewModel: viewModel)
@@ -158,7 +158,7 @@ extension GenericHitsController.HitsController where HV == GenericHitsController
 
 extension GenericHitsController.HitsController where HV == GenericHitsController.CollectionViewHitsWidget {
     
-    convenience init(collectionView: UICollectionView, settings: HitsSettings) {
+    convenience init(collectionView: UICollectionView, settings: HitsViewModelV2.Settings) {
         let viewModel = HitsViewModelV2(hitsSettings: settings)
         let widget = GenericHitsController.CollectionViewHitsWidget(collectionView: collectionView, viewModel: viewModel)
         self.init(widget: widget, settings: settings, viewModel: viewModel)
