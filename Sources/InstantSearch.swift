@@ -35,12 +35,25 @@ import UIKit
     //private var multiIndexRefinableDelegates: [IndexId: [String: WeakSet<RefinableDelegate>]] = [:]
     
     /// The Searchers used in the case of multi-indexing.
-    public var searchers: [SearcherId: Searcher]
+    public var searchers: [SearcherId: Searcher] {
+        didSet {
+            searchers.values.forEach { searcher in
+                searcher.params.clickAnalytics = true
+            }
+        }
+    }
     
     /// The Searcher used in the case of single-indexing.
     /// + NOTE: It is safer to use the getSearcher() method
     /// + WARNING: Don't use this in the case of configuring with multi-index.
-    public var searcher: Searcher!
+    public var searcher: Searcher! {
+        didSet {
+            guard let searcher = searcher else {
+                return
+            }
+            searcher.params.clickAnalytics = true
+        }
+    }
   
     public var history: LocalHistory = {
       // Store the history in a `history.dat` file inside the `Application Support` directory.
@@ -136,6 +149,7 @@ import UIKit
         let index = client.index(withName: index)
         let searcher = Searcher(index: index)
         configure(searcher: searcher)
+        searcher.params.clickAnalytics = true
         Insights.register(appId: appID, apiKey: apiKey)
     }
     

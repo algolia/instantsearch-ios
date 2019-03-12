@@ -180,10 +180,17 @@ import InstantSearchCore
         let hit = hitForRow(at: indexPath)
         let position = indexPath.row + 1
         let queryID = queryIDForHits(in: indexPath.section)
-
+        
+        let indexName: String
+        
+        if let viewIndexName = view?.indicesArray[indexPath.section] {
+            indexName = viewIndexName
+        } else {
+            indexName = resultsManagers[indexPath.section].indexName
+        }
+        
         if
             let queryID = queryID,
-            let indexName = view?.indicesArray[indexPath.section],
             let eventName = view?.hitClickEventName(forSection: indexPath.section),
             let objectID = hit["objectID"] as? String {
             clickAnalyticsDelegate?.clickedAfterSearch(eventName: eventName,

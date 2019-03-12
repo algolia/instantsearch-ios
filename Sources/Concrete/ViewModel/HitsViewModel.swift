@@ -135,9 +135,16 @@ import InstantSearchInsights
         let hit = hitForRow(at: indexPath)
         let position = indexPath.row + 1
         
+        let indexName: String
+        
+        if let viewIndexName = view?.index, viewIndexName.isEmpty {
+            indexName = viewIndexName
+        } else {
+            indexName = resultsManager.indexName
+        }
+        
         if
             let queryID = queryID,
-            let indexName = view?.index,
             let eventName = view?.hitClickEventName,
             let objectID = hit["objectID"] as? String {
             clickAnalyticsDelegate?.clickedAfterSearch(eventName: eventName,

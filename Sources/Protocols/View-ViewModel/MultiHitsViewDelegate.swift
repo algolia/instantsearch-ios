@@ -29,5 +29,5 @@ import Foundation
     func hitClickEventName(forSection section: Int) -> String?
     
     /// Setter of event name for hit click used by Insights in specified section
-    func setHitClick(eventName: String, forSection section: Int)
+    func setHitClick(eventName: String?, forSection section: Int)
 }

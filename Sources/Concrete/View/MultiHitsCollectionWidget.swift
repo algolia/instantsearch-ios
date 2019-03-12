@@ -28,7 +28,7 @@ import UIKit
         return hitClickEventNames[section]
     }
     
-    public func setHitClick(eventName: String, forSection section: Int) {
+    public func setHitClick(eventName: String?, forSection section: Int) {
         hitClickEventNames[section] = eventName
     }
     
