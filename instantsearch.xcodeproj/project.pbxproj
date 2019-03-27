@@ -20,10 +20,7 @@
 		E27B67E91ED339290001FFA7 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = E27B67E71ED339290001FFA7 /* Main.storyboard */; };
 		E27B67EB1ED339290001FFA7 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = E27B67EA1ED339290001FFA7 /* Assets.xcassets */; };
 		E27B67EE1ED339290001FFA7 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = E27B67EC1ED339290001FFA7 /* LaunchScreen.storyboard */; };
-		E2A476FA1EC5DFC1007CA367 /* ObjectiveCBridgingTests.m in Sources */ = {isa = PBXBuildFile; fileRef = E2A476F81EC5DEDE007CA367 /* ObjectiveCBridgingTests.m */; };
-		E2A476FE1EC60BD7007CA367 /* CustomWidget.m in Sources */ = {isa = PBXBuildFile; fileRef = E2A476FD1EC60BD7007CA367 /* CustomWidget.m */; };
 		E2A477011EC61B43007CA367 /* InstantSearch-Bridging-Header.h in Headers */ = {isa = PBXBuildFile; fileRef = E2A477001EC61B43007CA367 /* InstantSearch-Bridging-Header.h */; };
-		E2AFE5661ED49B3900B6A5A7 /* FatalError.swift in Sources */ = {isa = PBXBuildFile; fileRef = E2AFE5651ED49B3900B6A5A7 /* FatalError.swift */; };
 		E2E060571F717A7B0026358B /* InstantSearchCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E21DE94E1F2F7DB400EFC4F5 /* InstantSearchCore.framework */; };
 		E2F2073C20B6E42C0066AF12 /* InstantSearchClient.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E2F2073A20B6E3F60066AF12 /* InstantSearchClient.framework */; };
 /* End PBXBuildFile section */
@@ -66,11 +63,8 @@
 		E27B67EA1ED339290001FFA7 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		E27B67ED1ED339290001FFA7 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		E27B67EF1ED339290001FFA7 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		E2A476F81EC5DEDE007CA367 /* ObjectiveCBridgingTests.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ObjectiveCBridgingTests.m; sourceTree = "<group>"; };
-		E2A476FD1EC60BD7007CA367 /* CustomWidget.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CustomWidget.m; sourceTree = "<group>"; };
 		E2A477001EC61B43007CA367 /* InstantSearch-Bridging-Header.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "InstantSearch-Bridging-Header.h"; sourceTree = "<group>"; };
 		E2A477021EC62031007CA367 /* InstantSearch-Tests-Bridging-Header.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "InstantSearch-Tests-Bridging-Header.h"; sourceTree = "<group>"; };
-		E2AFE5651ED49B3900B6A5A7 /* FatalError.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FatalError.swift; sourceTree = "<group>"; };
 		E2F2073A20B6E3F60066AF12 /* InstantSearchClient.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = InstantSearchClient.framework; path = Carthage/Build/iOS/InstantSearchClient.framework; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -126,10 +120,7 @@
 		28F8288B1C494B2C00330CF4 /* Tests */ = {
 			isa = PBXGroup;
 			children = (
-				E2AFE5641ED49B2C00B6A5A7 /* Helpers */,
 				E25FB0A21ECF550C006B8CED /* Info.plist */,
-				E2A476F81EC5DEDE007CA367 /* ObjectiveCBridgingTests.m */,
-				E2A476FD1EC60BD7007CA367 /* CustomWidget.m */,
 				E2A477021EC62031007CA367 /* InstantSearch-Tests-Bridging-Header.h */,
 			);
 			path = Tests;
@@ -172,14 +163,6 @@
 				E27B67EF1ED339290001FFA7 /* Info.plist */,
 			);
 			path = InstantSearchTestsHost;
-			sourceTree = "<group>";
-		};
-		E2AFE5641ED49B2C00B6A5A7 /* Helpers */ = {
-			isa = PBXGroup;
-			children = (
-				E2AFE5651ED49B3900B6A5A7 /* FatalError.swift */,
-			);
-			name = Helpers;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -378,9 +361,6 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				E2A476FA1EC5DFC1007CA367 /* ObjectiveCBridgingTests.m in Sources */,
-				E2AFE5661ED49B3900B6A5A7 /* FatalError.swift in Sources */,
-				E2A476FE1EC60BD7007CA367 /* CustomWidget.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
