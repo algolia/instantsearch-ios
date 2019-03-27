@@ -15,6 +15,10 @@
 		AF3DE594224A9B7A00C8BC08 /* TableViewMultiHitsWidget.swift in Sources */ = {isa = PBXBuildFile; fileRef = AF3DE58E224A9B7A00C8BC08 /* TableViewMultiHitsWidget.swift */; };
 		AF3DE597224AA00400C8BC08 /* CollectionViewHitsWidget.swift in Sources */ = {isa = PBXBuildFile; fileRef = AF3DE595224AA00400C8BC08 /* CollectionViewHitsWidget.swift */; };
 		AF3DE598224AA00400C8BC08 /* CollectionViewMultiHitsWidget.swift in Sources */ = {isa = PBXBuildFile; fileRef = AF3DE596224AA00400C8BC08 /* CollectionViewMultiHitsWidget.swift */; };
+		AF3DE5BD224BBF7000C8BC08 /* TableViewHitsWidgetTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = AF3DE5A9224BBE6700C8BC08 /* TableViewHitsWidgetTests.swift */; };
+		AF3DE5BE224BBF7000C8BC08 /* TableViewMultiHitsWidgetTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = AF3DE5B1224BBEC000C8BC08 /* TableViewMultiHitsWidgetTests.swift */; };
+		AF3DE5BF224BBF7000C8BC08 /* CollectionViewHitsWidgetTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = AF3DE5AF224BBE9F00C8BC08 /* CollectionViewHitsWidgetTests.swift */; };
+		AF3DE5C0224BBF7000C8BC08 /* CollectionViewMultiHitsWidgetTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = AF3DE5B3224BBECB00C8BC08 /* CollectionViewMultiHitsWidgetTests.swift */; };
 		E27B67E41ED339290001FFA7 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = E27B67E31ED339290001FFA7 /* AppDelegate.swift */; };
 		E27B67E61ED339290001FFA7 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E27B67E51ED339290001FFA7 /* ViewController.swift */; };
 		E27B67E91ED339290001FFA7 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = E27B67E71ED339290001FFA7 /* Main.storyboard */; };
@@ -53,6 +57,10 @@
 		AF3DE58E224A9B7A00C8BC08 /* TableViewMultiHitsWidget.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TableViewMultiHitsWidget.swift; sourceTree = "<group>"; };
 		AF3DE595224AA00400C8BC08 /* CollectionViewHitsWidget.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CollectionViewHitsWidget.swift; sourceTree = "<group>"; };
 		AF3DE596224AA00400C8BC08 /* CollectionViewMultiHitsWidget.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CollectionViewMultiHitsWidget.swift; sourceTree = "<group>"; };
+		AF3DE5A9224BBE6700C8BC08 /* TableViewHitsWidgetTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TableViewHitsWidgetTests.swift; sourceTree = "<group>"; };
+		AF3DE5AF224BBE9F00C8BC08 /* CollectionViewHitsWidgetTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CollectionViewHitsWidgetTests.swift; sourceTree = "<group>"; };
+		AF3DE5B1224BBEC000C8BC08 /* TableViewMultiHitsWidgetTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TableViewMultiHitsWidgetTests.swift; sourceTree = "<group>"; };
+		AF3DE5B3224BBECB00C8BC08 /* CollectionViewMultiHitsWidgetTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CollectionViewMultiHitsWidgetTests.swift; sourceTree = "<group>"; };
 		E21DE94E1F2F7DB400EFC4F5 /* InstantSearchCore.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = InstantSearchCore.framework; path = Carthage/Build/iOS/InstantSearchCore.framework; sourceTree = "<group>"; };
 		E21DE9501F2F7DCA00EFC4F5 /* AlgoliaSearch.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AlgoliaSearch.framework; path = Carthage/Build/iOS/AlgoliaSearch.framework; sourceTree = "<group>"; };
 		E25FB0A21ECF550C006B8CED /* Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
@@ -122,6 +130,10 @@
 			children = (
 				E25FB0A21ECF550C006B8CED /* Info.plist */,
 				E2A477021EC62031007CA367 /* InstantSearch-Tests-Bridging-Header.h */,
+				AF3DE5A9224BBE6700C8BC08 /* TableViewHitsWidgetTests.swift */,
+				AF3DE5B1224BBEC000C8BC08 /* TableViewMultiHitsWidgetTests.swift */,
+				AF3DE5AF224BBE9F00C8BC08 /* CollectionViewHitsWidgetTests.swift */,
+				AF3DE5B3224BBECB00C8BC08 /* CollectionViewMultiHitsWidgetTests.swift */,
 			);
 			path = Tests;
 			sourceTree = "<group>";
@@ -332,6 +344,7 @@
 			inputPaths = (
 				"$(SRCROOT)/Carthage/Build/iOS/InstantSearchClient.framework",
 				"$(SRCROOT)/Carthage/Build/iOS/InstantSearchCore.framework",
+				"$(SRCROOT)/Carthage/Build/iOS/Signals.framework",
 			);
 			name = "Carthage Copy Frameworks";
 			outputPaths = (
@@ -361,6 +374,10 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				AF3DE5C0224BBF7000C8BC08 /* CollectionViewMultiHitsWidgetTests.swift in Sources */,
+				AF3DE5BD224BBF7000C8BC08 /* TableViewHitsWidgetTests.swift in Sources */,
+				AF3DE5BF224BBF7000C8BC08 /* CollectionViewHitsWidgetTests.swift in Sources */,
+				AF3DE5BE224BBF7000C8BC08 /* TableViewMultiHitsWidgetTests.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
