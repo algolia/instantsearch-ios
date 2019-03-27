@@ -14,7 +14,7 @@ open class CollectionViewMultiHitsDataSource: NSObject {
   
   private typealias CellConfigurator = (Int) throws -> UICollectionViewCell
   
-  public weak var dataSource: MultiHitsDataSource? {
+  public weak var hitsDataSource: MultiHitsDataSource? {
     didSet {
       cellConfigurators.removeAll()
     }
@@ -27,9 +27,9 @@ open class CollectionViewMultiHitsDataSource: NSObject {
     super.init()
   }
   
-  func setCellConfigurator<Hit: Codable>(forSection section: Int, _ cellConfigurator: @escaping HitViewConfigurator<Hit, UICollectionViewCell>) {
+  public func setCellConfigurator<Hit: Codable>(forSection section: Int, _ cellConfigurator: @escaping HitViewConfigurator<Hit, UICollectionViewCell>) {
     cellConfigurators[section] = { [weak self] row in
-      guard let dataSource = self?.dataSource else { return UICollectionViewCell() }
+      guard let dataSource = self?.hitsDataSource else { return UICollectionViewCell() }
       let sectionViewModel = try dataSource.hitsViewModel(atIndex: section) as HitsViewModel<Hit>
       guard let hit = sectionViewModel.hitForRow(atIndex: row) else {
         assertionFailure("Invalid state: Attempt to deqeue a cell for a missing hit in a hits ViewModel")
@@ -44,14 +44,14 @@ open class CollectionViewMultiHitsDataSource: NSObject {
 extension CollectionViewMultiHitsDataSource: UICollectionViewDataSource {
   
   public func numberOfSections(in collectionView: UICollectionView) -> Int {
-    guard let numberOfSections = dataSource?.numberOfSections() else {
+    guard let numberOfSections = hitsDataSource?.numberOfSections() else {
       return 0
     }
     return numberOfSections
   }
   
   public func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-    guard let numberOfRows = dataSource?.numberOfRows(inSection: section) else {
+    guard let numberOfRows = hitsDataSource?.numberOfRows(inSection: section) else {
       return 0
     }
     return numberOfRows
@@ -71,7 +71,7 @@ open class CollectionViewMultiHitsDelegate: NSObject {
   
   typealias ClickHandler = (Int) throws -> Void
   
-  public weak var dataSource: MultiHitsDataSource? {
+  public weak var hitsDataSource: MultiHitsDataSource? {
     didSet {
       clickHandlers.removeAll()
     }
@@ -84,9 +84,9 @@ open class CollectionViewMultiHitsDelegate: NSObject {
     super.init()
   }
   
-  func setClickHandler<Hit: Codable>(forSection section: Int, _ clickHandler: @escaping HitClickHandler<Hit>) {
+  public func setClickHandler<Hit: Codable>(forSection section: Int, _ clickHandler: @escaping HitClickHandler<Hit>) {
     clickHandlers[section] = { [weak self] row in
-      guard let dataSource = self?.dataSource else { return }
+      guard let dataSource = self?.hitsDataSource else { return }
       let sectionViewModel = try dataSource.hitsViewModel(atIndex: section) as HitsViewModel<Hit>
       guard let hit = sectionViewModel.hitForRow(atIndex: row) else {
         assertionFailure("Invalid state: Attempt to process a click of a cell for a missing hit in a hits ViewModel")
@@ -110,42 +110,42 @@ extension CollectionViewMultiHitsDelegate: UICollectionViewDelegate {
   
 }
 
-class CollectionViewMultiHitsWidget: NSObject, MultiHitsWidget {
+public class CollectionViewMultiHitsWidget: NSObject, MultiHitsWidget {
   
-  typealias SingleHitView = UITableViewCell
+  public typealias SingleHitView = UITableViewCell
   
-  let collectionView: UICollectionView
+  public let collectionView: UICollectionView
   
   public weak var viewModel: MultiHitsViewModel? {
     didSet {
-      dataSource?.dataSource = viewModel
-      delegate?.dataSource = viewModel
+      dataSource?.hitsDataSource = viewModel
+      delegate?.hitsDataSource = viewModel
     }
   }
   
   public var dataSource: CollectionViewMultiHitsDataSource? {
     didSet {
-      dataSource?.dataSource = viewModel
+      dataSource?.hitsDataSource = viewModel
       collectionView.dataSource = dataSource
     }
   }
   
   public var delegate: CollectionViewMultiHitsDelegate? {
     didSet {
-      delegate?.dataSource = viewModel
+      delegate?.hitsDataSource = viewModel
       collectionView.delegate = delegate
     }
   }
   
-  init(collectionView: UICollectionView) {
+  public init(collectionView: UICollectionView) {
     self.collectionView = collectionView
   }
   
-  func reload() {
+  public func reload() {
     collectionView.reloadData()
   }
   
-  func scrollToTop() {
+  public func scrollToTop() {
     collectionView.scrollToItem(at: IndexPath(), at: .top, animated: false)
   }
   

@@ -12,19 +12,19 @@ import UIKit
 
 open class CollectionViewHitsDataSource<DataSource: HitsDataSource>: NSObject, UICollectionViewDataSource {
   
-  var cellConfigurator: HitViewConfigurator<DataSource.Hit, UICollectionViewCell>
-  weak var dataSource: DataSource?
+  public var cellConfigurator: HitViewConfigurator<DataSource.Hit, UICollectionViewCell>
+  public weak var hitsDataSource: DataSource?
   
-  init(cellConfigurator: @escaping HitViewConfigurator<DataSource.Hit, UICollectionViewCell>) {
+  public init(cellConfigurator: @escaping HitViewConfigurator<DataSource.Hit, UICollectionViewCell>) {
     self.cellConfigurator = cellConfigurator
   }
   
   public func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-    return dataSource?.numberOfRows() ?? 0
+    return hitsDataSource?.numberOfRows() ?? 0
   }
   
   public func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
-    guard let hit = dataSource?.hitForRow(atIndex: indexPath.row) else {
+    guard let hit = hitsDataSource?.hitForRow(atIndex: indexPath.row) else {
       return UICollectionViewCell()
     }
     return cellConfigurator(hit)
@@ -34,15 +34,15 @@ open class CollectionViewHitsDataSource<DataSource: HitsDataSource>: NSObject, U
 
 open class HitsCollectionViewDelegate<DataSource: HitsDataSource>: NSObject, UICollectionViewDelegate {
   
-  var clickHandler: HitClickHandler<DataSource.Hit>
-  weak var dataSource: DataSource?
+  public var clickHandler: HitClickHandler<DataSource.Hit>
+  public weak var hitsDataSource: DataSource?
   
-  init(clickHandler: @escaping HitClickHandler<DataSource.Hit>) {
+  public init(clickHandler: @escaping HitClickHandler<DataSource.Hit>) {
     self.clickHandler = clickHandler
   }
   
   public func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
-    guard let hit = dataSource?.hitForRow(atIndex: indexPath.row) else {
+    guard let hit = hitsDataSource?.hitForRow(atIndex: indexPath.row) else {
       return
     }
     clickHandler(hit)
@@ -61,14 +61,14 @@ public class CollectionViewHitsWidget<Hit: Codable>: NSObject, HitsWidget {
 
   private var dataSource: CollectionViewHitsDataSource<ViewModel>? {
     didSet {
-      dataSource?.dataSource = viewModel
+      dataSource?.hitsDataSource = viewModel
       collectionView.dataSource = dataSource
     }
   }
   
   private var delegate: HitsCollectionViewDelegate<ViewModel>? {
     didSet {
-      delegate?.dataSource = viewModel
+      delegate?.hitsDataSource = viewModel
       collectionView.delegate = delegate
     }
   }

@@ -12,19 +12,19 @@ import UIKit
 
 open class TableViewHitsDataSource<DataSource: HitsDataSource>: NSObject, UITableViewDataSource {
   
-  var cellConfigurator: HitViewConfigurator<DataSource.Hit, UITableViewCell>
-  weak var dataSource: DataSource?
+  public var cellConfigurator: HitViewConfigurator<DataSource.Hit, UITableViewCell>
+  public weak var hitsDataSource: DataSource?
   
-  init(cellConfigurator: @escaping HitViewConfigurator<DataSource.Hit, UITableViewCell>) {
+  public init(cellConfigurator: @escaping HitViewConfigurator<DataSource.Hit, UITableViewCell>) {
     self.cellConfigurator = cellConfigurator
   }
   
   public func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-    return dataSource?.numberOfRows() ?? 0
+    return hitsDataSource?.numberOfRows() ?? 0
   }
   
   public func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-    guard let hit = dataSource?.hitForRow(atIndex: indexPath.row) else {
+    guard let hit = hitsDataSource?.hitForRow(atIndex: indexPath.row) else {
       return UITableViewCell()
     }
     return cellConfigurator(hit)
@@ -34,15 +34,15 @@ open class TableViewHitsDataSource<DataSource: HitsDataSource>: NSObject, UITabl
 
 open class TableViewHitsDelegate<DataSource: HitsDataSource>: NSObject, UITableViewDelegate {
   
-  var clickHandler: HitClickHandler<DataSource.Hit>
-  weak var dataSource: DataSource?
+  public var clickHandler: HitClickHandler<DataSource.Hit>
+  public weak var hitsDataSource: DataSource?
   
-  init(clickHandler: @escaping HitClickHandler<DataSource.Hit>) {
+  public init(clickHandler: @escaping HitClickHandler<DataSource.Hit>) {
     self.clickHandler = clickHandler
   }
   
   public func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-    guard let hit = dataSource?.hitForRow(atIndex: indexPath.row) else {
+    guard let hit = hitsDataSource?.hitForRow(atIndex: indexPath.row) else {
       return
     }
     clickHandler(hit)
@@ -56,30 +56,30 @@ public class TableViewHitsWidget<Hit: Codable>: NSObject, HitsWidget {
   
   public typealias SingleHitView = UITableViewCell
   
-  let tableView: UITableView
+  public let tableView: UITableView
   
   public weak var viewModel: ViewModel? {
     didSet {
-      dataSource?.dataSource = viewModel
-      delegate?.dataSource = viewModel
+      dataSource?.hitsDataSource = viewModel
+      delegate?.hitsDataSource = viewModel
     }
   }
   
   public var dataSource: TableViewHitsDataSource<ViewModel>? {
     didSet {
-      dataSource?.dataSource = viewModel
+      dataSource?.hitsDataSource = viewModel
       tableView.dataSource = dataSource
     }
   }
   
   public var delegate: TableViewHitsDelegate<ViewModel>? {
     didSet {
-      delegate?.dataSource = viewModel
+      delegate?.hitsDataSource = viewModel
       tableView.delegate = delegate
     }
   }
   
-  init(tableView: UITableView) {
+  public init(tableView: UITableView) {
     self.tableView = tableView
   }
   

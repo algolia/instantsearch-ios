@@ -14,7 +14,7 @@ open class TableViewMultiHitsDataSource: NSObject {
   
   private typealias CellConfigurator = (Int) throws -> UITableViewCell
   
-  public weak var dataSource: MultiHitsDataSource? {
+  public weak var hitsDataSource: MultiHitsDataSource? {
     didSet {
       cellConfigurators.removeAll()
     }
@@ -27,9 +27,9 @@ open class TableViewMultiHitsDataSource: NSObject {
     super.init()
   }
   
-  func setCellConfigurator<Hit: Codable>(forSection section: Int, _ cellConfigurator: @escaping HitViewConfigurator<Hit, UITableViewCell>) {
+  public func setCellConfigurator<Hit: Codable>(forSection section: Int, _ cellConfigurator: @escaping HitViewConfigurator<Hit, UITableViewCell>) {
     cellConfigurators[section] = { [weak self] row in
-      guard let dataSource = self?.dataSource else { return UITableViewCell() }
+      guard let dataSource = self?.hitsDataSource else { return UITableViewCell() }
       let sectionViewModel = try dataSource.hitsViewModel(atIndex: section) as HitsViewModel<Hit>
       guard let hit = sectionViewModel.hitForRow(atIndex: row) else {
         assertionFailure("Invalid state: Attempt to deqeue a cell for a missing hit in a hits ViewModel")
@@ -44,14 +44,14 @@ open class TableViewMultiHitsDataSource: NSObject {
 extension TableViewMultiHitsDataSource: UITableViewDataSource {
   
   public func numberOfSections(in tableView: UITableView) -> Int {
-    guard let numberOfSections = dataSource?.numberOfSections() else {
+    guard let numberOfSections = hitsDataSource?.numberOfSections() else {
       return 0
     }
     return numberOfSections
   }
   
   public func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-    guard let numberOfRows = dataSource?.numberOfRows(inSection: section) else {
+    guard let numberOfRows = hitsDataSource?.numberOfRows(inSection: section) else {
       return 0
     }
     return numberOfRows
@@ -71,7 +71,7 @@ open class TableViewMultiHitsDelegate: NSObject {
   
   typealias ClickHandler = (Int) throws -> Void
   
-  public weak var dataSource: MultiHitsDataSource? {
+  public weak var hitsDataSource: MultiHitsDataSource? {
     didSet {
       clickHandlers.removeAll()
     }
@@ -84,9 +84,9 @@ open class TableViewMultiHitsDelegate: NSObject {
     super.init()
   }
   
-  func setClickHandler<Hit: Codable>(forSection section: Int, _ clickHandler: @escaping HitClickHandler<Hit>) {
+  public func setClickHandler<Hit: Codable>(forSection section: Int, _ clickHandler: @escaping HitClickHandler<Hit>) {
     clickHandlers[section] = { [weak self] row in
-      guard let dataSource = self?.dataSource else { return }
+      guard let dataSource = self?.hitsDataSource else { return }
       let sectionViewModel = try dataSource.hitsViewModel(atIndex: section) as HitsViewModel<Hit>
       guard let hit = sectionViewModel.hitForRow(atIndex: row) else {
         assertionFailure("Invalid state: Attempt to process a click of a cell for a missing hit in a hits ViewModel")
@@ -114,38 +114,38 @@ class TableViewMultiHitsWidget: NSObject, MultiHitsWidget {
   
   typealias SingleHitView = UITableViewCell
   
-  let tableView: UITableView
+  public let tableView: UITableView
   
   public weak var viewModel: MultiHitsViewModel? {
     didSet {
-      dataSource?.dataSource = viewModel
-      delegate?.dataSource = viewModel
+      dataSource?.hitsDataSource = viewModel
+      delegate?.hitsDataSource = viewModel
     }
   }
   
   public var dataSource: TableViewMultiHitsDataSource? {
     didSet {
-      dataSource?.dataSource = viewModel
+      dataSource?.hitsDataSource = viewModel
       tableView.dataSource = dataSource
     }
   }
   
   public var delegate: TableViewMultiHitsDelegate? {
     didSet {
-      delegate?.dataSource = viewModel
+      delegate?.hitsDataSource = viewModel
       tableView.delegate = delegate
     }
   }
   
-  init(tableView: UITableView) {
+  public init(tableView: UITableView) {
     self.tableView = tableView
   }
   
-  func reload() {
+  public func reload() {
     tableView.reloadData()
   }
   
-  func scrollToTop() {
+  public func scrollToTop() {
     tableView.scrollToRow(at: IndexPath(), at: .top, animated: false)
   }
 
