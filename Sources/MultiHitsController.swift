@@ -34,18 +34,31 @@ public protocol MultiHitsWidget: class {
 
 public class MultiHitsController<HitsWidget: MultiHitsWidget>: NSObject {
   
+  public let searcher: MultiIndexSearcher
   public let viewModel: MultiHitsViewModel
   public weak var widget: HitsWidget?
-  
-  public init(widget: HitsWidget, viewModel: MultiHitsViewModel) {
+  public var errorHandler: ((Error) -> Void)?
+
+  public init(client: Client, indexSearchDatas: [IndexSearchData], widget: HitsWidget, viewModel: MultiHitsViewModel = MultiHitsViewModel()) {
+    self.searcher = MultiIndexSearcher(client: client, indexSearchDatas: indexSearchDatas)
     self.viewModel = viewModel
     self.widget = widget
-  }
-  
-  public convenience init(widget: HitsWidget) {
-    let viewModel = MultiHitsViewModel()
-    self.init(widget: widget, viewModel: viewModel)
-    widget.viewModel = viewModel
+    
+    super.init()
+    
+    self.searcher.onSearchResults.subscribe(with: self) { [weak self] result in
+      switch result {
+      case .failure(let error):
+        self?.errorHandler?(error)
+        
+      case .success(let results):
+        do {
+          try self?.viewModel.update(results)
+        } catch let error {
+          assertionFailure("\(error)")
+        }
+      }
+    }
   }
   
 }
@@ -53,6 +66,14 @@ public class MultiHitsController<HitsWidget: MultiHitsWidget>: NSObject {
 extension Playground {
   
   func multihitsPlay() {
+    
+    let client = Client(appID: "app id", apiKey: "api key")
+    
+    let indexSearchDatas = [
+      IndexSearchData(index: client.index(withName: "index1")),
+      IndexSearchData(index: client.index(withName: "index2")),
+      IndexSearchData(index: client.index(withName: "index3"))
+    ]
     
     let tableView = UITableView()
     let widget = TableViewMultiHitsWidget(tableView: tableView)
@@ -67,7 +88,7 @@ extension Playground {
     delegate.setClickHandler(forSection: 0) { (_: JSON) in print("click") }
     delegate.setClickHandler(forSection: 1) { (_: [String: Int]) in print("click") }
     
-    let controller = MultiHitsController(widget: widget)
+    let controller = MultiHitsController(client: client, indexSearchDatas: indexSearchDatas, widget: widget)
     
     controller.viewModel.insert(hitsViewModel: HitsViewModel<[String: Int]>(), atIndex: 0)
     controller.viewModel.insert(hitsViewModel: HitsViewModel<JSON>(), atIndex: 1)
