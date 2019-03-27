@@ -22,7 +22,7 @@ public protocol HitsDataSource: class {
   
 }
 
-extension InstantSearchCore.HitsViewModel: HitsDataSource {}
+extension HitsViewModel: HitsDataSource {}
 
 public protocol HitsWidget: class {
   
