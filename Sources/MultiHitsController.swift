@@ -10,15 +10,17 @@ import Foundation
 import InstantSearchCore
 import UIKit
 
-public protocol MultiHitsDataSource: class {
-  
+public protocol MultiHitsSource: class {
+    
   func numberOfSections() -> Int
-  func numberOfRows(inSection: Int) -> Int
-  func hitsViewModel<R>(atIndex index: Int) throws -> HitsViewModel<R>
+  func numberOfHits(inSection section: Int) -> Int
+  func hitsViewModel<R>(forSection section: Int) throws -> HitsViewModel<R>
   
 }
 
-extension MultiHitsViewModel: MultiHitsDataSource {}
+extension MultiHitsViewModel: MultiHitsSource {
+
+}
 
 public protocol MultiHitsWidget: class {
   
@@ -34,13 +36,13 @@ public protocol MultiHitsWidget: class {
 
 public class MultiHitsController<HitsWidget: MultiHitsWidget>: NSObject {
   
-  public let searcher: MultiIndexSearcher
+  private(set) var searcher: MultiIndexSearcher
   public let viewModel: MultiHitsViewModel
   public weak var widget: HitsWidget?
   public var errorHandler: ((Error) -> Void)?
 
-  public init(client: Client, indexSearchDatas: [IndexSearchData], widget: HitsWidget, viewModel: MultiHitsViewModel = MultiHitsViewModel()) {
-    self.searcher = MultiIndexSearcher(client: client, indexSearchDatas: indexSearchDatas)
+  public init(client: Client, widget: HitsWidget, viewModel: MultiHitsViewModel = MultiHitsViewModel()) {
+    self.searcher = MultiIndexSearcher(client: client, indexSearchDatas: [])
     self.viewModel = viewModel
     self.widget = widget
     
@@ -58,7 +60,17 @@ public class MultiHitsController<HitsWidget: MultiHitsWidget>: NSObject {
           assertionFailure("\(error)")
         }
       }
-    }
+      self?.widget?.reload()
+    }.onQueue(.main)
+    
+    self.widget?.viewModel = viewModel
+    
+  }
+  
+  public func register<Record: Codable>(_ indexSearchData: IndexSearchData, with recordType: Record.Type) {
+    let hitsViewModel = HitsViewModel<Record>()
+    viewModel.append(hitsViewModel)
+    searcher = MultiIndexSearcher(client: searcher.client, indexSearchDatas: searcher.indexSearchDatas + [indexSearchData])
   }
   
 }
@@ -80,18 +92,18 @@ extension Playground {
     
     let dataSource = TableViewMultiHitsDataSource()
     
-    dataSource.setCellConfigurator(forSection: 0) { (_: JSON) in return UITableViewCell() }
-    dataSource.setCellConfigurator(forSection: 1) { (_: [String: Int]) in return UITableViewCell() }
+    dataSource.setCellConfigurator(forSection: 0) { (_, _: JSON, _) in return UITableViewCell() }
+    dataSource.setCellConfigurator(forSection: 1) { (_, _: [String: Int], _) in return UITableViewCell() }
 
     let delegate = TableViewMultiHitsDelegate()
     
-    delegate.setClickHandler(forSection: 0) { (_: JSON) in print("click") }
-    delegate.setClickHandler(forSection: 1) { (_: [String: Int]) in print("click") }
+    delegate.setClickHandler(forSection: 0) { (_, _: JSON, _) in print("click") }
+    delegate.setClickHandler(forSection: 1) { (_, _: [String: Int], _) in print("click") }
     
-    let controller = MultiHitsController(client: client, indexSearchDatas: indexSearchDatas, widget: widget)
+    let controller = MultiHitsController(client: client, widget: widget)
     
-    controller.viewModel.insert(hitsViewModel: HitsViewModel<[String: Int]>(), atIndex: 0)
-    controller.viewModel.insert(hitsViewModel: HitsViewModel<JSON>(), atIndex: 1)
+    controller.viewModel.insert(hitsViewModel: HitsViewModel<[String: Int]>(), inSection: 0)
+    controller.viewModel.insert(hitsViewModel: HitsViewModel<JSON>(), inSection: 1)
 
   }
   

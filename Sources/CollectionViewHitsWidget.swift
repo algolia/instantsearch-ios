@@ -10,42 +10,46 @@ import Foundation
 import InstantSearchCore
 import UIKit
 
-open class CollectionViewHitsDataSource<DataSource: HitsDataSource>: NSObject, UICollectionViewDataSource {
+public typealias HitsCollectionViewController<Hit: Codable> = HitsController<CollectionViewHitsWidget<Hit>>
+public typealias CollectionViewCellConfigurator<Hit> = HitViewConfigurator<UICollectionView, UICollectionViewCell, Hit>
+public typealias CollectionViewClickHandler<Hit> = HitClickHandler<UICollectionView, Hit>
+
+open class CollectionViewHitsDataSource<DataSource: HitsSource>: NSObject, UICollectionViewDataSource {
   
-  public var cellConfigurator: HitViewConfigurator<DataSource.Hit, UICollectionViewCell>
+  public var cellConfigurator: CollectionViewCellConfigurator<DataSource.Record>
   public weak var hitsDataSource: DataSource?
   
-  public init(cellConfigurator: @escaping HitViewConfigurator<DataSource.Hit, UICollectionViewCell>) {
+  public init(cellConfigurator: @escaping CollectionViewCellConfigurator<DataSource.Record>) {
     self.cellConfigurator = cellConfigurator
   }
   
   public func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-    return hitsDataSource?.numberOfRows() ?? 0
+    return hitsDataSource?.numberOfHits() ?? 0
   }
   
   public func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
-    guard let hit = hitsDataSource?.hitForRow(atIndex: indexPath.row) else {
+    guard let hit = hitsDataSource?.hit(atIndex: indexPath.row) else {
       return UICollectionViewCell()
     }
-    return cellConfigurator(hit)
+    return cellConfigurator(collectionView, hit, indexPath)
   }
   
 }
 
-open class HitsCollectionViewDelegate<DataSource: HitsDataSource>: NSObject, UICollectionViewDelegate {
+open class HitsCollectionViewDelegate<DataSource: HitsSource>: NSObject, UICollectionViewDelegate {
   
-  public var clickHandler: HitClickHandler<DataSource.Hit>
+  public var clickHandler: CollectionViewClickHandler<DataSource.Record>
   public weak var hitsDataSource: DataSource?
   
-  public init(clickHandler: @escaping HitClickHandler<DataSource.Hit>) {
+  public init(clickHandler: @escaping CollectionViewClickHandler<DataSource.Record>) {
     self.clickHandler = clickHandler
   }
   
   public func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
-    guard let hit = hitsDataSource?.hitForRow(atIndex: indexPath.row) else {
+    guard let hit = hitsDataSource?.hit(atIndex: indexPath.row) else {
       return
     }
-    clickHandler(hit)
+    clickHandler(collectionView, hit, indexPath)
   }
 
 }
@@ -86,5 +90,3 @@ public class CollectionViewHitsWidget<Hit: Codable>: NSObject, HitsWidget {
   }
   
 }
-
-public typealias HitsCollectionViewController<Hit: Codable> = HitsController<CollectionViewHitsWidget<Hit>>

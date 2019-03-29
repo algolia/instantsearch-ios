@@ -10,42 +10,46 @@ import Foundation
 import InstantSearchCore
 import UIKit
 
-open class TableViewHitsDataSource<DataSource: HitsDataSource>: NSObject, UITableViewDataSource {
+public typealias TableViewCellConfigurator<Hit> = HitViewConfigurator<UITableView, UITableViewCell, Hit>
+public typealias TableViewClickHandler<Hit> = HitClickHandler<UITableView, Hit>
+public typealias TableViewHitsController<Hit: Codable> = HitsController<TableViewHitsWidget<Hit>>
+
+open class TableViewHitsDataSource<DataSource: HitsSource>: NSObject, UITableViewDataSource {
   
-  public var cellConfigurator: HitViewConfigurator<DataSource.Hit, UITableViewCell>
+  public var cellConfigurator: TableViewCellConfigurator<DataSource.Record>
   public weak var hitsDataSource: DataSource?
   
-  public init(cellConfigurator: @escaping HitViewConfigurator<DataSource.Hit, UITableViewCell>) {
+  public init(cellConfigurator: @escaping TableViewCellConfigurator<DataSource.Record>) {
     self.cellConfigurator = cellConfigurator
   }
   
   public func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-    return hitsDataSource?.numberOfRows() ?? 0
+    return hitsDataSource?.numberOfHits() ?? 0
   }
   
   public func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-    guard let hit = hitsDataSource?.hitForRow(atIndex: indexPath.row) else {
+    guard let hit = hitsDataSource?.hit(atIndex: indexPath.row) else {
       return UITableViewCell()
     }
-    return cellConfigurator(hit)
+    return cellConfigurator(tableView, hit, indexPath)
   }
   
 }
 
-open class TableViewHitsDelegate<DataSource: HitsDataSource>: NSObject, UITableViewDelegate {
+open class TableViewHitsDelegate<DataSource: HitsSource>: NSObject, UITableViewDelegate {
   
-  public var clickHandler: HitClickHandler<DataSource.Hit>
+  public var clickHandler: TableViewClickHandler<DataSource.Record>
   public weak var hitsDataSource: DataSource?
   
-  public init(clickHandler: @escaping HitClickHandler<DataSource.Hit>) {
+  public init(clickHandler: @escaping TableViewClickHandler<DataSource.Record>) {
     self.clickHandler = clickHandler
   }
   
   public func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-    guard let hit = hitsDataSource?.hitForRow(atIndex: indexPath.row) else {
+    guard let hit = hitsDataSource?.hit(atIndex: indexPath.row) else {
       return
     }
-    clickHandler(hit)
+    clickHandler(tableView, hit, indexPath)
   }
   
 }
@@ -92,5 +96,3 @@ public class TableViewHitsWidget<Hit: Codable>: NSObject, HitsWidget {
   }
 
 }
-
-public typealias TableViewHitsController<Hit: Codable> = HitsController<TableViewHitsWidget<Hit>>

@@ -12,9 +12,9 @@ import UIKit
 
 open class CollectionViewMultiHitsDataSource: NSObject {
   
-  private typealias CellConfigurator = (Int) throws -> UICollectionViewCell
+  private typealias CellConfigurator = (UICollectionView, Int) throws -> UICollectionViewCell
   
-  public weak var hitsDataSource: MultiHitsDataSource? {
+  public weak var hitsDataSource: MultiHitsSource? {
     didSet {
       cellConfigurators.removeAll()
     }
@@ -27,15 +27,15 @@ open class CollectionViewMultiHitsDataSource: NSObject {
     super.init()
   }
   
-  public func setCellConfigurator<Hit: Codable>(forSection section: Int, _ cellConfigurator: @escaping HitViewConfigurator<Hit, UICollectionViewCell>) {
-    cellConfigurators[section] = { [weak self] row in
+  public func setCellConfigurator<Hit: Codable>(forSection section: Int, _ cellConfigurator: @escaping CollectionViewCellConfigurator<Hit>) {
+    cellConfigurators[section] = { [weak self] (collectionView, row) in
       guard let dataSource = self?.hitsDataSource else { return UICollectionViewCell() }
-      let sectionViewModel = try dataSource.hitsViewModel(atIndex: section) as HitsViewModel<Hit>
-      guard let hit = sectionViewModel.hitForRow(atIndex: row) else {
+      let sectionViewModel = try dataSource.hitsViewModel(forSection: section) as HitsViewModel<Hit>
+      guard let hit = sectionViewModel.hit(atIndex: row) else {
         assertionFailure("Invalid state: Attempt to deqeue a cell for a missing hit in a hits ViewModel")
         return UICollectionViewCell()
       }
-      return cellConfigurator(hit)
+      return cellConfigurator(collectionView, hit, IndexPath(item: row, section: section))
     }
   }
   
@@ -51,7 +51,7 @@ extension CollectionViewMultiHitsDataSource: UICollectionViewDataSource {
   }
   
   public func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-    guard let numberOfRows = hitsDataSource?.numberOfRows(inSection: section) else {
+    guard let numberOfRows = hitsDataSource?.numberOfHits(inSection: section) else {
       return 0
     }
     return numberOfRows
@@ -59,7 +59,7 @@ extension CollectionViewMultiHitsDataSource: UICollectionViewDataSource {
   
   public func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
     do {
-      return try cellConfigurators[indexPath.section]?(indexPath.row) ?? UICollectionViewCell()
+      return try cellConfigurators[indexPath.section]?(collectionView, indexPath.row) ?? UICollectionViewCell()
     } catch let error {
       fatalError("\(error)")
     }
@@ -69,9 +69,9 @@ extension CollectionViewMultiHitsDataSource: UICollectionViewDataSource {
 
 open class CollectionViewMultiHitsDelegate: NSObject {
   
-  typealias ClickHandler = (Int) throws -> Void
+  typealias ClickHandler = (UICollectionView, Int) throws -> Void
   
-  public weak var hitsDataSource: MultiHitsDataSource? {
+  public weak var hitsDataSource: MultiHitsSource? {
     didSet {
       clickHandlers.removeAll()
     }
@@ -84,15 +84,15 @@ open class CollectionViewMultiHitsDelegate: NSObject {
     super.init()
   }
   
-  public func setClickHandler<Hit: Codable>(forSection section: Int, _ clickHandler: @escaping HitClickHandler<Hit>) {
-    clickHandlers[section] = { [weak self] row in
+  public func setClickHandler<Hit: Codable>(forSection section: Int, _ clickHandler: @escaping CollectionViewClickHandler<Hit>) {
+    clickHandlers[section] = { [weak self] (collectionView, row) in
       guard let dataSource = self?.hitsDataSource else { return }
-      let sectionViewModel = try dataSource.hitsViewModel(atIndex: section) as HitsViewModel<Hit>
-      guard let hit = sectionViewModel.hitForRow(atIndex: row) else {
+      let sectionViewModel = try dataSource.hitsViewModel(forSection: section) as HitsViewModel<Hit>
+      guard let hit = sectionViewModel.hit(atIndex: row) else {
         assertionFailure("Invalid state: Attempt to process a click of a cell for a missing hit in a hits ViewModel")
         return
       }
-      clickHandler(hit)
+      clickHandler(collectionView, hit, IndexPath(item: row, section: section))
     }
   }
   
@@ -100,9 +100,9 @@ open class CollectionViewMultiHitsDelegate: NSObject {
 
 extension CollectionViewMultiHitsDelegate: UICollectionViewDelegate {
   
-  public func tableView(_ tableView: UICollectionView, didSelectRowAt indexPath: IndexPath) {
+  public func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
     do {
-      try clickHandlers[indexPath.section]?(indexPath.row)
+      try clickHandlers[indexPath.section]?(collectionView, indexPath.row)
     } catch let error {
       fatalError("\(error)")
     }

@@ -10,19 +10,19 @@ import Foundation
 import InstantSearchCore
 import UIKit
 
-public typealias HitViewConfigurator<Hit, HitView> = (Hit) -> HitView
-public typealias HitClickHandler<Hit> = (Hit) -> Void
+public typealias HitViewConfigurator<HitsView, SingleHitView, Hit> = (HitsView, Hit, IndexPath) -> SingleHitView
+public typealias HitClickHandler<HitsView, Hit> = (HitsView, Hit, IndexPath) -> Void
 
-public protocol HitsDataSource: class {
+public protocol HitsSource: class {
   
-  associatedtype Hit: Codable
+  associatedtype Record: Codable
   
-  func numberOfRows() -> Int
-  func hitForRow(atIndex rowIndex: Int) -> Hit?
+  func numberOfHits() -> Int
+  func hit(atIndex index: Int) -> Record?
   
 }
 
-extension HitsViewModel: HitsDataSource {}
+extension HitsViewModel: HitsSource {}
 
 public protocol HitsWidget: class {
   
@@ -42,12 +42,13 @@ public class HitsController<Widget: HitsWidget>: NSObject {
   public let searcher: SingleIndexSearcher<Widget.Hit>
   public let viewModel: HitsViewModel<Widget.Hit>
   public weak var widget: Widget?
-  public var errorHandler: ((Error) -> Void)?
+  public let onError: Observer<Error>
     
   public init(searcher: SingleIndexSearcher<Widget.Hit>, viewModel: HitsViewModel<Widget.Hit>, widget: Widget) {
     self.searcher = searcher
     self.viewModel = viewModel
     self.widget = widget
+    self.onError = Observer<Error>()
     self.widget?.viewModel = viewModel
   }
   
@@ -67,10 +68,21 @@ public class HitsController<Widget: HitsWidget>: NSObject {
         widget.reload()
 
       case .failure(let error):
-        self?.errorHandler?(error)
+        self?.onError.fire(error)
       }
+    }.onQueue(.main)
+    
+    viewModel.onNewPage.subscribe(with: self) { [weak self] page in
+      self?.searcher.query.page = UInt(page)
+      self?.searcher.search()
     }
     
+  }
+  
+  public func searchWithQueryText(_ queryText: String) {
+    searcher.setQuery(text: queryText)
+    searcher.query.page = 0
+    searcher.search()
   }
   
 }
@@ -83,13 +95,14 @@ struct Playground {
     
     let widget = TableViewHitsWidget<JSON>(tableView: tableView)
     
-    widget.dataSource = TableViewHitsDataSource { hit -> UITableViewCell in
+    widget.dataSource = TableViewHitsDataSource { (_, hit, _
+      ) -> UITableViewCell in
       let cell = tableView.dequeueReusableCell(withIdentifier: "id")!
       cell.textLabel?.text = [String: Any](hit)?["name"] as? String
       return cell
     }
 
-    widget.delegate = TableViewHitsDelegate { hit in
+    widget.delegate = TableViewHitsDelegate { (_, hit, _) in
       let name = [String: Any](hit)!["name"] as! String
       print("Name: \(name)")
     }

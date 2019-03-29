@@ -12,9 +12,9 @@ import UIKit
 
 open class TableViewMultiHitsDataSource: NSObject {
   
-  private typealias CellConfigurator = (Int) throws -> UITableViewCell
+  private typealias CellConfigurator = (UITableView, Int) throws -> UITableViewCell
   
-  public weak var hitsDataSource: MultiHitsDataSource? {
+  public weak var hitsSource: MultiHitsSource? {
     didSet {
       cellConfigurators.removeAll()
     }
@@ -22,20 +22,20 @@ open class TableViewMultiHitsDataSource: NSObject {
   
   private var cellConfigurators: [Int: CellConfigurator]
   
-  override init() {
+  public override init() {
     cellConfigurators = [:]
     super.init()
   }
   
-  public func setCellConfigurator<Hit: Codable>(forSection section: Int, _ cellConfigurator: @escaping HitViewConfigurator<Hit, UITableViewCell>) {
-    cellConfigurators[section] = { [weak self] row in
-      guard let dataSource = self?.hitsDataSource else { return UITableViewCell() }
-      let sectionViewModel = try dataSource.hitsViewModel(atIndex: section) as HitsViewModel<Hit>
-      guard let hit = sectionViewModel.hitForRow(atIndex: row) else {
+  public func setCellConfigurator<Hit: Codable>(forSection section: Int, _ cellConfigurator: @escaping TableViewCellConfigurator<Hit>) {
+    cellConfigurators[section] = { [weak self] (tableView, row) in
+      guard let dataSource = self?.hitsSource else { return UITableViewCell() }
+      let sectionViewModel = try dataSource.hitsViewModel(forSection: section) as HitsViewModel<Hit>
+      guard let hit = sectionViewModel.hit(atIndex: row) else {
         assertionFailure("Invalid state: Attempt to deqeue a cell for a missing hit in a hits ViewModel")
         return UITableViewCell()
       }
-      return cellConfigurator(hit)
+      return cellConfigurator(tableView, hit, IndexPath(row: row, section: section))
     }
   }
   
@@ -44,14 +44,14 @@ open class TableViewMultiHitsDataSource: NSObject {
 extension TableViewMultiHitsDataSource: UITableViewDataSource {
   
   public func numberOfSections(in tableView: UITableView) -> Int {
-    guard let numberOfSections = hitsDataSource?.numberOfSections() else {
+    guard let numberOfSections = hitsSource?.numberOfSections() else {
       return 0
     }
     return numberOfSections
   }
   
   public func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-    guard let numberOfRows = hitsDataSource?.numberOfRows(inSection: section) else {
+    guard let numberOfRows = hitsSource?.numberOfHits(inSection: section) else {
       return 0
     }
     return numberOfRows
@@ -59,7 +59,7 @@ extension TableViewMultiHitsDataSource: UITableViewDataSource {
   
   public func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
     do {
-      return try cellConfigurators[indexPath.section]?(indexPath.row) ?? UITableViewCell()
+      return try cellConfigurators[indexPath.section]?(tableView, indexPath.row) ?? UITableViewCell()
     } catch let error {
       fatalError("\(error)")
     }
@@ -69,9 +69,9 @@ extension TableViewMultiHitsDataSource: UITableViewDataSource {
 
 open class TableViewMultiHitsDelegate: NSObject {
   
-  typealias ClickHandler = (Int) throws -> Void
+  typealias ClickHandler = (UITableView, Int) throws -> Void
   
-  public weak var hitsDataSource: MultiHitsDataSource? {
+  public weak var hitsSource: MultiHitsSource? {
     didSet {
       clickHandlers.removeAll()
     }
@@ -84,15 +84,15 @@ open class TableViewMultiHitsDelegate: NSObject {
     super.init()
   }
   
-  public func setClickHandler<Hit: Codable>(forSection section: Int, _ clickHandler: @escaping HitClickHandler<Hit>) {
-    clickHandlers[section] = { [weak self] row in
-      guard let dataSource = self?.hitsDataSource else { return }
-      let sectionViewModel = try dataSource.hitsViewModel(atIndex: section) as HitsViewModel<Hit>
-      guard let hit = sectionViewModel.hitForRow(atIndex: row) else {
+  public func setClickHandler<Hit: Codable>(forSection section: Int, _ clickHandler: @escaping TableViewClickHandler<Hit>) {
+    clickHandlers[section] = { [weak self] (tableView, row) in
+      guard let dataSource = self?.hitsSource else { return }
+      let sectionViewModel = try dataSource.hitsViewModel(forSection: section) as HitsViewModel<Hit>
+      guard let hit = sectionViewModel.hit(atIndex: row) else {
         assertionFailure("Invalid state: Attempt to process a click of a cell for a missing hit in a hits ViewModel")
         return
       }
-      clickHandler(hit)
+      clickHandler(tableView, hit, IndexPath(row: row, section: section))
     }
   }
   
@@ -102,7 +102,7 @@ extension TableViewMultiHitsDelegate: UITableViewDelegate {
   
   public func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
     do {
-      try clickHandlers[indexPath.section]?(indexPath.row)
+      try clickHandlers[indexPath.section]?(tableView, indexPath.row)
     } catch let error {
       fatalError("\(error)")
     }
@@ -110,29 +110,29 @@ extension TableViewMultiHitsDelegate: UITableViewDelegate {
   
 }
 
-class TableViewMultiHitsWidget: NSObject, MultiHitsWidget {
+public class TableViewMultiHitsWidget: NSObject, MultiHitsWidget {
   
-  typealias SingleHitView = UITableViewCell
+  public typealias SingleHitView = UITableViewCell
   
   public let tableView: UITableView
   
   public weak var viewModel: MultiHitsViewModel? {
     didSet {
-      dataSource?.hitsDataSource = viewModel
-      delegate?.hitsDataSource = viewModel
+      dataSource?.hitsSource = viewModel
+      delegate?.hitsSource = viewModel
     }
   }
   
   public var dataSource: TableViewMultiHitsDataSource? {
     didSet {
-      dataSource?.hitsDataSource = viewModel
+      dataSource?.hitsSource = viewModel
       tableView.dataSource = dataSource
     }
   }
   
   public var delegate: TableViewMultiHitsDelegate? {
     didSet {
-      delegate?.hitsDataSource = viewModel
+      delegate?.hitsSource = viewModel
       tableView.delegate = delegate
     }
   }
