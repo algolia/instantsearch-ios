@@ -17,18 +17,18 @@ public typealias CollectionViewClickHandler<Hit> = HitClickHandler<UICollectionV
 open class CollectionViewHitsDataSource<DataSource: HitsSource>: NSObject, UICollectionViewDataSource {
   
   public var cellConfigurator: CollectionViewCellConfigurator<DataSource.Record>
-  public weak var hitsDataSource: DataSource?
+  public weak var hitsSource: DataSource?
   
   public init(cellConfigurator: @escaping CollectionViewCellConfigurator<DataSource.Record>) {
     self.cellConfigurator = cellConfigurator
   }
   
   public func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-    return hitsDataSource?.numberOfHits() ?? 0
+    return hitsSource?.numberOfHits() ?? 0
   }
   
   public func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
-    guard let hit = hitsDataSource?.hit(atIndex: indexPath.row) else {
+    guard let hit = hitsSource?.hit(atIndex: indexPath.row) else {
       return UICollectionViewCell()
     }
     return cellConfigurator(collectionView, hit, indexPath)
@@ -39,14 +39,14 @@ open class CollectionViewHitsDataSource<DataSource: HitsSource>: NSObject, UICol
 open class HitsCollectionViewDelegate<DataSource: HitsSource>: NSObject, UICollectionViewDelegate {
   
   public var clickHandler: CollectionViewClickHandler<DataSource.Record>
-  public weak var hitsDataSource: DataSource?
+  public weak var hitsSource: DataSource?
   
   public init(clickHandler: @escaping CollectionViewClickHandler<DataSource.Record>) {
     self.clickHandler = clickHandler
   }
   
   public func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
-    guard let hit = hitsDataSource?.hit(atIndex: indexPath.row) else {
+    guard let hit = hitsSource?.hit(atIndex: indexPath.row) else {
       return
     }
     clickHandler(collectionView, hit, indexPath)
@@ -65,14 +65,14 @@ public class CollectionViewHitsWidget<Hit: Codable>: NSObject, HitsWidget {
 
   private var dataSource: CollectionViewHitsDataSource<ViewModel>? {
     didSet {
-      dataSource?.hitsDataSource = viewModel
+      dataSource?.hitsSource = viewModel
       collectionView.dataSource = dataSource
     }
   }
   
   private var delegate: HitsCollectionViewDelegate<ViewModel>? {
     didSet {
-      delegate?.hitsDataSource = viewModel
+      delegate?.hitsSource = viewModel
       collectionView.delegate = delegate
     }
   }

@@ -10,7 +10,7 @@ import InstantSearchCore
 import Foundation
 import XCTest
 
-class TestHitsDataSource: HitsDataSource {
+class TestHitsSource: HitsSource {
   
   typealias Hit = String
 
@@ -20,12 +20,12 @@ class TestHitsDataSource: HitsDataSource {
     self.hits = hits
   }
   
-  func numberOfRows() -> Int {
+  func numberOfHits() -> Int {
     return hits.count
   }
   
-  func hitForRow(atIndex rowIndex: Int) -> String? {
-    return hits[rowIndex]
+  func hit(atIndex index: Int) -> String? {
+    return hits[index]
   }
   
 }
@@ -36,15 +36,15 @@ class TableViewHitsWidgetTests: XCTestCase {
     
     let tableView = UITableView()
     
-    let dataSource = TableViewHitsDataSource<TestHitsDataSource> { hit -> UITableViewCell in
+    let dataSource = TableViewHitsDataSource<TestHitsSource> { (_, hit, _) -> UITableViewCell in
       let cell = UITableViewCell()
       cell.textLabel?.text = hit
       return cell
     }
     
-    let hitsDataSource = TestHitsDataSource(hits: ["t1", "t2", "t3"])
+    let hitsDataSource = TestHitsSource(hits: ["t1", "t2", "t3"])
     
-    dataSource.dataSource = hitsDataSource
+    dataSource.hitsSource = hitsDataSource
     
     XCTAssertEqual(dataSource.tableView(tableView, numberOfRowsInSection: 0), 3)
     XCTAssertEqual(dataSource.tableView(tableView, cellForRowAt: IndexPath(row: 1, section: 0)).textLabel?.text, "t2")
@@ -57,16 +57,16 @@ class TableViewHitsWidgetTests: XCTestCase {
     
     let rowToSelect = 2
     
-    let hitsDataSource = TestHitsDataSource(hits: ["t1", "t2", "t3"])
+    let hitsDataSource = TestHitsSource(hits: ["t1", "t2", "t3"])
     
     let exp = expectation(description: "Hit selection")
     
-    let delegate = TableViewHitsDelegate<TestHitsDataSource> { hit in
+    let delegate = TableViewHitsDelegate<TestHitsSource> { (_, hit, _) in
       XCTAssertEqual(hit, hitsDataSource.hits[rowToSelect])
       exp.fulfill()
     }
 
-    delegate.dataSource = hitsDataSource
+    delegate.hitsSource = hitsDataSource
     
     delegate.tableView(tableView, didSelectRowAt: IndexPath(row: rowToSelect, section: 0))
     
@@ -80,17 +80,17 @@ class TableViewHitsWidgetTests: XCTestCase {
     
     let vm = HitsViewModel<String>()
         
-    let dataSource = TableViewHitsDataSource<HitsViewModel<String>> { hit -> UITableViewCell in
+    let dataSource = TableViewHitsDataSource<HitsViewModel<String>> { (_, hit, _) -> UITableViewCell in
       let cell = UITableViewCell()
       cell.textLabel?.text = hit
       return cell
     }
     
-    dataSource.dataSource = vm
+    dataSource.hitsSource = vm
     
-    let delegate = TableViewHitsDelegate<HitsViewModel<String>> { _ in }
+    let delegate = TableViewHitsDelegate<HitsViewModel<String>> { (_, _, _) in }
     
-    delegate.dataSource = vm
+    delegate.hitsSource = vm
     
     let widget = TableViewHitsWidget<String>(tableView: tableView)
     

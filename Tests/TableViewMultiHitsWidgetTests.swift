@@ -10,7 +10,7 @@ import InstantSearchCore
 import Foundation
 import XCTest
 
-class TestMultiHitsDataSource: MultiHitsDataSource {
+class TestMultiHitsDataSource: MultiHitsSource {
   
   let hitsBySection: [[String]]
   
@@ -22,11 +22,11 @@ class TestMultiHitsDataSource: MultiHitsDataSource {
     return hitsBySection.count
   }
   
-  func numberOfRows(inSection section: Int) -> Int {
+  func numberOfHits(inSection section: Int) -> Int {
     return hitsBySection[section].count
   }
   
-  func hitsViewModel<R>(atIndex index: Int) throws -> HitsViewModel<R> where R : Decodable, R : Encodable {
+  func hitsViewModel<R>(forSection index: Int) throws -> HitsViewModel<R> where R : Decodable, R : Encodable {
     return HitsViewModel<R>()
   }
   
@@ -40,13 +40,13 @@ class TableViewMultiHitsWidgetTests: XCTestCase {
     
     let dataSource = TableViewMultiHitsDataSource()
     
-    dataSource.setCellConfigurator(forSection: 0) { (h: String) -> UITableViewCell in
+    dataSource.setCellConfigurator(forSection: 0) { (_, h: String, _) -> UITableViewCell in
       let cell = UITableViewCell()
       cell.textLabel?.text = h
       return cell
     }
     
-    dataSource.dataSource = hitsSource
+    dataSource.hitsSource = hitsSource
     
     let tableView = UITableView()
     
@@ -60,7 +60,7 @@ class TableViewMultiHitsWidgetTests: XCTestCase {
     let hitsSource = TestMultiHitsDataSource(hitsBySection: [["t11", "t12"], ["t21", "t22", "t23"]])
     
     let delegate = TableViewMultiHitsDelegate()
-    delegate.dataSource = hitsSource
+    delegate.hitsSource = hitsSource
     
   }
   
