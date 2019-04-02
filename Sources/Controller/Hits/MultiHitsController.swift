@@ -11,7 +11,7 @@ import InstantSearchCore
 
 public class MultiHitsController<HitsWidget: MultiHitsWidget>: NSObject {
   
-  private(set) var searcher: MultiIndexSearcher
+  public let searcher: MultiIndexSearcher
   public let viewModel: MultiHitsViewModel
   public weak var widget: HitsWidget?
   public let onError: Observer<Error>
@@ -45,7 +45,7 @@ public class MultiHitsController<HitsWidget: MultiHitsWidget>: NSObject {
   public func register<Record: Codable>(_ indexSearchData: IndexSearchData, with recordType: Record.Type) {
     let hitsViewModel = HitsViewModel<Record>()
     viewModel.append(hitsViewModel)
-    searcher = MultiIndexSearcher(client: searcher.client, indexSearchDatas: searcher.indexSearchDatas + [indexSearchData])
+    searcher.indexSearchDatas.append(indexSearchData)
   }
   
   public func searchWithQueryText(_ queryText: String) {
