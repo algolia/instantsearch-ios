@@ -58,8 +58,6 @@ public class TableViewHitsWidget<Hit: Codable>: NSObject, HitsWidget {
   
   public typealias ViewModel = HitsViewModel<Hit>
   
-  public typealias SingleHitView = UITableViewCell
-  
   public let tableView: UITableView
   
   public weak var viewModel: ViewModel? {

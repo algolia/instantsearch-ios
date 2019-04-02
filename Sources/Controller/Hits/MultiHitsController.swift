@@ -8,27 +8,6 @@
 
 import Foundation
 import InstantSearchCore
-import UIKit
-
-public protocol MultiHitsSource: class {
-    
-  func numberOfSections() -> Int
-  func numberOfHits(inSection section: Int) -> Int
-  func hit<R: Codable>(atIndex index: Int, inSection section: Int) throws -> R?
-  
-}
-
-extension MultiHitsViewModel: MultiHitsSource {}
-
-public protocol MultiHitsWidget: class {
-    
-  var viewModel: MultiHitsViewModel? { get set }
-  
-  func reload()
-  
-  func scrollToTop()
-  
-}
 
 public class MultiHitsController<HitsWidget: MultiHitsWidget>: NSObject {
   

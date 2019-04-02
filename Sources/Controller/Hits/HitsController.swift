@@ -8,33 +8,9 @@
 
 import Foundation
 import InstantSearchCore
-import UIKit
 
 public typealias HitViewConfigurator<HitsView, SingleHitView, Hit> = (HitsView, Hit, IndexPath) -> SingleHitView
 public typealias HitClickHandler<HitsView, Hit> = (HitsView, Hit, IndexPath) -> Void
-
-public protocol HitsSource: class {
-  
-  associatedtype Record: Codable
-  
-  func numberOfHits() -> Int
-  func hit(atIndex index: Int) -> Record?
-  
-}
-
-extension HitsViewModel: HitsSource {}
-
-public protocol HitsWidget: class {
-  
-  associatedtype Hit: Codable
-  
-  var viewModel: HitsViewModel<Hit>? { get set }
-  
-  func reload()
-  
-  func scrollToTop()
-  
-}
 
 public class HitsController<Widget: HitsWidget>: NSObject {
   

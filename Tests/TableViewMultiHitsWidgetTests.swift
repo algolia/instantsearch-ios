@@ -26,8 +26,8 @@ class TestMultiHitsDataSource: MultiHitsSource {
     return hitsBySection[section].count
   }
   
-  func hitsViewModel<R>(forSection index: Int) throws -> HitsViewModel<R> where R : Decodable, R : Encodable {
-    return HitsViewModel<R>()
+  func hit<R: Codable>(atIndex index: Int, inSection section: Int) throws -> R? {
+    return hitsBySection[section][index] as? R
   }
   
 }

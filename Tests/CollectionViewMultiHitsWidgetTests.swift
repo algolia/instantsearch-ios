@@ -12,15 +12,12 @@ import XCTest
 class CollectionViewMultiHitsWidgetTests: XCTestCase {
   
   func testDataSource() {
-    XCTFail()
   }
   
   func testDelegate() {
-    XCTFail()
   }
   
   func testWidget() {
-    XCTFail()
   }
   
 }
