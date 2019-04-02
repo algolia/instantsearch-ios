@@ -14,18 +14,14 @@ public protocol MultiHitsSource: class {
     
   func numberOfSections() -> Int
   func numberOfHits(inSection section: Int) -> Int
-  func hitsViewModel<R>(forSection section: Int) throws -> HitsViewModel<R>
+  func hit<R: Codable>(atIndex index: Int, inSection section: Int) throws -> R?
   
 }
 
-extension MultiHitsViewModel: MultiHitsSource {
-
-}
+extension MultiHitsViewModel: MultiHitsSource {}
 
 public protocol MultiHitsWidget: class {
-  
-  associatedtype SingleHitView
-  
+    
   var viewModel: MultiHitsViewModel? { get set }
   
   func reload()
@@ -39,19 +35,19 @@ public class MultiHitsController<HitsWidget: MultiHitsWidget>: NSObject {
   private(set) var searcher: MultiIndexSearcher
   public let viewModel: MultiHitsViewModel
   public weak var widget: HitsWidget?
-  public var errorHandler: ((Error) -> Void)?
+  public let onError: Observer<Error>
 
   public init(client: Client, widget: HitsWidget, viewModel: MultiHitsViewModel = MultiHitsViewModel()) {
     self.searcher = MultiIndexSearcher(client: client, indexSearchDatas: [])
     self.viewModel = viewModel
     self.widget = widget
-    
+    self.onError = Observer<Error>()
     super.init()
     
     self.searcher.onSearchResults.subscribe(with: self) { [weak self] result in
       switch result {
       case .failure(let error):
-        self?.errorHandler?(error)
+        self?.onError.fire(error)
         
       case .success(let results):
         do {
@@ -73,38 +69,10 @@ public class MultiHitsController<HitsWidget: MultiHitsWidget>: NSObject {
     searcher = MultiIndexSearcher(client: searcher.client, indexSearchDatas: searcher.indexSearchDatas + [indexSearchData])
   }
   
-}
-
-extension Playground {
-  
-  func multihitsPlay() {
-    
-    let client = Client(appID: "app id", apiKey: "api key")
-    
-    let indexSearchDatas = [
-      IndexSearchData(index: client.index(withName: "index1")),
-      IndexSearchData(index: client.index(withName: "index2")),
-      IndexSearchData(index: client.index(withName: "index3"))
-    ]
-    
-    let tableView = UITableView()
-    let widget = TableViewMultiHitsWidget(tableView: tableView)
-    
-    let dataSource = TableViewMultiHitsDataSource()
-    
-    dataSource.setCellConfigurator(forSection: 0) { (_, _: JSON, _) in return UITableViewCell() }
-    dataSource.setCellConfigurator(forSection: 1) { (_, _: [String: Int], _) in return UITableViewCell() }
-
-    let delegate = TableViewMultiHitsDelegate()
-    
-    delegate.setClickHandler(forSection: 0) { (_, _: JSON, _) in print("click") }
-    delegate.setClickHandler(forSection: 1) { (_, _: [String: Int], _) in print("click") }
-    
-    let controller = MultiHitsController(client: client, widget: widget)
-    
-    controller.viewModel.insert(hitsViewModel: HitsViewModel<[String: Int]>(), inSection: 0)
-    controller.viewModel.insert(hitsViewModel: HitsViewModel<JSON>(), inSection: 1)
-
+  public func searchWithQueryText(_ queryText: String) {
+    searcher.setQuery(text: queryText)
+    searcher.indexSearchDatas.forEach { $0.query.page = 0 }
+    searcher.search()
   }
   
 }

@@ -26,7 +26,6 @@ extension HitsViewModel: HitsSource {}
 
 public protocol HitsWidget: class {
   
-  associatedtype SingleHitView
   associatedtype Hit: Codable
   
   var viewModel: HitsViewModel<Hit>? { get set }
@@ -73,7 +72,7 @@ public class HitsController<Widget: HitsWidget>: NSObject {
     }.onQueue(.main)
     
     viewModel.onNewPage.subscribe(with: self) { [weak self] page in
-      self?.searcher.query.page = UInt(page)
+      self?.searcher.indexSearchData.query.page = UInt(page)
       self?.searcher.search()
     }
     
@@ -81,35 +80,8 @@ public class HitsController<Widget: HitsWidget>: NSObject {
   
   public func searchWithQueryText(_ queryText: String) {
     searcher.setQuery(text: queryText)
-    searcher.query.page = 0
+    searcher.indexSearchData.query.page = 0
     searcher.search()
-  }
-  
-}
-
-struct Playground {
-  
-  func play() {
-    
-    let tableView = UITableView()
-    
-    let widget = TableViewHitsWidget<JSON>(tableView: tableView)
-    
-    widget.dataSource = TableViewHitsDataSource { (_, hit, _
-      ) -> UITableViewCell in
-      let cell = tableView.dequeueReusableCell(withIdentifier: "id")!
-      cell.textLabel?.text = [String: Any](hit)?["name"] as? String
-      return cell
-    }
-
-    widget.delegate = TableViewHitsDelegate { (_, hit, _) in
-      let name = [String: Any](hit)!["name"] as! String
-      print("Name: \(name)")
-    }
-    
-    let index = Client(appID: "appID", apiKey: "apiKey").index(withName: "index")
-    _ = HitsController(index: index, widget: widget)
-    
   }
   
 }
