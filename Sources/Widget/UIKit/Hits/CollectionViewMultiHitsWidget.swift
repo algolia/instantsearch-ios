@@ -42,21 +42,21 @@ open class CollectionViewMultiHitsDataSource: NSObject {
 
 extension CollectionViewMultiHitsDataSource: UICollectionViewDataSource {
   
-  public func numberOfSections(in collectionView: UICollectionView) -> Int {
+  open func numberOfSections(in collectionView: UICollectionView) -> Int {
     guard let numberOfSections = hitsDataSource?.numberOfSections() else {
       return 0
     }
     return numberOfSections
   }
   
-  public func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
+  open func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
     guard let numberOfRows = hitsDataSource?.numberOfHits(inSection: section) else {
       return 0
     }
     return numberOfRows
   }
   
-  public func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
+  open func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
     do {
       return try cellConfigurators[indexPath.section]?(collectionView, indexPath.row) ?? UICollectionViewCell()
     } catch let error {
@@ -97,7 +97,7 @@ open class CollectionViewMultiHitsDelegate: NSObject {
 
 extension CollectionViewMultiHitsDelegate: UICollectionViewDelegate {
   
-  public func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
+  open func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
     do {
       try clickHandlers[indexPath.section]?(collectionView, indexPath.row)
     } catch let error {

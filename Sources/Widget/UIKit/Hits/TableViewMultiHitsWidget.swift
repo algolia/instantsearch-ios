@@ -41,21 +41,21 @@ open class TableViewMultiHitsDataSource: NSObject {
 
 extension TableViewMultiHitsDataSource: UITableViewDataSource {
   
-  public func numberOfSections(in tableView: UITableView) -> Int {
+  open func numberOfSections(in tableView: UITableView) -> Int {
     guard let numberOfSections = hitsSource?.numberOfSections() else {
       return 0
     }
     return numberOfSections
   }
   
-  public func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+  open func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
     guard let numberOfRows = hitsSource?.numberOfHits(inSection: section) else {
       return 0
     }
     return numberOfRows
   }
   
-  public func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+  open func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
     do {
       return try cellConfigurators[indexPath.section]?(tableView, indexPath.row) ?? UITableViewCell()
     } catch let error {
@@ -96,7 +96,7 @@ open class TableViewMultiHitsDelegate: NSObject {
 
 extension TableViewMultiHitsDelegate: UITableViewDelegate {
   
-  public func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+  open func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
     do {
       try clickHandlers[indexPath.section]?(tableView, indexPath.row)
     } catch let error {
