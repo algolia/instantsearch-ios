@@ -29,7 +29,7 @@ import UIKit
     @objc public weak var collectionDataSource: HitsCollectionViewDataSource?
     
     /// Delegate that takes care of the behavior of the collection hits widget.
-    @objc public weak var collectionDelegate: HitsCollectionViewDelegate?
+    @objc public weak var     collectionDelegate: HitsCollectionViewDelegate?
     
     @objc convenience public init(table: HitsTableWidget) {
         self.init(hitsView: table)

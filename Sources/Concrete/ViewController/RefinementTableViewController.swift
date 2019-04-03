@@ -44,25 +44,25 @@ import UIKit
     
     public func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         guard let tableView = tableView as? RefinementTableWidget,
-            let index = self.refinementTableViews.index(of: tableView) else { return 0 }
+          let index = self.refinementTableViews.firstIndex(of: tableView) else { return 0 }
         return self.refinementControllers[index].tableView(tableView, numberOfRowsInSection: section)
     }
     
     public func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         guard let tableView = tableView as? RefinementTableWidget,
-            let index = self.refinementTableViews.index(of: tableView) else { return UITableViewCell() }
+          let index = self.refinementTableViews.firstIndex(of: tableView) else { return UITableViewCell() }
         return self.refinementControllers[index].tableView(tableView, cellForRowAt: indexPath)
     }
     
     public func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         guard let tableView = tableView as? RefinementTableWidget,
-            let index = self.refinementTableViews.index(of: tableView) else { return }
+          let index = self.refinementTableViews.firstIndex(of: tableView) else { return }
         self.refinementControllers[index].tableView(tableView, didSelectRowAt: indexPath)
     }
     
     public func numberOfSections(in tableView: UITableView) -> Int {
         guard let tableView = tableView as? RefinementTableWidget,
-            let index = self.refinementTableViews.index(of: tableView) else { return 0 }
+          let index = self.refinementTableViews.firstIndex(of: tableView) else { return 0 }
         return self.refinementControllers[index].numberOfSections(in: tableView)
     }
     

@@ -45,28 +45,28 @@ import UIKit
     
     public func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
         guard let collectionView = collectionView as? HitsCollectionWidget,
-            let index = self.hitsCollectionViews.index(of: collectionView) else { return 0 }
+          let index = self.hitsCollectionViews.firstIndex(of: collectionView) else { return 0 }
         
         return self.hitsControllers[index].collectionView(collectionView, numberOfItemsInSection: section)
     }
     
     public func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         guard let collectionView = collectionView as? HitsCollectionWidget,
-            let index = self.hitsCollectionViews.index(of: collectionView) else { return UICollectionViewCell() }
+          let index = self.hitsCollectionViews.firstIndex(of: collectionView) else { return UICollectionViewCell() }
         
         return self.hitsControllers[index].collectionView(collectionView, cellForItemAt: indexPath)
     }
     
     public func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
         guard let collectionView = collectionView as? HitsCollectionWidget,
-            let index = self.hitsCollectionViews.index(of: collectionView) else { return }
+          let index = self.hitsCollectionViews.firstIndex(of: collectionView) else { return }
         
         return self.hitsControllers[index].collectionView(collectionView, didSelectItemAt: indexPath)
     }
     
     public func numberOfSections(in collectionView: UICollectionView) -> Int {
         guard let collectionView = collectionView as? HitsCollectionWidget,
-            let index = self.hitsCollectionViews.index(of: collectionView) else { return 0 }
+          let index = self.hitsCollectionViews.firstIndex(of: collectionView) else { return 0 }
         
         return self.hitsControllers[index].numberOfSections(in: collectionView)
     }
