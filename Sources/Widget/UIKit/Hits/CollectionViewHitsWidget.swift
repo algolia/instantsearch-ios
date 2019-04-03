@@ -23,11 +23,11 @@ open class CollectionViewHitsDataSource<DataSource: HitsSource>: NSObject, UICol
     self.cellConfigurator = cellConfigurator
   }
   
-  public func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
+  open func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
     return hitsSource?.numberOfHits() ?? 0
   }
   
-  public func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
+  open func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
     guard let hit = hitsSource?.hit(atIndex: indexPath.row) else {
       return UICollectionViewCell()
     }
@@ -45,7 +45,7 @@ open class CollectionViewHitsDelegate<DataSource: HitsSource>: NSObject, UIColle
     self.clickHandler = clickHandler
   }
   
-  public func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
+  open func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
     guard let hit = hitsSource?.hit(atIndex: indexPath.row) else {
       return
     }

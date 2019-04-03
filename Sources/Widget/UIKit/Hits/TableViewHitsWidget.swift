@@ -23,11 +23,11 @@ open class TableViewHitsDataSource<DataSource: HitsSource>: NSObject, UITableVie
     self.cellConfigurator = cellConfigurator
   }
   
-  public func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+  open func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
     return hitsSource?.numberOfHits() ?? 0
   }
   
-  public func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+  open func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
     guard let hit = hitsSource?.hit(atIndex: indexPath.row) else {
       return UITableViewCell()
     }
@@ -45,7 +45,7 @@ open class TableViewHitsDelegate<DataSource: HitsSource>: NSObject, UITableViewD
     self.clickHandler = clickHandler
   }
   
-  public func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+  open func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
     guard let hit = hitsSource?.hit(atIndex: indexPath.row) else {
       return
     }
