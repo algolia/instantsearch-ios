@@ -45,28 +45,28 @@ import UIKit
     
     public func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         guard let tableView = tableView as? HitsTableWidget,
-            let index = self.hitsTableViews.index(of: tableView) else { return 0 }
+          let index = self.hitsTableViews.firstIndex(of: tableView) else { return 0 }
         
         return self.hitsControllers[index].tableView(tableView, numberOfRowsInSection: section)
     }
     
     public func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         guard let tableView = tableView as? HitsTableWidget,
-            let index = self.hitsTableViews.index(of: tableView) else { return UITableViewCell() }
+          let index = self.hitsTableViews.firstIndex(of: tableView) else { return UITableViewCell() }
         
         return self.hitsControllers[index].tableView(tableView, cellForRowAt: indexPath)
     }
     
     public func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         guard let tableView = tableView as? HitsTableWidget,
-            let index = self.hitsTableViews.index(of: tableView) else { return }
+          let index = self.hitsTableViews.firstIndex(of: tableView) else { return }
         
         self.hitsControllers[index].tableView(tableView, didSelectRowAt: indexPath)
     }
     
     public func numberOfSections(in tableView: UITableView) -> Int {
         guard let tableView = tableView as? HitsTableWidget,
-            let index = self.hitsTableViews.index(of: tableView) else { return 0 }
+          let index = self.hitsTableViews.firstIndex(of: tableView) else { return 0 }
         
         return self.hitsControllers[index].numberOfSections(in: tableView)
     }
