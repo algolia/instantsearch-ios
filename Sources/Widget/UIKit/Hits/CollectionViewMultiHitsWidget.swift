@@ -113,23 +113,23 @@ public class CollectionViewMultiHitsWidget: NSObject, MultiHitsWidget {
   
   public let collectionView: UICollectionView
   
-  public weak var viewModel: MultiHitsViewModel? {
+  public weak var hitsSource: MultiHitsSource? {
     didSet {
-      dataSource?.hitsDataSource = viewModel
-      delegate?.hitsDataSource = viewModel
+      dataSource?.hitsDataSource = hitsSource
+      delegate?.hitsDataSource = hitsSource
     }
   }
   
   public var dataSource: CollectionViewMultiHitsDataSource? {
     didSet {
-      dataSource?.hitsDataSource = viewModel
+      dataSource?.hitsDataSource = hitsSource
       collectionView.dataSource = dataSource
     }
   }
   
   public var delegate: CollectionViewMultiHitsDelegate? {
     didSet {
-      delegate?.hitsDataSource = viewModel
+      delegate?.hitsDataSource = hitsSource
       collectionView.delegate = delegate
     }
   }

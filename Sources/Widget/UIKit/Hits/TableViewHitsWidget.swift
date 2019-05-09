@@ -12,7 +12,6 @@ import UIKit
 
 public typealias TableViewCellConfigurator<Hit> = HitViewConfigurator<UITableView, UITableViewCell, Hit>
 public typealias TableViewClickHandler<Hit> = HitClickHandler<UITableView, Hit>
-public typealias TableViewHitsController<Hit: Codable> = HitsController<TableViewHitsWidget<Hit>>
 
 open class TableViewHitsDataSource<DataSource: HitsSource>: NSObject, UITableViewDataSource {
   
@@ -54,29 +53,27 @@ open class TableViewHitsDelegate<DataSource: HitsSource>: NSObject, UITableViewD
   
 }
 
-public class TableViewHitsWidget<Hit: Codable>: NSObject, HitsWidget {
-  
-  public typealias ViewModel = HitsViewModel<Hit>
+public class TableViewHitsWidget<Source: HitsSource>: NSObject, HitsWidget {
   
   public let tableView: UITableView
   
-  public weak var viewModel: ViewModel? {
+  public weak var hitsSource: Source? {
     didSet {
-      dataSource?.hitsSource = viewModel
-      delegate?.hitsSource = viewModel
+      dataSource?.hitsSource = hitsSource
+      delegate?.hitsSource = hitsSource
     }
   }
   
-  public var dataSource: TableViewHitsDataSource<ViewModel>? {
+  public var dataSource: TableViewHitsDataSource<Source>? {
     didSet {
-      dataSource?.hitsSource = viewModel
+      dataSource?.hitsSource = hitsSource
       tableView.dataSource = dataSource
     }
   }
   
-  public var delegate: TableViewHitsDelegate<ViewModel>? {
+  public var delegate: TableViewHitsDelegate<Source>? {
     didSet {
-      delegate?.hitsSource = viewModel
+      delegate?.hitsSource = hitsSource
       tableView.delegate = delegate
     }
   }

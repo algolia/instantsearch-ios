@@ -10,7 +10,6 @@
 		28F828881C494B2C00330CF4 /* InstantSearch.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 28F8287D1C494B2C00330CF4 /* InstantSearch.framework */; };
 		AF3DE588224A991F00C8BC08 /* main.swift in Sources */ = {isa = PBXBuildFile; fileRef = AF3DE587224A991F00C8BC08 /* main.swift */; };
 		AF3DE590224A9B7A00C8BC08 /* MultiHitsController.swift in Sources */ = {isa = PBXBuildFile; fileRef = AF3DE58A224A9B7A00C8BC08 /* MultiHitsController.swift */; };
-		AF3DE591224A9B7A00C8BC08 /* HitsController.swift in Sources */ = {isa = PBXBuildFile; fileRef = AF3DE58B224A9B7A00C8BC08 /* HitsController.swift */; };
 		AF3DE593224A9B7A00C8BC08 /* TableViewHitsWidget.swift in Sources */ = {isa = PBXBuildFile; fileRef = AF3DE58D224A9B7A00C8BC08 /* TableViewHitsWidget.swift */; };
 		AF3DE594224A9B7A00C8BC08 /* TableViewMultiHitsWidget.swift in Sources */ = {isa = PBXBuildFile; fileRef = AF3DE58E224A9B7A00C8BC08 /* TableViewMultiHitsWidget.swift */; };
 		AF3DE597224AA00400C8BC08 /* CollectionViewHitsWidget.swift in Sources */ = {isa = PBXBuildFile; fileRef = AF3DE595224AA00400C8BC08 /* CollectionViewHitsWidget.swift */; };
@@ -21,6 +20,7 @@
 		AF3DE5C0224BBF7000C8BC08 /* CollectionViewMultiHitsWidgetTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = AF3DE5B3224BBECB00C8BC08 /* CollectionViewMultiHitsWidgetTests.swift */; };
 		AF6C6F772253C4B7001E5E3C /* HitsWidget.swift in Sources */ = {isa = PBXBuildFile; fileRef = AF6C6F762253C4B7001E5E3C /* HitsWidget.swift */; };
 		AF6C6F792253C4BF001E5E3C /* MultiHitsWidget.swift in Sources */ = {isa = PBXBuildFile; fileRef = AF6C6F782253C4BF001E5E3C /* MultiHitsWidget.swift */; };
+		AFEBED5A2284887200974108 /* HitsController.swift in Sources */ = {isa = PBXBuildFile; fileRef = AF3DE58B224A9B7A00C8BC08 /* HitsController.swift */; };
 		E27B67E41ED339290001FFA7 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = E27B67E31ED339290001FFA7 /* AppDelegate.swift */; };
 		E27B67E61ED339290001FFA7 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E27B67E51ED339290001FFA7 /* ViewController.swift */; };
 		E27B67E91ED339290001FFA7 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = E27B67E71ED339290001FFA7 /* Main.storyboard */; };
@@ -409,9 +409,9 @@
 				AF3DE588224A991F00C8BC08 /* main.swift in Sources */,
 				AF3DE594224A9B7A00C8BC08 /* TableViewMultiHitsWidget.swift in Sources */,
 				AF3DE597224AA00400C8BC08 /* CollectionViewHitsWidget.swift in Sources */,
+				AFEBED5A2284887200974108 /* HitsController.swift in Sources */,
 				AF3DE593224A9B7A00C8BC08 /* TableViewHitsWidget.swift in Sources */,
 				AF3DE590224A9B7A00C8BC08 /* MultiHitsController.swift in Sources */,
-				AF3DE591224A9B7A00C8BC08 /* HitsController.swift in Sources */,
 				AF3DE598224AA00400C8BC08 /* CollectionViewMultiHitsWidget.swift in Sources */,
 				AF6C6F792253C4BF001E5E3C /* MultiHitsWidget.swift in Sources */,
 				AF6C6F772253C4B7001E5E3C /* HitsWidget.swift in Sources */,

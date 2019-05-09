@@ -12,7 +12,6 @@ import UIKit
 
 public typealias CollectionViewCellConfigurator<Hit> = HitViewConfigurator<UICollectionView, UICollectionViewCell, Hit>
 public typealias CollectionViewClickHandler<Hit> = HitClickHandler<UICollectionView, Hit>
-public typealias CollectionViewHitsController<Hit: Codable> = HitsController<CollectionViewHitsWidget<Hit>>
 
 open class CollectionViewHitsDataSource<DataSource: HitsSource>: NSObject, UICollectionViewDataSource {
   
@@ -54,24 +53,22 @@ open class CollectionViewHitsDelegate<DataSource: HitsSource>: NSObject, UIColle
 
 }
 
-public class CollectionViewHitsWidget<Hit: Codable>: NSObject, HitsWidget {
-  
-  public typealias ViewModel = HitsViewModel<Hit>
+public class CollectionViewHitsWidget<Source: HitsSource>: NSObject, HitsWidget {
   
   public let collectionView: UICollectionView
   
-  public weak var viewModel: ViewModel?
+  public weak var hitsSource: Source?
 
-  private var dataSource: CollectionViewHitsDataSource<ViewModel>? {
+  private var dataSource: CollectionViewHitsDataSource<Source>? {
     didSet {
-      dataSource?.hitsSource = viewModel
+      dataSource?.hitsSource = hitsSource
       collectionView.dataSource = dataSource
     }
   }
   
-  private var delegate: CollectionViewHitsDelegate<ViewModel>? {
+  private var delegate: CollectionViewHitsDelegate<Source>? {
     didSet {
-      delegate?.hitsSource = viewModel
+      delegate?.hitsSource = hitsSource
       collectionView.delegate = delegate
     }
   }

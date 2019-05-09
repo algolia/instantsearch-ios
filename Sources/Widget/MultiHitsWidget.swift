@@ -10,7 +10,7 @@ import InstantSearchCore
 
 public protocol MultiHitsWidget: class {
   
-  var viewModel: MultiHitsViewModel? { get set }
+  var hitsSource: MultiHitsSource? { get set }
   
   func reload()
   

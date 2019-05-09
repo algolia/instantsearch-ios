@@ -112,23 +112,23 @@ public class TableViewMultiHitsWidget: NSObject, MultiHitsWidget {
   
   public let tableView: UITableView
   
-  public weak var viewModel: MultiHitsViewModel? {
+  public weak var hitsSource: MultiHitsSource? {
     didSet {
-      dataSource?.hitsSource = viewModel
-      delegate?.hitsSource = viewModel
+      dataSource?.hitsSource = hitsSource
+      delegate?.hitsSource = hitsSource
     }
   }
   
   public var dataSource: TableViewMultiHitsDataSource? {
     didSet {
-      dataSource?.hitsSource = viewModel
+      dataSource?.hitsSource = hitsSource
       tableView.dataSource = dataSource
     }
   }
   
   public var delegate: TableViewMultiHitsDelegate? {
     didSet {
-      delegate?.hitsSource = viewModel
+      delegate?.hitsSource = hitsSource
       tableView.delegate = delegate
     }
   }

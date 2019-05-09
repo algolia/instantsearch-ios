@@ -10,9 +10,9 @@ import InstantSearchCore
 
 public protocol HitsWidget: class {
   
-  associatedtype Hit: Codable
+  associatedtype DataSource: HitsSource
   
-  var viewModel: HitsViewModel<Hit>? { get set }
+  var hitsSource: DataSource? { get set }
   
   func reload()
   

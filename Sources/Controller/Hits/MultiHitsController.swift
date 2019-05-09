@@ -38,7 +38,7 @@ public class MultiHitsController<HitsWidget: MultiHitsWidget>: NSObject {
       self?.widget?.reload()
     }.onQueue(.main)
     
-    self.widget?.viewModel = viewModel
+    self.widget?.hitsSource = viewModel
     
   }
   

@@ -12,29 +12,27 @@ import InstantSearchCore
 public typealias HitViewConfigurator<HitsView, SingleHitView, Hit> = (HitsView, Hit, IndexPath) -> SingleHitView
 public typealias HitClickHandler<HitsView, Hit> = (HitsView, Hit, IndexPath) -> Void
 
-public class HitsController<Widget: HitsWidget>: NSObject {
-  
-  public let searcher: SingleIndexSearcher<Widget.Hit>
-  public let viewModel: HitsViewModel<Widget.Hit>
-  public weak var widget: Widget?
+public class HitsController<Record: Codable>: NSObject {
+
+  public let searcher: SingleIndexSearcher<Record>
+  public let viewModel: HitsViewModel<Record>
   public let onError: Observer<Error>
-    
-  public init(searcher: SingleIndexSearcher<Widget.Hit>, viewModel: HitsViewModel<Widget.Hit>, widget: Widget) {
+
+  public init<Widget: HitsWidget>(searcher: SingleIndexSearcher<Record>, viewModel: HitsViewModel<Record>, widget: Widget) where Widget.DataSource == HitsViewModel<Record> {
     self.searcher = searcher
     self.viewModel = viewModel
-    self.widget = widget
     self.onError = Observer<Error>()
-    self.widget?.viewModel = viewModel
+    widget.hitsSource = viewModel
   }
   
-  public convenience init(index: Index, widget: Widget) {
+  public convenience init<Widget: HitsWidget>(index: Index, widget: Widget) where Widget.DataSource == HitsViewModel<Record> {
     let query = Query()
     let filterBuilder = FilterBuilder()
-    let searcher = SingleIndexSearcher<Widget.Hit>(index: index, query: query, filterBuilder: filterBuilder)
+    let searcher = SingleIndexSearcher<Record>(index: index, query: query, filterBuilder: filterBuilder)
 
-    let viewModel = HitsViewModel<Widget.Hit>()
+    let viewModel = HitsViewModel<Record>()
     self.init(searcher: searcher, viewModel: viewModel, widget: widget)
-  
+
     searcher.onSearchResults.subscribe(with: self) { [weak self] (arg) in
       let (metadata, result) = arg
       switch result {
@@ -46,12 +44,12 @@ public class HitsController<Widget: HitsWidget>: NSObject {
         self?.onError.fire(error)
       }
     }.onQueue(.main)
-    
+
     viewModel.onNewPage.subscribe(with: self) { [weak self] page in
       self?.searcher.indexSearchData.query.page = UInt(page)
       self?.searcher.search()
     }
-    
+
   }
   
   public func searchWithQueryText(_ queryText: String) {
