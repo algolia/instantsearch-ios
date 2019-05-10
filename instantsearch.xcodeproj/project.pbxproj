@@ -21,6 +21,8 @@
 		AF6C6F772253C4B7001E5E3C /* HitsWidget.swift in Sources */ = {isa = PBXBuildFile; fileRef = AF6C6F762253C4B7001E5E3C /* HitsWidget.swift */; };
 		AF6C6F792253C4BF001E5E3C /* MultiHitsWidget.swift in Sources */ = {isa = PBXBuildFile; fileRef = AF6C6F782253C4BF001E5E3C /* MultiHitsWidget.swift */; };
 		AFEBED5A2284887200974108 /* HitsController.swift in Sources */ = {isa = PBXBuildFile; fileRef = AF3DE58B224A9B7A00C8BC08 /* HitsController.swift */; };
+		AFEBED5C2285751A00974108 /* HitsSource.swift in Sources */ = {isa = PBXBuildFile; fileRef = AFEBED5B2285751A00974108 /* HitsSource.swift */; };
+		AFEBED5E2285753D00974108 /* MultiHitsSource.swift in Sources */ = {isa = PBXBuildFile; fileRef = AFEBED5D2285753D00974108 /* MultiHitsSource.swift */; };
 		E27B67E41ED339290001FFA7 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = E27B67E31ED339290001FFA7 /* AppDelegate.swift */; };
 		E27B67E61ED339290001FFA7 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E27B67E51ED339290001FFA7 /* ViewController.swift */; };
 		E27B67E91ED339290001FFA7 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = E27B67E71ED339290001FFA7 /* Main.storyboard */; };
@@ -65,6 +67,8 @@
 		AF3DE5B3224BBECB00C8BC08 /* CollectionViewMultiHitsWidgetTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CollectionViewMultiHitsWidgetTests.swift; sourceTree = "<group>"; };
 		AF6C6F762253C4B7001E5E3C /* HitsWidget.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HitsWidget.swift; sourceTree = "<group>"; };
 		AF6C6F782253C4BF001E5E3C /* MultiHitsWidget.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MultiHitsWidget.swift; sourceTree = "<group>"; };
+		AFEBED5B2285751A00974108 /* HitsSource.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HitsSource.swift; sourceTree = "<group>"; };
+		AFEBED5D2285753D00974108 /* MultiHitsSource.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MultiHitsSource.swift; sourceTree = "<group>"; };
 		E21DE94E1F2F7DB400EFC4F5 /* InstantSearchCore.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = InstantSearchCore.framework; path = Carthage/Build/iOS/InstantSearchCore.framework; sourceTree = "<group>"; };
 		E21DE9501F2F7DCA00EFC4F5 /* AlgoliaSearch.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AlgoliaSearch.framework; path = Carthage/Build/iOS/AlgoliaSearch.framework; sourceTree = "<group>"; };
 		E25FB0A21ECF550C006B8CED /* Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
@@ -166,8 +170,10 @@
 			isa = PBXGroup;
 			children = (
 				AF6C6F7E2253C5CD001E5E3C /* UIKit */,
+				AFEBED5B2285751A00974108 /* HitsSource.swift */,
 				AF6C6F762253C4B7001E5E3C /* HitsWidget.swift */,
 				AF6C6F782253C4BF001E5E3C /* MultiHitsWidget.swift */,
+				AFEBED5D2285753D00974108 /* MultiHitsSource.swift */,
 			);
 			path = Widget;
 			sourceTree = "<group>";
@@ -412,8 +418,10 @@
 				AFEBED5A2284887200974108 /* HitsController.swift in Sources */,
 				AF3DE593224A9B7A00C8BC08 /* TableViewHitsWidget.swift in Sources */,
 				AF3DE590224A9B7A00C8BC08 /* MultiHitsController.swift in Sources */,
+				AFEBED5E2285753D00974108 /* MultiHitsSource.swift in Sources */,
 				AF3DE598224AA00400C8BC08 /* CollectionViewMultiHitsWidget.swift in Sources */,
 				AF6C6F792253C4BF001E5E3C /* MultiHitsWidget.swift in Sources */,
+				AFEBED5C2285751A00974108 /* HitsSource.swift in Sources */,
 				AF6C6F772253C4B7001E5E3C /* HitsWidget.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

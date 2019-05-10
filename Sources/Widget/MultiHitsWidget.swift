@@ -6,7 +6,6 @@
 //
 
 import Foundation
-import InstantSearchCore
 
 public protocol MultiHitsWidget: class {
   
@@ -17,13 +16,3 @@ public protocol MultiHitsWidget: class {
   func scrollToTop()
   
 }
-
-public protocol MultiHitsSource: class {
-  
-  func numberOfSections() -> Int
-  func numberOfHits(inSection section: Int) -> Int
-  func hit<R: Codable>(atIndex index: Int, inSection section: Int) throws -> R?
-  
-}
-
-extension MultiHitsViewModel: MultiHitsSource {}

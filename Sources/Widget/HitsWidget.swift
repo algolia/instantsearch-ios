@@ -20,13 +20,4 @@ public protocol HitsWidget: class {
   
 }
 
-public protocol HitsSource: class {
-  
-  associatedtype Record: Codable
-  
-  func numberOfHits() -> Int
-  func hit(atIndex index: Int) -> Record?
-  
-}
-
 extension HitsViewModel: HitsSource {}
