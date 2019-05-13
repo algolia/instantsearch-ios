@@ -21,3 +21,14 @@ public protocol HitsWidget: class {
 }
 
 extension HitsViewModel: HitsSource {}
+
+public extension HitsViewModel {
+  
+  func connectController<Controller: HitsWidget>(_ controller: Controller) where Controller.DataSource == HitsViewModel<Record> {
+    controller.hitsSource = self
+    onResultsUpdated.subscribe(with: controller) { _ in
+      controller.reload()
+    }
+  }
+  
+}

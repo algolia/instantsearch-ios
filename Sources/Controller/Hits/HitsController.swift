@@ -27,13 +27,13 @@ public class HitsController<Record: Codable>: NSObject {
   
   public convenience init<Widget: HitsWidget>(index: Index, widget: Widget) where Widget.DataSource == HitsViewModel<Record> {
     let query = Query()
-    let filterBuilder = FilterBuilder()
-    let searcher = SingleIndexSearcher<Record>(index: index, query: query, filterBuilder: filterBuilder)
+    let filterState = FilterState()
+    let searcher = SingleIndexSearcher<Record>(index: index, query: query, filterState: filterState)
 
     let viewModel = HitsViewModel<Record>()
     self.init(searcher: searcher, viewModel: viewModel, widget: widget)
 
-    searcher.onSearchResults.subscribe(with: self) { [weak self] (arg) in
+    searcher.onResultsChanged.subscribe(with: self) { [weak self] (arg) in
       let (metadata, result) = arg
       switch result {
       case .success(let searchResults):

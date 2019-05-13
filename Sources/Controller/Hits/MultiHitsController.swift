@@ -23,7 +23,7 @@ public class MultiHitsController<HitsWidget: MultiHitsWidget>: NSObject {
     self.onError = Observer<Error>()
     super.init()
     
-    self.searcher.onSearchResults.subscribe(with: self) { [weak self] result in
+    self.searcher.onResultsChanged.subscribe(with: self) { [weak self] result in
       switch result {
       case .failure(let error):
         self?.onError.fire(error)
