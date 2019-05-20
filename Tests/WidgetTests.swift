@@ -218,20 +218,6 @@ class WidgetTests: XCTestCase {
         }
     }
     
-    func testAddSlider_NoAttribute_FatalError() {
-        expectFatalError(expectedMessage: "you must assign a value to the attribute of a Numeric Control before adding it to InstantSearch") {
-            let slider = SliderWidget(frame: self.defaultRect)
-            self.instantSearch.register(widget: slider, doSearch: false)
-        }
-    }
-    
-    func testAddSwitch_NoAttribute_FatalError() {
-        expectFatalError(expectedMessage: "you must assign a value to the attribute of a Facet Control before adding it to InstantSearch") {
-            let oneValueSwitchWidget = OneValueSwitchWidget(frame: self.defaultRect)
-            self.instantSearch.register(widget: oneValueSwitchWidget)
-        }
-    }
-    
     func testAddRefinementMenu_InvalidOperator_FatalError() {
         expectFatalError(expectedMessage: "operator of RefinementMenu cannot be interpreted. Please chose one of: 'or', 'and'") {
             let refinementTableWidget = RefinementTableWidget(frame: self.defaultRect)
