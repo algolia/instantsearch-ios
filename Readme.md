@@ -74,6 +74,14 @@ $ pod update
 
 To install InstantSearch, simply add the following line to your Cartfile:
 
+#### Swift 5.0
+
+```ruby
+github "algolia/instantsearch-ios" ~> 4.0 # for access to everything
+# github "algolia/instantsearch-core-swift" ~> 5.0 # for access to everything except the UI widgets
+# github "algolia/algoliasearch-client-swift" ~> 7.0 # for access only to the API Client
+```
+
 #### Swift 4.2
 
 ```ruby
