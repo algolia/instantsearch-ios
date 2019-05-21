@@ -11,17 +11,19 @@ Pod::Spec.new do |s|
     s.ios.deployment_target = '8.0'
     s.requires_arc = true
     s.default_subspec = "UI"
+    s.swift_version = '5.0'
+    s.swift_versions = ['4.0', '4.2', '5.0']
 
     s.subspec "UI" do |ss|
         ss.source_files = 'Sources/**/*.{swift}'
-        ss.dependency 'InstantSearchCore', '~> 4.0'
+        ss.dependency 'InstantSearchCore', '~> 5.0'
     end
 
     s.subspec "Core" do |ss|
-        ss.dependency 'InstantSearchCore', '~> 4.0'
+        ss.dependency 'InstantSearchCore', '~> 5.0'
     end
 
     s.subspec "Client" do |ss|
-        ss.dependency 'InstantSearchClient', '~> 6.0'
+        ss.dependency 'InstantSearchClient', '~> 7.0'
     end
 end
