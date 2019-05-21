@@ -35,6 +35,15 @@ You can see InstantSearch iOS in action in our [Examples repository][ecommerce-u
 
 To install InstantSearch, simply add the following line to your Podfile:
 
+#### Swift 5.0
+
+```ruby
+pod 'InstantSearch', '~> 4.0'
+# pod 'InstantSearch/Widgets' for access to everything
+# pod 'InstantSearch/Core' for access to everything except the UI widgets
+# pod 'InstantSearch/Client' for access only to the API Client
+```
+
 #### Swift 4.2
 
 ```ruby
