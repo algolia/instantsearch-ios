@@ -19,6 +19,8 @@
 		AF3DE5BF224BBF7000C8BC08 /* CollectionViewHitsWidgetTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = AF3DE5AF224BBE9F00C8BC08 /* CollectionViewHitsWidgetTests.swift */; };
 		AF3DE5C0224BBF7000C8BC08 /* CollectionViewMultiHitsWidgetTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = AF3DE5B3224BBECB00C8BC08 /* CollectionViewMultiHitsWidgetTests.swift */; };
 		AFEBED5A2284887200974108 /* HitsController.swift in Sources */ = {isa = PBXBuildFile; fileRef = AF3DE58B224A9B7A00C8BC08 /* HitsController.swift */; };
+		AFF1E7642296A11200941401 /* SelectableFilterButtonController.swift in Sources */ = {isa = PBXBuildFile; fileRef = AFF1E7622296A11200941401 /* SelectableFilterButtonController.swift */; };
+		AFF1E7652296A11200941401 /* FilterSwitchController.swift in Sources */ = {isa = PBXBuildFile; fileRef = AFF1E7632296A11200941401 /* FilterSwitchController.swift */; };
 		E27B67E41ED339290001FFA7 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = E27B67E31ED339290001FFA7 /* AppDelegate.swift */; };
 		E27B67E61ED339290001FFA7 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E27B67E51ED339290001FFA7 /* ViewController.swift */; };
 		E27B67E91ED339290001FFA7 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = E27B67E71ED339290001FFA7 /* Main.storyboard */; };
@@ -61,6 +63,8 @@
 		AF3DE5AF224BBE9F00C8BC08 /* CollectionViewHitsWidgetTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CollectionViewHitsWidgetTests.swift; sourceTree = "<group>"; };
 		AF3DE5B1224BBEC000C8BC08 /* TableViewMultiHitsWidgetTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TableViewMultiHitsWidgetTests.swift; sourceTree = "<group>"; };
 		AF3DE5B3224BBECB00C8BC08 /* CollectionViewMultiHitsWidgetTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CollectionViewMultiHitsWidgetTests.swift; sourceTree = "<group>"; };
+		AFF1E7622296A11200941401 /* SelectableFilterButtonController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SelectableFilterButtonController.swift; sourceTree = "<group>"; };
+		AFF1E7632296A11200941401 /* FilterSwitchController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FilterSwitchController.swift; sourceTree = "<group>"; };
 		E21DE94E1F2F7DB400EFC4F5 /* InstantSearchCore.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = InstantSearchCore.framework; path = Carthage/Build/iOS/InstantSearchCore.framework; sourceTree = "<group>"; };
 		E21DE9501F2F7DCA00EFC4F5 /* AlgoliaSearch.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AlgoliaSearch.framework; path = Carthage/Build/iOS/AlgoliaSearch.framework; sourceTree = "<group>"; };
 		E25FB0A21ECF550C006B8CED /* Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
@@ -178,6 +182,7 @@
 		AF6C6F7E2253C5CD001E5E3C /* UIKit */ = {
 			isa = PBXGroup;
 			children = (
+				AFF1E7612296A0E200941401 /* Selectable */,
 				AF6C6F7F2253C611001E5E3C /* Hits */,
 			);
 			path = UIKit;
@@ -192,6 +197,15 @@
 				AF3DE596224AA00400C8BC08 /* MultiHitsCollectionController.swift */,
 			);
 			path = Hits;
+			sourceTree = "<group>";
+		};
+		AFF1E7612296A0E200941401 /* Selectable */ = {
+			isa = PBXGroup;
+			children = (
+				AFF1E7632296A11200941401 /* FilterSwitchController.swift */,
+				AFF1E7622296A11200941401 /* SelectableFilterButtonController.swift */,
+			);
+			path = Selectable;
 			sourceTree = "<group>";
 		};
 		E21DE94D1F2F7DB400EFC4F5 /* Frameworks */ = {
@@ -403,10 +417,12 @@
 				AF3DE588224A991F00C8BC08 /* main.swift in Sources */,
 				AF3DE594224A9B7A00C8BC08 /* MultiHitsTableController.swift in Sources */,
 				AF3DE597224AA00400C8BC08 /* HitsCollectionController.swift in Sources */,
+				AFF1E7642296A11200941401 /* SelectableFilterButtonController.swift in Sources */,
 				AFEBED5A2284887200974108 /* HitsController.swift in Sources */,
 				AF3DE593224A9B7A00C8BC08 /* HitsTableController.swift in Sources */,
 				AF3DE590224A9B7A00C8BC08 /* MultiHitsController.swift in Sources */,
 				AF3DE598224AA00400C8BC08 /* MultiHitsCollectionController.swift in Sources */,
+				AFF1E7652296A11200941401 /* FilterSwitchController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
