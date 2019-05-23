@@ -10,9 +10,9 @@ import Foundation
 import InstantSearchCore
 import UIKit
 
-class FilterSwitchController<F: FilterType>: SelectableController {
+public class FilterSwitchController<F: FilterType>: SelectableController {
   
-  typealias Item = F
+  public typealias Item = F
   
   public let `switch`: UISwitch
   
@@ -27,11 +27,11 @@ class FilterSwitchController<F: FilterType>: SelectableController {
     onClick?(`switch`.isOn)
   }
   
-  func setSelected(_ isSelected: Bool) {
+  public func setSelected(_ isSelected: Bool) {
     self.switch.isOn = isSelected
   }
   
-  func setItem(_ item: F) {
+  public func setItem(_ item: F) {
     
   }
   

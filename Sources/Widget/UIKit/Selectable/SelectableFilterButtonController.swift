@@ -10,9 +10,9 @@ import Foundation
 import InstantSearchCore
 import UIKit
 
-class SelectableFilterButtonController<F: FilterType>: SelectableController {
+public class SelectableFilterButtonController<F: FilterType>: SelectableController {
   
-  typealias Item = F
+  public typealias Item = F
   
   public let button: UIButton
   
@@ -27,11 +27,11 @@ class SelectableFilterButtonController<F: FilterType>: SelectableController {
     onClick?(!button.isSelected)
   }
   
-  func setSelected(_ isSelected: Bool) {
+  public func setSelected(_ isSelected: Bool) {
     self.button.isSelected = isSelected
   }
   
-  func setItem(_ item: F) {
+  public func setItem(_ item: F) {
     let title = DefaultFilterPresenter.present(Filter(item))
     button.setTitle(title, for: .normal)
   }
