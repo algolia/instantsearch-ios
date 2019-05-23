@@ -107,7 +107,7 @@ extension CollectionViewMultiHitsDelegate: UICollectionViewDelegate {
   
 }
 
-public class CollectionViewMultiHitsWidget: NSObject, MultiHitsWidget {
+public class CollectionViewMultiHitsWidget: NSObject, InstantSearchCore.MultiHitsController {
   
   public typealias SingleHitView = UITableViewCell
   

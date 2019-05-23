@@ -53,7 +53,7 @@ open class TableViewHitsDelegate<DataSource: HitsSource>: NSObject, UITableViewD
   
 }
 
-public class TableViewHitsWidget<Source: HitsSource>: NSObject, HitsWidget {
+public class TableViewHitsWidget<Source: HitsSource>: NSObject, InstantSearchCore.HitsController {
   
   public let tableView: UITableView
   

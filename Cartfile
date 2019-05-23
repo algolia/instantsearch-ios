@@ -1,8 +1,1 @@
-<<<<<<< HEAD
 github "algolia/instantsearch-core-swift" ~> 5.0
-=======
-#git "file:///Users/vladislavfitc/Workspace/instantsearch-core-swift" "feat/new-vm-connectors"
-github "algolia/instantsearch-core-swift" "feat/new-vm-connectors"
-#github "spinach/Signals" "fix-deployment-targets"
-#github "artman/Signals" ~> 6.0
->>>>>>> Fixed compatibility with core

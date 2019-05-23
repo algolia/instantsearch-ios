@@ -12,6 +12,8 @@ import InstantSearchCore
 public typealias HitViewConfigurator<HitsView, SingleHitView, Hit> = (HitsView, Hit, IndexPath) -> SingleHitView
 public typealias HitClickHandler<HitsView, Hit> = (HitsView, Hit, IndexPath) -> Void
 
+public typealias HitsWidget = InstantSearchCore.HitsController
+
 public class HitsController<Record: Codable>: NSObject {
 
   public let searcher: SingleIndexSearcher<Record>

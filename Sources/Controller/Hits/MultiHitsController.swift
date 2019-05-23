@@ -8,6 +8,7 @@
 
 import Foundation
 import InstantSearchCore
+public typealias MultiHitsWidget = InstantSearchCore.MultiHitsController
 
 public class MultiHitsController<HitsWidget: MultiHitsWidget>: NSObject {
   

@@ -53,7 +53,7 @@ open class CollectionViewHitsDelegate<DataSource: HitsSource>: NSObject, UIColle
 
 }
 
-public class CollectionViewHitsWidget<Source: HitsSource>: NSObject, HitsWidget {
+public class CollectionViewHitsWidget<Source: HitsSource>: NSObject, InstantSearchCore.HitsController {
   
   public let collectionView: UICollectionView
   

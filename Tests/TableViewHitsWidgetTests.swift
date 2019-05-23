@@ -92,7 +92,7 @@ class TableViewHitsWidgetTests: XCTestCase {
     
     delegate.hitsSource = vm
     
-    let widget = TableViewHitsWidget<String>(tableView: tableView)
+    let widget = TableViewHitsWidget<HitsViewModel<String>>(tableView: tableView)
     
     widget.dataSource = dataSource
     widget.delegate = delegate
