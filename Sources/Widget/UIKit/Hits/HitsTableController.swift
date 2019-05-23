@@ -10,10 +10,10 @@ import Foundation
 import InstantSearchCore
 import UIKit
 
-public typealias TableViewCellConfigurator<Hit> = HitViewConfigurator<UITableView, UITableViewCell, Hit>
-public typealias TableViewClickHandler<Hit> = HitClickHandler<UITableView, Hit>
+public typealias TableViewCellConfigurator<Item> = HitViewConfigurator<UITableView, UITableViewCell, Item>
+public typealias TableViewClickHandler<Item> = HitClickHandler<UITableView, Item>
 
-open class TableViewHitsDataSource<DataSource: HitsSource>: NSObject, UITableViewDataSource {
+open class HitsTableViewDataSource<DataSource: HitsSource>: NSObject, UITableViewDataSource {
   
   public var cellConfigurator: TableViewCellConfigurator<DataSource.Record>
   public weak var hitsSource: DataSource?
@@ -35,7 +35,7 @@ open class TableViewHitsDataSource<DataSource: HitsSource>: NSObject, UITableVie
   
 }
 
-open class TableViewHitsDelegate<DataSource: HitsSource>: NSObject, UITableViewDelegate {
+open class HitsTableViewDelegate<DataSource: HitsSource>: NSObject, UITableViewDelegate {
   
   public var clickHandler: TableViewClickHandler<DataSource.Record>
   public weak var hitsSource: DataSource?
@@ -53,7 +53,7 @@ open class TableViewHitsDelegate<DataSource: HitsSource>: NSObject, UITableViewD
   
 }
 
-public class TableViewHitsWidget<Source: HitsSource>: NSObject, InstantSearchCore.HitsController {
+public class HitsTableController<Source: HitsSource>: NSObject, InstantSearchCore.HitsController {
   
   public let tableView: UITableView
   
@@ -64,14 +64,14 @@ public class TableViewHitsWidget<Source: HitsSource>: NSObject, InstantSearchCor
     }
   }
   
-  public var dataSource: TableViewHitsDataSource<Source>? {
+  public var dataSource: HitsTableViewDataSource<Source>? {
     didSet {
       dataSource?.hitsSource = hitsSource
       tableView.dataSource = dataSource
     }
   }
   
-  public var delegate: TableViewHitsDelegate<Source>? {
+  public var delegate: HitsTableViewDelegate<Source>? {
     didSet {
       delegate?.hitsSource = hitsSource
       tableView.delegate = delegate

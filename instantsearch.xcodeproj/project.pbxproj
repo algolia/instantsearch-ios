@@ -10,10 +10,10 @@
 		28F828881C494B2C00330CF4 /* InstantSearch.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 28F8287D1C494B2C00330CF4 /* InstantSearch.framework */; };
 		AF3DE588224A991F00C8BC08 /* main.swift in Sources */ = {isa = PBXBuildFile; fileRef = AF3DE587224A991F00C8BC08 /* main.swift */; };
 		AF3DE590224A9B7A00C8BC08 /* MultiHitsController.swift in Sources */ = {isa = PBXBuildFile; fileRef = AF3DE58A224A9B7A00C8BC08 /* MultiHitsController.swift */; };
-		AF3DE593224A9B7A00C8BC08 /* TableViewHitsWidget.swift in Sources */ = {isa = PBXBuildFile; fileRef = AF3DE58D224A9B7A00C8BC08 /* TableViewHitsWidget.swift */; };
-		AF3DE594224A9B7A00C8BC08 /* TableViewMultiHitsWidget.swift in Sources */ = {isa = PBXBuildFile; fileRef = AF3DE58E224A9B7A00C8BC08 /* TableViewMultiHitsWidget.swift */; };
-		AF3DE597224AA00400C8BC08 /* CollectionViewHitsWidget.swift in Sources */ = {isa = PBXBuildFile; fileRef = AF3DE595224AA00400C8BC08 /* CollectionViewHitsWidget.swift */; };
-		AF3DE598224AA00400C8BC08 /* CollectionViewMultiHitsWidget.swift in Sources */ = {isa = PBXBuildFile; fileRef = AF3DE596224AA00400C8BC08 /* CollectionViewMultiHitsWidget.swift */; };
+		AF3DE593224A9B7A00C8BC08 /* HitsTableController.swift in Sources */ = {isa = PBXBuildFile; fileRef = AF3DE58D224A9B7A00C8BC08 /* HitsTableController.swift */; };
+		AF3DE594224A9B7A00C8BC08 /* MultiHitsTableController.swift in Sources */ = {isa = PBXBuildFile; fileRef = AF3DE58E224A9B7A00C8BC08 /* MultiHitsTableController.swift */; };
+		AF3DE597224AA00400C8BC08 /* HitsCollectionController.swift in Sources */ = {isa = PBXBuildFile; fileRef = AF3DE595224AA00400C8BC08 /* HitsCollectionController.swift */; };
+		AF3DE598224AA00400C8BC08 /* MultiHitsCollectionController.swift in Sources */ = {isa = PBXBuildFile; fileRef = AF3DE596224AA00400C8BC08 /* MultiHitsCollectionController.swift */; };
 		AF3DE5BD224BBF7000C8BC08 /* TableViewHitsWidgetTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = AF3DE5A9224BBE6700C8BC08 /* TableViewHitsWidgetTests.swift */; };
 		AF3DE5BE224BBF7000C8BC08 /* TableViewMultiHitsWidgetTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = AF3DE5B1224BBEC000C8BC08 /* TableViewMultiHitsWidgetTests.swift */; };
 		AF3DE5BF224BBF7000C8BC08 /* CollectionViewHitsWidgetTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = AF3DE5AF224BBE9F00C8BC08 /* CollectionViewHitsWidgetTests.swift */; };
@@ -53,10 +53,10 @@
 		AF3DE587224A991F00C8BC08 /* main.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = main.swift; sourceTree = "<group>"; };
 		AF3DE58A224A9B7A00C8BC08 /* MultiHitsController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MultiHitsController.swift; sourceTree = "<group>"; };
 		AF3DE58B224A9B7A00C8BC08 /* HitsController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HitsController.swift; sourceTree = "<group>"; };
-		AF3DE58D224A9B7A00C8BC08 /* TableViewHitsWidget.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TableViewHitsWidget.swift; sourceTree = "<group>"; };
-		AF3DE58E224A9B7A00C8BC08 /* TableViewMultiHitsWidget.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TableViewMultiHitsWidget.swift; sourceTree = "<group>"; };
-		AF3DE595224AA00400C8BC08 /* CollectionViewHitsWidget.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CollectionViewHitsWidget.swift; sourceTree = "<group>"; };
-		AF3DE596224AA00400C8BC08 /* CollectionViewMultiHitsWidget.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CollectionViewMultiHitsWidget.swift; sourceTree = "<group>"; };
+		AF3DE58D224A9B7A00C8BC08 /* HitsTableController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HitsTableController.swift; sourceTree = "<group>"; };
+		AF3DE58E224A9B7A00C8BC08 /* MultiHitsTableController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MultiHitsTableController.swift; sourceTree = "<group>"; };
+		AF3DE595224AA00400C8BC08 /* HitsCollectionController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HitsCollectionController.swift; sourceTree = "<group>"; };
+		AF3DE596224AA00400C8BC08 /* MultiHitsCollectionController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MultiHitsCollectionController.swift; sourceTree = "<group>"; };
 		AF3DE5A9224BBE6700C8BC08 /* TableViewHitsWidgetTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TableViewHitsWidgetTests.swift; sourceTree = "<group>"; };
 		AF3DE5AF224BBE9F00C8BC08 /* CollectionViewHitsWidgetTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CollectionViewHitsWidgetTests.swift; sourceTree = "<group>"; };
 		AF3DE5B1224BBEC000C8BC08 /* TableViewMultiHitsWidgetTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TableViewMultiHitsWidgetTests.swift; sourceTree = "<group>"; };
@@ -186,10 +186,10 @@
 		AF6C6F7F2253C611001E5E3C /* Hits */ = {
 			isa = PBXGroup;
 			children = (
-				AF3DE58D224A9B7A00C8BC08 /* TableViewHitsWidget.swift */,
-				AF3DE58E224A9B7A00C8BC08 /* TableViewMultiHitsWidget.swift */,
-				AF3DE595224AA00400C8BC08 /* CollectionViewHitsWidget.swift */,
-				AF3DE596224AA00400C8BC08 /* CollectionViewMultiHitsWidget.swift */,
+				AF3DE58D224A9B7A00C8BC08 /* HitsTableController.swift */,
+				AF3DE58E224A9B7A00C8BC08 /* MultiHitsTableController.swift */,
+				AF3DE595224AA00400C8BC08 /* HitsCollectionController.swift */,
+				AF3DE596224AA00400C8BC08 /* MultiHitsCollectionController.swift */,
 			);
 			path = Hits;
 			sourceTree = "<group>";
@@ -401,12 +401,12 @@
 			buildActionMask = 2147483647;
 			files = (
 				AF3DE588224A991F00C8BC08 /* main.swift in Sources */,
-				AF3DE594224A9B7A00C8BC08 /* TableViewMultiHitsWidget.swift in Sources */,
-				AF3DE597224AA00400C8BC08 /* CollectionViewHitsWidget.swift in Sources */,
+				AF3DE594224A9B7A00C8BC08 /* MultiHitsTableController.swift in Sources */,
+				AF3DE597224AA00400C8BC08 /* HitsCollectionController.swift in Sources */,
 				AFEBED5A2284887200974108 /* HitsController.swift in Sources */,
-				AF3DE593224A9B7A00C8BC08 /* TableViewHitsWidget.swift in Sources */,
+				AF3DE593224A9B7A00C8BC08 /* HitsTableController.swift in Sources */,
 				AF3DE590224A9B7A00C8BC08 /* MultiHitsController.swift in Sources */,
-				AF3DE598224AA00400C8BC08 /* CollectionViewMultiHitsWidget.swift in Sources */,
+				AF3DE598224AA00400C8BC08 /* MultiHitsCollectionController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

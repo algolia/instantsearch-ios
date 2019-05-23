@@ -10,7 +10,7 @@ import Foundation
 import InstantSearchCore
 import UIKit
 
-open class CollectionViewMultiHitsDataSource: NSObject {
+open class MultiHitsCollectionViewDataSource: NSObject {
   
   private typealias CellConfigurator = (UICollectionView, Int) throws -> UICollectionViewCell
   
@@ -40,7 +40,7 @@ open class CollectionViewMultiHitsDataSource: NSObject {
   
 }
 
-extension CollectionViewMultiHitsDataSource: UICollectionViewDataSource {
+extension MultiHitsCollectionViewDataSource: UICollectionViewDataSource {
   
   open func numberOfSections(in collectionView: UICollectionView) -> Int {
     guard let numberOfSections = hitsDataSource?.numberOfSections() else {
@@ -66,7 +66,7 @@ extension CollectionViewMultiHitsDataSource: UICollectionViewDataSource {
   
 }
 
-open class CollectionViewMultiHitsDelegate: NSObject {
+open class MultiHitsCollectionViewDelegate: NSObject {
   
   typealias ClickHandler = (UICollectionView, Int) throws -> Void
   
@@ -95,7 +95,7 @@ open class CollectionViewMultiHitsDelegate: NSObject {
   
 }
 
-extension CollectionViewMultiHitsDelegate: UICollectionViewDelegate {
+extension MultiHitsCollectionViewDelegate: UICollectionViewDelegate {
   
   open func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
     do {
@@ -107,7 +107,7 @@ extension CollectionViewMultiHitsDelegate: UICollectionViewDelegate {
   
 }
 
-public class CollectionViewMultiHitsWidget: NSObject, InstantSearchCore.MultiHitsController {
+public class MultiHitsCollectionController: NSObject, InstantSearchCore.MultiHitsController {
   
   public typealias SingleHitView = UITableViewCell
   
@@ -120,14 +120,14 @@ public class CollectionViewMultiHitsWidget: NSObject, InstantSearchCore.MultiHit
     }
   }
   
-  public var dataSource: CollectionViewMultiHitsDataSource? {
+  public var dataSource: MultiHitsCollectionViewDataSource? {
     didSet {
       dataSource?.hitsDataSource = hitsSource
       collectionView.dataSource = dataSource
     }
   }
   
-  public var delegate: CollectionViewMultiHitsDelegate? {
+  public var delegate: MultiHitsCollectionViewDelegate? {
     didSet {
       delegate?.hitsDataSource = hitsSource
       collectionView.delegate = delegate

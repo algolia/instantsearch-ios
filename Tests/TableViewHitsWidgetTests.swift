@@ -36,7 +36,7 @@ class TableViewHitsWidgetTests: XCTestCase {
     
     let tableView = UITableView()
     
-    let dataSource = TableViewHitsDataSource<TestHitsSource> { (_, hit, _) -> UITableViewCell in
+    let dataSource = HitsTableViewDataSource<TestHitsSource> { (_, hit, _) -> UITableViewCell in
       let cell = UITableViewCell()
       cell.textLabel?.text = hit
       return cell
@@ -61,7 +61,7 @@ class TableViewHitsWidgetTests: XCTestCase {
     
     let exp = expectation(description: "Hit selection")
     
-    let delegate = TableViewHitsDelegate<TestHitsSource> { (_, hit, _) in
+    let delegate = HitsTableViewDelegate<TestHitsSource> { (_, hit, _) in
       XCTAssertEqual(hit, hitsDataSource.hits[rowToSelect])
       exp.fulfill()
     }
@@ -80,7 +80,7 @@ class TableViewHitsWidgetTests: XCTestCase {
     
     let vm = HitsViewModel<String>()
         
-    let dataSource = TableViewHitsDataSource<HitsViewModel<String>> { (_, hit, _) -> UITableViewCell in
+    let dataSource = HitsTableViewDataSource<HitsViewModel<String>> { (_, hit, _) -> UITableViewCell in
       let cell = UITableViewCell()
       cell.textLabel?.text = hit
       return cell
@@ -88,11 +88,11 @@ class TableViewHitsWidgetTests: XCTestCase {
     
     dataSource.hitsSource = vm
     
-    let delegate = TableViewHitsDelegate<HitsViewModel<String>> { (_, _, _) in }
+    let delegate = HitsTableViewDelegate<HitsViewModel<String>> { (_, _, _) in }
     
     delegate.hitsSource = vm
     
-    let widget = TableViewHitsWidget<HitsViewModel<String>>(tableView: tableView)
+    let widget = HitsTableController<HitsViewModel<String>>(tableView: tableView)
     
     widget.dataSource = dataSource
     widget.delegate = delegate

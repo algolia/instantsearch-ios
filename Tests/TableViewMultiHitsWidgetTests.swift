@@ -38,7 +38,7 @@ class TableViewMultiHitsWidgetTests: XCTestCase {
     
     let hitsSource = TestMultiHitsDataSource(hitsBySection: [["t11", "t12"], ["t21", "t22", "t23"]])
     
-    let dataSource = TableViewMultiHitsDataSource()
+    let dataSource = MultiHitsTableViewDataSource()
     
     dataSource.setCellConfigurator(forSection: 0) { (_, h: String, _) -> UITableViewCell in
       let cell = UITableViewCell()
@@ -59,7 +59,7 @@ class TableViewMultiHitsWidgetTests: XCTestCase {
     
     let hitsSource = TestMultiHitsDataSource(hitsBySection: [["t11", "t12"], ["t21", "t22", "t23"]])
     
-    let delegate = TableViewMultiHitsDelegate()
+    let delegate = MultiHitsTableViewDelegate()
     delegate.hitsSource = hitsSource
     
   }

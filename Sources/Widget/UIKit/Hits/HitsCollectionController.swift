@@ -10,10 +10,10 @@ import Foundation
 import InstantSearchCore
 import UIKit
 
-public typealias CollectionViewCellConfigurator<Hit> = HitViewConfigurator<UICollectionView, UICollectionViewCell, Hit>
-public typealias CollectionViewClickHandler<Hit> = HitClickHandler<UICollectionView, Hit>
+public typealias CollectionViewCellConfigurator<Item> = HitViewConfigurator<UICollectionView, UICollectionViewCell, Item>
+public typealias CollectionViewClickHandler<Item> = HitClickHandler<UICollectionView, Item>
 
-open class CollectionViewHitsDataSource<DataSource: HitsSource>: NSObject, UICollectionViewDataSource {
+open class HitsCollectionViewDataSource<DataSource: HitsSource>: NSObject, UICollectionViewDataSource {
   
   public var cellConfigurator: CollectionViewCellConfigurator<DataSource.Record>
   public weak var hitsSource: DataSource?
@@ -35,7 +35,7 @@ open class CollectionViewHitsDataSource<DataSource: HitsSource>: NSObject, UICol
   
 }
 
-open class CollectionViewHitsDelegate<DataSource: HitsSource>: NSObject, UICollectionViewDelegate {
+open class HitsCollectionViewDelegate<DataSource: HitsSource>: NSObject, UICollectionViewDelegate {
   
   public var clickHandler: CollectionViewClickHandler<DataSource.Record>
   public weak var hitsSource: DataSource?
@@ -53,20 +53,20 @@ open class CollectionViewHitsDelegate<DataSource: HitsSource>: NSObject, UIColle
 
 }
 
-public class CollectionViewHitsWidget<Source: HitsSource>: NSObject, InstantSearchCore.HitsController {
+public class HitsCollectionController<Source: HitsSource>: NSObject, InstantSearchCore.HitsController {
   
   public let collectionView: UICollectionView
   
   public weak var hitsSource: Source?
 
-  private var dataSource: CollectionViewHitsDataSource<Source>? {
+  private var dataSource: HitsCollectionViewDataSource<Source>? {
     didSet {
       dataSource?.hitsSource = hitsSource
       collectionView.dataSource = dataSource
     }
   }
   
-  private var delegate: CollectionViewHitsDelegate<Source>? {
+  private var delegate: HitsCollectionViewDelegate<Source>? {
     didSet {
       delegate?.hitsSource = hitsSource
       collectionView.delegate = delegate

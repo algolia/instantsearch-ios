@@ -10,7 +10,7 @@ import Foundation
 import InstantSearchCore
 import UIKit
 
-open class TableViewMultiHitsDataSource: NSObject {
+open class MultiHitsTableViewDataSource: NSObject {
   
   private typealias CellConfigurator = (UITableView, Int) throws -> UITableViewCell
   
@@ -39,7 +39,7 @@ open class TableViewMultiHitsDataSource: NSObject {
   
 }
 
-extension TableViewMultiHitsDataSource: UITableViewDataSource {
+extension MultiHitsTableViewDataSource: UITableViewDataSource {
   
   open func numberOfSections(in tableView: UITableView) -> Int {
     guard let numberOfSections = hitsSource?.numberOfSections() else {
@@ -65,7 +65,7 @@ extension TableViewMultiHitsDataSource: UITableViewDataSource {
   
 }
 
-open class TableViewMultiHitsDelegate: NSObject {
+open class MultiHitsTableViewDelegate: NSObject {
   
   typealias ClickHandler = (UITableView, Int) throws -> Void
   
@@ -94,7 +94,7 @@ open class TableViewMultiHitsDelegate: NSObject {
   
 }
 
-extension TableViewMultiHitsDelegate: UITableViewDelegate {
+extension MultiHitsTableViewDelegate: UITableViewDelegate {
   
   open func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
     do {
@@ -106,7 +106,7 @@ extension TableViewMultiHitsDelegate: UITableViewDelegate {
   
 }
 
-public class TableViewMultiHitsWidget: NSObject, MultiHitsWidget {
+public class MultiHitsTableController: NSObject, InstantSearchCore.MultiHitsController {
   
   public typealias SingleHitView = UITableViewCell
   
@@ -119,14 +119,14 @@ public class TableViewMultiHitsWidget: NSObject, MultiHitsWidget {
     }
   }
   
-  public var dataSource: TableViewMultiHitsDataSource? {
+  public var dataSource: MultiHitsTableViewDataSource? {
     didSet {
       dataSource?.hitsSource = hitsSource
       tableView.dataSource = dataSource
     }
   }
   
-  public var delegate: TableViewMultiHitsDelegate? {
+  public var delegate: MultiHitsTableViewDelegate? {
     didSet {
       delegate?.hitsSource = hitsSource
       tableView.delegate = delegate
