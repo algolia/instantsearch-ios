@@ -6,6 +6,7 @@
 //
 
 import Foundation
+import InstantSearchCore
 import UIKit
 
 public class ActivityIndicatorController: LoadableController {
