@@ -18,6 +18,8 @@
 		AF3DE5BE224BBF7000C8BC08 /* TableViewMultiHitsWidgetTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = AF3DE5B1224BBEC000C8BC08 /* TableViewMultiHitsWidgetTests.swift */; };
 		AF3DE5BF224BBF7000C8BC08 /* CollectionViewHitsWidgetTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = AF3DE5AF224BBE9F00C8BC08 /* CollectionViewHitsWidgetTests.swift */; };
 		AF3DE5C0224BBF7000C8BC08 /* CollectionViewMultiHitsWidgetTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = AF3DE5B3224BBECB00C8BC08 /* CollectionViewMultiHitsWidgetTests.swift */; };
+		AF93967B22980FA600757257 /* ClearRefinementsController.swift in Sources */ = {isa = PBXBuildFile; fileRef = AF93967A22980FA600757257 /* ClearRefinementsController.swift */; };
+		AF93967D22980FBE00757257 /* ClearRefinementsButtonController.swift in Sources */ = {isa = PBXBuildFile; fileRef = AF93967C22980FBE00757257 /* ClearRefinementsButtonController.swift */; };
 		AFEBED5A2284887200974108 /* HitsController.swift in Sources */ = {isa = PBXBuildFile; fileRef = AF3DE58B224A9B7A00C8BC08 /* HitsController.swift */; };
 		AFF1E7642296A11200941401 /* SelectableFilterButtonController.swift in Sources */ = {isa = PBXBuildFile; fileRef = AFF1E7622296A11200941401 /* SelectableFilterButtonController.swift */; };
 		AFF1E7652296A11200941401 /* FilterSwitchController.swift in Sources */ = {isa = PBXBuildFile; fileRef = AFF1E7632296A11200941401 /* FilterSwitchController.swift */; };
@@ -63,6 +65,8 @@
 		AF3DE5AF224BBE9F00C8BC08 /* CollectionViewHitsWidgetTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CollectionViewHitsWidgetTests.swift; sourceTree = "<group>"; };
 		AF3DE5B1224BBEC000C8BC08 /* TableViewMultiHitsWidgetTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TableViewMultiHitsWidgetTests.swift; sourceTree = "<group>"; };
 		AF3DE5B3224BBECB00C8BC08 /* CollectionViewMultiHitsWidgetTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CollectionViewMultiHitsWidgetTests.swift; sourceTree = "<group>"; };
+		AF93967A22980FA600757257 /* ClearRefinementsController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ClearRefinementsController.swift; sourceTree = "<group>"; };
+		AF93967C22980FBE00757257 /* ClearRefinementsButtonController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ClearRefinementsButtonController.swift; sourceTree = "<group>"; };
 		AFF1E7622296A11200941401 /* SelectableFilterButtonController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SelectableFilterButtonController.swift; sourceTree = "<group>"; };
 		AFF1E7632296A11200941401 /* FilterSwitchController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FilterSwitchController.swift; sourceTree = "<group>"; };
 		E21DE94E1F2F7DB400EFC4F5 /* InstantSearchCore.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = InstantSearchCore.framework; path = Carthage/Build/iOS/InstantSearchCore.framework; sourceTree = "<group>"; };
@@ -158,6 +162,7 @@
 			isa = PBXGroup;
 			children = (
 				AF6C6F7C2253C5AD001E5E3C /* Hits */,
+				AF93967A22980FA600757257 /* ClearRefinementsController.swift */,
 			);
 			path = Controller;
 			sourceTree = "<group>";
@@ -166,6 +171,7 @@
 			isa = PBXGroup;
 			children = (
 				AF6C6F7E2253C5CD001E5E3C /* UIKit */,
+				AF93967C22980FBE00757257 /* ClearRefinementsButtonController.swift */,
 			);
 			path = Widget;
 			sourceTree = "<group>";
@@ -414,6 +420,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				AF93967B22980FA600757257 /* ClearRefinementsController.swift in Sources */,
 				AF3DE588224A991F00C8BC08 /* main.swift in Sources */,
 				AF3DE594224A9B7A00C8BC08 /* MultiHitsTableController.swift in Sources */,
 				AF3DE597224AA00400C8BC08 /* HitsCollectionController.swift in Sources */,
@@ -423,6 +430,7 @@
 				AF3DE590224A9B7A00C8BC08 /* MultiHitsController.swift in Sources */,
 				AF3DE598224AA00400C8BC08 /* MultiHitsCollectionController.swift in Sources */,
 				AFF1E7652296A11200941401 /* FilterSwitchController.swift in Sources */,
+				AF93967D22980FBE00757257 /* ClearRefinementsButtonController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
