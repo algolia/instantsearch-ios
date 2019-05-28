@@ -17,11 +17,11 @@ public class ActivityIndicatorController: LoadableController {
     self.activityIndicator = activityIndicator
   }
   
-  public func startAnimating() {
+  public func startLoading() {
     activityIndicator.startAnimating()
   }
   
-  public func stopAnimating() {
+  public func stopLoading() {
     activityIndicator.stopAnimating()
   }
   
