@@ -10,17 +10,29 @@ import Foundation
 import InstantSearchCore
 import UIKit
 
-public class SearchBarController: NSObject, SearchableController {
+public class SearchBarController: NSObject, QueryInputController {
 
-  public let onSearch: Observer<String>
-
-  let searchBar: UISearchBar
+  public var onQueryChanged: (String?) -> Void
+  public var onQuerySubmitted: (String?) -> Void
+  
+  public let searchBar: UISearchBar
 
   public init(searchBar: UISearchBar) {
     self.searchBar = searchBar
-    self.onSearch = Observer()
+    self.onQueryChanged = { _ in }
+    self.onQuerySubmitted = { _ in }
     super.init()
+    setupSearchBar()
+
+  }
+  
+  public func setQuery(_ query: String?) {
+    searchBar.text = query
+  }
+  
+  private func setupSearchBar() {
     searchBar.delegate = self
+    searchBar.returnKeyType = .search
   }
 
 }
@@ -28,7 +40,11 @@ public class SearchBarController: NSObject, SearchableController {
 extension SearchBarController: UISearchBarDelegate {
 
   public func searchBar(_ searchBar: UISearchBar, textDidChange searchText: String) {
-    onSearch.fire(searchText)
+    onQueryChanged(searchText)
+  }
+
+  public func searchBarSearchButtonClicked(_ searchBar: UISearchBar) {
+    onQuerySubmitted(searchBar.text)
   }
 
 }
