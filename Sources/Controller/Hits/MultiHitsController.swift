@@ -17,7 +17,7 @@ public class MultiHitsController<HitsWidget: MultiHitsWidget>: NSObject {
   public weak var widget: HitsWidget?
   public let onError: Observer<Error>
 
-  public init(client: Client, widget: HitsWidget, viewModel: MultiHitsViewModel = MultiHitsViewModel()) {
+  public init(client: Client, widget: HitsWidget, viewModel: MultiHitsViewModel = .init()) {
     self.searcher = MultiIndexSearcher(client: client, indexSearchDatas: [])
     self.viewModel = viewModel
     self.widget = widget
@@ -50,7 +50,7 @@ public class MultiHitsController<HitsWidget: MultiHitsWidget>: NSObject {
   }
   
   public func searchWithQueryText(_ queryText: String) {
-    searcher.setQuery(text: queryText)
+    searcher.query = queryText
     searcher.indexSearchDatas.forEach { $0.query.page = 0 }
     searcher.search()
   }

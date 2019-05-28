@@ -36,10 +36,10 @@ public class HitsController<Record: Codable>: NSObject {
     self.init(searcher: searcher, viewModel: viewModel, widget: widget)
 
     searcher.onResultsChanged.subscribe(with: self) { [weak self] (arg) in
-      let (metadata, result) = arg
+      let (query, _, result) = arg
       switch result {
       case .success(let searchResults):
-        viewModel.update(searchResults, with: metadata)
+        viewModel.update(searchResults, with: query)
         widget.reload()
 
       case .failure(let error):
