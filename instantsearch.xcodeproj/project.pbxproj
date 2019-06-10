@@ -33,6 +33,9 @@
 		E27B67EE1ED339290001FFA7 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = E27B67EC1ED339290001FFA7 /* LaunchScreen.storyboard */; };
 		E2A477011EC61B43007CA367 /* InstantSearch-Bridging-Header.h in Headers */ = {isa = PBXBuildFile; fileRef = E2A477001EC61B43007CA367 /* InstantSearch-Bridging-Header.h */; };
 		E2E060571F717A7B0026358B /* InstantSearchCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E21DE94E1F2F7DB400EFC4F5 /* InstantSearchCore.framework */; };
+		E2EFA5EF22AEB980008C9CAA /* NumericTextFieldController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E2EFA5ED22AEB980008C9CAA /* NumericTextFieldController.swift */; };
+		E2EFA5F022AEB980008C9CAA /* NumericStepperController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E2EFA5EE22AEB980008C9CAA /* NumericStepperController.swift */; };
+		E2EFA5F322AEB990008C9CAA /* SelectIndexController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E2EFA5F222AEB990008C9CAA /* SelectIndexController.swift */; };
 		E2F2073C20B6E42C0066AF12 /* InstantSearchClient.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E2F2073A20B6E3F60066AF12 /* InstantSearchClient.framework */; };
 /* End PBXBuildFile section */
 
@@ -87,6 +90,9 @@
 		E27B67EF1ED339290001FFA7 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		E2A477001EC61B43007CA367 /* InstantSearch-Bridging-Header.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "InstantSearch-Bridging-Header.h"; sourceTree = "<group>"; };
 		E2A477021EC62031007CA367 /* InstantSearch-Tests-Bridging-Header.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "InstantSearch-Tests-Bridging-Header.h"; sourceTree = "<group>"; };
+		E2EFA5ED22AEB980008C9CAA /* NumericTextFieldController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NumericTextFieldController.swift; sourceTree = "<group>"; };
+		E2EFA5EE22AEB980008C9CAA /* NumericStepperController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NumericStepperController.swift; sourceTree = "<group>"; };
+		E2EFA5F222AEB990008C9CAA /* SelectIndexController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SelectIndexController.swift; sourceTree = "<group>"; };
 		E2F2073A20B6E3F60066AF12 /* InstantSearchClient.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = InstantSearchClient.framework; path = Carthage/Build/iOS/InstantSearchClient.framework; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -167,6 +173,8 @@
 		AF6C6F7A2253C5A1001E5E3C /* Controller */ = {
 			isa = PBXGroup;
 			children = (
+				E2EFA5F122AEB988008C9CAA /* Sort By */,
+				E2EFA5EC22AEB96F008C9CAA /* Numeric Comparator */,
 				E26F4256229831F600583D39 /* ClearRefinements */,
 				E26F4255229831CD00583D39 /* LoadingIndicator */,
 				E26F4254229831BD00583D39 /* SearchBox */,
@@ -276,6 +284,23 @@
 				E27B67EF1ED339290001FFA7 /* Info.plist */,
 			);
 			path = InstantSearchTestsHost;
+			sourceTree = "<group>";
+		};
+		E2EFA5EC22AEB96F008C9CAA /* Numeric Comparator */ = {
+			isa = PBXGroup;
+			children = (
+				E2EFA5EE22AEB980008C9CAA /* NumericStepperController.swift */,
+				E2EFA5ED22AEB980008C9CAA /* NumericTextFieldController.swift */,
+			);
+			path = "Numeric Comparator";
+			sourceTree = "<group>";
+		};
+		E2EFA5F122AEB988008C9CAA /* Sort By */ = {
+			isa = PBXGroup;
+			children = (
+				E2EFA5F222AEB990008C9CAA /* SelectIndexController.swift */,
+			);
+			path = "Sort By";
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -464,15 +489,18 @@
 				AF3DE588224A991F00C8BC08 /* main.swift in Sources */,
 				AF3DE594224A9B7A00C8BC08 /* MultiHitsTableController.swift in Sources */,
 				AF9396812298140D00757257 /* ActivityIndicatorController.swift in Sources */,
+				E2EFA5F022AEB980008C9CAA /* NumericStepperController.swift in Sources */,
 				AF3DE597224AA00400C8BC08 /* HitsCollectionController.swift in Sources */,
 				E26F425C2298323700583D39 /* LabelStatsController.swift in Sources */,
 				AFF1E7642296A11200941401 /* SelectableFilterButtonController.swift in Sources */,
+				E2EFA5EF22AEB980008C9CAA /* NumericTextFieldController.swift in Sources */,
 				AFEBED5A2284887200974108 /* HitsController.swift in Sources */,
 				AF3DE593224A9B7A00C8BC08 /* HitsTableController.swift in Sources */,
 				E26F42592298321900583D39 /* SearchBarController.swift in Sources */,
 				AF3DE590224A9B7A00C8BC08 /* MultiHitsController.swift in Sources */,
 				E26F425A2298321900583D39 /* TextfieldController.swift in Sources */,
 				AF3DE598224AA00400C8BC08 /* MultiHitsCollectionController.swift in Sources */,
+				E2EFA5F322AEB990008C9CAA /* SelectIndexController.swift in Sources */,
 				AFF1E7652296A11200941401 /* FilterSwitchController.swift in Sources */,
 				AF93967D22980FBE00757257 /* ClearRefinementsButtonController.swift in Sources */,
 			);
