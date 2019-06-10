@@ -16,11 +16,11 @@ public typealias HitsWidget = InstantSearchCore.HitsController
 
 public class HitsController<Record: Codable>: NSObject {
 
-  public let searcher: SingleIndexSearcher<Record>
+  public let searcher: SingleIndexSearcher
   public let viewModel: HitsViewModel<Record>
   public let onError: Observer<Error>
 
-  public init<Widget: HitsWidget>(searcher: SingleIndexSearcher<Record>, viewModel: HitsViewModel<Record>, widget: Widget) where Widget.DataSource == HitsViewModel<Record> {
+  public init<Widget: HitsWidget>(searcher: SingleIndexSearcher, viewModel: HitsViewModel<Record>, widget: Widget) where Widget.DataSource == HitsViewModel<Record> {
     self.searcher = searcher
     self.viewModel = viewModel
     self.onError = Observer<Error>()
@@ -30,33 +30,17 @@ public class HitsController<Record: Codable>: NSObject {
   public convenience init<Widget: HitsWidget>(index: Index, widget: Widget) where Widget.DataSource == HitsViewModel<Record> {
     let query = Query()
     let filterState = FilterState()
-    let searcher = SingleIndexSearcher<Record>(index: index, query: query, filterState: filterState)
+    let searcher = SingleIndexSearcher(index: index, query: query, filterState: filterState)
 
     let viewModel = HitsViewModel<Record>()
     self.init(searcher: searcher, viewModel: viewModel, widget: widget)
 
-    searcher.onResultsChanged.subscribe(with: self) { [weak self] (arg) in
-      let (query, _, result) = arg
-      switch result {
-      case .success(let searchResults):
-        viewModel.update(searchResults, with: query)
-        widget.reload()
-
-      case .failure(let error):
-        self?.onError.fire(error)
-      }
-    }.onQueue(.main)
-
-    viewModel.onNewPage.subscribe(with: self) { [weak self] page in
-      self?.searcher.indexSearchData.query.page = UInt(page)
-      self?.searcher.search()
-    }
+    viewModel.connectSearcher(searcher)
 
   }
   
   public func searchWithQueryText(_ queryText: String) {
-    searcher.setQuery(text: queryText)
-    searcher.indexSearchData.query.page = 0
+    searcher.query = queryText
     searcher.search()
   }
   

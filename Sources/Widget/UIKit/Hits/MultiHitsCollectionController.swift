@@ -143,6 +143,7 @@ public class MultiHitsCollectionController: NSObject, InstantSearchCore.MultiHit
   }
   
   public func scrollToTop() {
+    guard collectionView.numberOfItems(inSection: 0) != 0 else { return }
     let indexPath = IndexPath(item: 0, section: 0)
     collectionView.scrollToItem(at: indexPath, at: .top, animated: false)
   }

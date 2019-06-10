@@ -87,6 +87,7 @@ public class HitsTableController<Source: HitsSource>: NSObject, InstantSearchCor
   }
   
   public func scrollToTop() {
+    guard tableView.numberOfRows(inSection: 0) != 0 else { return }
     let indexPath = IndexPath(row: 0, section: 0)
     self.tableView.scrollToRow(at: indexPath, at: .top, animated: false)
   }

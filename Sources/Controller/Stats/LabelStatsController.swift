@@ -23,19 +23,16 @@ extension Optional where Wrapped == Bool {
 
 }
 
-public class LabelStatsController: StatsController {
+public class LabelStatsController {
 
   let label: UILabel
 
   public init (label: UILabel) {
     self.label = label
   }
-
-  // TODO: add a Stat formatter for easier customisation
-
-  public func renderWith<T>(statsMetadata: StatsMetadata, query: Query, filterState: FilterState, searchResults: SearchResults<T>) {
-    let prefix = statsMetadata.areFacetsCountExhaustive.falseOrNil ? "" : "~"
-    label.text = "\(prefix)\(statsMetadata.totalHitsCount) results"
+  
+  public func setItem(_ item: SearchStats?) {
+    label.text = (item?.totalHitsCount).flatMap { "hits: \($0)" }
   }
 
 }
