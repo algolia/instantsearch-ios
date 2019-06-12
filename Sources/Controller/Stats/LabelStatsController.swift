@@ -23,7 +23,7 @@ extension Optional where Wrapped == Bool {
 
 }
 
-public class LabelStatsController {
+public class LabelStatsController: StatsTextController {
 
   let label: UILabel
 
@@ -31,8 +31,8 @@ public class LabelStatsController {
     self.label = label
   }
   
-  public func setItem(_ item: SearchStats?) {
-    label.text = (item?.totalHitsCount).flatMap { "hits: \($0)" }
+  public func setItem(_ item: String?) {
+    label.text = item
   }
 
 }
