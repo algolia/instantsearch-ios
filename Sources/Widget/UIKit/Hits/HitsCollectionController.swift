@@ -82,8 +82,7 @@ public class HitsCollectionController<Source: HitsSource>: NSObject, InstantSear
   }
   
   public func scrollToTop() {
-    let indexPath = IndexPath(row: 0, section: 0)
-    collectionView.scrollToItem(at: indexPath, at: .top, animated: false)
+    collectionView.scrollToItem(at: IndexPath(), at: .top, animated: false)
   }
   
 }

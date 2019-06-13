@@ -8,16 +8,16 @@
 
 import Foundation
 import InstantSearchCore
-public typealias MultiHitsWidget = InstantSearchCore.MultiHitsController
+public typealias MultiHitsWidget = InstantSearchCore.MultiIndexHitsController
 
 public class MultiHitsController<HitsWidget: MultiHitsWidget>: NSObject {
   
   public let searcher: MultiIndexSearcher
-  public let viewModel: MultiHitsViewModel
+  public let viewModel: MultiIndexHitsViewModel
   public weak var widget: HitsWidget?
   public let onError: Observer<Error>
 
-  public init(client: Client, widget: HitsWidget, viewModel: MultiHitsViewModel) {
+  public init(client: Client, widget: HitsWidget, viewModel: MultiIndexHitsViewModel) {
     self.searcher = MultiIndexSearcher(client: client, indexSearchDatas: [])
     self.viewModel = viewModel
     self.widget = widget

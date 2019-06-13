@@ -25,7 +25,7 @@ extension Optional where Wrapped == Bool {
 
 public class LabelStatsController: StatsTextController {
 
-  let label: UILabel
+  public let label: UILabel
 
   public init (label: UILabel) {
     self.label = label
@@ -35,4 +35,19 @@ public class LabelStatsController: StatsTextController {
     label.text = item
   }
 
+}
+
+public class AttributedLabelStatsController: ItemAttributedTextController {
+  
+  public let label: UILabel
+  
+  public init (label: UILabel) {
+    self.label = label
+  }
+  
+  public func setItem(_ item: NSAttributedString?) {
+    label.attributedText = item
+  }
+
+  
 }

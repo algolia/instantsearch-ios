@@ -14,7 +14,7 @@ open class MultiHitsTableViewDataSource: NSObject {
   
   private typealias CellConfigurator = (UITableView, Int) throws -> UITableViewCell
   
-  public weak var hitsSource: MultiHitsSource? {
+  public weak var hitsSource: MultiIndexHitsSource? {
     didSet {
       cellConfigurators.removeAll()
     }
@@ -69,7 +69,7 @@ open class MultiHitsTableViewDelegate: NSObject {
   
   typealias ClickHandler = (UITableView, Int) throws -> Void
   
-  public weak var hitsSource: MultiHitsSource? {
+  public weak var hitsSource: MultiIndexHitsSource? {
     didSet {
       clickHandlers.removeAll()
     }
@@ -106,13 +106,13 @@ extension MultiHitsTableViewDelegate: UITableViewDelegate {
   
 }
 
-public class MultiHitsTableController: NSObject, InstantSearchCore.MultiHitsController {
+public class MultiHitsTableController: NSObject, InstantSearchCore.MultiIndexHitsController {
   
   public typealias SingleHitView = UITableViewCell
   
   public let tableView: UITableView
   
-  public weak var hitsSource: MultiHitsSource? {
+  public weak var hitsSource: MultiIndexHitsSource? {
     didSet {
       dataSource?.hitsSource = hitsSource
       delegate?.hitsSource = hitsSource

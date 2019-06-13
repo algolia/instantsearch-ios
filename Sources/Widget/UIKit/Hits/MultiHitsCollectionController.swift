@@ -14,7 +14,7 @@ open class MultiHitsCollectionViewDataSource: NSObject {
   
   private typealias CellConfigurator = (UICollectionView, Int) throws -> UICollectionViewCell
   
-  public weak var hitsDataSource: MultiHitsSource? {
+  public weak var hitsDataSource: MultiIndexHitsSource? {
     didSet {
       cellConfigurators.removeAll()
     }
@@ -70,7 +70,7 @@ open class MultiHitsCollectionViewDelegate: NSObject {
   
   typealias ClickHandler = (UICollectionView, Int) throws -> Void
   
-  public weak var hitsDataSource: MultiHitsSource? {
+  public weak var hitsDataSource: MultiIndexHitsSource? {
     didSet {
       clickHandlers.removeAll()
     }
@@ -107,13 +107,13 @@ extension MultiHitsCollectionViewDelegate: UICollectionViewDelegate {
   
 }
 
-public class MultiHitsCollectionController: NSObject, InstantSearchCore.MultiHitsController {
+public class MultiHitsCollectionController: NSObject, InstantSearchCore.MultiIndexHitsController {
   
   public typealias SingleHitView = UITableViewCell
   
   public let collectionView: UICollectionView
   
-  public weak var hitsSource: MultiHitsSource? {
+  public weak var hitsSource: MultiIndexHitsSource? {
     didSet {
       dataSource?.hitsDataSource = hitsSource
       delegate?.hitsDataSource = hitsSource
