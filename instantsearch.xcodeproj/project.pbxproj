@@ -23,6 +23,7 @@
 		AFEBED5A2284887200974108 /* HitsController.swift in Sources */ = {isa = PBXBuildFile; fileRef = AF3DE58B224A9B7A00C8BC08 /* HitsController.swift */; };
 		AFF1E7642296A11200941401 /* SelectableFilterButtonController.swift in Sources */ = {isa = PBXBuildFile; fileRef = AFF1E7622296A11200941401 /* SelectableFilterButtonController.swift */; };
 		AFF1E7652296A11200941401 /* FilterSwitchController.swift in Sources */ = {isa = PBXBuildFile; fileRef = AFF1E7632296A11200941401 /* FilterSwitchController.swift */; };
+		E2146BDF22B2455400927350 /* CurrentFiltersTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E2146BDE22B2455400927350 /* CurrentFiltersTableViewController.swift */; };
 		E26F42592298321900583D39 /* SearchBarController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E26F42572298321900583D39 /* SearchBarController.swift */; };
 		E26F425A2298321900583D39 /* TextfieldController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E26F42582298321900583D39 /* TextfieldController.swift */; };
 		E26F425C2298323700583D39 /* LabelStatsController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E26F425B2298323700583D39 /* LabelStatsController.swift */; };
@@ -75,6 +76,7 @@
 		AF9396802298140D00757257 /* ActivityIndicatorController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ActivityIndicatorController.swift; sourceTree = "<group>"; };
 		AFF1E7622296A11200941401 /* SelectableFilterButtonController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SelectableFilterButtonController.swift; sourceTree = "<group>"; };
 		AFF1E7632296A11200941401 /* FilterSwitchController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FilterSwitchController.swift; sourceTree = "<group>"; };
+		E2146BDE22B2455400927350 /* CurrentFiltersTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CurrentFiltersTableViewController.swift; sourceTree = "<group>"; };
 		E21DE94E1F2F7DB400EFC4F5 /* InstantSearchCore.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = InstantSearchCore.framework; path = Carthage/Build/iOS/InstantSearchCore.framework; sourceTree = "<group>"; };
 		E21DE9501F2F7DCA00EFC4F5 /* AlgoliaSearch.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AlgoliaSearch.framework; path = Carthage/Build/iOS/AlgoliaSearch.framework; sourceTree = "<group>"; };
 		E25FB0A21ECF550C006B8CED /* Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
@@ -173,6 +175,7 @@
 		AF6C6F7A2253C5A1001E5E3C /* Controller */ = {
 			isa = PBXGroup;
 			children = (
+				E2146BDD22B2454600927350 /* CurrentFilters */,
 				E2EFA5F122AEB988008C9CAA /* Sort By */,
 				E2EFA5EC22AEB96F008C9CAA /* Numeric Comparator */,
 				E26F4256229831F600583D39 /* ClearRefinements */,
@@ -228,6 +231,14 @@
 				AFF1E7622296A11200941401 /* SelectableFilterButtonController.swift */,
 			);
 			path = Selectable;
+			sourceTree = "<group>";
+		};
+		E2146BDD22B2454600927350 /* CurrentFilters */ = {
+			isa = PBXGroup;
+			children = (
+				E2146BDE22B2455400927350 /* CurrentFiltersTableViewController.swift */,
+			);
+			path = CurrentFilters;
 			sourceTree = "<group>";
 		};
 		E21DE94D1F2F7DB400EFC4F5 /* Frameworks */ = {
@@ -497,6 +508,7 @@
 				AFEBED5A2284887200974108 /* HitsController.swift in Sources */,
 				AF3DE593224A9B7A00C8BC08 /* HitsTableController.swift in Sources */,
 				E26F42592298321900583D39 /* SearchBarController.swift in Sources */,
+				E2146BDF22B2455400927350 /* CurrentFiltersTableViewController.swift in Sources */,
 				AF3DE590224A9B7A00C8BC08 /* MultiHitsController.swift in Sources */,
 				E26F425A2298321900583D39 /* TextfieldController.swift in Sources */,
 				AF3DE598224AA00400C8BC08 /* MultiHitsCollectionController.swift in Sources */,
