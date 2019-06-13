@@ -9,11 +9,11 @@ import Foundation
 import InstantSearchCore
 import UIKit
 
-public class ClearRefinementsButtonController: ClearRefinementsController {
+public class FilterClearButtonController: FilterClearController {
   
   public let button: UIButton
   
-  public var clearRefinements: (() -> Void)?
+  public var onClick: (() -> Void)?
   
   public init(button: UIButton) {
     self.button = button
@@ -21,7 +21,7 @@ public class ClearRefinementsButtonController: ClearRefinementsController {
   }
   
   @objc private func didTapButton() {
-    clearRefinements?()
+    onClick?()
   }
   
 }
