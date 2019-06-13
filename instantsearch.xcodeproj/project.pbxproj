@@ -8,8 +8,8 @@
 
 /* Begin PBXBuildFile section */
 		28F828881C494B2C00330CF4 /* InstantSearch.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 28F8287D1C494B2C00330CF4 /* InstantSearch.framework */; };
+		AF21EEA022B29AA6004A0542 /* MultiIndexHitsController.swift in Sources */ = {isa = PBXBuildFile; fileRef = AF21EE9F22B29AA6004A0542 /* MultiIndexHitsController.swift */; };
 		AF3DE588224A991F00C8BC08 /* main.swift in Sources */ = {isa = PBXBuildFile; fileRef = AF3DE587224A991F00C8BC08 /* main.swift */; };
-		AF3DE590224A9B7A00C8BC08 /* MultiHitsController.swift in Sources */ = {isa = PBXBuildFile; fileRef = AF3DE58A224A9B7A00C8BC08 /* MultiHitsController.swift */; };
 		AF3DE593224A9B7A00C8BC08 /* HitsTableController.swift in Sources */ = {isa = PBXBuildFile; fileRef = AF3DE58D224A9B7A00C8BC08 /* HitsTableController.swift */; };
 		AF3DE594224A9B7A00C8BC08 /* MultiHitsTableController.swift in Sources */ = {isa = PBXBuildFile; fileRef = AF3DE58E224A9B7A00C8BC08 /* MultiHitsTableController.swift */; };
 		AF3DE597224AA00400C8BC08 /* HitsCollectionController.swift in Sources */ = {isa = PBXBuildFile; fileRef = AF3DE595224AA00400C8BC08 /* HitsCollectionController.swift */; };
@@ -61,8 +61,8 @@
 		28F8287D1C494B2C00330CF4 /* InstantSearch.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = InstantSearch.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		28F828821C494B2C00330CF4 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		28F828871C494B2C00330CF4 /* InstantSearchTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = InstantSearchTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
+		AF21EE9F22B29AA6004A0542 /* MultiIndexHitsController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MultiIndexHitsController.swift; sourceTree = "<group>"; };
 		AF3DE587224A991F00C8BC08 /* main.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = main.swift; sourceTree = "<group>"; };
-		AF3DE58A224A9B7A00C8BC08 /* MultiHitsController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MultiHitsController.swift; sourceTree = "<group>"; };
 		AF3DE58B224A9B7A00C8BC08 /* HitsController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HitsController.swift; sourceTree = "<group>"; };
 		AF3DE58D224A9B7A00C8BC08 /* HitsTableController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HitsTableController.swift; sourceTree = "<group>"; };
 		AF3DE58E224A9B7A00C8BC08 /* MultiHitsTableController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MultiHitsTableController.swift; sourceTree = "<group>"; };
@@ -199,7 +199,7 @@
 			isa = PBXGroup;
 			children = (
 				AF3DE58B224A9B7A00C8BC08 /* HitsController.swift */,
-				AF3DE58A224A9B7A00C8BC08 /* MultiHitsController.swift */,
+				AF21EE9F22B29AA6004A0542 /* MultiIndexHitsController.swift */,
 			);
 			path = Hits;
 			sourceTree = "<group>";
@@ -501,6 +501,7 @@
 				AF3DE594224A9B7A00C8BC08 /* MultiHitsTableController.swift in Sources */,
 				AF9396812298140D00757257 /* ActivityIndicatorController.swift in Sources */,
 				E2EFA5F022AEB980008C9CAA /* NumericStepperController.swift in Sources */,
+				AF21EEA022B29AA6004A0542 /* MultiIndexHitsController.swift in Sources */,
 				AF3DE597224AA00400C8BC08 /* HitsCollectionController.swift in Sources */,
 				E26F425C2298323700583D39 /* LabelStatsController.swift in Sources */,
 				AFF1E7642296A11200941401 /* SelectableFilterButtonController.swift in Sources */,
@@ -509,7 +510,6 @@
 				AF3DE593224A9B7A00C8BC08 /* HitsTableController.swift in Sources */,
 				E26F42592298321900583D39 /* SearchBarController.swift in Sources */,
 				E2146BDF22B2455400927350 /* CurrentFiltersTableViewController.swift in Sources */,
-				AF3DE590224A9B7A00C8BC08 /* MultiHitsController.swift in Sources */,
 				E26F425A2298321900583D39 /* TextfieldController.swift in Sources */,
 				AF3DE598224AA00400C8BC08 /* MultiHitsCollectionController.swift in Sources */,
 				E2EFA5F322AEB990008C9CAA /* SelectIndexController.swift in Sources */,

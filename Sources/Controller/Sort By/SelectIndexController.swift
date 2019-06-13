@@ -8,6 +8,7 @@
 
 import Foundation
 import InstantSearchCore
+import UIKit
 
 public class SelectIndexController: NSObject, SelectableSegmentController {
 
@@ -26,10 +27,10 @@ public class SelectIndexController: NSObject, SelectableSegmentController {
 
   }
 
-  public func setItems(items: [Int : String]) {
+  public func setItems(items: [Int: String]) {
     if alertController.actions.isEmpty {
       for item in items {
-        alertController.addAction(UIAlertAction(title: item.value, style: .default , handler:{ [weak self] (UIAlertAction) in
+        alertController.addAction(UIAlertAction(title: item.value, style: .default , handler: { [weak self] (UIAlertAction) in
           self?.onClick?(item.key)
         }))
       }
