@@ -28,13 +28,13 @@ public class SelectIndexController: NSObject, SelectableSegmentController {
   }
 
   public func setItems(items: [Int: String]) {
-    if alertController.actions.isEmpty {
-      for item in items {
-        alertController.addAction(UIAlertAction(title: item.value, style: .default , handler: { [weak self] (UIAlertAction) in
-          self?.onClick?(item.key)
-        }))
-      }
+    guard alertController.actions.isEmpty else { return }
+    for item in items {
+      alertController.addAction(UIAlertAction(title: item.value, style: .default , handler: { [weak self] _ in
+        self?.onClick?(item.key)
+      }))
     }
+    alertController.addAction(UIAlertAction(title: "Cancel", style: .cancel, handler: .none))
   }
 
 }
