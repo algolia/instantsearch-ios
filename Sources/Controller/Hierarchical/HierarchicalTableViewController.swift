@@ -47,9 +47,11 @@ extension HierarchicalTableViewController: UITableViewDataSource {
   open func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
     let cell = tableView.dequeueReusableCell(withIdentifier: cellID, for: indexPath)
 
+    let maxSelectedLevel = Set(items.filter { $0.isSelected }.map { $0.level }).max() ?? 0
     let item = items[indexPath.row]
     cell.textLabel?.text = "\(item.facet.description)"
     cell.indentationLevel = item.level
+    cell.accessoryType = item.level == maxSelectedLevel && item.isSelected ? .checkmark : .none
     return cell
 
   }
