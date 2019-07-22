@@ -32,7 +32,7 @@ public class SelectableFilterButtonController<F: FilterType>: SelectableControll
   }
   
   public func setItem(_ item: F) {
-    let title = DefaultFilterPresenter.present(Filter(item))
+    let title = DefaultPresenter.Filter.present(Filter(item))
     button.setTitle(title, for: .normal)
   }
   

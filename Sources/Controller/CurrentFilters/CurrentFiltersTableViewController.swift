@@ -19,7 +19,6 @@ open class CurrentFilterListTableController: NSObject, ItemListController, UITab
   public let tableView: UITableView
 
   public var items: [FilterAndID] = []
-  public var filterFormatter: FilterPresenter?
 
   private let cellIdentifier = "CurrentFilterListTableControllerCellID"
 
@@ -31,8 +30,8 @@ open class CurrentFilterListTableController: NSObject, ItemListController, UITab
     tableView.register(UITableViewCell.self, forCellReuseIdentifier: cellIdentifier)
   }
 
-  open func setItems(_ item: Set<FilterAndID>) {
-    items = Array(item)
+  open func setItems(_ item: [FilterAndID]) {
+    items = item
   }
 
   open func reload() {
@@ -48,8 +47,7 @@ open class CurrentFilterListTableController: NSObject, ItemListController, UITab
   open func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
     let cell = tableView.dequeueReusableCell(withIdentifier: cellIdentifier, for: indexPath)
     let filterAndID = items[indexPath.row]
-    let filterPresenter = self.filterFormatter ?? DefaultFilterPresenter.present
-    cell.textLabel?.text = filterPresenter(filterAndID.filter)
+    cell.textLabel?.text = filterAndID.text
 
     return cell
   }
