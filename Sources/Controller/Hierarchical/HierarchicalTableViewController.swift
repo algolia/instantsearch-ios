@@ -15,12 +15,13 @@ open class HierarchicalTableViewController: NSObject, HierarchicalController {
   public var onClick: ((String) -> Void)?
   var items: [HierarchicalFacet]
   var tableView: UITableView
-  private let cellID = "cellID"
+  let cellID: String
 
 
-  public init(tableView: UITableView) {
+  public init(tableView: UITableView, cellID: String = "HierarchicalFacet") {
     self.tableView = tableView
     self.items = []
+    self.cellID = cellID
 
     super.init()
 
