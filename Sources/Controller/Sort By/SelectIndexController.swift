@@ -30,7 +30,7 @@ public class SelectIndexController: NSObject, SelectableSegmentController {
   public func setItems(items: [Int: String]) {
     guard alertController.actions.isEmpty else { return }
     for item in items {
-      alertController.addAction(UIAlertAction(title: item.value, style: .default , handler: { [weak self] _ in
+      alertController.addAction(UIAlertAction(title: item.value, style: .default, handler: { [weak self] _ in
         self?.onClick?(item.key)
       }))
     }

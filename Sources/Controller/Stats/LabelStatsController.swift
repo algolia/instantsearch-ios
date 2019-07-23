@@ -49,5 +49,4 @@ public class AttributedLabelStatsController: ItemAttributedTextController {
     label.attributedText = item
   }
 
-  
 }

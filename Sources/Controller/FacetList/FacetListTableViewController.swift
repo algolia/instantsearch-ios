@@ -73,5 +73,3 @@ extension FacetListTableViewController: UITableViewDelegate {
   }
 
 }
-
-

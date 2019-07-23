@@ -13,20 +13,20 @@ public typealias MultiHitsWidget = InstantSearchCore.MultiIndexHitsController
 public class MultiHitsController<HitsWidget: MultiHitsWidget>: NSObject {
   
   public let searcher: MultiIndexSearcher
-  public let viewModel: MultiIndexHitsViewModel
+  public let interactor: MultiIndexHitsInteractor
   public weak var widget: HitsWidget?
   public let onError: Observer<Error>
 
-  public init(client: Client, widget: HitsWidget, viewModel: MultiIndexHitsViewModel) {
-    self.searcher = MultiIndexSearcher(client: client, indexSearchDatas: [])
-    self.viewModel = viewModel
+  public init(client: Client, widget: HitsWidget, interactor: MultiIndexHitsInteractor) {
+    self.searcher = MultiIndexSearcher(client: client, indexQueryStates: [])
+    self.interactor = interactor
     self.widget = widget
     self.onError = Observer<Error>()
     super.init()
     
-    viewModel.connectSearcher(searcher)
+    interactor.connectSearcher(searcher)
     
-    self.widget?.hitsSource = viewModel
+    self.widget?.hitsSource = interactor
     
   }
   

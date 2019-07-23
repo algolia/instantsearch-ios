@@ -18,25 +18,25 @@ public class HitsController<Record: Codable>: NSObject {
 
   public let searcher: SingleIndexSearcher
   public let filterState: FilterState
-  public let viewModel: HitsViewModel<Record>
+  public let interactor: HitsInteractor<Record>
   public let onError: Observer<Error>
 
-  public init<Widget: HitsWidget>(searcher: SingleIndexSearcher, viewModel: HitsViewModel<Record>, widget: Widget) where Widget.DataSource == HitsViewModel<Record> {
+  public init<Widget: HitsWidget>(searcher: SingleIndexSearcher, interactor: HitsInteractor<Record>, widget: Widget) where Widget.DataSource == HitsInteractor<Record> {
     self.searcher = searcher
     self.filterState  = .init()
-    self.viewModel = viewModel
+    self.interactor = interactor
     self.onError = Observer<Error>()
-    widget.hitsSource = viewModel
+    widget.hitsSource = interactor
   }
   
-  public convenience init<Widget: HitsWidget>(index: Index, widget: Widget) where Widget.DataSource == HitsViewModel<Record> {
+  public convenience init<Widget: HitsWidget>(index: Index, widget: Widget) where Widget.DataSource == HitsInteractor<Record> {
     let query = Query()
     let searcher = SingleIndexSearcher(index: index, query: query)
 
-    let viewModel = HitsViewModel<Record>()
-    self.init(searcher: searcher, viewModel: viewModel, widget: widget)
+    let interactor = HitsInteractor<Record>()
+    self.init(searcher: searcher, interactor: interactor, widget: widget)
 
-    viewModel.connectSearcher(searcher)
+    interactor.connectSearcher(searcher)
 
   }
   

@@ -17,7 +17,6 @@ open class HierarchicalTableViewController: NSObject, HierarchicalController {
   var tableView: UITableView
   let cellID: String
 
-
   public init(tableView: UITableView, cellID: String = "HierarchicalFacet") {
     self.tableView = tableView
     self.items = []
