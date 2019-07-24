@@ -30,7 +30,7 @@ open class MultiHitsTableViewDataSource: NSObject {
   public func setCellConfigurator<Hit: Codable>(forSection section: Int, _ cellConfigurator: @escaping TableViewCellConfigurator<Hit>) {
     cellConfigurators[section] = { [weak self] (tableView, row) in
       guard let hit: Hit = try self?.hitsSource?.hit(atIndex: row, inSection: section) else {
-        assertionFailure("Invalid state: Attempt to deqeue a cell for a missing hit in a hits ViewModel")
+        assertionFailure("Invalid state: Attempt to deqeue a cell for a missing hit in a hits Interactor")
         return UITableViewCell()
       }
       return cellConfigurator(tableView, hit, IndexPath(row: row, section: section))
@@ -85,7 +85,7 @@ open class MultiHitsTableViewDelegate: NSObject {
   public func setClickHandler<Hit: Codable>(forSection section: Int, _ clickHandler: @escaping TableViewClickHandler<Hit>) {
     clickHandlers[section] = { [weak self] (tableView, row) in
       guard let hit: Hit = try self?.hitsSource?.hit(atIndex: row, inSection: section) else {
-        assertionFailure("Invalid state: Attempt to process a click of a cell for a missing hit in a hits ViewModel")
+        assertionFailure("Invalid state: Attempt to process a click of a cell for a missing hit in a hits Interactor")
         return
       }
       clickHandler(tableView, hit, IndexPath(row: row, section: section))

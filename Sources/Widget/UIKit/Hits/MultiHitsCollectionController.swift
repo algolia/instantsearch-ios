@@ -31,7 +31,7 @@ open class MultiHitsCollectionViewDataSource: NSObject {
     cellConfigurators[section] = { [weak self] (collectionView, row) in
       guard let dataSource = self?.hitsDataSource else { return UICollectionViewCell() }
       guard let hit: Hit = try dataSource.hit(atIndex: row, inSection: section) else {
-        assertionFailure("Invalid state: Attempt to deqeue a cell for a missing hit in a hits ViewModel")
+        assertionFailure("Invalid state: Attempt to deqeue a cell for a missing hit in a hits Interactor")
         return UICollectionViewCell()
       }
       return cellConfigurator(collectionView, hit, IndexPath(item: row, section: section))
@@ -86,7 +86,7 @@ open class MultiHitsCollectionViewDelegate: NSObject {
   public func setClickHandler<Hit: Codable>(forSection section: Int, _ clickHandler: @escaping CollectionViewClickHandler<Hit>) {
     clickHandlers[section] = { [weak self] (collectionView, row) in
       guard let hit: Hit = try self?.hitsDataSource?.hit(atIndex: row, inSection: section) else {
-        assertionFailure("Invalid state: Attempt to process a click of a cell for a missing hit in a hits ViewModel")
+        assertionFailure("Invalid state: Attempt to process a click of a cell for a missing hit in a hits Interactor")
         return
       }
       clickHandler(collectionView, hit, IndexPath(item: row, section: section))

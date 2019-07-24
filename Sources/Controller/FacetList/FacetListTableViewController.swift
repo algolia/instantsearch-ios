@@ -6,7 +6,7 @@
 //
 
 import Foundation
-import InstantSearchCore
+@_exported import InstantSearchCore
 import UIKit
 
 open class FacetListTableViewController: NSObject, FacetListController {

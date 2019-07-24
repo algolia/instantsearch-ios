@@ -12,15 +12,13 @@ import UIKit
 
 public class TextFieldController: NSObject, QueryInputController {
   
-  public var onQueryChanged: (String?) -> Void
-  public var onQuerySubmitted: (String?) -> Void
+  public var onQueryChanged: ((String?) -> Void)?
+  public var onQuerySubmitted: ((String?) -> Void)?
   
   let textField: UITextField
 
   public init (textField: UITextField) {
     self.textField = textField
-    onQueryChanged = { _ in }
-    onQuerySubmitted = { _ in }
     super.init()
     setupTextField()
   }
@@ -31,7 +29,7 @@ public class TextFieldController: NSObject, QueryInputController {
 
   @objc func textFieldTextChanged(textField: UITextField) {
     guard let searchText = textField.text else { return }
-    onQueryChanged(searchText)
+    onQueryChanged?(searchText)
   }
   
   private func setupTextField() {
@@ -45,7 +43,7 @@ public class TextFieldController: NSObject, QueryInputController {
 extension TextFieldController: UITextFieldDelegate {
   
   public func textFieldShouldReturn(_ textField: UITextField) -> Bool {
-    onQuerySubmitted(textField.text)
+    onQuerySubmitted?(textField.text)
     return true
   }
   
