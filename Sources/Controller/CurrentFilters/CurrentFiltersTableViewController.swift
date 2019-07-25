@@ -10,9 +10,7 @@ import Foundation
 import InstantSearchCore
 import UIKit
 
-open class CurrentFilterListTableController: NSObject, ItemListController, UITableViewDataSource, UITableViewDelegate {
-
-  public typealias Item = FilterAndID
+open class CurrentFilterListTableController: NSObject, CurrentFiltersController, UITableViewDataSource, UITableViewDelegate {
 
   open var onRemoveItem: ((FilterAndID) -> Void)?
 
