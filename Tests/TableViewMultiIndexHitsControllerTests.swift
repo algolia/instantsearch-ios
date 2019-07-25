@@ -10,7 +10,7 @@ import InstantSearchCore
 import Foundation
 import XCTest
 
-class TestMultiHitsDataSource: MultiHitsSource {
+class TestMultiHitsDataSource: MultiIndexHitsSource {
   
   let hitsBySection: [[String]]
   
@@ -32,13 +32,13 @@ class TestMultiHitsDataSource: MultiHitsSource {
   
 }
 
-class TableViewMultiHitsWidgetTests: XCTestCase {
+class TableViewMultiIndexHitsControllerTests: XCTestCase {
   
   func testDataSource() {
     
     let hitsSource = TestMultiHitsDataSource(hitsBySection: [["t11", "t12"], ["t21", "t22", "t23"]])
     
-    let dataSource = MultiHitsTableViewDataSource()
+    let dataSource = MultiIndexHitsTableViewDataSource()
     
     dataSource.setCellConfigurator(forSection: 0) { (_, h: String, _) -> UITableViewCell in
       let cell = UITableViewCell()
@@ -59,7 +59,7 @@ class TableViewMultiHitsWidgetTests: XCTestCase {
     
     let hitsSource = TestMultiHitsDataSource(hitsBySection: [["t11", "t12"], ["t21", "t22", "t23"]])
     
-    let delegate = MultiHitsTableViewDelegate()
+    let delegate = MultiIndexHitsTableViewDelegate()
     delegate.hitsSource = hitsSource
     
   }

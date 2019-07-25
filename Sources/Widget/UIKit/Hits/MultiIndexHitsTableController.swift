@@ -1,5 +1,5 @@
 //
-//  TableViewMultiHitsWidget.swift
+//  MultiIndexHitsTableViewController.swift
 //  InstantSearchCore
 //
 //  Created by Vladislav Fitc on 25/03/2019.
@@ -10,7 +10,7 @@ import Foundation
 import InstantSearchCore
 import UIKit
 
-open class MultiHitsTableViewDataSource: NSObject {
+open class MultiIndexHitsTableViewDataSource: NSObject {
   
   private typealias CellConfigurator = (UITableView, Int) throws -> UITableViewCell
   
@@ -39,7 +39,7 @@ open class MultiHitsTableViewDataSource: NSObject {
   
 }
 
-extension MultiHitsTableViewDataSource: UITableViewDataSource {
+extension MultiIndexHitsTableViewDataSource: UITableViewDataSource {
   
   open func numberOfSections(in tableView: UITableView) -> Int {
     guard let numberOfSections = hitsSource?.numberOfSections() else {
@@ -65,7 +65,7 @@ extension MultiHitsTableViewDataSource: UITableViewDataSource {
   
 }
 
-open class MultiHitsTableViewDelegate: NSObject {
+open class MultiIndexHitsTableViewDelegate: NSObject {
   
   typealias ClickHandler = (UITableView, Int) throws -> Void
   
@@ -94,7 +94,7 @@ open class MultiHitsTableViewDelegate: NSObject {
   
 }
 
-extension MultiHitsTableViewDelegate: UITableViewDelegate {
+extension MultiIndexHitsTableViewDelegate: UITableViewDelegate {
   
   open func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
     do {
@@ -106,7 +106,7 @@ extension MultiHitsTableViewDelegate: UITableViewDelegate {
   
 }
 
-public class MultiHitsTableController: NSObject, InstantSearchCore.MultiIndexHitsController {
+public class MultiIndexHitsTableController: NSObject, InstantSearchCore.MultiIndexHitsController {
   
   public typealias SingleHitView = UITableViewCell
   
@@ -119,14 +119,14 @@ public class MultiHitsTableController: NSObject, InstantSearchCore.MultiIndexHit
     }
   }
   
-  public var dataSource: MultiHitsTableViewDataSource? {
+  public var dataSource: MultiIndexHitsTableViewDataSource? {
     didSet {
       dataSource?.hitsSource = hitsSource
       tableView.dataSource = dataSource
     }
   }
   
-  public var delegate: MultiHitsTableViewDelegate? {
+  public var delegate: MultiIndexHitsTableViewDelegate? {
     didSet {
       delegate?.hitsSource = hitsSource
       tableView.delegate = delegate
@@ -142,7 +142,9 @@ public class MultiHitsTableController: NSObject, InstantSearchCore.MultiIndexHit
   }
   
   public func scrollToTop() {
-    tableView.scrollToRow(at: IndexPath(), at: .top, animated: false)
+    guard tableView.numberOfRows(inSection: 0) != 0 else { return }
+    let indexPath = IndexPath(row: 0, section: 0)
+    self.tableView.scrollToRow(at: indexPath, at: .top, animated: false)
   }
 
 }

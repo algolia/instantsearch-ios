@@ -1,5 +1,5 @@
 //
-//  CollectionViewHitsWidget.swift
+//  HitsCollectionController.swift
 //  InstantSearchCore
 //
 //  Created by Vladislav Fitc on 21/03/2019.
@@ -9,6 +9,9 @@
 import Foundation
 import InstantSearchCore
 import UIKit
+
+public typealias HitViewConfigurator<HitsView, SingleHitView, Hit> = (HitsView, Hit, IndexPath) -> SingleHitView
+public typealias HitClickHandler<HitsView, Hit> = (HitsView, Hit, IndexPath) -> Void
 
 public typealias CollectionViewCellConfigurator<Item> = HitViewConfigurator<UICollectionView, UICollectionViewCell, Item>
 public typealias CollectionViewClickHandler<Item> = HitClickHandler<UICollectionView, Item>
@@ -82,7 +85,9 @@ public class HitsCollectionController<Source: HitsSource>: NSObject, InstantSear
   }
   
   public func scrollToTop() {
-    collectionView.scrollToItem(at: IndexPath(), at: .top, animated: false)
+    guard collectionView.numberOfItems(inSection: 0) != 0 else { return }
+    let indexPath = IndexPath(item: 0, section: 0)
+    collectionView.scrollToItem(at: indexPath, at: .top, animated: false)
   }
   
 }

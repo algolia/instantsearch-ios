@@ -1,5 +1,5 @@
 //
-//  TableViewHitsWidget.swift
+//  HitsTableController.swift
 //  InstantSearchCore
 //
 //  Created by Vladislav Fitc on 21/03/2019.

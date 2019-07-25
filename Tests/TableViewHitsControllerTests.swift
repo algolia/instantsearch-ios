@@ -1,5 +1,5 @@
 //
-//  TableViewHitsWidgetTests.swift
+//  TableViewHitsControllerTests.swift
 //  InstantSearch
 //
 //  Created by Vladislav Fitc on 27/03/2019.
@@ -30,7 +30,7 @@ class TestHitsSource: HitsSource {
   
 }
 
-class TableViewHitsWidgetTests: XCTestCase {
+class TableViewHitsControllerTests: XCTestCase {
   
   func testDataSource() {
     
@@ -78,9 +78,9 @@ class TableViewHitsWidgetTests: XCTestCase {
     
     let tableView = UITableView()
     
-    let vm = HitsViewModel<String>()
+    let vm = HitsInteractor<String>()
         
-    let dataSource = HitsTableViewDataSource<HitsViewModel<String>> { (_, hit, _) -> UITableViewCell in
+    let dataSource = HitsTableViewDataSource<HitsInteractor<String>> { (_, hit, _) -> UITableViewCell in
       let cell = UITableViewCell()
       cell.textLabel?.text = hit
       return cell
@@ -88,11 +88,11 @@ class TableViewHitsWidgetTests: XCTestCase {
     
     dataSource.hitsSource = vm
     
-    let delegate = HitsTableViewDelegate<HitsViewModel<String>> { (_, _, _) in }
+    let delegate = HitsTableViewDelegate<HitsInteractor<String>> { (_, _, _) in }
     
     delegate.hitsSource = vm
     
-    let widget = HitsTableController<HitsViewModel<String>>(tableView: tableView)
+    let widget = HitsTableController<HitsInteractor<String>>(tableView: tableView)
     
     widget.dataSource = dataSource
     widget.delegate = delegate
