@@ -94,9 +94,10 @@ import InstantSearchCore
     }
     
     public func hitForRow(at indexPath: IndexPath) -> [String: Any] {
-        guard let searcher = searcher else { return [:]}
+        guard let searcher = searcher, indexPath.row < searcher.hits.count else { return [:]}
         
         loadMoreIfNecessary(rowNumber: indexPath.row)
+
         return searcher.hits[indexPath.row]
     }
     

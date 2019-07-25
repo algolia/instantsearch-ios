@@ -42,6 +42,8 @@ import InstantSearchCore
     }
     
     public func reloadHits() {
-        reloadData()
+      DispatchQueue.main.async {
+        self.reloadData()
+      }
     }
 }

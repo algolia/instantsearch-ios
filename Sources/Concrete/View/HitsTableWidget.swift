@@ -40,6 +40,8 @@ import UIKit
     }
     
     public func reloadHits() {
-        reloadData()
+      DispatchQueue.main.async {
+         self.reloadData()
+      }
     }
 }
