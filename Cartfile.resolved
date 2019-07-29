@@ -1,3 +1,2 @@
-git "file:///Users/vladislavfitc/Workspace/instantsearch-core-swift" "dddf17df1683cbd928c6647bd391cf5765e2c734"
+git "file:///Users/vladislavfitc/Workspace/instantsearch-core-swift" "f4127ad1c058b04944dff3be06056c20348e8509"
 github "algolia/algoliasearch-client-swift" "c9a2d14d044957fcafc54f9bef0de620bfcb2712"
-github "spinach/Signals" "bba8de1b8e1725b52e94cf65570ab18a99fbf25b"

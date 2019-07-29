@@ -14,11 +14,7 @@ open class MultiIndexHitsCollectionViewDataSource: NSObject {
   
   private typealias CellConfigurator = (UICollectionView, Int) throws -> UICollectionViewCell
   
-  public weak var hitsDataSource: MultiIndexHitsSource? {
-    didSet {
-      cellConfigurators.removeAll()
-    }
-  }
+  public weak var hitsDataSource: MultiIndexHitsSource?
   
   private var cellConfigurators: [Int: CellConfigurator]
   
@@ -70,11 +66,7 @@ open class MultiIndexHitsCollectionViewDelegate: NSObject {
   
   typealias ClickHandler = (UICollectionView, Int) throws -> Void
   
-  public weak var hitsDataSource: MultiIndexHitsSource? {
-    didSet {
-      clickHandlers.removeAll()
-    }
-  }
+  public weak var hitsDataSource: MultiIndexHitsSource?
   
   private var clickHandlers: [Int: ClickHandler]
   

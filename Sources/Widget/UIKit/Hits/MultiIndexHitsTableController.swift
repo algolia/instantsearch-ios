@@ -14,11 +14,7 @@ open class MultiIndexHitsTableViewDataSource: NSObject {
   
   private typealias CellConfigurator = (UITableView, Int) throws -> UITableViewCell
   
-  public weak var hitsSource: MultiIndexHitsSource? {
-    didSet {
-      cellConfigurators.removeAll()
-    }
-  }
+  public weak var hitsSource: MultiIndexHitsSource?
   
   private var cellConfigurators: [Int: CellConfigurator]
   
@@ -69,11 +65,7 @@ open class MultiIndexHitsTableViewDelegate: NSObject {
   
   typealias ClickHandler = (UITableView, Int) throws -> Void
   
-  public weak var hitsSource: MultiIndexHitsSource? {
-    didSet {
-      clickHandlers.removeAll()
-    }
-  }
+  public weak var hitsSource: MultiIndexHitsSource?
   
   private var clickHandlers: [Int: ClickHandler]
   
