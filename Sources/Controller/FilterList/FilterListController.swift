@@ -19,7 +19,7 @@ open class FilterListTableViewController<F: FilterType>: NSObject, SelectableLis
   public let tableView: UITableView
   
   public var selectableItems: [SelectableItem<F>] = []
-  public var filterFormatter: FilterPresenter?
+  public var filterPresenter: FilterPresenter?
   
   let cellID: String
   
@@ -49,7 +49,7 @@ open class FilterListTableViewController<F: FilterType>: NSObject, SelectableLis
   open func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
     let cell = tableView.dequeueReusableCell(withIdentifier: cellID, for: indexPath)
     let filter = selectableItems[indexPath.row]
-    let filterPresenter = self.filterFormatter ?? DefaultPresenter.Filter.present
+    let filterPresenter = self.filterPresenter ?? DefaultPresenter.Filter.present
     cell.textLabel?.text = filterPresenter(Filter(filter.item))
     cell.accessoryType = filter.isSelected ? .checkmark : .none
     
