@@ -11,23 +11,25 @@ import UIKit
 
 open class FacetListTableController: NSObject, FacetListController {
   
-  public var onClick: ((Facet) -> Void)?
+  open var onClick: ((Facet) -> Void)?
   
-  public var tableView: UITableView
+  public let tableView: UITableView
   
-  var selectableItems: [RefinementFacet] = []
-  var cellID: String
+  public var selectableItems: [RefinementFacet] = []
+  public var facetPresenter: FacetPresenter?
+  
+  let cellID: String
   
   public init(tableView: UITableView, cellID: String = "FacetList") {
     self.tableView = tableView
     self.cellID = cellID
     super.init()
-    tableView.register(UITableViewCell.self, forCellReuseIdentifier: cellID)
     tableView.dataSource = self
     tableView.delegate = self
+    tableView.register(UITableViewCell.self, forCellReuseIdentifier: cellID)
   }
   
-  // MARK: RefinementFacetsViewController protocol
+  // MARK: - RefinementFacetsViewController
   
   public func setSelectableItems(selectableItems: [RefinementFacet]) {
     self.selectableItems = selectableItems
@@ -47,16 +49,9 @@ extension FacetListTableController: UITableViewDataSource {
   
   open func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
     let cell = tableView.dequeueReusableCell(withIdentifier: cellID, for: indexPath)
-    
-    let selectableRefinement: RefinementFacet = selectableItems[indexPath.row]
-    
-    let facetAttributedString = NSMutableAttributedString(string: selectableRefinement.item.value)
-    let facetCountStringColor = [NSAttributedString.Key.foregroundColor: UIColor.gray, .font: UIFont.systemFont(ofSize: 14)]
-    let facetCountString = NSAttributedString(string: " (\(selectableRefinement.item.count))", attributes: facetCountStringColor)
-    facetAttributedString.append(facetCountString)
-    
-    cell.textLabel?.attributedText = facetAttributedString
-    
+    let selectableRefinement = selectableItems[indexPath.row]
+    let facetPresenter = self.facetPresenter ?? DefaultPresenter.Facet.present
+    cell.textLabel?.text = facetPresenter(selectableRefinement.item)
     cell.accessoryType = selectableRefinement.isSelected ? .checkmark : .none
     
     return cell
@@ -68,7 +63,6 @@ extension FacetListTableController: UITableViewDelegate {
   
   open func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
     let selectableItem = selectableItems[indexPath.row]
-    
     self.onClick?(selectableItem.item)
   }
   

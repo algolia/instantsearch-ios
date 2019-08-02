@@ -6,8 +6,8 @@
 //
 
 import Foundation
-import UIKit
 import InstantSearchCore
+import UIKit
 
 open class FilterListTableController<F: FilterType>: NSObject, FilterListController, UITableViewDataSource, UITableViewDelegate {
   
@@ -30,6 +30,8 @@ open class FilterListTableController<F: FilterType>: NSObject, FilterListControl
     tableView.delegate = self
     tableView.register(UITableViewCell.self, forCellReuseIdentifier: cellID)
   }
+  
+  // MARK: - FilterListController
   
   open func setSelectableItems(selectableItems: [(item: F, isSelected: Bool)]) {
     self.selectableItems = selectableItems
@@ -58,7 +60,8 @@ open class FilterListTableController<F: FilterType>: NSObject, FilterListControl
   // MARK: - UITableViewDelegate
   
   open func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-    onClick?(selectableItems[indexPath.row].item)
+    let selectableItem = selectableItems[indexPath.row]
+    onClick?(selectableItem.item)
   }
   
 }
