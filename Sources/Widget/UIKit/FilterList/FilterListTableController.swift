@@ -33,7 +33,7 @@ open class FilterListTableController<F: FilterType>: NSObject, FilterListControl
   
   // MARK: - FilterListController
   
-  open func setSelectableItems(selectableItems: [(item: F, isSelected: Bool)]) {
+  open func setSelectableItems(selectableItems: [SelectableItem<F>]) {
     self.selectableItems = selectableItems
   }
   
