@@ -23,6 +23,8 @@
 		AF3DE598224AA00400C8BC08 /* MultiIndexHitsCollectionController.swift in Sources */ = {isa = PBXBuildFile; fileRef = AF3DE596224AA00400C8BC08 /* MultiIndexHitsCollectionController.swift */; };
 		AF3DE5BD224BBF7000C8BC08 /* TableViewHitsControllerTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = AF3DE5A9224BBE6700C8BC08 /* TableViewHitsControllerTests.swift */; };
 		AF3DE5BE224BBF7000C8BC08 /* TableViewMultiIndexHitsControllerTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = AF3DE5B1224BBEC000C8BC08 /* TableViewMultiIndexHitsControllerTests.swift */; };
+		AF5D102D22F45CAB00DE13AA /* FilterListTableController.swift in Sources */ = {isa = PBXBuildFile; fileRef = AF5D102C22F45CAB00DE13AA /* FilterListTableController.swift */; };
+		AF5D103022F45EB300DE13AA /* FacetListTableController.swift in Sources */ = {isa = PBXBuildFile; fileRef = AF5D102F22F45EB300DE13AA /* FacetListTableController.swift */; };
 		AF93967D22980FBE00757257 /* ClearRefinementsButtonController.swift in Sources */ = {isa = PBXBuildFile; fileRef = AF93967C22980FBE00757257 /* ClearRefinementsButtonController.swift */; };
 		AF9396812298140D00757257 /* ActivityIndicatorController.swift in Sources */ = {isa = PBXBuildFile; fileRef = AF9396802298140D00757257 /* ActivityIndicatorController.swift */; };
 		AFF1E7642296A11200941401 /* SelectableFilterButtonController.swift in Sources */ = {isa = PBXBuildFile; fileRef = AFF1E7622296A11200941401 /* SelectableFilterButtonController.swift */; };
@@ -39,8 +41,6 @@
 		E27B67EE1ED339290001FFA7 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = E27B67EC1ED339290001FFA7 /* LaunchScreen.storyboard */; };
 		E2A477011EC61B43007CA367 /* InstantSearch-Bridging-Header.h in Headers */ = {isa = PBXBuildFile; fileRef = E2A477001EC61B43007CA367 /* InstantSearch-Bridging-Header.h */; };
 		E2E060571F717A7B0026358B /* InstantSearchCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E21DE94E1F2F7DB400EFC4F5 /* InstantSearchCore.framework */; };
-		E2ED70FA22E6162600CF7477 /* FacetListTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E2ED70F922E6162500CF7477 /* FacetListTableViewController.swift */; };
-		E2ED70FD22E61BA200CF7477 /* FilterListController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E2ED70FC22E61BA200CF7477 /* FilterListController.swift */; };
 		E2EFA5EF22AEB980008C9CAA /* NumericTextFieldController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E2EFA5ED22AEB980008C9CAA /* NumericTextFieldController.swift */; };
 		E2EFA5F022AEB980008C9CAA /* NumericStepperController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E2EFA5EE22AEB980008C9CAA /* NumericStepperController.swift */; };
 		E2EFA5F322AEB990008C9CAA /* SelectIndexController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E2EFA5F222AEB990008C9CAA /* SelectIndexController.swift */; };
@@ -83,6 +83,8 @@
 		AF3DE596224AA00400C8BC08 /* MultiIndexHitsCollectionController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MultiIndexHitsCollectionController.swift; sourceTree = "<group>"; };
 		AF3DE5A9224BBE6700C8BC08 /* TableViewHitsControllerTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TableViewHitsControllerTests.swift; sourceTree = "<group>"; };
 		AF3DE5B1224BBEC000C8BC08 /* TableViewMultiIndexHitsControllerTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TableViewMultiIndexHitsControllerTests.swift; sourceTree = "<group>"; };
+		AF5D102C22F45CAB00DE13AA /* FilterListTableController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FilterListTableController.swift; sourceTree = "<group>"; };
+		AF5D102F22F45EB300DE13AA /* FacetListTableController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FacetListTableController.swift; sourceTree = "<group>"; };
 		AF93967C22980FBE00757257 /* ClearRefinementsButtonController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ClearRefinementsButtonController.swift; sourceTree = "<group>"; };
 		AF9396802298140D00757257 /* ActivityIndicatorController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ActivityIndicatorController.swift; sourceTree = "<group>"; };
 		AFF1E7622296A11200941401 /* SelectableFilterButtonController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SelectableFilterButtonController.swift; sourceTree = "<group>"; };
@@ -104,8 +106,6 @@
 		E27B67EF1ED339290001FFA7 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		E2A477001EC61B43007CA367 /* InstantSearch-Bridging-Header.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "InstantSearch-Bridging-Header.h"; sourceTree = "<group>"; };
 		E2A477021EC62031007CA367 /* InstantSearch-Tests-Bridging-Header.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "InstantSearch-Tests-Bridging-Header.h"; sourceTree = "<group>"; };
-		E2ED70F922E6162500CF7477 /* FacetListTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FacetListTableViewController.swift; sourceTree = "<group>"; };
-		E2ED70FC22E61BA200CF7477 /* FilterListController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FilterListController.swift; sourceTree = "<group>"; };
 		E2EFA5ED22AEB980008C9CAA /* NumericTextFieldController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NumericTextFieldController.swift; sourceTree = "<group>"; };
 		E2EFA5EE22AEB980008C9CAA /* NumericStepperController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NumericStepperController.swift; sourceTree = "<group>"; };
 		E2EFA5F222AEB990008C9CAA /* SelectIndexController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SelectIndexController.swift; sourceTree = "<group>"; };
@@ -175,7 +175,6 @@
 		28F828971C494B4200330CF4 /* Sources */ = {
 			isa = PBXGroup;
 			children = (
-				AF6C6F7B2253C5A7001E5E3C /* Widget */,
 				AF6C6F7A2253C5A1001E5E3C /* Controller */,
 				28F828821C494B2C00330CF4 /* Info.plist */,
 				E2A477001EC61B43007CA367 /* InstantSearch-Bridging-Header.h */,
@@ -233,11 +232,31 @@
 			path = CollectionView;
 			sourceTree = "<group>";
 		};
+		AF5D102B22F45C9D00DE13AA /* FilterList */ = {
+			isa = PBXGroup;
+			children = (
+				AF5D102C22F45CAB00DE13AA /* FilterListTableController.swift */,
+			);
+			name = FilterList;
+			path = ../Widget/UIKit/FilterList;
+			sourceTree = "<group>";
+		};
+		AF5D102E22F45E9A00DE13AA /* FacetList */ = {
+			isa = PBXGroup;
+			children = (
+				AF5D102F22F45EB300DE13AA /* FacetListTableController.swift */,
+			);
+			path = FacetList;
+			sourceTree = "<group>";
+		};
 		AF6C6F7A2253C5A1001E5E3C /* Controller */ = {
 			isa = PBXGroup;
 			children = (
-				E2ED70FB22E61B8C00CF7477 /* FilterList */,
-				E2ED70F822E615F900CF7477 /* FacetList */,
+				AF5D102E22F45E9A00DE13AA /* FacetList */,
+				AF5D102B22F45C9D00DE13AA /* FilterList */,
+				AFF1E7612296A0E200941401 /* Selectable */,
+				AF14E30622F43BE10088D2A7 /* MultiIndexHits */,
+				AF6C6F7F2253C611001E5E3C /* Hits */,
 				E25D634F22D395F2008CD0FD /* Hierarchical */,
 				E2146BDD22B2454600927350 /* CurrentFilters */,
 				E2EFA5F122AEB988008C9CAA /* Sort By */,
@@ -248,24 +267,6 @@
 				E26F4253229831A600583D39 /* Stats */,
 			);
 			path = Controller;
-			sourceTree = "<group>";
-		};
-		AF6C6F7B2253C5A7001E5E3C /* Widget */ = {
-			isa = PBXGroup;
-			children = (
-				AF6C6F7E2253C5CD001E5E3C /* UIKit */,
-			);
-			path = Widget;
-			sourceTree = "<group>";
-		};
-		AF6C6F7E2253C5CD001E5E3C /* UIKit */ = {
-			isa = PBXGroup;
-			children = (
-				AFF1E7612296A0E200941401 /* Selectable */,
-				AF14E30622F43BE10088D2A7 /* MultiIndexHits */,
-				AF6C6F7F2253C611001E5E3C /* Hits */,
-			);
-			path = UIKit;
 			sourceTree = "<group>";
 		};
 		AF6C6F7F2253C611001E5E3C /* Hits */ = {
@@ -356,22 +357,6 @@
 				E27B67EF1ED339290001FFA7 /* Info.plist */,
 			);
 			path = InstantSearchTestsHost;
-			sourceTree = "<group>";
-		};
-		E2ED70F822E615F900CF7477 /* FacetList */ = {
-			isa = PBXGroup;
-			children = (
-				E2ED70F922E6162500CF7477 /* FacetListTableViewController.swift */,
-			);
-			path = FacetList;
-			sourceTree = "<group>";
-		};
-		E2ED70FB22E61B8C00CF7477 /* FilterList */ = {
-			isa = PBXGroup;
-			children = (
-				E2ED70FC22E61BA200CF7477 /* FilterListController.swift */,
-			);
-			path = FilterList;
 			sourceTree = "<group>";
 		};
 		E2EFA5EC22AEB96F008C9CAA /* Numeric Comparator */ = {
@@ -578,6 +563,7 @@
 				AF3DE588224A991F00C8BC08 /* main.swift in Sources */,
 				AF3DE594224A9B7A00C8BC08 /* MultiIndexHitsTableController.swift in Sources */,
 				AF9396812298140D00757257 /* ActivityIndicatorController.swift in Sources */,
+				AF5D102D22F45CAB00DE13AA /* FilterListTableController.swift in Sources */,
 				E2EFA5F022AEB980008C9CAA /* NumericStepperController.swift in Sources */,
 				AF3DE597224AA00400C8BC08 /* HitsCollectionController.swift in Sources */,
 				AF14E31022F43C710088D2A7 /* MultiIndexHitsTableViewDelegate.swift in Sources */,
@@ -594,12 +580,11 @@
 				AF14E31422F43CCA0088D2A7 /* HitsCollectionViewDelegate.swift in Sources */,
 				E2146BDF22B2455400927350 /* CurrentFiltersTableViewController.swift in Sources */,
 				E26F425A2298321900583D39 /* TextfieldController.swift in Sources */,
-				E2ED70FD22E61BA200CF7477 /* FilterListController.swift in Sources */,
 				E25D635122D395FF008CD0FD /* HierarchicalTableViewController.swift in Sources */,
 				AF3DE598224AA00400C8BC08 /* MultiIndexHitsCollectionController.swift in Sources */,
 				E2EFA5F322AEB990008C9CAA /* SelectIndexController.swift in Sources */,
+				AF5D103022F45EB300DE13AA /* FacetListTableController.swift in Sources */,
 				AFF1E7652296A11200941401 /* FilterSwitchController.swift in Sources */,
-				E2ED70FA22E6162600CF7477 /* FacetListTableViewController.swift in Sources */,
 				AF93967D22980FBE00757257 /* ClearRefinementsButtonController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
