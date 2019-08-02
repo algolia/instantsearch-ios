@@ -11,9 +11,7 @@ import InstantSearchCore
 import UIKit
 
 public class MultiIndexHitsCollectionController: NSObject, MultiIndexHitsController {
-  
-  public typealias SingleHitView = UITableViewCell
-  
+    
   public let collectionView: UICollectionView
   
   public weak var hitsSource: MultiIndexHitsSource? {
