@@ -25,4 +25,3 @@ open class HitsTableViewDelegate<DataSource: HitsSource>: NSObject, UITableViewD
   }
   
 }
-
