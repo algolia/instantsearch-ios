@@ -1,16 +1,15 @@
 //
-//  FilterListController.swift
-//  InstantSearchCore
+//  FilterListTableController.swift
+//  InstantSearch
 //
-//  Created by Vladislav Fitc on 17/05/2019.
-//  Copyright © 2019 Algolia. All rights reserved.
+//  Created by Vladislav Fitc on 02/08/2019.
 //
 
 import Foundation
 import UIKit
 import InstantSearchCore
 
-open class FilterListTableViewController<F: FilterType>: NSObject, SelectableListController, UITableViewDataSource, UITableViewDelegate {
+open class FilterListTableController<F: FilterType>: NSObject, FilterListController, UITableViewDataSource, UITableViewDelegate {
   
   public typealias Item = F
   
