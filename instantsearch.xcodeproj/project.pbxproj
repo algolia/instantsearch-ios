@@ -8,6 +8,14 @@
 
 /* Begin PBXBuildFile section */
 		28F828881C494B2C00330CF4 /* InstantSearch.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 28F8287D1C494B2C00330CF4 /* InstantSearch.framework */; };
+		AF14E30A22F43C060088D2A7 /* MultiIndexHitsCollectionViewDataSource.swift in Sources */ = {isa = PBXBuildFile; fileRef = AF14E30922F43C060088D2A7 /* MultiIndexHitsCollectionViewDataSource.swift */; };
+		AF14E30C22F43C260088D2A7 /* MultiIndexHitsCollectionViewDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = AF14E30B22F43C260088D2A7 /* MultiIndexHitsCollectionViewDelegate.swift */; };
+		AF14E30E22F43C570088D2A7 /* MultiIndexHitsTableViewDataSource.swift in Sources */ = {isa = PBXBuildFile; fileRef = AF14E30D22F43C570088D2A7 /* MultiIndexHitsTableViewDataSource.swift */; };
+		AF14E31022F43C710088D2A7 /* MultiIndexHitsTableViewDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = AF14E30F22F43C710088D2A7 /* MultiIndexHitsTableViewDelegate.swift */; };
+		AF14E31222F43CAD0088D2A7 /* HitsCollectionViewDataSource.swift in Sources */ = {isa = PBXBuildFile; fileRef = AF14E31122F43CAD0088D2A7 /* HitsCollectionViewDataSource.swift */; };
+		AF14E31422F43CCA0088D2A7 /* HitsCollectionViewDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = AF14E31322F43CCA0088D2A7 /* HitsCollectionViewDelegate.swift */; };
+		AF14E31622F43D010088D2A7 /* HitsTableViewDataSource.swift in Sources */ = {isa = PBXBuildFile; fileRef = AF14E31522F43D010088D2A7 /* HitsTableViewDataSource.swift */; };
+		AF14E31822F43D190088D2A7 /* HitsTableViewDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = AF14E31722F43D190088D2A7 /* HitsTableViewDelegate.swift */; };
 		AF3DE588224A991F00C8BC08 /* main.swift in Sources */ = {isa = PBXBuildFile; fileRef = AF3DE587224A991F00C8BC08 /* main.swift */; };
 		AF3DE593224A9B7A00C8BC08 /* HitsTableController.swift in Sources */ = {isa = PBXBuildFile; fileRef = AF3DE58D224A9B7A00C8BC08 /* HitsTableController.swift */; };
 		AF3DE594224A9B7A00C8BC08 /* MultiIndexHitsTableController.swift in Sources */ = {isa = PBXBuildFile; fileRef = AF3DE58E224A9B7A00C8BC08 /* MultiIndexHitsTableController.swift */; };
@@ -60,6 +68,14 @@
 		28F8287D1C494B2C00330CF4 /* InstantSearch.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = InstantSearch.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		28F828821C494B2C00330CF4 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		28F828871C494B2C00330CF4 /* InstantSearchTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = InstantSearchTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
+		AF14E30922F43C060088D2A7 /* MultiIndexHitsCollectionViewDataSource.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MultiIndexHitsCollectionViewDataSource.swift; sourceTree = "<group>"; };
+		AF14E30B22F43C260088D2A7 /* MultiIndexHitsCollectionViewDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MultiIndexHitsCollectionViewDelegate.swift; sourceTree = "<group>"; };
+		AF14E30D22F43C570088D2A7 /* MultiIndexHitsTableViewDataSource.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MultiIndexHitsTableViewDataSource.swift; sourceTree = "<group>"; };
+		AF14E30F22F43C710088D2A7 /* MultiIndexHitsTableViewDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MultiIndexHitsTableViewDelegate.swift; sourceTree = "<group>"; };
+		AF14E31122F43CAD0088D2A7 /* HitsCollectionViewDataSource.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HitsCollectionViewDataSource.swift; sourceTree = "<group>"; };
+		AF14E31322F43CCA0088D2A7 /* HitsCollectionViewDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HitsCollectionViewDelegate.swift; sourceTree = "<group>"; };
+		AF14E31522F43D010088D2A7 /* HitsTableViewDataSource.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HitsTableViewDataSource.swift; sourceTree = "<group>"; };
+		AF14E31722F43D190088D2A7 /* HitsTableViewDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HitsTableViewDelegate.swift; sourceTree = "<group>"; };
 		AF3DE587224A991F00C8BC08 /* main.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = main.swift; sourceTree = "<group>"; };
 		AF3DE58D224A9B7A00C8BC08 /* HitsTableController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HitsTableController.swift; sourceTree = "<group>"; };
 		AF3DE58E224A9B7A00C8BC08 /* MultiIndexHitsTableController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MultiIndexHitsTableController.swift; sourceTree = "<group>"; };
@@ -168,6 +184,55 @@
 			path = Sources;
 			sourceTree = "<group>";
 		};
+		AF14E30422F43BCC0088D2A7 /* TableView */ = {
+			isa = PBXGroup;
+			children = (
+				AF3DE58D224A9B7A00C8BC08 /* HitsTableController.swift */,
+				AF14E31522F43D010088D2A7 /* HitsTableViewDataSource.swift */,
+				AF14E31722F43D190088D2A7 /* HitsTableViewDelegate.swift */,
+			);
+			path = TableView;
+			sourceTree = "<group>";
+		};
+		AF14E30522F43BD10088D2A7 /* CollectionView */ = {
+			isa = PBXGroup;
+			children = (
+				AF3DE595224AA00400C8BC08 /* HitsCollectionController.swift */,
+				AF14E31122F43CAD0088D2A7 /* HitsCollectionViewDataSource.swift */,
+				AF14E31322F43CCA0088D2A7 /* HitsCollectionViewDelegate.swift */,
+			);
+			path = CollectionView;
+			sourceTree = "<group>";
+		};
+		AF14E30622F43BE10088D2A7 /* MultiIndexHits */ = {
+			isa = PBXGroup;
+			children = (
+				AF14E30822F43BEC0088D2A7 /* CollectionView */,
+				AF14E30722F43BE70088D2A7 /* TableView */,
+			);
+			path = MultiIndexHits;
+			sourceTree = "<group>";
+		};
+		AF14E30722F43BE70088D2A7 /* TableView */ = {
+			isa = PBXGroup;
+			children = (
+				AF3DE58E224A9B7A00C8BC08 /* MultiIndexHitsTableController.swift */,
+				AF14E30D22F43C570088D2A7 /* MultiIndexHitsTableViewDataSource.swift */,
+				AF14E30F22F43C710088D2A7 /* MultiIndexHitsTableViewDelegate.swift */,
+			);
+			path = TableView;
+			sourceTree = "<group>";
+		};
+		AF14E30822F43BEC0088D2A7 /* CollectionView */ = {
+			isa = PBXGroup;
+			children = (
+				AF3DE596224AA00400C8BC08 /* MultiIndexHitsCollectionController.swift */,
+				AF14E30922F43C060088D2A7 /* MultiIndexHitsCollectionViewDataSource.swift */,
+				AF14E30B22F43C260088D2A7 /* MultiIndexHitsCollectionViewDelegate.swift */,
+			);
+			path = CollectionView;
+			sourceTree = "<group>";
+		};
 		AF6C6F7A2253C5A1001E5E3C /* Controller */ = {
 			isa = PBXGroup;
 			children = (
@@ -197,6 +262,7 @@
 			isa = PBXGroup;
 			children = (
 				AFF1E7612296A0E200941401 /* Selectable */,
+				AF14E30622F43BE10088D2A7 /* MultiIndexHits */,
 				AF6C6F7F2253C611001E5E3C /* Hits */,
 			);
 			path = UIKit;
@@ -205,10 +271,8 @@
 		AF6C6F7F2253C611001E5E3C /* Hits */ = {
 			isa = PBXGroup;
 			children = (
-				AF3DE58D224A9B7A00C8BC08 /* HitsTableController.swift */,
-				AF3DE595224AA00400C8BC08 /* HitsCollectionController.swift */,
-				AF3DE58E224A9B7A00C8BC08 /* MultiIndexHitsTableController.swift */,
-				AF3DE596224AA00400C8BC08 /* MultiIndexHitsCollectionController.swift */,
+				AF14E30522F43BD10088D2A7 /* CollectionView */,
+				AF14E30422F43BCC0088D2A7 /* TableView */,
 			);
 			path = Hits;
 			sourceTree = "<group>";
@@ -510,16 +574,24 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				AF14E30A22F43C060088D2A7 /* MultiIndexHitsCollectionViewDataSource.swift in Sources */,
 				AF3DE588224A991F00C8BC08 /* main.swift in Sources */,
 				AF3DE594224A9B7A00C8BC08 /* MultiIndexHitsTableController.swift in Sources */,
 				AF9396812298140D00757257 /* ActivityIndicatorController.swift in Sources */,
 				E2EFA5F022AEB980008C9CAA /* NumericStepperController.swift in Sources */,
 				AF3DE597224AA00400C8BC08 /* HitsCollectionController.swift in Sources */,
+				AF14E31022F43C710088D2A7 /* MultiIndexHitsTableViewDelegate.swift in Sources */,
 				E26F425C2298323700583D39 /* LabelStatsController.swift in Sources */,
+				AF14E30E22F43C570088D2A7 /* MultiIndexHitsTableViewDataSource.swift in Sources */,
 				AFF1E7642296A11200941401 /* SelectableFilterButtonController.swift in Sources */,
+				AF14E31622F43D010088D2A7 /* HitsTableViewDataSource.swift in Sources */,
+				AF14E30C22F43C260088D2A7 /* MultiIndexHitsCollectionViewDelegate.swift in Sources */,
+				AF14E31222F43CAD0088D2A7 /* HitsCollectionViewDataSource.swift in Sources */,
 				E2EFA5EF22AEB980008C9CAA /* NumericTextFieldController.swift in Sources */,
 				AF3DE593224A9B7A00C8BC08 /* HitsTableController.swift in Sources */,
+				AF14E31822F43D190088D2A7 /* HitsTableViewDelegate.swift in Sources */,
 				E26F42592298321900583D39 /* SearchBarController.swift in Sources */,
+				AF14E31422F43CCA0088D2A7 /* HitsCollectionViewDelegate.swift in Sources */,
 				E2146BDF22B2455400927350 /* CurrentFiltersTableViewController.swift in Sources */,
 				E26F425A2298321900583D39 /* TextfieldController.swift in Sources */,
 				E2ED70FD22E61BA200CF7477 /* FilterListController.swift in Sources */,
