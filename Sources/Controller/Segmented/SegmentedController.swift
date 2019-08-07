@@ -10,13 +10,13 @@ import Foundation
 import InstantSearchCore
 import UIKit
 
-class SegmentedController<Value: FilterType>: NSObject, SelectableSegmentController {
+public class SegmentedController<Value: FilterType>: NSObject, SelectableSegmentController {
   
   typealias Key = Int
   
   let segmentedControl: UISegmentedControl
   
-  var onClick: ((Int) -> Void)?
+  public var onClick: ((Int) -> Void)?
   
   public init(segmentedControl: UISegmentedControl) {
     self.segmentedControl = segmentedControl
@@ -24,11 +24,11 @@ class SegmentedController<Value: FilterType>: NSObject, SelectableSegmentControl
     segmentedControl.addTarget(self, action: #selector(didSelectSegment(_:)), for: .valueChanged)
   }
 
-  func setSelected(_ selected: Int?) {
+  public func setSelected(_ selected: Int?) {
     segmentedControl.selectedSegmentIndex = selected ?? UISegmentedControl.noSegment
   }
   
-  func setItems(items: [Int: String]) {
+  public func setItems(items: [Int: String]) {
     segmentedControl.removeAllSegments()
     
     for item in items {
