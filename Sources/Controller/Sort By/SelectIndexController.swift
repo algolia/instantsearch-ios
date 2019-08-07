@@ -14,7 +14,7 @@ public class SelectIndexController: NSObject, SelectableSegmentController {
 
   typealias Key = Int
 
-  let alertController: UIAlertController
+  public let alertController: UIAlertController
 
   public var onClick: ((Int) -> Void)?
 
