@@ -12,9 +12,9 @@ import UIKit
 
 public class SegmentedController<Value: FilterType>: NSObject, SelectableSegmentController {
   
-  typealias Key = Int
+  public typealias Key = Int
   
-  let segmentedControl: UISegmentedControl
+  public let segmentedControl: UISegmentedControl
   
   public var onClick: ((Int) -> Void)?
   
