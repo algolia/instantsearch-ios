@@ -1,7 +1,7 @@
 Pod::Spec.new do |s|
     s.name             = "InstantSearch"
     s.module_name      = 'InstantSearch'
-    s.version          = "4.0.0"
+    s.version          = "5.0.0"
     s.summary          = "A library of widgets and helpers to build instant-search applications on iOS."
     s.homepage         = "https://github.com/algolia/instantsearch-ios"
     s.license          = { type: 'Apache 2.0', file: 'LICENSE.md' }
@@ -20,7 +20,7 @@ Pod::Spec.new do |s|
     end
 
     s.subspec "Core" do |ss|
-        ss.dependency 'InstantSearchCore', '~> 5.0'
+        ss.dependency 'InstantSearchCore', '~> 6.0'
     end
 
     s.subspec "Client" do |ss|
