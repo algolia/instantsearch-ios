@@ -1,2 +1,2 @@
-git "file:///Users/vladislavfitc/Workspace/instantsearch-core-swift" "f4127ad1c058b04944dff3be06056c20348e8509"
-github "algolia/algoliasearch-client-swift" "c9a2d14d044957fcafc54f9bef0de620bfcb2712"
+github "algolia/algoliasearch-client-swift" "7.0.0"
+github "algolia/instantsearch-core-swift" "6.0.0"
