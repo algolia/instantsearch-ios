@@ -12,20 +12,19 @@ By [Algolia](http://algolia.com).
 
 InstantSearch family: **InstantSearch iOS** | [InstantSearch Android][instantsearch-android-github] | [React InstantSearch][react-instantsearch-github] | [InstantSearch.js][instantsearch-js-github] | [Angular InstantSearch][instantsearch-angular-github] | [Vue InstantSearch][instantsearch-vue-github].
 
-**InstantSearch iOS** is a framework providing widgets and helpers to help you build the best instant-search experience on iOS with Algolia. It is built on top of Algolia's [Swift API Client](https://github.com/algolia/algoliasearch-client-swift) library to provide you a high-level solution to quickly build various search interfaces.
+**InstantSearch iOS** is a framework providing components and helpers to help you build the best instant-search experience on iOS with Algolia. It is built on top of Algolia's [Swift API Client](https://github.com/algolia/algoliasearch-client-swift) library to provide you a high-level solution to quickly build various search interfaces.
 
 <!-- <img src="Example/InstantSearch.gif" width="300"/> -->
 
 ## Demo
 
-You can see InstantSearch iOS in action in our [Examples repository][ecommerce-url], in which we published example apps built with InstantSearch and written in Swift:
+You can see InstantSearch iOS in action in our [Examples repository][examples-url], in which we published search experiences built with InstantSearch and written in Swift:
 
 <p align="center">
-  <img src="./docgen/assets/img/ecommerce.png" width="300"/>
+  <img src="./docgen/assets/img/single-index.png" width="300"/>
 </p>
 
-[ecommerce-gif]: ./docgen/assets/img/ecommerce.png
-[ecommerce-url]: https://github.com/algolia/instantsearch-swift-examples
+[examples-url]: https://github.com/algolia/instantsearch-swift-examples
 
 ## Installation
 
@@ -35,12 +34,12 @@ You can see InstantSearch iOS in action in our [Examples repository][ecommerce-u
 
 To install InstantSearch, simply add the following line to your Podfile:
 
-#### Swift 4.2
+#### Swift 4.2+
 
 ```ruby
-pod 'InstantSearch', '~> 3.0'
-# pod 'InstantSearch/Widgets' for access to everything
-# pod 'InstantSearch/Core' for access to everything except the UI widgets
+pod 'InstantSearch', '~> 4.0'
+# pod 'InstantSearch/UI' for access to everything
+# pod 'InstantSearch/Core' for access to everything except the UI controllers
 # pod 'InstantSearch/Client' for access only to the API Client
 ```
 
@@ -65,11 +64,11 @@ $ pod update
 
 To install InstantSearch, simply add the following line to your Cartfile:
 
-#### Swift 4.2
+#### Swift 4.2+
 
 ```ruby
-github "algolia/instantsearch-ios" ~> 3.0 # for access to everything
-# github "algolia/instantsearch-core-swift" ~> 4.0 # for access to everything except the UI widgets
+github "algolia/instantsearch-ios" ~> 4.0 # for access to everything
+# github "algolia/instantsearch-core-swift" ~> 5.0 # for access to everything except the UI widgets
 # github "algolia/algoliasearch-client-swift" ~> 6.0 # for access only to the API Client
 ```
 
@@ -85,7 +84,7 @@ github "algolia/instantsearch-ios" ~> 2.0 # for access to everything
 
 The API client is the only library of the framework available on SwiftPM.
 
-#### Swift 4.2
+#### Swift 4.2+
 
 To install the API Client, add `.package(url:"https://github.com/algolia/algoliasearch-client-swift", from: "6.0.0")` to your package dependencies array in Package.swift, then add `AlgoliaSearch` to your target dependencies.
 
@@ -98,36 +97,76 @@ To install the API Client, add `.package(url:"https://github.com/algolia/algolia
 
 **You can start with the [Getting Started Guide](https://www.algolia.com/doc/guides/building-search-ui/getting-started/ios/).**
 
-Learn more about instantSearch iOS in the [dedicated documentation website](https://community.algolia.com/instantsearch-ios).
+Learn more about instantSearch iOS in the [dedicated documentation website](https://www.algolia.com/doc/api-reference/widgets/ios/).
 
 ## Basic Usage
-
-In your `AppDelegate.swift`: 
-
-```swift
-import InstantSearch
-
-func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplicationLaunchOptionsKey: Any]?) -> Bool {
-    // Configure InstantSearch
-    InstantSearch.shared.configure(appID: "latency", apiKey: "1f6fd3a6fb973cb08419fe7d288fa4db", index: "bestbuy_promo")
-}
-```
 
 In your `ViewController.swift`:
 
 ```swift
 import InstantSearch
 
+let searcher: SingleIndexSearcher = .init(appID: "latency",
+                                          apiKey: "1f6fd3a6fb973cb08419fe7d288fa4db",
+                                          indexName: "bestbuy")
+  
+let queryInputInteractor: QueryInputInteractor = .init()
+let searchBarController: SearchBarController = .init(searchBar: UISearchBar())
+  
+let statsInteractor: StatsInteractor = .init()
+let statsController: LabelStatsController = .init(label: UILabel())
+
 override func viewDidLoad() {
     super.viewDidLoad()
+    setup()
+    configureUI()
+}
 
-    let searchBar = SearchBarWidget(frame: CGRect(x: 20, y: 30, width: 300, height: 40))
-    let statsWidget = StatsLabelWidget(frame: CGRect(x: 20, y: 80, width: 300, height: 50))
-    self.view.addSubview(searchBar)
-    self.view.addSubview(statsWidget)
+func setup() {
+    searcher.connectFilterState(filterState)
+    
+    queryInputInteractor.connectSearcher(searcher)
+    queryInputInteractor.connectController(searchBarController)
+    
+    statsInteractor.connectSearcher(searcher)
+    statsInteractor.connectController(statsController)
 
-    // Add all widgets in view to InstantSearch
-    InstantSearch.shared.registerAllWidgets(in: self.view)
+    searcher.search()
+}
+
+func configureUI() {
+    
+    view.backgroundColor = .white
+    
+    let stackView = UIStackView()
+    stackView.translatesAutoresizingMaskIntoConstraints = false
+    stackView.spacing = 16
+    stackView.axis = .vertical
+    stackView.layoutMargins = UIEdgeInsets(top: 0, left: 5, bottom: 0, right: 0)
+    stackView.isLayoutMarginsRelativeArrangement = true
+    
+    let searchBar = searchBarController.searchBar
+    searchBar.translatesAutoresizingMaskIntoConstraints = false
+    searchBar.heightAnchor.constraint(equalToConstant: 40).isActive = true
+    searchBar.searchBarStyle = .minimal
+    stackView.addArrangedSubview(searchBar)
+    
+    let statsLabel = statsController.label
+    statsLabel.translatesAutoresizingMaskIntoConstraints = false
+    statsLabel.heightAnchor.constraint(equalToConstant: 16).isActive = true
+    stackView.addArrangedSubview(statsLabel)
+
+    stackView.addArrangedSubview(UIView())
+
+    view.addSubview(stackView)
+
+    NSLayoutConstraint.activate([
+      stackView.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor),
+      stackView.bottomAnchor.constraint(equalTo: view.safeAreaLayoutGuide.bottomAnchor),
+      stackView.leadingAnchor.constraint(equalTo: view.safeAreaLayoutGuide.leadingAnchor),
+      stackView.trailingAnchor.constraint(equalTo: view.safeAreaLayoutGuide.trailingAnchor),
+    ])
+
 }
 ```
 
@@ -150,7 +189,7 @@ To get a more meaningful search experience, please follow our [Getting Started G
 
 # License
 
-InstantSearch iOS is [MIT licensed](LICENSE.md).
+InstantSearch iOS is [Apache 2.0 licensed](LICENSE.md).
 
 [react-instantsearch-github]: https://github.com/algolia/react-instantsearch/
 [instantsearch-android-github]: https://github.com/algolia/instantsearch-android

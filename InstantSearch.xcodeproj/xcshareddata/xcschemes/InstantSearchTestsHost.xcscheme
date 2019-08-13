@@ -14,9 +14,9 @@
             buildForAnalyzing = "YES">
             <BuildableReference
                BuildableIdentifier = "primary"
-               BlueprintIdentifier = "28F8287C1C494B2C00330CF4"
-               BuildableName = "InstantSearch.framework"
-               BlueprintName = "InstantSearch"
+               BlueprintIdentifier = "E27B67E01ED339290001FFA7"
+               BuildableName = "InstantSearchTestsHost.app"
+               BlueprintName = "InstantSearchTestsHost"
                ReferencedContainer = "container:InstantSearch.xcodeproj">
             </BuildableReference>
          </BuildActionEntry>
@@ -26,27 +26,15 @@
       buildConfiguration = "Debug"
       selectedDebuggerIdentifier = "Xcode.DebuggerFoundation.Debugger.LLDB"
       selectedLauncherIdentifier = "Xcode.DebuggerFoundation.Launcher.LLDB"
-      disableMainThreadChecker = "YES"
-      codeCoverageEnabled = "YES"
       shouldUseLaunchSchemeArgsEnv = "YES">
       <Testables>
-         <TestableReference
-            skipped = "NO">
-            <BuildableReference
-               BuildableIdentifier = "primary"
-               BlueprintIdentifier = "28F828861C494B2C00330CF4"
-               BuildableName = "InstantSearchTests.xctest"
-               BlueprintName = "InstantSearchTests"
-               ReferencedContainer = "container:InstantSearch.xcodeproj">
-            </BuildableReference>
-         </TestableReference>
       </Testables>
       <MacroExpansion>
          <BuildableReference
             BuildableIdentifier = "primary"
-            BlueprintIdentifier = "28F8287C1C494B2C00330CF4"
-            BuildableName = "InstantSearch.framework"
-            BlueprintName = "InstantSearch"
+            BlueprintIdentifier = "E27B67E01ED339290001FFA7"
+            BuildableName = "InstantSearchTestsHost.app"
+            BlueprintName = "InstantSearchTestsHost"
             ReferencedContainer = "container:InstantSearch.xcodeproj">
          </BuildableReference>
       </MacroExpansion>
@@ -63,15 +51,16 @@
       debugDocumentVersioning = "YES"
       debugServiceExtension = "internal"
       allowLocationSimulation = "YES">
-      <MacroExpansion>
+      <BuildableProductRunnable
+         runnableDebuggingMode = "0">
          <BuildableReference
             BuildableIdentifier = "primary"
-            BlueprintIdentifier = "28F8287C1C494B2C00330CF4"
-            BuildableName = "InstantSearch.framework"
-            BlueprintName = "InstantSearch"
+            BlueprintIdentifier = "E27B67E01ED339290001FFA7"
+            BuildableName = "InstantSearchTestsHost.app"
+            BlueprintName = "InstantSearchTestsHost"
             ReferencedContainer = "container:InstantSearch.xcodeproj">
          </BuildableReference>
-      </MacroExpansion>
+      </BuildableProductRunnable>
       <AdditionalOptions>
       </AdditionalOptions>
    </LaunchAction>
@@ -81,15 +70,16 @@
       savedToolIdentifier = ""
       useCustomWorkingDirectory = "NO"
       debugDocumentVersioning = "YES">
-      <MacroExpansion>
+      <BuildableProductRunnable
+         runnableDebuggingMode = "0">
          <BuildableReference
             BuildableIdentifier = "primary"
-            BlueprintIdentifier = "28F8287C1C494B2C00330CF4"
-            BuildableName = "InstantSearch.framework"
-            BlueprintName = "InstantSearch"
+            BlueprintIdentifier = "E27B67E01ED339290001FFA7"
+            BuildableName = "InstantSearchTestsHost.app"
+            BlueprintName = "InstantSearchTestsHost"
             ReferencedContainer = "container:InstantSearch.xcodeproj">
          </BuildableReference>
-      </MacroExpansion>
+      </BuildableProductRunnable>
    </ProfileAction>
    <AnalyzeAction
       buildConfiguration = "Debug">
