@@ -554,7 +554,6 @@
 			inputPaths = (
 				"$(SRCROOT)/Carthage/Build/iOS/InstantSearchClient.framework",
 				"$(SRCROOT)/Carthage/Build/iOS/InstantSearchCore.framework",
-				"$(SRCROOT)/Carthage/Build/iOS/Signals.framework",
 			);
 			name = "Carthage Copy Frameworks";
 			outputPaths = (
