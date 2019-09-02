@@ -13,6 +13,7 @@ import UIKit
 public typealias TableViewCellConfigurator<Item> = HitViewConfigurator<UITableView, UITableViewCell, Item>
 public typealias TableViewClickHandler<Item> = HitClickHandler<UITableView, Item>
 
+@available(*, deprecated, message: "Use your own UITableViewController conforming to HitsController protocol")
 public class HitsTableController<Source: HitsSource>: NSObject, HitsController {
   
   public let tableView: UITableView
