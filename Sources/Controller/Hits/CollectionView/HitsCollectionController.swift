@@ -16,6 +16,7 @@ public typealias HitClickHandler<HitsView, Hit> = (HitsView, Hit, IndexPath) -> 
 public typealias CollectionViewCellConfigurator<Item> = HitViewConfigurator<UICollectionView, UICollectionViewCell, Item>
 public typealias CollectionViewClickHandler<Item> = HitClickHandler<UICollectionView, Item>
 
+@available(*, deprecated, message: "Use your own UICollectionViewController conforming to HitsController protocol")
 public class HitsCollectionController<Source: HitsSource>: NSObject, HitsController {
   
   public let collectionView: UICollectionView
