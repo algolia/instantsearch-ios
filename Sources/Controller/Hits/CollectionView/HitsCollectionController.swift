@@ -22,14 +22,14 @@ public class HitsCollectionController<Source: HitsSource>: NSObject, HitsControl
   
   public weak var hitsSource: Source?
 
-  private var dataSource: HitsCollectionViewDataSource<Source>? {
+  public var dataSource: HitsCollectionViewDataSource<Source>? {
     didSet {
       dataSource?.hitsSource = hitsSource
       collectionView.dataSource = dataSource
     }
   }
   
-  private var delegate: HitsCollectionViewDelegate<Source>? {
+  public var delegate: HitsCollectionViewDelegate<Source>? {
     didSet {
       delegate?.hitsSource = hitsSource
       collectionView.delegate = delegate
