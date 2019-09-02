@@ -13,8 +13,11 @@ import UIKit
 public typealias TableViewCellConfigurator<Item> = HitViewConfigurator<UITableView, UITableViewCell, Item>
 public typealias TableViewClickHandler<Item> = HitClickHandler<UITableView, Item>
 
-@available(*, deprecated, message: "Use your own UITableViewController conforming to HitsController protocol")
-public class HitsTableController<Source: HitsSource>: NSObject, HitsController {
+public class HitsTableController<Source: HitsSource>: NSObject, HitsController, HitsTableViewContainer {
+  
+  public var hitsTableView: UITableView {
+    return tableView
+  }
   
   public let tableView: UITableView
   
@@ -25,6 +28,7 @@ public class HitsTableController<Source: HitsSource>: NSObject, HitsController {
     }
   }
   
+  @available(*, deprecated, message: "Use your own UITableViewController conforming to HitsController protocol")
   public var dataSource: HitsTableViewDataSource<Source>? {
     didSet {
       dataSource?.hitsSource = hitsSource
@@ -32,6 +36,7 @@ public class HitsTableController<Source: HitsSource>: NSObject, HitsController {
     }
   }
   
+  @available(*, deprecated, message: "Use your own UITableViewController conforming to HitsController protocol")
   public var delegate: HitsTableViewDelegate<Source>? {
     didSet {
       delegate?.hitsSource = hitsSource
@@ -43,14 +48,17 @@ public class HitsTableController<Source: HitsSource>: NSObject, HitsController {
     self.tableView = tableView
   }
   
+  // These functions are implemented in the protocol extension, but should be there till
+  // compiler bug is fixed
+
   public func reload() {
-    tableView.reloadData()
+    hitsTableView.reloadData()
   }
   
   public func scrollToTop() {
-    guard tableView.numberOfRows(inSection: 0) != 0 else { return }
+    guard hitsTableView.numberOfRows(inSection: 0) != 0 else { return }
     let indexPath = IndexPath(row: 0, section: 0)
-    self.tableView.scrollToRow(at: indexPath, at: .top, animated: false)
+    self.hitsTableView.scrollToRow(at: indexPath, at: .top, animated: false)
   }
-
+  
 }

@@ -16,13 +16,17 @@ public typealias HitClickHandler<HitsView, Hit> = (HitsView, Hit, IndexPath) -> 
 public typealias CollectionViewCellConfigurator<Item> = HitViewConfigurator<UICollectionView, UICollectionViewCell, Item>
 public typealias CollectionViewClickHandler<Item> = HitClickHandler<UICollectionView, Item>
 
-@available(*, deprecated, message: "Use your own UICollectionViewController conforming to HitsController protocol")
-public class HitsCollectionController<Source: HitsSource>: NSObject, HitsController {
+public class HitsCollectionController<Source: HitsSource>: NSObject, HitsController, HitsCollectionViewContainer {
   
   public let collectionView: UICollectionView
   
+  public var hitsCollectionView: UICollectionView {
+    return collectionView
+  }
+  
   public weak var hitsSource: Source?
 
+  @available(*, deprecated, message: "Use your own UICollectionViewController conforming to HitsController protocol")
   public var dataSource: HitsCollectionViewDataSource<Source>? {
     didSet {
       dataSource?.hitsSource = hitsSource
@@ -30,6 +34,7 @@ public class HitsCollectionController<Source: HitsSource>: NSObject, HitsControl
     }
   }
   
+  @available(*, deprecated, message: "Use your own UICollectionViewController conforming to HitsController protocol")
   public var delegate: HitsCollectionViewDelegate<Source>? {
     didSet {
       delegate?.hitsSource = hitsSource
@@ -41,14 +46,17 @@ public class HitsCollectionController<Source: HitsSource>: NSObject, HitsControl
     self.collectionView = collectionView
   }
   
+  // These functions are implemented in the protocol extension, but should be there till
+  // compiler bug is fixed
+
   public func reload() {
-    collectionView.reloadData()
+    hitsCollectionView.reloadData()
   }
   
   public func scrollToTop() {
-    guard collectionView.numberOfItems(inSection: 0) != 0 else { return }
+    guard hitsCollectionView.numberOfItems(inSection: 0) != 0 else { return }
     let indexPath = IndexPath(item: 0, section: 0)
-    collectionView.scrollToItem(at: indexPath, at: .top, animated: false)
+    hitsCollectionView.scrollToItem(at: indexPath, at: .top, animated: false)
   }
-  
+
 }
