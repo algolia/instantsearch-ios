@@ -8,6 +8,7 @@
 import Foundation
 import UIKit
 
+@available(*, deprecated, message: "Use your own UITableViewController conforming to HitsController protocol")
 open class MultiIndexHitsTableViewDataSource: NSObject {
   
   private typealias CellConfigurator = (UITableView, Int) throws -> UITableViewCell

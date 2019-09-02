@@ -8,6 +8,7 @@
 import Foundation
 import UIKit
 
+@available(*, deprecated, message: "Use your own UITableViewController conforming to HitsController protocol")
 open class MultiIndexHitsTableViewDelegate: NSObject {
   
   typealias ClickHandler = (UITableView, Int) throws -> Void

@@ -10,10 +10,15 @@ import Foundation
 import InstantSearchCore
 import UIKit
 
-public class MultiIndexHitsCollectionController: NSObject, MultiIndexHitsController {
-    
+public class MultiIndexHitsCollectionController: NSObject, MultiIndexHitsController, HitsCollectionViewContainer {
+  
   public let collectionView: UICollectionView
   
+  public var hitsCollectionView: UICollectionView {
+    return collectionView
+  }
+  
+  @available(*, deprecated, message: "Use your own UICollectionViewController conforming to HitsController protocol")
   public weak var hitsSource: MultiIndexHitsSource? {
     didSet {
       dataSource?.hitsDataSource = hitsSource
@@ -21,6 +26,7 @@ public class MultiIndexHitsCollectionController: NSObject, MultiIndexHitsControl
     }
   }
   
+  @available(*, deprecated, message: "Use your own UICollectionViewController conforming to HitsController protocol")
   public var dataSource: MultiIndexHitsCollectionViewDataSource? {
     didSet {
       dataSource?.hitsDataSource = hitsSource
@@ -37,16 +43,6 @@ public class MultiIndexHitsCollectionController: NSObject, MultiIndexHitsControl
   
   public init(collectionView: UICollectionView) {
     self.collectionView = collectionView
-  }
-  
-  public func reload() {
-    collectionView.reloadData()
-  }
-  
-  public func scrollToTop() {
-    guard collectionView.numberOfItems(inSection: 0) != 0 else { return }
-    let indexPath = IndexPath(item: 0, section: 0)
-    collectionView.scrollToItem(at: indexPath, at: .top, animated: false)
   }
   
 }

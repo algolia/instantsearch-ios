@@ -8,6 +8,7 @@
 import Foundation
 import UIKit
 
+@available(*, deprecated, message: "Use your own UICollectionViewController conforming to HitsController protocol")
 open class MultiIndexHitsCollectionViewDelegate: NSObject {
   
   typealias ClickHandler = (UICollectionView, Int) throws -> Void
