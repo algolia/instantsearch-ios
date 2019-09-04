@@ -12,7 +12,7 @@ open class MultiIndexHitsCollectionViewDataSource: NSObject {
   
   private typealias CellConfigurator = (UICollectionView, Int) throws -> UICollectionViewCell
   
-  public weak var hitsDataSource: MultiIndexHitsSource?
+  public weak var hitsSource: MultiIndexHitsSource?
   
   private var cellConfigurators: [Int: CellConfigurator]
   
@@ -21,14 +21,23 @@ open class MultiIndexHitsCollectionViewDataSource: NSObject {
     super.init()
   }
   
-  public func setCellConfigurator<Hit: Codable>(forSection section: Int, _ cellConfigurator: @escaping CollectionViewCellConfigurator<Hit>) {
+  public func setCellConfigurator<Hit: Codable>(forSection section: Int,
+                                                templateCellProvider: @escaping () -> UICollectionViewCell = { return .init() },
+                                                _ cellConfigurator: @escaping CollectionViewCellConfigurator<Hit>) {
     cellConfigurators[section] = { [weak self] (collectionView, row) in
-      guard let dataSource = self?.hitsDataSource else { return UICollectionViewCell() }
-      guard let hit: Hit = try dataSource.hit(atIndex: row, inSection: section) else {
-        assertionFailure("Invalid state: Attempt to deqeue a cell for a missing hit in a hits Interactor")
-        return UICollectionViewCell()
+      guard let dataSource = self else {
+        return .init()
       }
-      return cellConfigurator(collectionView, hit, IndexPath(item: row, section: section))
+      
+      guard let hitsSource = dataSource.hitsSource else {
+        fatalError("Missing hits source")
+      }
+
+      guard let hit: Hit = try hitsSource.hit(atIndex: row, inSection: section) else {
+        return templateCellProvider()
+      }
+
+      return cellConfigurator(collectionView, hit, IndexPath(row: row, section: section))
     }
   }
   
@@ -37,22 +46,25 @@ open class MultiIndexHitsCollectionViewDataSource: NSObject {
 extension MultiIndexHitsCollectionViewDataSource: UICollectionViewDataSource {
   
   open func numberOfSections(in collectionView: UICollectionView) -> Int {
-    guard let numberOfSections = hitsDataSource?.numberOfSections() else {
-      return 0
+    guard let hitsSource = hitsSource else {
+      fatalError("Missing hits source")
     }
-    return numberOfSections
+    return hitsSource.numberOfSections()
   }
   
   open func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-    guard let numberOfRows = hitsDataSource?.numberOfHits(inSection: section) else {
-      return 0
+    guard let hitsSource = hitsSource else {
+      fatalError("Missing hits source")
     }
-    return numberOfRows
+    return hitsSource.numberOfHits(inSection: section)
   }
   
   open func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
+    guard let cellConfigurator = cellConfigurators[indexPath.section] else {
+      fatalError("No cell configurator found for section \(indexPath.section)")
+    }
     do {
-      return try cellConfigurators[indexPath.section]?(collectionView, indexPath.row) ?? UICollectionViewCell()
+      return try cellConfigurator(collectionView, indexPath.row)
     } catch let error {
       fatalError("\(error)")
     }

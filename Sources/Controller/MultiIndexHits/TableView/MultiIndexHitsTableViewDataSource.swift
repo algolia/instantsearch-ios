@@ -21,12 +21,22 @@ open class MultiIndexHitsTableViewDataSource: NSObject {
     super.init()
   }
   
-  public func setCellConfigurator<Hit: Codable>(forSection section: Int, _ cellConfigurator: @escaping TableViewCellConfigurator<Hit>) {
+  public func setCellConfigurator<Hit: Codable>(forSection section: Int,
+                                                templateCellProvider: @escaping () -> UITableViewCell = { return .init() },
+                                                _ cellConfigurator: @escaping TableViewCellConfigurator<Hit>) {
     cellConfigurators[section] = { [weak self] (tableView, row) in
-      guard let hit: Hit = try self?.hitsSource?.hit(atIndex: row, inSection: section) else {
-        assertionFailure("Invalid state: Attempt to deqeue a cell for a missing hit in a hits Interactor")
-        return UITableViewCell()
+      guard let dataSource = self else {
+        return .init()
       }
+      
+      guard let hitsSource = dataSource.hitsSource else {
+        fatalError("Missing hits source")
+      }
+      
+      guard let hit: Hit = try hitsSource.hit(atIndex: row, inSection: section) else {
+        return templateCellProvider()
+      }
+      
       return cellConfigurator(tableView, hit, IndexPath(row: row, section: section))
     }
   }
@@ -36,22 +46,25 @@ open class MultiIndexHitsTableViewDataSource: NSObject {
 extension MultiIndexHitsTableViewDataSource: UITableViewDataSource {
   
   open func numberOfSections(in tableView: UITableView) -> Int {
-    guard let numberOfSections = hitsSource?.numberOfSections() else {
-      return 0
+    guard let hitsSource = hitsSource else {
+      fatalError("Missing hits source")
     }
-    return numberOfSections
+    return hitsSource.numberOfSections()
   }
   
   open func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-    guard let numberOfRows = hitsSource?.numberOfHits(inSection: section) else {
-      return 0
+    guard let hitsSource = hitsSource else {
+      fatalError("Missing hits source")
     }
-    return numberOfRows
+    return hitsSource.numberOfHits(inSection: section)
   }
   
   open func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+    guard let cellConfigurator = cellConfigurators[indexPath.section] else {
+      fatalError("No cell configurator found for section \(indexPath.section)")
+    }
     do {
-      return try cellConfigurators[indexPath.section]?(tableView, indexPath.row) ?? UITableViewCell()
+      return try cellConfigurator(tableView, indexPath.row)
     } catch let error {
       fatalError("\(error)")
     }

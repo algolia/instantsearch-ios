@@ -18,10 +18,16 @@ open class HitsTableViewDelegate<DataSource: HitsSource>: NSObject, UITableViewD
   }
   
   open func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-    guard let hit = hitsSource?.hit(atIndex: indexPath.row) else {
+    
+    guard let hitsSource = hitsSource else {
+      fatalError("Missing hits source")
+    }
+
+    guard let hit = hitsSource.hit(atIndex: indexPath.row) else {
       return
     }
     clickHandler(tableView, hit, indexPath)
+    
   }
   
 }

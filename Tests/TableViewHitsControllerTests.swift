@@ -10,27 +10,55 @@ import InstantSearchCore
 import Foundation
 import XCTest
 
-class TestHitsSource: HitsSource {
-  
-  typealias Hit = String
-
-  let hits: [String]
-  
-  init(hits: [String]) {
-    self.hits = hits
-  }
-  
-  func numberOfHits() -> Int {
-    return hits.count
-  }
-  
-  func hit(atIndex index: Int) -> String? {
-    return hits[index]
-  }
-  
-}
+class TestTemplateCell: UITableViewCell {}
 
 class TableViewHitsControllerTests: XCTestCase {
+  
+  func testMissingDataSource() {
+    
+    let tableView = UITableView()
+    
+    let dataSource = HitsTableViewDataSource<TestHitsSource> { (_, hit, _) -> UITableViewCell in
+      let cell = UITableViewCell()
+      cell.textLabel?.text = hit
+      return cell
+    }
+    
+    expectFatalError(expectedMessage: "Missing hits source") {
+      _ = dataSource.tableView(tableView, cellForRowAt: .init())
+    }
+    
+    expectFatalError(expectedMessage: "Missing hits source") {
+      _ = dataSource.tableView(tableView, numberOfRowsInSection: .init())
+    }
+    
+    let delegate = HitsTableViewDelegate<TestHitsSource> { _,_,_  in }
+    
+    expectFatalError(expectedMessage: "Missing hits source") {
+      _ = delegate.tableView(tableView, didSelectRowAt: .init())
+    }
+    
+  }
+  
+  func testTemplate() {
+    
+    let tableView = UITableView()
+    
+    let hitsDataSource = TestHitsSource(hits: ["t1", "t2", "t3"])
+    
+    let dataSource = HitsTableViewDataSource<TestHitsSource> { (_, hit, _) -> UITableViewCell in
+      let cell = UITableViewCell()
+      cell.textLabel?.text = hit
+      return cell
+    }
+    
+    dataSource.hitsSource = hitsDataSource
+    
+    dataSource.templateCellProvider = { return TestTemplateCell() }
+
+    XCTAssert(dataSource.tableView(tableView, cellForRowAt: IndexPath(row: 4, section: 0)) is TestTemplateCell, "")
+    
+  }
   
   func testDataSource() {
     
