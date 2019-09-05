@@ -23,6 +23,12 @@
 		AF3DE598224AA00400C8BC08 /* MultiIndexHitsCollectionController.swift in Sources */ = {isa = PBXBuildFile; fileRef = AF3DE596224AA00400C8BC08 /* MultiIndexHitsCollectionController.swift */; };
 		AF3DE5BD224BBF7000C8BC08 /* TableViewHitsControllerTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = AF3DE5A9224BBE6700C8BC08 /* TableViewHitsControllerTests.swift */; };
 		AF3DE5BE224BBF7000C8BC08 /* TableViewMultiIndexHitsControllerTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = AF3DE5B1224BBEC000C8BC08 /* TableViewMultiIndexHitsControllerTests.swift */; };
+		AF58089123200CCA00C5BDFA /* FatalErrorUtil.swift in Sources */ = {isa = PBXBuildFile; fileRef = AF58089023200CCA00C5BDFA /* FatalErrorUtil.swift */; };
+		AF58089423200D0200C5BDFA /* FatalErrorTest.swift in Sources */ = {isa = PBXBuildFile; fileRef = AF58089223200CFE00C5BDFA /* FatalErrorTest.swift */; };
+		AF5808982320158700C5BDFA /* TestMultiHitsDataSource.swift in Sources */ = {isa = PBXBuildFile; fileRef = AF5808972320158700C5BDFA /* TestMultiHitsDataSource.swift */; };
+		AF58089A232016E300C5BDFA /* CollectionViewMultiIndexHitsControllerTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = AF5808952320155500C5BDFA /* CollectionViewMultiIndexHitsControllerTests.swift */; };
+		AF58089C2320170900C5BDFA /* TestHitsSource.swift in Sources */ = {isa = PBXBuildFile; fileRef = AF58089B2320170900C5BDFA /* TestHitsSource.swift */; };
+		AF58089E2320172A00C5BDFA /* CollectionViewHitsControllerTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = AF58089D2320172A00C5BDFA /* CollectionViewHitsControllerTests.swift */; };
 		AF5D103022F45EB300DE13AA /* FacetListTableController.swift in Sources */ = {isa = PBXBuildFile; fileRef = AF5D102F22F45EB300DE13AA /* FacetListTableController.swift */; };
 		AF6778B522FB235600850ACC /* SegmentedController.swift in Sources */ = {isa = PBXBuildFile; fileRef = AF6778B422FB235600850ACC /* SegmentedController.swift */; };
 		AF67793C2301B9C000850ACC /* FilterListTableController.swift in Sources */ = {isa = PBXBuildFile; fileRef = AF67793B2301B9C000850ACC /* FilterListTableController.swift */; };
@@ -84,6 +90,12 @@
 		AF3DE596224AA00400C8BC08 /* MultiIndexHitsCollectionController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MultiIndexHitsCollectionController.swift; sourceTree = "<group>"; };
 		AF3DE5A9224BBE6700C8BC08 /* TableViewHitsControllerTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TableViewHitsControllerTests.swift; sourceTree = "<group>"; };
 		AF3DE5B1224BBEC000C8BC08 /* TableViewMultiIndexHitsControllerTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TableViewMultiIndexHitsControllerTests.swift; sourceTree = "<group>"; };
+		AF58089023200CCA00C5BDFA /* FatalErrorUtil.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FatalErrorUtil.swift; sourceTree = "<group>"; };
+		AF58089223200CFE00C5BDFA /* FatalErrorTest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FatalErrorTest.swift; sourceTree = "<group>"; };
+		AF5808952320155500C5BDFA /* CollectionViewMultiIndexHitsControllerTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CollectionViewMultiIndexHitsControllerTests.swift; sourceTree = "<group>"; };
+		AF5808972320158700C5BDFA /* TestMultiHitsDataSource.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TestMultiHitsDataSource.swift; sourceTree = "<group>"; };
+		AF58089B2320170900C5BDFA /* TestHitsSource.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TestHitsSource.swift; sourceTree = "<group>"; };
+		AF58089D2320172A00C5BDFA /* CollectionViewHitsControllerTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CollectionViewHitsControllerTests.swift; sourceTree = "<group>"; };
 		AF5D102F22F45EB300DE13AA /* FacetListTableController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FacetListTableController.swift; sourceTree = "<group>"; };
 		AF6778B422FB235600850ACC /* SegmentedController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SegmentedController.swift; sourceTree = "<group>"; };
 		AF67793B2301B9C000850ACC /* FilterListTableController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = FilterListTableController.swift; path = Sources/Controller/FilterList/FilterListTableController.swift; sourceTree = SOURCE_ROOT; };
@@ -168,8 +180,13 @@
 			children = (
 				E25FB0A21ECF550C006B8CED /* Info.plist */,
 				E2A477021EC62031007CA367 /* InstantSearch-Tests-Bridging-Header.h */,
+				AF58089B2320170900C5BDFA /* TestHitsSource.swift */,
 				AF3DE5A9224BBE6700C8BC08 /* TableViewHitsControllerTests.swift */,
+				AF58089D2320172A00C5BDFA /* CollectionViewHitsControllerTests.swift */,
+				AF5808972320158700C5BDFA /* TestMultiHitsDataSource.swift */,
 				AF3DE5B1224BBEC000C8BC08 /* TableViewMultiIndexHitsControllerTests.swift */,
+				AF5808952320155500C5BDFA /* CollectionViewMultiIndexHitsControllerTests.swift */,
+				AF58089223200CFE00C5BDFA /* FatalErrorTest.swift */,
 			);
 			path = Tests;
 			sourceTree = "<group>";
@@ -177,6 +194,7 @@
 		28F828971C494B4200330CF4 /* Sources */ = {
 			isa = PBXGroup;
 			children = (
+				AF58089023200CCA00C5BDFA /* FatalErrorUtil.swift */,
 				AF6C6F7A2253C5A1001E5E3C /* Controller */,
 				28F828821C494B2C00330CF4 /* Info.plist */,
 				E2A477001EC61B43007CA367 /* InstantSearch-Bridging-Header.h */,
@@ -473,6 +491,7 @@
 					};
 					28F828861C494B2C00330CF4 = {
 						CreatedOnToolsVersion = 7.2;
+						DevelopmentTeam = JF98Q6D3JZ;
 						LastSwiftMigration = 0900;
 						TestTargetID = E27B67E01ED339290001FFA7;
 					};
@@ -574,6 +593,7 @@
 				AF3DE594224A9B7A00C8BC08 /* MultiIndexHitsTableController.swift in Sources */,
 				AF9396812298140D00757257 /* ActivityIndicatorController.swift in Sources */,
 				AF67793C2301B9C000850ACC /* FilterListTableController.swift in Sources */,
+				AF58089123200CCA00C5BDFA /* FatalErrorUtil.swift in Sources */,
 				E2EFA5F022AEB980008C9CAA /* NumericStepperController.swift in Sources */,
 				AF3DE597224AA00400C8BC08 /* HitsCollectionController.swift in Sources */,
 				AF14E31022F43C710088D2A7 /* MultiIndexHitsTableViewDelegate.swift in Sources */,
@@ -605,7 +625,12 @@
 			buildActionMask = 2147483647;
 			files = (
 				AF3DE5BD224BBF7000C8BC08 /* TableViewHitsControllerTests.swift in Sources */,
+				AF58089423200D0200C5BDFA /* FatalErrorTest.swift in Sources */,
+				AF58089C2320170900C5BDFA /* TestHitsSource.swift in Sources */,
+				AF5808982320158700C5BDFA /* TestMultiHitsDataSource.swift in Sources */,
+				AF58089A232016E300C5BDFA /* CollectionViewMultiIndexHitsControllerTests.swift in Sources */,
 				AF3DE5BE224BBF7000C8BC08 /* TableViewMultiIndexHitsControllerTests.swift in Sources */,
+				AF58089E2320172A00C5BDFA /* CollectionViewHitsControllerTests.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -839,6 +864,7 @@
 			buildSettings = {
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				CLANG_ENABLE_MODULES = YES;
+				DEVELOPMENT_TEAM = JF98Q6D3JZ;
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
 					"$(PROJECT_DIR)/Carthage/Build/iOS",
@@ -860,6 +886,7 @@
 			buildSettings = {
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				CLANG_ENABLE_MODULES = YES;
+				DEVELOPMENT_TEAM = JF98Q6D3JZ;
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
 					"$(PROJECT_DIR)/Carthage/Build/iOS",

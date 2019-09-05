@@ -16,21 +16,21 @@ public class MultiIndexHitsCollectionController: NSObject, MultiIndexHitsControl
   
   public weak var hitsSource: MultiIndexHitsSource? {
     didSet {
-      dataSource?.hitsDataSource = hitsSource
-      delegate?.hitsDataSource = hitsSource
+      dataSource?.hitsSource = hitsSource
+      delegate?.hitsSource = hitsSource
     }
   }
   
   public var dataSource: MultiIndexHitsCollectionViewDataSource? {
     didSet {
-      dataSource?.hitsDataSource = hitsSource
+      dataSource?.hitsSource = hitsSource
       collectionView.dataSource = dataSource
     }
   }
   
   public var delegate: MultiIndexHitsCollectionViewDelegate? {
     didSet {
-      delegate?.hitsDataSource = hitsSource
+      delegate?.hitsSource = hitsSource
       collectionView.delegate = delegate
     }
   }

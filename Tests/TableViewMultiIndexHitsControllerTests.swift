@@ -10,28 +10,6 @@ import InstantSearchCore
 import Foundation
 import XCTest
 
-class TestMultiHitsDataSource: MultiIndexHitsSource {
-  
-  let hitsBySection: [[String]]
-  
-  init(hitsBySection: [[String]]) {
-    self.hitsBySection = hitsBySection
-  }
-  
-  func numberOfSections() -> Int {
-    return hitsBySection.count
-  }
-  
-  func numberOfHits(inSection section: Int) -> Int {
-    return hitsBySection[section].count
-  }
-  
-  func hit<R: Codable>(atIndex index: Int, inSection section: Int) throws -> R? {
-    return hitsBySection[section][index] as? R
-  }
-  
-}
-
 class TableViewMultiIndexHitsControllerTests: XCTestCase {
   
   func testDataSource() {
@@ -64,8 +42,72 @@ class TableViewMultiIndexHitsControllerTests: XCTestCase {
     
   }
   
-  func testWidget() {
+  func testMissingHitsSource() {
+    
+    let tableView = UITableView()
 
+    let dataSource = MultiIndexHitsTableViewDataSource()
+    
+    dataSource.setCellConfigurator(forSection: 0) { (_, h: String, _) -> UITableViewCell in
+      let cell = UITableViewCell()
+      cell.textLabel?.text = h
+      return cell
+    }
+    
+    let delegate = MultiIndexHitsTableViewDelegate()
+    
+    delegate.setClickHandler(forSection: 0) { (_, h: String, _) in
+    }
+
+    expectFatalError(expectedMessage: "Missing hits source") {
+      _ = dataSource.numberOfSections(in: tableView)
+    }
+    
+    expectFatalError(expectedMessage: "Missing hits source") {
+      _ = dataSource.tableView(tableView, numberOfRowsInSection: 0)
+    }
+    
+    expectFatalError(expectedMessage: "Missing hits source") {
+      _ = dataSource.tableView(tableView, cellForRowAt: IndexPath(item: 0, section: 0))
+    }
+    
+    expectFatalError(expectedMessage: "Missing hits source") {
+      delegate.tableView(tableView, didSelectRowAt: IndexPath(item: 0, section: 0))
+    }
+    
+  }
+  
+  
+  func testMissingCellHandler() {
+    
+    let tableView = UITableView()
+    
+    let dataSource = MultiIndexHitsTableViewDataSource()
+    
+    let hitsSource = TestMultiHitsDataSource(hitsBySection: [["t11", "t12"], ["t21", "t22", "t23"]])
+    
+    dataSource.hitsSource = hitsSource
+    
+    expectFatalError(expectedMessage: "No cell configurator found for section 0") {
+      _ = dataSource.tableView(tableView, cellForRowAt: IndexPath(item: 0, section: 0))
+    }
+    
+  }
+  
+  func testMissingClickHandler() {
+    
+    let tableView = UITableView()
+    
+    let delegate = MultiIndexHitsTableViewDelegate()
+
+    let hitsSource = TestMultiHitsDataSource(hitsBySection: [["t11", "t12"], ["t21", "t22", "t23"]])
+
+    delegate.hitsSource = hitsSource
+    
+    expectFatalError(expectedMessage: "No click handler found for section 0") {
+      _ = delegate.tableView(tableView, didSelectRowAt: IndexPath(row: 0, section: 0))
+    }
+    
   }
   
 }

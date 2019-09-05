@@ -23,11 +23,18 @@ open class MultiIndexHitsTableViewDelegate: NSObject {
   
   public func setClickHandler<Hit: Codable>(forSection section: Int, _ clickHandler: @escaping TableViewClickHandler<Hit>) {
     clickHandlers[section] = { [weak self] (tableView, row) in
-      guard let hit: Hit = try self?.hitsSource?.hit(atIndex: row, inSection: section) else {
-        assertionFailure("Invalid state: Attempt to process a click of a cell for a missing hit in a hits Interactor")
+      guard let delegate = self else { return }
+
+      guard let hitsSource = delegate.hitsSource else {
+        fatalError("Missing hits source")
+      }
+      
+      guard let hit: Hit = try hitsSource.hit(atIndex: row, inSection: section) else {
         return
       }
-      clickHandler(tableView, hit, IndexPath(row: row, section: section))
+
+      clickHandler(tableView, hit, IndexPath(item: row, section: section))
+      
     }
   }
   
@@ -36,8 +43,11 @@ open class MultiIndexHitsTableViewDelegate: NSObject {
 extension MultiIndexHitsTableViewDelegate: UITableViewDelegate {
   
   open func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+    guard let clickHandler = clickHandlers[indexPath.section] else {
+      fatalError("No click handler found for section \(indexPath.section)")
+    }
     do {
-      try clickHandlers[indexPath.section]?(tableView, indexPath.row)
+      try clickHandler(tableView, indexPath.row)
     } catch let error {
       fatalError("\(error)")
     }
