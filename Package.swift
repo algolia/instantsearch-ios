@@ -25,6 +25,6 @@ let package = Package(
         .testTarget(
             name: "InstantSearchTests",
             dependencies: ["InstantSearch", "InstantSearchCore"],
-            path: "./Tests/Sources")),
+            path: "./Tests/Sources")
     ]
 )
