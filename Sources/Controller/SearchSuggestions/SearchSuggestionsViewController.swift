@@ -13,7 +13,7 @@ public class SearchSuggestionsViewController: UITableViewController, HitsControl
   
   public var hitsSource: HitsInteractor<Hit<SearchSuggestion>>?
   
-  var didSelect: ((Hit<SearchSuggestion>) -> Void)?
+  public var didSelect: ((Hit<SearchSuggestion>) -> Void)?
   
   let cellID = "suggestionCellID"
   
