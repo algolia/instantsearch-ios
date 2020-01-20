@@ -13,6 +13,8 @@ public class SearchSuggestionsViewController: UITableViewController, HitsControl
   
   public var hitsSource: HitsInteractor<Hit<SearchSuggestion>>?
   
+  var didSelect: ((Hit<SearchSuggestion>) -> Void)?
+  
   let cellID = "suggestionCellID"
   
   public override init(style: UITableView.Style) {
@@ -59,6 +61,11 @@ public class SearchSuggestionsViewController: UITableViewController, HitsControl
 
     }
     return cell
+  }
+
+  public override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+    guard let searchSuggestionHit = hitsSource?.hit(atIndex: indexPath.row) else { return }
+    didSelect?(searchSuggestionHit)
   }
   
 }
