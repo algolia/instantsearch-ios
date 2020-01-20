@@ -101,6 +101,7 @@
 		AF5D102F22F45EB300DE13AA /* FacetListTableController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FacetListTableController.swift; sourceTree = "<group>"; };
 		AF6778B422FB235600850ACC /* SegmentedController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SegmentedController.swift; sourceTree = "<group>"; };
 		AF67793B2301B9C000850ACC /* FilterListTableController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = FilterListTableController.swift; path = Sources/Controller/FilterList/FilterListTableController.swift; sourceTree = SOURCE_ROOT; };
+		AF8A908623D60682009DC303 /* Package.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Package.swift; sourceTree = "<group>"; };
 		AF93967C22980FBE00757257 /* ClearRefinementsButtonController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ClearRefinementsButtonController.swift; sourceTree = "<group>"; };
 		AF9396802298140D00757257 /* ActivityIndicatorController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ActivityIndicatorController.swift; sourceTree = "<group>"; };
 		AFF1E7622296A11200941401 /* SelectableFilterButtonController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SelectableFilterButtonController.swift; sourceTree = "<group>"; };
@@ -161,6 +162,7 @@
 		28F828731C494B2C00330CF4 = {
 			isa = PBXGroup;
 			children = (
+				AF8A908623D60682009DC303 /* Package.swift */,
 				28F8287E1C494B2C00330CF4 /* Products */,
 				28F828971C494B4200330CF4 /* Sources */,
 				28F8288B1C494B2C00330CF4 /* Tests */,
