@@ -7,7 +7,6 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		28F828881C494B2C00330CF4 /* InstantSearch.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 28F8287D1C494B2C00330CF4 /* InstantSearch.framework */; };
 		AF14E30A22F43C060088D2A7 /* MultiIndexHitsCollectionViewDataSource.swift in Sources */ = {isa = PBXBuildFile; fileRef = AF14E30922F43C060088D2A7 /* MultiIndexHitsCollectionViewDataSource.swift */; };
 		AF14E30C22F43C260088D2A7 /* MultiIndexHitsCollectionViewDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = AF14E30B22F43C260088D2A7 /* MultiIndexHitsCollectionViewDelegate.swift */; };
 		AF14E30E22F43C570088D2A7 /* MultiIndexHitsTableViewDataSource.swift in Sources */ = {isa = PBXBuildFile; fileRef = AF14E30D22F43C570088D2A7 /* MultiIndexHitsTableViewDataSource.swift */; };
@@ -16,7 +15,8 @@
 		AF14E31422F43CCA0088D2A7 /* HitsCollectionViewDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = AF14E31322F43CCA0088D2A7 /* HitsCollectionViewDelegate.swift */; };
 		AF14E31622F43D010088D2A7 /* HitsTableViewDataSource.swift in Sources */ = {isa = PBXBuildFile; fileRef = AF14E31522F43D010088D2A7 /* HitsTableViewDataSource.swift */; };
 		AF14E31822F43D190088D2A7 /* HitsTableViewDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = AF14E31722F43D190088D2A7 /* HitsTableViewDelegate.swift */; };
-		AF3DE588224A991F00C8BC08 /* main.swift in Sources */ = {isa = PBXBuildFile; fileRef = AF3DE587224A991F00C8BC08 /* main.swift */; };
+		AF3DE3A523D611AD008BBC6C /* InstantSearchCore in Frameworks */ = {isa = PBXBuildFile; productRef = AF3DE3A423D611AD008BBC6C /* InstantSearchCore */; };
+		AF3DE3A623D611AD008BBC6C /* InstantSearch.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 28F8287D1C494B2C00330CF4 /* InstantSearch.framework */; };
 		AF3DE593224A9B7A00C8BC08 /* HitsTableController.swift in Sources */ = {isa = PBXBuildFile; fileRef = AF3DE58D224A9B7A00C8BC08 /* HitsTableController.swift */; };
 		AF3DE594224A9B7A00C8BC08 /* MultiIndexHitsTableController.swift in Sources */ = {isa = PBXBuildFile; fileRef = AF3DE58E224A9B7A00C8BC08 /* MultiIndexHitsTableController.swift */; };
 		AF3DE597224AA00400C8BC08 /* HitsCollectionController.swift in Sources */ = {isa = PBXBuildFile; fileRef = AF3DE595224AA00400C8BC08 /* HitsCollectionController.swift */; };
@@ -49,11 +49,9 @@
 		E27B67EB1ED339290001FFA7 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = E27B67EA1ED339290001FFA7 /* Assets.xcassets */; };
 		E27B67EE1ED339290001FFA7 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = E27B67EC1ED339290001FFA7 /* LaunchScreen.storyboard */; };
 		E2A477011EC61B43007CA367 /* InstantSearch-Bridging-Header.h in Headers */ = {isa = PBXBuildFile; fileRef = E2A477001EC61B43007CA367 /* InstantSearch-Bridging-Header.h */; };
-		E2E060571F717A7B0026358B /* InstantSearchCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E21DE94E1F2F7DB400EFC4F5 /* InstantSearchCore.framework */; };
 		E2EFA5EF22AEB980008C9CAA /* NumericTextFieldController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E2EFA5ED22AEB980008C9CAA /* NumericTextFieldController.swift */; };
 		E2EFA5F022AEB980008C9CAA /* NumericStepperController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E2EFA5EE22AEB980008C9CAA /* NumericStepperController.swift */; };
 		E2EFA5F322AEB990008C9CAA /* SelectIndexController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E2EFA5F222AEB990008C9CAA /* SelectIndexController.swift */; };
-		E2F2073C20B6E42C0066AF12 /* InstantSearchClient.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E2F2073A20B6E3F60066AF12 /* InstantSearchClient.framework */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -143,9 +141,8 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				E2F2073C20B6E42C0066AF12 /* InstantSearchClient.framework in Frameworks */,
-				28F828881C494B2C00330CF4 /* InstantSearch.framework in Frameworks */,
-				E2E060571F717A7B0026358B /* InstantSearchCore.framework in Frameworks */,
+				AF3DE3A623D611AD008BBC6C /* InstantSearch.framework in Frameworks */,
+				AF3DE3A523D611AD008BBC6C /* InstantSearchCore in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -455,7 +452,6 @@
 				28F828831C494B2C00330CF4 /* Sources */,
 				28F828841C494B2C00330CF4 /* Frameworks */,
 				28F828851C494B2C00330CF4 /* Resources */,
-				E2E060591F717B340026358B /* Carthage Copy Frameworks */,
 			);
 			buildRules = (
 			);
@@ -464,6 +460,9 @@
 				E27B67F41ED3393B0001FFA7 /* PBXTargetDependency */,
 			);
 			name = InstantSearchTests;
+			packageProductDependencies = (
+				AF3DE3A423D611AD008BBC6C /* InstantSearchCore */,
+			);
 			productName = InstantSearchTests;
 			productReference = 28F828871C494B2C00330CF4 /* InstantSearchTests.xctest */;
 			productType = "com.apple.product-type.bundle.unit-test";
@@ -578,22 +577,6 @@
 			shellPath = /bin/sh;
 			shellScript = "if which swiftlint >/dev/null; then\nconfig/swiftlint --config config/.swiftlint.yml\nelse\necho \"warning: SwiftLint not installed, download from https://github.com/realm/SwiftLint\"\nfi\n";
 		};
-		E2E060591F717B340026358B /* Carthage Copy Frameworks */ = {
-			isa = PBXShellScriptBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			inputPaths = (
-				"$(SRCROOT)/Carthage/Build/iOS/InstantSearchClient.framework",
-				"$(SRCROOT)/Carthage/Build/iOS/InstantSearchCore.framework",
-			);
-			name = "Carthage Copy Frameworks";
-			outputPaths = (
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-			shellPath = /bin/sh;
-			shellScript = "/usr/local/bin/carthage copy-frameworks\n";
-		};
 /* End PBXShellScriptBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
@@ -602,7 +585,6 @@
 			buildActionMask = 2147483647;
 			files = (
 				AF14E30A22F43C060088D2A7 /* MultiIndexHitsCollectionViewDataSource.swift in Sources */,
-				AF3DE588224A991F00C8BC08 /* main.swift in Sources */,
 				AF3DE594224A9B7A00C8BC08 /* MultiIndexHitsTableController.swift in Sources */,
 				AF9396812298140D00757257 /* ActivityIndicatorController.swift in Sources */,
 				AF67793C2301B9C000850ACC /* FilterListTableController.swift in Sources */,
@@ -1028,6 +1010,11 @@
 /* End XCRemoteSwiftPackageReference section */
 
 /* Begin XCSwiftPackageProductDependency section */
+		AF3DE3A423D611AD008BBC6C /* InstantSearchCore */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = AF8A908123D604B1009DC303 /* XCRemoteSwiftPackageReference "instantsearch-core-swift" */;
+			productName = InstantSearchCore;
+		};
 		AF8A908223D604B1009DC303 /* InstantSearchClient */ = {
 			isa = XCSwiftPackageProductDependency;
 			package = AF8A908123D604B1009DC303 /* XCRemoteSwiftPackageReference "instantsearch-core-swift" */;
