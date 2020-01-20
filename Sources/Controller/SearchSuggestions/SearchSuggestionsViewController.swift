@@ -27,7 +27,7 @@ public class SearchSuggestionsViewController: UITableViewController, HitsControl
   }
   
   public func scrollToTop() {
-    tableView.scrollToRow(at: .init(), at: .top, animated: false)
+    tableView.scrollToFirstNonEmptySection()
   }
   
   public func reload() {
