@@ -3,7 +3,7 @@
 	archiveVersion = 1;
 	classes = {
 	};
-	objectVersion = 46;
+	objectVersion = 52;
 	objects = {
 
 /* Begin PBXBuildFile section */
@@ -32,6 +32,8 @@
 		AF5D103022F45EB300DE13AA /* FacetListTableController.swift in Sources */ = {isa = PBXBuildFile; fileRef = AF5D102F22F45EB300DE13AA /* FacetListTableController.swift */; };
 		AF6778B522FB235600850ACC /* SegmentedController.swift in Sources */ = {isa = PBXBuildFile; fileRef = AF6778B422FB235600850ACC /* SegmentedController.swift */; };
 		AF67793C2301B9C000850ACC /* FilterListTableController.swift in Sources */ = {isa = PBXBuildFile; fileRef = AF67793B2301B9C000850ACC /* FilterListTableController.swift */; };
+		AF8A908323D604B1009DC303 /* InstantSearchClient in Frameworks */ = {isa = PBXBuildFile; productRef = AF8A908223D604B1009DC303 /* InstantSearchClient */; };
+		AF8A908523D6051E009DC303 /* InstantSearchCore in Frameworks */ = {isa = PBXBuildFile; productRef = AF8A908423D6051E009DC303 /* InstantSearchCore */; };
 		AF93967D22980FBE00757257 /* ClearRefinementsButtonController.swift in Sources */ = {isa = PBXBuildFile; fileRef = AF93967C22980FBE00757257 /* ClearRefinementsButtonController.swift */; };
 		AF9396812298140D00757257 /* ActivityIndicatorController.swift in Sources */ = {isa = PBXBuildFile; fileRef = AF9396802298140D00757257 /* ActivityIndicatorController.swift */; };
 		AFF1E7642296A11200941401 /* SelectableFilterButtonController.swift in Sources */ = {isa = PBXBuildFile; fileRef = AFF1E7622296A11200941401 /* SelectableFilterButtonController.swift */; };
@@ -131,6 +133,8 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				AF8A908323D604B1009DC303 /* InstantSearchClient in Frameworks */,
+				AF8A908523D6051E009DC303 /* InstantSearchCore in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -434,6 +438,10 @@
 			dependencies = (
 			);
 			name = InstantSearch;
+			packageProductDependencies = (
+				AF8A908223D604B1009DC303 /* InstantSearchClient */,
+				AF8A908423D6051E009DC303 /* InstantSearchCore */,
+			);
 			productName = InstantSearch;
 			productReference = 28F8287D1C494B2C00330CF4 /* InstantSearch.framework */;
 			productType = "com.apple.product-type.framework";
@@ -513,6 +521,9 @@
 				Base,
 			);
 			mainGroup = 28F828731C494B2C00330CF4;
+			packageReferences = (
+				AF8A908123D604B1009DC303 /* XCRemoteSwiftPackageReference "instantsearch-core-swift" */,
+			);
 			productRefGroup = 28F8287E1C494B2C00330CF4 /* Products */;
 			projectDirPath = "";
 			projectRoot = "";
@@ -791,8 +802,9 @@
 				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
 				MTL_ENABLE_DEBUG_INFO = NO;
 				SDKROOT = iphoneos;
+				SWIFT_COMPILATION_MODE = wholemodule;
 				SWIFT_OBJC_BRIDGING_HEADER = "";
-				SWIFT_OPTIMIZATION_LEVEL = "-Owholemodule";
+				SWIFT_OPTIMIZATION_LEVEL = "-O";
 				SWIFT_SWIFT3_OBJC_INFERENCE = Off;
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
@@ -820,7 +832,11 @@
 				);
 				INFOPLIST_FILE = "$(SRCROOT)/Sources/Info.plist";
 				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
-				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@loader_path/Frameworks",
+				);
 				PRODUCT_BUNDLE_IDENTIFIER = com.algolia.InstantSearch;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SKIP_INSTALL = YES;
@@ -849,7 +865,11 @@
 				);
 				INFOPLIST_FILE = "$(SRCROOT)/Sources/Info.plist";
 				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
-				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@loader_path/Frameworks",
+				);
 				PRODUCT_BUNDLE_IDENTIFIER = com.algolia.InstantSearch;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SKIP_INSTALL = YES;
@@ -870,7 +890,11 @@
 					"$(PROJECT_DIR)/Carthage/Build/iOS",
 				);
 				INFOPLIST_FILE = Tests/Info.plist;
-				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@loader_path/Frameworks",
+				);
 				PRODUCT_BUNDLE_IDENTIFIER = com.algolia.InstantSearchTests;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_OBJC_BRIDGING_HEADER = "Tests/InstantSearch-Tests-Bridging-Header.h";
@@ -892,7 +916,11 @@
 					"$(PROJECT_DIR)/Carthage/Build/iOS",
 				);
 				INFOPLIST_FILE = Tests/Info.plist;
-				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@loader_path/Frameworks",
+				);
 				PRODUCT_BUNDLE_IDENTIFIER = com.algolia.InstantSearchTests;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_OBJC_BRIDGING_HEADER = "Tests/InstantSearch-Tests-Bridging-Header.h";
@@ -912,7 +940,10 @@
 				DEVELOPMENT_TEAM = K3DV6EU9CV;
 				INFOPLIST_FILE = InstantSearchTestsHost/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
-				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+				);
 				PRODUCT_BUNDLE_IDENTIFIER = io.daher.InstantSearchTestsHost;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_ACTIVE_COMPILATION_CONDITIONS = DEBUG;
@@ -931,7 +962,10 @@
 				DEVELOPMENT_TEAM = K3DV6EU9CV;
 				INFOPLIST_FILE = InstantSearchTestsHost/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
-				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+				);
 				PRODUCT_BUNDLE_IDENTIFIER = io.daher.InstantSearchTestsHost;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_SWIFT3_OBJC_INFERENCE = Off;
@@ -979,6 +1013,30 @@
 			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
+
+/* Begin XCRemoteSwiftPackageReference section */
+		AF8A908123D604B1009DC303 /* XCRemoteSwiftPackageReference "instantsearch-core-swift" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/algolia/instantsearch-core-swift";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 6.4.0;
+			};
+		};
+/* End XCRemoteSwiftPackageReference section */
+
+/* Begin XCSwiftPackageProductDependency section */
+		AF8A908223D604B1009DC303 /* InstantSearchClient */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = AF8A908123D604B1009DC303 /* XCRemoteSwiftPackageReference "instantsearch-core-swift" */;
+			productName = InstantSearchClient;
+		};
+		AF8A908423D6051E009DC303 /* InstantSearchCore */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = AF8A908123D604B1009DC303 /* XCRemoteSwiftPackageReference "instantsearch-core-swift" */;
+			productName = InstantSearchCore;
+		};
+/* End XCSwiftPackageProductDependency section */
 	};
 	rootObject = 28F828741C494B2C00330CF4 /* Project object */;
 }
