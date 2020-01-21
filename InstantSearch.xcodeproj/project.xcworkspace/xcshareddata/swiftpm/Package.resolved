@@ -15,7 +15,7 @@
         "repositoryURL": "https://github.com/algolia/instantsearch-core-swift",
         "state": {
           "branch": "feat/search-suggestions",
-          "revision": "b3c4ffbaee62fca76db6ad838ff672935ca0deb3",
+          "revision": "3e8086c743496939966141cd3f50b5824ace97a2",
           "version": null
         }
       },

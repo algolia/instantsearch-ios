@@ -15,6 +15,12 @@ public class SearchSuggestionsViewController: UITableViewController, HitsControl
   
   public var didSelect: ((Hit<SearchSuggestion>) -> Void)?
   
+  public var isHighlightingInverted: Bool = false {
+    didSet {
+      tableView.reloadData()
+    }
+  }
+  
   let cellID = "suggestionCellID"
   
   public override init(style: UITableView.Style) {
@@ -41,24 +47,10 @@ public class SearchSuggestionsViewController: UITableViewController, HitsControl
   public override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
     guard let cell = tableView.dequeueReusableCell(withIdentifier: cellID) else { return .init() }
     
-    if let hightlightSuggestion = hitsSource?.hit(atIndex: indexPath.row)?.highlightResult {
-      switch hightlightSuggestion {
-      case .dictionary(let dict):
-        if let query = dict["query"] {
-          switch query {
-          case .value(let theQuery):
-            if let textLabel = cell.textLabel {
-              textLabel.attributedText = NSAttributedString(highlightedResults: [theQuery],
-                                                            separator: NSAttributedString(string: ", "),
-                                                            attributes: [.font: UIFont.boldSystemFont(ofSize: textLabel.font.pointSize)])
-            }
-          default: break
-          }
-
-        }
-      default: break
+    if let hightlightSuggestion = hitsSource?.hit(atIndex: indexPath.row)?.hightlightedString(forKey: "query") {
+      if let textLabel = cell.textLabel {
+        textLabel.attributedText = NSAttributedString(highlightedString: hightlightSuggestion, inverted: isHighlightingInverted, attributes: [.font: UIFont.boldSystemFont(ofSize: textLabel.font.pointSize)])
       }
-
     }
     return cell
   }
