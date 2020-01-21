@@ -7,6 +7,9 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		AF0BB11323D616EB00EF07A9 /* SearchSuggestionsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = AF0BB11223D616EB00EF07A9 /* SearchSuggestionsViewController.swift */; };
+		AF0BB11623D6224700EF07A9 /* UITableView+Convenience.swift in Sources */ = {isa = PBXBuildFile; fileRef = AF0BB11523D6224700EF07A9 /* UITableView+Convenience.swift */; };
+		AF0BB11823D6225200EF07A9 /* UICollectionView+Convenience.swift in Sources */ = {isa = PBXBuildFile; fileRef = AF0BB11723D6225200EF07A9 /* UICollectionView+Convenience.swift */; };
 		AF14E30A22F43C060088D2A7 /* MultiIndexHitsCollectionViewDataSource.swift in Sources */ = {isa = PBXBuildFile; fileRef = AF14E30922F43C060088D2A7 /* MultiIndexHitsCollectionViewDataSource.swift */; };
 		AF14E30C22F43C260088D2A7 /* MultiIndexHitsCollectionViewDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = AF14E30B22F43C260088D2A7 /* MultiIndexHitsCollectionViewDelegate.swift */; };
 		AF14E30E22F43C570088D2A7 /* MultiIndexHitsTableViewDataSource.swift in Sources */ = {isa = PBXBuildFile; fileRef = AF14E30D22F43C570088D2A7 /* MultiIndexHitsTableViewDataSource.swift */; };
@@ -75,6 +78,9 @@
 		28F8287D1C494B2C00330CF4 /* InstantSearch.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = InstantSearch.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		28F828821C494B2C00330CF4 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		28F828871C494B2C00330CF4 /* InstantSearchTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = InstantSearchTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
+		AF0BB11223D616EB00EF07A9 /* SearchSuggestionsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchSuggestionsViewController.swift; sourceTree = "<group>"; };
+		AF0BB11523D6224700EF07A9 /* UITableView+Convenience.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UITableView+Convenience.swift"; sourceTree = "<group>"; };
+		AF0BB11723D6225200EF07A9 /* UICollectionView+Convenience.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UICollectionView+Convenience.swift"; sourceTree = "<group>"; };
 		AF14E30922F43C060088D2A7 /* MultiIndexHitsCollectionViewDataSource.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MultiIndexHitsCollectionViewDataSource.swift; sourceTree = "<group>"; };
 		AF14E30B22F43C260088D2A7 /* MultiIndexHitsCollectionViewDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MultiIndexHitsCollectionViewDelegate.swift; sourceTree = "<group>"; };
 		AF14E30D22F43C570088D2A7 /* MultiIndexHitsTableViewDataSource.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MultiIndexHitsTableViewDataSource.swift; sourceTree = "<group>"; };
@@ -197,6 +203,7 @@
 		28F828971C494B4200330CF4 /* Sources */ = {
 			isa = PBXGroup;
 			children = (
+				AF0BB11423D6223200EF07A9 /* Helpers */,
 				AF58089023200CCA00C5BDFA /* FatalErrorUtil.swift */,
 				AF6C6F7A2253C5A1001E5E3C /* Controller */,
 				28F828821C494B2C00330CF4 /* Info.plist */,
@@ -204,6 +211,23 @@
 				AF3DE587224A991F00C8BC08 /* main.swift */,
 			);
 			path = Sources;
+			sourceTree = "<group>";
+		};
+		AF0BB11123D616DA00EF07A9 /* SearchSuggestions */ = {
+			isa = PBXGroup;
+			children = (
+				AF0BB11223D616EB00EF07A9 /* SearchSuggestionsViewController.swift */,
+			);
+			path = SearchSuggestions;
+			sourceTree = "<group>";
+		};
+		AF0BB11423D6223200EF07A9 /* Helpers */ = {
+			isa = PBXGroup;
+			children = (
+				AF0BB11523D6224700EF07A9 /* UITableView+Convenience.swift */,
+				AF0BB11723D6225200EF07A9 /* UICollectionView+Convenience.swift */,
+			);
+			path = Helpers;
 			sourceTree = "<group>";
 		};
 		AF14E30422F43BCC0088D2A7 /* TableView */ = {
@@ -283,6 +307,7 @@
 		AF6C6F7A2253C5A1001E5E3C /* Controller */ = {
 			isa = PBXGroup;
 			children = (
+				AF0BB11123D616DA00EF07A9 /* SearchSuggestions */,
 				AF6778B322FB234C00850ACC /* Segmented */,
 				AF5D102E22F45E9A00DE13AA /* FacetList */,
 				AF5D102B22F45C9D00DE13AA /* FilterList */,
@@ -599,6 +624,7 @@
 				AF6778B522FB235600850ACC /* SegmentedController.swift in Sources */,
 				AF14E30C22F43C260088D2A7 /* MultiIndexHitsCollectionViewDelegate.swift in Sources */,
 				AF14E31222F43CAD0088D2A7 /* HitsCollectionViewDataSource.swift in Sources */,
+				AF0BB11623D6224700EF07A9 /* UITableView+Convenience.swift in Sources */,
 				E2EFA5EF22AEB980008C9CAA /* NumericTextFieldController.swift in Sources */,
 				AF3DE593224A9B7A00C8BC08 /* HitsTableController.swift in Sources */,
 				AF14E31822F43D190088D2A7 /* HitsTableViewDelegate.swift in Sources */,
@@ -606,7 +632,9 @@
 				AF14E31422F43CCA0088D2A7 /* HitsCollectionViewDelegate.swift in Sources */,
 				E2146BDF22B2455400927350 /* CurrentFiltersTableViewController.swift in Sources */,
 				E26F425A2298321900583D39 /* TextfieldController.swift in Sources */,
+				AF0BB11823D6225200EF07A9 /* UICollectionView+Convenience.swift in Sources */,
 				E25D635122D395FF008CD0FD /* HierarchicalTableViewController.swift in Sources */,
+				AF0BB11323D616EB00EF07A9 /* SearchSuggestionsViewController.swift in Sources */,
 				AF3DE598224AA00400C8BC08 /* MultiIndexHitsCollectionController.swift in Sources */,
 				E2EFA5F322AEB990008C9CAA /* SelectIndexController.swift in Sources */,
 				AF5D103022F45EB300DE13AA /* FacetListTableController.swift in Sources */,
@@ -816,6 +844,7 @@
 				);
 				INFOPLIST_FILE = "$(SRCROOT)/Sources/Info.plist";
 				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
+				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
@@ -849,6 +878,7 @@
 				);
 				INFOPLIST_FILE = "$(SRCROOT)/Sources/Info.plist";
 				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
+				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
@@ -1003,8 +1033,8 @@
 			isa = XCRemoteSwiftPackageReference;
 			repositoryURL = "https://github.com/algolia/instantsearch-core-swift";
 			requirement = {
-				kind = upToNextMajorVersion;
-				minimumVersion = 6.4.0;
+				branch = "feat/search-suggestions";
+				kind = branch;
 			};
 		};
 /* End XCRemoteSwiftPackageReference section */
