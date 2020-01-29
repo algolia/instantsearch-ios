@@ -1051,7 +1051,7 @@
 			isa = XCRemoteSwiftPackageReference;
 			repositoryURL = "https://github.com/algolia/instantsearch-core-swift";
 			requirement = {
-				branch = "feat/search-suggestions";
+				branch = develop;
 				kind = branch;
 			};
 		};
