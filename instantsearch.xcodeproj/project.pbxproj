@@ -37,6 +37,7 @@
 		AF67793C2301B9C000850ACC /* FilterListTableController.swift in Sources */ = {isa = PBXBuildFile; fileRef = AF67793B2301B9C000850ACC /* FilterListTableController.swift */; };
 		AF8A908323D604B1009DC303 /* InstantSearchClient in Frameworks */ = {isa = PBXBuildFile; productRef = AF8A908223D604B1009DC303 /* InstantSearchClient */; };
 		AF8A908523D6051E009DC303 /* InstantSearchCore in Frameworks */ = {isa = PBXBuildFile; productRef = AF8A908423D6051E009DC303 /* InstantSearchCore */; };
+		AF8D1C1623E1B42900CB415F /* CurrentFiltersSearchTextFieldController.swift in Sources */ = {isa = PBXBuildFile; fileRef = AF8D1C1523E1B42900CB415F /* CurrentFiltersSearchTextFieldController.swift */; };
 		AF93967D22980FBE00757257 /* ClearRefinementsButtonController.swift in Sources */ = {isa = PBXBuildFile; fileRef = AF93967C22980FBE00757257 /* ClearRefinementsButtonController.swift */; };
 		AF9396812298140D00757257 /* ActivityIndicatorController.swift in Sources */ = {isa = PBXBuildFile; fileRef = AF9396802298140D00757257 /* ActivityIndicatorController.swift */; };
 		AFF1E7642296A11200941401 /* SelectableFilterButtonController.swift in Sources */ = {isa = PBXBuildFile; fileRef = AFF1E7622296A11200941401 /* SelectableFilterButtonController.swift */; };
@@ -106,6 +107,7 @@
 		AF6778B422FB235600850ACC /* SegmentedController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SegmentedController.swift; sourceTree = "<group>"; };
 		AF67793B2301B9C000850ACC /* FilterListTableController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = FilterListTableController.swift; path = Sources/Controller/FilterList/FilterListTableController.swift; sourceTree = SOURCE_ROOT; };
 		AF8A908623D60682009DC303 /* Package.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Package.swift; sourceTree = "<group>"; };
+		AF8D1C1523E1B42900CB415F /* CurrentFiltersSearchTextFieldController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CurrentFiltersSearchTextFieldController.swift; sourceTree = "<group>"; };
 		AF93967C22980FBE00757257 /* ClearRefinementsButtonController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ClearRefinementsButtonController.swift; sourceTree = "<group>"; };
 		AF9396802298140D00757257 /* ActivityIndicatorController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ActivityIndicatorController.swift; sourceTree = "<group>"; };
 		AFF1E7622296A11200941401 /* SelectableFilterButtonController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SelectableFilterButtonController.swift; sourceTree = "<group>"; };
@@ -348,6 +350,7 @@
 			isa = PBXGroup;
 			children = (
 				E2146BDE22B2455400927350 /* CurrentFiltersTableViewController.swift */,
+				AF8D1C1523E1B42900CB415F /* CurrentFiltersSearchTextFieldController.swift */,
 			);
 			path = CurrentFilters;
 			sourceTree = "<group>";
@@ -616,6 +619,7 @@
 				AF58089123200CCA00C5BDFA /* FatalErrorUtil.swift in Sources */,
 				E2EFA5F022AEB980008C9CAA /* NumericStepperController.swift in Sources */,
 				AF3DE597224AA00400C8BC08 /* HitsCollectionController.swift in Sources */,
+				AF8D1C1623E1B42900CB415F /* CurrentFiltersSearchTextFieldController.swift in Sources */,
 				AF14E31022F43C710088D2A7 /* MultiIndexHitsTableViewDelegate.swift in Sources */,
 				E26F425C2298323700583D39 /* LabelStatsController.swift in Sources */,
 				AF14E30E22F43C570088D2A7 /* MultiIndexHitsTableViewDataSource.swift in Sources */,
