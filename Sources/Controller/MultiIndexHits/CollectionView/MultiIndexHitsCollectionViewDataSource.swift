@@ -8,6 +8,7 @@
 import Foundation
 import UIKit
 
+@available(*, deprecated, message: "Use your own UICollectionViewController conforming to HitsController protocol")
 open class MultiIndexHitsCollectionViewDataSource: NSObject {
   
   private typealias CellConfigurator = (UICollectionView, Int) throws -> UICollectionViewCell

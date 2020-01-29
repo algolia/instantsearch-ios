@@ -26,6 +26,10 @@
 		AF3DE598224AA00400C8BC08 /* MultiIndexHitsCollectionController.swift in Sources */ = {isa = PBXBuildFile; fileRef = AF3DE596224AA00400C8BC08 /* MultiIndexHitsCollectionController.swift */; };
 		AF3DE5BD224BBF7000C8BC08 /* TableViewHitsControllerTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = AF3DE5A9224BBE6700C8BC08 /* TableViewHitsControllerTests.swift */; };
 		AF3DE5BE224BBF7000C8BC08 /* TableViewMultiIndexHitsControllerTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = AF3DE5B1224BBEC000C8BC08 /* TableViewMultiIndexHitsControllerTests.swift */; };
+		AF580889231D662900C5BDFA /* HitsCollectionViewContainer.swift in Sources */ = {isa = PBXBuildFile; fileRef = AF580888231D662900C5BDFA /* HitsCollectionViewContainer.swift */; };
+		AF58088B231D663800C5BDFA /* HitsTableViewContainer.swift in Sources */ = {isa = PBXBuildFile; fileRef = AF58088A231D663800C5BDFA /* HitsTableViewContainer.swift */; };
+		AF58088D231D6CDD00C5BDFA /* UITableViewController+HitsTableViewContainer.swift in Sources */ = {isa = PBXBuildFile; fileRef = AF58088C231D6CDD00C5BDFA /* UITableViewController+HitsTableViewContainer.swift */; };
+		AF58088F231D6D6C00C5BDFA /* UICollectionViewController+HitsCollectionViewContainer.swift in Sources */ = {isa = PBXBuildFile; fileRef = AF58088E231D6D6C00C5BDFA /* UICollectionViewController+HitsCollectionViewContainer.swift */; };
 		AF58089123200CCA00C5BDFA /* FatalErrorUtil.swift in Sources */ = {isa = PBXBuildFile; fileRef = AF58089023200CCA00C5BDFA /* FatalErrorUtil.swift */; };
 		AF58089423200D0200C5BDFA /* FatalErrorTest.swift in Sources */ = {isa = PBXBuildFile; fileRef = AF58089223200CFE00C5BDFA /* FatalErrorTest.swift */; };
 		AF5808982320158700C5BDFA /* TestMultiHitsDataSource.swift in Sources */ = {isa = PBXBuildFile; fileRef = AF5808972320158700C5BDFA /* TestMultiHitsDataSource.swift */; };
@@ -90,13 +94,16 @@
 		AF14E31322F43CCA0088D2A7 /* HitsCollectionViewDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HitsCollectionViewDelegate.swift; sourceTree = "<group>"; };
 		AF14E31522F43D010088D2A7 /* HitsTableViewDataSource.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HitsTableViewDataSource.swift; sourceTree = "<group>"; };
 		AF14E31722F43D190088D2A7 /* HitsTableViewDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HitsTableViewDelegate.swift; sourceTree = "<group>"; };
-		AF3DE587224A991F00C8BC08 /* main.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = main.swift; sourceTree = "<group>"; };
 		AF3DE58D224A9B7A00C8BC08 /* HitsTableController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HitsTableController.swift; sourceTree = "<group>"; };
 		AF3DE58E224A9B7A00C8BC08 /* MultiIndexHitsTableController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MultiIndexHitsTableController.swift; sourceTree = "<group>"; };
 		AF3DE595224AA00400C8BC08 /* HitsCollectionController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HitsCollectionController.swift; sourceTree = "<group>"; };
 		AF3DE596224AA00400C8BC08 /* MultiIndexHitsCollectionController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MultiIndexHitsCollectionController.swift; sourceTree = "<group>"; };
 		AF3DE5A9224BBE6700C8BC08 /* TableViewHitsControllerTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TableViewHitsControllerTests.swift; sourceTree = "<group>"; };
 		AF3DE5B1224BBEC000C8BC08 /* TableViewMultiIndexHitsControllerTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TableViewMultiIndexHitsControllerTests.swift; sourceTree = "<group>"; };
+		AF580888231D662900C5BDFA /* HitsCollectionViewContainer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HitsCollectionViewContainer.swift; sourceTree = "<group>"; };
+		AF58088A231D663800C5BDFA /* HitsTableViewContainer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HitsTableViewContainer.swift; sourceTree = "<group>"; };
+		AF58088C231D6CDD00C5BDFA /* UITableViewController+HitsTableViewContainer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UITableViewController+HitsTableViewContainer.swift"; sourceTree = "<group>"; };
+		AF58088E231D6D6C00C5BDFA /* UICollectionViewController+HitsCollectionViewContainer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UICollectionViewController+HitsCollectionViewContainer.swift"; sourceTree = "<group>"; };
 		AF58089023200CCA00C5BDFA /* FatalErrorUtil.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FatalErrorUtil.swift; sourceTree = "<group>"; };
 		AF58089223200CFE00C5BDFA /* FatalErrorTest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FatalErrorTest.swift; sourceTree = "<group>"; };
 		AF5808952320155500C5BDFA /* CollectionViewMultiIndexHitsControllerTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CollectionViewMultiIndexHitsControllerTests.swift; sourceTree = "<group>"; };
@@ -210,7 +217,6 @@
 				AF6C6F7A2253C5A1001E5E3C /* Controller */,
 				28F828821C494B2C00330CF4 /* Info.plist */,
 				E2A477001EC61B43007CA367 /* InstantSearch-Bridging-Header.h */,
-				AF3DE587224A991F00C8BC08 /* main.swift */,
 			);
 			path = Sources;
 			sourceTree = "<group>";
@@ -235,6 +241,8 @@
 		AF14E30422F43BCC0088D2A7 /* TableView */ = {
 			isa = PBXGroup;
 			children = (
+				AF58088A231D663800C5BDFA /* HitsTableViewContainer.swift */,
+				AF58088C231D6CDD00C5BDFA /* UITableViewController+HitsTableViewContainer.swift */,
 				AF3DE58D224A9B7A00C8BC08 /* HitsTableController.swift */,
 				AF14E31522F43D010088D2A7 /* HitsTableViewDataSource.swift */,
 				AF14E31722F43D190088D2A7 /* HitsTableViewDelegate.swift */,
@@ -245,6 +253,8 @@
 		AF14E30522F43BD10088D2A7 /* CollectionView */ = {
 			isa = PBXGroup;
 			children = (
+				AF580888231D662900C5BDFA /* HitsCollectionViewContainer.swift */,
+				AF58088E231D6D6C00C5BDFA /* UICollectionViewController+HitsCollectionViewContainer.swift */,
 				AF3DE595224AA00400C8BC08 /* HitsCollectionController.swift */,
 				AF14E31122F43CAD0088D2A7 /* HitsCollectionViewDataSource.swift */,
 				AF14E31322F43CCA0088D2A7 /* HitsCollectionViewDelegate.swift */,
@@ -613,6 +623,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				AF14E30A22F43C060088D2A7 /* MultiIndexHitsCollectionViewDataSource.swift in Sources */,
+				AF580889231D662900C5BDFA /* HitsCollectionViewContainer.swift in Sources */,
 				AF3DE594224A9B7A00C8BC08 /* MultiIndexHitsTableController.swift in Sources */,
 				AF9396812298140D00757257 /* ActivityIndicatorController.swift in Sources */,
 				AF67793C2301B9C000850ACC /* FilterListTableController.swift in Sources */,
@@ -625,8 +636,11 @@
 				AF14E30E22F43C570088D2A7 /* MultiIndexHitsTableViewDataSource.swift in Sources */,
 				AFF1E7642296A11200941401 /* SelectableFilterButtonController.swift in Sources */,
 				AF14E31622F43D010088D2A7 /* HitsTableViewDataSource.swift in Sources */,
+				AF58088F231D6D6C00C5BDFA /* UICollectionViewController+HitsCollectionViewContainer.swift in Sources */,
 				AF6778B522FB235600850ACC /* SegmentedController.swift in Sources */,
 				AF14E30C22F43C260088D2A7 /* MultiIndexHitsCollectionViewDelegate.swift in Sources */,
+				AF58088B231D663800C5BDFA /* HitsTableViewContainer.swift in Sources */,
+				AF58088D231D6CDD00C5BDFA /* UITableViewController+HitsTableViewContainer.swift in Sources */,
 				AF14E31222F43CAD0088D2A7 /* HitsCollectionViewDataSource.swift in Sources */,
 				AF0BB11623D6224700EF07A9 /* UITableView+Convenience.swift in Sources */,
 				E2EFA5EF22AEB980008C9CAA /* NumericTextFieldController.swift in Sources */,
