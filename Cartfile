@@ -1,1 +1,1 @@
-github "algolia/instantsearch-core-swift" 
+github "algolia/instantsearch-core-swift" ~> 6.5.0

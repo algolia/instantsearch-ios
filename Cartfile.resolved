@@ -1,0 +1,3 @@
+github "algolia/algoliasearch-client-swift" "7.0.3"
+github "algolia/instantsearch-core-swift" "6.5.0"
+github "algolia/instantsearch-ios-insights" "2.3.2"
