@@ -72,7 +72,7 @@ GEM
     faraday_middleware (0.13.1)
       faraday (>= 0.7.4, < 1.0)
     fastimage (2.1.7)
-    fastlane (2.140.0)
+    fastlane (2.141.0)
       CFPropertyList (>= 2.3, < 4.0.0)
       addressable (>= 2.3, < 3.0.0)
       babosa (>= 1.0.2, < 2.0.0)
@@ -222,8 +222,8 @@ GEM
       claide (>= 1.0.2, < 2.0)
       colored2 (~> 3.1)
       nanaimo (~> 0.2.6)
-    xcov (1.7.1)
-      fastlane (>= 2.82.0, < 3.0.0)
+    xcov (1.7.2)
+      fastlane (>= 2.141.0, < 3.0.0)
       multipart-post
       slack-notifier
       terminal-table
@@ -240,7 +240,7 @@ PLATFORMS
 
 DEPENDENCIES
   cocoapods (~> 1.8.0)
-  fastlane (~> 2.140.0)
+  fastlane (~> 2.141.0)
   jazzy
   xcov
 
