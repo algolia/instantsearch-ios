@@ -103,32 +103,32 @@ class TableViewHitsControllerTests: XCTestCase {
     
   }
   
-  func testWidget() {
-    
-    let tableView = UITableView()
-    
-    let vm = HitsInteractor<String>()
-        
-    let dataSource = HitsTableViewDataSource<HitsInteractor<String>> { (_, hit, _) -> UITableViewCell in
-      let cell = UITableViewCell()
-      cell.textLabel?.text = hit
-      return cell
-    }
-    
-    dataSource.hitsSource = vm
-    
-    let delegate = HitsTableViewDelegate<HitsInteractor<String>> { (_, _, _) in }
-    
-    delegate.hitsSource = vm
-    
-    let widget = HitsTableController<HitsInteractor<String>>(tableView: tableView)
-    
-    widget.dataSource = dataSource
-    widget.delegate = delegate
+//  func testWidget() {
+//
+//    let tableView = UITableView()
+//
+//    let vm = HitsInteractor<String>()
+//
+//    let dataSource = HitsTableViewDataSource<HitsInteractor<String>> { (_, hit, _) -> UITableViewCell in
+//      let cell = UITableViewCell()
+//      cell.textLabel?.text = hit
+//      return cell
+//    }
+//
+//    dataSource.hitsSource = vm
+//
+//    let delegate = HitsTableViewDelegate<HitsInteractor<String>> { (_, _, _) in }
+//
+//    delegate.hitsSource = vm
+//
+//    let widget = HitsTableController<HitsInteractor<String>>(tableView: tableView)
+//
+//    widget.dataSource = dataSource
+//    widget.delegate = delegate
     
 //    XCTAssertTrue(tableView.delegate === delegate)
 //    XCTAssertTrue(tableView.dataSource === dataSource)
     
-  }
+//  }
   
 }

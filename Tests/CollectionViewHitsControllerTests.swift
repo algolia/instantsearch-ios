@@ -102,32 +102,32 @@ class CollectionViewHitsControllerTests: XCTestCase {
     
   }
   
-  func testWidget() {
-    
-    let collectionView = UICollectionView(frame: .zero, collectionViewLayout: UICollectionViewFlowLayout())
-
-    let vm = HitsInteractor<String>()
-    
-    let dataSource = HitsCollectionViewDataSource<HitsInteractor<String>> { (_, hit, _) -> UICollectionViewCell in
-      let cell = TestCollectionViewCell()
-      cell.content = hit
-      return cell
-    }
-    
-    dataSource.hitsSource = vm
-    
-    let delegate = HitsCollectionViewDelegate<HitsInteractor<String>> { (_, _, _) in }
-    
-    delegate.hitsSource = vm
-    
-    let widget = HitsCollectionController<HitsInteractor<String>>(collectionView: collectionView)
-    
-    widget.dataSource = dataSource
-    widget.delegate = delegate
+//  func testWidget() {
+//
+//    let collectionView = UICollectionView(frame: .zero, collectionViewLayout: UICollectionViewFlowLayout())
+//
+//    let vm = HitsInteractor<String>()
+//
+//    let dataSource = HitsCollectionViewDataSource<HitsInteractor<String>> { (_, hit, _) -> UICollectionViewCell in
+//      let cell = TestCollectionViewCell()
+//      cell.content = hit
+//      return cell
+//    }
+//
+//    dataSource.hitsSource = vm
+//
+//    let delegate = HitsCollectionViewDelegate<HitsInteractor<String>> { (_, _, _) in }
+//
+//    delegate.hitsSource = vm
+//
+//    let widget = HitsCollectionController<HitsInteractor<String>>(collectionView: collectionView)
+//
+//    widget.dataSource = dataSource
+//    widget.delegate = delegate
     
 //    XCTAssertTrue(collectionView.delegate === delegate)
 //    XCTAssertTrue(collectionView.dataSource === dataSource)
     
-  }
+//  }
   
 }
