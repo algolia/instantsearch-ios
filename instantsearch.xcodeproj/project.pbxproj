@@ -3,11 +3,13 @@
 	archiveVersion = 1;
 	classes = {
 	};
-	objectVersion = 46;
+	objectVersion = 52;
 	objects = {
 
 /* Begin PBXBuildFile section */
-		28F828881C494B2C00330CF4 /* InstantSearch.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 28F8287D1C494B2C00330CF4 /* InstantSearch.framework */; };
+		AF0BB11323D616EB00EF07A9 /* SearchSuggestionsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = AF0BB11223D616EB00EF07A9 /* SearchSuggestionsViewController.swift */; };
+		AF0BB11623D6224700EF07A9 /* UITableView+Convenience.swift in Sources */ = {isa = PBXBuildFile; fileRef = AF0BB11523D6224700EF07A9 /* UITableView+Convenience.swift */; };
+		AF0BB11823D6225200EF07A9 /* UICollectionView+Convenience.swift in Sources */ = {isa = PBXBuildFile; fileRef = AF0BB11723D6225200EF07A9 /* UICollectionView+Convenience.swift */; };
 		AF14E30A22F43C060088D2A7 /* MultiIndexHitsCollectionViewDataSource.swift in Sources */ = {isa = PBXBuildFile; fileRef = AF14E30922F43C060088D2A7 /* MultiIndexHitsCollectionViewDataSource.swift */; };
 		AF14E30C22F43C260088D2A7 /* MultiIndexHitsCollectionViewDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = AF14E30B22F43C260088D2A7 /* MultiIndexHitsCollectionViewDelegate.swift */; };
 		AF14E30E22F43C570088D2A7 /* MultiIndexHitsTableViewDataSource.swift in Sources */ = {isa = PBXBuildFile; fileRef = AF14E30D22F43C570088D2A7 /* MultiIndexHitsTableViewDataSource.swift */; };
@@ -16,13 +18,20 @@
 		AF14E31422F43CCA0088D2A7 /* HitsCollectionViewDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = AF14E31322F43CCA0088D2A7 /* HitsCollectionViewDelegate.swift */; };
 		AF14E31622F43D010088D2A7 /* HitsTableViewDataSource.swift in Sources */ = {isa = PBXBuildFile; fileRef = AF14E31522F43D010088D2A7 /* HitsTableViewDataSource.swift */; };
 		AF14E31822F43D190088D2A7 /* HitsTableViewDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = AF14E31722F43D190088D2A7 /* HitsTableViewDelegate.swift */; };
-		AF3DE588224A991F00C8BC08 /* main.swift in Sources */ = {isa = PBXBuildFile; fileRef = AF3DE587224A991F00C8BC08 /* main.swift */; };
+		AF3C1FE923E4384300B8471D /* Logging in Frameworks */ = {isa = PBXBuildFile; productRef = AF3C1FE823E4384300B8471D /* Logging */; };
+		AF3C1FEB23E4390E00B8471D /* Logging.swift in Sources */ = {isa = PBXBuildFile; fileRef = AF3C1FEA23E4390E00B8471D /* Logging.swift */; };
+		AF3DE3A523D611AD008BBC6C /* InstantSearchCore in Frameworks */ = {isa = PBXBuildFile; productRef = AF3DE3A423D611AD008BBC6C /* InstantSearchCore */; };
+		AF3DE3A623D611AD008BBC6C /* InstantSearch.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 28F8287D1C494B2C00330CF4 /* InstantSearch.framework */; };
 		AF3DE593224A9B7A00C8BC08 /* HitsTableController.swift in Sources */ = {isa = PBXBuildFile; fileRef = AF3DE58D224A9B7A00C8BC08 /* HitsTableController.swift */; };
 		AF3DE594224A9B7A00C8BC08 /* MultiIndexHitsTableController.swift in Sources */ = {isa = PBXBuildFile; fileRef = AF3DE58E224A9B7A00C8BC08 /* MultiIndexHitsTableController.swift */; };
 		AF3DE597224AA00400C8BC08 /* HitsCollectionController.swift in Sources */ = {isa = PBXBuildFile; fileRef = AF3DE595224AA00400C8BC08 /* HitsCollectionController.swift */; };
 		AF3DE598224AA00400C8BC08 /* MultiIndexHitsCollectionController.swift in Sources */ = {isa = PBXBuildFile; fileRef = AF3DE596224AA00400C8BC08 /* MultiIndexHitsCollectionController.swift */; };
 		AF3DE5BD224BBF7000C8BC08 /* TableViewHitsControllerTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = AF3DE5A9224BBE6700C8BC08 /* TableViewHitsControllerTests.swift */; };
 		AF3DE5BE224BBF7000C8BC08 /* TableViewMultiIndexHitsControllerTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = AF3DE5B1224BBEC000C8BC08 /* TableViewMultiIndexHitsControllerTests.swift */; };
+		AF580889231D662900C5BDFA /* HitsCollectionViewContainer.swift in Sources */ = {isa = PBXBuildFile; fileRef = AF580888231D662900C5BDFA /* HitsCollectionViewContainer.swift */; };
+		AF58088B231D663800C5BDFA /* HitsTableViewContainer.swift in Sources */ = {isa = PBXBuildFile; fileRef = AF58088A231D663800C5BDFA /* HitsTableViewContainer.swift */; };
+		AF58088D231D6CDD00C5BDFA /* UITableViewController+HitsTableViewContainer.swift in Sources */ = {isa = PBXBuildFile; fileRef = AF58088C231D6CDD00C5BDFA /* UITableViewController+HitsTableViewContainer.swift */; };
+		AF58088F231D6D6C00C5BDFA /* UICollectionViewController+HitsCollectionViewContainer.swift in Sources */ = {isa = PBXBuildFile; fileRef = AF58088E231D6D6C00C5BDFA /* UICollectionViewController+HitsCollectionViewContainer.swift */; };
 		AF58089123200CCA00C5BDFA /* FatalErrorUtil.swift in Sources */ = {isa = PBXBuildFile; fileRef = AF58089023200CCA00C5BDFA /* FatalErrorUtil.swift */; };
 		AF58089423200D0200C5BDFA /* FatalErrorTest.swift in Sources */ = {isa = PBXBuildFile; fileRef = AF58089223200CFE00C5BDFA /* FatalErrorTest.swift */; };
 		AF5808982320158700C5BDFA /* TestMultiHitsDataSource.swift in Sources */ = {isa = PBXBuildFile; fileRef = AF5808972320158700C5BDFA /* TestMultiHitsDataSource.swift */; };
@@ -32,6 +41,10 @@
 		AF5D103022F45EB300DE13AA /* FacetListTableController.swift in Sources */ = {isa = PBXBuildFile; fileRef = AF5D102F22F45EB300DE13AA /* FacetListTableController.swift */; };
 		AF6778B522FB235600850ACC /* SegmentedController.swift in Sources */ = {isa = PBXBuildFile; fileRef = AF6778B422FB235600850ACC /* SegmentedController.swift */; };
 		AF67793C2301B9C000850ACC /* FilterListTableController.swift in Sources */ = {isa = PBXBuildFile; fileRef = AF67793B2301B9C000850ACC /* FilterListTableController.swift */; };
+		AF888CFF23E4786700CBD0BC /* LogTest.swift in Sources */ = {isa = PBXBuildFile; fileRef = AF888CFD23E4652000CBD0BC /* LogTest.swift */; };
+		AF8A908323D604B1009DC303 /* InstantSearchClient in Frameworks */ = {isa = PBXBuildFile; productRef = AF8A908223D604B1009DC303 /* InstantSearchClient */; };
+		AF8A908523D6051E009DC303 /* InstantSearchCore in Frameworks */ = {isa = PBXBuildFile; productRef = AF8A908423D6051E009DC303 /* InstantSearchCore */; };
+		AF8D1C1623E1B42900CB415F /* CurrentFiltersSearchTextFieldController.swift in Sources */ = {isa = PBXBuildFile; fileRef = AF8D1C1523E1B42900CB415F /* CurrentFiltersSearchTextFieldController.swift */; };
 		AF93967D22980FBE00757257 /* ClearRefinementsButtonController.swift in Sources */ = {isa = PBXBuildFile; fileRef = AF93967C22980FBE00757257 /* ClearRefinementsButtonController.swift */; };
 		AF9396812298140D00757257 /* ActivityIndicatorController.swift in Sources */ = {isa = PBXBuildFile; fileRef = AF9396802298140D00757257 /* ActivityIndicatorController.swift */; };
 		AFF1E7642296A11200941401 /* SelectableFilterButtonController.swift in Sources */ = {isa = PBXBuildFile; fileRef = AFF1E7622296A11200941401 /* SelectableFilterButtonController.swift */; };
@@ -47,11 +60,9 @@
 		E27B67EB1ED339290001FFA7 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = E27B67EA1ED339290001FFA7 /* Assets.xcassets */; };
 		E27B67EE1ED339290001FFA7 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = E27B67EC1ED339290001FFA7 /* LaunchScreen.storyboard */; };
 		E2A477011EC61B43007CA367 /* InstantSearch-Bridging-Header.h in Headers */ = {isa = PBXBuildFile; fileRef = E2A477001EC61B43007CA367 /* InstantSearch-Bridging-Header.h */; };
-		E2E060571F717A7B0026358B /* InstantSearchCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E21DE94E1F2F7DB400EFC4F5 /* InstantSearchCore.framework */; };
 		E2EFA5EF22AEB980008C9CAA /* NumericTextFieldController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E2EFA5ED22AEB980008C9CAA /* NumericTextFieldController.swift */; };
 		E2EFA5F022AEB980008C9CAA /* NumericStepperController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E2EFA5EE22AEB980008C9CAA /* NumericStepperController.swift */; };
 		E2EFA5F322AEB990008C9CAA /* SelectIndexController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E2EFA5F222AEB990008C9CAA /* SelectIndexController.swift */; };
-		E2F2073C20B6E42C0066AF12 /* InstantSearchClient.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E2F2073A20B6E3F60066AF12 /* InstantSearchClient.framework */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -75,6 +86,9 @@
 		28F8287D1C494B2C00330CF4 /* InstantSearch.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = InstantSearch.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		28F828821C494B2C00330CF4 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		28F828871C494B2C00330CF4 /* InstantSearchTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = InstantSearchTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
+		AF0BB11223D616EB00EF07A9 /* SearchSuggestionsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchSuggestionsViewController.swift; sourceTree = "<group>"; };
+		AF0BB11523D6224700EF07A9 /* UITableView+Convenience.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UITableView+Convenience.swift"; sourceTree = "<group>"; };
+		AF0BB11723D6225200EF07A9 /* UICollectionView+Convenience.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UICollectionView+Convenience.swift"; sourceTree = "<group>"; };
 		AF14E30922F43C060088D2A7 /* MultiIndexHitsCollectionViewDataSource.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MultiIndexHitsCollectionViewDataSource.swift; sourceTree = "<group>"; };
 		AF14E30B22F43C260088D2A7 /* MultiIndexHitsCollectionViewDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MultiIndexHitsCollectionViewDelegate.swift; sourceTree = "<group>"; };
 		AF14E30D22F43C570088D2A7 /* MultiIndexHitsTableViewDataSource.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MultiIndexHitsTableViewDataSource.swift; sourceTree = "<group>"; };
@@ -83,13 +97,17 @@
 		AF14E31322F43CCA0088D2A7 /* HitsCollectionViewDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HitsCollectionViewDelegate.swift; sourceTree = "<group>"; };
 		AF14E31522F43D010088D2A7 /* HitsTableViewDataSource.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HitsTableViewDataSource.swift; sourceTree = "<group>"; };
 		AF14E31722F43D190088D2A7 /* HitsTableViewDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HitsTableViewDelegate.swift; sourceTree = "<group>"; };
-		AF3DE587224A991F00C8BC08 /* main.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = main.swift; sourceTree = "<group>"; };
+		AF3C1FEA23E4390E00B8471D /* Logging.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Logging.swift; sourceTree = "<group>"; };
 		AF3DE58D224A9B7A00C8BC08 /* HitsTableController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HitsTableController.swift; sourceTree = "<group>"; };
 		AF3DE58E224A9B7A00C8BC08 /* MultiIndexHitsTableController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MultiIndexHitsTableController.swift; sourceTree = "<group>"; };
 		AF3DE595224AA00400C8BC08 /* HitsCollectionController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HitsCollectionController.swift; sourceTree = "<group>"; };
 		AF3DE596224AA00400C8BC08 /* MultiIndexHitsCollectionController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MultiIndexHitsCollectionController.swift; sourceTree = "<group>"; };
 		AF3DE5A9224BBE6700C8BC08 /* TableViewHitsControllerTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TableViewHitsControllerTests.swift; sourceTree = "<group>"; };
 		AF3DE5B1224BBEC000C8BC08 /* TableViewMultiIndexHitsControllerTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TableViewMultiIndexHitsControllerTests.swift; sourceTree = "<group>"; };
+		AF580888231D662900C5BDFA /* HitsCollectionViewContainer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HitsCollectionViewContainer.swift; sourceTree = "<group>"; };
+		AF58088A231D663800C5BDFA /* HitsTableViewContainer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HitsTableViewContainer.swift; sourceTree = "<group>"; };
+		AF58088C231D6CDD00C5BDFA /* UITableViewController+HitsTableViewContainer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UITableViewController+HitsTableViewContainer.swift"; sourceTree = "<group>"; };
+		AF58088E231D6D6C00C5BDFA /* UICollectionViewController+HitsCollectionViewContainer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UICollectionViewController+HitsCollectionViewContainer.swift"; sourceTree = "<group>"; };
 		AF58089023200CCA00C5BDFA /* FatalErrorUtil.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FatalErrorUtil.swift; sourceTree = "<group>"; };
 		AF58089223200CFE00C5BDFA /* FatalErrorTest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FatalErrorTest.swift; sourceTree = "<group>"; };
 		AF5808952320155500C5BDFA /* CollectionViewMultiIndexHitsControllerTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CollectionViewMultiIndexHitsControllerTests.swift; sourceTree = "<group>"; };
@@ -99,6 +117,9 @@
 		AF5D102F22F45EB300DE13AA /* FacetListTableController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FacetListTableController.swift; sourceTree = "<group>"; };
 		AF6778B422FB235600850ACC /* SegmentedController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SegmentedController.swift; sourceTree = "<group>"; };
 		AF67793B2301B9C000850ACC /* FilterListTableController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = FilterListTableController.swift; path = Sources/Controller/FilterList/FilterListTableController.swift; sourceTree = SOURCE_ROOT; };
+		AF888CFD23E4652000CBD0BC /* LogTest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LogTest.swift; sourceTree = "<group>"; };
+		AF8A908623D60682009DC303 /* Package.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Package.swift; sourceTree = "<group>"; };
+		AF8D1C1523E1B42900CB415F /* CurrentFiltersSearchTextFieldController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CurrentFiltersSearchTextFieldController.swift; sourceTree = "<group>"; };
 		AF93967C22980FBE00757257 /* ClearRefinementsButtonController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ClearRefinementsButtonController.swift; sourceTree = "<group>"; };
 		AF9396802298140D00757257 /* ActivityIndicatorController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ActivityIndicatorController.swift; sourceTree = "<group>"; };
 		AFF1E7622296A11200941401 /* SelectableFilterButtonController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SelectableFilterButtonController.swift; sourceTree = "<group>"; };
@@ -131,6 +152,9 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				AF3C1FE923E4384300B8471D /* Logging in Frameworks */,
+				AF8A908323D604B1009DC303 /* InstantSearchClient in Frameworks */,
+				AF8A908523D6051E009DC303 /* InstantSearchCore in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -138,9 +162,8 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				E2F2073C20B6E42C0066AF12 /* InstantSearchClient.framework in Frameworks */,
-				28F828881C494B2C00330CF4 /* InstantSearch.framework in Frameworks */,
-				E2E060571F717A7B0026358B /* InstantSearchCore.framework in Frameworks */,
+				AF3DE3A623D611AD008BBC6C /* InstantSearch.framework in Frameworks */,
+				AF3DE3A523D611AD008BBC6C /* InstantSearchCore in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -157,6 +180,7 @@
 		28F828731C494B2C00330CF4 = {
 			isa = PBXGroup;
 			children = (
+				AF8A908623D60682009DC303 /* Package.swift */,
 				28F8287E1C494B2C00330CF4 /* Products */,
 				28F828971C494B4200330CF4 /* Sources */,
 				28F8288B1C494B2C00330CF4 /* Tests */,
@@ -187,6 +211,7 @@
 				AF3DE5B1224BBEC000C8BC08 /* TableViewMultiIndexHitsControllerTests.swift */,
 				AF5808952320155500C5BDFA /* CollectionViewMultiIndexHitsControllerTests.swift */,
 				AF58089223200CFE00C5BDFA /* FatalErrorTest.swift */,
+				AF888CFD23E4652000CBD0BC /* LogTest.swift */,
 			);
 			path = Tests;
 			sourceTree = "<group>";
@@ -194,18 +219,37 @@
 		28F828971C494B4200330CF4 /* Sources */ = {
 			isa = PBXGroup;
 			children = (
+				AF0BB11423D6223200EF07A9 /* Helpers */,
 				AF58089023200CCA00C5BDFA /* FatalErrorUtil.swift */,
 				AF6C6F7A2253C5A1001E5E3C /* Controller */,
 				28F828821C494B2C00330CF4 /* Info.plist */,
 				E2A477001EC61B43007CA367 /* InstantSearch-Bridging-Header.h */,
-				AF3DE587224A991F00C8BC08 /* main.swift */,
 			);
 			path = Sources;
+			sourceTree = "<group>";
+		};
+		AF0BB11123D616DA00EF07A9 /* SearchSuggestions */ = {
+			isa = PBXGroup;
+			children = (
+				AF0BB11223D616EB00EF07A9 /* SearchSuggestionsViewController.swift */,
+			);
+			path = SearchSuggestions;
+			sourceTree = "<group>";
+		};
+		AF0BB11423D6223200EF07A9 /* Helpers */ = {
+			isa = PBXGroup;
+			children = (
+				AF0BB11523D6224700EF07A9 /* UITableView+Convenience.swift */,
+				AF0BB11723D6225200EF07A9 /* UICollectionView+Convenience.swift */,
+			);
+			path = Helpers;
 			sourceTree = "<group>";
 		};
 		AF14E30422F43BCC0088D2A7 /* TableView */ = {
 			isa = PBXGroup;
 			children = (
+				AF58088A231D663800C5BDFA /* HitsTableViewContainer.swift */,
+				AF58088C231D6CDD00C5BDFA /* UITableViewController+HitsTableViewContainer.swift */,
 				AF3DE58D224A9B7A00C8BC08 /* HitsTableController.swift */,
 				AF14E31522F43D010088D2A7 /* HitsTableViewDataSource.swift */,
 				AF14E31722F43D190088D2A7 /* HitsTableViewDelegate.swift */,
@@ -216,6 +260,8 @@
 		AF14E30522F43BD10088D2A7 /* CollectionView */ = {
 			isa = PBXGroup;
 			children = (
+				AF580888231D662900C5BDFA /* HitsCollectionViewContainer.swift */,
+				AF58088E231D6D6C00C5BDFA /* UICollectionViewController+HitsCollectionViewContainer.swift */,
 				AF3DE595224AA00400C8BC08 /* HitsCollectionController.swift */,
 				AF14E31122F43CAD0088D2A7 /* HitsCollectionViewDataSource.swift */,
 				AF14E31322F43CCA0088D2A7 /* HitsCollectionViewDelegate.swift */,
@@ -280,6 +326,7 @@
 		AF6C6F7A2253C5A1001E5E3C /* Controller */ = {
 			isa = PBXGroup;
 			children = (
+				AF0BB11123D616DA00EF07A9 /* SearchSuggestions */,
 				AF6778B322FB234C00850ACC /* Segmented */,
 				AF5D102E22F45E9A00DE13AA /* FacetList */,
 				AF5D102B22F45C9D00DE13AA /* FilterList */,
@@ -294,6 +341,7 @@
 				E26F4255229831CD00583D39 /* LoadingIndicator */,
 				E26F4254229831BD00583D39 /* SearchBox */,
 				E26F4253229831A600583D39 /* Stats */,
+				AF3C1FEA23E4390E00B8471D /* Logging.swift */,
 			);
 			path = Controller;
 			sourceTree = "<group>";
@@ -320,6 +368,7 @@
 			isa = PBXGroup;
 			children = (
 				E2146BDE22B2455400927350 /* CurrentFiltersTableViewController.swift */,
+				AF8D1C1523E1B42900CB415F /* CurrentFiltersSearchTextFieldController.swift */,
 			);
 			path = CurrentFilters;
 			sourceTree = "<group>";
@@ -434,6 +483,11 @@
 			dependencies = (
 			);
 			name = InstantSearch;
+			packageProductDependencies = (
+				AF8A908223D604B1009DC303 /* InstantSearchClient */,
+				AF8A908423D6051E009DC303 /* InstantSearchCore */,
+				AF3C1FE823E4384300B8471D /* Logging */,
+			);
 			productName = InstantSearch;
 			productReference = 28F8287D1C494B2C00330CF4 /* InstantSearch.framework */;
 			productType = "com.apple.product-type.framework";
@@ -445,7 +499,6 @@
 				28F828831C494B2C00330CF4 /* Sources */,
 				28F828841C494B2C00330CF4 /* Frameworks */,
 				28F828851C494B2C00330CF4 /* Resources */,
-				E2E060591F717B340026358B /* Carthage Copy Frameworks */,
 			);
 			buildRules = (
 			);
@@ -454,6 +507,9 @@
 				E27B67F41ED3393B0001FFA7 /* PBXTargetDependency */,
 			);
 			name = InstantSearchTests;
+			packageProductDependencies = (
+				AF3DE3A423D611AD008BBC6C /* InstantSearchCore */,
+			);
 			productName = InstantSearchTests;
 			productReference = 28F828871C494B2C00330CF4 /* InstantSearchTests.xctest */;
 			productType = "com.apple.product-type.bundle.unit-test";
@@ -513,6 +569,10 @@
 				Base,
 			);
 			mainGroup = 28F828731C494B2C00330CF4;
+			packageReferences = (
+				AF8A908123D604B1009DC303 /* XCRemoteSwiftPackageReference "instantsearch-core-swift" */,
+				AF3C1FE723E4384300B8471D /* XCRemoteSwiftPackageReference "swift-log" */,
+			);
 			productRefGroup = 28F8287E1C494B2C00330CF4 /* Products */;
 			projectDirPath = "";
 			projectRoot = "";
@@ -565,22 +625,6 @@
 			shellPath = /bin/sh;
 			shellScript = "if which swiftlint >/dev/null; then\nconfig/swiftlint --config config/.swiftlint.yml\nelse\necho \"warning: SwiftLint not installed, download from https://github.com/realm/SwiftLint\"\nfi\n";
 		};
-		E2E060591F717B340026358B /* Carthage Copy Frameworks */ = {
-			isa = PBXShellScriptBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			inputPaths = (
-				"$(SRCROOT)/Carthage/Build/iOS/InstantSearchClient.framework",
-				"$(SRCROOT)/Carthage/Build/iOS/InstantSearchCore.framework",
-			);
-			name = "Carthage Copy Frameworks";
-			outputPaths = (
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-			shellPath = /bin/sh;
-			shellScript = "/usr/local/bin/carthage copy-frameworks\n";
-		};
 /* End PBXShellScriptBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
@@ -589,21 +633,27 @@
 			buildActionMask = 2147483647;
 			files = (
 				AF14E30A22F43C060088D2A7 /* MultiIndexHitsCollectionViewDataSource.swift in Sources */,
-				AF3DE588224A991F00C8BC08 /* main.swift in Sources */,
+				AF580889231D662900C5BDFA /* HitsCollectionViewContainer.swift in Sources */,
 				AF3DE594224A9B7A00C8BC08 /* MultiIndexHitsTableController.swift in Sources */,
+				AF3C1FEB23E4390E00B8471D /* Logging.swift in Sources */,
 				AF9396812298140D00757257 /* ActivityIndicatorController.swift in Sources */,
 				AF67793C2301B9C000850ACC /* FilterListTableController.swift in Sources */,
 				AF58089123200CCA00C5BDFA /* FatalErrorUtil.swift in Sources */,
 				E2EFA5F022AEB980008C9CAA /* NumericStepperController.swift in Sources */,
 				AF3DE597224AA00400C8BC08 /* HitsCollectionController.swift in Sources */,
+				AF8D1C1623E1B42900CB415F /* CurrentFiltersSearchTextFieldController.swift in Sources */,
 				AF14E31022F43C710088D2A7 /* MultiIndexHitsTableViewDelegate.swift in Sources */,
 				E26F425C2298323700583D39 /* LabelStatsController.swift in Sources */,
 				AF14E30E22F43C570088D2A7 /* MultiIndexHitsTableViewDataSource.swift in Sources */,
 				AFF1E7642296A11200941401 /* SelectableFilterButtonController.swift in Sources */,
 				AF14E31622F43D010088D2A7 /* HitsTableViewDataSource.swift in Sources */,
+				AF58088F231D6D6C00C5BDFA /* UICollectionViewController+HitsCollectionViewContainer.swift in Sources */,
 				AF6778B522FB235600850ACC /* SegmentedController.swift in Sources */,
 				AF14E30C22F43C260088D2A7 /* MultiIndexHitsCollectionViewDelegate.swift in Sources */,
+				AF58088B231D663800C5BDFA /* HitsTableViewContainer.swift in Sources */,
+				AF58088D231D6CDD00C5BDFA /* UITableViewController+HitsTableViewContainer.swift in Sources */,
 				AF14E31222F43CAD0088D2A7 /* HitsCollectionViewDataSource.swift in Sources */,
+				AF0BB11623D6224700EF07A9 /* UITableView+Convenience.swift in Sources */,
 				E2EFA5EF22AEB980008C9CAA /* NumericTextFieldController.swift in Sources */,
 				AF3DE593224A9B7A00C8BC08 /* HitsTableController.swift in Sources */,
 				AF14E31822F43D190088D2A7 /* HitsTableViewDelegate.swift in Sources */,
@@ -611,7 +661,9 @@
 				AF14E31422F43CCA0088D2A7 /* HitsCollectionViewDelegate.swift in Sources */,
 				E2146BDF22B2455400927350 /* CurrentFiltersTableViewController.swift in Sources */,
 				E26F425A2298321900583D39 /* TextfieldController.swift in Sources */,
+				AF0BB11823D6225200EF07A9 /* UICollectionView+Convenience.swift in Sources */,
 				E25D635122D395FF008CD0FD /* HierarchicalTableViewController.swift in Sources */,
+				AF0BB11323D616EB00EF07A9 /* SearchSuggestionsViewController.swift in Sources */,
 				AF3DE598224AA00400C8BC08 /* MultiIndexHitsCollectionController.swift in Sources */,
 				E2EFA5F322AEB990008C9CAA /* SelectIndexController.swift in Sources */,
 				AF5D103022F45EB300DE13AA /* FacetListTableController.swift in Sources */,
@@ -626,6 +678,7 @@
 			files = (
 				AF3DE5BD224BBF7000C8BC08 /* TableViewHitsControllerTests.swift in Sources */,
 				AF58089423200D0200C5BDFA /* FatalErrorTest.swift in Sources */,
+				AF888CFF23E4786700CBD0BC /* LogTest.swift in Sources */,
 				AF58089C2320170900C5BDFA /* TestHitsSource.swift in Sources */,
 				AF5808982320158700C5BDFA /* TestMultiHitsDataSource.swift in Sources */,
 				AF58089A232016E300C5BDFA /* CollectionViewMultiIndexHitsControllerTests.swift in Sources */,
@@ -791,8 +844,9 @@
 				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
 				MTL_ENABLE_DEBUG_INFO = NO;
 				SDKROOT = iphoneos;
+				SWIFT_COMPILATION_MODE = wholemodule;
 				SWIFT_OBJC_BRIDGING_HEADER = "";
-				SWIFT_OPTIMIZATION_LEVEL = "-Owholemodule";
+				SWIFT_OPTIMIZATION_LEVEL = "-O";
 				SWIFT_SWIFT3_OBJC_INFERENCE = Off;
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
@@ -820,7 +874,12 @@
 				);
 				INFOPLIST_FILE = "$(SRCROOT)/Sources/Info.plist";
 				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
-				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@loader_path/Frameworks",
+				);
 				PRODUCT_BUNDLE_IDENTIFIER = com.algolia.InstantSearch;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SKIP_INSTALL = YES;
@@ -849,7 +908,12 @@
 				);
 				INFOPLIST_FILE = "$(SRCROOT)/Sources/Info.plist";
 				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
-				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@loader_path/Frameworks",
+				);
 				PRODUCT_BUNDLE_IDENTIFIER = com.algolia.InstantSearch;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SKIP_INSTALL = YES;
@@ -870,7 +934,11 @@
 					"$(PROJECT_DIR)/Carthage/Build/iOS",
 				);
 				INFOPLIST_FILE = Tests/Info.plist;
-				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@loader_path/Frameworks",
+				);
 				PRODUCT_BUNDLE_IDENTIFIER = com.algolia.InstantSearchTests;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_OBJC_BRIDGING_HEADER = "Tests/InstantSearch-Tests-Bridging-Header.h";
@@ -892,7 +960,11 @@
 					"$(PROJECT_DIR)/Carthage/Build/iOS",
 				);
 				INFOPLIST_FILE = Tests/Info.plist;
-				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@loader_path/Frameworks",
+				);
 				PRODUCT_BUNDLE_IDENTIFIER = com.algolia.InstantSearchTests;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_OBJC_BRIDGING_HEADER = "Tests/InstantSearch-Tests-Bridging-Header.h";
@@ -912,7 +984,10 @@
 				DEVELOPMENT_TEAM = K3DV6EU9CV;
 				INFOPLIST_FILE = InstantSearchTestsHost/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
-				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+				);
 				PRODUCT_BUNDLE_IDENTIFIER = io.daher.InstantSearchTestsHost;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_ACTIVE_COMPILATION_CONDITIONS = DEBUG;
@@ -931,7 +1006,10 @@
 				DEVELOPMENT_TEAM = K3DV6EU9CV;
 				INFOPLIST_FILE = InstantSearchTestsHost/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
-				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+				);
 				PRODUCT_BUNDLE_IDENTIFIER = io.daher.InstantSearchTestsHost;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_SWIFT3_OBJC_INFERENCE = Off;
@@ -979,6 +1057,48 @@
 			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
+
+/* Begin XCRemoteSwiftPackageReference section */
+		AF3C1FE723E4384300B8471D /* XCRemoteSwiftPackageReference "swift-log" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/apple/swift-log";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 1.2.0;
+			};
+		};
+		AF8A908123D604B1009DC303 /* XCRemoteSwiftPackageReference "instantsearch-core-swift" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/algolia/instantsearch-core-swift";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 6.5.0;
+			};
+		};
+/* End XCRemoteSwiftPackageReference section */
+
+/* Begin XCSwiftPackageProductDependency section */
+		AF3C1FE823E4384300B8471D /* Logging */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = AF3C1FE723E4384300B8471D /* XCRemoteSwiftPackageReference "swift-log" */;
+			productName = Logging;
+		};
+		AF3DE3A423D611AD008BBC6C /* InstantSearchCore */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = AF8A908123D604B1009DC303 /* XCRemoteSwiftPackageReference "instantsearch-core-swift" */;
+			productName = InstantSearchCore;
+		};
+		AF8A908223D604B1009DC303 /* InstantSearchClient */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = AF8A908123D604B1009DC303 /* XCRemoteSwiftPackageReference "instantsearch-core-swift" */;
+			productName = InstantSearchClient;
+		};
+		AF8A908423D6051E009DC303 /* InstantSearchCore */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = AF8A908123D604B1009DC303 /* XCRemoteSwiftPackageReference "instantsearch-core-swift" */;
+			productName = InstantSearchCore;
+		};
+/* End XCSwiftPackageProductDependency section */
 	};
 	rootObject = 28F828741C494B2C00330CF4 /* Project object */;
 }

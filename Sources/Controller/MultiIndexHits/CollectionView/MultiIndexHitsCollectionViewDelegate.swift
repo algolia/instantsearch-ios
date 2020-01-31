@@ -8,6 +8,7 @@
 import Foundation
 import UIKit
 
+@available(*, deprecated, message: "Use your own UICollectionViewController conforming to HitsController protocol")
 open class MultiIndexHitsCollectionViewDelegate: NSObject {
   
   typealias ClickHandler = (UICollectionView, Int) throws -> Void
@@ -26,7 +27,8 @@ open class MultiIndexHitsCollectionViewDelegate: NSObject {
       guard let delegate = self else { return }
       
       guard let hitsSource = delegate.hitsSource else {
-        fatalError("Missing hits source")
+        Logger.missingHitsSourceWarning()
+        return
       }
       
       guard let hit: Hit = try hitsSource.hit(atIndex: row, inSection: section) else {
@@ -44,12 +46,13 @@ extension MultiIndexHitsCollectionViewDelegate: UICollectionViewDelegate {
   
   open func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
     guard let clickHandler = clickHandlers[indexPath.section] else {
-      fatalError("No click handler found for section \(indexPath.section)")
+      Logger.missingClickHandlerWarning(forSection: indexPath.section)
+      return
     }
     do {
       try clickHandler(collectionView, indexPath.row)
     } catch let error {
-      fatalError("\(error)")
+      Logger.error(error)
     }
   }
   

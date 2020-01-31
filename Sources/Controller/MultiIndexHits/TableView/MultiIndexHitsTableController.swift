@@ -10,7 +10,11 @@ import Foundation
 import InstantSearchCore
 import UIKit
 
-public class MultiIndexHitsTableController: NSObject, MultiIndexHitsController {
+public class MultiIndexHitsTableController: NSObject, HitsTableViewContainer, MultiIndexHitsController {
+  
+  public var hitsTableView: UITableView {
+    return tableView
+  }
     
   public let tableView: UITableView
   
@@ -21,6 +25,7 @@ public class MultiIndexHitsTableController: NSObject, MultiIndexHitsController {
     }
   }
   
+  @available(*, deprecated, message: "Use your own UITableViewController conforming to HitsController protocol")
   public var dataSource: MultiIndexHitsTableViewDataSource? {
     didSet {
       dataSource?.hitsSource = hitsSource
@@ -28,6 +33,7 @@ public class MultiIndexHitsTableController: NSObject, MultiIndexHitsController {
     }
   }
   
+  @available(*, deprecated, message: "Use your own UITableViewController conforming to HitsController protocol")
   public var delegate: MultiIndexHitsTableViewDelegate? {
     didSet {
       delegate?.hitsSource = hitsSource
@@ -39,14 +45,4 @@ public class MultiIndexHitsTableController: NSObject, MultiIndexHitsController {
     self.tableView = tableView
   }
   
-  public func reload() {
-    tableView.reloadData()
-  }
-  
-  public func scrollToTop() {
-    guard tableView.numberOfRows(inSection: 0) != 0 else { return }
-    let indexPath = IndexPath(row: 0, section: 0)
-    self.tableView.scrollToRow(at: indexPath, at: .top, animated: false)
-  }
-
 }

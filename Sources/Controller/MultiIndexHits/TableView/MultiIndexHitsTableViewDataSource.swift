@@ -8,6 +8,7 @@
 import Foundation
 import UIKit
 
+@available(*, deprecated, message: "Use your own UITableViewController conforming to HitsController protocol")
 open class MultiIndexHitsTableViewDataSource: NSObject {
   
   private typealias CellConfigurator = (UITableView, Int) throws -> UITableViewCell
@@ -29,8 +30,9 @@ open class MultiIndexHitsTableViewDataSource: NSObject {
         return .init()
       }
       
-      guard let hitsSource = dataSource.hitsSource else {
-        fatalError("Missing hits source")
+      guard let hitsSource = self?.hitsSource else {
+        Logger.missingHitsSourceWarning()
+        return .init()
       }
       
       guard let hit: Hit = try hitsSource.hit(atIndex: row, inSection: section) else {
@@ -47,26 +49,30 @@ extension MultiIndexHitsTableViewDataSource: UITableViewDataSource {
   
   open func numberOfSections(in tableView: UITableView) -> Int {
     guard let hitsSource = hitsSource else {
-      fatalError("Missing hits source")
+      Logger.missingHitsSourceWarning()
+      return 0
     }
     return hitsSource.numberOfSections()
   }
   
   open func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
     guard let hitsSource = hitsSource else {
-      fatalError("Missing hits source")
+      Logger.missingHitsSourceWarning()
+      return 0
     }
     return hitsSource.numberOfHits(inSection: section)
   }
   
   open func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
     guard let cellConfigurator = cellConfigurators[indexPath.section] else {
-      fatalError("No cell configurator found for section \(indexPath.section)")
+      Logger.missingCellConfiguratorWarning(forSection: indexPath.section)
+      return .init()
     }
     do {
       return try cellConfigurator(tableView, indexPath.row)
     } catch let error {
-      fatalError("\(error)")
+      Logger.error(error)
+      return .init()
     }
   }
   

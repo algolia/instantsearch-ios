@@ -8,6 +8,7 @@
 import Foundation
 import UIKit
 
+@available(*, deprecated, message: "Use your own UITableViewController conforming to HitsController protocol")
 open class HitsTableViewDataSource<DataSource: HitsSource>: NSObject, UITableViewDataSource {
   
   public var cellConfigurator: TableViewCellConfigurator<DataSource.Record>
@@ -22,7 +23,8 @@ open class HitsTableViewDataSource<DataSource: HitsSource>: NSObject, UITableVie
   open func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
     
     guard let hitsSource = hitsSource else {
-      fatalError("Missing hits source")
+      Logger.missingHitsSourceWarning()
+      return 0
     }
     
     return hitsSource.numberOfHits()
@@ -32,7 +34,8 @@ open class HitsTableViewDataSource<DataSource: HitsSource>: NSObject, UITableVie
   open func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
     
     guard let hitsSource = hitsSource else {
-      fatalError("Missing hits source")
+      Logger.missingHitsSourceWarning()
+      return .init()
     }
     
     guard let hit = hitsSource.hit(atIndex: indexPath.row) else {

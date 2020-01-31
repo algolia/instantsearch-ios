@@ -8,6 +8,7 @@
 import Foundation
 import UIKit
 
+@available(*, deprecated, message: "Use your own UICollectionViewController conforming to HitsController protocol")
 open class MultiIndexHitsCollectionViewDataSource: NSObject {
   
   private typealias CellConfigurator = (UICollectionView, Int) throws -> UICollectionViewCell
@@ -25,12 +26,10 @@ open class MultiIndexHitsCollectionViewDataSource: NSObject {
                                                 templateCellProvider: @escaping () -> UICollectionViewCell = { return .init() },
                                                 _ cellConfigurator: @escaping CollectionViewCellConfigurator<Hit>) {
     cellConfigurators[section] = { [weak self] (collectionView, row) in
-      guard let dataSource = self else {
-        return .init()
-      }
       
-      guard let hitsSource = dataSource.hitsSource else {
-        fatalError("Missing hits source")
+      guard let hitsSource = self?.hitsSource else {
+        Logger.missingHitsSourceWarning()
+        return .init()
       }
 
       guard let hit: Hit = try hitsSource.hit(atIndex: row, inSection: section) else {
@@ -47,26 +46,30 @@ extension MultiIndexHitsCollectionViewDataSource: UICollectionViewDataSource {
   
   open func numberOfSections(in collectionView: UICollectionView) -> Int {
     guard let hitsSource = hitsSource else {
-      fatalError("Missing hits source")
+      Logger.missingHitsSourceWarning()
+      return 0
     }
     return hitsSource.numberOfSections()
   }
   
   open func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
     guard let hitsSource = hitsSource else {
-      fatalError("Missing hits source")
+      Logger.missingHitsSourceWarning()
+      return 0
     }
     return hitsSource.numberOfHits(inSection: section)
   }
   
   open func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
     guard let cellConfigurator = cellConfigurators[indexPath.section] else {
-      fatalError("No cell configurator found for section \(indexPath.section)")
+      Logger.missingCellConfiguratorWarning(forSection: indexPath.section)
+      return .init()
     }
     do {
       return try cellConfigurator(collectionView, indexPath.row)
     } catch let error {
-      fatalError("\(error)")
+      Logger.error(error)
+      return .init()
     }
   }
   

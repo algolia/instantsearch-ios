@@ -8,6 +8,7 @@
 import Foundation
 import UIKit
 
+@available(*, deprecated, message: "Use your own UITableViewController conforming to HitsController protocol")
 open class MultiIndexHitsTableViewDelegate: NSObject {
   
   typealias ClickHandler = (UITableView, Int) throws -> Void
@@ -26,7 +27,8 @@ open class MultiIndexHitsTableViewDelegate: NSObject {
       guard let delegate = self else { return }
 
       guard let hitsSource = delegate.hitsSource else {
-        fatalError("Missing hits source")
+        Logger.missingHitsSourceWarning()
+        return
       }
       
       guard let hit: Hit = try hitsSource.hit(atIndex: row, inSection: section) else {
@@ -44,12 +46,14 @@ extension MultiIndexHitsTableViewDelegate: UITableViewDelegate {
   
   open func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
     guard let clickHandler = clickHandlers[indexPath.section] else {
-      fatalError("No click handler found for section \(indexPath.section)")
+      Logger.missingClickHandlerWarning(forSection: indexPath.section)
+      return
     }
     do {
       try clickHandler(tableView, indexPath.row)
     } catch let error {
-      fatalError("\(error)")
+      Logger.error(error)
+      return
     }
   }
   

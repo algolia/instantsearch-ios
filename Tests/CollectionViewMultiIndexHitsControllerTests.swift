@@ -65,19 +65,19 @@ class CollectionViewMultiIndexHitsControllerTests: XCTestCase {
     delegate.setClickHandler(forSection: 0) { (_, h: String, _) in
     }
     
-    expectFatalError(expectedMessage: "Missing hits source") {
+    expectLog(expectedMessage: "Missing hits source", expectedLevel: .warning) {
       _ = dataSource.numberOfSections(in: collectionView)
     }
     
-    expectFatalError(expectedMessage: "Missing hits source") {
+    expectLog(expectedMessage: "Missing hits source", expectedLevel: .warning) {
       _ = dataSource.collectionView(collectionView, numberOfItemsInSection: 0)
     }
     
-    expectFatalError(expectedMessage: "Missing hits source") {
+    expectLog(expectedMessage: "Missing hits source", expectedLevel: .warning) {
       _ = dataSource.collectionView(collectionView, cellForItemAt: IndexPath(item: 0, section: 0))
     }
     
-    expectFatalError(expectedMessage: "Missing hits source") {
+    expectLog(expectedMessage: "Missing hits source", expectedLevel: .warning) {
       delegate.collectionView(collectionView, didSelectItemAt: IndexPath(item: 0, section: 0))
     }
     
@@ -94,7 +94,7 @@ class CollectionViewMultiIndexHitsControllerTests: XCTestCase {
     
     dataSource.hitsSource = hitsSource
     
-    expectFatalError(expectedMessage: "No cell configurator found for section 0") {
+    expectLog(expectedMessage: "No cell configurator found for section 0", expectedLevel: .warning) {
       _ = dataSource.collectionView(collectionView, cellForItemAt: IndexPath(item: 0, section: 0))
     }
     
@@ -110,7 +110,7 @@ class CollectionViewMultiIndexHitsControllerTests: XCTestCase {
     
     delegate.hitsSource = hitsSource
     
-    expectFatalError(expectedMessage: "No click handler found for section 0") {
+    expectLog(expectedMessage: "No click handler found for section 0", expectedLevel: .warning) {
       _ = delegate.collectionView(collectionView, didSelectItemAt: IndexPath(row: 0, section: 0))
     }
     
