@@ -21,7 +21,8 @@ open class HitsCollectionViewDelegate<DataSource: HitsSource>: NSObject, UIColle
   open func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
     
     guard let hitsSource = hitsSource else {
-      fatalError("Missing hits source")
+      Logger.missingHitsSourceWarning()
+      return
     }
 
     guard let hit = hitsSource.hit(atIndex: indexPath.row) else {

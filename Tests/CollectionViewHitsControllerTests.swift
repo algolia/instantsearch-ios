@@ -24,17 +24,17 @@ class CollectionViewHitsControllerTests: XCTestCase {
       return cell
     }
     
-    expectFatalError(expectedMessage: "Missing hits source") {
+    expectLog(expectedMessage: "Missing hits source", expectedLevel: .warning) {
       _ = dataSource.collectionView(collectionView, cellForItemAt: .init())
     }
     
-    expectFatalError(expectedMessage: "Missing hits source") {
+    expectLog(expectedMessage: "Missing hits source", expectedLevel: .warning) {
       _ = dataSource.collectionView(collectionView, numberOfItemsInSection: .init())
     }
     
     let delegate = HitsCollectionViewDelegate<TestHitsSource> { _,_,_  in }
     
-    expectFatalError(expectedMessage: "Missing hits source") {
+    expectLog(expectedMessage: "Missing hits source", expectedLevel: .warning) {
       _ = delegate.collectionView(collectionView, didSelectItemAt: .init())
     }
     

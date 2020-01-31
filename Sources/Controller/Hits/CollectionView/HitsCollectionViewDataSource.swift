@@ -23,7 +23,8 @@ open class HitsCollectionViewDataSource<DataSource: HitsSource>: NSObject, UICol
   open func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
     
     guard let hitsSource = hitsSource else {
-      fatalError("Missing hits source")
+      Logger.missingHitsSourceWarning()
+      return 0
     }
 
     return hitsSource.numberOfHits()
@@ -33,7 +34,8 @@ open class HitsCollectionViewDataSource<DataSource: HitsSource>: NSObject, UICol
   open func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
     
     guard let hitsSource = hitsSource else {
-      fatalError("Missing hits source")
+      Logger.missingHitsSourceWarning()
+      return templateCellProvider()
     }
     
     guard let hit = hitsSource.hit(atIndex: indexPath.row) else {

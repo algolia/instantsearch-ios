@@ -29,7 +29,8 @@ public class SearchSuggestionsViewController: UITableViewController, HitsControl
   }
   
   required init?(coder: NSCoder) {
-    fatalError("init(coder:) has not been implemented")
+    super.init(coder: coder)
+    tableView.register(UITableViewCell.self, forCellReuseIdentifier: cellID)
   }
   
   public func scrollToTop() {

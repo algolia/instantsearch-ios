@@ -24,17 +24,18 @@ class TableViewHitsControllerTests: XCTestCase {
       return cell
     }
     
-    expectFatalError(expectedMessage: "Missing hits source") {
+    
+    expectLog(expectedMessage: "Missing hits source", expectedLevel: .warning) {
       _ = dataSource.tableView(tableView, cellForRowAt: .init())
     }
     
-    expectFatalError(expectedMessage: "Missing hits source") {
+    expectLog(expectedMessage: "Missing hits source", expectedLevel: .warning) {
       _ = dataSource.tableView(tableView, numberOfRowsInSection: .init())
     }
     
     let delegate = HitsTableViewDelegate<TestHitsSource> { _,_,_  in }
     
-    expectFatalError(expectedMessage: "Missing hits source") {
+    expectLog(expectedMessage: "Missing hits source", expectedLevel: .warning) {
       _ = delegate.tableView(tableView, didSelectRowAt: .init())
     }
     

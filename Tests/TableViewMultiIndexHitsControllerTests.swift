@@ -59,19 +59,19 @@ class TableViewMultiIndexHitsControllerTests: XCTestCase {
     delegate.setClickHandler(forSection: 0) { (_, h: String, _) in
     }
 
-    expectFatalError(expectedMessage: "Missing hits source") {
+    expectLog(expectedMessage: "Missing hits source", expectedLevel: .warning) {
       _ = dataSource.numberOfSections(in: tableView)
     }
     
-    expectFatalError(expectedMessage: "Missing hits source") {
+    expectLog(expectedMessage: "Missing hits source", expectedLevel: .warning) {
       _ = dataSource.tableView(tableView, numberOfRowsInSection: 0)
     }
     
-    expectFatalError(expectedMessage: "Missing hits source") {
+    expectLog(expectedMessage: "Missing hits source", expectedLevel: .warning) {
       _ = dataSource.tableView(tableView, cellForRowAt: IndexPath(item: 0, section: 0))
     }
     
-    expectFatalError(expectedMessage: "Missing hits source") {
+    expectLog(expectedMessage: "Missing hits source", expectedLevel: .warning) {
       delegate.tableView(tableView, didSelectRowAt: IndexPath(item: 0, section: 0))
     }
     
@@ -88,7 +88,7 @@ class TableViewMultiIndexHitsControllerTests: XCTestCase {
     
     dataSource.hitsSource = hitsSource
     
-    expectFatalError(expectedMessage: "No cell configurator found for section 0") {
+    expectLog(expectedMessage: "No cell configurator found for section 0", expectedLevel: .warning) {
       _ = dataSource.tableView(tableView, cellForRowAt: IndexPath(item: 0, section: 0))
     }
     
@@ -104,7 +104,7 @@ class TableViewMultiIndexHitsControllerTests: XCTestCase {
 
     delegate.hitsSource = hitsSource
     
-    expectFatalError(expectedMessage: "No click handler found for section 0") {
+    expectLog(expectedMessage: "No click handler found for section 0", expectedLevel: .warning) {
       _ = delegate.tableView(tableView, didSelectRowAt: IndexPath(row: 0, section: 0))
     }
     
