@@ -1071,8 +1071,8 @@
 			isa = XCRemoteSwiftPackageReference;
 			repositoryURL = "https://github.com/algolia/instantsearch-core-swift";
 			requirement = {
-				branch = "fix/rename-query-suggestion";
-				kind = branch;
+				kind = upToNextMajorVersion;
+				minimumVersion = 6.5.1;
 			};
 		};
 /* End XCRemoteSwiftPackageReference section */
