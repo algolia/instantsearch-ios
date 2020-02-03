@@ -1,5 +1,5 @@
 //
-//  SearchSuggestionsViewController.swift
+//  QuerySuggestionsViewController.swift
 //  InstantSearch
 //
 //  Created by Vladislav Fitc on 20/01/2020.
@@ -9,11 +9,11 @@ import Foundation
 import UIKit
 import InstantSearchCore
 
-public class SearchSuggestionsViewController: UITableViewController, HitsController {
+public class QuerySuggestionsViewController: UITableViewController, HitsController {
   
-  public var hitsSource: HitsInteractor<Hit<SearchSuggestion>>?
+  public var hitsSource: HitsInteractor<Hit<QuerySuggestion>>?
   
-  public var didSelect: ((Hit<SearchSuggestion>) -> Void)?
+  public var didSelect: ((Hit<QuerySuggestion>) -> Void)?
   
   public var isHighlightingInverted: Bool = false {
     didSet {

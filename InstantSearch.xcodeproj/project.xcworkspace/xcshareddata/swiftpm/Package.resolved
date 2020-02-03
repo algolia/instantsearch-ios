@@ -14,9 +14,9 @@
         "package": "InstantSearchCore",
         "repositoryURL": "https://github.com/algolia/instantsearch-core-swift",
         "state": {
-          "branch": null,
-          "revision": "0a5e4bb885b8f688309d8f575fb31faaec8189dd",
-          "version": "6.5.0"
+          "branch": "fix/rename-query-suggestion",
+          "revision": "4167f999a10cc51806b538f58c5363c0e5f43463",
+          "version": null
         }
       },
       {
