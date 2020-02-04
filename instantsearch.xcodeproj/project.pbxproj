@@ -7,7 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		AF0BB11323D616EB00EF07A9 /* SearchSuggestionsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = AF0BB11223D616EB00EF07A9 /* SearchSuggestionsViewController.swift */; };
+		AF0BB11323D616EB00EF07A9 /* QuerySuggestionsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = AF0BB11223D616EB00EF07A9 /* QuerySuggestionsViewController.swift */; };
 		AF0BB11623D6224700EF07A9 /* UITableView+Convenience.swift in Sources */ = {isa = PBXBuildFile; fileRef = AF0BB11523D6224700EF07A9 /* UITableView+Convenience.swift */; };
 		AF0BB11823D6225200EF07A9 /* UICollectionView+Convenience.swift in Sources */ = {isa = PBXBuildFile; fileRef = AF0BB11723D6225200EF07A9 /* UICollectionView+Convenience.swift */; };
 		AF14E30A22F43C060088D2A7 /* MultiIndexHitsCollectionViewDataSource.swift in Sources */ = {isa = PBXBuildFile; fileRef = AF14E30922F43C060088D2A7 /* MultiIndexHitsCollectionViewDataSource.swift */; };
@@ -86,7 +86,7 @@
 		28F8287D1C494B2C00330CF4 /* InstantSearch.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = InstantSearch.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		28F828821C494B2C00330CF4 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		28F828871C494B2C00330CF4 /* InstantSearchTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = InstantSearchTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
-		AF0BB11223D616EB00EF07A9 /* SearchSuggestionsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchSuggestionsViewController.swift; sourceTree = "<group>"; };
+		AF0BB11223D616EB00EF07A9 /* QuerySuggestionsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = QuerySuggestionsViewController.swift; sourceTree = "<group>"; };
 		AF0BB11523D6224700EF07A9 /* UITableView+Convenience.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UITableView+Convenience.swift"; sourceTree = "<group>"; };
 		AF0BB11723D6225200EF07A9 /* UICollectionView+Convenience.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UICollectionView+Convenience.swift"; sourceTree = "<group>"; };
 		AF14E30922F43C060088D2A7 /* MultiIndexHitsCollectionViewDataSource.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MultiIndexHitsCollectionViewDataSource.swift; sourceTree = "<group>"; };
@@ -231,7 +231,7 @@
 		AF0BB11123D616DA00EF07A9 /* SearchSuggestions */ = {
 			isa = PBXGroup;
 			children = (
-				AF0BB11223D616EB00EF07A9 /* SearchSuggestionsViewController.swift */,
+				AF0BB11223D616EB00EF07A9 /* QuerySuggestionsViewController.swift */,
 			);
 			path = SearchSuggestions;
 			sourceTree = "<group>";
@@ -663,7 +663,7 @@
 				E26F425A2298321900583D39 /* TextfieldController.swift in Sources */,
 				AF0BB11823D6225200EF07A9 /* UICollectionView+Convenience.swift in Sources */,
 				E25D635122D395FF008CD0FD /* HierarchicalTableViewController.swift in Sources */,
-				AF0BB11323D616EB00EF07A9 /* SearchSuggestionsViewController.swift in Sources */,
+				AF0BB11323D616EB00EF07A9 /* QuerySuggestionsViewController.swift in Sources */,
 				AF3DE598224AA00400C8BC08 /* MultiIndexHitsCollectionController.swift in Sources */,
 				E2EFA5F322AEB990008C9CAA /* SelectIndexController.swift in Sources */,
 				AF5D103022F45EB300DE13AA /* FacetListTableController.swift in Sources */,
@@ -1072,7 +1072,7 @@
 			repositoryURL = "https://github.com/algolia/instantsearch-core-swift";
 			requirement = {
 				kind = upToNextMajorVersion;
-				minimumVersion = 6.5.0;
+				minimumVersion = 6.5.1;
 			};
 		};
 /* End XCRemoteSwiftPackageReference section */
