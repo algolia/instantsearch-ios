@@ -9,7 +9,10 @@ import Foundation
 import UIKit
 import InstantSearchCore
 
-public class QuerySuggestionsViewController: UITableViewController, HitsController {
+public class QuerySuggestionsViewController: UITableViewController, HitsController, QueryInputController {
+    
+  public var onQuerySubmitted: ((String?) -> Void)?
+  public var onQueryChanged: ((String?) -> Void)?
   
   public var hitsSource: HitsInteractor<Hit<QuerySuggestion>>?
   
@@ -41,6 +44,10 @@ public class QuerySuggestionsViewController: UITableViewController, HitsControll
     tableView.reloadData()
   }
   
+  public func setQuery(_ query: String?) {
+    // external query change doesn't affect
+  }
+  
   public override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
     return hitsSource?.numberOfHits() ?? 0
   }
@@ -57,8 +64,9 @@ public class QuerySuggestionsViewController: UITableViewController, HitsControll
   }
 
   public override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-    guard let searchSuggestionHit = hitsSource?.hit(atIndex: indexPath.row) else { return }
-    didSelect?(searchSuggestionHit)
+    guard let querySuggestionHit = hitsSource?.hit(atIndex: indexPath.row) else { return }
+    didSelect?(querySuggestionHit)
+    onQuerySubmitted?(querySuggestionHit.object.query)
   }
   
 }
