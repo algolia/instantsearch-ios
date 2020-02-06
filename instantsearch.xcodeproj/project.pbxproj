@@ -228,12 +228,12 @@
 			path = Sources;
 			sourceTree = "<group>";
 		};
-		AF0BB11123D616DA00EF07A9 /* SearchSuggestions */ = {
+		AF0BB11123D616DA00EF07A9 /* QuerySuggestions */ = {
 			isa = PBXGroup;
 			children = (
 				AF0BB11223D616EB00EF07A9 /* QuerySuggestionsViewController.swift */,
 			);
-			path = SearchSuggestions;
+			path = QuerySuggestions;
 			sourceTree = "<group>";
 		};
 		AF0BB11423D6223200EF07A9 /* Helpers */ = {
@@ -326,7 +326,7 @@
 		AF6C6F7A2253C5A1001E5E3C /* Controller */ = {
 			isa = PBXGroup;
 			children = (
-				AF0BB11123D616DA00EF07A9 /* SearchSuggestions */,
+				AF0BB11123D616DA00EF07A9 /* QuerySuggestions */,
 				AF6778B322FB234C00850ACC /* Segmented */,
 				AF5D102E22F45E9A00DE13AA /* FacetList */,
 				AF5D102B22F45C9D00DE13AA /* FilterList */,
