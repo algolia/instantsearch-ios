@@ -2,21 +2,21 @@
   "object": {
     "pins": [
       {
-        "package": "InstantSearchClient",
+        "package": "AlgoliaSearchClientSwift",
         "repositoryURL": "https://github.com/algolia/algoliasearch-client-swift",
         "state": {
           "branch": null,
-          "revision": "ef949269c6119a69ed574edb8ccecd67b2e1cf38",
-          "version": "7.0.3"
+          "revision": "96b87ca5b12ce863a0e2a5b45d27a17cef0cea2a",
+          "version": "8.0.0-beta.6"
         }
       },
       {
         "package": "InstantSearchCore",
-        "repositoryURL": "https://github.com/algolia/instantsearch-core-swift",
+        "repositoryURL": "https://github.com/algolia/instantsearch-core-swift.git",
         "state": {
           "branch": null,
-          "revision": "b5c58a8878c03c5c3ac3ed92c630e7067bc85abb",
-          "version": "6.5.1"
+          "revision": "2713b0778ca2b866349f7a8a692df7b41b2941f5",
+          "version": "7.0.0-beta.1"
         }
       },
       {
@@ -30,7 +30,7 @@
       },
       {
         "package": "swift-log",
-        "repositoryURL": "https://github.com/apple/swift-log",
+        "repositoryURL": "https://github.com/apple/swift-log.git",
         "state": {
           "branch": null,
           "revision": "74d7b91ceebc85daf387ebb206003f78813f71aa",
