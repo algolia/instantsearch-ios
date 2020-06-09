@@ -15,7 +15,7 @@ public class TextFieldController: NSObject, QueryInputController {
   public var onQueryChanged: ((String?) -> Void)?
   public var onQuerySubmitted: ((String?) -> Void)?
   
-  let textField: UITextField
+  public let textField: UITextField
 
   public init(textField: UITextField) {
     self.textField = textField
