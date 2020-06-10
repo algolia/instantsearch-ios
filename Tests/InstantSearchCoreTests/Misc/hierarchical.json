@@ -1,0 +1,54 @@
+[
+  {
+    "name": "Item 7",
+    "hierarchicalCategories": {
+      "lvl0": "Clothing",
+      "lvl1": "Clothing > Women",
+      "lvl2": "Clothing > Women > Shoes"
+    }
+  },
+  {
+    "name": "Item 6",
+    "hierarchicalCategories": {
+      "lvl0": "Clothing",
+      "lvl1": "Clothing > Women",
+      "lvl2": "Clothing > Women > Bags"
+    }
+  },
+  {
+    "name": "Item 5",
+    "hierarchicalCategories": {
+      "lvl0": "Clothing",
+      "lvl1": "Clothing > Men",
+      "lvl2": "Clothing > Men > Hats"
+    }
+  },
+  {
+    "name": "Item 4",
+    "hierarchicalCategories": {
+      "lvl0": "Clothing",
+      "lvl1": "Clothing > Men",
+      "lvl2": "Clothing > Men > Shirt"
+    }
+  },
+  {
+    "name": "Item 3",
+    "hierarchicalCategories": {
+      "lvl0": "Book",
+      "lvl1": "Book > Romance"
+    }
+  },
+  {
+    "name": "Item 2",
+    "hierarchicalCategories": {
+      "lvl0": "Book",
+      "lvl1": "Book > Science Fiction"
+    }
+  },
+  {
+    "name": "Item 1",
+    "hierarchicalCategories": {
+      "lvl0": "Furniture"
+    }
+  }
+]

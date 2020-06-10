@@ -25,6 +25,10 @@ xcuserdata
 *.xcuserstate
 *.xcscmblueprint
 
+# Swift Package Manager
+.build/
+.swiftpm/
+
 ## Obj-C/Swift specific
 *.hmap
 *.ipa

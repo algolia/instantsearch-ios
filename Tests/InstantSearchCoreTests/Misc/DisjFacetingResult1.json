@@ -1,0 +1,34 @@
+{
+    "hits": [],
+    "nbHits": 596,
+    "page": 0,
+    "nbPages": 60,
+    "hitsPerPage": 10,
+    "processingTimeMS": 4,
+    "aroundLatLng": "48.856614,2.3522219",
+    "facets": {
+        "type": {
+            "book": 357,
+            "electronics": 184,
+            "office": 28,
+            "gifts": 27
+        },
+    },
+    "facets_stats": {
+    },
+    "exhaustiveFacetsCount": true,
+    "exhaustiveNbHits": true,
+    "query": "Amazon",
+    "params": "query=Amazon&hitsPerPage=10&page=0&analytics=false&attributesToRetrieve=*&highlightPreTag=%3Cais-highlight-0000000000%3E&highlightPostTag=%3C%2Fais-highlight-0000000000%3E&getRankingInfo=true&responseFields=*&optionalFilters=%5B%22categories%3AContemporary%20AND%20type%3Abook%20AND%20binding%3APaperback%22%5D&facets=*%2Ctype%2Cbrand%2Ccolor%2Cprice%2Cauthor%2Cbinding%2CpubYear%2Cfeatured%2Cpublisher%2Ccategories%2CproductGroup&tagFilters=",
+    "index": "ios@algolia.com#atis-prods",
+    "serverUsed": "d52-usw-3.algolia.net",
+    "indexUsed": "ios@algolia.com#atis-prods",
+    "parsedQuery": "amazon",
+    "timeoutCounts": false,
+    "timeoutHits": false,
+    "appliedRules": [
+        {
+            "objectID": "1530792337749"
+        }
+    ]
+}

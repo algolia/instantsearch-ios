@@ -1,0 +1,70 @@
+[
+  {
+    "category": "shoe",
+    "color": "red",
+    "promotions": [
+      "free shipping",
+      "free return"
+    ]
+  },
+  {
+    "category": "shoe",
+    "color": "green",
+    "promotions": [
+      "free shipping",
+      "on sale"
+    ]
+  },
+  {
+    "category": "shoe",
+    "color": "green",
+    "promotions": [
+      "free return",
+      "on sale"
+    ]
+  },
+  {
+    "category": "shirt",
+    "color": "blue",
+    "promotions": "coupon"
+  },
+  {
+    "category": "shirt",
+    "color": "blue",
+    "promotions": [
+      "free return",
+      "on sale"
+    ],
+  },
+  {
+    "category": "shirt",
+    "color": "yellow",
+    "promotions": "free return"
+  },
+  {
+    "category": "hat",
+    "color": "blue",
+    "promotions": "free return"
+  },
+  {
+    "category": "hat",
+    "color": "yellow",
+    "promotions": "free shipping"
+  },
+  {
+    "category": "hat",
+    "promotions": "free shipping"
+  },
+  {
+    "category": "hat",
+    "color": "orange"
+  },
+  {
+    "category": "pant",
+    "promotions": "free shipping",
+  },
+  {
+    "category": "pant",
+    "color": "orange"
+  }
+]

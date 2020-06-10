@@ -1,0 +1,16 @@
+{
+  "hits": [],
+  "nbHits": 596,
+  "page": 0,
+  "nbPages": 60,
+  "hitsPerPage": 10,
+  "processingTimeMS": 4,
+  "facets": {
+    "type": {
+      "book": 357,
+      "electronics": 184,
+      "office": 28,
+      "gifts": 27
+    }
+  },
+}
