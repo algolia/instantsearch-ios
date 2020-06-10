@@ -15,20 +15,24 @@ let package = Package(
     ],
     dependencies: [
       .package(name: "AlgoliaSearchClientSwift", url:"https://github.com/algolia/algoliasearch-client-swift", from: "8.0.0-beta.6"),
-      .package(name: "InstantSearchInsights", url:"https://github.com/algolia/instantsearch-ios-insights", from: "2.3.2")
+      .package(name: "InstantSearchInsights", url:"https://github.com/algolia/instantsearch-ios-insights", from: "2.3.2"),
     ],
     targets: [
         .target(
             name: "InstantSearchCore",
-            dependencies: ["AlgoliaSearchClientSwift", "InstantSearchInsights"]),
+            dependencies: ["AlgoliaSearchClientSwift", "InstantSearchInsights"],
+            path: "Sources/InstantSearchCore"),
         .target(
             name: "InstantSearch",
-            dependencies: ["InstantSearchCore"]),
+            dependencies: ["InstantSearchCore"],
+            path: "Sources/InstantSearch"),
         .testTarget(
             name: "InstantSearchCoreTests",
-            dependencies: ["InstantSearchCore", "AlgoliaSearchClientSwift", "InstantSearchInsights"]),
+            dependencies: ["InstantSearchCore", "AlgoliaSearchClientSwift", "InstantSearchInsights"],
+            path: "Tests/InstantSearchCoreTests"),
         .testTarget(
             name: "InstantSearchTests",
-            dependencies: ["InstantSearch"]),
+            dependencies: ["InstantSearch"],
+            path: "Tests/InstantSearchTests"),
     ]
 )
