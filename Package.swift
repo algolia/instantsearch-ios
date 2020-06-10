@@ -20,19 +20,15 @@ let package = Package(
     targets: [
         .target(
             name: "InstantSearchCore",
-            dependencies: ["AlgoliaSearchClientSwift", "InstantSearchInsights"],
-            path: "Sources/InstantSearchCore"),
+            dependencies: ["AlgoliaSearchClientSwift", "InstantSearchInsights"]),
         .target(
             name: "InstantSearch",
-            dependencies: ["InstantSearchCore"],
-            path: "Sources/InstantSearch"),
+            dependencies: ["InstantSearchCore"]),
         .testTarget(
             name: "InstantSearchCoreTests",
-            dependencies: ["InstantSearchCore", "AlgoliaSearchClientSwift", "InstantSearchInsights"],
-            path: "Tests/InstantSearchCoreTests"),
+            dependencies: ["InstantSearchCore", "AlgoliaSearchClientSwift", "InstantSearchInsights"]),
         .testTarget(
             name: "InstantSearchTests",
-            dependencies: ["InstantSearch"],
-            path: "Tests/InstantSearchTests"),
+            dependencies: ["InstantSearch"]),
     ]
 )
