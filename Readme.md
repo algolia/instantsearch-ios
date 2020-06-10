@@ -21,7 +21,7 @@ InstantSearch family: **InstantSearch iOS** | [InstantSearch Android][instantsea
 You can see InstantSearch iOS in action in our [Examples repository][examples-url], in which we published search experiences built with InstantSearch and written in Swift:
 
 <p align="center">
-  <img src="./docgen/assets/img/single-index.png" width="300"/>
+  <img src="./single-index.png" width="300"/>
 </p>
 
 [examples-url]: https://github.com/algolia/instantsearch-swift-examples
