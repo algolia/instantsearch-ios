@@ -1,12 +1,11 @@
 ![InstantSearch iOS](./instantsearch-banner.png)
 
-<p align="left">
-<img src="https://img.shields.io/badge/platform-iOS-blue.svg?style=flat" alt="Platform iOS" />
-<a href="https://developer.apple.com/swift"><img src="https://img.shields.io/badge/Swift-4.0-blue.svg" alt="Swift 4 compatible" /></a>
-<a href="https://developer.apple.com/documentation/objectivec"><img src="https://img.shields.io/badge/Objective--C-compatible-blue.svg" alt="Objective-C compatible" /></a>
-<a href="https://cocoapods.org/pods/XLActionController"><img src="https://img.shields.io/cocoapods/v/InstantSearch.svg" alt="CocoaPods compatible" /></a>
-<a href="https://raw.githubusercontent.com/algolia/InstantSearch/master/LICENSE"><img src="http://img.shields.io/badge/license-MIT-blue.svg?style=flat" alt="License: MIT" /></a>
-</p>
+[![Pod Version](http://img.shields.io/cocoapods/v/InstantSearch.svg?style=flat)](https://github.com/algolia/instantsearch-ios/)
+[![Pod Platform](http://img.shields.io/cocoapods/p/InstantSearch.svg?style=flat)](https://github.com/algolia/instantsearch-ios/)
+[![Carthage compatible](https://img.shields.io/badge/Carthage-compatible-brightgreen.svg)](https://github.com/algolia/instantsearch-ios/)
+[![SwiftPM compatible](https://img.shields.io/badge/SwiftPM-compatible-brightgreen.svg)](https://swift.org/package-manager/)
+[![Mac Catalyst compatible](https://img.shields.io/badge/Catalyst-compatible-brightgreen.svg)](https://developer.apple.com/documentation/xcode/creating_a_mac_version_of_your_ipad_app/)
+[![Licence](http://img.shields.io/cocoapods/l/InstantSearch.svg?style=flat)](https://opensource.org/licenses/Apache-2.0)
 
 By [Algolia](http://algolia.com).
 
