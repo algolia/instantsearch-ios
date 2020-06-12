@@ -1,0 +1,15 @@
+excluded:
+ - .build
+ - ./Tests
+# implicitly
+line_length: 300
+identifier_name:
+  excluded:
+    - on
+    - or
+    - id
+disabled_rules:
+  - todo
+  - implicit_getter
+nesting:
+ type_level: 2
