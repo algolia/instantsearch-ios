@@ -9,7 +9,7 @@
 #if !InstantSearchCocoaPods
 import InstantSearchCore
 #endif
-#if canImport(UIKit)
+#if canImport(UIKit) && (os(iOS) || os(tvOS) || os(macOS))
 import UIKit
 
 public typealias TableViewCellConfigurator<Item> = HitViewConfigurator<UITableView, UITableViewCell, Item>

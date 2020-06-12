@@ -9,7 +9,7 @@
 #if !InstantSearchCocoaPods
 import InstantSearchCore
 #endif
-#if os(iOS) && canImport(UIKit)
+#if canImport(UIKit) && (os(iOS) || os(tvOS) || os(macOS))
 import UIKit
 
 public class TextFieldController: NSObject, QueryInputController {
@@ -25,10 +25,12 @@ public class TextFieldController: NSObject, QueryInputController {
     setupTextField()
   }
   
+#if os(iOS)
   @available(iOS 13.0, *)
   public convenience init(searchBar: UISearchBar) {
     self.init(textField: searchBar.searchTextField)
   }
+#endif
   
   public func setQuery(_ query: String?) {
     textField.text = query

@@ -9,7 +9,7 @@
 #if !InstantSearchCocoaPods
 import InstantSearchCore
 #endif
-#if os(iOS) && canImport(UIKit)
+#if canImport(UIKit) && (os(iOS) || os(macOS) || os(tvOS))
 import UIKit
 
 public class NumericTextFieldController: NSObject, NumberController {
@@ -31,7 +31,9 @@ public class NumericTextFieldController: NSObject, NumberController {
   public init(textField: UITextField) {
     self.textField = textField
     super.init()
+    #if (os(iOS) || os(macOS))
     textField.addDoneCancelToolbar(onDone: (target: self, action: #selector(doneButtonTappedForMyNumericTextField)))
+    #endif
   }
 
   @objc func doneButtonTappedForMyNumericTextField() {
@@ -45,7 +47,7 @@ public class NumericTextFieldController: NSObject, NumberController {
   }
 
 }
-
+#if (os(iOS) || os(macOS))
 extension UITextField {
   func addDoneCancelToolbar(onDone: (target: Any, action: Selector)? = nil, onCancel: (target: Any, action: Selector)? = nil) {
     let onCancel = onCancel ?? (target: self, action: #selector(cancelButtonTapped))
@@ -67,4 +69,5 @@ extension UITextField {
   @objc func doneButtonTapped() { self.resignFirstResponder() }
   @objc func cancelButtonTapped() { self.resignFirstResponder() }
 }
+#endif
 #endif

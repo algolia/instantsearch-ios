@@ -9,7 +9,7 @@
 #if !InstantSearchCocoaPods
 import InstantSearchCore
 #endif
-#if canImport(UIKit)
+#if canImport(UIKit) && (os(iOS) || os(tvOS) || os(macOS))
 import UIKit
 
 public typealias HitViewConfigurator<HitsView, SingleHitView, Hit> = (HitsView, Hit, IndexPath) -> SingleHitView

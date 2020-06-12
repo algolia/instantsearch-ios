@@ -9,7 +9,7 @@
 #if !InstantSearchCocoaPods
 import InstantSearchCore
 #endif
-#if os(iOS) && canImport(UIKit)
+#if canImport(UIKit) && (os(iOS) || os(macOS))
 import UIKit
 
 public class NumericStepperController: NumberController {

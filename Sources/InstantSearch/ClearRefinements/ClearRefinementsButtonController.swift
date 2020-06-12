@@ -8,7 +8,7 @@
 #if !InstantSearchCocoaPods
 import InstantSearchCore
 #endif
-#if os(iOS) && canImport(UIKit) 
+#if canImport(UIKit) && (os(iOS) || os(tvOS) || os(macOS)) 
 import UIKit
 
 public class FilterClearButtonController: FilterClearController {

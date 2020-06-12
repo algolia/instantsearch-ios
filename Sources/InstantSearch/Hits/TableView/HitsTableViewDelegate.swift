@@ -8,7 +8,7 @@
 #if !InstantSearchCocoaPods
 import InstantSearchCore
 #endif
-#if canImport(UIKit)
+#if canImport(UIKit) && (os(iOS) || os(tvOS) || os(macOS))
 import UIKit
 
 @available(*, deprecated, message: "Use your own UITableViewController conforming to HitsController protocol")

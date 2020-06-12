@@ -7,7 +7,7 @@
 
 import Foundation
 
-#if canImport(UIKit)
+#if canImport(UIKit) && (os(iOS) || os(tvOS) || os(macOS))
 import UIKit
 
 extension UICollectionViewController: HitsCollectionViewContainer {
