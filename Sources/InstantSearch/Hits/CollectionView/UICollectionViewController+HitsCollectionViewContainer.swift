@@ -11,10 +11,10 @@ import Foundation
 import UIKit
 
 extension UICollectionViewController: HitsCollectionViewContainer {
-  
+
   public var hitsCollectionView: UICollectionView {
     return collectionView
   }
-  
+
 }
 #endif

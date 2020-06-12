@@ -13,23 +13,23 @@ import UIKit
 
 @available(*, deprecated, message: "Use your own UICollectionViewController conforming to HitsController protocol")
 open class MultiIndexHitsCollectionViewDataSource: NSObject {
-  
+
   private typealias CellConfigurator = (UICollectionView, Int) throws -> UICollectionViewCell
-  
+
   public weak var hitsSource: MultiIndexHitsSource?
-  
+
   private var cellConfigurators: [Int: CellConfigurator]
-  
+
   override init() {
     cellConfigurators = [:]
     super.init()
   }
-  
+
   public func setCellConfigurator<Hit: Codable>(forSection section: Int,
                                                 templateCellProvider: @escaping () -> UICollectionViewCell = { return .init() },
                                                 _ cellConfigurator: @escaping CollectionViewCellConfigurator<Hit>) {
     cellConfigurators[section] = { [weak self] (collectionView, row) in
-      
+
       guard let hitsSource = self?.hitsSource else {
         Logger.missingHitsSourceWarning()
         return .init()
@@ -42,11 +42,11 @@ open class MultiIndexHitsCollectionViewDataSource: NSObject {
       return cellConfigurator(collectionView, hit, IndexPath(row: row, section: section))
     }
   }
-  
+
 }
 
 extension MultiIndexHitsCollectionViewDataSource: UICollectionViewDataSource {
-  
+
   open func numberOfSections(in collectionView: UICollectionView) -> Int {
     guard let hitsSource = hitsSource else {
       Logger.missingHitsSourceWarning()
@@ -54,7 +54,7 @@ extension MultiIndexHitsCollectionViewDataSource: UICollectionViewDataSource {
     }
     return hitsSource.numberOfSections()
   }
-  
+
   open func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
     guard let hitsSource = hitsSource else {
       Logger.missingHitsSourceWarning()
@@ -62,7 +62,7 @@ extension MultiIndexHitsCollectionViewDataSource: UICollectionViewDataSource {
     }
     return hitsSource.numberOfHits(inSection: section)
   }
-  
+
   open func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
     guard let cellConfigurator = cellConfigurators[indexPath.section] else {
       Logger.missingCellConfiguratorWarning(forSection: indexPath.section)
@@ -75,6 +75,6 @@ extension MultiIndexHitsCollectionViewDataSource: UICollectionViewDataSource {
       return .init()
     }
   }
-  
+
 }
 #endif

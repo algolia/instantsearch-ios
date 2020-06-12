@@ -36,10 +36,10 @@ public class NumericStepperController: NumberController {
   public init(stepper: UIStepper) {
     self.stepper = stepper
   }
-  
+
   public func invalidate() {
     stepper.value = 0
   }
-  
+
 }
 #endif

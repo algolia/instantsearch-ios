@@ -19,13 +19,13 @@ public typealias CollectionViewCellConfigurator<Item> = HitViewConfigurator<UICo
 public typealias CollectionViewClickHandler<Item> = HitClickHandler<UICollectionView, Item>
 
 public class HitsCollectionController<Source: HitsSource>: NSObject, HitsController, HitsCollectionViewContainer {
-  
+
   public let collectionView: UICollectionView
-  
+
   public var hitsCollectionView: UICollectionView {
     return collectionView
   }
-  
+
   public weak var hitsSource: Source?
 
   @available(*, deprecated, message: "Use your own UICollectionViewController conforming to HitsController protocol")
@@ -35,7 +35,7 @@ public class HitsCollectionController<Source: HitsSource>: NSObject, HitsControl
       collectionView.dataSource = dataSource
     }
   }
-  
+
   @available(*, deprecated, message: "Use your own UICollectionViewController conforming to HitsController protocol")
   public var delegate: HitsCollectionViewDelegate<Source>? {
     didSet {
@@ -43,18 +43,18 @@ public class HitsCollectionController<Source: HitsSource>: NSObject, HitsControl
       collectionView.delegate = delegate
     }
   }
-  
+
   public init(collectionView: UICollectionView) {
     self.collectionView = collectionView
   }
-  
+
   // These functions are implemented in the protocol extension, but should be there till
   // compiler bug is fixed
 
   public func reload() {
     hitsCollectionView.reloadData()
   }
-  
+
   public func scrollToTop() {
     guard hitsCollectionView.numberOfItems(inSection: 0) != 0 else { return }
     let indexPath = IndexPath(item: 0, section: 0)

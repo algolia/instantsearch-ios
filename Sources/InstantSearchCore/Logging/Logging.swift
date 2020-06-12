@@ -8,7 +8,6 @@
 
 import Foundation
 
-
 extension Logger {
 
   static func error(prefix: String = "", _ error: Error) {
@@ -53,4 +52,3 @@ extension Logger {
   }
 
 }
-

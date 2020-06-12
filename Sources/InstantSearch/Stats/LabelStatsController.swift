@@ -32,7 +32,7 @@ public class LabelStatsController: StatsTextController {
   public init (label: UILabel) {
     self.label = label
   }
-  
+
   public func setItem(_ item: String?) {
     label.text = item
   }
@@ -40,13 +40,13 @@ public class LabelStatsController: StatsTextController {
 }
 
 public class AttributedLabelStatsController: ItemAttributedTextController {
-  
+
   public let label: UILabel
-  
+
   public init (label: UILabel) {
     self.label = label
   }
-  
+
   public func setItem(_ item: NSAttributedString?) {
     label.attributedText = item
   }

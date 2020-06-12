@@ -17,7 +17,7 @@ public class SearchBarController: NSObject, QueryInputController {
 
   public var onQueryChanged: ((String?) -> Void)?
   public var onQuerySubmitted: ((String?) -> Void)?
-  
+
   public let searchBar: UISearchBar
 
   public init(searchBar: UISearchBar) {
@@ -26,11 +26,11 @@ public class SearchBarController: NSObject, QueryInputController {
     setupSearchBar()
 
   }
-  
+
   public func setQuery(_ query: String?) {
     searchBar.text = query
   }
-  
+
   private func setupSearchBar() {
     searchBar.delegate = self
     searchBar.returnKeyType = .search

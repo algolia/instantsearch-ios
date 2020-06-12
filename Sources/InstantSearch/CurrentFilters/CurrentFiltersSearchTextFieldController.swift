@@ -13,24 +13,24 @@ import UIKit
 
 @available(iOS 13.0, *)
 public class SearchTextFieldCurrentFiltersController: CurrentFiltersController {
-  
+
   public var items: [FilterAndID] = []
   public var onRemoveItem: ((FilterAndID) -> Void)?
   public let searchTextField: UISearchTextField
-  
+
   public init(searchTextField: UISearchTextField) {
     self.searchTextField = searchTextField
     searchTextField.addTarget(self, action: #selector(didChange), for: .editingChanged)
   }
-  
+
   public convenience init(searchBar: UISearchBar) {
     self.init(searchTextField: searchBar.searchTextField)
   }
-  
+
   public func setItems(_ items: [FilterAndID]) {
     self.items = Array(items)
   }
-  
+
   public func reload() {
     let tokens = items
       .enumerated()
@@ -41,7 +41,7 @@ public class SearchTextFieldCurrentFiltersController: CurrentFiltersController {
     }
     searchTextField.tokens = tokens
   }
-  
+
   @objc private func didChange(_ textField: UITextField) {
     let previousFiltersIndices = Set(0..<items.count)
     let currentFiltersIndices = Set(searchTextField.tokens.compactMap { $0.representedObject as? Int })
@@ -51,6 +51,6 @@ public class SearchTextFieldCurrentFiltersController: CurrentFiltersController {
       .map { items[$0] }
       .forEach { onRemoveItem?($0) }
   }
-  
+
 }
 #endif

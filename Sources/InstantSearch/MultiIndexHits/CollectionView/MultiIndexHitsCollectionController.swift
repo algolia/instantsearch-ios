@@ -13,13 +13,13 @@ import InstantSearchCore
 import UIKit
 
 public class MultiIndexHitsCollectionController: NSObject, MultiIndexHitsController, HitsCollectionViewContainer {
-  
+
   public let collectionView: UICollectionView
-  
+
   public var hitsCollectionView: UICollectionView {
     return collectionView
   }
-  
+
   @available(*, deprecated, message: "Use your own UICollectionViewController conforming to HitsController protocol")
   public weak var hitsSource: MultiIndexHitsSource? {
     didSet {
@@ -27,7 +27,7 @@ public class MultiIndexHitsCollectionController: NSObject, MultiIndexHitsControl
       delegate?.hitsSource = hitsSource
     }
   }
-  
+
   @available(*, deprecated, message: "Use your own UICollectionViewController conforming to HitsController protocol")
   public var dataSource: MultiIndexHitsCollectionViewDataSource? {
     didSet {
@@ -35,17 +35,17 @@ public class MultiIndexHitsCollectionController: NSObject, MultiIndexHitsControl
       collectionView.dataSource = dataSource
     }
   }
-  
+
   public var delegate: MultiIndexHitsCollectionViewDelegate? {
     didSet {
       delegate?.hitsSource = hitsSource
       collectionView.delegate = delegate
     }
   }
-  
+
   public init(collectionView: UICollectionView) {
     self.collectionView = collectionView
   }
-  
+
 }
 #endif

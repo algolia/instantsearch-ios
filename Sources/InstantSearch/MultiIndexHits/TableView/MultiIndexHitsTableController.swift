@@ -13,20 +13,20 @@ import InstantSearchCore
 import UIKit
 
 public class MultiIndexHitsTableController: NSObject, HitsTableViewContainer, MultiIndexHitsController {
-  
+
   public var hitsTableView: UITableView {
     return tableView
   }
-    
+
   public let tableView: UITableView
-  
+
   public weak var hitsSource: MultiIndexHitsSource? {
     didSet {
       dataSource?.hitsSource = hitsSource
       delegate?.hitsSource = hitsSource
     }
   }
-  
+
   @available(*, deprecated, message: "Use your own UITableViewController conforming to HitsController protocol")
   public var dataSource: MultiIndexHitsTableViewDataSource? {
     didSet {
@@ -34,7 +34,7 @@ public class MultiIndexHitsTableController: NSObject, HitsTableViewContainer, Mu
       tableView.dataSource = dataSource
     }
   }
-  
+
   @available(*, deprecated, message: "Use your own UITableViewController conforming to HitsController protocol")
   public var delegate: MultiIndexHitsTableViewDelegate? {
     didSet {
@@ -42,10 +42,10 @@ public class MultiIndexHitsTableController: NSObject, HitsTableViewContainer, Mu
       tableView.delegate = delegate
     }
   }
-  
+
   public init(tableView: UITableView) {
     self.tableView = tableView
   }
-  
+
 }
 #endif

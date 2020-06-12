@@ -1,0 +1,179 @@
+# This file contains the fastlane.tools configuration
+# You can find the documentation at https://docs.fastlane.tools
+#
+# For a list of all available actions, check out
+#
+#     https://docs.fastlane.tools/actions
+#
+# For a list of all available plugins, check out
+#
+#     https://docs.fastlane.tools/plugins/available-plugins
+#
+
+default_platform(:ios)
+
+desc "Test library"
+lane :test do
+  sh("cd ..; swift test")
+end
+
+desc "Lint library"
+lane :lint do
+  swiftlint(
+    mode: :lint,
+    raise_if_swiftlint_error: true,
+    strict: true
+  )
+end
+
+desc "Test coverage"
+lane :coverage do
+ xcodeProject = "tmp.xcodeproj"
+ sh("swift package generate-xcodeproj --output #{xcodeProject}")
+ sh("xcodebuild test -scheme InstantSearch-Package -enableCodeCoverage YES")
+ xcov(
+    project: "fastlane/#{xcodeProject}",
+    scheme: "InstantSearch-Package",
+    include_targets: "InstantSearchCore.framework,InstantSearch.framework",
+    minimum_coverage_percentage: 45.0
+ )
+ sh("rm -rf #{xcodeProject}")
+end
+
+desc "Available options: type:major|minor|patch"
+lane :deploy do |options|
+
+  branch = options[:branch] || "master"
+  prepare_git(branch)
+
+  pod_lib_lint(
+    verbose: true,
+    allow_warnings: true
+  )
+
+  new_build_number = version_bump_podspec(
+    bump_type: options[:type],
+    path: "InstantSearch.podspec"
+  )
+
+  sh("./generate_version #{new_build_number}")
+
+  branchName = "version-#{new_build_number}"
+  sh("git checkout -b #{branchName}")
+
+  #puts changelog_from_git_commits
+  git_commit(
+    path: ["InstantSearch.podspec", "./Sources/InstantSearchCore/Helper/Version+Current.swift"],
+    message: "Version #{new_build_number}"
+  )
+  add_git_tag(
+    build_number: new_build_number,
+    tag: new_build_number
+  )
+  push_to_git_remote(remote: "origin")
+
+  create_pull_request(
+    # api_token: "secret",      # optional, defaults to ENV["GITHUB_API_TOKEN"]
+    repo: "algolia/instantsearch-ios",
+    title: "Deploying new #{options[:type]} version #{new_build_number}",
+    head: "#{branchName}",       # optional, defaults to current branch name
+    base: "master", # optional, defaults to "master"
+    body: "Please check the files before merging in case I've overidden something accidentally.",       # optional
+    # api_url: "http://yourdomain/api/v3" # optional, for GitHub Enterprise, defaults to "https://api.github.com"
+  )
+
+  pod_push(
+    path: "InstantSearchCore.podspec",
+    allow_warnings: true
+  )
+  # This is failing when no files are changed. So we added this step in Bitrise instead along with is_skippable: true.
+  # 
+  # deploy_api_reference
+end
+
+lane :deployBeta do |options| 
+  branch = options[:branch] || "master"
+
+  pod_lib_lint(
+    verbose: true,
+    allow_warnings: true
+  )
+  new_build_number = "#{options[:version]}"
+
+  version_bump_podspec(
+    version_number: new_build_number,
+    path: "InstantSearch.podspec"
+  )
+
+  sh("cd ..; ./generate_version #{new_build_number}")
+
+  puts "#{new_build_number}"
+
+  git_commit(
+    path: ["InstantSearch.podspec", "./Sources/InstantSearchCore/Helper/Version+Current.swift"],
+    message: "Version #{new_build_number}"
+  )
+
+  add_git_tag(
+    build_number: new_build_number,
+    tag: new_build_number
+  )
+  push_to_git_remote(remote: "origin")
+
+  pod_push(
+    path: "InstantSearch.podspec",
+    allow_warnings: true
+  )
+
+end
+
+def prepare_git(branch)
+  if !ENV['BITRISE_BUILD_NUMBER'] # ensure git clean locally but not on Bitrise.
+    ensure_git_status_clean
+  end
+
+  # ensure_git_branch(branch:branch)
+  masterHash = sh("git rev-parse origin/#{branch}")
+  headHash = sh("git rev-parse HEAD")
+  
+  if masterHash != headHash 
+    raise "Error: Master and Head Hashes do not match, meaning that we are probably not on Master and therefore can't deploy"
+  end
+
+  # checkout master to be able to push tag there.
+  sh("git checkout #{branch}")
+  
+  # We already pull in bitrise before doing anything, so no need for this step anymore.
+  # git_pull
+end
+
+
+def prepare_api_keys()
+  xcargs = []
+  api_key = ENV["ALGOLIA_API_KEY"]
+  if api_key
+    xcargs << %Q[ALGOLIA_API_KEY="#{api_key}"]
+  end
+  
+  api_id = ENV["ALGOLIA_APPLICATION_ID"]
+  if api_id
+    xcargs << %Q[ALGOLIA_APPLICATION_ID="#{api_id}"]
+  end
+
+  places_api_id = ENV["PLACES_APPLICATION_ID"]
+  if places_api_id
+    xcargs << %Q[PLACES_APPLICATION_ID="#{places_api_id}"]
+  end
+  
+  places_api_key = ENV["PLACES_API_KEY"]
+  if places_api_key
+    xcargs << %Q[PLACES_API_KEY="#{places_api_key}"]
+  end
+
+  bitrise_build_number = ENV["BITRISE_BUILD_NUMBER"]
+  if bitrise_build_number
+    xcargs << %Q[BITRISE_BUILD_NUMBER="#{bitrise_build_number}"]
+  end
+
+  return xcargs.join(" ")
+end

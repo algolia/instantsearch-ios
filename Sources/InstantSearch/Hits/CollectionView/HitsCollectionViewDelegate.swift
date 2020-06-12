@@ -13,16 +13,16 @@ import UIKit
 
 @available(*, deprecated, message: "Use your own UICollectionViewController conforming to HitsController protocol")
 open class HitsCollectionViewDelegate<DataSource: HitsSource>: NSObject, UICollectionViewDelegate {
-  
+
   public var clickHandler: CollectionViewClickHandler<DataSource.Record>
   public weak var hitsSource: DataSource?
-  
+
   public init(clickHandler: @escaping CollectionViewClickHandler<DataSource.Record>) {
     self.clickHandler = clickHandler
   }
-  
+
   open func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
-    
+
     guard let hitsSource = hitsSource else {
       Logger.missingHitsSourceWarning()
       return
@@ -32,8 +32,8 @@ open class HitsCollectionViewDelegate<DataSource: HitsSource>: NSObject, UIColle
       return
     }
     clickHandler(collectionView, hit, indexPath)
-    
+
   }
-  
+
 }
 #endif

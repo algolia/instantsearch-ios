@@ -11,10 +11,10 @@ import Foundation
 import UIKit
 
 extension UITableViewController: HitsTableViewContainer {
-  
+
   public var hitsTableView: UITableView {
     return tableView
   }
-  
+
 }
 #endif

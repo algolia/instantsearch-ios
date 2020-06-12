@@ -13,10 +13,10 @@ import InstantSearchCore
 import UIKit
 
 public class TextFieldController: NSObject, QueryInputController {
-  
+
   public var onQueryChanged: ((String?) -> Void)?
   public var onQuerySubmitted: ((String?) -> Void)?
-  
+
   public let textField: UITextField
 
   public init(textField: UITextField) {
@@ -24,14 +24,14 @@ public class TextFieldController: NSObject, QueryInputController {
     super.init()
     setupTextField()
   }
-  
+
 #if os(iOS)
   @available(iOS 13.0, *)
   public convenience init(searchBar: UISearchBar) {
     self.init(textField: searchBar.searchTextField)
   }
 #endif
-  
+
   public func setQuery(_ query: String?) {
     textField.text = query
   }
@@ -40,18 +40,18 @@ public class TextFieldController: NSObject, QueryInputController {
     guard let searchText = textField.text else { return }
     onQueryChanged?(searchText)
   }
-  
+
   @objc func textFieldSubmitted(textField: UITextField) {
     guard let searchText = textField.text else { return }
     onQuerySubmitted?(searchText)
   }
-  
+
   private func setupTextField() {
     textField.returnKeyType = .search
     textField.addTarget(self, action: #selector(textFieldTextChanged), for: .editingChanged)
     textField.addTarget(self, action: #selector(textFieldTextChanged), for: .editingDidEnd)
     textField.addTarget(self, action: #selector(textFieldSubmitted), for: .editingDidEndOnExit)
   }
-  
+
 }
 #endif
