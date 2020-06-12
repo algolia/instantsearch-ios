@@ -12,7 +12,7 @@ public typealias TagFilterListConnector = FilterListConnector<Filter.Tag>
 
 public extension TagFilterListConnector {
 
-  convenience init(tagFilters: [InstantSearchCore.Filter.Tag] = [],
+  convenience init(tagFilters: [TagFilter] = [],
                    selectionMode: SelectionMode = .multiple,
                    filterState: FilterState,
                    `operator`: RefinementOperator,

@@ -4,9 +4,11 @@
 //
 //  Created by Vladislav Fitc on 29/01/2020.
 //
-import Foundation
 
-#if canImport(UIKit)
+#if !InstantSearchCocoaPods
+import InstantSearchCore
+#endif
+#if os(iOS) && canImport(UIKit)
 import UIKit
 
 @available(iOS 13.0, *)

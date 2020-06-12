@@ -7,6 +7,7 @@
 
 @testable import InstantSearch
 import Foundation
+import InstantSearchCore
 
 class TestHitsSource: HitsSource {
   

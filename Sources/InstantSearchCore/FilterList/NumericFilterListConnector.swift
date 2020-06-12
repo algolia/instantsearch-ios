@@ -12,7 +12,7 @@ public typealias NumericFilterListConnector = FilterListConnector<Filter.Numeric
 
 public extension NumericFilterListConnector {
 
-  convenience init(numericFilters: [InstantSearchCore.Filter.Numeric] = [],
+  convenience init(numericFilters: [NumericFilter] = [],
                    selectionMode: SelectionMode = .single,
                    filterState: FilterState,
                    `operator`: RefinementOperator,

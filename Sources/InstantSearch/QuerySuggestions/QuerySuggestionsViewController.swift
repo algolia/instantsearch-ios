@@ -5,10 +5,11 @@
 //  Created by Vladislav Fitc on 20/01/2020.
 //
 
-import Foundation
+#if !InstantSearchCocoaPods
+import InstantSearchCore
+#endif
 #if canImport(UIKit)
 import UIKit
-import InstantSearchCore
 
 public class QuerySuggestionsViewController: UITableViewController, HitsController, QueryInputController {
     

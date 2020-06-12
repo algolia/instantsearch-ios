@@ -9,6 +9,7 @@
 @testable import InstantSearch
 import Foundation
 import XCTest
+import InstantSearchCore
 #if canImport(UIKit)
 import UIKit
 

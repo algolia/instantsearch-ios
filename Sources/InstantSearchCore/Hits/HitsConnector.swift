@@ -67,7 +67,9 @@ public extension HitsConnector {
 
 }
 
-public extension HitsConnector where Hit == InstantSearchCore.Hit<Place> {
+public typealias PlaceHit = Hit<Place>
+
+public extension HitsConnector where Hit == PlaceHit {
 
   convenience init(searcher: PlacesSearcher,
                    interactor: HitsInteractor<Hit>,

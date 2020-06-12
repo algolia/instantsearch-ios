@@ -18,11 +18,11 @@ extension FilterGroup {
 
       init?<F: FilterType>(_ filterType: F.Type) {
         switch filterType {
-        case is InstantSearchCore.Filter.Facet.Type:
+        case is FacetFilter.Type:
           self = .facet
-        case is InstantSearchCore.Filter.Numeric.Type:
+        case is NumericFilter.Type:
           self = .numeric
-        case is InstantSearchCore.Filter.Tag.Type:
+        case is TagFilter.Type:
           self = .tag
         default:
           return nil
@@ -65,11 +65,11 @@ extension FilterGroup {
         self = .and(name: groupName)
       case is FilterGroup.Hierarchical:
         self = .hierarchical(name: groupName)
-      case is FilterGroup.Or<InstantSearchCore.Filter.Facet>:
+      case is FilterGroup.Or<FacetFilter>:
         self = .or(name: groupName, filterType: .facet)
-      case is FilterGroup.Or<InstantSearchCore.Filter.Numeric>:
+      case is FilterGroup.Or<NumericFilter>:
         self = .or(name: groupName, filterType: .numeric)
-      case is FilterGroup.Or<InstantSearchCore.Filter.Tag>:
+      case is FilterGroup.Or<TagFilter>:
         self = .or(name: groupName, filterType: .tag)
       default:
         return nil

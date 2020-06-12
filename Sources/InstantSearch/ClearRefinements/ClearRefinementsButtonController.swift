@@ -4,9 +4,11 @@
 //
 //  Created by Vladislav Fitc on 24/05/2019.
 //
-import Foundation
+
+#if !InstantSearchCocoaPods
 import InstantSearchCore
-#if canImport(UIKit)
+#endif
+#if os(iOS) && canImport(UIKit) 
 import UIKit
 
 public class FilterClearButtonController: FilterClearController {

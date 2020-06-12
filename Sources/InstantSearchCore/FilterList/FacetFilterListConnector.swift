@@ -8,11 +8,15 @@
 
 import Foundation
 
+public typealias FacetFilter = Filter.Facet
+public typealias NumericFilter = Filter.Numeric
+public typealias TagFilter = Filter.Tag
+
 public typealias FacetFilterListConnector = FilterListConnector<Filter.Facet>
 
-public extension FacetFilterListConnector {
+public extension FacetFilterListConnector where Filter == FacetFilter {
 
-  convenience init(filters: [InstantSearchCore.Filter.Facet] = [],
+  convenience init(filters: [Filter] = [],
                    selectionMode: SelectionMode = .multiple,
                    filterState: FilterState,
                    `operator`: RefinementOperator,

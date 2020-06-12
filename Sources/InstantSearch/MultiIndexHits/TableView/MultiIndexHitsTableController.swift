@@ -6,8 +6,9 @@
 //  Copyright © 2019 Algolia. All rights reserved.
 //
 
-import Foundation
+#if !InstantSearchCocoaPods
 import InstantSearchCore
+#endif
 #if canImport(UIKit)
 import UIKit
 

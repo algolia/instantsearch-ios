@@ -6,9 +6,10 @@
 //  Copyright © 2019 Algolia. All rights reserved.
 //
 
-import Foundation
+#if !InstantSearchCocoaPods
 import InstantSearchCore
-#if canImport(UIKit)
+#endif
+#if os(iOS) && canImport(UIKit)
 import UIKit
 
 public class NumericStepperController: NumberController {

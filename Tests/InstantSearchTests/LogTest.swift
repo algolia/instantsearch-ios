@@ -6,13 +6,17 @@
 //
 
 @testable import InstantSearch
+import InstantSearchCore
 import Foundation
 import XCTest
+import Logging
 
 extension XCTestCase {
   
   class TestLoggingService: Loggable {
     
+    var minSeverityLevel: LogLevel = .trace
+  
     var closure: (LogLevel, String) -> Void
     
     init(_ closure: @escaping (LogLevel, String) -> Void) {
@@ -38,7 +42,7 @@ extension XCTestCase {
     testcase()
     
     waitForExpectations(timeout: 10) { _ in
-      Logger.loggingService = SwiftLog(label: "com.algolia.InstantSearch")
+      Logger.loggingService = Logging.Logger(label: "com.algolia.InstantSearch")
     }
     
 

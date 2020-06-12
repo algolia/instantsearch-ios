@@ -5,8 +5,9 @@
 //  Created by Vladislav Fitc on 02/09/2019.
 //
 
-import Foundation
-
+#if !InstantSearchCocoaPods
+import InstantSearchCore
+#endif
 #if canImport(UIKit)
 import UIKit
 
