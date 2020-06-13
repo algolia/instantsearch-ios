@@ -6,7 +6,7 @@
 //
 
 #if !InstantSearchCocoaPods
-import InstantSearchCore
+@_exported import InstantSearchCore
 #endif
 #if canImport(UIKit) && (os(iOS) || os(tvOS) || os(macOS))
 import UIKit
