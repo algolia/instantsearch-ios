@@ -11,8 +11,8 @@ import InstantSearchCore
 #if canImport(UIKit) && (os(iOS) || os(tvOS) || os(macOS))
 import UIKit
 
-@available(*, deprecated, message: "Use your own UITableViewController conforming to HitsController protocol")
-open class MultiIndexHitsTableViewDelegate: NSObject {
+@available(*, unavailable, message: "Use your own UITableViewController conforming to MultiIndexHitsController protocol")
+open class MultiIndexHitsTableViewDelegate: NSObject, UITableViewDelegate {
 
   typealias ClickHandler = (UITableView, Int) throws -> Void
 
@@ -42,11 +42,7 @@ open class MultiIndexHitsTableViewDelegate: NSObject {
 
     }
   }
-
-}
-
-extension MultiIndexHitsTableViewDelegate: UITableViewDelegate {
-
+  
   open func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
     guard let clickHandler = clickHandlers[indexPath.section] else {
       Logger.missingClickHandlerWarning(forSection: indexPath.section)

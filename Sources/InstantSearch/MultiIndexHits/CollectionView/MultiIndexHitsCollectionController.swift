@@ -12,6 +12,7 @@ import InstantSearchCore
 #if canImport(UIKit) && (os(iOS) || os(tvOS) || os(macOS))
 import UIKit
 
+@available(*, unavailable, message: "Use your own UICollectionViewController conforming to MultiIndexHitsController protocol")
 public class MultiIndexHitsCollectionController: NSObject, MultiIndexHitsController, HitsCollectionViewContainer {
 
   public let collectionView: UICollectionView
@@ -20,28 +21,11 @@ public class MultiIndexHitsCollectionController: NSObject, MultiIndexHitsControl
     return collectionView
   }
 
-  @available(*, deprecated, message: "Use your own UICollectionViewController conforming to HitsController protocol")
-  public weak var hitsSource: MultiIndexHitsSource? {
-    didSet {
-      dataSource?.hitsSource = hitsSource
-      delegate?.hitsSource = hitsSource
-    }
-  }
+  public weak var hitsSource: MultiIndexHitsSource?
 
-  @available(*, deprecated, message: "Use your own UICollectionViewController conforming to HitsController protocol")
-  public var dataSource: MultiIndexHitsCollectionViewDataSource? {
-    didSet {
-      dataSource?.hitsSource = hitsSource
-      collectionView.dataSource = dataSource
-    }
-  }
-
-  public var delegate: MultiIndexHitsCollectionViewDelegate? {
-    didSet {
-      delegate?.hitsSource = hitsSource
-      collectionView.delegate = delegate
-    }
-  }
+  public var dataSource: MultiIndexHitsCollectionViewDataSource?
+  
+  public var delegate: MultiIndexHitsCollectionViewDelegate?
 
   public init(collectionView: UICollectionView) {
     self.collectionView = collectionView

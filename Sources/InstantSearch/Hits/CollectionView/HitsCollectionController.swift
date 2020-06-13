@@ -18,6 +18,7 @@ public typealias HitClickHandler<HitsView, Hit> = (HitsView, Hit, IndexPath) -> 
 public typealias CollectionViewCellConfigurator<Item> = HitViewConfigurator<UICollectionView, UICollectionViewCell, Item>
 public typealias CollectionViewClickHandler<Item> = HitClickHandler<UICollectionView, Item>
 
+@available(*, unavailable, message: "Use your own UICollectionViewController conforming to HitsController protocol")
 public class HitsCollectionController<Source: HitsSource>: NSObject, HitsController, HitsCollectionViewContainer {
 
   public let collectionView: UICollectionView
@@ -28,7 +29,6 @@ public class HitsCollectionController<Source: HitsSource>: NSObject, HitsControl
 
   public weak var hitsSource: Source?
 
-  @available(*, deprecated, message: "Use your own UICollectionViewController conforming to HitsController protocol")
   public var dataSource: HitsCollectionViewDataSource<Source>? {
     didSet {
       dataSource?.hitsSource = hitsSource
@@ -36,7 +36,6 @@ public class HitsCollectionController<Source: HitsSource>: NSObject, HitsControl
     }
   }
 
-  @available(*, deprecated, message: "Use your own UICollectionViewController conforming to HitsController protocol")
   public var delegate: HitsCollectionViewDelegate<Source>? {
     didSet {
       delegate?.hitsSource = hitsSource

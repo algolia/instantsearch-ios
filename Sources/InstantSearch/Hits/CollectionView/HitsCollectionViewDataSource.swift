@@ -11,7 +11,7 @@ import InstantSearchCore
 #if canImport(UIKit) && (os(iOS) || os(tvOS) || os(macOS))
 import UIKit
 
-@available(*, deprecated, message: "Use your own UICollectionViewController conforming to HitsController protocol")
+@available(*, unavailable, message: "Use your own UICollectionViewController conforming to HitsController protocol")
 open class HitsCollectionViewDataSource<DataSource: HitsSource>: NSObject, UICollectionViewDataSource {
 
   public var cellConfigurator: CollectionViewCellConfigurator<DataSource.Record>

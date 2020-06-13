@@ -11,8 +11,8 @@ import InstantSearchCore
 #if canImport(UIKit) && (os(iOS) || os(tvOS) || os(macOS))
 import UIKit
 
-@available(*, deprecated, message: "Use your own UITableViewController conforming to HitsController protocol")
-open class MultiIndexHitsTableViewDataSource: NSObject {
+@available(*, unavailable, message: "Use your own UITableViewController conforming to MultiIndexHitsController protocol")
+open class MultiIndexHitsTableViewDataSource: NSObject, UITableViewDataSource {
 
   private typealias CellConfigurator = (UITableView, Int) throws -> UITableViewCell
 
@@ -29,9 +29,6 @@ open class MultiIndexHitsTableViewDataSource: NSObject {
                                                 templateCellProvider: @escaping () -> UITableViewCell = { return .init() },
                                                 _ cellConfigurator: @escaping TableViewCellConfigurator<Hit>) {
     cellConfigurators[section] = { [weak self] (tableView, row) in
-      guard let dataSource = self else {
-        return .init()
-      }
 
       guard let hitsSource = self?.hitsSource else {
         Logger.missingHitsSourceWarning()
@@ -45,10 +42,6 @@ open class MultiIndexHitsTableViewDataSource: NSObject {
       return cellConfigurator(tableView, hit, IndexPath(row: row, section: section))
     }
   }
-
-}
-
-extension MultiIndexHitsTableViewDataSource: UITableViewDataSource {
 
   open func numberOfSections(in tableView: UITableView) -> Int {
     guard let hitsSource = hitsSource else {

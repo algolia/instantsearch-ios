@@ -15,6 +15,7 @@ import UIKit
 public typealias TableViewCellConfigurator<Item> = HitViewConfigurator<UITableView, UITableViewCell, Item>
 public typealias TableViewClickHandler<Item> = HitClickHandler<UITableView, Item>
 
+@available(*, unavailable, message: "Use your own UITableViewController conforming to HitsController protocol")
 public class HitsTableController<Source: HitsSource>: NSObject, HitsController, HitsTableViewContainer {
 
   public var hitsTableView: UITableView {
@@ -30,7 +31,6 @@ public class HitsTableController<Source: HitsSource>: NSObject, HitsController, 
     }
   }
 
-  @available(*, deprecated, message: "Use your own UITableViewController conforming to HitsController protocol")
   public var dataSource: HitsTableViewDataSource<Source>? {
     didSet {
       dataSource?.hitsSource = hitsSource
@@ -38,7 +38,6 @@ public class HitsTableController<Source: HitsSource>: NSObject, HitsController, 
     }
   }
 
-  @available(*, deprecated, message: "Use your own UITableViewController conforming to HitsController protocol")
   public var delegate: HitsTableViewDelegate<Source>? {
     didSet {
       delegate?.hitsSource = hitsSource

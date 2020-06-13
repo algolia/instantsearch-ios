@@ -11,7 +11,7 @@ import InstantSearchCore
 #if canImport(UIKit) && (os(iOS) || os(tvOS) || os(macOS))
 import UIKit
 
-@available(*, deprecated, message: "Use your own UITableViewController conforming to HitsController protocol")
+@available(*, unavailable, message: "Use your own UITableViewController conforming to HitsController protocol")
 open class HitsTableViewDelegate<DataSource: HitsSource>: NSObject, UITableViewDelegate {
 
   public var clickHandler: TableViewClickHandler<DataSource.Record>

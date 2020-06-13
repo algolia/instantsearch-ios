@@ -11,8 +11,8 @@ import InstantSearchCore
 #if canImport(UIKit) && (os(iOS) || os(tvOS) || os(macOS))
 import UIKit
 
-@available(*, deprecated, message: "Use your own UICollectionViewController conforming to HitsController protocol")
-open class MultiIndexHitsCollectionViewDataSource: NSObject {
+@available(*, unavailable, message: "Use your own UICollectionViewController conforming to HitsController protocol")
+open class MultiIndexHitsCollectionViewDataSource: NSObject, UICollectionViewDataSource {
 
   private typealias CellConfigurator = (UICollectionView, Int) throws -> UICollectionViewCell
 
@@ -42,10 +42,6 @@ open class MultiIndexHitsCollectionViewDataSource: NSObject {
       return cellConfigurator(collectionView, hit, IndexPath(row: row, section: section))
     }
   }
-
-}
-
-extension MultiIndexHitsCollectionViewDataSource: UICollectionViewDataSource {
 
   open func numberOfSections(in collectionView: UICollectionView) -> Int {
     guard let hitsSource = hitsSource else {

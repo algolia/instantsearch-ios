@@ -12,6 +12,7 @@ import InstantSearchCore
 #if canImport(UIKit) && (os(iOS) || os(tvOS) || os(macOS))
 import UIKit
 
+@available(*, unavailable, message: "Use your own UITableViewController conforming to MultiIndexHitsController protocol")
 public class MultiIndexHitsTableController: NSObject, HitsTableViewContainer, MultiIndexHitsController {
 
   public var hitsTableView: UITableView {
@@ -27,7 +28,6 @@ public class MultiIndexHitsTableController: NSObject, HitsTableViewContainer, Mu
     }
   }
 
-  @available(*, deprecated, message: "Use your own UITableViewController conforming to HitsController protocol")
   public var dataSource: MultiIndexHitsTableViewDataSource? {
     didSet {
       dataSource?.hitsSource = hitsSource
@@ -35,7 +35,6 @@ public class MultiIndexHitsTableController: NSObject, HitsTableViewContainer, Mu
     }
   }
 
-  @available(*, deprecated, message: "Use your own UITableViewController conforming to HitsController protocol")
   public var delegate: MultiIndexHitsTableViewDelegate? {
     didSet {
       delegate?.hitsSource = hitsSource

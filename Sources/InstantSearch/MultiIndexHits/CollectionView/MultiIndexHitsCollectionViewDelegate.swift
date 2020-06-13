@@ -11,8 +11,8 @@ import InstantSearchCore
 #if canImport(UIKit) && (os(iOS) || os(tvOS) || os(macOS))
 import UIKit
 
-@available(*, deprecated, message: "Use your own UICollectionViewController conforming to HitsController protocol")
-open class MultiIndexHitsCollectionViewDelegate: NSObject {
+@available(*, unavailable, message: "Use your own UICollectionViewController conforming to HitsController protocol")
+open class MultiIndexHitsCollectionViewDelegate: NSObject, UICollectionViewDelegate {
 
   typealias ClickHandler = (UICollectionView, Int) throws -> Void
 
@@ -42,10 +42,6 @@ open class MultiIndexHitsCollectionViewDelegate: NSObject {
 
     }
   }
-
-}
-
-extension MultiIndexHitsCollectionViewDelegate: UICollectionViewDelegate {
 
   open func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
     guard let clickHandler = clickHandlers[indexPath.section] else {
