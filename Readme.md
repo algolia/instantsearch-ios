@@ -13,14 +13,12 @@ InstantSearch family: **InstantSearch iOS** | [InstantSearch Android][instantsea
 
 **InstantSearch iOS** is a framework providing components and helpers to help you build the best instant-search experience on iOS with Algolia. It is built on top of Algolia's [Swift API Client](https://github.com/algolia/algoliasearch-client-swift) library to provide you a high-level solution to quickly build various search interfaces.
 
-<!-- <img src="Example/InstantSearch.gif" width="300"/> -->
-
 ## Demo
 
 You can see InstantSearch iOS in action in our [Examples repository][examples-url], in which we published search experiences built with InstantSearch and written in Swift:
 
 <p align="center">
-  <img src="./single-index.png" width="300"/>
+<img src="./instant-results.gif" width="300"/>
 </p>
 
 [examples-url]: https://github.com/algolia/instantsearch-swift-examples
@@ -33,22 +31,10 @@ You can see InstantSearch iOS in action in our [Examples repository][examples-ur
 
 To install InstantSearch, simply add the following line to your Podfile:
 
-#### Swift 4.2+
-
 ```ruby
-pod 'InstantSearch', '~> 5.0'
+pod 'InstantSearch', '~> 7.0.0'
 # pod 'InstantSearch/UI' for access to everything
 # pod 'InstantSearch/Core' for access to everything except the UI controllers
-# pod 'InstantSearch/Client' for access only to the API Client
-```
-
-#### Swift 4.1
-
-```ruby
-pod 'InstantSearch', '~> 2.0'
-# pod 'InstantSearch/Widgets' for access to everything
-# pod 'InstantSearch/Core' for access to everything except the UI widgets
-# pod 'InstantSearch/Client' for access only to the API Client
 ```
 
 Then, run the following command:
@@ -61,36 +47,41 @@ $ pod update
 
 [Carthage](https://github.com/Carthage/Carthage) is a simple, decentralized dependency manager for Cocoa.
 
-To install InstantSearch, simply add the following line to your Cartfile:
-
-#### Swift 4.2+
-
+- To install InstantSearch, simply add the following line to your Cartfile:
 ```ruby
-github "algolia/instantsearch-ios" ~> 5.0 # for access to everything
-# github "algolia/instantsearch-core-swift" ~> 6.0 # for access to everything except the UI widgets
-# github "algolia/algoliasearch-client-swift" ~> 7.0 # for access only to the API Client
+github "algolia/instantsearch-ios" ~> 7.0.0
 ```
 
-#### Swift 4.1
+- Launch the following commands from the project directory
+ ```shell
+ carthage update
+ ./Carthage/Checkouts/instant-search-ios/carthage-prebuild
+ carthage build
+ ```
+ 
+ If this is your first time using Carthage in the project, you'll need to go through some additional steps as explained [over at Carthage](https://github.com/Carthage/Carthage#adding-frameworks-to-an-application).
+ 
+ > NOTE: At this time, Carthage does not provide a way to build only specific repository subcomponents (or equivalent of CocoaPods's subspecs). All components and their dependencies will be built with the above command. However, you don't need to copy frameworks you aren't using into your project. For instance, if you aren't using UI components from `InstantSearch`, feel free to delete that framework from the Carthage Build directory after `carthage update` completes keeping only `InstantSearchCore`.
 
-```ruby
-github "algolia/instantsearch-ios" ~> 2.0 # for access to everything
-# github "algolia/instantsearch-core-swift" ~> 3.0 # for access to everything except the UI widgets
-# github "algolia/algoliasearch-client-swift" ~> 5.0 # for access only to the API Client
+
+### Swift Package Manager
+
+The Swift Package Manager is a tool for managing the distribution of Swift code. It’s integrated with the Swift build system to automate the process of downloading, compiling, and linking dependencies. 
+Since the release of Swift 5 and Xcode 11, SPM is compatible with the iOS, macOS and tvOS build systems for creating apps. 
+
+To use SwiftPM, you should use Xcode 11 to open your project. Click `File` -> `Swift Packages` -> `Add Package Dependency`, enter [InstantSearch repo's URL](https://github.com/algolia/instantsearch-ios).
+
+If you're a framework author and use SDWebImage as a dependency, update your `Package.swift` file:
+
+```swift
+let package = Package(
+    // 7.0.0 ..< 8.0.0
+    dependencies: [
+        .package(url: "https://github.com/algolia/instantsearch-ios", from: "7.0.0")
+    ],
+    // ...
+)
 ```
-
-### SwiftPM 
-
-The API client is the only library of the framework available on SwiftPM.
-
-#### Swift 4.2+
-
-To install the API Client, add `.package(url:"https://github.com/algolia/algoliasearch-client-swift", from: "6.0.0")` to your package dependencies array in Package.swift, then add `AlgoliaSearch` to your target dependencies.
-
-
-#### Swift 4.1
-
-To install the API Client, add `.package(url:"https://github.com/algolia/algoliasearch-client-swift", from: "5.0.0")` to your package dependencies array in Package.swift, then add `AlgoliaSearch` to your target dependencies.
 
 ## Documentation
 
