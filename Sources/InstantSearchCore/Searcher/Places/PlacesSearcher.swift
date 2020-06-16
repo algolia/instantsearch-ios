@@ -58,6 +58,7 @@ public class PlacesSearcher: Searcher, SequencerDelegate, SearchResultObservable
     self.onResults = .init()
     self.onError = .init()
     self.sequencer = .init()
+    updateClientUserAgents()
     sequencer.delegate = self
     onResults.retainLastData = true
     isLoading.retainLastData = true

@@ -8,6 +8,7 @@
 
 import Foundation
 import XCTest
+@testable import InstantSearchCore
 import AlgoliaSearchClientSwift
 /// Abstract base class for online test cases.
 ///
@@ -32,6 +33,8 @@ class OnlineTestCase: XCTestCase {
     guard let credentials = TestCredentials.search else {
       throw Error.missingCredentials
     }
+    
+    _ = UserAgentSetter.set
 
     client = SearchClient(appID: credentials.applicationID, apiKey: credentials.apiKey)
 

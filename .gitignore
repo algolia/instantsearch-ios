@@ -28,6 +28,7 @@ xcuserdata
 # Swift Package Manager
 .build/
 .swiftpm/
+Package.resolved
 
 ## Obj-C/Swift specific
 *.hmap

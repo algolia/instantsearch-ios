@@ -69,6 +69,7 @@ public class FacetSearcher: Searcher, SequencerDelegate, SearchResultObservable 
               facetName: facetName,
               query: query,
               requestOptions: requestOptions)
+    updateClientUserAgents()
   }
 
   /**
@@ -96,7 +97,6 @@ public class FacetSearcher: Searcher, SequencerDelegate, SearchResultObservable 
     sequencer.delegate = self
     onResults.retainLastData = true
     isLoading.retainLastData = true
-    updateClientUserAgents()
     processingQueue.maxConcurrentOperationCount = 1
     processingQueue.qualityOfService = .userInitiated
   }

@@ -43,36 +43,9 @@ public protocol SearchResultObservable {
 
 extension Searcher {
 
-  func transform<T: Decodable>(content: [String: Any]?, error: Error?) -> Result<T, Error> {
-    let result = Result(value: content, error: error)
-
-    switch result {
-    case .success(let value):
-      do {
-        let data = try JSONSerialization.data(withJSONObject: value, options: [])
-        let decoder = JSONDecoder()
-
-        let result = try decoder.decode(T.self, from: data)
-        return .success(result)
-      } catch let error {
-        return .failure(error)
-      }
-
-    case .failure(let error):
-      return .failure(error)
-    }
-
-  }
-
   /// Add the library's version to the client's user agents, if not already present.
   func updateClientUserAgents() {
-    let bundle = Bundle(for: type(of: self))
-    if let version = bundle.infoDictionary?["CFBundleShortVersionString"] as? String,
-      let name = bundle.infoDictionary?["CFBundleName"] as? String {
-      let libraryVersion = UserAgent(title: name, version: version)
-      SearchClient.append(userAgent: libraryVersion)
-    }
-
+    _ = UserAgentSetter.set
   }
 
 }
@@ -83,24 +56,4 @@ extension Searcher where Self: SequencerDelegate {
     isLoading.fire(hasPendingOperations)
   }
 
-}
-
-// MARK: - Miscellaneous
-
-/// The operating system's name.
-///
-/// - returns: The operating system's name, or nil if it could not be determined.
-///
-internal var osName: String? {
-  #if os(iOS)
-  return "iOS"
-  #elseif os(OSX)
-  return "macOS"
-  #elseif os(tvOS)
-  return "tvOS"
-  #elseif os(watchOS)
-  return "watchOS"
-  #else
-  return nil
-  #endif
 }
