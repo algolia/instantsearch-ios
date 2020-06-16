@@ -15,7 +15,7 @@ Pod::Spec.new do |s|
   
   s.subspec "Core" do |ss|
       ss.source_files = 'Sources/InstantSearchCore/**/*.{swift}'
-      ss.dependency 'AlgoliaSearchClientSwift', '~> 8.0.0-beta.7'
+      ss.dependency 'AlgoliaSearchClientSwift', '~> 8.0.0-beta.8'
       ss.dependency 'InstantSearchInsights', '~> 2.3'
   end
   
