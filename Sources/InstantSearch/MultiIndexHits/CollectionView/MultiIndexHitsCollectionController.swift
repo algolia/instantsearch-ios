@@ -24,7 +24,7 @@ public class MultiIndexHitsCollectionController: NSObject, MultiIndexHitsControl
   public weak var hitsSource: MultiIndexHitsSource?
 
   public var dataSource: MultiIndexHitsCollectionViewDataSource?
-  
+
   public var delegate: MultiIndexHitsCollectionViewDelegate?
 
   public init(collectionView: UICollectionView) {

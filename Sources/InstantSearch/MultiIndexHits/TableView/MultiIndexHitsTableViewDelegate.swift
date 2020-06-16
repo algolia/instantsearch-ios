@@ -42,7 +42,7 @@ open class MultiIndexHitsTableViewDelegate: NSObject, UITableViewDelegate {
 
     }
   }
-  
+
   open func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
     guard let clickHandler = clickHandlers[indexPath.section] else {
       Logger.missingClickHandlerWarning(forSection: indexPath.section)

@@ -8,7 +8,7 @@
 import Foundation
 
 struct UserAgentSetter {
-  
+
   /// Add the library's version to the client's user agents, if not already present.
   static let set = Self()
 
