@@ -1,4 +1,4 @@
-![InstantSearch iOS](./instantsearch-banner.png)
+![InstantSearch iOS](./Resources/instantsearch-banner.png)
 
 [![Pod Version](http://img.shields.io/cocoapods/v/InstantSearch.svg?style=flat)](https://github.com/algolia/instantsearch-ios/)
 [![Pod Platform](http://img.shields.io/cocoapods/p/InstantSearch.svg?style=flat)](https://github.com/algolia/instantsearch-ios/)
@@ -18,7 +18,7 @@ InstantSearch family: **InstantSearch iOS** | [InstantSearch Android][instantsea
 You can see InstantSearch iOS in action in our [Examples repository][examples-url], in which we published search experiences built with InstantSearch and written in Swift:
 
 <p align="center">
-<img src="./instant-results.gif" width="300"/>
+<img src="./Resources/instant-results.gif" width="300"/>
 </p>
 
 [examples-url]: https://github.com/algolia/instantsearch-swift-examples
