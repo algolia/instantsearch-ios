@@ -7,7 +7,7 @@
 //
 
 import Foundation
-import AlgoliaSearchClientSwift
+import AlgoliaSearchClient
 /// Provides convenient method for building disjuncitve faceting queries and parsing disjunctive faceting
 
 extension QueryBuilder {

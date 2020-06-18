@@ -7,7 +7,7 @@
 //
 
 import Foundation
-@_exported import AlgoliaSearchClientSwift
+@_exported import AlgoliaSearchClient
 /// Structure containing all necessary components to perform a search
 
 public struct IndexQueryState {
@@ -29,7 +29,7 @@ extension IndexQueryState: Builder {}
 
 extension Array where Element == IndexQueryState {
 
-  init(indices: [AlgoliaSearchClientSwift.Index], query: Query = .init()) {
+  init(indices: [AlgoliaSearchClient.Index], query: Query = .init()) {
     self = indices.map { IndexQueryState(indexName: $0.name, query: query) }
   }
 

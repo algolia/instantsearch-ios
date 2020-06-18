@@ -7,7 +7,7 @@
 //
 
 import Foundation
-import AlgoliaSearchClientSwift
+import AlgoliaSearchClient
 public extension FacetListInteractor {
 
   struct SingleIndexSearcherConnection: Connection {

@@ -7,7 +7,7 @@
 //
 
 import Foundation
-import AlgoliaSearchClientSwift
+import AlgoliaSearchClient
 @testable import InstantSearchCore
 import XCTest
 

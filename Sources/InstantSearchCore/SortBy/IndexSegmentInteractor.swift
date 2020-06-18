@@ -7,7 +7,7 @@
 //
 
 import Foundation
-import AlgoliaSearchClientSwift
+import AlgoliaSearchClient
 public typealias IndexSegmentInteractor = SelectableSegmentInteractor<Int, Index>
 
 public enum IndexSegment {}

@@ -9,7 +9,7 @@
 import Foundation
 import XCTest
 @testable import InstantSearchCore
-import AlgoliaSearchClientSwift
+import AlgoliaSearchClient
 class HierarchicalTests: OnlineTestCase {
 
   struct Item: Codable {

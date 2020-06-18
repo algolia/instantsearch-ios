@@ -7,7 +7,7 @@
 //
 
 import Foundation
-import AlgoliaSearchClientSwift
+
 extension Query {
 
   mutating func updateQueryFacets(with attribute: Attribute) {

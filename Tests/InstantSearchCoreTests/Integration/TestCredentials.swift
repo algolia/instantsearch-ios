@@ -6,7 +6,7 @@
 //
 
 import Foundation
-import AlgoliaSearchClientSwift
+import AlgoliaSearchClient
 
 struct TestCredentials: Credentials {
 

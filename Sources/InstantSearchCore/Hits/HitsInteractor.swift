@@ -6,7 +6,7 @@
 //
 
 import Foundation
-import AlgoliaSearchClientSwift
+import AlgoliaSearchClient
 
 public class HitsInteractor<Record: Codable>: AnyHitsInteractor {
 

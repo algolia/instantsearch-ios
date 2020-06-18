@@ -7,7 +7,7 @@
 //
 
 import Foundation
-import AlgoliaSearchClientSwift
+import AlgoliaSearchClient
 
 public class PlacesSearcher: Searcher, SequencerDelegate, SearchResultObservable {
 

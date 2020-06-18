@@ -9,7 +9,7 @@
 import Foundation
 import XCTest
 @testable import InstantSearchCore
-import AlgoliaSearchClientSwift
+import AlgoliaSearchClient
 /// Abstract base class for online test cases.
 ///
 class OnlineTestCase: XCTestCase {

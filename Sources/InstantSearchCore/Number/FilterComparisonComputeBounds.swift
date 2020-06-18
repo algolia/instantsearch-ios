@@ -7,7 +7,7 @@
 //
 
 import Foundation
-import AlgoliaSearchClientSwift
+import AlgoliaSearchClient
 public struct BoundableSingleIndexSearcherConnection<B: Boundable>: Connection {
 
   public let boundable: B

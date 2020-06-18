@@ -7,7 +7,7 @@
 //
 
 import Foundation
-import AlgoliaSearchClientSwift
+import AlgoliaSearchClient
 /**
  Interactor which constitutes the aggregation of nested hits interactors providing a convenient functions for managing them.
  Designed for a joint usage with multi index searcher, but can be used with multiple separate single index searchers as well.

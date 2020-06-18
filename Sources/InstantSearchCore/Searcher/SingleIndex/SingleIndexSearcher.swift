@@ -8,7 +8,7 @@
 // swiftlint:disable function_body_length
 
 import Foundation
-import AlgoliaSearchClientSwift
+import AlgoliaSearchClient
 /** An entity performing search queries targeting one index
 */
 

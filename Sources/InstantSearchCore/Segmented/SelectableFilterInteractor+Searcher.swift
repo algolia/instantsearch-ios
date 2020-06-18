@@ -8,7 +8,7 @@
 // swiftlint:disable type_name
 
 import Foundation
-import AlgoliaSearchClientSwift
+import AlgoliaSearchClient
 public struct SelectableFilterInteractorSearcherConnection<Filter: FilterType>: Connection {
 
   public let interactor: SelectableSegmentInteractor<Int, Filter>

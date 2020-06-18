@@ -7,7 +7,7 @@
 //
 
 import Foundation
-import AlgoliaSearchClientSwift
+import AlgoliaSearchClient
 public typealias IndexPresenter = (Index) -> String
 
 public extension DefaultPresenter {

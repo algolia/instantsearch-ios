@@ -7,7 +7,7 @@
 //
 
 import Foundation
-import AlgoliaSearchClientSwift
+import AlgoliaSearchClient
 /// Protocol describing an entity capable to perform search requests
 public protocol Searcher: class {
 

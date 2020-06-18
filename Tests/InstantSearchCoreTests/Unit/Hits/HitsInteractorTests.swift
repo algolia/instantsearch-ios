@@ -9,7 +9,7 @@
 import Foundation
 @testable import InstantSearchCore
 import XCTest
-import AlgoliaSearchClientSwift
+import AlgoliaSearchClient
 extension Index {
 
   static var test: Index = SearchClient(appID: "", apiKey: "").index(withName: "")

@@ -8,7 +8,7 @@
 
 import Foundation
 @testable import InstantSearchCore
-import AlgoliaSearchClientSwift
+import AlgoliaSearchClient
 import XCTest
 
 class FacetListInteractorTests: XCTestCase {
