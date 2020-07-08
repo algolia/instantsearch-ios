@@ -79,7 +79,7 @@ class HierarchicalTests: OnlineTestCase {
                                            filterGroups: filterGroups,
                                            hierarchicalAttributes: hierarchicalAttributes,
                                            hierachicalFilters: hierarchicalFilters)
-    let queries = queryBuilder.build().map { (self.index.name, query: $0) }
+    let queries = queryBuilder.build().map { IndexedQuery(indexName: self.index.name, query: $0) }
 
     XCTAssertEqual(queryBuilder.hierarchicalFacetingQueriesCount, 3)
 
@@ -114,7 +114,7 @@ class HierarchicalTests: OnlineTestCase {
                                            filterGroups: filterGroups,
                                            hierarchicalAttributes: hierarchicalAttributes,
                                            hierachicalFilters: hierarchicalFilters)
-    let queries = queryBuilder.build().map { (self.index.name, query: $0) }
+    let queries = queryBuilder.build().map { IndexedQuery(indexName: self.index.name, query: $0) }
 
     XCTAssertEqual(queryBuilder.hierarchicalFacetingQueriesCount, 0)
 
@@ -170,7 +170,7 @@ class HierarchicalTests: OnlineTestCase {
                                            filterGroups: filterGroups,
                                            hierarchicalAttributes: hierarchicalAttributes,
                                            hierachicalFilters: hierarchicalFilters)
-    let queries = queryBuilder.build().map { (self.index.name, query: $0) }
+    let queries = queryBuilder.build().map { IndexedQuery(indexName: self.index.name, query: $0) }
 
     XCTAssertEqual(queryBuilder.hierarchicalFacetingQueriesCount, 3)
 

@@ -132,7 +132,7 @@ public class MultiIndexSearcher: Searcher, SequencerDelegate, SearchResultObserv
 
   public func search() {
 
-    let queries = indexQueryStates.map { ($0.indexName, $0.query) }
+    let queries = indexQueryStates.map { IndexedQuery(indexName: $0.indexName, query: $0.query) }
 
     let operation = client.multipleQueries(queries: queries) { [weak self] result in
       guard let searcher = self else { return }
@@ -141,14 +141,14 @@ public class MultiIndexSearcher: Searcher, SequencerDelegate, SearchResultObserv
         case .success(let response):
           zip(queries, response.results)
             .forEach { (query, searchResults) in
-              Logger.Results.success(searcher: searcher, indexName: query.0, results: searchResults)
+              Logger.Results.success(searcher: searcher, indexName: query.indexName, results: searchResults)
             }
           searcher.onResults.fire(response)
 
         case .failure(let error):
-          let indicesDescriptor = "[\(queries.map { $0.0.rawValue }.joined(separator: ", "))]"
+          let indicesDescriptor = "[\(queries.map { $0.indexName.rawValue }.joined(separator: ", "))]"
           Logger.Results.failure(searcher: searcher, indexName: IndexName(rawValue: indicesDescriptor), error)
-          searcher.onError.fire((queries.map { $0.1 }, error))
+          searcher.onError.fire((queries.map { $0.query }, error))
         }
       }
     }

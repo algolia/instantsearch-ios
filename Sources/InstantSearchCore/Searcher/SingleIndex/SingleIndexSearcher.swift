@@ -149,7 +149,7 @@ public class SingleIndexSearcher: Searcher, SequencerDelegate, SearchResultObser
                                         hierarchicalAttributes: hierarchicalAttributes,
                                         hierachicalFilters: hierarchicalFilters)
       queriesBuilder.keepSelectedEmptyFacets = true
-      let queries = queriesBuilder.build().map { (indexQueryState.indexName, query: $0) }
+      let queries = queriesBuilder.build().map { IndexedQuery(indexName: indexQueryState.indexName, query: $0) }
       operation = client.multipleQueries(queries: queries) { [weak self] response in
         guard let searcher = self else { return }
 

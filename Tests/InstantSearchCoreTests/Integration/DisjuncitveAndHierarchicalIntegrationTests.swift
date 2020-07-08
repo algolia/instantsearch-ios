@@ -109,7 +109,7 @@ class DisjuncitveAndHierarchicalIntegrationTests: OnlineTestCase {
 
     let exp = expectation(description: "results")
 
-    let indexQueries = queries.map { (self.index.name, query: $0) }
+    let indexQueries = queries.map { IndexedQuery(indexName: self.index.name, query: $0) }
 
     client!.multipleQueries(queries: indexQueries) { result in
       switch result {

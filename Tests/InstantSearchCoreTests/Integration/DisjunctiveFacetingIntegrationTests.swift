@@ -61,7 +61,7 @@ class DisjunctiveFacetingIntegrationTests: OnlineTestCase {
     let disjunctiveGroup = FilterGroup.Or(filters: [colorFilter], name: "colors")
     let queryBuilder = QueryBuilder(query: query, filterGroups: [disjunctiveGroup])
 
-    let queries = queryBuilder.build().map { (index.name, $0) }
+    let queries = queryBuilder.build().map { IndexedQuery(indexName: index.name, query: $0) }
 
     XCTAssertEqual(queries.count, 2)
     XCTAssertEqual(queryBuilder.disjunctiveFacetingQueriesCount, 1)
@@ -113,7 +113,7 @@ class DisjunctiveFacetingIntegrationTests: OnlineTestCase {
     let conjunctiveGroup = FilterGroup.And(filters: [promotionsFilter], name: "promotions")
     let queryBuilder = QueryBuilder(query: query, filterGroups: [disjunctiveGroup, conjunctiveGroup])
 
-    let queries = queryBuilder.build().map { (index.name, $0) }
+    let queries = queryBuilder.build().map { IndexedQuery(indexName: index.name, query: $0) }
 
     XCTAssertEqual(queries.count, 2)
     XCTAssertEqual(queryBuilder.disjunctiveFacetingQueriesCount, 1)

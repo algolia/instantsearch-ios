@@ -17,13 +17,14 @@ extension HitsInteractor {
     let legacyFilters = generateOptionalFilters(from: matchingPatterns, and: hit)
 
     searcher.indexQueryState.query.sumOrFiltersScores = true
-    searcher.indexQueryState.query.facetFilters = [["objectID:-\(hit.objectID)"]]
+    
+    searcher.indexQueryState.query.facetFilters = [FilterVariant(stringLiteral: "objectID:-\(hit.objectID)")]
     searcher.indexQueryState.query.optionalFilters = legacyFilters
 
     return connection
   }
 
-  func generateOptionalFilters<T>(from matchingPatterns: [MatchingPattern<T>], and hit: ObjectWrapper<T>) -> [[String]]? {
+  func generateOptionalFilters<T>(from matchingPatterns: [MatchingPattern<T>], and hit: ObjectWrapper<T>) -> [FilterVariant]? {
     let filterState = FilterState()
 
     for matchingPattern in matchingPatterns {
@@ -38,7 +39,19 @@ extension HitsInteractor {
       }
     }
 
-    return FilterGroupConverter().legacy(filterState.toFilterGroups())
+    guard let legacyFilters = FilterGroupConverter().legacy(filterState.toFilterGroups()) else {
+      return nil
+    }
+    
+    return legacyFilters
+      .filter { $0.count > 0 }
+      .map { group in
+        if let filterValue = group.first, group.count == 1 {
+          return FilterVariant(and: filterValue)
+        } else {
+          return FilterVariant(or: group)
+        }
+      }
   }
 
 }

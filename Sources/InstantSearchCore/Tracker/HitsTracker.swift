@@ -56,7 +56,7 @@ public extension HitsTracker {
     guard let queryID = queryID else { return }
     tracker.clickedAfterSearch(eventName: customEventName ?? self.eventName,
                                indexName: searcher.indexName,
-                               objectIDsWithPositions: [(ObjectID(rawValue: hit.objectID), position)],
+                               objectIDsWithPositions: [(hit.objectID, position)],
                                queryID: queryID,
                                userToken: .none)
   }
@@ -66,7 +66,7 @@ public extension HitsTracker {
     guard let queryID = queryID else { return }
     tracker.convertedAfterSearch(eventName: customEventName ?? self.eventName,
                                  indexName: searcher.indexName,
-                                 objectIDs: [ObjectID(rawValue: hit.objectID)],
+                                 objectIDs: [hit.objectID],
                                  queryID: queryID,
                                  userToken: .none)
   }
@@ -75,7 +75,7 @@ public extension HitsTracker {
                                   eventName customEventName: EventName? = nil) {
     tracker.viewed(eventName: customEventName ?? self.eventName,
                    indexName: searcher.indexName,
-                   objectIDs: [ObjectID(rawValue: hit.objectID)],
+                   objectIDs: [hit.objectID],
                    userToken: .none)
   }
 
