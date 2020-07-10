@@ -17,13 +17,19 @@ Pod::Spec.new do |s|
       ss.source_files = 'Sources/InstantSearchCore/**/*.{swift}'
       ss.dependency 'AlgoliaSearchClient', '~> 8.0.0-beta.11'
       ss.dependency 'InstantSearchInsights', '~> 2.3'
+      ss.ios.deployment_target = '8.0'
+      ss.osx.deployment_target = '10.10'
+      ss.watchos.deployment_target = '3.0'
+      ss.tvos.deployment_target = '9.0'
   end
   
   s.subspec "UI" do |ss|
       ss.source_files = 'Sources/InstantSearch/**/*.{swift}'
       ss.dependency 'InstantSearch/Core'
       ss.ios.deployment_target = '8.0'
-      ss.osx.deployment_target = '10.15'
+      ss.osx.deployment_target = '10.10'
+      ss.watchos.deployment_target = '3.0'
+      ss.tvos.deployment_target = '9.0'
       ss.pod_target_xcconfig = { 'OTHER_SWIFT_FLAGS' => '-DInstantSearchCocoaPods' }
   end
     
