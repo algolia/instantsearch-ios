@@ -115,7 +115,7 @@ extension FilterGroup.Or: LegacySyntaxConvertible {
 }
 
 internal extension FiltersStorage.Unit {
-  
+
   var rawFilters: [String] {
     switch self {
     case .and(let values),
@@ -123,5 +123,5 @@ internal extension FiltersStorage.Unit {
       return values
     }
   }
-  
+
 }

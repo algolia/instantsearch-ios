@@ -17,7 +17,7 @@ extension HitsInteractor {
     let legacyFilters = generateOptionalFilters(from: matchingPatterns, and: hit)
 
     searcher.indexQueryState.query.sumOrFiltersScores = true
-    
+
     searcher.indexQueryState.query.facetFilters = [.and("objectID:-\(hit.objectID)")]
     searcher.indexQueryState.query.optionalFilters = legacyFilters
 

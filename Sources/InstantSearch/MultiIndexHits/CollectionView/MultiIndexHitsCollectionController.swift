@@ -5,6 +5,7 @@
 //  Created by Vladislav Fitc on 25/03/2019.
 //  Copyright © 2019 Algolia. All rights reserved.
 //
+// swiftlint:disable weak_delegate
 
 #if !InstantSearchCocoaPods
 import InstantSearchCore
