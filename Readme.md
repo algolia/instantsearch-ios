@@ -25,6 +25,26 @@ You can see InstantSearch iOS in action in our [Examples repository][examples-ur
 
 ## Installation
 
+### Swift Package Manager
+
+The Swift Package Manager is a tool for managing the distribution of Swift code. It’s integrated with the Swift build system to automate the process of downloading, compiling, and linking dependencies. 
+Since the release of Swift 5 and Xcode 11, SPM is compatible with the iOS, macOS and tvOS build systems for creating apps. 
+
+To use SwiftPM, you should use Xcode 11 to open your project. Click `File` -> `Swift Packages` -> `Add Package Dependency`, enter [InstantSearch repo's URL](https://github.com/algolia/instantsearch-ios).
+If you consider to use only the business logic modules of InstantSearch and don't need the set of provided UIKit controllers in your project, select only 'InstantSearchCore' in the provided list of products.
+
+If you're a framework author and use InstantSearch as a dependency, update your `Package.swift` file:
+
+```swift
+let package = Package(
+    // 7.0.0 ..< 8.0.0
+    dependencies: [
+        .package(url: "https://github.com/algolia/instantsearch-ios", from: "7.0.0")
+    ],
+    // ...
+)
+```
+
 ### CocoaPods
 
 [CocoaPods](https://cocoapods.org/) is a dependency manager for Cocoa projects.
@@ -33,7 +53,6 @@ To install InstantSearch, simply add the following line to your Podfile:
 
 ```ruby
 pod 'InstantSearch', '~> 7.0.0'
-# pod 'InstantSearch/UI' for access to everything
 # pod 'InstantSearch/Core' for access to everything except the UI controllers
 ```
 
@@ -58,30 +77,11 @@ github "algolia/instantsearch-ios" ~> 7.0.0
  ./Carthage/Checkouts/instant-search-ios/carthage-prebuild
  carthage build
  ```
+
+ > NOTE: At this time, Carthage does not provide a way to build only specific repository subcomponents (or equivalent of CocoaPods's subspecs). All components and their dependencies will be built with the above command. However, you don't need to copy frameworks you aren't using into your project. For instance, if you aren't using UI components from `InstantSearch`, feel free to delete that framework from the Carthage Build directory after `carthage update` completes keeping only `InstantSearchCore`.
  
  If this is your first time using Carthage in the project, you'll need to go through some additional steps as explained [over at Carthage](https://github.com/Carthage/Carthage#adding-frameworks-to-an-application).
  
- > NOTE: At this time, Carthage does not provide a way to build only specific repository subcomponents (or equivalent of CocoaPods's subspecs). All components and their dependencies will be built with the above command. However, you don't need to copy frameworks you aren't using into your project. For instance, if you aren't using UI components from `InstantSearch`, feel free to delete that framework from the Carthage Build directory after `carthage update` completes keeping only `InstantSearchCore`.
-
-
-### Swift Package Manager
-
-The Swift Package Manager is a tool for managing the distribution of Swift code. It’s integrated with the Swift build system to automate the process of downloading, compiling, and linking dependencies. 
-Since the release of Swift 5 and Xcode 11, SPM is compatible with the iOS, macOS and tvOS build systems for creating apps. 
-
-To use SwiftPM, you should use Xcode 11 to open your project. Click `File` -> `Swift Packages` -> `Add Package Dependency`, enter [InstantSearch repo's URL](https://github.com/algolia/instantsearch-ios).
-
-If you're a framework author and use SDWebImage as a dependency, update your `Package.swift` file:
-
-```swift
-let package = Package(
-    // 7.0.0 ..< 8.0.0
-    dependencies: [
-        .package(url: "https://github.com/algolia/instantsearch-ios", from: "7.0.0")
-    ],
-    // ...
-)
-```
 
 ## Documentation
 
@@ -163,6 +163,8 @@ func configureUI() {
 Run your app and you will the most basic search experience: a `UISearchBar` with the number of results each time you write a query.
 
 To get a more meaningful search experience, please follow our [Getting Started Guide](https://www.algolia.com/doc/guides/building-search-ui/getting-started/ios/).
+
+If you only require business logic modules in your project and use `InstantSearchCore` framework, add `import InstantSearchCore` to your source files. 
 
 ## Getting Help
 
