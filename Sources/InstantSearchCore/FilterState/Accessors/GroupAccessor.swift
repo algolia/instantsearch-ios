@@ -9,7 +9,7 @@
 import Foundation
 
 protocol FiltersContainer: class {
-  var filters: FiltersReadable & FiltersWritable & FilterGroupsConvertible & HierarchicalManageable { get set }
+  var filters: FilterState.Storage { get set }
 }
 
 extension FiltersContainer {
@@ -33,11 +33,18 @@ extension FiltersContainer {
 }
 
 public class ReadOnlyFiltersContainer {
+  
+  class StorageContainer: FiltersContainer {
+    var filters: FilterState.Storage
+    init(filterState: FilterState) {
+      self.filters = filterState.filters
+    }
+  }
 
   let filtersContainer: FiltersContainer
 
-  init(filtersContainer: FiltersContainer) {
-    self.filtersContainer = filtersContainer
+  init(filterState: FilterState) {
+    self.filtersContainer = StorageContainer(filterState: filterState)
   }
 
   public subscript<F: FilterType>(and groupName: String) -> ReadOnlyGroupAccessor<F> {

@@ -54,7 +54,7 @@ public extension ToggleFilter {
         interactor.isSelected = accessor.contains(interactor.item)
       }
 
-      onChange(interactor, ReadOnlyFiltersContainer(filtersContainer: filterState))
+      onChange(interactor, ReadOnlyFiltersContainer(filterState: filterState))
 
       filterState.onChange.subscribePast(with: interactor, callback: onChange)
     }
