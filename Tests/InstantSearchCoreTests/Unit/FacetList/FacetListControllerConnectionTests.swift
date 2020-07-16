@@ -17,7 +17,10 @@ class FacetListControllerConnectionTests: XCTestCase {
 
   let facets: [Facet] = .init(prefix: "f", count: 3)
   let facetsWithAddition: [Facet] = .init(prefix: "f", count: 4)
-
+  
+  weak var disposableInteractor: FacetListInteractor?
+  weak var disposableController: TestFacetListController?
+  
   func testConnect() {
 
     let interactor = FacetListInteractor(facets: facets, selectionMode: .single)
@@ -136,6 +139,20 @@ class FacetListControllerConnectionTests: XCTestCase {
 
     waitForExpectations(timeout: 5, handler: .none)
 
+  }
+  
+  func testLeak() {
+    let interactor = FacetListInteractor(facets: facets, selectionMode: .single)
+    let controller = TestFacetListController()
+    self.disposableInteractor = interactor
+    self.disposableController = controller
+    let connection = FacetList.ControllerConnection(facetListInteractor: interactor, controller: controller, presenter: FacetListPresenter())
+    connection.connect()
+  }
+  
+  override func tearDown() {
+    XCTAssertNil(disposableInteractor)
+    XCTAssertNil(disposableController)
   }
 
 }
