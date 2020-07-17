@@ -1,5 +1,5 @@
 //
-//  MultiSearchConnectionTests.swift
+//  MultiSourceHitsReloaderTests.swift
 //  InstantSearchCore
 //
 //  Created by Vladislav Fitc on 11/12/2019.

@@ -12,6 +12,9 @@ import AlgoliaSearchClient
 import XCTest
 
 class HitsInteractorSearcherConnectionTests: XCTestCase {
+  
+  weak var disposableInteractor: HitsInteractor<JSON>?
+  weak var disposableSearcher: SingleIndexSearcher?
 
   func getInteractor(with infiniteScrollingController: InfiniteScrollable) -> HitsInteractor<JSON> {
 
@@ -25,6 +28,27 @@ class HitsInteractorSearcherConnectionTests: XCTestCase {
                                     infiniteScrollingController: infiniteScrollingController)
 
     return interactor
+  }
+  
+  func testLeak() {
+    let infiniteScrollingController = TestInfiniteScrollingController()
+    infiniteScrollingController.pendingPages = [0, 2]
+
+    let searcher = SingleIndexSearcher(client: SearchClient(appID: "", apiKey: ""), indexName: "")
+    let interactor = getInteractor(with: infiniteScrollingController)
+
+    disposableInteractor = interactor
+    disposableSearcher = searcher
+    
+    let connection: Connection = HitsInteractor.SingleIndexSearcherConnection(interactor: interactor,
+                                                                              searcher: searcher)
+    connection.connect()
+  }
+  
+  override func tearDown() {
+    
+    XCTAssertNil(disposableInteractor, "Leaked interactor")
+    XCTAssertNil(disposableSearcher, "Leaked searcher")
   }
 
   func testConnect() {

@@ -11,7 +11,22 @@ import XCTest
 @testable import InstantSearchCore
 
 class QueryInputSearcherConnectionTests: XCTestCase {
-
+  
+  weak var disposableSearcher: TestSearcher?
+  weak var disposableInteractor: QueryInputInteractor?
+  
+  func testLeak() {
+    let searcher = TestSearcher()
+    let interactor = QueryInputInteractor()
+    let connection = QueryInputInteractor.SearcherConnection(interactor: interactor, searcher: searcher, searchTriggeringMode: .searchAsYouType)
+    connection.connect()
+  }
+  
+  override func tearDown() {
+    XCTAssertNil(disposableSearcher, "Leaked searcher")
+    XCTAssertNil(disposableInteractor, "Leaked interactor")
+  }
+  
   func testSearchAsYouTypeConnect() {
     let searcher = TestSearcher()
     let interactor = QueryInputInteractor()
@@ -116,5 +131,5 @@ class QueryInputSearcherConnectionTests: XCTestCase {
     waitForExpectations(timeout: 5, handler: nil)
 
   }
-
+  
 }

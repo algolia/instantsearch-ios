@@ -14,6 +14,26 @@ class CurrentFiltersFilterStateConnectionTests: XCTestCase {
 
   let groupName = "Test group"
   let filter = Filter.Facet(attribute: "Test Attribute", stringValue: "facet")
+  
+  weak var disposableInteractor: CurrentFiltersInteractor?
+  weak var disposableFilterState: FilterState?
+  
+  func testLeak() {
+    let interactor = CurrentFiltersInteractor()
+    let filterState = FilterState()
+    
+    disposableInteractor = interactor
+    disposableFilterState = filterState
+
+    let connection = CurrentFiltersInteractor.FilterStateConnection(interactor: interactor,
+                                                     filterState: filterState)
+    connection.connect()
+  }
+  
+  override func tearDown() {
+    XCTAssertNil(disposableInteractor, "Leaked interactor")
+    XCTAssertNil(disposableFilterState, "Leaked filterState")
+  }
 
   func testConnect() {
     let interactor = CurrentFiltersInteractor()

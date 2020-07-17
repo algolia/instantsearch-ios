@@ -21,6 +21,27 @@ class HitsInteractorFilterStateConnectionTests: XCTestCase {
   var filterState: FilterState {
     return .init()
   }
+  
+  weak var disposableInteractor: HitsInteractor<JSON>?
+  weak var disposableFilterState: FilterState?
+  
+  func testLeak() {
+    let interactor = self.interactor
+    let filterState = self.filterState
+    
+    disposableInteractor = interactor
+    disposableFilterState = filterState
+
+    let connection = HitsInteractorFilterStateConnection(interactor: interactor,
+                                                         filterState: filterState)
+
+    connection.connect()
+  }
+  
+  override func tearDown() {
+    XCTAssertNil(disposableInteractor, "Leaked interactor")
+    XCTAssertNil(disposableFilterState, "Leaked filterState")
+  }
 
   func testConnection() {
     let interactor = self.interactor

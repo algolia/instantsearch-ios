@@ -15,6 +15,29 @@ class FacetListFilterStateConnectionTests: XCTestCase {
   let attribute: Attribute = "Test Attribute"
   let groupName = "Test group"
   let facets: [Facet] = .init(prefix: "v", count: 4)
+  
+  weak var disposableInteractor: FacetListInteractor?
+  weak var disposableFilterState: FilterState?
+  
+  func testLeak() {
+    let interactor = FacetListInteractor(facets: facets, selectionMode: .single)
+    let filterState = FilterState()
+    
+    disposableInteractor = interactor
+    disposableFilterState = filterState
+
+    let connection = FacetList.FilterStateConnection(interactor: interactor,
+                                                     filterState: filterState,
+                                                     attribute: attribute,
+                                                     operator: .and,
+                                                     groupName: groupName)
+    connection.connect()
+  }
+  
+  override func tearDown() {
+    XCTAssertNil(disposableInteractor, "Leaked interactor")
+    XCTAssertNil(disposableFilterState, "Leaked filterState")
+  }
 
   func testConnect() {
     let interactor = FacetListInteractor(facets: facets, selectionMode: .single)

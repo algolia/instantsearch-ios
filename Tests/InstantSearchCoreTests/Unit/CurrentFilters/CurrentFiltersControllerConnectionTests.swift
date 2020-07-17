@@ -11,9 +11,28 @@ import Foundation
 import XCTest
 
 class CurrentFiltersControllerConnectionTests: XCTestCase {
-
+ 
   let attribute: Attribute = "Test Attribute"
   let groupName = "Test group"
+  
+  weak var disposableInteractor: CurrentFiltersInteractor?
+  weak var disposableController: TestCurrentFiltersController?
+  
+  func testLeak() {
+    let interactor = CurrentFiltersInteractor()
+    let controller = TestCurrentFiltersController()
+    
+    disposableInteractor = interactor
+    disposableController = controller
+
+    let connection = CurrentFiltersInteractor.ControllerConnection(interactor: interactor, controller: controller)
+    connection.connect()
+  }
+  
+  override func tearDown() {
+    XCTAssertNil(disposableInteractor, "Leaked interactor")
+    XCTAssertNil(disposableController, "Leaked controller")
+  }
 
   func testConnect() {
 
