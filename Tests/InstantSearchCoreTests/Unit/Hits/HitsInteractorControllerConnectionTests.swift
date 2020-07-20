@@ -17,6 +17,25 @@ class HitsInteractorControllerConnectionTests: XCTestCase {
           paginationController: .init(),
     infiniteScrollingController: TestInfiniteScrollingController())
   }
+  
+  weak var disposableController: TestHitsController<JSON>?
+  weak var disposableInteractor: HitsInteractor<JSON>?
+  
+  func testLeak() {
+    let interactor = self.interactor
+    let controller = TestHitsController<JSON>()
+
+    disposableController = controller
+    disposableInteractor = interactor
+    
+    let connection = HitsInteractor.ControllerConnection(interactor: interactor, controller: controller)
+    connection.connect()
+  }
+  
+  override func tearDown() {
+    XCTAssertNil(disposableInteractor, "Leaked interactor")
+    XCTAssertNil(disposableController, "Leaked controller")
+  }
 
   func testConnect() {
 

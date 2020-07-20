@@ -29,18 +29,20 @@ extension FacetList {
 
     public func connect() {
 
-      setControllerItemsWith(facets: facetListInteractor.items, selections: facetListInteractor.selections, controller: controller, presenter: presenter)
-
+      ControllerConnection.setControllerItemsWith(facets: facetListInteractor.items, selections: facetListInteractor.selections, controller: controller, presenter: presenter)
+      
       controller.onClick = { [weak facetListInteractor] facet in
         facetListInteractor?.computeSelections(selectingItemForKey: facet.value)
       }
 
-      facetListInteractor.onItemsChanged.subscribePast(with: controller) { controller, facets in
-        self.setControllerItemsWith(facets: facets, selections: self.facetListInteractor.selections, controller: controller, presenter: self.presenter)
+      facetListInteractor.onItemsChanged.subscribePast(with: controller) { [weak interactor = self.facetListInteractor, presenter = self.presenter] controller, facets in
+        guard let interactor = interactor else { return }
+        ControllerConnection.setControllerItemsWith(facets: facets, selections: interactor.selections, controller: controller, presenter: presenter)
       }
 
-      facetListInteractor.onSelectionsChanged.subscribePast(with: controller) { controller, selections in
-        self.setControllerItemsWith(facets: self.facetListInteractor.items, selections: selections, controller: controller, presenter: self.presenter)
+      facetListInteractor.onSelectionsChanged.subscribePast(with: controller) { [weak interactor = self.facetListInteractor, presenter = self.presenter] controller, selections in
+        guard let interactor = interactor else { return }
+        ControllerConnection.setControllerItemsWith(facets: interactor.items, selections: selections, controller: controller, presenter: presenter)
       }
 
     }
@@ -54,16 +56,16 @@ extension FacetList {
     /// Add missing refinements with a count of 0 to all returned facets
     /// Example: if in result we have color: [(red, 10), (green, 5)] and that in the refinements
     /// we have "color: red" and "color: yellow", the final output would be [(red, 10), (green, 5), (yellow, 0)]
-    private func merge(_ facets: [Facet], withSelectedValues selections: Set<String>) -> [SelectableItem<Facet>] {
+    private static func merge(_ facets: [Facet], withSelectedValues selections: Set<String>) -> [SelectableItem<Facet>] {
       return facets.map { SelectableItem<Facet>($0, selections.contains($0.value)) }
     }
 
-    private func setControllerItemsWith<Controller: FacetListController>(facets: [Facet], selections: Set<String>, controller: Controller, presenter: SelectableListPresentable?) {
+    private static func setControllerItemsWith<Controller: FacetListController>(facets: [Facet], selections: Set<String>, controller: Controller, presenter: SelectableListPresentable?) {
       let updatedFacets = merge(facets, withSelectedValues: selections)
       let sortedFacetValues = presenter?.transform(refinementFacets: updatedFacets) ?? updatedFacets
       controller.setSelectableItems(selectableItems: sortedFacetValues)
-      DispatchQueue.main.async {
-        controller.reload()
+      DispatchQueue.main.async { [weak controller] in
+        controller?.reload()
       }
     }
 
@@ -76,6 +78,7 @@ public extension FacetListInteractor {
   @discardableResult func connectController<C: FacetListController>(_ controller: C,
                                                                     with presenter: SelectableListPresentable? = nil,
                                                                     externalReload: Bool = false) -> FacetList.ControllerConnection<C> {
+    
     let connection = FacetList.ControllerConnection(facetListInteractor: self,
                                                     controller: controller,
                                                     presenter: presenter,

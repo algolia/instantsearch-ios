@@ -81,7 +81,7 @@ public struct SelectableFilterInteractorFilterStateConnection<Filter: FilterType
       interactor.selected = interactor.items.first(where: { accessor.contains($0.value) })?.key
     }
 
-    onChange(interactor, ReadOnlyFiltersContainer(filtersContainer: filterState))
+    onChange(interactor, ReadOnlyFiltersContainer(filterState: filterState))
 
     filterState.onChange.subscribePast(with: interactor, callback: onChange)
   }

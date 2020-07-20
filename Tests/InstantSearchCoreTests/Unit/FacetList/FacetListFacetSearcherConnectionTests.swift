@@ -17,6 +17,25 @@ class FacetListFacetSearcherConnectionTests: XCTestCase {
   var results: FacetSearcher.SearchResult {
     return try! FacetSearcher.SearchResult(json: ["facetHits": try! JSON(facets), "exhaustiveFacetsCount": true, "processingTimeMS": 1])
   }
+  
+  weak var disposableInteractor: FacetListInteractor?
+  weak var disposableSearcher: FacetSearcher?
+  
+  func testLeak() {
+    let interactor = FacetListInteractor(facets: facets, selectionMode: .single)
+    let searcher = FacetSearcher(appID: "", apiKey: "", indexName: "", facetName: "facet")
+
+    disposableInteractor = interactor
+    disposableSearcher = searcher
+    
+    let connection = FacetListInteractor.FacetSearcherConnection(interactor: interactor, searcher: searcher)
+    connection.connect()
+  }
+  
+  override func tearDown() {
+    XCTAssertNil(disposableInteractor, "Leaked interactor")
+    XCTAssertNil(disposableSearcher, "Leaked searcher")
+  }
 
   func testConnect() {
 

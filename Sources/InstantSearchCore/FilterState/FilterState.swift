@@ -12,9 +12,11 @@ import Foundation
  Encapsulates search filters providing a convenient interface to manage them
  */
 public class FilterState {
+  
+  typealias Storage = FiltersReadable & FiltersWritable & FilterGroupsConvertible & HierarchicalManageable
 
   /// Filters container
-  var filters: FiltersReadable & FiltersWritable & FilterGroupsConvertible & HierarchicalManageable
+  var filters: Storage
 
   /// Triggered when an error occured during search query execution
   /// - Parameter: a tuple of query and error
@@ -40,7 +42,7 @@ public class FilterState {
 
   /// Force trigger onChange event
   public func notifyChange() {
-    onChange.fire(ReadOnlyFiltersContainer(filtersContainer: self))
+    onChange.fire(ReadOnlyFiltersContainer(filterState: self))
   }
 
   /// Subscript providing access to a conjunctive group with specified name

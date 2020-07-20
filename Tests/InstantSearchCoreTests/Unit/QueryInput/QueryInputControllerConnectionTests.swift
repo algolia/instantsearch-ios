@@ -11,6 +11,25 @@ import XCTest
 @testable import InstantSearchCore
 
 class QueryInputControllerConnectionTests: XCTestCase {
+  
+  weak var disposableInteractor: QueryInputInteractor?
+  weak var disposableController: TestQueryInputController?
+  
+  func testLeak() {
+    let controller = TestQueryInputController()
+    let interactor = QueryInputInteractor()
+    
+    disposableController = controller
+    disposableInteractor = interactor
+    
+    let connection = QueryInputInteractor.ControllerConnection(interactor: interactor, controller: controller)
+    connection.connect()
+  }
+  
+  override func tearDown() {
+    XCTAssertNil(disposableInteractor, "Leaked interactor")
+    XCTAssertNil(disposableInteractor, "Leaked controller")
+  }
 
   func testConnect() {
 

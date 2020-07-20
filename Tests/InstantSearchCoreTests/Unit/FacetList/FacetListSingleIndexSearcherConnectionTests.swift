@@ -14,6 +14,25 @@ class FacetListSingleIndexSearcherConnectionTests: XCTestCase {
 
   let attribute: Attribute = "Test Attribute"
   let facets: [Facet] = .init(prefix: "v", count: 3)
+  
+  weak var disposableSearcher: SingleIndexSearcher?
+  weak var disposableInteractor: FacetListInteractor?
+  
+  func testLeak() {
+    let searcher = SingleIndexSearcher(appID: "", apiKey: "", indexName: "")
+    let interactor = FacetListInteractor()
+    
+    disposableSearcher = searcher
+    disposableInteractor = interactor
+
+    let connection = FacetListInteractor.SingleIndexSearcherConnection(facetListInteractor: interactor, searcher: searcher, attribute: attribute)
+    connection.connect()
+  }
+  
+  override func tearDown() {
+    XCTAssertNil(disposableSearcher, "Leaked searcher")
+    XCTAssertNil(disposableInteractor, "Leaked interactor")
+  }
 
   func testConnect() {
     let searcher = SingleIndexSearcher(appID: "", apiKey: "", indexName: "")
