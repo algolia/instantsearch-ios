@@ -1,6 +1,6 @@
 Pod::Spec.new do |s|
   s.name = 'InstantSearch'
-  s.version = '7.0.0'
+  s.version = '7.0.1'
   s.platforms = { :ios => "8.0", :osx => "10.10", :watchos => "3.0", :tvos => "9.0" }
 
   s.license = { type: 'Apache 2.0', file: 'LICENSE.md' }
