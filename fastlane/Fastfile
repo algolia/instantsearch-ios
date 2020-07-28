@@ -56,7 +56,7 @@ lane :deploy do |options|
     path: "InstantSearch.podspec"
   )
 
-  sh("./generate_version #{new_build_number}")
+  sh("cd ..; ./generate_version #{new_build_number}")
 
   branchName = "version-#{new_build_number}"
   sh("git checkout -b #{branchName}")
