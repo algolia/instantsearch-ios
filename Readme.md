@@ -5,7 +5,6 @@
 [![Carthage compatible](https://img.shields.io/badge/Carthage-compatible-brightgreen.svg)](https://github.com/algolia/instantsearch-ios/)
 [![SwiftPM compatible](https://img.shields.io/badge/SwiftPM-compatible-brightgreen.svg)](https://swift.org/package-manager/)
 [![Mac Catalyst compatible](https://img.shields.io/badge/Catalyst-compatible-brightgreen.svg)](https://developer.apple.com/documentation/xcode/creating_a_mac_version_of_your_ipad_app/)
-[![Build Status](https://app.bitrise.io/app/780bdbbea54f2932/status.svg?token=f1LS-kRIdMjWWzHBdZCMFg&branch=bitrise)](https://app.bitrise.io/app/780bdbbea54f2932)
 [![Licence](http://img.shields.io/cocoapods/l/InstantSearch.svg?style=flat)](https://opensource.org/licenses/Apache-2.0)
 
 By [Algolia](http://algolia.com).
