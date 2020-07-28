@@ -43,7 +43,7 @@ public class HitsConnector<Hit: Codable>: Connection {
 public extension HitsConnector {
 
   convenience init(searcher: SingleIndexSearcher,
-                   interactor: HitsInteractor<Hit>,
+                   interactor: HitsInteractor<Hit> = .init(),
                    filterState: FilterState? = .none) {
     self.init(searcher: searcher,
               interactor: interactor,
@@ -54,7 +54,7 @@ public extension HitsConnector {
   convenience init(appID: ApplicationID,
                    apiKey: APIKey,
                    indexName: IndexName,
-                   interactor: HitsInteractor<Hit>,
+                   interactor: HitsInteractor<Hit> = .init(),
                    filterState: FilterState? = .none) {
     let searcher = SingleIndexSearcher(appID: appID,
                                        apiKey: apiKey,
