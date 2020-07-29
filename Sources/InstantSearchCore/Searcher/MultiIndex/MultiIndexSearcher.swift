@@ -150,8 +150,8 @@ public class MultiIndexSearcher: Searcher, SequencerDelegate, SearchResultObserv
     processingQueue.maxConcurrentOperationCount = 1
     processingQueue.qualityOfService = .userInitiated
 
-    self.pageLoaders = indexQueryStates.enumerated().map { (index, _) in
-      return PageLoaderProxy(setPage: { self.indexQueryStates[index].query.page = $0 }, launchSearch: self.search)
+    self.pageLoaders = indexQueryStates.enumerated().map { [weak self] (index, _) in
+      return PageLoaderProxy(setPage: { self?.indexQueryStates[index].query.page = $0 },                       launchSearch: { self?.search() })
     }
 
   }
