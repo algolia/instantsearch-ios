@@ -27,8 +27,8 @@ You can see InstantSearch iOS in action in our [Examples repository][examples-ur
 
 ### Swift Package Manager
 
-The Swift Package Manager is a tool for managing the distribution of Swift code. It’s integrated with the Swift build system to automate the process of downloading, compiling, and linking dependencies. 
-Since the release of Swift 5 and Xcode 11, SPM is compatible with the iOS, macOS and tvOS build systems for creating apps. 
+The Swift Package Manager is a tool for managing the distribution of Swift code. It’s integrated with the Swift build system to automate the process of downloading, compiling, and linking dependencies.
+Since the release of Swift 5 and Xcode 11, SPM is compatible with the iOS, macOS and tvOS build systems for creating apps.
 
 To use SwiftPM, you should use Xcode 11 to open your project. Click `File` -> `Swift Packages` -> `Add Package Dependency`, enter [InstantSearch repo's URL](https://github.com/algolia/instantsearch-ios).
 If you consider to use only the business logic modules of InstantSearch and don't need the set of provided UIKit controllers in your project, select only 'InstantSearchCore' in the provided list of products.
@@ -79,9 +79,9 @@ github "algolia/instantsearch-ios" ~> 7.0.0
  ```
 
  > NOTE: At this time, Carthage does not provide a way to build only specific repository subcomponents (or equivalent of CocoaPods's subspecs). All components and their dependencies will be built with the above command. However, you don't need to copy frameworks you aren't using into your project. For instance, if you aren't using UI components from `InstantSearch`, feel free to delete that framework from the Carthage Build directory after `carthage update` completes keeping only `InstantSearchCore`.
- 
+
  If this is your first time using Carthage in the project, you'll need to go through some additional steps as explained [over at Carthage](https://github.com/Carthage/Carthage#adding-frameworks-to-an-application).
- 
+
 
 ## Documentation
 
@@ -96,67 +96,71 @@ In your `ViewController.swift`:
 ```swift
 import InstantSearch
 
-let searcher: SingleIndexSearcher = .init(appID: "latency",
-                                          apiKey: "1f6fd3a6fb973cb08419fe7d288fa4db",
-                                          indexName: "bestbuy")
-  
-let queryInputInteractor: QueryInputInteractor = .init()
-let searchBarController: SearchBarController = .init(searchBar: UISearchBar())
-  
-let statsInteractor: StatsInteractor = .init()
-let statsController: LabelStatsController = .init(label: UILabel())
+class SearchBarViewController: UIViewController {
 
-override func viewDidLoad() {
-    super.viewDidLoad()
-    setup()
-    configureUI()
-}
+    let searcher: SingleIndexSearcher = .init(appID: "latency",
+                                              apiKey: "1f6fd3a6fb973cb08419fe7d288fa4db",
+                                              indexName: "bestbuy")
 
-func setup() {
-    searcher.connectFilterState(filterState)
-    
-    queryInputInteractor.connectSearcher(searcher)
-    queryInputInteractor.connectController(searchBarController)
-    
-    statsInteractor.connectSearcher(searcher)
-    statsInteractor.connectController(statsController)
+    let filterState: FilterState = .init()
+    let queryInputInteractor: QueryInputInteractor = .init()
+    let searchBarController: SearchBarController = .init(searchBar: UISearchBar())
 
-    searcher.search()
-}
+    let statsInteractor: StatsInteractor = .init()
+    let statsController: LabelStatsController = .init(label: UILabel())
 
-func configureUI() {
-    
-    view.backgroundColor = .white
-    
-    let stackView = UIStackView()
-    stackView.translatesAutoresizingMaskIntoConstraints = false
-    stackView.spacing = 16
-    stackView.axis = .vertical
-    stackView.layoutMargins = UIEdgeInsets(top: 0, left: 5, bottom: 0, right: 0)
-    stackView.isLayoutMarginsRelativeArrangement = true
-    
-    let searchBar = searchBarController.searchBar
-    searchBar.translatesAutoresizingMaskIntoConstraints = false
-    searchBar.heightAnchor.constraint(equalToConstant: 40).isActive = true
-    searchBar.searchBarStyle = .minimal
-    stackView.addArrangedSubview(searchBar)
-    
-    let statsLabel = statsController.label
-    statsLabel.translatesAutoresizingMaskIntoConstraints = false
-    statsLabel.heightAnchor.constraint(equalToConstant: 16).isActive = true
-    stackView.addArrangedSubview(statsLabel)
+    override func viewDidLoad() {
+        super.viewDidLoad()
+        setup()
+        configureUI()
+    }
 
-    stackView.addArrangedSubview(UIView())
+    func setup() {
+        searcher.connectFilterState(filterState)
 
-    view.addSubview(stackView)
+        queryInputInteractor.connectSearcher(searcher)
+        queryInputInteractor.connectController(searchBarController)
 
-    NSLayoutConstraint.activate([
-      stackView.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor),
-      stackView.bottomAnchor.constraint(equalTo: view.safeAreaLayoutGuide.bottomAnchor),
-      stackView.leadingAnchor.constraint(equalTo: view.safeAreaLayoutGuide.leadingAnchor),
-      stackView.trailingAnchor.constraint(equalTo: view.safeAreaLayoutGuide.trailingAnchor),
-    ])
+        statsInteractor.connectSearcher(searcher)
+        statsInteractor.connectController(statsController)
 
+        searcher.search()
+    }
+
+    func configureUI() {
+
+        view.backgroundColor = .white
+
+        let stackView = UIStackView()
+        stackView.translatesAutoresizingMaskIntoConstraints = false
+        stackView.spacing = 16
+        stackView.axis = .vertical
+        stackView.layoutMargins = UIEdgeInsets(top: 0, left: 5, bottom: 0, right: 0)
+        stackView.isLayoutMarginsRelativeArrangement = true
+
+        let searchBar = searchBarController.searchBar
+        searchBar.translatesAutoresizingMaskIntoConstraints = false
+        searchBar.heightAnchor.constraint(equalToConstant: 40).isActive = true
+        searchBar.searchBarStyle = .minimal
+        stackView.addArrangedSubview(searchBar)
+
+        let statsLabel = statsController.label
+        statsLabel.translatesAutoresizingMaskIntoConstraints = false
+        statsLabel.heightAnchor.constraint(equalToConstant: 16).isActive = true
+        stackView.addArrangedSubview(statsLabel)
+
+        stackView.addArrangedSubview(UIView())
+
+        view.addSubview(stackView)
+
+        NSLayoutConstraint.activate([
+          stackView.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor),
+          stackView.bottomAnchor.constraint(equalTo: view.safeAreaLayoutGuide.bottomAnchor),
+          stackView.leadingAnchor.constraint(equalTo: view.safeAreaLayoutGuide.leadingAnchor),
+          stackView.trailingAnchor.constraint(equalTo: view.safeAreaLayoutGuide.trailingAnchor),
+        ])
+
+    }
 }
 ```
 
@@ -164,7 +168,7 @@ Run your app and you will the most basic search experience: a `UISearchBar` with
 
 To get a more meaningful search experience, please follow our [Getting Started Guide](https://www.algolia.com/doc/guides/building-search-ui/getting-started/ios/).
 
-If you only require business logic modules in your project and use `InstantSearchCore` framework, add `import InstantSearchCore` to your source files. 
+If you only require business logic modules in your project and use `InstantSearchCore` framework, add `import InstantSearchCore` to your source files.
 
 ## Getting Help
 
