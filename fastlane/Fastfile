@@ -83,12 +83,9 @@ lane :deploy do |options|
   )
 
   pod_push(
-    path: "InstantSearchCore.podspec",
+    path: "InstantSearch.podspec",
     allow_warnings: true
   )
-  # This is failing when no files are changed. So we added this step in Bitrise instead along with is_skippable: true.
-  # 
-  # deploy_api_reference
 end
 
 lane :deployBeta do |options| 
