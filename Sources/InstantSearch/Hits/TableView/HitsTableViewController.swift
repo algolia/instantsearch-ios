@@ -6,9 +6,11 @@
 //  Copyright © 2020 Algolia. All rights reserved.
 //
 
-import Foundation
+#if !InstantSearchCocoaPods
+import InstantSearchCore
+#endif
+#if canImport(UIKit) && (os(iOS) || os(tvOS) || os(macOS))
 import UIKit
-import InstantSearch
 
 open class HitsTableViewController<CellConfigurator: TableViewCellConfigurator>: UITableViewController, HitsController {
     
@@ -39,3 +41,4 @@ open class HitsTableViewController<CellConfigurator: TableViewCellConfigurator>:
   }
   
 }
+#endif

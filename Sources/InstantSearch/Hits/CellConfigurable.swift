@@ -6,7 +6,10 @@
 //  Copyright © 2020 Algolia. All rights reserved.
 //
 
-import Foundation
+#if !InstantSearchCocoaPods
+import InstantSearchCore
+#endif
+#if canImport(UIKit) && (os(iOS) || os(tvOS) || os(macOS))
 import UIKit
 
 public protocol CellConfigurator {
@@ -34,3 +37,4 @@ public protocol CollectionViewCellConfigurator: CellConfigurator {
   var cellSize: CGSize { get }
   func configure(_ cell: Cell)
 }
+#endif
