@@ -12,7 +12,7 @@ import InstantSearchCore
 #if canImport(UIKit) && (os(iOS) || os(tvOS) || os(macOS))
 import UIKit
 
-open class HitsTableViewController<CellConfigurator: TableViewCellConfigurator>: UITableViewController, HitsController {
+open class HitsTableViewController<CellConfigurator: TableViewCellConfigurable>: UITableViewController, HitsController {
     
   public var hitsSource: HitsInteractor<CellConfigurator.Model>?
   

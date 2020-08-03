@@ -12,7 +12,7 @@ import InstantSearchCore
 #if canImport(UIKit) && (os(iOS) || os(tvOS) || os(macOS))
 import UIKit
 
-open class HitsCollectionViewController<CellConfigurator: CollectionViewCellConfigurator>: UICollectionViewController, UICollectionViewDelegateFlowLayout, HitsController {
+open class HitsCollectionViewController<CellConfigurator: CollectionViewCellConfigurable>: UICollectionViewController, UICollectionViewDelegateFlowLayout, HitsController {
   
   public var hitsSource: HitsInteractor<CellConfigurator.Model>?
 
