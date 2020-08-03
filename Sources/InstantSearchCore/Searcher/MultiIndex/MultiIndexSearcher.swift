@@ -35,12 +35,26 @@ public class MultiIndexSearcher: Searcher, SequencerDelegate, SearchResultObserv
   public let client: SearchClient
 
   /// List of  index & query tuples
-  public internal(set) var indexQueryStates: [IndexQueryState]
+  public internal(set) var indexQueryStates: [IndexQueryState] {
+    didSet {
+      let indexNameDiff = zip(oldValue.map(\.indexName), indexQueryStates.map(\.indexName)).enumerated()
+      for (queryIndex, (oldIndexName, newIndexName)) in indexNameDiff where oldIndexName != newIndexName {
+        onIndexChanged.fire((queryIndex, newIndexName))
+      }
+    }
+  }
 
   public let isLoading: Observer<Bool>
 
+  /// Triggered when a query text of Searcher changed
+  /// - Parameter: equals to a new query text
   public let onQueryChanged: Observer<String?>
+  
+  /// Triggered when an index of a query changed
+  /// - Parameter: a tuple of a index of query for which the indexName has changed and the new indexName
+  public let onIndexChanged: Observer<(Int, IndexName)>
 
+  /// Triggered when a new result received by Searcher
   public let onResults: Observer<SearchesResponse>
 
   /// Triggered when an error occured during search query execution
@@ -124,6 +138,7 @@ public class MultiIndexSearcher: Searcher, SequencerDelegate, SearchResultObserv
     processingQueue = .init()
     sequencer = .init()
     onQueryChanged = .init()
+    onIndexChanged = .init()
     isLoading = .init()
     onResults = .init()
     onError = .init()
