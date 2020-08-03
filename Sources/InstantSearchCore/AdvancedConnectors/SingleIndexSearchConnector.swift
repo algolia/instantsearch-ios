@@ -9,9 +9,7 @@
 import Foundation
 
 public struct SingleIndexSearchConnector<Record: Codable>: Connection {
-  
-  public typealias HitsInteractor = InstantSearchCore.HitsInteractor<Record>
-  
+    
   public let hitsConnector: HitsConnector<Record>
   public let hitsControllerConnection: Connection
   
@@ -24,9 +22,9 @@ public struct SingleIndexSearchConnector<Record: Codable>: Connection {
   public init<HC: HitsController, QI: QueryInputController>(searcher: SingleIndexSearcher,
                                                             queryInputInteractor: QueryInputInteractor = .init(),
                                                             queryInputController: QI,
-                                                            hitsInteractor: HitsInteractor = .init(),
+                                                            hitsInteractor: HitsInteractor<Record> = .init(),
                                                             hitsController: HC,
-                                                            filterState: FilterState? = nil) where HC.DataSource == HitsInteractor {
+                                                            filterState: FilterState? = nil) where HC.DataSource == HitsInteractor<Record> {
     hitsConnector = .init(searcher: searcher, interactor: hitsInteractor, filterState: filterState)
     queryInputConnector = .init(searcher: searcher, interactor: queryInputInteractor)
     
@@ -48,9 +46,9 @@ public struct SingleIndexSearchConnector<Record: Codable>: Connection {
                                                             indexName: IndexName,
                                                             queryInputInteractor: QueryInputInteractor = .init(),
                                                             queryInputController: QI,
-                                                            hitsInteractor: HitsInteractor = .init(),
+                                                            hitsInteractor: HitsInteractor<Record> = .init(),
                                                             hitsController: HC,
-                                                            filterState: FilterState? = nil)  where HC.DataSource == HitsInteractor {
+                                                            filterState: FilterState? = nil)  where HC.DataSource == HitsInteractor<Record> {
     let searcher = SingleIndexSearcher(appID: appID,
                                        apiKey: apiKey,
                                        indexName: indexName)
