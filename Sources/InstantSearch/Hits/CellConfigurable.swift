@@ -12,27 +12,27 @@ import InstantSearchCore
 #if canImport(UIKit) && (os(iOS) || os(tvOS) || os(macOS))
 import UIKit
 
-public protocol CellConfigurator {
+public protocol CellConfigurable {
   associatedtype Model: Codable
   init(model: Model, indexPath: IndexPath)
   static var cellIdentifier: String { get }
 }
 
-extension CellConfigurator {
+extension CellConfigurable {
   static var cellIdentifier: String { return "\(Self.self)" }
 }
 
-public protocol TableViewCellConfigurator: CellConfigurator {
+public protocol TableViewCellConfigurable: CellConfigurable {
   associatedtype Cell: UITableViewCell
   var cellHeight: CGFloat { get }
   func configure(_ cell: Cell)
 }
 
-extension TableViewCellConfigurator {
+extension TableViewCellConfigurable {
   var cellHeight: CGFloat { return 44 }
 }
 
-public protocol CollectionViewCellConfigurator: CellConfigurator {
+public protocol CollectionViewCellConfigurable: CellConfigurable {
   associatedtype Cell: UICollectionViewCell
   var cellSize: CGSize { get }
   func configure(_ cell: Cell)
