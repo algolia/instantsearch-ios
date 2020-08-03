@@ -9,8 +9,8 @@
 
 import Foundation
 import AlgoliaSearchClient
-/** An entity performing search queries targeting one index
-*/
+
+/// An entity performing search queries targeting one index
 
 public class SingleIndexSearcher: Searcher, SequencerDelegate, SearchResultObservable {
 
@@ -68,6 +68,15 @@ public class SingleIndexSearcher: Searcher, SequencerDelegate, SearchResultObser
   /// Flag defining if disjunctive faceting is enabled
   /// - Default value: true
   public var isDisjunctiveFacetingEnabled = true
+  
+  /// Closure defining the condition under which the search operation should be triggered
+  ///
+  /// Example: if you don't want search operation triggering in case of empty query, you should set this value
+  /// ````
+  /// searcher.shouldTriggerSearchForQuery = { query in query.query ?? "" != "" }
+  /// ````
+  /// - Default value: nil
+  public var shouldTriggerSearchForQuery: ((Query) -> Bool)?
 
   /// Sequencer which orders and debounce redundant search operations
   internal let sequencer: Sequencer
@@ -135,6 +144,10 @@ public class SingleIndexSearcher: Searcher, SequencerDelegate, SearchResultObser
   }
 
   public func search() {
+    
+    if let shouldTriggerSearch = shouldTriggerSearchForQuery, !shouldTriggerSearch(indexQueryState.query) {
+      return
+    }
 
     let query = indexQueryState.query
 
