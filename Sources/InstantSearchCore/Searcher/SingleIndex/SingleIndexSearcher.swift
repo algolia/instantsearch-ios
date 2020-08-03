@@ -44,12 +44,15 @@ public class SingleIndexSearcher: Searcher, SequencerDelegate, SearchResultObser
 
   public let isLoading: Observer<Bool>
 
+  /// Triggered when a new result received by Searcher
   public let onResults: Observer<SearchResponse>
 
   /// Triggered when an error occured during search query execution
   /// - Parameter: a tuple of query and error
   public let onError: Observer<(Query, Error)>
 
+  /// Triggered when a query text of Searcher changed
+  /// - Parameter: equals to a new query text
   public let onQueryChanged: Observer<String?>
 
   /// Triggered when an index of Searcher changed
