@@ -18,7 +18,7 @@ public protocol CellConfigurable {
   static var cellIdentifier: String { get }
 }
 
-extension CellConfigurable {
+public extension CellConfigurable {
   static var cellIdentifier: String { return "\(Self.self)" }
 }
 
@@ -28,7 +28,7 @@ public protocol TableViewCellConfigurable: CellConfigurable {
   func configure(_ cell: Cell)
 }
 
-extension TableViewCellConfigurable {
+public extension TableViewCellConfigurable {
   var cellHeight: CGFloat { return 44 }
 }
 
