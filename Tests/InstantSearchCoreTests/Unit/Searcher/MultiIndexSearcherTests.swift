@@ -18,7 +18,7 @@ class MultiIndexSearcherTests: XCTestCase {
       exp.fulfill()
     }
     searcher.query = ""
-    waitForExpectations(timeout: 10, handler: .none)
+    waitForExpectations(timeout: 2, handler: .none)
   }
   
   func testOnIndexChanged() {
@@ -31,7 +31,31 @@ class MultiIndexSearcherTests: XCTestCase {
       exp.fulfill()
     }
     searcher.indexQueryStates[1].indexName = "index3"
-    waitForExpectations(timeout: 10, handler: .none)
+    waitForExpectations(timeout: 2, handler: .none)
   }
+  
+  func testOnSearch() {
+    let searcher = MultiIndexSearcher(appID: "", apiKey: "", indexNames: ["i1", "i2"])
+    let exp = expectation(description: "Search expectation")
+    searcher.onSearch.subscribe(with: self) { (test, _) in
+      exp.fulfill()
+    }
+    searcher.search()
+    waitForExpectations(timeout: 2, handler: .none)
+  }
+  
+  func testConditionalSearch() {
+    let searcher = MultiIndexSearcher(appID: "", apiKey: "", indexNames: ["i1", "i2"])
+    let exp = expectation(description: "Search expectation")
+    exp.isInverted = true
+    searcher.onSearch.subscribe(with: self) { (test, _) in
+      exp.fulfill()
+    }
+    searcher.shouldTriggerSearchForQueries = { queries in return queries[0].query ?? "" != "" }
+    searcher.query = nil
+    searcher.search()
+    waitForExpectations(timeout: 2, handler: .none)
+  }
+
 
 }
