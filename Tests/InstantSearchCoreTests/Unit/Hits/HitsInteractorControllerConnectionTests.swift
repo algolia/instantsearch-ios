@@ -46,9 +46,8 @@ class HitsInteractorControllerConnectionTests: XCTestCase {
 
     connection.connect()
 
-    checkConnection(interactor: interactor,
-                    controller: controller,
-                    isConnected: true)
+    let tester = HitsInteractorControllerConnectionTester(interactor: interactor, controller: controller, source: self)
+    tester.check(isConnected: true)
 
   }
 
@@ -59,9 +58,8 @@ class HitsInteractorControllerConnectionTests: XCTestCase {
 
     interactor.connectController(controller)
 
-    checkConnection(interactor: interactor,
-                    controller: controller,
-                    isConnected: true)
+    let tester = HitsInteractorControllerConnectionTester(interactor: interactor, controller: controller, source: self)
+    tester.check(isConnected: true)
 
   }
 
@@ -74,15 +72,28 @@ class HitsInteractorControllerConnectionTests: XCTestCase {
 
     connection.disconnect()
 
-    checkConnection(interactor: interactor,
-                    controller: controller,
-                    isConnected: false)
+    let tester = HitsInteractorControllerConnectionTester(interactor: interactor, controller: controller, source: self)
+    tester.check(isConnected: false)
 
   }
 
-  func checkConnection(interactor: HitsInteractor<JSON>,
-                       controller: TestHitsController<JSON>,
-                       isConnected: Bool) {
+}
+
+class HitsInteractorControllerConnectionTester {
+  
+  let interactor: HitsInteractor<JSON>
+  let controller: TestHitsController<JSON>
+  let source: XCTestCase
+  
+  init(interactor: HitsInteractor<JSON>,
+       controller: TestHitsController<JSON>,
+       source: XCTestCase) {
+    self.interactor = interactor
+    self.controller = controller
+    self.source = source
+  }
+  
+  func check(isConnected: Bool, file: StaticString = #file, line: UInt = #line) {
 
     if isConnected {
       XCTAssertTrue(controller.hitsSource === interactor)
@@ -90,7 +101,7 @@ class HitsInteractorControllerConnectionTests: XCTestCase {
       XCTAssertNil(controller.hitsSource)
     }
 
-    let requestChangedExpectation = expectation(description: "request changed")
+    let requestChangedExpectation = source.expectation(description: "request changed")
     requestChangedExpectation.isInverted = !isConnected
 
     controller.didScrollToTop = {
@@ -99,7 +110,7 @@ class HitsInteractorControllerConnectionTests: XCTestCase {
 
     interactor.onRequestChanged.fire(())
 
-    let resultsUpdatedExpectation = expectation(description: "results updated")
+    let resultsUpdatedExpectation = source.expectation(description: "results updated")
     resultsUpdatedExpectation.isInverted = !isConnected
 
     controller.didReload = {
@@ -107,8 +118,9 @@ class HitsInteractorControllerConnectionTests: XCTestCase {
     }
 
     interactor.onResultsUpdated.fire(SearchResponse(hits: [TestRecord<Int>]()))
-
-    waitForExpectations(timeout: 5, handler: .none)
+    
+    source.waitForExpectations(timeout: 2, handler: .none)
+    
   }
-
+  
 }
