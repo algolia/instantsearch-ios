@@ -8,14 +8,33 @@
 
 import Foundation
 
+/**
+Connector encapsulating basic search experience within multiple indices
+
+Most of the components associated by this connector are created and connected automatically, it's only required to provide a proper `Controller` implementations.
+*/
 public struct MultiIndexSearchConnector: Connection {
   
+  /// Connector establishing the linkage between searcher, hits interactor and optionally filter state
   public let hitsConnector: MultiIndexHitsConnector
+  
+  /// Connection between hits interactor of hits connector and provided hits controller
   public let hitsControllerConnection: Connection
   
+  /// Connector establishing the linkage between searcher and query input interactor
   public let queryInputConnector: QueryInputConnector<MultiIndexSearcher>
+  
+  /// Connection between query input interactor of query input connector and provided query input controller
   public let queryInputControllerConnection: Connection
   
+  /**
+   - Parameters:
+     - searcher: External multi index sercher
+     - indexModules: List of index modules associating index name, hits interactor and optional filter state
+     - hitsController: Hits controller
+     - queryInputInteractor: External query input interactor
+     - queryInputController: Query input controller
+   */
   public init<QI: QueryInputController, HC: MultiIndexHitsController>(searcher: MultiIndexSearcher,
                                                                       indexModules: [MultiIndexHitsConnector.IndexModule],
                                                                       hitsController: HC,
@@ -28,6 +47,15 @@ public struct MultiIndexSearchConnector: Connection {
     searcher.search()
   }
   
+  /**
+   - Parameters:
+     - appID: Application ID
+     - apiKey: API Key
+     - indexModules: List of index modules associating index name, hits interactor and optional filter state
+     - hitsController: Hits controller
+     - queryInputInteractor: External query input interactor
+     - queryInputController: Query input controller
+   */
   public init<QI: QueryInputController, HC: MultiIndexHitsController>(appID: ApplicationID,
                                                                       apiKey: APIKey,
                                                                       indexModules: [MultiIndexHitsConnector.IndexModule],
