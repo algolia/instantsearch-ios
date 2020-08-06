@@ -8,17 +8,40 @@
 
 import Foundation
 
+/**
+ Connector encapsulating basic search experience within single index
+ 
+ Most of the components associated by this connector are created and connected automatically, it's only required to provide a proper `Controller` implementations.
+ */
 public struct SingleIndexSearchConnector<Record: Codable>: Connection {
-    
+  
+  /// Connector establishing the linkage between searcher, hits interactor and optionally filter state
   public let hitsConnector: HitsConnector<Record>
+  
+  /// Connection between hits interactor of hits connector and provided hits controller
   public let hitsControllerConnection: Connection
   
+  /// Connector establishing the linkage between searcher and query input interactor
   public let queryInputConnector: QueryInputConnector<SingleIndexSearcher>
+  
+  /// Connection between query input interactor of query input connector and provided query input controller
   public let queryInputControllerConnection: Connection
   
+  /// Connection between filter state and hits interactor of hits connector
   public let filterStateHitsInteractorConnection: Connection?
+  
+  /// Connection between filter state and searcher
   public let filterStateSearcherConnection: Connection?
   
+  /**
+   - Parameters:
+     - searcher: External single index sercher
+     - queryInputInteractor: External query input interactor
+     - queryInputController: Query input controller
+     - hitsInteractor: External hits interactor
+     - hitsController: Hits controller
+     - filterState: Filter state
+  */
   public init<HC: HitsController, QI: QueryInputController>(searcher: SingleIndexSearcher,
                                                             queryInputInteractor: QueryInputInteractor = .init(),
                                                             queryInputController: QI,
@@ -41,6 +64,17 @@ public struct SingleIndexSearchConnector<Record: Codable>: Connection {
     
   }
   
+  /**
+   - Parameters:
+     - appID: Application ID
+     - apiKey: API Key
+     - indexName: Name of the index in which search will be performed
+     - queryInputInteractor: External query input interactor
+     - queryInputController: Query input controller
+     - hitsInteractor: External hits interactor
+     - hitsController: Hits controller
+     - filterState: Filter state
+   */
   public init<HC: HitsController, QI: QueryInputController>(appID: ApplicationID,
                                                             apiKey: APIKey,
                                                             indexName: IndexName,
