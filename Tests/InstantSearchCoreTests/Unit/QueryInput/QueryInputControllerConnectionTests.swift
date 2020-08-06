@@ -42,10 +42,11 @@ class QueryInputControllerConnectionTests: XCTestCase {
 
     connection.connect()
 
-    check(interactor: interactor,
-          controller: controller,
-          presetQuery: presetQuery,
-          isConnected: true)
+    let tester = QueryInputControllerConnectionTester(interactor: interactor,
+                                                      controller: controller,
+                                                      presetQuery: presetQuery,
+                                                      source: self)
+    tester.check(isConnected: true)
 
   }
 
@@ -58,10 +59,11 @@ class QueryInputControllerConnectionTests: XCTestCase {
 
     interactor.connectController(controller)
 
-    check(interactor: interactor,
-          controller: controller,
-          presetQuery: presetQuery,
-          isConnected: true)
+    let tester = QueryInputControllerConnectionTester(interactor: interactor,
+                                                      controller: controller,
+                                                      presetQuery: presetQuery,
+                                                      source: self)
+    tester.check(isConnected: true)
 
   }
 
@@ -75,41 +77,58 @@ class QueryInputControllerConnectionTests: XCTestCase {
     connection.connect()
     connection.disconnect()
 
-    check(interactor: interactor,
-          controller: controller,
-          presetQuery: nil,
-          isConnected: false)
+    let tester = QueryInputControllerConnectionTester(interactor: interactor,
+                                                      controller: controller,
+                                                      presetQuery: nil,
+                                                      source: self)
+    tester.check(isConnected: false)
 
   }
 
-  func check(interactor: QueryInputInteractor,
-             controller: TestQueryInputController,
-             presetQuery: String?,
-             isConnected: Bool) {
+}
 
-    XCTAssertEqual(controller.query, presetQuery)
+class QueryInputControllerConnectionTester {
+  
+  let interactor: QueryInputInteractor
+  let controller: TestQueryInputController
+  let presetQuery: String?
+  let source: XCTestCase
+  
+  init(interactor: QueryInputInteractor,
+       controller: TestQueryInputController,
+       presetQuery: String?,
+       source: XCTestCase) {
+    self.interactor = interactor
+    self.controller = controller
+    self.presetQuery = presetQuery
+    self.source = source
+  }
+  
+  func check(isConnected: Bool, file: StaticString = #file, line: UInt = #line) {
+
+    XCTAssertEqual(controller.query, presetQuery, file: file, line: line)
 
     controller.query = "q2"
 
     if isConnected {
-      XCTAssertEqual(interactor.query, "q2")
+      XCTAssertEqual(interactor.query, "q2", file: file, line: line)
     } else {
-      XCTAssertNil(interactor.query)
+      XCTAssertNil(interactor.query, file: file, line: line)
     }
 
     controller.query = "q3"
 
-    let querySubmittedExpectation = expectation(description: "query submitted")
+    let querySubmittedExpectation = source.expectation(description: "query submitted")
     querySubmittedExpectation.isInverted = !isConnected
 
     interactor.onQuerySubmitted.subscribe(with: self) { _, query in
-      XCTAssertEqual(query, "q3")
+      XCTAssertEqual(query, "q3", file: file, line: line)
       querySubmittedExpectation.fulfill()
     }
 
     controller.submitQuery()
 
-    waitForExpectations(timeout: 2, handler: nil)
+    source.waitForExpectations(timeout: 2, handler: nil)
 
   }
 

@@ -63,10 +63,12 @@ class HitsInteractorSearcherConnectionTests: XCTestCase {
                                                                               searcher: searcher)
     connection.connect()
 
-    checkConnection(searcher: searcher,
-                    interactor: interactor,
-                    infiniteScrollingController: infiniteScrollingController,
-                    isConnected: true)
+    let tester = HitsInteractorSearcherConnectionTester(searcher: searcher,
+                                                        interactor: interactor,
+                                                        infiniteScrollingController: infiniteScrollingController,
+                                                        source: self)
+    tester.check(isConnected: true)
+
   }
 
   func testDisconnect() {
@@ -82,10 +84,11 @@ class HitsInteractorSearcherConnectionTests: XCTestCase {
     connection.connect()
     connection.disconnect()
 
-    checkConnection(searcher: searcher,
-                    interactor: interactor,
-                    infiniteScrollingController: infiniteScrollingController,
-                    isConnected: false)
+    let tester = HitsInteractorSearcherConnectionTester(searcher: searcher,
+                                                        interactor: interactor,
+                                                        infiniteScrollingController: infiniteScrollingController,
+                                                        source: self)
+    tester.check(isConnected: false)
 
   }
 
@@ -99,24 +102,41 @@ class HitsInteractorSearcherConnectionTests: XCTestCase {
 
     interactor.connectSearcher(searcher)
 
-    checkConnection(searcher: searcher,
-                    interactor: interactor,
-                    infiniteScrollingController: infiniteScrollingController,
-                    isConnected: true)
+    let tester = HitsInteractorSearcherConnectionTester(searcher: searcher,
+                                                        interactor: interactor,
+                                                        infiniteScrollingController: infiniteScrollingController,
+                                                        source: self)
+    tester.check(isConnected: true)
 
   }
 
-  func checkConnection(searcher: SingleIndexSearcher,
-                       interactor: HitsInteractor<JSON>,
-                       infiniteScrollingController: TestInfiniteScrollingController,
-                       isConnected: Bool) {
+}
+
+class HitsInteractorSearcherConnectionTester {
+  
+  let searcher: SingleIndexSearcher
+  let interactor: HitsInteractor<JSON>
+  let infiniteScrollingController: TestInfiniteScrollingController
+  let source: XCTestCase
+
+  init(searcher: SingleIndexSearcher,
+       interactor: HitsInteractor<JSON>,
+       infiniteScrollingController: TestInfiniteScrollingController,
+       source: XCTestCase) {
+    self.searcher = searcher
+    self.interactor = interactor
+    self.infiniteScrollingController = infiniteScrollingController
+    self.source = source
+  }
+
+  func check(isConnected: Bool, file: StaticString = #file, line: UInt = #line) {
     if isConnected {
-      XCTAssertTrue(searcher === infiniteScrollingController.pageLoader)
+      XCTAssertTrue(searcher === infiniteScrollingController.pageLoader, file: file, line: line)
     } else {
-      XCTAssertNil(infiniteScrollingController.pageLoader)
+      XCTAssertNil(infiniteScrollingController.pageLoader, file: file, line: line)
     }
 
-    let queryChangedExpectation = expectation(description: "query changed")
+    let queryChangedExpectation = source.expectation(description: "query changed")
     queryChangedExpectation.isInverted = !isConnected
 
     interactor.onRequestChanged.subscribe(with: self) { _, _ in
@@ -127,12 +147,12 @@ class HitsInteractorSearcherConnectionTests: XCTestCase {
     searcher.indexQueryState.query.page = 0
     infiniteScrollingController.pendingPages = [0]
 
-    let resultsUpdatedExpectation = expectation(description: "results updated")
+    let resultsUpdatedExpectation = source.expectation(description: "results updated")
     resultsUpdatedExpectation.isInverted = !isConnected
 
-    interactor.onResultsUpdated.subscribe(with: self) { _, _ in
+    interactor.onResultsUpdated.subscribe(with: self) { tester, _ in
       resultsUpdatedExpectation.fulfill()
-      XCTAssertTrue(infiniteScrollingController.pendingPages.isEmpty)
+      XCTAssertTrue(tester.infiniteScrollingController.pendingPages.isEmpty, file: file, line: line)
     }
 
     let searchResponse = SearchResponse(hits: [Hit(object: ["field": "value"])])
@@ -142,12 +162,12 @@ class HitsInteractorSearcherConnectionTests: XCTestCase {
     searcher.onError.fire((searcher.indexQueryState.query, NSError()))
 
     if isConnected {
-      XCTAssertTrue(infiniteScrollingController.pendingPages.isEmpty)
+      XCTAssertTrue(infiniteScrollingController.pendingPages.isEmpty, file: file, line: line)
     } else {
-      XCTAssertFalse(infiniteScrollingController.pendingPages.isEmpty)
+      XCTAssertFalse(infiniteScrollingController.pendingPages.isEmpty, file: file, line: line)
     }
 
-    waitForExpectations(timeout: 2, handler: nil)
+    source.waitForExpectations(timeout: 2, handler: nil)
   }
-
+  
 }
