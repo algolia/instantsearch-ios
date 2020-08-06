@@ -21,6 +21,9 @@ public protocol Searcher: class {
   /// Triggered when query text changed
   /// - Parameter: a new query text value
   var onQueryChanged: Observer<String?> { get }
+  
+  /// Triggered when a search operation launched
+  var onSearch: Observer<Void> { get }
 
   /// Launches search query execution with current query text value
   func search()

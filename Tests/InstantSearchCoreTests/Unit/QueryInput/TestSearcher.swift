@@ -18,14 +18,14 @@ class TestSearcher: Searcher {
     }
   }
 
-  var didLaunchSearch: (() -> Void)?
-
   var isLoading: Observer<Bool> = .init()
 
   var onQueryChanged: Observer<String?> = .init()
+  
+  var onSearch: Observer<Void> = .init()
 
   func search() {
-    didLaunchSearch?()
+    onSearch.fire(())
   }
 
   func cancel() {
