@@ -43,22 +43,21 @@ public class SingleIndexSearcher: Searcher, SequencerDelegate, SearchResultObser
   }
 
   public let isLoading: Observer<Bool>
+  
+  public let onQueryChanged: Observer<String?>
+  
+  public let onSearch: Observer<Void>
 
-  /// Triggered when a new result received by Searcher
   public let onResults: Observer<SearchResponse>
 
   /// Triggered when an error occured during search query execution
   /// - Parameter: a tuple of query and error
   public let onError: Observer<(Query, Error)>
 
-  /// Triggered when a query text of Searcher changed
-  /// - Parameter: equals to a new query text
-  public let onQueryChanged: Observer<String?>
-
   /// Triggered when an index of Searcher changed
   /// - Parameter: equals to a new index value
   public let onIndexChanged: Observer<IndexName>
-
+  
   /// Custom request options
   public var requestOptions: RequestOptions?
 
@@ -123,6 +122,7 @@ public class SingleIndexSearcher: Searcher, SequencerDelegate, SearchResultObser
     onQueryChanged = .init()
     onIndexChanged = .init()
     processingQueue = .init()
+    onSearch = .init()
     sequencer.delegate = self
     onResults.retainLastData = true
     onError.retainLastData = false
@@ -151,6 +151,8 @@ public class SingleIndexSearcher: Searcher, SequencerDelegate, SearchResultObser
     if let shouldTriggerSearch = shouldTriggerSearchForQuery, !shouldTriggerSearch(indexQueryState.query) {
       return
     }
+    
+    onSearch.fire(())
 
     let query = indexQueryState.query
 

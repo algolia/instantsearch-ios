@@ -46,21 +46,20 @@ public class MultiIndexSearcher: Searcher, SequencerDelegate, SearchResultObserv
 
   public let isLoading: Observer<Bool>
 
-  /// Triggered when a query text of Searcher changed
-  /// - Parameter: equals to a new query text
   public let onQueryChanged: Observer<String?>
   
-  /// Triggered when an index of a query changed
-  /// - Parameter: a tuple of a index of query for which the indexName has changed and the new indexName
-  public let onIndexChanged: Observer<(Int, IndexName)>
+  public let onSearch: Observer<Void>
 
-  /// Triggered when a new result received by Searcher
   public let onResults: Observer<SearchesResponse>
 
   /// Triggered when an error occured during search query execution
   /// - Parameter: a tuple of query and error
   public let onError: Observer<([Query], Error)>
-
+  
+  /// Triggered when an index of a query changed
+  /// - Parameter: a tuple of a index of query for which the indexName has changed and the new indexName
+  public let onIndexChanged: Observer<(Int, IndexName)>
+  
   /// Custom request options
   public var requestOptions: RequestOptions?
 
@@ -142,6 +141,7 @@ public class MultiIndexSearcher: Searcher, SequencerDelegate, SearchResultObserv
     isLoading = .init()
     onResults = .init()
     onError = .init()
+    onSearch = .init()
 
     sequencer.delegate = self
     onResults.retainLastData = true
@@ -161,6 +161,8 @@ public class MultiIndexSearcher: Searcher, SequencerDelegate, SearchResultObserv
     if let shouldTriggerSearch = shouldTriggerSearchForQueries, !shouldTriggerSearch(indexQueryStates.map(\.query)) {
       return
     }
+    
+    onSearch.fire(())
 
     let queries = indexQueryStates.map { IndexedQuery(indexName: $0.indexName, query: $0.query) }
 

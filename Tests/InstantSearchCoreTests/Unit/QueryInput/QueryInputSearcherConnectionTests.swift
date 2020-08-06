@@ -116,8 +116,8 @@ class QueryInputSearcherConnectionTests: XCTestCase {
     interactor.onQueryChanged.subscribe(with: self) { (_, _) in
       queryChangedExpectation.fulfill()
     }
-
-    searcher.didLaunchSearch = {
+    
+    searcher.onSearch.subscribe(with: self) { _, _ in
       XCTAssertEqual(searcher.query, query)
       launchSearchExpectation.fulfill()
     }
