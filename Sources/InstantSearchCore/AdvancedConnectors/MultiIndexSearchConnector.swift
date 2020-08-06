@@ -10,7 +10,14 @@ import Foundation
 
 /**
 Connector encapsulating basic search experience within multiple indices
-
+ 
+ Managed connections:
+ - hits interactor <-> searcher
+ - hits interactor <-> hits controller
+ - hits interactor <-> filter states (if provided)
+ - query input interactor <-> searcher
+ - query input interactor <-> query input controller
+ - searcher <-> filter states (if provided)
 Most of the components associated by this connector are created and connected automatically, it's only required to provide a proper `Controller` implementations.
 */
 public struct MultiIndexSearchConnector: Connection {
