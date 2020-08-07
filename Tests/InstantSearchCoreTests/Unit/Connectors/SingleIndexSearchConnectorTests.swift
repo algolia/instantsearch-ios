@@ -52,10 +52,10 @@ class SingleIndexSearchConnectorTests: XCTestCase {
   func testHitsInteractorSearcherConnect() {
     var module = ConnectorContainer()
     module.connector.connect()
-    let tester = HitsInteractorSearcherConnectionTester(searcher: module.searcher,
-                                                        interactor: module.hitsInteractor,
-                                                        infiniteScrollingController: module.infiniteScrollingController,
-                                                        source: self)
+    let tester = HitsInteractorSearcherConnectionTests.ConnectionTester(searcher: module.searcher,
+                                                                        interactor: module.hitsInteractor,
+                                                                        infiniteScrollingController: module.infiniteScrollingController,
+                                                                        source: self)
     tester.check(isConnected: true)
   }
   
@@ -105,10 +105,10 @@ class SingleIndexSearchConnectorTests: XCTestCase {
                                              controller: module.hitsController,
                                              source: self).check(isConnected: false)
     
-    HitsInteractorSearcherConnectionTester(searcher: module.searcher,
-                                           interactor: module.hitsInteractor,
-                                           infiniteScrollingController: module.infiniteScrollingController,
-                                           source: self).check(isConnected: false)
+    HitsInteractorSearcherConnectionTests.ConnectionTester(searcher: module.searcher,
+                                                           interactor: module.hitsInteractor,
+                                                           infiniteScrollingController: module.infiniteScrollingController,
+                                                           source: self).check(isConnected: false)
     
     QueryInputControllerConnectionTester(interactor: module.queryInputInteractor,
                                          controller: module.queryInputController,
