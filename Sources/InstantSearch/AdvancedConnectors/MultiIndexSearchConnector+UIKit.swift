@@ -8,7 +8,7 @@
 #if !InstantSearchCocoaPods
 import InstantSearchCore
 #endif
-#if canImport(UIKit) && (os(iOS) || os(tvOS) || os(macOS))
+#if canImport(UIKit) && (os(iOS) || os(macOS))
 import UIKit
 
 public extension MultiIndexSearchConnector {
