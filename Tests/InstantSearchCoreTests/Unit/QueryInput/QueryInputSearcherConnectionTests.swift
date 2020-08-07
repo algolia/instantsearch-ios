@@ -133,8 +133,8 @@ class QueryInputSearcherConnectionTester {
       queryChangedExpectation.fulfill()
     }
     
-    searcher.onSearch.subscribe(with: self) { _, _ in
-      XCTAssertEqual(searcher.query, query)
+    searcher.onSearch.subscribe(with: self) { test, _ in
+      XCTAssertEqual(test.searcher.query, query)
       launchSearchExpectation.fulfill()
     }
 
