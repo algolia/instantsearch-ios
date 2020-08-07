@@ -96,66 +96,67 @@ In your `ViewController.swift`:
 ```swift
 import InstantSearch
 
-let searcher: SingleIndexSearcher = .init(appID: "latency",
-                                          apiKey: "1f6fd3a6fb973cb08419fe7d288fa4db",
-                                          indexName: "bestbuy")
-  
-let queryInputInteractor: QueryInputInteractor = .init()
-let searchBarController: SearchBarController = .init(searchBar: UISearchBar())
-  
-let statsInteractor: StatsInteractor = .init()
-let statsController: LabelStatsController = .init(label: UILabel())
+struct BestBuyItem: Codable {
+  let name: String
+}
 
-override func viewDidLoad() {
+struct BestBuyTableViewCellConfigurator: TableViewCellConfigurable {
+   
+  let model: BestBuyItem
+  
+  init(model: BestBuyItem, indexPath: IndexPath) {
+    self.model = model
+  }
+  
+  func configure(_ cell: UITableViewCell) {
+    cell.textLabel?.text = model.name
+  }
+
+}
+
+typealias BestBuyHitsViewController = HitsTableViewController<BestBuyTableViewCellConfigurator>
+
+class ViewController: UIViewController {
+      
+  let searcher = SingleIndexSearcher(appID: "latency",
+                                     apiKey: "1f6fd3a6fb973cb08419fe7d288fa4db",
+                                     indexName: "bestbuy")
+  lazy var searchController: UISearchController = .init(searchResultsController: hitsTableViewController)
+  lazy var searchConnector: SingleIndexSearchConnector<BestBuyItem> = .init(searcher: searcher,
+                                                                            searchController: searchController,
+                                                                            hitsController: hitsTableViewController)
+  let hitsTableViewController: BestBuyHitsViewController = .init()
+  let statsInteractor: StatsInteractor = .init()
+  
+  override func viewDidLoad() {
     super.viewDidLoad()
-    setup()
-    configureUI()
-}
-
-func setup() {
-    searcher.connectFilterState(filterState)
-    
-    queryInputInteractor.connectSearcher(searcher)
-    queryInputInteractor.connectController(searchBarController)
-    
+    searchConnector.connect()
     statsInteractor.connectSearcher(searcher)
-    statsInteractor.connectController(statsController)
-
+    statsInteractor.connectController(self)
     searcher.search()
+    setupUI()
+  }
+  
+  override func viewDidAppear(_ animated: Bool) {
+    super.viewDidAppear(animated)
+    searchController.searchBar.becomeFirstResponder()
+  }
+  
+  func setupUI() {
+    view.backgroundColor = .white
+    navigationItem.searchController = searchController
+    searchController.hidesNavigationBarDuringPresentation = false
+    searchController.showsSearchResultsController = true
+    searchController.automaticallyShowsCancelButton = false
+  }
+      
 }
 
-func configureUI() {
-    
-    view.backgroundColor = .white
-    
-    let stackView = UIStackView()
-    stackView.translatesAutoresizingMaskIntoConstraints = false
-    stackView.spacing = 16
-    stackView.axis = .vertical
-    stackView.layoutMargins = UIEdgeInsets(top: 0, left: 5, bottom: 0, right: 0)
-    stackView.isLayoutMarginsRelativeArrangement = true
-    
-    let searchBar = searchBarController.searchBar
-    searchBar.translatesAutoresizingMaskIntoConstraints = false
-    searchBar.heightAnchor.constraint(equalToConstant: 40).isActive = true
-    searchBar.searchBarStyle = .minimal
-    stackView.addArrangedSubview(searchBar)
-    
-    let statsLabel = statsController.label
-    statsLabel.translatesAutoresizingMaskIntoConstraints = false
-    statsLabel.heightAnchor.constraint(equalToConstant: 16).isActive = true
-    stackView.addArrangedSubview(statsLabel)
-
-    stackView.addArrangedSubview(UIView())
-
-    view.addSubview(stackView)
-
-    NSLayoutConstraint.activate([
-      stackView.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor),
-      stackView.bottomAnchor.constraint(equalTo: view.safeAreaLayoutGuide.bottomAnchor),
-      stackView.leadingAnchor.constraint(equalTo: view.safeAreaLayoutGuide.leadingAnchor),
-      stackView.trailingAnchor.constraint(equalTo: view.safeAreaLayoutGuide.trailingAnchor),
-    ])
+extension ViewController: StatsTextController {
+  
+  func setItem(_ item: String?) {
+    title = item
+  }
 
 }
 ```
