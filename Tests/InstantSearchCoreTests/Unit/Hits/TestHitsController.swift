@@ -25,3 +25,23 @@ class TestHitsController<Hit: Codable>: HitsController {
   }
 
 }
+
+class TestMultiIndexHitsController: MultiIndexHitsController {
+  
+  var hitsSource: MultiIndexHitsSource?
+  
+  var didReload: (() -> Void)?
+  var didScrollToTop: (() -> Void)?
+
+  
+  func scrollToTop() {
+    didScrollToTop?()
+  }
+  
+  func reload() {
+    didReload?()
+  }
+  
+  
+  
+}
