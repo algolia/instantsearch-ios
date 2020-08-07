@@ -9,8 +9,8 @@
 
 import Foundation
 import AlgoliaSearchClient
-/** An entity performing search queries targeting one index
-*/
+
+/// An entity performing search queries targeting one index
 
 public class SingleIndexSearcher: Searcher, SequencerDelegate, SearchResultObservable {
 
@@ -43,6 +43,10 @@ public class SingleIndexSearcher: Searcher, SequencerDelegate, SearchResultObser
   }
 
   public let isLoading: Observer<Bool>
+  
+  public let onQueryChanged: Observer<String?>
+  
+  public let onSearch: Observer<Void>
 
   public let onResults: Observer<SearchResponse>
 
@@ -50,12 +54,10 @@ public class SingleIndexSearcher: Searcher, SequencerDelegate, SearchResultObser
   /// - Parameter: a tuple of query and error
   public let onError: Observer<(Query, Error)>
 
-  public let onQueryChanged: Observer<String?>
-
   /// Triggered when an index of Searcher changed
   /// - Parameter: equals to a new index value
   public let onIndexChanged: Observer<IndexName>
-
+  
   /// Custom request options
   public var requestOptions: RequestOptions?
 
@@ -68,6 +70,15 @@ public class SingleIndexSearcher: Searcher, SequencerDelegate, SearchResultObser
   /// Flag defining if disjunctive faceting is enabled
   /// - Default value: true
   public var isDisjunctiveFacetingEnabled = true
+  
+  /// Closure defining the condition under which the search operation should be triggered
+  ///
+  /// Example: if you don't want search operation triggering in case of empty query, you should set this value
+  /// ````
+  /// searcher.shouldTriggerSearchForQuery = { query in query.query ?? "" != "" }
+  /// ````
+  /// - Default value: nil
+  public var shouldTriggerSearchForQuery: ((Query) -> Bool)?
 
   /// Sequencer which orders and debounce redundant search operations
   internal let sequencer: Sequencer
@@ -111,6 +122,7 @@ public class SingleIndexSearcher: Searcher, SequencerDelegate, SearchResultObser
     onQueryChanged = .init()
     onIndexChanged = .init()
     processingQueue = .init()
+    onSearch = .init()
     sequencer.delegate = self
     onResults.retainLastData = true
     onError.retainLastData = false
@@ -135,6 +147,12 @@ public class SingleIndexSearcher: Searcher, SequencerDelegate, SearchResultObser
   }
 
   public func search() {
+    
+    if let shouldTriggerSearch = shouldTriggerSearchForQuery, !shouldTriggerSearch(indexQueryState.query) {
+      return
+    }
+    
+    onSearch.fire(())
 
     let query = indexQueryState.query
 

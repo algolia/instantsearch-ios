@@ -8,8 +8,8 @@
 
 import Foundation
 import AlgoliaSearchClient
-/** An entity performing search queries targeting multiple indices.
-*/
+
+/// An entity performing search queries targeting multiple indices.
 
 public class MultiIndexSearcher: Searcher, SequencerDelegate, SearchResultObservable {
 
@@ -35,18 +35,31 @@ public class MultiIndexSearcher: Searcher, SequencerDelegate, SearchResultObserv
   public let client: SearchClient
 
   /// List of  index & query tuples
-  public internal(set) var indexQueryStates: [IndexQueryState]
+  public internal(set) var indexQueryStates: [IndexQueryState] {
+    didSet {
+      let indexNameDiff = zip(oldValue.map(\.indexName), indexQueryStates.map(\.indexName)).enumerated()
+      for (queryIndex, (oldIndexName, newIndexName)) in indexNameDiff where oldIndexName != newIndexName {
+        onIndexChanged.fire((queryIndex, newIndexName))
+      }
+    }
+  }
 
   public let isLoading: Observer<Bool>
 
   public let onQueryChanged: Observer<String?>
+  
+  public let onSearch: Observer<Void>
 
   public let onResults: Observer<SearchesResponse>
 
   /// Triggered when an error occured during search query execution
   /// - Parameter: a tuple of query and error
   public let onError: Observer<([Query], Error)>
-
+  
+  /// Triggered when an index of a query changed
+  /// - Parameter: a tuple of a index of query for which the indexName has changed and the new indexName
+  public let onIndexChanged: Observer<(Int, IndexName)>
+  
   /// Custom request options
   public var requestOptions: RequestOptions?
 
@@ -55,6 +68,17 @@ public class MultiIndexSearcher: Searcher, SequencerDelegate, SearchResultObserv
 
   /// Helpers for separate pagination management
   internal var pageLoaders: [PageLoaderProxy]
+  
+  /// Closure defining the condition under which the search operation should be triggered
+  ///
+  /// Example: if you don't want search operation triggering in case the query for the first index is empty, you should set this value
+  /// ````
+  /// shouldTriggerSearchForQueries = { queries in
+  ///  queries.first?.query ?? "" != ""
+  /// }
+  /// ````
+  /// - Default value: nil
+  public var shouldTriggerSearchForQueries: (([Query]) -> Bool)?
 
   private let processingQueue: OperationQueue
 
@@ -113,9 +137,11 @@ public class MultiIndexSearcher: Searcher, SequencerDelegate, SearchResultObserv
     processingQueue = .init()
     sequencer = .init()
     onQueryChanged = .init()
+    onIndexChanged = .init()
     isLoading = .init()
     onResults = .init()
     onError = .init()
+    onSearch = .init()
 
     sequencer.delegate = self
     onResults.retainLastData = true
@@ -131,6 +157,12 @@ public class MultiIndexSearcher: Searcher, SequencerDelegate, SearchResultObserv
   }
 
   public func search() {
+    
+    if let shouldTriggerSearch = shouldTriggerSearchForQueries, !shouldTriggerSearch(indexQueryStates.map(\.query)) {
+      return
+    }
+    
+    onSearch.fire(())
 
     let queries = indexQueryStates.map { IndexedQuery(indexName: $0.indexName, query: $0.query) }
 

@@ -27,9 +27,11 @@ public class FacetSearcher: Searcher, SequencerDelegate, SearchResultObservable 
   /// Current tuple of index and query
   public var indexQueryState: IndexQueryState
 
-  public var onQueryChanged: Observer<String?>
-
   public let isLoading: Observer<Bool>
+  
+  public var onQueryChanged: Observer<String?>
+  
+  public let onSearch: Observer<Void>
 
   public let onResults: Observer<SearchResult>
 
@@ -90,6 +92,7 @@ public class FacetSearcher: Searcher, SequencerDelegate, SearchResultObservable 
     self.onQueryChanged = .init()
     self.onResults = .init()
     self.onError = .init()
+    self.onSearch = .init()
     self.facetName = facetName
     self.sequencer = .init()
     self.processingQueue = .init()
@@ -103,6 +106,8 @@ public class FacetSearcher: Searcher, SequencerDelegate, SearchResultObservable 
 
   public func search() {
 
+    onSearch.fire(())
+    
     let query = self.query ?? ""
     let indexName = indexQueryState.indexName
 
