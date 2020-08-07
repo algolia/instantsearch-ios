@@ -119,5 +119,3 @@ public struct QueryBuilder {
   }
 
 }
-
-extension SearchResponse: Builder {}

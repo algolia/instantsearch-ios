@@ -51,7 +51,9 @@ class HitsInteractorFilterStateConnectionTests: XCTestCase {
                                                          filterState: filterState)
 
     connection.connect()
-    checkConnection(interactor: interactor, filterState: filterState, isConnected: true)
+    HitsInteractorFilterStateConnectionTester(interactor: interactor,
+                                              filterState: filterState,
+                                              source: self).check(isConnected: true)
   }
 
   func testConnectionMethod() {
@@ -60,7 +62,9 @@ class HitsInteractorFilterStateConnectionTests: XCTestCase {
 
     interactor.connectFilterState(filterState)
 
-    checkConnection(interactor: interactor, filterState: filterState, isConnected: true)
+    HitsInteractorFilterStateConnectionTester(interactor: interactor,
+                                              filterState: filterState,
+                                              source: self).check(isConnected: true)
   }
 
   func testDisconnection() {
@@ -72,25 +76,44 @@ class HitsInteractorFilterStateConnectionTests: XCTestCase {
 
     connection.connect()
     connection.disconnect()
-    checkConnection(interactor: interactor, filterState: filterState, isConnected: false)
+    HitsInteractorFilterStateConnectionTester(interactor: interactor,
+                                              filterState: filterState,
+                                              source: self).check(isConnected: false)
   }
 
-  func checkConnection(interactor: HitsInteractor<JSON>,
-                       filterState: FilterState,
-                       isConnected: Bool) {
 
-    let exp = expectation(description: "change query when filter state changed")
-    exp.isInverted = !isConnected
+}
+
+class HitsInteractorFilterStateConnectionTester {
+  
+  let interactor: HitsInteractor<JSON>
+  let filterState: FilterState
+  let source: XCTestCase
+  var requestChangedExpectedFulfillmentCount: Int = 1
+  
+  init(interactor: HitsInteractor<JSON>,
+       filterState: FilterState,
+       source: XCTestCase) {
+    self.interactor = interactor
+    self.filterState = filterState
+    self.source = source
+  }
+  
+  func check(isConnected: Bool, file: StaticString = #file, line: UInt = #line) {
+
+    let requestChangedExpectation = source.expectation(description: "change query when filter state changed")
+    requestChangedExpectation.expectedFulfillmentCount = requestChangedExpectedFulfillmentCount
+    requestChangedExpectation.isInverted = !isConnected
 
     interactor.onRequestChanged.subscribe(with: self) { _, _ in
-      exp.fulfill()
+      requestChangedExpectation.fulfill()
     }
 
     filterState.add(Filter.Tag("t"), toGroupWithID: .and(name: ""))
     filterState.notifyChange()
 
-    waitForExpectations(timeout: 2, handler: nil)
+    source.waitForExpectations(timeout: 2, handler: nil)
 
   }
-
+  
 }
