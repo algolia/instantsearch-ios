@@ -47,7 +47,9 @@ public struct MultiIndexSearchConnector: Connection {
                                                                       hitsController: HC,
                                                                       queryInputInteractor: QueryInputInteractor = .init(),
                                                                       queryInputController: QI) {
-    self.hitsConnector = .init(appID: searcher.client.applicationID, apiKey: searcher.client.apiKey, indexModules: indexModules)
+    let hitsInteractor = MultiIndexHitsInteractor(hitsInteractors: indexModules.map(\.hitsInteractor))
+    let filterStates = indexModules.map(\.filterState)
+    self.hitsConnector = .init(searcher: searcher, interactor: hitsInteractor, filterStates: filterStates)
     hitsControllerConnection = self.hitsConnector.interactor.connectController(hitsController)
     self.queryInputConnector = .init(searcher: searcher, interactor: queryInputInteractor)
     queryInputControllerConnection = queryInputInteractor.connectController(queryInputController)
