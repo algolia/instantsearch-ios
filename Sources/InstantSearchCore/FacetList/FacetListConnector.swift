@@ -28,6 +28,7 @@ public class FacetListConnector: Connection {
                                                  filterState: FilterState = .init(),
                                                  interactor: FacetListInteractor = .init(),
                                                  controller: Controller? = nil,
+                                                 presenter: SelectableListPresentable? = nil,
                                                  attribute: Attribute,
                                                  operator: RefinementOperator,
                                                  groupName: String? = nil) {
@@ -43,7 +44,7 @@ public class FacetListConnector: Connection {
                                                                groupName: groupName)
     
     if let controller = controller {
-      self.controllerConnection = interactor.connectController(controller)
+      self.controllerConnection = interactor.connectController(controller, with: presenter)
     } else {
       self.controllerConnection = nil
     }
@@ -64,11 +65,13 @@ public class FacetListConnector: Connection {
                                                            operator: RefinementOperator,
                                                            groupName: String? = nil,
                                                            interactor: FacetListInteractor = .init(),
-                                                           controller: Controller? = nil) {
+                                                           controller: Controller? = nil,
+                                                           presenter: SelectableListPresentable? = nil) {
     self.init(searcher: .singleIndex(searcher),
               filterState: filterState,
               interactor: interactor,
               controller: controller,
+              presenter: presenter,
               attribute: attribute,
               operator: `operator`,
               groupName: groupName)
@@ -80,11 +83,13 @@ public class FacetListConnector: Connection {
                                                            operator: RefinementOperator,
                                                            groupName: String? = nil,
                                                            interactor: FacetListInteractor = .init(),
-                                                           controller: Controller? = nil) {
+                                                           controller: Controller? = nil,
+                                                           presenter: SelectableListPresentable? = nil) {
     self.init(searcher: .facet(searcher),
               filterState: filterState,
               interactor: interactor,
               controller: controller,
+              presenter: presenter,
               attribute: attribute,
               operator: `operator`,
               groupName: groupName)
@@ -97,11 +102,13 @@ public class FacetListConnector: Connection {
                                                            selectionMode: SelectionMode,
                                                            operator: RefinementOperator,
                                                            groupName: String? = nil,
-                                                           controller: Controller? = nil) {
+                                                           controller: Controller? = nil,
+                                                           presenter: SelectableListPresentable? = nil) {
     self.init(searcher: .singleIndex(searcher),
               filterState: filterState,
               interactor: .init(facets: facets, selectionMode: selectionMode),
               controller: controller,
+              presenter: presenter,
               attribute: attribute,
               operator: `operator`,
               groupName: groupName)
@@ -114,11 +121,13 @@ public class FacetListConnector: Connection {
                                                            selectionMode: SelectionMode,
                                                            operator: RefinementOperator,
                                                            groupName: String? = nil,
-                                                           controller: Controller? = nil) {
+                                                           controller: Controller? = nil,
+                                                           presenter: SelectableListPresentable? = nil) {
     self.init(searcher: .facet(searcher),
               filterState: filterState,
               interactor: .init(facets: facets, selectionMode: selectionMode),
               controller: controller,
+              presenter: presenter,
               attribute: attribute,
               operator: `operator`,
               groupName: groupName)
