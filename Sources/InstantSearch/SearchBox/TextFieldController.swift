@@ -25,7 +25,7 @@ public class TextFieldController: NSObject, QueryInputController {
     setupTextField()
   }
 
-#if os(iOS)
+#if os(iOS) || os(macOS)
   @available(iOS 13.0, *)
   public convenience init(searchBar: UISearchBar) {
     self.init(textField: searchBar.searchTextField)
