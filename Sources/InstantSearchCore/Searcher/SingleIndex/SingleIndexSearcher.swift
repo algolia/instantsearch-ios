@@ -71,6 +71,10 @@ public class SingleIndexSearcher: Searcher, SequencerDelegate, SearchResultObser
   /// - Default value: true
   public var isDisjunctiveFacetingEnabled = true
   
+  /// Flag defining if the selected query facet must be kept even if it does not match current results anymore
+  /// - Default value: true
+  public var keepSelectedEmptyFacets: Bool = true
+  
   /// Closure defining the condition under which the search operation should be triggered
   ///
   /// Example: if you don't want search operation triggering in case of empty query, you should set this value
@@ -166,7 +170,7 @@ public class SingleIndexSearcher: Searcher, SequencerDelegate, SearchResultObser
                                         filterGroups: filterGroups,
                                         hierarchicalAttributes: hierarchicalAttributes,
                                         hierachicalFilters: hierarchicalFilters)
-      queriesBuilder.keepSelectedEmptyFacets = true
+      queriesBuilder.keepSelectedEmptyFacets = keepSelectedEmptyFacets
       let queries = queriesBuilder.build().map { IndexedQuery(indexName: indexQueryState.indexName, query: $0) }
       operation = client.multipleQueries(queries: queries) { [weak self] response in
         guard let searcher = self else { return }
