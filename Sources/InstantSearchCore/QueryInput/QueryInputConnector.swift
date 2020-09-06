@@ -8,23 +8,36 @@
 
 import Foundation
 
-public class QueryInputConnector<S: Searcher>: Connection {
+/// Component that performs a text-based query
+public class QueryInputConnector<S: Searcher> {
 
+  /// Searcher that handles your searches
   public let searcher: S
+  
+  /// Business logic that handles new search inputs
   public let interactor: QueryInputInteractor
-  public let searchTriggeringMode: SearchTriggeringMode
 
+  /// Connection between query input interactor and searcher
   public let searcherConnection: Connection
 
+  /**
+   - Parameters:
+     - searcher: Searcher that handles your searches
+     - interactor: Business logic that handles new search inputs
+     - searchTriggeringMode: Defines the event triggering a new search
+   */
   public init(searcher: S,
               interactor: QueryInputInteractor = .init(),
               searchTriggeringMode: SearchTriggeringMode = .searchAsYouType) {
     self.searcher = searcher
     self.interactor = interactor
-    self.searchTriggeringMode = searchTriggeringMode
-    self.searcherConnection = interactor.connectSearcher(searcher)
+    self.searcherConnection = interactor.connectSearcher(searcher, searchTriggeringMode: searchTriggeringMode)
   }
 
+}
+
+extension QueryInputConnector: Connection {
+  
   public func connect() {
     searcherConnection.connect()
   }
@@ -32,5 +45,5 @@ public class QueryInputConnector<S: Searcher>: Connection {
   public func disconnect() {
     searcherConnection.disconnect()
   }
-
+  
 }
