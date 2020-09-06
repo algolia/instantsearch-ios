@@ -23,7 +23,7 @@ public extension CellConfigurable {
 }
 
 public protocol TableViewCellConfigurable: CellConfigurable {
-  associatedtype Cell: UITableViewCell
+  associatedtype Cell: UITableViewCell = UITableViewCell
   var cellHeight: CGFloat { get }
   func configure(_ cell: Cell)
 }
@@ -33,7 +33,7 @@ public extension TableViewCellConfigurable {
 }
 
 public protocol CollectionViewCellConfigurable: CellConfigurable {
-  associatedtype Cell: UICollectionViewCell
+  associatedtype Cell: UICollectionViewCell = UICollectionViewCell
   var cellSize: CGSize { get }
   func configure(_ cell: Cell)
 }
