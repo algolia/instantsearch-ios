@@ -8,10 +8,12 @@
 import Foundation
 import AlgoliaSearchClient
 
+/// Component that manages and displays a list of search results
 public class HitsInteractor<Record: Codable>: AnyHitsInteractor {
 
   public typealias Result = HitsExtractable & SearchStatsConvertible
 
+  /// Hits settings
   public let settings: Settings
 
   internal let paginator: Paginator<Record>
@@ -19,14 +21,20 @@ public class HitsInteractor<Record: Codable>: AnyHitsInteractor {
   private let infiniteScrollingController: InfiniteScrollable
   private let mutationQueue: OperationQueue
 
+  /// Event triggered when a search request has changed
   public let onRequestChanged: Observer<Void>
+  
+  /// Event triggered when a new search result received
   public let onResultsUpdated: Observer<Result>
+  
+  /// Event triggered when an error occured in hits
   public let onError: Observer<Swift.Error>
 
+  /// Results page loading logic
   public var pageLoader: PageLoadable? {
 
     get {
-      return infiniteScrollingController.pageLoader
+      infiniteScrollingController.pageLoader
     }
 
     set {
