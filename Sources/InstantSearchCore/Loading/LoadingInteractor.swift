@@ -8,6 +8,7 @@
 
 import Foundation
 
+/// Business logic for a loading state
 public class LoadingInteractor: ItemInteractor<Bool> {
   public init() {
     super.init(item: false)
