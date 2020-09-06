@@ -1,5 +1,5 @@
 //
-//  FilterListConnectorSnippets.swift
+//  FilterListSnippets.swift
 //  
 //
 //  Created by Vladislav Fitc on 01/09/2020.
@@ -9,7 +9,7 @@ import Foundation
 import InstantSearch
 import UIKit
 
-class FilterListConnectorSnippets {
+class FilterListSnippets {
   
   func facetFilterList() {
     let searcher: SingleIndexSearcher = SingleIndexSearcher(appID: "YourApplicationID",
