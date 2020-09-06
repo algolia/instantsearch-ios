@@ -1,5 +1,5 @@
 //
-//  SelectableInteractor+Filter.swift
+//  SelectableInteractor+Filter+FilterState.swift
 //  InstantSearchCore-iOS
 //
 //  Created by Vladislav Fitc on 06/05/2019.
@@ -8,9 +8,9 @@
 
 import Foundation
 
-public enum ToggleFilter {}
+public enum FilterToggle {}
 
-public extension ToggleFilter {
+public extension FilterToggle {
 
   struct FilterStateConnection<Filter: FilterType>: Connection {
 
@@ -112,8 +112,8 @@ public extension SelectableInteractor where Item: FilterType {
 
                                              operator: RefinementOperator = .or,
 
-                                             groupName: String? = nil) -> ToggleFilter.FilterStateConnection<Item> {
-    let connection = ToggleFilter.FilterStateConnection(interactor: self, filterState: filterState, operator: `operator`, groupName: groupName)
+                                             groupName: String? = nil) -> FilterToggle.FilterStateConnection<Item> {
+    let connection = FilterToggle.FilterStateConnection(interactor: self, filterState: filterState, operator: `operator`, groupName: groupName)
     connection.connect()
     return connection
   }

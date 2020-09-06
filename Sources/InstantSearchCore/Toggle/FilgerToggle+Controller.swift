@@ -8,7 +8,7 @@
 
 import Foundation
 
-public extension ToggleFilter {
+public extension FilterToggle {
 
   struct ControllerConnection<Filter: FilterType, Controller: SelectableController>: Connection where Controller.Item == Filter {
 
@@ -45,8 +45,8 @@ public extension ToggleFilter {
 
 public extension SelectableInteractor where Item: FilterType {
 
-  @discardableResult func connectController<Controller: SelectableController>(_ controller: Controller) -> ToggleFilter.ControllerConnection<Item, Controller>  where Controller.Item == (Item) {
-    let connection = ToggleFilter.ControllerConnection(interactor: self, controller: controller)
+  @discardableResult func connectController<Controller: SelectableController>(_ controller: Controller) -> FilterToggle.ControllerConnection<Item, Controller>  where Controller.Item == (Item) {
+    let connection = FilterToggle.ControllerConnection(interactor: self, controller: controller)
     connection.connect()
     return connection
   }
