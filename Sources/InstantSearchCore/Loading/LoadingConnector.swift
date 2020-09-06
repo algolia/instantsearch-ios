@@ -8,19 +8,34 @@
 
 import Foundation
 
-public class LoadingConnector<S: Searcher>: Connection {
+/// Component that shows a loading indicator during pending requests.
+public class LoadingConnector<S: Searcher> {
 
+  /// Searcher that handles your searches
   public let searcher: S
+  
+  /// Business logic that handles showing a loading indicator
   public let interactor: LoadingInteractor
+  
+  /// Connection between searcher and interactor
   public let searcherConnection: Connection
 
+  /**
+    - Parameters:
+      - searcher: Searcher that handles your searches
+      - interactor: Business logic that handles showing a loading indicator
+   */
   public init(searcher: S,
-              interactor: LoadingInteractor) {
+              interactor: LoadingInteractor = .init()) {
     self.searcher = searcher
     self.interactor = interactor
     self.searcherConnection = interactor.connectSearcher(searcher)
   }
 
+}
+
+extension LoadingConnector: Connection {
+  
   public func connect() {
     searcherConnection.connect()
   }
@@ -28,5 +43,5 @@ public class LoadingConnector<S: Searcher>: Connection {
   public func disconnect() {
     searcherConnection.disconnect()
   }
-
+  
 }
