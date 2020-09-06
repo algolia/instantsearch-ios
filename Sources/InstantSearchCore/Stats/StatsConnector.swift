@@ -8,13 +8,23 @@
 
 import Foundation
 
-public class StatsConnector: Connection {
+/// Component that displays metadata about the current search and its results.
+public class StatsConnector {
 
+  /// Searcher that handles your searches
   public let searcher: SingleIndexSearcher
+  
+  /// Logic applied to the stats
   public let interactor: StatsInteractor
 
+  /// Connection between searcher and interactor
   public let searcherConnection: Connection
 
+  /**
+    - Parameters:
+      - searcher:
+      - interactor:
+   */
   public init(searcher: SingleIndexSearcher,
               interactor: StatsInteractor = .init()) {
     self.searcher = searcher
@@ -22,6 +32,10 @@ public class StatsConnector: Connection {
     searcherConnection = interactor.connectSearcher(searcher)
   }
 
+}
+
+extension StatsConnector: Connection {
+  
   public func connect() {
     searcherConnection.connect()
   }
@@ -29,5 +43,5 @@ public class StatsConnector: Connection {
   public func disconnect() {
     searcherConnection.disconnect()
   }
-
+  
 }
