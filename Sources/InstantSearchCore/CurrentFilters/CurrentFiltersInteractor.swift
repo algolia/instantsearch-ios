@@ -8,11 +8,18 @@
 
 import Foundation
 
+/// Business logic for Current Refinements component
 public typealias CurrentFiltersInteractor = ItemsListInteractor<FilterAndID>
 
+/// Union of a filter and its group in a filter state
 public struct FilterAndID: Hashable {
+  
+  /// Stored filter
   public let filter: Filter
+  
+  /// Identifier of a group in a filter state
   public let id: FilterGroup.ID
+  
   public var text: String
 
   public init(filter: Filter, id: FilterGroup.ID, text: String = "") {
