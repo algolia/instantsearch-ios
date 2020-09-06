@@ -9,22 +9,53 @@
 import Foundation
 import AlgoliaSearchClient
 
-public class SortByConnector: Connection {
-
+/// Component that displays a list of indices, allowing a user to change the way hits are sorted
+public class SortByConnector {
+  
+  /// Searcher that handles your searches
   public let searcher: SingleIndexSearcher
+  
+  /// Logic applied to the indices
   public let interactor: IndexSegmentInteractor
-
+  
+  /// Connection between interactor and searcher
   public let searcherConnection: Connection
-
-  init(searcher: SingleIndexSearcher,
-       indices: [Int: Index],
-       selected: Int? = nil) {
+  
+  /**
+   - Parameters:
+     - searcher: Searcher that handles your searches
+     - interactor: Logic applied to the indices
+   */
+  public init(searcher: SingleIndexSearcher,
+              interactor: IndexSegmentInteractor) {
     self.searcher = searcher
-    self.interactor = .init(items: indices)
+    self.interactor = interactor
     self.searcherConnection = interactor.connectSearcher(searcher: searcher)
-    self.interactor.selected = selected
   }
 
+  /**
+   - Parameters:
+     - searcher: Searcher that handles your searches
+     - indicesNames: List of the indices names to switch between
+     - selected: Consecutive index of the initially selected search index in the list.
+   */
+  public convenience init(searcher: SingleIndexSearcher,
+                          indicesNames: [IndexName],
+                          selected: Int? = nil) {
+    let enumeratedIndices = indicesNames
+      .map(searcher.client.index(withName:))
+      .enumerated()
+      .map { $0 }
+    let items = [Int: Index](uniqueKeysWithValues: enumeratedIndices)
+    let interactor = IndexSegmentInteractor(items: items)
+    interactor.selected = selected
+    self.init(searcher: searcher, interactor: interactor)
+  }
+
+}
+
+extension SortByConnector: Connection {
+  
   public func connect() {
     searcherConnection.connect()
   }
@@ -32,5 +63,5 @@ public class SortByConnector: Connection {
   public func disconnect() {
     searcherConnection.disconnect()
   }
-
+  
 }
