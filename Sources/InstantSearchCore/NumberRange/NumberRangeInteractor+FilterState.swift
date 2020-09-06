@@ -113,7 +113,11 @@ public extension NumberRangeInteractor {
                                              attribute: Attribute,
                                              operator: RefinementOperator = .and,
                                              groupName: String? = nil) -> NumberRange.FilterStateConnection<Number> {
-    let connection = NumberRange.FilterStateConnection<Number>(interactor: self, filterState: filterState, attribute: attribute, operator: `operator`, groupName: groupName)
+    let connection = NumberRange.FilterStateConnection<Number>(interactor: self,
+                                                               filterState: filterState,
+                                                               attribute: attribute,
+                                                               operator: `operator`,
+                                                               groupName: groupName)
     connection.connect()
     return connection
   }
