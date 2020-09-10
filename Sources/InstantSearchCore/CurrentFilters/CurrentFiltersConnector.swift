@@ -67,6 +67,7 @@ extension CurrentFiltersConnector {
   }
   
   /**
+   Establishes a connection with the controller using the provided presentation logic
    - Parameters:
      - controller: Controller interfacing with current filters
      - presenter: Presenter defining how a filter appears in the controller
