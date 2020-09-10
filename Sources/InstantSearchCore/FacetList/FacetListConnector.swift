@@ -77,6 +77,14 @@ public class FacetListConnector {
     
   }
   
+  /**
+   Establishes a connection with the controller using the provided presentation logic
+   - Parameters:
+     - controller: Controller interfacing with current filters
+     - presenter: Presenter defining how a filter appears in the controller
+     - externalReload: Defines if controller will be updated automatically by the events or manually
+   - Returns: Established connection
+  */
   @discardableResult func connectController<Controller: FacetListController>(_ controller: Controller,
                                                                              with presenter: SelectableListPresentable? = nil,
                                                                              externalReload: Bool = false) -> FacetList.ControllerConnection<Controller> {
