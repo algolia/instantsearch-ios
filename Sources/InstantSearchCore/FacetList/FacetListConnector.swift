@@ -9,7 +9,7 @@
 import Foundation
 
 /// Component that perform refinements on a facet.
-public class FacetListConnector: Connection {
+public class FacetListConnector {
   
   /// Searcher that handles your searches.
   public let searcher: Searcher
@@ -203,6 +203,9 @@ public class FacetListConnector: Connection {
               groupName: groupName)
   }
   
+}
+
+extension FacetListConnector: Connection {
   
   public func connect() {
     filterStateConnection.connect()
@@ -215,7 +218,7 @@ public class FacetListConnector: Connection {
     searcherConnection.disconnect()
     controllerConnection?.disconnect()
   }
-  
+
 }
 
 extension FacetListConnector {

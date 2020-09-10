@@ -13,7 +13,7 @@ public typealias NumericFilter = Filter.Numeric
 public typealias TagFilter = Filter.Tag
 
 /// Components that display a list of filters.
-public class FilterListConnector<Filter: FilterType & Hashable>: Connection {
+public class FilterListConnector<Filter: FilterType & Hashable> {
 
   /// Filter state that will hold your filters.
   public let filterState: FilterState
@@ -40,6 +40,29 @@ public class FilterListConnector<Filter: FilterType & Hashable>: Connection {
                                                                groupName: groupName)
   }
   
+  /// Initializer with external interactor
+  /// - Parameter filterState: Filter state that will hold your filters
+  /// - Parameter filters: List of filters to display
+  /// - Parameter selectionMode: Whether the list can have single or multiple selections
+  /// - Parameter operator: Filter group operator
+  /// - Parameter groupName: Filter group name
+  public convenience init(filterState: FilterState,
+                          filters: [Filter],
+                          selectionMode: SelectionMode,
+                          `operator`: RefinementOperator,
+                          groupName: String) {
+    let interactor = FilterListInteractor<Filter>.init(items: filters,
+                                                       selectionMode: selectionMode)
+    self.init(filterState: filterState,
+              interactor: interactor,
+              operator: `operator`,
+              groupName: groupName)
+  }
+  
+}
+
+extension FilterListConnector: Connection {
+  
   public func connect() {
     connectionFilterState.connect()
   }
@@ -47,5 +70,5 @@ public class FilterListConnector<Filter: FilterType & Hashable>: Connection {
   public func disconnect() {
     connectionFilterState.disconnect()
   }
-
+  
 }
