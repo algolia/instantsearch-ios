@@ -96,16 +96,18 @@ public class FacetListConnector {
 }
 
 /// Init with SingleIndexSearcher
-
 extension FacetListConnector {
   
-  /// Init with explicit interactor
-  /// - Parameter searcher: Searcher that handles your searches
-  /// - Parameter filterState: Filter state that will hold your filters
-  /// - Parameter attribute: Attribute to filter
-  /// - Parameter interactor: External facet list interactor
-  /// - Parameter operator: Filter group operator
-  /// - Parameter groupName: Filter group name
+  /**
+  Init with explicit interactor
+  - Parameters:
+    - searcher: Searcher that handles your searches
+    - filterState: Filter state that will hold your filters
+    - attribute: Attribute to filter
+    - interactor: External facet list interactor
+    - operator: Filter group operator
+    - groupName: Filter group name
+  */
   public convenience init(searcher: SingleIndexSearcher,
                           filterState: FilterState = .init(),
                           attribute: Attribute,
@@ -120,15 +122,18 @@ extension FacetListConnector {
               groupName: groupName)
   }
   
-  /// Init with explicit interactor & controller
-  /// - Parameter searcher: Searcher that handles your searches
-  /// - Parameter filterState: Filter state that will hold your filters
-  /// - Parameter attribute: Attribute to filter
-  /// - Parameter interactor: External facet list interactor
-  /// - Parameter operator: Filter group operator
-  /// - Parameter groupName: Filter group name
-  /// - Parameter controller: Controller presenting the facets
-  /// - Parameter presenter: Presenter defining the appearance of the facet list
+  /**
+  Init with an explicit interactor & controller
+  - Parameters:
+    - searcher: Searcher that handles your searches
+    - filterState: Filter state that will hold your filters
+    - attribute: Attribute to filter
+    - interactor: External facet list interactor
+    - operator: Filter group operator
+    - groupName: Filter group name
+    - controller: Controller presenting the facets
+    - presenter: Presenter defining the appearance of the facet list
+  */
   public convenience init<Controller: FacetListController>(searcher: SingleIndexSearcher,
                                                            filterState: FilterState = .init(),
                                                            attribute: Attribute,
@@ -147,14 +152,17 @@ extension FacetListConnector {
               groupName: groupName)
   }
   
-  /// Init with implicit interactor
-  /// - Parameter searcher: Searcher that handles your searches
-  /// - Parameter filterState: Filter state that will hold your filters
-  /// - Parameter attribute: Attribute to filter
-  /// - Parameter selectionMode: Whether the list can have single or multiple selections
-  /// - Parameter facets: If specified, the default facet values to display.
-  /// - Parameter operator: Filter group operator
-  /// - Parameter groupName: Identifier of the group of filters
+  /**
+  Init with implicit interactor
+  - Parameters:
+    - searcher: Searcher that handles your searches
+    - filterState: Filter state that will hold your filters
+    - attribute: Attribute to filter
+    - selectionMode: Whether the list can have single or multiple selections
+    - facets: If specified, the default facet values to display.
+    - operator: Filter group operator
+    - groupName: Identifier of the group of filters
+  */
   public convenience init(searcher: SingleIndexSearcher,
                           filterState: FilterState = .init(),
                           attribute: Attribute,
@@ -171,16 +179,19 @@ extension FacetListConnector {
               groupName: groupName)
   }
 
-  /// Init with implicit interactor & controller
-  /// - Parameter searcher: Searcher that handles your searches
-  /// - Parameter filterState: Filter state that will hold your filters
-  /// - Parameter attribute: Attribute to filter
-  /// - Parameter selectionMode: Whether the list can have single or multiple selections
-  /// - Parameter facets: If specified, the default facet values to display.
-  /// - Parameter operator: Filter group operator
-  /// - Parameter groupName: Identifier of the group of filters
-  /// - Parameter controller: Controller presenting the facet list
-  /// - Parameter presenter: Presenter defining the appearance of the facet list
+  /**
+  Init with implicit interactor & controller
+  - Parameters:
+      - searcher: Searcher that handles your searches
+      - filterState: Filter state that will hold your filters
+      - attribute: Attribute to filter
+      - selectionMode: Whether the list can have single or multiple selections
+      - facets: If specified, the default facet values to display.
+      - operator: Filter group operator
+      - groupName: Identifier of the group of filters
+      - controller: Controller presenting the facet list
+      - presenter: Presenter defining the appearance of the facet list
+  */
   public convenience init<Controller: FacetListController>(searcher: SingleIndexSearcher,
                                                            filterState: FilterState = .init(),
                                                            attribute: Attribute,
@@ -204,16 +215,18 @@ extension FacetListConnector {
 }
 
 /// Initializers with FacetSearcher
-
 extension FacetListConnector {
   
-  /// Init with explicit interactor
-  /// - Parameter searcher: Searcher that handles your searches for facet values
-  /// - Parameter filterState: Filter state that will hold your filters
-  /// - Parameter attribute: Attribute to filter
-  /// - Parameter interactor: External facet list interactor
-  /// - Parameter operator: Filter group operator
-  /// - Parameter groupName: Filter group name
+  /**
+  Init with explicit interactor
+  - Parameters:
+    - searcher: Searcher that handles your searches for facet values
+    - filterState: Filter state that will hold your filters
+    - attribute: Attribute to filter
+    - interactor: External facet list interactor
+    - operator: Filter group operator
+    - groupName: Filter group name
+  */
   public convenience init(searcher: FacetSearcher,
                           filterState: FilterState = .init(),
                           attribute: Attribute,
@@ -228,15 +241,18 @@ extension FacetListConnector {
               groupName: groupName)
   }
   
-  /// Init with explicit interactor & controller
-  /// - Parameter searcher: Searcher that handles your searches for facet values
-  /// - Parameter filterState: Filter state that will hold your filters
-  /// - Parameter attribute: Attribute to filter
-  /// - Parameter interactor: External facet list interactor
-  /// - Parameter operator: Filter group operator
-  /// - Parameter groupName: Filter group name
-  /// - Parameter controller: Controller presenting the facets
-  /// - Parameter presenter: Presenter defining the appearance of the facet list
+  /**
+  Init with explicit interactor & controller
+  - Parameters:
+    - searcher: Searcher that handles your searches for facet values
+    - filterState: Filter state that will hold your filters
+    - attribute: Attribute to filter
+    - interactor: External facet list interactor
+    - operator: Filter group operator
+    - groupName: Filter group name
+    - controller: Controller presenting the facets
+    - presenter: Presenter defining the appearance of the facet list
+  */
   public convenience init<Controller: FacetListController>(searcher: FacetSearcher,
                                                            filterState: FilterState = .init(),
                                                            attribute: Attribute,
@@ -255,14 +271,17 @@ extension FacetListConnector {
               groupName: groupName)
   }
   
-  /// Init with implicit interactor
-  /// - Parameter searcher: Searcher that handles your searches for facet values
-  /// - Parameter filterState: Filter state that will hold your filters
-  /// - Parameter attribute: Attribute to filter
-  /// - Parameter selectionMode: Whether the list can have single or multiple selections
-  /// - Parameter facets: If specified, the default facet values to display.
-  /// - Parameter operator: Filter group operator
-  /// - Parameter groupName: Identifier of the group of filters
+  /**
+  Init with implicit interactor
+  - Parameters:
+    - Parameter searcher: Searcher that handles your searches for facet values
+    - Parameter filterState: Filter state that will hold your filters
+    - Parameter attribute: Attribute to filter
+    - Parameter selectionMode: Whether the list can have single or multiple   selections
+    - Parameter facets: If specified, the default facet values to display.
+    - Parameter operator: Filter group operator
+    - Parameter groupName: Identifier of the group of filters
+  */
   public convenience init(searcher: FacetSearcher,
                           filterState: FilterState = .init(),
                           attribute: Attribute,
@@ -279,16 +298,19 @@ extension FacetListConnector {
               groupName: groupName)
   }
 
-  /// Init with implicit interactor & controller
-  /// - Parameter searcher: Searcher that handles your searches for facet values
-  /// - Parameter filterState: Filter state that will hold your filters
-  /// - Parameter attribute: Attribute to filter
-  /// - Parameter selectionMode: Whether the list can have single or multiple selections
-  /// - Parameter facets: If specified, the default facet values to display.
-  /// - Parameter operator: Filter group operator
-  /// - Parameter groupName: Identifier of the group of filters
-  /// - Parameter controller: Controller presenting the facet list
-  /// - Parameter presenter: Presenter defining the appearance of the facet list
+  /**
+  Init with implicit interactor & controller
+  - Parameters:
+    - searcher: Searcher that handles your searches for facet values
+    - filterState: Filter state that will hold your filters
+    - attribute: Attribute to filter
+    - selectionMode: Whether the list can have single or multiple selections
+    - facets: If specified, the default facet values to display.
+    - operator: Filter group operator
+    - groupName: Identifier of the group of filters
+    - controller: Controller presenting the facet list
+    - presenter: Presenter defining the appearance of the facet list
+  */
   public convenience init<Controller: FacetListController>(searcher: FacetSearcher,
                                                            filterState: FilterState = .init(),
                                                            attribute: Attribute,
