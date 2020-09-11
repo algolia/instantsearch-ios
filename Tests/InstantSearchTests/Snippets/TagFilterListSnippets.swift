@@ -21,7 +21,7 @@ class TagFilterListSnippets {
 
     let filterState = FilterState()
     
-    let filters: [TagFilter] = [
+    let filters: [Filter.Tag] = [
       "coupon",
       "free shipping",
       "free return",
@@ -49,7 +49,7 @@ class TagFilterListSnippets {
 
     let filterState = FilterState()
     
-    let filters: [TagFilter] = [
+    let filters: [Filter.Tag] = [
       "coupon",
       "free shipping",
       "free return",
@@ -69,14 +69,14 @@ class TagFilterListSnippets {
   func connectViewConnector() {
     let filterListConnector: TagFilterListConnector = /*...*/ self.connector
     let filterListTableView: UITableView = .init()
-    let filterListController: FilterListTableController<TagFilter> = .init(tableView: filterListTableView)
+    let filterListController: FilterListTableController<Filter.Tag> = .init(tableView: filterListTableView)
     filterListConnector.interactor.connectController(filterListController)
   }
   
   func connectViewInteractor() {
     let filterListInteractor: TagFilterListInteractor = /*...*/ self.interactor
     let filterListTableView: UITableView = .init()
-    let filterListController: FilterListTableController<TagFilter> = .init(tableView: filterListTableView)
+    let filterListController: FilterListTableController<Filter.Tag> = .init(tableView: filterListTableView)
     filterListInteractor.connectController(filterListController)
   }
 

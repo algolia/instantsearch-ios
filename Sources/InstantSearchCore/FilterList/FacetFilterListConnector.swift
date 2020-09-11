@@ -12,13 +12,16 @@ import Foundation
 public typealias FacetFilterListConnector = FilterListConnector<Filter.Facet>
 
 public extension FacetFilterListConnector {
-
-  /// - Parameter facetFilters: The facet filters to display.
-  /// - Parameter selectionMode: Whether the list can have `single` or `multiple` selections.
-  /// - Parameter filterState: The filter state  that will hold your filters.
-  /// - Parameter operator: Whether we apply an `and` or `or` behavior to the filters in the filter state.
-  /// - Parameter groupName: Filter group name
-  convenience init(facetFilters: [FacetFilter] = [],
+      
+  /**
+  - Parameters:
+    - facetFilters: List of facet filters to display.
+    - selectionMode: Whether the list can have `single` or `multiple` selections.
+    - filterState: The filter state  that will hold your filters.
+    - operator: Whether we apply an `and` or `or` behavior to the filters in the filter state.
+    - groupName: Filter group name
+  */
+  convenience init(facetFilters: [InstantSearchCore.Filter.Facet] = [],
                    selectionMode: SelectionMode = .multiple,
                    filterState: FilterState,
                    `operator`: RefinementOperator,
@@ -29,6 +32,30 @@ public extension FacetFilterListConnector {
               interactor: interactor,
               operator: `operator`,
               groupName: groupName)
+  }
+  
+  /**
+  - Parameters:
+    - facetFilters: List of facet filters to display.
+    - selectionMode: Whether the list can have `single` or `multiple` selections.
+    - filterState: The filter state  that will hold your filters.
+    - operator: Whether we apply an `and` or `or` behavior to the filters in the filter state.
+    - groupName: Filter group name
+    - controller: Controller interfacing with a filter list view
+  */
+  convenience init<Controller: SelectableListController>(facetFilters: [InstantSearchCore.Filter.Facet] = [],
+                                                         selectionMode: SelectionMode = .multiple,
+                                                         filterState: FilterState,
+                                                         `operator`: RefinementOperator,
+                                                         groupName: String,
+                                                         controller: Controller) where Controller.Item == InstantSearchCore.Filter.Facet {
+    let interactor = FacetFilterListInteractor(items: facetFilters,
+                                               selectionMode: selectionMode)
+    self.init(filterState: filterState,
+              interactor: interactor,
+              operator: `operator`,
+              groupName: groupName,
+              controller: controller)
   }
 
 }

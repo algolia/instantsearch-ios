@@ -60,14 +60,14 @@ class FacetFilterListSnippets {
   func connectViewConnector() {
     let filterListConnector: FacetFilterListConnector = /*...*/ self.connector
     let filterListTableView: UITableView = .init()
-    let filterListController: FilterListTableController<FacetFilter> = .init(tableView: filterListTableView)
+    let filterListController: FilterListTableController<Filter.Facet> = .init(tableView: filterListTableView)
     filterListConnector.interactor.connectController(filterListController)
   }
   
   func connectViewInteractor() {
     let filterListInteractor: FacetFilterListInteractor = /*...*/ self.interactor
     let filterListTableView: UITableView = .init()
-    let filterListController: FilterListTableController<FacetFilter> = .init(tableView: filterListTableView)
+    let filterListController: FilterListTableController<Filter.Facet> = .init(tableView: filterListTableView)
     filterListInteractor.connectController(filterListController)
   }
 

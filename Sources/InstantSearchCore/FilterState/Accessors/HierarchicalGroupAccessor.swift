@@ -11,7 +11,7 @@ import Foundation
 /// Provides a convenient interface to a hierarchical group contained by FilterState
 public struct HierarchicalGroupAccessor: SpecializedGroupAccessor {
 
-  public typealias Filter = FacetFilter
+  public typealias Filter = InstantSearchCore.Filter.Facet
 
   let groupID: FilterGroup.ID
   var filtersContainer: FiltersContainer

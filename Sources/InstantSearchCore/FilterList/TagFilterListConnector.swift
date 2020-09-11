@@ -12,13 +12,16 @@ import Foundation
 public typealias TagFilterListConnector = FilterListConnector<Filter.Tag>
 
 public extension TagFilterListConnector {
-
-  /// - Parameter tagFilters: The tag filters to display.
-  /// - Parameter selectionMode: Whether the list can have `single` or `multiple` selections.
-  /// - Parameter filterState: The filter state  that will hold your filters.
-  /// - Parameter operator: Whether we apply an `and` or `or` behavior to the filters in the filter state.
-  /// - Parameter groupName: Filter group name
-  convenience init(tagFilters: [TagFilter] = [],
+  
+  /**
+   - Parameters:
+     - tagFilters: List of tag filters to display.
+     - selectionMode: Whether the list can have `single` or `multiple` selections.
+     - filterState: The filter state  that will hold your filters.
+     - operator: Whether we apply an `and` or `or` behavior to the filters in the filter state.
+     - groupName: Filter group name
+   */
+  convenience init(tagFilters: [InstantSearchCore.Filter.Tag] = [],
                    selectionMode: SelectionMode = .multiple,
                    filterState: FilterState,
                    `operator`: RefinementOperator,
@@ -30,5 +33,29 @@ public extension TagFilterListConnector {
               operator: `operator`,
               groupName: groupName)
   }
-
+  
+  /**
+   - Parameters:
+     - numericFilters: List of tag filters to display.
+     - selectionMode: Whether the list can have `single` or `multiple` selections.
+     - filterState: The filter state  that will hold your filters.
+     - operator: Whether we apply an `and` or `or` behavior to the filters in the filter state.
+     - groupName: Filter group name
+     - controller: Controller interfacing with a filter list view
+   */
+  convenience init<Controller: SelectableListController>(tagFilters: [InstantSearchCore.Filter.Tag] = [],
+                                                         selectionMode: SelectionMode = .multiple,
+                                                         filterState: FilterState,
+                                                         `operator`: RefinementOperator,
+                                                         groupName: String,
+                                                         controller: Controller) where Controller.Item == InstantSearchCore.Filter.Tag {
+    let interactor = TagFilterListInteractor(items: tagFilters,
+                                             selectionMode: selectionMode)
+    self.init(filterState: filterState,
+              interactor: interactor,
+              operator: `operator`,
+              groupName: groupName,
+              controller: controller)
+  }
+  
 }
