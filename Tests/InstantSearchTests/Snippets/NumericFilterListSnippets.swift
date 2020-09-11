@@ -22,7 +22,7 @@ class NumericFilterListSnippets {
     
     let filterState = FilterState()
     
-    let filters: [NumericFilter] = [
+    let filters: [Filter.Numeric] = [
       .init(attribute: "price", operator: .lessThan, value: 5),
       .init(attribute: "price", range: 5...10),
       .init(attribute: "price", range: 10...25),
@@ -52,7 +52,7 @@ class NumericFilterListSnippets {
     
     let filterState = FilterState()
     
-    let filters: [NumericFilter] = [
+    let filters: [Filter.Numeric] = [
       .init(attribute: "price", operator: .lessThan, value: 5),
       .init(attribute: "price", range: 5...10),
       .init(attribute: "price", range: 10...25),
@@ -75,14 +75,14 @@ class NumericFilterListSnippets {
   func connectViewConnector() {
     let filterListConnector: NumericFilterListConnector = /*...*/ self.connector
     let filterListTableView: UITableView = .init()
-    let filterListController: FilterListTableController<NumericFilter> = .init(tableView: filterListTableView)
+    let filterListController: FilterListTableController<Filter.Numeric> = .init(tableView: filterListTableView)
     filterListConnector.interactor.connectController(filterListController)
   }
   
   func connectViewInteractor() {
     let filterListInteractor: NumericFilterListInteractor = /*...*/ self.interactor
     let filterListTableView: UITableView = .init()
-    let filterListController: FilterListTableController<NumericFilter> = .init(tableView: filterListTableView)
+    let filterListController: FilterListTableController<Filter.Numeric> = .init(tableView: filterListTableView)
     filterListInteractor.connectController(filterListController)
   }
 
