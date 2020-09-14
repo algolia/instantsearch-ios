@@ -74,7 +74,7 @@ extension FilterClearConnector {
   */
   @discardableResult func connectController(_ controller: FilterClearController) -> some Connection {
     let connection = interactor.connectController(controller)
-    connection.connect()
+    controllerConnections.append(connection)
     return connection
   }
 

@@ -25,6 +25,9 @@ public class HitsConnector<Hit: Codable> {
   
   /// Connection between hits interactor and searcher
   public let searcherConnection: Connection
+  
+  /// Connections between interactor and controllers
+  public var controllerConnections: [Connection]
 
   internal init<S: Searcher>(searcher: S,
                              interactor: HitsInteractor<Hit>,
@@ -35,8 +38,22 @@ public class HitsConnector<Hit: Codable> {
     self.interactor = interactor
     self.filterStateConnection = filterState.flatMap(interactor.connectFilterState)
     self.searcherConnection = connectSearcher(searcher)
+    self.controllerConnections = []
   }
-
+  
+  internal convenience init<S: Searcher, Controller: HitsController>(searcher: S,
+                                                                     interactor: HitsInteractor<Hit>,
+                                                                     filterState: FilterState? = .none,
+                                                                     connectSearcher: (S) -> Connection,
+                                                                     controller: Controller,
+                                                                     externalReload: Bool = false) where Controller.DataSource == HitsInteractor<Hit> {
+    self.init(searcher: searcher,
+              interactor: interactor,
+              filterState: filterState,
+              connectSearcher: connectSearcher)
+    connectController(controller, externalReload: externalReload)
+  }
+  
 }
 
 extension HitsConnector: Connection {
@@ -69,28 +86,6 @@ public extension HitsConnector {
               filterState: filterState,
               connectSearcher: interactor.connectSearcher)
   }
-
-  /**
-   - Parameters:
-     - appID: Application ID
-     - apiKey: API Key
-     - indexName: Name of the index in which search will be performed
-     - interactor: External hits interactor
-     - filterState: Filter state that will hold your filters
-  */
-  convenience init(appID: ApplicationID,
-                   apiKey: APIKey,
-                   indexName: IndexName,
-                   interactor: HitsInteractor<Hit> = .init(),
-                   filterState: FilterState? = .none) {
-    let searcher = SingleIndexSearcher(appID: appID,
-                                       apiKey: apiKey,
-                                       indexName: indexName)
-    self.init(searcher: searcher,
-              interactor: interactor,
-              filterState: filterState,
-              connectSearcher: interactor.connectSearcher)
-  }
   
   /**
    - Parameters:
@@ -98,7 +93,7 @@ public extension HitsConnector {
      - apiKey: API Key
      - indexName: Name of the index in which search will be performed
      - infiniteScrolling: Infinite scrolling toggle
-     - showItemsOnEmptyQuery: Defines if interactor gives access to  the hits in case of empty query
+     - showItemsOnEmptyQuery: Defines if interactor gives access to the hits in case of empty query
      - filterState: Filter state that will hold your filters
   */
   convenience init(appID: ApplicationID,
@@ -119,59 +114,72 @@ public extension HitsConnector {
 
 }
 
-public typealias PlaceHit = Hit<Place>
-
-public extension HitsConnector where Hit == PlaceHit {
-
+public extension HitsConnector {
+  
   /**
-   Convenient initializer for Places search
    - Parameters:
-     - searcher: Places Searcher that handles your searches
+     - searcher: Searcher that handles your searches.
      - interactor: External hits interactor
+     - filterState: Filter state that will hold your filters.
+     - controller: Controller interfacing with a concrete hits view
+     - externalReload: Defines if controller will be updated automatically by the events or manually
   */
-  convenience init(searcher: PlacesSearcher,
-                   interactor: HitsInteractor<Hit>) {
+  convenience init<Controller: HitsController>(searcher: SingleIndexSearcher,
+                   interactor: HitsInteractor<Hit> = .init(),
+                   filterState: FilterState? = .none,
+                   controller: Controller,
+                   externalReload: Bool = false) where Controller.DataSource == HitsInteractor<Hit> {
     self.init(searcher: searcher,
               interactor: interactor,
-              filterState: nil,
-              connectSearcher: interactor.connectPlacesSearcher)
-  }
-
-  /**
-   Convenient initializer for Places search
-   - Parameters:
-     - placesAppID: Places Application ID
-     - apiKey: Places API Key
-     - interactor: External hits interactor
-  */
-  convenience init(placesAppID: ApplicationID,
-                   apiKey: APIKey,
-                   interactor: HitsInteractor<Hit>) {
-    let searcher = PlacesSearcher(appID: placesAppID, apiKey: apiKey)
-    self.init(searcher: searcher,
-              interactor: interactor,
-              filterState: nil,
-              connectSearcher: interactor.connectPlacesSearcher)
+              filterState: filterState,
+              connectSearcher: interactor.connectSearcher,
+              controller: controller,
+              externalReload: externalReload)
   }
   
   /**
-   Convenient initializer for Places search
    - Parameters:
-     - placesAppID: Places Application ID
-     - apiKey: Places API Key
+     - appID: Application ID
+     - apiKey: API Key
+     - indexName: Name of the index in which search will be performed
      - infiniteScrolling: Infinite scrolling toggle
      - showItemsOnEmptyQuery: Defines if interactor gives access to  the hits in case of empty query
+     - filterState: Filter state that will hold your filters
+     - controller: Controller interfacing with a concrete hits view
+     - externalReload: Defines if controller will be updated automatically by the events or manually
   */
-  convenience init(placesAppID: ApplicationID,
-                   apiKey: APIKey,
-                   infiniteScrolling: InfiniteScrolling = Constants.Defaults.infiniteScrolling,
-                   showItemsOnEmptyQuery: Bool = Constants.Defaults.showItemsOnEmptyQuery) {
-    let searcher = PlacesSearcher(appID: placesAppID, apiKey: apiKey)
+  convenience init<Controller: HitsController>(appID: ApplicationID,
+                                               apiKey: APIKey,
+                                               indexName: IndexName,
+                                               infiniteScrolling: InfiniteScrolling = Constants.Defaults.infiniteScrolling,
+                                               showItemsOnEmptyQuery: Bool = Constants.Defaults.showItemsOnEmptyQuery,
+                                               filterState: FilterState? = .none,
+                                               controller: Controller,
+                                               externalReload: Bool = false) where Controller.DataSource == HitsInteractor<Hit> {
+    let searcher = SingleIndexSearcher(appID: appID,
+                                       apiKey: apiKey,
+                                       indexName: indexName)
     let interactor = HitsInteractor<Hit>(infiniteScrolling: infiniteScrolling, showItemsOnEmptyQuery: showItemsOnEmptyQuery)
     self.init(searcher: searcher,
               interactor: interactor,
-              filterState: nil,
-              connectSearcher: interactor.connectPlacesSearcher)
+              filterState: filterState,
+              connectSearcher: interactor.connectSearcher,
+              controller: controller,
+              externalReload: externalReload)
+  }
+
+  /**
+   Establishes a connection with the controller
+   - Parameters:
+     - controller: Controller interfacing with a concrete hits view
+     - externalReload: Defines if controller will be updated automatically by the events or manually
+   - Returns: Established connection
+  */
+  @discardableResult func connectController<Controller: HitsController>(_ controller: Controller,
+                                                                        externalReload: Bool = false) -> some Connection where Controller.DataSource == HitsInteractor<Hit> {
+    let connection = interactor.connectController(controller, externalReload: externalReload)
+    controllerConnections.append(connection)
+    return connection
   }
 
 }
