@@ -8,16 +8,26 @@
 
 import Foundation
 
-public class SelectableFilterConnector<Filter: FilterType>: Connection {
+public class SelectableFilterConnector<Filter: FilterType> {
 
+  /// Searcher that handles your searches
   public let searcher: SingleIndexSearcher
+  
+  /// Filter state that will hold your filters
   public let filterState: FilterState
+  
+  /// The logic applied to the filters
   public let interactor: SelectableSegmentInteractor<Int, Filter>
+  
+  
   public let attribute: Attribute
   public let `operator`: RefinementOperator
   public let groupName: String
 
+  /// Connection between interactor and searcher
   public let searcherConnection: SelectableFilterInteractorSearcherConnection<Filter>
+  
+  /// Connection between interactor and filterState
   public let filterStateConnection: SelectableFilterInteractorFilterStateConnection<Filter>
 
   public init(searcher: SingleIndexSearcher,
@@ -42,6 +52,11 @@ public class SelectableFilterConnector<Filter: FilterType>: Connection {
     self.interactor.selected = selected
   }
 
+
+}
+
+extension SelectableFilterConnector: Connection {
+  
   public func connect() {
     searcherConnection.connect()
     filterStateConnection.connect()
@@ -51,5 +66,5 @@ public class SelectableFilterConnector<Filter: FilterType>: Connection {
     searcherConnection.disconnect()
     filterStateConnection.disconnect()
   }
-
+  
 }
