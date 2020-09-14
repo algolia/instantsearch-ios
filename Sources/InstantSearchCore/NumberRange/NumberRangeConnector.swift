@@ -59,6 +59,12 @@ public class NumberRangeConnector<Number: Comparable & DoubleRepresentable> {
                                                                groupName: groupName)
     self.controllerConnections = []
   }
+    
+}
+
+//MARK: - Convenient initializers
+
+public extension NumberRangeConnector {
   
   /**
    - Parameters:
@@ -70,13 +76,13 @@ public class NumberRangeConnector<Number: Comparable & DoubleRepresentable> {
      - operator: Whether the filter is added to a conjuncitve(`and`) or  a disjuncitve (`or`) group in the filter state. Default value: .and
      - groupName: Filter group name in the filter state. If not specified, the attribute value is used as the group name
   */
-  public convenience init(searcher: SingleIndexSearcher,
-                          filterState: FilterState,
-                          attribute: Attribute,
-                          bounds: ClosedRange<Number>? = nil,
-                          range: ClosedRange<Number>? = nil,
-                          `operator`: RefinementOperator = .and,
-                          groupName: String? = nil) {
+  convenience init(searcher: SingleIndexSearcher,
+                   filterState: FilterState,
+                   attribute: Attribute,
+                   bounds: ClosedRange<Number>? = nil,
+                   range: ClosedRange<Number>? = nil,
+                   `operator`: RefinementOperator = .and,
+                   groupName: String? = nil) {
     let interactor = NumberRangeInteractor(item: range)
     interactor.applyBounds(bounds: bounds)
     self.init(searcher: searcher,
@@ -88,6 +94,8 @@ public class NumberRangeConnector<Number: Comparable & DoubleRepresentable> {
   }
   
 }
+
+//MARK: - Controller initializing and connectivity
 
 public extension NumberRangeConnector {
   
