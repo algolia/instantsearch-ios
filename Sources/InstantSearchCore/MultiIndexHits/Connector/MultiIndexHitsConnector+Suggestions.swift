@@ -1,0 +1,27 @@
+//
+//  MultiIndexHitsConnector+Suggestions.swift
+//  
+//
+//  Created by Vladislav Fitc on 17/09/2020.
+//
+
+import Foundation
+
+public extension MultiIndexHitsConnector.IndexModule {
+
+  /**
+   Convenient initializer constructing index module for suggestions index
+   - Parameters:
+     - suggestionsIndexName: Name of the index containing the search suggestions
+     - hitsInteractor: Logic applied to the suggestions
+     - filterState: Filter state holding your suggestions filters
+  */
+  init(suggestionsIndexName: IndexName,
+       hitsInteractor: HitsInteractor<Hit<QuerySuggestion>> = .init(infiniteScrolling: .off, showItemsOnEmptyQuery: true),
+       filterState: FilterState? = .none) {
+    self.init(indexName: suggestionsIndexName,
+              hitsInteractor: hitsInteractor,
+              filterState: filterState)
+  }
+
+}
