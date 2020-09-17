@@ -14,7 +14,7 @@ public class LoadingConnector<S: Searcher> {
   /// Searcher that handles your searches
   public let searcher: S
   
-  /// Business logic that handles showing a loading indicator
+  /// Logic that handles showing a loading indicator
   public let interactor: LoadingInteractor
   
   /// Connection between searcher and interactor
@@ -26,7 +26,7 @@ public class LoadingConnector<S: Searcher> {
   /**
     - Parameters:
       - searcher: Searcher that handles your searches
-      - interactor: Business logic that handles showing a loading indicator
+      - interactor: Logic applied to a loading indicator
    */
   public init(searcher: S,
               interactor: LoadingInteractor = .init()) {
@@ -38,43 +38,16 @@ public class LoadingConnector<S: Searcher> {
 
 }
 
-extension LoadingConnector {
-  
-  /**
-    - Parameters:
-      - searcher: Searcher that handles your searches
-      - interactor: Business logic that handles showing a loading indicator
-      - controller: Controller that interfaces with a concrete loading view
-   */
-  public convenience init<Controller: LoadingController>(searcher: S,
-              interactor: LoadingInteractor = .init(),
-              controller: Controller) {
-    self.init(searcher: searcher, interactor: interactor)
-    connectController(controller)
-  }
-
-  /**
-   Establishes a connection with the controller
-   - Parameters:
-     - controller: Controller that interfaces with a concrete loading view
-   - Returns: Established connection
-  */
-  @discardableResult func connectController<Controller: LoadingController>(_ controller: Controller) -> some Connection {
-    let connection = interactor.connectController(controller)
-    controllerConnections.append(connection)
-    return connection
-  }
-  
-}
-
 extension LoadingConnector: Connection {
   
   public func connect() {
     searcherConnection.connect()
+    controllerConnections.forEach { $0.connect() }
   }
 
   public func disconnect() {
     searcherConnection.disconnect()
+    controllerConnections.forEach { $0.disconnect() }
   }
   
 }
