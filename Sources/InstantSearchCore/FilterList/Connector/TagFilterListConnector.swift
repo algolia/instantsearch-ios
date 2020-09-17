@@ -15,10 +15,10 @@ public extension TagFilterListConnector {
   
   /**
    - Parameters:
-     - tagFilters: List of tag filters to display.
-     - selectionMode: Whether the list can have `single` or `multiple` selections.
-     - filterState: The filter state  that will hold your filters.
-     - operator: Whether we apply an `and` or `or` behavior to the filters in the filter state.
+     - tagFilters: List of tag filters to display
+     - selectionMode: Whether the list can have `single` or `multiple` selections
+     - filterState: Filter state holding your filters
+     - operator: Whether we apply an `and` or `or` behavior to the filters in the filter state
      - groupName: Filter group name
    */
   convenience init(tagFilters: [InstantSearchCore.Filter.Tag] = [],
@@ -36,12 +36,12 @@ public extension TagFilterListConnector {
   
   /**
    - Parameters:
-     - numericFilters: List of tag filters to display.
-     - selectionMode: Whether the list can have `single` or `multiple` selections.
-     - filterState: The filter state  that will hold your filters.
-     - operator: Whether we apply an `and` or `or` behavior to the filters in the filter state.
+     - tagFilters: List of tag filters to display
+     - selectionMode: Whether the list can have `single` or `multiple` selections
+     - filterState: Filter state holding your filters
+     - operator: Whether we apply an `and` or `or` behavior to the filters in the filter state
      - groupName: Filter group name
-     - controller: Controller interfacing with a filter list view
+     - controller: Controller interfacing with a concrete filter list view
    */
   convenience init<Controller: SelectableListController>(tagFilters: [InstantSearchCore.Filter.Tag] = [],
                                                          selectionMode: SelectionMode = .multiple,
