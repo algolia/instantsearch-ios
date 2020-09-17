@@ -13,15 +13,19 @@ public class SelectableFilterConnector<Filter: FilterType> {
   /// Searcher that handles your searches
   public let searcher: SingleIndexSearcher
   
-  /// Filter state that will hold your filters
+  /// Filter state holding your filters
   public let filterState: FilterState
   
-  /// The logic applied to the filters
+  /// Logic applied to the filters
   public let interactor: SelectableSegmentInteractor<Int, Filter>
   
-  
+  /// Attribute to filter
   public let attribute: Attribute
+  
+  /// Whether we apply an `and` or `or` behavior to the filters in the filter state
   public let `operator`: RefinementOperator
+  
+  /// Filter group name
   public let groupName: String
 
   /// Connection between interactor and searcher
@@ -29,7 +33,21 @@ public class SelectableFilterConnector<Filter: FilterType> {
   
   /// Connection between interactor and filterState
   public let filterStateConnection: SelectableFilterInteractorFilterStateConnection<Filter>
+  
+  /// Connections between interactor and controllers
+  public var controllerConnections: [Connection]
 
+  /**
+  Init with implicit interactor
+  - Parameters:
+    - searcher: Searcher handling searches for facet values
+    - filterState: Filter state holding your filters
+    - items: Map from segment to filter
+    - selected: Initially selected segment
+    - attribute: Attribute to filter
+    - operator: Whether we apply an `and` or `or` behavior to the filters in the filter state
+    - groupName: Filter group name
+  */
   public init(searcher: SingleIndexSearcher,
               filterState: FilterState,
               items: [Int: Filter],
@@ -50,8 +68,8 @@ public class SelectableFilterConnector<Filter: FilterType> {
                                                                     operator: `operator`,
                                                                     groupName: groupName)
     self.interactor.selected = selected
+    self.controllerConnections = []
   }
-
 
 }
 
@@ -60,11 +78,13 @@ extension SelectableFilterConnector: Connection {
   public func connect() {
     searcherConnection.connect()
     filterStateConnection.connect()
+    controllerConnections.forEach { $0.connect() }
   }
 
   public func disconnect() {
     searcherConnection.disconnect()
     filterStateConnection.disconnect()
+    controllerConnections.forEach { $0.disconnect() }
   }
   
 }
