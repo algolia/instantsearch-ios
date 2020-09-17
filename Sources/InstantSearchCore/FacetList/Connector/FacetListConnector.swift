@@ -1,0 +1,88 @@
+//
+//  FacetListConnector.swift
+//  InstantSearchCore
+//
+//  Created by Vladislav Fitc on 26/11/2019.
+//  Copyright © 2019 Algolia. All rights reserved.
+//
+
+import Foundation
+
+/// Component that perform refinements on a facet.
+public class FacetListConnector {
+  
+  /// Searcher that handles your searches.
+  public let searcher: Searcher
+  
+  /// Filter state holding your filters
+  public let filterState: FilterState
+  
+  /// Logic applied to the facets
+  public let interactor: FacetListInteractor
+  
+  /// Attribute to filter
+  public let attribute: Attribute
+  
+  /// Connection between interactor and filter state
+  public let filterStateConnection: Connection
+  
+  /// Connection between interactor and searcher
+  public let searcherConnection: Connection
+  
+  /// Connections between interactor and controllers
+  public var controllerConnections: [Connection]
+  
+  internal init(searcher: Searcher,
+                filterState: FilterState = .init(),
+                interactor: FacetListInteractor = .init(),
+                attribute: Attribute,
+                operator: RefinementOperator,
+                groupName: String?) {
+    self.filterState = filterState
+    self.searcher = searcher
+    self.interactor = interactor
+    self.attribute = attribute
+    
+    self.filterStateConnection = interactor.connectFilterState(filterState,
+                                                               with: attribute,
+                                                               operator: `operator`,
+                                                               groupName: groupName)
+    
+    self.controllerConnections = []
+    
+    switch searcher {
+    case .facet(let facetSearcher):
+      searcherConnection = interactor.connectFacetSearcher(facetSearcher)
+      
+    case .singleIndex(let singleIndexSearcher):
+      searcherConnection = interactor.connectSearcher(singleIndexSearcher, with: attribute)
+    }
+    
+  }
+    
+}
+
+extension FacetListConnector: Connection {
+  
+  public func connect() {
+    filterStateConnection.connect()
+    searcherConnection.connect()
+    controllerConnections.forEach { $0.connect() }
+  }
+  
+  public func disconnect() {
+    filterStateConnection.disconnect()
+    searcherConnection.disconnect()
+    controllerConnections.forEach { $0.disconnect() }
+  }
+
+}
+
+extension FacetListConnector {
+  
+  public enum Searcher {
+    case singleIndex(SingleIndexSearcher)
+    case facet(FacetSearcher)
+  }
+  
+}
