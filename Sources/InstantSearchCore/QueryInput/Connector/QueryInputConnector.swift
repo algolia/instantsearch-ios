@@ -40,47 +40,16 @@ public class QueryInputConnector<S: Searcher> {
 
 }
 
-extension QueryInputConnector {
-  
-  /**
-   - Parameters:
-     - searcher: Searcher that handles your searches
-     - interactor: Business logic that handles new search inputs
-     - searchTriggeringMode: Defines the event triggering a new search
-     - controller: Controller that interfaces with a concrete query input view
-   */
-  public convenience init<Controller: QueryInputController>(searcher: S,
-              interactor: QueryInputInteractor = .init(),
-              searchTriggeringMode: SearchTriggeringMode = .searchAsYouType,
-              controller: Controller) {
-    self.init(searcher: searcher,
-              interactor: interactor,
-              searchTriggeringMode: searchTriggeringMode)
-    connectController(controller)
-  }
-  
-  /**
-   Establishes a connection with the controller
-   - Parameters:
-     - controller: Controller that interfaces with a concrete query input view
-   - Returns: Established connection
-  */
-  @discardableResult func connectController<Controller: QueryInputController>(_ controller: Controller) -> some Connection {
-    let connection = interactor.connectController(controller)
-    controllerConnections.append(connection)
-    return connection
-  }
-  
-}
-
 extension QueryInputConnector: Connection {
   
   public func connect() {
     searcherConnection.connect()
+    controllerConnections.forEach { $0.connect() }
   }
 
   public func disconnect() {
     searcherConnection.disconnect()
+    controllerConnections.forEach { $0.disconnect() }
   }
   
 }
