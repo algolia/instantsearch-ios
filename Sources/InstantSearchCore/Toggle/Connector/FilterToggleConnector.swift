@@ -20,22 +20,26 @@ public class FilterToggleConnector<Filter: FilterType> {
   /// Connection between interactor and filter state
   public let filterStateConnection: Connection
   
+  /// Connections between interactor and controllers
+  public var controllerConnections: [Connection]
+  
   /**
    - Parameters:
      - filterState: Filter state holding your filters
      - interactor: Logic applied to Filter Toggle
-     - refinementOperator: Whether the filter is added to a conjuncitve(`and`) or a disjuncitve (`or`) group in the filter state.
+     - operator: Whether the filter is added to a conjuncitve(`and`) or a disjuncitve (`or`) group in the filter state.
      - groupName: Filter group name in the filter state. If not specified
    */
   public init(filterState: FilterState,
               interactor: SelectableInteractor<Filter>,
-              refinementOperator: RefinementOperator = .and,
+              operator: RefinementOperator = .and,
               groupName: String? = nil) {
     self.filterState = filterState
     self.interactor = interactor
     self.filterStateConnection = interactor.connectFilterState(filterState,
-                                                               operator: refinementOperator,
+                                                               operator: `operator`,
                                                                groupName: groupName ?? interactor.item.attribute.rawValue)
+    controllerConnections = []
   }
   
   /**
@@ -43,19 +47,19 @@ public class FilterToggleConnector<Filter: FilterType> {
      - filterState: Filter state holding your filters
      - filter: Filter to toggle
      - isSelected: Whether the filter is initially selected
-     - refinementOperator: Whether the filter is added to a conjuncitve(`and`) or a disjuncitve (`or`) group in the filter state.
+     - operator: Whether the filter is added to a conjuncitve(`and`) or a disjuncitve (`or`) group in the filter state.
      - groupName: Filter group name in the filter state.
    */
   public convenience init(filterState: FilterState,
                           filter: Filter,
                           isSelected: Bool = false,
-                          refinementOperator: RefinementOperator = .and,
+                          operator: RefinementOperator = .and,
                           groupName: String? = nil) {
     let interactor = SelectableInteractor(item: filter)
     interactor.isSelected = isSelected
     self.init(filterState: filterState,
               interactor: interactor,
-              refinementOperator: refinementOperator,
+              operator: `operator`,
               groupName: groupName)
   }
   
@@ -65,10 +69,12 @@ extension FilterToggleConnector: Connection {
   
   public func connect() {
     filterStateConnection.connect()
+    controllerConnections.forEach { $0.connect() }
   }
   
   public func disconnect() {
     filterStateConnection.disconnect()
+    controllerConnections.forEach { $0.disconnect() }
   }
   
 }
