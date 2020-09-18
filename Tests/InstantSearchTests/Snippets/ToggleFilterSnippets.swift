@@ -10,19 +10,18 @@ import InstantSearch
 import UIKit
 
 class ToggleFilterSnippets {
-  
-  let filterToggleConnector: FilterToggleConnector = .init(filterState: .init(), filter: "" as Filter.Tag)
-  let filterToggleInteractor: SelectableInteractor<Filter.Tag> = .init(item: "" as Filter.Tag)
-  
+    
   func widgetSnippet() {
     let searcher: SingleIndexSearcher = .init(appID: "YourApplicationID",
                                               apiKey: "YourSearchOnlyAPIKey",
                                               indexName: "YourIndexName")
     
     let filterState: FilterState = .init()
+    let filterToggleSwitchController: FilterSwitchController<Filter.Tag> = .init(switch: UISwitch())
 
     let filterToggleConnector = FilterToggleConnector(filterState: filterState,
-                                                      filter: "on sale" as Filter.Tag)
+                                                      filter: "on sale" as Filter.Tag,
+                                                      controller: filterToggleSwitchController)
     
     searcher.connectFilterState(filterState)
     searcher.search()
@@ -36,25 +35,14 @@ class ToggleFilterSnippets {
                                               indexName: "YourIndexName")
     let filterState: FilterState = .init()
     let filter: Filter.Tag = "on sale"
+    let filterToggleSwitchController: FilterSwitchController<Filter.Tag> = .init(switch: UISwitch())
     let onSaleFilterInteractor: SelectableInteractor<Filter.Tag> = .init(item: filter)
         
     searcher.connectFilterState(filterState)
     onSaleFilterInteractor.connectFilterState(filterState)
-    
+    onSaleFilterInteractor.connectController(filterToggleSwitchController)
     searcher.search()
     
   }
-  
-  func connectControllerConnector() {
-    let filterToggleConnector: FilterToggleConnector<Filter.Tag> = /*...*/ self.filterToggleConnector
-    let filterToggleSwitchController: FilterSwitchController<Filter.Tag> = .init(switch: UISwitch())
-    filterToggleConnector.interactor.connectController(filterToggleSwitchController)
-  }
-  
-  func connectControllerInteractor() {
-    let filterToggleInteractor: SelectableInteractor<Filter.Tag> = /*...*/ self.filterToggleInteractor
-    let filterToggleSwitchController: FilterSwitchController<Filter.Tag> = .init(switch: UISwitch())
-    filterToggleInteractor.connectController(filterToggleSwitchController)
-  }
-  
+    
 }

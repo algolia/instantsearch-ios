@@ -11,36 +11,23 @@ import UIKit
 
 class CurrentRefinementsSnippets {
   
-  let currentFiltersConnector = CurrentFiltersConnector(filterState: .init())
-  let currentFiltersInteractor = CurrentFiltersInteractor()
-  
   func widgetSnippet() {
     let filterState = FilterState()
     let groupID: FilterGroup.ID = .and(name: "color")
+    let currenfFiltersTableController: CurrentFilterListTableController = .init(tableView: UITableView())
     let currentFiltersConnector = CurrentFiltersConnector(filterState: filterState,
-                                                          groupIDs: [groupID])
+                                                          groupIDs: [groupID],
+                                                          controller: currenfFiltersTableController)
     _ = currentFiltersConnector
   }
   
   func advancedSnippet() {
     let filterState = FilterState()
     let groupID: FilterGroup.ID = .and(name: "color")
-    let currentFiltersInteractor = CurrentFiltersInteractor()
-    _ =
-    currentFiltersInteractor.connectFilterState(filterState, filterGroupID: groupID)
-  }
-  
-  func connectControllerConnector() {
-    let currenfFiltersConnector: CurrentFiltersConnector = /*...*/ self.currentFiltersConnector
-    let currenfFiltersTableController: CurrentFilterListTableController = .init(tableView: UITableView())
-    currenfFiltersConnector.interactor.connectController(currenfFiltersTableController)
-  }
-  
-  func connectControllerInteractor() {
-    let currentFiltersInteractor: CurrentFiltersInteractor = /*...*/ self.currentFiltersInteractor
     let currentFiltersTableController: CurrentFilterListTableController = .init(tableView: UITableView())
+    let currentFiltersInteractor = CurrentFiltersInteractor()
+    currentFiltersInteractor.connectFilterState(filterState, filterGroupID: groupID)
     currentFiltersInteractor.connectController(currentFiltersTableController)
   }
 
-  
 }

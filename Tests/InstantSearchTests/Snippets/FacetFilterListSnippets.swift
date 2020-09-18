@@ -10,26 +10,24 @@ import InstantSearch
 import UIKit
 
 class FacetFilterListSnippets {
-  
-  let interactor: FacetFilterListInteractor = .init()
-  let connector: FacetFilterListConnector = .init(filterState: .init(), operator: .and, groupName: "")
-  
+    
   func widgetExample() {
     let searcher: SingleIndexSearcher = SingleIndexSearcher(appID: "YourApplicationID",
                                                             apiKey: "YourSearchOnlyAPIKey",
                                                             indexName: "YourIndexName")
-    
     let filterState = FilterState()
-    
     let filters: [Filter.Facet] = ["red", "blue", "green", "yellow", "black"].map {
       .init(attribute: "color", stringValue: $0)
     }
+    let filterListTableView: UITableView = .init()
+    let filterListController: FilterListTableController<Filter.Facet> = .init(tableView: filterListTableView)
     
     let filterListConnector = FacetFilterListConnector(facetFilters: filters,
                                                        selectionMode: .multiple,
                                                        filterState: filterState,
                                                        operator: .and,
-                                                       groupName: "Facet Filters")
+                                                       groupName: "Facet Filters",
+                                                       controller: filterListController)
     
     searcher.connectFilterState(filterState)
     searcher.search()
@@ -49,26 +47,16 @@ class FacetFilterListSnippets {
       .init(attribute: "color", stringValue: $0)
     }
     
+    let filterListTableView: UITableView = .init()
+    let filterListController: FilterListTableController<Filter.Facet> = .init(tableView: filterListTableView)
+    
     let filterListInteractor = FacetFilterListInteractor(items: filters, selectionMode: .multiple)
     
     filterListInteractor.connectFilterState(filterState, operator: .and, groupName: "Facet Filters")
-    
+    filterListInteractor.connectController(filterListController)
+
     searcher.connectFilterState(filterState)
     searcher.search()
-  }
-  
-  func connectViewConnector() {
-    let filterListConnector: FacetFilterListConnector = /*...*/ self.connector
-    let filterListTableView: UITableView = .init()
-    let filterListController: FilterListTableController<Filter.Facet> = .init(tableView: filterListTableView)
-    filterListConnector.interactor.connectController(filterListController)
-  }
-  
-  func connectViewInteractor() {
-    let filterListInteractor: FacetFilterListInteractor = /*...*/ self.interactor
-    let filterListTableView: UITableView = .init()
-    let filterListController: FilterListTableController<Filter.Facet> = .init(tableView: filterListTableView)
-    filterListInteractor.connectController(filterListController)
   }
 
 }

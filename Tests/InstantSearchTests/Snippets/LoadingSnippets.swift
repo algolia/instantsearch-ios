@@ -11,14 +11,13 @@ import UIKit
 
 class LoadingSnippets {
   
-  private let loadingInteractor: LoadingInteractor = .init()
-  private let loadingConnector = LoadingConnector(searcher: SingleIndexSearcher(appID: "", apiKey: "", indexName: ""))
-    
   func widgetSnippet() {
     let searcher: SingleIndexSearcher = SingleIndexSearcher(appID: "YourApplicationID",
                                                             apiKey: "YourSearchOnlyAPIKey",
                                                             indexName: "YourIndexName")
-    let loadingConnector: LoadingConnector = .init(searcher: searcher)
+    let activityIndicatorController: ActivityIndicatorController = .init(activityIndicator: UIActivityIndicatorView())
+    let loadingConnector: LoadingConnector = .init(searcher: searcher,
+                                                   controller: activityIndicatorController)
   
     // Execute a search which will spin the loading indicator until the results arrive
     searcher.search()
@@ -31,24 +30,15 @@ class LoadingSnippets {
                                                             apiKey: "YourSearchOnlyAPIKey",
                                                             indexName: "YourIndexName")
     let loadingInteractor: LoadingInteractor = .init()
+    let activityIndicatorController: ActivityIndicatorController = .init(activityIndicator: UIActivityIndicatorView())
+
     loadingInteractor.connectSearcher(searcher)
+    loadingInteractor.connectController(activityIndicatorController)
 
     // Execute a search which will spin the loading indicator until the results arrive
     searcher.search()
     
     _ = loadingInteractor
   }
-  
-  func connectViewConnector() {
-    let loadingConnector: LoadingConnector = /*...*/ self.loadingConnector
-    let activityIndicatorController: ActivityIndicatorController = .init(activityIndicator: UIActivityIndicatorView())
-    loadingConnector.interactor.connectController(activityIndicatorController)
-  }
-  
-  func connectViewAdvanced() {
-    let loadingInteractor: LoadingInteractor = /*...*/ self.loadingInteractor
-    let activityIndicatorController: ActivityIndicatorController = .init(activityIndicator: UIActivityIndicatorView())
-    loadingInteractor.connectController(activityIndicatorController)
-  }
-  
+
 }

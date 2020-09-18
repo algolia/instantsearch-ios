@@ -10,10 +10,7 @@ import InstantSearch
 import UIKit
 
 class MultiIndexHitsSnippets {
-  
-  private let hitsInteractor: MultiIndexHitsInteractor = .init(hitsInteractors: [])
-  private let hitsConnector: MultiIndexHitsConnector = .init(appID: "", apiKey: "", indexModules: [])
-  
+    
   struct Actor: Codable {}
   struct Movie: Codable {}
   
@@ -23,7 +20,8 @@ class MultiIndexHitsSnippets {
     let movieHitsInteractor: HitsInteractor<Movie> = .init(infiniteScrolling: .off)
 
     let movieFilterState: FilterState = .init()
-    
+    let hitsTableViewController = MultiIndexHitsTableController(tableView: .init())
+
     let multiIndexHitsConnector = MultiIndexHitsConnector(appID: "YourApplicationID",
                                                           apiKey: "YourSearchOnlyAPIKey",
                                                           indexModules: [
@@ -32,7 +30,8 @@ class MultiIndexHitsSnippets {
                                                             .init(indexName: "movies",
                                                                   hitsInteractor: movieHitsInteractor,
                                                                   filterState: movieFilterState)
-                                                          ])
+                                                          ],
+                                                          controller: hitsTableViewController)
     
     _ = multiIndexHitsConnector
   }
@@ -45,14 +44,15 @@ class MultiIndexHitsSnippets {
     let actorHitsInteractor: HitsInteractor<Actor> = .init(infiniteScrolling: .off)
     let movieHitsInteractor: HitsInteractor<Movie> = .init(infiniteScrolling: .off)
     let hitsInteractor: MultiIndexHitsInteractor = .init(hitsInteractors: [actorHitsInteractor, movieHitsInteractor])
-    
+    let hitsTableViewController = MultiIndexHitsTableController(tableView: .init())
+
     hitsInteractor.connectSearcher(searcher)
-    
+    hitsInteractor.connectController(hitsTableViewController)
+
     let movieFilterState: FilterState = .init()
     
     movieHitsInteractor.connectFilterState(movieFilterState)
     searcher.connectFilterState(movieFilterState, withQueryAtIndex: 1)
-
   }
   
   struct ActorCellConfigurator: TableViewCellConfigurable {
@@ -120,16 +120,4 @@ class MultiIndexHitsSnippets {
 
   }
   
-  func connectControllerConnector() {
-    let hitsConnector: MultiIndexHitsConnector = /*...*/ self.hitsConnector
-    let hitsTableViewController = MultiIndexHitsTableController(tableView: .init())
-    hitsConnector.interactor.connectController(hitsTableViewController)
-  }
-  
-  func connectControllerInteractor() {
-    let hitsInteractor: MultiIndexHitsInteractor = /*...*/ self.hitsInteractor
-    let hitsTableViewController = MultiIndexHitsTableController(tableView: .init())
-    hitsInteractor.connectController(hitsTableViewController)
-  }
-
 }

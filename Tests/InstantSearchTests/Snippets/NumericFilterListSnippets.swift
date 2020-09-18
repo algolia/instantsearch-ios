@@ -11,9 +11,6 @@ import UIKit
 
 class NumericFilterListSnippets {
   
-  let interactor: NumericFilterListInteractor = .init()
-  let connector: NumericFilterListConnector = .init(filterState: .init(), operator: .and, groupName: "")
-  
   func widgetExample() {
     
     let searcher: SingleIndexSearcher = SingleIndexSearcher(appID: "YourApplicationID",
@@ -30,12 +27,15 @@ class NumericFilterListSnippets {
       .init(attribute: "price", operator: .greaterThan, value: 100)
     ]
     
+    let filterListTableView: UITableView = .init()
+    let filterListController: FilterListTableController<Filter.Numeric> = .init(tableView: filterListTableView)
     
     let filterListConnector = NumericFilterListConnector(numericFilters: filters,
                                                          selectionMode: .multiple,
                                                          filterState: filterState,
                                                          operator: .and,
-                                                         groupName: "Numeric Filters")
+                                                         groupName: "Numeric Filters",
+                                                         controller: filterListController)
     
     searcher.connectFilterState(filterState)
     searcher.search()
@@ -60,32 +60,19 @@ class NumericFilterListSnippets {
       .init(attribute: "price", operator: .greaterThan, value: 100)
     ]
     
-    
+    let filterListTableView: UITableView = .init()
+    let filterListController: FilterListTableController<Filter.Numeric> = .init(tableView: filterListTableView)
     let filterListInteractor = NumericFilterListInteractor(items: filters,
                                                            selectionMode: .multiple)
     
     filterListInteractor.connectFilterState(filterState,
                                             operator: .and,
                                             groupName: "Numeric Filters")
-      
+    filterListInteractor.connectController(filterListController)
+
     searcher.connectFilterState(filterState)
     searcher.search()
   }
-  
-  func connectViewConnector() {
-    let filterListConnector: NumericFilterListConnector = /*...*/ self.connector
-    let filterListTableView: UITableView = .init()
-    let filterListController: FilterListTableController<Filter.Numeric> = .init(tableView: filterListTableView)
-    filterListConnector.interactor.connectController(filterListController)
-  }
-  
-  func connectViewInteractor() {
-    let filterListInteractor: NumericFilterListInteractor = /*...*/ self.interactor
-    let filterListTableView: UITableView = .init()
-    let filterListController: FilterListTableController<Filter.Numeric> = .init(tableView: filterListTableView)
-    filterListInteractor.connectController(filterListController)
-  }
-
-  
+    
 }
 
