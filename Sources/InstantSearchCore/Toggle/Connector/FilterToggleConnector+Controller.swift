@@ -39,7 +39,7 @@ public extension FilterToggleConnector {
      - controller: Controller interfacing with a concrete toggle filter view
    - Returns: Established connection
   */
-  @discardableResult func connectController<Controller: SelectableController>(_ controller: Controller) -> some Connection where Controller.Item == Filter {
+  @discardableResult func connectController<Controller: SelectableController>(_ controller: Controller) -> FilterToggle.ControllerConnection<Filter, Controller> where Controller.Item == Filter {
     let connection = interactor.connectController(controller)
     controllerConnections.append(connection)
     return connection

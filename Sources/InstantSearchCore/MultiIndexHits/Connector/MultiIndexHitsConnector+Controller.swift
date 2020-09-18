@@ -17,9 +17,9 @@ public extension MultiIndexHitsConnector {
      - controller: Controller interfacing with a concrete multi-index hits view
   */
   convenience init<Controller: MultiIndexHitsController>(appID: ApplicationID,
-                   apiKey: APIKey,
-                   indexModules: [IndexModule],
-                   controller: Controller) {
+                                                         apiKey: APIKey,
+                                                         indexModules: [IndexModule],
+                                                         controller: Controller) {
     let searcher = MultiIndexSearcher(appID: appID,
                                       apiKey: apiKey,
                                       indexNames: indexModules.map { $0.indexName })
@@ -37,7 +37,7 @@ public extension MultiIndexHitsConnector {
      - controller: Controller interfacing with a concrete multi-index hits view
    - Returns: Established connection
   */
-  @discardableResult func connectController<Controller: MultiIndexHitsController>(_ controller: Controller) -> some Connection {
+  @discardableResult func connectController<Controller: MultiIndexHitsController>(_ controller: Controller) -> MultiIndexHitsInteractor.ControllerConnection<Controller> {
     let connection = interactor.connectController(controller)
     connection.connect()
     return connection

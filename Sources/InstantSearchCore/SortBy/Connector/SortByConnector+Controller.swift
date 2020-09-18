@@ -41,7 +41,7 @@ public extension SortByConnector {
    - Returns: Established connection
   */
   @discardableResult func connectController<Controller: SelectableSegmentController>(_ controller: Controller,
-                                                                                     presenter: @escaping IndexPresenter = DefaultPresenter.Index.present) -> some Connection where Controller.SegmentKey == Int {
+                                                                                     presenter: @escaping IndexPresenter = DefaultPresenter.Index.present) -> IndexSegment.ControllerConnection<Controller> where Controller.SegmentKey == Int {
     let connection = interactor.connectController(controller, presenter: presenter)
     controllerConnections.append(connection)
     return connection

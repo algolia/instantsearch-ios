@@ -35,7 +35,7 @@ public extension HitsInteractor where Record: Geolocated {
 
 public extension HitsInteractor where Record: Geolocated {
 
-  @discardableResult func connectController<Controller: GeoHitsController>(_ controller: Controller) -> GeoHitsControllerConnection<Controller> where Controller.DataSource == HitsInteractor<Record> {
+  @discardableResult func connectController<Controller: GeoHitsController>(_ controller: Controller) -> HitsInteractor<Record>.GeoHitsControllerConnection<Controller> where Controller.DataSource == HitsInteractor<Record> {
     let connection = GeoHitsControllerConnection(interactor: self, controller: controller)
     connection.connect()
     return connection

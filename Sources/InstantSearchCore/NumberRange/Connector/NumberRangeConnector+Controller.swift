@@ -45,7 +45,7 @@ public extension NumberRangeConnector {
      - controller: Controller interfacing with a concrete number range view
    - Returns: Established connection
   */
-  @discardableResult func connectController<Controller: NumberRangeController>(_ controller: Controller) -> some Connection where Controller.Number == Number {
+  @discardableResult func connectController<Controller: NumberRangeController>(_ controller: Controller) -> NumberRange.ControllerConnection<Number, Controller> where Controller.Number == Number {
     let connection = interactor.connectController(controller)
     controllerConnections.append(connection)
     return connection
