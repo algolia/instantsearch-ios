@@ -49,7 +49,7 @@ public extension SelectableFilterConnector {
    - Returns: Established connection
   */
   @discardableResult func connectController<Controller: SelectableSegmentController>(_ controller: Controller,
-                                                                                     presenter: @escaping FilterPresenter = DefaultPresenter.Filter.present) -> some Connection where Controller.SegmentKey == Int {
+                                                                                     presenter: @escaping FilterPresenter = DefaultPresenter.Filter.present) -> SelectableFilterInteractorControllerConnection<Filter, Controller> where Controller.SegmentKey == Int {
     let connection = interactor.connectController(controller, presenter: presenter)
     controllerConnections.append(connection)
     return connection

@@ -35,7 +35,7 @@ public extension FilterClearConnector {
      - controller: Controller interfacing with a concrete clear refinement view
    - Returns: Established connection
   */
-  @discardableResult func connectController(_ controller: FilterClearController) -> some Connection {
+  @discardableResult func connectController(_ controller: FilterClearController) -> FilterClearInteractor.ControllerConnection {
     let connection = interactor.connectController(controller)
     controllerConnections.append(connection)
     return connection

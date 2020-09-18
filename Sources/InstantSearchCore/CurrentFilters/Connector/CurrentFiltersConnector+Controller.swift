@@ -37,7 +37,7 @@ public extension CurrentFiltersConnector {
    - Returns: Established connection
   */
   @discardableResult func connectController<Controller: ItemListController>(_ controller: Controller,
-                                                                            presenter: @escaping Presenter<Filter, String> = DefaultPresenter.Filter.present) -> some Connection where Controller.Item == FilterAndID {
+                                                                            presenter: @escaping Presenter<Filter, String> = DefaultPresenter.Filter.present) -> CurrentFiltersInteractor.ControllerConnection<Controller> where Controller.Item == FilterAndID {
     let connection = interactor.connectController(controller, presenter: presenter)
     controllerConnections.append(connection)
     return connection

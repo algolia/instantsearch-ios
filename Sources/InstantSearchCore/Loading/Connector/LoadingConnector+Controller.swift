@@ -28,7 +28,7 @@ public extension LoadingConnector {
      - controller: Controller that interfaces with a concrete loading view
    - Returns: Established connection
   */
-  @discardableResult func connectController<Controller: LoadingController>(_ controller: Controller) -> some Connection {
+  @discardableResult func connectController<Controller: LoadingController>(_ controller: Controller) -> LoadingInteractor.ControllerConnection<Controller, Bool> {
     let connection = interactor.connectController(controller)
     controllerConnections.append(connection)
     return connection

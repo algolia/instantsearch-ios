@@ -14,23 +14,26 @@ public extension StatsConnector {
       - searcher: Searcher that handles your searches
       - interactor: Logic applied to the stats
       - controller: Controller interfacing with a concrete stats view
+      - presenter: Presenter defining how stats appear in the controller
    */
-  convenience init<Controller: StatsTextController>(searcher: SingleIndexSearcher,
-                                               interactor: StatsInteractor = .init(),
-                                               controller: Controller) {
+  convenience init<Controller: ItemController, Output>(searcher: SingleIndexSearcher,
+                                                    interactor: StatsInteractor = .init(),
+                                                    controller: Controller,
+                                                    presenter: @escaping Presenter<SearchStats?, Output>) where Controller.Item == Output {
     self.init(searcher: searcher,
               interactor: interactor)
-    connectController(controller)
+    connectController(controller, presenter: presenter)
   }
   
   /**
-   Establishes a connection with the controller
+   Establishes a connection with the controller using the provided presentation logic
    - Parameters:
      - controller: Controller interfacing with a concrete stats view
+     - presenter: Presenter defining how stats appear in the controller
    - Returns: Established connection
   */
-  @discardableResult func connectController<Controller: StatsTextController>(_ controller: Controller) -> some Connection {
-    let connection = interactor.connectController(controller)
+  @discardableResult func connectController<Controller: ItemController, Output>(_ controller: Controller, presenter: @escaping Presenter<SearchStats?, Output>) -> ItemInteractor<SearchStats?>.ControllerConnection<Controller, Output> {
+    let connection = interactor.connectController(controller, presenter: presenter)
     controllerConnections.append(connection)
     return connection
   }

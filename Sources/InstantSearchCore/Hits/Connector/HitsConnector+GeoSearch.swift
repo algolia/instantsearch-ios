@@ -96,7 +96,7 @@ public extension HitsConnector where Hit == PlaceHit {
      - controller: Controller interfacing with a concrete hits view
    - Returns: Established connection
   */
-  @discardableResult func connectController<Controller: GeoHitsController>(_ controller: Controller) -> some Connection where Controller.DataSource == HitsInteractor<PlaceHit> {
+  @discardableResult func connectController<Controller: GeoHitsController>(_ controller: Controller) -> HitsInteractor<PlaceHit>.GeoHitsControllerConnection<Controller> where Controller.DataSource == HitsInteractor<PlaceHit> {
     let connection = interactor.connectController(controller)
     controllerConnections.append(connection)
     return connection

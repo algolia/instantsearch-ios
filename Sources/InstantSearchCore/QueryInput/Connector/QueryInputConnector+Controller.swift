@@ -32,7 +32,7 @@ extension QueryInputConnector {
      - controller: Controller interfacing with a concrete query input view
    - Returns: Established connection
   */
-  @discardableResult func connectController<Controller: QueryInputController>(_ controller: Controller) -> some Connection {
+  @discardableResult func connectController<Controller: QueryInputController>(_ controller: Controller) -> QueryInputInteractor.ControllerConnection<Controller> {
     let connection = interactor.connectController(controller)
     controllerConnections.append(connection)
     return connection

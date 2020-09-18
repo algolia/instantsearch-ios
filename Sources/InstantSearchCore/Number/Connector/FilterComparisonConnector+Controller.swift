@@ -44,7 +44,7 @@ public extension FilterComparisonConnector {
      - controller: Controller interfacing with a concrete number view
    - Returns: Established connection
   */
-  @discardableResult func connectNumberController<Controller: NumberController>(_ controller: Controller) -> some Connection where Controller.Item == Number {
+  @discardableResult func connectNumberController<Controller: NumberController>(_ controller: Controller) -> NumberInteractorControllerConnection<Controller, Number> where Controller.Item == Number {
     let connection = interactor.connectNumberController(controller)
     controllerConnections.append(connection)
     return connection

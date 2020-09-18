@@ -7,7 +7,8 @@
 
 import Foundation
 
-public extension FilterListConnector {
+public
+extension FilterListConnector {
   
   /**
   Init with explicit interactor and controller
@@ -27,6 +28,7 @@ public extension FilterListConnector {
               interactor: interactor,
               operator: `operator`,
               groupName: groupName)
+    connectController(controller)
   }
   
   /**
@@ -45,12 +47,13 @@ public extension FilterListConnector {
                                                          `operator`: RefinementOperator,
                                                          groupName: String,
                                                          controller: Controller) where Controller.Item == Filter {
-    let interactor = FilterListInteractor<Filter>.init(items: filters,
-                                                       selectionMode: selectionMode)
+    let interactor = FilterListInteractor<Filter>(items: filters,
+                                                  selectionMode: selectionMode)
     self.init(filterState: filterState,
               interactor: interactor,
               operator: `operator`,
               groupName: groupName)
+    connectController(controller)
   }
   
   /**
@@ -59,7 +62,7 @@ public extension FilterListConnector {
      - controller: Controller interfacing with a concrete filter list view
    - Returns: Established connection
   */
-  @discardableResult func connectController<Controller: SelectableListController>(_ controller: Controller) -> some Connection where Controller.Item == Filter {
+  @discardableResult func connectController<Controller: SelectableListController>(_ controller: Controller) -> FilterList.ControllerConnection<Filter, Controller> where Controller.Item == Filter {
     let connection = interactor.connectController(controller)
     controllerConnections.append(connection)
     return connection

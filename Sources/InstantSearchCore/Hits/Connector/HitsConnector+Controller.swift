@@ -69,7 +69,7 @@ public extension HitsConnector {
    - Returns: Established connection
   */
   @discardableResult func connectController<Controller: HitsController>(_ controller: Controller,
-                                                                        externalReload: Bool = false) -> some Connection where Controller.DataSource == HitsInteractor<Hit> {
+                                                                        externalReload: Bool = false) -> HitsInteractor<Hit>.ControllerConnection<Controller> where Controller.DataSource == HitsInteractor<Hit> {
     let connection = interactor.connectController(controller, externalReload: externalReload)
     controllerConnections.append(connection)
     return connection
