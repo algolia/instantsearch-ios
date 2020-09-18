@@ -43,39 +43,30 @@ class HitsSnippets {
   
   func widgetSnippet() {
     let filterState: FilterState  = .init()
-
+    let hitsTableViewController = CustomHitsTableViewController()
     let hitsConnector = HitsConnector<CustomHitModel>(appID: "YourApplicationID",
                                                   apiKey: "YourSearchOnlyAPIKey",
                                                   indexName: "YourIndexName",
-                                                  filterState: filterState)
+                                                  filterState: filterState,
+                                                  controller: hitsTableViewController)
     
 
     hitsConnector.searcher.search()
-
   }
   
   func advancedSnippet() {
     let searcher: SingleIndexSearcher = SingleIndexSearcher(appID: "YourApplicationID",
                                                             apiKey: "YourSearchOnlyAPIKey",
                                                             indexName: "YourIndexName")
+    
     let filterState: FilterState  = .init()
     let hitsInteractor: HitsInteractor<CustomHitModel> = .init()
-    
+    let hitsTableViewController = CustomHitsTableViewController()
+
     hitsInteractor.connectSearcher(searcher)
     hitsInteractor.connectFilterState(filterState)
-    searcher.search()
-  }
-  
-  func connectControllerConnector() {
-    let hitsConnector: HitsConnector = /*...*/ self.hitsConnector
-    let hitsTableViewController = CustomHitsTableViewController()
-    hitsConnector.interactor.connectController(hitsTableViewController)
-  }
-  
-  func connectControllerInteractor() {
-    let hitsInteractor: HitsInteractor<CustomHitModel> = /*...*/ self.hitsInteractor
-    let hitsTableViewController = CustomHitsTableViewController()
     hitsInteractor.connectController(hitsTableViewController)
+    searcher.search()
   }
   
 }

@@ -31,8 +31,6 @@ class FacetListConnectorSnippets {
                                                       operator: .and,
                                                       controller: categoryListController,
                                                       presenter: facetListPresenter)
-
-    categoryConnector.connect()
     
     searcher.search()
     
@@ -57,7 +55,6 @@ class FacetListConnectorSnippets {
     searcher.connectFilterState(filterState)
     
     searcher.search()
-    
   }
   
   func controllerExample() {

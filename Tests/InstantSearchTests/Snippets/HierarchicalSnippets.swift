@@ -10,10 +10,7 @@ import InstantSearch
 import UIKit
 
 class HierachicalMenuSnippets {
-  
-  let hierarchicalInteractor = HierarchicalInteractor(hierarchicalAttributes: [], separator: "")
-  let hierarchicalConnector = HierarchicalConnector(searcher: .init(appID: "", apiKey: "", indexName: ""), filterState: .init(), hierarchicalAttributes: [], separator: "")
-  
+    
   func widgetSnippet() {
     let searcher: SingleIndexSearcher = .init(appID: "YourApplicationID",
                                               apiKey: "YourSearchOnlyAPIKey",
@@ -29,10 +26,14 @@ class HierachicalMenuSnippets {
       "hierarchicalCategories.lvl2",
     ]
     
+    let hierarchicalTableViewController: HierarchicalTableViewController = .init(tableView: UITableView())
+        
     let hierachicalConnector: HierarchicalConnector = .init(searcher: searcher,
                                                             filterState: filterState,
                                                             hierarchicalAttributes: hierarchicalAttributes,
-                                                            separator: " > ")
+                                                            separator: " > ",
+                                                            controller: hierarchicalTableViewController,
+                                                            presenter: DefaultPresenter.Hierarchical.present)
     searcher.search()
     
     _ = hierachicalConnector
@@ -53,52 +54,18 @@ class HierachicalMenuSnippets {
       "hierarchicalCategories.lvl2",
     ]
     
+    let hierarchicalTableViewController: HierarchicalTableViewController = .init(tableView: UITableView())
+    
     let hierarchicalInteractor: HierarchicalInteractor = .init(hierarchicalAttributes: hierarchicalAttributes,
                                                                separator: " > ")
     
     searcher.connectFilterState(filterState)
     hierarchicalInteractor.connectSearcher(searcher: searcher)
     hierarchicalInteractor.connectFilterState(filterState)
-    
+    hierarchicalInteractor.connectController(hierarchicalTableViewController)
+
     searcher.search()
     
-  }
-  
-  func connectControllerConnector() {
-    
-    let presenter: HierarchicalPresenter = { facets in
-       let levels = Set(facets.map { $0.level }).sorted()
-
-       guard !levels.isEmpty else { return facets }
-
-       var output: [HierarchicalFacet] = []
-
-       output.reserveCapacity(facets.count)
-
-       levels.forEach { level in
-         let facetsForLevel = facets
-           .filter { $0.level == level }
-           .sorted { $0.facet.value < $1.facet.value }
-         let indexToInsert = output
-           .lastIndex { $0.isSelected }
-           .flatMap { output.index(after: $0) } ?? output.endIndex
-         output.insert(contentsOf: facetsForLevel, at: indexToInsert)
-       }
-
-      return output
-    }
-    
-    let hierarchicalConnector: HierarchicalConnector = /*...*/ self.hierarchicalConnector
-    let hierarchicalTableViewController: HierarchicalTableViewController = .init(tableView: UITableView())
-    hierarchicalConnector.interactor.connectController(hierarchicalTableViewController)
-    
-    _ = presenter
-  }
-  
-  func connectControllerInteractor() {
-    let hierarchicalInteractor: HierarchicalInteractor = /*...*/ self.hierarchicalInteractor
-    let hierarchicalTableViewController: HierarchicalTableViewController = .init(tableView: UITableView())
-    hierarchicalInteractor.connectController(hierarchicalTableViewController)
   }
   
 }

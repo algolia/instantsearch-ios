@@ -10,16 +10,15 @@ import InstantSearch
 import UIKit
 
 class QueryInputSnippets {
-  
-  let queryInputInteractor = QueryInputInteractor()
-  let queryInputConnector = QueryInputConnector(searcher: SingleIndexSearcher(appID: "", apiKey: "", indexName: ""))
-  
+    
   func widgetExample() {
     let searcher: SingleIndexSearcher = .init(appID: "YourApplicationID",
                                               apiKey: "YourSearchOnlyAPIKey",
                                               indexName: "YourIndexName")
+    let searchBarController: SearchBarController = .init(searchBar: UISearchBar())
     let queryInputConnector: QueryInputConnector = .init(searcher: searcher,
-                                                         searchTriggeringMode: .searchAsYouType)
+                                                         searchTriggeringMode: .searchAsYouType,
+                                                         controller: searchBarController)
     
     _ = queryInputConnector
     
@@ -29,21 +28,10 @@ class QueryInputSnippets {
     let searcher: SingleIndexSearcher = .init(appID: "YourApplicationID",
                                               apiKey: "YourSearchOnlyAPIKey",
                                               indexName: "YourIndexName")
-    
     let queryInputInteractor: QueryInputInteractor = .init()
+    let searchBarController: SearchBarController = .init(searchBar: UISearchBar())
 
     queryInputInteractor.connectSearcher(searcher, searchTriggeringMode: .searchAsYouType)
-  }
-  
-  func connectControllerConnector() {
-    let queryInputConnector: QueryInputConnector = /*...*/ self.queryInputConnector
-    let searchBarController: SearchBarController = .init(searchBar: UISearchBar())
-    queryInputConnector.interactor.connectController(searchBarController)
-  }
-  
-  func connectControllerInteractor() {
-    let queryInputInteractor: QueryInputInteractor = /*...*/ self.queryInputInteractor
-    let searchBarController: SearchBarController = .init(searchBar: UISearchBar())
     queryInputInteractor.connectController(searchBarController)
   }
   

@@ -10,26 +10,19 @@ import InstantSearch
 import UIKit
 
 class NumberRangeSnippets {
-  
-  let numberRangeInteractor: NumberRangeInteractor<Double> = .init()
-  let numberRangeConnector: NumberRangeConnector<Double> = .init(searcher: .init(appID: "",
-                                                                                 apiKey: "",
-                                                                                 indexName: ""),
-                                                                 filterState: .init(),
-                                                                 attribute: "",
-                                                                 interactor: .init(),
-                                                                 operator: .and,
-                                                                 groupName: "")
-  
+    
   func widgetSnippet() {
     let searcher: SingleIndexSearcher = .init(appID: "YourApplicationID",
                                               apiKey: "YourApiKey",
                                               indexName: "YourIndexName")
     let filterState: FilterState = .init()
     
+    let numberRangeController: RangeSliderController = .init(rangeSlider: .init())
+    
     let numericRangeConnector: NumberRangeConnector<Double> = .init(searcher: searcher,
                                                                     filterState: filterState,
-                                                                    attribute: "price")
+                                                                    attribute: "price",
+                                                                    controller: numberRangeController)
     
     searcher.search()
     
@@ -43,6 +36,7 @@ class NumberRangeSnippets {
     let filterState: FilterState = .init()
 
     let numericRangeInteractor: NumberRangeInteractor<Double> = .init()
+    let numberRangeController: RangeSliderController = .init(rangeSlider: .init())
 
     let priceAttribute: Attribute = "price"
       
@@ -50,7 +44,8 @@ class NumberRangeSnippets {
 
     numericRangeInteractor.connectFilterState(filterState, attribute: priceAttribute)
     numericRangeInteractor.connectSearcher(searcher, attribute: priceAttribute)
-
+    numericRangeInteractor.connectController(numberRangeController)
+    
     searcher.search()
   
   }
@@ -88,18 +83,6 @@ class NumberRangeSnippets {
       onRangeChanged?(sender.lowerValue...sender.upperValue)
     }
     
-  }
-  
-  func connectControllerConnector() {
-    let numberRangeConnector: NumberRangeConnector = /*...*/ self.numberRangeConnector
-    let numberRangeController: RangeSliderController = .init(rangeSlider: .init())
-    numberRangeConnector.interactor.connectController(numberRangeController)
-  }
-  
-  func connectControllerInteractor() {
-    let numberRangeInteractor: NumberRangeInteractor = /*...*/ self.numberRangeInteractor
-    let numberRangeController: RangeSliderController = .init(rangeSlider: .init())
-    numberRangeInteractor.connectController(numberRangeController)
   }
   
 }

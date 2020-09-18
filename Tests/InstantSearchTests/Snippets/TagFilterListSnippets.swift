@@ -10,10 +10,7 @@ import InstantSearch
 import UIKit
 
 class TagFilterListSnippets {
-  
-  let interactor: TagFilterListInteractor = .init()
-  let connector: TagFilterListConnector = .init(filterState: .init(), operator: .and, groupName: "")
-  
+    
   func widgetExample() {
     let searcher: SingleIndexSearcher = SingleIndexSearcher(appID: "YourApplicationID",
                                                             apiKey: "YourSearchOnlyAPIKey",
@@ -28,12 +25,15 @@ class TagFilterListSnippets {
       "on sale",
       "no exchange"
     ]
-        
+    let filterListTableView: UITableView = .init()
+    let filterListController: FilterListTableController<Filter.Tag> = .init(tableView: filterListTableView)
+
     let filterListConnector = TagFilterListConnector(tagFilters: filters,
                                                      selectionMode: .multiple,
                                                      filterState: filterState,
                                                      operator: .and,
-                                                     groupName: "Tag Filters")
+                                                     groupName: "Tag Filters",
+                                                     controller: filterListController)
     
     searcher.connectFilterState(filterState)
     searcher.search()
@@ -42,7 +42,6 @@ class TagFilterListSnippets {
   }
   
   func advancedExample() {
-    
     let searcher: SingleIndexSearcher = SingleIndexSearcher(appID: "YourApplicationID",
                                                             apiKey: "YourSearchOnlyAPIKey",
                                                             indexName: "YourIndexName")
@@ -56,28 +55,17 @@ class TagFilterListSnippets {
       "on sale",
       "no exchange"
     ]
-        
+    let filterListTableView: UITableView = .init()
+    let filterListController: FilterListTableController<Filter.Tag> = .init(tableView: filterListTableView)
+
     let filterListInteractor = TagFilterListInteractor(items: filters,
                                                       selectionMode: .multiple)
     
     filterListInteractor.connectFilterState(filterState, operator: .and, groupName: "Tag Filters")
-    
+    filterListInteractor.connectController(filterListController)
+
     searcher.connectFilterState(filterState)
     searcher.search()
   }
   
-  func connectViewConnector() {
-    let filterListConnector: TagFilterListConnector = /*...*/ self.connector
-    let filterListTableView: UITableView = .init()
-    let filterListController: FilterListTableController<Filter.Tag> = .init(tableView: filterListTableView)
-    filterListConnector.interactor.connectController(filterListController)
-  }
-  
-  func connectViewInteractor() {
-    let filterListInteractor: TagFilterListInteractor = /*...*/ self.interactor
-    let filterListTableView: UITableView = .init()
-    let filterListController: FilterListTableController<Filter.Tag> = .init(tableView: filterListTableView)
-    filterListInteractor.connectController(filterListController)
-  }
-
 }
