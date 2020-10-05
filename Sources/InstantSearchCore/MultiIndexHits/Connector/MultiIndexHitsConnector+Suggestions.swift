@@ -12,7 +12,7 @@ public extension MultiIndexHitsConnector.IndexModule {
   /**
    Convenient initializer constructing index module for suggestions index
    - Parameters:
-     - suggestionsIndexName: Name of the index containing the search suggestions
+     - suggestionsIndexName: Name the search suggestions index
      - hitsInteractor: Logic applied to the suggestions
      - filterState: Filter state holding your suggestions filters
   */

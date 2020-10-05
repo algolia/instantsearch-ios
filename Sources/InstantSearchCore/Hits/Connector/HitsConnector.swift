@@ -17,7 +17,7 @@ public class HitsConnector<Hit: Codable> {
   /// Logic applied to the hits
   public let interactor: HitsInteractor<Hit>
   
-  /// Filter state holding your filters
+  /// FilterState that holds your filters
   public let filterState: FilterState?
 
   /// Connection between hits interactor and filter state
@@ -80,7 +80,7 @@ public extension HitsConnector {
    - Parameters:
      - searcher: Searcher that handles your searches.
      - interactor: External hits interactor
-     - filterState: Filter state holding your filters
+     - filterState: FilterState that holds your filters
   */
   convenience init(searcher: SingleIndexSearcher,
                    interactor: HitsInteractor<Hit> = .init(),
@@ -93,12 +93,12 @@ public extension HitsConnector {
   
   /**
    - Parameters:
-     - appID: Application ID
-     - apiKey: API Key
-     - indexName: Name of the index in which search will be performed
-     - infiniteScrolling: Infinite scrolling toggle
-     - showItemsOnEmptyQuery: Defines if interactor gives access to the hits in case of empty query
-     - filterState: Filter state holding your filters
+     - appID: ID of your application.
+     - apiKey: Your application API Key. Be sure to use your Search-only API key.
+     - indexName: Name of the index to search
+     - infiniteScrolling: Whether or not infinite scrolling is enabled.
+     - showItemsOnEmptyQuery: If false, no results are displayed when the user hasn’t entered any query text.
+     - filterState: FilterState that holds your filters
   */
   convenience init(appID: ApplicationID,
                    apiKey: APIKey,

@@ -8,10 +8,10 @@
 
 import Foundation
 
-/// Component that toggles an arbitrary filter on or off
+/// Filtering component that displays any kind of filter, and lets the user refine the search results by toggling it on or off.
 public class FilterToggleConnector<Filter: FilterType> {
   
-  /// Filter state holding your filters
+  /// FilterState that holds your filters
   public let filterState: FilterState
   
   /// Logic applied to Filter Toggle
@@ -25,7 +25,7 @@ public class FilterToggleConnector<Filter: FilterType> {
   
   /**
    - Parameters:
-     - filterState: Filter state holding your filters
+     - filterState: FilterState that holds your filters
      - interactor: Logic applied to Filter Toggle
      - operator: Whether the filter is added to a conjuncitve(`and`) or a disjuncitve (`or`) group in the filter state.
      - groupName: Filter group name in the filter state. If not specified
@@ -44,7 +44,7 @@ public class FilterToggleConnector<Filter: FilterType> {
   
   /**
    - Parameters:
-     - filterState: Filter state holding your filters
+     - filterState: FilterState that holds your filters
      - filter: Filter to toggle
      - isSelected: Whether the filter is initially selected
      - operator: Whether the filter is added to a conjuncitve(`and`) or a disjuncitve (`or`) group in the filter state.

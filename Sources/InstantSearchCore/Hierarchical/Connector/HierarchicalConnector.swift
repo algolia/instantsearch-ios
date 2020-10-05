@@ -8,12 +8,13 @@
 
 import Foundation
 
+/// Filtering component that displays a hierarchy of facets that lets your users refine the search results
 public class HierarchicalConnector {
 
   /// Searcher that handles your searches
   public let searcher: SingleIndexSearcher
   
-  /// Filter state holding your filters
+  /// FilterState that holds your filters
   public let filterState: FilterState
   
   /// Logic applied to the hierarchical facets.
@@ -31,9 +32,9 @@ public class HierarchicalConnector {
   /**
    - Parameters:
      - searcher: Searcher that handles your searches.
-     - filterState: Filter state holding your filters
-     - hierarchicalAttributes: The names of the hierarchical attributes that we need to target, in ascending order.
-     - separator: The string separating the facets in the hierarchical facets.
+     - filterState: FilterState that holds your filters
+     - hierarchicalAttributes: Names of the hierarchical attributes that we need to target, in ascending order.
+     - separator: String separating the facets in the hierarchical facets.
   */
   public init(searcher: SingleIndexSearcher,
               filterState: FilterState,

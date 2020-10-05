@@ -8,7 +8,7 @@
 
 import Foundation
 
-/// Component that manages and displays a paginated list of search results from multiple indices.
+/// Component thath manages and displays a paginated list of search results from multiple indices
 public class MultiIndexHitsConnector {
 
   /// Searcher that handles your searches
@@ -17,7 +17,7 @@ public class MultiIndexHitsConnector {
   /// Logic applied to the hits
   public let interactor: MultiIndexHitsInteractor
   
-  /// Filter states holding your filters respectively for each index
+  /// List of FilterStates that will hold your filters separately for each index
   public let filterStates: [FilterState?]
   
   /// Connections between hits interactors and filter states
@@ -33,7 +33,7 @@ public class MultiIndexHitsConnector {
    - Parameters:
      - searcher: Searcher that handles your searches
      - interactor: External hits interactor
-     - filterState: Filter states holding your filters respectively for each index
+     - filterState: List of FilterStates that will hold your filters separately for each index
   */
   public init(searcher: MultiIndexSearcher,
               interactor: MultiIndexHitsInteractor,
@@ -74,8 +74,8 @@ public extension MultiIndexHitsConnector {
   
   /**
    - Parameters:
-     - appID: Application ID
-     - apiKey: API Key
+     - appID: ID of your application
+     - apiKey: Your application API Key
      - indexModules: List of index modules representing the aggregaged indices
   */
   convenience init(appID: ApplicationID,

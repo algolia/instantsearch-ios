@@ -12,9 +12,9 @@ public extension NumberRangeConnector {
   /**
    - Parameters:
      - searcher: Searcher that handles your searches.
-     - filterState: Filter state holding your filters
-     - attribute: Attribute to filter with a numeric range
-     - bounds: Optional bounds limiting the max and the min value of the range
+     - filterState: FilterState that holds your filters
+     - attribute: Attribute to filter
+     - bounds: Bounds limiting the max and the min value of the range
      - range: Initial range value
      - operator: Whether the filter is added to a conjuncitve(`and`) or  a disjuncitve (`or`) group in the filter state. Default value: .and
      - groupName: Filter group name in the filter state. If not specified, the attribute value is used as the group name

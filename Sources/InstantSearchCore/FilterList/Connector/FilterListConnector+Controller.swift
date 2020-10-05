@@ -13,7 +13,7 @@ extension FilterListConnector {
   /**
   Init with explicit interactor and controller
   - Parameters:
-    - filterState: Filter state holding your filters
+    - filterState: FilterState that holds your filters
     - interactor: External filter list interactor
     - operator: Whether we apply an `and` or `or` behavior to the filters in the filter state
     - groupName: Filter group name
@@ -34,9 +34,9 @@ extension FilterListConnector {
   /**
   Init with implicit interactor and controller
   - Parameters:
-    - filterState: Filter state holding your filters
+    - filterState: FilterState that holds your filters
     - filters: List of filters to display
-    - selectionMode: Whether the list can have single or multiple selections
+    - selectionMode: Whether a user can select .single or .multiple values
     - operator: Whether we apply an `and` or `or` behavior to the filters in the filter state
     - groupName: Filter group name
     - controller: Controller interfacing with a concrete filter list view

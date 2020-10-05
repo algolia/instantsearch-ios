@@ -11,7 +11,7 @@ import Foundation
 /// Components that display a list of filters.
 public class FilterListConnector<Filter: FilterType & Hashable> {
 
-  /// Filter state holding your filters
+  /// FilterState that holds your filters
   public let filterState: FilterState
   
   /// Logic applied to the filters
@@ -26,7 +26,7 @@ public class FilterListConnector<Filter: FilterType & Hashable> {
   /**
   Init with explicit interactor
   - Parameters:
-    - filterState: Filter state holding your filters
+    - filterState: FilterState that holds your filters
     - interactor: External filter list interactor
     - operator: Whether we apply an `and` or `or` behavior to the filters in the filter state
     - groupName: Filter group name
@@ -46,7 +46,7 @@ public class FilterListConnector<Filter: FilterType & Hashable> {
   /**
   Init with implicit interactor
   - Parameters:
-    - filterState: Filter state holding your filters
+    - filterState: FilterState that holds your filters
     - filters: List of filters to display
     - selectionMode: Whether the list can have single or multiple selections
     - operator: Whether we apply an `and` or `or` behavior to the filters in the filter state

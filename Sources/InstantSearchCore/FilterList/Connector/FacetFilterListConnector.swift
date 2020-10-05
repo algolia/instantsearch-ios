@@ -15,9 +15,9 @@ public extension FacetFilterListConnector {
       
   /**
   - Parameters:
-    - facetFilters: List of facet filters to display.
-    - selectionMode: Whether the list can have `single` or `multiple` selections.
-    - filterState: Filter state holding your filters
+    - facetFilters: Facet filters to display
+    - selectionMode: Whether a user can select .single or .multiple values
+    - filterState: FilterState that holds your filters
     - operator: Whether we apply an `and` or `or` behavior to the filters in the filter state.
     - groupName: Filter group name
   */
@@ -36,10 +36,10 @@ public extension FacetFilterListConnector {
   
   /**
   - Parameters:
-    - facetFilters: List of facet filters to display.
-    - selectionMode: Whether the list can have `single` or `multiple` selections.
-    - filterState: Filter state holding your filters
-    - operator: Whether we apply an `and` or `or` behavior to the filters in the filter state.
+    - facetFilters: Facet filters to display.
+    - selectionMode: Whether a user can select .single or .multiple values
+    - filterState: FilterState that holds your filters
+    - operator: Whether we apply an `and` or `or` behavior to the filters in the filter state
     - groupName: Filter group name
     - controller: Controller interfacing with a concrete filter list view
   */

@@ -11,7 +11,7 @@ public extension FilterComparisonConnector {
   
   /**
    - Parameters:
-     - filterState: Filter state holding your filters
+     - filterState: FilterState that holds your filters
      - attribute: Attribute to filter with a numeric comparison
      - numericOperator: Comparison operator to apply
      - number: Initial number value

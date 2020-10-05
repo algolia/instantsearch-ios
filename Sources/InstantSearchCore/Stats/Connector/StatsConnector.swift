@@ -14,7 +14,7 @@ public class StatsConnector {
   /// Searcher that handles your searches
   public let searcher: SingleIndexSearcher
   
-  /// Logic applied to the stats
+  /// Logic applied to Stats
   public let interactor: StatsInteractor
 
   /// Connection between searcher and interactor

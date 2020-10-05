@@ -18,14 +18,14 @@ public extension MultiIndexHitsConnector {
     /// Logic applied to the hits
     public let hitsInteractor: AnyHitsInteractor
     
-    /// Filter state holding your filters
+    /// FilterState that holds your filters
     public let filterState: FilterState?
 
     /**
      - Parameters:
        - indexName: Name of the index
        - hitsInteractor: The logic applied to the hits
-       - filterState: Filter state holding your filters
+       - filterState: FilterState that holds your filters
     */
     public init<Hit: Codable>(indexName: IndexName,
                               hitsInteractor: HitsInteractor<Hit>,
@@ -40,7 +40,7 @@ public extension MultiIndexHitsConnector {
        - indexName: Name of the index
        - hitsInteractor: Infinite scrolling toggle
        - showItemsOnEmptyQuery: Defines if interactor gives access to  the hits in case of empty query
-       - filterState: Filter state holding your filters
+       - filterState: FilterState that holds your filters
     */
     public init(indexName: IndexName,
                 infiniteScrolling: InfiniteScrolling = .on(withOffset: 10),

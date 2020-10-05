@@ -14,7 +14,7 @@ public class FilterComparisonConnector<Number: Comparable & DoubleRepresentable>
   /// Logic applied to comparison
   public let interactor: NumberInteractor<Number>
   
-  /// Filter state holding your filters
+  /// FilterState that holds your filters
   public let filterState: FilterState
   
   /// Attribute to filter with a numeric comparison
@@ -37,7 +37,7 @@ public class FilterComparisonConnector<Number: Comparable & DoubleRepresentable>
 
   /**
    - Parameters:
-     - filterState: Filter state holding your filters
+     - filterState: FilterState that holds your filters
      - attribute: Attribute to filter with a numeric comparison
      - numericOperator: Comparison operator to apply
      - number: Initial number value

@@ -8,13 +8,13 @@
 
 import Foundation
 
-/// Component that clears all refinements that are currently active within the given FilterState
+/// Component that lets the user clear all filters that are currently active within the given FilterState
 public class FilterClearConnector {
   
-  /// Filter state holding your filters
+  /// FilterState that holds your filters
   public let filterState: FilterState
   
-  /// Logic applied to the clear control
+  /// Logic applied to Clear Filters
   public let interactor: FilterClearInteractor
   
   /// Connection between interactor and filter state
@@ -25,9 +25,9 @@ public class FilterClearConnector {
   
   /**
    - Parameters:
-     - filterState: Filter state holding your filters
-     - interactor: Logic applied to the Clear Refinements
-     - clearMode: Whether we should clear the specified filters or all filters except them
+     - filterState: FilterState that holds your filters
+     - interactor: Logic applied to Clear Filters
+     - clearMode: Whether we should clear the `specified` filters or all filters `except` them
      - filterGroupIDs: The groupIDs of filters to clear. All filters will be cleared if unspecified.
    */
   public init(filterState: FilterState,
