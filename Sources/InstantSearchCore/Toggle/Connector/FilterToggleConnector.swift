@@ -9,6 +9,8 @@
 import Foundation
 
 /// Filtering component that displays any kind of filter, and lets the user refine the search results by toggling it on or off.
+///
+/// [Documentation](https://www.algolia.com/doc/api-reference/widgets/toggle-refinement/ios/)
 public class FilterToggleConnector<Filter: FilterType> {
   
   /// FilterState that holds your filters

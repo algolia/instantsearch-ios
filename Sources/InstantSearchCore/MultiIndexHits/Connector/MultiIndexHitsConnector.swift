@@ -9,6 +9,8 @@
 import Foundation
 
 /// Component thath manages and displays a paginated list of search results from multiple indices
+///
+/// [Documentation](https://www.algolia.com/doc/api-reference/widgets/multi-hits/ios/)
 public class MultiIndexHitsConnector {
 
   /// Searcher that handles your searches

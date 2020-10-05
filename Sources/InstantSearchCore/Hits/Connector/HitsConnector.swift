@@ -9,6 +9,8 @@
 import Foundation
 
 /// Component that manages and displays a list of search results
+///
+/// [Documentation](https://www.algolia.com/doc/api-reference/widgets/hits/ios/)
 public class HitsConnector<Hit: Codable> {
 
   /// Searcher that handles your searches

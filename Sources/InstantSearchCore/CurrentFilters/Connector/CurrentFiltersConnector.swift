@@ -9,6 +9,8 @@
 import Foundation
 
 /// Component that shows the currently active filters within a given FilterState and lets users remove filters individually
+///
+/// [Documentation](https://www.algolia.com/doc/api-reference/widgets/current-refinements/ios/)
 public class CurrentFiltersConnector {
 
   /// FilterState that holds your filters

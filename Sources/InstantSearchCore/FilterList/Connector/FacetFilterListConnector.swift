@@ -9,6 +9,8 @@
 import Foundation
 
 /// Filtering component that displays any kind of facet filters and lets the user refine the search results by selecting them.
+///
+/// [Documentation](https://www.algolia.com/doc/api-reference/widgets/filter-list-facet/ios/)
 public typealias FacetFilterListConnector = FilterListConnector<Filter.Facet>
 
 public extension FacetFilterListConnector {

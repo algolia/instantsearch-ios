@@ -9,6 +9,8 @@
 import Foundation
 
 /// Filtering component that displays any kind of numeric filters and lets the user refine the search results by selecting them.
+///
+/// [Documentation](https://www.algolia.com/doc/api-reference/widgets/filter-list-numeric/ios/)
 public typealias NumericFilterListConnector = FilterListConnector<Filter.Numeric>
 
 public extension NumericFilterListConnector {

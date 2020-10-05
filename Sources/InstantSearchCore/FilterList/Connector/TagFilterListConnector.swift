@@ -9,6 +9,8 @@
 import Foundation
 
 /// Filtering component that displays any kind of tag filters and lets the user refine the search results by selecting them.
+///
+/// [Documentation](https://www.algolia.com/doc/api-reference/widgets/filter-list-tag/ios/)
 public typealias TagFilterListConnector = FilterListConnector<Filter.Tag>
 
 public extension TagFilterListConnector {

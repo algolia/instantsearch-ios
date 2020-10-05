@@ -9,6 +9,8 @@
 import Foundation
 
 /// Component that displays facets, and lets the user refine the search results by filtering on specific values.
+///
+/// [Documentation](https://www.algolia.com/doc/api-reference/widgets/refinement-list/ios/)
 public class FacetListConnector {
   
   /// Searcher that handles your searches.
