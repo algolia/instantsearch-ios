@@ -116,14 +116,6 @@ class DelayedOperation: AsyncOperation {
 
 class SequencerTest: XCTestCase {
 
-  override func setUp() {
-    super.setUp()
-  }
-
-  override func tearDown() {
-    super.tearDown()
-  }
-
   func testObsoleteOperationsCancellation() {
 
     let sequencer = Sequencer()
@@ -190,27 +182,6 @@ class SequencerTest: XCTestCase {
 
     XCTAssertEqual(slowOperations.filter { $0.isCancelled }.count, slowOperationsCount)
     XCTAssertFalse(fastOperation.isCancelled)
-
-  }
-
-  func testPendingOperations() {
-
-    let sequencer = Sequencer()
-
-    sequencer.maxPendingOperationsCount = 3
-
-    let exp = expectation(description: "op expectation")
-
-    let op1 = DelayedOperation(delay: 1, completionHandler: exp.fulfill)
-
-    let testQueue = OperationQueue()
-    testQueue.addOperation(op1)
-
-    sequencer.orderOperation { op1 }
-    XCTAssertTrue(sequencer.hasPendingOperations)
-
-    waitForExpectations(timeout: 5, handler: .none)
-    XCTAssertFalse(sequencer.hasPendingOperations)
 
   }
 
