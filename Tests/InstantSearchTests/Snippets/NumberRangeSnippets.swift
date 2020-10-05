@@ -7,6 +7,7 @@
 
 import Foundation
 import InstantSearch
+#if canImport(UIKit)
 import UIKit
 
 class NumberRangeSnippets {
@@ -86,3 +87,4 @@ class NumberRangeSnippets {
   }
   
 }
+#endif

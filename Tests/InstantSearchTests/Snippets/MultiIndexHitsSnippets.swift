@@ -7,6 +7,7 @@
 
 import Foundation
 import InstantSearch
+#if canImport(UIKit)
 import UIKit
 
 class MultiIndexHitsSnippets {
@@ -121,3 +122,4 @@ class MultiIndexHitsSnippets {
   }
   
 }
+#endif
