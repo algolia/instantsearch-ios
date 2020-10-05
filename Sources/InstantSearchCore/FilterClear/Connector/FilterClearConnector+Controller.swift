@@ -11,9 +11,9 @@ public extension FilterClearConnector {
   
   /**
    - Parameters:
-     - filterState: Filter state holding your filters
-     - interactor: Logic applied to the Clear Refinements
-     - clearMode: Whether we should clear the specified filters or all filters except them
+     - filterState: FilterState that holds your filters
+     - interactor: Logic applied to Clear Fitlers
+     - clearMode: Whether we should clear the `specified` filters or all filters `except` them
      - filterGroupIDs: GroupIDs of filters to clear. All filters will be cleared if unspecified.
      - controller: Controller interfacing with a concrete clear refinement view
    */

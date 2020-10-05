@@ -8,13 +8,13 @@
 
 import Foundation
 
-/// Component that displays the current refinements and let users remove them.
+/// Component that shows the currently active filters within a given FilterState and lets users remove filters individually
 public class CurrentFiltersConnector {
 
-  /// Filter state holding your filters
+  /// FilterState that holds your filters
   public let filterState: FilterState
   
-  /// When specified, only display current refinements matching these filter group ids
+  /// When specified, only display current filters matching these filter group ids
   public let groupIDs: Set<FilterGroup.ID>?
   
   /// Logic applied to the current filters
@@ -28,7 +28,7 @@ public class CurrentFiltersConnector {
 
   /**
    - Parameters:
-     - filterState: Filter state holding your filters
+     - filterState: FilterState that holds your filters
      - groupIDs: When specified, only display current refinements matching these filter group ids
      - interactor: Logic applied to the current filters
   */

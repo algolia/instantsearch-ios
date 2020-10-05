@@ -29,10 +29,10 @@ public extension HitsConnector where Hit == PlaceHit {
   /**
    Convenient initializer for Places search
    - Parameters:
-     - placesAppID: Places Application ID
-     - apiKey: Places API Key
-     - infiniteScrolling: Infinite scrolling toggle
-     - showItemsOnEmptyQuery: Defines if interactor gives access to  the hits in case of empty query
+     - placesAppID: ID of your Places application
+     - apiKey: Your Places application API Key
+     - infiniteScrolling: Whether or not infinite scrolling is enabled
+     - showItemsOnEmptyQuery: If false, no results are displayed when the user hasn’t entered any query text
   */
   convenience init(placesAppID: ApplicationID,
                    apiKey: APIKey,
@@ -70,10 +70,10 @@ public extension HitsConnector where Hit == PlaceHit {
   /**
    Convenient initializer for Places search
    - Parameters:
-     - placesAppID: Places Application ID
-     - apiKey: Places API Key
-     - infiniteScrolling: Infinite scrolling toggle
-     - showItemsOnEmptyQuery: Defines if interactor gives access to  the hits in case of empty query
+     - placesAppID: ID of your Places application
+     - apiKey: Your Places application API Key
+     - infiniteScrolling: Whether or not infinite scrolling is enabled
+     - showItemsOnEmptyQuery: If false, no results are displayed when the user hasn’t entered any query text
      - controller: Controller interfacing with a concrete hits view
   */
   convenience init<Controller: GeoHitsController>(placesAppID: ApplicationID,

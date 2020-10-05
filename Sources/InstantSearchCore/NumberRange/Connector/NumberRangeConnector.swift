@@ -8,19 +8,19 @@
 
 import Foundation
 
-/// Component that applies a numeric range filter
+/// Filtering component made to filter between two numeric values
 public class NumberRangeConnector<Number: Comparable & DoubleRepresentable> {
   
   /// Searcher that handles your searches.
   public let searcher: SingleIndexSearcher
   
-  /// Filter state holding your filters
+  /// FilterState that holds your filters
   public let filterState: FilterState
   
   /// Attribute to filter
   public let attribute: Attribute
   
-  /// Business logic applied to a numeric range filter
+  /// Logic applied to the numeric range
   public let interactor: NumberRangeInteractor<Number>
   
   /// Connection between interactor and searcher
@@ -35,11 +35,11 @@ public class NumberRangeConnector<Number: Comparable & DoubleRepresentable> {
   /**
    - Parameters:
      - searcher: Searcher that handles your searches.
-     - filterState: Filter state holding your filters
+     - filterState: FilterState that holds your filters
      - attribute: Attribute to filter
      - interactor: Logic applied to the numeric range
-     - operator: Whether the filter is added to a conjuncitve(`and`) or a disjuncitve (`or`) group in the filter state. Default value: .and
-     - groupName: Filter group name in the filter state. If not specified, the attribute value is used as the group name
+     - operator: Whether the filter is added to a conjuncitve(and) or a disjuncitve (or) group in the filter state. Default value: .and
+     - groupName: Filter group name in the filter state. Default value: The value of the `attribute` parameter
   */
   
   public init(searcher: SingleIndexSearcher,
@@ -69,12 +69,12 @@ public extension NumberRangeConnector {
   /**
    - Parameters:
      - searcher: Searcher that handles your searches.
-     - filterState: Filter state holding your filters
-     - attribute: Attribute to filter with a numeric range
-     - bounds: Optional bounds limiting the max and the min value of the range
+     - filterState: FilterState that holds your filters
+     - attribute: Attribute to filter
+     - bounds: Bounds limiting the max and the min value of the range
      - range: Initial range value
      - operator: Whether the filter is added to a conjuncitve(`and`) or  a disjuncitve (`or`) group in the filter state. Default value: .and
-     - groupName: Filter group name in the filter state. If not specified, the attribute value is used as the group name
+     - groupName: Filter group name in the filter state. Default value: The value of the `attribute` parameter
   */
   convenience init(searcher: SingleIndexSearcher,
                    filterState: FilterState,

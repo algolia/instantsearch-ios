@@ -13,7 +13,7 @@ public extension SelectableFilterConnector {
   Init with implicit interactor & controller
   - Parameters:
     - searcher: Searcher handling searches for facet values
-    - filterState: Filter state holding your filters
+    - filterState: FilterState that holds your filters
     - items: Map from segment to filter
     - selected: Initially selected segment
     - attribute: Attribute to filter

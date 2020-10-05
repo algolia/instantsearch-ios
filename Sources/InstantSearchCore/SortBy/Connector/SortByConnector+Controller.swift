@@ -12,7 +12,7 @@ public extension SortByConnector {
   /**
    - Parameters:
      - searcher: Searcher that handles your searches
-     - indicesNames: List of the indices names to switch between
+     - indicesNames: List of indices to search in
      - selected: Consecutive index of the initially selected search index in the list
      - controller: Controller interfacing with a concrete switch index view
      - presenter: Presenter defining how the indices appear in the controller

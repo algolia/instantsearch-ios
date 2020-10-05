@@ -14,9 +14,9 @@ public extension HierarchicalConnector {
   /**
    - Parameters:
      - searcher: Searcher that handles your searches.
-     - filterState: Filter state holding your filters
-     - hierarchicalAttributes: The names of the hierarchical attributes that we need to target, in ascending order.
-     - separator: The string separating the facets in the hierarchical facets.
+     - filterState: FilterState that holds your filters
+     - hierarchicalAttributes: Names of the hierarchical attributes that we need to target, in ascending order.
+     - separator: String separating the facets in the hierarchical facets.
      - controller: Controller interfacing with a concrete hierarchical view
      - presenter: Presenter defining how hierarchical facets appears in the controller
   */

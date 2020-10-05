@@ -13,7 +13,7 @@ public class SelectableFilterConnector<Filter: FilterType> {
   /// Searcher that handles your searches
   public let searcher: SingleIndexSearcher
   
-  /// Filter state holding your filters
+  /// FilterState that holds your filters
   public let filterState: FilterState
   
   /// Logic applied to the filters
@@ -41,7 +41,7 @@ public class SelectableFilterConnector<Filter: FilterType> {
   Init with implicit interactor
   - Parameters:
     - searcher: Searcher handling searches for facet values
-    - filterState: Filter state holding your filters
+    - filterState: FilterState that holds your filters
     - items: Map from segment to filter
     - selected: Initially selected segment
     - attribute: Attribute to filter

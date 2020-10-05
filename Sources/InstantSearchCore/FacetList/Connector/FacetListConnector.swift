@@ -8,13 +8,13 @@
 
 import Foundation
 
-/// Component that perform refinements on a facet.
+/// Component that displays facets, and lets the user refine the search results by filtering on specific values.
 public class FacetListConnector {
   
   /// Searcher that handles your searches.
   public let searcher: Searcher
   
-  /// Filter state holding your filters
+  /// FilterState that holds your filters
   public let filterState: FilterState
   
   /// Logic applied to the facets

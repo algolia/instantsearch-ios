@@ -12,8 +12,8 @@ public extension CurrentFiltersConnector {
   /**
    Initalizer with an immediate controller connection
    - Parameters:
-     - filterState: Filter state holding your filters
-     - groupIDs: When specified, only display current refinements matching these filter group ids
+     - filterState: FilterState that holds your filters
+     - groupIDs: When specified, only display current filters matching these filter group ids
      - interactor: Logic applied to the current filters
      - controller: Controller interfacing with a concrete current filters view
      - presenter: Presenter defining how a filter appears in the controller

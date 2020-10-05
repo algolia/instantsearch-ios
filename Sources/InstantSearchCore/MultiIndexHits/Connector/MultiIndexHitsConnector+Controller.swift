@@ -11,9 +11,9 @@ public extension MultiIndexHitsConnector {
   
   /**
    - Parameters:
-     - appID: Application ID
-     - apiKey: API Key
-     - indexModules: List of index modules representing the aggregaged indices
+     - appID: ID of your application
+     - apiKey: Your application API Key
+     - indexModules: List of components representing the single index, containing its name, hits interactor and an optional filter state
      - controller: Controller interfacing with a concrete multi-index hits view
   */
   convenience init<Controller: MultiIndexHitsController>(appID: ApplicationID,

@@ -11,7 +11,7 @@ public extension FilterToggleConnector {
   
   /**
    - Parameters:
-     - filterState: Filter state holding your filters
+     - filterState: FilterState that holds your filters
      - filter: Filter to toggle
      - isSelected: Whether the filter is initially selected
      - operator: Whether the filter is added to a conjuncitve(`and`) or a disjuncitve (`or`) group in the filter state.
