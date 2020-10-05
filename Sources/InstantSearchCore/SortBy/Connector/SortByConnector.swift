@@ -10,6 +10,8 @@ import Foundation
 import AlgoliaSearchClient
 
 /// Component that displays a list of indices, allowing a user to change the way hits are sorted
+///
+/// [Documentation](https://www.algolia.com/doc/api-reference/widgets/sort-by/ios/)
 public class SortByConnector {
   
   /// Searcher that handles your searches

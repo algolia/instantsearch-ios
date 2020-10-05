@@ -9,6 +9,8 @@
 import Foundation
 
 /// Component that performs a text-based query
+///
+/// [Documentation](https://www.algolia.com/doc/api-reference/widgets/search-box/ios/)
 public class QueryInputConnector<S: Searcher> {
 
   /// Searcher that handles your searches

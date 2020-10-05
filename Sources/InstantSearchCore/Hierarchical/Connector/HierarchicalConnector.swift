@@ -9,6 +9,8 @@
 import Foundation
 
 /// Filtering component that displays a hierarchy of facets that lets your users refine the search results
+///
+/// [Documentation](https://www.algolia.com/doc/api-reference/widgets/hierarchical-menu/ios/)
 public class HierarchicalConnector {
 
   /// Searcher that handles your searches

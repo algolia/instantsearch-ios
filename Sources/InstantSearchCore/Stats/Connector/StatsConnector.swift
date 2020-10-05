@@ -9,6 +9,8 @@
 import Foundation
 
 /// Component that displays metadata about the current search and its results.
+///
+/// [Documentation](https://www.algolia.com/doc/api-reference/widgets/stats/ios/)
 public class StatsConnector {
 
   /// Searcher that handles your searches

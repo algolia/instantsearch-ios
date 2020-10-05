@@ -9,6 +9,8 @@
 import Foundation
 
 /// Component that lets the user clear all filters that are currently active within the given FilterState
+///
+/// [Documentation](https://www.algolia.com/doc/api-reference/widgets/clear-refinements/ios/)
 public class FilterClearConnector {
   
   /// FilterState that holds your filters

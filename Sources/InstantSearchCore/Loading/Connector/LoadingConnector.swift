@@ -9,6 +9,8 @@
 import Foundation
 
 /// Component that shows a loading indicator during pending requests.
+///
+/// [Documentation](https://www.algolia.com/doc/api-reference/widgets/loading/ios/)
 public class LoadingConnector<S: Searcher> {
 
   /// Searcher that handles your searches

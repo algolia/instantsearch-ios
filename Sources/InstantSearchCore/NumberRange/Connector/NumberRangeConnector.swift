@@ -9,6 +9,8 @@
 import Foundation
 
 /// Filtering component made to filter between two numeric values
+///
+/// [Documentation](https://www.algolia.com/doc/api-reference/widgets/filter-list-numeric/ios/)
 public class NumberRangeConnector<Number: Comparable & DoubleRepresentable> {
   
   /// Searcher that handles your searches.
