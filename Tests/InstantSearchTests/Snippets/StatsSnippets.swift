@@ -7,6 +7,7 @@
 
 import Foundation
 import InstantSearch
+#if canImport(UIKit)
 import UIKit
 
 class StatsSnippets {
@@ -40,3 +41,4 @@ class StatsSnippets {
   }
   
 }
+#endif

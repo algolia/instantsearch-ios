@@ -7,6 +7,7 @@
 
 import Foundation
 import InstantSearch
+#if canImport(UIKit)
 import UIKit
 
 class QueryInputSnippets {
@@ -36,3 +37,4 @@ class QueryInputSnippets {
   }
   
 }
+#endif

@@ -7,6 +7,7 @@
 
 import Foundation
 import InstantSearch
+#if canImport(UIKit)
 import UIKit
 
 class FacetFilterListSnippets {
@@ -60,3 +61,4 @@ class FacetFilterListSnippets {
   }
 
 }
+#endif
