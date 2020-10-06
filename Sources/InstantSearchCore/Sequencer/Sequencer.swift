@@ -163,6 +163,19 @@ class Sequencer: Sequencable {
         sequencer.lastReceivedSeqNo = seqNo
     }
   }
+  
+  // Cancel all previous operations (as this one is deemed more recent).
+  private func cancelPreviousPendingOperations(beforeSeqNo seqNo: Int) {
+    syncQueue.async { [weak self] in
+      guard let sequencer = self else { return }
+      let previousOperations = sequencer.pendingOperations.filter { $0.0 < seqNo }.values
+      for operation in previousOperations {
+        operation.cancel()
+        sequencer.pendingOperations.removeValue(forKey: seqNo)
+      }
+    }
+
+  }
 
 }
 
@@ -185,13 +198,8 @@ private extension Sequencer {
                 let sequencer = sequencer,
                 !correspondingOperation.isCancelled else { return }
 
-            // Cancel all previous operations (as this one is deemed more recent).
-            sequencer.pendingOperations
-                .filter { $0.0 < sequenceNo }.keys
-                .forEach(sequencer.cancelOperation)
-
+            sequencer.cancelPreviousPendingOperations(beforeSeqNo: sequenceNo)
             sequencer.dismissOperation(withSeqNo: sequenceNo)
-
         }
 
     }
