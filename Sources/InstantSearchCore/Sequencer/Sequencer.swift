@@ -92,27 +92,44 @@ class Sequencer: Sequencable {
 
   /// Launch next operation.
   func orderOperation(operationLauncher: @escaping Sequencable.OperationLauncher) {
-        let operation = operationLauncher()
+    
         // Increase sequence number.
-        let currentSeqNo: Int = incrementSequenceQueue.sync {
-          nextSeqNo += 1
-          return nextSeqNo
-        }
+//        let currentSeqNo: Int = incrementSequenceQueue.sync {
+//          nextSeqNo += 1
+//          return nextSeqNo
+//        }
 
         // Cancel obsolete operations.
-        pendingOperations
-            .filter { $0.0 <= currentSeqNo - maxPendingOperationsCount }
-            .keys
-            .forEach(cancelOperation)
+//        pendingOperations
+//            .filter { $0.0 <= currentSeqNo - maxPendingOperationsCount }
+//            .keys
+//            .forEach(cancelOperation)
 
-        let sequencingOperation = SequencerCompletionOperation(sequenceNo: currentSeqNo, sequencer: self, correspondingOperation: operation)
-        sequencingOperation.addDependency(operation)
+//        let sequencingOperation = SequencerCompletionOperation(sequenceNo: currentSeqNo, sequencer: self, correspondingOperation: operation)
+//        sequencingOperation.addDependency(operation)
     
         syncQueue.async { [weak self] in
-            guard let sequencer = self else { return }
-            sequencer.sequencerQueue.addOperation(sequencingOperation)
-            sequencer.pendingOperations[currentSeqNo] = operation
+          guard let sequencer = self else { return }
+          // Increase sequence number
+          sequencer.nextSeqNo += 1
+          let currentSeqNo = sequencer.nextSeqNo
+          
+          // Launch sequenced operation
+          let operation = operationLauncher()
+          sequencer.pendingOperations[currentSeqNo] = operation
+          
+          // Create an launch completion operation
+          let sequencingOperation = SequencerCompletionOperation(sequenceNo: currentSeqNo, sequencer: sequencer, correspondingOperation: operation)
+          sequencingOperation.addDependency(operation)
+          sequencer.sequencerQueue.addOperation(sequencingOperation)
+          
+          // Cancel obsolete operations
+          for (operationNo, operation) in sequencer.pendingOperations.filter({ $0.0 <= currentSeqNo - sequencer.maxPendingOperationsCount }) {
+            operation.cancel()
+            sequencer.pendingOperations.removeValue(forKey: operationNo)
+          }
         }
+    
   }
 
   // MARK: - Manage operations
@@ -122,7 +139,11 @@ class Sequencer: Sequencable {
     syncQueue.async { [weak self] in
         guard let sequencer = self else { return }
         for seqNo in sequencer.pendingOperations.keys {
-          sequencer.cancelOperation(withSeqNo: seqNo)
+          if let operation = sequencer.pendingOperations[seqNo] {
+            operation.cancel()
+            sequencer.pendingOperations.removeValue(forKey: seqNo)
+          }
+//          sequencer.cancelOperation(withSeqNo: seqNo)
         }
     }
   }
@@ -131,50 +152,74 @@ class Sequencer: Sequencable {
   ///
   /// - parameter seqNo: The operation's sequence number.
   ///
-  private func cancelOperation(withSeqNo seqNo: Int) {
-    syncQueue.async { [weak self] in
-        guard let sequencer = self else { return }
-        if let operation = sequencer.pendingOperations[seqNo] {
-          operation.cancel()
-          sequencer.pendingOperations.removeValue(forKey: seqNo)
-        }
-    }
-  }
+//  private func cancelOperation(withSeqNo seqNo: Int) {
+//    syncQueue.async { [weak self] in
+//        guard let sequencer = self else { return }
+//        if let operation = sequencer.pendingOperations[seqNo] {
+//          operation.cancel()
+//          sequencer.pendingOperations.removeValue(forKey: seqNo)
+//        }
+//    }
+//  }
 
   /// Clean-up after a succesful completion of a sequenced operation
   ///
   /// - parameter seqNo: The operation's sequence number.
   ///
-  private func dismissOperation(withSeqNo seqNo: Int) {
-    syncQueue.async { [weak self] in
-        guard let sequencer = self else { return }
-        guard let operationToDismiss = sequencer.pendingOperations[seqNo], !operationToDismiss.isCancelled else {
-            return
-        }
-
-        // Remove the current operation.
-        sequencer.pendingOperations.removeValue(forKey: seqNo)
-
-        // Obsolete operations should not happen since they have been cancelled by more recent operations (see above).
-        // WARNING: Only works if the current queue is serial!
-        assert(sequencer.lastReceivedSeqNo == nil || sequencer.lastReceivedSeqNo! < seqNo)
-
-        // Update last received response.
-        sequencer.lastReceivedSeqNo = seqNo
-    }
-  }
+//  private func dismissOperation(withSeqNo seqNo: Int) {
+//    syncQueue.async { [weak self] in
+//        guard let sequencer = self else { return }
+//        guard let operationToDismiss = sequencer.pendingOperations[seqNo], !operationToDismiss.isCancelled else {
+//            return
+//        }
+//
+//        // Remove the current operation.
+//        sequencer.pendingOperations.removeValue(forKey: seqNo)
+//
+//        // Obsolete operations should not happen since they have been cancelled by more recent operations (see above).
+//        // WARNING: Only works if the current queue is serial!
+//        assert(sequencer.lastReceivedSeqNo == nil || sequencer.lastReceivedSeqNo! < seqNo)
+//
+//        // Update last received response.
+//        sequencer.lastReceivedSeqNo = seqNo
+//    }
+//  }
   
   // Cancel all previous operations (as this one is deemed more recent).
-  private func cancelPreviousPendingOperations(beforeSeqNo seqNo: Int) {
+//  private func cancelPreviousPendingOperations(beforeSeqNo seqNo: Int) {
+//    syncQueue.async { [weak self] in
+//      guard let sequencer = self else { return }
+//      let previousOperations = sequencer.pendingOperations.filter { $0.0 < seqNo }.values
+//      for operation in previousOperations {
+//        operation.cancel()
+//        sequencer.pendingOperations.removeValue(forKey: seqNo)
+//      }
+//    }
+//
+//  }
+  
+  
+  private func dismissAndCancelPreviousOperations(forSeqNo seqNo: Int) {
     syncQueue.async { [weak self] in
       guard let sequencer = self else { return }
+      
       let previousOperations = sequencer.pendingOperations.filter { $0.0 < seqNo }.values
       for operation in previousOperations {
         operation.cancel()
         sequencer.pendingOperations.removeValue(forKey: seqNo)
       }
-    }
+      
+      // Remove the current operation.
+      sequencer.pendingOperations.removeValue(forKey: seqNo)
 
+      // Obsolete operations should not happen since they have been cancelled by more recent operations (see above).
+      // WARNING: Only works if the current queue is serial!
+      assert(sequencer.lastReceivedSeqNo == nil || sequencer.lastReceivedSeqNo! < seqNo)
+
+      // Update last received response.
+      sequencer.lastReceivedSeqNo = seqNo
+    }
+    
   }
 
 }
@@ -197,9 +242,9 @@ private extension Sequencer {
             guard
                 let sequencer = sequencer,
                 !correspondingOperation.isCancelled else { return }
-
-            sequencer.cancelPreviousPendingOperations(beforeSeqNo: sequenceNo)
-            sequencer.dismissOperation(withSeqNo: sequenceNo)
+            sequencer.dismissAndCancelPreviousOperations(forSeqNo: sequenceNo)
+//            sequencer.cancelPreviousPendingOperations(beforeSeqNo: sequenceNo)
+//            sequencer.dismissOperation(withSeqNo: sequenceNo)
         }
 
     }
