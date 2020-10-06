@@ -124,6 +124,7 @@ class SequencerTest: XCTestCase {
     let operationsCount = 100
     let exp = expectation(description: "delayed operation")
     exp.expectedFulfillmentCount = sequencer.maxPendingOperationsCount
+    exp.assertForOverFulfill = false
 
     let operations: [Operation] = (0..<operationsCount).map { number in
       let op = DelayedOperation(delay: 10, completionHandler: { exp.fulfill() })
@@ -134,14 +135,19 @@ class SequencerTest: XCTestCase {
     let testQueue = OperationQueue()
     testQueue.maxConcurrentOperationCount = 10
 
+    // Launch 100 delayed operations that last 10 seconds each and add them to sequencer with max 10 pending operations
     operations.forEach { operation in
       testQueue.addOperation(operation)
       sequencer.orderOperation { operation }
     }
 
+    // Check the state of operations in 5 seconds
     waitForExpectations(timeout: 5, handler: .none)
 
+    // Sequencer must cancel first 90 ordered operations
     XCTAssertEqual(operations.filter { $0.isCancelled }.count, operationsCount - sequencer.maxPendingOperationsCount)
+    
+    // Last 10 operations still in progress as they last longer than 5 seconds
     XCTAssertEqual(operations.filter { !$0.isCancelled }.count, sequencer.maxPendingOperationsCount)
 
   }
@@ -171,6 +177,7 @@ class SequencerTest: XCTestCase {
     let testQueue = OperationQueue()
     testQueue.maxConcurrentOperationCount = 200
 
+    // Launch 100 slow operations and 1 fast operation and add them to the sequencer supporting 101 concurrent operations
     slowOperations.forEach { operation in
       testQueue.addOperation(operation)
       sequencer.orderOperation { operation }
@@ -178,11 +185,15 @@ class SequencerTest: XCTestCase {
     testQueue.addOperation(fastOperation)
     sequencer.orderOperation { fastOperation }
 
+    // Wait for success of the fast operation
     waitForExpectations(timeout: 100, handler: .none)
 
+    // All slow operations must be cancelled as the seqNo of the fast operation is bigger than the seqNo of the slow operations
     XCTAssertEqual(slowOperations.filter { $0.isCancelled }.count, slowOperationsCount)
+    
+    // Fast operation shouldn't be cancelled
     XCTAssertFalse(fastOperation.isCancelled)
 
   }
-
+  
 }
