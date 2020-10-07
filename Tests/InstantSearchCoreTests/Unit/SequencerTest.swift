@@ -196,4 +196,29 @@ class SequencerTest: XCTestCase {
 
   }
   
+  func testPendingOperations() {
+
+    Logger.minSeverityLevel = .trace
+    let sequencer = Sequencer()
+
+    sequencer.maxPendingOperationsCount = 3
+
+    let exp = expectation(description: "op expectation")
+
+    let op1 = DelayedOperation(delay: 1000, completionHandler: exp.fulfill)
+    op1.name = "Operation!!!"
+
+    let testQueue = OperationQueue()
+    testQueue.addOperation(op1)
+
+    sequencer.orderOperation { op1 }
+    XCTAssertTrue(sequencer.hasPendingOperations)
+
+    waitForExpectations(timeout: 5, handler: .none)
+    XCTAssertFalse(sequencer.hasPendingOperations)
+
+  }
+
+  
+  
 }

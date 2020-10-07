@@ -59,9 +59,16 @@ class Sequencer: Sequencable {
     didSet {
       syncQueue.async { [weak self] in
         guard let sequencer = self else { return }
-        let hasPendingOperations = !sequencer.pendingOperations.filter { !($0.value.isCancelled || $0.value.isFinished) }.isEmpty
+        let hasPendingOperations = !sequencer.pendingOperations.values.filter { !($0.isCancelled || $0.isFinished) }.isEmpty
         sequencer.delegate?.didChangeOperationsState(hasPendingOperations: hasPendingOperations)
       }
+    }
+  }
+  
+  /// Indicates whether there are any pending operations.
+  var hasPendingOperations: Bool {
+    syncQueue.sync {
+      !pendingOperations.values.filter { !$0.isCancelled || !$0.isFinished }.isEmpty
     }
   }
 
