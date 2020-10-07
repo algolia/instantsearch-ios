@@ -198,7 +198,6 @@ class SequencerTest: XCTestCase {
   
   func testPendingOperations() {
 
-    Logger.minSeverityLevel = .trace
     let sequencer = Sequencer()
 
     sequencer.maxPendingOperationsCount = 3
@@ -217,6 +216,45 @@ class SequencerTest: XCTestCase {
     waitForExpectations(timeout: 5, handler: .none)
     XCTAssertFalse(sequencer.hasPendingOperations)
 
+  }
+  
+  func testLoad() {
+        
+    let sequencer = Sequencer()
+
+    sequencer.maxPendingOperationsCount = 100
+    
+    let queueCount = 30
+    // Generate `queueCount` queues with associated count of operation for each
+    let queuesWithOpCount = (1...queueCount)
+      .map { (queue: DispatchQueue(label: "queue\($0)"), operationCount: Int.random(in: 100...1000)) }
+    
+    let operationQueue = OperationQueue()
+    operationQueue.maxConcurrentOperationCount = 50
+    
+    // Expectation of completion of all the operations from all the queues
+    let allOperationsFinishedExpectation = expectation(description: "All operations finished")
+    allOperationsFinishedExpectation.expectedFulfillmentCount = queuesWithOpCount.map(\.operationCount).reduce(0, +)
+    
+    // Launch `operationCount` operation from each queue with randomized launch delay and randomized operation execution delay
+    for (queue, operationCount) in queuesWithOpCount {
+      for count in 1...operationCount {
+        queue.asyncAfter(deadline: .now() + .milliseconds(.random(in: 10...500))) {
+          let operation = DelayedOperation(delay: .random(in: 10...200), completionHandler: .none)
+          operation.name = "\(queue.label) - \(count)"
+          operation.completionBlock = {
+            allOperationsFinishedExpectation.fulfill()
+          }
+          sequencer.orderOperation {
+            operationQueue.addOperation(operation)
+            return operation
+          }
+        }
+      }
+    }
+
+    waitForExpectations(timeout: 10, handler: nil)
+    
   }
 
   
