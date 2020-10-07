@@ -23,7 +23,7 @@ public extension FacetFilterListConnector {
     - operator: Whether we apply an `and` or `or` behavior to the filters in the filter state.
     - groupName: Filter group name
   */
-  convenience init(facetFilters: [InstantSearchCore.Filter.Facet] = [],
+  convenience init(facetFilters: [FacetFilter] = [],
                    selectionMode: SelectionMode = .multiple,
                    filterState: FilterState,
                    `operator`: RefinementOperator,
@@ -45,12 +45,12 @@ public extension FacetFilterListConnector {
     - groupName: Filter group name
     - controller: Controller interfacing with a concrete filter list view
   */
-  convenience init<Controller: SelectableListController>(facetFilters: [InstantSearchCore.Filter.Facet] = [],
+  convenience init<Controller: SelectableListController>(facetFilters: [FacetFilter] = [],
                                                          selectionMode: SelectionMode = .multiple,
                                                          filterState: FilterState,
                                                          `operator`: RefinementOperator,
                                                          groupName: String,
-                                                         controller: Controller) where Controller.Item == InstantSearchCore.Filter.Facet {
+                                                         controller: Controller) where Controller.Item == FacetFilter {
     let interactor = FacetFilterListInteractor(items: facetFilters,
                                                selectionMode: selectionMode)
     self.init(filterState: filterState,
