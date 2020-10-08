@@ -23,7 +23,7 @@ public extension TagFilterListConnector {
      - operator: Whether we apply an `and` or `or` behavior to the filters in the filter state
      - groupName: Filter group name
    */
-  convenience init(tagFilters: [InstantSearchCore.Filter.Tag] = [],
+  convenience init(tagFilters: [TagFilter] = [],
                    selectionMode: SelectionMode = .multiple,
                    filterState: FilterState,
                    `operator`: RefinementOperator,
@@ -45,12 +45,12 @@ public extension TagFilterListConnector {
      - groupName: Filter group name
      - controller: Controller interfacing with a concrete filter list view
    */
-  convenience init<Controller: SelectableListController>(tagFilters: [InstantSearchCore.Filter.Tag] = [],
+  convenience init<Controller: SelectableListController>(tagFilters: [TagFilter] = [],
                                                          selectionMode: SelectionMode = .multiple,
                                                          filterState: FilterState,
                                                          `operator`: RefinementOperator,
                                                          groupName: String,
-                                                         controller: Controller) where Controller.Item == InstantSearchCore.Filter.Tag {
+                                                         controller: Controller) where Controller.Item == TagFilter {
     let interactor = TagFilterListInteractor(items: tagFilters,
                                              selectionMode: selectionMode)
     self.init(filterState: filterState,
