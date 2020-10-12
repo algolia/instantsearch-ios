@@ -28,6 +28,7 @@ public class QueryRuleCustomDataConnector<Model: Decodable> {
     self.interactor = interactor
     searcherConnection = connectSearcher(interactor)
     controllerConnections = []
+    searcherConnection.connect()
   }
   
 }
