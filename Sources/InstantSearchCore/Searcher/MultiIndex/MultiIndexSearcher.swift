@@ -35,7 +35,7 @@ public class MultiIndexSearcher: Searcher, SequencerDelegate, SearchResultObserv
   public let client: SearchClient
 
   /// List of  index & query tuples
-  public internal(set) var indexQueryStates: [IndexQueryState] {
+  public var indexQueryStates: [IndexQueryState] {
     didSet {
       let indexNameDiff = zip(oldValue.map(\.indexName), indexQueryStates.map(\.indexName)).enumerated()
       for (queryIndex, (oldIndexName, newIndexName)) in indexNameDiff where oldIndexName != newIndexName {
