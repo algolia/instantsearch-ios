@@ -43,7 +43,7 @@ extension QueryRuleCustomDataInteractor {
   
 }
 
-extension QueryRuleCustomDataInteractor {
+public extension QueryRuleCustomDataInteractor {
   
   /**
    - Parameters:

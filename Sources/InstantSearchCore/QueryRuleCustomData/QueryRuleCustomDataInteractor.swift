@@ -14,8 +14,6 @@ public class QueryRuleCustomDataInteractor<Model: Decodable>: ItemInteractor<Mod
     super.init(item: item)
   }
   
-
-  
 }
 
 extension QueryRuleCustomDataInteractor {
@@ -27,6 +25,20 @@ extension QueryRuleCustomDataInteractor {
     } else {
       item = nil
     }
+  }
+  
+}
+
+public extension QueryRuleCustomDataInteractor {
+  
+  /**
+   Establishes a connection with the controller
+   - Parameters:
+     - controller: Controller interfacing with a concrete custom data view
+   - Returns: Established connection
+  */
+  @discardableResult func connectController<Controller: ItemController>(_ controller: Controller) -> ItemInteractor<Model?>.ControllerConnection<Controller, Model?> {
+    super.connectController(controller, presenter: { $0 })
   }
   
 }
