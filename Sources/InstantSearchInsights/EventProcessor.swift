@@ -19,9 +19,8 @@ class EventProcessor: EventProcessable {
     
     typealias Storage = LocalStorage<[EventsPackage]>
     
-    let credentials: Credentials
     var eventsPackages: [EventsPackage]
-    let webservice: WebService
+    let eventsService: EventsService
     let logger: Logger
     let timerController: TimerController
     var isLocalStorageEnabled: Bool = true {
@@ -45,23 +44,19 @@ class EventProcessor: EventProcessable {
         }
     }
     
-    private let region: Region?
     private let dispatchQueue: DispatchQueue
     private let localStorageFileName: String
     
-    init(credentials: Credentials,
-         webService: WebService,
-         region: Region?,
+    init(eventsService: EventsService,
          flushDelay: TimeInterval,
          logger: Logger,
          dispatchQueue: DispatchQueue = .init(label: "insights.events", qos: .background)) {
         self.eventsPackages = []
-        self.credentials = credentials
+        self.eventsService = eventsService
         self.logger = logger
-        self.webservice = webService
-        self.region = region
         self.dispatchQueue = dispatchQueue
-        self.localStorageFileName = "\(credentials.appId).events"
+        //TODO: find a way to distinguish local storages per application
+        self.localStorageFileName = "storage.events"
         self.timerController = TimerController(delay: flushDelay)
         readEventPackagesFromDisk()
         timerController.action = flushEventsPackages
@@ -107,9 +102,9 @@ class EventProcessor: EventProcessable {
         let eventsPackage: EventsPackage
         
         if let lastEventsPackage = eventsPackages.last, !lastEventsPackage.isFull {
-            eventsPackage = (try? eventsPackages.removeLast().appending(event)) ?? EventsPackage(event: event, region: region)
+            eventsPackage = (try? eventsPackages.removeLast().appending(event)) ?? EventsPackage(event: event)
         } else {
-            eventsPackage = EventsPackage(event: event, region: region)
+            eventsPackage = EventsPackage(event: event)
         }
         
         eventsPackages.append(eventsPackage)
@@ -122,16 +117,20 @@ class EventProcessor: EventProcessable {
     }
     
     private func sync(_ eventsPackage: EventsPackage) {
-        logger.debug(message: "Syncing \(eventsPackage)")
-        webservice.sync(eventsPackage) { [weak self] err in
-            
-            // If there is no error or the error is from the Analytics we should remove it.
-            // In case of a WebserviceError the package was wronlgy constructed
-            if err == nil || err is WebserviceError {
-                self?.remove(eventsPackage)
-            }
-            
+      logger.debug(message: "Syncing \(eventsPackage)")
+      
+      eventsService.sendEvents(eventsPackage.events) { [weak self]  result in
+        // If there is no error or the error is from the Analytics we should remove it.
+        // In case of a WebserviceError the package was wronlgy constructed
+        switch result {
+        case .success:
+          self?.remove(eventsPackage)
+        case .failure(let error as HTTPError) where (400..<500).contains(error.statusCode):
+          self?.remove(eventsPackage)
+        default:
+          break
         }
+      }
     }
     
     private func storeEventPackagesOnDisk() {
@@ -175,3 +174,4 @@ extension EventProcessor: Flushable {
     }
     
 }
+

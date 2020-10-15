@@ -9,54 +9,10 @@ import XCTest
 import AlgoliaSearchClient
 @testable import InstantSearchInsights
 
-class TestEventTracker: EventTrackable {
-  
-  var didViewObjects: ((EventName, IndexName, UserToken?, [ObjectID]) -> Void)?
-  var didViewFilters: ((EventName, IndexName, UserToken?, [String]) -> Void)?
-  var didClickObjects: ((EventName, IndexName, UserToken?, [ObjectID]) -> Void)?
-  var didClickObjectsAfterSearch: ((EventName, IndexName, UserToken?, [ObjectID], [Int], QueryID) -> Void)?
-  var didClickFilters: ((EventName, IndexName, UserToken?, [String]) -> Void)?
-  var didConvertObjects: ((EventName, IndexName, UserToken?, [ObjectID]) -> Void)?
-  var didConvertObjectsAfterSearch: ((EventName, IndexName, UserToken?, [ObjectID], QueryID) -> Void)?
-  var didConvertFilters: ((EventName, IndexName, UserToken?, [String]) -> Void)?
-  
-  func view(eventName: EventName, indexName: IndexName, userToken: UserToken?, objectIDs: [ObjectID]) {
-    didViewObjects?(eventName, indexName, userToken, objectIDs)
-  }
-  
-  func view(eventName: EventName, indexName: IndexName, userToken: UserToken?, filters: [String]) {
-    didViewFilters?(eventName, indexName, userToken, filters)
-  }
-  
-  func click(eventName: EventName, indexName: IndexName, userToken: UserToken?, objectIDs: [ObjectID]) {
-    didClickObjects?(eventName, indexName, userToken, objectIDs)
-  }
-  
-  func click(eventName: EventName, indexName: IndexName, userToken: UserToken?, objectIDs: [ObjectID], positions: [Int], queryID: QueryID) {
-    didClickObjectsAfterSearch?(eventName, indexName, userToken, objectIDs, positions, queryID)
-  }
-  
-  func click(eventName: EventName, indexName: IndexName, userToken: UserToken?, filters: [String]) {
-    didClickFilters?(eventName, indexName, userToken, filters)
-  }
-  
-  func conversion(eventName: EventName, indexName: IndexName, userToken: UserToken?, objectIDs: [ObjectID]) {
-    didConvertObjects?(eventName, indexName, userToken, objectIDs)
-  }
-  
-  func conversion(eventName: EventName, indexName: IndexName, userToken: UserToken?, objectIDs: [ObjectID], queryID: QueryID) {
-    didConvertObjectsAfterSearch?(eventName, indexName, userToken, objectIDs, queryID)
-  }
-  
-  func conversion(eventName: EventName, indexName: IndexName, userToken: UserToken?, filters: [String]) {
-    didConvertFilters?(eventName, indexName, userToken, filters)
-  }
-  
-}
-
 class InsightsTests: XCTestCase {
   
-  let testCredentials = Credentials(appId: "test app id", apiKey: "test key")
+  let appID: ApplicationID = "test app id"
+  let apiKey: APIKey = "test key"
   let testEventTracker = TestEventTracker()
   let testEventProcessor = TestEventProcessor()
   let testLogger = Logger("test app id")
@@ -66,7 +22,7 @@ class InsightsTests: XCTestCase {
   
   override func setUp() {
     // Remove locally stored events packages for test index
-    guard let filePath = LocalStorage<[EventsPackage]>.filePath(for: testCredentials.appId) else { return }
+    guard let filePath = LocalStorage<[EventsPackage]>.filePath(for: appID.rawValue) else { return }
     LocalStorage<[EventsPackage]>.serialize([], file: filePath)
   }
   
@@ -82,10 +38,10 @@ class InsightsTests: XCTestCase {
   
   func testInitShouldWork() {
     
-    let insightsRegister = Insights.register(appId: testCredentials.appId, apiKey: testCredentials.apiKey)
+    let insightsRegister = Insights.register(appId: appID, apiKey: apiKey)
     XCTAssertNotNil(insightsRegister)
     
-    let insightsShared = Insights.shared(appId: testCredentials.appId)
+    let insightsShared = Insights.shared(appId: appID)
     XCTAssertNotNil(insightsShared)
     
     XCTAssertEqual(insightsRegister, insightsShared, "Getting the Insights instance from register and shared should be the same")
@@ -94,7 +50,7 @@ class InsightsTests: XCTestCase {
   
   func testOptIntOptOut() {
     
-    let insightsRegister = Insights.register(appId: testCredentials.appId, apiKey: testCredentials.apiKey)
+    let insightsRegister = Insights.register(appId: appID, apiKey: apiKey)
     
     XCTAssertTrue(insightsRegister.eventProcessor.isActive)
     insightsRegister.isActive = false
@@ -330,30 +286,12 @@ class InsightsTests: XCTestCase {
     
     let exp = XCTestExpectation(description: "mock web service response")
     
-    let mockWS = MockWebServiceHelper.getMockWebService(appId: testCredentials.appId) { resource in
-      if let res = resource as? Resource<Bool, WebserviceError> {
-        XCTAssertEqual(res.method.method, "POST")
-        _ = res.method.map(f: { data in
-          XCTAssertNotNil(data)
-          let jsonDecoder = JSONDecoder()
-          do {
-            let package = try jsonDecoder.decode([String: Array<InsightsEvent>].self, from: data)
-            XCTAssertNotNil(package[EventsPackage.CodingKeys.events.rawValue])
-            exp.fulfill()
-          } catch _ {
-            XCTFail("Unable to construct EventsPackage with provided JSON")
-          }
-        })
-      } else {
-        XCTFail("Unable to cast resource")
-      }
-    }
+    let mockService = MockEventService { _ in exp.fulfill() }
     
-    let insights = Insights(credentials: Credentials(appId: testCredentials.appId,
-                                                     apiKey: testCredentials.apiKey),
-                            webService: mockWS,
-                            flushDelay: 1,
-                            logger: Logger(testCredentials.appId))
+    let logger = Logger(appID.rawValue)
+    let eventProcessor = EventProcessor(eventsService: mockService, flushDelay: 1, logger: logger)
+    
+    let insights = Insights(eventsProcessor: eventProcessor, logger: logger)
     
     insights.clickedAfterSearch(eventName: TestEvent.eventName,
                                 indexName: TestEvent.indexName,
@@ -374,7 +312,7 @@ class InsightsTests: XCTestCase {
       exp.fulfill()
     }
     
-    let logger = Logger(testCredentials.appId)
+    let logger = Logger(appID.rawValue)
     
     let insights = Insights(eventsProcessor: eventProcessor, logger: logger)
     
@@ -398,7 +336,7 @@ class InsightsTests: XCTestCase {
       exp.fulfill()
     }
     
-    let logger = Logger(testCredentials.appId)
+    let logger = Logger(appID.rawValue)
     
     let insights = Insights(eventsProcessor: eventProcessor, userToken: "global_token", logger: logger)
     
@@ -416,7 +354,7 @@ class InsightsTests: XCTestCase {
     let userToken: UserToken = "testUserToken1"
     
     let eventProcessor = TestEventProcessor()
-    let logger = Logger(testCredentials.appId)
+    let logger = Logger(appID.rawValue)
     
     let insights = Insights(eventsProcessor: eventProcessor,
                             userToken: userToken,

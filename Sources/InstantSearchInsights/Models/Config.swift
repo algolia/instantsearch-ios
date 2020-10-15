@@ -9,10 +9,6 @@
 import Foundation
 
 struct Algolia {
-  struct HTTPHeaders {
-    static let applicationKey = "X-Algolia-Application-Id"
-    static let apiKey = "X-Algolia-API-Key"
-  }
   
   struct SessionConfig {
     static func `default`(appId: String, apiKey: String) -> URLSessionConfiguration {
@@ -20,10 +16,6 @@ struct Algolia {
       config.requestCachePolicy = .reloadIgnoringLocalAndRemoteCacheData
       config.urlCache = nil
       config.networkServiceType = .background
-      config.httpAdditionalHeaders = [
-        Algolia.HTTPHeaders.applicationKey: appId,
-        Algolia.HTTPHeaders.apiKey: apiKey
-      ]
       return config
     }
   }
@@ -32,4 +24,5 @@ struct Algolia {
     // Default flush delay is 30 seconds
     static let flushDelay: TimeInterval = 30
   }
+  
 }

@@ -16,7 +16,6 @@ struct EventsPackage {
     
     let id: String
     let events: [InsightsEvent]
-    let region: Region?
     
     var isFull: Bool {
         return events.count == EventsPackage.maxEventCountInPackage
@@ -25,13 +24,11 @@ struct EventsPackage {
     init(event: InsightsEvent, region: Region? = .none) {
         self.id = UUID().uuidString
         self.events = [event]
-        self.region = region
     }
     
     init(region: Region? = .none) {
         self.id = UUID().uuidString
         self.events = []
-        self.region = region
     }
     
     init(events: [InsightsEvent], region: Region? = .none) throws {
@@ -40,7 +37,6 @@ struct EventsPackage {
         }
         self.id = UUID().uuidString
         self.events = events
-        self.region = region
     }
     
     func appending(_ event: InsightsEvent) throws -> EventsPackage {
@@ -51,7 +47,7 @@ struct EventsPackage {
         guard events.count + self.events.count <= EventsPackage.maxEventCountInPackage else {
             throw Error.packageOverflow
         }
-        return try EventsPackage(events: self.events + events, region: region)
+        return try EventsPackage(events: self.events + events)
     }
     
 }
@@ -103,21 +99,18 @@ extension EventsPackage: Codable {
     enum CodingKeys: String, CodingKey {
         case id
         case events
-        case region
     }
     
     init(from decoder: Decoder) throws {
         let container = try decoder.container(keyedBy: CodingKeys.self)
         self.id = try container.decode(String.self, forKey: .id)
         self.events = try container.decode([InsightsEvent].self, forKey: .events)
-        self.region = try container.decodeIfPresent(Region.self, forKey: .region)
     }
     
     func encode(to encoder: Encoder) throws {
         var container = encoder.container(keyedBy: CodingKeys.self)
         try container.encode(id, forKey: .id)
         try container.encode(events, forKey: .events)
-        try container.encodeIfPresent(region?.rawValue, forKey: .region)
     }
     
 }
@@ -131,26 +124,4 @@ extension EventsPackage: Hashable {
     func hash(into hasher: inout Hasher) {
       hasher.combine(id)
     }
-}
-
-extension EventsPackage: Syncable {
-    
-    @discardableResult func sync() -> Resource<Bool, WebserviceError> {
-        
-        let errorParse: (Int, Any) -> WebserviceError? = { (code, data) -> WebserviceError? in
-            if let data = data as? [String: Any],
-                let message = data["message"] as? String {
-                let error = WebserviceError(code: code, message: message)
-                return error
-            }
-            return nil
-        }
-        let serializedSelf = [CodingKeys.events.rawValue: Array(encodable: self.events)]
-        let url = API.baseAPIURL(forRegion: region)
-        return Resource<Bool, WebserviceError>(url: url,
-                                               method: .post([], serializedSelf as AnyObject),
-                                               allowEmptyResponse: true,
-                                               errorParseJSON: errorParse)
-    }
-    
 }
