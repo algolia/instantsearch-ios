@@ -7,6 +7,7 @@
 //
 
 import Foundation
+import AlgoliaSearchClient
 #if os(iOS)
 import UIKit
 #endif
@@ -91,7 +92,7 @@ class EventProcessor: EventProcessable {
         }
     }
     
-    func process(_ event: Event) {
+    func process(_ event: InsightsEvent) {
         guard isActive else {
             logger.debug(message: "Event tracking is desactivated. This event will be ignored. You can reactivate tracking by setting `Insights.shared(appId: %appId))`.isActive = true`")
             return
@@ -102,14 +103,13 @@ class EventProcessor: EventProcessable {
         }
     }
     
-    private func syncProcess(_ event: Event) {
-        let wrappedEvent = EventWrapper(event)
+    private func syncProcess(_ event: InsightsEvent) {
         let eventsPackage: EventsPackage
         
         if let lastEventsPackage = eventsPackages.last, !lastEventsPackage.isFull {
-            eventsPackage = (try? eventsPackages.removeLast().appending(wrappedEvent)) ?? EventsPackage(event: wrappedEvent, region: region)
+            eventsPackage = (try? eventsPackages.removeLast().appending(event)) ?? EventsPackage(event: event, region: region)
         } else {
-            eventsPackage = EventsPackage(event: wrappedEvent, region: region)
+            eventsPackage = EventsPackage(event: event, region: region)
         }
         
         eventsPackages.append(eventsPackage)

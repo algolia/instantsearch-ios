@@ -7,17 +7,18 @@
 //
 
 import Foundation
+import AlgoliaSearchClient
 @testable import InstantSearchInsights
 
 class TestEventProcessor: EventProcessable {
     
-    var didProcess: (Event) -> Void = { _ in }
-    
-    var isActive: Bool = true
-    
-    func process(_ event: Event) {
-        guard isActive else { return }
-        didProcess(event)
-    }
+  var didProcess: (InsightsEvent) -> Void = { _ in }
+  
+  var isActive: Bool = true
+  
+  func process(_ event: InsightsEvent) {
+    guard isActive else { return }
+    didProcess(event)
+  }
     
 }

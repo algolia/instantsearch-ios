@@ -7,50 +7,51 @@
 //
 
 import Foundation
+import AlgoliaSearchClient
 
 protocol EventTrackable {
     
-    func view(eventName: String,
-              indexName: String,
-              userToken: String?,
-              objectIDs: [String])
+    func view(eventName: EventName,
+              indexName: IndexName,
+              userToken: UserToken?,
+              objectIDs: [ObjectID])
     
-    func view(eventName: String,
-              indexName: String,
-              userToken: String?,
+    func view(eventName: EventName,
+              indexName: IndexName,
+              userToken: UserToken?,
               filters: [String])
     
-    func click(eventName: String,
-               indexName: String,
-               userToken: String?,
-               objectIDs: [String])
+    func click(eventName: EventName,
+               indexName: IndexName,
+               userToken: UserToken?,
+               objectIDs: [ObjectID])
     
-    func click(eventName: String,
-               indexName: String,
-               userToken: String?,
-               objectIDs: [String],
+    func click(eventName: EventName,
+               indexName: IndexName,
+               userToken: UserToken?,
+               objectIDs: [ObjectID],
                positions: [Int],
-               queryID: String)
+               queryID: QueryID)
     
-    func click(eventName: String,
-               indexName: String,
-               userToken: String?,
+    func click(eventName: EventName,
+               indexName: IndexName,
+               userToken: UserToken?,
                filters: [String])
     
-    func conversion(eventName: String,
-                    indexName: String,
-                    userToken: String?,
-                    objectIDs: [String])
+    func conversion(eventName: EventName,
+                    indexName: IndexName,
+                    userToken: UserToken?,
+                    objectIDs: [ObjectID])
     
-    func conversion(eventName: String,
-                    indexName: String,
-                    userToken: String?,
-                    objectIDs: [String],
-                    queryID: String)
+    func conversion(eventName: EventName,
+                    indexName: IndexName,
+                    userToken: UserToken?,
+                    objectIDs: [ObjectID],
+                    queryID: QueryID)
     
-    func conversion(eventName: String,
-                    indexName: String,
-                    userToken: String?,
+    func conversion(eventName: EventName,
+                    indexName: IndexName,
+                    userToken: UserToken?,
                     filters: [String])
     
 }

@@ -7,10 +7,11 @@
 //
 
 import Foundation
+import AlgoliaSearchClient
 
 protocol EventProcessable: class {
     
     var isActive: Bool { get set }
-    func process(_ event: Event)
+    func process(_ event: InsightsEvent)
     
 }

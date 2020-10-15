@@ -7,6 +7,7 @@
 //
 
 import Foundation
+import AlgoliaSearchClient
 
 struct EventsPackage {
     
@@ -14,14 +15,14 @@ struct EventsPackage {
     static let empty = EventsPackage(region: .none)
     
     let id: String
-    let events: [EventWrapper]
+    let events: [InsightsEvent]
     let region: Region?
     
     var isFull: Bool {
         return events.count == EventsPackage.maxEventCountInPackage
     }
     
-    init(event: EventWrapper, region: Region? = .none) {
+    init(event: InsightsEvent, region: Region? = .none) {
         self.id = UUID().uuidString
         self.events = [event]
         self.region = region
@@ -33,7 +34,7 @@ struct EventsPackage {
         self.region = region
     }
     
-    init(events: [EventWrapper], region: Region? = .none) throws {
+    init(events: [InsightsEvent], region: Region? = .none) throws {
         guard events.count <= EventsPackage.maxEventCountInPackage else {
             throw Error.packageOverflow
         }
@@ -42,11 +43,11 @@ struct EventsPackage {
         self.region = region
     }
     
-    func appending(_ event: EventWrapper) throws -> EventsPackage {
+    func appending(_ event: InsightsEvent) throws -> EventsPackage {
         return try appending([event])
     }
     
-    func appending(_ events: [EventWrapper]) throws -> EventsPackage {
+    func appending(_ events: [InsightsEvent]) throws -> EventsPackage {
         guard events.count + self.events.count <= EventsPackage.maxEventCountInPackage else {
             throw Error.packageOverflow
         }
@@ -57,8 +58,8 @@ struct EventsPackage {
 
 extension EventsPackage: Collection {
     
-    typealias Index = Array<EventWrapper>.Index
-    typealias Element = Array<EventWrapper>.Element
+    typealias Index = Array<InsightsEvent>.Index
+    typealias Element = Array<InsightsEvent>.Element
 
     var startIndex: Index {
         return events.startIndex
@@ -108,7 +109,7 @@ extension EventsPackage: Codable {
     init(from decoder: Decoder) throws {
         let container = try decoder.container(keyedBy: CodingKeys.self)
         self.id = try container.decode(String.self, forKey: .id)
-        self.events = try container.decode([EventWrapper].self, forKey: .events)
+        self.events = try container.decode([InsightsEvent].self, forKey: .events)
         self.region = try container.decodeIfPresent(Region.self, forKey: .region)
     }
     

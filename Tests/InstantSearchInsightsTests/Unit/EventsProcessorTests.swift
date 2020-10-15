@@ -7,6 +7,7 @@
 //
 
 import XCTest
+import AlgoliaSearchClient
 @testable import InstantSearchInsights
 
 class EventsProcessorTests: XCTestCase {
@@ -42,7 +43,7 @@ class EventsProcessorTests: XCTestCase {
         // Expectation must no be fullfilled as eventsProcessor is deactivated
         
         eventsProcessor.isActive = false
-        eventsProcessor.process(TestEvent.template)
+        eventsProcessor.process(TestEvent.random)
         queue.sync {}
         XCTAssertTrue(eventsProcessor.eventsPackages.isEmpty)
         
@@ -69,7 +70,7 @@ class EventsProcessorTests: XCTestCase {
         
         eventsProcessor.isActive = false
         eventsProcessor.isActive = true
-        eventsProcessor.process(TestEvent.template)
+        eventsProcessor.process(TestEvent.random)
         queue.sync {}
         XCTAssertFalse(eventsProcessor.eventsPackages.isEmpty)
         eventsProcessor.flush()
@@ -92,12 +93,12 @@ class EventsProcessorTests: XCTestCase {
                                               dispatchQueue: queue)
         
         eventsProcessor.isLocalStorageEnabled = false
-        eventsProcessor.process(TestEvent.template)
+        eventsProcessor.process(TestEvent.random)
         
         queue.sync {}
         XCTAssertEqual(eventsProcessor.eventsPackages.count, 1)
 
-        eventsProcessor.process(TestEvent.template)
+        eventsProcessor.process(TestEvent.random)
         
         queue.sync {}
         
@@ -106,7 +107,7 @@ class EventsProcessorTests: XCTestCase {
         
         print(eventsProcessor.eventsPackages)
         
-        let events = [Event](repeating: TestEvent.template, count: EventsPackage.maxEventCountInPackage)
+        let events = [InsightsEvent](repeating: TestEvent.random, count: EventsPackage.maxEventCountInPackage)
         
         events.forEach(eventsProcessor.process)
         
@@ -138,7 +139,7 @@ class EventsProcessorTests: XCTestCase {
         
         eventsProcessor.isLocalStorageEnabled = false
 
-        eventsProcessor.process(TestEvent.template)
+        eventsProcessor.process(TestEvent.random)
         queue.sync {}
         eventsProcessor.flush()
         

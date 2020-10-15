@@ -7,6 +7,7 @@
 //
 
 import Foundation
+import AlgoliaSearchClient
 
 /// Provides convenient functions for tracking events which can be used for search personalization.
 ///
@@ -15,157 +16,142 @@ class EventTracker: NSObject, AnalyticsUsecase, EventTrackable {
     
     var eventProcessor: EventProcessable
     var logger: Logger
-    var userToken: String?
+    var userToken: UserToken?
     
     init(eventProcessor: EventProcessable,
          logger: Logger,
-         userToken: String? = .none) {
+         userToken: UserToken? = .none) {
         self.eventProcessor = eventProcessor
         self.logger = logger
         self.userToken = userToken
     }
     
-    func view(eventName: String,
-              indexName: String,
-              userToken: String? = .none,
-              objectIDs: [String]) {
+    func view(eventName: EventName,
+              indexName: IndexName,
+              userToken: UserToken? = .none,
+              objectIDs: [ObjectID]) {
         do {
-            let event = try ViewEvent(name: eventName,
-                                      indexName: indexName,
-                                      userToken: effectiveUserToken(withEventUserToken: userToken),
-                                      timestamp: Date().millisecondsSince1970,
-                                      queryID: .none,
-                                      objectIDsOrFilters: .objectIDs(objectIDs))
-            eventProcessor.process(event)
+          eventProcessor.process(try .view(name: eventName,
+                                           indexName: indexName,
+                                           userToken: effectiveUserToken(withEventUserToken: userToken),
+                                           timestamp: Date(),
+                                           objectIDs: objectIDs))
         } catch let error {
             logger.debug(message: error.localizedDescription)
         }
     }
     
-    func view(eventName: String,
-              indexName: String,
-              userToken: String? = .none,
+    func view(eventName: EventName,
+              indexName: IndexName,
+              userToken: UserToken? = .none,
               filters: [String]) {
         do {
-            let event = try ViewEvent(name: eventName,
-                                      indexName: indexName,
-                                      userToken: effectiveUserToken(withEventUserToken: userToken),
-                                      timestamp: Date().millisecondsSince1970,
-                                      queryID: .none,
-                                      objectIDsOrFilters: .filters(filters))
-            eventProcessor.process(event)
+          eventProcessor.process(try .view(name: eventName,
+                                           indexName: indexName,
+                                           userToken: effectiveUserToken(withEventUserToken: userToken),
+                                           timestamp: Date(),
+                                           filters: filters))
         } catch let error {
             logger.debug(message: error.localizedDescription)
         }
     }
     
-    func click(eventName: String,
-               indexName: String,
-               userToken: String?,
-               objectIDs: [String],
+    func click(eventName: EventName,
+               indexName: IndexName,
+               userToken: UserToken?,
+               objectIDs: [ObjectID],
                positions: [Int],
-               queryID: String) {
+               queryID: QueryID) {
         do {
-            guard objectIDs.count == positions.count else {
-                throw EventConstructionError.objectsAndPositionsCountMismatch(objectIDsCount: objectIDs.count, positionsCount: positions.count)
-            }
-            let objectIDsWithPositions = zip(objectIDs, positions).map { $0 }
-            let event = try ClickEvent(name: eventName,
-                                       indexName: indexName,
-                                       userToken: effectiveUserToken(withEventUserToken: userToken),
-                                       timestamp: Date().millisecondsSince1970,
-                                       queryID: queryID,
-                                       objectIDsWithPositions: objectIDsWithPositions)
-            eventProcessor.process(event)
+          let objectIDsWithPositions = zip(objectIDs, positions).map { $0 }
+          eventProcessor.process(try .click(name: eventName,
+                                            indexName: indexName,
+                                            userToken: effectiveUserToken(withEventUserToken: userToken),
+                                            timestamp: Date(),
+                                            queryID: queryID,
+                                            objectIDsWithPositions: objectIDsWithPositions))
         } catch let error {
             logger.debug(message: error.localizedDescription)
         }
     }
     
-    func click(eventName: String,
-               indexName: String,
-               userToken: String? = .none,
-               objectIDs: [String]) {
+    func click(eventName: EventName,
+               indexName: IndexName,
+               userToken: UserToken? = .none,
+               objectIDs: [ObjectID]) {
         do {
-            let event = try ClickEvent(name: eventName,
-                                       indexName: indexName,
-                                       userToken: effectiveUserToken(withEventUserToken: userToken),
-                                       timestamp: Date().millisecondsSince1970,
-                                       objectIDsOrFilters: .objectIDs(objectIDs),
-                                       positions: .none)
-            eventProcessor.process(event)
+          eventProcessor.process(try .click(name: eventName,
+                                            indexName: indexName,
+                                            userToken: effectiveUserToken(withEventUserToken: userToken),
+                                            timestamp: Date(),
+                                            objectIDs: objectIDs))
         } catch let error {
             logger.debug(message: error.localizedDescription)
         }
         
     }
     
-    func click(eventName: String,
-               indexName: String,
-               userToken: String? = .none,
+    func click(eventName: EventName,
+               indexName: IndexName,
+               userToken: UserToken? = .none,
                filters: [String]) {
         do {
-            let event = try ClickEvent(name: eventName,
-                                       indexName: indexName,
-                                       userToken: effectiveUserToken(withEventUserToken: userToken),
-                                       timestamp: Date().millisecondsSince1970,
-                                       objectIDsOrFilters: .filters(filters),
-                                       positions: .none)
-            eventProcessor.process(event)
+          eventProcessor.process(try .click(name: eventName,
+                                            indexName: indexName,
+                                            userToken: effectiveUserToken(withEventUserToken: userToken),
+                                            timestamp: Date(),
+                                            filters: filters))
         } catch let error {
-            logger.debug(message: error.localizedDescription)
+          logger.debug(message: error.localizedDescription)
         }
         
     }
     
-    func conversion(eventName: String,
-                    indexName: String,
-                    userToken: String? = .none,
-                    objectIDs: [String]) {
+    func conversion(eventName: EventName,
+                    indexName: IndexName,
+                    userToken: UserToken? = .none,
+                    objectIDs: [ObjectID]) {
         do {
-            let event = try ConversionEvent(name: eventName,
-                                            indexName: indexName,
-                                            userToken: effectiveUserToken(withEventUserToken: userToken),
-                                            timestamp: Date().millisecondsSince1970,
-                                            queryID: .none,
-                                            objectIDsOrFilters: .objectIDs(objectIDs))
-            eventProcessor.process(event)
+          eventProcessor.process(try .conversion(name: eventName,
+                                                 indexName: indexName,
+                                                 userToken: effectiveUserToken(withEventUserToken: userToken),
+                                                 timestamp: Date(),
+                                                 queryID: nil,
+                                                 objectIDs: objectIDs))
         } catch let error {
             logger.debug(message: error.localizedDescription)
         }
     }
     
-    func conversion(eventName: String,
-                    indexName: String,
-                    userToken: String? = .none,
+    func conversion(eventName: EventName,
+                    indexName: IndexName,
+                    userToken: UserToken? = .none,
                     filters: [String]) {
         do {
-            let event = try ConversionEvent(name: eventName,
-                                            indexName: indexName,
-                                            userToken: effectiveUserToken(withEventUserToken: userToken),
-                                            timestamp: Date().millisecondsSince1970,
-                                            queryID: .none,
-                                            objectIDsOrFilters: .filters(filters))
-            eventProcessor.process(event)
+          eventProcessor.process(try .conversion(name: eventName,
+                                                 indexName: indexName,
+                                                 userToken: effectiveUserToken(withEventUserToken: userToken),
+                                                 timestamp: Date(),
+                                                 queryID: nil,
+                                                 filters: filters))
         } catch let error {
             logger.debug(message: error.localizedDescription)
         }
     }
     
-    func conversion(eventName: String,
-                    indexName: String,
-                    userToken: String?,
-                    objectIDs: [String],
-                    queryID: String) {
+    func conversion(eventName: EventName,
+                    indexName: IndexName,
+                    userToken: UserToken?,
+                    objectIDs: [ObjectID],
+                    queryID: QueryID) {
         
         do {
-            let event = try ConversionEvent(name: eventName,
-                                            indexName: indexName,
-                                            userToken: effectiveUserToken(withEventUserToken: userToken),
-                                            timestamp: Date().millisecondsSince1970,
-                                            queryID: queryID,
-                                            objectIDsOrFilters: .objectIDs(objectIDs))
-            eventProcessor.process(event)
+          eventProcessor.process(try .conversion(name: eventName,
+                                                 indexName: indexName,
+                                                 userToken: effectiveUserToken(withEventUserToken: userToken),
+                                                 timestamp: Date(),
+                                                 queryID: queryID,
+                                                 objectIDs: objectIDs))
         } catch let error {
             logger.debug(message: error.localizedDescription)
         }

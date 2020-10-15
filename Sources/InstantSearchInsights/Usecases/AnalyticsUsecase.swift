@@ -7,12 +7,13 @@
 //
 
 import Foundation
+import AlgoliaSearchClient
 
 protocol AnalyticsUsecase {
     
     var eventProcessor: EventProcessable { get }
     var logger: Logger { get }
-    var userToken: String? { get }
+    var userToken: UserToken? { get }
     
 }
 
@@ -25,7 +26,7 @@ extension AnalyticsUsecase {
     /// 3) Per-event user token
     /// The propagation starts from the deepest level and switches to the previous one in case of nil value on the current level.
     
-    func effectiveUserToken(withEventUserToken eventUserToken: String?) -> String {
+    func effectiveUserToken(withEventUserToken eventUserToken: UserToken?) -> UserToken {
         return eventUserToken ?? self.userToken ?? Insights.userToken
     }
     
