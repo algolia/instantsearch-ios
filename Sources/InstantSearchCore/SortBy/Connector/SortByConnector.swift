@@ -13,19 +13,19 @@ import AlgoliaSearchClient
 ///
 /// [Documentation](https://www.algolia.com/doc/api-reference/widgets/sort-by/ios/)
 public class SortByConnector {
-  
+
   /// Searcher that handles your searches
   public let searcher: SingleIndexSearcher
-  
+
   /// Logic applied to the indices
   public let interactor: IndexSegmentInteractor
-  
+
   /// Connection between interactor and searcher
   public let searcherConnection: Connection
-  
+
   /// Connections between interactor and controllers
   public var controllerConnections: [Connection]
-  
+
   /**
    - Parameters:
      - searcher: Searcher that handles your searches
@@ -61,7 +61,7 @@ public class SortByConnector {
 }
 
 extension SortByConnector: Connection {
-  
+
   public func connect() {
     searcherConnection.connect()
     controllerConnections.forEach { $0.connect() }
@@ -71,5 +71,5 @@ extension SortByConnector: Connection {
     searcherConnection.disconnect()
     controllerConnections.forEach { $0.disconnect() }
   }
-  
+
 }

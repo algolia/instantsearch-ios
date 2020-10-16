@@ -53,13 +53,13 @@ public enum FacetList {
         filterState.addAll(filters: filters, toGroupWithID: groupID)
         filterState.notifyChange()
       }
-      
+
     }
 
     private func whenFilterStateChangedThenUpdateSelections(interactor: FacetListInteractor,
                                                             filterState: FilterState,
                                                             via groupID: FilterGroup.ID) {
-      
+
       func extractString(from filter: Filter.Facet) -> String? {
         if case .string(let stringValue) = filter.value {
           return stringValue
@@ -67,7 +67,7 @@ public enum FacetList {
           return nil
         }
       }
-      
+
       filterState.onChange.subscribePast(with: interactor) { interactor, filterState in
         let filters: [Filter.Facet]
         switch groupID {

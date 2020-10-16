@@ -12,28 +12,28 @@ import Foundation
 ///
 /// [Documentation](https://www.algolia.com/doc/api-reference/widgets/refinement-list/ios/)
 public class FacetListConnector {
-  
+
   /// Searcher that handles your searches.
   public let searcher: Searcher
-  
+
   /// FilterState that holds your filters
   public let filterState: FilterState
-  
+
   /// Logic applied to the facets
   public let interactor: FacetListInteractor
-  
+
   /// Attribute to filter
   public let attribute: Attribute
-  
+
   /// Connection between interactor and filter state
   public let filterStateConnection: Connection
-  
+
   /// Connection between interactor and searcher
   public let searcherConnection: Connection
-  
+
   /// Connections between interactor and controllers
   public var controllerConnections: [Connection]
-  
+
   internal init(searcher: Searcher,
                 filterState: FilterState = .init(),
                 interactor: FacetListInteractor = .init(),
@@ -44,34 +44,34 @@ public class FacetListConnector {
     self.searcher = searcher
     self.interactor = interactor
     self.attribute = attribute
-    
+
     self.filterStateConnection = interactor.connectFilterState(filterState,
                                                                with: attribute,
                                                                operator: `operator`,
                                                                groupName: groupName)
-    
+
     self.controllerConnections = []
-    
+
     switch searcher {
     case .facet(let facetSearcher):
       searcherConnection = interactor.connectFacetSearcher(facetSearcher)
-      
+
     case .singleIndex(let singleIndexSearcher):
       searcherConnection = interactor.connectSearcher(singleIndexSearcher, with: attribute)
     }
-    
+
   }
-    
+
 }
 
 extension FacetListConnector: Connection {
-  
+
   public func connect() {
     filterStateConnection.connect()
     searcherConnection.connect()
     controllerConnections.forEach { $0.connect() }
   }
-  
+
   public func disconnect() {
     filterStateConnection.disconnect()
     searcherConnection.disconnect()
@@ -81,10 +81,10 @@ extension FacetListConnector: Connection {
 }
 
 extension FacetListConnector {
-  
+
   public enum Searcher {
     case singleIndex(SingleIndexSearcher)
     case facet(FacetSearcher)
   }
-  
+
 }

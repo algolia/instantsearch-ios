@@ -8,7 +8,7 @@
 import Foundation
 
 public extension CurrentFiltersConnector {
-  
+
   /**
    Initalizer with an immediate controller connection
    - Parameters:
@@ -28,7 +28,7 @@ public extension CurrentFiltersConnector {
       connectController(controller, presenter: presenter)
     }
   }
-  
+
   /**
    Establishes a connection with the controller using the provided presentation logic
    - Parameters:

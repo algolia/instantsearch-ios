@@ -8,7 +8,7 @@
 import Foundation
 
 public extension FilterComparisonConnector {
-  
+
   /**
    - Parameters:
      - filterState: FilterState that holds your filters

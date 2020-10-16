@@ -8,7 +8,7 @@
 import Foundation
 
 public extension FilterToggleConnector {
-  
+
   /**
    - Parameters:
      - filterState: FilterState that holds your filters
@@ -32,7 +32,7 @@ public extension FilterToggleConnector {
               groupName: groupName)
     connectController(controller)
   }
-  
+
   /**
    Establishes a connection with the controller
    - Parameters:
@@ -44,5 +44,5 @@ public extension FilterToggleConnector {
     controllerConnections.append(connection)
     return connection
   }
-  
+
 }

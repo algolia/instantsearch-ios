@@ -12,7 +12,7 @@ import InstantSearchCore
 import UIKit
 
 public extension SingleIndexSearchConnector {
-  
+
   @available(iOS 13.0, *)
   init<HC: HitsController>(searcher: SingleIndexSearcher,
                            searchController: UISearchController,
@@ -28,7 +28,7 @@ public extension SingleIndexSearchConnector {
               hitsController: hitsController,
               filterState: filterState)
   }
-  
+
   @available(iOS 13.0, *)
   init<HC: HitsController>(appID: ApplicationID,
                            apiKey: APIKey,
@@ -46,6 +46,6 @@ public extension SingleIndexSearchConnector {
               hitsController: hitsController,
               filterState: filterState)
   }
-  
+
 }
 #endif

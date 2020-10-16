@@ -14,7 +14,7 @@ import Foundation
 public typealias FacetFilterListConnector = FilterListConnector<Filter.Facet>
 
 public extension FacetFilterListConnector {
-      
+
   /**
   - Parameters:
     - facetFilters: Facet filters to display
@@ -35,7 +35,7 @@ public extension FacetFilterListConnector {
               operator: `operator`,
               groupName: groupName)
   }
-  
+
   /**
   - Parameters:
     - facetFilters: Facet filters to display.

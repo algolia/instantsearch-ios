@@ -13,11 +13,11 @@ public class QueryRuleCustomDataInteractor<Model: Decodable>: ItemInteractor<Mod
   public override init(item: Model? = nil) {
     super.init(item: item)
   }
-  
+
 }
 
 extension QueryRuleCustomDataInteractor {
-  
+
   func extractModel(from searchResponse: SearchResponse) {
     if let userData = searchResponse.userData,
        let model = userData.compactMap({ try? Model(json: $0) }).first {
@@ -26,11 +26,11 @@ extension QueryRuleCustomDataInteractor {
       item = nil
     }
   }
-  
+
 }
 
 public extension QueryRuleCustomDataInteractor {
-  
+
   /**
    Establishes a connection with the controller
    - Parameters:
@@ -40,5 +40,5 @@ public extension QueryRuleCustomDataInteractor {
   @discardableResult func connectController<Controller: ItemController>(_ controller: Controller) -> ItemInteractor<Model?>.ControllerConnection<Controller, Model?> {
     super.connectController(controller, presenter: { $0 })
   }
-  
+
 }

@@ -14,7 +14,7 @@ import Foundation
 public typealias TagFilterListConnector = FilterListConnector<Filter.Tag>
 
 public extension TagFilterListConnector {
-  
+
   /**
    - Parameters:
      - tagFilters: Tag filters to display
@@ -35,7 +35,7 @@ public extension TagFilterListConnector {
               operator: `operator`,
               groupName: groupName)
   }
-  
+
   /**
    - Parameters:
      - tagFilters: Tag filters to display
@@ -59,5 +59,5 @@ public extension TagFilterListConnector {
               groupName: groupName,
               controller: controller)
   }
-  
+
 }

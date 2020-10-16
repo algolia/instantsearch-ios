@@ -9,7 +9,7 @@ import Foundation
 
 public
 extension FilterListConnector {
-  
+
   /**
   Init with explicit interactor and controller
   - Parameters:
@@ -30,7 +30,7 @@ extension FilterListConnector {
               groupName: groupName)
     connectController(controller)
   }
-  
+
   /**
   Init with implicit interactor and controller
   - Parameters:
@@ -55,7 +55,7 @@ extension FilterListConnector {
               groupName: groupName)
     connectController(controller)
   }
-  
+
   /**
    Establishes a connection with the controller
    - Parameters:
@@ -67,5 +67,5 @@ extension FilterListConnector {
     controllerConnections.append(connection)
     return connection
   }
-  
+
 }

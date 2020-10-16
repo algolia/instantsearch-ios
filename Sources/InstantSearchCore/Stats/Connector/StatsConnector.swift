@@ -15,13 +15,13 @@ public class StatsConnector {
 
   /// Searcher that handles your searches
   public let searcher: SingleIndexSearcher
-  
+
   /// Logic applied to Stats
   public let interactor: StatsInteractor
 
   /// Connection between searcher and interactor
   public let searcherConnection: Connection
-  
+
   /// Connections between interactor and controllers
   public var controllerConnections: [Connection]
 
@@ -41,7 +41,7 @@ public class StatsConnector {
 }
 
 extension StatsConnector: Connection {
-  
+
   public func connect() {
     searcherConnection.connect()
     controllerConnections.forEach { $0.connect() }
@@ -51,5 +51,5 @@ extension StatsConnector: Connection {
     searcherConnection.disconnect()
     controllerConnections.forEach { $0.disconnect() }
   }
-  
+
 }

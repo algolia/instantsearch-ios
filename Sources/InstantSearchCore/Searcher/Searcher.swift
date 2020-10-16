@@ -21,7 +21,7 @@ public protocol Searcher: class {
   /// Triggered when query text changed
   /// - Parameter: a new query text value
   var onQueryChanged: Observer<String?> { get }
-  
+
   /// Triggered when a search operation launched
   var onSearch: Observer<Void> { get }
 

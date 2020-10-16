@@ -35,7 +35,7 @@ public extension NumericFilterListConnector {
               operator: `operator`,
               groupName: groupName)
   }
-  
+
   /**
   - Parameters:
     - numericFilters: Numeric filters to display

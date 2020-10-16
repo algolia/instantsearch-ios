@@ -12,19 +12,19 @@ import Foundation
 ///
 /// [Documentation](https://www.algolia.com/doc/api-reference/widgets/clear-refinements/ios/)
 public class FilterClearConnector {
-  
+
   /// FilterState that holds your filters
   public let filterState: FilterState
-  
+
   /// Logic applied to Clear Filters
   public let interactor: FilterClearInteractor
-  
+
   /// Connection between interactor and filter state
   public let filterStateConnection: Connection
-  
+
   /// Connections between interactor and controllers
   public var controllerConnections: [Connection]
-  
+
   /**
    - Parameters:
      - filterState: FilterState that holds your filters
@@ -43,19 +43,19 @@ public class FilterClearConnector {
                                                                clearMode: clearMode)
     self.controllerConnections = []
   }
-  
+
 }
 
 extension FilterClearConnector: Connection {
-  
+
   public func connect() {
     filterStateConnection.connect()
     controllerConnections.forEach { $0.connect() }
   }
-  
+
   public func disconnect() {
     filterStateConnection.disconnect()
     controllerConnections.forEach { $0.disconnect() }
   }
-  
+
 }

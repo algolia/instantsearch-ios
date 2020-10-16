@@ -13,25 +13,25 @@ public class FilterComparisonConnector<Number: Comparable & DoubleRepresentable>
 
   /// Logic applied to comparison
   public let interactor: NumberInteractor<Number>
-  
+
   /// FilterState that holds your filters
   public let filterState: FilterState
-  
+
   /// Attribute to filter with a numeric comparison
   public let attribute: Attribute
-  
+
   /// Comparison operator to apply
   public let numericOperator: Filter.Numeric.Operator
-  
+
   /// Whether the filter is added to a conjuncitve(`and`) or a disjuncitve (`or`) group in the filter state
   public let `operator`: RefinementOperator
-  
+
   /// Filter group name in the filter state
   public let groupName: String
 
   /// Connection between interactor and filter state
   public let filterStateConnection: Connection
-  
+
   /// Connections between interactor and controllers
   public var controllerConnections: [Connection]
 
@@ -73,7 +73,7 @@ public class FilterComparisonConnector<Number: Comparable & DoubleRepresentable>
 }
 
 extension FilterComparisonConnector: Connection {
-  
+
   public func connect() {
     filterStateConnection.connect()
     controllerConnections.forEach { $0.connect() }
@@ -83,5 +83,5 @@ extension FilterComparisonConnector: Connection {
     filterStateConnection.disconnect()
     controllerConnections.forEach { $0.disconnect() }
   }
-  
+
 }

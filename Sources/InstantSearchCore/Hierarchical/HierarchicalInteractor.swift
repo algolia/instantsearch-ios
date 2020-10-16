@@ -15,7 +15,7 @@ public class HierarchicalInteractor: ItemInteractor<[[Facet]]> {
 
   /// The names of the hierarchical attributes that we need to target, in ascending order.
   let hierarchicalAttributes: [Attribute]
-  
+
   /// The string separating the facets in the hierarchical facets. Usually something like " > ".
   ///
   /// Note that you should not forget the spaces in between if there are some in your separator.

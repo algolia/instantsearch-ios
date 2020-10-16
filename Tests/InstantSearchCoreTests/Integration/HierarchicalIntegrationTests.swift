@@ -13,7 +13,7 @@ import AlgoliaSearchClient
 class HierarchicalTests: OnlineTestCase {
 
   struct Item: Codable {
-    let objectID: String = UUID().uuidString
+    var objectID: String = UUID().uuidString
     let name: String
     let hierarchicalCategories: [String: String]
   }

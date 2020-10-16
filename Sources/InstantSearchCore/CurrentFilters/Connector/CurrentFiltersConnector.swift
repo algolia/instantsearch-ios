@@ -15,16 +15,16 @@ public class CurrentFiltersConnector {
 
   /// FilterState that holds your filters
   public let filterState: FilterState
-  
+
   /// When specified, only display current filters matching these filter group ids
   public let groupIDs: Set<FilterGroup.ID>?
-  
+
   /// Logic applied to the current filters
   public let interactor: CurrentFiltersInteractor
 
   /// Connection between interactor and filter state
   public let filterStateConnection: Connection
-  
+
   /// Connections between interactor and controllers
   public var controllerConnections: [Connection]
 
@@ -43,11 +43,11 @@ public class CurrentFiltersConnector {
     self.filterStateConnection = interactor.connectFilterState(filterState, filterGroupIDs: groupIDs)
     self.controllerConnections = []
   }
-  
+
 }
 
 extension CurrentFiltersConnector: Connection {
-  
+
   public func connect() {
     filterStateConnection.connect()
     controllerConnections.forEach { $0.connect() }
@@ -57,5 +57,5 @@ extension CurrentFiltersConnector: Connection {
     filterStateConnection.disconnect()
     controllerConnections.forEach { $0.disconnect() }
   }
-  
+
 }

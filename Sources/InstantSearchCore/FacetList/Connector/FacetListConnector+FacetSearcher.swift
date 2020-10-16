@@ -10,7 +10,7 @@ import Foundation
 /// Initializers with FacetSearcher
 
 public extension FacetListConnector {
-  
+
   /**
   Init with explicit interactor
   - Parameters:
@@ -34,7 +34,7 @@ public extension FacetListConnector {
               operator: `operator`,
               groupName: groupName)
   }
-  
+
   /**
   Init with explicit interactor & controller
   - Parameters:
@@ -64,7 +64,7 @@ public extension FacetListConnector {
               operator: `operator`,
               groupName: groupName)
   }
-  
+
   /**
   Init with implicit interactor
   - Parameters:
@@ -124,5 +124,5 @@ public extension FacetListConnector {
               operator: `operator`,
               groupName: groupName)
   }
-  
+
 }

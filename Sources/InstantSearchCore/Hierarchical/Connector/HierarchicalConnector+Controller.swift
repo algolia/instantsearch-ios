@@ -8,9 +8,9 @@
 import Foundation
 
 public extension HierarchicalConnector {
-  
+
   typealias HierarchicalPresenter<Output> = ([HierarchicalFacet]) -> Output
-  
+
   /**
    - Parameters:
      - searcher: Searcher that handles your searches.
@@ -33,7 +33,6 @@ public extension HierarchicalConnector {
     connectController(controller, presenter: presenter)
   }
 
-  
   /**
    Establishes a connection with the controller
    - Parameters:
@@ -47,5 +46,5 @@ public extension HierarchicalConnector {
     controllerConnections.append(connection)
     return connection
   }
-  
+
 }

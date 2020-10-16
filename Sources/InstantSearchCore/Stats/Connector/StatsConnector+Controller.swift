@@ -8,7 +8,7 @@
 import Foundation
 
 public extension StatsConnector {
-  
+
   /**
     - Parameters:
       - searcher: Searcher that handles your searches
@@ -17,14 +17,14 @@ public extension StatsConnector {
       - presenter: Presenter defining how stats appear in the controller
    */
   convenience init<Controller: ItemController, Output>(searcher: SingleIndexSearcher,
-                                                    interactor: StatsInteractor = .init(),
-                                                    controller: Controller,
-                                                    presenter: @escaping Presenter<SearchStats?, Output>) where Controller.Item == Output {
+                                                       interactor: StatsInteractor = .init(),
+                                                       controller: Controller,
+                                                       presenter: @escaping Presenter<SearchStats?, Output>) where Controller.Item == Output {
     self.init(searcher: searcher,
               interactor: interactor)
     connectController(controller, presenter: presenter)
   }
-  
+
   /**
    Establishes a connection with the controller using the provided presentation logic
    - Parameters:
@@ -37,5 +37,5 @@ public extension StatsConnector {
     controllerConnections.append(connection)
     return connection
   }
-  
+
 }

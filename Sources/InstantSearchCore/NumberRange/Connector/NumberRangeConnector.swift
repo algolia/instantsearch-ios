@@ -12,28 +12,28 @@ import Foundation
 ///
 /// [Documentation](https://www.algolia.com/doc/api-reference/widgets/filter-list-numeric/ios/)
 public class NumberRangeConnector<Number: Comparable & DoubleRepresentable> {
-  
+
   /// Searcher that handles your searches.
   public let searcher: SingleIndexSearcher
-  
+
   /// FilterState that holds your filters
   public let filterState: FilterState
-  
+
   /// Attribute to filter
   public let attribute: Attribute
-  
+
   /// Logic applied to the numeric range
   public let interactor: NumberRangeInteractor<Number>
-  
+
   /// Connection between interactor and searcher
   public let searcherConnection: Connection
 
   /// Connection between interactor and filter state
   public let filterStateConnection: Connection
-  
+
   /// Connections between interactor and controllers
   public var controllerConnections: [Connection]
-  
+
   /**
    - Parameters:
      - searcher: Searcher that handles your searches.
@@ -43,7 +43,7 @@ public class NumberRangeConnector<Number: Comparable & DoubleRepresentable> {
      - operator: Whether the filter is added to a conjuncitve(and) or a disjuncitve (or) group in the filter state. Default value: .and
      - groupName: Filter group name in the filter state. Default value: The value of the `attribute` parameter
   */
-  
+
   public init(searcher: SingleIndexSearcher,
               filterState: FilterState,
               attribute: Attribute,
@@ -61,13 +61,13 @@ public class NumberRangeConnector<Number: Comparable & DoubleRepresentable> {
                                                                groupName: groupName)
     self.controllerConnections = []
   }
-    
+
 }
 
-//MARK: - Convenient initializers
+// MARK: - Convenient initializers
 
 public extension NumberRangeConnector {
-  
+
   /**
    - Parameters:
      - searcher: Searcher that handles your searches.
@@ -94,20 +94,19 @@ public extension NumberRangeConnector {
               operator: `operator`,
               groupName: groupName)
   }
-  
+
 }
 
-
 extension NumberRangeConnector: Connection {
-  
+
   public func connect() {
     filterStateConnection.connect()
     controllerConnections.forEach { $0.connect() }
   }
-  
+
   public func disconnect() {
     filterStateConnection.disconnect()
     controllerConnections.forEach { $0.disconnect() }
   }
-  
+
 }

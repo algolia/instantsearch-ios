@@ -8,7 +8,7 @@
 import Foundation
 
 public extension SelectableFilterConnector {
-  
+
   /**
   Init with implicit interactor & controller
   - Parameters:

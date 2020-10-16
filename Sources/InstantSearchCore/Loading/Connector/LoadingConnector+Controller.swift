@@ -8,7 +8,7 @@
 import Foundation
 
 public extension LoadingConnector {
-  
+
   /**
     - Parameters:
       - searcher: Searcher that handles your searches
@@ -33,5 +33,5 @@ public extension LoadingConnector {
     controllerConnections.append(connection)
     return connection
   }
-  
+
 }

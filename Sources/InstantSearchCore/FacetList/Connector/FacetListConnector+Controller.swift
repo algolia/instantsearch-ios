@@ -7,10 +7,10 @@
 
 import Foundation
 
-//MARK: - Convenient controller connectivity
+// MARK: - Convenient controller connectivity
 
 public extension FacetListConnector {
-  
+
   internal convenience init<Controller: FacetListController>(searcher: Searcher,
                                                              filterState: FilterState = .init(),
                                                              interactor: FacetListInteractor = .init(),
@@ -27,7 +27,7 @@ public extension FacetListConnector {
               groupName: groupName)
     connectController(controller, with: presenter)
   }
-  
+
   /**
    Establishes a connection with the controller using the provided presentation logic
    - Parameters:
@@ -43,5 +43,5 @@ public extension FacetListConnector {
     controllerConnections.append(connection)
     return connection
   }
-  
+
 }

@@ -14,10 +14,10 @@ public extension MultiIndexHitsConnector {
 
     /// Name of the index
     public let indexName: IndexName
-    
+
     /// Logic applied to the hits
     public let hitsInteractor: AnyHitsInteractor
-    
+
     /// FilterState that holds your filters
     public let filterState: FilterState?
 
@@ -56,5 +56,3 @@ public extension MultiIndexHitsConnector {
   }
 
 }
-
-

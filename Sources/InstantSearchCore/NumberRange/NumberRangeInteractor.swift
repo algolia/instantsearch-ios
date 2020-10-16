@@ -25,7 +25,7 @@ public class NumberRangeInteractor<Number: Comparable & DoubleRepresentable>: It
   public convenience init() {
     self.init(item: nil)
   }
-  
+
   /**
    - Parameters:
      - item: Initial range value
@@ -48,12 +48,12 @@ public class NumberRangeInteractor<Number: Comparable & DoubleRepresentable>: It
     let limitedRange = limitRange(numberRange, limitedBy: bounds)
     onNumberRangeComputed.fire(limitedRange)
   }
-  
+
   private func limitRange(_ range: ClosedRange<Number>?, limitedBy bounds: ClosedRange<Number>?) -> ClosedRange<Number>? {
     guard let bounds = bounds else {
       return range
     }
     return range?.clamped(to: bounds)
   }
-  
+
 }

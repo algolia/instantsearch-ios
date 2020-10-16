@@ -43,9 +43,9 @@ public class SingleIndexSearcher: Searcher, SequencerDelegate, SearchResultObser
   }
 
   public let isLoading: Observer<Bool>
-  
+
   public let onQueryChanged: Observer<String?>
-  
+
   public let onSearch: Observer<Void>
 
   public let onResults: Observer<SearchResponse>
@@ -57,7 +57,7 @@ public class SingleIndexSearcher: Searcher, SequencerDelegate, SearchResultObser
   /// Triggered when an index of Searcher changed
   /// - Parameter: equals to a new index value
   public let onIndexChanged: Observer<IndexName>
-  
+
   /// Custom request options
   public var requestOptions: RequestOptions?
 
@@ -70,11 +70,11 @@ public class SingleIndexSearcher: Searcher, SequencerDelegate, SearchResultObser
   /// Flag defining if disjunctive faceting is enabled
   /// - Default value: true
   public var isDisjunctiveFacetingEnabled = true
-  
+
   /// Flag defining if the selected query facet must be kept even if it does not match current results anymore
   /// - Default value: true
   public var keepSelectedEmptyFacets: Bool = true
-  
+
   /// Closure defining the condition under which the search operation should be triggered
   ///
   /// Example: if you don't want search operation triggering in case of empty query, you should set this value
@@ -151,11 +151,11 @@ public class SingleIndexSearcher: Searcher, SequencerDelegate, SearchResultObser
   }
 
   public func search() {
-    
+
     if let shouldTriggerSearch = shouldTriggerSearchForQuery, !shouldTriggerSearch(indexQueryState.query) {
       return
     }
-    
+
     onSearch.fire(())
 
     let query = indexQueryState.query

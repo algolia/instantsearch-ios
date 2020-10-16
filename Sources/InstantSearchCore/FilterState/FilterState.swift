@@ -12,7 +12,7 @@ import Foundation
  Encapsulates search filters providing a convenient interface to manage them
  */
 public class FilterState {
-  
+
   typealias Storage = FiltersReadable & FiltersWritable & FilterGroupsConvertible & HierarchicalManageable
 
   /// Filters container

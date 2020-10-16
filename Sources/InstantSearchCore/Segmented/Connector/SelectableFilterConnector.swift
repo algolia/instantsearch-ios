@@ -12,28 +12,28 @@ public class SelectableFilterConnector<Filter: FilterType> {
 
   /// Searcher that handles your searches
   public let searcher: SingleIndexSearcher
-  
+
   /// FilterState that holds your filters
   public let filterState: FilterState
-  
+
   /// Logic applied to the filters
   public let interactor: SelectableSegmentInteractor<Int, Filter>
-  
+
   /// Attribute to filter
   public let attribute: Attribute
-  
+
   /// Whether we apply an `and` or `or` behavior to the filters in the filter state
   public let `operator`: RefinementOperator
-  
+
   /// Filter group name
   public let groupName: String
 
   /// Connection between interactor and searcher
   public let searcherConnection: SelectableFilterInteractorSearcherConnection<Filter>
-  
+
   /// Connection between interactor and filterState
   public let filterStateConnection: SelectableFilterInteractorFilterStateConnection<Filter>
-  
+
   /// Connections between interactor and controllers
   public var controllerConnections: [Connection]
 
@@ -74,7 +74,7 @@ public class SelectableFilterConnector<Filter: FilterType> {
 }
 
 extension SelectableFilterConnector: Connection {
-  
+
   public func connect() {
     searcherConnection.connect()
     filterStateConnection.connect()
@@ -86,5 +86,5 @@ extension SelectableFilterConnector: Connection {
     filterStateConnection.disconnect()
     controllerConnections.forEach { $0.disconnect() }
   }
-  
+
 }

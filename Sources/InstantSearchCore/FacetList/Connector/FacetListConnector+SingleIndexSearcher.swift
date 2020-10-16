@@ -33,7 +33,7 @@ public extension FacetListConnector {
               operator: `operator`,
               groupName: groupName)
   }
-  
+
   /**
   Init with an explicit interactor & controller
   - Parameters:
@@ -63,7 +63,7 @@ public extension FacetListConnector {
               operator: `operator`,
               groupName: groupName)
   }
-  
+
   /**
   Init with implicit interactor
   - Parameters:

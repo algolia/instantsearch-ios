@@ -13,7 +13,7 @@ import AlgoliaSearchClient
 class DisjunctiveFacetingIntegrationTests: OnlineTestCase {
 
   struct Item: Codable {
-    let objectID: String = UUID().uuidString
+    var objectID: String = UUID().uuidString
     let category: String
     let color: String?
     let promotions: TreeModel<String>?

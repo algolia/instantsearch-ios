@@ -23,10 +23,10 @@ public class HitsInteractor<Record: Codable>: AnyHitsInteractor {
 
   /// Event triggered when a search request has changed
   public let onRequestChanged: Observer<Void>
-  
+
   /// Event triggered when a new search result received
   public let onResultsUpdated: Observer<Result>
-  
+
   /// Event triggered when an error occured in hits
   public let onError: Observer<Swift.Error>
 

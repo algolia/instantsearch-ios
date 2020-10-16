@@ -8,7 +8,7 @@
 import Foundation
 
 public extension HitsConnector {
-  
+
   /**
    - Parameters:
      - searcher: Searcher that handles your searches.
@@ -18,10 +18,10 @@ public extension HitsConnector {
      - externalReload: Defines if controller will be updated automatically by the events or manually
   */
   convenience init<Controller: HitsController>(searcher: SingleIndexSearcher,
-                   interactor: HitsInteractor<Hit> = .init(),
-                   filterState: FilterState? = .none,
-                   controller: Controller,
-                   externalReload: Bool = false) where Controller.DataSource == HitsInteractor<Hit> {
+                                               interactor: HitsInteractor<Hit> = .init(),
+                                               filterState: FilterState? = .none,
+                                               controller: Controller,
+                                               externalReload: Bool = false) where Controller.DataSource == HitsInteractor<Hit> {
     self.init(searcher: searcher,
               interactor: interactor,
               filterState: filterState,
@@ -29,7 +29,7 @@ public extension HitsConnector {
               controller: controller,
               externalReload: externalReload)
   }
-  
+
   /**
    - Parameters:
      - appID: ID of your application
