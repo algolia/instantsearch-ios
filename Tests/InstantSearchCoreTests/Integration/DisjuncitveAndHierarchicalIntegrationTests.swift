@@ -13,7 +13,7 @@ import AlgoliaSearchClient
 class DisjuncitveAndHierarchicalIntegrationTests: OnlineTestCase {
 
   struct Item: Codable {
-    var objectID: String = UUID().uuidString
+    let objectID: String = UUID().uuidString
     let name: String
     let color: String?
     let hierarchicalCategories: [String: String]
