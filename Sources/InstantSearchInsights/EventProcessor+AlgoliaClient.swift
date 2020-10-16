@@ -25,7 +25,8 @@ extension EventProcessor {
                           logger: Logger,
                           dispatchQueue: DispatchQueue = .init(label: "insights.events", qos: .background)) {
     let client = InsightsClient(appID: applicationID, apiKey: apiKey, region: region)
-    self.init(eventsService: client,
+    self.init(eventGroupingID: applicationID.rawValue,
+              eventsService: client,
               flushDelay: flushDelay,
               logger: logger,
               dispatchQueue: dispatchQueue)
