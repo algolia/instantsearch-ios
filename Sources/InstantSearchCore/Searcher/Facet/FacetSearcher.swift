@@ -28,9 +28,9 @@ public class FacetSearcher: Searcher, SequencerDelegate, SearchResultObservable 
   public var indexQueryState: IndexQueryState
 
   public let isLoading: Observer<Bool>
-  
+
   public var onQueryChanged: Observer<String?>
-  
+
   public let onSearch: Observer<Void>
 
   public let onResults: Observer<SearchResult>
@@ -107,7 +107,7 @@ public class FacetSearcher: Searcher, SequencerDelegate, SearchResultObservable 
   public func search() {
 
     onSearch.fire(())
-    
+
     let query = self.query ?? ""
     let indexName = indexQueryState.indexName
 

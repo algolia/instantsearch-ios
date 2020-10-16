@@ -155,6 +155,7 @@ extension Collection {
 extension Collection {
 
   func anySatisfy(_ predicate: (Element) -> Bool) -> Bool {
+    // swiftlint:disable reduce_boolean
     return reduce(false) { $0 || predicate($1) }
   }
 

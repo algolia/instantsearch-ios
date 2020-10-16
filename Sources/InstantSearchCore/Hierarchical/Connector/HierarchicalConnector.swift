@@ -15,22 +15,22 @@ public class HierarchicalConnector {
 
   /// Searcher that handles your searches
   public let searcher: SingleIndexSearcher
-  
+
   /// FilterState that holds your filters
   public let filterState: FilterState
-  
+
   /// Logic applied to the hierarchical facets.
   public let interactor: HierarchicalInteractor
 
   /// Connection between searcher and interactor
   public let searcherConnection: Connection
-  
+
   /// Connection between filter state and interactor
   public let filterStateConnection: Connection
-  
+
   /// Connections between interactor and controllers
   public var controllerConnections: [Connection]
-  
+
   /**
    - Parameters:
      - searcher: Searcher that handles your searches.
@@ -53,7 +53,7 @@ public class HierarchicalConnector {
 }
 
 extension HierarchicalConnector: Connection {
-  
+
   public func connect() {
     searcherConnection.connect()
     filterStateConnection.connect()
@@ -65,5 +65,5 @@ extension HierarchicalConnector: Connection {
     filterStateConnection.disconnect()
     controllerConnections.forEach { $0.disconnect() }
   }
-  
+
 }

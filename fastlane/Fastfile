@@ -51,11 +51,6 @@ lane :deploy do |options|
   branch = options[:branch] || "master"
   prepare_git(branch)
 
-  pod_lib_lint(
-    verbose: true,
-    allow_warnings: true
-  )
-
   new_build_number = version_bump_podspec(
     bump_type: options[:type],
     path: "InstantSearch.podspec"
@@ -66,10 +61,9 @@ lane :deploy do |options|
   branchName = "version-#{new_build_number}"
   sh("git checkout -b #{branchName}")
 
-  #puts changelog_from_git_commits
   git_commit(
     path: ["InstantSearch.podspec", "./Sources/InstantSearchCore/Helper/Version+Current.swift"],
-    message: "Version #{new_build_number}"
+    message: "chore: Version #{new_build_number}"
   )
   add_git_tag(
     build_number: new_build_number,
@@ -78,13 +72,11 @@ lane :deploy do |options|
   push_to_git_remote(remote: "origin")
 
   create_pull_request(
-    # api_token: "secret",      # optional, defaults to ENV["GITHUB_API_TOKEN"]
     repo: "algolia/instantsearch-ios",
-    title: "Deploying new #{options[:type]} version #{new_build_number}",
+    title: "chore: Deploying new #{options[:type]} version #{new_build_number}",
     head: "#{branchName}",       # optional, defaults to current branch name
     base: "master", # optional, defaults to "master"
     body: "Please check the files before merging in case I've overidden something accidentally.",       # optional
-    # api_url: "http://yourdomain/api/v3" # optional, for GitHub Enterprise, defaults to "https://api.github.com"
   )
 
   pod_push(

@@ -15,19 +15,19 @@ public class HitsConnector<Hit: Codable> {
 
   /// Searcher that handles your searches
   public let searcher: Searcher
-  
+
   /// Logic applied to the hits
   public let interactor: HitsInteractor<Hit>
-  
+
   /// FilterState that holds your filters
   public let filterState: FilterState?
 
   /// Connection between hits interactor and filter state
   public let filterStateConnection: Connection?
-  
+
   /// Connection between hits interactor and searcher
   public let searcherConnection: Connection
-  
+
   /// Connections between interactor and controllers
   public var controllerConnections: [Connection]
 
@@ -42,7 +42,7 @@ public class HitsConnector<Hit: Codable> {
     self.searcherConnection = connectSearcher(searcher)
     self.controllerConnections = []
   }
-  
+
   internal convenience init<S: Searcher, Controller: HitsController>(searcher: S,
                                                                      interactor: HitsInteractor<Hit>,
                                                                      filterState: FilterState? = .none,
@@ -55,11 +55,11 @@ public class HitsConnector<Hit: Codable> {
               connectSearcher: connectSearcher)
     connectController(controller, externalReload: externalReload)
   }
-  
+
 }
 
 extension HitsConnector: Connection {
-  
+
   public func connect() {
     filterStateConnection?.connect()
     searcherConnection.connect()
@@ -74,7 +74,7 @@ extension HitsConnector: Connection {
 
 }
 
-//MARK: - Convenient initializers
+// MARK: - Convenient initializers
 
 public extension HitsConnector {
 
@@ -92,7 +92,7 @@ public extension HitsConnector {
               filterState: filterState,
               connectSearcher: interactor.connectSearcher)
   }
-  
+
   /**
    - Parameters:
      - appID: ID of your application.

@@ -8,7 +8,7 @@
 import Foundation
 
 public extension SortByConnector {
-  
+
   /**
    - Parameters:
      - searcher: Searcher that handles your searches
@@ -21,7 +21,7 @@ public extension SortByConnector {
                                                             indicesNames: [IndexName],
                                                             selected: Int? = nil,
                                                             controller: Controller,
-                                                            presenter: @escaping IndexPresenter = DefaultPresenter.Index.present) where Controller.SegmentKey == Int  {
+                                                            presenter: @escaping IndexPresenter = DefaultPresenter.Index.present) where Controller.SegmentKey == Int {
     let enumeratedIndices = indicesNames
       .map(searcher.client.index(withName:))
       .enumerated()
@@ -32,7 +32,7 @@ public extension SortByConnector {
     self.init(searcher: searcher, interactor: interactor)
     connectController(controller, presenter: presenter)
   }
-  
+
   /**
    Establishes a connection with the controller using the provided presentation logic
    - Parameters:

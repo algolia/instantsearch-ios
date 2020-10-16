@@ -11,18 +11,18 @@ import Foundation
 ///
 /// [Documentation](https://www.algolia.com/doc/api-reference/widgets/query-rule-custom-data/ios/)
 public class QueryRuleCustomDataConnector<Model: Decodable> {
-  
+
   public typealias Interactor = QueryRuleCustomDataInteractor<Model>
-  
+
   /// Logic applied to the custom model
   public let interactor: Interactor
-  
+
   /// Connection between hits interactor and searcher
   public let searcherConnection: Connection
-  
+
   /// Connections between interactor and controllers
   public var controllerConnections: [Connection]
-  
+
   internal init(interactor: Interactor,
                 connectSearcher: (Interactor) -> Connection) {
     self.interactor = interactor
@@ -30,11 +30,11 @@ public class QueryRuleCustomDataConnector<Model: Decodable> {
     controllerConnections = []
     searcherConnection.connect()
   }
-  
+
 }
 
 public extension QueryRuleCustomDataConnector {
-  
+
   /**
    - Parameters:
      - searcher: Searcher that handles your searches
@@ -46,7 +46,7 @@ public extension QueryRuleCustomDataConnector {
       QueryRuleCustomDataInteractor<Model>.SingleIndexSearcherConnection(interactor: $0, searcher: searcher)
     }
   }
-  
+
   /**
    - Parameters:
      - searcher: Searcher that handles your searches
@@ -60,19 +60,19 @@ public extension QueryRuleCustomDataConnector {
       QueryRuleCustomDataInteractor<Model>.MultiIndexSearcherConnection(interactor: $0, searcher: searcher, queryIndex: queryIndex)
     }
   }
-  
+
 }
 
 extension QueryRuleCustomDataConnector: Connection {
-  
+
   public func connect() {
     searcherConnection.connect()
     controllerConnections.forEach { $0.connect() }
   }
-  
+
   public func disconnect() {
     searcherConnection.disconnect()
     controllerConnections.forEach { $0.disconnect() }
   }
-  
+
 }

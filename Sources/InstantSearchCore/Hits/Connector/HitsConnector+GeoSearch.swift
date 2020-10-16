@@ -25,7 +25,7 @@ public extension HitsConnector where Hit == PlaceHit {
               filterState: nil,
               connectSearcher: interactor.connectPlacesSearcher)
   }
-  
+
   /**
    Convenient initializer for Places search
    - Parameters:
@@ -59,14 +59,14 @@ public extension HitsConnector where Hit == PlaceHit {
   */
   convenience init<Controller: GeoHitsController>(searcher: PlacesSearcher,
                                                   interactor: HitsInteractor<Hit>,
-                                                  controller: Controller) where Controller.DataSource == HitsInteractor<PlaceHit>  {
+                                                  controller: Controller) where Controller.DataSource == HitsInteractor<PlaceHit> {
     self.init(searcher: searcher,
               interactor: interactor,
               filterState: nil,
               connectSearcher: interactor.connectPlacesSearcher)
     connectController(controller)
   }
-  
+
   /**
    Convenient initializer for Places search
    - Parameters:
@@ -89,7 +89,7 @@ public extension HitsConnector where Hit == PlaceHit {
               connectSearcher: interactor.connectPlacesSearcher)
     connectController(controller)
   }
-  
+
   /**
    Establishes a connection with the controller
    - Parameters:

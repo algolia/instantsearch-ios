@@ -15,19 +15,19 @@ public class MultiIndexHitsConnector {
 
   /// Searcher that handles your searches
   public let searcher: MultiIndexSearcher
-  
+
   /// Logic applied to the hits
   public let interactor: MultiIndexHitsInteractor
-  
+
   /// List of FilterStates that will hold your filters separately for each index
   public let filterStates: [FilterState?]
-  
+
   /// Connections between hits interactors and filter states
   public let filterStatesConnections: [Connection]
-  
+
   /// Connection between hits interactor and searcher
   public let searcherConnection: Connection
-  
+
   /// Connections between interactor and controllers
   public var controllerConnections: [Connection]
 
@@ -51,7 +51,6 @@ public class MultiIndexHitsConnector {
     self.controllerConnections = []
   }
 
-
 }
 
 extension MultiIndexHitsConnector: Connection {
@@ -67,13 +66,13 @@ extension MultiIndexHitsConnector: Connection {
     filterStatesConnections.forEach { $0.disconnect() }
     controllerConnections.forEach { $0.disconnect() }
   }
-  
+
 }
 
-//MARK: - Convenient initializers
+// MARK: - Convenient initializers
 
 public extension MultiIndexHitsConnector {
-  
+
   /**
    - Parameters:
      - appID: ID of your application
@@ -91,5 +90,5 @@ public extension MultiIndexHitsConnector {
               interactor: interactor,
               filterStates: indexModules.map { $0.filterState })
   }
-  
+
 }

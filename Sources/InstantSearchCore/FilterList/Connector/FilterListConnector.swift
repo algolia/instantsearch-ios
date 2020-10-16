@@ -13,13 +13,13 @@ public class FilterListConnector<Filter: FilterType & Hashable> {
 
   /// FilterState that holds your filters
   public let filterState: FilterState
-  
+
   /// Logic applied to the filters
   public let interactor: FilterListInteractor<Filter>
-  
+
   /// Connection between interactor and filter state
   public let connectionFilterState: Connection
-  
+
   /// Connections between interactor and controllers
   public var controllerConnections: [Connection]
 
@@ -42,7 +42,7 @@ public class FilterListConnector<Filter: FilterType & Hashable> {
                                                                groupName: groupName)
     self.controllerConnections = []
   }
-  
+
   /**
   Init with implicit interactor
   - Parameters:
@@ -64,11 +64,11 @@ public class FilterListConnector<Filter: FilterType & Hashable> {
               operator: `operator`,
               groupName: groupName)
   }
-  
+
 }
 
 extension FilterListConnector: Connection {
-  
+
   public func connect() {
     connectionFilterState.connect()
     controllerConnections.forEach { $0.connect() }
@@ -78,5 +78,5 @@ extension FilterListConnector: Connection {
     connectionFilterState.disconnect()
     controllerConnections.forEach { $0.disconnect() }
   }
-  
+
 }

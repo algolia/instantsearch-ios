@@ -45,6 +45,8 @@ class RedirectGuideSnippets {
     queryRuleCustomDataConnector.interactor.onItemChanged.subscribe(with: self) { (_, redirect) in
       if let redirectURL = redirect?.url {
         /// perform redirect with URL
+        
+        _ = redirectURL // To supress warning
       }
     }
     

@@ -12,19 +12,19 @@ import Foundation
 ///
 /// [Documentation](https://www.algolia.com/doc/api-reference/widgets/toggle-refinement/ios/)
 public class FilterToggleConnector<Filter: FilterType> {
-  
+
   /// FilterState that holds your filters
   public let filterState: FilterState
-  
+
   /// Logic applied to Filter Toggle
   public let interactor: SelectableInteractor<Filter>
-  
+
   /// Connection between interactor and filter state
   public let filterStateConnection: Connection
-  
+
   /// Connections between interactor and controllers
   public var controllerConnections: [Connection]
-  
+
   /**
    - Parameters:
      - filterState: FilterState that holds your filters
@@ -43,7 +43,7 @@ public class FilterToggleConnector<Filter: FilterType> {
                                                                groupName: groupName ?? interactor.item.attribute.rawValue)
     controllerConnections = []
   }
-  
+
   /**
    - Parameters:
      - filterState: FilterState that holds your filters
@@ -64,20 +64,19 @@ public class FilterToggleConnector<Filter: FilterType> {
               operator: `operator`,
               groupName: groupName)
   }
-  
+
 }
 
 extension FilterToggleConnector: Connection {
-  
+
   public func connect() {
     filterStateConnection.connect()
     controllerConnections.forEach { $0.connect() }
   }
-  
+
   public func disconnect() {
     filterStateConnection.disconnect()
     controllerConnections.forEach { $0.disconnect() }
   }
-  
-}
 
+}

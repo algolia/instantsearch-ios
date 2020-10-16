@@ -15,13 +15,13 @@ public class QueryInputConnector<S: Searcher> {
 
   /// Searcher that handles your searches
   public let searcher: S
-  
+
   /// Business logic that handles new search inputs
   public let interactor: QueryInputInteractor
 
   /// Connection between query input interactor and searcher
   public let searcherConnection: Connection
-  
+
   /// Connections between interactor and controllers
   public var controllerConnections: [Connection]
 
@@ -43,7 +43,7 @@ public class QueryInputConnector<S: Searcher> {
 }
 
 extension QueryInputConnector: Connection {
-  
+
   public func connect() {
     searcherConnection.connect()
     controllerConnections.forEach { $0.connect() }
@@ -53,5 +53,5 @@ extension QueryInputConnector: Connection {
     searcherConnection.disconnect()
     controllerConnections.forEach { $0.disconnect() }
   }
-  
+
 }

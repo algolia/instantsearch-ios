@@ -21,19 +21,19 @@ Connector encapsulating basic search experience within multiple indices
 Most of the components associated by this connector are created and connected automatically, it's only required to provide a proper `Controller` implementations.
 */
 public struct MultiIndexSearchConnector: Connection {
-  
+
   /// Connector establishing the linkage between searcher, hits interactor and optionally filter state
   public let hitsConnector: MultiIndexHitsConnector
-  
+
   /// Connection between hits interactor of hits connector and provided hits controller
   public let hitsControllerConnection: Connection
-  
+
   /// Connector establishing the linkage between searcher and query input interactor
   public let queryInputConnector: QueryInputConnector<MultiIndexSearcher>
-  
+
   /// Connection between query input interactor of query input connector and provided query input controller
   public let queryInputControllerConnection: Connection
-  
+
   /**
    - Parameters:
      - searcher: External multi index sercher
@@ -55,7 +55,7 @@ public struct MultiIndexSearchConnector: Connection {
     queryInputControllerConnection = queryInputInteractor.connectController(queryInputController)
     searcher.search()
   }
-  
+
   /**
    - Parameters:
      - appID: Application ID
@@ -80,7 +80,7 @@ public struct MultiIndexSearchConnector: Connection {
               queryInputInteractor: queryInputInteractor,
               queryInputController: queryInputController)
   }
-  
+
   public func connect() {
     disconnect()
     hitsConnector.connect()
@@ -88,12 +88,12 @@ public struct MultiIndexSearchConnector: Connection {
     queryInputConnector.connect()
     queryInputControllerConnection.connect()
   }
-  
+
   public func disconnect() {
     hitsConnector.disconnect()
     hitsControllerConnection.disconnect()
     queryInputConnector.disconnect()
     queryInputControllerConnection.disconnect()
   }
-  
+
 }

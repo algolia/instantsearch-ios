@@ -22,7 +22,7 @@ public class ItemsListInteractor<Item: Hashable> {
 
   /// Event triggered when items list has been changed externally
   public let onItemsChanged: Observer<Set<Item>>
-  
+
   /// Event triggered when items list has been changed by business logic
   public let onItemsComputed: Observer<Set<Item>>
 

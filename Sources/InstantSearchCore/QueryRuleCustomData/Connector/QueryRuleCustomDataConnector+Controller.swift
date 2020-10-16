@@ -8,7 +8,7 @@
 import Foundation
 
 public extension QueryRuleCustomDataConnector {
-  
+
   /**
    - Parameters:
      - searcher: Searcher that handles your searches
@@ -20,12 +20,12 @@ public extension QueryRuleCustomDataConnector {
                                                        interactor: Interactor = .init(),
                                                        controller: Controller,
                                                        presenter: @escaping (Model?) -> Output) where Controller.Item == Output {
-    
+
     self.init(searcher: searcher, interactor: interactor)
     let controllerConnection = interactor.connectController(controller, presenter: presenter)
     controllerConnections.append(controllerConnection)
   }
-  
+
   /**
    - Parameters:
      - searcher: Searcher that handles your searches.
@@ -39,11 +39,11 @@ public extension QueryRuleCustomDataConnector {
     let controllerConnection = interactor.connectController(controller, presenter: { $0 })
     controllerConnections.append(controllerConnection)
   }
-  
+
 }
 
 public extension QueryRuleCustomDataConnector {
-  
+
   /**
    - Parameters:
      - searcher: Searcher that handles your searches.
@@ -57,12 +57,12 @@ public extension QueryRuleCustomDataConnector {
                                                        interactor: Interactor = .init(),
                                                        controller: Controller,
                                                        presenter: @escaping (Model?) -> Output) where Controller.Item == Output {
-    
+
     self.init(searcher: searcher, queryIndex: queryIndex, interactor: interactor)
     let controllerConnection = interactor.connectController(controller, presenter: presenter)
     controllerConnections = [controllerConnection]
   }
-  
+
   /**
    - Parameters:
      - searcher: Searcher that handles your searches.
@@ -78,11 +78,11 @@ public extension QueryRuleCustomDataConnector {
     let controllerConnection = interactor.connectController(controller, presenter: { $0 })
     controllerConnections.append(controllerConnection)
   }
-  
+
 }
 
 public extension QueryRuleCustomDataConnector {
-  
+
   /**
    Establishes a connection with the controller
    - Parameters:
@@ -96,7 +96,7 @@ public extension QueryRuleCustomDataConnector {
     controllerConnections.append(connection)
     return connection
   }
-  
+
   /**
    Establishes a connection with the controller
    - Parameters:
@@ -108,5 +108,5 @@ public extension QueryRuleCustomDataConnector {
     controllerConnections.append(connection)
     return connection
   }
-  
+
 }

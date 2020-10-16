@@ -30,7 +30,7 @@ extension FacetList {
     public func connect() {
 
       ControllerConnection.setControllerItemsWith(facets: facetListInteractor.items, selections: facetListInteractor.selections, controller: controller, presenter: presenter)
-      
+
       controller.onClick = { [weak facetListInteractor] facet in
         facetListInteractor?.computeSelections(selectingItemForKey: facet.value)
       }
@@ -78,7 +78,7 @@ public extension FacetListInteractor {
   @discardableResult func connectController<C: FacetListController>(_ controller: C,
                                                                     with presenter: SelectableListPresentable? = nil,
                                                                     externalReload: Bool = false) -> FacetList.ControllerConnection<C> {
-    
+
     let connection = FacetList.ControllerConnection(facetListInteractor: self,
                                                     controller: controller,
                                                     presenter: presenter,

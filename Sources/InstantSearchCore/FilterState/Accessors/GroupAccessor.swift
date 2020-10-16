@@ -33,7 +33,7 @@ extension FiltersContainer {
 }
 
 public class ReadOnlyFiltersContainer {
-  
+
   class StorageContainer: FiltersContainer {
     var filters: FilterState.Storage
     init(filterState: FilterState) {

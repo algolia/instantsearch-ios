@@ -12,7 +12,7 @@ import InstantSearchCore
 import UIKit
 
 public extension MultiIndexSearchConnector {
-  
+
   @available(iOS 13.0, *)
   init<HC: MultiIndexHitsController>(searcher: MultiIndexSearcher,
                                      indexModules: [MultiIndexHitsConnector.IndexModule],
@@ -26,7 +26,7 @@ public extension MultiIndexSearchConnector {
               queryInputInteractor: queryInputInteractor,
               queryInputController: textFieldController)
   }
-  
+
   @available(iOS 13.0, *)
   init<HC: MultiIndexHitsController>(appID: ApplicationID,
                                      apiKey: APIKey,
@@ -41,7 +41,7 @@ public extension MultiIndexSearchConnector {
               searchController: searchController,
               hitsController: hitsController)
   }
-  
+
 }
 
 #endif

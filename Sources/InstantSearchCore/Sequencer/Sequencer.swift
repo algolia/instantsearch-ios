@@ -64,7 +64,7 @@ class Sequencer: Sequencable {
       }
     }
   }
-  
+
   /// Indicates whether there are any pending operations.
   var hasPendingOperations: Bool {
     syncQueue.sync {
@@ -83,7 +83,7 @@ class Sequencer: Sequencable {
   var maxConcurrentCompletionOperationsCount: Int = 5
 
   weak var delegate: SequencerDelegate?
-    
+
   /// Queue containing SequencerCompletion operations
   private let sequencerQueue: OperationQueue
 
@@ -98,20 +98,20 @@ class Sequencer: Sequencable {
   func orderOperation(operationLauncher: @escaping Sequencable.OperationLauncher) {
     syncQueue.async { [weak self] in
       guard let sequencer = self else { return }
-      
+
       // Increase sequence number
       sequencer.nextSeqNo += 1
       let currentSeqNo = sequencer.nextSeqNo
-      
+
       // Launch sequenced operation
       let operation = operationLauncher()
       sequencer.pendingOperations[currentSeqNo] = operation
-      
+
       // Create and launch completion operation
       let sequencingOperation = SequencerCompletionOperation(sequenceNo: currentSeqNo, sequencer: sequencer, correspondingOperation: operation)
       sequencingOperation.addDependency(operation)
       sequencer.sequencerQueue.addOperation(sequencingOperation)
-      
+
       // Cancel obsolete operations
       let obsoleteOperations = sequencer.pendingOperations.filter { $0.0 <= currentSeqNo - sequencer.maxPendingOperationsCount }
       for (operationNo, operation) in  obsoleteOperations {
@@ -135,7 +135,7 @@ class Sequencer: Sequencable {
       }
     }
   }
-  
+
   /// Clean-up after a succesful completion of a sequenced operation
   ///
   /// - parameter seqNo: The operation's sequence number.
@@ -143,9 +143,9 @@ class Sequencer: Sequencable {
   private func dismissOperation(forSeqNo seqNo: Int) {
     syncQueue.async { [weak self] in
       guard let sequencer = self else { return }
-      
+
       Logger.trace("Sequencer: Dismiss \(seqNo)")
-      
+
       // Cancel all preceding operations (as this one is deemed more recent).
       let precedingOperations = sequencer.pendingOperations.filter { $0.0 < seqNo }
       for (operationNo, operation) in precedingOperations {
@@ -153,14 +153,14 @@ class Sequencer: Sequencable {
         operation.cancel()
         sequencer.pendingOperations.removeValue(forKey: operationNo)
       }
-      
+
       // Remove the current operation.
       sequencer.pendingOperations.removeValue(forKey: seqNo)
 
       // Update last received response.
       sequencer.lastReceivedSeqNo = seqNo
     }
-    
+
   }
 
 }

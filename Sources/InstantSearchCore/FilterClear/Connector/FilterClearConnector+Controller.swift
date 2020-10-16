@@ -8,7 +8,7 @@
 import Foundation
 
 public extension FilterClearConnector {
-  
+
   /**
    - Parameters:
      - filterState: FilterState that holds your filters

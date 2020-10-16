@@ -15,13 +15,13 @@ public class LoadingConnector<S: Searcher> {
 
   /// Searcher that handles your searches
   public let searcher: S
-  
+
   /// Logic that handles showing a loading indicator
   public let interactor: LoadingInteractor
-  
+
   /// Connection between searcher and interactor
   public let searcherConnection: Connection
-  
+
   /// Connections between interactor and controllers
   public var controllerConnections: [Connection]
 
@@ -41,7 +41,7 @@ public class LoadingConnector<S: Searcher> {
 }
 
 extension LoadingConnector: Connection {
-  
+
   public func connect() {
     searcherConnection.connect()
     controllerConnections.forEach { $0.connect() }
@@ -51,5 +51,5 @@ extension LoadingConnector: Connection {
     searcherConnection.disconnect()
     controllerConnections.forEach { $0.disconnect() }
   }
-  
+
 }

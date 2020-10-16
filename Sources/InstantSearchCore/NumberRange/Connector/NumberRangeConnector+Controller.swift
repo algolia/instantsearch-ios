@@ -8,7 +8,7 @@
 import Foundation
 
 public extension NumberRangeConnector {
-  
+
   /**
    - Parameters:
      - searcher: Searcher that handles your searches.
@@ -50,5 +50,5 @@ public extension NumberRangeConnector {
     controllerConnections.append(connection)
     return connection
   }
-  
+
 }

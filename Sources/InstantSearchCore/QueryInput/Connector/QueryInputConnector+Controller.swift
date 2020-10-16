@@ -8,7 +8,7 @@
 import Foundation
 
 extension QueryInputConnector {
-  
+
   /**
    - Parameters:
      - searcher: Searcher that handles your searches
@@ -17,15 +17,15 @@ extension QueryInputConnector {
      - controller: Controller interfacing with a concrete query input view
    */
   public convenience init<Controller: QueryInputController>(searcher: S,
-              interactor: QueryInputInteractor = .init(),
-              searchTriggeringMode: SearchTriggeringMode = .searchAsYouType,
-              controller: Controller) {
+                                                            interactor: QueryInputInteractor = .init(),
+                                                            searchTriggeringMode: SearchTriggeringMode = .searchAsYouType,
+                                                            controller: Controller) {
     self.init(searcher: searcher,
               interactor: interactor,
               searchTriggeringMode: searchTriggeringMode)
     connectController(controller)
   }
-  
+
   /**
    Establishes a connection with the controller
    - Parameters:
@@ -37,5 +37,5 @@ extension QueryInputConnector {
     controllerConnections.append(connection)
     return connection
   }
-  
+
 }

@@ -27,15 +27,15 @@ public class PlacesSearcher: Searcher, SequencerDelegate, SearchResultObservable
   }
 
   public var placesQuery: PlacesQuery
-  
+
   public let isLoading: Observer<Bool>
 
   public var onQueryChanged: Observer<String?>
-  
+
   public let onSearch: Observer<Void>
 
   public let onResults: Observer<PlacesClient.SingleLanguageResponse>
-  
+
   /// Triggered when an error occured during search query execution
   /// - Parameter: a tuple of query text and error
   public let onError: Observer<(String, Error)>
@@ -68,7 +68,7 @@ public class PlacesSearcher: Searcher, SequencerDelegate, SearchResultObservable
   }
 
   public func search() {
-    
+
     onSearch.fire(())
 
     let operation = placesClient.search(query: placesQuery, language: .english) { [weak self] result in

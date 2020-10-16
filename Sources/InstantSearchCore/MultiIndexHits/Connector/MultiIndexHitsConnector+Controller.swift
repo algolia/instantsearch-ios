@@ -8,7 +8,7 @@
 import Foundation
 
 public extension MultiIndexHitsConnector {
-  
+
   /**
    - Parameters:
      - appID: ID of your application
@@ -30,7 +30,6 @@ public extension MultiIndexHitsConnector {
     connectController(controller)
   }
 
-  
   /**
    Establishes a connection with the controller
    - Parameters:
@@ -42,5 +41,5 @@ public extension MultiIndexHitsConnector {
     connection.connect()
     return connection
   }
-  
+
 }

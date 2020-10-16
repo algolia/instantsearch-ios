@@ -8,19 +8,19 @@
 import Foundation
 
 extension QueryRuleCustomDataInteractor {
-  
+
   /// Connection between a rule custom data logic and a multi-index searcher
   public struct MultiIndexSearcherConnection: Connection {
-    
+
     /// Logic applied to the custom model
     public let interactor: QueryRuleCustomDataInteractor
-    
+
     /// Searcher that handles your searches
     public let searcher: MultiIndexSearcher
-    
+
     /// Index of query from response of which the user data will be extracted
     public let queryIndex: Int
-    
+
     /**
      - Parameters:
        - interactor: Interactor to connect
@@ -34,23 +34,23 @@ extension QueryRuleCustomDataInteractor {
       self.queryIndex = queryIndex
       self.interactor = interactor
     }
-      
+
     public func connect() {
       searcher.onResults.subscribe(with: interactor) { (interactor, searchResponse) in
         interactor.extractModel(from: searchResponse.results[queryIndex])
       }
     }
-    
+
     public func disconnect() {
       searcher.onResults.cancelSubscription(for: interactor)
     }
 
   }
-  
+
 }
 
 public extension QueryRuleCustomDataInteractor {
-  
+
   /**
    - Parameters:
      - searcher: Searcher to connect
@@ -62,6 +62,5 @@ public extension QueryRuleCustomDataInteractor {
     connection.connect()
     return connection
   }
-  
-}
 
+}
