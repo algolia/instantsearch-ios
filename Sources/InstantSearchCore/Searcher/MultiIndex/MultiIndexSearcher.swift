@@ -15,6 +15,10 @@ public class MultiIndexSearcher: Searcher, SequencerDelegate, SearchResultObserv
 
   public var query: String? {
 
+    get {
+      return indexQueryStates.first?.query.query
+    }
+
     set {
       let oldValue = indexQueryStates.first?.query.query
       guard oldValue != newValue else { return }
@@ -23,10 +27,6 @@ public class MultiIndexSearcher: Searcher, SequencerDelegate, SearchResultObserv
         return indexQueryState.set(\.query, to: query)
       }
       onQueryChanged.fire(newValue)
-    }
-
-    get {
-      return indexQueryStates.first?.query.query
     }
 
   }

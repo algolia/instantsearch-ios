@@ -16,6 +16,10 @@ public class SingleIndexSearcher: Searcher, SequencerDelegate, SearchResultObser
 
   public var query: String? {
 
+    get {
+      return indexQueryState.query.query
+    }
+
     set {
       let oldValue = indexQueryState.query.query
       guard oldValue != newValue else { return }
@@ -23,10 +27,6 @@ public class SingleIndexSearcher: Searcher, SequencerDelegate, SearchResultObser
       indexQueryState.query.query = newValue
       indexQueryState.query.page = 0
       onQueryChanged.fire(newValue)
-    }
-
-    get {
-      return indexQueryState.query.query
     }
 
   }
