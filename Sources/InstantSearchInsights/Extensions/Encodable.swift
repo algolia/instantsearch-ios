@@ -9,7 +9,7 @@
 import Foundation
 
 extension Encodable {
-    
+
     func jsonObject() throws -> Any {
         let data = try JSONEncoder().encode(self)
         return try JSONSerialization.jsonObject(with: data, options: .allowFragments)
@@ -18,7 +18,7 @@ extension Encodable {
 }
 
 extension Dictionary where Key == String, Value == Any {
-    
+
     init?<T: Encodable>(_ encodable: T) {
         guard let data = try? JSONEncoder().encode(encodable) else { return nil }
         guard let dictionary = (try? JSONSerialization.jsonObject(with: data, options: .allowFragments)) as? [String: Any] else {
@@ -26,11 +26,11 @@ extension Dictionary where Key == String, Value == Any {
         }
         self = dictionary
     }
-    
+
 }
 
 extension Array where Element == Any {
-    
+
     init?<T: Encodable>(encodable: T) {
         guard let data = try? JSONEncoder().encode(encodable) else { return nil }
         guard let array = (try? JSONSerialization.jsonObject(with: data, options: .allowFragments)) as? [Any] else {
@@ -38,5 +38,5 @@ extension Array where Element == Any {
         }
         self = array
     }
-    
+
 }

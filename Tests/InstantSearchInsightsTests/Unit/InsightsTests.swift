@@ -20,12 +20,6 @@ class InsightsTests: XCTestCase {
     return Insights(eventProcessor: testEventProcessor, eventTracker: testEventTracker, logger: testLogger)
   }()
   
-  override func setUp() {
-    // Remove locally stored events packages for test index
-    guard let filePath = LocalStorage<[EventsPackage]>.filePath(for: appID.rawValue) else { return }
-    LocalStorage<[EventsPackage]>.serialize([], file: filePath)
-  }
-  
   func testInitShouldFail() {
     let insightsRegister = Insights.shared(appId: "test")
     XCTAssertNil(insightsRegister)
@@ -286,10 +280,15 @@ class InsightsTests: XCTestCase {
     
     let exp = XCTestExpectation(description: "mock web service response")
     
-    let mockService = MockEventService { _ in exp.fulfill() }
-    
+    let mockService = MockEventService<InsightsEvent> { _ in exp.fulfill() }
+    let storage = TestPackageStorage<InsightsEvent>()
     let logger = Logger(appID.rawValue)
-    let eventProcessor = EventProcessor(eventsService: mockService, flushDelay: 1, logger: logger)
+    let eventProcessor = EventProcessor(service: mockService,
+                                        storage: storage,
+                                        packageCapacity: Algolia.Insights.maxEventCountInPackage,
+                                        flushNotificationName: nil,
+                                        flushDelay: 1,
+                                        logger: logger)
     
     let insights = Insights(eventsProcessor: eventProcessor, logger: logger)
     

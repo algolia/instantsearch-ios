@@ -6,9 +6,13 @@
 //
 
 import Foundation
-import AlgoliaSearchClient
 
 public protocol EventsService {
-  func sendEvents(_ events: [InsightsEvent], completion: @escaping ResultCallback<Empty>)
-}
 
+  associatedtype Event
+
+  func sendEvents(_ events: [Event], completion: @escaping (Result<Void, Error>) -> Void)
+
+  static func isRetryable(_ error: Error) -> Bool
+
+}

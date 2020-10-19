@@ -9,7 +9,7 @@
 import Foundation
 
 struct Algolia {
-  
+
   struct SessionConfig {
     static func `default`(appId: String, apiKey: String) -> URLSessionConfiguration {
       let config = URLSessionConfiguration.default
@@ -19,10 +19,12 @@ struct Algolia {
       return config
     }
   }
-  
+
   struct Insights {
     // Default flush delay is 30 seconds
     static let flushDelay: TimeInterval = 30
+
+    static let maxEventCountInPackage = 1000
   }
-  
+
 }

@@ -7,20 +7,24 @@
 //
 
 import Foundation
-import AlgoliaSearchClient
 @testable import InstantSearchInsights
 
-class MockEventService: EventsService {
+class MockEventService<Event>: EventsService {
+    
   
-  var didSendEvents: ([InsightsEvent]) -> Void
+  var didSendEvents: ([Event]) -> Void
   
-  public init(didSendEvents: @escaping ([InsightsEvent]) -> Void) {
+  public init(didSendEvents: @escaping ([Event]) -> Void = { _ in }) {
     self.didSendEvents = didSendEvents
   }
   
-  func sendEvents(_ events: [InsightsEvent], completion: @escaping ResultCallback<Empty>) {
+  func sendEvents(_ events: [Event], completion: @escaping (Result<Void, Error>) -> Void) {
     didSendEvents(events)
-    completion(.success(.empty))
+    completion(.success(()))
   }
   
+  static func isRetryable(_ error: Error) -> Bool {
+    return true
+  }
+
 }

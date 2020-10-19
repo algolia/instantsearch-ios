@@ -9,7 +9,7 @@
 import Foundation
 
 final class TimerController {
-    
+
     var delay: TimeInterval {
         didSet {
             guard delay != oldValue, isActive else {
@@ -18,20 +18,20 @@ final class TimerController {
             setup()
         }
     }
-    
+
     var isActive: Bool {
         return timer != nil
     }
-    
+
     var action: (() -> Void)?
 
     private var timer: Timer?
-    
+
     init(delay: TimeInterval, action: (() -> Void)? = .none) {
         self.delay = delay
         self.action = action
     }
-    
+
     func setup() {
         self.timer?.invalidate()
         let timer = Timer.scheduledTimer(timeInterval: delay,
@@ -42,22 +42,22 @@ final class TimerController {
         RunLoop.main.add(timer, forMode: .default)
         self.timer = timer
     }
-    
+
     func fire() {
         timer?.fire()
     }
-    
+
     func invalidate() {
         timer?.invalidate()
         timer = nil
     }
-    
+
     @objc private func flushAction() {
         action?()
     }
-    
+
     deinit {
         timer?.invalidate()
     }
-    
+
 }
