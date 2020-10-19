@@ -7,6 +7,7 @@
 //
 
 import Foundation
+import AlgoliaSearchClient
 
 /// EventProcessor
 /// - Storing of the events in the persistent storage (if provided)
@@ -84,7 +85,7 @@ class EventProcessor<Event, Service: EventsService, PackageStorage: Storage>: Fl
       do {
         initialPackages = try storage.load()
       } catch let error {
-        logger.debug(message: "\(error)")
+        logger.debug("\(error)")
         initialPackages = []
       }
     } else {
@@ -105,7 +106,7 @@ class EventProcessor<Event, Service: EventsService, PackageStorage: Storage>: Fl
   /// - Parameter event: an event to process
   func process(_ event: Event) {
     guard isActive else {
-      logger.debug(message: "Event tracking is desactivated. This event will be ignored. You can reactivate tracking by setting `Insights.shared(appId: %appId))`.isActive = true`")
+      logger.info("Event tracking is desactivated. This event will be ignored. You can reactivate tracking by setting `Insights.shared(appId:)`.isActive = true`")
       return
     }
 
@@ -116,7 +117,7 @@ class EventProcessor<Event, Service: EventsService, PackageStorage: Storage>: Fl
       do {
         try processor.storage?.store(updatedPackages)
       } catch let error {
-        processor.logger.debug(message: "\(error)")
+        processor.logger.error(error)
       }
     }
   }
@@ -127,9 +128,9 @@ class EventProcessor<Event, Service: EventsService, PackageStorage: Storage>: Fl
       guard let processor = self else { return }
       let eventsPackages = processor.packager.packages
       if eventsPackages.isEmpty {
-        processor.logger.debug(message: "No pending event packages")
+        processor.logger.info("no pending event packages, skip flushing")
       } else {
-        processor.logger.debug(message: "Flushing pending \(eventsPackages.count) event packages")
+        processor.logger.info("flushing pending \(eventsPackages.count) event packages")
         eventsPackages.forEach(processor.sync)
       }
     }
@@ -140,7 +141,7 @@ class EventProcessor<Event, Service: EventsService, PackageStorage: Storage>: Fl
 private extension EventProcessor {
 
   func sync(_ eventsPackage: Package<Event>) {
-    logger.debug(message: "Syncing \(eventsPackage)")
+    logger.info("sending events package: \(eventsPackage.items)")
 
     service.sendEvents(eventsPackage.items) { [weak self]  result in
 
@@ -150,8 +151,10 @@ private extension EventProcessor {
 
       switch result {
       case .success:
+        processor.logger.info("package succesfully sent")
         shouldRemovePackage = true
       case .failure(let error):
+        processor.logger.error("package sending failed: \(error.localizedDescription)")
         shouldRemovePackage = !Service.isRetryable(error)
       }
 
@@ -163,7 +166,7 @@ private extension EventProcessor {
         do {
           try processor.storage?.store(updatedPackages)
         } catch let error {
-          processor.logger.debug(message: "\(error)")
+          processor.logger.error(error)
         }
       }
 

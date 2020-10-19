@@ -48,7 +48,7 @@ class EventTracker: NSObject, EventTrackable {
                                        timestamp: Date(),
                                        objectIDs: objectIDs))
     } catch let error {
-      logger.debug(message: error.localizedDescription)
+      logger.error(error)
     }
   }
 
@@ -63,7 +63,7 @@ class EventTracker: NSObject, EventTrackable {
                                        timestamp: Date(),
                                        filters: filters))
     } catch let error {
-      logger.debug(message: error.localizedDescription)
+      logger.error(error)
     }
   }
 
@@ -82,7 +82,7 @@ class EventTracker: NSObject, EventTrackable {
                                         queryID: queryID,
                                         objectIDsWithPositions: objectIDsWithPositions))
     } catch let error {
-      logger.debug(message: error.localizedDescription)
+      logger.error(error)
     }
   }
 
@@ -97,7 +97,7 @@ class EventTracker: NSObject, EventTrackable {
                                         timestamp: Date(),
                                         objectIDs: objectIDs))
     } catch let error {
-      logger.debug(message: error.localizedDescription)
+      logger.error(error)
     }
 
   }
@@ -113,7 +113,7 @@ class EventTracker: NSObject, EventTrackable {
                                         timestamp: Date(),
                                         filters: filters))
     } catch let error {
-      logger.debug(message: error.localizedDescription)
+      logger.error(error)
     }
 
   }
@@ -130,7 +130,7 @@ class EventTracker: NSObject, EventTrackable {
                                              queryID: nil,
                                              objectIDs: objectIDs))
     } catch let error {
-      logger.debug(message: error.localizedDescription)
+      logger.error(error)
     }
   }
 
@@ -146,7 +146,7 @@ class EventTracker: NSObject, EventTrackable {
                                              queryID: nil,
                                              filters: filters))
     } catch let error {
-      logger.debug(message: error.localizedDescription)
+      logger.error(error)
     }
   }
 
@@ -164,7 +164,7 @@ class EventTracker: NSObject, EventTrackable {
                                              queryID: queryID,
                                              objectIDs: objectIDs))
     } catch let error {
-      logger.debug(message: error.localizedDescription)
+      logger.error(error)
     }
 
   }

@@ -15,9 +15,8 @@ class InsightsTests: XCTestCase {
   let apiKey: APIKey = "test key"
   let testEventTracker = TestEventTracker()
   let testEventProcessor = TestEventProcessor()
-  let testLogger = Logger("test app id")
   lazy var testInsights: Insights = {
-    return Insights(eventProcessor: testEventProcessor, eventTracker: testEventTracker, logger: testLogger)
+    return Insights(eventProcessor: testEventProcessor, eventTracker: testEventTracker, logger: Logger(prefix: "InsightsTests"))
   }()
   
   func testInitShouldFail() {
@@ -282,7 +281,7 @@ class InsightsTests: XCTestCase {
     
     let mockService = MockEventService<InsightsEvent> { _ in exp.fulfill() }
     let storage = TestPackageStorage<InsightsEvent>()
-    let logger = Logger(appID.rawValue)
+    let logger = Logger(prefix: #function)
     let eventProcessor = EventProcessor(service: mockService,
                                         storage: storage,
                                         packageCapacity: Algolia.Insights.maxEventCountInPackage,
@@ -311,7 +310,7 @@ class InsightsTests: XCTestCase {
       exp.fulfill()
     }
     
-    let logger = Logger(appID.rawValue)
+    let logger = Logger(prefix: #function)
     
     let insights = Insights(eventsProcessor: eventProcessor, logger: logger)
     
@@ -335,7 +334,7 @@ class InsightsTests: XCTestCase {
       exp.fulfill()
     }
     
-    let logger = Logger(appID.rawValue)
+    let logger = Logger(prefix: #function)
     
     let insights = Insights(eventsProcessor: eventProcessor, userToken: "global_token", logger: logger)
     
@@ -353,7 +352,7 @@ class InsightsTests: XCTestCase {
     let userToken: UserToken = "testUserToken1"
     
     let eventProcessor = TestEventProcessor()
-    let logger = Logger(appID.rawValue)
+    let logger = Logger(prefix: #function)
     
     let insights = Insights(eventsProcessor: eventProcessor,
                             userToken: userToken,

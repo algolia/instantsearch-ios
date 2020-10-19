@@ -78,7 +78,7 @@ import AlgoliaSearchClient
   }
 
   private static var insightsMap: [ApplicationID: Insights] = [:]
-  private static var logger = Logger("Main")
+  private static var logger = Logger(prefix: nil)
 
   /// Defines if event tracking is active. Default value is `true`.
   /// In case of set to false, all the events for current application will be ignored.
@@ -99,7 +99,7 @@ import AlgoliaSearchClient
 
   public var isLoggingEnabled: Bool = false {
     didSet {
-      logger.enabled = isLoggingEnabled
+      Logger.minSeverityLevel = isLoggingEnabled ? .info : .critical
     }
   }
 
@@ -114,14 +114,14 @@ import AlgoliaSearchClient
 
     switch insightsMap.count {
     case 0:
-      logger.debug(message: "None registered application found. Please use `register(appId: String, apiKey: String)` method to register your application.")
+      logger.debug("none registered application found. Please use `register(appId:, apiKey:)` method to register your application.")
       return nil
 
     case 1:
       return insightsMap.first?.value
 
     default:
-      logger.debug(message: "Multiple applications registered. Please use `shared(appId: String)` function to specify the applicaton.")
+      logger.debug("multiple applications registered. Please use `shared(appId:)` function to specify the applicaton.")
       return nil
     }
 
@@ -133,7 +133,7 @@ import AlgoliaSearchClient
 
   public static func shared(appId: ApplicationID) -> Insights? {
     guard let insightsInstance = insightsMap[appId] else {
-      logger.debug(message: "Application for this app ID (\(appId)) is not registered. Please use `register(appId: String, apiKey: String)` method to register your application.")
+      logger.debug("application for this app ID (\(appId)) is not registered. Please use `register(appId:, apiKey:)` method to register your application.")
       return nil
     }
 
@@ -150,9 +150,8 @@ import AlgoliaSearchClient
                                                  apiKey: APIKey,
                                                  userToken: UserToken? = .none,
                                                  region: Region? = region) -> Insights {
-    let logger = Logger(appId.rawValue) { debugMessage in
-      DispatchQueue.main.async { print(debugMessage) }
-    }
+    let logger = Logger(prefix: "application \(appId.rawValue) - ")
+    logger.info("application registered")
     let insights = Insights(applicationID: appId,
                             apiKey: apiKey,
                             region: region,
@@ -197,7 +196,7 @@ import AlgoliaSearchClient
       storage = try PackageStorage(filename: "\(applicationID.rawValue).storage.events")
     } catch let error {
       storage = nil
-      logger.debug(message: "\(error)")
+      logger.error(error)
     }
 
     let eventsProcessor = EventProcessor(applicationID: applicationID,

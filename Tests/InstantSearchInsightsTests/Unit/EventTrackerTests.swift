@@ -12,11 +12,10 @@ import XCTest
 class EventTrackerTests: XCTestCase {
   
   let eventProcessor = TestEventProcessor()
-  let logger = Logger("test app id")
   var eventTracker: EventTracker!
   
   override func setUp() {
-    eventTracker = EventTracker(eventProcessor: eventProcessor, logger: logger)
+    eventTracker = EventTracker(eventProcessor: eventProcessor, logger: Logger(prefix: "EventTrackerTests"))
   }
   
   func testViewEventWithObjects() {
