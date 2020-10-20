@@ -7,6 +7,12 @@
 
 import Foundation
 import AlgoliaSearchClient
+#if os(iOS)
+import UIKit
+#endif
+#if canImport(AppKit)
+import AppKit
+#endif
 
 /// Main class used for interacting with the InstantSearch Insights library.
 ///
@@ -198,13 +204,29 @@ import AlgoliaSearchClient
       storage = nil
       logger.error(error)
     }
+    
+    let insightsClient = InsightsClient(appID: applicationID, apiKey: apiKey, region: region)
 
-    let eventsProcessor = EventProcessor(applicationID: applicationID,
-                                         apiKey: apiKey,
-                                         region: region,
+    let notificationName: Notification.Name?
+
+    #if os(iOS)
+    notificationName = UIApplication.willResignActiveNotification
+    #elseif canImport(AppKit)
+    notificationName = NSApplication.willResignActiveNotification
+    #else
+    notificationName = nil
+    #endif
+  
+    let queue: DispatchQueue = .init(label: "insights.events", qos: .background)
+    
+    let eventsProcessor = EventProcessor(service: insightsClient,
                                          storage: storage,
+                                         packageCapacity: Algolia.Insights.maxEventCountInPackage,
+                                         flushNotificationName: notificationName,
                                          flushDelay: flushDelay,
-                                         logger: logger)
+                                         logger: logger,
+                                         dispatchQueue: queue)
+
     self.init(eventsProcessor: eventsProcessor,
               userToken: userToken,
               logger: logger)
