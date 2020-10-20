@@ -8,6 +8,7 @@
 
 import Foundation
 import AlgoliaSearchClient
+// swiftlint:disable function_parameter_count
 
 /// Provides convenient functions for tracking events which can be used for search personalization.
 ///

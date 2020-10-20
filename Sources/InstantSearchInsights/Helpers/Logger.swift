@@ -55,7 +55,6 @@ extension LogLevel {
 
 }
 
-
 public enum LogLevel {
   case trace, debug, info, notice, warning, error, critical
 }
@@ -88,13 +87,13 @@ public struct Logger {
       loggingService.minSeverityLevel = newValue
     }
   }
-  
+
   let prefix: String?
 
   init(prefix: String?) {
     self.prefix = prefix
   }
-  
+
   private func prefixed(_ message: String) -> String {
     return [prefix, message].compactMap({ $0 }).joined(separator: " ")
   }
@@ -122,7 +121,7 @@ public struct Logger {
   func error(_ message: String) {
     Logger.loggingService.log(level: .error, message: prefixed(message))
   }
-  
+
   func error(_ error: Error) {
     Logger.loggingService.log(level: .error, message: prefixed(error.localizedDescription))
   }

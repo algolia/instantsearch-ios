@@ -65,8 +65,8 @@ extension Package: Collection {
     return items.endIndex
   }
 
-  func index(after i: Index) -> Index {
-    return items.index(after: i)
+  func index(after index: Index) -> Index {
+    return items.index(after: index)
   }
 
   subscript(index: Index) -> Element {

@@ -8,7 +8,7 @@
 
 import Foundation
 import AlgoliaSearchClient
-
+// swiftlint:disable function_parameter_count
 protocol EventTrackable {
 
     func view(eventName: EventName,
