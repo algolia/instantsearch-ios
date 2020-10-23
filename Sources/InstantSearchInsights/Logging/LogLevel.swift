@@ -10,4 +10,3 @@ import Foundation
 public enum LogLevel {
   case trace, debug, info, notice, warning, error, critical
 }
-

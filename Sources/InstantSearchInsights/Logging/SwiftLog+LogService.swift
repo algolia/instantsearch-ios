@@ -9,22 +9,21 @@ import Foundation
 import Logging
 
 extension Logging.Logger: LogService {
-  
+
   public var minLogSeverityLevel: LogLevel {
     get {
       return LogLevel(swiftLogLevel: logLevel)
     }
-    
+
     set {
       self.logLevel = newValue.swiftLogLevel
     }
   }
-  
-  
+
   public func log(level: LogLevel, message: String) {
     log(level: level.swiftLogLevel, Logging.Logger.Message(stringLiteral: message), metadata: .none, source: .none)
   }
-  
+
 }
 
 public extension LogLevel {
@@ -52,5 +51,5 @@ public extension LogLevel {
     case .critical: return .critical
     }
   }
-  
+
 }

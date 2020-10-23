@@ -205,7 +205,7 @@ import AppKit
       storage = nil
       logger.error(error)
     }
-    
+
     let insightsClient = InsightsClient(appID: applicationID, apiKey: apiKey, region: region)
 
     let notificationName: Notification.Name?
@@ -217,9 +217,9 @@ import AppKit
     #else
     notificationName = nil
     #endif
-  
+
     let queue: DispatchQueue = .init(label: "insights.events", qos: .background)
-    
+
     let eventsProcessor = EventProcessor(service: insightsClient,
                                          storage: storage,
                                          packageCapacity: Algolia.Insights.maxEventCountInPackage,
