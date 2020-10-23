@@ -84,7 +84,7 @@ import AppKit
   }
 
   private static var insightsMap: [ApplicationID: Insights] = [:]
-  private static var logger = Logger(prefix: nil)
+  private static var logger = PrefixedLogger(prefix: nil)
 
   /// Defines if event tracking is active. Default value is `true`.
   /// In case of set to false, all the events for current application will be ignored.
@@ -105,13 +105,14 @@ import AppKit
 
   public var isLoggingEnabled: Bool = false {
     didSet {
-      Logger.minSeverityLevel = isLoggingEnabled ? .info : .critical
+      //TODO:
+//      Logger.InstantSearchInsights.loggingService.minSeverityLevel = isLoggingEnabled ? .info : .critical
     }
   }
 
   let eventTracker: EventTrackable
   let eventProcessor: EventProcessable
-  let logger: Logger
+  let logger: PrefixedLogger
 
   /// Access an already registered `Insights` without having to pass the `apiKey` and `appId`.
   /// If none or more than one application has been registered, the nil value will be returned.
@@ -156,7 +157,7 @@ import AppKit
                                                  apiKey: APIKey,
                                                  userToken: UserToken? = .none,
                                                  region: Region? = region) -> Insights {
-    let logger = Logger(prefix: "application \(appId.rawValue) - ")
+    let logger = PrefixedLogger(prefix: "application \(appId.rawValue) - ")
     logger.info("application registered")
     let insights = Insights(applicationID: appId,
                             apiKey: apiKey,
@@ -170,7 +171,7 @@ import AppKit
 
   init(eventProcessor: EventProcessable,
        eventTracker: EventTrackable,
-       logger: Logger) {
+       logger: PrefixedLogger) {
     self.eventProcessor = eventProcessor
     self.eventTracker = eventTracker
     self.logger = logger
@@ -178,7 +179,7 @@ import AppKit
 
   convenience init(eventsProcessor: EventProcessable,
                    userToken: UserToken? = .none,
-                   logger: Logger) {
+                   logger: PrefixedLogger) {
     let eventTracker = EventTracker(eventProcessor: eventsProcessor,
                                     logger: logger,
                                     userToken: userToken)
@@ -192,7 +193,7 @@ import AppKit
                    region: Region? = region,
                    flushDelay: TimeInterval,
                    userToken: UserToken? = .none,
-                   logger: Logger) {
+                   logger: PrefixedLogger) {
 
     typealias PackageStorage = JSONFilePackageStorage<[Package<InsightsEvent>]>
 

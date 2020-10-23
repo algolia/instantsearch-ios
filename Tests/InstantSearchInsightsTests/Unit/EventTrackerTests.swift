@@ -15,7 +15,7 @@ class EventTrackerTests: XCTestCase {
   var eventTracker: EventTracker!
   
   override func setUp() {
-    eventTracker = EventTracker(eventProcessor: eventProcessor, logger: Logger(prefix: "EventTrackerTests"))
+    eventTracker = EventTracker(eventProcessor: eventProcessor, logger: PrefixedLogger(prefix: "EventTrackerTests"))
   }
   
   func testViewEventWithObjects() {

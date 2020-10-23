@@ -1,35 +1,35 @@
 //
-//  SwiftLog+Loggable.swift
+//  SwiftLog+LogService.swift
 //  
 //
-//  Created by Vladislav Fitc on 11/06/2020.
+//  Created by Vladislav Fitc on 23/10/2020.
 //
 
 import Foundation
 import Logging
 
-typealias SwiftLog = Logging.Logger
-
-extension SwiftLog: Loggable {
-
-  public var minSeverityLevel: LogLevel {
+extension Logging.Logger: LogService {
+  
+  public var minLogSeverityLevel: LogLevel {
     get {
       return LogLevel(swiftLogLevel: logLevel)
     }
+    
     set {
       self.logLevel = newValue.swiftLogLevel
     }
   }
-
+  
+  
   public func log(level: LogLevel, message: String) {
-    self.log(level: level.swiftLogLevel, SwiftLog.Message(stringLiteral: message), metadata: .none)
+    log(level: level.swiftLogLevel, Logging.Logger.Message(stringLiteral: message), metadata: .none, source: .none)
   }
-
+  
 }
 
-extension LogLevel {
+public extension LogLevel {
 
-  init(swiftLogLevel: SwiftLog.Level) {
+  init(swiftLogLevel: Logging.Logger.Level) {
     switch swiftLogLevel {
     case .trace: self = .trace
     case .debug: self = .debug
@@ -41,7 +41,7 @@ extension LogLevel {
     }
   }
 
-  var swiftLogLevel: SwiftLog.Level {
+  var swiftLogLevel: Logging.Logger.Level {
     switch self {
     case .trace: return .trace
     case .debug: return .debug
@@ -52,5 +52,5 @@ extension LogLevel {
     case .critical: return .critical
     }
   }
-
+  
 }

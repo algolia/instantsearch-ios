@@ -180,16 +180,16 @@ public class SingleIndexSearcher: Searcher, SequencerDelegate, SearchResultObser
 
             switch response {
             case .failure(let error):
-              Logger.Results.failure(searcher: searcher, indexName: indexName, error)
+              InstantSearchCoreLogger.Results.failure(searcher: searcher, indexName: indexName, error)
               searcher.onError.fire((queriesBuilder.query, error))
 
             case .success(let results):
               do {
                 let result = try queriesBuilder.aggregate(results.results)
-                Logger.Results.success(searcher: searcher, indexName: indexName, results: result)
+                InstantSearchCoreLogger.Results.success(searcher: searcher, indexName: indexName, results: result)
                 searcher.onResults.fire(result)
               } catch let error {
-                Logger.Results.failure(searcher: searcher, indexName: indexName, error)
+                InstantSearchCoreLogger.Results.failure(searcher: searcher, indexName: indexName, error)
                 searcher.onError.fire((queriesBuilder.query, error))
               }
             }
@@ -203,11 +203,11 @@ public class SingleIndexSearcher: Searcher, SequencerDelegate, SearchResultObser
 
           switch result {
           case .failure(let error):
-            Logger.Results.failure(searcher: searcher, indexName: indexName, error)
+            InstantSearchCoreLogger.Results.failure(searcher: searcher, indexName: indexName, error)
             searcher.onError.fire((query, error))
 
           case .success(let results):
-            Logger.Results.success(searcher: searcher, indexName: indexName, results: results)
+            InstantSearchCoreLogger.Results.success(searcher: searcher, indexName: indexName, results: results)
             searcher.onResults.fire(results)
           }
         }

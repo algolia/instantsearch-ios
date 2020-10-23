@@ -30,7 +30,7 @@ open class MultiIndexHitsTableViewDelegate: NSObject, UITableViewDelegate {
       guard let delegate = self else { return }
 
       guard let hitsSource = delegate.hitsSource else {
-        Logger.missingHitsSourceWarning()
+        InstantSearchLogger.missingHitsSourceWarning()
         return
       }
 
@@ -45,13 +45,13 @@ open class MultiIndexHitsTableViewDelegate: NSObject, UITableViewDelegate {
 
   open func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
     guard let clickHandler = clickHandlers[indexPath.section] else {
-      Logger.missingClickHandlerWarning(forSection: indexPath.section)
+      InstantSearchLogger.missingClickHandlerWarning(forSection: indexPath.section)
       return
     }
     do {
       try clickHandler(tableView, indexPath.row)
     } catch let error {
-      Logger.error(error)
+      InstantSearchLogger.error(error)
       return
     }
   }

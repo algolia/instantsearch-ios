@@ -16,11 +16,11 @@ import AlgoliaSearchClient
 class EventTracker: NSObject, EventTrackable {
 
   var eventProcessor: EventProcessable
-  var logger: Logger
+  var logger: PrefixedLogger
   var userToken: UserToken?
 
   init(eventProcessor: EventProcessable,
-       logger: Logger,
+       logger: PrefixedLogger,
        userToken: UserToken? = .none) {
     self.eventProcessor = eventProcessor
     self.logger = logger

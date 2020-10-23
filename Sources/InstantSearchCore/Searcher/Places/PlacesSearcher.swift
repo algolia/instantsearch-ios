@@ -76,12 +76,12 @@ public class PlacesSearcher: Searcher, SequencerDelegate, SearchResultObservable
 
       switch result {
       case .success(let results):
-        Logger.Results.success(searcher: searcher, indexName: "Algolia Places", results: results)
+        InstantSearchCoreLogger.Results.success(searcher: searcher, indexName: "Algolia Places", results: results)
         searcher.onResults.fire(results)
 
       case .failure(let error):
         let query = searcher.placesQuery.query ?? ""
-        Logger.Results.failure(searcher: searcher, indexName: "Algolia Places", error)
+        InstantSearchCoreLogger.Results.failure(searcher: searcher, indexName: "Algolia Places", error)
         searcher.onError.fire((query, error))
       }
     }

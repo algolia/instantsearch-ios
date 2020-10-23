@@ -31,7 +31,7 @@ open class MultiIndexHitsCollectionViewDataSource: NSObject, UICollectionViewDat
     cellConfigurators[section] = { [weak self] (collectionView, row) in
 
       guard let hitsSource = self?.hitsSource else {
-        Logger.missingHitsSourceWarning()
+        InstantSearchLogger.missingHitsSourceWarning()
         return .init()
       }
 
@@ -45,7 +45,7 @@ open class MultiIndexHitsCollectionViewDataSource: NSObject, UICollectionViewDat
 
   open func numberOfSections(in collectionView: UICollectionView) -> Int {
     guard let hitsSource = hitsSource else {
-      Logger.missingHitsSourceWarning()
+      InstantSearchLogger.missingHitsSourceWarning()
       return 0
     }
     return hitsSource.numberOfSections()
@@ -53,7 +53,7 @@ open class MultiIndexHitsCollectionViewDataSource: NSObject, UICollectionViewDat
 
   open func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
     guard let hitsSource = hitsSource else {
-      Logger.missingHitsSourceWarning()
+      InstantSearchLogger.missingHitsSourceWarning()
       return 0
     }
     return hitsSource.numberOfHits(inSection: section)
@@ -61,13 +61,13 @@ open class MultiIndexHitsCollectionViewDataSource: NSObject, UICollectionViewDat
 
   open func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
     guard let cellConfigurator = cellConfigurators[indexPath.section] else {
-      Logger.missingCellConfiguratorWarning(forSection: indexPath.section)
+      InstantSearchLogger.missingCellConfiguratorWarning(forSection: indexPath.section)
       return .init()
     }
     do {
       return try cellConfigurator(collectionView, indexPath.row)
     } catch let error {
-      Logger.error(error)
+      InstantSearchLogger.error(error)
       return .init()
     }
   }

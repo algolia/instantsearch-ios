@@ -29,7 +29,7 @@ class EventProcessor<Event, Service: EventsService, PackageStorage: Storage>: Fl
   let timerController: TimerController
 
   /// Logging component
-  let logger: Logger
+  let logger: PrefixedLogger
 
   /// Whether events must be sent when the timer fires
   var isActive: Bool = true {
@@ -74,7 +74,7 @@ class EventProcessor<Event, Service: EventsService, PackageStorage: Storage>: Fl
        packageCapacity: Int,
        flushNotificationName: Notification.Name?,
        flushDelay: TimeInterval,
-       logger: Logger,
+       logger: PrefixedLogger,
        dispatchQueue: DispatchQueue = .init(label: "insights.events", qos: .background)) {
 
     self.packager = .init(packageCapacity: packageCapacity)

@@ -198,7 +198,7 @@ extension HitsInteractor: ResultUpdatable {
         hitsInteractor.paginator.process(page)
         hitsInteractor.onResultsUpdated.fire(searchResults)
       } catch let error {
-        Logger.HitsDecoding.failure(hitsInteractor: hitsInteractor, error: error)
+        InstantSearchCoreLogger.HitsDecoding.failure(hitsInteractor: hitsInteractor, error: error)
         hitsInteractor.onError.fire(error)
       }
     }
