@@ -1,3 +1,2 @@
 github "algolia/algoliasearch-client-swift" ~> 8.1
-github "algolia/instantsearch-ios-insights" ~> 2.3
 github "apple/swift-log" ~> 1.3
