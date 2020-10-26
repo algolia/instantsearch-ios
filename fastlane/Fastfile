@@ -48,36 +48,58 @@ end
 desc "Available options: type:major|minor|patch"
 lane :deploy do |options|
 
-  branch = options[:branch] || "master"
-  prepare_git(branch)
+  ensure_git_branch(
+    branch: "master"
+  )
+  ensure_git_status_clean
 
-  new_build_number = version_bump_podspec(
-    bump_type: options[:type],
+  release_type = options[:type]
+
+  new_version = version_bump_podspec(
+    bump_type: release_type,
     path: "InstantSearch.podspec"
   )
 
-  sh("cd ..; ./generate_version #{new_build_number}")
+  sh("cd ..; ./generate_changelog #{new_version}")
+  sh("cd ..; ./generate_version #{new_version}")
 
   branchName = "version-#{new_build_number}"
   sh("git checkout -b #{branchName}")
 
   git_commit(
-    path: ["InstantSearch.podspec", "./Sources/InstantSearchCore/Helper/Version+Current.swift"],
-    message: "chore: Version #{new_build_number}"
+    path: ["InstantSearch.podspec", "./Sources/InstantSearchCore/Helper/Version+Current.swift", "CHANGELOG.md"],
+    message: "chore: update version to #{new_version} [skip ci]"
   )
+
   add_git_tag(
-    build_number: new_build_number,
-    tag: new_build_number
+    build_number: new_version,
+    tag: new_version
   )
   push_to_git_remote(remote: "origin")
 
   create_pull_request(
     repo: "algolia/instantsearch-ios",
-    title: "chore: Deploying new #{options[:type]} version #{new_build_number}",
+    title: "chore: Deploying new #{release_type} version #{new_version}",
     head: "#{branchName}",       # optional, defaults to current branch name
     base: "master", # optional, defaults to "master"
     body: "Please check the files before merging in case I've overidden something accidentally.",       # optional
   )
+
+  set_github_release(
+  	repository_name: "algolia/instantsearch-ios",
+  	api_token: ENV["GITHUB_API_TOKEN"],
+  	name: "#{new_version}",
+  	tag_name: "#{new_version}",
+  	description: (File.read("../diff.md") rescue "No changelog provided"),
+  	is_draft: true,
+  	commitish: "master",
+  	upload_assets: []
+  )
+
+  # Remove deployment trigger tag if needed
+  if git_tag_exists(tag: "#{release_type}")
+    sh("git tag -d #{release_type}; git push --delete origin #{release_type}")
+  end
 
   pod_push(
     path: "InstantSearch.podspec",
