@@ -117,11 +117,11 @@ public class FacetSearcher: Searcher, SequencerDelegate, SearchResultObservable 
       searcher.processingQueue.addOperation {
         switch result {
         case .success(let results):
-          Logger.Results.success(searcher: searcher, indexName: indexName, results: results)
+          InstantSearchCoreLogger.Results.success(searcher: searcher, indexName: indexName, results: results)
           searcher.onResults.fire(results)
 
         case .failure(let error):
-          Logger.Results.failure(searcher: searcher, indexName: indexName, error)
+          InstantSearchCoreLogger.Results.failure(searcher: searcher, indexName: indexName, error)
           searcher.onError.fire((query, error))
         }
       }

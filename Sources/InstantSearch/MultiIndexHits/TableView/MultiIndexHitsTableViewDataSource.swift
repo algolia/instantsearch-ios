@@ -31,7 +31,7 @@ open class MultiIndexHitsTableViewDataSource: NSObject, UITableViewDataSource {
     cellConfigurators[section] = { [weak self] (tableView, row) in
 
       guard let hitsSource = self?.hitsSource else {
-        Logger.missingHitsSourceWarning()
+        InstantSearchLogger.missingHitsSourceWarning()
         return .init()
       }
 
@@ -45,7 +45,7 @@ open class MultiIndexHitsTableViewDataSource: NSObject, UITableViewDataSource {
 
   open func numberOfSections(in tableView: UITableView) -> Int {
     guard let hitsSource = hitsSource else {
-      Logger.missingHitsSourceWarning()
+      InstantSearchLogger.missingHitsSourceWarning()
       return 0
     }
     return hitsSource.numberOfSections()
@@ -53,7 +53,7 @@ open class MultiIndexHitsTableViewDataSource: NSObject, UITableViewDataSource {
 
   open func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
     guard let hitsSource = hitsSource else {
-      Logger.missingHitsSourceWarning()
+      InstantSearchLogger.missingHitsSourceWarning()
       return 0
     }
     return hitsSource.numberOfHits(inSection: section)
@@ -61,13 +61,13 @@ open class MultiIndexHitsTableViewDataSource: NSObject, UITableViewDataSource {
 
   open func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
     guard let cellConfigurator = cellConfigurators[indexPath.section] else {
-      Logger.missingCellConfiguratorWarning(forSection: indexPath.section)
+      InstantSearchLogger.missingCellConfiguratorWarning(forSection: indexPath.section)
       return .init()
     }
     do {
       return try cellConfigurator(tableView, indexPath.row)
     } catch let error {
-      Logger.error(error)
+      InstantSearchLogger.error(error)
       return .init()
     }
   }

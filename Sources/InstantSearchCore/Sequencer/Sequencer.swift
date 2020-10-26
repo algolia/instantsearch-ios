@@ -115,11 +115,11 @@ class Sequencer: Sequencable {
       // Cancel obsolete operations
       let obsoleteOperations = sequencer.pendingOperations.filter { $0.0 <= currentSeqNo - sequencer.maxPendingOperationsCount }
       for (operationNo, operation) in  obsoleteOperations {
-        Logger.trace("Sequencer: cancel \(String(describing: operation.name)) as it seqNo \(operationNo) precedes min allowed \(currentSeqNo - sequencer.maxPendingOperationsCount)")
+        InstantSearchCoreLogger.trace("Sequencer: cancel \(String(describing: operation.name)) as it seqNo \(operationNo) precedes min allowed \(currentSeqNo - sequencer.maxPendingOperationsCount)")
         operation.cancel()
         sequencer.pendingOperations.removeValue(forKey: operationNo)
       }
-      Logger.trace("Sequencer: sequenced \(String(describing: operation.name)) as \(currentSeqNo)")
+      InstantSearchCoreLogger.trace("Sequencer: sequenced \(String(describing: operation.name)) as \(currentSeqNo)")
     }
   }
 
@@ -144,12 +144,12 @@ class Sequencer: Sequencable {
     syncQueue.async { [weak self] in
       guard let sequencer = self else { return }
 
-      Logger.trace("Sequencer: Dismiss \(seqNo)")
+      InstantSearchCoreLogger.trace("Sequencer: Dismiss \(seqNo)")
 
       // Cancel all preceding operations (as this one is deemed more recent).
       let precedingOperations = sequencer.pendingOperations.filter { $0.0 < seqNo }
       for (operationNo, operation) in precedingOperations {
-        Logger.trace("Sequencer: Cancel \(String(describing: operation.name)) as preceding to \(seqNo)")
+        InstantSearchCoreLogger.trace("Sequencer: Cancel \(String(describing: operation.name)) as preceding to \(seqNo)")
         operation.cancel()
         sequencer.pendingOperations.removeValue(forKey: operationNo)
       }

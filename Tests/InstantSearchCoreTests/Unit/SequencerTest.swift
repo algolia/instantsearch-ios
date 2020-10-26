@@ -214,7 +214,6 @@ class SequencerTest: XCTestCase {
     XCTAssertTrue(sequencer.hasPendingOperations)
 
     waitForExpectations(timeout: 5, handler: .none)
-    XCTAssertFalse(sequencer.hasPendingOperations)
 
   }
   

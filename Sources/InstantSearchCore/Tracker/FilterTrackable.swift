@@ -28,17 +28,4 @@ protocol FilterTrackable {
 
 }
 
-extension Insights: FilterTrackable {
-
-  func viewed(eventName: EventName, indexName: IndexName, filters: [String], userToken: UserToken?) {
-    self.viewed(eventName: eventName.rawValue, indexName: indexName.rawValue, filters: filters, userToken: userToken?.rawValue)
-  }
-
-  func clicked(eventName: EventName, indexName: IndexName, filters: [String], userToken: UserToken?) {
-    self.clicked(eventName: eventName.rawValue, indexName: indexName.rawValue, filters: filters, userToken: userToken?.rawValue)
-  }
-
-  func converted(eventName: EventName, indexName: IndexName, filters: [String], userToken: UserToken?) {
-    self.converted(eventName: eventName.rawValue, indexName: indexName.rawValue, filters: filters, userToken: userToken?.rawValue)
-  }
-}
+extension Insights: FilterTrackable {}
