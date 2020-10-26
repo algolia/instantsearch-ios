@@ -6,6 +6,9 @@
 //
 
 import Foundation
+import InstantSearch
+#if canImport(UIKit)
+import UIKit
 
 class BannerGuideSnippets {
   
@@ -40,4 +43,4 @@ class BannerGuideSnippets {
   }
   
 }
-
+#endif
