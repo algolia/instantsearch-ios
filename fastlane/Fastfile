@@ -90,7 +90,7 @@ lane :deploy do |options|
   	api_token: ENV["GITHUB_API_TOKEN"],
   	name: "#{new_version}",
   	tag_name: "#{new_version}",
-  	description: (File.read("../diff.md") rescue "No changelog provided"),
+  	description: (File.read("../release_notes.md") rescue "No release notes provided"),
   	is_draft: true,
   	commitish: "master",
   	upload_assets: []

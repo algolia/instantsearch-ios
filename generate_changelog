@@ -19,11 +19,11 @@ fi
 # Backup previous changelog
 mv CHANGELOG.md CHANGELOG_backup.md
 
-# Generate the changelog for changes since last tag
+# Generate the changelog for changes since last tag to extract release notes
 polyglot changelog $version_number
 
-# Cut unnecessary first 5 lines of generated diff changelog
-cat CHANGELOG.md | tail -n +5 | cat > diff.md
+# Cut unnecessary first 5 lines of generated release notes
+cat CHANGELOG.md | tail -n +5 | cat > release_notes.md
 
 # Restore previous changelog
 mv CHANGELOG_backup.md CHANGELOG.md
