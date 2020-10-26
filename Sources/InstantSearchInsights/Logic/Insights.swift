@@ -105,8 +105,7 @@ import AppKit
 
   public var isLoggingEnabled: Bool = false {
     didSet {
-      //TODO:
-//      Logger.InstantSearchInsights.loggingService.minSeverityLevel = isLoggingEnabled ? .info : .critical
+      Logger.InstantSearchInsights.isEnabled = isLoggingEnabled
     }
   }
 
