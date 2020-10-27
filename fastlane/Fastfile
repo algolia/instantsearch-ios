@@ -52,10 +52,13 @@ lane :deploy do |options|
   podspec_path = "InstantSearch.podspec"
   base_branch = options[:branch] || "master"
 
-  ensure_git_branch(
-    branch: base_branch
-  )
-  ensure_git_status_clean
+  # ensure branch and cleanliness locally but not on Bitrise.
+  if !ENV['BITRISE_BUILD_NUMBER'] 
+    ensure_git_branch(
+      branch: base_branch
+    )
+    ensure_git_status_clean
+  end
 
   release_type = options[:type]
 
