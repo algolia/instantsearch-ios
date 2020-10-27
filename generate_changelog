@@ -1,0 +1,32 @@
+# This script updates the CHANGELOG.md using Polyglot script 
+# and generates diff changelog with latest changes to use in release notes
+
+# Check if polyglot installed
+if ! command -v polyglot &> /dev/null
+then
+  echo "Polyglot tool could not be found. Install 'algolia/polyglot' first."
+  exit 1
+fi
+
+# Check version number parameter
+version_number=$1
+if [ -z "${version_number}" ]
+then
+ echo >&2 "Missing version number parameter"
+ exit 1
+fi
+
+# Backup previous changelog
+mv CHANGELOG.md CHANGELOG_backup.md
+
+# Generate the changelog for changes since last tag to extract release notes
+polyglot changelog $version_number
+
+# Cut unnecessary first 5 lines of generated release notes
+cat CHANGELOG.md | tail -n +5 | cat > release_notes.md
+
+# Restore previous changelog
+mv CHANGELOG_backup.md CHANGELOG.md
+
+# Update changelog
+polyglot changelog $version_number

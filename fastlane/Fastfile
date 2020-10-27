@@ -48,39 +48,68 @@ end
 desc "Available options: type:major|minor|patch"
 lane :deploy do |options|
 
-  branch = options[:branch] || "master"
-  prepare_git(branch)
+  repository_name = "algolia/instantsearch-ios"
+  podspec_path = "InstantSearch.podspec"
+  base_branch = options[:branch] || "master"
 
-  new_build_number = version_bump_podspec(
-    bump_type: options[:type],
-    path: "InstantSearch.podspec"
+  # ensure branch and cleanliness locally but not on Bitrise.
+  if !ENV['BITRISE_BUILD_NUMBER'] 
+    ensure_git_branch(
+      branch: base_branch
+    )
+    ensure_git_status_clean
+  end
+
+  release_type = options[:type]
+
+  new_version = version_bump_podspec(
+    bump_type: release_type,
+    path: podspec_path
   )
 
-  sh("cd ..; ./generate_version #{new_build_number}")
+  sh("cd ..; ./generate_changelog #{new_version}")
+  sh("cd ..; ./generate_version #{new_version}")
 
-  branchName = "version-#{new_build_number}"
-  sh("git checkout -b #{branchName}")
+  branch_name = "version-#{new_version}"
+  sh("git checkout -b #{branch_name}")
 
   git_commit(
-    path: ["InstantSearch.podspec", "./Sources/InstantSearchCore/Helper/Version+Current.swift"],
-    message: "chore: Version #{new_build_number}"
+    path: [podspec_path, "./Sources/InstantSearchCore/Helper/Version+Current.swift", "CHANGELOG.md"],
+    message: "chore: update version to #{new_version} [skip ci]"
   )
+
   add_git_tag(
-    build_number: new_build_number,
-    tag: new_build_number
+    build_number: new_version,
+    tag: new_version
   )
   push_to_git_remote(remote: "origin")
 
   create_pull_request(
-    repo: "algolia/instantsearch-ios",
-    title: "chore: Deploying new #{options[:type]} version #{new_build_number}",
-    head: "#{branchName}",       # optional, defaults to current branch name
-    base: "master", # optional, defaults to "master"
-    body: "Please check the files before merging in case I've overidden something accidentally.",       # optional
+    repo: repository_name,
+    title: "chore: Deploying new #{release_type} version #{new_version}",
+    head: branch_name,
+    base: base_branch,
+    body: "Please check the files before merging in case I've overidden something accidentally."
   )
 
+  set_github_release(
+  	repository_name: repository_name,
+  	api_token: ENV["GITHUB_API_TOKEN"],
+  	name: new_version,
+  	tag_name: new_version,
+  	description: (File.read("../release_notes.md") rescue "No release notes provided"),
+  	is_draft: true,
+  	commitish: base_branch,
+  	upload_assets: []
+  )
+
+  # Remove deployment trigger tag if needed
+  if git_tag_exists(tag: "#{release_type}")
+    sh("git tag -d #{release_type}; git push --delete origin #{release_type}")
+  end
+
   pod_push(
-    path: "InstantSearch.podspec",
+    path: podspec_path,
     allow_warnings: true
   )
 end
