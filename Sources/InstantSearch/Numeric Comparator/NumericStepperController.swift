@@ -28,7 +28,8 @@ public class NumericStepperController: NumberController {
   }
 
   public func setBounds(bounds: ClosedRange<Double>?) {
-
+    stepper.minimumValue = bounds?.lowerBound ?? 0
+    stepper.maximumValue = bounds?.upperBound ?? .infinity
   }
 
   @objc func stepperOnValueChanged(sender: UIStepper) {
