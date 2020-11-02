@@ -24,7 +24,7 @@ public extension StatsConnector {
               interactor: interactor)
     connectController(controller, presenter: presenter)
   }
-  
+
   /**
    - Parameters:
    - searcher: Searcher that handles your searches
@@ -54,7 +54,7 @@ public extension StatsConnector {
     controllerConnections.append(connection)
     return connection
   }
-  
+
   /**
    Establishes a connection with the controller using the provided presentation logic
    - Parameters:
