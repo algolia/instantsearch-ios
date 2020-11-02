@@ -25,6 +25,10 @@ public class NumericTextFieldController: NSObject, NumberController {
   public func setComputation(computation: Computation<Int>) {
     self.computation = computation
   }
+  
+  public func setBounds(bounds: ClosedRange<Int>?) {
+    textField.placeholder = bounds.flatMap { "\($0.lowerBound) - \($0.upperBound)" }
+  }
 
   public let textField: UITextField
 
