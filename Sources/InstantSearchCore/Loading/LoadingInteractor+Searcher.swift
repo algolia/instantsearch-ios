@@ -10,10 +10,10 @@ import Foundation
 
 public extension LoadingInteractor {
 
-  struct SearcherConnection<S: Searcher>: Connection {
+  struct SearcherConnection: Connection {
 
     public let interactor: LoadingInteractor
-    public let searcher: S
+    public let searcher: Searcher
 
     public func connect() {
       searcher.isLoading.subscribePast(with: interactor) { interactor, isLoading in
@@ -31,7 +31,7 @@ public extension LoadingInteractor {
 
 public extension LoadingInteractor {
 
-  @discardableResult func connectSearcher<S: Searcher>(_ searcher: S) -> SearcherConnection<S> {
+  @discardableResult func connectSearcher(_ searcher: Searcher) -> SearcherConnection {
     let connection = SearcherConnection(interactor: self, searcher: searcher)
     connection.connect()
     return connection
