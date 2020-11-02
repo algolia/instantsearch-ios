@@ -33,7 +33,7 @@ public class NumericStepperController: NumberController {
 
   public let stepper: UIStepper
 
-  public init(stepper: UIStepper) {
+  public init(stepper: UIStepper = .init()) {
     self.stepper = stepper
   }
 
