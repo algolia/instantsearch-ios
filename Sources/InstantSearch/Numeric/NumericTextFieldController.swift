@@ -28,7 +28,7 @@ public class NumericTextFieldController: NSObject, NumberController {
 
   public let textField: UITextField
 
-  public init(textField: UITextField) {
+  public init(textField: UITextField = .init()) {
     self.textField = textField
     super.init()
     #if (os(iOS) || os(macOS))
