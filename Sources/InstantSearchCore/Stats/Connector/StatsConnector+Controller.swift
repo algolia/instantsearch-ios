@@ -24,6 +24,22 @@ public extension StatsConnector {
               interactor: interactor)
     connectController(controller, presenter: presenter)
   }
+  
+  /**
+   - Parameters:
+   - searcher: Searcher that handles your searches
+   - interactor: Logic applied to the stats
+   - controller: Controller interfacing with a concrete stats view
+   - presenter: Presenter defining how stats appear in the controller
+   */
+  convenience init<Controller: ItemController>(searcher: SingleIndexSearcher,
+                                               interactor: StatsInteractor = .init(),
+                                               controller: Controller,
+                                               presenter: @escaping Presenter<SearchStats?, String?> = DefaultPresenter.Stats.present) where Controller.Item == String? {
+    self.init(searcher: searcher,
+              interactor: interactor)
+    connectController(controller, presenter: presenter)
+  }
 
   /**
    Establishes a connection with the controller using the provided presentation logic
@@ -32,7 +48,22 @@ public extension StatsConnector {
      - presenter: Presenter defining how stats appear in the controller
    - Returns: Established connection
   */
-  @discardableResult func connectController<Controller: ItemController, Output>(_ controller: Controller, presenter: @escaping Presenter<SearchStats?, Output>) -> ItemInteractor<SearchStats?>.ControllerConnection<Controller, Output> {
+  @discardableResult func connectController<Controller: ItemController, Output>(_ controller: Controller,
+                                                                                presenter: @escaping Presenter<SearchStats?, Output>) -> ItemInteractor<SearchStats?>.ControllerConnection<Controller, Output> {
+    let connection = interactor.connectController(controller, presenter: presenter)
+    controllerConnections.append(connection)
+    return connection
+  }
+  
+  /**
+   Establishes a connection with the controller using the provided presentation logic
+   - Parameters:
+     - controller: Controller interfacing with a concrete stats view
+     - presenter: Presenter defining how stats appear in the controller
+   - Returns: Established connection
+  */
+  @discardableResult func connectController<Controller: ItemController>(_ controller: Controller,
+                                                                        presenter: @escaping Presenter<SearchStats?, String?>  = DefaultPresenter.Stats.present) -> ItemInteractor<SearchStats?>.ControllerConnection<Controller, String?> {
     let connection = interactor.connectController(controller, presenter: presenter)
     controllerConnections.append(connection)
     return connection
