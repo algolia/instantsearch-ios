@@ -13,7 +13,7 @@ public class FilterComparisonConnector<Number: Comparable & DoubleRepresentable>
 
   /// Searcher that handles your searches
   public let searcher: Searcher
-  
+
   /// Logic applied to comparison
   public let interactor: NumberInteractor<Number>
 
@@ -34,7 +34,7 @@ public class FilterComparisonConnector<Number: Comparable & DoubleRepresentable>
 
   /// Connection between interactor and searcher
   public let searcherConnection: Connection
-  
+
   /// Connection between interactor and filter state
   public let filterStateConnection: Connection
 

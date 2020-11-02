@@ -27,11 +27,11 @@ public struct NumberInteractorControllerConnection<Controller: NumberController,
       }
       controller.setItem(item)
     }.onQueue(.main)
-    
+
     interactor.onBoundsComputed.subscribePast(with: controller) { (controller, bounds) in
       controller.setBounds(bounds: bounds)
     }.onQueue(.main)
-    
+
   }
 
   public func disconnect() {
