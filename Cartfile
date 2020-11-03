@@ -1,2 +1,2 @@
-github "algolia/algoliasearch-client-swift" ~> 8.1
+github "algolia/algoliasearch-client-swift" ~> 8.2
 github "apple/swift-log" ~> 1.3
