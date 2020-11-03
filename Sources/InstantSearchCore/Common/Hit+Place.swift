@@ -76,7 +76,10 @@ extension Hit: CustomStringConvertible where T == Place {
     return [streetName, city, county, country]
       .compactMap { $0 }
       .filter { !$0.taggedString.input.isEmpty }
-      .map { $0.taggedString.output }
+      .map { highlightedString in
+        var taggedString = highlightedString.taggedString
+        return taggedString.output
+      }
       .joined(separator: ", ")
 
   }
