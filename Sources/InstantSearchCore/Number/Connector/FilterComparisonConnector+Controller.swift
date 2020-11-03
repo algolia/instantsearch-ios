@@ -11,6 +11,7 @@ public extension FilterComparisonConnector {
 
   /**
    - Parameters:
+     - searcher: Searcher that handles your searches
      - filterState: FilterState that holds your filters
      - attribute: Attribute to filter with a numeric comparison
      - numericOperator: Comparison operator to apply
@@ -20,7 +21,8 @@ public extension FilterComparisonConnector {
      - groupName: Filter group name in the filter state. If not specified, the attribute value is used as the group name
      - controller: Controller interfacing with a concrete number view
   */
-  convenience init<Controller: NumberController>(filterState: FilterState,
+  convenience init<Controller: NumberController>(searcher: SingleIndexSearcher,
+                                                 filterState: FilterState,
                                                  attribute: Attribute,
                                                  numericOperator: Filter.Numeric.Operator,
                                                  number: Number,
@@ -28,7 +30,8 @@ public extension FilterComparisonConnector {
                                                  operator: RefinementOperator,
                                                  groupName: String? = nil,
                                                  controller: Controller) where Controller.Item == Number {
-    self.init(filterState: filterState,
+    self.init(searcher: searcher,
+              filterState: filterState,
               attribute: attribute,
               numericOperator: numericOperator,
               number: number,
