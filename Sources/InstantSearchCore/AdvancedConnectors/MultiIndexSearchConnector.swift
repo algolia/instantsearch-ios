@@ -29,7 +29,7 @@ public struct MultiIndexSearchConnector: Connection {
   public let hitsControllerConnection: Connection
 
   /// Connector establishing the linkage between searcher and query input interactor
-  public let queryInputConnector: QueryInputConnector<MultiIndexSearcher>
+  public let queryInputConnector: QueryInputConnector
 
   /// Connection between query input interactor of query input connector and provided query input controller
   public let queryInputControllerConnection: Connection

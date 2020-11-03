@@ -11,10 +11,10 @@ import Foundation
 /// Component that shows a loading indicator during pending requests.
 ///
 /// [Documentation](https://www.algolia.com/doc/api-reference/widgets/loading/ios/)
-public class LoadingConnector<S: Searcher> {
+public class LoadingConnector {
 
   /// Searcher that handles your searches
-  public let searcher: S
+  public let searcher: Searcher
 
   /// Logic that handles showing a loading indicator
   public let interactor: LoadingInteractor
@@ -30,7 +30,7 @@ public class LoadingConnector<S: Searcher> {
       - searcher: Searcher that handles your searches
       - interactor: Logic applied to a loading indicator
    */
-  public init(searcher: S,
+  public init(searcher: Searcher,
               interactor: LoadingInteractor = .init()) {
     self.searcher = searcher
     self.interactor = interactor

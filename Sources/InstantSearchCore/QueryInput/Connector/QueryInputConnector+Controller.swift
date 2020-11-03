@@ -16,10 +16,10 @@ extension QueryInputConnector {
      - searchTriggeringMode: Defines the event triggering a new search
      - controller: Controller interfacing with a concrete query input view
    */
-  public convenience init<Controller: QueryInputController>(searcher: S,
-                                                            interactor: QueryInputInteractor = .init(),
-                                                            searchTriggeringMode: SearchTriggeringMode = .searchAsYouType,
-                                                            controller: Controller) {
+  public convenience init<Controller: QueryInputController, S: Searcher>(searcher: S,
+                                                                         interactor: QueryInputInteractor = .init(),
+                                                                         searchTriggeringMode: SearchTriggeringMode = .searchAsYouType,
+                                                                         controller: Controller) {
     self.init(searcher: searcher,
               interactor: interactor,
               searchTriggeringMode: searchTriggeringMode)
