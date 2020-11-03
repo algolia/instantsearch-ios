@@ -23,7 +23,7 @@ let package = Package(
       targets: ["InstantSearchInsights"])
   ],
   dependencies: [
-    .package(name: "AlgoliaSearchClient", url:"https://github.com/algolia/algoliasearch-client-swift", from: "8.1.0")
+    .package(name: "AlgoliaSearchClient", url:"https://github.com/algolia/algoliasearch-client-swift", from: "8.2.0")
   ],
   targets: [
     .target(
