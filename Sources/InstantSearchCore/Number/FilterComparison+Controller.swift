@@ -8,7 +8,7 @@
 
 import Foundation
 
-public struct NumberInteractorControllerConnection<Controller: NumberController, Number: Comparable & DoubleRepresentable>: Connection where Controller.Item == Number {
+public struct NumberInteractorControllerConnection<Controller: NumberController, Number: DoubleRepresentable>: Connection where Controller.Item == Number {
 
   public let interactor: NumberInteractor<Number>
   public let controller: Controller
@@ -27,6 +27,11 @@ public struct NumberInteractorControllerConnection<Controller: NumberController,
       }
       controller.setItem(item)
     }.onQueue(.main)
+
+    interactor.onBoundsComputed.subscribePast(with: controller) { (controller, bounds) in
+      controller.setBounds(bounds: bounds)
+    }.onQueue(.main)
+
   }
 
   public func disconnect() {

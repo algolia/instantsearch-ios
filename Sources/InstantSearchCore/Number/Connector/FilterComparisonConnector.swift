@@ -11,6 +11,9 @@ import Foundation
 /// Component to filter on a numeric value using a comparison operator.
 public class FilterComparisonConnector<Number: Comparable & DoubleRepresentable> {
 
+  /// Searcher that handles your searches
+  public let searcher: Searcher
+
   /// Logic applied to comparison
   public let interactor: NumberInteractor<Number>
 
@@ -29,6 +32,9 @@ public class FilterComparisonConnector<Number: Comparable & DoubleRepresentable>
   /// Filter group name in the filter state
   public let groupName: String
 
+  /// Connection between interactor and searcher
+  public let searcherConnection: Connection
+
   /// Connection between interactor and filter state
   public let filterStateConnection: Connection
 
@@ -37,6 +43,7 @@ public class FilterComparisonConnector<Number: Comparable & DoubleRepresentable>
 
   /**
    - Parameters:
+     - searcher: Searcher that handles your searches
      - filterState: FilterState that holds your filters
      - attribute: Attribute to filter with a numeric comparison
      - numericOperator: Comparison operator to apply
@@ -45,19 +52,22 @@ public class FilterComparisonConnector<Number: Comparable & DoubleRepresentable>
      - operator: Whether the filter is added to a conjuncitve(`and`) or  a disjuncitve (`or`) group in the filter state. Default value: .and
      - groupName: Filter group name in the filter state. If not specified, the attribute value is used as the group name
   */
-  public init(filterState: FilterState,
+  public init(searcher: SingleIndexSearcher,
+              filterState: FilterState,
               attribute: Attribute,
               numericOperator: Filter.Numeric.Operator,
               number: Number,
               bounds: ClosedRange<Number>?,
               operator: RefinementOperator,
               groupName: String? = nil) {
+    self.searcher = searcher
     self.interactor = .init()
     self.filterState = filterState
     self.attribute = attribute
     self.numericOperator = numericOperator
     self.operator = `operator`
     self.groupName = groupName ?? attribute.rawValue
+    self.searcherConnection = interactor.connectSearcher(searcher, attribute: attribute)
     self.filterStateConnection = interactor.connectFilterState(filterState,
                                                                attribute: attribute,
                                                                numericOperator: numericOperator,
@@ -75,11 +85,13 @@ public class FilterComparisonConnector<Number: Comparable & DoubleRepresentable>
 extension FilterComparisonConnector: Connection {
 
   public func connect() {
+    searcherConnection.connect()
     filterStateConnection.connect()
     controllerConnections.forEach { $0.connect() }
   }
 
   public func disconnect() {
+    searcherConnection.connect()
     filterStateConnection.disconnect()
     controllerConnections.forEach { $0.disconnect() }
   }

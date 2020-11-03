@@ -15,7 +15,7 @@ public extension LoadingConnector {
       - interactor: Logic applied to a loading indicator
       - controller: Controller that interfaces with a concrete loading view
    */
-  convenience init<Controller: LoadingController>(searcher: S,
+  convenience init<Controller: LoadingController>(searcher: Searcher,
                                                   interactor: LoadingInteractor = .init(),
                                                   controller: Controller) {
     self.init(searcher: searcher, interactor: interactor)

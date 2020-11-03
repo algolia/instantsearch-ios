@@ -11,10 +11,10 @@ import Foundation
 /// Component that performs a text-based query
 ///
 /// [Documentation](https://www.algolia.com/doc/api-reference/widgets/search-box/ios/)
-public class QueryInputConnector<S: Searcher> {
+public class QueryInputConnector {
 
   /// Searcher that handles your searches
-  public let searcher: S
+  public let searcher: Searcher
 
   /// Business logic that handles new search inputs
   public let interactor: QueryInputInteractor
@@ -31,9 +31,9 @@ public class QueryInputConnector<S: Searcher> {
      - interactor: Business logic that handles new search inputs
      - searchTriggeringMode: Defines the event triggering a new search
    */
-  public init(searcher: S,
-              interactor: QueryInputInteractor = .init(),
-              searchTriggeringMode: SearchTriggeringMode = .searchAsYouType) {
+  public init<S: Searcher>(searcher: S,
+                           interactor: QueryInputInteractor = .init(),
+                           searchTriggeringMode: SearchTriggeringMode = .searchAsYouType) {
     self.searcher = searcher
     self.interactor = interactor
     self.searcherConnection = interactor.connectSearcher(searcher, searchTriggeringMode: searchTriggeringMode)

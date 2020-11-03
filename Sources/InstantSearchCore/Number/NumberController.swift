@@ -8,8 +8,9 @@
 
 import Foundation
 
-public protocol NumberController: ItemController where Item: Numeric {
+public protocol NumberController: ItemController where Item: Numeric & Comparable {
 
   func setComputation(computation: Computation<Item>)
+  func setBounds(bounds: ClosedRange<Item>?)
 
 }
