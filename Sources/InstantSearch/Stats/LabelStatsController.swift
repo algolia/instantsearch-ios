@@ -29,7 +29,7 @@ public class LabelStatsController: StatsTextController {
 
   public let label: UILabel
 
-  public init (label: UILabel) {
+  public init (label: UILabel = .init()) {
     self.label = label
   }
 

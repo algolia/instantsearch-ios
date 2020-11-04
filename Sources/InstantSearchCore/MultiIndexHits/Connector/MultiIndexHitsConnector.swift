@@ -39,7 +39,7 @@ public class MultiIndexHitsConnector {
   */
   public init(searcher: MultiIndexSearcher,
               interactor: MultiIndexHitsInteractor,
-              filterStates: [FilterState?]) {
+              filterStates: [FilterState?] = []) {
     self.searcher = searcher
     self.interactor = interactor
     self.filterStates = filterStates
