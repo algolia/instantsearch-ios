@@ -41,7 +41,6 @@ public class RatingControl: UIControl {
 
   /// The highest possible numeric value for the rating control.
   ///
-  /// Must be numerically less than maximumValue. If you attempt to set a value equal to or greater than maximumValue, the system raises an invalidArgumentException exception.
   /// The default value for this property is 5.
   public var maximumValue: Int = 5 {
     didSet {
