@@ -6,6 +6,7 @@
 //
 
 import Foundation
+#if canImport(UIKit) && (os(iOS) || os(macOS) || os(tvOS))
 import UIKit
 
 /// A control for setting a rating value.
@@ -204,3 +205,4 @@ private extension RatingControl {
   }
 
 }
+#endif
