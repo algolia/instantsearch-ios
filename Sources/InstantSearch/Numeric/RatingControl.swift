@@ -27,7 +27,7 @@ import UIKit
 /// - Example: for rating 3.5 its integer part is 3, the fractional part is 0.5, so the 4-th point (index 3) is rendered as partial while for rating 3.4, the fractional part is 0.4, so the 4-th point is rendered as empty.
 
 public class RatingControl: UIControl {
-      
+
   /// The numeric value of the rating control.
   ///
   /// The default value for this property is 0.
@@ -37,7 +37,7 @@ public class RatingControl: UIControl {
       sendActions(for: .valueChanged)
     }
   }
-  
+
   /// The highest possible numeric value for the rating control.
   ///
   /// Must be numerically less than maximumValue. If you attempt to set a value equal to or greater than maximumValue, the system raises an invalidArgumentException exception.
@@ -47,7 +47,7 @@ public class RatingControl: UIControl {
       setupPoints()
     }
   }
-  
+
   /// Whether the rating value can be changed by pan gesture
   ///
   /// The default value for this property is true.
@@ -56,26 +56,26 @@ public class RatingControl: UIControl {
       panGestureRecognizer.isEnabled = isPanGestureEnabled
     }
   }
-    
+
   /// The empty point image
   ///
   /// Default value is nil
   public var emptyImage: UIImage?
-  
+
   /// The partial point image
   ///
   /// Default value is nil
   public var partialImage: UIImage?
-  
+
   /// The full point image
   ///
   /// Default value is nil
   public var fullImage: UIImage?
-  
+
   private let pointsStackView = UIStackView()
-    
+
   private let panGestureRecognizer: UIPanGestureRecognizer
-  
+
   public init() {
     self.panGestureRecognizer = UIPanGestureRecognizer()
     super.init(frame: .zero)
@@ -86,18 +86,18 @@ public class RatingControl: UIControl {
       fullImage = UIImage(systemName: "star.fill")
     }
   }
-  
+
   required init?(coder: NSCoder) {
     fatalError("init(coder:) has not been implemented")
   }
-  
+
   @objc private func didPan(_ panGestureRecognizer: UIPanGestureRecognizer) {
     let touchCoordinateX = panGestureRecognizer.location(in: pointsStackView).x
     guard touchCoordinateX > 0 else {
       return
     }
     let capturedValue = Double(touchCoordinateX/pointsStackView.bounds.width) * Double(maximumValue)
-    
+
     let (integerPart, fractionalPart) = extract(from: capturedValue)
     let formattedValue = Double(integerPart) + Double(fractionalPart)/10
     if formattedValue < 0 {
@@ -108,22 +108,22 @@ public class RatingControl: UIControl {
       value = formattedValue
     }
   }
-  
+
   @objc private func didtap(_ tapGestureRecognizer: UITapGestureRecognizer) {
     guard
       let tappedImageView = tapGestureRecognizer.view,
       let tappedImageViewIndex = pointsStackView.arrangedSubviews.firstIndex(of: tappedImageView) else { return }
     value = Double(tappedImageViewIndex + 1)
   }
-  
+
 }
 
 private extension RatingControl {
-  
+
   enum RatingPointState {
     case empty, partial, full
   }
-  
+
   func setupView() {
     pointsStackView.translatesAutoresizingMaskIntoConstraints = false
     pointsStackView.distribution = .equalCentering
@@ -133,13 +133,13 @@ private extension RatingControl {
       pointsStackView.leadingAnchor.constraint(equalTo: leadingAnchor, constant: 10),
       pointsStackView.trailingAnchor.constraint(equalTo: trailingAnchor, constant: -10),
       pointsStackView.topAnchor.constraint(equalTo: topAnchor),
-      pointsStackView.bottomAnchor.constraint(equalTo: bottomAnchor),
+      pointsStackView.bottomAnchor.constraint(equalTo: bottomAnchor)
     ])
     panGestureRecognizer.addTarget(self, action: #selector(didPan(_:)))
     pointsStackView.addGestureRecognizer(panGestureRecognizer)
     setupPoints()
   }
-  
+
   func setupPoints() {
     let pointsDiffCount = maximumValue - pointsStackView.arrangedSubviews.count
     guard pointsDiffCount != 0 else { return }
@@ -158,7 +158,7 @@ private extension RatingControl {
       }
     }
   }
-  
+
   func image(for state: RatingPointState) -> UIImage? {
     switch state {
     case .empty:
@@ -169,7 +169,7 @@ private extension RatingControl {
       return fullImage
     }
   }
-  
+
   func refresh() {
     let pointsCount = Int(maximumValue)
     let imageStates = (0..<pointsCount).map { stateOfPoint(withIndex: $0, for: value) }.map(image(for:))
@@ -177,21 +177,20 @@ private extension RatingControl {
     zip(imageStates, imageViews).forEach { image, imageView in imageView.image = image }
   }
 
-  
   func fractionalString(for value: Double, fractionDigits: Int) -> String {
     let formatter = NumberFormatter()
     formatter.minimumFractionDigits = fractionDigits
     formatter.maximumFractionDigits = fractionDigits
     return formatter.string(from: value as NSNumber) ?? "\(self)"
   }
-      
+
   func extract(from value: Double) -> (integer: Int, fractional: Int) {
     let strings = fractionalString(for: value, fractionDigits: 1).split(separator: ".").map(String.init)
     let integerPart = Int(strings.first!)!
     let fractionalPart = Int(strings.last!)!
     return (integerPart, fractionalPart)
   }
-  
+
   func stateOfPoint(withIndex pointIndex: Int, for value: Double) -> RatingPointState {
     let (integerPart, fractionalPart) = extract(from: value)
     switch integerPart - pointIndex {
