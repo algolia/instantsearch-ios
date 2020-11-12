@@ -81,7 +81,7 @@ public class RatingControl: UIControl {
     self.panGestureRecognizer = UIPanGestureRecognizer()
     super.init(frame: .zero)
     setupView()
-    if #available(iOS 13.0, *) {
+    if #available(iOS 13.0, tvOS 13.0, *) {
       emptyImage = UIImage(systemName: "star")
       partialImage = UIImage(systemName: "star.leadinghalf.fill")
       fullImage = UIImage(systemName: "star.fill")
