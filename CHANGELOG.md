@@ -1,5 +1,14 @@
 # ChangeLog
 
+## [7.6.0](https://github.com/algolia/instantsearch-ios/compare/7.5.0...7.6.0) (2020-11-16)
+
+### Feat
+
+- Rating range controller (#147) ([a372b84](https://github.com/algolia/instantsearch-ios/commit/a372b84))
+- implement RatingControl & NumericRatingController (#146) ([8b50dec](https://github.com/algolia/instantsearch-ios/commit/8b50dec))
+
+
+
 ## [7.5.0](https://github.com/algolia/instantsearch-ios/compare/7.4.0...7.5.0) (2020-11-04)
 
 ### Feat
