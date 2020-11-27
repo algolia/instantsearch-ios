@@ -50,7 +50,9 @@ class SingleIndexSearcherTests: XCTestCase {
     searcher.onSearch.subscribe(with: self) { (test, _) in
       exp.fulfill()
     }
-    searcher.shouldTriggerSearchForQuery = { query in return query.query ?? "" != "" }
+    searcher.shouldTriggerSearchForQuery = { query in
+      return query.query.query ?? "" != ""
+    }
     searcher.query = nil
     searcher.search()
     waitForExpectations(timeout: 2, handler: .none)

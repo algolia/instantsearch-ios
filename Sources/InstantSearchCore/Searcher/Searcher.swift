@@ -12,15 +12,17 @@ import AlgoliaSearchClient
 public protocol Searcher: class {
 
   /// Current query string
+  @available(*, deprecated, message: "")
   var query: String? { get set }
-
-  /// Triggered when query execution started or stopped
-  /// - Parameter: boolean value equal to true if query execution started, false otherwise
-  var isLoading: Observer<Bool> { get }
 
   /// Triggered when query text changed
   /// - Parameter: a new query text value
+  @available(*, deprecated, message: "")
   var onQueryChanged: Observer<String?> { get }
+  
+  /// Triggered when query execution started or stopped
+  /// - Parameter: boolean value equal to true if query execution started, false otherwise
+  var isLoading: Observer<Bool> { get }
 
   /// Triggered when a search operation launched
   var onSearch: Observer<Void> { get }
