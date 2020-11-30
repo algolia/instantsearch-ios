@@ -7,7 +7,7 @@
 
 import Foundation
 
-public protocol AlgoliaService {
+public protocol AlgoliaRequest {
   
   var requestOptions: RequestOptions? { get set }
   

@@ -7,29 +7,44 @@
 
 import Foundation
 
-class FacetSearchService: SearchService, AlgoliaService {
+public class FacetSearchService: SearchService {
   
-  public struct Request: IndexProvider, TextualQueryProvider {
+  let client: SearchClient
+  
+  public init(client: SearchClient) {
+    self.client = client
+  }
+
+  public func search(_ request: Request, completion: @escaping (Result<FacetSearchResponse, Error>) -> Void) -> Operation {
+    return client.index(withName: request.indexName).searchForFacetValues(of: request.attribute, matching: request.query, applicableFor: request.context, requestOptions: request.requestOptions, completion: completion)
+  }
+  
+}
+
+extension FacetSearchService {
+  
+  public struct Request: IndexProvider, TextualQueryProvider, AlgoliaRequest {
+    
     public var query: String
     public var indexName: IndexName
     public var attribute: Attribute
     public var context: AlgoliaSearchClient.Query
+    public var requestOptions: RequestOptions?
     
     public var textualQuery: String? {
       get { query }
       set { query = newValue ?? "" }
     }
-  }
-  
-  let client: SearchClient
-  var requestOptions: RequestOptions?
-  
-  init(client: SearchClient) {
-    self.client = client
+    
+    public init(query: String, indexName: IndexName, attribute: Attribute, context: Query, requestOptions: RequestOptions? = nil) {
+      self.query = query
+      self.indexName = indexName
+      self.attribute = attribute
+      self.context = context
+      self.requestOptions = requestOptions
+    }
+
   }
 
-  func search(_ request: Request, completion: @escaping (Result<FacetSearchResponse, Error>) -> Void) -> Operation {
-    return client.index(withName: request.indexName).searchForFacetValues(of: request.attribute, matching: request.query, applicableFor: request.context, requestOptions: requestOptions, completion: completion)
-  }
   
 }

@@ -7,24 +7,9 @@
 
 import Foundation
 
-public class AlgoliaSearchService: SearchService, AlgoliaService {
-  
-  public struct Request: IndexProvider, TextualQueryProvider {
-    public var indexName: IndexName
-    public var query: Query
-    
-    public var textualQuery: String? {
-      get {
-        query.query
-      }
-      set {
-        query.query = newValue
-      }
-    }
-  }
+public class AlgoliaSearchService: SearchService {
   
   public let client: SearchClient
-  public var requestOptions: RequestOptions?
   
   /// Flag defining if disjunctive faceting is enabled
   /// - Default value: true
@@ -64,10 +49,36 @@ public class AlgoliaSearchService: SearchService, AlgoliaService {
       transform = { $0.results.first! }
     }
     
-    return client.multipleQueries(queries: queries, requestOptions: requestOptions) { completion($0.map(transform)) }
+    return client.multipleQueries(queries: queries, requestOptions: request.requestOptions) { completion($0.map(transform)) }
 
   }
   
 }
 
 
+extension AlgoliaSearchService {
+  
+  public struct Request: IndexProvider, TextualQueryProvider, AlgoliaRequest{
+    
+    public var indexName: IndexName
+    public var query: Query
+    public var requestOptions: RequestOptions?
+
+    public var textualQuery: String? {
+      get {
+        query.query
+      }
+      set {
+        query.query = newValue
+      }
+    }
+    
+    public init(indexName: IndexName, query: Query, requestOptions: RequestOptions? = nil) {
+      self.indexName = indexName
+      self.query = query
+      self.requestOptions = requestOptions
+    }
+
+  }
+  
+}

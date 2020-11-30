@@ -12,6 +12,108 @@ import AlgoliaSearchClient
 
 /// An entity performing search queries targeting one index
 
+final public class SingleIndexSearcher: IndexSearcher<AlgoliaSearchService> {
+  
+  public override var query: String? {
+
+    get {
+      return request.query.query
+    }
+
+    set {
+      let oldValue = request.query.query
+      guard oldValue != newValue else { return }
+      cancel()
+      request.query.query = newValue
+      request.query.page = 0
+      onQueryChanged.fire(newValue)
+    }
+
+  }
+    
+  public var client: SearchClient {
+    return service.client
+  }
+  
+  /// Current index & query tuple
+  public var indexQueryState: IndexQueryState {
+    get {
+      return IndexQueryState(indexName: request.indexName, query: request.query)
+    }
+    
+    set {
+      self.request = .init(indexName: newValue.indexName, query: newValue.query)
+    }
+  }
+    
+  /// Custom request options
+  public var requestOptions: RequestOptions? {
+    get {
+      request.requestOptions
+    }
+    
+    set {
+      request.requestOptions = newValue
+    }
+  }
+  
+  /// Delegate providing a necessary information for disjuncitve faceting
+  public weak var disjunctiveFacetingDelegate: DisjunctiveFacetingDelegate? {
+    get {
+      service.disjunctiveFacetingDelegate
+    }
+    
+    set {
+      service.disjunctiveFacetingDelegate = newValue
+    }
+  }
+
+  /// Delegate providing a necessary information for hierarchical faceting
+  public weak var hierarchicalFacetingDelegate: HierarchicalFacetingDelegate? {
+    get {
+      service.hierarchicalFacetingDelegate
+    }
+    
+    set {
+      service.hierarchicalFacetingDelegate = newValue
+    }
+  }
+
+  /// Flag defining if disjunctive faceting is enabled
+  /// - Default value: true
+  public var isDisjunctiveFacetingEnabled: Bool {
+    get {
+      service.isDisjunctiveFacetingEnabled
+    }
+    
+    set {
+      service.isDisjunctiveFacetingEnabled = newValue
+    }
+  }
+
+  /// Flag defining if the selected query facet must be kept even if it does not match current results anymore
+  /// - Default value: true
+  public var keepSelectedEmptyFacets: Bool {
+    get {
+      service.keepSelectedEmptyFacets
+    }
+    
+    set {
+      service.keepSelectedEmptyFacets = newValue
+    }
+  }
+  
+  public convenience init(client: SearchClient, indexName: IndexName, query: AlgoliaSearchClient.Query = .init()) {
+    self.init(service: AlgoliaSearchService(client: client), initialRequest: .init(indexName: indexName, query: query))
+  }
+  
+  public convenience init(appID: ApplicationID, apiKey: APIKey, indexName: IndexName, query: AlgoliaSearchClient.Query = .init()) {
+    let client = SearchClient(appID: appID, apiKey: apiKey)
+    self.init(service: AlgoliaSearchService(client: client), initialRequest: .init(indexName: indexName, query: query))
+  }
+  
+}
+
 //public class SingleIndexSearcher: Searcher, SequencerDelegate, SearchResultObservable {
 //
 //  public var query: String? {

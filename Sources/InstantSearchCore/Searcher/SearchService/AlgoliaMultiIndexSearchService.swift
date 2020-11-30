@@ -7,7 +7,7 @@
 
 import Foundation
 
-public class AlgoliaMultiIndexSearchService: SearchService, AlgoliaService {
+public class AlgoliaMultiIndexSearchService: SearchService, AlgoliaRequest {
   
   let client: SearchClient
   public var requestOptions: RequestOptions?
