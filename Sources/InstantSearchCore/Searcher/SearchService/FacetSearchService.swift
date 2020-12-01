@@ -23,7 +23,7 @@ public class FacetSearchService: SearchService {
 
 extension FacetSearchService {
   
-  public struct Request: IndexProvider, TextualQueryProvider, AlgoliaRequest {
+  public struct Request: IndexNameProvider, TextualQueryProvider, AlgoliaRequest {
     
     public var query: String
     public var indexName: IndexName

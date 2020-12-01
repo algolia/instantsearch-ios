@@ -58,7 +58,7 @@ public class AlgoliaSearchService: SearchService {
 
 extension AlgoliaSearchService {
   
-  public struct Request: IndexProvider, TextualQueryProvider, AlgoliaRequest{
+  public struct Request: IndexNameProvider, TextualQueryProvider, AlgoliaRequest{
     
     public var indexName: IndexName
     public var query: Query

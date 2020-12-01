@@ -12,7 +12,7 @@ import AlgoliaSearchClient
 
 /// An entity performing search queries targeting one index
 
-final public class SingleIndexSearcher: IndexSearcher<AlgoliaSearchService> {
+public final class SingleIndexSearcher: IndexSearcher<AlgoliaSearchService> {
   
   public override var query: String? {
 

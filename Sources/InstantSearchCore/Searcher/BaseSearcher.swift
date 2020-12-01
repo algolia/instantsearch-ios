@@ -9,11 +9,11 @@ import Foundation
 
 /// An entity performing search queries
 
-public class BaseSearcher<Service: SearchService>: Searcher, SequencerDelegate, SearchResultObservable where Service.Process == Operation {
+public class BaseSearcher<Service: SearchService>: Searcher, SequencerDelegate, SearchResultObservable, ErrorObservable where Service.Process == Operation {
   
   public typealias Request = Service.Request
   public typealias Result = Service.Result
-
+  
   public var query: String? {
     get { return nil }
     set { }
@@ -100,12 +100,12 @@ public class BaseSearcher<Service: SearchService>: Searcher, SequencerDelegate, 
 
 public extension BaseSearcher {
   
-  struct RequestError: Error {
+  struct RequestError: Swift.Error {
     
     public let request: Request
-    public let error: Error
+    public let error: Swift.Error
     
-    public init(request: Request, error: Error) {
+    public init(request: Request, error: Swift.Error) {
       self.request = request
       self.error = error
     }
@@ -114,9 +114,9 @@ public extension BaseSearcher {
   
 }
 
-public protocol IndexProvider {
+public protocol IndexNameProvider {
   
-  var indexName: IndexName { get }
+  var indexName: IndexName { get set }
   
 }
 
@@ -127,7 +127,7 @@ public protocol TextualQueryProvider {
 }
 
 
-public class IndexSearcher<Service: SearchService>: BaseSearcher<Service> where Service.Process == Operation, Service.Request: IndexProvider {
+public class IndexSearcher<Service: SearchService>: BaseSearcher<Service> where Service.Process == Operation, Service.Request: IndexNameProvider {
   
   public override var request: Request {
     didSet {
@@ -148,4 +148,3 @@ public class IndexSearcher<Service: SearchService>: BaseSearcher<Service> where 
   
 }
 
-public typealias AnswersSearcher = IndexSearcher<AlgoliaAnswersSearchService>

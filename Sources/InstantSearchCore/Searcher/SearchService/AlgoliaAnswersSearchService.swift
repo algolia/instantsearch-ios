@@ -23,7 +23,7 @@ public class AlgoliaAnswersSearchService: SearchService {
 
 extension AlgoliaAnswersSearchService {
   
-  public struct Request: IndexProvider, TextualQueryProvider, AlgoliaRequest {
+  public struct Request: IndexNameProvider, TextualQueryProvider, AlgoliaRequest {
     
     public var indexName: IndexName
     public var query: AnswersQuery
