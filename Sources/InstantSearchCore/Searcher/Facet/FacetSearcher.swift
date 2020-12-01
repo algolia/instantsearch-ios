@@ -41,7 +41,7 @@ final public class FacetSearcher: IndexSearcher<FacetSearchService> {
                           query: Query = .init(),
                           requestOptions: RequestOptions? = nil) {
     let service = FacetSearchService(client: .init(appID: appID, apiKey: apiKey))
-    let request = Request(query: "", indexName: indexName, attribute: .init(rawValue: facetName), context: query, requestOptions: requestOptions)
+    let request = Request(query: "", indexName: indexName, attribute: facetName, context: query, requestOptions: requestOptions)
     self.init(service: service, initialRequest: request)
   }
   
