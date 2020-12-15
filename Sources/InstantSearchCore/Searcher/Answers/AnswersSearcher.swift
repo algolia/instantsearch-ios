@@ -1,0 +1,34 @@
+//
+//  AnswersSearcher.swift
+//  
+//
+//  Created by Vladislav Fitc on 30/11/2020.
+//
+
+import Foundation
+
+public final class AnswersSearcher: IndexSearcher<AlgoliaAnswersSearchService> {
+  
+  /**
+   - Parameters:
+      - applicationID: Application ID
+      - apiKey: API Key
+      - indexName: Name of the index in which search will be performed
+      - query: Instance of AnswersQuery. By default a new empty instant of Query will be created.
+      - requestOptions: Custom request options. Default is `nil`.
+  */
+  public convenience init(applicationID: ApplicationID,
+                          apiKey: APIKey,
+                          indexName: IndexName,
+                          query: AnswersQuery = .init(query: ""),
+                          requestOptions: RequestOptions? = nil) {
+    let service = AlgoliaAnswersSearchService(client: .init(appID: applicationID,
+                                                            apiKey: apiKey))
+    let request = AlgoliaAnswersSearchService.Request(indexName: indexName,
+                                                      query: query,
+                                                      requestOptions: requestOptions)
+    self.init(service: service, initialRequest: request)
+  }
+  
+}
+

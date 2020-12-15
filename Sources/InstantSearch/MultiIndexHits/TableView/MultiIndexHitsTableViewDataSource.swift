@@ -66,8 +66,8 @@ open class MultiIndexHitsTableViewDataSource: NSObject, UITableViewDataSource {
     }
     do {
       return try cellConfigurator(tableView, indexPath.row)
-    } catch let error {
-      InstantSearchLogger.error(error)
+    } catch let underlyingError {
+      InstantSearchLogger.error(underlyingError)
       return .init()
     }
   }

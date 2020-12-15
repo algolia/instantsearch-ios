@@ -70,6 +70,7 @@ class FilterStateTests: XCTestCase {
     filterState.remove(filterTag1, fromGroupWithID: groupTagsAnd) // remove one more time
     filterState.remove(Filter.Tag(value: "unexisting"), fromGroupWithID: groupTagsOr) // remove one that does not exist
     filterState.remove(filterFacet1) // Remove in all groups
+    
 
     let expectedFilterState2 = """
                                     ( "category":"chair" ) AND ( "price" < 20.0 AND "price" > 10.0 ) AND ( "_tags":"Hank" OR "_tags":"Tom" )

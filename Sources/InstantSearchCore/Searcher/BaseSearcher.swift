@@ -21,19 +21,25 @@ public class BaseSearcher<Service: SearchService>: Searcher, SequencerDelegate, 
   
   public let onQueryChanged: Observer<String?>
       
-  public var request: Request
+  public var request: Request {
+    didSet {
+      onRequestChanged.fire(request)
+    }
+  }
   
   public let service: Service
 
   public let isLoading: Observer<Bool>
 
   public let onSearch: Observer<Void>
+  
+  public let onRequestChanged: Observer<Request>
 
   public let onResults: Observer<Service.Result>
 
   /// Triggered when an error occured during search query execution
   /// - Parameter: a tuple of query and error
-  public let onError: Observer<RequestError>
+  public let onError: Observer<Error>
 
   /// Closure defining the condition under which the search operation should be triggered
   ///
@@ -62,6 +68,7 @@ public class BaseSearcher<Service: SearchService>: Searcher, SequencerDelegate, 
     onError = .init()
     onQueryChanged = .init()
     onSearch = .init()
+    onRequestChanged = .init()
     sequencer.delegate = self
     onResults.retainLastData = true
     onError.retainLastData = false
@@ -100,14 +107,14 @@ public class BaseSearcher<Service: SearchService>: Searcher, SequencerDelegate, 
 
 public extension BaseSearcher {
   
-  struct RequestError: Swift.Error {
+  struct RequestError: Error {
     
     public let request: Request
-    public let error: Swift.Error
+    public let underlyingError: Error
     
-    public init(request: Request, error: Swift.Error) {
+    public init(request: Request, error: Error) {
       self.request = request
-      self.error = error
+      self.underlyingError = error
     }
     
   }
@@ -148,3 +155,30 @@ public class IndexSearcher<Service: SearchService>: BaseSearcher<Service> where 
   
 }
 
+extension IndexSearcher: IndexNameSwitchable {
+  
+  public func switchIndexName(to indexName: IndexName) {
+    request.indexName = indexName
+  }
+  
+}
+
+
+public extension BaseSearcher where Service.Request: TextualQueryProvider {
+  
+  var query: String? {
+    get {
+      request.textualQuery
+    }
+
+    set {
+      let oldValue = request.textualQuery
+      request.textualQuery = newValue
+      if oldValue != newValue {
+        onQueryChanged.fire(newValue)
+      }
+    }
+  }
+
+  
+}

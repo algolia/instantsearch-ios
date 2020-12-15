@@ -48,10 +48,7 @@ public protocol SearchResultObservable {
 
 /// Protocol describing an entity capable to provide an error
 public protocol ErrorObservable {
-  
-  /// Search result type
-  associatedtype Error: Swift.Error = Swift.Error
-  
+    
   /// Triggered when an error occured
   var onError: Observer<Error> { get }
   

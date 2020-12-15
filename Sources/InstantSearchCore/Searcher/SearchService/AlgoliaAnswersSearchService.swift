@@ -7,11 +7,11 @@
 
 import Foundation
 
-public class AlgoliaAnswersSearchService: SearchService {
+public final class AlgoliaAnswersSearchService: SearchService {
   
-  let client: SearchClient
+  public let client: SearchClient
   
-  init(client: SearchClient) {
+  public init(client: SearchClient) {
     self.client = client
   }
   
@@ -31,11 +31,13 @@ extension AlgoliaAnswersSearchService {
     
     public var textualQuery: String? {
       get {
-        return query.query
+        let textualQuery = query.query
+        return textualQuery
       }
       
       set {
-        query.query = newValue
+        let textualQueryToSet = newValue ?? ""
+        query.query = textualQueryToSet
       }
     }
     

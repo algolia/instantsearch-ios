@@ -50,8 +50,8 @@ open class MultiIndexHitsTableViewDelegate: NSObject, UITableViewDelegate {
     }
     do {
       try clickHandler(tableView, indexPath.row)
-    } catch let error {
-      InstantSearchLogger.error(error)
+    } catch let underlyingError {
+      InstantSearchLogger.error(underlyingError)
       return
     }
   }
