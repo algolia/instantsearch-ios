@@ -29,7 +29,7 @@ class AnswersSearcherTests: XCTestCase {
       XCTAssertEqual(indexName, "index3")
       exp.fulfill()
     }
-    searcher.indexName = "index3"
+    searcher.request.indexName = "index3"
     waitForExpectations(timeout: 2, handler: .none)
   }
   

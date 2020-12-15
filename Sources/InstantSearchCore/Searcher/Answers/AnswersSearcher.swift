@@ -7,6 +7,9 @@
 
 import Foundation
 
+/// An entity performing Answers search
+///
+/// [Documentation](https://www.algolia.com/doc/guides/algolia-ai/answers/)
 public final class AnswersSearcher: IndexSearcher<AlgoliaAnswersSearchService> {
   
   /**
@@ -24,9 +27,9 @@ public final class AnswersSearcher: IndexSearcher<AlgoliaAnswersSearchService> {
                           requestOptions: RequestOptions? = nil) {
     let service = AlgoliaAnswersSearchService(client: .init(appID: applicationID,
                                                             apiKey: apiKey))
-    let request = AlgoliaAnswersSearchService.Request(indexName: indexName,
-                                                      query: query,
-                                                      requestOptions: requestOptions)
+    let request = Request(indexName: indexName,
+                          query: query,
+                          requestOptions: requestOptions)
     self.init(service: service, initialRequest: request)
   }
   

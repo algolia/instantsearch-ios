@@ -11,10 +11,7 @@ import AlgoliaSearchClient
 public extension AnswersSearcher {
 
   /**
-   Establishes connection between searcher and filterState
-   - Sets `FilterState` as a disjunctive and hierarchical faceting delegate
-   - Updates filters parameter of Searcher's `Query` according to a new `FilterState` content and relaunches search once `FilterState` changed
-   - Parameter filterState: filter state to connect
+   Connection between AnswersSearcher and FilterState
    */
   struct FilterStateConnection: Connection {
 
@@ -43,6 +40,11 @@ public extension AnswersSearcher {
 
 public extension AnswersSearcher {
 
+  /**
+   Establishes connection between Answers searcher and FilterState
+   - Updates filters parameter of Searcher's `AnswersQuery` according to a new `FilterState` content and relaunches search once `FilterState` changed
+   - Parameter filterState: filter state to connect
+   */
   @discardableResult func connectFilterState(_ filterState: FilterState) -> FilterStateConnection {
     let connection = FilterStateConnection(answersSearcher: self, filterState: filterState)
     connection.connect()
