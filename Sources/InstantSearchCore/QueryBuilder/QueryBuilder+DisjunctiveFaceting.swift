@@ -98,7 +98,7 @@ extension QueryBuilder {
 }
 
 extension Query {
-  
+
   func disjunctiveFacetingQuery(disjunctiveFacetAttribute: Attribute, with filterGroups: [FilterGroupType]) -> Query {
     let filterGroups = filterGroups.droppingDisjunctiveFacetFilters(with: disjunctiveFacetAttribute)
     var output = self
@@ -120,9 +120,8 @@ extension Query {
 
 }
 
-
 extension Array where Element == FilterGroupType {
-  
+
   func droppingDisjunctiveFacetFilters(with attribute: Attribute) -> Self {
     map { group in
       guard let disjunctiveFacetGroup = group as? FilterGroup.Or<Filter.Facet> else {
@@ -133,9 +132,8 @@ extension Array where Element == FilterGroupType {
     }
     .filter { !$0.filters.isEmpty }
   }
-  
-}
 
+}
 
 extension Collection {
 

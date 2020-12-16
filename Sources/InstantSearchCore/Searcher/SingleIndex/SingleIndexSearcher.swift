@@ -66,7 +66,7 @@ public class SingleIndexSearcher: Searcher, SequencerDelegate, SearchResultObser
 
   /// Delegate providing a necessary information for hierarchical faceting
   public weak var hierarchicalFacetingDelegate: HierarchicalFacetingDelegate?
-  
+
   /// Manually set attributes for disjunctive faceting
   ///
   /// These attributes are merged with disjunctiveFacetsAttributes provided by DisjunctiveFacetingDelegate to create the necessary queries for disjunctive faceting

@@ -98,7 +98,7 @@ public struct QueryBuilder {
     return aggregatedResult
 
   }
-  
+
   func update<C: Collection>(_ result: inout SearchResponse, withResults results: C) where C.Element == SearchResponse {
     let facetStats = results.aggregateFacetStats()
     result.facetStats = facetStats.isEmpty ? nil : facetStats
