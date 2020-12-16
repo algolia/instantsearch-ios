@@ -98,6 +98,7 @@ class DisjuncitveAndHierarchicalIntegrationTests: OnlineTestCase {
     let query = Query("").set(\.facets, to: Set(facetAttributes))
 
     let queryBuilder = QueryBuilder(query: query,
+                                    disjunctiveFacets: [],
                                     filterGroups: filterGroups,
                                     hierarchicalAttributes: hierarchicalAttributes,
                                     hierachicalFilters: hierarchicalFilters)

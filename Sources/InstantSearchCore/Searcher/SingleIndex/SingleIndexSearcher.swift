@@ -66,6 +66,11 @@ public class SingleIndexSearcher: Searcher, SequencerDelegate, SearchResultObser
 
   /// Delegate providing a necessary information for hierarchical faceting
   public weak var hierarchicalFacetingDelegate: HierarchicalFacetingDelegate?
+  
+  /// Manually set attributes for disjunctive faceting
+  ///
+  /// These attributes are merged with disjunctiveFacetsAttributes provided by DisjunctiveFacetingDelegate to create the necessary queries for disjunctive faceting
+  public var disjunctiveFacetsAttributes: Set<Attribute>
 
   /// Flag defining if disjunctive faceting is enabled
   /// - Default value: true
@@ -127,6 +132,7 @@ public class SingleIndexSearcher: Searcher, SequencerDelegate, SearchResultObser
     onIndexChanged = .init()
     processingQueue = .init()
     onSearch = .init()
+    disjunctiveFacetsAttributes = []
     sequencer.delegate = self
     onResults.retainLastData = true
     onError.retainLastData = false
@@ -163,10 +169,12 @@ public class SingleIndexSearcher: Searcher, SequencerDelegate, SearchResultObser
     let operation: Operation
 
     if isDisjunctiveFacetingEnabled {
+      let disjunctiveFacets = disjunctiveFacetsAttributes.union(disjunctiveFacetingDelegate?.disjunctiveFacetsAttributes ?? [])
       let filterGroups = disjunctiveFacetingDelegate?.toFilterGroups() ?? []
       let hierarchicalAttributes = hierarchicalFacetingDelegate?.hierarchicalAttributes ?? []
       let hierarchicalFilters = hierarchicalFacetingDelegate?.hierarchicalFilters ?? []
       var queriesBuilder = QueryBuilder(query: query,
+                                        disjunctiveFacets: disjunctiveFacets,
                                         filterGroups: filterGroups,
                                         hierarchicalAttributes: hierarchicalAttributes,
                                         hierachicalFilters: hierarchicalFilters)

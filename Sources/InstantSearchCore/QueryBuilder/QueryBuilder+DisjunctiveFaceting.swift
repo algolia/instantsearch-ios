@@ -92,30 +92,24 @@ extension QueryBuilder {
   /// - returns: list of "or" queries for disjunctive faceting
 
   func buildDisjunctiveFacetingQueries(query: Query, filterGroups: [FilterGroupType], disjunctiveFacets: Set<Attribute>) -> [Query] {
-
-    return disjunctiveFacets.map { attribute in
-
-      let groups = filterGroups.map { (group) -> FilterGroupType in
-        guard let disjunctiveFacetGroup = group as? FilterGroup.Or<Filter.Facet> else {
-          return group
-        }
-        let filtersMinusDisjunctiveFacet = disjunctiveFacetGroup.typedFilters.filter { $0.attribute != attribute }
-        return FilterGroup.Or(filters: filtersMinusDisjunctiveFacet, name: group.name)
-      }.filter { !$0.filters.isEmpty }
-
-      var query = query
-      query.facets = [attribute]
-      query.requestOnlyFacets()
-      query.filters = FilterGroupConverter().sql(groups)
-      return query
-
-    }
-
+    return disjunctiveFacets.map { query.disjunctiveFacetingQuery(disjunctiveFacetAttribute: $0, with: filterGroups) }
   }
 
 }
 
 extension Query {
+  
+  func disjunctiveFacetingQuery(disjunctiveFacetAttribute: Attribute, with filterGroups: [FilterGroupType]) -> Query {
+    let filterGroups = filterGroups.droppingDisjunctiveFacetFilters(with: disjunctiveFacetAttribute)
+    var output = self
+    output.facets = [disjunctiveFacetAttribute]
+    output.filters = FilterGroupConverter().sql(filterGroups)
+    output.attributesToRetrieve = []
+    output.attributesToHighlight = []
+    output.hitsPerPage = 0
+    output.analytics = false
+    return output
+  }
 
   mutating func requestOnlyFacets() {
     attributesToRetrieve = []
@@ -125,6 +119,23 @@ extension Query {
   }
 
 }
+
+
+extension Array where Element == FilterGroupType {
+  
+  func droppingDisjunctiveFacetFilters(with attribute: Attribute) -> Self {
+    map { group in
+      guard let disjunctiveFacetGroup = group as? FilterGroup.Or<Filter.Facet> else {
+        return group
+      }
+      let filtersMinusDisjunctiveFacet = disjunctiveFacetGroup.typedFilters.filter { $0.attribute != attribute }
+      return FilterGroup.Or(filters: filtersMinusDisjunctiveFacet, name: group.name)
+    }
+    .filter { !$0.filters.isEmpty }
+  }
+  
+}
+
 
 extension Collection {
 
