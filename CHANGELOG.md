@@ -1,5 +1,13 @@
 # ChangeLog
 
+## [7.6.1](https://github.com/algolia/instantsearch-ios/compare/7.6.0...7.6.1) (2020-12-21)
+
+### Fix
+
+- broken geolocated conformance (#152) ([d2823eb](https://github.com/algolia/instantsearch-ios/commit/d2823eb))
+
+
+
 ## [7.6.0](https://github.com/algolia/instantsearch-ios/compare/7.5.0...7.6.0) (2020-11-16)
 
 ### Feat
