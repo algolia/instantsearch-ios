@@ -9,5 +9,5 @@
 import Foundation
 
 public protocol Geolocated {
-  var geolocation: Point? { get }
+  var geolocation: SingleOrList<Point>? { get }
 }
