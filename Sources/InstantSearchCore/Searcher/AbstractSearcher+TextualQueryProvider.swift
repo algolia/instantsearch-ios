@@ -1,5 +1,5 @@
 //
-//  BaseSearcher+TextualQueryProvider.swift
+//  AbstractSearcher+TextualQueryProvider.swift
 //  
 //
 //  Created by Vladislav Fitc on 15/12/2020.
@@ -7,7 +7,7 @@
 
 import Foundation
 
-public extension BaseSearcher where Service.Request: TextualQueryProvider {
+public extension AbstractSearcher where Service.Request: TextualQueryProvider {
   
   var query: String? {
     

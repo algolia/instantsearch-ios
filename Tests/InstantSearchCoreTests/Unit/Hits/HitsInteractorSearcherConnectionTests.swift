@@ -175,7 +175,7 @@ extension HitsInteractorSearcherConnectionTests {
     
     private func testPendingPages(isConnected: Bool, file: StaticString = #file, line: UInt = #line) {
       infiniteScrollingController.pendingPages = [0]
-      let requestError = BaseSearcher<AlgoliaSearchService>.RequestError(request: .init(indexName: searcher.indexQueryState.indexName, query: searcher.indexQueryState.query), error: NSError())
+      let requestError = AbstractSearcher<AlgoliaSearchService>.RequestError(request: .init(indexName: searcher.indexQueryState.indexName, query: searcher.indexQueryState.query), error: NSError())
       searcher.onError.fire(requestError)
       
       if isConnected {

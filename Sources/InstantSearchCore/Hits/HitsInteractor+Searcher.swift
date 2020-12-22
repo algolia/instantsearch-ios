@@ -1,5 +1,5 @@
 //
-//  HitsInteractor+BaseSearcher.swift
+//  HitsInteractor+Searcher.swift
 //  
 //
 //  Created by Vladislav Fitc on 02/12/2020.
@@ -9,10 +9,10 @@ import Foundation
 
 public extension HitsInteractor {
 
-  struct BaseSearcherConnection<Service: SearchService>: Connection where Service.Process == Operation, Service.Result == SearchResponse {
+  struct SearcherConnection<Service: SearchService>: Connection where Service.Process == Operation, Service.Result == SearchResponse {
 
     public let interactor: HitsInteractor
-    public let searcher: BaseSearcher<Service>
+    public let searcher: AbstractSearcher<Service>
 
     public func connect() {
 
@@ -21,7 +21,7 @@ public extension HitsInteractor {
       }
       
       searcher.onError.subscribe(with: interactor) { interactor, error in
-        if let requestError = error as? BaseSearcher<Service>.RequestError {
+        if let requestError = error as? AbstractSearcher<Service>.RequestError {
           interactor.process(requestError.underlyingError, for: Query())
         }
       }
@@ -51,8 +51,8 @@ public extension HitsInteractor {
 
 public extension HitsInteractor {
 
-  @discardableResult func connectSearcher<Service: SearchService>(_ searcher: BaseSearcher<Service>) -> BaseSearcherConnection<Service> {
-    let connection = BaseSearcherConnection(interactor: self, searcher: searcher)
+  @discardableResult func connectSearcher<Service: SearchService>(_ searcher: AbstractSearcher<Service>) -> SearcherConnection<Service> {
+    let connection = SearcherConnection(interactor: self, searcher: searcher)
     connection.connect()
     return connection
   }

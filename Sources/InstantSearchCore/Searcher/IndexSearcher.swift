@@ -7,7 +7,8 @@
 
 import Foundation
 
-public class IndexSearcher<Service: SearchService>: BaseSearcher<Service> where Service.Process == Operation, Service.Request: IndexNameProvider {
+/// Abstract search service the request of which includes IndexName
+public class IndexSearcher<Service: SearchService>: AbstractSearcher<Service> where Service.Process == Operation, Service.Request: IndexNameProvider {
   
   public override var request: Request {
     didSet {
@@ -17,7 +18,7 @@ public class IndexSearcher<Service: SearchService>: BaseSearcher<Service> where 
     }
   }
 
-  /// Triggered when an index of Searcher changed
+  /// Triggered when an index name of request changed
   /// - Parameter: equals to a new index value
   public let onIndexChanged: Observer<IndexName>
   

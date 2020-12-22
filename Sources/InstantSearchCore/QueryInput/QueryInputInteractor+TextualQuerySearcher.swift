@@ -1,29 +1,22 @@
 //
-//  QueryInputInteractor+Searcher.swift
-//  InstantSearchCore
+//  QueryInputInteractor+TextualQuerySearcher.swift
+//  
 //
-//  Created by Vladislav Fitc on 28/05/2019.
-//  Copyright © 2019 Algolia. All rights reserved.
+//  Created by Vladislav Fitc on 22/12/2020.
 //
 
 import Foundation
 
-public enum SearchTriggeringMode {
-  case searchAsYouType
-  case searchOnSubmit
-}
-
 public extension QueryInputInteractor {
   
-  @available(*, deprecated, message: "Use QueryInputInteractor.TextualQuerySearcherConnection")
-  struct SearcherConnection<S: Searcher>: Connection {
+  struct TextualQuerySearcherConnection<Service: SearchService>: Connection where Service.Process == Operation, Service.Request: TextualQueryProvider {
     
     public let interactor: QueryInputInteractor
-    public let searcher: S
+    public let searcher: AbstractSearcher<Service>
     public let searchTriggeringMode: SearchTriggeringMode
     
     public init(interactor: QueryInputInteractor,
-                searcher: S,
+                searcher: AbstractSearcher<Service>,
                 searchTriggeringMode: SearchTriggeringMode = .searchAsYouType) {
       self.interactor = interactor
       self.searcher = searcher
@@ -37,13 +30,13 @@ public extension QueryInputInteractor {
       switch searchTriggeringMode {
       case .searchAsYouType:
         interactor.onQueryChanged.subscribe(with: searcher) { searcher, query in
-          searcher.query = query
+          searcher.request.textualQuery = query
           searcher.search()
         }
         
       case .searchOnSubmit:
         interactor.onQuerySubmitted.subscribe(with: searcher) { searcher, query in
-          searcher.query = query
+          searcher.request.textualQuery = query
           searcher.search()
         }
       }
@@ -69,10 +62,9 @@ public extension QueryInputInteractor {
 
 public extension QueryInputInteractor {
   
-  @available(*, deprecated, message: "Use QueryInputInteractor.TextualQuerySearcherConnection")
-  @discardableResult func connectSearcher<S: Searcher>(_ searcher: S,
-                                                       searchTriggeringMode: SearchTriggeringMode = .searchAsYouType) -> SearcherConnection<S> {
-    let connection = SearcherConnection(interactor: self, searcher: searcher, searchTriggeringMode: searchTriggeringMode)
+  @discardableResult func connectSearcher<Service: SearchService>(_ searcher: AbstractSearcher<Service>,
+                                                                  searchTriggeringMode: SearchTriggeringMode = .searchAsYouType) -> TextualQuerySearcherConnection<Service> {
+    let connection = TextualQuerySearcherConnection(interactor: self, searcher: searcher, searchTriggeringMode: searchTriggeringMode)
     connection.connect()
     return connection
   }

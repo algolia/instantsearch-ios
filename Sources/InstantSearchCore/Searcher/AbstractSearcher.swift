@@ -7,9 +7,8 @@
 
 import Foundation
 
-/// An entity performing search queries
-
-public class BaseSearcher<Service: SearchService>: Searcher, SequencerDelegate, SearchResultObservable, ErrorObservable where Service.Process == Operation {
+/// Abstract search business logic
+public class AbstractSearcher<Service: SearchService>: Searcher, SequencerDelegate, SearchResultObservable, ErrorObservable where Service.Process == Operation {
   
   public typealias Request = Service.Request
   public typealias Result = Service.Result
@@ -27,18 +26,20 @@ public class BaseSearcher<Service: SearchService>: Searcher, SequencerDelegate, 
     }
   }
   
+  /// Service performing searches
   public let service: Service
 
   public let isLoading: Observer<Bool>
 
   public let onSearch: Observer<Void>
   
+  /// Triggered when the search request changed
   public let onRequestChanged: Observer<Request>
 
   public let onResults: Observer<Service.Result>
 
   /// Triggered when an error occured during search query execution
-  /// - Parameter: a tuple of query and error
+  /// - Parameter: occured error
   public let onError: Observer<Error>
 
   /// Closure defining the condition under which the search operation should be triggered
@@ -105,11 +106,15 @@ public class BaseSearcher<Service: SearchService>: Searcher, SequencerDelegate, 
 
 }
 
-public extension BaseSearcher {
+public extension AbstractSearcher {
   
+  /// Search error composition encapsulating the error returned by the search service and the request for which this error occured
   struct RequestError: Error {
     
+    /// Request for which an error occured
     public let request: Request
+    
+    /// Error returned by the search service
     public let underlyingError: Error
     
     public init(request: Request, error: Error) {

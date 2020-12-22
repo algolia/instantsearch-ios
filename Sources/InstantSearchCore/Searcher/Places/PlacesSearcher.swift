@@ -9,7 +9,7 @@
 import Foundation
 import AlgoliaSearchClient
 
-final public class PlacesSearcher: BaseSearcher<AlgoliaPlacesSearchService> {
+final public class PlacesSearcher: AbstractSearcher<AlgoliaPlacesSearchService> {
   
   public var placesQuery: PlacesQuery {
     get {
