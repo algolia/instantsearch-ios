@@ -8,16 +8,15 @@
 
 import Foundation
 import AlgoliaSearchClient
+
 /// Protocol describing an entity capable to perform search requests
 public protocol Searcher: class {
 
   /// Current query string
-  @available(*, deprecated, message: "")
   var query: String? { get set }
 
   /// Triggered when query text changed
   /// - Parameter: a new query text value
-  @available(*, deprecated, message: "")
   var onQueryChanged: Observer<String?> { get }
   
   /// Triggered when query execution started or stopped

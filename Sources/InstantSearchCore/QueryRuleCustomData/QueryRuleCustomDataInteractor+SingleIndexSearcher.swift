@@ -10,7 +10,7 @@ import Foundation
 extension QueryRuleCustomDataInteractor {
 
   /// Connection between a rule custom data logic and a single index searcher
-  @available(*, deprecated, message: "Use QueryRuleCustomDataInteractor.SearchResultConnection")
+  @available(*, deprecated, message: "Use QueryRuleCustomDataInteractor.SearcherConnection")
   public struct SingleIndexSearcherConnection: Connection {
 
     /// Logic applied to the custom model
