@@ -7,7 +7,9 @@
 //
 
 import Foundation
+#if !InstantSearchCocoaPods
 import InstantSearchInsights
+#endif
 
 public protocol InsightsTracker: class {
 
