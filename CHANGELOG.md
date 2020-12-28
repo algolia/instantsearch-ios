@@ -1,5 +1,13 @@
 # ChangeLog
 
+## [7.6.2](https://github.com/algolia/instantsearch-ios/compare/7.6.1...7.6.2) (2020-12-28)
+
+### Fix
+
+- remove legacy Insights dependency from the podspec (#155) ([0b127ed](https://github.com/algolia/instantsearch-ios/commit/0b127ed))
+
+
+
 ## [7.6.1](https://github.com/algolia/instantsearch-ios/compare/7.6.0...7.6.1) (2020-12-21)
 
 ### Fix
