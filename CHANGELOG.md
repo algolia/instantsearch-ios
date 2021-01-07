@@ -1,5 +1,13 @@
 # ChangeLog
 
+## [7.7.0](https://github.com/algolia/instantsearch-ios/compare/7.6.2...7.7.0) (2021-01-07)
+
+### Feat
+
+- Manual setting of disjunctive facets (#150) ([99d6a9d](https://github.com/algolia/instantsearch-ios/commit/99d6a9d))
+
+
+
 ## [7.6.2](https://github.com/algolia/instantsearch-ios/compare/7.6.1...7.6.2) (2020-12-28)
 
 ### Fix
