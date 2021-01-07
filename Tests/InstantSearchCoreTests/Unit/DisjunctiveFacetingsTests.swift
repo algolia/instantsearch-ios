@@ -13,27 +13,11 @@ import AlgoliaSearchClient
 
 class DisjunctiveFacetingTests: XCTestCase {
 
-  class TestDelegate: DisjunctiveFacetingDelegate {
-
-    let disjunctiveFacetsAttributes: Set<Attribute>
-    let filterGroups: [FilterGroupType]
-
-    init(disjunctiveFacetsAttributes: Set<Attribute>, filterGroups: [FilterGroupType]) {
-      self.disjunctiveFacetsAttributes = disjunctiveFacetsAttributes
-      self.filterGroups = filterGroups
-    }
-
-    func toFilterGroups() -> [FilterGroupType] {
-      return filterGroups
-    }
-
-  }
-
   func testMergeResults() {
 
     let query = Query()
 
-    let queryBuilder = QueryBuilder(query: query, filterGroups: [
+    let queryBuilder = QueryBuilder(query: query, disjunctiveFacets: [], filterGroups: [
       FilterGroup.Or(filters: [Filter.Facet(attribute: "price", floatValue: 100)], name: "price"),
       FilterGroup.Or(filters: [Filter.Facet(attribute: "pubYear", floatValue: 2000)], name: "pubYear")
     ])
@@ -65,7 +49,7 @@ class DisjunctiveFacetingTests: XCTestCase {
 
     let filterGroups: [FilterGroupType] = [colorGroup, sizeGroup]
 
-    let queryBuilder = QueryBuilder(query: query, filterGroups: filterGroups)
+    let queryBuilder = QueryBuilder(query: query, disjunctiveFacets: [], filterGroups: filterGroups)
 
     let queries = queryBuilder.build()
 
@@ -114,7 +98,11 @@ class DisjunctiveFacetingTests: XCTestCase {
       .init(attribute: "category.lvl2", stringValue: "a > b > c")
     ]
 
-    let queryBuilder = QueryBuilder(query: query, filterGroups: filterGroups, hierarchicalAttributes: hierarchicalAttributes, hierachicalFilters: hierarchicalFilters)
+    let queryBuilder = QueryBuilder(query: query,
+                                    disjunctiveFacets: [],
+                                    filterGroups: filterGroups,
+                                    hierarchicalAttributes: hierarchicalAttributes,
+                                    hierachicalFilters: hierarchicalFilters)
 
     let queries = queryBuilder.build()
 

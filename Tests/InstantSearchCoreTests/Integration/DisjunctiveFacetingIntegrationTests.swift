@@ -59,7 +59,7 @@ class DisjunctiveFacetingIntegrationTests: OnlineTestCase {
     let query = Query().set(\.facets, to: Set(disjunctiveAttributes))
     let colorFilter = Filter.Facet(attribute: "color", stringValue: "blue")
     let disjunctiveGroup = FilterGroup.Or(filters: [colorFilter], name: "colors")
-    let queryBuilder = QueryBuilder(query: query, filterGroups: [disjunctiveGroup])
+    let queryBuilder = QueryBuilder(query: query, disjunctiveFacets: [], filterGroups: [disjunctiveGroup])
 
     let queries = queryBuilder.build().map { IndexedQuery(indexName: index.name, query: $0) }
 
@@ -111,7 +111,7 @@ class DisjunctiveFacetingIntegrationTests: OnlineTestCase {
     let disjunctiveGroup = FilterGroup.Or(filters: [colorFilter], name: "colors")
     let promotionsFilter = Filter.Facet(attribute: "promotions", stringValue: "coupon")
     let conjunctiveGroup = FilterGroup.And(filters: [promotionsFilter], name: "promotions")
-    let queryBuilder = QueryBuilder(query: query, filterGroups: [disjunctiveGroup, conjunctiveGroup])
+    let queryBuilder = QueryBuilder(query: query, disjunctiveFacets: [], filterGroups: [disjunctiveGroup, conjunctiveGroup])
 
     let queries = queryBuilder.build().map { IndexedQuery(indexName: index.name, query: $0) }
 
