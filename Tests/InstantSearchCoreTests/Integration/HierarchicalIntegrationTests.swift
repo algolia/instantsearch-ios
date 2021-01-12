@@ -76,9 +76,10 @@ class HierarchicalTests: OnlineTestCase {
     let query = Query("").set(\.facets, to: Set(hierarchicalAttributes))
 
     let queryBuilder = QueryBuilder(query: query,
-                                           filterGroups: filterGroups,
-                                           hierarchicalAttributes: hierarchicalAttributes,
-                                           hierachicalFilters: hierarchicalFilters)
+                                    disjunctiveFacets: [],
+                                    filterGroups: filterGroups,
+                                    hierarchicalAttributes: hierarchicalAttributes,
+                                    hierachicalFilters: hierarchicalFilters)
     let queries = queryBuilder.build().map { IndexedQuery(indexName: self.index.name, query: $0) }
 
     XCTAssertEqual(queryBuilder.hierarchicalFacetingQueriesCount, 3)
@@ -111,9 +112,10 @@ class HierarchicalTests: OnlineTestCase {
     let query = Query("").set(\.facets, to: Set(hierarchicalAttributes))
 
     let queryBuilder = QueryBuilder(query: query,
-                                           filterGroups: filterGroups,
-                                           hierarchicalAttributes: hierarchicalAttributes,
-                                           hierachicalFilters: hierarchicalFilters)
+                                    disjunctiveFacets: [],
+                                    filterGroups: filterGroups,
+                                    hierarchicalAttributes: hierarchicalAttributes,
+                                    hierachicalFilters: hierarchicalFilters)
     let queries = queryBuilder.build().map { IndexedQuery(indexName: self.index.name, query: $0) }
 
     XCTAssertEqual(queryBuilder.hierarchicalFacetingQueriesCount, 0)
@@ -167,9 +169,10 @@ class HierarchicalTests: OnlineTestCase {
     let query = Query("").set(\.facets, to: Set(hierarchicalAttributes))
 
     let queryBuilder = QueryBuilder(query: query,
-                                           filterGroups: filterGroups,
-                                           hierarchicalAttributes: hierarchicalAttributes,
-                                           hierachicalFilters: hierarchicalFilters)
+                                    disjunctiveFacets: [],
+                                    filterGroups: filterGroups,
+                                    hierarchicalAttributes: hierarchicalAttributes,
+                                    hierachicalFilters: hierarchicalFilters)
     let queries = queryBuilder.build().map { IndexedQuery(indexName: self.index.name, query: $0) }
 
     XCTAssertEqual(queryBuilder.hierarchicalFacetingQueriesCount, 3)

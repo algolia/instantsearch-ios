@@ -1,5 +1,29 @@
 # ChangeLog
 
+## [7.7.0](https://github.com/algolia/instantsearch-ios/compare/7.6.2...7.7.0) (2021-01-07)
+
+### Feat
+
+- Manual setting of disjunctive facets (#150) ([99d6a9d](https://github.com/algolia/instantsearch-ios/commit/99d6a9d))
+
+
+
+## [7.6.2](https://github.com/algolia/instantsearch-ios/compare/7.6.1...7.6.2) (2020-12-28)
+
+### Fix
+
+- remove legacy Insights dependency from the podspec (#155) ([0b127ed](https://github.com/algolia/instantsearch-ios/commit/0b127ed))
+
+
+
+## [7.6.1](https://github.com/algolia/instantsearch-ios/compare/7.6.0...7.6.1) (2020-12-21)
+
+### Fix
+
+- broken geolocated conformance (#152) ([d2823eb](https://github.com/algolia/instantsearch-ios/commit/d2823eb))
+
+
+
 ## [7.6.0](https://github.com/algolia/instantsearch-ios/compare/7.5.0...7.6.0) (2020-11-16)
 
 ### Feat

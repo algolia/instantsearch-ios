@@ -1,6 +1,6 @@
 Pod::Spec.new do |s|
   s.name = 'InstantSearch'
-  s.version = '7.6.0'
+  s.version = '7.7.0'
   s.platforms = { :ios => "9.0", :osx => "10.10", :watchos => "3.0", :tvos => "9.0" }
 
   s.license = { type: 'Apache 2.0', file: 'LICENSE.md' }
@@ -15,8 +15,7 @@ Pod::Spec.new do |s|
   
   s.subspec "Insights" do |ss|
       ss.source_files = 'Sources/InstantSearchInsights/**/*.{swift}'
-      ss.dependency 'AlgoliaSearchClient', '~> 8.2'
-      ss.dependency 'InstantSearchInsights', '~> 2.3'
+      ss.dependency 'AlgoliaSearchClient', '~> 8.4'
       ss.ios.deployment_target = '9.0'
       ss.osx.deployment_target = '10.10'
       ss.watchos.deployment_target = '3.0'
@@ -25,7 +24,7 @@ Pod::Spec.new do |s|
   
   s.subspec "Core" do |ss|
       ss.source_files = 'Sources/InstantSearchCore/**/*.{swift}'
-      ss.dependency 'AlgoliaSearchClient', '~> 8.2'
+      ss.dependency 'AlgoliaSearchClient', '~> 8.4'
       ss.dependency 'InstantSearch/Insights'
       ss.ios.deployment_target = '9.0'
       ss.osx.deployment_target = '10.10'

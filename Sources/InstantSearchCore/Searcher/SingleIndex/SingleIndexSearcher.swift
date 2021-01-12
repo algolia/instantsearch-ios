@@ -78,6 +78,11 @@ final public class SingleIndexSearcher: IndexSearcher<AlgoliaSearchService> {
     }
   }
 
+  /// Manually set attributes for disjunctive faceting
+  ///
+  /// These attributes are merged with disjunctiveFacetsAttributes provided by DisjunctiveFacetingDelegate to create the necessary queries for disjunctive faceting
+  public var disjunctiveFacetsAttributes: Set<Attribute>
+
   /// Flag defining if disjunctive faceting is enabled
   /// - Default value: true
   public var isDisjunctiveFacetingEnabled: Bool {
@@ -125,11 +130,13 @@ final public class SingleIndexSearcher: IndexSearcher<AlgoliaSearchService> {
       - query: Instance of Query. By default a new empty instant of Query will be created.
       - requestOptions: Custom request options. Default is nil.
   */
-  public convenience init(client: SearchClient,
-                          indexName: IndexName,
-                          query: Query = .init(),
-                          requestOptions: RequestOptions? = nil) {
-    self.init(service: AlgoliaSearchService(client: client), initialRequest: .init(indexName: indexName, query: query))
+  public init(client: SearchClient,
+              indexName: IndexName,
+              query: Query = .init(),
+              requestOptions: RequestOptions? = nil) {
+    self.disjunctiveFacetsAttributes = []
+    let request = AlgoliaSearchService.Request(indexName: indexName, query: query, requestOptions: requestOptions)
+    super.init(service: AlgoliaSearchService(client: client), initialRequest: request)
     self.requestOptions = requestOptions
   }
 
