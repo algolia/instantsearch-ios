@@ -8,7 +8,7 @@
 import Foundation
 
 public protocol AlgoliaRequest {
-  
+
   var requestOptions: RequestOptions? { get set }
-  
+
 }

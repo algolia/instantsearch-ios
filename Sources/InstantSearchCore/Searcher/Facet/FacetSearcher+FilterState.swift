@@ -17,13 +17,13 @@ public extension FacetSearcher {
 
     /// 
     public let facetSearcher: FacetSearcher
-    
+
     /// Connected FilterState
     public let filterState: FilterState
-    
+
     /// Whether search for facet must be launched on FilterState change
     public let triggerSearchOnFilterStateChange: Bool
-    
+
     public init(facetSearcher: FacetSearcher, filterState: FilterState, triggerSearchOnFilterStateChange: Bool) {
       self.facetSearcher = facetSearcher
       self.filterState = filterState

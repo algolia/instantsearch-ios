@@ -11,7 +11,7 @@ import Foundation
 ///
 /// [Documentation](https://www.algolia.com/doc/guides/algolia-ai/answers/)
 public final class AnswersSearcher: IndexSearcher<AlgoliaAnswersSearchService> {
-  
+
   /**
    - Parameters:
       - applicationID: Application ID
@@ -32,6 +32,5 @@ public final class AnswersSearcher: IndexSearcher<AlgoliaAnswersSearchService> {
                           requestOptions: requestOptions)
     self.init(service: service, initialRequest: request)
   }
-  
-}
 
+}

@@ -11,46 +11,45 @@ import AlgoliaSearchClient
 
 /// An entity performing search for facet values
 final public class FacetSearcher: IndexSearcher<FacetSearchService> {
-  
+
   public var client: SearchClient {
     return service.client
   }
-  
+
   /// Current tuple of index and query
   public var indexQueryState: IndexQueryState {
     get {
       return .init(indexName: request.indexName, query: request.context)
     }
-    
+
     set {
       request.indexName = newValue.indexName
       request.context = newValue.query
     }
   }
-  
+
   /// Name of facet attribute for which the values will be searched
   public var facetName: String {
     get {
       request.attribute.rawValue
     }
-    
+
     set {
       request.attribute = Attribute(rawValue: newValue)
     }
   }
-  
+
   /// Custom request options
   public var requestOptions: RequestOptions? {
     get {
       request.requestOptions
     }
-    
+
     set {
       request.requestOptions = newValue
     }
   }
 
-  
   /**
    - Parameters:
    - appID: Application ID
@@ -70,7 +69,7 @@ final public class FacetSearcher: IndexSearcher<FacetSearchService> {
     let request = Request(query: "", indexName: indexName, attribute: facetName, context: query, requestOptions: requestOptions)
     self.init(service: service, initialRequest: request)
   }
-  
+
   public convenience init(client: SearchClient,
                           indexName: IndexName,
                           facetName: Attribute,
@@ -80,5 +79,5 @@ final public class FacetSearcher: IndexSearcher<FacetSearchService> {
     let request = Request(query: "", indexName: indexName, attribute: facetName, context: query, requestOptions: requestOptions)
     self.init(service: service, initialRequest: request)
   }
-  
+
 }

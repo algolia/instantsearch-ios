@@ -25,14 +25,14 @@ public class SortByConnector {
 
   /// Connections between interactor and controllers
   public var controllerConnections: [Connection]
-  
+
   /// List of selectable indices names
   public var indicesNames: [IndexName] {
-    
+
     get {
       return interactor.items.sorted { a, b in a.key < b.key }.map(\.value).map(\.name)
     }
-    
+
     set {
       let enumeratedIndices = newValue
         .map(searcher.client.index(withName:))
@@ -40,22 +40,22 @@ public class SortByConnector {
         .map { $0 }
       interactor.items = [Int: Index](uniqueKeysWithValues: enumeratedIndices)
     }
-    
+
   }
-  
+
   /// Name of currently selected index
   public var selectedIndexName: IndexName? {
-    
+
     get {
       return interactor.selected.flatMap { interactor.items[$0]?.name }
     }
-    
+
     set {
       interactor.items
         .first(where: { $0.value.name == newValue })
         .flatMap { interactor.selected = $0.key }
     }
-    
+
   }
 
   /**

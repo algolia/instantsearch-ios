@@ -19,7 +19,7 @@ public extension HitsInteractor {
       if let pageLoader = searcher as? PageLoadable {
         interactor.pageLoader = pageLoader
       }
-      
+
       searcher.onError.subscribe(with: interactor) { interactor, error in
         if let requestError = error as? AbstractSearcher<Service>.RequestError {
           interactor.process(requestError.underlyingError, for: Query())
@@ -29,7 +29,7 @@ public extension HitsInteractor {
       searcher.onResults.subscribePast(with: interactor) { interactor, searchResults in
         interactor.update(searchResults)
       }
-      
+
       searcher.onRequestChanged.subscribePast(with: interactor) { interactor, _ in
         interactor.notifyQueryChanged()
       }
@@ -58,4 +58,3 @@ public extension HitsInteractor {
   }
 
 }
-

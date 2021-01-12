@@ -17,7 +17,7 @@ extension QueryRuleCustomDataInteractor {
 
     /// Searcher that handles your searches
     public let searcher: Searcher
-    
+
     /**
      - Parameters:
        - interactor: Interactor to connect

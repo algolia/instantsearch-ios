@@ -8,7 +8,7 @@
 import Foundation
 
 public class AlgoliaMultiIndexSearchService: SearchService {
-  
+
   let client: SearchClient
 
   init(client: SearchClient) {
@@ -18,18 +18,18 @@ public class AlgoliaMultiIndexSearchService: SearchService {
   public func search(_ request: Request, completion: @escaping (Result<SearchesResponse, Error>) -> Void) -> Operation {
     return client.multipleQueries(queries: request.indexedQueries, requestOptions: request.requestOptions, completion: completion)
   }
-  
+
 }
 
 extension AlgoliaMultiIndexSearchService {
-  
+
   public struct Request: TextualQueryProvider, AlgoliaRequest {
-    
+
     public var textualQuery: String? {
       get {
         return indexedQueries.first?.query.query
       }
-      
+
       set {
         let oldValue = indexedQueries.first?.query.query
         guard oldValue != newValue else { return }
@@ -39,7 +39,7 @@ extension AlgoliaMultiIndexSearchService {
         }
       }
     }
-    
+
     public var indexedQueries: [IndexedQuery]
     public var requestOptions: RequestOptions?
 
@@ -47,7 +47,7 @@ extension AlgoliaMultiIndexSearchService {
       self.indexedQueries = indexedQueries
       self.requestOptions = requestOptions
     }
-    
+
   }
-  
+
 }

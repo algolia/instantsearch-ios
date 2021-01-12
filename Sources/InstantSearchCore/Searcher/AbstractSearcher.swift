@@ -9,30 +9,30 @@ import Foundation
 
 /// Abstract search business logic
 public class AbstractSearcher<Service: SearchService>: Searcher, SequencerDelegate, SearchResultObservable, ErrorObservable where Service.Process == Operation {
-  
+
   public typealias Request = Service.Request
   public typealias Result = Service.Result
-  
+
   public var query: String? {
     get { return nil }
     set { }
   }
-  
+
   public let onQueryChanged: Observer<String?>
-      
+
   public var request: Request {
     didSet {
       onRequestChanged.fire(request)
     }
   }
-  
+
   /// Service performing searches
   public let service: Service
 
   public let isLoading: Observer<Bool>
 
   public let onSearch: Observer<Void>
-  
+
   /// Triggered when the search request changed
   public let onRequestChanged: Observer<Request>
 
@@ -84,7 +84,7 @@ public class AbstractSearcher<Service: SearchService>: Searcher, SequencerDelega
     }
 
     onSearch.fire(())
-    
+
     let operation = service.search(request) { [weak self, request] result in
       guard let searcher = self else { return }
       let result = result.mapError { RequestError(request: request, error: $0) }
@@ -95,33 +95,32 @@ public class AbstractSearcher<Service: SearchService>: Searcher, SequencerDelega
         searcher.onResults.fire(searchResult)
       }
     }
-    
+
     sequencer.orderOperation(operationLauncher: { return operation })
   }
 
   public func cancel() {
     sequencer.cancelPendingOperations()
   }
-  
 
 }
 
 public extension AbstractSearcher {
-  
+
   /// Search error composition encapsulating the error returned by the search service and the request for which this error occured
   struct RequestError: Error {
-    
+
     /// Request for which an error occured
     public let request: Request
-    
+
     /// Error returned by the search service
     public let underlyingError: Error
-    
+
     public init(request: Request, error: Error) {
       self.request = request
       self.underlyingError = error
     }
-    
+
   }
-  
+
 }

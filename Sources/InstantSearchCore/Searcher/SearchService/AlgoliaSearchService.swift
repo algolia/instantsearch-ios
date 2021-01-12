@@ -8,29 +8,29 @@
 import Foundation
 
 public class AlgoliaSearchService: SearchService {
-  
+
   public let client: SearchClient
-  
+
   /// Flag defining if disjunctive faceting is enabled
   /// - Default value: true
   public var isDisjunctiveFacetingEnabled = true
-  
+
   /// Flag defining if the selected query facet must be kept even if it does not match current results anymore
   /// - Default value: true
   public var keepSelectedEmptyFacets: Bool = true
-  
+
   /// Delegate providing a necessary information for disjuncitve faceting
   public weak var disjunctiveFacetingDelegate: DisjunctiveFacetingDelegate?
 
   /// Delegate providing a necessary information for hierarchical faceting
   public weak var hierarchicalFacetingDelegate: HierarchicalFacetingDelegate?
-        
+
   public init(client: SearchClient) {
     self.client = client
   }
-  
+
   public func search(_ request: Request, completion: @escaping (Result<SearchResponse, Error>) -> Void) -> Operation {
-    
+
     let queries: [IndexedQuery]
     let transform: (SearchesResponse) -> SearchResponse
     if isDisjunctiveFacetingEnabled {
@@ -48,18 +48,17 @@ public class AlgoliaSearchService: SearchService {
       queries = [IndexedQuery(indexName: request.indexName, query: request.query)]
       transform = { $0.results.first! }
     }
-    
+
     return client.multipleQueries(queries: queries, requestOptions: request.requestOptions) { completion($0.map(transform)) }
 
   }
-  
+
 }
 
-
 extension AlgoliaSearchService {
-  
-  public struct Request: IndexNameProvider, TextualQueryProvider, AlgoliaRequest{
-    
+
+  public struct Request: IndexNameProvider, TextualQueryProvider, AlgoliaRequest {
+
     public var indexName: IndexName
     public var query: Query
     public var requestOptions: RequestOptions?
@@ -72,7 +71,7 @@ extension AlgoliaSearchService {
         query.query = newValue
       }
     }
-    
+
     public init(indexName: IndexName, query: Query, requestOptions: RequestOptions? = nil) {
       self.indexName = indexName
       self.query = query
@@ -80,5 +79,5 @@ extension AlgoliaSearchService {
     }
 
   }
-  
+
 }

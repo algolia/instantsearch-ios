@@ -9,7 +9,7 @@ import Foundation
 import AlgoliaSearchClient
 
 public protocol FacetStatsProvider {
-  var facetStats: [Attribute:FacetStats]? { get }
+  var facetStats: [Attribute: FacetStats]? { get }
 }
 
 extension SearchResponse: FacetStatsProvider {}

@@ -14,14 +14,14 @@ public enum SearchTriggeringMode {
 }
 
 public extension QueryInputInteractor {
-  
+
   @available(*, deprecated, message: "Use QueryInputInteractor.TextualQuerySearcherConnection")
   struct SearcherConnection<S: Searcher>: Connection {
-    
+
     public let interactor: QueryInputInteractor
     public let searcher: S
     public let searchTriggeringMode: SearchTriggeringMode
-    
+
     public init(interactor: QueryInputInteractor,
                 searcher: S,
                 searchTriggeringMode: SearchTriggeringMode = .searchAsYouType) {
@@ -29,18 +29,18 @@ public extension QueryInputInteractor {
       self.searcher = searcher
       self.searchTriggeringMode = searchTriggeringMode
     }
-    
+
     public func connect() {
-      
+
       interactor.query = searcher.query
-      
+
       switch searchTriggeringMode {
       case .searchAsYouType:
         interactor.onQueryChanged.subscribe(with: searcher) { searcher, query in
           searcher.query = query
           searcher.search()
         }
-        
+
       case .searchOnSubmit:
         interactor.onQuerySubmitted.subscribe(with: searcher) { searcher, query in
           searcher.query = query
@@ -48,27 +48,27 @@ public extension QueryInputInteractor {
         }
       }
     }
-    
+
     public func disconnect() {
-      
+
       interactor.query = nil
-      
+
       switch searchTriggeringMode {
       case .searchAsYouType:
         interactor.onQueryChanged.cancelSubscription(for: searcher)
-        
+
       case .searchOnSubmit:
         interactor.onQuerySubmitted.cancelSubscription(for: searcher)
       }
-      
+
     }
-    
+
   }
-  
+
 }
 
 public extension QueryInputInteractor {
-  
+
   @available(*, deprecated, message: "Use QueryInputInteractor.TextualQuerySearcherConnection")
   @discardableResult func connectSearcher<S: Searcher>(_ searcher: S,
                                                        searchTriggeringMode: SearchTriggeringMode = .searchAsYouType) -> SearcherConnection<S> {
@@ -76,5 +76,5 @@ public extension QueryInputInteractor {
     connection.connect()
     return connection
   }
-  
+
 }

@@ -8,9 +8,9 @@
 import Foundation
 
 public extension AbstractSearcher where Service.Request: TextualQueryProvider {
-  
+
   var query: String? {
-    
+
     get {
       request.textualQuery
     }
@@ -22,7 +22,7 @@ public extension AbstractSearcher where Service.Request: TextualQueryProvider {
         onQueryChanged.fire(newValue)
       }
     }
-    
+
   }
-  
+
 }

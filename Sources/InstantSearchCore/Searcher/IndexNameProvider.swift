@@ -8,7 +8,7 @@
 import Foundation
 
 public protocol IndexNameProvider {
-  
+
   var indexName: IndexName { get set }
-  
+
 }

@@ -13,7 +13,7 @@ public extension StatsInteractor {
 
     public let interactor: StatsInteractor
     public let searcher: Searcher
-    
+
     public init(interactor: StatsInteractor, searcher: Searcher) {
       self.interactor = interactor
       self.searcher = searcher

@@ -29,39 +29,39 @@ final public class SingleIndexSearcher: IndexSearcher<AlgoliaSearchService> {
     }
 
   }
-    
+
   public var client: SearchClient {
     return service.client
   }
-  
+
   /// Current index & query tuple
   public var indexQueryState: IndexQueryState {
     get {
       return IndexQueryState(indexName: request.indexName, query: request.query)
     }
-    
+
     set {
       self.request = .init(indexName: newValue.indexName, query: newValue.query)
     }
   }
-    
+
   /// Custom request options
   public var requestOptions: RequestOptions? {
     get {
       request.requestOptions
     }
-    
+
     set {
       request.requestOptions = newValue
     }
   }
-  
+
   /// Delegate providing a necessary information for disjuncitve faceting
   public weak var disjunctiveFacetingDelegate: DisjunctiveFacetingDelegate? {
     get {
       service.disjunctiveFacetingDelegate
     }
-    
+
     set {
       service.disjunctiveFacetingDelegate = newValue
     }
@@ -72,7 +72,7 @@ final public class SingleIndexSearcher: IndexSearcher<AlgoliaSearchService> {
     get {
       service.hierarchicalFacetingDelegate
     }
-    
+
     set {
       service.hierarchicalFacetingDelegate = newValue
     }
@@ -89,7 +89,7 @@ final public class SingleIndexSearcher: IndexSearcher<AlgoliaSearchService> {
     get {
       service.isDisjunctiveFacetingEnabled
     }
-    
+
     set {
       service.isDisjunctiveFacetingEnabled = newValue
     }
@@ -101,12 +101,12 @@ final public class SingleIndexSearcher: IndexSearcher<AlgoliaSearchService> {
     get {
       service.keepSelectedEmptyFacets
     }
-    
+
     set {
       service.keepSelectedEmptyFacets = newValue
     }
   }
-  
+
   /**
    - Parameters:
       - appID: Application ID

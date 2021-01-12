@@ -18,7 +18,7 @@ public protocol Searcher: class {
   /// Triggered when query text changed
   /// - Parameter: a new query text value
   var onQueryChanged: Observer<String?> { get }
-  
+
   /// Triggered when query execution started or stopped
   /// - Parameter: boolean value equal to true if query execution started, false otherwise
   var isLoading: Observer<Bool> { get }
@@ -47,10 +47,10 @@ public protocol SearchResultObservable {
 
 /// Protocol describing an entity capable to provide an error
 public protocol ErrorObservable {
-    
+
   /// Triggered when an error occured
   var onError: Observer<Error> { get }
-  
+
 }
 
 extension Searcher {

@@ -8,7 +8,7 @@
 import Foundation
 
 public protocol TextualQueryProvider {
-  
+
   var textualQuery: String? { get set }
-  
+
 }

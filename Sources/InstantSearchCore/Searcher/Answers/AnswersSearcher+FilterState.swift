@@ -17,7 +17,7 @@ public extension AnswersSearcher {
 
     public let searcher: AnswersSearcher
     public let filterState: FilterState
-    
+
     public init(answersSearcher: AnswersSearcher, filterState: FilterState) {
       self.searcher = answersSearcher
       self.filterState = filterState
@@ -33,7 +33,7 @@ public extension AnswersSearcher {
     public func disconnect() {
       filterState.onChange.cancelSubscription(for: searcher)
     }
-    
+
   }
 
 }

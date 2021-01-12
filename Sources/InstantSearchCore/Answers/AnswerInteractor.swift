@@ -8,11 +8,11 @@
 import Foundation
 
 public class AnswerInteractor: ItemInteractor<Answer?> {
-  
+
   public override init(item: Answer? = nil) {
     super.init(item: item)
   }
-  
+
 }
 
 extension AnswerInteractor {
@@ -37,7 +37,7 @@ extension AnswerInteractor {
     }
 
     public func connect() {
-      searchResultObservable.onResults.subscribe(with: interactor) { (interactor, searchResponse) in
+      searchResultObservable.onResults.subscribe(with: interactor) { (_, _) in
       }
     }
 

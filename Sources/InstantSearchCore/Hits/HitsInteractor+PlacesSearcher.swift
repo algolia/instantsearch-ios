@@ -24,7 +24,7 @@ public extension HitsInteractor where Record == Hit<Place> {
       }
 
       searcher.onError.subscribe(with: interactor) { _, _ in
-        //TODO: when pagination added, notify pending query in infinite scrolling controller
+        // TODO: when pagination added, notify pending query in infinite scrolling controller
       }
 
       searcher.onQueryChanged.subscribe(with: interactor) { (interactor, _) in
