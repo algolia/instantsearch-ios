@@ -43,6 +43,7 @@ public class AlgoliaSearchService: SearchService {
                                         hierachicalFilters: hierarchicalFilters)
       queriesBuilder.keepSelectedEmptyFacets = keepSelectedEmptyFacets
       queries = queriesBuilder.build().map { IndexedQuery(indexName: request.indexName, query: $0) }
+      // swiftlint:disable:next force_try
       transform = { try! queriesBuilder.aggregate($0.results) }
     } else {
       queries = [IndexedQuery(indexName: request.indexName, query: request.query)]

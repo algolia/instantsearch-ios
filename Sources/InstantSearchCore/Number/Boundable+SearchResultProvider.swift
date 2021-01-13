@@ -4,6 +4,7 @@
 //
 //  Created by Vladislav Fitc on 15/12/2020.
 //
+// swiftlint:disable generic_type_name
 
 import Foundation
 import AlgoliaSearchClient

@@ -30,7 +30,7 @@ public class SortByConnector {
   public var indicesNames: [IndexName] {
 
     get {
-      return interactor.items.sorted { a, b in a.key < b.key }.map(\.value).map(\.name)
+      return interactor.items.sorted { item1, item2 in item1.key < item2.key }.map(\.value).map(\.name)
     }
 
     set {

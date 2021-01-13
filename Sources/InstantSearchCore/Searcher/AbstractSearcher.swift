@@ -15,6 +15,7 @@ public class AbstractSearcher<Service: SearchService>: Searcher, SequencerDelega
 
   public var query: String? {
     get { return nil }
+    // swiftlint:disable:next unused_setter_value
     set { }
   }
 

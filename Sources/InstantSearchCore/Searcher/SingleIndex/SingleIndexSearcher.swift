@@ -5,7 +5,6 @@
 //  Created by Vladislav Fitc on 02/04/2019.
 //  Copyright © 2019 Algolia. All rights reserved.
 //
-// swiftlint:disable function_body_length
 
 import Foundation
 import AlgoliaSearchClient
