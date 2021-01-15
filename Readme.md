@@ -13,6 +13,13 @@ InstantSearch family: **InstantSearch iOS** | [InstantSearch Android][instantsea
 
 **InstantSearch iOS** is a framework providing components and helpers to help you build the best instant-search experience on iOS with Algolia. It is built on top of Algolia's [Swift API Client](https://github.com/algolia/algoliasearch-client-swift) library to provide you a high-level solution to quickly build various search interfaces.
 
+## Structure
+
+**InstantSearch iOS** consists of three products
+- *InstantSearch Insights* – library that allows developers to capture search-related events
+- *InstantSearch Core* – the business logic modules of InstantSearch without provided UIKit controllers
+- *InstantSearch* – the complete InstantSearch toolset including UIKit components
+
 ## Demo
 
 You can see InstantSearch iOS in action in our [Examples repository][examples-url], in which we published search experiences built with InstantSearch and written in Swift:
@@ -31,15 +38,15 @@ The Swift Package Manager is a tool for managing the distribution of Swift code.
 Since the release of Swift 5 and Xcode 11, SPM is compatible with the iOS, macOS and tvOS build systems for creating apps. 
 
 To use SwiftPM, you should use Xcode 11 to open your project. Click `File` -> `Swift Packages` -> `Add Package Dependency`, enter [InstantSearch repo's URL](https://github.com/algolia/instantsearch-ios).
-If you consider to use only the business logic modules of InstantSearch and don't need the set of provided UIKit controllers in your project, select only 'InstantSearchCore' in the provided list of products.
+Next, select the products you consider to use in your project from the provided list.
 
 If you're a framework author and use InstantSearch as a dependency, update your `Package.swift` file:
 
 ```swift
 let package = Package(
-    // 7.6.0 ..< 8.0.0
+    // 7.7.0 ..< 8.0.0
     dependencies: [
-        .package(url: "https://github.com/algolia/instantsearch-ios", from: "7.6.0")
+        .package(url: "https://github.com/algolia/instantsearch-ios", from: "7.7.0")
     ],
     // ...
 )
@@ -52,7 +59,7 @@ let package = Package(
 To install InstantSearch, simply add the following line to your Podfile:
 
 ```ruby
-pod 'InstantSearch', '~> 7.6'
+pod 'InstantSearch', '~> 7.7'
 # pod 'InstantSearch/Insights' for access to Insights library only
 # pod 'InstantSearch/Core' for access business logic without UIKit components
 ```
@@ -69,7 +76,7 @@ $ pod update
 
 - To install InstantSearch, simply add the following line to your Cartfile:
 ```ruby
-github "algolia/instantsearch-ios" ~> 7.6
+github "algolia/instantsearch-ios" ~> 7.7
 ```
 
 - Launch the following commands from the project directory
@@ -79,7 +86,7 @@ github "algolia/instantsearch-ios" ~> 7.6
  carthage build
  ```
 
- > NOTE: At this time, Carthage does not provide a way to build only specific repository subcomponents (or equivalent of CocoaPods's subspecs). All components and their dependencies will be built with the above command. However, you don't need to copy frameworks you aren't using into your project. For instance, if you aren't using UI components from `InstantSearch`, feel free to delete that framework from the Carthage Build directory after `carthage update` completes keeping only `InstantSearchCore`.
+ > NOTE: At this time, Carthage does not provide a way to build only specific repository subcomponents (or equivalent of CocoaPods's subspecs). All components and their dependencies will be built with the above command. However, you don't need to copy frameworks you aren't using into your project. For instance, if you aren't using UI components from `InstantSearch`, feel free to delete that framework from the Carthage Build directory after `carthage update` completes keeping only `InstantSearchCore`. If you only need event-tracking functionalities, delete all but `InstantSearchInsights` framework.
  
  If this is your first time using Carthage in the project, you'll need to go through some additional steps as explained [over at Carthage](https://github.com/Carthage/Carthage#adding-frameworks-to-an-application).
  
