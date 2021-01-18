@@ -17,14 +17,17 @@ lane :test do
   sh("cd ..; swift test")
 end
 
-desc "Lint library"
-lane :lint do
+desc "Lint Swift"
+lane :swift_lint do
   swiftlint(
     mode: :lint,
     raise_if_swiftlint_error: true,
     strict: true
-  ) 
+  )
+end
 
+desc "Lint Cocoapods"
+lane :cocoapods_lint do
   pod_lib_lint(
     verbose: true,
     allow_warnings: true
