@@ -23,7 +23,7 @@ public final class AnswersSearcher: IndexSearcher<AlgoliaAnswersSearchService> {
   public convenience init(applicationID: ApplicationID,
                           apiKey: APIKey,
                           indexName: IndexName,
-                          query: AnswersQuery = .init(query: ""),
+                          query: AnswersQuery = .init(query: "", queryLanguages: [.english]),
                           requestOptions: RequestOptions? = nil) {
     let service = AlgoliaAnswersSearchService(client: .init(appID: applicationID,
                                                             apiKey: apiKey))
