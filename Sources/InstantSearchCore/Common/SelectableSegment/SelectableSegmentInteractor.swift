@@ -26,9 +26,9 @@ public class SelectableSegmentInteractor<SegmentKey: Hashable, Segment> {
   public let onSelectedChanged: Observer<SegmentKey?>
   public let onSelectedComputed: Observer<SegmentKey?>
 
-  public init(items: [SegmentKey: Segment]) {
+  public init(items: [SegmentKey: Segment], selected: SegmentKey? = .none) {
     self.items = items
-    self.selected = .none
+    self.selected = selected
     self.onItemsChanged = .init()
     self.onSelectedChanged = .init()
     self.onSelectedComputed = .init()

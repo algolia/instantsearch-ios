@@ -13,33 +13,6 @@ import XCTest
 
 class SelectableSegmentInteractorConnectorsTests: XCTestCase {
 
-  class TestController: SelectableSegmentController {
-
-    typealias SegmentKey = Int
-
-    var selected: Int?
-    var onClick: ((Int) -> Void)?
-    var items: [Int: String] = [:]
-
-    var onSelectedChanged: (() -> Void)?
-    var onItemsChanged: (() -> Void)?
-
-    func setSelected(_ selected: Int?) {
-      self.selected = selected
-      onSelectedChanged?()
-    }
-
-    func setItems(items: [Int: String]) {
-      self.items = items
-      onItemsChanged?()
-    }
-
-    func clickItem(withKey key: Int) {
-      onClick?(key)
-    }
-
-  }
-
   func testConnectSearcher() {
 
     let filterState = FilterState()
@@ -80,7 +53,7 @@ class SelectableSegmentInteractorConnectorsTests: XCTestCase {
   func testConnectController() {
 
     let interactor = SelectableSegmentInteractor<Int, Filter.Tag>(items: [0: "t1", 1: "t2", 2: "t3"])
-    let controller = TestController()
+    let controller = TestSelectableSegmentController()
 
     interactor.selected = 1
 

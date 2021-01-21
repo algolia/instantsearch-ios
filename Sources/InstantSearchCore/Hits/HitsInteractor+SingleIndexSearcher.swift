@@ -23,9 +23,10 @@ public extension HitsInteractor {
         interactor.update(searchResults)
       }
 
-      searcher.onError.subscribe(with: interactor) { interactor, arg in
-        let (query, error) = arg
-        interactor.process(error, for: query)
+      searcher.onError.subscribe(with: interactor) { interactor, error in
+        if let requestError = error as? SingleIndexSearcher.RequestError {
+          interactor.process(requestError.underlyingError, for: requestError.request.query)
+        }
       }
 
       searcher.onIndexChanged.subscribePast(with: interactor) { interactor, _ in

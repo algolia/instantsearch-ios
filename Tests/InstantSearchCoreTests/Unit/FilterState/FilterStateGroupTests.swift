@@ -24,6 +24,9 @@ class FilterStateGroupTests: XCTestCase {
     XCTAssertEqual(filterState.buildSQL(), """
         ( "category":"chair" OR "category":"table" )
         """)
+    
+    let fs = FilterState()
+    fs[or: "disjusnctiveGroup"].add(Filter.Facet(attribute: "brand", value: "samsung"))
   }
 
   func testAndGroupAddAll() {

@@ -13,7 +13,7 @@ import UIKit
 
 public class ActivityIndicatorController: LoadingController {
 
-  let activityIndicator: UIActivityIndicatorView
+  public let activityIndicator: UIActivityIndicatorView
 
   public init (activityIndicator: UIActivityIndicatorView) {
     self.activityIndicator = activityIndicator

@@ -43,7 +43,7 @@ public extension QueryRuleCustomDataConnector {
   convenience init(searcher: SingleIndexSearcher,
                    interactor: Interactor = .init()) {
     self.init(interactor: interactor) {
-      QueryRuleCustomDataInteractor<Model>.SingleIndexSearcherConnection(interactor: $0, searcher: searcher)
+      QueryRuleCustomDataInteractor<Model>.SearcherConnection(interactor: $0, searcher: searcher)
     }
   }
 

@@ -50,8 +50,8 @@ open class MultiIndexHitsCollectionViewDelegate: NSObject, UICollectionViewDeleg
     }
     do {
       try clickHandler(collectionView, indexPath.row)
-    } catch let error {
-      InstantSearchLogger.error(error)
+    } catch let underlyingError {
+      InstantSearchLogger.error(underlyingError)
     }
   }
 

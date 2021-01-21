@@ -8,19 +8,20 @@
 
 import Foundation
 import AlgoliaSearchClient
+
 /// Protocol describing an entity capable to perform search requests
 public protocol Searcher: class {
 
   /// Current query string
   var query: String? { get set }
 
-  /// Triggered when query execution started or stopped
-  /// - Parameter: boolean value equal to true if query execution started, false otherwise
-  var isLoading: Observer<Bool> { get }
-
   /// Triggered when query text changed
   /// - Parameter: a new query text value
   var onQueryChanged: Observer<String?> { get }
+
+  /// Triggered when query execution started or stopped
+  /// - Parameter: boolean value equal to true if query execution started, false otherwise
+  var isLoading: Observer<Bool> { get }
 
   /// Triggered when a search operation launched
   var onSearch: Observer<Void> { get }
@@ -41,6 +42,14 @@ public protocol SearchResultObservable {
 
   /// Triggered when a new search result received
   var onResults: Observer<SearchResult> { get }
+
+}
+
+/// Protocol describing an entity capable to provide an error
+public protocol ErrorObservable {
+
+  /// Triggered when an error occured
+  var onError: Observer<Error> { get }
 
 }
 

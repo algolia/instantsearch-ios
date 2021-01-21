@@ -27,7 +27,8 @@ public extension FacetListInteractor {
       // attribute as searchable in `attributesForFaceting`.
 
       searcher.onError.subscribe(with: interactor) { _, error in
-        if let error = error.1 as? HTTPError, error.statusCode == 400 {
+        guard let requestError = error as? FacetSearcher.RequestError else { return }
+        if let error = requestError.underlyingError as? HTTPError, error.statusCode == 400 {
           assertionFailure(error.message?.description ?? "")
         }
       }

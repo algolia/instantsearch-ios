@@ -66,8 +66,8 @@ open class MultiIndexHitsCollectionViewDataSource: NSObject, UICollectionViewDat
     }
     do {
       return try cellConfigurator(collectionView, indexPath.row)
-    } catch let error {
-      InstantSearchLogger.error(error)
+    } catch let underlyingError {
+      InstantSearchLogger.error(underlyingError)
       return .init()
     }
   }

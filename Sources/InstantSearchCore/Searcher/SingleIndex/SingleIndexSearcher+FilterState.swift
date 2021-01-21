@@ -27,8 +27,8 @@ public extension SingleIndexSearcher {
       singleIndexSearcher.hierarchicalFacetingDelegate = filterState
 
       filterState.onChange.subscribePast(with: singleIndexSearcher) { searcher, filterState in
-        searcher.indexQueryState.query.filters = FilterGroupConverter().sql(filterState.toFilterGroups())
-        searcher.indexQueryState.query.page = 0
+        searcher.request.query.filters = FilterGroupConverter().sql(filterState.toFilterGroups())
+        searcher.request.query.page = 0
         searcher.search()
       }
     }

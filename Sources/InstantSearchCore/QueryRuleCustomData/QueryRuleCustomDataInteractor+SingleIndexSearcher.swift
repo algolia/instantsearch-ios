@@ -10,6 +10,7 @@ import Foundation
 extension QueryRuleCustomDataInteractor {
 
   /// Connection between a rule custom data logic and a single index searcher
+  @available(*, deprecated, message: "Use QueryRuleCustomDataInteractor.SearcherConnection")
   public struct SingleIndexSearcherConnection: Connection {
 
     /// Logic applied to the custom model
@@ -49,8 +50,8 @@ public extension QueryRuleCustomDataInteractor {
    - Parameters:
      - searcher: Searcher to connect
   */
-  @discardableResult func connectSearcher(_ searcher: SingleIndexSearcher) -> SingleIndexSearcherConnection {
-    let connection = SingleIndexSearcherConnection(interactor: self, searcher: searcher)
+  @discardableResult func connectSearcher<S: Searcher>(_ searcher: S) -> Connection where S: SearchResultObservable, S.SearchResult == SearchResponse {
+    let connection = SearcherConnection(interactor: self, searcher: searcher)
     connection.connect()
     return connection
   }

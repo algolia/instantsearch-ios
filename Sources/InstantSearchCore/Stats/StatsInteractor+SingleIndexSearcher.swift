@@ -10,6 +10,7 @@ import Foundation
 
 public extension StatsInteractor {
 
+  @available(*, deprecated, message: "Use StatsInteractor.SearcherConnection")
   struct SingleIndexSearcherConnection: Connection {
 
     let interactor: StatsInteractor
@@ -35,8 +36,8 @@ public extension StatsInteractor {
 
 public extension StatsInteractor {
 
-  @discardableResult func connectSearcher(_ searcher: SingleIndexSearcher) -> SingleIndexSearcherConnection {
-    let connection = SingleIndexSearcherConnection(interactor: self, searcher: searcher)
+  @discardableResult func connectSearcher<Searcher: SearchResultObservable>(_ searcher: Searcher) -> SearcherConnection<Searcher> {
+    let connection = SearcherConnection(interactor: self, searcher: searcher)
     connection.connect()
     return connection
   }
