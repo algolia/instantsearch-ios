@@ -1,5 +1,13 @@
 # ChangeLog
 
+## [7.8.0](https://github.com/algolia/instantsearch-ios/compare/7.7.0...7.8.0) (2021-01-29)
+
+### Feat
+
+- AnswersSearcher & connections (#159) ([5daebc4](https://github.com/algolia/instantsearch-ios/commit/5daebc4))
+
+
+
 ## [7.7.0](https://github.com/algolia/instantsearch-ios/compare/7.6.2...7.7.0) (2021-01-07)
 
 ### Feat
