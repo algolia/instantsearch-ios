@@ -48,9 +48,7 @@ class InfiniteScrollingController: InfiniteScrollable {
     let previousPagesToLoad = computePreviousPagesToLoad(currentRow: currentRow, offset: offset, pageMap: pageMap)
 
     let nextPagesToLoad = computeNextPagesToLoad(currentRow: currentRow, offset: offset, pageMap: pageMap)
-
     let pagesToLoad = previousPagesToLoad.union(nextPagesToLoad)
-
     for pageIndex in pagesToLoad {
       pendingPageIndexes.insert(pageIndex)
       pageLoader.loadPage(atIndex: pageIndex)
@@ -79,6 +77,7 @@ class InfiniteScrollingController: InfiniteScrollable {
     let computedUpperBoundRow = currentRow + offset
 
     let upperBoundRow: Int
+    
 
     if let lastPageIndex = lastPageIndex {
       let lastPageSize = pageMap.page(atIndex: lastPageIndex)?.items.count ?? pageMap.pageSize
@@ -90,7 +89,7 @@ class InfiniteScrollingController: InfiniteScrollable {
     }
 
     let nextRow = currentRow + 1
-
+    
     guard nextRow <= upperBoundRow else {
       return []
     }

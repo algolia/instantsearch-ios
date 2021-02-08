@@ -42,6 +42,8 @@ public class HitsInteractor<Record: Codable>: AnyHitsInteractor {
     }
 
   }
+  
+  public var hitsSource: [Record] = []
 
   convenience public init(infiniteScrolling: InfiniteScrolling = Constants.Defaults.infiniteScrolling,
                           showItemsOnEmptyQuery: Bool = Constants.Defaults.showItemsOnEmptyQuery) {
@@ -82,7 +84,7 @@ public class HitsInteractor<Record: Codable>: AnyHitsInteractor {
 
   public func hit(atIndex index: Int) -> Record? {
     guard let hitsPageMap = paginator.pageMap else { return nil }
-    notifyForInfiniteScrolling(rowNumber: index)
+//    notifyForInfiniteScrolling(rowNumber: index)
     return hitsPageMap[index]
   }
 
@@ -110,6 +112,14 @@ public class HitsInteractor<Record: Codable>: AnyHitsInteractor {
     guard let pageMap = paginator.pageMap else { return [] }
     return pageMap.loadedPages.flatMap { $0.items }.compactMap(toRaw)
   }
+  
+  public func notifyForInfiniteScrolling(rowNumber: Int) {
+    guard
+      case .on(let pageLoadOffset) = settings.infiniteScrolling,
+      let hitsPageMap = paginator.pageMap else { return }
+
+    infiniteScrollingController.calculatePagesAndLoad(currentRow: rowNumber, offset: pageLoadOffset, pageMap: hitsPageMap)
+  }
 
 }
 
@@ -127,14 +137,6 @@ extension HitsInteractor {
 }
 
 private extension HitsInteractor {
-
-  func notifyForInfiniteScrolling(rowNumber: Int) {
-    guard
-      case .on(let pageLoadOffset) = settings.infiniteScrolling,
-      let hitsPageMap = paginator.pageMap else { return }
-
-    infiniteScrollingController.calculatePagesAndLoad(currentRow: rowNumber, offset: pageLoadOffset, pageMap: hitsPageMap)
-  }
 
   func toRaw(_ hit: Record) -> [String: Any]? {
     guard let json = try? JSON(hit) else { return nil }
@@ -197,6 +199,7 @@ extension HitsInteractor: ResultUpdatable {
         let page: HitsPage<Record> = try HitsPage(searchResults: searchResults)
         hitsInteractor.paginator.process(page)
         hitsInteractor.onResultsUpdated.fire(searchResults)
+        hitsInteractor.hitsSource = hitsInteractor.paginator.pageMap.flatMap { pm in Array(pm).compactMap({ a in a }) } ?? []
       } catch let error {
         InstantSearchCoreLogger.HitsDecoding.failure(hitsInteractor: hitsInteractor, error: error)
         hitsInteractor.onError.fire(error)
