@@ -7,109 +7,31 @@
 
 import Foundation
 
-public enum DynamicSortPriority {
-  case relevancy
-  case hitsCount
-}
-
-public class DynamicSortToggleInteractor: ItemInteractor<DynamicSortPriority> {
+/**
+ Component that stores the currently applied dynamic sort priority applied to the search in the dynamically sorted index (virtual replica) and provides the interface to toggle this value.
+ 
+ - Usage of the dynamically sorted index introduces the tradeoff between the number of results
+ and the relevancy of results. DynamicSortToggle components provide the convenient interface to switch between these options.
+ - .none value represents the undefined state, meaning that either the interactor has never been connected to a searcher, or the searched index is not the virtual replica.
+ */
+public class DynamicSortToggleInteractor: ItemInteractor<DynamicSortPriority?> {
   
-  public init() {
-    super.init(item: .relevancy)
+  public init(priority: DynamicSortPriority? = nil) {
+    super.init(item: priority)
+    self.onItemChanged.fire(priority)
   }
   
-}
-
-public protocol DynamicSortToggleController: ItemController {
-  
-  var didToggle: (() -> Void)? { get set }
-
-}
-
-public extension DynamicSortToggleInteractor {
-  
-  func toggle() {
+  /// Switch the dynamic sort priority to the opposite one
+  /// Skipped if the current value of sort priority is nil
+  public func toggle() {
     switch item {
-    case .hitsCount:
+    case .some(.hitsCount):
       item = .relevancy
-    case .relevancy:
+    case .some(.relevancy):
       item = .hitsCount
+    default:
+      break
     }
-  }
-  
-  func relevancyStrictness(for priority: DynamicSortPriority) -> Int {
-    switch priority {
-    case .hitsCount:
-      return 0
-    case .relevancy:
-      return 100
-    }
-  }
-  
-}
-
-extension DynamicSortToggleInteractor {
-  
-  public struct ControllerConnection<Controller: DynamicSortToggleController, Output>: Connection where Controller.Item == Output {
-    
-    public typealias Presenter = InstantSearchCore.Presenter<DynamicSortPriority, Output>
-
-    public let interactor: DynamicSortToggleInteractor
-    public let controller: Controller
-    public let presenter: Presenter
-    internal var superConnection: Connection
-
-    public init(interactor: DynamicSortToggleInteractor, controller: Controller, presenter: @escaping Presenter) {
-      self.interactor = interactor
-      self.controller = controller
-      self.presenter = presenter
-      superConnection = (interactor as ItemInteractor).connectController(controller, presenter: presenter)
-      controller.didToggle = interactor.toggle
-    }
-
-    public func connect() {
-      superConnection.connect()
-      controller.didToggle = interactor.toggle
-    }
-
-    public func disconnect() {
-      superConnection.disconnect()
-      controller.didToggle = nil
-    }
-
-  }
-  
-  @discardableResult public func connectController<Controller: DynamicSortToggleController, Output>(_ controller: Controller,
-                                                                                 
-                                                                                                    presenter: @escaping Presenter<DynamicSortPriority, Output>) -> DynamicSortToggleInteractor.ControllerConnection<Controller, Output> where Output == Controller.Item {
-    return ControllerConnection(interactor: self, controller: controller, presenter: presenter)
-  }
-  
-  
-}
-
-extension DynamicSortToggleInteractor {
-  
-  public struct SearchResponseProviderConnection<SearchResponseProvider: SearchResultObservable>: Connection where SearchResponseProvider.SearchResult == SearchResponse {
-    
-    public let interactor: DynamicSortToggleInteractor
-    public let provider: SearchResponseProvider
-    
-    public init(interactor: DynamicSortToggleInteractor, provider: SearchResponseProvider) {
-      self.interactor = interactor
-      self.provider = provider
-    }
-
-    public func connect() {
-      provider.onResults.subscribe(with: interactor) { (interactor, searchResponse) in
-//        searchResponse.app
-      }
-    }
-    
-    public func disconnect() {
-      
-    }
-    
   }
   
 }

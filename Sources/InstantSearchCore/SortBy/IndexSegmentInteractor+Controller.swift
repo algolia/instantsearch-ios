@@ -26,18 +26,21 @@ public extension IndexSegment {
 
     public func connect() {
       controller.setItems(items: interactor.items.mapValues(presenter))
+      controller.setSelected(interactor.selected)
       controller.onClick = interactor.computeSelected(selecting:)
       interactor.onSelectedChanged.subscribePast(with: controller) { controller, selectedItem in
         controller.setSelected(selectedItem)
       }.onQueue(.main)
       interactor.onItemsChanged.subscribePast(with: controller) { controller, newItems in
         controller.setItems(items: newItems.mapValues(self.presenter))
+        controller.setSelected(interactor.selected)
       }.onQueue(.main)
     }
 
     public func disconnect() {
       controller.setItems(items: [:])
       controller.onClick = nil
+      controller.setSelected(nil)
       interactor.onSelectedChanged.cancelSubscription(for: controller)
       interactor.onItemsChanged.cancelSubscription(for: controller)
     }

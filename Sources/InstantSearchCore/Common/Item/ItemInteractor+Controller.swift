@@ -17,8 +17,9 @@ public extension ItemInteractor {
     public let presenter: Presenter<Item, Output>
 
     public func connect() {
+      let presenter = self.presenter
       interactor.onItemChanged.subscribePast(with: controller) { controller, item in
-        controller.setItem(self.presenter(item))
+        controller.setItem(presenter(item))
       }.onQueue(.main)
     }
 
