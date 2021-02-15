@@ -10,6 +10,7 @@ import Foundation
 /// Controller presenting the dynamic sort priority applied to the search and a toggle control 
 public protocol DynamicSortToggleController: ItemController {
 
+  /// Closure triggered by the controller when toggle interaction occured (for example, toggle button clicked or switch control state changed)
   var didToggle: (() -> Void)? { get set }
 
 }
@@ -23,7 +24,7 @@ extension DynamicSortToggleInteractor {
     public let interactor: DynamicSortToggleInteractor
     public let controller: Controller
     public let presenter: Presenter
-    internal var superConnection: Connection!
+    internal let superConnection: Connection
 
     public init(interactor: DynamicSortToggleInteractor,
                 controller: Controller,
@@ -31,9 +32,9 @@ extension DynamicSortToggleInteractor {
       self.interactor = interactor
       self.controller = controller
       self.presenter = presenter
-      superConnection =  ItemInteractor.ControllerConnection(interactor: interactor,
-                                                             controller: controller,
-                                                             presenter: presenter )
+      superConnection = ItemInteractor.ControllerConnection(interactor: interactor,
+                                                            controller: controller,
+                                                            presenter: presenter)
     }
 
     public func connect() {
@@ -48,6 +49,13 @@ extension DynamicSortToggleInteractor {
 
   }
 
+  /**
+   Establishes a connection with the controller using the provided presentation logic
+   - Parameters:
+     - controller: Controller interfacing with a concrete current filters view
+     - presenter: Presenter defining how a dynamic sort priority appears in the controller
+   - Returns: Established connection
+  */
   @discardableResult public func connectController<Controller: DynamicSortToggleController, Output>(_ controller: Controller,
 
                                                                                                     presenter: @escaping Presenter<DynamicSortPriority?, Output>) -> DynamicSortToggleInteractor.ControllerConnection<Controller, Output> where Output == Controller.Item {
@@ -62,9 +70,17 @@ extension DynamicSortToggleInteractor {
 
 extension DynamicSortToggleInteractor {
 
-  public typealias TextualRepresentation = (hint: String, buttonTitle: String)
+  public typealias TextualRepresentation = (hintText: String, buttonTitle: String)
   public typealias TextualPresenter = Presenter<DynamicSortPriority?, TextualRepresentation?>
 
+  /**
+   Establishes a connection with the controller using the provided textual presentation logic
+   - Parameters:
+     - controller: Controller interfacing with a concrete current filters view
+     - presenter: Presenter defining how a dynamic sort priority textually appears in the controller.
+     Default presenter provides a tuple of string constants in english.
+   - Returns: Established connection
+  */
   @discardableResult public func connectController<Controller: DynamicSortToggleController>(_ controller: Controller,
                                                                                             presenter: @escaping TextualPresenter = DefaultPresenter.DynamicSortToggle.present) -> ControllerConnection<Controller, TextualRepresentation?> where Controller.Item == TextualRepresentation? {
     let connection = DynamicSortToggleInteractor.ControllerConnection<Controller, TextualRepresentation?>(interactor: self,
