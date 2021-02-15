@@ -8,12 +8,12 @@
 import Foundation
 
 extension DynamicSortToggleInteractor {
-  
+
   public struct SingleIndexSearcherConnection: Connection {
 
     public let interactor: DynamicSortToggleInteractor
     public let searcher: SingleIndexSearcher
-    
+
     public func connect() {
       interactor.onItemChanged.subscribe(with: searcher) { (searcher, priority) in
         guard let priority = priority else { return }
@@ -32,18 +32,18 @@ extension DynamicSortToggleInteractor {
         }
       }
     }
-    
+
     public func disconnect() {
       interactor.onItemChanged.cancelSubscription(for: searcher)
       searcher.onResults.cancelSubscription(for: interactor)
     }
-    
+
   }
-  
+
   @discardableResult public func connectSearcher(_ searcher: SingleIndexSearcher) -> SingleIndexSearcherConnection {
     let connection = SingleIndexSearcherConnection(interactor: self, searcher: searcher)
     connection.connect()
     return connection
   }
-  
+
 }

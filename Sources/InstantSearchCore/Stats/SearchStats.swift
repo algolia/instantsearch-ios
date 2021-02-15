@@ -26,7 +26,7 @@ public struct SearchStats: Codable {
 
   /// Total number of hits.
   public let totalHitsCount: Int
-  
+
   /// Number of relevant hits to display in case of non-zero relevancyStrictness applied
   public let nbSortedHits: Int?
 

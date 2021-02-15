@@ -8,10 +8,10 @@
 import Foundation
 
 public extension DefaultPresenter {
-  
+
   enum DynamicSortToggle {
-    
-    public static func present(_ priority: DynamicSortPriority?) -> (String, String)? {
+
+    public static func present(_ priority: DynamicSortPriority?) -> DynamicSortToggleInteractor.TextualRepresentation? {
       switch priority {
       case .some(.hitsCount):
         return ("Currently showing all results.", "Show more relevant results")
@@ -21,7 +21,7 @@ public extension DefaultPresenter {
         return nil
       }
     }
-    
+
   }
 
 }

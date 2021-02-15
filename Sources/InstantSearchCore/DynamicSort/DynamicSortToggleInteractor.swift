@@ -15,12 +15,12 @@ import Foundation
  - .none value represents the undefined state, meaning that either the interactor has never been connected to a searcher, or the searched index is not the virtual replica.
  */
 public class DynamicSortToggleInteractor: ItemInteractor<DynamicSortPriority?> {
-  
+
   public init(priority: DynamicSortPriority? = nil) {
     super.init(item: priority)
     self.onItemChanged.fire(priority)
   }
-  
+
   /// Switch the dynamic sort priority to the opposite one
   /// Skipped if the current value of sort priority is nil
   public func toggle() {
@@ -33,5 +33,5 @@ public class DynamicSortToggleInteractor: ItemInteractor<DynamicSortPriority?> {
       break
     }
   }
-  
+
 }

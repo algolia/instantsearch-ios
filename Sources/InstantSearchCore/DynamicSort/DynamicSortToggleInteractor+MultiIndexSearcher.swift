@@ -8,7 +8,7 @@
 import Foundation
 
 extension DynamicSortToggleInteractor {
-  
+
   public struct MultiIndexSearcherConnection: Connection {
 
     public let interactor: DynamicSortToggleInteractor
@@ -31,19 +31,19 @@ extension DynamicSortToggleInteractor {
         }
       }
     }
-    
+
     public func disconnect() {
       interactor.onItemChanged.cancelSubscription(for: searcher)
       searcher.onResults.cancelSubscription(for: interactor)
     }
-    
+
   }
-  
+
   @discardableResult public func connectSearcher(_ searcher: MultiIndexSearcher,
                                                  queryIndex: Int) -> MultiIndexSearcherConnection {
     let connection = MultiIndexSearcherConnection(interactor: self, searcher: searcher, queryIndex: queryIndex)
     connection.connect()
     return connection
   }
-  
+
 }
