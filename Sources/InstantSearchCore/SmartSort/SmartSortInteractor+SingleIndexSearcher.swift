@@ -1,5 +1,5 @@
 //
-//  DynamicSortToggleInteractor+SingleIndexSearcher.swift
+//  SmartSortInteractor+SingleIndexSearcher.swift
 //  
 //
 //  Created by Vladislav Fitc on 10/02/2021.
@@ -7,13 +7,13 @@
 
 import Foundation
 
-extension DynamicSortToggleInteractor {
+extension SmartSortInteractor {
 
   public struct SingleIndexSearcherConnection: Connection {
 
-    public let interactor: DynamicSortToggleInteractor
+    public let interactor: SmartSortInteractor
     public let searcher: SingleIndexSearcher
-    
+
     public func connect() {
       interactor.onItemChanged.subscribe(with: searcher) { (searcher, priority) in
         guard let priority = priority else { return }
@@ -23,9 +23,9 @@ extension DynamicSortToggleInteractor {
       }
       searcher.onResults.subscribePast(with: interactor) { (interactor, searchResponse) in
         if let receivedRelevancyStrictness = searchResponse.appliedRelevancyStrictness {
-          let dynamicSortPriority = DynamicSortPriority(relevancyStrictness: receivedRelevancyStrictness)
-          if dynamicSortPriority != interactor.item {
-            interactor.item = dynamicSortPriority
+          let smartSortPriority = SmartSortPriority(relevancyStrictness: receivedRelevancyStrictness)
+          if smartSortPriority != interactor.item {
+            interactor.item = smartSortPriority
           }
         } else {
           interactor.item = .none

@@ -1,5 +1,5 @@
 //
-//  DynamicSortToggleSearcherConnectionTests.swift
+//  SmartSortSingleIndexSearcherConnectionTests.swift
 //  
 //
 //  Created by Vladislav Fitc on 10/02/2021.
@@ -9,14 +9,14 @@ import Foundation
 @testable import InstantSearchCore
 import XCTest
 
-class DynamicSortToggleSingleIndexSearcherConnectionTests: XCTestCase {
+class SmartSortSingleIndexSearcherConnectionTests: XCTestCase {
   
   weak var disposableSearcher: SingleIndexSearcher?
-  weak var disposableInteractor: DynamicSortToggleInteractor?
+  weak var disposableInteractor: SmartSortInteractor?
   
   func testLeak() {
     let searcher = SingleIndexSearcher(appID: "", apiKey: "", indexName: "")
-    let interactor = DynamicSortToggleInteractor(priority: .relevancy)
+    let interactor = SmartSortInteractor(priority: .relevancy)
     
     disposableSearcher = searcher
     disposableInteractor = interactor
@@ -32,9 +32,9 @@ class DynamicSortToggleSingleIndexSearcherConnectionTests: XCTestCase {
   
   func testConnect() {
     let searcher = SingleIndexSearcher(appID: "", apiKey: "", indexName: "")
-    let interactor = DynamicSortToggleInteractor(priority: .relevancy)
+    let interactor = SmartSortInteractor(priority: .relevancy)
     
-    let connection = DynamicSortToggleInteractor.SingleIndexSearcherConnection(interactor: interactor, searcher: searcher)
+    let connection = SmartSortInteractor.SingleIndexSearcherConnection(interactor: interactor, searcher: searcher)
     connection.connect()
     
     searcher.onResults.fire(SearchResponse().set(\.appliedRelevancyStrictness, to: 100))
@@ -64,7 +64,7 @@ class DynamicSortToggleSingleIndexSearcherConnectionTests: XCTestCase {
   
   func testConnectMethod() {
     let searcher = SingleIndexSearcher(appID: "", apiKey: "", indexName: "")
-    let interactor = DynamicSortToggleInteractor(priority: .relevancy)
+    let interactor = SmartSortInteractor(priority: .relevancy)
     
     interactor.connectSearcher(searcher)
     
@@ -95,9 +95,9 @@ class DynamicSortToggleSingleIndexSearcherConnectionTests: XCTestCase {
   
   func testDisconnect() {
     let searcher = SingleIndexSearcher(appID: "", apiKey: "", indexName: "")
-    let interactor = DynamicSortToggleInteractor(priority: .relevancy)
+    let interactor = SmartSortInteractor(priority: .relevancy)
     
-    let connection = DynamicSortToggleInteractor.SingleIndexSearcherConnection(interactor: interactor, searcher: searcher)
+    let connection = SmartSortInteractor.SingleIndexSearcherConnection(interactor: interactor, searcher: searcher)
     connection.connect()
     connection.disconnect()
     

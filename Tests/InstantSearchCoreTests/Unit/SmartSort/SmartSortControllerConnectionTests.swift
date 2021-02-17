@@ -1,5 +1,5 @@
 //
-//  DynamicSortToggleControllerTests.swift
+//  SmartSortControllerConnectionTests.swift
 //  
 //
 //  Created by Vladislav Fitc on 10/02/2021.
@@ -9,30 +9,30 @@ import Foundation
 @testable import InstantSearchCore
 import XCTest
 
-class DynamicSortToggleControllerConnectionTests: XCTestCase {
+class SmartSortControllerConnectionTests: XCTestCase {
   
-  class TestDynamicSortToggleController: DynamicSortToggleController {
+  class TestSmartSortController: SmartSortController {
     
     var didToggle: (() -> Void)?
-    var item: DynamicSortPriority?
+    var item: SmartSortPriority?
         
-    func setItem(_ item: DynamicSortPriority?) {
+    func setItem(_ item: SmartSortPriority?) {
       self.item = item
     }
     
   }
 
-  weak var disposableController: TestDynamicSortToggleController?
-  weak var disposableInteractor: DynamicSortToggleInteractor?
+  weak var disposableController: TestSmartSortController?
+  weak var disposableInteractor: SmartSortInteractor?
 
   func testLeak() {
-    let interactor = DynamicSortToggleInteractor()
-    let controller = TestDynamicSortToggleController()
+    let interactor = SmartSortInteractor()
+    let controller = TestSmartSortController()
     
     disposableInteractor = interactor
     disposableController = controller
     
-    let connection = DynamicSortToggleInteractor.ControllerConnection(interactor: interactor, controller: controller) { $0 }
+    let connection = SmartSortInteractor.ControllerConnection(interactor: interactor, controller: controller) { $0 }
     connection.connect()
   }
   
@@ -42,10 +42,10 @@ class DynamicSortToggleControllerConnectionTests: XCTestCase {
   }
   
   func testConnect() {
-    let controller = TestDynamicSortToggleController()
-    let interactor = DynamicSortToggleInteractor(priority: .relevancy)
+    let controller = TestSmartSortController()
+    let interactor = SmartSortInteractor(priority: .relevancy)
 
-    let connection = DynamicSortToggleInteractor.ControllerConnection(interactor: interactor, controller: controller) { $0 }
+    let connection = SmartSortInteractor.ControllerConnection(interactor: interactor, controller: controller) { $0 }
     connection.connect()
     
     XCTAssertEqual(controller.item, .relevancy)
@@ -59,8 +59,8 @@ class DynamicSortToggleControllerConnectionTests: XCTestCase {
   }
   
   func testConnectMethod() {
-    let controller = TestDynamicSortToggleController()
-    let interactor = DynamicSortToggleInteractor(priority: .relevancy)
+    let controller = TestSmartSortController()
+    let interactor = SmartSortInteractor(priority: .relevancy)
 
     interactor.connectController(controller) { $0 }
     
@@ -75,10 +75,10 @@ class DynamicSortToggleControllerConnectionTests: XCTestCase {
   }
   
   func testDisconnect() {
-    let controller = TestDynamicSortToggleController()
-    let interactor = DynamicSortToggleInteractor(priority: .relevancy)
+    let controller = TestSmartSortController()
+    let interactor = SmartSortInteractor(priority: .relevancy)
 
-    let connection = DynamicSortToggleInteractor.ControllerConnection(interactor: interactor, controller: controller) { $0 }
+    let connection = SmartSortInteractor.ControllerConnection(interactor: interactor, controller: controller) { $0 }
     connection.connect()
     connection.disconnect()
     

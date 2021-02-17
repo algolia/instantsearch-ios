@@ -1,5 +1,5 @@
 //
-//  DynamicSortToggleController.swift
+//  SmartSortToggleControl.swift
 //  
 //
 //  Created by Vladislav Fitc on 10/02/2021.
@@ -8,7 +8,7 @@
 import Foundation
 import UIKit
 
-public class DynamicSortToggleView: UIView, DynamicSortToggleController {
+public class SmartSortToggleControl: UIView, SmartSortController {
 
   public let hintLabel: UILabel
   public let toggleButton: UIButton
@@ -26,7 +26,7 @@ public class DynamicSortToggleView: UIView, DynamicSortToggleController {
     fatalError("init(coder:) has not been implemented")
   }
 
-  public func setItem(_ item: DynamicSortToggleInteractor.TextualRepresentation?) {
+  public func setItem(_ item: SmartSortInteractor.TextualRepresentation?) {
     isHidden = item == nil
     hintLabel.text = item?.hintText
     toggleButton.setTitle(item?.buttonTitle, for: .normal)

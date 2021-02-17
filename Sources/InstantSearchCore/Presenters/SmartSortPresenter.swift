@@ -1,5 +1,5 @@
 //
-//  DynamicSortTogglePresenter.swift
+//  SmartSortPresenter.swift
 //  
 //
 //  Created by Vladislav Fitc on 08/02/2021.
@@ -9,9 +9,9 @@ import Foundation
 
 public extension DefaultPresenter {
 
-  enum DynamicSortToggle {
+  enum SmartSort {
 
-    public static func present(_ priority: DynamicSortPriority?) -> DynamicSortToggleInteractor.TextualRepresentation? {
+    public static func present(_ priority: SmartSortPriority?) -> SmartSortInteractor.TextualRepresentation? {
       switch priority {
       case .some(.hitsCount):
         return ("Currently showing all results.", "Show more relevant results")
