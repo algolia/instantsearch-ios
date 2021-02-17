@@ -25,7 +25,10 @@ extension DynamicSortToggleInteractor {
       }
       searcher.onResults.subscribePast(with: interactor) { (interactor, searchesResponse) in
         if let receivedRelevancyStrictness = searchesResponse.results[queryIndex].appliedRelevancyStrictness {
-          interactor.item = DynamicSortPriority(relevancyStrictness: receivedRelevancyStrictness)
+          let dynamicSortPriority = DynamicSortPriority(relevancyStrictness: receivedRelevancyStrictness)
+          if dynamicSortPriority != interactor.item {
+            interactor.item = dynamicSortPriority
+          }
         } else {
           interactor.item = .none
         }

@@ -28,11 +28,11 @@ public class DynamicSortToggleView: UIView, DynamicSortToggleController {
 
   public func setItem(_ item: DynamicSortToggleInteractor.TextualRepresentation?) {
     isHidden = item == nil
-    hintLabel.text = item?.hint
+    hintLabel.text = item?.hintText
     toggleButton.setTitle(item?.buttonTitle, for: .normal)
   }
 
-  @objc func didTapToggleButton(_ button: UIButton) {
+  @objc func didTapToggleButton() {
     didToggle?()
   }
 

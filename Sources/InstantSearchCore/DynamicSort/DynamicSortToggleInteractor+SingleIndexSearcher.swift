@@ -13,7 +13,7 @@ extension DynamicSortToggleInteractor {
 
     public let interactor: DynamicSortToggleInteractor
     public let searcher: SingleIndexSearcher
-
+    
     public func connect() {
       interactor.onItemChanged.subscribe(with: searcher) { (searcher, priority) in
         guard let priority = priority else { return }
