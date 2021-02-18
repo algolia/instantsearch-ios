@@ -8,19 +8,19 @@
 import Foundation
 
 public class SmartSortConnector {
-  
+
   /// Searcher that handles your searches
   public let searcher: Searcher
-  
+
   /// Smart sort priority toggling logic
   public let interactor: SmartSortInteractor
-  
+
   /// Connection between interactor and searcher
   public let searcherConnection: Connection
-  
+
   /// Connections between interactor and controllers
   public var controllerConnections: [Connection]
-  
+
   internal init(searcher: Searcher,
                 searcherConnection: Connection,
                 interactor: SmartSortInteractor) {
@@ -29,7 +29,7 @@ public class SmartSortConnector {
     self.searcherConnection = searcherConnection
     self.controllerConnections = []
   }
-  
+
   /**
     - Parameters:
       - searcher: Searcher that handles your searches
@@ -41,7 +41,7 @@ public class SmartSortConnector {
               searcherConnection: interactor.connectSearcher(searcher),
               interactor: interactor)
   }
-  
+
   /**
     - Parameters:
       - searcher: Searcher that handles your searches
@@ -55,7 +55,7 @@ public class SmartSortConnector {
               searcherConnection: interactor.connectSearcher(searcher, queryIndex: queryIndex),
               interactor: interactor)
   }
-  
+
 }
 
 extension SmartSortConnector: Connection {

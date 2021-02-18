@@ -14,10 +14,10 @@ extension SmartSortInteractor {
 
     /// Smart sort priority toggling logic
     public let interactor: SmartSortInteractor
-    
+
     /// Searcher that handles your searches
     public let searcher: SingleIndexSearcher
-    
+
     /**
      - Parameters:
        - interactor: Smart sort priority toggling logic

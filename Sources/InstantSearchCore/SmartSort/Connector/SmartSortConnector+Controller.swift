@@ -8,7 +8,7 @@
 import Foundation
 
 public extension SmartSortConnector {
-  
+
   /**
    - Parameters:
      - searcher: Searcher that handles your searches
@@ -25,7 +25,7 @@ public extension SmartSortConnector {
               interactor: interactor)
     connectController(controller, presenter: presenter)
   }
-  
+
   /**
    - Parameters:
      - searcher: Searcher that handles your searches
@@ -44,7 +44,7 @@ public extension SmartSortConnector {
               interactor: interactor)
     connectController(controller, presenter: presenter)
   }
-  
+
   /**
    Establishes a connection with the controller
    - Parameters:
@@ -58,11 +58,11 @@ public extension SmartSortConnector {
     controllerConnections.append(connection)
     return connection
   }
-  
+
 }
 
 public extension SmartSortConnector {
-  
+
   /**
    - Parameters:
      - searcher: Searcher that handles your searches
@@ -80,7 +80,7 @@ public extension SmartSortConnector {
               interactor: interactor)
     connectController(controller, presenter: presenter)
   }
-  
+
   /**
    - Parameters:
      - searcher: Searcher that handles your searches
@@ -100,7 +100,7 @@ public extension SmartSortConnector {
               interactor: interactor)
     connectController(controller, presenter: presenter)
   }
-  
+
   /**
    Establishes a connection with the controller
    - Parameters:
@@ -113,5 +113,5 @@ public extension SmartSortConnector {
     controllerConnections.append(connection)
     return connection
   }
-  
+
 }

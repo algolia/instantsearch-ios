@@ -16,7 +16,7 @@ public protocol SmartSortController: ItemController {
 }
 
 extension SmartSortInteractor {
-  
+
   /// Generic presenter of the smart sort priority state
   public typealias Presenter<Output> = InstantSearchCore.Presenter<SmartSortPriority?, Output>
 
@@ -25,13 +25,13 @@ extension SmartSortInteractor {
 
     /// Smart sort priority toggling logic
     public let interactor: SmartSortInteractor
-    
+
     /// Controller presenting the smart sort priority state and capable to toggle it
     public let controller: Controller
-    
+
     /// Generic presenter transforming the smart sort priority state to its representation for a controller
     public let presenter: Presenter<Output>
-    
+
     internal let superConnection: Connection
 
     /**
@@ -67,7 +67,7 @@ extension SmartSortInteractor {
 
 // Connect to a controller generically representing the smart sort priority state
 extension SmartSortInteractor {
-  
+
   /**
    Establishes a connection with the controller using the provided presentation logic
    - Parameters:
@@ -84,7 +84,7 @@ extension SmartSortInteractor {
     connection.connect()
     return connection
   }
-  
+
 }
 
 // Connect to a controller textually representing the smart sort priority state
@@ -93,7 +93,7 @@ extension SmartSortInteractor {
   /// Textual representation of smart priority states consisting of hint text that explains current sort priority state
   /// and the toggle title that switches the state
   public typealias TextualRepresentation = (hintText: String, toggleTitle: String)
-  
+
   /// Textual presenter for smart sort priority state
   public typealias TextualPresenter = Presenter<TextualRepresentation?>
 

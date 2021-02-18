@@ -14,13 +14,13 @@ extension SmartSortInteractor {
 
     /// Smart sort priority toggling logic
     public let interactor: SmartSortInteractor
-    
+
     /// Searcher that handles your searches
     public let searcher: MultiIndexSearcher
-    
+
     /// Index of query to alter by smart sort toggling
     public let queryIndex: Int
-    
+
     /**
      - Parameters:
        - interactor: Smart sort priority toggling logic
@@ -61,7 +61,7 @@ extension SmartSortInteractor {
     }
 
   }
-  
+
   /**
    Establishes a connection with the searcher
    - Parameters:
