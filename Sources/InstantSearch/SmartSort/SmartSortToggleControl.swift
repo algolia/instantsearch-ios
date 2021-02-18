@@ -5,7 +5,10 @@
 //  Created by Vladislav Fitc on 10/02/2021.
 //
 
-import Foundation
+#if !InstantSearchCocoaPods
+import InstantSearchCore
+#endif
+#if canImport(UIKit) && (os(iOS) || os(tvOS) || os(macOS))
 import UIKit
 
 public class SmartSortToggleControl: UIView, SmartSortController {
@@ -75,3 +78,4 @@ public class SmartSortToggleControl: UIView, SmartSortController {
   }
 
 }
+#endif
