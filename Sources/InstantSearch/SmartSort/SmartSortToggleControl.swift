@@ -29,7 +29,7 @@ public class SmartSortToggleControl: UIView, SmartSortController {
   public func setItem(_ item: SmartSortInteractor.TextualRepresentation?) {
     isHidden = item == nil
     hintLabel.text = item?.hintText
-    toggleButton.setTitle(item?.buttonTitle, for: .normal)
+    toggleButton.setTitle(item?.toggleTitle, for: .normal)
   }
 
   @objc func didTapToggleButton() {
