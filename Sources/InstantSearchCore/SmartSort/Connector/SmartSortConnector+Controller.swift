@@ -20,7 +20,7 @@ public extension SmartSortConnector {
   convenience init<Controller: SmartSortController, Output>(searcher: SingleIndexSearcher,
                                                             interactor: SmartSortInteractor = .init(),
                                                             controller: Controller,
-                                                            presenter: @escaping SmartSortInteractor.Presenter<Output>) where Controller.Item == Output {
+                                                            presenter: @escaping SmartSortPresenter<Output>) where Controller.Item == Output {
     self.init(searcher: searcher,
               searcherConnection: interactor.connectSearcher(searcher),
               interactor: interactor)
@@ -39,7 +39,7 @@ public extension SmartSortConnector {
                                                             queryIndex: Int,
                                                             interactor: SmartSortInteractor = .init(),
                                                             controller: Controller,
-                                                            presenter: @escaping SmartSortInteractor.Presenter<Output>) where Controller.Item == Output {
+                                                            presenter: @escaping SmartSortPresenter<Output>) where Controller.Item == Output {
     self.init(searcher: searcher,
               searcherConnection: interactor.connectSearcher(searcher, queryIndex: queryIndex),
               interactor: interactor)
@@ -54,7 +54,7 @@ public extension SmartSortConnector {
   - Returns: Established connection
    */
   @discardableResult func connectController<Controller: SmartSortController, Output>(_ controller: Controller,
-                                                                                     presenter: @escaping SmartSortInteractor.Presenter<Output>) -> SmartSortInteractor.ControllerConnection<Controller, Output> where Controller.Item == Output {
+                                                                                     presenter: @escaping SmartSortPresenter<Output>) -> SmartSortInteractor.ControllerConnection<Controller, Output> where Controller.Item == Output {
     let connection = interactor.connectController(controller, presenter: presenter)
     controllerConnections.append(connection)
     return connection
@@ -75,7 +75,7 @@ public extension SmartSortConnector {
   convenience init<Controller: SmartSortController>(searcher: SingleIndexSearcher,
                                                     interactor: SmartSortInteractor = .init(),
                                                     controller: Controller,
-                                                    presenter: @escaping SmartSortInteractor.TextualPresenter = DefaultPresenter.SmartSort.present) where Controller.Item == SmartSortInteractor.TextualRepresentation? {
+                                                    presenter: @escaping SmartSortTextualPresenter = DefaultPresenter.SmartSort.present) where Controller.Item == SmartSortTextualRepresentation? {
     self.init(searcher: searcher,
               searcherConnection: interactor.connectSearcher(searcher),
               interactor: interactor)
@@ -95,7 +95,7 @@ public extension SmartSortConnector {
                                                     queryIndex: Int,
                                                     interactor: SmartSortInteractor = .init(),
                                                     controller: Controller,
-                                                    presenter: @escaping SmartSortInteractor.TextualPresenter = DefaultPresenter.SmartSort.present) where Controller.Item == SmartSortInteractor.TextualRepresentation? {
+                                                    presenter: @escaping SmartSortTextualPresenter = DefaultPresenter.SmartSort.present) where Controller.Item == SmartSortTextualRepresentation? {
     self.init(searcher: searcher,
               searcherConnection: interactor.connectSearcher(searcher, queryIndex: queryIndex),
               interactor: interactor)
@@ -109,7 +109,7 @@ public extension SmartSortConnector {
    - Returns: Established connection
    */
   @discardableResult func connectController<Controller: SmartSortController>(_ controller: Controller,
-                                                                             presenter: @escaping SmartSortInteractor.TextualPresenter = DefaultPresenter.SmartSort.present) -> SmartSortInteractor.ControllerConnection<Controller, SmartSortInteractor.TextualRepresentation?> where Controller.Item == SmartSortInteractor.TextualRepresentation? {
+                                                                             presenter: @escaping SmartSortTextualPresenter = DefaultPresenter.SmartSort.present) -> SmartSortInteractor.ControllerConnection<Controller, SmartSortTextualRepresentation?> where Controller.Item == SmartSortTextualRepresentation? {
     let connection = interactor.connectController(controller, presenter: presenter)
     controllerConnections.append(connection)
     return connection

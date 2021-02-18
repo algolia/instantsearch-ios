@@ -29,7 +29,7 @@ public class SmartSortToggleControl: UIView, SmartSortController {
     fatalError("init(coder:) has not been implemented")
   }
 
-  public func setItem(_ item: SmartSortInteractor.TextualRepresentation?) {
+  public func setItem(_ item: SmartSortTextualRepresentation?) {
     isHidden = item == nil
     hintLabel.text = item?.hintText
     toggleButton.setTitle(item?.toggleTitle, for: .normal)

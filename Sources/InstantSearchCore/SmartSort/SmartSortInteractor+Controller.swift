@@ -15,10 +15,10 @@ public protocol SmartSortController: ItemController {
 
 }
 
-extension SmartSortInteractor {
+/// Generic presenter of the smart sort priority state
+public typealias SmartSortPresenter<Output> = Presenter<SmartSortPriority?, Output>
 
-  /// Generic presenter of the smart sort priority state
-  public typealias Presenter<Output> = InstantSearchCore.Presenter<SmartSortPriority?, Output>
+extension SmartSortInteractor {
 
   /// Connection between smart sort interactor and its controller
   public struct ControllerConnection<Controller: SmartSortController, Output>: Connection where Controller.Item == Output {
@@ -30,7 +30,7 @@ extension SmartSortInteractor {
     public let controller: Controller
 
     /// Generic presenter transforming the smart sort priority state to its representation for a controller
-    public let presenter: Presenter<Output>
+    public let presenter: SmartSortPresenter<Output>
 
     internal let superConnection: Connection
 
@@ -42,7 +42,7 @@ extension SmartSortInteractor {
      */
     public init(interactor: SmartSortInteractor,
                 controller: Controller,
-                presenter: @escaping Presenter<Output>) {
+                presenter: @escaping SmartSortPresenter<Output>) {
       self.interactor = interactor
       self.controller = controller
       self.presenter = presenter
@@ -76,7 +76,7 @@ extension SmartSortInteractor {
    - Returns: Established connection
   */
   @discardableResult public func connectController<Controller: SmartSortController, Output>(_ controller: Controller,
-                                                                                            presenter: @escaping Presenter<Output>) -> SmartSortInteractor.ControllerConnection<Controller, Output> where Output == Controller.Item {
+                                                                                            presenter: @escaping SmartSortPresenter<Output>) -> SmartSortInteractor.ControllerConnection<Controller, Output> where Output == Controller.Item {
     let connection = SmartSortInteractor.ControllerConnection<Controller, Output>(interactor: self,
                                                                                           controller: controller,
                                                                                           presenter: presenter)
@@ -86,15 +86,15 @@ extension SmartSortInteractor {
 
 }
 
+/// Textual representation of smart priority states consisting of hint text that explains current sort priority state
+/// and the toggle title that switches the state
+public typealias SmartSortTextualRepresentation = (hintText: String, toggleTitle: String)
+
+/// Textual presenter for smart sort priority state
+public typealias SmartSortTextualPresenter = SmartSortPresenter<SmartSortTextualRepresentation?>
+
 // Connect to a controller textually representing the smart sort priority state
 extension SmartSortInteractor {
-
-  /// Textual representation of smart priority states consisting of hint text that explains current sort priority state
-  /// and the toggle title that switches the state
-  public typealias TextualRepresentation = (hintText: String, toggleTitle: String)
-
-  /// Textual presenter for smart sort priority state
-  public typealias TextualPresenter = Presenter<TextualRepresentation?>
 
   /**
    Establishes a connection with the controller using the provided textual presentation logic
@@ -105,8 +105,8 @@ extension SmartSortInteractor {
    - Returns: Established connection
   */
   @discardableResult public func connectController<Controller: SmartSortController>(_ controller: Controller,
-                                                                                    presenter: @escaping TextualPresenter = DefaultPresenter.SmartSort.present) -> ControllerConnection<Controller, TextualRepresentation?> where Controller.Item == TextualRepresentation? {
-    let connection = SmartSortInteractor.ControllerConnection<Controller, TextualRepresentation?>(interactor: self,
+                                                                                    presenter: @escaping SmartSortTextualPresenter = DefaultPresenter.SmartSort.present) -> ControllerConnection<Controller, SmartSortTextualRepresentation?> where Controller.Item == SmartSortTextualRepresentation? {
+    let connection = SmartSortInteractor.ControllerConnection<Controller, SmartSortTextualRepresentation?>(interactor: self,
                                                                                                   controller: controller,
                                                                                                   presenter: presenter)
     connection.connect()

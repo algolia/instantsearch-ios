@@ -11,7 +11,7 @@ public extension DefaultPresenter {
 
   enum SmartSort {
 
-    public static func present(_ priority: SmartSortPriority?) -> SmartSortInteractor.TextualRepresentation? {
+    public static func present(_ priority: SmartSortPriority?) -> SmartSortTextualRepresentation? {
       switch priority {
       case .some(.hitsCount):
         return ("Currently showing all results.", "Show more relevant results")
