@@ -76,8 +76,7 @@ extension SmartSortInteractor {
    - Returns: Established connection
   */
   @discardableResult public func connectController<Controller: SmartSortController, Output>(_ controller: Controller,
-
-                                                                                                    presenter: @escaping Presenter<Output>) -> SmartSortInteractor.ControllerConnection<Controller, Output> where Output == Controller.Item {
+                                                                                            presenter: @escaping Presenter<Output>) -> SmartSortInteractor.ControllerConnection<Controller, Output> where Output == Controller.Item {
     let connection = SmartSortInteractor.ControllerConnection<Controller, Output>(interactor: self,
                                                                                           controller: controller,
                                                                                           presenter: presenter)
@@ -106,10 +105,10 @@ extension SmartSortInteractor {
    - Returns: Established connection
   */
   @discardableResult public func connectController<Controller: SmartSortController>(_ controller: Controller,
-                                                                                            presenter: @escaping TextualPresenter = DefaultPresenter.SmartSort.present) -> ControllerConnection<Controller, TextualRepresentation?> where Controller.Item == TextualRepresentation? {
+                                                                                    presenter: @escaping TextualPresenter = DefaultPresenter.SmartSort.present) -> ControllerConnection<Controller, TextualRepresentation?> where Controller.Item == TextualRepresentation? {
     let connection = SmartSortInteractor.ControllerConnection<Controller, TextualRepresentation?>(interactor: self,
-                                                                                                          controller: controller,
-                                                                                                          presenter: presenter)
+                                                                                                  controller: controller,
+                                                                                                  presenter: presenter)
     connection.connect()
     return connection
   }
