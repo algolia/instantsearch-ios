@@ -11,7 +11,7 @@ import InstantSearch
 import UIKit
 
 class BannerGuideSnippets {
-  
+           
   struct Banner: Decodable {
     let title: String
   }

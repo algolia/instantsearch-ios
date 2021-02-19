@@ -1,5 +1,5 @@
 //
-//  SmartSortToggleControl.swift
+//  ButtonSmartSortController.swift
 //  
 //
 //  Created by Vladislav Fitc on 10/02/2021.
@@ -11,17 +11,17 @@ import InstantSearchCore
 #if canImport(UIKit) && (os(iOS) || os(tvOS) || os(macOS))
 import UIKit
 
-public class SmartSortToggleControl: UIView, SmartSortController {
+public class ButtonSmartSortController: UIViewController, SmartSortController {
 
   public let hintLabel: UILabel
   public let toggleButton: UIButton
 
   public var didToggle: (() -> Void)?
-
-  override init(frame: CGRect) {
+  
+  public init() {
     hintLabel = .init()
     toggleButton = .init()
-    super.init(frame: frame)
+    super.init(nibName: nil, bundle: nil)
     setupUI()
   }
 
@@ -30,7 +30,7 @@ public class SmartSortToggleControl: UIView, SmartSortController {
   }
 
   public func setItem(_ item: SmartSortTextualRepresentation?) {
-    isHidden = item == nil
+    view.isHidden = item == nil
     hintLabel.text = item?.hintText
     toggleButton.setTitle(item?.toggleTitle, for: .normal)
   }
@@ -50,12 +50,12 @@ public class SmartSortToggleControl: UIView, SmartSortController {
     stackView.alignment = .center
     stackView.addArrangedSubview(hintLabel)
     stackView.addArrangedSubview(toggleButton)
-    addSubview(stackView)
+    view.addSubview(stackView)
     NSLayoutConstraint.activate([
-      stackView.topAnchor.constraint(equalTo: topAnchor),
-      stackView.bottomAnchor.constraint(equalTo: bottomAnchor),
-      stackView.leadingAnchor.constraint(equalTo: leadingAnchor),
-      stackView.trailingAnchor.constraint(equalTo: trailingAnchor)
+      stackView.topAnchor.constraint(equalTo: view.topAnchor),
+      stackView.bottomAnchor.constraint(equalTo: view.bottomAnchor),
+      stackView.leadingAnchor.constraint(equalTo: view.leadingAnchor),
+      stackView.trailingAnchor.constraint(equalTo: view.trailingAnchor)
     ])
   }
 
@@ -63,8 +63,8 @@ public class SmartSortToggleControl: UIView, SmartSortController {
     toggleButton.translatesAutoresizingMaskIntoConstraints = false
     toggleButton.layer.borderWidth = 1
     toggleButton.layer.cornerRadius = 10
-    toggleButton.layer.borderColor = tintColor.cgColor
-    toggleButton.setTitleColor(self.tintColor, for: .normal)
+    toggleButton.layer.borderColor = view.tintColor.cgColor
+    toggleButton.setTitleColor(view.tintColor, for: .normal)
     toggleButton.titleLabel?.font = .systemFont(ofSize: 10)
     toggleButton.addTarget(self, action: #selector(didTapToggleButton), for: .touchUpInside)
     toggleButton.widthAnchor.constraint(equalToConstant: 140).isActive = true
