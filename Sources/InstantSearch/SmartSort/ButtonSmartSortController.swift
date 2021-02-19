@@ -17,7 +17,7 @@ public class ButtonSmartSortController: UIViewController, SmartSortController {
   public let toggleButton: UIButton
 
   public var didToggle: (() -> Void)?
-  
+
   public init() {
     hintLabel = .init()
     toggleButton = .init()
