@@ -1,5 +1,5 @@
 //
-//  SmartSortPriority.swift
+//  RelevantSortPriority.swift
 //  
 //
 //  Created by Vladislav Fitc on 10/02/2021.
@@ -8,10 +8,10 @@
 import Foundation
 
 /**
-  `SmartSortPriority` represents the priority to apply to the search in the dynamically sorted index (virtual replica)
+  `RelevantSortPriority` represents the priority to apply to the search in the dynamically sorted index (virtual replica)
    It encapsulates `relevancyStrictness` query parameter by reducing its range to a binary state.
  */
-public enum SmartSortPriority {
+public enum RelevantSortPriority {
   /// Prioritize lesser more relevant results
   case relevancy
 
@@ -19,7 +19,7 @@ public enum SmartSortPriority {
   case hitsCount
 }
 
-extension SmartSortPriority {
+extension RelevantSortPriority {
 
   /// Relevancy strictness value to apply to the search
   public var relevancyStrictness: Int {

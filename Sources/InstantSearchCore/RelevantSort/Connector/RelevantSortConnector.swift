@@ -1,5 +1,5 @@
 //
-//  SmartSortConnector.swift
+//  RelevantSortConnector.swift
 //  
 //
 //  Created by Vladislav Fitc on 17/02/2021.
@@ -7,13 +7,13 @@
 
 import Foundation
 
-public class SmartSortConnector {
+public class RelevantSortConnector {
 
   /// Searcher that handles your searches
   public let searcher: Searcher
 
-  /// Smart sort priority toggling logic
-  public let interactor: SmartSortInteractor
+  /// Relevant sort priority toggling logic
+  public let interactor: RelevantSortInteractor
 
   /// Connection between interactor and searcher
   public let searcherConnection: Connection
@@ -23,7 +23,7 @@ public class SmartSortConnector {
 
   internal init(searcher: Searcher,
                 searcherConnection: Connection,
-                interactor: SmartSortInteractor) {
+                interactor: RelevantSortInteractor) {
     self.searcher = searcher
     self.interactor = interactor
     self.searcherConnection = searcherConnection
@@ -33,10 +33,10 @@ public class SmartSortConnector {
   /**
     - Parameters:
       - searcher: Searcher that handles your searches
-      - interactor: Smart sort priority toggling logic
+      - interactor: Relevant sort priority toggling logic
    */
   public convenience init(searcher: SingleIndexSearcher,
-                          interactor: SmartSortInteractor = .init()) {
+                          interactor: RelevantSortInteractor = .init()) {
     self.init(searcher: searcher,
               searcherConnection: interactor.connectSearcher(searcher),
               interactor: interactor)
@@ -45,12 +45,12 @@ public class SmartSortConnector {
   /**
     - Parameters:
       - searcher: Searcher that handles your searches
-      - queryIndex: Index of query to alter by smart sort toggling
-      - interactor: Smart sort priority toggling logic
+      - queryIndex: Index of query to alter by relevant sort toggling
+      - interactor: Relevant sort priority toggling logic
    */
   public convenience init(searcher: MultiIndexSearcher,
                           queryIndex: Int,
-                          interactor: SmartSortInteractor = .init()) {
+                          interactor: RelevantSortInteractor = .init()) {
     self.init(searcher: searcher,
               searcherConnection: interactor.connectSearcher(searcher, queryIndex: queryIndex),
               interactor: interactor)
@@ -58,7 +58,7 @@ public class SmartSortConnector {
 
 }
 
-extension SmartSortConnector: Connection {
+extension RelevantSortConnector: Connection {
 
   public func connect() {
     searcherConnection.connect()

@@ -1,5 +1,5 @@
 //
-//  SmartSortControllerConnectionTests.swift
+//  RelevantSortControllerConnectionTests.swift
 //  
 //
 //  Created by Vladislav Fitc on 10/02/2021.
@@ -9,30 +9,30 @@ import Foundation
 @testable import InstantSearchCore
 import XCTest
 
-class SmartSortControllerConnectionTests: XCTestCase {
+class RelevantSortControllerConnectionTests: XCTestCase {
   
-  class TestSmartSortController: SmartSortController {
+  class TestRelevantSortController: RelevantSortController {
     
     var didToggle: (() -> Void)?
-    var item: SmartSortPriority?
+    var item: RelevantSortPriority?
         
-    func setItem(_ item: SmartSortPriority?) {
+    func setItem(_ item: RelevantSortPriority?) {
       self.item = item
     }
     
   }
 
-  weak var disposableController: TestSmartSortController?
-  weak var disposableInteractor: SmartSortInteractor?
+  weak var disposableController: TestRelevantSortController?
+  weak var disposableInteractor: RelevantSortInteractor?
 
   func testLeak() {
-    let interactor = SmartSortInteractor()
-    let controller = TestSmartSortController()
+    let interactor = RelevantSortInteractor()
+    let controller = TestRelevantSortController()
     
     disposableInteractor = interactor
     disposableController = controller
     
-    let connection = SmartSortInteractor.ControllerConnection(interactor: interactor, controller: controller) { $0 }
+    let connection = RelevantSortInteractor.ControllerConnection(interactor: interactor, controller: controller) { $0 }
     connection.connect()
   }
   
@@ -42,10 +42,10 @@ class SmartSortControllerConnectionTests: XCTestCase {
   }
   
   func testConnect() {
-    let controller = TestSmartSortController()
-    let interactor = SmartSortInteractor(priority: .relevancy)
+    let controller = TestRelevantSortController()
+    let interactor = RelevantSortInteractor(priority: .relevancy)
 
-    let connection = SmartSortInteractor.ControllerConnection(interactor: interactor, controller: controller) { $0 }
+    let connection = RelevantSortInteractor.ControllerConnection(interactor: interactor, controller: controller) { $0 }
     connection.connect()
     
     XCTAssertEqual(controller.item, .relevancy)
@@ -59,8 +59,8 @@ class SmartSortControllerConnectionTests: XCTestCase {
   }
   
   func testConnectMethod() {
-    let controller = TestSmartSortController()
-    let interactor = SmartSortInteractor(priority: .relevancy)
+    let controller = TestRelevantSortController()
+    let interactor = RelevantSortInteractor(priority: .relevancy)
 
     interactor.connectController(controller) { $0 }
     
@@ -75,10 +75,10 @@ class SmartSortControllerConnectionTests: XCTestCase {
   }
   
   func testDisconnect() {
-    let controller = TestSmartSortController()
-    let interactor = SmartSortInteractor(priority: .relevancy)
+    let controller = TestRelevantSortController()
+    let interactor = RelevantSortInteractor(priority: .relevancy)
 
-    let connection = SmartSortInteractor.ControllerConnection(interactor: interactor, controller: controller) { $0 }
+    let connection = RelevantSortInteractor.ControllerConnection(interactor: interactor, controller: controller) { $0 }
     connection.connect()
     connection.disconnect()
     

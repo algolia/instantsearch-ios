@@ -1,5 +1,5 @@
 //
-//  ButtonSmartSortController.swift
+//  ButtonRelevantSortController.swift
 //  
 //
 //  Created by Vladislav Fitc on 10/02/2021.
@@ -11,7 +11,7 @@ import InstantSearchCore
 #if canImport(UIKit) && (os(iOS) || os(tvOS) || os(macOS))
 import UIKit
 
-public class ButtonSmartSortController: UIViewController, SmartSortController {
+public class ButtonRelevantSortController: UIViewController, RelevantSortController {
 
   public let hintLabel: UILabel
   public let toggleButton: UIButton
@@ -29,7 +29,7 @@ public class ButtonSmartSortController: UIViewController, SmartSortController {
     fatalError("init(coder:) has not been implemented")
   }
 
-  public func setItem(_ item: SmartSortTextualRepresentation?) {
+  public func setItem(_ item: RelevantSortTextualRepresentation?) {
     view.isHidden = item == nil
     hintLabel.text = item?.hintText
     toggleButton.setTitle(item?.toggleTitle, for: .normal)

@@ -1,5 +1,5 @@
 //
-//  SmartSortInteractor+SingleIndexSearcher.swift
+//  RelevantSortInteractor+SingleIndexSearcher.swift
 //  
 //
 //  Created by Vladislav Fitc on 10/02/2021.
@@ -7,23 +7,23 @@
 
 import Foundation
 
-extension SmartSortInteractor {
+extension RelevantSortInteractor {
 
-  /// Connection between smart sort interactor and a searcher handling the search
+  /// Connection between relevant sort interactor and a searcher handling the search
   public struct SingleIndexSearcherConnection: Connection {
 
-    /// Smart sort priority toggling logic
-    public let interactor: SmartSortInteractor
+    /// Relevant sort priority toggling logic
+    public let interactor: RelevantSortInteractor
 
     /// Searcher that handles your searches
     public let searcher: SingleIndexSearcher
 
     /**
      - Parameters:
-       - interactor: Smart sort priority toggling logic
+       - interactor: Relevant sort priority toggling logic
        - searcher: Searcher that handles your searches
      */
-    public init(interactor: SmartSortInteractor,
+    public init(interactor: RelevantSortInteractor,
                 searcher: SingleIndexSearcher) {
       self.interactor = interactor
       self.searcher = searcher
@@ -38,9 +38,9 @@ extension SmartSortInteractor {
       }
       searcher.onResults.subscribePast(with: interactor) { (interactor, searchResponse) in
         if let receivedRelevancyStrictness = searchResponse.appliedRelevancyStrictness {
-          let smartSortPriority = SmartSortPriority(relevancyStrictness: receivedRelevancyStrictness)
-          if smartSortPriority != interactor.item {
-            interactor.item = smartSortPriority
+          let relevantSortPriority = RelevantSortPriority(relevancyStrictness: receivedRelevancyStrictness)
+          if relevantSortPriority != interactor.item {
+            interactor.item = relevantSortPriority
           }
         } else {
           interactor.item = .none

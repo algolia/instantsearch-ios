@@ -1,5 +1,5 @@
 //
-//  SmartSortMultiIndexSearcherConnectionTests.swift
+//  RelevantSortMultiIndexSearcherConnectionTests.swift
 //  
 //
 //  Created by Vladislav Fitc on 11/02/2021.
@@ -9,14 +9,14 @@ import Foundation
 @testable import InstantSearchCore
 import XCTest
 
-class SmartSortMultiIndexSearcherConnectionTests: XCTestCase {
+class RelevantSortMultiIndexSearcherConnectionTests: XCTestCase {
   
   weak var disposableSearcher: MultiIndexSearcher?
-  weak var disposableInteractor: SmartSortInteractor?
+  weak var disposableInteractor: RelevantSortInteractor?
   
   func testLeak() {
     let searcher = MultiIndexSearcher(appID: "", apiKey: "", indexNames: ["a", "b"])
-    let interactor = SmartSortInteractor(priority: .relevancy)
+    let interactor = RelevantSortInteractor(priority: .relevancy)
     
     disposableSearcher = searcher
     disposableInteractor = interactor
@@ -32,9 +32,9 @@ class SmartSortMultiIndexSearcherConnectionTests: XCTestCase {
   
   func testConnect() {
     let searcher = MultiIndexSearcher(appID: "", apiKey: "", indexNames: ["a", "b"])
-    let interactor = SmartSortInteractor(priority: .relevancy)
+    let interactor = RelevantSortInteractor(priority: .relevancy)
     
-    let connection = SmartSortInteractor.MultiIndexSearcherConnection(interactor: interactor, searcher: searcher, queryIndex: 0)
+    let connection = RelevantSortInteractor.MultiIndexSearcherConnection(interactor: interactor, searcher: searcher, queryIndex: 0)
     connection.connect()
     
     searcher.onResults.fire(SearchesResponse(results: [SearchResponse().set(\.appliedRelevancyStrictness, to: 100)]))
@@ -64,7 +64,7 @@ class SmartSortMultiIndexSearcherConnectionTests: XCTestCase {
   
   func testConnectMethod() {
     let searcher = MultiIndexSearcher(appID: "", apiKey: "", indexNames: ["a", "b"])
-    let interactor = SmartSortInteractor(priority: .relevancy)
+    let interactor = RelevantSortInteractor(priority: .relevancy)
     
     interactor.connectSearcher(searcher, queryIndex: 0)
     
@@ -95,9 +95,9 @@ class SmartSortMultiIndexSearcherConnectionTests: XCTestCase {
   
   func testDisconnect() {
     let searcher = MultiIndexSearcher(appID: "", apiKey: "", indexNames: ["a", "b"])
-    let interactor = SmartSortInteractor(priority: .relevancy)
+    let interactor = RelevantSortInteractor(priority: .relevancy)
     
-    let connection = SmartSortInteractor.MultiIndexSearcherConnection(interactor: interactor, searcher: searcher, queryIndex: 0)
+    let connection = RelevantSortInteractor.MultiIndexSearcherConnection(interactor: interactor, searcher: searcher, queryIndex: 0)
     connection.connect()
     connection.disconnect()
     

@@ -1,5 +1,5 @@
 //
-//  SmartSortInteractor+MultiIndexSearcher.swift
+//  RelevantSortInteractor+MultiIndexSearcher.swift
 //  
 //
 //  Created by Vladislav Fitc on 10/02/2021.
@@ -7,27 +7,27 @@
 
 import Foundation
 
-extension SmartSortInteractor {
+extension RelevantSortInteractor {
 
-  /// Connection between smart sort interactor and a searcher handling the search
+  /// Connection between relevant sort interactor and a searcher handling the search
   public struct MultiIndexSearcherConnection: Connection {
 
-    /// Smart sort priority toggling logic
-    public let interactor: SmartSortInteractor
+    /// Relevant sort priority toggling logic
+    public let interactor: RelevantSortInteractor
 
     /// Searcher that handles your searches
     public let searcher: MultiIndexSearcher
 
-    /// Index of query to alter by smart sort toggling
+    /// Index of query to alter by relevant sort toggling
     public let queryIndex: Int
 
     /**
      - Parameters:
-       - interactor: Smart sort priority toggling logic
+       - interactor: Relevant sort priority toggling logic
        - searcher: Searcher that handles your searches
-       - queryIndex: Index of query to alter by smart sort toggling
+       - queryIndex: Index of query to alter by relevant sort toggling
      */
-    public init(interactor: SmartSortInteractor,
+    public init(interactor: RelevantSortInteractor,
                 searcher: MultiIndexSearcher,
                 queryIndex: Int) {
       self.interactor = interactor
@@ -45,9 +45,9 @@ extension SmartSortInteractor {
       }
       searcher.onResults.subscribePast(with: interactor) { (interactor, searchesResponse) in
         if let receivedRelevancyStrictness = searchesResponse.results[queryIndex].appliedRelevancyStrictness {
-          let smartSortPriority = SmartSortPriority(relevancyStrictness: receivedRelevancyStrictness)
-          if smartSortPriority != interactor.item {
-            interactor.item = smartSortPriority
+          let relevantSortPriority = RelevantSortPriority(relevancyStrictness: receivedRelevancyStrictness)
+          if relevantSortPriority != interactor.item {
+            interactor.item = relevantSortPriority
           }
         } else {
           interactor.item = .none
@@ -66,7 +66,7 @@ extension SmartSortInteractor {
    Establishes a connection with the searcher
    - Parameters:
      - searcher: Searcher that handles your searches
-     - queryIndex: Index of query to alter by smart sort toggling
+     - queryIndex: Index of query to alter by relevant sort toggling
    - Returns: Established connection
    */
   @discardableResult public func connectSearcher(_ searcher: MultiIndexSearcher,
