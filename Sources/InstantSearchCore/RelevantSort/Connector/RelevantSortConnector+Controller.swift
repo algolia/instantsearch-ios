@@ -4,13 +4,13 @@
 //
 //  Created by Vladislav Fitc on 17/02/2021.
 //
-// swiftlint:disable line_length
 
 import Foundation
 
 public extension RelevantSortConnector {
-  
+
   typealias ControllerConnection = RelevantSortInteractor.ControllerConnection
+  typealias Presenter<Output> = RelevantSortPresenter<Output>
 
   /**
    - Parameters:
@@ -22,7 +22,7 @@ public extension RelevantSortConnector {
   convenience init<Controller: RelevantSortController, Output>(searcher: SingleIndexSearcher,
                                                                interactor: RelevantSortInteractor = .init(),
                                                                controller: Controller,
-                                                               presenter: @escaping RelevantSortPresenter<Output>) where Controller.Item == Output {
+                                                               presenter: @escaping Presenter<Output>) where Controller.Item == Output {
     self.init(searcher: searcher,
               searcherConnection: interactor.connectSearcher(searcher),
               interactor: interactor)
@@ -41,7 +41,7 @@ public extension RelevantSortConnector {
                                                                queryIndex: Int,
                                                                interactor: RelevantSortInteractor = .init(),
                                                                controller: Controller,
-                                                               presenter: @escaping RelevantSortPresenter<Output>) where Controller.Item == Output {
+                                                               presenter: @escaping Presenter<Output>) where Controller.Item == Output {
     self.init(searcher: searcher,
               searcherConnection: interactor.connectSearcher(searcher, queryIndex: queryIndex),
               interactor: interactor)
@@ -56,7 +56,7 @@ public extension RelevantSortConnector {
   - Returns: Established connection
    */
   @discardableResult func connectController<Controller: RelevantSortController, Output>(_ controller: Controller,
-                                                                                        presenter: @escaping RelevantSortPresenter<Output>) -> ControllerConnection<Controller, Output> where Controller.Item == Output {
+                                                                                        presenter: @escaping Presenter<Output>) -> ControllerConnection<Controller, Output> where Controller.Item == Output {
     let connection = interactor.connectController(controller, presenter: presenter)
     controllerConnections.append(connection)
     return connection
@@ -65,6 +65,9 @@ public extension RelevantSortConnector {
 }
 
 public extension RelevantSortConnector {
+
+  typealias TextualPresenter = RelevantSortTextualPresenter
+  typealias TextualRepresentation = RelevantSortTextualRepresentation
 
   /**
    - Parameters:
@@ -77,7 +80,7 @@ public extension RelevantSortConnector {
   convenience init<Controller: RelevantSortController>(searcher: SingleIndexSearcher,
                                                        interactor: RelevantSortInteractor = .init(),
                                                        controller: Controller,
-                                                       presenter: @escaping RelevantSortTextualPresenter = DefaultPresenter.RelevantSort.present) where Controller.Item == RelevantSortTextualRepresentation? {
+                                                       presenter: @escaping TextualPresenter = DefaultPresenter.RelevantSort.present) where Controller.Item == TextualRepresentation? {
     self.init(searcher: searcher,
               searcherConnection: interactor.connectSearcher(searcher),
               interactor: interactor)
@@ -97,7 +100,7 @@ public extension RelevantSortConnector {
                                                        queryIndex: Int,
                                                        interactor: RelevantSortInteractor = .init(),
                                                        controller: Controller,
-                                                       presenter: @escaping RelevantSortTextualPresenter = DefaultPresenter.RelevantSort.present) where Controller.Item == RelevantSortTextualRepresentation? {
+                                                       presenter: @escaping TextualPresenter = DefaultPresenter.RelevantSort.present) where Controller.Item == TextualRepresentation? {
     self.init(searcher: searcher,
               searcherConnection: interactor.connectSearcher(searcher, queryIndex: queryIndex),
               interactor: interactor)
@@ -111,10 +114,10 @@ public extension RelevantSortConnector {
    - Returns: Established connection
    */
   @discardableResult func connectController<Controller: RelevantSortController>(_ controller: Controller,
-                                                                                presenter: @escaping RelevantSortTextualPresenter = DefaultPresenter.RelevantSort.present) -> ControllerConnection<Controller, RelevantSortTextualRepresentation?> where Controller.Item == RelevantSortTextualRepresentation? {
+                                                                                presenter: @escaping TextualPresenter = DefaultPresenter.RelevantSort.present) -> ControllerConnection<Controller, TextualRepresentation?> where Controller.Item == TextualRepresentation? {
     let connection = interactor.connectController(controller, presenter: presenter)
     controllerConnections.append(connection)
     return connection
   }
-  
+
 }

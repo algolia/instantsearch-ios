@@ -18,10 +18,12 @@ public protocol RelevantSortController: ItemController {
 /// Generic presenter of the relevant sort priority state
 public typealias RelevantSortPresenter<Output> = Presenter<RelevantSortPriority?, Output>
 
-extension RelevantSortInteractor {
+public extension RelevantSortInteractor {
+
+  typealias Presenter<Output> = RelevantSortPresenter<Output>
 
   /// Connection between relevant sort interactor and its controller
-  public struct ControllerConnection<Controller: RelevantSortController, Output>: Connection where Controller.Item == Output {
+  struct ControllerConnection<Controller: RelevantSortController, Output>: Connection where Controller.Item == Output {
 
     /// Relevant sort priority toggling logic
     public let interactor: RelevantSortInteractor
@@ -30,7 +32,7 @@ extension RelevantSortInteractor {
     public let controller: Controller
 
     /// Generic presenter transforming the relevant sort priority state to its representation for a controller
-    public let presenter: RelevantSortPresenter<Output>
+    public let presenter: Presenter<Output>
 
     internal let superConnection: Connection
 
@@ -42,7 +44,7 @@ extension RelevantSortInteractor {
      */
     public init(interactor: RelevantSortInteractor,
                 controller: Controller,
-                presenter: @escaping RelevantSortPresenter<Output>) {
+                presenter: @escaping Presenter<Output>) {
       self.interactor = interactor
       self.controller = controller
       self.presenter = presenter
@@ -66,7 +68,7 @@ extension RelevantSortInteractor {
 }
 
 // Connect to a controller generically representing the relevant sort priority state
-extension RelevantSortInteractor {
+public extension RelevantSortInteractor {
 
   /**
    Establishes a connection with the controller using the provided presentation logic
@@ -75,11 +77,11 @@ extension RelevantSortInteractor {
      - presenter: Generic presenter transforming the relevant sort priority state to its representation in the controller
    - Returns: Established connection
   */
-  @discardableResult public func connectController<Controller: RelevantSortController, Output>(_ controller: Controller,
-                                                                                               presenter: @escaping RelevantSortPresenter<Output>) -> ControllerConnection<Controller, Output> where Output == Controller.Item {
+  @discardableResult func connectController<Controller: RelevantSortController, Output>(_ controller: Controller,
+                                                                                        presenter: @escaping Presenter<Output>) -> ControllerConnection<Controller, Output> where Output == Controller.Item {
     let connection = RelevantSortInteractor.ControllerConnection<Controller, Output>(interactor: self,
-                                                                                          controller: controller,
-                                                                                          presenter: presenter)
+                                                                                     controller: controller,
+                                                                                     presenter: presenter)
     connection.connect()
     return connection
   }
@@ -94,7 +96,10 @@ public typealias RelevantSortTextualRepresentation = (hintText: String, toggleTi
 public typealias RelevantSortTextualPresenter = RelevantSortPresenter<RelevantSortTextualRepresentation?>
 
 // Connect to a controller textually representing the relevant sort priority state
-extension RelevantSortInteractor {
+public extension RelevantSortInteractor {
+
+  typealias TextualPresenter = RelevantSortTextualPresenter
+  typealias TextualRepresentation = RelevantSortTextualRepresentation
 
   /**
    Establishes a connection with the controller using the provided textual presentation logic
@@ -104,11 +109,11 @@ extension RelevantSortInteractor {
                   Default presenter provides a tuple of string constants in english.
    - Returns: Established connection
   */
-  @discardableResult public func connectController<Controller: RelevantSortController>(_ controller: Controller,
-                                                                                       presenter: @escaping RelevantSortTextualPresenter = DefaultPresenter.RelevantSort.present) -> ControllerConnection<Controller, RelevantSortTextualRepresentation?> where Controller.Item == RelevantSortTextualRepresentation? {
-    let connection = RelevantSortInteractor.ControllerConnection<Controller, RelevantSortTextualRepresentation?>(interactor: self,
-                                                                                                                 controller: controller,
-                                                                                                                 presenter: presenter)
+  @discardableResult func connectController<Controller: RelevantSortController>(_ controller: Controller,
+                                                                                presenter: @escaping TextualPresenter = DefaultPresenter.RelevantSort.present) -> ControllerConnection<Controller, TextualRepresentation?> where Controller.Item == TextualRepresentation? {
+    let connection = RelevantSortInteractor.ControllerConnection<Controller, TextualRepresentation?>(interactor: self,
+                                                                                                     controller: controller,
+                                                                                                     presenter: presenter)
     connection.connect()
     return connection
   }
