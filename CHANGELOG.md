@@ -1,5 +1,13 @@
 # ChangeLog
 
+## [7.9.0](https://github.com/algolia/instantsearch-ios/compare/7.8.0...7.9.0) (2021-03-04)
+
+### Misc
+
+- feat(relevant sort):  Relevant sort widget (#162) ([d77bb60](https://github.com/algolia/instantsearch-ios/commit/d77bb60))
+
+
+
 ## [7.8.0](https://github.com/algolia/instantsearch-ios/compare/7.7.0...7.8.0) (2021-01-29)
 
 ### Feat
