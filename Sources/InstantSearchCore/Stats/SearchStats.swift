@@ -12,6 +12,7 @@ public struct SearchStats: Codable {
 
   enum CodingKeys: String, CodingKey {
     case totalHitsCount = "nbHits"
+    case nbSortedHits
     case page
     case pagesCount = "nbPages"
     case hitsPerPage
@@ -25,6 +26,9 @@ public struct SearchStats: Codable {
 
   /// Total number of hits.
   public let totalHitsCount: Int
+
+  /// Number of relevant hits to display in case of non-zero relevancyStrictness applied
+  public let nbSortedHits: Int?
 
   /// Total number of pages.
   public let pagesCount: Int
@@ -46,6 +50,7 @@ public struct SearchStats: Codable {
 
   init() {
     self.hitsPerPage = 0
+    self.nbSortedHits = nil
     self.totalHitsCount = 0
     self.pagesCount = 0
     self.page = 0
@@ -55,6 +60,7 @@ public struct SearchStats: Codable {
   }
 
   init(totalHitsCount: Int,
+       nbSortedHits: Int? = nil,
        hitsPerPage: Int? = nil,
        pagesCount: Int = 1,
        page: Int = 0,
@@ -62,6 +68,7 @@ public struct SearchStats: Codable {
        query: String? = nil,
        queryID: QueryID? = nil) {
     self.totalHitsCount = totalHitsCount
+    self.nbSortedHits = nbSortedHits
     self.hitsPerPage = hitsPerPage ?? totalHitsCount
     self.pagesCount = pagesCount
     self.page = page
@@ -75,6 +82,7 @@ public struct SearchStats: Codable {
     let container = try decoder.container(keyedBy: CodingKeys.self)
 
     self.totalHitsCount = try container.decode(Int.self, forKey: .totalHitsCount)
+    self.nbSortedHits = try container.decodeIfPresent(Int.self, forKey: .nbSortedHits)
     self.page = try container.decodeIfPresent(Int.self, forKey: .page) ?? 0
     self.pagesCount = try container.decodeIfPresent(Int.self, forKey: .pagesCount) ?? 1
     self.hitsPerPage = try container.decodeIfPresent(Int.self, forKey: .hitsPerPage) ?? 20
@@ -87,6 +95,7 @@ public struct SearchStats: Codable {
     var container = encoder.container(keyedBy: CodingKeys.self)
 
     try container.encode(totalHitsCount, forKey: .totalHitsCount)
+    try container.encodeIfPresent(nbSortedHits, forKey: .nbSortedHits)
     try container.encode(page, forKey: .page)
     try container.encode(pagesCount, forKey: .pagesCount)
     try container.encode(hitsPerPage, forKey: .hitsPerPage)

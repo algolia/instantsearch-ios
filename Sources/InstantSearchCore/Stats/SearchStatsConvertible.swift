@@ -18,6 +18,7 @@ extension SearchResponse: SearchStatsConvertible {
 
   public var searchStats: SearchStats {
     return .init(totalHitsCount: nbHits ?? 0,
+                 nbSortedHits: nbSortedHits,
                  hitsPerPage: hitsPerPage ?? 20,
                  pagesCount: nbPages ?? 1,
                  page: page ?? 0,
