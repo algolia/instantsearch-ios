@@ -13,21 +13,29 @@ import UIKit
 
 public extension MultiIndexSearchConnector {
 
-  @available(iOS 13.0, *)
   init<HC: MultiIndexHitsController>(searcher: MultiIndexSearcher,
                                      indexModules: [MultiIndexHitsConnector.IndexModule],
                                      searchController: UISearchController,
                                      hitsController: HC) {
     let queryInputInteractor = QueryInputInteractor()
-    let textFieldController = TextFieldController(searchBar: searchController.searchBar)
-    self.init(searcher: searcher,
-              indexModules: indexModules,
-              hitsController: hitsController,
-              queryInputInteractor: queryInputInteractor,
-              queryInputController: textFieldController)
+    if #available(iOS 13.0, *) {
+      let textFieldController = TextFieldController(searchBar: searchController.searchBar)
+      self.init(searcher: searcher,
+                indexModules: indexModules,
+                hitsController: hitsController,
+                queryInputInteractor: queryInputInteractor,
+                queryInputController: textFieldController)
+    } else {
+      let searchBarController = SearchBarController(searchBar: searchController.searchBar)
+      self.init(searcher: searcher,
+                indexModules: indexModules,
+                hitsController: hitsController,
+                queryInputInteractor: queryInputInteractor,
+                queryInputController: searchBarController)
+    }
+
   }
 
-  @available(iOS 13.0, *)
   init<HC: MultiIndexHitsController>(appID: ApplicationID,
                                      apiKey: APIKey,
                                      indexModules: [MultiIndexHitsConnector.IndexModule],

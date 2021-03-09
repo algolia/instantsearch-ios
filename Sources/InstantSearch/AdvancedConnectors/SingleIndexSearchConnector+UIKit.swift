@@ -13,23 +13,31 @@ import UIKit
 
 public extension SingleIndexSearchConnector {
 
-  @available(iOS 13.0, *)
   init<HC: HitsController>(searcher: SingleIndexSearcher,
                            searchController: UISearchController,
                            hitsInteractor: HitsInteractor<Record> = .init(),
                            hitsController: HC,
                            filterState: FilterState? = nil)  where HC.DataSource == HitsInteractor<Record> {
     let queryInputInteractor = QueryInputInteractor()
-    let textFieldController = TextFieldController(searchBar: searchController.searchBar)
-    self.init(searcher: searcher,
-              queryInputInteractor: queryInputInteractor,
-              queryInputController: textFieldController,
-              hitsInteractor: hitsInteractor,
-              hitsController: hitsController,
-              filterState: filterState)
+    if #available(iOS 13.0, *) {
+      let textFieldController = TextFieldController(searchBar: searchController.searchBar)
+      self.init(searcher: searcher,
+                queryInputInteractor: queryInputInteractor,
+                queryInputController: textFieldController,
+                hitsInteractor: hitsInteractor,
+                hitsController: hitsController,
+                filterState: filterState)
+    } else {
+      let searchBarController = SearchBarController(searchBar: searchController.searchBar)
+      self.init(searcher: searcher,
+                queryInputInteractor: queryInputInteractor,
+                queryInputController: searchBarController,
+                hitsInteractor: hitsInteractor,
+                hitsController: hitsController,
+                filterState: filterState)
+    }
   }
 
-  @available(iOS 13.0, *)
   init<HC: HitsController>(appID: ApplicationID,
                            apiKey: APIKey,
                            indexName: IndexName,
