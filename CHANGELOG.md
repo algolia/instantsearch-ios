@@ -1,5 +1,13 @@
 # ChangeLog
 
+## [7.9.1](https://github.com/algolia/instantsearch-ios/compare/7.9.0...7.9.1) (2021-03-09)
+
+### Fix
+
+- wrap ios availability for advanced connectors initializers (#165) ([c768bd3](https://github.com/algolia/instantsearch-ios/commit/c768bd3))
+
+
+
 ## [7.9.0](https://github.com/algolia/instantsearch-ios/compare/7.8.0...7.9.0) (2021-03-04)
 
 ### Misc
