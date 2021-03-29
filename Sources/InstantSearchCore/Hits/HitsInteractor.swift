@@ -7,13 +7,6 @@
 
 import Foundation
 import AlgoliaSearchClient
-import SwiftUI
-
-@available(iOS 13.0, *)
-extension HitsInteractor: ObservableObject {
-  
-  
-}
 
 /// Component that manages and displays a list of search results
 public class HitsInteractor<Record: Codable>: AnyHitsInteractor {
@@ -89,7 +82,7 @@ public class HitsInteractor<Record: Codable>: AnyHitsInteractor {
 
   public func hit(atIndex index: Int) -> Record? {
     guard let hitsPageMap = paginator.pageMap else { return nil }
-//    notifyForInfiniteScrolling(rowNumber: index)
+    notifyForInfiniteScrolling(rowNumber: index)
     return hitsPageMap[index]
   }
 
@@ -118,7 +111,7 @@ public class HitsInteractor<Record: Codable>: AnyHitsInteractor {
     return pageMap.loadedPages.flatMap { $0.items }.compactMap(toRaw)
   }
   
-  public func notifyForInfiniteScrolling(rowNumber: Int) {
+  internal func notifyForInfiniteScrolling(rowNumber: Int) {
     guard
       case .on(let pageLoadOffset) = settings.infiniteScrolling,
       let hitsPageMap = paginator.pageMap else { return }
@@ -199,6 +192,7 @@ extension HitsInteractor: ResultUpdatable {
         hitsInteractor.infiniteScrollingController.lastPageIndex = stats.pagesCount - 1
       }
       hitsInteractor.isLastQueryEmpty = stats.query.isNilOrEmpty
+
       do {
         let page: HitsPage<Record> = try HitsPage(searchResults: searchResults)
         hitsInteractor.paginator.process(page)
@@ -207,14 +201,6 @@ extension HitsInteractor: ResultUpdatable {
         InstantSearchCoreLogger.HitsDecoding.failure(hitsInteractor: hitsInteractor, error: error)
         hitsInteractor.onError.fire(error)
       }
-    }
-    
-    if #available(iOS 13.0, *) {
-      let notificationOperation = BlockOperation { [weak self] in
-        self?.objectWillChange.send()
-      }
-      notificationOperation.addDependency(updateOperation)
-      OperationQueue.main.addOperation(notificationOperation)
     }
 
     mutationQueue.addOperation(updateOperation)
@@ -227,7 +213,7 @@ extension HitsInteractor: ResultUpdatable {
 
     mutationQueue.cancelAllOperations()
 
-    let queryChangedCompletion = BlockOperation { [weak self] in
+    let queryChangedCompletion = { [weak self] in
       guard let hitsInteractor = self else { return }
       if case .on = hitsInteractor.settings.infiniteScrolling {
         hitsInteractor.infiniteScrollingController.notifyPendingAll()
@@ -235,13 +221,8 @@ extension HitsInteractor: ResultUpdatable {
 
       hitsInteractor.paginator.invalidate()
       hitsInteractor.onRequestChanged.fire(())
-      if #available(iOS 13.0, *) {
-        DispatchQueue.main.async {
-          hitsInteractor.objectWillChange.send()
-        }
-      }
     }
-    
+
     mutationQueue.addOperation(queryChangedCompletion)
 
   }
