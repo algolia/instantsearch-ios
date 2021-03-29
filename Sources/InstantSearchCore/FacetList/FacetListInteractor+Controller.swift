@@ -38,12 +38,12 @@ extension FacetList {
       facetListInteractor.onItemsChanged.subscribePast(with: controller) { [weak interactor = self.facetListInteractor, presenter = self.presenter] controller, facets in
         guard let interactor = interactor else { return }
         ControllerConnection.setControllerItemsWith(facets: facets, selections: interactor.selections, controller: controller, presenter: presenter)
-      }
+      }.onQueue(.main)
 
       facetListInteractor.onSelectionsChanged.subscribePast(with: controller) { [weak interactor = self.facetListInteractor, presenter = self.presenter] controller, selections in
         guard let interactor = interactor else { return }
         ControllerConnection.setControllerItemsWith(facets: interactor.items, selections: selections, controller: controller, presenter: presenter)
-      }
+      }.onQueue(.main)
 
     }
 
