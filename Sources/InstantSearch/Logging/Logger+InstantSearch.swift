@@ -15,7 +15,7 @@ import protocol InstantSearchInsights.LogService
 
 public extension Logger {
 
-  struct InstantSearch: LogCollector {
+  public struct InstantSearch: LogCollector {
 
     public static var minLogSeverityLevel: LogLevel {
 
