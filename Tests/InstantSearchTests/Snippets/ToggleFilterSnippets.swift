@@ -7,7 +7,8 @@
 
 import Foundation
 import InstantSearch
-#if canImport(UIKit)
+#if canImport(UIKit) && (os(iOS) || os(macOS))
+
 import UIKit
 
 class ToggleFilterSnippets {
