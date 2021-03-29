@@ -57,5 +57,51 @@ class SingleIndexSearcherTests: XCTestCase {
     searcher.search()
     waitForExpectations(timeout: 2, handler: .none)
   }
+  
+  func testTextualQueryChange() {
+    
+    let searcher = SingleIndexSearcher(appID: "", apiKey: "", indexName: "index1")
+    
+    let exp1 = expectation(description: "Request changed expectation")
+    exp1.expectedFulfillmentCount = 2
+    
+    searcher.onRequestChanged.subscribe(with: self) { (_, _) in
+      exp1.fulfill()
+    }
+    
+    let exp2 = expectation(description: "Query changed expectation")
+    
+    searcher.onQueryChanged.subscribe(with: self) { (_, _) in
+      exp2.fulfill()
+    }
+    
+    searcher.request.query.query = "1"
+    
+    waitForExpectations(timeout: 2, handler: .none)
+
+  }
+  
+  func testIndexChange() {
+    
+    let searcher = SingleIndexSearcher(appID: "", apiKey: "", indexName: "index1")
+    
+    let exp1 = expectation(description: "Request changed expectation")
+    
+    searcher.onRequestChanged.subscribe(with: self) { (_, _) in
+      exp1.fulfill()
+    }
+    
+    let exp2 = expectation(description: "Index changed expectation")
+    
+    searcher.onIndexChanged.subscribe(with: self) { (_, _) in
+      exp2.fulfill()
+    }
+    
+    searcher.request.indexName = "index2"
+    
+    waitForExpectations(timeout: 2, handler: .none)
+
+  }
+
 
 }

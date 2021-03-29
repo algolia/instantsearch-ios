@@ -12,22 +12,22 @@ import AlgoliaSearchClient
 /// An entity performing search queries targeting one index
 final public class SingleIndexSearcher: IndexSearcher<AlgoliaSearchService> {
 
-  public override var query: String? {
-
-    get {
-      return request.query.query
-    }
-
-    set {
-      let oldValue = request.query.query
-      guard oldValue != newValue else { return }
-      cancel()
-      request.query.query = newValue
-      request.query.page = 0
-      onQueryChanged.fire(newValue)
-    }
-
-  }
+//  public override var query: String? {
+//
+//    get {
+//      return request.query.query
+//    }
+//
+//    set {
+//      let oldValue = request.query.query
+//      guard oldValue != newValue else { return }
+//      cancel()
+//      request.query.query = newValue
+//      request.query.page = 0
+//      onQueryChanged.fire(newValue)
+//    }
+//
+//  }
 
   public var client: SearchClient {
     return service.client
@@ -43,6 +43,16 @@ final public class SingleIndexSearcher: IndexSearcher<AlgoliaSearchService> {
       self.request = .init(indexName: newValue.indexName, query: newValue.query)
     }
   }
+  
+  public override var request: Request {
+    didSet {
+      guard request.query.query != oldValue.query.query else { return }
+      cancel()
+      request.query.page = 0
+//      onQueryChanged.fire(request.query.query)
+    }
+  }
+
 
   /// Custom request options
   public var requestOptions: RequestOptions? {
