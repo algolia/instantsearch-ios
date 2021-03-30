@@ -13,16 +13,16 @@ public extension FacetListInteractor {
 
     /// Logic applied to the facets
     public let facetListInteractor: FacetListInteractor
-    
+
     /// Searcher that handles your searches
     public let searcher: MultiIndexSearcher
-    
+
     /// Faceting attribute
     public let attribute: Attribute
-    
+
     /// Index of query in the multi-index search
     public let queryIndex: Int
-    
+
     public init(facetListInteractor: FacetListInteractor,
                 searcher: MultiIndexSearcher,
                 attribute: Attribute,
