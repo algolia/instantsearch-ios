@@ -23,6 +23,13 @@ public extension FacetListInteractor {
     /// Index of query in the multi-index search
     public let queryIndex: Int
 
+    /**
+     - Parameters:
+       - facetListInteractor: Logic applied to the facets
+       - searcher: Searcher that handles your searches
+       - attribute: Faceting attribute
+       - queryIndex: Index of query in the multi-index search
+     */
     public init(facetListInteractor: FacetListInteractor,
                 searcher: MultiIndexSearcher,
                 attribute: Attribute,
@@ -55,6 +62,12 @@ public extension FacetListInteractor {
 
 public extension FacetListInteractor {
 
+  /**
+   - Parameters:
+     - searcher: Searcher that handles your searches
+     - attribute: Faceting attribute
+     - queryIndex: Index of query in the multi-index search
+   */
   @discardableResult func connectSearcher(_ searcher: MultiIndexSearcher,
                                           with attribute: Attribute,
                                           queryIndex: Int) -> MultiIndexSearcherConnection {
