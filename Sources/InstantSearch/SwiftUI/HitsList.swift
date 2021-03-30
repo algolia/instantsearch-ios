@@ -74,12 +74,16 @@ struct HitsView_Previews : PreviewProvider {
         VStack {
           HStack {
             Text(string ?? "---")
+              .frame(maxWidth: .infinity, minHeight: 30, maxHeight: .infinity, alignment: .leading)
+              .padding(.horizontal, 16)
           }
           Divider()
         }
       } noResults: {
         Text("No results")
-      }.onAppear {
+      }
+      .padding(.top, 20)
+      .onAppear {
         hitsObservable.hits = ["One", "Two", "Three"]
       }.navigationBarTitle("Hits")
     }
@@ -95,7 +99,6 @@ struct HitsView_Previews : PreviewProvider {
         Text("No results")
       }.navigationBarTitle("Hits")
     }
-
   }
 }
 #endif
