@@ -23,9 +23,13 @@ public class QueryInputObservableController: ObservableObject, QueryInputControl
   public func setQuery(_ query: String?) {
     self.query = query ?? ""
   }
-  
+    
   public init(query: String = "") {
     self.query = query
+  }
+  
+  public func submit() {
+    onQuerySubmitted?(query)
   }
   
 }
