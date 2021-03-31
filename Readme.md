@@ -44,7 +44,7 @@ If you're a framework author and use InstantSearch as a dependency, update your 
 
 ```swift
 let package = Package(
-    // 7.9.0 ..< 8.0.0
+    // 7.10.0 ..< 8.0.0
     dependencies: [
         .package(url: "https://github.com/algolia/instantsearch-ios", from: "7.10.0")
     ],
