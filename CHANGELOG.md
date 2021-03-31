@@ -1,5 +1,13 @@
 # ChangeLog
 
+## [7.10.0](https://github.com/algolia/instantsearch-ios/compare/7.9.1...7.10.0) (2021-03-30)
+
+### Feat
+
+- FacetListInteractor - MultiIndexSearcher connection (#169) ([ab7af08](https://github.com/algolia/instantsearch-ios/commit/ab7af08))
+
+
+
 ## [7.9.1](https://github.com/algolia/instantsearch-ios/compare/7.9.0...7.9.1) (2021-03-09)
 
 ### Fix
