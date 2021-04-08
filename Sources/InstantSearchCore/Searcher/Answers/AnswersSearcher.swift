@@ -12,6 +12,14 @@ import Foundation
 /// [Documentation](https://www.algolia.com/doc/guides/algolia-ai/answers/)
 public final class AnswersSearcher: IndexSearcher<AlgoliaAnswersSearchService> {
 
+  
+  public override var request: Request {
+    didSet {
+      guard request.query.query != oldValue.query.query || request.indexName != oldValue.indexName else { return }
+      request.query.page = 0
+    }
+  }
+
   /**
    - Parameters:
       - applicationID: Application ID
