@@ -62,19 +62,26 @@ public struct FacetRow: View {
   public var facet: Facet
   public var isSelected: Bool
   
+  func valueText(for facet: Facet) -> Text {
+    if let highlightedValue = facet.highlighted {
+      let highlightedValueString = HighlightedString(string: highlightedValue)
+      return Text(highlightedString: highlightedValueString) { Text($0).bold() }
+    } else {
+      return Text(facet.value)
+    }
+  }
+  
   public var body: some View {
     HStack(spacing: 0) {
-      Text(facet.description)
-        .font(.footnote)
+      (valueText(for: facet) + Text(" (\(facet.count))"))
         .frame(maxWidth: .infinity, minHeight: 30, maxHeight: .infinity, alignment: .leading)
       if isSelected {
         Image(systemName: "checkmark")
-          .font(.footnote)
           .frame(maxHeight: .infinity, alignment: .trailing)
       }
     }
     .padding(.horizontal, /*@START_MENU_TOKEN@*/10/*@END_MENU_TOKEN@*/)
-    .background(Color(backgroundColor))
+    .contentShape(Rectangle())
   }
   
   #if canImport(UIKit)
@@ -100,22 +107,22 @@ struct Facets_Previews : PreviewProvider {
   
   static let test: [Facet] = {
     [
-      ("Samsung", 356),
-      ("Sony", 236),
-      ("Insignia", 230),
-      ("Dynex", 202),
-      ("RocketFish", 193),
-      ("HP", 192),
-      ("Apple", 162),
-      ("LG", 141),
-      ("Metra", 132),
-      ("Microsoft", 121),
-      ("Logitech", 119),
-      ("ZAGG", 119),
-      ("Griffin Technology", 109),
-      ("Belkin", 104),
-    ].map { value, count in
-      Facet(value: value, count: count)
+      ("Samsung", 356, "<em>S</em>amsung"),
+      ("Sony", 236, "<em>S</em>ony"),
+      ("Insignia", 230, nil),
+      ("Dynex", 202, nil),
+      ("RocketFish", 193, nil),
+      ("HP", 192, nil),
+      ("Apple", 162, nil),
+      ("LG", 141, nil),
+      ("Metra", 132, nil),
+      ("Microsoft", 121, nil),
+      ("Logitech", 119, nil),
+      ("ZAGG", 119, nil),
+      ("Griffin Technology", 109, nil),
+      ("Belkin", 104, nil),
+    ].map { value, count, highlighted in
+      Facet(value: value, count: count, highlighted: highlighted)
     }
   }()
     
