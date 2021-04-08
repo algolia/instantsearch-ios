@@ -12,46 +12,57 @@ import SwiftUI
 @available(iOS 13.0, OSX 10.15, tvOS 13.0, watchOS 6.0, *)
 public struct SearchBar: View {
   
-  @State private var isEditing = false
   @Binding public var text: String
-
+  @Binding public var isEditing: Bool
+  
+  private let placeholder: String
+  private var onSubmit: () -> Void
+  
+  public init(text: Binding<String>,
+              isEditing: Binding<Bool>,
+              placeholder: String = "Search ...",
+              onSubmit: @escaping () -> Void = {}) {
+    self._text = text
+    self._isEditing = isEditing
+    self.placeholder = placeholder
+    self.onSubmit = onSubmit
+  }
+  
   public var body: some View {
     HStack {
-      ZStack {
-        TextField("Search ...", text: $text)
-          .padding(7)
-          .padding(.horizontal, 25)
-          .background(Color(.systemGray5))
-          .cornerRadius(8)
-          .overlay(
-            HStack {
-              Image(systemName: "magnifyingglass")
+      TextField(placeholder, text: $text, onCommit: {
+        onSubmit()
+        isEditing = false
+      })
+      .padding(7)
+      .padding(.horizontal, 25)
+      .background(Color(.systemGray5))
+      .cornerRadius(8)
+      .overlay(
+        HStack {
+          Image(systemName: "magnifyingglass")
+            .foregroundColor(.gray)
+            .frame(minWidth: 0, maxWidth: .infinity, alignment: .leading)
+            .padding(.leading, 8)
+            .disabled(true)
+          if isEditing && !text.isEmpty {
+            Button(action: {
+              text = ""
+            }) {
+              Image(systemName: "multiply.circle.fill")
                 .foregroundColor(.gray)
-                .frame(minWidth: 0, maxWidth: .infinity, alignment: .leading)
-                .padding(.leading, 8)
-                .disabled(true)
-              if isEditing && !text.isEmpty {
-                Button(action: {
-                  self.text = ""
-                }) {
-                  Image(systemName: "multiply.circle.fill")
-                    .foregroundColor(.gray)
-                    .padding(.trailing, 8)
-                }
-              }
+                .padding(.trailing, 8)
             }
-          )
-          .padding(.horizontal, 10)
-          .onTapGesture {
-            self.isEditing = true
           }
-
+        }
+      )
+      .padding(.horizontal, 10)
+      .onTapGesture {
+        isEditing = true
       }
       if isEditing {
         Button(action: {
-          self.isEditing = false
-          self.text = ""
-          self.hideKeyboard()
+          isEditing = false
         }) {
           Text("Cancel")
         }
@@ -60,14 +71,10 @@ public struct SearchBar: View {
         .animation(.default)
       }
     }
-    .background(Color(.systemBackground))
-  }
-  
-  public init(text: Binding<String>) {
-    self._text = text
   }
   
 }
+
 #endif
 
 #if canImport(UIKit)
