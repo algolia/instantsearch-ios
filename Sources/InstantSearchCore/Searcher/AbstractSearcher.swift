@@ -28,6 +28,7 @@ public class AbstractSearcher<Service: SearchService>: Searcher, SequencerDelega
       onRequestChanged.fire(request)
       if let oldRequest = oldValue as? TextualQueryProvider,
          let newRequest = request as? TextualQueryProvider, oldRequest.textualQuery != newRequest.textualQuery {
+        cancel()
         onQueryChanged.fire(newRequest.textualQuery)
       }
     }
