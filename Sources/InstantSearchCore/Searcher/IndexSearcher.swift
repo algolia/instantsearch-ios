@@ -13,6 +13,7 @@ public class IndexSearcher<Service: SearchService>: AbstractSearcher<Service> wh
   public override var request: Request {
     didSet {
       if request.indexName != oldValue.indexName {
+        cancel()
         onIndexChanged.fire(request.indexName)
       }
     }
