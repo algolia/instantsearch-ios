@@ -37,7 +37,7 @@ public extension DynamicFacetsInteractor {
         controller.apply(selections)
       }.onQueue(.main)
       interactor.onFacetOrderUpdated.subscribePast(with: controller) { controller, facetOrder in
-        controller.apply(facetOrder.facetOrder)
+        controller.apply(facetOrder)
       }.onQueue(.main)
     }
     

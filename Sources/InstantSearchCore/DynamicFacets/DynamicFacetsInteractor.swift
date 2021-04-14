@@ -13,17 +13,17 @@ public class DynamicFacetsInteractor {
     
   public var shouldShowFacetForAttribute: (Attribute, Facet) -> (Bool) = { _, _ in true }
   
-  private func prepareFacetOrder(_ facetOrder: FacetOrderContainer) -> [AttributedFacets] {
-    return facetOrder.facetOrder
+  private func prepareFacetOrder(_ facetOrder: [AttributedFacets]) -> [AttributedFacets] {
+    return facetOrder
       .compactMap { attributedFacets in
         let filteredFacets = attributedFacets.facets.filter { shouldShowFacetForAttribute(attributedFacets.attribute, $0) }
         return AttributedFacets(attribute: attributedFacets.attribute, facets: filteredFacets)
       }.filter { !$0.facets.isEmpty }
   }
   
-  public var facetOrder: FacetOrderContainer = .init() {
+  public var facetOrder: [AttributedFacets] = .init() {
     didSet {
-      onFacetOrderUpdated.fire(FacetOrderContainer(facetOrder: prepareFacetOrder(facetOrder)))
+      onFacetOrderUpdated.fire(prepareFacetOrder(facetOrder))
     }
   }
   
@@ -33,15 +33,15 @@ public class DynamicFacetsInteractor {
     }
   }
   
-  public let onFacetOrderUpdated: Observer<FacetOrderContainer>
+  public let onFacetOrderUpdated: Observer<[AttributedFacets]>
   public let onSelectionsUpdated: Observer<FacetSelections>
   
-  public init(facetOrder: FacetOrderContainer, selections: [Attribute: Set<String>]) {
+  public init(facetOrder: [AttributedFacets], selections: [Attribute: Set<String>]) {
     self.facetOrder = facetOrder
     self.selections = selections
     self.onFacetOrderUpdated = .init()
     self.onSelectionsUpdated = .init()
-    onFacetOrderUpdated.fire(facetOrder)
+    onFacetOrderUpdated.fire(prepareFacetOrder(facetOrder))
     onSelectionsUpdated.fire(selections)
   }
   

@@ -29,14 +29,16 @@ public extension DynamicFacetsInteractor {
     
     public func connect() {
       searcher.onResults.subscribe(with: interactor) { (interactor, searchResponse) in
-        if let facetMerchandising = searchResponse.rules?.consequence?.renderingContent?.facetMerchandising {
-          interactor.facetOrder = facetMerchandising
+        if let facetOrdering = searchResponse.rules?.consequence?.renderingContent?.facetMerchandising?.facetOrdering,
+           let facets = searchResponse.facets  {
+          let buildOrder = BuildOrder(facetOrder: facetOrdering, facets: facets)
+          interactor.facetOrder =  buildOrder()
         } else {
-          interactor.facetOrder = .init()
+          interactor.facetOrder = []
         }
       }
       (searcher as? ErrorObservable)?.onError.subscribe(with: interactor) { interactor, _ in
-        interactor.facetOrder = .init()
+        interactor.facetOrder = []
       }
     }
 
