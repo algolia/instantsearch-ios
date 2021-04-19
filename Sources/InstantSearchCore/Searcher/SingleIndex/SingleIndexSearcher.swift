@@ -70,7 +70,15 @@ final public class SingleIndexSearcher: IndexSearcher<AlgoliaSearchService> {
   /// Manually set attributes for disjunctive faceting
   ///
   /// These attributes are merged with disjunctiveFacetsAttributes provided by DisjunctiveFacetingDelegate to create the necessary queries for disjunctive faceting
-  public var disjunctiveFacetsAttributes: Set<Attribute>
+  public var disjunctiveFacetsAttributes: Set<Attribute> {
+    get {
+      service.disjunctiveFacetsAttributes
+    }
+    
+    set {
+      service.disjunctiveFacetsAttributes = newValue
+    }
+  }
 
   /// Flag defining if disjunctive faceting is enabled
   /// - Default value: true
@@ -123,7 +131,6 @@ final public class SingleIndexSearcher: IndexSearcher<AlgoliaSearchService> {
               indexName: IndexName,
               query: Query = .init(),
               requestOptions: RequestOptions? = nil) {
-    self.disjunctiveFacetsAttributes = []
     let request = AlgoliaSearchService.Request(indexName: indexName, query: query, requestOptions: requestOptions)
     super.init(service: AlgoliaSearchService(client: client), initialRequest: request)
     self.requestOptions = requestOptions

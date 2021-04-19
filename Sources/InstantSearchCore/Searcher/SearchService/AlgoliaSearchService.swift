@@ -24,9 +24,15 @@ public class AlgoliaSearchService: SearchService {
 
   /// Delegate providing a necessary information for hierarchical faceting
   public weak var hierarchicalFacetingDelegate: HierarchicalFacetingDelegate?
+  
+  /// Manually set attributes for disjunctive faceting
+  ///
+  /// These attributes are merged with disjunctiveFacetsAttributes provided by DisjunctiveFacetingDelegate to create the necessary queries for disjunctive faceting
+  public var disjunctiveFacetsAttributes: Set<Attribute>
 
   public init(client: SearchClient) {
     self.client = client
+    self.disjunctiveFacetsAttributes = []
   }
 
   public func search(_ request: Request, completion: @escaping (Result<SearchResponse, Error>) -> Void) -> Operation {
