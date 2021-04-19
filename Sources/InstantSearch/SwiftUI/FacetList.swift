@@ -32,6 +32,7 @@ public struct FacetList<Row: View, NoResults: View>: View {
         VStack() {
           ForEach(facetListObservableController.facets, id: \.self) { facet in
             row(facet, facetListObservableController.isSelected(facet))
+              .padding(.horizontal)
               .onTapGesture {
                 facetListObservableController.select(facet)
               }
@@ -74,13 +75,12 @@ public struct FacetRow: View {
   public var body: some View {
     HStack(spacing: 0) {
       (valueText(for: facet) + Text(" (\(facet.count))"))
-        .frame(maxWidth: .infinity, minHeight: 30, maxHeight: .infinity, alignment: .leading)
+      Spacer()
       if isSelected {
         Image(systemName: "checkmark")
           .frame(maxHeight: .infinity, alignment: .trailing)
       }
     }
-    .padding(.horizontal, /*@START_MENU_TOKEN@*/10/*@END_MENU_TOKEN@*/)
     .contentShape(Rectangle())
   }
   
