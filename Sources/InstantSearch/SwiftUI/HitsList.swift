@@ -68,9 +68,9 @@ public extension HitsList where NoResults == Never {
 struct HitsView_Previews : PreviewProvider {
   
   static var previews: some View {
-    let hitsObservable: HitsObservableController<String> = .init()
+    let hitsController: HitsObservableController<String> = .init()
     NavigationView {
-      HitsList(hitsObservable) { string, index in
+      HitsList(hitsController) { string, index in
         VStack {
           HStack {
             Text(string ?? "---")
@@ -84,11 +84,11 @@ struct HitsView_Previews : PreviewProvider {
       }
       .padding(.top, 20)
       .onAppear {
-        hitsObservable.hits = ["One", "Two", "Three"]
+        hitsController.hits = ["One", "Two", "Three"]
       }.navigationBarTitle("Hits")
     }
     NavigationView {
-      HitsList(hitsObservable) { string, index in
+      HitsList(hitsController) { string, index in
         VStack {
           HStack {
             Text(string ?? "---")

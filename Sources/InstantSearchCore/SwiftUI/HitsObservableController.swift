@@ -33,12 +33,5 @@ public class HitsObservableController<Item: Codable>: ObservableObject, HitsCont
   }
   
   public init() {}
-  
-  private func debugPrintHits() {
-    for (index, hit) in self.hits.enumerated() {
-      print("\(index):  \(((hit as? CustomStringConvertible)?.description).flatMap { $0 } ?? "nil" )")
-    }
-    print("--------------------------------------------------------------")
-  }
-  
+    
 }

@@ -12,9 +12,8 @@ public class StatsObservableController: ObservableObject, StatsTextController {
   
   @Published public var stats: String
   
-  public func setItem(_ item: String?) {
-    stats = item ?? ""
-    objectWillChange.send()
+  public func setItem(_ stats: String?) {
+    self.stats = stats ?? ""
   }
   
   public init(stats: String = "") {
