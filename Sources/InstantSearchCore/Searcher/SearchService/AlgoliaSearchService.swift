@@ -44,6 +44,7 @@ public class AlgoliaSearchService: SearchService {
       let hierarchicalAttributes = hierarchicalFacetingDelegate?.hierarchicalAttributes ?? []
       let hierarchicalFilters = hierarchicalFacetingDelegate?.hierarchicalFilters ?? []
       var queriesBuilder = QueryBuilder(query: request.query,
+                                        disjunctiveFacets: disjunctiveFacetsAttributes,
                                         filterGroups: filterGroups,
                                         hierarchicalAttributes: hierarchicalAttributes,
                                         hierachicalFilters: hierarchicalFilters)
