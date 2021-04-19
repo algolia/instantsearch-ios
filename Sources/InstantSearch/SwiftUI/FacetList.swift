@@ -32,7 +32,6 @@ public struct FacetList<Row: View, NoResults: View>: View {
         VStack() {
           ForEach(facetListObservableController.facets, id: \.self) { facet in
             row(facet, facetListObservableController.isSelected(facet))
-              .padding(.horizontal)
               .onTapGesture {
                 facetListObservableController.select(facet)
               }
@@ -53,50 +52,6 @@ public extension FacetList where NoResults == Never {
     self.facetListObservableController = facetListObservableController
     self.row = row
     self.noResults = nil
-  }
-  
-}
-
-@available(iOS 13.0, OSX 11.00, tvOS 13.0, watchOS 6.0, *)
-public struct FacetRow: View {
-  
-  public var facet: Facet
-  public var isSelected: Bool
-  
-  func valueText(for facet: Facet) -> Text {
-    if let highlightedValue = facet.highlighted {
-      let highlightedValueString = HighlightedString(string: highlightedValue)
-      return Text(highlightedString: highlightedValueString) { Text($0).bold() }
-    } else {
-      return Text(facet.value)
-    }
-  }
-  
-  public var body: some View {
-    HStack(spacing: 0) {
-      (valueText(for: facet) + Text(" (\(facet.count))"))
-      Spacer()
-      if isSelected {
-        Image(systemName: "checkmark")
-          .frame(maxHeight: .infinity, alignment: .trailing)
-      }
-    }
-    .contentShape(Rectangle())
-  }
-  
-  #if canImport(UIKit)
-  private var backgroundColor: UIColor {
-    return .systemBackground
-  }
-  #elseif canImport(AppKit)
-  private var backgroundColor: NSColor {
-    return .controlBackgroundColor
-  }
-  #endif
-  
-  public init(facet: Facet, isSelected: Bool) {
-    self.facet = facet
-    self.isSelected = isSelected
   }
   
 }
