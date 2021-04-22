@@ -12,8 +12,8 @@ public class HitsObservableController<Item: Codable>: ObservableObject, HitsCont
     
   public var hitsSource: HitsInteractor<Item>?
   
-  @Published public var hits: [Item?] = []
-  @Published public var scrollID: UUID = .init()
+  @Published public var hits: [Item?]
+  @Published public var scrollID: UUID
   
   public func scrollToTop() {
     scrollID = .init()
@@ -32,6 +32,9 @@ public class HitsObservableController<Item: Codable>: ObservableObject, HitsCont
     hitsSource?.notifyForInfiniteScrolling(rowNumber: index)
   }
   
-  public init() {}
+  public init() {
+    self.hits = []
+    self.scrollID = .init()
+  }
     
 }

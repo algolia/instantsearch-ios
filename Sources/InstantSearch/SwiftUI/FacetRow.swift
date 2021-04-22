@@ -30,6 +30,7 @@ public struct FacetRow: View {
       if isSelected {
         Image(systemName: "checkmark")
           .frame(maxHeight: .infinity, alignment: .trailing)
+          .foregroundColor(.accentColor)
       }
     }
     .contentShape(Rectangle())

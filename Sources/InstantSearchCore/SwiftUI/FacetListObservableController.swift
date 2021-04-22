@@ -15,12 +15,6 @@ public class FacetListObservableController: ObservableObject, FacetListControlle
   
   public var onClick: ((Facet) -> Void)?
   
-  public init(facets: [Facet] = [], selections: Set<String> = [], onClick: ((Facet) -> Void)? = nil) {
-    self.facets = facets
-    self.selections = selections
-    self.onClick = onClick
-  }
-  
   public func select(_ facet: Facet) {
     onClick?(facet)
   }
@@ -36,6 +30,14 @@ public class FacetListObservableController: ObservableObject, FacetListControlle
   
   public func reload() {
     objectWillChange.send()
+  }
+  
+  public init(facets: [Facet] = [],
+              selections: Set<String> = [],
+              onClick: ((Facet) -> Void)? = nil) {
+    self.facets = facets
+    self.selections = selections
+    self.onClick = onClick
   }
   
 }

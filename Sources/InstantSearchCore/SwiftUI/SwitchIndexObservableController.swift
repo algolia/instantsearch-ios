@@ -10,8 +10,8 @@ import Foundation
 @available(iOS 13.0, OSX 10.15, tvOS 13.0, watchOS 6.0, *)
 public class SwitchIndexObservableController: ObservableObject, SwitchIndexController {
   
-  @Published public var indexNames: [IndexName] = []
-  @Published public var selected: IndexName = ""
+  @Published public var indexNames: [IndexName]
+  @Published public var selected: IndexName
   
   public var select: (IndexName) -> Void = { _ in }
   
@@ -20,6 +20,10 @@ public class SwitchIndexObservableController: ObservableObject, SwitchIndexContr
     self.selected = selected
   }
   
-  public init() {}
+  public init(indexNames: [IndexName] = [],
+              selected: IndexName = "") {
+    self.indexNames = indexNames
+    self.selected = selected
+  }
       
 }
