@@ -8,9 +8,9 @@
 import Foundation
 
 @available(iOS 13.0, OSX 10.15, tvOS 13.0, watchOS 6.0, *)
-public class RangeController: ObservableObject, NumberRangeController {
+public class NumberRangeObservableController<Number: Comparable>: ObservableObject, NumberRangeController {
 
-  @Published public var range: ClosedRange<Int> {
+  @Published public var range: ClosedRange<Number> {
     didSet {
       if oldValue != range {
         onRangeChanged?(range)
@@ -18,11 +18,11 @@ public class RangeController: ObservableObject, NumberRangeController {
     }
   }
 
-  @Published public var bounds: ClosedRange<Int>
+  @Published public var bounds: ClosedRange<Number>
 
-  public var onRangeChanged: ((ClosedRange<Int>) -> Void)?
+  public var onRangeChanged: ((ClosedRange<Number>) -> Void)?
 
-  public func setItem(_ item: ClosedRange<Int>) {
+  public func setItem(_ item: ClosedRange<Number>) {
   }
 
   public func invalidate() {
@@ -30,7 +30,7 @@ public class RangeController: ObservableObject, NumberRangeController {
 
   private var isInitialBoundsSet: Bool = true
 
-  public func setBounds(_ bounds: ClosedRange<Int>) {
+  public func setBounds(_ bounds: ClosedRange<Number>) {
     self.bounds = bounds
     if isInitialBoundsSet {
       isInitialBoundsSet = false
@@ -38,8 +38,8 @@ public class RangeController: ObservableObject, NumberRangeController {
     }
   }
 
-  public init(range: ClosedRange<Int>,
-              bounds: ClosedRange<Int>) {
+  public init(range: ClosedRange<Number>,
+              bounds: ClosedRange<Number>) {
     self.range = range
     self.bounds = bounds
   }
