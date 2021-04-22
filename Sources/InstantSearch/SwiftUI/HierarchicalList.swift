@@ -10,9 +10,9 @@ import SwiftUI
 
 @available(iOS 13.0, OSX 10.15, tvOS 13.0, watchOS 6.0, *)
 public struct HierarchicalList: View {
-  
+
   @ObservedObject var hierarchicalController: HierarchicalObservableController
-  
+
   public var body: some View {
     VStack(alignment: .leading, spacing: 5) {
       ForEach(hierarchicalController.items.prefix(20), id: \.facet) { item in
@@ -31,14 +31,14 @@ public struct HierarchicalList: View {
       }
     }
   }
-  
+
   private func maxSelectedLevel(_ hierarchicalFacets: [HierarchicalFacet]) -> Int? {
     return hierarchicalFacets
       .filter { $0.isSelected }
-      .max { (l, r) in l.level < r.level }?
+      .max { $0.level < $1.level }?
       .level
   }
-  
+
   private func facet(from hierarchicalFacet: HierarchicalFacet) -> Facet {
     let value = hierarchicalFacet
       .facet
@@ -47,16 +47,16 @@ public struct HierarchicalList: View {
       .map { $0.trimmingCharacters(in: .whitespaces) }[hierarchicalFacet.level]
     return Facet(value: value, count: hierarchicalFacet.facet.count, highlighted: nil)
   }
-  
+
   public init(hierarchicalController: HierarchicalObservableController) {
     self.hierarchicalController = hierarchicalController
   }
-  
+
 }
 
 @available(iOS 13.0, OSX 10.15, tvOS 13.0, watchOS 6.0, *)
-struct HierarchicalMenu_Preview: PreviewProvider {
-  
+struct HierarchicalListPreview: PreviewProvider {
+
   static var previews: some View {
     let controller: HierarchicalObservableController = .init()
     HierarchicalList(hierarchicalController: controller)
@@ -71,11 +71,10 @@ struct HierarchicalMenu_Preview: PreviewProvider {
           (Facet(value: "Category2 > Category2-2", count: 4), 1, true),
           (Facet(value: "Category2 > Category2-2 > Category2-2-1", count: 2), 2, false),
           (Facet(value: "Category2 > Category2-2 > Category2-2-2", count: 2), 2, true),
-          (Facet(value: "Category2 > Category2-3", count: 2), 1, false),
+          (Facet(value: "Category2 > Category2-3", count: 2), 1, false)
         ])
       }
       .frame(width: UIScreen.main.bounds.width, height: UIScreen.main.bounds.height, alignment: .leading)
   }
-  
-}
 
+}

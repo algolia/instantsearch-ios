@@ -11,13 +11,13 @@ import SwiftUI
 #if os(iOS)
 @available(iOS 13.0, OSX 10.15, tvOS 13.0, watchOS 6.0, *)
 public struct SearchBar: View {
-  
+
   @Binding public var text: String
   @Binding public var isEditing: Bool
-  
+
   private let placeholder: String
   private var onSubmit: () -> Void
-  
+
   public init(text: Binding<String>,
               isEditing: Binding<Bool>,
               placeholder: String = "Search ...",
@@ -27,7 +27,7 @@ public struct SearchBar: View {
     self.placeholder = placeholder
     self.onSubmit = onSubmit
   }
-  
+
   public var body: some View {
     HStack {
       TextField(placeholder, text: $text, onCommit: {
@@ -47,12 +47,13 @@ public struct SearchBar: View {
             .disabled(true)
           if isEditing && !text.isEmpty {
             Button(action: {
-              text = ""
-            }) {
-              Image(systemName: "multiply.circle.fill")
-                .foregroundColor(.gray)
-                .padding(.trailing, 8)
-            }
+                    text = ""
+                   },
+                   label: {
+                    Image(systemName: "multiply.circle.fill")
+                      .foregroundColor(.gray)
+                      .padding(.trailing, 8)
+                   })
           }
         }
       )
@@ -61,17 +62,18 @@ public struct SearchBar: View {
       }
       if isEditing {
         Button(action: {
-          isEditing = false
-        }) {
-          Text("Cancel")
-        }
+                isEditing = false
+               },
+               label: {
+                Text("Cancel")
+               })
         .padding(.trailing, 10)
         .transition(.move(edge: .trailing))
         .animation(.default)
       }
     }
   }
-  
+
 }
 
 #endif

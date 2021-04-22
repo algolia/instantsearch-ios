@@ -8,12 +8,12 @@
 import Foundation
 
 public extension SwitchIndexInteractor {
-  
+
   struct SearcherConnection<Service: SearchService>: Connection where Service.Process == Operation, Service.Request: IndexNameProvider {
-    
+
     public let interactor: SwitchIndexInteractor
     public let searcher: IndexSearcher<Service>
-    
+
     public func connect() {
       interactor.onSelectionChange.subscribe(with: searcher) { (_, selectedIndexName) in
         searcher.request.indexName = selectedIndexName
@@ -26,11 +26,11 @@ public extension SwitchIndexInteractor {
     }
 
   }
-  
+
   @discardableResult func connectSearcher<Service: SearchService>(_ searcher: IndexSearcher<Service>) -> SearcherConnection<Service> {
     let connection = SearcherConnection(interactor: self, searcher: searcher)
     connection.connect()
     return connection
   }
-  
+
 }

@@ -14,7 +14,7 @@ public struct SuggestionRow: View {
   public let text: String
   public var onTypeAhead: (String) -> Void
   public var onSelection: (String) -> Void
-  
+
   public init(text: String,
               onSelection: @escaping (String) -> Void,
               onTypeAhead: @escaping (String) -> Void) {
@@ -22,15 +22,19 @@ public struct SuggestionRow: View {
     self.onSelection = onSelection
     self.onTypeAhead = onTypeAhead
   }
-  
+
   public var body: some View {
     HStack {
       Text(text)
         .padding(.vertical, 3)
       Spacer()
-      Button(action: { onTypeAhead(text) }) {
-        Image(systemName: "arrow.up.backward").foregroundColor(.gray)
-      }
+      Button(action: {
+              onTypeAhead(text)
+             },
+             label: {
+              Image(systemName: "arrow.up.backward")
+                .foregroundColor(.gray)
+             })
     }
     .padding(.vertical, 4)
     .padding(.horizontal, 20)
@@ -39,5 +43,5 @@ public struct SuggestionRow: View {
       onSelection(text)
     }
   }
-  
+
 }

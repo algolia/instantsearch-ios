@@ -8,15 +8,15 @@
 import Foundation
 
 public protocol SwitchIndexController: class {
-  
+
   var select: (IndexName) -> Void { get set }
-  
+
   func set(indexNames: [IndexName], selected: IndexName)
-  
+
 }
 
 public extension SwitchIndexInteractor {
-  
+
   struct ControllerConnection<Controller: SwitchIndexController>: Connection {
 
     public let interactor: SwitchIndexInteractor
@@ -29,7 +29,7 @@ public extension SwitchIndexInteractor {
         guard let interactor = interactor else { return }
         controller.set(indexNames: interactor.indexNames, selected: selectedIndexName)
       }.onQueue(.main)
-      
+
       controller.select = { [weak interactor] selectedIndexName in
         interactor?.selectedIndexName = selectedIndexName
       }
@@ -40,11 +40,11 @@ public extension SwitchIndexInteractor {
     }
 
   }
-  
+
   @discardableResult func connectController<Controller: SwitchIndexController>(_ controller: Controller) -> SwitchIndexInteractor.ControllerConnection<Controller> {
     let connection = SwitchIndexInteractor.ControllerConnection<Controller>(interactor: self, controller: controller)
     connection.connect()
     return connection
   }
-  
+
 }

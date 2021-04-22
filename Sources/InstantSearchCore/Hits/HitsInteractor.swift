@@ -12,7 +12,7 @@ import AlgoliaSearchClient
 public class HitsInteractor<Record: Codable>: AnyHitsInteractor {
 
   public typealias Result = HitsExtractable & SearchStatsConvertible
-  
+
   /// Hits settings
   public let settings: Settings
 
@@ -110,7 +110,7 @@ public class HitsInteractor<Record: Codable>: AnyHitsInteractor {
     guard let pageMap = paginator.pageMap else { return [] }
     return pageMap.loadedPages.flatMap { $0.items }.compactMap(toRaw)
   }
-  
+
   internal func notifyForInfiniteScrolling(rowNumber: Int) {
     guard
       case .on(let pageLoadOffset) = settings.infiniteScrolling,

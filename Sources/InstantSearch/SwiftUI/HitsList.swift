@@ -10,11 +10,11 @@ import SwiftUI
 
 @available(iOS 13.0, OSX 10.15, tvOS 13.0, watchOS 6.0, *)
 public struct HitsList<Row: View, Item: Codable, NoResults: View>: View {
-  
+
   @ObservedObject public var hitsObservable: HitsObservableController<Item>
   public var row: (Item?, Int) -> Row
   public var noResults: (() -> NoResults)?
-  
+
   public init(_ hitsObservable: HitsObservableController<Item>,
               @ViewBuilder row: @escaping (Item?, Int) -> Row,
               @ViewBuilder noResults: @escaping () -> NoResults) {
@@ -22,14 +22,14 @@ public struct HitsList<Row: View, Item: Codable, NoResults: View>: View {
     self.row = row
     self.noResults = noResults
   }
-            
+
   public var body: some View {
     if let noResults = noResults?(), hitsObservable.hits.isEmpty {
       noResults
     } else {
       if #available(iOS 14.0, OSX 11.0, tvOS 14.0, *) {
         ScrollView(showsIndicators: false) {
-          LazyVStack() {
+          LazyVStack {
             ForEach(0..<hitsObservable.hits.count, id: \.self) { index in
               row(atIndex: index)
             }
@@ -42,7 +42,7 @@ public struct HitsList<Row: View, Item: Codable, NoResults: View>: View {
       }
     }
   }
-  
+
   private func row(atIndex index: Int) -> some View {
     row(hitsObservable.hits[index], index).onAppear {
       hitsObservable.notify(index: index)
@@ -53,24 +53,24 @@ public struct HitsList<Row: View, Item: Codable, NoResults: View>: View {
 
 @available(iOS 13.0, OSX 10.15, tvOS 13.0, watchOS 6.0, *)
 public extension HitsList where NoResults == Never {
-  
+
   init(_ hitsObservable: HitsObservableController<Item>,
        @ViewBuilder row: @escaping (Item?, Int) -> Row) {
     self.hitsObservable = hitsObservable
     self.row = row
     self.noResults = nil
   }
-  
+
 }
 
 #if os(iOS)
 @available(iOS 13.0, tvOS 13.0, watchOS 6.0, *)
-struct HitsView_Previews : PreviewProvider {
-  
+struct HitsView_Previews: PreviewProvider {
+
   static var previews: some View {
     let hitsController: HitsObservableController<String> = .init()
     NavigationView {
-      HitsList(hitsController) { string, index in
+      HitsList(hitsController) { string, _ in
         VStack {
           HStack {
             Text(string ?? "---")
@@ -88,7 +88,7 @@ struct HitsView_Previews : PreviewProvider {
       }.navigationBarTitle("Hits")
     }
     NavigationView {
-      HitsList(hitsController) { string, index in
+      HitsList(hitsController) { string, _ in
         VStack {
           HStack {
             Text(string ?? "---")

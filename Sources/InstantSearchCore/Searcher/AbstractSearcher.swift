@@ -17,7 +17,7 @@ public class AbstractSearcher<Service: SearchService>: Searcher, SequencerDelega
     get { return nil }
     // swiftlint:disable:next unused_setter_value
     set {
-      
+
     }
   }
 

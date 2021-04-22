@@ -26,7 +26,7 @@ final public class SingleIndexSearcher: IndexSearcher<AlgoliaSearchService> {
       self.request = .init(indexName: newValue.indexName, query: newValue.query)
     }
   }
-  
+
   public override var request: Request {
     didSet {
       guard request.query.query != oldValue.query.query || request.indexName != oldValue.indexName else { return }
@@ -74,7 +74,7 @@ final public class SingleIndexSearcher: IndexSearcher<AlgoliaSearchService> {
     get {
       service.disjunctiveFacetsAttributes
     }
-    
+
     set {
       service.disjunctiveFacetsAttributes = newValue
     }
