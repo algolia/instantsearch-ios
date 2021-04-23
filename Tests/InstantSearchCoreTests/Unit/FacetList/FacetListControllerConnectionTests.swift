@@ -112,17 +112,13 @@ class FacetListControllerConnectionTests: XCTestCase {
                                              controller: TestFacetListController,
                                              isConnected: Bool) {
 
-    let selectedIndex = 1
-
-    interactor.selections = [facets[selectedIndex].value]
     let reloadExpectation = expectation(description: "reload expectation")
     reloadExpectation.isInverted = !isConnected
-    reloadExpectation.expectedFulfillmentCount = 3
+    reloadExpectation.expectedFulfillmentCount = 1
     controller.didReload = {
-      let selections: [Bool] = (0...3).compactMap { i in
-        return controller.selectableItems.first { $0.item.value == "f\(i)" }.flatMap { $0.isSelected }
-      }
-      XCTAssertEqual(selections, (0...3).map { $0 == selectedIndex })
+      let controllerItems = controller.selectableItems.map(\.item.value).sorted()
+      let interactorItems = interactor.items.map(\.value).sorted()
+      XCTAssertEqual(controllerItems, interactorItems)
       reloadExpectation.fulfill()
     }
 

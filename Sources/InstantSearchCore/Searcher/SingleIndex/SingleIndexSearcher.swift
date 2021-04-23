@@ -30,7 +30,9 @@ final public class SingleIndexSearcher: IndexSearcher<AlgoliaSearchService> {
   public override var request: Request {
     didSet {
       guard request.query.query != oldValue.query.query || request.indexName != oldValue.indexName else { return }
-      request.query.page = 0
+      if request.query.page ?? 0 != 0 {
+        request.query.page = 0
+      }
     }
   }
 
@@ -133,7 +135,6 @@ final public class SingleIndexSearcher: IndexSearcher<AlgoliaSearchService> {
               requestOptions: RequestOptions? = nil) {
     let request = AlgoliaSearchService.Request(indexName: indexName, query: query, requestOptions: requestOptions)
     super.init(service: AlgoliaSearchService(client: client), initialRequest: request)
-    self.requestOptions = requestOptions
   }
 
   /**

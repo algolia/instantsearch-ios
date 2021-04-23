@@ -63,7 +63,6 @@ class SingleIndexSearcherTests: XCTestCase {
     let searcher = SingleIndexSearcher(appID: "", apiKey: "", indexName: "index1")
     
     let exp1 = expectation(description: "Request changed expectation")
-    exp1.expectedFulfillmentCount = 2
     
     searcher.onRequestChanged.subscribe(with: self) { (_, _) in
       exp1.fulfill()

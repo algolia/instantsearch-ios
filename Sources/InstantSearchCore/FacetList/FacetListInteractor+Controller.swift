@@ -64,9 +64,7 @@ extension FacetList {
       let updatedFacets = merge(facets, withSelectedValues: selections)
       let sortedFacetValues = presenter?.transform(refinementFacets: updatedFacets) ?? updatedFacets
       controller.setSelectableItems(selectableItems: sortedFacetValues)
-      DispatchQueue.main.async { [weak controller] in
-        controller?.reload()
-      }
+      controller.reload()
     }
 
   }
