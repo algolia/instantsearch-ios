@@ -8,6 +8,7 @@
 import Foundation
 import SwiftUI
 
+#if os(iOS)
 @available(iOS 13.0, OSX 10.15, tvOS 13.0, watchOS 6.0, *)
 public struct HierarchicalList: View {
 
@@ -74,7 +75,7 @@ struct HierarchicalListPreview: PreviewProvider {
           (Facet(value: "Category2 > Category2-3", count: 2), 1, false)
         ])
       }
-      .frame(width: UIScreen.main.bounds.width, height: UIScreen.main.bounds.height, alignment: .leading)
   }
 
 }
+#endif
