@@ -8,7 +8,7 @@
 
 import Foundation
 
-extension FacetList {
+extension FacetListConnector {
 
   public struct ControllerConnection<Controller: FacetListController>: Connection {
 
@@ -75,9 +75,9 @@ public extension FacetListInteractor {
 
   @discardableResult func connectController<C: FacetListController>(_ controller: C,
                                                                     with presenter: SelectableListPresentable? = nil,
-                                                                    externalReload: Bool = false) -> FacetList.ControllerConnection<C> {
+                                                                    externalReload: Bool = false) -> FacetListConnector.ControllerConnection<C> {
 
-    let connection = FacetList.ControllerConnection(facetListInteractor: self,
+    let connection = FacetListConnector.ControllerConnection(facetListInteractor: self,
                                                     controller: controller,
                                                     presenter: presenter,
                                                     externalReload: externalReload)

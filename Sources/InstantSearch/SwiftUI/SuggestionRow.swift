@@ -24,6 +24,7 @@ public struct SuggestionRow: View {
   }
 
   public var body: some View {
+    let stack =
     HStack {
       Text(text)
         .padding(.vertical, 3)
@@ -39,9 +40,14 @@ public struct SuggestionRow: View {
     .padding(.vertical, 4)
     .padding(.horizontal, 20)
     .contentShape(Rectangle())
-    .onTapGesture {
-      onSelection(text)
-    }
+    #if os(tvOS)
+      return stack
+    #else
+      return stack
+        .onTapGesture {
+          onSelection(text)
+        }
+    #endif
   }
 
 }

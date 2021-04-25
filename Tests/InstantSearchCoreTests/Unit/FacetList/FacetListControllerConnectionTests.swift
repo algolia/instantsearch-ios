@@ -28,7 +28,7 @@ class FacetListControllerConnectionTests: XCTestCase {
     disposableInteractor = interactor
     disposableController = controller
     
-    let connection = FacetList.ControllerConnection(facetListInteractor: interactor, controller: controller, presenter: FacetListPresenter())
+    let connection = FacetListConnector.ControllerConnection(facetListInteractor: interactor, controller: controller, presenter: FacetListPresenter())
     connection.connect()
   }
   
@@ -42,7 +42,7 @@ class FacetListControllerConnectionTests: XCTestCase {
     let interactor = FacetListInteractor(facets: facets, selectionMode: .single)
     let controller = TestFacetListController()
 
-    let connection = FacetList.ControllerConnection(facetListInteractor: interactor, controller: controller, presenter: FacetListPresenter())
+    let connection = FacetListConnector.ControllerConnection(facetListInteractor: interactor, controller: controller, presenter: FacetListPresenter())
     connection.connect()
 
     checkConnection(interactor: interactor,
@@ -67,7 +67,7 @@ class FacetListControllerConnectionTests: XCTestCase {
     let interactor = FacetListInteractor(facets: facets, selectionMode: .single)
     let controller = TestFacetListController()
 
-    let connection = FacetList.ControllerConnection(facetListInteractor: interactor, controller: controller, presenter: FacetListPresenter())
+    let connection = FacetListConnector.ControllerConnection(facetListInteractor: interactor, controller: controller, presenter: FacetListPresenter())
     connection.connect()
     connection.disconnect()
 

@@ -7,7 +7,7 @@ Pod::Spec.new do |s|
   s.summary = 'A library of widgets and helpers to build instant-search applications on iOS.'
   s.homepage = 'https://github.com/algolia/instantsearch-ios'
   s.author = { "Algolia" => "contact@algolia.com" }
-  s.source = { :git => 'https://github.com/algolia/instantsearch-ios.git', :tag => s.version }
+  s.source = { :git => 'https://github.com/algolia/instantsearch-ios.git', :tag => s.version, :submodules => true }
 
   s.swift_version = "5.1"
   
@@ -15,7 +15,7 @@ Pod::Spec.new do |s|
   
   s.subspec "Insights" do |ss|
       ss.source_files = 'Sources/InstantSearchInsights/**/*.{swift}'
-      ss.dependency 'AlgoliaSearchClient', '~> 8.7'
+      ss.dependency 'AlgoliaSearchClient', '~> 8.8'
       ss.ios.deployment_target = '9.0'
       ss.osx.deployment_target = '10.10'
       ss.watchos.deployment_target = '3.0'
@@ -24,7 +24,8 @@ Pod::Spec.new do |s|
   
   s.subspec "Core" do |ss|
       ss.source_files = 'Sources/InstantSearchCore/**/*.{swift}'
-      ss.dependency 'AlgoliaSearchClient', '~> 8.7'
+      ss.exclude_files = 'Sources/InstantSearchCore/SwiftUI/**/*.{swift}'
+      ss.dependency 'AlgoliaSearchClient', '~> 8.8'
       ss.dependency 'InstantSearch/Insights'
       ss.ios.deployment_target = '9.0'
       ss.osx.deployment_target = '10.10'
@@ -35,6 +36,7 @@ Pod::Spec.new do |s|
   
   s.subspec "UI" do |ss|
       ss.source_files = 'Sources/InstantSearch/**/*.{swift}'
+      ss.exclude_files = 'Sources/InstantSearch/SwiftUI/**/*.{swift}'
       ss.dependency 'InstantSearch/Core'
       ss.ios.deployment_target = '9.0'
       ss.osx.deployment_target = '10.10'
@@ -43,4 +45,16 @@ Pod::Spec.new do |s|
       ss.pod_target_xcconfig = { 'OTHER_SWIFT_FLAGS' => '-DInstantSearchCocoaPods' }
   end
   
+  s.subspec "SwiftUI" do |ss|
+      ss.source_files = 'Sources/InstantSearchCore/SwiftUI/**/*.{swift}', 'Sources/InstantSearch/SwiftUI/**/*.{swift}'
+      #ss.exclude_files = 'Sources/InstantSearch/SwiftUI/FacetList.swift'
+      ss.dependency 'InstantSearch/Core'
+      ss.ios.deployment_target = '13.0'
+      ss.osx.deployment_target = '10.15'
+      ss.watchos.deployment_target = '6.0'
+      ss.tvos.deployment_target = '13.0'
+      ss.pod_target_xcconfig = { 'OTHER_SWIFT_FLAGS' => '-DInstantSearchCocoaPods' }
+      ss.weak_frameworks = 'SwiftUI', 'Combine'
+  end
+
 end

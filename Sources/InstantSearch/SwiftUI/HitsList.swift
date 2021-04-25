@@ -8,7 +8,7 @@
 import Foundation
 import SwiftUI
 
-@available(iOS 13.0, OSX 10.15, tvOS 13.0, watchOS 6.0, *)
+@available(iOS 13.0, OSX 10.15, tvOS 13.0, watchOS 7.0, *)
 public struct HitsList<Row: View, Item: Codable, NoResults: View>: View {
 
   @ObservedObject public var hitsObservable: HitsObservableController<Item>
@@ -51,7 +51,7 @@ public struct HitsList<Row: View, Item: Codable, NoResults: View>: View {
 
 }
 
-@available(iOS 13.0, OSX 10.15, tvOS 13.0, watchOS 6.0, *)
+@available(iOS 13.0, OSX 10.15, tvOS 13.0, watchOS 7.0, *)
 public extension HitsList where NoResults == Never {
 
   init(_ hitsObservable: HitsObservableController<Item>,
@@ -64,7 +64,7 @@ public extension HitsList where NoResults == Never {
 }
 
 #if os(iOS)
-@available(iOS 13.0, tvOS 13.0, watchOS 6.0, *)
+@available(iOS 13.0, tvOS 13.0, watchOS 7.0, *)
 struct HitsView_Previews: PreviewProvider {
 
   static var previews: some View {
