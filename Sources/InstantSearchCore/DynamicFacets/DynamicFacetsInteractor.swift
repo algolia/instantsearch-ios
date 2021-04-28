@@ -10,20 +10,10 @@ import Foundation
 public class DynamicFacetsInteractor {
   
   public typealias FacetSelections = [Attribute: Set<String>]
-    
-  public var shouldShowFacetForAttribute: (Attribute, Facet) -> (Bool) = { _, _ in true }
-  
-  private func prepareFacetOrder(_ facetOrder: [AttributedFacets]) -> [AttributedFacets] {
-    return facetOrder
-      .compactMap { attributedFacets in
-        let filteredFacets = attributedFacets.facets.filter { shouldShowFacetForAttribute(attributedFacets.attribute, $0) }
-        return AttributedFacets(attribute: attributedFacets.attribute, facets: filteredFacets)
-      }.filter { !$0.facets.isEmpty }
-  }
   
   public var facetOrder: [AttributedFacets] = .init() {
     didSet {
-      onFacetOrderUpdated.fire(prepareFacetOrder(facetOrder))
+      onFacetOrderUpdated.fire(facetOrder)
     }
   }
   
@@ -32,7 +22,7 @@ public class DynamicFacetsInteractor {
       onSelectionsUpdated.fire(selections)
     }
   }
-  
+    
   public let onFacetOrderUpdated: Observer<[AttributedFacets]>
   public let onSelectionsUpdated: Observer<FacetSelections>
   
@@ -41,7 +31,7 @@ public class DynamicFacetsInteractor {
     self.selections = selections
     self.onFacetOrderUpdated = .init()
     self.onSelectionsUpdated = .init()
-    onFacetOrderUpdated.fire(prepareFacetOrder(facetOrder))
+    onFacetOrderUpdated.fire(facetOrder)
     onSelectionsUpdated.fire(selections)
   }
   

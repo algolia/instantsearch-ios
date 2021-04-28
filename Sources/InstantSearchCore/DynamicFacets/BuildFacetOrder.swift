@@ -1,5 +1,5 @@
 //
-//  BuildOrder.swift
+//  BuildFacetOrder.swift
 //  
 //
 //  Created by Vladislav Fitc on 14/04/2021.
@@ -7,7 +7,7 @@
 
 import Foundation
 
-struct BuildOrder {
+struct BuildFacetOrder {
   
   let facetOrder: FacetOrdering
   let facets: [Attribute: [Facet]]
@@ -63,7 +63,7 @@ struct BuildOrder {
   
   func callAsFunction() -> [AttributedFacets] {
     
-    order(input: facets.map { $0 },
+    order(input: Array(facets),
           with: facetOrder.facets,
           valuePath: \.0.rawValue,
           countPath: \.1.count)

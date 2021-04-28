@@ -48,7 +48,7 @@ class BuildOrderTests: XCTestCase {
   ]
   
   func withOrder(_ facetOrder: FacetOrdering) -> [AttributedFacets] {
-    return BuildOrder(facetOrder: facetOrder, facets: facets)()
+    return BuildFacetOrder(facetOrder: facetOrder, facets: facets)()
   }
 
   func testStrictFacetsOrder() {
