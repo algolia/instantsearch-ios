@@ -29,12 +29,21 @@ end
 desc "Lint Cocoapods"
 lane :cocoapods_lint do |options|
 
-  subspec = options[:subspec]
+  if subspec = options[:subspec]
+    pod_lib_lint(
+      verbose: true,
+      subspec: subspec,
+      allow_warnings: true,
+      skip_tests: true
+    )
+  else
+    pod_lib_lint(
+      verbose: true,
+      allow_warnings: true,
+      skip_tests: true
+    )
+  end
 
-  pod_lib_lint(
-    verbose: true,
-    allow_warnings: true
-  )
 end
 
 desc "Test coverage"
