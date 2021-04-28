@@ -38,11 +38,14 @@ struct TestCredentials: Credentials {
 extension String {
 
   init?(environmentVariable: String) {
+    print(">>>>>>>>>>>>>>>>>>>>>>>>> FETCHING ENV VAR FOR \(environmentVariable)")
     if
       let rawValue = getenv(environmentVariable),
-      let value = String(utf8String: rawValue) {
+      let value = String(utf8String: rawValue) ?? ProcessInfo.processInfo.environment[environmentVariable] {
       self = value
+      print(">>>>>>>>>>>>>>>>>>>>>>>>> \(value)")
     } else {
+      print(">>>>>>>>>>>>>>>>>>>>>>>>> Failed")
       return nil
     }
   }

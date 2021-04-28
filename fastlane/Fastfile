@@ -27,7 +27,10 @@ lane :swift_lint do
 end
 
 desc "Lint Cocoapods"
-lane :cocoapods_lint do
+lane :cocoapods_lint do |options|
+
+  subspec = options[:subspec]
+
   pod_lib_lint(
     verbose: true,
     allow_warnings: true

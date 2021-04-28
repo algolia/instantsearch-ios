@@ -47,7 +47,6 @@ Pod::Spec.new do |s|
   
   s.subspec "SwiftUI" do |ss|
       ss.source_files = 'Sources/InstantSearchCore/SwiftUI/**/*.{swift}', 'Sources/InstantSearch/SwiftUI/**/*.{swift}'
-      #ss.exclude_files = 'Sources/InstantSearch/SwiftUI/FacetList.swift'
       ss.dependency 'InstantSearch/Core'
       ss.ios.deployment_target = '13.0'
       ss.osx.deployment_target = '10.15'
