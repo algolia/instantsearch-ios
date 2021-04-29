@@ -10,6 +10,7 @@ import SwiftUI
 
 #if os(iOS)
 @available(iOS 13.0, OSX 10.15, tvOS 13.0, watchOS 6.0, *)
+/// A view presenting the list of hierarchical facets
 public struct HierarchicalList: View {
 
   @ObservedObject var hierarchicalController: HierarchicalObservableController
@@ -27,7 +28,7 @@ public struct HierarchicalList: View {
         }
         .padding(.leading, CGFloat(level * 15))
         .onTapGesture {
-          hierarchicalController.select(item.facet.value)
+          hierarchicalController.toggle(item.facet.value)
         }
       }
     }

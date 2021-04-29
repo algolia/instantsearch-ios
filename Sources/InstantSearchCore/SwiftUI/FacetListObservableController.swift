@@ -7,18 +7,24 @@
 
 import Foundation
 
+/// FacetListController implementation adapted for usage with SwiftUI views
 @available(iOS 13.0, OSX 10.15, tvOS 13.0, watchOS 6.0, *)
 public class FacetListObservableController: ObservableObject, FacetListController {
 
+  /// List of facets to present
   @Published public var facets: [Facet]
+  
+  /// Set of selected facet values
   @Published public var selections: Set<String>
 
   public var onClick: ((Facet) -> Void)?
 
-  public func select(_ facet: Facet) {
+  /// Toggle facet selection
+  public func toggle(_ facet: Facet) {
     onClick?(facet)
   }
 
+  /// Returns bool value indicating whether the provided facet is selected
   public func isSelected(_ facet: Facet) -> Bool {
     return selections.contains(facet.value)
   }

@@ -8,11 +8,16 @@
 import Foundation
 import SwiftUI
 
+/// A view presenting the list of search hits
 @available(iOS 13.0, OSX 10.15, tvOS 13.0, watchOS 7.0, *)
 public struct HitsList<Row: View, Item: Codable, NoResults: View>: View {
 
   @ObservedObject public var hitsObservable: HitsObservableController<Item>
+  
+  /// Closure constructing a hit row view
   public var row: (Item?, Int) -> Row
+  
+  /// Closure constructing a no results view
   public var noResults: (() -> NoResults)?
 
   public init(_ hitsObservable: HitsObservableController<Item>,
@@ -45,7 +50,7 @@ public struct HitsList<Row: View, Item: Codable, NoResults: View>: View {
 
   private func row(atIndex index: Int) -> some View {
     row(hitsObservable.hits[index], index).onAppear {
-      hitsObservable.notify(index: index)
+      hitsObservable.notifyAppearanceOfHit(atIndex: index)
     }
   }
 

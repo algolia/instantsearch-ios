@@ -8,13 +8,17 @@
 import Foundation
 import SwiftUI
 
+/// A view presenting the facet value and its selection state
 @available(iOS 13.0, OSX 11.00, tvOS 13.0, watchOS 6.0, *)
 public struct FacetRow: View {
 
+  /// Facet value
   public var facet: Facet
+  
+  /// Facet selection state
   public var isSelected: Bool
 
-  func valueText(for facet: Facet) -> Text {
+  private func valueText(for facet: Facet) -> Text {
     if let highlightedValue = facet.highlighted {
       let highlightedValueString = HighlightedString(string: highlightedValue)
       return Text(highlightedString: highlightedValueString) { Text($0).bold() }

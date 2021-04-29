@@ -7,9 +7,11 @@
 
 import Foundation
 
+/// HierarchicalController implementation adapted for usage with SwiftUI views
 @available(iOS 13.0, OSX 10.15, tvOS 13.0, watchOS 6.0, *)
 public class HierarchicalObservableController: ObservableObject, HierarchicalController {
 
+  /// List of hierarchical facet items to present
   @Published public var items: [HierarchicalFacet]
 
   public var onClick: ((String) -> Void)?
@@ -18,7 +20,8 @@ public class HierarchicalObservableController: ObservableObject, HierarchicalCon
     self.items = facets
   }
 
-  public func select(_ facetValue: String) {
+  /// Toggle hierarchical facet selection
+  public func toggle(_ facetValue: String) {
     onClick?(facetValue)
   }
 

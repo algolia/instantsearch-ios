@@ -9,10 +9,14 @@ import Foundation
 import SwiftUI
 
 #if os(iOS)
+/// A specialized view for receiving search query text from the user.
 @available(iOS 13.0, OSX 10.15, tvOS 13.0, watchOS 6.0, *)
 public struct SearchBar: View {
 
+  /// Search query text
   @Binding public var text: String
+  
+  /// Whether the search bar is in the editing state
   @Binding public var isEditing: Bool
 
   private let placeholder: String

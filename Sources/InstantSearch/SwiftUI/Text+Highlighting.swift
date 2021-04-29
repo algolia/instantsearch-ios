@@ -11,15 +11,27 @@ import SwiftUI
 @available(iOS 13.0, OSX 10.15, tvOS 13.0, watchOS 6.0, *)
 public extension Text {
 
+  /**
+   - parameter highlightedString: HighlightedString value
+   - parameter regular: Text builder for a regular string
+   - parameter highlighted: Text builder for a highlighted string
+   */
   init(highlightedString: HighlightedString,
        @ViewBuilder regular: @escaping (String) -> Text = { Text($0) },
        @ViewBuilder highlighted: @escaping (String) -> Text) {
-    self.init(taggedString: highlightedString.taggedString, regular: regular, highlighted: highlighted)
+    self.init(taggedString: highlightedString.taggedString,
+              regular: regular,
+              tagged: highlighted)
   }
 
+  /**
+   - parameter taggedString: TaggedString value
+   - parameter regular: Text builder for a regular string
+   - parameter tagged: Text builder for a tagged string
+   */
   init(taggedString: TaggedString,
        @ViewBuilder regular: @escaping (String) -> Text = { Text($0) },
-       @ViewBuilder highlighted: @escaping (String) -> Text) {
+       @ViewBuilder tagged: @escaping (String) -> Text) {
 
     var mutableTaggedString = taggedString
 
@@ -28,7 +40,7 @@ public extension Text {
 
     func text(for range: Range<String.Index>, isHighlighted: Bool) -> Text {
       let string = String(mutableTaggedString.output[range])
-      return isHighlighted ? highlighted(string) : regular(string)
+      return isHighlighted ? tagged(string) : regular(string)
     }
 
     self = (taggedRanges + untaggedRanges)

@@ -7,13 +7,17 @@
 
 import Foundation
 
+/// HitsController implementation adapted for usage with SwiftUI views
 @available(iOS 13.0, OSX 10.15, tvOS 13.0, watchOS 6.0, *)
-public class HitsObservableController<Item: Codable>: ObservableObject, HitsController {
+public class HitsObservableController<Hit: Codable>: ObservableObject, HitsController {
 
-  public var hitsSource: HitsInteractor<Item>?
-
-  @Published public var hits: [Item?]
+  /// List of hits itemsto present
+  @Published public var hits: [Hit?]
+  
+  /// The state ID to assign to the scrollview presenting the hits
   @Published public var scrollID: UUID
+
+  public var hitsSource: HitsInteractor<Hit>?
 
   public func scrollToTop() {
     scrollID = .init()
@@ -28,7 +32,8 @@ public class HitsObservableController<Item: Codable>: ObservableObject, HitsCont
     self.hits = pageMap.map { $0 }
   }
 
-  public func notify(index: Int) {
+  /// Function to call on hit appearance  to ensure the infinite scrolling functionality
+  public func notifyAppearanceOfHit(atIndex index: Int) {
     hitsSource?.notifyForInfiniteScrolling(rowNumber: index)
   }
 

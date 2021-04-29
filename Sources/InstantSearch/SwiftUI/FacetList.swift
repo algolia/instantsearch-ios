@@ -9,11 +9,16 @@ import Foundation
 import SwiftUI
 
 #if os(iOS) || os(macOS)
+/// A view presenting the list of facets
 @available(iOS 13.0, OSX 10.15, tvOS 13.0, watchOS 6.0, *)
 public struct FacetList<Row: View, NoResults: View>: View {
 
   @ObservedObject public var facetListObservableController: FacetListObservableController
+  
+  /// Closure constructing a facet row view
   public var row: (Facet, Bool) -> Row
+  
+  /// Closure constructing a no results view
   public var noResults: (() -> NoResults)?
 
   public init(_ facetListObservableController: FacetListObservableController,
@@ -33,7 +38,7 @@ public struct FacetList<Row: View, NoResults: View>: View {
           ForEach(facetListObservableController.facets, id: \.self) { facet in
             row(facet, facetListObservableController.isSelected(facet))
               .onTapGesture {
-                facetListObservableController.select(facet)
+                facetListObservableController.toggle(facet)
               }
           }
         }
