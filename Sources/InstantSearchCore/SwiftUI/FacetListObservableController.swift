@@ -13,7 +13,7 @@ public class FacetListObservableController: ObservableObject, FacetListControlle
 
   /// List of facets to present
   @Published public var facets: [Facet]
-  
+
   /// Set of selected facet values
   @Published public var selections: Set<String>
 

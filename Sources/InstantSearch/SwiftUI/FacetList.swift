@@ -14,10 +14,10 @@ import SwiftUI
 public struct FacetList<Row: View, NoResults: View>: View {
 
   @ObservedObject public var facetListObservableController: FacetListObservableController
-  
+
   /// Closure constructing a facet row view
   public var row: (Facet, Bool) -> Row
-  
+
   /// Closure constructing a no results view
   public var noResults: (() -> NoResults)?
 

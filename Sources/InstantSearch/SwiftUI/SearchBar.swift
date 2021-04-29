@@ -15,7 +15,7 @@ public struct SearchBar: View {
 
   /// Search query text
   @Binding public var text: String
-  
+
   /// Whether the search bar is in the editing state
   @Binding public var isEditing: Bool
 

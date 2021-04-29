@@ -13,7 +13,7 @@ public class HitsObservableController<Hit: Codable>: ObservableObject, HitsContr
 
   /// List of hits itemsto present
   @Published public var hits: [Hit?]
-  
+
   /// The state ID to assign to the scrollview presenting the hits
   @Published public var scrollID: UUID
 

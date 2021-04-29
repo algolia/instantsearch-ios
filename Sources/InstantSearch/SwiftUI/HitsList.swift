@@ -13,10 +13,10 @@ import SwiftUI
 public struct HitsList<Row: View, Item: Codable, NoResults: View>: View {
 
   @ObservedObject public var hitsObservable: HitsObservableController<Item>
-  
+
   /// Closure constructing a hit row view
   public var row: (Item?, Int) -> Row
-  
+
   /// Closure constructing a no results view
   public var noResults: (() -> NoResults)?
 

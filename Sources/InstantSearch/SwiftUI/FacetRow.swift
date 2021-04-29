@@ -14,7 +14,7 @@ public struct FacetRow: View {
 
   /// Facet value
   public var facet: Facet
-  
+
   /// Facet selection state
   public var isSelected: Bool
 

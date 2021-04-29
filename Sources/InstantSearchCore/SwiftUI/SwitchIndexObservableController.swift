@@ -13,7 +13,7 @@ public class SwitchIndexObservableController: ObservableObject, SwitchIndexContr
 
   /// List of indices names to switch between
   @Published public var indexNames: [IndexName]
-  
+
   /// Name of currently selected index
   @Published public var selected: IndexName
 
