@@ -10,7 +10,7 @@ import Logging
 
 public struct Logger {
 
-  public struct InstantSearchInsights: LogCollector {
+  struct InstantSearchInsights: LogCollector {
 
     public static var minLogSeverityLevel: LogLevel {
 
