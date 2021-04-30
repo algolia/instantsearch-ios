@@ -18,7 +18,7 @@ InstantSearch family: **InstantSearch iOS** | [InstantSearch Android][instantsea
  **InstantSearch iOS** consists of three products
  - *InstantSearch Insights* – library that allows developers to capture search-related events
  - *InstantSearch Core* – the business logic modules of InstantSearch without provided UIKit controllers
- - *InstantSearch* – the complete InstantSearch toolset including UIKit components
+ - *InstantSearch* – the complete InstantSearch toolset including UIKit and SwiftUI components
 
 ## Demo
 
@@ -44,9 +44,9 @@ If you're a framework author and use InstantSearch as a dependency, update your 
 
 ```swift
 let package = Package(
-    // 7.9.0 ..< 8.0.0
+    // 7.11.0 ..< 8.0.0
     dependencies: [
-        .package(url: "https://github.com/algolia/instantsearch-ios", from: "7.9.0")
+        .package(url: "https://github.com/algolia/instantsearch-ios", from: "7.11.0")
     ],
     // ...
 )
@@ -59,9 +59,10 @@ let package = Package(
 To install InstantSearch, simply add the following line to your Podfile:
 
 ```ruby
-pod 'InstantSearch', '~> 7.9'
+pod 'InstantSearch', '~> 7.11'
 # pod 'InstantSearch/Insights' for access to Insights library only
 # pod 'InstantSearch/Core' for access business logic without UIKit components
+# pod 'InstantSearch/SwiftUI' for access to SwiftUI components
 ```
 
 Then, run the following command:
@@ -76,7 +77,7 @@ $ pod update
 
 - To install InstantSearch, simply add the following line to your Cartfile:
 ```ruby
-github "algolia/instantsearch-ios" ~> 7.9
+github "algolia/instantsearch-ios" ~> 7.11
 ```
 
 - Launch the following commands from the project directory
