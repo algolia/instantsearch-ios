@@ -16,7 +16,9 @@ public class AbstractSearcher<Service: SearchService>: Searcher, SequencerDelega
   public var query: String? {
     get { return nil }
     // swiftlint:disable:next unused_setter_value
-    set { }
+    set {
+
+    }
   }
 
   public let onQueryChanged: Observer<String?>
@@ -24,6 +26,11 @@ public class AbstractSearcher<Service: SearchService>: Searcher, SequencerDelega
   public var request: Request {
     didSet {
       onRequestChanged.fire(request)
+      if let oldRequest = oldValue as? TextualQueryProvider,
+         let newRequest = request as? TextualQueryProvider, oldRequest.textualQuery != newRequest.textualQuery {
+        cancel()
+        onQueryChanged.fire(newRequest.textualQuery)
+      }
     }
   }
 

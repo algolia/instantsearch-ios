@@ -120,6 +120,7 @@ class FilterStateTests: XCTestCase {
     XCTAssert(filterStateCopy[or: "b"].contains(Filter.Tag(value: "t1")))
     XCTAssert(filterStateCopy[or: "b"].contains(Filter.Tag(value: "t2")))
     XCTAssert(filterStateCopy[hierarchical: "c"].contains(.init(attribute: "f", stringValue: "test")))
+    filterState.removeAll()
 
   }
 

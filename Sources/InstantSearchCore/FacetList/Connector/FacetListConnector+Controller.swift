@@ -38,7 +38,7 @@ public extension FacetListConnector {
   */
   @discardableResult func connectController<Controller: FacetListController>(_ controller: Controller,
                                                                              with presenter: SelectableListPresentable? = nil,
-                                                                             externalReload: Bool = false) -> FacetList.ControllerConnection<Controller> {
+                                                                             externalReload: Bool = false) -> FacetListConnector.ControllerConnection<Controller> {
     let connection = interactor.connectController(controller, with: presenter)
     controllerConnections.append(connection)
     return connection

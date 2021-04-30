@@ -10,34 +10,46 @@ import Foundation
 
 class InfiniteScrollingController: InfiniteScrollable {
 
+  /// Index of the last page. If equals to `nil`, this index is unknown
   public var lastPageIndex: Int?
+
+  /// Logic triggering the loading of a page
   public weak var pageLoader: PageLoadable?
+
+  /// Set containing the indices of pending pages
   private let pendingPageIndexes: SynchronizedSet<Int>
 
   public init() {
     pendingPageIndexes = SynchronizedSet()
   }
 
+  /// Remove a page index from a pending set
   public func notifyPending(pageIndex: Int) {
+    InstantSearchCoreLogger.trace("InfiniteScrolling: remove page from pending: \(pageIndex)")
     pendingPageIndexes.remove(pageIndex)
   }
 
+  /// Remove all pages from a pending set
   public func notifyPendingAll() {
+    InstantSearchCoreLogger.trace("InfiniteScrolling: remove all pages from pending")
     pendingPageIndexes.removeAll()
   }
 
+  /// Returns true if the page at provided index is already loaded or is pending
   internal func isLoadedOrPending<T>(pageIndex: PageMap<T>.PageIndex, pageMap: PageMap<T>) -> Bool {
     let pageIsLoaded = pageMap.containsPage(atIndex: pageIndex)
     let pageIsPending = pendingPageIndexes.contains(pageIndex)
     return pageIsLoaded || pageIsPending
   }
 
+  /// Returns the list of pages indices required for a provided items indices range in the provided PageMap
   private func pagesToLoad<T>(in range: [Int], from pageMap: PageMap<T>) -> Set<Int> {
     let pagesContainingRequiredRows = Set(range.map(pageMap.pageIndex(for:)))
     let pagesToLoad = pagesContainingRequiredRows.filter { !isLoadedOrPending(pageIndex: $0, pageMap: pageMap) }
     return pagesToLoad
   }
 
+  /// Calculates and triggers loading of pages (if necessary) containing all the items in the range (currentRow - offset ... currentRow + offset)
   func calculatePagesAndLoad<T>(currentRow: Int, offset: Int, pageMap: PageMap<T>) {
 
     guard let pageLoader = pageLoader else {
@@ -46,10 +58,11 @@ class InfiniteScrollingController: InfiniteScrollable {
     }
 
     let previousPagesToLoad = computePreviousPagesToLoad(currentRow: currentRow, offset: offset, pageMap: pageMap)
-
     let nextPagesToLoad = computeNextPagesToLoad(currentRow: currentRow, offset: offset, pageMap: pageMap)
 
     let pagesToLoad = previousPagesToLoad.union(nextPagesToLoad)
+
+    InstantSearchCoreLogger.trace("InfiniteScrolling: required rows: \(currentRow)±\(offset), pages to load: \(pagesToLoad.sorted())")
 
     for pageIndex in pagesToLoad {
       pendingPageIndexes.insert(pageIndex)
@@ -58,6 +71,7 @@ class InfiniteScrollingController: InfiniteScrollable {
 
   }
 
+  /// Calculates the pages indices containing all the items in the range (currentRow - offset ... currentRow)
   func computePreviousPagesToLoad<T>(currentRow: Int, offset: Int, pageMap: PageMap<T>) -> Set<PageMap<T>.PageIndex> {
 
     let computedLowerBoundRow = currentRow - offset
@@ -74,6 +88,7 @@ class InfiniteScrollingController: InfiniteScrollable {
 
   }
 
+  /// Calculates the pages indices containing all the items in the range (currentRow ... currentRow + offset)
   func computeNextPagesToLoad<T>(currentRow: Int, offset: Int, pageMap: PageMap<T>) -> Set<PageMap<T>.PageIndex> {
 
     let computedUpperBoundRow = currentRow + offset

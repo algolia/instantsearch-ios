@@ -79,7 +79,7 @@ public class FacetListPresenter: SelectableListPresentable {
 
       }
 
-      return true
+      return leftValueLowercased < rightValueLowercased
 
     }
   }

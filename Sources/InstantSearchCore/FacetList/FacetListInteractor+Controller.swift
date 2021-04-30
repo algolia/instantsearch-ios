@@ -8,7 +8,7 @@
 
 import Foundation
 
-extension FacetList {
+extension FacetListConnector {
 
   public struct ControllerConnection<Controller: FacetListController>: Connection {
 
@@ -38,12 +38,12 @@ extension FacetList {
       facetListInteractor.onItemsChanged.subscribePast(with: controller) { [weak interactor = self.facetListInteractor, presenter = self.presenter] controller, facets in
         guard let interactor = interactor else { return }
         ControllerConnection.setControllerItemsWith(facets: facets, selections: interactor.selections, controller: controller, presenter: presenter)
-      }
+      }.onQueue(.main)
 
       facetListInteractor.onSelectionsChanged.subscribePast(with: controller) { [weak interactor = self.facetListInteractor, presenter = self.presenter] controller, selections in
         guard let interactor = interactor else { return }
         ControllerConnection.setControllerItemsWith(facets: interactor.items, selections: selections, controller: controller, presenter: presenter)
-      }
+      }.onQueue(.main)
 
     }
 
@@ -64,9 +64,7 @@ extension FacetList {
       let updatedFacets = merge(facets, withSelectedValues: selections)
       let sortedFacetValues = presenter?.transform(refinementFacets: updatedFacets) ?? updatedFacets
       controller.setSelectableItems(selectableItems: sortedFacetValues)
-      DispatchQueue.main.async { [weak controller] in
-        controller?.reload()
-      }
+      controller.reload()
     }
 
   }
@@ -77,9 +75,9 @@ public extension FacetListInteractor {
 
   @discardableResult func connectController<C: FacetListController>(_ controller: C,
                                                                     with presenter: SelectableListPresentable? = nil,
-                                                                    externalReload: Bool = false) -> FacetList.ControllerConnection<C> {
+                                                                    externalReload: Bool = false) -> FacetListConnector.ControllerConnection<C> {
 
-    let connection = FacetList.ControllerConnection(facetListInteractor: self,
+    let connection = FacetListConnector.ControllerConnection(facetListInteractor: self,
                                                     controller: controller,
                                                     presenter: presenter,
                                                     externalReload: externalReload)

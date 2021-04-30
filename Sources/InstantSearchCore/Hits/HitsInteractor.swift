@@ -71,7 +71,7 @@ public class HitsInteractor<Record: Codable>: AnyHitsInteractor {
   }
 
   public func numberOfHits() -> Int {
-    guard let hitsPageMap = paginator.pageMap else { return 0 }
+    guard let hitsPageMap = paginator.pageMap, !paginator.isInvalidated else { return 0 }
 
     if isLastQueryEmpty && !settings.showItemsOnEmptyQuery {
       return 0
@@ -111,6 +111,14 @@ public class HitsInteractor<Record: Codable>: AnyHitsInteractor {
     return pageMap.loadedPages.flatMap { $0.items }.compactMap(toRaw)
   }
 
+  internal func notifyForInfiniteScrolling(rowNumber: Int) {
+    guard
+      case .on(let pageLoadOffset) = settings.infiniteScrolling,
+      let hitsPageMap = paginator.pageMap else { return }
+
+    infiniteScrollingController.calculatePagesAndLoad(currentRow: rowNumber, offset: pageLoadOffset, pageMap: hitsPageMap)
+  }
+
 }
 
 extension HitsInteractor {
@@ -127,14 +135,6 @@ extension HitsInteractor {
 }
 
 private extension HitsInteractor {
-
-  func notifyForInfiniteScrolling(rowNumber: Int) {
-    guard
-      case .on(let pageLoadOffset) = settings.infiniteScrolling,
-      let hitsPageMap = paginator.pageMap else { return }
-
-    infiniteScrollingController.calculatePagesAndLoad(currentRow: rowNumber, offset: pageLoadOffset, pageMap: hitsPageMap)
-  }
 
   func toRaw(_ hit: Record) -> [String: Any]? {
     guard let json = try? JSON(hit) else { return nil }

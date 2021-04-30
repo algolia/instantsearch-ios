@@ -16,6 +16,8 @@ class Paginator<Item> {
 
   func process<IP: Pageable>(_ page: IP) where IP.Item == Item {
 
+    InstantSearchCoreLogger.trace("InfiniteScrolling: insert page \(page.index)")
+
     let updatedPageMap: PageMap<Item>?
 
     if let pageMap = pageMap, !isInvalidated {
