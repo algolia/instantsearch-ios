@@ -7,7 +7,7 @@ Pod::Spec.new do |s|
   s.summary = 'A library of widgets and helpers to build instant-search applications on iOS.'
   s.homepage = 'https://github.com/algolia/instantsearch-ios'
   s.author = { "Algolia" => "contact@algolia.com" }
-  s.source = { :git => 'https://github.com/algolia/instantsearch-ios.git', :tag => s.version, :submodules => true }
+  s.source = { :git => 'https://github.com/algolia/instantsearch-ios.git', :tag => s.version }
 
   s.swift_version = "5.1"
   
