@@ -12,9 +12,28 @@ public extension FacetListInteractor {
 
   struct SingleIndexSearcherConnection: Connection {
 
+    /// Logic applied to the facets
     public let facetListInteractor: FacetListInteractor
+
+    /// Searcher that handles your searches
     public let searcher: SingleIndexSearcher
+
+    /// Faceting attribute
     public let attribute: Attribute
+
+    /**
+     - Parameters:
+       - facetListInteractor: Logic applied to the facets
+       - searcher: Searcher that handles your searches
+       - attribute: Faceting attribute
+     */
+    public init(facetListInteractor: FacetListInteractor,
+                searcher: SingleIndexSearcher,
+                attribute: Attribute) {
+      self.facetListInteractor = facetListInteractor
+      self.searcher = searcher
+      self.attribute = attribute
+    }
 
     public func connect() {
 
@@ -38,8 +57,16 @@ public extension FacetListInteractor {
 
 public extension FacetListInteractor {
 
-  @discardableResult func connectSearcher(_ searcher: SingleIndexSearcher, with attribute: Attribute) -> SingleIndexSearcherConnection {
-    let connection = SingleIndexSearcherConnection(facetListInteractor: self, searcher: searcher, attribute: attribute)
+  /**
+   - Parameters:
+     - searcher: Searcher that handles your searches
+     - attribute: Faceting attribute
+   */
+  @discardableResult func connectSearcher(_ searcher: SingleIndexSearcher,
+                                          with attribute: Attribute) -> SingleIndexSearcherConnection {
+    let connection = SingleIndexSearcherConnection(facetListInteractor: self,
+                                                   searcher: searcher,
+                                                   attribute: attribute)
     connection.connect()
     return connection
   }

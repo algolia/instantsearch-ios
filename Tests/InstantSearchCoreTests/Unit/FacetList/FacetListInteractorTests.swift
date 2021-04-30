@@ -98,5 +98,35 @@ class FacetListInteractorTests: XCTestCase {
     }
 
   }
+  
+  func testConnectMultiIndexSearcher() {
+    let interactor = FacetListInteractor(selectionMode: .single)
+
+    let searcher = MultiIndexSearcher(appID: "", apiKey: "", indexNames: ["index1", "index2"])
+
+    interactor.connectSearcher(searcher, with: "kind", queryIndex: 1)
+
+    do {
+      let results1 = try SearchResponse(jsonFilename: "SearchResultFacets.json")
+      let results2 = try SearchResponse(jsonFilename: "SearchResultFacets2.json")
+
+      let searchResponses = SearchesResponse(results: [results1, results2])
+      
+      searcher.onResults.fire(searchResponses)
+
+      let expectedFacets: Set<Facet> = [
+        .init(value: "gadgets", count: 111, highlighted: nil),
+        .init(value: "stuff", count: 98, highlighted: nil),
+        .init(value: "things", count: 28, highlighted: nil),
+        .init(value: "others", count: 16, highlighted: nil)
+      ]
+
+      XCTAssertEqual(Set(interactor.items), expectedFacets)
+
+    } catch let error {
+      XCTFail(error.localizedDescription)
+    }
+
+  }
 
 }

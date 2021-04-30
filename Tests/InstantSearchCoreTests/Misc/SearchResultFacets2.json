@@ -1,0 +1,17 @@
+{
+  "hits": [],
+  "nbHits": 596,
+  "page": 0,
+  "nbPages": 60,
+  "hitsPerPage": 10,
+  "processingTimeMS": 4,
+  "facets": {
+    "kind": {
+      "gadgets": 111,
+      "stuff": 98,
+      "things": 28,
+      "others": 16
+    }
+  },
+}
+
