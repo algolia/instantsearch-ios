@@ -6,9 +6,10 @@
 //
 
 import Foundation
+#if canImport(Combine) && canImport(SwiftUI) && os(iOS)
+import Combine
 import SwiftUI
 
-#if os(iOS)
 /// A specialized view for receiving search query text from the user.
 @available(iOS 13.0, OSX 10.15, tvOS 13.0, watchOS 6.0, *)
 public struct SearchBar: View {

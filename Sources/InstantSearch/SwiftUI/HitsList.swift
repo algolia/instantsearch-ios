@@ -6,6 +6,8 @@
 //
 
 import Foundation
+#if canImport(Combine) && canImport(SwiftUI)
+import Combine
 import SwiftUI
 
 /// A view presenting the list of search hits
@@ -17,7 +19,7 @@ public struct HitsList<Row: View, Item: Codable, NoResults: View>: View {
   /// Closure constructing a hit row view
   public var row: (Item?, Int) -> Row
 
-  /// Closure constructing a no results view
+  /// Closure constructing a no results view-
   public var noResults: (() -> NoResults)?
 
   public init(_ hitsObservable: HitsObservableController<Item>,
@@ -106,4 +108,5 @@ struct HitsView_Previews: PreviewProvider {
     }
   }
 }
+#endif
 #endif
