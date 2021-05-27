@@ -1,5 +1,13 @@
 # ChangeLog
 
+## [7.11.1](https://github.com/algolia/instantsearch-ios/compare/7.11.0...7.11.1) (2021-05-27)
+
+### Fix
+
+- Add conditional imports for Combine & SwiftUI (#173) ([c9ab1d5](https://github.com/algolia/instantsearch-ios/commit/c9ab1d5))
+
+
+
 ## [7.11.0](https://github.com/algolia/instantsearch-ios/compare/7.10.0...7.11.0) (2021-04-30)
 
 ### Feat
