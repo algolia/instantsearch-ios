@@ -6,9 +6,10 @@
 //
 
 import Foundation
+#if canImport(Combine) && canImport(SwiftUI) && (os(iOS) || os(macOS))
+import Combine
 import SwiftUI
 
-#if os(iOS) || os(macOS)
 /// A view presenting the list of facets
 @available(iOS 13.0, OSX 10.15, tvOS 13.0, watchOS 6.0, *)
 public struct FacetList<Row: View, NoResults: View>: View {

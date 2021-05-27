@@ -6,6 +6,9 @@
 //
 
 import Foundation
+#if canImport(Combine) && canImport(SwiftUI)
+import Combine
+import SwiftUI
 
 /// HierarchicalController implementation adapted for usage with SwiftUI views
 @available(iOS 13.0, OSX 10.15, tvOS 13.0, watchOS 6.0, *)
@@ -30,3 +33,4 @@ public class HierarchicalObservableController: ObservableObject, HierarchicalCon
   }
 
 }
+#endif

@@ -6,6 +6,9 @@
 //
 
 import Foundation
+#if canImport(Combine) && canImport(SwiftUI)
+import Combine
+import SwiftUI
 
 /// QueryInputController implementation adapted for usage with SwiftUI views
 @available(iOS 13.0, OSX 10.15, tvOS 13.0, watchOS 6.0, *)
@@ -36,3 +39,4 @@ public class QueryInputObservableController: ObservableObject, QueryInputControl
   }
 
 }
+#endif
