@@ -6,6 +6,8 @@
 //
 
 import Foundation
+#if canImport(Combine) && canImport(SwiftUI)
+import Combine
 import SwiftUI
 
 /// A view presenting the facet value and its selection state
@@ -46,3 +48,4 @@ public struct FacetRow: View {
   }
 
 }
+#endif
