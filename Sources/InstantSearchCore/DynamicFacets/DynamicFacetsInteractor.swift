@@ -21,17 +21,17 @@ import Foundation
    - ...
  */
 public class DynamicFacetsInteractor {
-  
+
   /// Mapping between a facet attribute and a set of its selected values
   public typealias SelectionsPerAttribute = [Attribute: Set<String>]
-  
+
   public var orderedFacets: [AttributedFacets] = .init() {
     didSet {
       onFacetOrderChanged.fire(orderedFacets)
       updateInteractors()
     }
   }
-  
+
   /// Facet selections per attribute
   public var selections: SelectionsPerAttribute = .init() {
     didSet {
@@ -39,19 +39,19 @@ public class DynamicFacetsInteractor {
       onSelectionsChanged.fire(selections)
     }
   }
-  
+
   ///
   public let onFacetOrderChanged: Observer<[AttributedFacets]>
-  
+
   ///
   public let onSelectionsChanged: Observer<SelectionsPerAttribute>
-  
+
   ///
   public let onSelectionsComputed: Observer<SelectionsPerAttribute>
-  
+
   ///
   public let selectionModeForAttribute: [Attribute: SelectionMode]
-  
+
   /// 
   private var facetListPerAttribute: [Attribute: SelectableListInteractor<String, Facet>]
 
@@ -75,7 +75,7 @@ public class DynamicFacetsInteractor {
     onSelectionsChanged.fire(selections)
     updateInteractors()
   }
-    
+
   /**
     Returns the selection state of facet value for attribute
      - parameters:
@@ -86,7 +86,7 @@ public class DynamicFacetsInteractor {
                          for attribute: Attribute) -> Bool {
     return selections[attribute]?.contains(facetValue) ?? false
   }
-  
+
   /**
     Toggle the selection state of facet value for attribute
      - parameters:
@@ -97,28 +97,28 @@ public class DynamicFacetsInteractor {
                               for attribute: Attribute) {
     facetListPerAttribute[attribute]?.computeSelections(selectingItemForKey: facetValue)
   }
-  
+
   private func updateInteractors() {
-    
+
     for attributedFacet in orderedFacets {
       let attribute = attributedFacet.attribute
-      
+
       let facetList: SelectableListInteractor<String, Facet>
-      
+
       if let existingFacetList = facetListPerAttribute[attribute] {
         facetList = existingFacetList
       } else {
         facetList = createFacetList(for: attribute)
         facetListPerAttribute[attribute] = facetList
       }
-      
+
       facetList.items = attributedFacet.facets
       facetList.selections = selections[attribute] ?? []
-      
+
     }
-    
+
   }
-  
+
   private func createFacetList(for attribute: Attribute) -> SelectableListInteractor<String, Facet> {
     let selectionMode = selectionModeForAttribute[attribute] ?? .single
     let facetList = SelectableListInteractor<String, Facet>(selectionMode: selectionMode)

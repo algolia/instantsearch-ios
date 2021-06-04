@@ -8,10 +8,10 @@
 import Foundation
 
 public extension DynamicFacetsInteractor {
-  
+
   /// Connection between a dynamic facets business logic and a searcher
   struct SearcherConnection<Searcher: SearchResultObservable>: Connection where Searcher.SearchResult == SearchResponse {
-    
+
     /// Dynamic facets business logic
     public let interactor: DynamicFacetsInteractor
 
@@ -27,7 +27,7 @@ public extension DynamicFacetsInteractor {
       self.searcher = searcher
       self.interactor = interactor
     }
-    
+
     public func connect() {
       searcher.onResults.subscribe(with: interactor) { (interactor, searchResponse) in
         if let facetOrdering = searchResponse.renderingContent?.facetOrdering,
@@ -48,11 +48,11 @@ public extension DynamicFacetsInteractor {
     }
 
   }
-  
+
   @discardableResult func connectSearcher<Searcher: SearchResultObservable>(_ searcher: Searcher) -> SearcherConnection<Searcher> {
     let connection = SearcherConnection(interactor: self, searcher: searcher)
     connection.connect()
     return connection
   }
-  
+
 }

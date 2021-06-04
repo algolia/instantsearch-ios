@@ -8,16 +8,16 @@
 import Foundation
 
 public extension DynamicFacetsInteractor {
-  
+
   /// Connection between a dynamic facets business logic and a filter state
   struct FilterStateConnection: Connection {
-    
+
     /// Dynamic facets business logic
     public let interactor: DynamicFacetsInteractor
-    
+
     ///
     public let filterState: FilterState
-    
+
     ///
     public let groupIDForAttribute: [Attribute: FilterGroup.ID]
 
@@ -34,21 +34,21 @@ public extension DynamicFacetsInteractor {
       self.filterState = filterState
       self.groupIDForAttribute = groupIDForAttribute
     }
-    
+
     private func groupID(for attribute: Attribute) -> FilterGroup.ID {
       return groupIDForAttribute[attribute] ?? .and(name: attribute.rawValue)
     }
-      
+
     public func connect() {
       whenSelectionsComputedThenUpdateFilterState()
       whenFilterStateChangedThenUpdateSelections()
     }
-    
+
     public func disconnect() {
       filterState.onChange.cancelSubscription(for: interactor)
       interactor.onSelectionsChanged.cancelSubscription(for: filterState)
     }
-    
+
     private func whenSelectionsComputedThenUpdateFilterState() {
       interactor.onSelectionsComputed.subscribePast(with: filterState) { filterState, selectionsPerAttribute in
         selectionsPerAttribute.forEach { attribute, selections in
@@ -60,9 +60,9 @@ public extension DynamicFacetsInteractor {
         filterState.notifyChange()
       }
     }
-    
+
     private func whenFilterStateChangedThenUpdateSelections() {
-      filterState.onChange.subscribePast(with: interactor) { interactor, filters in
+      filterState.onChange.subscribePast(with: interactor) { interactor, _ in
         let selectionsPerAttribute: [(attribute: Attribute, values: Set<String>)] = interactor
           .orderedFacets
           .map(\.attribute)
@@ -77,13 +77,13 @@ public extension DynamicFacetsInteractor {
         interactor.selections = Dictionary(uniqueKeysWithValues: selectionsPerAttribute)
       }
     }
-    
+
   }
-  
+
   @discardableResult func connectFilterState(_ filterState: FilterState) -> FilterStateConnection {
     let connection = FilterStateConnection(interactor: self, filterState: filterState)
     connection.connect()
     return connection
   }
-  
+
 }
