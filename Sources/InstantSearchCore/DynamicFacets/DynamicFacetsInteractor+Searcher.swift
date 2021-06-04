@@ -30,12 +30,11 @@ public extension DynamicFacetsInteractor {
     public func connect() {
       searcher.onResults.subscribe(with: interactor) { (interactor, searchResponse) in
         guard
-        let facetOrdering = searchResponse.rules?.consequence?.renderingContent?.facetMerchandising?.facetOrdering,
+        let facetOrdering = searchResponse.renderingContent?.facetOrdering,
         let facets = searchResponse.facets  else {
           interactor.facetOrder = []
           return
         }
-        
         let buildOrder = BuildFacetOrder(facetOrder: facetOrdering, facets: facets)
         interactor.facetOrder = buildOrder()
       }

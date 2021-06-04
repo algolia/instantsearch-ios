@@ -25,12 +25,16 @@ public class DynamicFacetsInteractor {
     
   public let onFacetOrderUpdated: Observer<[AttributedFacets]>
   public let onSelectionsUpdated: Observer<FacetSelections>
-  
-  public init(facetOrder: [AttributedFacets], selections: [Attribute: Set<String>]) {
+  public let selectionModeForAttribute: [Attribute: SelectionMode]
+
+  public init(facetOrder: [AttributedFacets] = [],
+              selections: [Attribute: Set<String>] = [:],
+              selectionModeForAttribute: [Attribute: SelectionMode] = [:]) {
     self.facetOrder = facetOrder
     self.selections = selections
     self.onFacetOrderUpdated = .init()
     self.onSelectionsUpdated = .init()
+    self.selectionModeForAttribute = selectionModeForAttribute
     onFacetOrderUpdated.fire(facetOrder)
     onSelectionsUpdated.fire(selections)
   }
@@ -40,13 +44,31 @@ public class DynamicFacetsInteractor {
   }
   
   public func toggleSelection(ofFacetValue facetValue: String, for attribute: Attribute) {
-    var currentSelections = selections[attribute] ?? []
-    if currentSelections.contains(facetValue) {
-      currentSelections.remove(facetValue)
-    } else {
-      currentSelections.insert(facetValue)
-    }
-    selections[attribute] = currentSelections.isEmpty ? nil : currentSelections
+    computeSelections(selectingItemForKey: facetValue, for: attribute)
   }
   
+  public func computeSelections(selectingItemForKey key: String, for attribute: Attribute) {
+
+    let currentSelections = selections[attribute] ?? []
+    let selectionMode = selectionModeForAttribute[attribute] ?? .single
+    
+    let computedSelections: Set<String>
+
+    switch (selectionMode, currentSelections.contains(key)) {
+    case (.single, true):
+      computedSelections = []
+
+    case (.single, false):
+      computedSelections = [key]
+
+    case (.multiple, true):
+      computedSelections = currentSelections.subtracting([key])
+
+    case (.multiple, false):
+      computedSelections = currentSelections.union([key])
+    }
+    
+    selections[attribute] = computedSelections
+  }
+
 }

@@ -53,49 +53,49 @@ class BuildOrderTests: XCTestCase {
 
   func testStrictFacetsOrder() {
     let facets = ["size", "brand", "color", "country"].shuffled()
-    let order = FacetOrdering(facets: OrderingRule(order: facets, hide: nil, sortBy: nil), facetValues: [:])
+    let order = FacetOrdering(facets: FacetValuesOrder(order: facets, hide: nil, sortBy: nil), facetValues: [:])
     XCTAssertEqual(withOrder(order).map(\.attribute.rawValue), facets)
   }
   
   func testPartialFacetsOrder() {
     let facets = ["size", "country"]
-    let order = FacetOrdering(facets: OrderingRule(order: facets, hide: nil, sortBy: nil), facetValues: [:])
+    let order = FacetOrdering(facets: FacetValuesOrder(order: facets, hide: nil, sortBy: nil), facetValues: [:])
     XCTAssertEqual(withOrder(order).map(\.attribute.rawValue), facets)
   }
   
   func testPartiallyStrictFacetsOrder() {
     let facets = ["size", "brand", "*"]
-    let order = FacetOrdering(facets: OrderingRule(order: facets, hide: nil, sortBy: nil), facetValues: [:])
+    let order = FacetOrdering(facets: FacetValuesOrder(order: facets, hide: nil, sortBy: nil), facetValues: [:])
     XCTAssertEqual(withOrder(order).map(\.attribute.rawValue), ["size", "brand", "color", "country"])
   }
   
   func testHideFacet() {
     let facets = ["*"]
-    let order = FacetOrdering(facets: OrderingRule(order: facets, hide: ["country"], sortBy: nil), facetValues: [:])
+    let order = FacetOrdering(facets: FacetValuesOrder(order: facets, hide: ["country"], sortBy: nil), facetValues: [:])
     XCTAssertEqual(withOrder(order).map(\.attribute.rawValue), ["brand", "color", "size"])
   }
   
   func testSortFacetsByCount() {
     let facets = ["*"]
-    let order = FacetOrdering(facets: OrderingRule(order: facets, hide: nil, sortBy: .count), facetValues: [:])
+    let order = FacetOrdering(facets: FacetValuesOrder(order: facets, hide: nil, sortBy: .count), facetValues: [:])
     XCTAssertEqual(withOrder(order).map(\.attribute.rawValue), ["brand", "color", "size", "country"])
   }
   
   func testStrictFacetValuesOrder() {
     let countries = ["UK", "France", "USA", "Germany", "Finland", "Denmark", "Italy", "Spain"].shuffled()
-    let order = FacetOrdering(facets: OrderingRule(order: ["*"], hide: nil, sortBy: nil), facetValues: ["country": .init(order: countries, hide: nil, sortBy: nil)])
+    let order = FacetOrdering(facets: FacetValuesOrder(order: ["*"], hide: nil, sortBy: nil), facetValues: ["country": .init(order: countries, hide: nil, sortBy: nil)])
     XCTAssertEqual(withOrder(order).first(where: { $0.attribute == "country" })?.facets.map(\.value), countries)
   }
   
   func testPartialFacetValuesOrder() {
     let countries = ["UK", "France", "USA"].shuffled()
-    let order = FacetOrdering(facets: OrderingRule(order: ["*"], hide: nil, sortBy: nil), facetValues: ["country": .init(order: countries, hide: nil, sortBy: nil)])
+    let order = FacetOrdering(facets: FacetValuesOrder(order: ["*"], hide: nil, sortBy: nil), facetValues: ["country": .init(order: countries, hide: nil, sortBy: nil)])
     XCTAssertEqual(withOrder(order).first(where: { $0.attribute == "country" })?.facets.map(\.value), countries)
   }
   
   func testPartiallyStrictFacetValuesOrder() {
     let countries = ["UK", "France", "USA", "*"]
-    let order = FacetOrdering(facets: OrderingRule(order: ["*"], hide: nil, sortBy: nil), facetValues: ["country": .init(order: countries, hide: nil, sortBy: nil)])
+    let order = FacetOrdering(facets: FacetValuesOrder(order: ["*"], hide: nil, sortBy: nil), facetValues: ["country": .init(order: countries, hide: nil, sortBy: nil)])
     XCTAssertEqual(withOrder(order).first(where: { $0.attribute == "country" })?.facets.map(\.value), countries.dropLast() + ["Germany", "Finland", "Denmark", "Italy", "Spain"].sorted())
   }
   
@@ -104,13 +104,13 @@ class BuildOrderTests: XCTestCase {
     var expectedResult = countries
     expectedResult.removeAll { $0 == "USA" }
     expectedResult.sort()
-    let order = FacetOrdering(facets: OrderingRule(order: ["*"], hide: nil, sortBy: nil), facetValues: ["country": .init(order: ["*"], hide: ["USA"], sortBy: nil)])
+    let order = FacetOrdering(facets: FacetValuesOrder(order: ["*"], hide: nil, sortBy: nil), facetValues: ["country": .init(order: ["*"], hide: ["USA"], sortBy: nil)])
     XCTAssertEqual(withOrder(order).first(where: { $0.attribute == "country" })?.facets.map(\.value), expectedResult)
   }
   
   func testSortFacetValuesByCount() {
     let expectedFacetValues = facets["country"]?.sorted(by: { $0.count < $1.count }).map(\.value)
-    let order = FacetOrdering(facets: OrderingRule(order: ["*"], hide: nil, sortBy: nil), facetValues: ["country": .init(order: ["*"], hide: nil, sortBy: .count)])
+    let order = FacetOrdering(facets: FacetValuesOrder(order: ["*"], hide: nil, sortBy: nil), facetValues: ["country": .init(order: ["*"], hide: nil, sortBy: .count)])
     XCTAssertEqual(withOrder(order).first(where: { $0.attribute == "country" })?.facets.map(\.value), expectedFacetValues)
   }
 

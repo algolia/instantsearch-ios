@@ -29,34 +29,29 @@ public extension DynamicFacetsInteractor {
       
     public func connect() {
       filterState.onChange.subscribe(with: interactor) { interactor, filters in
-//        let attributesWithFacets = interactor.facetOrder.map(\.attribute).map(groupID(for:)).map { groupID in
-//          filters
-//            .filtersContainer
-//            .filters
-//            .getFilters(forGroupWithID: groupID)
-//            .compactMap { $0.filter as? FacetFilter }
-//            .filter { !$0.isNegated }
-//            .map { (attribute: $0.attribute, value: $0.value.description) }
-//        }.flatMap { $0 }
-        let attributesWithFacets = filters
-          .toFilterGroups()
-          .flatMap(\.filters)
-          .compactMap { $0 as? FacetFilter }
-          .filter { !$0.isNegated }
-          .map { (attribute: $0.attribute, value: $0.value.description) }
-        interactor.selections = Dictionary(grouping: attributesWithFacets, by: \.attribute)
-          .mapValues { Set($0.map(\.value)) }
+        let s: [(attribute: Attribute, values: [String])] = interactor
+          .facetOrder
+          .map(\.attribute)
+          .map { attribute in
+            let values = filterState
+              .getFilters(forGroupWithID: groupID(for: attribute))
+              .compactMap { $0.filter as? FacetFilter }
+              .filter { $0.attribute == attribute && !$0.isNegated }
+              .map(\.value.description)
+            return (attribute, values)
+          }
+        interactor.selections = Dictionary(uniqueKeysWithValues: s).mapValues(Set.init)
       }
+      
       interactor.onSelectionsUpdated.subscribePast(with: filterState) { filterState, selections in
-        selections
-          .map { attribute, selections in selections
-          .map { (attribute, $0) } }
-          .flatMap { $0 }
-          .forEach { attribute, selection in
-            let filter = Filter.Facet(attribute: attribute, stringValue: selection)
-            filterState.toggle(filter, inGroupWithID: groupID(for: attribute))
+        selections.forEach { attribute, selection in
+          let groupID = groupID(for: attribute)
+          filterState.removeAll(for: attribute, fromGroupWithID: groupID)
+          let filters = selection.map { Filter.Facet(attribute: attribute, stringValue: $0) }
+          filterState.addAll(filters: filters, toGroupWithID: groupID)
         }
       }
+      
     }
     
     public func disconnect() {

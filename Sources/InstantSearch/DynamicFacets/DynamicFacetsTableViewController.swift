@@ -66,7 +66,7 @@ public class DynamicFacetsTableViewController: UITableViewController, DynamicFac
   
   public override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
     let unit = facetOrder[indexPath.section]
-    let facet = unit.facets[indexPath.section]
+    let facet = unit.facets[indexPath.row]
     didSelect?(unit.attribute, facet)
   }
   

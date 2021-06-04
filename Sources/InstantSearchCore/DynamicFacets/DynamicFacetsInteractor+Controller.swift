@@ -7,7 +7,7 @@
 
 import Foundation
 
-public protocol DynamicFacetsController: class {
+public protocol DynamicFacetsController: AnyObject {
   
   func apply(_ facetOrder: [AttributedFacets])
   func apply(_ selections: [Attribute: Set<String>])
