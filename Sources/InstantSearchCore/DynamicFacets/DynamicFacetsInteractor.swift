@@ -7,68 +7,130 @@
 
 import Foundation
 
+/**
+  Dynamic facets business logic
+ 
+   - color:
+     > red
+     > green
+     > blue
+   - country:
+     > France
+     > Spain
+     > Italy
+   - ...
+ */
 public class DynamicFacetsInteractor {
   
-  public typealias FacetSelections = [Attribute: Set<String>]
+  /// Mapping between a facet attribute and a set of its selected values
+  public typealias SelectionsPerAttribute = [Attribute: Set<String>]
   
-  public var facetOrder: [AttributedFacets] = .init() {
+  public var orderedFacets: [AttributedFacets] = .init() {
     didSet {
-      onFacetOrderUpdated.fire(facetOrder)
+      onFacetOrderChanged.fire(orderedFacets)
+      updateInteractors()
     }
   }
   
-  public var selections: FacetSelections = .init() {
+  /// Facet selections per attribute
+  public var selections: SelectionsPerAttribute = .init() {
     didSet {
-      onSelectionsUpdated.fire(selections)
+      guard oldValue != selections else { return }
+      onSelectionsChanged.fire(selections)
     }
   }
-    
-  public let onFacetOrderUpdated: Observer<[AttributedFacets]>
-  public let onSelectionsUpdated: Observer<FacetSelections>
+  
+  ///
+  public let onFacetOrderChanged: Observer<[AttributedFacets]>
+  
+  ///
+  public let onSelectionsChanged: Observer<SelectionsPerAttribute>
+  
+  ///
+  public let onSelectionsComputed: Observer<SelectionsPerAttribute>
+  
+  ///
   public let selectionModeForAttribute: [Attribute: SelectionMode]
+  
+  /// 
+  private var facetListPerAttribute: [Attribute: SelectableListInteractor<String, Facet>]
 
-  public init(facetOrder: [AttributedFacets] = [],
+  /**
+   - Parameters:
+     - orderedFacets: The list of ordered facet attributes and ordered values
+     - selections:
+     - selectionModeForAttribute:
+  */
+  public init(orderedFacets: [AttributedFacets] = [],
               selections: [Attribute: Set<String>] = [:],
               selectionModeForAttribute: [Attribute: SelectionMode] = [:]) {
-    self.facetOrder = facetOrder
+    self.orderedFacets = orderedFacets
     self.selections = selections
-    self.onFacetOrderUpdated = .init()
-    self.onSelectionsUpdated = .init()
+    self.onFacetOrderChanged = .init()
+    self.onSelectionsChanged = .init()
+    self.onSelectionsComputed = .init()
     self.selectionModeForAttribute = selectionModeForAttribute
-    onFacetOrderUpdated.fire(facetOrder)
-    onSelectionsUpdated.fire(selections)
+    self.facetListPerAttribute = [:]
+    onFacetOrderChanged.fire(orderedFacets)
+    onSelectionsChanged.fire(selections)
+    updateInteractors()
   }
-  
-  public func isSelected(facetValue: String, for attribute: Attribute) -> Bool {
+    
+  /**
+    Returns the selection state of facet value for attribute
+     - parameters:
+       - facetValue: the facet value
+       - attribute: the facet attribute
+  */
+  public func isSelected(facetValue: String,
+                         for attribute: Attribute) -> Bool {
     return selections[attribute]?.contains(facetValue) ?? false
   }
   
-  public func toggleSelection(ofFacetValue facetValue: String, for attribute: Attribute) {
-    computeSelections(selectingItemForKey: facetValue, for: attribute)
+  /**
+    Toggle the selection state of facet value for attribute
+     - parameters:
+       - facetValue: the facet value
+       - attribute: the facet attribute
+  */
+  public func toggleSelection(ofFacetValue facetValue: String,
+                              for attribute: Attribute) {
+    facetListPerAttribute[attribute]?.computeSelections(selectingItemForKey: facetValue)
   }
   
-  public func computeSelections(selectingItemForKey key: String, for attribute: Attribute) {
-
-    let currentSelections = selections[attribute] ?? []
-    let selectionMode = selectionModeForAttribute[attribute] ?? .single
+  private func updateInteractors() {
     
-    let computedSelections: Set<String>
-
-    switch (selectionMode, currentSelections.contains(key)) {
-    case (.single, true):
-      computedSelections = []
-
-    case (.single, false):
-      computedSelections = [key]
-
-    case (.multiple, true):
-      computedSelections = currentSelections.subtracting([key])
-
-    case (.multiple, false):
-      computedSelections = currentSelections.union([key])
+    for attributedFacet in orderedFacets {
+      let attribute = attributedFacet.attribute
+      
+      let facetList: SelectableListInteractor<String, Facet>
+      
+      if let existingFacetList = facetListPerAttribute[attribute] {
+        facetList = existingFacetList
+      } else {
+        facetList = createFacetList(for: attribute)
+        facetListPerAttribute[attribute] = facetList
+      }
+      
+      facetList.items = attributedFacet.facets
+      facetList.selections = selections[attribute] ?? []
+      
     }
     
-    selections[attribute] = computedSelections
+  }
+  
+  private func createFacetList(for attribute: Attribute) -> SelectableListInteractor<String, Facet> {
+    let selectionMode = selectionModeForAttribute[attribute] ?? .single
+    let facetList = SelectableListInteractor<String, Facet>(selectionMode: selectionMode)
+    facetList.onSelectionsComputed.subscribe(with: self) { interactor, selections in
+      var currentSelections = interactor.selections
+      currentSelections[attribute] = selections
+      interactor.onSelectionsComputed.fire(currentSelections)
+    }
+    onSelectionsChanged.subscribe(with: facetList) { facetList, selections in
+      facetList.selections = selections[attribute] ?? []
+    }
+    return facetList
   }
 
 }

@@ -7,23 +7,24 @@
 
 import Foundation
 
-public protocol DynamicFacetsController: AnyObject {
-  
-  func apply(_ facetOrder: [AttributedFacets])
-  func apply(_ selections: [Attribute: Set<String>])
-  
-  var didSelect: ((Attribute, Facet) -> Void)? { get set }
-  
-}
-
 public extension DynamicFacetsInteractor {
   
+  /// Connection between a dynamic facets business logic and a controller
   struct ControllerConnection<Controller: DynamicFacetsController>: Connection {
     
+    /// Dynamic facets business logic
     public let interactor: DynamicFacetsInteractor
+    
+    ///
     public let controller: Controller
     
-    public init(interactor: DynamicFacetsInteractor, controller: Controller) {
+    /**
+     - parameters:
+       - interactor: Dynamic facets business logic
+       - controller:
+     */
+    public init(interactor: DynamicFacetsInteractor,
+                controller: Controller) {
       self.interactor = interactor
       self.controller = controller
     }
@@ -33,18 +34,19 @@ public extension DynamicFacetsInteractor {
         guard let interactor = interactor else { return }
         interactor.toggleSelection(ofFacetValue: facet.value, for: attribute)
       }
-      interactor.onSelectionsUpdated.subscribePast(with: controller) { (controller, selections) in
+      interactor.onSelectionsChanged.subscribePast(with: controller) { (controller, selections) in
         controller.apply(selections)
       }.onQueue(.main)
-      interactor.onFacetOrderUpdated.subscribePast(with: controller) { controller, facetOrder in
+      
+      interactor.onFacetOrderChanged.subscribePast(with: controller) { controller, facetOrder in
         controller.apply(facetOrder)
       }.onQueue(.main)
     }
     
     public func disconnect() {
       controller.didSelect = nil
-      interactor.onSelectionsUpdated.cancelSubscription(for: controller)
-      interactor.onFacetOrderUpdated.cancelSubscription(for: controller)
+      interactor.onSelectionsChanged.cancelSubscription(for: controller)
+      interactor.onFacetOrderChanged.cancelSubscription(for: controller)
     }
     
   }

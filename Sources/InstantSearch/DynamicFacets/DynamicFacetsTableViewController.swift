@@ -13,7 +13,7 @@ import UIKit
 
 public class DynamicFacetsTableViewController: UITableViewController, DynamicFacetsController {
   
-  public var facetOrder: [AttributedFacets]
+  public var orderedFacets: [AttributedFacets]
   public var selections: [Attribute: Set<String>]
   public var didSelect: ((Attribute, Facet) -> Void)?
     
@@ -22,13 +22,13 @@ public class DynamicFacetsTableViewController: UITableViewController, DynamicFac
     tableView.reloadData()
   }
   
-  public func apply(_ facetOrder: [AttributedFacets]) {
-    self.facetOrder = facetOrder
+  public func apply(_ orderedFacets: [AttributedFacets]) {
+    self.orderedFacets = orderedFacets
     tableView.reloadData()
   }
   
-  public init(facetOrder: [AttributedFacets] = [], selections: [Attribute: Set<String>] = [:]) {
-    self.facetOrder = facetOrder
+  public init(orderedFacets: [AttributedFacets] = [], selections: [Attribute: Set<String>] = [:]) {
+    self.orderedFacets = orderedFacets
     self.selections = selections
     super.init(style: .plain)
   }
@@ -42,11 +42,11 @@ public class DynamicFacetsTableViewController: UITableViewController, DynamicFac
     tableView.register(UITableViewCell.self, forCellReuseIdentifier: "cell")
   }
   public override func numberOfSections(in tableView: UITableView) -> Int {
-    return facetOrder.count
+    return orderedFacets.count
   }
   
   public override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-    return facetOrder[section].facets.count
+    return orderedFacets[section].facets.count
   }
   
   public override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
@@ -54,18 +54,18 @@ public class DynamicFacetsTableViewController: UITableViewController, DynamicFac
   }
   
   public override func tableView(_ tableView: UITableView, titleForHeaderInSection section: Int) -> String? {
-    return facetOrder[section].attribute.rawValue
+    return orderedFacets[section].attribute.rawValue
   }
   
   public override func tableView(_ tableView: UITableView, willDisplay cell: UITableViewCell, forRowAt indexPath: IndexPath) {
-    let attribute = facetOrder[indexPath.section].attribute
-    let facet = facetOrder[indexPath.section].facets[indexPath.row]
+    let attribute = orderedFacets[indexPath.section].attribute
+    let facet = orderedFacets[indexPath.section].facets[indexPath.row]
     cell.textLabel?.text = facet.description
     cell.accessoryType = (selections[attribute]?.contains(facet.value) ?? false) ? .checkmark : .none
   }
   
   public override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-    let unit = facetOrder[indexPath.section]
+    let unit = orderedFacets[indexPath.section]
     let facet = unit.facets[indexPath.row]
     didSelect?(unit.attribute, facet)
   }

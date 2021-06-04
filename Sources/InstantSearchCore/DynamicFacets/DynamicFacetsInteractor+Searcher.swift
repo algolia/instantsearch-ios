@@ -9,9 +9,10 @@ import Foundation
 
 public extension DynamicFacetsInteractor {
   
+  /// Connection between a dynamic facets business logic and a searcher
   struct SearcherConnection<Searcher: SearchResultObservable>: Connection where Searcher.SearchResult == SearchResponse {
     
-    /// Business logic
+    /// Dynamic facets business logic
     public let interactor: DynamicFacetsInteractor
 
     /// Searcher that handles your searches
@@ -19,7 +20,7 @@ public extension DynamicFacetsInteractor {
 
     /**
      - Parameters:
-       - interactor: Interactor to connect
+       - interactor: Dynamic facets business logic
        - searcher: SearchResultObservable implementation to connect
     */
     public init(interactor: DynamicFacetsInteractor, searcher: Searcher) {
@@ -29,17 +30,15 @@ public extension DynamicFacetsInteractor {
     
     public func connect() {
       searcher.onResults.subscribe(with: interactor) { (interactor, searchResponse) in
-        guard
-        let facetOrdering = searchResponse.renderingContent?.facetOrdering,
-        let facets = searchResponse.facets  else {
-          interactor.facetOrder = []
-          return
+        if let facetOrdering = searchResponse.renderingContent?.facetOrdering,
+           let facets = searchResponse.facets {
+            interactor.orderedFacets = FacetsOrderer(facetOrder: facetOrdering, facets: facets)()
+        } else {
+          interactor.orderedFacets = []
         }
-        let buildOrder = BuildFacetOrder(facetOrder: facetOrdering, facets: facets)
-        interactor.facetOrder = buildOrder()
       }
       (searcher as? ErrorObservable)?.onError.subscribe(with: interactor) { interactor, _ in
-        interactor.facetOrder = []
+        interactor.orderedFacets = []
       }
     }
 
