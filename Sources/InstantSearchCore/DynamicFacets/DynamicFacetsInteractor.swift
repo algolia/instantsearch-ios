@@ -112,20 +112,20 @@ public class DynamicFacetsInteractor {
   }
 
   private func createFacetList(for attribute: Attribute) -> SelectableListInteractor<String, Facet> {
-    
+
     let selectionMode = selectionModeForAttribute[attribute] ?? .single
     let facetList = SelectableListInteractor<String, Facet>(selectionMode: selectionMode)
-    
+
     facetList.onSelectionsComputed.subscribe(with: self) { interactor, selections in
       var currentSelections = interactor.selections
       currentSelections[attribute] = selections
       interactor.onSelectionsComputed.fire(currentSelections)
     }
-    
+
     onSelectionsChanged.subscribe(with: facetList) { facetList, selections in
       facetList.selections = selections[attribute] ?? []
     }
-    
+
     return facetList
   }
 

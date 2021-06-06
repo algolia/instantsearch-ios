@@ -45,7 +45,7 @@ public extension DynamicFacetsInteractor {
       filterState.onChange.cancelSubscription(for: interactor)
       interactor.onSelectionsChanged.cancelSubscription(for: filterState)
     }
-    
+
     private func groupID(for attribute: Attribute) -> FilterGroup.ID {
       return groupIDForAttribute[attribute] ?? .and(name: attribute.rawValue)
     }
@@ -80,7 +80,7 @@ public extension DynamicFacetsInteractor {
     }
 
   }
-  
+
   /**
    Establishes connection with a FilterState
    - parameter filterState: filter state to connect

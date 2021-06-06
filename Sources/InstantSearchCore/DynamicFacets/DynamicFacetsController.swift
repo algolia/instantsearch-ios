@@ -14,7 +14,7 @@ public protocol DynamicFacetsController: AnyObject {
 
   /// Update the list of attributed facets
   func setFacetOrder(_ facetOrder: [AttributedFacets])
-  
+
   /// Update the facet selections
   func setSelections(_ selections: [Attribute: Set<String>])
 
