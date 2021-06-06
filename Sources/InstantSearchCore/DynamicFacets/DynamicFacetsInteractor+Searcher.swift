@@ -19,11 +19,12 @@ public extension DynamicFacetsInteractor {
     public let searcher: Searcher
 
     /**
-     - Parameters:
+     - parameters:
        - interactor: Dynamic facets business logic
-       - searcher: SearchResultObservable implementation to connect
+       - searcher: Searcher to connect
     */
-    public init(interactor: DynamicFacetsInteractor, searcher: Searcher) {
+    public init(interactor: DynamicFacetsInteractor,
+                searcher: Searcher) {
       self.searcher = searcher
       self.interactor = interactor
     }
@@ -49,6 +50,10 @@ public extension DynamicFacetsInteractor {
 
   }
 
+  /**
+   Establishes connection with a Searcher
+   - parameter searcher: searcher to connect
+   */
   @discardableResult func connectSearcher<Searcher: SearchResultObservable>(_ searcher: Searcher) -> SearcherConnection<Searcher> {
     let connection = SearcherConnection(interactor: self, searcher: searcher)
     connection.connect()

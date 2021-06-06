@@ -8,23 +8,14 @@
 import Foundation
 
 /**
-  Dynamic facets business logic
- 
-   - color:
-     > red
-     > green
-     > blue
-   - country:
-     > France
-     > Spain
-     > Italy
-   - ...
+  Dynamic facets business logic.
+  - Provides an ordered list of attributed facets, facet selections and events
  */
 public class DynamicFacetsInteractor {
 
-  /// Mapping between a facet attribute and a set of its selected values
   public typealias SelectionsPerAttribute = [Attribute: Set<String>]
 
+  /// Ordered list of attributed facets
   public var orderedFacets: [AttributedFacets] = .init() {
     didSet {
       onFacetOrderChanged.fire(orderedFacets)
@@ -32,7 +23,7 @@ public class DynamicFacetsInteractor {
     }
   }
 
-  /// Facet selections per attribute
+  /// Mapping between a facet attribute and a set of selected facet values
   public var selections: SelectionsPerAttribute = .init() {
     didSet {
       guard oldValue != selections else { return }
@@ -40,26 +31,27 @@ public class DynamicFacetsInteractor {
     }
   }
 
-  ///
+  /// Event triggered when the facet order changed externally
   public let onFacetOrderChanged: Observer<[AttributedFacets]>
 
-  ///
+  /// Event triggered when the facets values selection changed externally
   public let onSelectionsChanged: Observer<SelectionsPerAttribute>
 
-  ///
+  /// Event triggered when the facets values selection changed by the business logic
   public let onSelectionsComputed: Observer<SelectionsPerAttribute>
 
-  ///
+  /// Mapping between a facet attribute and a facet values selection mode
+  /// If not provided, the default selection mode is `.single`
   public let selectionModeForAttribute: [Attribute: SelectionMode]
 
-  /// 
+  /// Storage for selectable facet list logic per attribute
   private var facetListPerAttribute: [Attribute: SelectableListInteractor<String, Facet>]
 
   /**
    - Parameters:
-     - orderedFacets: The list of ordered facet attributes and ordered values
-     - selections:
-     - selectionModeForAttribute:
+     - orderedFacets: Ordered list of attributed facets
+     - selections: Mapping between a facet attribute and a set of selected  facet values
+     - selectionModeForAttribute: Mapping between a facet attribute and a facet values selection mode. If not provided, the default selection mode is .single.
   */
   public init(orderedFacets: [AttributedFacets] = [],
               selections: [Attribute: Set<String>] = [:],
@@ -77,7 +69,7 @@ public class DynamicFacetsInteractor {
   }
 
   /**
-    Returns the selection state of facet value for attribute
+    Returns a selection state of facet value for attribute
      - parameters:
        - facetValue: the facet value
        - attribute: the facet attribute
@@ -120,16 +112,20 @@ public class DynamicFacetsInteractor {
   }
 
   private func createFacetList(for attribute: Attribute) -> SelectableListInteractor<String, Facet> {
+    
     let selectionMode = selectionModeForAttribute[attribute] ?? .single
     let facetList = SelectableListInteractor<String, Facet>(selectionMode: selectionMode)
+    
     facetList.onSelectionsComputed.subscribe(with: self) { interactor, selections in
       var currentSelections = interactor.selections
       currentSelections[attribute] = selections
       interactor.onSelectionsComputed.fire(currentSelections)
     }
+    
     onSelectionsChanged.subscribe(with: facetList) { facetList, selections in
       facetList.selections = selections[attribute] ?? []
     }
+    
     return facetList
   }
 

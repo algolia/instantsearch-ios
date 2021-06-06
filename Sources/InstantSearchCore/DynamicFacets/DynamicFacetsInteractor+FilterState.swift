@@ -15,17 +15,18 @@ public extension DynamicFacetsInteractor {
     /// Dynamic facets business logic
     public let interactor: DynamicFacetsInteractor
 
-    ///
+    /// FilterState that holds your filters
     public let filterState: FilterState
 
-    ///
+    /// Mapping between a facet attribute and a filter group where corresponding facet filters stored in the filter state.
+    /// If not specified, the default filter group is `and(facet_attribute_name)`.
     public let groupIDForAttribute: [Attribute: FilterGroup.ID]
 
     /**
      - parameters:
        - interactor: Dynamic facets business logic
-       - filterState:
-       - groupIDForAttribute:
+       - filterState: FilterState that holds your filters
+       - groupIDForAttribute: Mapping between a facet attribute and a filter group where corresponding facet filters stored in the filter state. If not specified, the default filter group is `and(facet_attribute_name)`.
      */
     public init(interactor: DynamicFacetsInteractor,
                 filterState: FilterState,
@@ -33,10 +34,6 @@ public extension DynamicFacetsInteractor {
       self.interactor = interactor
       self.filterState = filterState
       self.groupIDForAttribute = groupIDForAttribute
-    }
-
-    private func groupID(for attribute: Attribute) -> FilterGroup.ID {
-      return groupIDForAttribute[attribute] ?? .and(name: attribute.rawValue)
     }
 
     public func connect() {
@@ -47,6 +44,10 @@ public extension DynamicFacetsInteractor {
     public func disconnect() {
       filterState.onChange.cancelSubscription(for: interactor)
       interactor.onSelectionsChanged.cancelSubscription(for: filterState)
+    }
+    
+    private func groupID(for attribute: Attribute) -> FilterGroup.ID {
+      return groupIDForAttribute[attribute] ?? .and(name: attribute.rawValue)
     }
 
     private func whenSelectionsComputedThenUpdateFilterState() {
@@ -79,7 +80,11 @@ public extension DynamicFacetsInteractor {
     }
 
   }
-
+  
+  /**
+   Establishes connection with a FilterState
+   - parameter filterState: filter state to connect
+   */
   @discardableResult func connectFilterState(_ filterState: FilterState) -> FilterStateConnection {
     let connection = FilterStateConnection(interactor: self, filterState: filterState)
     connection.connect()

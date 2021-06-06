@@ -15,13 +15,13 @@ public extension DynamicFacetsInteractor {
     /// Dynamic facets business logic
     public let interactor: DynamicFacetsInteractor
 
-    ///
+    /// Controller presenting the ordered list of facets and handling user interaction
     public let controller: Controller
 
     /**
      - parameters:
        - interactor: Dynamic facets business logic
-       - controller:
+       - controller: DynamicFacetsController implementation to connect
      */
     public init(interactor: DynamicFacetsInteractor,
                 controller: Controller) {
@@ -35,11 +35,11 @@ public extension DynamicFacetsInteractor {
         interactor.toggleSelection(ofFacetValue: facet.value, for: attribute)
       }
       interactor.onSelectionsChanged.subscribePast(with: controller) { (controller, selections) in
-        controller.apply(selections)
+        controller.setSelections(selections)
       }.onQueue(.main)
 
       interactor.onFacetOrderChanged.subscribePast(with: controller) { controller, facetOrder in
-        controller.apply(facetOrder)
+        controller.setFacetOrder(facetOrder)
       }.onQueue(.main)
     }
 
@@ -51,6 +51,10 @@ public extension DynamicFacetsInteractor {
 
   }
 
+  /**
+   Establishes connection with a DynamicFacetsController implementation
+   - parameter controller: DynamicFacetsController implementation to connect
+   */
   @discardableResult func connectController<Controller: DynamicFacetsController>(_ controller: Controller) -> ControllerConnection<Controller> {
     let connection = ControllerConnection(interactor: self, controller: controller)
     connection.connect()
