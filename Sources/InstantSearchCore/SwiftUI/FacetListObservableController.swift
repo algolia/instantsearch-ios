@@ -27,7 +27,7 @@ public class FacetListObservableController: ObservableObject, FacetListControlle
     onClick?(facet)
   }
 
-  /// Returns bool value indicating whether the provided facet is selected
+  /// Returns a bool value indicating whether the provided facet is selected
   public func isSelected(_ facet: Facet) -> Bool {
     return selections.contains(facet.value)
   }
@@ -41,6 +41,12 @@ public class FacetListObservableController: ObservableObject, FacetListControlle
     objectWillChange.send()
   }
 
+  /**
+   - parameters:
+     - facets: List of facets to present
+     - selections: Set of selected filters
+     - onClick: Action triggered on interaction with filter
+   */
   public init(facets: [Facet] = [],
               selections: Set<String> = [],
               onClick: ((Facet) -> Void)? = nil) {
