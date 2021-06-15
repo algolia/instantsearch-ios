@@ -17,12 +17,12 @@ public class DynamicFacetsTableViewController: UITableViewController, DynamicFac
   public var selections: [Attribute: Set<String>]
   public var didSelect: ((Attribute, Facet) -> Void)?
 
-  public func apply(_ selections: [Attribute: Set<String>]) {
+  public func setSelections(_ selections: [Attribute: Set<String>]) {
     self.selections = selections
     tableView.reloadData()
   }
 
-  public func apply(_ orderedFacets: [AttributedFacets]) {
+  public func setFacetOrder(_ orderedFacets: [AttributedFacets]) {
     self.orderedFacets = orderedFacets
     tableView.reloadData()
   }

@@ -60,22 +60,12 @@ struct FacetsOrderer {
       return facets
     }
 
-    let pinnedFacets: [Facet]
-
-    if let order = rule.order {
-      pinnedFacets = order.compactMap { value in facets.first { $0.value == value } }
-    } else {
-      pinnedFacets = []
-    }
-
-    guard let sortRemainingBy = rule.sortRemainingBy else {
-      return pinnedFacets
-    }
+    let pinnedFacets: [Facet] = rule.order.compactMap { value in facets.first { $0.value == value } }
 
     let remainingFacets = facets.filter { !pinnedFacets.contains($0) }
 
     let facetsTail: [Facet]
-    switch sortRemainingBy {
+    switch rule.sortRemainingBy {
     case .hidden:
       facetsTail = []
 
