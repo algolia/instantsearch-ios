@@ -12,8 +12,8 @@ import Foundation
  */
 public protocol DynamicFacetsController: AnyObject {
 
-  /// Update the list of attributed facets
-  func setFacetOrder(_ facetOrder: [AttributedFacets])
+  /// Update the list of the ordered attributed facets
+  func setOrderedFacets(_ orderedFacets: [AttributedFacets])
 
   /// Update the facet selections
   func setSelections(_ selections: [Attribute: Set<String>])

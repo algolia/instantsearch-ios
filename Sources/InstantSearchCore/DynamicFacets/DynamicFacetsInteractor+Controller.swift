@@ -38,8 +38,8 @@ public extension DynamicFacetsInteractor {
         controller.setSelections(selections)
       }.onQueue(.main)
 
-      interactor.onFacetOrderChanged.subscribePast(with: controller) { controller, facetOrder in
-        controller.setFacetOrder(facetOrder)
+      interactor.onFacetOrderChanged.subscribePast(with: controller) { controller, orderedFacets in
+        controller.setOrderedFacets(orderedFacets)
       }.onQueue(.main)
     }
 

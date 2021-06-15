@@ -30,7 +30,7 @@ public class DynamicFacetsTableViewController: UITableViewController, DynamicFac
     tableView.reloadData()
   }
 
-  public func setFacetOrder(_ orderedFacets: [AttributedFacets]) {
+  public func setOrderedFacets(_ orderedFacets: [AttributedFacets]) {
     self.orderedFacets = orderedFacets
     tableView.reloadData()
   }
