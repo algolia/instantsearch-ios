@@ -11,10 +11,18 @@ import InstantSearchCore
 #if canImport(UIKit) && (os(iOS) || os(macOS))
 import UIKit
 
+/// Table view controller presenting ordered facets and ordered facet values
+/// Each facet and corresponding values are represented as a table view section
 public class DynamicFacetsTableViewController: UITableViewController, DynamicFacetsController {
 
+  /// List of ordered facets with their attributes
   public var orderedFacets: [AttributedFacets]
+
+  /// Set of selected facet values per attribute
   public var selections: [Attribute: Set<String>]
+
+  // MARK: - DynamicFacetsController
+
   public var didSelect: ((Attribute, Facet) -> Void)?
 
   public func setSelections(_ selections: [Attribute: Set<String>]) {
@@ -27,7 +35,13 @@ public class DynamicFacetsTableViewController: UITableViewController, DynamicFac
     tableView.reloadData()
   }
 
-  public init(orderedFacets: [AttributedFacets] = [], selections: [Attribute: Set<String>] = [:]) {
+  /**
+   - parameters:
+     - orderedFacets: List of ordered facets with their attributes
+     - selections: Set of selected facet values per attribute
+  */
+  public init(orderedFacets: [AttributedFacets] = [],
+              selections: [Attribute: Set<String>] = [:]) {
     self.orderedFacets = orderedFacets
     self.selections = selections
     super.init(style: .plain)
@@ -41,6 +55,9 @@ public class DynamicFacetsTableViewController: UITableViewController, DynamicFac
     super.viewDidLoad()
     tableView.register(UITableViewCell.self, forCellReuseIdentifier: "cell")
   }
+
+  // MARK: - UITableViewDataSource
+
   public override func numberOfSections(in tableView: UITableView) -> Int {
     return orderedFacets.count
   }
@@ -52,6 +69,8 @@ public class DynamicFacetsTableViewController: UITableViewController, DynamicFac
   public override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
     return tableView.dequeueReusableCell(withIdentifier: "cell", for: indexPath)
   }
+
+  // MARK: - UITableViewDelegate
 
   public override func tableView(_ tableView: UITableView, titleForHeaderInSection section: Int) -> String? {
     return orderedFacets[section].attribute.rawValue

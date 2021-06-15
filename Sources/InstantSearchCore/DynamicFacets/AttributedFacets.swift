@@ -7,7 +7,7 @@
 
 import Foundation
 
-/// List of ordered facets with their attribute
+/// List of ordered facets with their attributes
 public struct AttributedFacets: Codable {
 
   /// Facet attribute
