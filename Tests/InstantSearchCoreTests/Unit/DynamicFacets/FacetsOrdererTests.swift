@@ -65,13 +65,13 @@ class FacetsOrdererTests: XCTestCase {
         
   func testStrictFacetValuesOrder() {
     let countries = ["UK", "France", "USA", "Germany", "Finland", "Denmark", "Italy", "Spain"].shuffled()
-    let order = FacetOrdering(facets: .init(order: ["country"]), values: ["country": .init(order: countries, sortRemainingBy: .none)])
+    let order = FacetOrdering(facets: .init(order: ["country"]), values: ["country": .init(order: countries, sortRemainingBy: .hidden)])
     XCTAssertEqual(withOrder(order).first(where: { $0.attribute == "country" })?.facets.map(\.value), countries)
   }
   
   func testPartialFacetValuesOrder() {
     let countries = ["UK", "France", "USA"].shuffled()
-    let order = FacetOrdering(facets: .init(order: ["country"]), values: ["country": .init(order: countries, sortRemainingBy: .none)])
+    let order = FacetOrdering(facets: .init(order: ["country"]), values: ["country": .init(order: countries, sortRemainingBy: .hidden)])
     XCTAssertEqual(withOrder(order).first(where: { $0.attribute == "country" })?.facets.map(\.value), countries)
   }
   
