@@ -13,24 +13,23 @@ import SwiftUI
 /// DynamicFacetsController implementation adapted for usage with SwiftUI views
 @available(iOS 13.0, OSX 10.15, tvOS 13.0, watchOS 6.0, *)
 public class DynamicFacetsObservableController: ObservableObject, DynamicFacetsController {
-  
+
   /// List of attributed facets to present
   @Published public var orderedFacets: [AttributedFacets]
 
   /// Mapping between a facet attribute and a set of selected facet values
-  @Published public var selections: [Attribute : Set<String>]
+  @Published public var selections: [Attribute: Set<String>]
 
-  
   public func setOrderedFacets(_ orderedFacets: [AttributedFacets]) {
     self.orderedFacets = orderedFacets
   }
-  
-  public func setSelections(_ selections: [Attribute : Set<String>]) {
+
+  public func setSelections(_ selections: [Attribute: Set<String>]) {
     self.selections = selections
   }
-  
+
   public var didSelect: ((Attribute, Facet) -> Void)?
-  
+
   /// Toggle facet selection
   public func toggle(_ facet: Facet, for attribute: Attribute) {
     didSelect?(attribute, facet)
@@ -52,7 +51,7 @@ public class DynamicFacetsObservableController: ObservableObject, DynamicFacetsC
      - didSelect: A closure to trigger when user selects a facet
    */
   public init(orderedFacets: [AttributedFacets] = [],
-              selections: [Attribute : Set<String>] = [:],
+              selections: [Attribute: Set<String>] = [:],
               didSelect: ((Attribute, Facet) -> Void)? = nil) {
     self.orderedFacets = orderedFacets
     self.selections = selections
