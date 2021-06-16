@@ -18,22 +18,25 @@ public extension DynamicFacetsInteractor {
     /// FilterState that holds your filters
     public let filterState: FilterState
 
-    /// Mapping between a facet attribute and a filter group where corresponding facet filters stored in the filter state.
-    /// If not specified, the default filter group is `and(facet_attribute_name)`.
-    public let groupIDForAttribute: [Attribute: FilterGroup.ID]
+    /// Mapping between a facet attribute and a descriptor of a filter group where the corresponding facet filters stored in the filter state.
+    ///
+    /// If no filter group descriptor provided, the filters for attribute will be automatically stroed in the conjunctive (`and`)  group with the facet attribute name.
+    public let filterGroupForAttribute: [Attribute: FilterGroupDescriptor]
 
     /**
      - parameters:
        - interactor: Dynamic facets business logic
        - filterState: FilterState that holds your filters
-       - groupIDForAttribute: Mapping between a facet attribute and a filter group where corresponding facet filters stored in the filter state. If not specified, the default filter group is `and(facet_attribute_name)`.
+       - filterGroupForAttribute: Mapping between a facet attribute and a descriptor of a filter group where the corresponding facet filters stored in the filter state.
+                                  
+     If no filter group descriptor provided, the filters for attribute will be automatically stored in the conjunctive (`and`)  group with the facet attribute name`.
      */
     public init(interactor: DynamicFacetsInteractor,
                 filterState: FilterState,
-                groupIDForAttribute: [Attribute: FilterGroup.ID] = [:]) {
+                filterGroupForAttribute: [Attribute: FilterGroupDescriptor] = [:]) {
       self.interactor = interactor
       self.filterState = filterState
-      self.groupIDForAttribute = groupIDForAttribute
+      self.filterGroupForAttribute = filterGroupForAttribute
     }
 
     public func connect() {
@@ -47,7 +50,13 @@ public extension DynamicFacetsInteractor {
     }
 
     private func groupID(for attribute: Attribute) -> FilterGroup.ID {
-      return groupIDForAttribute[attribute] ?? .and(name: attribute.rawValue)
+      let (groupName, refinementOperator) = filterGroupForAttribute[attribute] ?? (attribute.rawValue, .and)
+      switch refinementOperator {
+      case .or:
+        return .or(name: groupName, filterType: .facet)
+      case .and:
+        return .and(name: groupName)
+      }
     }
 
     private func whenSelectionsComputedThenUpdateFilterState() {
@@ -84,9 +93,15 @@ public extension DynamicFacetsInteractor {
   /**
    Establishes connection with a FilterState
    - parameter filterState: filter state to connect
+   - parameter filterGroupForAttribute: Mapping between a facet attribute and a descriptor of a filter group where the corresponding facet filters stored in the filter state.
+   
+   If no filter group descriptor provided, the filters for attribute will be automatically stored in the conjunctive (`and`)  group with the facet attribute name.
    */
-  @discardableResult func connectFilterState(_ filterState: FilterState) -> FilterStateConnection {
-    let connection = FilterStateConnection(interactor: self, filterState: filterState)
+  @discardableResult func connectFilterState(_ filterState: FilterState,
+                                             filterGroupForAttribute: [Attribute: FilterGroupDescriptor] = [:]) -> FilterStateConnection {
+    let connection = FilterStateConnection(interactor: self,
+                                           filterState: filterState,
+                                           filterGroupForAttribute: filterGroupForAttribute)
     connection.connect()
     return connection
   }
