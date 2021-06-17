@@ -52,7 +52,7 @@ public extension DynamicFacetsInteractor {
   }
 
   /**
-   Establishes connection with a DynamicFacetsController implementation
+   Establishes a connection with a DynamicFacetsController implementation
    - parameter controller: DynamicFacetsController implementation to connect
    */
   @discardableResult func connectController<Controller: DynamicFacetsController>(_ controller: Controller) -> ControllerConnection<Controller> {
