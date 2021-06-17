@@ -8,7 +8,7 @@
 import Foundation
 
 public extension DynamicFacetsConnector {
-  
+
   /**
   - parameters:
     - searcher: Searcher that handles your searches
@@ -30,7 +30,7 @@ public extension DynamicFacetsConnector {
               filterGroupForAttribute: filterGroupForAttribute)
     connectController(controller)
   }
-  
+
   /**
   - parameters:
     - searcher: Searcher that handles your searches
@@ -59,7 +59,7 @@ public extension DynamicFacetsConnector {
               filterGroupForAttribute: filterGroupForAttribute)
     connectController(controller)
   }
-  
+
   /**
    Establishes a connection with a DynamicFacetsController implementation
    - parameter controller: DynamicFacetsController implementation to connect

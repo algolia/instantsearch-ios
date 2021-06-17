@@ -10,25 +10,25 @@ import Foundation
 /// Component that displays automatically ordered facets, their ordered values, and lets the user refine the search results by filtering on specific values.
 
 public class DynamicFacetsConnector<Searcher: SearchResultObservable> where Searcher.SearchResult == SearchResponse {
-  
+
   /// Searcher that handles your searches.
   public let searcher: Searcher
-  
+
   /// FilterState that holds your filters
   public let filterState: FilterState
-  
+
   /// Logic applied to the facets
   public let interactor: DynamicFacetsInteractor
-  
+
   /// Connection between interactor and filter state
   public let filterStateConnection: Connection
-  
+
   /// Connection between interactor and searcher
   public let searcherConnection: Connection
-  
+
   /// Connections between interactor and controllers
   public var controllerConnections: [Connection]
-  
+
   /**
   - parameters:
     - searcher: Searcher that handles your searches
@@ -50,7 +50,7 @@ public class DynamicFacetsConnector<Searcher: SearchResultObservable> where Sear
     filterStateConnection = interactor.connectFilterState(filterState,
                                                           filterGroupForAttribute: filterGroupForAttribute)
   }
-  
+
   /**
   - parameters:
     - searcher: Searcher that handles your searches
@@ -76,11 +76,11 @@ public class DynamicFacetsConnector<Searcher: SearchResultObservable> where Sear
               interactor: interactor,
               filterGroupForAttribute: filterGroupForAttribute)
   }
-  
+
 }
 
 extension DynamicFacetsConnector: Connection {
-  
+
   public func connect() {
     filterStateConnection.connect()
     searcherConnection.connect()
@@ -92,5 +92,5 @@ extension DynamicFacetsConnector: Connection {
     searcherConnection.disconnect()
     controllerConnections.forEach { $0.disconnect() }
   }
-  
+
 }
