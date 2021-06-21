@@ -18,7 +18,7 @@ public struct HierarchicalList: View {
 
   public var body: some View {
     VStack(alignment: .leading, spacing: 5) {
-      ForEach(hierarchicalController.items.prefix(20), id: \.facet) { item in
+      ForEach(hierarchicalController.hierarchicalFacets.prefix(20), id: \.facet) { item in
         let (_, level, isSelected) = item
         let facet = self.facet(from: item)
         HStack(spacing: 10) {
