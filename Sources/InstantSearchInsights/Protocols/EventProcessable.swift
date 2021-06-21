@@ -9,7 +9,7 @@
 import Foundation
 import AlgoliaSearchClient
 
-protocol EventProcessable: class {
+protocol EventProcessable: AnyObject {
 
     var isActive: Bool { get set }
     func process(_ event: InsightsEvent)

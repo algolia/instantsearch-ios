@@ -10,7 +10,7 @@ import Foundation
 import AlgoliaSearchClient
 
 /// Protocol describing an entity capable to perform search requests
-public protocol Searcher: class {
+public protocol Searcher: AnyObject {
 
   /// Current query string
   var query: String? { get set }

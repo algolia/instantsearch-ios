@@ -37,7 +37,7 @@ protocol Sequencable {
     func cancelPendingOperations()
 }
 
-protocol SequencerDelegate: class {
+protocol SequencerDelegate: AnyObject {
   func didChangeOperationsState(hasPendingOperations: Bool)
 }
 
