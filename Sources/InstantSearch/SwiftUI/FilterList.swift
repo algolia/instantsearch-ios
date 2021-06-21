@@ -1,11 +1,9 @@
 //
-//  FiltersList.swift
+//  FilterList.swift
 //  
 //
 //  Created by Vladislav Fitc on 21/06/2021.
 //
-
-import Foundation
 
 import Foundation
 #if canImport(Combine) && canImport(SwiftUI) && (os(iOS) || os(macOS))
@@ -14,7 +12,7 @@ import SwiftUI
 
 /// A view presenting the list of filters
 @available(iOS 13.0, OSX 10.15, tvOS 13.0, watchOS 6.0, *)
-public struct FiltersList<Filter: FilterType & Hashable, Row: View, NoResults: View>: View {
+public struct FilterList<Filter: FilterType & Hashable, Row: View, NoResults: View>: View {
   
   @ObservedObject public var filtersListObservableController: FilterListObservableController<Filter>
   
@@ -49,7 +47,7 @@ public struct FiltersList<Filter: FilterType & Hashable, Row: View, NoResults: V
 }
 
 @available(iOS 13.0, OSX 10.15, tvOS 13.0, watchOS 6.0, *)
-public extension FiltersList where NoResults == Never {
+public extension FilterList where NoResults == Never {
 
   init(_ filtersListObservableController: FilterListObservableController<Filter>,
        @ViewBuilder row: @escaping(Filter, Bool) -> Row) {
