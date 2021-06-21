@@ -9,7 +9,11 @@ import Foundation
 
 /**
   Dynamic facets business logic.
-  - Provides an ordered list of attributed facets, facet selections and events
+ 
+  Consists of:
+  - Properties representing the current facets state
+  - Set of events triggered when the state changes.
+  - Convenient functions to toggle and fetch the selection state of facet values
  */
 public class DynamicFacetsInteractor {
 

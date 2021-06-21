@@ -15,7 +15,7 @@ public extension DynamicFacetsConnector {
     - filterState: FilterState that holds your filters
     - interactor: External dynamic facets interactor
     - filterGroupForAttribute: Mapping between a facet attribute and a descriptor of a filter group where the corresponding facet filters stored in the filter state.
-    - controller: DynamicFacetsController implementation to connect
+    - controller: Controller presenting the ordered list of facets and handling the user interaction
    
    If no filter group descriptor provided, the filters for attribute will be automatically stroed in the conjunctive (`and`)  group with the facet attribute name.
   */
@@ -36,10 +36,10 @@ public extension DynamicFacetsConnector {
     - searcher: Searcher that handles your searches
     - filterState: FilterState that holds your filters
     - orderedFacets: Ordered list of attributed facets
-    - selections: Mapping between a facet attribute and a set of selected  facet values
+    - selections: Mapping between a facet attribute and a set of selected  facet values.
     - selectionModeForAttribute: Mapping between a facet attribute and a facet values selection mode. If not provided, the default selection mode is .single.
     - filterGroupForAttribute: Mapping between a facet attribute and a descriptor of a filter group where the corresponding facet filters stored in the filter state.
-    - controller: DynamicFacetsController implementation to connect
+    - controller: Controller presenting the ordered list of facets and handling the user interaction
    
   If no filter group descriptor provided, the filters for attribute will be automatically stroed in the conjunctive (`and`)  group with the facet attribute name.
   */
@@ -62,7 +62,7 @@ public extension DynamicFacetsConnector {
 
   /**
    Establishes a connection with a DynamicFacetsController implementation
-   - parameter controller: DynamicFacetsController implementation to connect
+   - parameter controller: Controller presenting the ordered list of facets and handling the user interaction
    */
   @discardableResult func connectController<Controller: DynamicFacetsController>(_ controller: Controller) -> DynamicFacetsInteractor.ControllerConnection<Controller> {
     let connection = interactor.connectController(controller)

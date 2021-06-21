@@ -21,7 +21,7 @@ public extension DynamicFacetsInteractor {
     /**
      - parameters:
        - interactor: Dynamic facets business logic
-       - controller: DynamicFacetsController implementation to connect
+       - controller: Controller presenting the ordered list of facets and handling the user interaction
      */
     public init(interactor: DynamicFacetsInteractor,
                 controller: Controller) {
@@ -53,7 +53,7 @@ public extension DynamicFacetsInteractor {
 
   /**
    Establishes a connection with a DynamicFacetsController implementation
-   - parameter controller: DynamicFacetsController implementation to connect
+   - parameter controller: Controller presenting the ordered list of facets and handling the user interaction
    */
   @discardableResult func connectController<Controller: DynamicFacetsController>(_ controller: Controller) -> ControllerConnection<Controller> {
     let connection = ControllerConnection(interactor: self, controller: controller)
