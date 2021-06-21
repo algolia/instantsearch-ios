@@ -8,7 +8,7 @@
 
 import Foundation
 
-public protocol MultiIndexHitsController: class, Reloadable {
+public protocol MultiIndexHitsController: AnyObject, Reloadable {
 
   var hitsSource: MultiIndexHitsSource? { get set }
 

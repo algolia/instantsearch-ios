@@ -8,7 +8,7 @@
 
 import Foundation
 
-public protocol FilterClearController: class {
+public protocol FilterClearController: AnyObject {
 
   var onClick: (() -> Void)? { get set }
 
