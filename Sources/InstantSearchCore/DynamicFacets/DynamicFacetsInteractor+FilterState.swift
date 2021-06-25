@@ -20,7 +20,7 @@ public extension DynamicFacetsInteractor {
 
     /// Mapping between a facet attribute and a descriptor of a filter group where the corresponding facet filters stored in the filter state.
     ///
-    /// If no filter group descriptor provided, the filters for attribute will be automatically stroed in the conjunctive (`and`)  group with the facet attribute name.
+    /// If no filter group descriptor provided, the filters for attribute will be automatically stored in the conjunctive (`and`)  group with the facet attribute name.
     public let filterGroupForAttribute: [Attribute: FilterGroupDescriptor]
 
     /**

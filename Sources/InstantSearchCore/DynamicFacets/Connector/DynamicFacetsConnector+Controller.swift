@@ -17,7 +17,7 @@ public extension DynamicFacetsConnector {
     - filterGroupForAttribute: Mapping between a facet attribute and a descriptor of a filter group where the corresponding facet filters stored in the filter state.
     - controller: Controller presenting the ordered list of facets and handling the user interaction
    
-   If no filter group descriptor provided, the filters for attribute will be automatically stroed in the conjunctive (`and`)  group with the facet attribute name.
+   If no filter group descriptor provided, the filters for attribute will be automatically stored in the conjunctive (`and`)  group with the facet attribute name.
   */
   convenience init<Controller: DynamicFacetsController>(searcher: Searcher,
                                                         filterState: FilterState = .init(),
@@ -41,7 +41,7 @@ public extension DynamicFacetsConnector {
     - filterGroupForAttribute: Mapping between a facet attribute and a descriptor of a filter group where the corresponding facet filters stored in the filter state.
     - controller: Controller presenting the ordered list of facets and handling the user interaction
    
-  If no filter group descriptor provided, the filters for attribute will be automatically stroed in the conjunctive (`and`)  group with the facet attribute name.
+  If no filter group descriptor provided, the filters for attribute will be automatically stored in the conjunctive (`and`)  group with the facet attribute name.
   */
   convenience init<Controller: DynamicFacetsController>(searcher: Searcher,
                                                         filterState: FilterState = .init(),

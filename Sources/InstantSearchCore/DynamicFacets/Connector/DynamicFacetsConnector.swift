@@ -36,7 +36,7 @@ public class DynamicFacetsConnector<Searcher: SearchResultObservable> where Sear
     - interactor: External dynamic facets interactor
     - filterGroupForAttribute: Mapping between a facet attribute and a descriptor of a filter group where the corresponding facet filters stored in the filter state.
    
-  If no filter group descriptor provided, the filters for attribute will be automatically stroed in the conjunctive (`and`)  group with the facet attribute name.
+  If no filter group descriptor provided, the filters for attribute will be automatically stored in the conjunctive (`and`)  group with the facet attribute name.
   */
   public init(searcher: Searcher,
               filterState: FilterState = .init(),
@@ -60,7 +60,7 @@ public class DynamicFacetsConnector<Searcher: SearchResultObservable> where Sear
     - selectionModeForAttribute: Mapping between a facet attribute and a facet values selection mode. If not provided, the default selection mode is .single.
     - filterGroupForAttribute: Mapping between a facet attribute and a descriptor of a filter group where the corresponding facet filters stored in the filter state.
    
-  If no filter group descriptor provided, the filters for attribute will be automatically stroed in the conjunctive (`and`)  group with the facet attribute name.
+  If no filter group descriptor provided, the filters for attribute will be automatically stored in the conjunctive (`and`)  group with the facet attribute name.
   */
   public convenience init(searcher: Searcher,
                           filterState: FilterState = .init(),
