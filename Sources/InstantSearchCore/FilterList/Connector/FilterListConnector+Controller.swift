@@ -62,7 +62,7 @@ extension FilterListConnector {
      - controller: Controller interfacing with a concrete filter list view
    - Returns: Established connection
   */
-  @discardableResult func connectController<Controller: SelectableListController>(_ controller: Controller) -> FilterList.ControllerConnection<Filter, Controller> where Controller.Item == Filter {
+  @discardableResult func connectController<Controller: SelectableListController>(_ controller: Controller) -> FilterListControllerConnection<Filter, Controller> where Controller.Item == Filter {
     let connection = interactor.connectController(controller)
     controllerConnections.append(connection)
     return connection
