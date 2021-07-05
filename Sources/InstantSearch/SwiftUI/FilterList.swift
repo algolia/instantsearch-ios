@@ -30,15 +30,18 @@ public struct FilterList<Filter: FilterType & Hashable, Row: View, NoResults: Vi
     self.noResults = noResults
   }
 
-
   public var body: some View {
-    ScrollView(showsIndicators: true) {
-      VStack {
-        ForEach(filtersListObservableController.filters, id: \.self) { filter in
-          row(filter, filtersListObservableController.isSelected(filter))
-            .onTapGesture {
-              filtersListObservableController.toggle(filter)
-            }
+    if let noResults = noResults?(), filtersListObservableController.filters.isEmpty {
+      noResults
+    } else {
+      ScrollView(showsIndicators: true) {
+        VStack {
+          ForEach(filtersListObservableController.filters, id: \.self) { filter in
+            row(filter, filtersListObservableController.isSelected(filter))
+              .onTapGesture {
+                filtersListObservableController.toggle(filter)
+              }
+          }
         }
       }
     }
