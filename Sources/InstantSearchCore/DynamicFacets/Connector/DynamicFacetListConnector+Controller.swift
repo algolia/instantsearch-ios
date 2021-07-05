@@ -20,10 +20,10 @@ public extension DynamicFacetListConnector {
    If no filter group descriptor provided, the filters for attribute will be automatically stored in the conjunctive (`and`)  group with the facet attribute name.
   */
   convenience init<Controller: DynamicFacetListController>(searcher: Searcher,
-                                                        filterState: FilterState = .init(),
-                                                        interactor: DynamicFacetListInteractor = .init(),
-                                                        filterGroupForAttribute: [Attribute: FilterGroupDescriptor] = [:],
-                                                        controller: Controller) {
+                                                           filterState: FilterState = .init(),
+                                                           interactor: DynamicFacetListInteractor = .init(),
+                                                           filterGroupForAttribute: [Attribute: FilterGroupDescriptor] = [:],
+                                                           controller: Controller) {
     self.init(searcher: searcher,
               filterState: filterState,
               interactor: interactor,
@@ -44,12 +44,12 @@ public extension DynamicFacetListConnector {
   If no filter group descriptor provided, the filters for attribute will be automatically stored in the conjunctive (`and`)  group with the facet attribute name.
   */
   convenience init<Controller: DynamicFacetListController>(searcher: Searcher,
-                                                        filterState: FilterState = .init(),
-                                                        orderedFacets: [AttributedFacets] = [],
-                                                        selections: [Attribute: Set<String>] = [:],
-                                                        selectionModeForAttribute: [Attribute: SelectionMode] = [:],
-                                                        filterGroupForAttribute: [Attribute: FilterGroupDescriptor] = [:],
-                                                        controller: Controller) {
+                                                           filterState: FilterState = .init(),
+                                                           orderedFacets: [AttributedFacets] = [],
+                                                           selections: [Attribute: Set<String>] = [:],
+                                                           selectionModeForAttribute: [Attribute: SelectionMode] = [:],
+                                                           filterGroupForAttribute: [Attribute: FilterGroupDescriptor] = [:],
+                                                           controller: Controller) {
     let interactor = DynamicFacetListInteractor(orderedFacets: orderedFacets,
                                              selections: selections,
                                              selectionModeForAttribute: selectionModeForAttribute)
