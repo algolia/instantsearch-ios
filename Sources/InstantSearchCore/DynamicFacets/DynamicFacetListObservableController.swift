@@ -1,5 +1,5 @@
 //
-//  DynamicFacetsObservableController.swift
+//  DynamicFacetListObservableController.swift
 //  
 //
 //  Created by Vladislav Fitc on 15/06/2021.
@@ -10,9 +10,9 @@ import Foundation
 import Combine
 import SwiftUI
 
-/// DynamicFacetsController implementation adapted for usage with SwiftUI views
+/// DynamicFacetListController implementation adapted for usage with SwiftUI views
 @available(iOS 13.0, OSX 10.15, tvOS 13.0, watchOS 6.0, *)
-public class DynamicFacetsObservableController: ObservableObject, DynamicFacetsController {
+public class DynamicFacetListObservableController: ObservableObject, DynamicFacetListController {
 
   /// List of attributed facets to present
   @Published public var orderedFacets: [AttributedFacets]

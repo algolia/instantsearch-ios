@@ -1,5 +1,5 @@
 //
-//  DynamicFacetsInteractor.swift
+//  DynamicFacetListInteractor.swift
 //  
 //
 //  Created by Vladislav Fitc on 16/03/2021.
@@ -15,7 +15,7 @@ import Foundation
   - Set of events triggered when the state changes.
   - Convenient functions to toggle and fetch the selection state of facet values
  */
-public class DynamicFacetsInteractor {
+public class DynamicFacetListInteractor {
 
   public typealias SelectionsPerAttribute = [Attribute: Set<String>]
 

@@ -65,7 +65,7 @@ struct FacetsOrderer {
     let remainingFacets = facets.filter { !pinnedFacets.contains($0) }
 
     let facetsTail: [Facet]
-    switch rule.sortRemainingBy {
+    switch rule.sortRemainingBy ?? .count {
     case .hidden:
       facetsTail = []
 

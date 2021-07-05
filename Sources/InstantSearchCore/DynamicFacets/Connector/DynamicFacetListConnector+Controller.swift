@@ -1,5 +1,5 @@
 //
-//  DynamicFacetsConnector+Controller.swift
+//  DynamicFacetListConnector+Controller.swift
 //  
 //
 //  Created by Vladislav Fitc on 17/06/2021.
@@ -7,21 +7,21 @@
 
 import Foundation
 
-public extension DynamicFacetsConnector {
+public extension DynamicFacetListConnector {
 
   /**
   - parameters:
     - searcher: Searcher that handles your searches
     - filterState: FilterState that holds your filters
-    - interactor: External dynamic facets interactor
+    - interactor: External dynamic facet list interactor
     - filterGroupForAttribute: Mapping between a facet attribute and a descriptor of a filter group where the corresponding facet filters stored in the filter state.
     - controller: Controller presenting the ordered list of facets and handling the user interaction
    
    If no filter group descriptor provided, the filters for attribute will be automatically stored in the conjunctive (`and`)  group with the facet attribute name.
   */
-  convenience init<Controller: DynamicFacetsController>(searcher: Searcher,
+  convenience init<Controller: DynamicFacetListController>(searcher: Searcher,
                                                         filterState: FilterState = .init(),
-                                                        interactor: DynamicFacetsInteractor = .init(),
+                                                        interactor: DynamicFacetListInteractor = .init(),
                                                         filterGroupForAttribute: [Attribute: FilterGroupDescriptor] = [:],
                                                         controller: Controller) {
     self.init(searcher: searcher,
@@ -43,14 +43,14 @@ public extension DynamicFacetsConnector {
    
   If no filter group descriptor provided, the filters for attribute will be automatically stored in the conjunctive (`and`)  group with the facet attribute name.
   */
-  convenience init<Controller: DynamicFacetsController>(searcher: Searcher,
+  convenience init<Controller: DynamicFacetListController>(searcher: Searcher,
                                                         filterState: FilterState = .init(),
                                                         orderedFacets: [AttributedFacets] = [],
                                                         selections: [Attribute: Set<String>] = [:],
                                                         selectionModeForAttribute: [Attribute: SelectionMode] = [:],
                                                         filterGroupForAttribute: [Attribute: FilterGroupDescriptor] = [:],
                                                         controller: Controller) {
-    let interactor = DynamicFacetsInteractor(orderedFacets: orderedFacets,
+    let interactor = DynamicFacetListInteractor(orderedFacets: orderedFacets,
                                              selections: selections,
                                              selectionModeForAttribute: selectionModeForAttribute)
     self.init(searcher: searcher,
@@ -61,10 +61,10 @@ public extension DynamicFacetsConnector {
   }
 
   /**
-   Establishes a connection with a DynamicFacetsController implementation
+   Establishes a connection with a DynamicFacetListController implementation
    - parameter controller: Controller presenting the ordered list of facets and handling the user interaction
    */
-  @discardableResult func connectController<Controller: DynamicFacetsController>(_ controller: Controller) -> DynamicFacetsInteractor.ControllerConnection<Controller> {
+  @discardableResult func connectController<Controller: DynamicFacetListController>(_ controller: Controller) -> DynamicFacetListInteractor.ControllerConnection<Controller> {
     let connection = interactor.connectController(controller)
     controllerConnections.append(connection)
     return connection

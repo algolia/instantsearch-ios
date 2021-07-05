@@ -1,5 +1,5 @@
 //
-//  DynamicFacetsConnector.swift
+//  DynamicFacetListConnector.swift
 //  
 //
 //  Created by Vladislav Fitc on 17/06/2021.
@@ -9,7 +9,7 @@ import Foundation
 
 /// Component that displays automatically ordered facets, their ordered values, and lets the user refine the search results by filtering on specific values.
 
-public class DynamicFacetsConnector<Searcher: SearchResultObservable> where Searcher.SearchResult == SearchResponse {
+public class DynamicFacetListConnector<Searcher: SearchResultObservable> where Searcher.SearchResult == SearchResponse {
 
   /// Searcher that handles your searches.
   public let searcher: Searcher
@@ -18,7 +18,7 @@ public class DynamicFacetsConnector<Searcher: SearchResultObservable> where Sear
   public let filterState: FilterState
 
   /// Logic applied to the facets
-  public let interactor: DynamicFacetsInteractor
+  public let interactor: DynamicFacetListInteractor
 
   /// Connection between interactor and filter state
   public let filterStateConnection: Connection
@@ -33,14 +33,14 @@ public class DynamicFacetsConnector<Searcher: SearchResultObservable> where Sear
   - parameters:
     - searcher: Searcher that handles your searches
     - filterState: FilterState that holds your filters
-    - interactor: External dynamic facets interactor
+    - interactor: External dynamic facet list interactor
     - filterGroupForAttribute: Mapping between a facet attribute and a descriptor of a filter group where the corresponding facet filters stored in the filter state.
    
   If no filter group descriptor provided, the filters for attribute will be automatically stored in the conjunctive (`and`)  group with the facet attribute name.
   */
   public init(searcher: Searcher,
               filterState: FilterState = .init(),
-              interactor: DynamicFacetsInteractor,
+              interactor: DynamicFacetListInteractor,
               filterGroupForAttribute: [Attribute: FilterGroupDescriptor] = [:]) {
     self.searcher = searcher
     self.filterState = filterState
@@ -68,7 +68,7 @@ public class DynamicFacetsConnector<Searcher: SearchResultObservable> where Sear
                           selections: [Attribute: Set<String>] = [:],
                           selectionModeForAttribute: [Attribute: SelectionMode] = [:],
                           filterGroupForAttribute: [Attribute: FilterGroupDescriptor] = [:]) {
-    let interactor = DynamicFacetsInteractor(orderedFacets: orderedFacets,
+    let interactor = DynamicFacetListInteractor(orderedFacets: orderedFacets,
                                              selections: selections,
                                              selectionModeForAttribute: selectionModeForAttribute)
     self.init(searcher: searcher,
@@ -79,7 +79,7 @@ public class DynamicFacetsConnector<Searcher: SearchResultObservable> where Sear
 
 }
 
-extension DynamicFacetsConnector: Connection {
+extension DynamicFacetListConnector: Connection {
 
   public func connect() {
     filterStateConnection.connect()

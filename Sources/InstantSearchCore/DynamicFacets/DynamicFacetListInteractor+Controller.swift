@@ -1,5 +1,5 @@
 //
-//  DynamicFacetsInteractor+Controller.swift
+//  DynamicFacetListInteractor+Controller.swift
 //  
 //
 //  Created by Vladislav Fitc on 16/03/2021.
@@ -7,13 +7,13 @@
 
 import Foundation
 
-public extension DynamicFacetsInteractor {
+public extension DynamicFacetListInteractor {
 
-  /// Connection between a dynamic facets business logic and a controller
-  struct ControllerConnection<Controller: DynamicFacetsController>: Connection {
+  /// Connection between a dynamic facet list business logic and a controller
+  struct ControllerConnection<Controller: DynamicFacetListController>: Connection {
 
-    /// Dynamic facets business logic
-    public let interactor: DynamicFacetsInteractor
+    /// Dynamic facet list business logic
+    public let interactor: DynamicFacetListInteractor
 
     /// Controller presenting the ordered list of facets and handling user interaction
     public let controller: Controller
@@ -23,7 +23,7 @@ public extension DynamicFacetsInteractor {
        - interactor: Dynamic facets business logic
        - controller: Controller presenting the ordered list of facets and handling the user interaction
      */
-    public init(interactor: DynamicFacetsInteractor,
+    public init(interactor: DynamicFacetListInteractor,
                 controller: Controller) {
       self.interactor = interactor
       self.controller = controller
@@ -52,10 +52,10 @@ public extension DynamicFacetsInteractor {
   }
 
   /**
-   Establishes a connection with a DynamicFacetsController implementation
+   Establishes a connection with a DynamicFacetListController implementation
    - parameter controller: Controller presenting the ordered list of facets and handling the user interaction
    */
-  @discardableResult func connectController<Controller: DynamicFacetsController>(_ controller: Controller) -> ControllerConnection<Controller> {
+  @discardableResult func connectController<Controller: DynamicFacetListController>(_ controller: Controller) -> ControllerConnection<Controller> {
     let connection = ControllerConnection(interactor: self, controller: controller)
     connection.connect()
     return connection

@@ -1,5 +1,5 @@
 //
-//  DynamicFacetsInteractor+Searcher.swift
+//  DynamicFacetListInteractor+Searcher.swift
 //  
 //
 //  Created by Vladislav Fitc on 16/03/2021.
@@ -7,23 +7,23 @@
 
 import Foundation
 
-public extension DynamicFacetsInteractor {
+public extension DynamicFacetListInteractor {
 
   /// Connection between a dynamic facets business logic and a searcher
   struct SearcherConnection<Searcher: SearchResultObservable>: Connection where Searcher.SearchResult == SearchResponse {
 
-    /// Dynamic facets business logic
-    public let interactor: DynamicFacetsInteractor
+    /// Dynamic facet list business logic
+    public let interactor: DynamicFacetListInteractor
 
     /// Searcher that handles your searches
     public let searcher: Searcher
 
     /**
      - parameters:
-       - interactor: Dynamic facets business logic
+       - interactor: Dynamic facet list business logic
        - searcher: Searcher to connect
     */
-    public init(interactor: DynamicFacetsInteractor,
+    public init(interactor: DynamicFacetListInteractor,
                 searcher: Searcher) {
       self.searcher = searcher
       self.interactor = interactor

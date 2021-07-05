@@ -1,5 +1,5 @@
 //
-//  DynamicFacetsTableViewController.swift
+//  DynamicFacetListTableViewController.swift
 //  
 //
 //  Created by Vladislav Fitc on 16/03/2021.
@@ -13,7 +13,7 @@ import UIKit
 
 /// Table view controller presenting ordered facets and ordered facet values
 /// Each facet and corresponding values are represented as a table view section
-public class DynamicFacetsTableViewController: UITableViewController, DynamicFacetsController {
+public class DynamicFacetListTableViewController: UITableViewController, DynamicFacetListController {
 
   /// List of ordered facets with their attributes
   public var orderedFacets: [AttributedFacets]
@@ -21,7 +21,7 @@ public class DynamicFacetsTableViewController: UITableViewController, DynamicFac
   /// Set of selected facet values per attribute
   public var selections: [Attribute: Set<String>]
 
-  // MARK: - DynamicFacetsController
+  // MARK: - DynamicFacetListController
 
   public var didSelect: ((Attribute, Facet) -> Void)?
 
