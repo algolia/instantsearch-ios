@@ -7,7 +7,7 @@
 
 import Foundation
 
-public protocol SwitchIndexController: class {
+public protocol SwitchIndexController: AnyObject {
 
   /// Closure to trigger when an index selected
   var select: (IndexName) -> Void { get set }

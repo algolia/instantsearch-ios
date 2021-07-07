@@ -8,7 +8,7 @@
 
 import Foundation
 
-public protocol QueryInputController: class {
+public protocol QueryInputController: AnyObject {
   var onQueryChanged: ((String?) -> Void)? { get set }
   var onQuerySubmitted: ((String?) -> Void)? { get set }
   func setQuery(_ query: String?)

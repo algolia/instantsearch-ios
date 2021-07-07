@@ -8,7 +8,7 @@
 
 import Foundation
 
-protocol FiltersContainer: class {
+protocol FiltersContainer: AnyObject {
   var filters: FilterState.Storage { get set }
 }
 

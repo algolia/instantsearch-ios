@@ -8,7 +8,7 @@
 
 import Foundation
 
-public protocol DisjunctiveFacetingDelegate: class, FilterGroupsConvertible {
+public protocol DisjunctiveFacetingDelegate: AnyObject, FilterGroupsConvertible {
 
   var disjunctiveFacetsAttributes: Set<Attribute> { get }
 

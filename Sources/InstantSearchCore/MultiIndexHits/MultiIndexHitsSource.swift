@@ -8,7 +8,7 @@
 
 import Foundation
 
-public protocol MultiIndexHitsSource: class {
+public protocol MultiIndexHitsSource: AnyObject {
 
   func numberOfSections() -> Int
   func numberOfHits(inSection section: Int) -> Int

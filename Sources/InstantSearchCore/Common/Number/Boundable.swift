@@ -8,7 +8,7 @@
 
 import Foundation
 
-public protocol Boundable: class {
+public protocol Boundable: AnyObject {
   associatedtype Number: Comparable & DoubleRepresentable
 
   func applyBounds(bounds: ClosedRange<Number>?)

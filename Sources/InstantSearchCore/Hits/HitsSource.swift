@@ -8,7 +8,7 @@
 
 import Foundation
 
-public protocol HitsSource: class {
+public protocol HitsSource: AnyObject {
 
   associatedtype Record: Codable
 
