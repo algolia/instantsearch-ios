@@ -16,15 +16,15 @@ public class LoadingObservableController: ObservableObject, LoadingController {
 
   /// The Boolean state defining if the loading is in progress
   @Published public var isLoading: Bool
-  
+
   public func setItem(_ isLoading: Bool) {
     self.isLoading = isLoading
   }
-  
+
   public init(isLoading: Bool = false) {
     self.isLoading = isLoading
   }
-  
+
 }
 
 #endif

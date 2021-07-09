@@ -13,13 +13,13 @@ import SwiftUI
 /// RelevantSortController implementation adapted for usage with SwiftUI views
 @available(iOS 13.0, OSX 10.15, tvOS 13.0, watchOS 6.0, *)
 public class RelevantSortObservableController: ObservableObject, RelevantSortController {
-  
+
   @Published public var state: RelevantSortTextualRepresentation?
-  
+
   public var didToggle: (() -> Void)?
-  
+
   public init() {}
-  
+
   public func setItem(_ state: RelevantSortTextualRepresentation?) {
     self.state = state
   }
@@ -27,7 +27,7 @@ public class RelevantSortObservableController: ObservableObject, RelevantSortCon
   public func toggle() {
     didToggle?()
   }
-  
+
 }
 
 #endif

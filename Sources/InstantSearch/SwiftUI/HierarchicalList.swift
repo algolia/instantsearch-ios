@@ -18,10 +18,10 @@ public struct HierarchicalList<Row: View, NoResults: View>: View {
 
   /// Closure constructing a hierarchical facet row view
   public var row: (Facet, Int, Bool) -> Row
-  
+
   /// Closure constructing a no results view
   public var noResults: (() -> NoResults)?
-  
+
   public init(_ hierarchicalObservableController: HierarchicalObservableController,
               @ViewBuilder row: @escaping (Facet, Int, Bool) -> Row,
               @ViewBuilder noResults: @escaping () -> NoResults) {
@@ -29,7 +29,7 @@ public struct HierarchicalList<Row: View, NoResults: View>: View {
     self.row = row
     self.noResults = noResults
   }
-  
+
   public var body: some View {
     if let noResults = noResults?(), hierarchicalObservableController.hierarchicalFacets.isEmpty {
       noResults

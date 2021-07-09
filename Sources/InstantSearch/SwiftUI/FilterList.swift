@@ -13,15 +13,15 @@ import SwiftUI
 /// A view presenting the list of filters
 @available(iOS 13.0, OSX 10.15, tvOS 13.0, watchOS 6.0, *)
 public struct FilterList<Filter: FilterType & Hashable, Row: View, NoResults: View>: View {
-  
+
   @ObservedObject public var filtersListObservableController: FilterListObservableController<Filter>
-  
+
   /// Closure constructing a filter row view
   public var row: (Filter, Bool) -> Row
 
   /// Closure constructing a no results view
   public var noResults: (() -> NoResults)?
-  
+
   public init(_ filtersListObservableController: FilterListObservableController<Filter>,
               @ViewBuilder row: @escaping (Filter, Bool) -> Row,
               @ViewBuilder noResults: @escaping () -> NoResults) {
@@ -46,7 +46,7 @@ public struct FilterList<Filter: FilterType & Hashable, Row: View, NoResults: Vi
       }
     }
   }
-  
+
 }
 
 @available(iOS 13.0, OSX 10.15, tvOS 13.0, watchOS 6.0, *)

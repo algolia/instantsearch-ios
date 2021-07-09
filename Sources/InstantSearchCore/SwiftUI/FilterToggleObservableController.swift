@@ -13,10 +13,10 @@ import SwiftUI
 /// SelectableController implementation adapted for usage with SwiftUI views
 @available(iOS 13.0, OSX 10.15, tvOS 13.0, watchOS 6.0, *)
 public class FilterToggleObservableController<Filter: FilterType>: ObservableObject, SelectableController {
-  
+
   /// The filter to toggle
   @Published public var filter: Filter?
-  
+
   /// The state of the filter
   @Published public var isSelected: Bool {
     didSet {

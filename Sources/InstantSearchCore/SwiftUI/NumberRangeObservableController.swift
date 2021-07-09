@@ -12,7 +12,7 @@ import SwiftUI
 /// NumberRangeController implementation adapted for usage with SwiftUI views
 @available(iOS 13.0, OSX 10.15, tvOS 13.0, watchOS 6.0, *)
 public class NumberRangeObservableController<Number: Comparable & DoubleRepresentable>: ObservableObject, NumberRangeController {
-      
+
   /// The numeric range value
   @Published public var range: ClosedRange<Number> = Number(0)...Number(1) {
     didSet {
@@ -21,18 +21,18 @@ public class NumberRangeObservableController<Number: Comparable & DoubleRepresen
       }
     }
   }
-  
+
   /// The bounds limiting the numeric range value
   @Published public var bounds: ClosedRange<Number> = Number(0)...Number(1)
-  
+
   public var onRangeChanged: ((ClosedRange<Number>) -> Void)?
-  
+
   private var isInitialBoundsSet: Bool = true
-  
+
   public func setItem(_ range: ClosedRange<Number>) {
     self.range = range
   }
-  
+
   public func setBounds(_ bounds: ClosedRange<Number>) {
     self.bounds = bounds
     if isInitialBoundsSet {
@@ -40,7 +40,7 @@ public class NumberRangeObservableController<Number: Comparable & DoubleRepresen
       self.range = bounds
     }
   }
-  
+
   /**
    - parameters:
      - range: The numeric range value
@@ -51,6 +51,6 @@ public class NumberRangeObservableController<Number: Comparable & DoubleRepresen
     self.range = range.clamped(to: bounds)
     self.bounds = bounds
   }
-  
+
 }
 #endif

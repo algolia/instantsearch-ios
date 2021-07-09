@@ -14,13 +14,13 @@ public struct SuggestionRow: View {
 
   /// Suggestion
   public let suggestion: QuerySuggestion
-  
+
   /// An action triggered when typeahead button (arrow) tapped
   public var onTypeAhead: (String) -> Void
-  
+
   /// An action triggered when suggestion selected
   public var onSelection: (String) -> Void
-  
+
   private func valueText(for suggestion: QuerySuggestion) -> Text {
     if let highlightedValue = suggestion.highlighted {
       let highlightedValueString = HighlightedString(string: highlightedValue)

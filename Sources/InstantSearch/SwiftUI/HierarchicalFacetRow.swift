@@ -18,10 +18,10 @@ public struct HierarchicalFacetRow: View {
 
   /// Facet selection state
   public var isSelected: Bool
-  
+
   /// Facet nesting level in the hierarchy
   public var nestingLevel: Int
-  
+
   /// Character separating the facets in the hierarchical facet
   ///
   /// Default value: ">"
