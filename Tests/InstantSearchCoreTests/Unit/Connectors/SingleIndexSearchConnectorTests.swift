@@ -65,6 +65,7 @@ class SingleIndexSearchConnectorTests: XCTestCase {
     let tester = HitsInteractorFilterStateConnectionTester(interactor: module.hitsInteractor,
                                                            filterState: module.filterState,
                                                            source: self)
+    tester.requestChangedExpectedFulfillmentCount = 2
     tester.check(isConnected: true)
   }
   
