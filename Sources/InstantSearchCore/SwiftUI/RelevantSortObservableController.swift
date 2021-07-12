@@ -14,6 +14,7 @@ import SwiftUI
 @available(iOS 13.0, OSX 10.15, tvOS 13.0, watchOS 6.0, *)
 public class RelevantSortObservableController: ObservableObject, RelevantSortController {
 
+  /// Textual representation of the current sort state in the virtual replica
   @Published public var state: RelevantSortTextualRepresentation?
 
   public var didToggle: (() -> Void)?
@@ -24,6 +25,7 @@ public class RelevantSortObservableController: ObservableObject, RelevantSortCon
     self.state = state
   }
 
+  /// Toggle the relevant sort state (relevancy <-> hits count)
   public func toggle() {
     didToggle?()
   }
