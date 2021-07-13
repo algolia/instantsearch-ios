@@ -9,16 +9,16 @@ import Foundation
 
 public class SwitchIndexInteractor {
 
-  var indexNames: [IndexName]
+  public var indexNames: [IndexName]
 
-  var selectedIndexName: IndexName {
+  public var selectedIndexName: IndexName {
     didSet {
       guard oldValue != selectedIndexName else { return }
       onSelectionChange.fire(selectedIndexName)
     }
   }
 
-  var onSelectionChange: Observer<IndexName>
+  public var onSelectionChange: Observer<IndexName>
 
   public init(indexNames: [IndexName], selectedIndexName: IndexName) {
     assert(indexNames.contains(selectedIndexName))

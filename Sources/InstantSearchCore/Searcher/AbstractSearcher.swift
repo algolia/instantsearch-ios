@@ -14,10 +14,19 @@ public class AbstractSearcher<Service: SearchService>: Searcher, SequencerDelega
   public typealias Result = Service.Result
 
   public var query: String? {
-    get { return nil }
-    // swiftlint:disable:next unused_setter_value
-    set {
+    get {
+      return (request as? TextualQueryProvider)?.textualQuery
+    }
 
+    set {
+      guard var textualQueryRequest = request as? TextualQueryProvider else {
+        return
+      }
+      textualQueryRequest.textualQuery = newValue
+      guard let initialRequest = textualQueryRequest as? Request else {
+        return
+      }
+      self.request = initialRequest
     }
   }
 

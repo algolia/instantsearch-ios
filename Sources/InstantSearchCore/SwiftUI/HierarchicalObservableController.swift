@@ -15,12 +15,12 @@ import SwiftUI
 public class HierarchicalObservableController: ObservableObject, HierarchicalController {
 
   /// List of hierarchical facet items to present
-  @Published public var items: [HierarchicalFacet]
+  @Published public var hierarchicalFacets: [HierarchicalFacet]
 
   public var onClick: ((String) -> Void)?
 
   public func setItem(_ facets: [HierarchicalFacet]) {
-    self.items = facets
+    self.hierarchicalFacets = facets
   }
 
   /// Toggle hierarchical facet selection
@@ -28,8 +28,8 @@ public class HierarchicalObservableController: ObservableObject, HierarchicalCon
     onClick?(facetValue)
   }
 
-  public init(items: [HierarchicalFacet] = []) {
-    self.items = items
+  public init(hierarchicalFacets: [HierarchicalFacet] = []) {
+    self.hierarchicalFacets = hierarchicalFacets
   }
 
 }

@@ -11,7 +11,7 @@ import AlgoliaSearchClient
     to create a collections of hits interactors with different record types.
 */
 
-public protocol AnyHitsInteractor: class {
+public protocol AnyHitsInteractor: AnyObject {
 
   var onError: Observer<Swift.Error> { get }
 

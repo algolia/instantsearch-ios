@@ -8,7 +8,7 @@
 
 import Foundation
 
-public protocol ItemController: class {
+public protocol ItemController: AnyObject {
 
   associatedtype Item
 

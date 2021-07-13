@@ -10,7 +10,7 @@ import Foundation
 
 public extension FacetListConnector {
 
-  public struct FilterStateConnection: Connection {
+  struct FilterStateConnection: Connection {
 
     public let interactor: FacetListInteractor
     public let filterState: FilterState

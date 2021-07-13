@@ -8,7 +8,7 @@
 
 import Foundation
 
-protocol QueryIDContainer: class {
+protocol QueryIDContainer: AnyObject {
   var queryID: QueryID? { get set }
 }
 
