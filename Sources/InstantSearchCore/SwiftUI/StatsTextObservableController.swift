@@ -1,5 +1,5 @@
 //
-//  StatsObservableController.swift
+//  StatsTextObservableController.swift
 //  
 //
 //  Created by Vladislav Fitc on 29/03/2021.
