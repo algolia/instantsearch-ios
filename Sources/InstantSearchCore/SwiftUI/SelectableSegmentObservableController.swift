@@ -16,7 +16,7 @@ public class SelectableSegmentObservableController: ObservableObject, Selectable
 
   /// Textual titles of the available segments
   @Published public var segmentsTitles: [String]
-  
+
   /// Index of the selected segment
   @Published public var selectedSegmentIndex: Int?
 
