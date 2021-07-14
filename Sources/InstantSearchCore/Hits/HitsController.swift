@@ -8,7 +8,7 @@
 
 import Foundation
 
-public protocol HitsController: class, Reloadable {
+public protocol HitsController: AnyObject, Reloadable {
 
   associatedtype DataSource: HitsSource
 

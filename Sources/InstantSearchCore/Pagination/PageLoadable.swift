@@ -8,7 +8,7 @@
 
 import Foundation
 
-public protocol PageLoadable: class {
+public protocol PageLoadable: AnyObject {
 
   func loadPage(atIndex pageIndex: Int)
 

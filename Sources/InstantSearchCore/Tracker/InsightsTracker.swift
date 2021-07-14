@@ -11,7 +11,7 @@ import Foundation
 import InstantSearchInsights
 #endif
 
-public protocol InsightsTracker: class {
+public protocol InsightsTracker: AnyObject {
 
   init(eventName: EventName, searcher: TrackableSearcher, insights: Insights)
 

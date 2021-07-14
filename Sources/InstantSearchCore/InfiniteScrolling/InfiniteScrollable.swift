@@ -8,7 +8,7 @@
 
 import Foundation
 
-protocol InfiniteScrollable: class {
+protocol InfiniteScrollable: AnyObject {
 
   var lastPageIndex: Int? { get set }
   var pageLoader: PageLoadable? { get set }

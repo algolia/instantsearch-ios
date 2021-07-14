@@ -8,7 +8,7 @@
 
 import Foundation
 
-public protocol SelectableSegmentController: class {
+public protocol SelectableSegmentController: AnyObject {
 
   associatedtype SegmentKey: Hashable
 

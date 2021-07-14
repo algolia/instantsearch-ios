@@ -8,7 +8,7 @@
 
 import Foundation
 
-public protocol SelectableListController: class, Reloadable {
+public protocol SelectableListController: AnyObject, Reloadable {
 
   associatedtype Item
 

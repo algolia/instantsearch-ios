@@ -8,7 +8,7 @@
 
 import Foundation
 
-public protocol HierarchicalFacetingDelegate: class {
+public protocol HierarchicalFacetingDelegate: AnyObject {
   var hierarchicalAttributes: [Attribute] { get set }
   var hierarchicalFilters: [Filter.Facet] { get set }
 }
