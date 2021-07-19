@@ -34,14 +34,12 @@ public struct FilterList<Filter: FilterType & Hashable, Row: View, NoResults: Vi
     if let noResults = noResults?(), filtersListObservableController.filters.isEmpty {
       noResults
     } else {
-      ScrollView(showsIndicators: true) {
-        VStack {
-          ForEach(filtersListObservableController.filters, id: \.self) { filter in
-            row(filter, filtersListObservableController.isSelected(filter))
-              .onTapGesture {
-                filtersListObservableController.toggle(filter)
-              }
-          }
+      VStack {
+        ForEach(filtersListObservableController.filters, id: \.self) { filter in
+          row(filter, filtersListObservableController.isSelected(filter))
+            .onTapGesture {
+              filtersListObservableController.toggle(filter)
+            }
         }
       }
     }

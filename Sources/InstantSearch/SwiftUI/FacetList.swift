@@ -34,17 +34,14 @@ public struct FacetList<Row: View, NoResults: View>: View {
     if let noResults = noResults?(), facetListObservableController.facets.isEmpty {
       noResults
     } else {
-      ScrollView(showsIndicators: true) {
-        VStack {
-          ForEach(facetListObservableController.facets, id: \.self) { facet in
-            row(facet, facetListObservableController.isSelected(facet))
-              .onTapGesture {
-                facetListObservableController.toggle(facet)
-              }
-          }
+      VStack {
+        ForEach(facetListObservableController.facets, id: \.self) { facet in
+          row(facet, facetListObservableController.isSelected(facet))
+            .onTapGesture {
+              facetListObservableController.toggle(facet)
+            }
         }
       }
-
     }
   }
 

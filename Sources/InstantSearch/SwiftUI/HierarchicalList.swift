@@ -34,15 +34,13 @@ public struct HierarchicalList<Row: View, NoResults: View>: View {
     if let noResults = noResults?(), hierarchicalObservableController.hierarchicalFacets.isEmpty {
       noResults
     } else {
-      ScrollView {
-        VStack {
-          ForEach(hierarchicalObservableController.hierarchicalFacets, id: \.facet) { hierarchicalFacet in
-            let (facet, level, isSelected) = hierarchicalFacet
-            row(facet, level, isSelected)
-              .onTapGesture {
-                hierarchicalObservableController.toggle(facet.value)
-              }
-          }
+      VStack {
+        ForEach(hierarchicalObservableController.hierarchicalFacets, id: \.facet) { hierarchicalFacet in
+          let (facet, level, isSelected) = hierarchicalFacet
+          row(facet, level, isSelected)
+            .onTapGesture {
+              hierarchicalObservableController.toggle(facet.value)
+            }
         }
       }
     }
