@@ -35,7 +35,6 @@ public struct FacetRow: View {
       Spacer()
       if isSelected {
         Image(systemName: "checkmark")
-          .frame(maxHeight: .infinity, alignment: .trailing)
           .foregroundColor(.accentColor)
       }
     }
