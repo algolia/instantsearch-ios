@@ -75,15 +75,30 @@ public extension Filter {
 
 }
 
+extension Filter.Numeric.ValueType: CustomStringConvertible {
+
+  public var description: String {
+    switch self {
+    case .range(let range):
+      return "\(range.lowerBound) – \(range.upperBound)"
+    case .comparison(let compOperator, let value):
+      return "\(compOperator.description) \(value)"
+    }
+  }
+
+}
+
 extension Filter.Numeric: CustomStringConvertible {
 
   public var description: String {
+    let separator: String
     switch value {
-    case .range(let range):
-      return "\(attribute): \(range.lowerBound) – \(range.upperBound)"
-    case .comparison(let compOperator, let value):
-      return "\(attribute) \(compOperator.description) \(value)"
+    case .range:
+      separator = ":"
+    case .comparison:
+      separator = ""
     }
+    return "\(attribute)\(separator) \(value.description)"
   }
 
 }
