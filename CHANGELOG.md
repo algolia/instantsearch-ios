@@ -1,5 +1,13 @@
 # ChangeLog
 
+## [7.12.0](https://github.com/algolia/instantsearch-ios/compare/7.11.1...7.12.0) (2021-07-13)
+
+### Feat
+
+- Dynamic Faceting widget (#168) ([52508ca](https://github.com/algolia/instantsearch-ios/commit/52508ca))
+
+
+
 ## [7.11.1](https://github.com/algolia/instantsearch-ios/compare/7.11.0...7.11.1) (2021-05-27)
 
 ### Fix

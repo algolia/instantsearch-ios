@@ -35,3 +35,5 @@ extension FilterGroupType {
   }
 
 }
+
+public typealias FilterGroupDescriptor = (groupName: String, groupType: RefinementOperator)
