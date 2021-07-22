@@ -15,7 +15,7 @@ Pod::Spec.new do |s|
   
   s.subspec "Insights" do |ss|
       ss.source_files = 'Sources/InstantSearchInsights/**/*.{swift}'
-      ss.dependency 'AlgoliaSearchClient', '~> 8.8'
+      ss.dependency 'AlgoliaSearchClient', '~> 8.10'
       ss.ios.deployment_target = '9.0'
       ss.osx.deployment_target = '10.10'
       ss.watchos.deployment_target = '3.0'
@@ -25,7 +25,7 @@ Pod::Spec.new do |s|
   s.subspec "Core" do |ss|
       ss.source_files = 'Sources/InstantSearchCore/**/*.{swift}'
       ss.exclude_files = 'Sources/InstantSearchCore/SwiftUI/**/*.{swift}'
-      ss.dependency 'AlgoliaSearchClient', '~> 8.8'
+      ss.dependency 'AlgoliaSearchClient', '~> 8.10'
       ss.dependency 'InstantSearch/Insights'
       ss.ios.deployment_target = '9.0'
       ss.osx.deployment_target = '10.10'
