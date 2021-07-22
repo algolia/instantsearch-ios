@@ -1,5 +1,13 @@
 # ChangeLog
 
+## [7.12.1](https://github.com/algolia/instantsearch-ios/compare/7.12.0...7.12.1) (2021-07-22)
+
+### Fix
+
+- Bump API client dependencies (#181) ([046216d](https://github.com/algolia/instantsearch-ios/commit/046216d))
+
+
+
 ## [7.12.0](https://github.com/algolia/instantsearch-ios/compare/7.11.1...7.12.0) (2021-07-13)
 
 ### Feat
