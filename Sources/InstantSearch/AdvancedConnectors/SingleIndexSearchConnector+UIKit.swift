@@ -8,11 +8,11 @@
 #if !InstantSearchCocoaPods
 import InstantSearchCore
 #endif
-//#if canImport(UIKit) && (os(iOS) || os(macOS))
-//import UIKit
-//
-//public extension SingleIndexSearchConnector {
-//
+#if canImport(UIKit) && (os(iOS) || os(macOS))
+import UIKit
+
+public extension SingleIndexSearchConnector {
+
 //  init<HC: HitsController>(searcher: SingleIndexSearcher,
 //                           searchController: UISearchController,
 //                           hitsInteractor: HitsInteractor<Record> = .init(),
@@ -37,7 +37,7 @@ import InstantSearchCore
 //                filterState: filterState)
 //    }
 //  }
-//
+
 //  init<HC: HitsController>(appID: ApplicationID,
 //                           apiKey: APIKey,
 //                           indexName: IndexName,
@@ -54,6 +54,6 @@ import InstantSearchCore
 //              hitsController: hitsController,
 //              filterState: filterState)
 //  }
-//
-//}
-//#endif
+
+}
+#endif
