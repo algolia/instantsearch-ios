@@ -50,27 +50,27 @@ public struct SingleIndexSearchConnector<Record: Codable>: Connection {
      - hitsController: Hits controller
      - filterState: Filter state
   */
-//  public init<HC: HitsController, QI: QueryInputController>(searcher: SingleIndexSearcher,
-//                                                            queryInputInteractor: QueryInputInteractor = .init(),
-//                                                            queryInputController: QI,
-//                                                            hitsInteractor: HitsInteractor<Record> = .init(),
-//                                                            hitsController: HC,
-//                                                            filterState: FilterState? = nil) where HC.DataSource == HitsInteractor<Record> {
-//    hitsConnector = .init(searcher: searcher, interactor: hitsInteractor, filterState: filterState)
-//    queryInputConnector = .init(searcher: searcher, interactor: queryInputInteractor)
-//
-//    queryInputControllerConnection = queryInputInteractor.connectController(queryInputController)
-//    hitsControllerConnection = hitsInteractor.connectController(hitsController)
-//
-//    if let filterState = filterState {
-//      filterStateHitsInteractorConnection = hitsInteractor.connectFilterState(filterState)
-//      filterStateSearcherConnection = searcher.connectFilterState(filterState)
-//    } else {
-//      filterStateHitsInteractorConnection = nil
-//      filterStateSearcherConnection = nil
-//    }
-//
-//  }
+  public init<HC: HitsController, QI: QueryInputController>(searcher: SingleIndexSearcher,
+                                                            queryInputInteractor: QueryInputInteractor = .init(),
+                                                            queryInputController: QI,
+                                                            hitsInteractor: HitsInteractor<Record>,
+                                                            hitsController: HC,
+                                                            filterState: FilterState? = nil) where HC.DataSource == HitsInteractor<Record> {
+    hitsConnector = .init(searcher: searcher, interactor: hitsInteractor, filterState: filterState)
+    queryInputConnector = .init(searcher: searcher, interactor: queryInputInteractor)
+
+    queryInputControllerConnection = queryInputInteractor.connectController(queryInputController)
+    hitsControllerConnection = hitsInteractor.connectController(hitsController)
+
+    if let filterState = filterState {
+      filterStateHitsInteractorConnection = hitsInteractor.connectFilterState(filterState)
+      filterStateSearcherConnection = searcher.connectFilterState(filterState)
+    } else {
+      filterStateHitsInteractorConnection = nil
+      filterStateSearcherConnection = nil
+    }
+
+  }
 
   /**
    - Parameters:
@@ -83,24 +83,24 @@ public struct SingleIndexSearchConnector<Record: Codable>: Connection {
      - hitsController: Hits controller
      - filterState: Filter state
    */
-//  public init<HC: HitsController, QI: QueryInputController>(appID: ApplicationID,
-//                                                            apiKey: APIKey,
-//                                                            indexName: IndexName,
-//                                                            queryInputInteractor: QueryInputInteractor = .init(),
-//                                                            queryInputController: QI,
-//                                                            hitsInteractor: HitsInteractor<Record> = .init(),
-//                                                            hitsController: HC,
-//                                                            filterState: FilterState? = nil)  where HC.DataSource == HitsInteractor<Record> {
-//    let searcher = SingleIndexSearcher(appID: appID,
-//                                       apiKey: apiKey,
-//                                       indexName: indexName)
-//    self.init(searcher: searcher,
-//              queryInputInteractor: queryInputInteractor,
-//              queryInputController: queryInputController,
-//              hitsInteractor: hitsInteractor,
-//              hitsController: hitsController,
-//              filterState: filterState)
-//  }
+  public init<HC: HitsController, QI: QueryInputController>(appID: ApplicationID,
+                                                            apiKey: APIKey,
+                                                            indexName: IndexName,
+                                                            queryInputInteractor: QueryInputInteractor = .init(),
+                                                            queryInputController: QI,
+                                                            hitsInteractor: HitsInteractor<Record>,
+                                                            hitsController: HC,
+                                                            filterState: FilterState? = nil)  where HC.DataSource == HitsInteractor<Record> {
+    let searcher = SingleIndexSearcher(appID: appID,
+                                       apiKey: apiKey,
+                                       indexName: indexName)
+    self.init(searcher: searcher,
+              queryInputInteractor: queryInputInteractor,
+              queryInputController: queryInputController,
+              hitsInteractor: hitsInteractor,
+              hitsController: hitsController,
+              filterState: filterState)
+  }
 
   public func connect() {
     disconnect()
