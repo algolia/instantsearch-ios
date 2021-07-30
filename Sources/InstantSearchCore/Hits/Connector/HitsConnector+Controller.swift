@@ -7,8 +7,8 @@
 
 import Foundation
 
-//public extension HitsConnector {
-//
+public extension HitsConnector {
+
 //  /**
 //   - Parameters:
 //     - searcher: Searcher that handles your searches.
@@ -61,18 +61,18 @@ import Foundation
 //              externalReload: externalReload)
 //  }
 //
-//  /**
-//   Establishes a connection with the controller
-//   - Parameters:
-//     - controller: Controller interfacing with a concrete hits view
-//     - externalReload: Defines if controller will be updated automatically by the events or manually
-//   - Returns: Established connection
-//  */
-//  @discardableResult func connectController<Controller: HitsController>(_ controller: Controller,
-//                                                                        externalReload: Bool = false) -> HitsInteractor<Hit>.ControllerConnection<Controller> where Controller.DataSource == HitsInteractor<Hit> {
-//    let connection = interactor.connectController(controller, externalReload: externalReload)
-//    controllerConnections.append(connection)
-//    return connection
-//  }
-//
-//}
+  /**
+   Establishes a connection with the controller
+   - Parameters:
+     - controller: Controller interfacing with a concrete hits view
+     - externalReload: Defines if controller will be updated automatically by the events or manually
+   - Returns: Established connection
+  */
+  @discardableResult func connectController<Controller: HitsController>(_ controller: Controller,
+                                                                        externalReload: Bool = false) -> HitsInteractor<Hit>.ControllerConnection<Controller> where Controller.DataSource == HitsInteractor<Hit> {
+    let connection = interactor.connectController(controller, externalReload: externalReload)
+    controllerConnections.append(connection)
+    return connection
+  }
+
+}
