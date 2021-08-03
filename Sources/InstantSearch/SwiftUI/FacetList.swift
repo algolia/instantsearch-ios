@@ -34,17 +34,14 @@ public struct FacetList<Row: View, NoResults: View>: View {
     if let noResults = noResults?(), facetListObservableController.facets.isEmpty {
       noResults
     } else {
-      ScrollView(showsIndicators: true) {
-        VStack {
-          ForEach(facetListObservableController.facets, id: \.self) { facet in
-            row(facet, facetListObservableController.isSelected(facet))
-              .onTapGesture {
-                facetListObservableController.toggle(facet)
-              }
-          }
+      VStack {
+        ForEach(facetListObservableController.facets, id: \.self) { facet in
+          row(facet, facetListObservableController.isSelected(facet))
+            .onTapGesture {
+              facetListObservableController.toggle(facet)
+            }
         }
       }
-
     }
   }
 
@@ -86,17 +83,17 @@ struct Facets_Previews: PreviewProvider {
     }
   }()
 
-  static let controller: FacetListObservableController = {
-    let controller = FacetListObservableController(facets: test, selections: ["Samsung"])
-    controller.onClick = { facet in
-      controller.selections.formSymmetricDifference([facet.value])
+  static let demoController: FacetListObservableController = {
+    let demoController = FacetListObservableController(facets: test, selections: ["Samsung"])
+    demoController.onClick = { facet in
+      demoController.selections.formSymmetricDifference([facet.value])
     }
-    return controller
+    return demoController
   }()
 
   static var previews: some View {
     NavigationView {
-      FacetList(controller, row: FacetRow.init)
+      FacetList(demoController, row: FacetRow.init)
     }
   }
 

@@ -8,7 +8,7 @@
 
 import Foundation
 
-public protocol GeoHitsController: class, Reloadable {
+public protocol GeoHitsController: AnyObject, Reloadable {
 
   associatedtype DataSource: HitsSource where DataSource.Record: Geolocated
 

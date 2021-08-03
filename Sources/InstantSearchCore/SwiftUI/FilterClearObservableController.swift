@@ -16,7 +16,7 @@ public class FilterClearObservableController: ObservableObject, FilterClearContr
 
   public var onClick: (() -> Void)?
 
-  /// Trigger clear event
+  /// Perform the filter cleaning
   public func clear() {
     onClick?()
   }
