@@ -1,5 +1,13 @@
 # ChangeLog
 
+## [7.13.0](https://github.com/algolia/instantsearch-ios/compare/7.12.1...7.13.0) (2021-08-03)
+
+### Feat
+
+- **SwiftUI**: Full-fledged SwiftUI support (#178) ([a189b0c](https://github.com/algolia/instantsearch-ios/commit/a189b0c))
+
+
+
 ## [7.12.1](https://github.com/algolia/instantsearch-ios/compare/7.12.0...7.12.1) (2021-07-22)
 
 ### Fix
