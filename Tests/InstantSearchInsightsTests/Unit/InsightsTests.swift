@@ -37,8 +37,8 @@ class InsightsTests: XCTestCase {
     let insightsShared = Insights.shared(appId: appID)
     XCTAssertNotNil(insightsShared)
     
-    XCTAssertEqual(insightsRegister, insightsShared, "Getting the Insights instance from register and shared should be the same")
-    
+    XCTAssertTrue(insightsRegister === insightsShared, "Getting the Insights instance from register and shared must be the same")
+        
   }
   
   func testOptIntOptOut() {

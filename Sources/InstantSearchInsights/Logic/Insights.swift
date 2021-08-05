@@ -30,7 +30,7 @@ import AppKit
 ///                               position: 1)
 /// ````
 
-@objcMembers public class Insights: NSObject {
+public class Insights {
 
   /// Specify the desired API endpoint region
   /// By default API endpoint is routed automatically
