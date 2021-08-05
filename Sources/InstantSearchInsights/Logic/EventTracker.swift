@@ -13,7 +13,7 @@ import AlgoliaSearchClient
 /// Provides convenient functions for tracking events which can be used for search personalization.
 ///
 
-class EventTracker: NSObject, EventTrackable {
+class EventTracker: EventTrackable {
 
   var eventProcessor: EventProcessable
   var logger: PrefixedLogger
