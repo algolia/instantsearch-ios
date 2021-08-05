@@ -1,5 +1,13 @@
 # ChangeLog
 
+## [7.13.1](https://github.com/algolia/instantsearch-ios/compare/7.13.0...7.13.1) (2021-08-05)
+
+### Fix
+
+- remove objc leftovers causing the crash (#186) ([dd928a6](https://github.com/algolia/instantsearch-ios/commit/dd928a6))
+
+
+
 ## [7.13.0](https://github.com/algolia/instantsearch-ios/compare/7.12.1...7.13.0) (2021-08-03)
 
 ### Feat
