@@ -8,12 +8,6 @@
 import Foundation
 import AlgoliaSearchClient
 
-public protocol ComposableSearcher: AnyObject {
-  
-  func fetch() -> (queries: [IndexedQuery], completion: (Result<[MultiIndexSearchResponse.Response], Error>) -> Void)
-  
-}
-
 
 extension SearchClient: SearchService {
   
@@ -50,9 +44,20 @@ extension MultiIndexSearchResponse.Response {
 /// Extracts queries from queries sources, performs search request and dispatches the results to the corresponding receivers
 
 
-public class HitsSearcher<Service: SearchService>: ComposableSearcher where Service.Request == [IndexedQuery], Service.Result == [MultiIndexSearchResponse.Response] {
+public class HitsSearcher<Service: SearchService>: ComposableSearcher, Searchable, TextualQueryProvider where Service.Request == [IndexedQuery], Service.Result == [MultiIndexSearchResponse.Response] {
   
-  var service: Service?
+  public var textualQuery: String? {
+    get {
+      return request.textualQuery
+    }
+    
+    set {
+      request.textualQuery = newValue
+    }
+  }
+  
+  
+  let service: Service
   
   /// Current request
   public var request: AlgoliaSearchService.Request
@@ -76,13 +81,13 @@ public class HitsSearcher<Service: SearchService>: ComposableSearcher where Serv
   /// - Default value: true
   public var isDisjunctiveFacetingEnabled = true
   
-  public init(service: Service? = nil, request: AlgoliaSearchService.Request) {
+  public init(service: Service, request: AlgoliaSearchService.Request) {
     self.service = service
     self.request = request
     disjunctiveFacetsAttributes = []
   }
   
-  public convenience init(service: Service? = nil, indexName: IndexName, query: Query, requestOptions: RequestOptions? = nil) {
+  public convenience init(service: Service, indexName: IndexName, query: Query, requestOptions: RequestOptions? = nil) {
     self.init(service: service, request: .init(indexName: indexName, query: query, requestOptions: requestOptions))
   }
         
@@ -91,7 +96,6 @@ public class HitsSearcher<Service: SearchService>: ComposableSearcher where Serv
     
     if !isDisjunctiveFacetingEnabled {
       queries = [IndexedQuery(indexName: request.indexName, query: request.query)]
-      
       return (queries, { result in
         switch result {
         case .failure(let error):
@@ -128,11 +132,8 @@ public class HitsSearcher<Service: SearchService>: ComposableSearcher where Serv
     
   }
     
-  func search() {
-    guard let service = service else { return }
-    
+  public func search() {
     let (queries, completion) = fetch()
-    
     // Add sequencing logic
     let _ = service.search(queries, completion: completion)
   }
@@ -141,16 +142,8 @@ public class HitsSearcher<Service: SearchService>: ComposableSearcher where Serv
 
 public extension HitsSearcher where Service == SearchClient {
   
-  convenience init(request: AlgoliaSearchService.Request) {
-    self.init(service: nil, request: request)
-  }
-
   convenience init(appID: ApplicationID, apiKey: APIKey, request: AlgoliaSearchService.Request) {
     self.init(service: .init(appID: appID, apiKey: apiKey), request: request)
-  }
-
-  convenience init(indexName: IndexName, query: Query, requestOptions: RequestOptions? = nil) {
-    self.init(service: nil, request: .init(indexName: indexName, query: query, requestOptions: requestOptions))
   }
   
   convenience init(appID: ApplicationID, apiKey: APIKey, indexName: IndexName, query: Query, requestOptions: RequestOptions? = nil) {
@@ -159,32 +152,35 @@ public extension HitsSearcher where Service == SearchClient {
 
 }
 
-public class FacetsSearcher<Service: SearchService>: ComposableSearcher where Service.Request == [IndexedQuery], Service.Result == [MultiIndexSearchResponse.Response] {
+public class FacetsSearcher<Service: SearchService>: ComposableSearcher, Searchable, TextualQueryProvider where Service.Request == [IndexedQuery], Service.Result == [MultiIndexSearchResponse.Response] {
   
-  var service: Service?
+  var service: Service
   
   /// Current request
   var request: FacetSearchService.Request
+  
+  public var textualQuery: String? {
+    get {
+      return request.textualQuery
+    }
     
-  public init(service: Service? = nil, request: FacetSearchService.Request) {
+    set {
+      request.textualQuery = newValue
+    }
+  }
+    
+  public init(service: Service, request: FacetSearchService.Request) {
     self.service = service
     self.request = request
   }
   
-  public convenience init(service: Service? = nil, indexName: IndexName, query: Query, attribute: Attribute, facetQuery: String, requestOptions: RequestOptions? = nil) {
+  public convenience init(service: Service, indexName: IndexName, query: Query, attribute: Attribute, facetQuery: String, requestOptions: RequestOptions? = nil) {
     self.init(service: service, request: .init(query: facetQuery, indexName: indexName, attribute: attribute, context: query, requestOptions: requestOptions))
   }
   
-  public func buildQueries() -> [IndexedQuery] {
-    return [.init(indexName: request.indexName, query: request.context, attribute: request.attribute, facetQuery: request.query)]
-  }
-  
-  public func update(with result: Result<[MultiIndexSearchResponse.Response], Error>) {
-    
-  }
-  
   public func fetch() -> (queries: [IndexedQuery], completion: (Result<[MultiIndexSearchResponse.Response], Error>) -> Void) {
-    return (buildQueries(), { result in
+    let queries: [IndexedQuery] = [.init(indexName: request.indexName, query: request.context, attribute: request.attribute, facetQuery: request.query)]
+    return (queries, { result in
       switch result {
       case .failure(let error):
         print(error)
@@ -195,11 +191,8 @@ public class FacetsSearcher<Service: SearchService>: ComposableSearcher where Se
   }
   
   
-  func search() {
-    guard let service = service else { return }
-    
+  public func search() {
     let (queries, completion) = fetch()
-    
     // Add sequencing logic
     let _ = service.search(queries, completion: completion)
   }
@@ -208,33 +201,42 @@ public class FacetsSearcher<Service: SearchService>: ComposableSearcher where Se
 
 public extension FacetsSearcher where Service == SearchClient {
   
-  convenience init(request: FacetSearchService.Request) {
-    self.init(service: nil, request: request)
-  }
-
   convenience init(appID: ApplicationID, apiKey: APIKey, request: FacetSearchService.Request) {
     self.init(service: .init(appID: appID, apiKey: apiKey), request: request)
   }
   
-  convenience init(indexName: IndexName, query: Query, attribute: Attribute, facetQuery: String, requestOptions: RequestOptions? = nil) {
-    self.init(service: nil, request: .init(query: facetQuery, indexName: indexName, attribute: attribute, context: query, requestOptions: requestOptions))
-  }
-
   convenience init(appID: ApplicationID, apiKey: APIKey, indexName: IndexName, query: Query, attribute: Attribute, facetQuery: String, requestOptions: RequestOptions? = nil) {
     self.init(service: .init(appID: appID, apiKey: apiKey), request: .init(query: facetQuery, indexName: indexName, attribute: attribute, context: query, requestOptions: requestOptions))
   }
   
 }
 
-/// Extracts queries from queries sources, performs search request and dispatches the results to the corresponding receivers
-public class CompositeSearcher<Service: SearchService>: ComposableSearcher where Service.Request == [IndexedQuery], Service.Result == [MultiIndexSearchResponse.Response] {
-    
-  let searchers: [ComposableSearcher]
-  var service: Service?
+public protocol ComposableSearcher {
   
-  init(service: Service?, searchers: [ComposableSearcher]) {
+  /// Returns the list of queries and the completion that might be called with for the result of these queries
+  func fetch() -> (queries: [IndexedQuery], completion: (Result<[MultiIndexSearchResponse.Response], Error>) -> Void)
+  
+}
+
+/// Extracts queries from queries sources, performs search request and dispatches the results to the corresponding receivers
+public class CompositeSearcher<Service: SearchService>: ComposableSearcher, Searchable, TextualQueryProvider where Service.Request == [IndexedQuery], Service.Result == [MultiIndexSearchResponse.Response] {
+  
+  var searchers: [ComposableSearcher]
+  let service: Service
+  
+  public var textualQuery: String? {
+    get {
+      return searchers.compactMap { $0 as? TextualQueryProvider }.first?.textualQuery
+    }
+    
+    set {
+      
+    }
+  }
+  
+  init(service: Service) {
+    self.searchers = []
     self.service = service
-    self.searchers = searchers
   }
   
   public func fetch() -> (queries: [IndexedQuery], completion: (Result<[MultiIndexSearchResponse.Response], Error>) -> Void) {
@@ -243,7 +245,9 @@ public class CompositeSearcher<Service: SearchService>: ComposableSearcher where
     let queries = queriesAndCompletions.map(\.queries)
     let completions = queriesAndCompletions.map(\.completion)
     
-    func rangesInFlattenList<T>(_ list: [[T]]) -> [Range<Int>] {
+    /// Maps the nested lists to the ranges corresponding to the positions of the nested list elements in the flatten list
+    /// Example: [["a", "b", "c"], ["d", "e"], ["f", "g", "h"]] -> [0..<3, 3..<5, 5..<8]
+    func flatRanges<T>(_ list: [[T]]) -> [Range<Int>] {
       var ranges: [Range<Int>] = []
       var offset: Int = 0
       for sublist in list {
@@ -255,7 +259,7 @@ public class CompositeSearcher<Service: SearchService>: ComposableSearcher where
       return ranges
     }
     
-    let rangePerCompletion = zip(completions, rangesInFlattenList(queries))
+    let rangePerCompletion = zip(completions, flatRanges(queries))
 
     return (queries.flatMap { $0 }, { result in
       for (completion, range) in rangePerCompletion {
@@ -266,11 +270,8 @@ public class CompositeSearcher<Service: SearchService>: ComposableSearcher where
   }
 
   
-  func search() {
-    guard let service = service else { return }
-    
+  public func search() {
     let (queries, completion) = fetch()
-    
     // Add sequencing logic
     let _ = service.search(queries, completion: completion)
   }
@@ -279,16 +280,23 @@ public class CompositeSearcher<Service: SearchService>: ComposableSearcher where
 
 extension CompositeSearcher where Service == SearchClient {
   
-  convenience init(appID: ApplicationID, apiKey: APIKey, searcher: ComposableSearcher...) {
-    self.init(service: .init(appID: appID, apiKey: apiKey), searchers: searcher)
+  convenience init(appID: ApplicationID, apiKey: APIKey) {
+    self.init(service: .init(appID: appID, apiKey: apiKey))
   }
   
-  convenience init(appID: ApplicationID, apiKey: APIKey, searchers: [ComposableSearcher]) {
-    self.init(service: .init(appID: appID, apiKey: apiKey), searchers: searchers)
+  @discardableResult func addHitsSearcher(indexName: IndexName, query: Query) -> HitsSearcher<SearchClient> {
+    let searcher = HitsSearcher(service: service, indexName: indexName, query: query)
+    searchers.append(searcher)
+    return searcher
+  }
+  
+  @discardableResult func addFacetsSearcher(indexName: IndexName, query: Query, attribute: Attribute, facetQuery: String, requestOptions: RequestOptions? = nil) -> FacetsSearcher<SearchClient> {
+    let searcher = FacetsSearcher(service: service, indexName: indexName, query: query, attribute: attribute, facetQuery: facetQuery, requestOptions: requestOptions)
+    searchers.append(searcher)
+    return searcher
   }
   
 }
-
 
 
 func example() {
@@ -323,30 +331,19 @@ func example() {
   facetsSearcher.search()
     
   // Searchers sharing the search service and query
-  
     
-  let hitsSearcher12 = HitsSearcher(indexName: "myIndex1",
-                                    query: sharedQuery)
-    
-  let hitsSearcher22 = HitsSearcher(indexName: "myIndex2",
-                                    query: sharedQuery)
-  
-  let facetsSearcher2 = FacetsSearcher(indexName: "myIndex",
-                                       query: sharedQuery,
-                                       attribute: "brand",
-                                       facetQuery: "")
-  
   let compositeSearcher = CompositeSearcher(appID: "anotherAPPID",
-                                            apiKey: "anotherAPIKey",
-                                            searchers: [
-                                              hitsSearcher12,
-                                              hitsSearcher22,
-                                              facetsSearcher2
-                                            ])
-  compositeSearcher.search()
+                                            apiKey: "anotherAPIKey")
+  compositeSearcher.addHitsSearcher(indexName: "myIndex2", query: sharedQuery)
+  compositeSearcher.addHitsSearcher(indexName: "myIndex", query: sharedQuery)
+  compositeSearcher.addFacetsSearcher(indexName: "myIndex", query: sharedQuery, attribute: "brand", facetQuery: "")
   
   compositeSearcher.search()
   
+  let queryInputInteractor2 = QueryInputInteractor()
+  
+  queryInputInteractor2.connectSearcher(compositeSearcher)
+    
 }
 
 struct QueryInputInteractorTextualQuerySearcher {
@@ -359,66 +356,66 @@ public protocol Searchable {
   func search()
 }
 
-//public extension QueryInputInteractor {
-//
-//  struct SearcherTextualQueryConnection<S: AnyObject & Searchable & TextualQueryProvider>: Connection {
-//
-//    public let interactor: QueryInputInteractor
-//    public let searcher: S
-//    public let searchTriggeringMode: SearchTriggeringMode
-//
-//    public init(interactor: QueryInputInteractor,
-//                searcher: S,
-//                searchTriggeringMode: SearchTriggeringMode = .searchAsYouType) {
-//      self.interactor = interactor
-//      self.searcher = searcher
-//      self.searchTriggeringMode = searchTriggeringMode
-//    }
-//
-//    public func connect() {
-//
-//      interactor.query = searcher.textualQuery
-//
-//      switch searchTriggeringMode {
-//      case .searchAsYouType:
-//        interactor.onQueryChanged.subscribe(with: searcher) { searcher, query in
+public extension QueryInputInteractor {
+
+  struct SearcherTextualQueryConnection<S: AnyObject & Searchable & TextualQueryProvider>: Connection {
+
+    public let interactor: QueryInputInteractor
+    public let searcher: S
+    public let searchTriggeringMode: SearchTriggeringMode
+
+    public init(interactor: QueryInputInteractor,
+                searcher: S,
+                searchTriggeringMode: SearchTriggeringMode = .searchAsYouType) {
+      self.interactor = interactor
+      self.searcher = searcher
+      self.searchTriggeringMode = searchTriggeringMode
+    }
+
+    public func connect() {
+
+      interactor.query = searcher.textualQuery
+
+      switch searchTriggeringMode {
+      case .searchAsYouType:
+        interactor.onQueryChanged.subscribe(with: searcher) { searcher, query in
 //          searcher.textualQuery = query
-//          searcher.search()
-//        }
-//
-//      case .searchOnSubmit:
-//        interactor.onQuerySubmitted.subscribe(with: searcher) { searcher, query in
+          searcher.search()
+        }
+
+      case .searchOnSubmit:
+        interactor.onQuerySubmitted.subscribe(with: searcher) { searcher, query in
 //          searcher.textualQuery = query
-//          searcher.search()
-//        }
-//      }
-//    }
-//
-//    public func disconnect() {
-//
-//      interactor.query = nil
-//
-//      switch searchTriggeringMode {
-//      case .searchAsYouType:
-//        interactor.onQueryChanged.cancelSubscription(for: searcher)
-//
-//      case .searchOnSubmit:
-//        interactor.onQuerySubmitted.cancelSubscription(for: searcher)
-//      }
-//
-//    }
-//
-//  }
-//
-//}
-//
-//public extension QueryInputInteractor {
-//
-//  @discardableResult func connectSearcher<Service: SearchService>(_ searcher: AbstractSearcher<Service>,
-//                                                                  searchTriggeringMode: SearchTriggeringMode = .searchAsYouType) -> TextualQuerySearcherConnection<Service> {
-//    let connection = TextualQuerySearcherConnection(interactor: self, searcher: searcher, searchTriggeringMode: searchTriggeringMode)
-//    connection.connect()
-//    return connection
-//  }
-//
-//}
+          searcher.search()
+        }
+      }
+    }
+
+    public func disconnect() {
+
+      interactor.query = nil
+
+      switch searchTriggeringMode {
+      case .searchAsYouType:
+        interactor.onQueryChanged.cancelSubscription(for: searcher)
+
+      case .searchOnSubmit:
+        interactor.onQuerySubmitted.cancelSubscription(for: searcher)
+      }
+
+    }
+
+  }
+
+}
+
+public extension QueryInputInteractor {
+
+  @discardableResult func connectSearcher<S: AnyObject & Searchable & TextualQueryProvider>(_ searcher: S,
+                                                                                            searchTriggeringMode: SearchTriggeringMode = .searchAsYouType) -> SearcherTextualQueryConnection<S> {
+    let connection = SearcherTextualQueryConnection(interactor: self, searcher: searcher, searchTriggeringMode: searchTriggeringMode)
+    connection.connect()
+    return connection
+  }
+
+}
