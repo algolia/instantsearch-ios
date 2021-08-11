@@ -91,7 +91,7 @@ public class HitsSearcher<Service: SearchService>: ComposableSearcher, Searchabl
     self.init(service: service, request: .init(indexName: indexName, query: query, requestOptions: requestOptions))
   }
         
-  public func fetch() -> (queries: [IndexedQuery], completion: (Result<[MultiIndexSearchResponse.Response], Error>) -> Void) {
+  func fetch() -> (queries: [IndexedQuery], completion: (Result<[MultiIndexSearchResponse.Response], Error>) -> Void) {
     let queries: [IndexedQuery]
     
     if !isDisjunctiveFacetingEnabled {
@@ -102,6 +102,7 @@ public class HitsSearcher<Service: SearchService>: ComposableSearcher, Searchabl
           print(error)
         case .success(let responses):
           let response = responses.first.flatMap(\.hitsResponse)
+          print(response!)
         }
       })
     } else {
@@ -123,8 +124,9 @@ public class HitsSearcher<Service: SearchService>: ComposableSearcher, Searchabl
         case .success(let responses):
           do {
             let response = try queriesBuilder.aggregate(responses.compactMap(\.hitsResponse))
+            print(response)
           } catch let error {
-            
+            print(error)
           }
         }
       })
@@ -186,6 +188,7 @@ public class FacetsSearcher<Service: SearchService>: ComposableSearcher, Searcha
         print(error)
       case .success(let responses):
         let response = responses.first.flatMap(\.facetResponse)
+        print(response!)
       }
     })
   }
@@ -211,7 +214,7 @@ public extension FacetsSearcher where Service == SearchClient {
   
 }
 
-public protocol ComposableSearcher {
+protocol ComposableSearcher {
   
   /// Returns the list of queries and the completion that might be called with for the result of these queries
   func fetch() -> (queries: [IndexedQuery], completion: (Result<[MultiIndexSearchResponse.Response], Error>) -> Void)
@@ -239,7 +242,7 @@ public class CompositeSearcher<Service: SearchService>: ComposableSearcher, Sear
     self.service = service
   }
   
-  public func fetch() -> (queries: [IndexedQuery], completion: (Result<[MultiIndexSearchResponse.Response], Error>) -> Void) {
+  func fetch() -> (queries: [IndexedQuery], completion: (Result<[MultiIndexSearchResponse.Response], Error>) -> Void) {
     let queriesAndCompletions = searchers.map { $0.fetch() }
     
     let queries = queriesAndCompletions.map(\.queries)
@@ -295,6 +298,12 @@ extension CompositeSearcher where Service == SearchClient {
     searchers.append(searcher)
     return searcher
   }
+  
+  @discardableResult func addCompositeSearcher(_ compositeSearcher: CompositeSearcher) -> CompositeSearcher {
+    searchers.append(compositeSearcher)
+    return compositeSearcher
+  }
+
   
 }
 
