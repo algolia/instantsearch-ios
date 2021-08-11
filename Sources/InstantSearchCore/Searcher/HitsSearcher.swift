@@ -8,7 +8,6 @@
 import Foundation
 import AlgoliaSearchClient
 
-
 extension SearchClient: SearchService {
   
   public func search(_ queries: [IndexedQuery], completion: @escaping (Result<[MultiIndexSearchResponse.Response], Error>) -> Void) -> Operation {
@@ -42,20 +41,7 @@ extension MultiIndexSearchResponse.Response {
 }
 
 /// Extracts queries from queries sources, performs search request and dispatches the results to the corresponding receivers
-
-
-public class HitsSearcher<Service: SearchService>: ComposableSearcher, Searchable, TextualQueryProvider where Service.Request == [IndexedQuery], Service.Result == [MultiIndexSearchResponse.Response] {
-  
-  public var textualQuery: String? {
-    get {
-      return request.textualQuery
-    }
-    
-    set {
-      request.textualQuery = newValue
-    }
-  }
-  
+public class HitsSearcher<Service: SearchService> where Service.Request == [IndexedQuery], Service.Result == [MultiIndexSearchResponse.Response] {
   
   let service: Service
   
@@ -90,8 +76,12 @@ public class HitsSearcher<Service: SearchService>: ComposableSearcher, Searchabl
   public convenience init(service: Service, indexName: IndexName, query: Query, requestOptions: RequestOptions? = nil) {
     self.init(service: service, request: .init(indexName: indexName, query: query, requestOptions: requestOptions))
   }
-        
-  func fetch() -> (queries: [IndexedQuery], completion: (Result<[MultiIndexSearchResponse.Response], Error>) -> Void) {
+                
+}
+
+extension HitsSearcher: MultiQueryCollectable {
+  
+  public func collect() -> (queries: [IndexedQuery], completion: (Result<[MultiIndexSearchResponse.Response], Error>) -> Void) {
     let queries: [IndexedQuery]
     
     if !isDisjunctiveFacetingEnabled {
@@ -133,13 +123,31 @@ public class HitsSearcher<Service: SearchService>: ComposableSearcher, Searchabl
     }
     
   }
+  
+}
+
+extension HitsSearcher: TextualQueryProvider {
+  
+  public var textualQuery: String? {
+    get {
+      return request.textualQuery
+    }
     
+    set {
+      request.textualQuery = newValue
+    }
+  }
+  
+}
+
+extension HitsSearcher: Searchable {
+  
   public func search() {
-    let (queries, completion) = fetch()
+    let (queries, completion) = collect()
     // Add sequencing logic
     let _ = service.search(queries, completion: completion)
   }
-    
+  
 }
 
 public extension HitsSearcher where Service == SearchClient {
@@ -154,22 +162,12 @@ public extension HitsSearcher where Service == SearchClient {
 
 }
 
-public class FacetsSearcher<Service: SearchService>: ComposableSearcher, Searchable, TextualQueryProvider where Service.Request == [IndexedQuery], Service.Result == [MultiIndexSearchResponse.Response] {
+public class FacetsSearcher<Service: SearchService> where Service.Request == [IndexedQuery], Service.Result == [MultiIndexSearchResponse.Response] {
   
   var service: Service
   
   /// Current request
   var request: FacetSearchService.Request
-  
-  public var textualQuery: String? {
-    get {
-      return request.textualQuery
-    }
-    
-    set {
-      request.textualQuery = newValue
-    }
-  }
     
   public init(service: Service, request: FacetSearchService.Request) {
     self.service = service
@@ -180,7 +178,35 @@ public class FacetsSearcher<Service: SearchService>: ComposableSearcher, Searcha
     self.init(service: service, request: .init(query: facetQuery, indexName: indexName, attribute: attribute, context: query, requestOptions: requestOptions))
   }
   
-  public func fetch() -> (queries: [IndexedQuery], completion: (Result<[MultiIndexSearchResponse.Response], Error>) -> Void) {
+}
+
+extension FacetsSearcher: TextualQueryProvider {
+  
+  public var textualQuery: String? {
+    get {
+      return request.textualQuery
+    }
+    
+    set {
+      request.textualQuery = newValue
+    }
+  }
+  
+}
+
+extension FacetsSearcher: Searchable {
+  
+  public func search() {
+    let (queries, completion) = collect()
+    // Add sequencing logic
+    let _ = service.search(queries, completion: completion)
+  }
+  
+}
+
+extension FacetsSearcher: MultiQueryCollectable {
+  
+  public func collect() -> (queries: [IndexedQuery], completion: (Result<[MultiIndexSearchResponse.Response], Error>) -> Void) {
     let queries: [IndexedQuery] = [.init(indexName: request.indexName, query: request.context, attribute: request.attribute, facetQuery: request.query)]
     return (queries, { result in
       switch result {
@@ -191,13 +217,6 @@ public class FacetsSearcher<Service: SearchService>: ComposableSearcher, Searcha
         print(response!)
       }
     })
-  }
-  
-  
-  public func search() {
-    let (queries, completion) = fetch()
-    // Add sequencing logic
-    let _ = service.search(queries, completion: completion)
   }
   
 }
@@ -214,36 +233,51 @@ public extension FacetsSearcher where Service == SearchClient {
   
 }
 
-protocol ComposableSearcher {
+public protocol MultiQueryCollectable {
+  
+  associatedtype UnitQuery
+  associatedtype UnitResponse
   
   /// Returns the list of queries and the completion that might be called with for the result of these queries
-  func fetch() -> (queries: [IndexedQuery], completion: (Result<[MultiIndexSearchResponse.Response], Error>) -> Void)
+  func collect() -> (queries: [UnitQuery], completion: (Result<[UnitResponse], Error>) -> Void)
   
 }
 
-/// Extracts queries from queries sources, performs search request and dispatches the results to the corresponding receivers
-public class CompositeSearcher<Service: SearchService>: ComposableSearcher, Searchable, TextualQueryProvider where Service.Request == [IndexedQuery], Service.Result == [MultiIndexSearchResponse.Response] {
+class MultiQueryCollectableWrapper<UnitQuery, UnitResponse>: MultiQueryCollectable {
+
+  let wrapped: Any
+  let collectClosure: () -> (queries: [UnitQuery], completion: (Result<[UnitResponse], Error>) -> Void)
   
-  var searchers: [ComposableSearcher]
-  let service: Service
-  
-  public var textualQuery: String? {
-    get {
-      return searchers.compactMap { $0 as? TextualQueryProvider }.first?.textualQuery
-    }
-    
-    set {
-      
-    }
+  init<T: MultiQueryCollectable>(wrapped: T) where T.UnitQuery == UnitQuery, T.UnitResponse == UnitResponse {
+    self.wrapped = wrapped
+    self.collectClosure = wrapped.collect
   }
   
-  init(service: Service) {
+  func collect() -> (queries: [UnitQuery], completion: (Result<[UnitResponse], Error>) -> Void) {
+    return collectClosure()
+  }
+  
+}
+
+
+/// Extracts queries from queries sources, performs search request and dispatches the results to the corresponding receivers
+public class CompositeSearcher<Service: SearchService, UnitQuery, UnitResponse> where Service.Request == [UnitQuery], Service.Result == [UnitResponse] {
+  
+  public let service: Service
+  
+  var searchers: [MultiQueryCollectableWrapper<UnitQuery, UnitResponse>]
+  
+  public init(service: Service) {
     self.searchers = []
     self.service = service
   }
   
-  func fetch() -> (queries: [IndexedQuery], completion: (Result<[MultiIndexSearchResponse.Response], Error>) -> Void) {
-    let queriesAndCompletions = searchers.map { $0.fetch() }
+}
+
+extension CompositeSearcher: MultiQueryCollectable {
+  
+  public func collect() -> (queries: [UnitQuery], completion: (Result<[UnitResponse], Error>) -> Void) {
+    let queriesAndCompletions = searchers.map { $0.collect() }
     
     let queries = queriesAndCompletions.map(\.queries)
     let completions = queriesAndCompletions.map(\.completion)
@@ -272,9 +306,26 @@ public class CompositeSearcher<Service: SearchService>: ComposableSearcher, Sear
     })
   }
 
+}
+
+extension CompositeSearcher: TextualQueryProvider {
+  
+  public var textualQuery: String? {
+    get {
+      return searchers.compactMap { $0 as? TextualQueryProvider }.first?.textualQuery
+    }
+    
+    set {
+      
+    }
+  }
+  
+}
+
+extension CompositeSearcher: Searchable {
   
   public func search() {
-    let (queries, completion) = fetch()
+    let (queries, completion) = collect()
     // Add sequencing logic
     let _ = service.search(queries, completion: completion)
   }
@@ -287,24 +338,23 @@ extension CompositeSearcher where Service == SearchClient {
     self.init(service: .init(appID: appID, apiKey: apiKey))
   }
   
-  @discardableResult func addHitsSearcher(indexName: IndexName, query: Query) -> HitsSearcher<SearchClient> {
+  @discardableResult public func addHitsSearcher(indexName: IndexName, query: Query) -> HitsSearcher<SearchClient> {
     let searcher = HitsSearcher(service: service, indexName: indexName, query: query)
-    searchers.append(searcher)
+    searchers.append(MultiQueryCollectableWrapper(wrapped: searcher))
     return searcher
   }
   
-  @discardableResult func addFacetsSearcher(indexName: IndexName, query: Query, attribute: Attribute, facetQuery: String, requestOptions: RequestOptions? = nil) -> FacetsSearcher<SearchClient> {
+  @discardableResult public func addFacetsSearcher(indexName: IndexName, query: Query, attribute: Attribute, facetQuery: String, requestOptions: RequestOptions? = nil) -> FacetsSearcher<SearchClient> {
     let searcher = FacetsSearcher(service: service, indexName: indexName, query: query, attribute: attribute, facetQuery: facetQuery, requestOptions: requestOptions)
-    searchers.append(searcher)
+    searchers.append(MultiQueryCollectableWrapper(wrapped: searcher))
     return searcher
   }
   
-  @discardableResult func addCompositeSearcher(_ compositeSearcher: CompositeSearcher) -> CompositeSearcher {
-    searchers.append(compositeSearcher)
-    return compositeSearcher
+  @discardableResult public func addSearcher<S: MultiQueryCollectable>(_ searcher: S) -> S where S.UnitQuery == IndexedQuery, S.UnitResponse == MultiIndexSearchResponse.Response {
+    searchers.append(MultiQueryCollectableWrapper(wrapped: searcher))
+    return searcher
   }
 
-  
 }
 
 
@@ -339,7 +389,7 @@ func example() {
   
   facetsSearcher.search()
     
-  // Searchers sharing the search service and query
+  // Composite searcher
     
   let compositeSearcher = CompositeSearcher(appID: "anotherAPPID",
                                             apiKey: "anotherAPIKey")
@@ -350,7 +400,6 @@ func example() {
   compositeSearcher.search()
   
   let queryInputInteractor2 = QueryInputInteractor()
-  
   queryInputInteractor2.connectSearcher(compositeSearcher)
     
 }
