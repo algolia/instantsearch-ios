@@ -9,6 +9,7 @@ import Foundation
 import XCTest
 @testable import InstantSearchCore
 
+@available(*, deprecated, message: "Test to remove when MulstIndexSearcher obsoleted")
 class MultiIndexSearcherTests: XCTestCase {
   
   func testOnQueryChanged() {

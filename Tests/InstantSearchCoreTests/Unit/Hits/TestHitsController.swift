@@ -26,6 +26,7 @@ class TestHitsController<Hit: Codable>: HitsController {
 
 }
 
+@available(*, deprecated, message: "Test to remove when MulstIndexSearcher obsoleted")
 class TestMultiIndexHitsController: MultiIndexHitsController {
   
   var hitsSource: MultiIndexHitsSource?

@@ -10,6 +10,7 @@ import Foundation
 extension RelevantSortInteractor {
 
   /// Connection between relevant sort interactor and a searcher handling the search
+  @available(*, deprecated, message: "Use multiple HitsSearcher aggregated with CompositeSearcher instead of MultiIndexSearcher")
   public struct MultiIndexSearcherConnection: Connection {
 
     /// Relevant sort priority toggling logic
@@ -69,6 +70,7 @@ extension RelevantSortInteractor {
      - queryIndex: Index of query to alter by relevant sort toggling
    - Returns: Established connection
    */
+  @available(*, deprecated, message: "Use multiple HitsSearcher aggregated with CompositeSearcher instead of MultiIndexSearcher")
   @discardableResult public func connectSearcher(_ searcher: MultiIndexSearcher,
                                                  queryIndex: Int) -> MultiIndexSearcherConnection {
     let connection = MultiIndexSearcherConnection(interactor: self, searcher: searcher, queryIndex: queryIndex)

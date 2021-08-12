@@ -31,6 +31,7 @@ public extension HitsController where Self: HitsCollectionViewContainer {
 
 }
 
+@available(*, deprecated, message: "Use multiple HitsSearcher aggregated with CompositeSearcher instead of MultiIndexSearcher")
 public extension MultiIndexHitsController where Self: HitsCollectionViewContainer {
 
   func reload() {

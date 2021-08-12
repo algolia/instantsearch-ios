@@ -7,6 +7,7 @@
 
 import Foundation
 
+@available(*, deprecated, message: "Use multiple HitsSearcher aggregated with CompositeSearcher instead of MultiIndexSearcher")
 public extension MultiIndexHitsConnector.IndexModule {
 
   /**

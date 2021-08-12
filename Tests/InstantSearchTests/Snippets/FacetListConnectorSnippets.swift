@@ -35,6 +35,8 @@ class FacetListConnectorSnippets {
     
     searcher.search()
     
+    
+    _ = categoryConnector
   }
   
   func manualExample() {

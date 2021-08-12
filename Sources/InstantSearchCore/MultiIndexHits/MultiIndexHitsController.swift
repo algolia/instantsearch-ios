@@ -8,6 +8,7 @@
 
 import Foundation
 
+@available(*, deprecated, message: "Use multiple HitsSearcher aggregated with CompositeSearcher instead of MultiIndexSearcher")
 public protocol MultiIndexHitsController: AnyObject, Reloadable {
 
   var hitsSource: MultiIndexHitsSource? { get set }
@@ -16,4 +17,5 @@ public protocol MultiIndexHitsController: AnyObject, Reloadable {
 
 }
 
+@available(*, deprecated, message: "Use multiple HitsSearcher aggregated with CompositeSearcher instead of MultiIndexSearcher")
 extension MultiIndexHitsInteractor: MultiIndexHitsSource {}

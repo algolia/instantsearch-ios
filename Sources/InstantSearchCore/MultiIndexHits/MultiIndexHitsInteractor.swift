@@ -12,7 +12,7 @@ import AlgoliaSearchClient
  Interactor which constitutes the aggregation of nested hits interactors providing a convenient functions for managing them.
  Designed for a joint usage with multi index searcher, but can be used with multiple separate single index searchers as well.
  */
-
+@available(*, deprecated, message: "Use multiple HitsSearcher aggregated with CompositeSearcher instead of MultiIndexSearcher")
 public class MultiIndexHitsInteractor {
 
   public let onRequestChanged: Observer<Void>
@@ -104,6 +104,7 @@ public class MultiIndexHitsInteractor {
 
 }
 
+@available(*, deprecated, message: "Use multiple HitsSearcher aggregated with CompositeSearcher instead of MultiIndexSearcher")
 extension MultiIndexHitsInteractor {
 
   /// Updates the results of a nested hits Interactor at specified index
@@ -162,6 +163,7 @@ extension MultiIndexHitsInteractor {
 #if os(iOS) || os(tvOS)
 import UIKit
 
+@available(*, deprecated, message: "Use multiple HitsSearcher aggregated with CompositeSearcher instead of MultiIndexSearcher")
 public extension MultiIndexHitsInteractor {
 
   /// Returns the hit of a desired type

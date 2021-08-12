@@ -39,7 +39,7 @@ class QueryRuleCustomDataSearcherConnectionTests: XCTestCase {
     
   }
   
-  
+  @available(*, deprecated, message: "Test to remove when MulstIndexSearcher obsoleted")
   func testMultiIndexSearcherConnection() {
     
     let searcher = MultiIndexSearcher(appID: "", apiKey: "", indexNames: ["a", "b"])

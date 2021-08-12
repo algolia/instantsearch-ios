@@ -37,6 +37,7 @@ struct TestRecord<Value: Codable>: Codable {
 
 }
 
+@available(*, deprecated, message: "Test to remove when MulstIndexSearcher obsoleted")
 class MultiIndexHitsInteractorTests: XCTestCase {
 
   func testConstruction() {

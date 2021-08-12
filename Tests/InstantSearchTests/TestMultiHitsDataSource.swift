@@ -8,6 +8,7 @@
 @testable import InstantSearch
 import InstantSearchCore
 
+@available(*, deprecated, message: "To remove when MulstIndexSearcher obsoleted")
 class TestMultiHitsDataSource: MultiIndexHitsSource {
   
   let hitsBySection: [[String]]

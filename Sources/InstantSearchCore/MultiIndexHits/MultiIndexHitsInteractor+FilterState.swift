@@ -8,8 +8,10 @@
 
 import Foundation
 
+@available(*, deprecated, message: "Use multiple HitsSearcher aggregated with CompositeSearcher instead of MultiIndexSearcher")
 public extension MultiIndexHitsInteractor {
 
+  @available(*, deprecated, message: "Use multiple HitsSearcher aggregated with CompositeSearcher instead of MultiIndexSearcher")
   struct FilterStateConnection: Connection {
 
     public let interactor: MultiIndexHitsInteractor
@@ -29,6 +31,7 @@ public extension MultiIndexHitsInteractor {
 
 }
 
+@available(*, deprecated, message: "Use multiple HitsSearcher aggregated with CompositeSearcher instead of MultiIndexSearcher")
 public extension MultiIndexHitsInteractor {
 
   @discardableResult func connectFilterState(_ filterState: FilterState) -> FilterStateConnection {

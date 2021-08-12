@@ -8,6 +8,7 @@
 
 import Foundation
 
+@available(*, deprecated, message: "Use multiple HitsSearcher aggregated with CompositeSearcher instead of MultiIndexSearcher")
 public protocol MultiIndexHitsSource: AnyObject {
 
   func numberOfSections() -> Int

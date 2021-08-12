@@ -10,6 +10,7 @@ import Foundation
 extension QueryRuleCustomDataInteractor {
 
   /// Connection between a rule custom data logic and a multi-index searcher
+  @available(*, deprecated, message: "Use multiple HitsSearcher aggregated with CompositeSearcher instead of MultiIndexSearcher")
   public struct MultiIndexSearcherConnection: Connection {
 
     /// Logic applied to the custom model
@@ -56,6 +57,7 @@ public extension QueryRuleCustomDataInteractor {
      - searcher: Searcher to connect
      - queryIndex: Index of query from response of which the user data will be extracted
   */
+  @available(*, deprecated, message: "Use multiple HitsSearcher aggregated with CompositeSearcher instead of MultiIndexSearcher")
   @discardableResult func connectSearcher(_ searcher: MultiIndexSearcher,
                                           toQueryAtIndex queryIndex: Int) -> MultiIndexSearcherConnection {
     let connection = MultiIndexSearcherConnection(interactor: self, searcher: searcher, queryIndex: queryIndex)

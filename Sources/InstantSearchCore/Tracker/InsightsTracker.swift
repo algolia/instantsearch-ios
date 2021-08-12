@@ -37,6 +37,7 @@ extension InsightsTracker {
               insights: insights)
   }
 
+  @available(*, deprecated, message: "Use multiple HitsSearcher aggregated with CompositeSearcher instead of MultiIndexSearcher")
   public init(eventName: EventName,
               searcher: MultiIndexSearcher,
               pointer: Int,
@@ -48,6 +49,7 @@ extension InsightsTracker {
               insights: insights)
   }
 
+  @available(*, deprecated, message: "Use multiple HitsSearcher aggregated with CompositeSearcher instead of MultiIndexSearcher")
   public init(eventName: EventName,
               searcher: MultiIndexSearcher,
               pointer: Int,

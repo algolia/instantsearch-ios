@@ -9,6 +9,7 @@ import Foundation
 import AlgoliaSearchClient
 public extension FacetListInteractor {
 
+  @available(*, deprecated, message: "Use multiple HitsSearcher aggregated with CompositeSearcher instead of MultiIndexSearcher")
   struct MultiIndexSearcherConnection: Connection {
 
     /// Logic applied to the facets
@@ -68,6 +69,7 @@ public extension FacetListInteractor {
      - attribute: Faceting attribute
      - queryIndex: Index of query in the multi-index search
    */
+  @available(*, deprecated, message: "Use multiple HitsSearcher aggregated with CompositeSearcher instead of MultiIndexSearcher")
   @discardableResult func connectSearcher(_ searcher: MultiIndexSearcher,
                                           with attribute: Attribute,
                                           queryIndex: Int) -> MultiIndexSearcherConnection {

@@ -37,6 +37,7 @@ public extension RelevantSortConnector {
      - controller: Controller presenting the relevant sort priority state and capable to toggle it
      - presenter: Generic presenter transforming the relevant sort priority state to its representation for a controller
    */
+  @available(*, deprecated, message: "Use multiple HitsSearcher aggregated with CompositeSearcher instead of MultiIndexSearcher")
   convenience init<Controller: RelevantSortController, Output>(searcher: MultiIndexSearcher,
                                                                queryIndex: Int,
                                                                interactor: RelevantSortInteractor = .init(),
@@ -96,6 +97,7 @@ public extension RelevantSortConnector {
      - presenter: Presenter transforming the relevant sort priority state to its textual representation in the controller.
                   Default presenter provides a tuple of string constants in english.
    */
+  @available(*, deprecated, message: "Use multiple HitsSearcher aggregated with CompositeSearcher instead of MultiIndexSearcher")
   convenience init<Controller: RelevantSortController>(searcher: MultiIndexSearcher,
                                                        queryIndex: Int,
                                                        interactor: RelevantSortInteractor = .init(),

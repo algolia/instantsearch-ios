@@ -10,6 +10,7 @@ import AlgoliaSearchClient
 @testable import InstantSearchCore
 import XCTest
 
+@available(*, deprecated, message: "Test to remove when MulstIndexSearcher obsoleted")
 class MultiIndexHitsInteractorSearcherConnectionTests: XCTestCase {
   
   weak var disposableInteractor: MultiIndexHitsInteractor?
@@ -84,6 +85,7 @@ class MultiIndexHitsInteractorSearcherConnectionTests: XCTestCase {
   
 }
 
+@available(*, deprecated, message: "Test to remove when MulstIndexSearcher obsoleted")
 extension MultiIndexHitsInteractorSearcherConnectionTests {
   
   class ConnectionTester {

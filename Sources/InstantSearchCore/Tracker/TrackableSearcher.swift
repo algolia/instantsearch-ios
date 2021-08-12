@@ -17,6 +17,8 @@ extension HitsTracker: QueryIDContainer {}
 public enum TrackableSearcher {
 
   case singleIndex(HitsSearcher)
+  
+  @available(*, deprecated, message: "Use multiple HitsSearcher aggregated with CompositeSearcher instead of MultiIndexSearcher")
   case multiIndex(MultiIndexSearcher, pointer: Int)
 
   var indexName: IndexName {

@@ -20,6 +20,7 @@ Connector encapsulating basic search experience within multiple indices
  - searcher <-> filter states (if provided)
 Most of the components associated by this connector are created and connected automatically, it's only required to provide a proper `Controller` implementations.
 */
+@available(*, deprecated, message: "Use multiple HitsSearcher aggregated with CompositeSearcher instead of MultiIndexSearcher")
 public struct MultiIndexSearchConnector: Connection {
 
   /// Connector establishing the linkage between searcher, hits interactor and optionally filter state

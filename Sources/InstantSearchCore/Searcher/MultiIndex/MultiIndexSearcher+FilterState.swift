@@ -8,6 +8,7 @@
 
 import Foundation
 
+@available(*, deprecated, message: "Use multiple HitsSearcher aggregated with CompositeSearcher instead of MultiIndexSearcher")
 public extension MultiIndexSearcher {
 
   /**
@@ -17,6 +18,7 @@ public extension MultiIndexSearcher {
    - Parameter index: index of query to attach to filter state
    */
 
+  @available(*, deprecated, message: "Use multiple HitsSearcher aggregated with CompositeSearcher instead of MultiIndexSearcher")
   struct FilterStateConnection: Connection {
 
     public let multiIndexSearcher: MultiIndexSearcher
@@ -40,6 +42,7 @@ public extension MultiIndexSearcher {
 
 }
 
+@available(*, deprecated, message: "Use multiple HitsSearcher aggregated with CompositeSearcher instead of MultiIndexSearcher")
 public extension MultiIndexSearcher {
 
   @discardableResult func connectFilterState(_ filterState: FilterState, withQueryAtIndex index: Int) -> FilterStateConnection {

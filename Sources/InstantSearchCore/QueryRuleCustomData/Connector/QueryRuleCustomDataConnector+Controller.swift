@@ -52,6 +52,7 @@ public extension QueryRuleCustomDataConnector {
      - controller: Controller interfacing with a concrete custom data view
      - presenter: Presenter defining how a model appears in the controller
   */
+  @available(*, deprecated, message: "Use multiple HitsSearcher aggregated with CompositeSearcher instead of MultiIndexSearcher")
   convenience init<Controller: ItemController, Output>(searcher: MultiIndexSearcher,
                                                        queryIndex: Int,
                                                        interactor: Interactor = .init(),
@@ -70,6 +71,7 @@ public extension QueryRuleCustomDataConnector {
      - interactor: External custom data interactor
      - controller: Controller interfacing with a concrete custom data view
   */
+  @available(*, deprecated, message: "Use multiple HitsSearcher aggregated with CompositeSearcher instead of MultiIndexSearcher")
   convenience init<Controller: ItemController>(searcher: MultiIndexSearcher,
                                                queryIndex: Int,
                                                interactor: Interactor = .init(),

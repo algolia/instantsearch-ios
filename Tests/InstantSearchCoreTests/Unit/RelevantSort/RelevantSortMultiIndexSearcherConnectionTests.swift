@@ -9,6 +9,7 @@ import Foundation
 @testable import InstantSearchCore
 import XCTest
 
+@available(*, deprecated, message: "Test to remove when MulstIndexSearcher obsoleted")
 class RelevantSortMultiIndexSearcherConnectionTests: XCTestCase {
   
   weak var disposableSearcher: MultiIndexSearcher?

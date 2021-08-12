@@ -99,6 +99,7 @@ class FacetListInteractorTests: XCTestCase {
 
   }
   
+  @available(*, deprecated, message: "Test to remove when MulstIndexSearcher obsoleted")
   func testConnectMultiIndexSearcher() {
     let interactor = FacetListInteractor(selectionMode: .single)
 

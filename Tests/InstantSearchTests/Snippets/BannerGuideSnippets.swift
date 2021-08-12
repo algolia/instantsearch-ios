@@ -40,6 +40,9 @@ class BannerGuideSnippets {
                                                                             controller: bannerViewController)
 
     searcher.search()
+    
+    
+    _ = queryRuleCustomDataConnector
   }
   
 }
