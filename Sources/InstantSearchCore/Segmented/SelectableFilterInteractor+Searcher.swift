@@ -16,7 +16,7 @@ public struct SelectableFilterInteractorSearcherConnection<Filter: FilterType>: 
   public let attribute: Attribute
 
   public func connect() {
-    searcher.indexQueryState.query.updateQueryFacets(with: attribute)
+    searcher.request.query.updateQueryFacets(with: attribute)
   }
 
   public func disconnect() {

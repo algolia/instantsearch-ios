@@ -156,7 +156,7 @@ extension HitsInteractorSearcherConnectionTests {
       }
       
       searcher.query = "query"
-      searcher.indexQueryState.query.page = 0
+      searcher.request.query.page = 0
       infiniteScrollingController.pendingPages = [0]
     }
     
@@ -175,7 +175,7 @@ extension HitsInteractorSearcherConnectionTests {
     
     private func testPendingPages(isConnected: Bool, file: StaticString = #file, line: UInt = #line) {
       infiniteScrollingController.pendingPages = [0]
-      let requestError = AbstractSearcher<AlgoliaSearchService>.RequestError(request: .init(indexName: searcher.indexQueryState.indexName, query: searcher.indexQueryState.query), error: NSError())
+      let requestError = AbstractSearcher<AlgoliaSearchService>.RequestError(request: .init(indexName: searcher.request.indexName, query: searcher.request.query), error: NSError())
       searcher.onError.fire(requestError)
       
       if isConnected {

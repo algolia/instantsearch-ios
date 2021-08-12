@@ -35,7 +35,7 @@ public extension RelevantSortInteractor {
     public func connect() {
       interactor.onItemChanged.subscribe(with: searcher) { (searcher, priority) in
         guard let priority = priority else { return }
-        searcher.indexQueryState.query.relevancyStrictness = priority.relevancyStrictness
+        searcher.request.query.relevancyStrictness = priority.relevancyStrictness
         searcher.onQueryChanged.fire(searcher.query)
         searcher.search()
       }

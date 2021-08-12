@@ -22,7 +22,7 @@ class SelectableSegmentInteractorConnectorsTests: XCTestCase {
     interactor.connectSearcher(searcher, attribute: "tags")
     interactor.connectFilterState(filterState, attribute: "tags", operator: .or)
 
-    XCTAssertTrue((searcher.indexQueryState.query.facets ?? []).contains("tags"))
+    XCTAssertTrue((searcher.request.query.facets ?? []).contains("tags"))
 
   }
 

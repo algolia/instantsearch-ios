@@ -20,7 +20,7 @@ public struct BoundableHitsSearcherConnection<B: Boundable>: Connection {
 
   public func connect() {
     let attribute = self.attribute
-    searcher.indexQueryState.query.updateQueryFacets(with: attribute)
+    searcher.request.query.updateQueryFacets(with: attribute)
     searcher.onResults.subscribePastOnce(with: boundable) { boundable, searchResults in
       boundable.computeBoundsFromFacetStats(attribute: attribute, facetStats: searchResults.facetStats)
     }

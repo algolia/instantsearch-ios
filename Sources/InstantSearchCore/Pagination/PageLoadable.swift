@@ -17,7 +17,7 @@ public protocol PageLoadable: AnyObject {
 extension HitsSearcher: PageLoadable {
 
   public func loadPage(atIndex pageIndex: Int) {
-    indexQueryState.query.page = pageIndex
+    request.query.page = pageIndex
     search()
   }
 

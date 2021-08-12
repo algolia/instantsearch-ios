@@ -46,7 +46,7 @@ public extension FacetListInteractor {
         interactor.items = searchResults.disjunctiveFacets?[attribute] ?? searchResults.facets?[attribute] ?? []
       }
       
-      searcher.indexQueryState.query.updateQueryFacets(with: attribute)
+      searcher.request.query.updateQueryFacets(with: attribute)
       
     }
     

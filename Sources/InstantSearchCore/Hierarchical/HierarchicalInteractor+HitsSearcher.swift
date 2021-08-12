@@ -21,7 +21,7 @@ public extension HierarchicalInteractor {
     public func connect() {
 
       for attribute in interactor.hierarchicalAttributes {
-        searcher.indexQueryState.query.updateQueryFacets(with: attribute)
+        searcher.request.query.updateQueryFacets(with: attribute)
       }
 
       searcher.onResults.subscribePast(with: interactor) { interactor, searchResults in

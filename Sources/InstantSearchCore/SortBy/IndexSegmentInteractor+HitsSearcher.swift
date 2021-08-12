@@ -20,8 +20,8 @@ public extension IndexSegment {
 
     public func connect() {
       if let selected = interactor.selected, let index = interactor.items[selected] {
-        searcher.indexQueryState.indexName = index.name
-        searcher.indexQueryState.query.page = 0
+        searcher.request.indexName = index.name
+        searcher.request.query.page = 0
       }
 
       interactor.onSelectedComputed.subscribePast(with: searcher) { [weak interactor] searcher, computed in
@@ -30,8 +30,8 @@ public extension IndexSegment {
           let index = interactor?.items[selected]
         {
           interactor?.selected = selected
-          searcher.indexQueryState.indexName = index.name
-          searcher.indexQueryState.query.page = 0
+          searcher.request.indexName = index.name
+          searcher.request.query.page = 0
           searcher.search()
         }
       }

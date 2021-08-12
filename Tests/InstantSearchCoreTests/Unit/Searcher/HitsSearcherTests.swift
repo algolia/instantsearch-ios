@@ -29,7 +29,7 @@ class HitsSearcherTests: XCTestCase {
       XCTAssertEqual(indexName, "index3")
       exp.fulfill()
     }
-    searcher.indexQueryState.indexName = "index3"
+    searcher.request.indexName = "index3"
     waitForExpectations(timeout: 2, handler: .none)
   }
   
