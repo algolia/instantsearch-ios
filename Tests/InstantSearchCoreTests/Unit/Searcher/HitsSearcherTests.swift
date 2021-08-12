@@ -1,5 +1,5 @@
 //
-//  SingleIndexSearcherTests.swift
+//  HitsSearcherTests.swift
 //  
 //
 //  Created by Vladislav Fitc on 03/08/2020.
@@ -9,10 +9,10 @@ import Foundation
 import XCTest
 @testable import InstantSearchCore
 
-class SingleIndexSearcherTests: XCTestCase {
+class HitsSearcherTests: XCTestCase {
   
   func testOnQueryChanged() {
-    let searcher = SingleIndexSearcher(appID: "", apiKey: "", indexName: "index1")
+    let searcher = HitsSearcher(appID: "", apiKey: "", indexName: "index1")
     let exp = expectation(description: "Query change expectation")
     searcher.onQueryChanged.subscribe(with: self) { (test, newQuery) in
       XCTAssertEqual(newQuery, "new query")
@@ -23,7 +23,7 @@ class SingleIndexSearcherTests: XCTestCase {
   }
   
   func testOnIndexChanged() {
-    let searcher = SingleIndexSearcher(appID: "", apiKey: "", indexName: "index1")
+    let searcher = HitsSearcher(appID: "", apiKey: "", indexName: "index1")
     let exp = expectation(description: "Index change expectation")
     searcher.onIndexChanged.subscribe(with: self) { (test, indexName) in
       XCTAssertEqual(indexName, "index3")
@@ -34,7 +34,7 @@ class SingleIndexSearcherTests: XCTestCase {
   }
   
   func testOnSearch() {
-    let searcher = SingleIndexSearcher(appID: "", apiKey: "", indexName: "index1")
+    let searcher = HitsSearcher(appID: "", apiKey: "", indexName: "index1")
     let exp = expectation(description: "Search expectation")
     searcher.onSearch.subscribe(with: self) { (test, _) in
       exp.fulfill()
@@ -44,7 +44,7 @@ class SingleIndexSearcherTests: XCTestCase {
   }
   
   func testConditionalSearch() {
-    let searcher = SingleIndexSearcher(appID: "", apiKey: "", indexName: "index1")
+    let searcher = HitsSearcher(appID: "", apiKey: "", indexName: "index1")
     let exp = expectation(description: "Search expectation")
     exp.isInverted = true
     searcher.onSearch.subscribe(with: self) { (test, _) in
@@ -60,7 +60,7 @@ class SingleIndexSearcherTests: XCTestCase {
   
   func testTextualQueryChange() {
     
-    let searcher = SingleIndexSearcher(appID: "", apiKey: "", indexName: "index1")
+    let searcher = HitsSearcher(appID: "", apiKey: "", indexName: "index1")
     
     let exp1 = expectation(description: "Request changed expectation")
     
@@ -82,7 +82,7 @@ class SingleIndexSearcherTests: XCTestCase {
   
   func testIndexChange() {
     
-    let searcher = SingleIndexSearcher(appID: "", apiKey: "", indexName: "index1")
+    let searcher = HitsSearcher(appID: "", apiKey: "", indexName: "index1")
     
     let exp1 = expectation(description: "Request changed expectation")
     

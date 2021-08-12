@@ -17,7 +17,7 @@ public extension SortByConnector {
      - controller: Controller interfacing with a concrete switch index view
      - presenter: Presenter defining how the indices appear in the controller
    */
-  convenience init<Controller: SelectableSegmentController>(searcher: SingleIndexSearcher,
+  convenience init<Controller: SelectableSegmentController>(searcher: HitsSearcher,
                                                             indicesNames: [IndexName],
                                                             selected: Int? = nil,
                                                             controller: Controller,

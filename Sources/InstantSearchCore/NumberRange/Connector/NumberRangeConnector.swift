@@ -14,7 +14,7 @@ import Foundation
 public class NumberRangeConnector<Number: Comparable & DoubleRepresentable> {
 
   /// Searcher that handles your searches.
-  public let searcher: SingleIndexSearcher
+  public let searcher: HitsSearcher
 
   /// FilterState that holds your filters
   public let filterState: FilterState
@@ -44,7 +44,7 @@ public class NumberRangeConnector<Number: Comparable & DoubleRepresentable> {
      - groupName: Filter group name in the filter state. Default value: The value of the `attribute` parameter
   */
 
-  public init(searcher: SingleIndexSearcher,
+  public init(searcher: HitsSearcher,
               filterState: FilterState,
               attribute: Attribute,
               interactor: NumberRangeInteractor<Number>,
@@ -78,7 +78,7 @@ public extension NumberRangeConnector {
      - operator: Whether the filter is added to a conjuncitve(`and`) or  a disjuncitve (`or`) group in the filter state. Default value: .and
      - groupName: Filter group name in the filter state. Default value: The value of the `attribute` parameter
   */
-  convenience init(searcher: SingleIndexSearcher,
+  convenience init(searcher: HitsSearcher,
                    filterState: FilterState,
                    attribute: Attribute,
                    bounds: ClosedRange<Number>? = nil,

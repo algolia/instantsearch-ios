@@ -16,7 +16,7 @@ extension HitsTracker: QueryIDContainer {}
 
 public enum TrackableSearcher {
 
-  case singleIndex(SingleIndexSearcher)
+  case singleIndex(HitsSearcher)
   case multiIndex(MultiIndexSearcher, pointer: Int)
 
   var indexName: IndexName {

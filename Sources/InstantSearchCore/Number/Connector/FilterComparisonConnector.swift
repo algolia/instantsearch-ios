@@ -52,7 +52,7 @@ public class FilterComparisonConnector<Number: Comparable & DoubleRepresentable>
      - operator: Whether the filter is added to a conjuncitve(`and`) or  a disjuncitve (`or`) group in the filter state. Default value: .and
      - groupName: Filter group name in the filter state. If not specified, the attribute value is used as the group name
   */
-  public init(searcher: SingleIndexSearcher,
+  public init(searcher: HitsSearcher,
               filterState: FilterState,
               attribute: Attribute,
               numericOperator: Filter.Numeric.Operator,

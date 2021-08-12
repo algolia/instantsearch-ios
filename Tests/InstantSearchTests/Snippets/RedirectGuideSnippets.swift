@@ -36,7 +36,7 @@ class RedirectGuideSnippets {
   
   func redirectWidget() {
     
-    let searcher: SingleIndexSearcher = .init(appID: "YourApplicationID",
+    let searcher: HitsSearcher = .init(appID: "YourApplicationID",
                                               apiKey: "YourSearchOnlyAPIKey",
                                               indexName: "YourIndexName")
         

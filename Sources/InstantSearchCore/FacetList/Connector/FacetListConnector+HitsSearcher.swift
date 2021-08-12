@@ -1,5 +1,5 @@
 //
-//  FacetListConnector+SingleIndexSearcher.swift
+//  FacetListConnector+HitsSearcher.swift
 //  
 //
 //  Created by Vladislav Fitc on 15/09/2020.
@@ -7,7 +7,6 @@
 
 import Foundation
 
-/// Init with SingleIndexSearcher
 public extension FacetListConnector {
 
   /**
@@ -20,13 +19,13 @@ public extension FacetListConnector {
     - operator: Whether we apply an `and` or `or` behavior to the filters in the filter state
     - groupName: Filter group name
   */
-  convenience init(searcher: SingleIndexSearcher,
+  convenience init(searcher: HitsSearcher,
                    filterState: FilterState = .init(),
                    attribute: Attribute,
                    interactor: FacetListInteractor = .init(),
                    operator: RefinementOperator,
                    groupName: String? = nil) {
-    self.init(searcher: .singleIndex(searcher),
+    self.init(searcher: .hits(searcher),
               filterState: filterState,
               interactor: interactor,
               attribute: attribute,
@@ -46,7 +45,7 @@ public extension FacetListConnector {
     - controller: Controller interfacing with a concrete facet list view
     - presenter: Presenter defining how a facet appears in the controller
   */
-  convenience init<Controller: FacetListController>(searcher: SingleIndexSearcher,
+  convenience init<Controller: FacetListController>(searcher: HitsSearcher,
                                                     filterState: FilterState = .init(),
                                                     attribute: Attribute,
                                                     interactor: FacetListInteractor = .init(),
@@ -54,7 +53,7 @@ public extension FacetListConnector {
                                                     groupName: String? = nil,
                                                     controller: Controller,
                                                     presenter: SelectableListPresentable? = nil) {
-    self.init(searcher: .singleIndex(searcher),
+    self.init(searcher: .hits(searcher),
               filterState: filterState,
               interactor: interactor,
               controller: controller,
@@ -75,7 +74,7 @@ public extension FacetListConnector {
     - operator: Whether we apply an `and` or `or` behavior to the filters in the filter state
     - groupName: Filter group name
   */
-  convenience init(searcher: SingleIndexSearcher,
+  convenience init(searcher: HitsSearcher,
                    filterState: FilterState = .init(),
                    attribute: Attribute,
                    selectionMode: SelectionMode,
@@ -83,7 +82,7 @@ public extension FacetListConnector {
                    persistentSelection: Bool = false,
                    operator: RefinementOperator,
                    groupName: String? = nil) {
-    self.init(searcher: .singleIndex(searcher),
+    self.init(searcher: .hits(searcher),
               filterState: filterState,
               interactor: .init(facets: facets, selectionMode: selectionMode),
               attribute: attribute,
@@ -104,7 +103,7 @@ public extension FacetListConnector {
       - controller: Controller interfacing with a concrete facet list view
       - presenter: Presenter defining how a facet appears in the controller
   */
-  convenience init<Controller: FacetListController>(searcher: SingleIndexSearcher,
+  convenience init<Controller: FacetListController>(searcher: HitsSearcher,
                                                     filterState: FilterState = .init(),
                                                     attribute: Attribute,
                                                     selectionMode: SelectionMode,
@@ -114,7 +113,7 @@ public extension FacetListConnector {
                                                     groupName: String? = nil,
                                                     controller: Controller,
                                                     presenter: SelectableListPresentable? = nil) {
-    self.init(searcher: .singleIndex(searcher),
+    self.init(searcher: .hits(searcher),
               filterState: filterState,
               interactor: .init(facets: facets, selectionMode: selectionMode),
               controller: controller,

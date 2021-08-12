@@ -290,8 +290,6 @@ extension MultiIndexSearchResponse.Response {
 //
 //}
 
-typealias HitsSearcher = SingleIndexSearcher
-
 func example() {
   
   // Independent searchers with a shared query
@@ -330,7 +328,7 @@ func example() {
   compositeSearcher.addHitsSearcher(indexName: "myIndex", query: sharedQuery)
   compositeSearcher.addFacetsSearcher(indexName: "myIndex", query: sharedQuery, attribute: "brand", facetQuery: "")
   
-  let sis = SingleIndexSearcher(appID: "", apiKey: "", indexName: "")
+  let sis = HitsSearcher(appID: "", apiKey: "", indexName: "")
   compositeSearcher.addSearcher(sis)
   
   let fs = FacetSearcher(appID: "", apiKey: "", indexName: "", facetName: "")

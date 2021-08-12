@@ -1,5 +1,5 @@
 //
-//  HierarchicalInteractor+Searcher.swift
+//  HierarchicalInteractor+HitsSearcher.swift
 //  InstantSearchCore
 //
 //  Created by Guy Daher on 03/07/2019.
@@ -10,10 +10,13 @@ import Foundation
 import AlgoliaSearchClient
 public extension HierarchicalInteractor {
 
-  struct SingleIndexSearcherConnection: Connection {
+  @available(*, deprecated, renamed: "HitsSearcherConnection")
+  typealias SingleIndexSearcherConnection = HitsSearcherConnection
+  
+  struct HitsSearcherConnection: Connection {
 
     public let interactor: HierarchicalInteractor
-    public let searcher: SingleIndexSearcher
+    public let searcher: HitsSearcher
 
     public func connect() {
 
@@ -44,8 +47,8 @@ public extension HierarchicalInteractor {
 
 public extension HierarchicalInteractor {
 
-  @discardableResult func connectSearcher(searcher: SingleIndexSearcher) -> SingleIndexSearcherConnection {
-    let connection = SingleIndexSearcherConnection(interactor: self, searcher: searcher)
+  @discardableResult func connectSearcher(searcher: HitsSearcher) -> HitsSearcherConnection {
+    let connection = HitsSearcherConnection(interactor: self, searcher: searcher)
     connection.connect()
     return connection
   }

@@ -12,7 +12,7 @@ import AlgoliaSearchClient
 public struct SelectableFilterInteractorSearcherConnection<Filter: FilterType>: Connection {
 
   public let interactor: SelectableSegmentInteractor<Int, Filter>
-  public let searcher: SingleIndexSearcher
+  public let searcher: HitsSearcher
   public let attribute: Attribute
 
   public func connect() {
@@ -27,7 +27,7 @@ public struct SelectableFilterInteractorSearcherConnection<Filter: FilterType>: 
 
 public extension SelectableSegmentInteractor where SegmentKey == Int, Segment: FilterType {
 
-  @discardableResult func connectSearcher(_ searcher: SingleIndexSearcher, attribute: Attribute) -> SelectableFilterInteractorSearcherConnection<Segment> {
+  @discardableResult func connectSearcher(_ searcher: HitsSearcher, attribute: Attribute) -> SelectableFilterInteractorSearcherConnection<Segment> {
     let connection = SelectableFilterInteractorSearcherConnection(interactor: self, searcher: searcher, attribute: attribute)
     connection.connect()
     return connection

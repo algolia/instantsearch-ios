@@ -32,7 +32,7 @@ class BannerGuideSnippets {
   }
   
   func setupWidget() {
-    let searcher: SingleIndexSearcher = .init(appID: "YourApplicationID",
+    let searcher: HitsSearcher = .init(appID: "YourApplicationID",
                                               apiKey: "YourSearchOnlyAPIKey",
                                               indexName: "YourIndexName")
     let bannerViewController = BannerViewController()

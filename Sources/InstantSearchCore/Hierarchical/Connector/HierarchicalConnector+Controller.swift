@@ -20,7 +20,7 @@ public extension HierarchicalConnector {
      - controller: Controller interfacing with a concrete hierarchical view
      - presenter: Presenter defining how hierarchical facets appears in the controller
   */
-  convenience init<Controller: HierarchicalController, Output>(searcher: SingleIndexSearcher,
+  convenience init<Controller: HierarchicalController, Output>(searcher: HitsSearcher,
                                                                filterState: FilterState,
                                                                hierarchicalAttributes: [Attribute],
                                                                separator: String,

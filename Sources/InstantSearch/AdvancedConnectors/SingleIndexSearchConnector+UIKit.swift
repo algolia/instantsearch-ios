@@ -13,7 +13,7 @@ import UIKit
 
 public extension SingleIndexSearchConnector {
 
-  init<HC: HitsController>(searcher: SingleIndexSearcher,
+  init<HC: HitsController>(searcher: HitsSearcher,
                            searchController: UISearchController,
                            hitsInteractor: HitsInteractor<Record>,
                            hitsController: HC,
@@ -45,7 +45,7 @@ public extension SingleIndexSearchConnector {
                            hitsInteractor: HitsInteractor<Record>,
                            hitsController: HC,
                            filterState: FilterState? = nil) where HC.DataSource == HitsInteractor<Record> {
-    let searcher = SingleIndexSearcher(appID: appID,
+    let searcher = HitsSearcher(appID: appID,
                                        apiKey: apiKey,
                                        indexName: indexName)
     self.init(searcher: searcher,

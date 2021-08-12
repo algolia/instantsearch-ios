@@ -20,7 +20,7 @@ public protocol InsightsTracker: AnyObject {
 extension InsightsTracker {
 
   public init(eventName: EventName,
-              searcher: SingleIndexSearcher,
+              searcher: HitsSearcher,
               userToken: UserToken? = .none) {
     let credentials: AlgoliaSearchClient.Credentials = searcher.service.client
     let insights = Insights.register(appId: credentials.applicationID, apiKey: credentials.apiKey, userToken: userToken)
@@ -30,7 +30,7 @@ extension InsightsTracker {
   }
 
   public init(eventName: EventName,
-              searcher: SingleIndexSearcher,
+              searcher: HitsSearcher,
               insights: Insights) {
     self.init(eventName: eventName,
               searcher: .singleIndex(searcher),

@@ -17,7 +17,7 @@ public extension HitsConnector {
      - controller: Controller interfacing with a concrete hits view
      - externalReload: Defines if controller will be updated automatically by the events or manually
   */
-  convenience init<Controller: HitsController>(searcher: SingleIndexSearcher,
+  convenience init<Controller: HitsController>(searcher: HitsSearcher,
                                                interactor: HitsInteractor<Hit>,
                                                filterState: FilterState? = .none,
                                                controller: Controller,
@@ -49,7 +49,7 @@ public extension HitsConnector {
                                                filterState: FilterState? = .none,
                                                controller: Controller,
                                                externalReload: Bool = false) where Controller.DataSource == HitsInteractor<Hit> {
-    let searcher = SingleIndexSearcher(appID: appID,
+    let searcher = HitsSearcher(appID: appID,
                                        apiKey: apiKey,
                                        indexName: indexName)
     let interactor = HitsInteractor<Hit>(infiniteScrolling: infiniteScrolling, showItemsOnEmptyQuery: showItemsOnEmptyQuery)

@@ -56,8 +56,8 @@ public class FacetListConnector {
     case .facet(let facetSearcher):
       searcherConnection = interactor.connectFacetSearcher(facetSearcher)
 
-    case .singleIndex(let singleIndexSearcher):
-      searcherConnection = interactor.connectSearcher(singleIndexSearcher, with: attribute)
+    case .hits(let hitsSearcher):
+      searcherConnection = interactor.connectSearcher(hitsSearcher, with: attribute)
     }
 
   }
@@ -83,7 +83,7 @@ extension FacetListConnector: Connection {
 extension FacetListConnector {
 
   public enum Searcher {
-    case singleIndex(SingleIndexSearcher)
+    case hits(HitsSearcher)
     case facet(FacetSearcher)
   }
 

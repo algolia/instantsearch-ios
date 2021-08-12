@@ -15,7 +15,7 @@ import AlgoliaSearchClient
 public class SortByConnector {
 
   /// Searcher that handles your searches
-  public let searcher: SingleIndexSearcher
+  public let searcher: HitsSearcher
 
   /// Logic applied to the indices
   public let interactor: IndexSegmentInteractor
@@ -63,7 +63,7 @@ public class SortByConnector {
      - searcher: Searcher that handles your searches
      - interactor: Logic applied to the indices
    */
-  public init(searcher: SingleIndexSearcher,
+  public init(searcher: HitsSearcher,
               interactor: IndexSegmentInteractor) {
     self.searcher = searcher
     self.interactor = interactor
@@ -77,7 +77,7 @@ public class SortByConnector {
      - indicesNames: List of the indices names to switch between
      - selected: Consecutive index of the initially selected search index in the list.
    */
-  public convenience init(searcher: SingleIndexSearcher,
+  public convenience init(searcher: HitsSearcher,
                           indicesNames: [IndexName],
                           selected: Int? = nil) {
     let enumeratedIndices = indicesNames

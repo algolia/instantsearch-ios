@@ -1,5 +1,5 @@
 //
-//  RelevantSortSingleIndexSearcherConnectionTests.swift
+//  RelevantSortHitsSearcherConnectionTests.swift
 //  
 //
 //  Created by Vladislav Fitc on 10/02/2021.
@@ -9,13 +9,13 @@ import Foundation
 @testable import InstantSearchCore
 import XCTest
 
-class RelevantSortSingleIndexSearcherConnectionTests: XCTestCase {
+class RelevantSortHitsSearcherConnectionTests: XCTestCase {
   
-  weak var disposableSearcher: SingleIndexSearcher?
+  weak var disposableSearcher: HitsSearcher?
   weak var disposableInteractor: RelevantSortInteractor?
   
   func testLeak() {
-    let searcher = SingleIndexSearcher(appID: "", apiKey: "", indexName: "")
+    let searcher = HitsSearcher(appID: "", apiKey: "", indexName: "")
     let interactor = RelevantSortInteractor(priority: .relevancy)
     
     disposableSearcher = searcher
@@ -31,10 +31,10 @@ class RelevantSortSingleIndexSearcherConnectionTests: XCTestCase {
 
   
   func testConnect() {
-    let searcher = SingleIndexSearcher(appID: "", apiKey: "", indexName: "")
+    let searcher = HitsSearcher(appID: "", apiKey: "", indexName: "")
     let interactor = RelevantSortInteractor(priority: .relevancy)
     
-    let connection = RelevantSortInteractor.SingleIndexSearcherConnection(interactor: interactor, searcher: searcher)
+    let connection = RelevantSortInteractor.HitsSearcherConnection(interactor: interactor, searcher: searcher)
     connection.connect()
     
     searcher.onResults.fire(SearchResponse().set(\.appliedRelevancyStrictness, to: 100))
@@ -63,7 +63,7 @@ class RelevantSortSingleIndexSearcherConnectionTests: XCTestCase {
   }
   
   func testConnectMethod() {
-    let searcher = SingleIndexSearcher(appID: "", apiKey: "", indexName: "")
+    let searcher = HitsSearcher(appID: "", apiKey: "", indexName: "")
     let interactor = RelevantSortInteractor(priority: .relevancy)
     
     interactor.connectSearcher(searcher)
@@ -94,10 +94,10 @@ class RelevantSortSingleIndexSearcherConnectionTests: XCTestCase {
   }
   
   func testDisconnect() {
-    let searcher = SingleIndexSearcher(appID: "", apiKey: "", indexName: "")
+    let searcher = HitsSearcher(appID: "", apiKey: "", indexName: "")
     let interactor = RelevantSortInteractor(priority: .relevancy)
     
-    let connection = RelevantSortInteractor.SingleIndexSearcherConnection(interactor: interactor, searcher: searcher)
+    let connection = RelevantSortInteractor.HitsSearcherConnection(interactor: interactor, searcher: searcher)
     connection.connect()
     connection.disconnect()
     

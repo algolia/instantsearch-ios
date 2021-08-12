@@ -14,7 +14,7 @@ public extension StatsInteractor {
   struct SingleIndexSearcherConnection: Connection {
 
     let interactor: StatsInteractor
-    let searcher: SingleIndexSearcher
+    let searcher: HitsSearcher
 
     public func connect() {
       searcher.onResults.subscribePast(with: interactor) { interactor, searchResults in

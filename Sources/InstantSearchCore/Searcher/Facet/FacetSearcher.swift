@@ -9,7 +9,7 @@
 import Foundation
 import AlgoliaSearchClient
 
-/// An entity performing search for facet values
+/// An entity performing facet values search 
 final public class FacetSearcher: IndexSearcher<FacetSearchService> {
 
   public var client: SearchClient {

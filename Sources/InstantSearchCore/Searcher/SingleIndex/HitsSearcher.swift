@@ -1,5 +1,5 @@
 //
-//  SingleIndexSearcher.swift
+//  HitsSearcher.swift
 //  InstantSearchCore
 //
 //  Created by Vladislav Fitc on 02/04/2019.
@@ -9,10 +9,14 @@
 import Foundation
 import AlgoliaSearchClient
 
-/// An entity performing search queries targeting one index
-final public class SingleIndexSearcher: IndexSearcher<AlgoliaSearchService> {
+@available(*, deprecated, renamed: "HitsSearcher")
+public typealias SingleIndexSearcher = HitsSearcher
+
+/// An entity performing hits search
+final public class HitsSearcher: IndexSearcher<AlgoliaSearchService> {
 
   /// Current index & query tuple
+  @available(*, deprecated, message: "Use the `request` property instead")
   public var indexQueryState: IndexQueryState {
     get {
       return IndexQueryState(indexName: request.indexName, query: request.query)
@@ -150,7 +154,7 @@ final public class SingleIndexSearcher: IndexSearcher<AlgoliaSearchService> {
 
 }
 
-extension SingleIndexSearcher: MultiQueryCollectable {
+extension HitsSearcher: MultiQueryCollectable {
   
   public func collect() -> (queries: [IndexedQuery], completion: (Swift.Result<[MultiIndexSearchResponse.Response], Swift.Error>) -> Void) {
     return service.collect(for: request) { [weak self] result in

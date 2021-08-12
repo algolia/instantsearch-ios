@@ -86,8 +86,8 @@ extension CompositeSearcher where Service == SearchClient {
     self.init(service: .init(appID: appID, apiKey: apiKey))
   }
   
-  @discardableResult public func addHitsSearcher(indexName: IndexName, query: Query, requestOptions: RequestOptions? = nil) -> SingleIndexSearcher {
-    let searcher = SingleIndexSearcher(client: service, indexName: indexName, query: query, requestOptions: requestOptions)
+  @discardableResult public func addHitsSearcher(indexName: IndexName, query: Query, requestOptions: RequestOptions? = nil) -> HitsSearcher {
+    let searcher = HitsSearcher(client: service, indexName: indexName, query: query, requestOptions: requestOptions)
     searchers.append(MultiQueryCollectableWrapper(wrapped: searcher))
     return searcher
   }

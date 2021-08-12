@@ -16,7 +16,7 @@ public extension QueryRuleCustomDataConnector {
      - controller: Controller interfacing with a concrete custom data view
      - presenter: Presenter defining how a model appears in the controller
   */
-  convenience init<Controller: ItemController, Output>(searcher: SingleIndexSearcher,
+  convenience init<Controller: ItemController, Output>(searcher: HitsSearcher,
                                                        interactor: Interactor = .init(),
                                                        controller: Controller,
                                                        presenter: @escaping (Model?) -> Output) where Controller.Item == Output {
@@ -32,7 +32,7 @@ public extension QueryRuleCustomDataConnector {
      - interactor: External custom data interactor
      - controller: Controller interfacing with a concrete custom data view
   */
-  convenience init<Controller: ItemController>(searcher: SingleIndexSearcher,
+  convenience init<Controller: ItemController>(searcher: HitsSearcher,
                                                interactor: Interactor = .init(),
                                                controller: Controller) where Controller.Item == Model? {
     self.init(searcher: searcher, interactor: interactor)

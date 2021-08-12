@@ -1,5 +1,5 @@
 //
-//  RelatedItemsInteractor+SingleIndexSearcher.swift
+//  RelatedItemsInteractor+HitsSearcher.swift
 //  InstantSearchCore
 //
 //  Created by test test on 23/04/2020.
@@ -10,8 +10,8 @@ import Foundation
 
 extension HitsInteractor {
 
-  @discardableResult public func connectSearcher<T>(_ searcher: SingleIndexSearcher, withRelatedItemsTo hit: ObjectWrapper<T>, with matchingPatterns: [MatchingPattern<T>]) -> SingleIndexSearcherConnection {
-    let connection = SingleIndexSearcherConnection(interactor: self, searcher: searcher)
+  @discardableResult public func connectSearcher<T>(_ searcher: HitsSearcher, withRelatedItemsTo hit: ObjectWrapper<T>, with matchingPatterns: [MatchingPattern<T>]) -> HitsSearcherConnection {
+    let connection = HitsSearcherConnection(interactor: self, searcher: searcher)
     connection.connect()
 
     let legacyFilters = generateOptionalFilters(from: matchingPatterns, and: hit)

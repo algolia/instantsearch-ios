@@ -9,11 +9,14 @@
 import Foundation
 
 public extension HitsInteractor {
+  
+  @available(*, deprecated, renamed: "HitsSearcher")
+  typealias SingleIndexSearcherConnection = HitsSearcherConnection
 
-  struct SingleIndexSearcherConnection: Connection {
+  struct HitsSearcherConnection: Connection {
 
     public let interactor: HitsInteractor
-    public let searcher: SingleIndexSearcher
+    public let searcher: HitsSearcher
 
     public func connect() {
 
@@ -24,7 +27,7 @@ public extension HitsInteractor {
       }
 
       searcher.onError.subscribe(with: interactor) { interactor, error in
-        if let requestError = error as? SingleIndexSearcher.RequestError {
+        if let requestError = error as? HitsSearcher.RequestError {
           interactor.process(requestError.underlyingError, for: requestError.request.query)
         }
       }
@@ -55,8 +58,8 @@ public extension HitsInteractor {
 
 public extension HitsInteractor {
 
-  @discardableResult func connectSearcher(_ searcher: SingleIndexSearcher) -> SingleIndexSearcherConnection {
-    let connection = SingleIndexSearcherConnection(interactor: self, searcher: searcher)
+  @discardableResult func connectSearcher(_ searcher: HitsSearcher) -> HitsSearcherConnection {
+    let connection = HitsSearcherConnection(interactor: self, searcher: searcher)
     connection.connect()
     return connection
   }

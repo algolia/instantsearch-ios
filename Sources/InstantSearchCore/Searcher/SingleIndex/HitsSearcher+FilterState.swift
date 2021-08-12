@@ -1,5 +1,5 @@
 //
-//  SingleIndexSearcher+FilterState.swift
+//  HitsSearcher+FilterState.swift
 //  InstantSearchCore
 //
 //  Created by Vladislav Fitc on 04/08/2019.
@@ -8,7 +8,7 @@
 
 import Foundation
 
-public extension SingleIndexSearcher {
+public extension HitsSearcher {
 
   /**
    Establishes connection between searcher and filterState
@@ -18,15 +18,20 @@ public extension SingleIndexSearcher {
    */
 
   struct FilterStateConnection: Connection {
+    
+    @available(*, deprecated, renamed: "hitsSearcher")
+    public var singleIndexSearcher: HitsSearcher {
+      return hitsSearcher
+    }
 
-    public let singleIndexSearcher: SingleIndexSearcher
+    public let hitsSearcher: HitsSearcher
     public let filterState: FilterState
 
     public func connect() {
-      singleIndexSearcher.disjunctiveFacetingDelegate = filterState
-      singleIndexSearcher.hierarchicalFacetingDelegate = filterState
+      hitsSearcher.disjunctiveFacetingDelegate = filterState
+      hitsSearcher.hierarchicalFacetingDelegate = filterState
 
-      filterState.onChange.subscribePast(with: singleIndexSearcher) { searcher, filterState in
+      filterState.onChange.subscribePast(with: hitsSearcher) { searcher, filterState in
         searcher.request.query.filters = FilterGroupConverter().sql(filterState.toFilterGroups())
         searcher.request.query.page = 0
         searcher.search()
@@ -34,19 +39,19 @@ public extension SingleIndexSearcher {
     }
 
     public func disconnect() {
-      singleIndexSearcher.disjunctiveFacetingDelegate = nil
-      singleIndexSearcher.hierarchicalFacetingDelegate = nil
-      filterState.onChange.cancelSubscription(for: singleIndexSearcher)
+      hitsSearcher.disjunctiveFacetingDelegate = nil
+      hitsSearcher.hierarchicalFacetingDelegate = nil
+      filterState.onChange.cancelSubscription(for: hitsSearcher)
     }
 
   }
 
 }
 
-public extension SingleIndexSearcher {
+public extension HitsSearcher {
 
   @discardableResult func connectFilterState(_ filterState: FilterState) -> FilterStateConnection {
-    let connection = FilterStateConnection(singleIndexSearcher: self, filterState: filterState)
+    let connection = FilterStateConnection(hitsSearcher: self, filterState: filterState)
     connection.connect()
     return connection
   }

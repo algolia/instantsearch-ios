@@ -13,7 +13,7 @@ import UIKit
 class QueryInputSnippets {
     
   func widgetExample() {
-    let searcher: SingleIndexSearcher = .init(appID: "YourApplicationID",
+    let searcher: HitsSearcher = .init(appID: "YourApplicationID",
                                               apiKey: "YourSearchOnlyAPIKey",
                                               indexName: "YourIndexName")
     let searchBarController: SearchBarController = .init(searchBar: UISearchBar())
@@ -26,7 +26,7 @@ class QueryInputSnippets {
   }
   
   func advancedExample() {
-    let searcher: SingleIndexSearcher = .init(appID: "YourApplicationID",
+    let searcher: HitsSearcher = .init(appID: "YourApplicationID",
                                               apiKey: "YourSearchOnlyAPIKey",
                                               indexName: "YourIndexName")
     let queryInputInteractor: QueryInputInteractor = .init()

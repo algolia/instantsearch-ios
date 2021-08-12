@@ -1,5 +1,5 @@
 //
-//  IndexSegmentInteractor+SingleIndexSearcher.swift
+//  IndexSegmentInteractor+HitsSearcher.swift
 //  InstantSearchCore
 //
 //  Created by Guy Daher on 06/06/2019.
@@ -9,11 +9,14 @@
 import Foundation
 
 public extension IndexSegment {
+  
+  @available(*, deprecated, renamed: "HitsSearcherConnection")
+  typealias SingleIndexSearcherConnection = HitsSearcherConnection
 
-  struct SingleIndexSearcherConnection: Connection {
+  struct HitsSearcherConnection: Connection {
 
     let interactor: IndexSegmentInteractor
-    let searcher: SingleIndexSearcher
+    let searcher: HitsSearcher
 
     public func connect() {
       if let selected = interactor.selected, let index = interactor.items[selected] {
@@ -44,8 +47,8 @@ public extension IndexSegment {
 
 public extension IndexSegmentInteractor {
 
-  @discardableResult func connectSearcher(searcher: SingleIndexSearcher) -> IndexSegment.SingleIndexSearcherConnection {
-    let connection = IndexSegment.SingleIndexSearcherConnection(interactor: self, searcher: searcher)
+  @discardableResult func connectSearcher(searcher: HitsSearcher) -> IndexSegment.HitsSearcherConnection {
+    let connection = IndexSegment.HitsSearcherConnection(interactor: self, searcher: searcher)
     connection.connect()
     return connection
   }

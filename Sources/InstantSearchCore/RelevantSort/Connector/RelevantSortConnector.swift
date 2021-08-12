@@ -35,7 +35,7 @@ public class RelevantSortConnector {
       - searcher: Searcher that handles your searches
       - interactor: Relevant sort priority toggling logic
    */
-  public convenience init(searcher: SingleIndexSearcher,
+  public convenience init(searcher: HitsSearcher,
                           interactor: RelevantSortInteractor = .init()) {
     self.init(searcher: searcher,
               searcherConnection: interactor.connectSearcher(searcher),

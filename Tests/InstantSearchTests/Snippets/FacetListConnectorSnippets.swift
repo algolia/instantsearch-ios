@@ -13,7 +13,7 @@ import UIKit
 class FacetListConnectorSnippets {
   
   func widgetExample() {
-    let searcher: SingleIndexSearcher = SingleIndexSearcher(appID: "YourApplicationID",
+    let searcher: HitsSearcher = HitsSearcher(appID: "YourApplicationID",
                                                             apiKey: "YourSearchOnlyAPIKey",
                                                             indexName: "YourIndexName")
 
@@ -38,7 +38,7 @@ class FacetListConnectorSnippets {
   }
   
   func manualExample() {
-    let searcher: SingleIndexSearcher = SingleIndexSearcher(appID: "YourApplicationID",
+    let searcher: HitsSearcher = HitsSearcher(appID: "YourApplicationID",
                                                             apiKey: "YourSearchOnlyAPIKey",
                                                             indexName: "YourIndexName")
     let filterState: FilterState = .init()

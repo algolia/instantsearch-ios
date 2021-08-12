@@ -17,7 +17,7 @@ extension QueryRuleCustomDataInteractor {
     public let interactor: QueryRuleCustomDataInteractor
 
     /// Searcher that handles your searches
-    public let searcher: SingleIndexSearcher
+    public let searcher: HitsSearcher
 
     /**
      - Parameters:
@@ -25,7 +25,7 @@ extension QueryRuleCustomDataInteractor {
        - searcher: Searcher to connect
     */
     public init(interactor: QueryRuleCustomDataInteractor,
-                searcher: SingleIndexSearcher) {
+                searcher: HitsSearcher) {
       self.searcher = searcher
       self.interactor = interactor
     }

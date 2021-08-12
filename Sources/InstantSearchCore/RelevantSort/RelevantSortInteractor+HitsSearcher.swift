@@ -1,5 +1,5 @@
 //
-//  RelevantSortInteractor+SingleIndexSearcher.swift
+//  RelevantSortInteractor+HitsSearcher.swift
 //  
 //
 //  Created by Vladislav Fitc on 10/02/2021.
@@ -7,16 +7,19 @@
 
 import Foundation
 
-extension RelevantSortInteractor {
+public extension RelevantSortInteractor {
+  
+  @available(*, deprecated, renamed: "HitsSearcherConnection")
+  typealias SingleIndexSearcherConnection = HitsSearcherConnection
 
   /// Connection between relevant sort interactor and a searcher handling the search
-  public struct SingleIndexSearcherConnection: Connection {
+  struct HitsSearcherConnection: Connection {
 
     /// Relevant sort priority toggling logic
     public let interactor: RelevantSortInteractor
 
     /// Searcher that handles your searches
-    public let searcher: SingleIndexSearcher
+    public let searcher: HitsSearcher
 
     /**
      - Parameters:
@@ -24,7 +27,7 @@ extension RelevantSortInteractor {
        - searcher: Searcher that handles your searches
      */
     public init(interactor: RelevantSortInteractor,
-                searcher: SingleIndexSearcher) {
+                searcher: HitsSearcher) {
       self.interactor = interactor
       self.searcher = searcher
     }
@@ -61,8 +64,8 @@ extension RelevantSortInteractor {
      - searcher: Searcher that handles your searches
    - Returns: Established connection
    */
-  @discardableResult public func connectSearcher(_ searcher: SingleIndexSearcher) -> SingleIndexSearcherConnection {
-    let connection = SingleIndexSearcherConnection(interactor: self, searcher: searcher)
+  @discardableResult func connectSearcher(_ searcher: HitsSearcher) -> HitsSearcherConnection {
+    let connection = HitsSearcherConnection(interactor: self, searcher: searcher)
     connection.connect()
     return connection
   }

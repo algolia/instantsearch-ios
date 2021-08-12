@@ -14,7 +14,7 @@ import XCTest
 class HitsInteractorSearcherConnectionTests: XCTestCase {
   
   weak var disposableInteractor: HitsInteractor<JSON>?
-  weak var disposableSearcher: SingleIndexSearcher?
+  weak var disposableSearcher: HitsSearcher?
   
   func getInteractor(with infiniteScrollingController: InfiniteScrollable) -> HitsInteractor<JSON> {
     
@@ -34,14 +34,14 @@ class HitsInteractorSearcherConnectionTests: XCTestCase {
     let infiniteScrollingController = TestInfiniteScrollingController()
     infiniteScrollingController.pendingPages = [0, 2]
     
-    let searcher = SingleIndexSearcher(client: SearchClient(appID: "", apiKey: ""), indexName: "")
+    let searcher = HitsSearcher(client: SearchClient(appID: "", apiKey: ""), indexName: "")
     let interactor = getInteractor(with: infiniteScrollingController)
     
     disposableInteractor = interactor
     disposableSearcher = searcher
     
-    let connection: Connection = HitsInteractor.SingleIndexSearcherConnection(interactor: interactor,
-                                                                              searcher: searcher)
+    let connection: Connection = HitsInteractor.HitsSearcherConnection(interactor: interactor,
+                                                                       searcher: searcher)
     connection.connect()
   }
   
@@ -56,11 +56,11 @@ class HitsInteractorSearcherConnectionTests: XCTestCase {
     let infiniteScrollingController = TestInfiniteScrollingController()
     infiniteScrollingController.pendingPages = [0, 2]
     
-    let searcher = SingleIndexSearcher(client: SearchClient(appID: "", apiKey: ""), indexName: "")
+    let searcher = HitsSearcher(client: SearchClient(appID: "", apiKey: ""), indexName: "")
     let interactor = getInteractor(with: infiniteScrollingController)
     
-    let connection: Connection = HitsInteractor.SingleIndexSearcherConnection(interactor: interactor,
-                                                                              searcher: searcher)
+    let connection: Connection = HitsInteractor.HitsSearcherConnection(interactor: interactor,
+                                                                       searcher: searcher)
     connection.connect()
     
     let tester = ConnectionTester(searcher: searcher,
@@ -76,11 +76,11 @@ class HitsInteractorSearcherConnectionTests: XCTestCase {
     let infiniteScrollingController = TestInfiniteScrollingController()
     infiniteScrollingController.pendingPages = [0, 2]
     
-    let searcher = SingleIndexSearcher(client: SearchClient(appID: "", apiKey: ""), indexName: "")
+    let searcher = HitsSearcher(client: SearchClient(appID: "", apiKey: ""), indexName: "")
     let interactor = getInteractor(with: infiniteScrollingController)
     
-    let connection: Connection = HitsInteractor.SingleIndexSearcherConnection(interactor: interactor,
-                                                                              searcher: searcher)
+    let connection: Connection = HitsInteractor.HitsSearcherConnection(interactor: interactor,
+                                                                       searcher: searcher)
     connection.connect()
     connection.disconnect()
     
@@ -97,7 +97,7 @@ class HitsInteractorSearcherConnectionTests: XCTestCase {
     let infiniteScrollingController = TestInfiniteScrollingController()
     infiniteScrollingController.pendingPages = [0, 2]
     
-    let searcher = SingleIndexSearcher(client: SearchClient(appID: "", apiKey: ""), indexName: "")
+    let searcher = HitsSearcher(client: SearchClient(appID: "", apiKey: ""), indexName: "")
     let interactor = getInteractor(with: infiniteScrollingController)
     
     interactor.connectSearcher(searcher)
@@ -116,12 +116,12 @@ extension HitsInteractorSearcherConnectionTests {
   
   class ConnectionTester {
     
-    let searcher: SingleIndexSearcher
+    let searcher: HitsSearcher
     let interactor: HitsInteractor<JSON>
     let infiniteScrollingController: TestInfiniteScrollingController
     let source: XCTestCase
     
-    init(searcher: SingleIndexSearcher,
+    init(searcher: HitsSearcher,
          interactor: HitsInteractor<JSON>,
          infiniteScrollingController: TestInfiniteScrollingController,
          source: XCTestCase) {

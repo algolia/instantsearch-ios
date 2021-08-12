@@ -22,7 +22,7 @@ public extension SelectableFilterConnector {
     - controller: Controller interfacing with a concrete selectable filter view
     - presenter: Presenter defining how a filter appears in the controller
   */
-  convenience init<Controller: SelectableSegmentController>(searcher: SingleIndexSearcher,
+  convenience init<Controller: SelectableSegmentController>(searcher: HitsSearcher,
                                                             filterState: FilterState,
                                                             items: [Int: Filter],
                                                             selected: Int,

@@ -19,7 +19,7 @@ class SingleIndexSearchConnectorTests: XCTestCase {
       return controller
     }()
     
-    let searcher = SingleIndexSearcher(client: SearchClient(appID: "", apiKey: ""), indexName: "")
+    let searcher = HitsSearcher(client: SearchClient(appID: "", apiKey: ""), indexName: "")
     let queryInputInteractor = QueryInputInteractor()
     let queryInputController = TestQueryInputController()
     lazy var hitsInteractor = getInteractor(with: infiniteScrollingController)

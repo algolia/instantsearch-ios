@@ -1,5 +1,5 @@
 //
-//  FacetListSingleIndexSearcherConnectionTests.swift
+//  FacetListHitsSearcherConnectionTests.swift
 //  InstantSearchCore
 //
 //  Created by Vladislav Fitc on 04/12/2019.
@@ -10,22 +10,22 @@ import Foundation
 @testable import InstantSearchCore
 import XCTest
 
-class FacetListSingleIndexSearcherConnectionTests: XCTestCase {
+class FacetListHitsSearcherConnectionTests: XCTestCase {
 
   let attribute: Attribute = "Test Attribute"
   let facets: [Facet] = .init(prefix: "v", count: 3)
   
-  weak var disposableSearcher: SingleIndexSearcher?
+  weak var disposableSearcher: HitsSearcher?
   weak var disposableInteractor: FacetListInteractor?
   
   func testLeak() {
-    let searcher = SingleIndexSearcher(appID: "", apiKey: "", indexName: "")
+    let searcher = HitsSearcher(appID: "", apiKey: "", indexName: "")
     let interactor = FacetListInteractor()
     
     disposableSearcher = searcher
     disposableInteractor = interactor
 
-    let connection = FacetListInteractor.SingleIndexSearcherConnection(facetListInteractor: interactor, searcher: searcher, attribute: attribute)
+    let connection = FacetListInteractor.HitsSearcherConnection(facetListInteractor: interactor, searcher: searcher, attribute: attribute)
     connection.connect()
   }
   
@@ -35,10 +35,10 @@ class FacetListSingleIndexSearcherConnectionTests: XCTestCase {
   }
 
   func testConnect() {
-    let searcher = SingleIndexSearcher(appID: "", apiKey: "", indexName: "")
+    let searcher = HitsSearcher(appID: "", apiKey: "", indexName: "")
     let interactor = FacetListInteractor()
 
-    let connection = FacetListInteractor.SingleIndexSearcherConnection(facetListInteractor: interactor, searcher: searcher, attribute: attribute)
+    let connection = FacetListInteractor.HitsSearcherConnection(facetListInteractor: interactor, searcher: searcher, attribute: attribute)
     connection.connect()
 
     checkConnection(interactor: interactor,
@@ -47,7 +47,7 @@ class FacetListSingleIndexSearcherConnectionTests: XCTestCase {
   }
 
   func testConnectMethod() {
-    let searcher = SingleIndexSearcher(appID: "", apiKey: "", indexName: "")
+    let searcher = HitsSearcher(appID: "", apiKey: "", indexName: "")
     let interactor = FacetListInteractor()
 
     interactor.connectSearcher(searcher, with: attribute)
@@ -58,10 +58,10 @@ class FacetListSingleIndexSearcherConnectionTests: XCTestCase {
   }
 
   func testDisconnect() {
-    let searcher = SingleIndexSearcher(appID: "", apiKey: "", indexName: "")
+    let searcher = HitsSearcher(appID: "", apiKey: "", indexName: "")
     let interactor = FacetListInteractor()
 
-    let connection = FacetListInteractor.SingleIndexSearcherConnection(facetListInteractor: interactor, searcher: searcher, attribute: attribute)
+    let connection = FacetListInteractor.HitsSearcherConnection(facetListInteractor: interactor, searcher: searcher, attribute: attribute)
     connection.connect()
     connection.disconnect()
 
@@ -71,7 +71,7 @@ class FacetListSingleIndexSearcherConnectionTests: XCTestCase {
   }
 
   func checkConnection(interactor: FacetListInteractor,
-                       searcher: SingleIndexSearcher,
+                       searcher: HitsSearcher,
                        isConnected: Bool) {
     var results = SearchResponse(hits: [TestRecord<Int>]())
     results.disjunctiveFacets = [attribute: facets]

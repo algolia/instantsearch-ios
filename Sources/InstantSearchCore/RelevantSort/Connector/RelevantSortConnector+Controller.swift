@@ -19,7 +19,7 @@ public extension RelevantSortConnector {
      - controller: Controller presenting the relevant sort priority state and capable to toggle it
      - presenter: Generic presenter transforming the relevant sort priority state to its representation for a controller
    */
-  convenience init<Controller: RelevantSortController, Output>(searcher: SingleIndexSearcher,
+  convenience init<Controller: RelevantSortController, Output>(searcher: HitsSearcher,
                                                                interactor: RelevantSortInteractor = .init(),
                                                                controller: Controller,
                                                                presenter: @escaping Presenter<Output>) where Controller.Item == Output {
@@ -77,7 +77,7 @@ public extension RelevantSortConnector {
      - presenter: Presenter transforming the relevant sort priority state to its textual representation in the controller.
                   Default presenter provides a tuple of string constants in english.
    */
-  convenience init<Controller: RelevantSortController>(searcher: SingleIndexSearcher,
+  convenience init<Controller: RelevantSortController>(searcher: HitsSearcher,
                                                        interactor: RelevantSortInteractor = .init(),
                                                        controller: Controller,
                                                        presenter: @escaping TextualPresenter = DefaultPresenter.RelevantSort.present) where Controller.Item == TextualRepresentation? {
