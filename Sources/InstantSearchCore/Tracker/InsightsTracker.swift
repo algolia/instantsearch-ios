@@ -22,7 +22,7 @@ extension InsightsTracker {
   public init(eventName: EventName,
               searcher: SingleIndexSearcher,
               userToken: UserToken? = .none) {
-    let credentials: AlgoliaSearchClient.Credentials = searcher.client
+    let credentials: AlgoliaSearchClient.Credentials = searcher.service.client
     let insights = Insights.register(appId: credentials.applicationID, apiKey: credentials.apiKey, userToken: userToken)
     self.init(eventName: eventName,
               searcher: .singleIndex(searcher),

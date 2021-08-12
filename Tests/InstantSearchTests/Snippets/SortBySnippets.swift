@@ -43,9 +43,9 @@ class SortBySnippets {
                                               apiKey: "YourSearchOnlyAPIKey",
                                               indexName: "indexDefault")
     
-    let indexDefault = searcher.client.index(withName: "indexDefault")
-    let indexAscendingOrder = searcher.client.index(withName: "indexAscendingOrder")
-    let indexDescendingOrder = searcher.client.index(withName: "indexDescendingOrder")
+    let indexDefault = searcher.service.client.index(withName: "indexDefault")
+    let indexAscendingOrder = searcher.service.client.index(withName: "indexAscendingOrder")
+    let indexDescendingOrder = searcher.service.client.index(withName: "indexDescendingOrder")
     let alertController = UIAlertController(title: "Change Index",
                                             message: "Please select a new index",
                                             preferredStyle: .actionSheet)

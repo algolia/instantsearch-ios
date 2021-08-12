@@ -23,7 +23,7 @@ public extension SortByConnector {
                                                             controller: Controller,
                                                             presenter: @escaping IndexPresenter = DefaultPresenter.Index.present) where Controller.SegmentKey == Int {
     let enumeratedIndices = indicesNames
-      .map(searcher.client.index(withName:))
+      .map(searcher.service.client.index(withName:))
       .enumerated()
       .map { $0 }
     let items = [Int: Index](uniqueKeysWithValues: enumeratedIndices)

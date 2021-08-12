@@ -36,9 +36,17 @@ public class AlgoliaSearchService: SearchService {
   }
 
   public func search(_ request: Request, completion: @escaping (Result<SearchResponse, Error>) -> Void) -> Operation {
+    let (queries, completion) = collect(for: request, completion: completion)
+    return client.search(queries: queries, requestOptions: request.requestOptions) { completion($0.map(\.results)) }
+  }
+  
+}
 
+extension AlgoliaSearchService {
+  
+  func collect(for request: Request, completion: @escaping (Swift.Result<SearchResponse, Error>) -> Void) -> (queries: [IndexedQuery], completion: (Swift.Result<[MultiIndexSearchResponse.Response], Error>) -> Void) {
     let queries: [IndexedQuery]
-    let transform: (SearchesResponse) -> SearchResponse
+    let transform: ([MultiIndexSearchResponse.Response]) -> SearchResponse
     if isDisjunctiveFacetingEnabled {
       let filterGroups = disjunctiveFacetingDelegate?.toFilterGroups() ?? []
       let hierarchicalAttributes = hierarchicalFacetingDelegate?.hierarchicalAttributes ?? []
@@ -51,16 +59,15 @@ public class AlgoliaSearchService: SearchService {
       queriesBuilder.keepSelectedEmptyFacets = keepSelectedEmptyFacets
       queries = queriesBuilder.build().map { IndexedQuery(indexName: request.indexName, query: $0) }
       // swiftlint:disable:next force_try
-      transform = { try! queriesBuilder.aggregate($0.results) }
+      transform = { try! queriesBuilder.aggregate($0.compactMap(\.hitsResponse)) }
     } else {
       queries = [IndexedQuery(indexName: request.indexName, query: request.query)]
-      transform = { $0.results.first! }
+      transform = { $0.first!.hitsResponse! }
     }
 
-    return client.multipleQueries(queries: queries, requestOptions: request.requestOptions) { completion($0.map(transform)) }
-
+    return (queries, { completion($0.map(transform)) })
   }
-
+  
 }
 
 extension AlgoliaSearchService {

@@ -35,7 +35,7 @@ public class SortByConnector {
 
     set {
       let enumeratedIndices = newValue
-        .map(searcher.client.index(withName:))
+        .map(searcher.service.client.index(withName:))
         .enumerated()
         .map { $0 }
       interactor.items = [Int: Index](uniqueKeysWithValues: enumeratedIndices)
@@ -81,7 +81,7 @@ public class SortByConnector {
                           indicesNames: [IndexName],
                           selected: Int? = nil) {
     let enumeratedIndices = indicesNames
-      .map(searcher.client.index(withName:))
+      .map(searcher.service.client.index(withName:))
       .enumerated()
       .map { $0 }
     let items = [Int: Index](uniqueKeysWithValues: enumeratedIndices)

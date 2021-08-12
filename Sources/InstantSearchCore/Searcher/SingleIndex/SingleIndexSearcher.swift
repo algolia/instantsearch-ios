@@ -12,10 +12,6 @@ import AlgoliaSearchClient
 /// An entity performing search queries targeting one index
 final public class SingleIndexSearcher: IndexSearcher<AlgoliaSearchService> {
 
-  public var client: SearchClient {
-    return service.client
-  }
-
   /// Current index & query tuple
   public var indexQueryState: IndexQueryState {
     get {
@@ -133,8 +129,9 @@ final public class SingleIndexSearcher: IndexSearcher<AlgoliaSearchService> {
               indexName: IndexName,
               query: Query = .init(),
               requestOptions: RequestOptions? = nil) {
+    let service = AlgoliaSearchService(client: client)
     let request = AlgoliaSearchService.Request(indexName: indexName, query: query, requestOptions: requestOptions)
-    super.init(service: AlgoliaSearchService(client: client), initialRequest: request)
+    super.init(service: service, initialRequest: request)
   }
 
   /**
@@ -151,4 +148,20 @@ final public class SingleIndexSearcher: IndexSearcher<AlgoliaSearchService> {
               requestOptions: requestOptions)
   }
 
+}
+
+extension SingleIndexSearcher: MultiQueryCollectable {
+  
+  public func collect() -> (queries: [IndexedQuery], completion: (Swift.Result<[MultiIndexSearchResponse.Response], Swift.Error>) -> Void) {
+    return service.collect(for: request) { [weak self] result in
+      guard let searcher = self else { return }
+      switch result {
+      case .failure(let error):
+        searcher.onError.fire(error)
+      case .success(let response):
+        searcher.onResults.fire(response)
+      }
+    }
+  }
+  
 }

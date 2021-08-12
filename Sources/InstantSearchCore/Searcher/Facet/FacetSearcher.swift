@@ -81,3 +81,22 @@ final public class FacetSearcher: IndexSearcher<FacetSearchService> {
   }
 
 }
+
+extension FacetSearcher: MultiQueryCollectable {
+  
+  public func collect() -> (queries: [IndexedQuery], completion: (Swift.Result<[MultiIndexSearchResponse.Response], Swift.Error>) -> Void) {
+    let query = IndexedQuery(indexName: request.indexName, query: request.context, attribute: request.attribute, facetQuery: request.query)
+    return ([query], { [weak self] result in
+      guard let searcher = self else { return }
+      switch result {
+      case .failure(let error):
+        searcher.onError.fire(error)
+      case .success(let responses):
+        if let response = responses.first?.facetResponse {
+          searcher.onResults.fire(response)
+        }
+      }
+    })
+  }
+  
+}
