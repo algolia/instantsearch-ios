@@ -169,3 +169,33 @@ extension HitsSearcher: MultiQueryCollectable {
   }
   
 }
+
+extension HitsSearcher: QuerySettable {
+  
+  public func setQuery(_ query: String?) {
+    request.query.query = query
+    request.query.page = 0
+    search()
+  }
+  
+}
+
+extension HitsSearcher: IndexNameSettable {
+  
+  public func setIndexName(_ indexName: IndexName) {
+    request.indexName = indexName
+    request.query.page = 0
+    search()
+  }
+  
+}
+
+extension HitsSearcher: FiltersSettable {
+  
+  public func setFilters(_ filters: String?) {
+    request.query.filters = filters
+    request.query.page = 0
+    search()
+  }
+  
+}

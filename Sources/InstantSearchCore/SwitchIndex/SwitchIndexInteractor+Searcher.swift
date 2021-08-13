@@ -7,17 +7,22 @@
 
 import Foundation
 
+public protocol IndexNameSettable {
+  
+  func setIndexName(_ indexName: IndexName)
+  
+}
+
 public extension SwitchIndexInteractor {
 
-  struct SearcherConnection<Service: SearchService>: Connection where Service.Process == Operation, Service.Request: IndexNameProvider {
+  struct SearcherConnection<Searcher: AnyObject & IndexNameSettable>: Connection {
 
     public let interactor: SwitchIndexInteractor
-    public let searcher: IndexSearcher<Service>
+    public let searcher: Searcher
 
     public func connect() {
       interactor.onSelectionChange.subscribe(with: searcher) { (_, selectedIndexName) in
-        searcher.request.indexName = selectedIndexName
-        searcher.search()
+        searcher.setIndexName(selectedIndexName)
       }
     }
 
@@ -27,7 +32,7 @@ public extension SwitchIndexInteractor {
 
   }
 
-  @discardableResult func connectSearcher<Service: SearchService>(_ searcher: IndexSearcher<Service>) -> SearcherConnection<Service> {
+  @discardableResult func connectSearcher<Searcher: AnyObject & IndexNameSettable>(_ searcher: Searcher) -> SearcherConnection<Searcher> {
     let connection = SearcherConnection(interactor: self, searcher: searcher)
     connection.connect()
     return connection

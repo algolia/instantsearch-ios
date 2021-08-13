@@ -7,7 +7,6 @@
 
 import Foundation
 
-
 /// Extracts queries from queries sources, performs search request and dispatches the results to the corresponding receivers
 public class CompositeSearcher<Service: SearchService, UnitQuery, UnitResponse> where Service.Request == [UnitQuery], Service.Result == [UnitResponse] {
   
@@ -56,26 +55,48 @@ extension CompositeSearcher: MultiQueryCollectable {
 
 }
 
-extension CompositeSearcher: TextualQueryProvider {
-  
-  public var textualQuery: String? {
-    get {
-      return searchers.compactMap { $0 as? TextualQueryProvider }.first?.textualQuery
-    }
-    
-    set {
-      
-    }
-  }
-  
-}
-
 extension CompositeSearcher: Searchable {
   
   public func search() {
     let (queries, completion) = collect()
     // Add sequencing logic
     let _ = service.search(queries, completion: completion)
+  }
+  
+}
+
+extension CompositeSearcher: QuerySettable {
+  
+  public func setQuery(_ query: String?) {
+    searchers
+      .compactMap { $0 as? QuerySettable }
+      .forEach {
+        $0.setQuery(query)
+      }
+  }
+  
+}
+
+extension CompositeSearcher: IndexNameSettable {
+  
+  public func setIndexName(_ indexName: IndexName) {
+    searchers
+      .compactMap { $0 as? IndexNameSettable }
+      .forEach {
+        $0.setIndexName(indexName)
+      }
+  }
+  
+}
+
+extension CompositeSearcher: FiltersSettable {
+  
+  public func setFilters(_ filters: String?) {
+    searchers
+      .compactMap { $0 as? FiltersSettable }
+      .forEach {
+        $0.setFilters(filters)
+      }
   }
   
 }
