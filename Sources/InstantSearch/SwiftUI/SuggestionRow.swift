@@ -6,6 +6,8 @@
 //
 
 import Foundation
+#if canImport(Combine) && canImport(SwiftUI)
+import Combine
 import SwiftUI
 
 /// A view presenting a search query suggestion
@@ -66,3 +68,4 @@ public struct SuggestionRow: View {
   }
 
 }
+#endif
