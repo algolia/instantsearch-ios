@@ -1,5 +1,13 @@
 # ChangeLog
 
+## [7.13.2](https://github.com/algolia/instantsearch-ios/compare/7.13.1...7.13.2) (2021-08-30)
+
+### Fix
+
+- Compiler & archive issues (#189) ([4fcbbf8](https://github.com/algolia/instantsearch-ios/commit/4fcbbf8))
+
+
+
 ## [7.13.1](https://github.com/algolia/instantsearch-ios/compare/7.13.0...7.13.1) (2021-08-05)
 
 ### Fix
