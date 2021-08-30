@@ -62,7 +62,7 @@ public extension DynamicFacetListInteractor {
     private func whenSelectionsComputedThenUpdateFilterState() {
       interactor.onSelectionsComputed.subscribePast(with: filterState) { filterState, selectionsPerAttribute in
         selectionsPerAttribute.forEach { attribute, selections in
-          let groupID = groupID(for: attribute)
+          let groupID = self.groupID(for: attribute)
           let filters = selections.map { Filter.Facet(attribute: attribute, stringValue: $0) }
           filterState.removeAll(for: attribute, fromGroupWithID: groupID)
           filterState.addAll(filters: filters, toGroupWithID: groupID)
