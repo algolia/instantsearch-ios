@@ -18,14 +18,14 @@ public extension HitsConnector {
      - externalReload: Defines if controller will be updated automatically by the events or manually
   */
   convenience init<Controller: HitsController>(searcher: SingleIndexSearcher,
-                                               interactor: HitsInteractor<Hit> = .init(),
+                                               interactor: HitsInteractor<Hit>,
                                                filterState: FilterState? = .none,
                                                controller: Controller,
                                                externalReload: Bool = false) where Controller.DataSource == HitsInteractor<Hit> {
     self.init(searcher: searcher,
               interactor: interactor,
               filterState: filterState,
-              connectSearcher: interactor.connectSearcher,
+              connectSearcher: { interactor.connectSearcher($0) },
               controller: controller,
               externalReload: externalReload)
   }
@@ -56,7 +56,7 @@ public extension HitsConnector {
     self.init(searcher: searcher,
               interactor: interactor,
               filterState: filterState,
-              connectSearcher: interactor.connectSearcher,
+              connectSearcher: { interactor.connectSearcher($0) },
               controller: controller,
               externalReload: externalReload)
   }

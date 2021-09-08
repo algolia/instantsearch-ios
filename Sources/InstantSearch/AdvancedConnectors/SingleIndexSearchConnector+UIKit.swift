@@ -15,7 +15,7 @@ public extension SingleIndexSearchConnector {
 
   init<HC: HitsController>(searcher: SingleIndexSearcher,
                            searchController: UISearchController,
-                           hitsInteractor: HitsInteractor<Record> = .init(),
+                           hitsInteractor: HitsInteractor<Record>,
                            hitsController: HC,
                            filterState: FilterState? = nil)  where HC.DataSource == HitsInteractor<Record> {
     let queryInputInteractor = QueryInputInteractor()
@@ -42,7 +42,7 @@ public extension SingleIndexSearchConnector {
                            apiKey: APIKey,
                            indexName: IndexName,
                            searchController: UISearchController,
-                           hitsInteractor: HitsInteractor<Record> = .init(),
+                           hitsInteractor: HitsInteractor<Record>,
                            hitsController: HC,
                            filterState: FilterState? = nil) where HC.DataSource == HitsInteractor<Record> {
     let searcher = SingleIndexSearcher(appID: appID,

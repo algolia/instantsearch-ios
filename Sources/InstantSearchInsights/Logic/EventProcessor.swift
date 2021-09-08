@@ -13,8 +13,9 @@ import AlgoliaSearchClient
 /// - Storing of the events in the persistent storage (if provided)
 /// - Forming the bounded packages of the events
 /// – Synchronizing the events with a provided Service
-class EventProcessor<Event, Service: EventsService, PackageStorage: Storage>: Flushable where Service.Event == Event,
-                                                                                              PackageStorage.Item == [Package<Event>] {
+class EventProcessor<Service: EventsService, PackageStorage: Storage>: Flushable where PackageStorage.Item == [Package<Service.Event>] {
+
+  public typealias Event = Service.Event
 
   /// The service to sync the events with
   let service: Service

@@ -84,7 +84,7 @@ public struct SearchBar: View {
 @available(iOS 13.0, tvOS 13.0, watchOS 6.0, *)
 public extension View {
   func hideKeyboard() {
-      UIApplication.shared.sendAction(#selector(UIResponder.resignFirstResponder), to: nil, from: nil, for: nil)
+//      UIApplication.shared.sendAction(#selector(UIResponder.resignFirstResponder), to: nil, from: nil, for: nil)
   }
 }
 #endif

@@ -53,7 +53,7 @@ public struct SingleIndexSearchConnector<Record: Codable>: Connection {
   public init<HC: HitsController, QI: QueryInputController>(searcher: SingleIndexSearcher,
                                                             queryInputInteractor: QueryInputInteractor = .init(),
                                                             queryInputController: QI,
-                                                            hitsInteractor: HitsInteractor<Record> = .init(),
+                                                            hitsInteractor: HitsInteractor<Record>,
                                                             hitsController: HC,
                                                             filterState: FilterState? = nil) where HC.DataSource == HitsInteractor<Record> {
     hitsConnector = .init(searcher: searcher, interactor: hitsInteractor, filterState: filterState)
@@ -88,7 +88,7 @@ public struct SingleIndexSearchConnector<Record: Codable>: Connection {
                                                             indexName: IndexName,
                                                             queryInputInteractor: QueryInputInteractor = .init(),
                                                             queryInputController: QI,
-                                                            hitsInteractor: HitsInteractor<Record> = .init(),
+                                                            hitsInteractor: HitsInteractor<Record>,
                                                             hitsController: HC,
                                                             filterState: FilterState? = nil)  where HC.DataSource == HitsInteractor<Record> {
     let searcher = SingleIndexSearcher(appID: appID,

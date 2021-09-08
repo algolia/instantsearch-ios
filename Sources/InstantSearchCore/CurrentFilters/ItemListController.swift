@@ -8,7 +8,7 @@
 
 import Foundation
 
-public protocol ItemListController: class {
+public protocol ItemListController: AnyObject {
 
   associatedtype Item: Hashable
 
