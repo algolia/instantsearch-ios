@@ -83,7 +83,7 @@ final public class FacetSearcher: IndexSearcher<FacetSearchService> {
 }
 
 extension FacetSearcher: CompositeSearchSource {
-  
+
   public func collect() -> (queries: [IndexedQuery], completion: (Swift.Result<[MultiIndexSearchResponse.Response], Swift.Error>) -> Void) {
     let query = IndexedQuery(indexName: request.indexName, query: request.context, attribute: request.attribute, facetQuery: request.query)
     return ([query], { [weak self] result in
@@ -98,32 +98,32 @@ extension FacetSearcher: CompositeSearchSource {
       }
     })
   }
-  
+
 }
 
 extension FacetSearcher: QuerySettable {
-  
+
   public func setQuery(_ query: String?) {
     request.query = query ?? ""
     search()
   }
-  
+
 }
 
 extension FacetSearcher: IndexNameSettable {
-  
+
   public func setIndexName(_ indexName: IndexName) {
     request.indexName = indexName
     search()
   }
-  
+
 }
 
 extension FacetSearcher: FiltersSettable {
-  
+
   public func setFilters(_ filters: String?) {
     request.context.filters = filters
     search()
   }
-  
+
 }

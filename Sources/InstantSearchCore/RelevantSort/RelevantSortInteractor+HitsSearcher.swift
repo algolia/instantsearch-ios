@@ -8,7 +8,7 @@
 import Foundation
 
 public extension RelevantSortInteractor {
-  
+
   @available(*, deprecated, renamed: "HitsSearcherConnection")
   typealias SingleIndexSearcherConnection = HitsSearcherConnection
 

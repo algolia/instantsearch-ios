@@ -66,14 +66,14 @@ public extension CurrentFiltersInteractor {
 }
 
 public extension CurrentFiltersInteractor {
-  
+
   @discardableResult func connectFilterState(_ filterState: FilterState,
                                              filterGroupIDs: Set<FilterGroup.ID>? = nil) -> FilterStateConnection {
     let connection = FilterStateConnection(interactor: self, filterState: filterState, filterGroupIDs: filterGroupIDs)
     connection.connect()
     return connection
   }
-  
+
   @discardableResult func connectFilterState(_ filterState: FilterState,
                                              filterGroupID: FilterGroup.ID?) -> FilterStateConnection {
     if let filterGroupID = filterGroupID {
@@ -82,10 +82,10 @@ public extension CurrentFiltersInteractor {
       return connectFilterState(filterState)
     }
   }
-  
+
   @discardableResult func connectFilterState(_ filterState: FilterState,
                                              filterGroupID: FilterGroup.ID) -> FilterStateConnection {
     return connectFilterState(filterState, filterGroupIDs: Set([filterGroupID]))
   }
-  
+
 }

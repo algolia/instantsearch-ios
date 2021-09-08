@@ -12,7 +12,7 @@ public extension HierarchicalInteractor {
 
   @available(*, deprecated, renamed: "HitsSearcherConnection")
   typealias SingleIndexSearcherConnection = HitsSearcherConnection
-  
+
   struct HitsSearcherConnection: Connection {
 
     public let interactor: HierarchicalInteractor

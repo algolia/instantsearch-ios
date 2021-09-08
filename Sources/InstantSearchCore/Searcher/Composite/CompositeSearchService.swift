@@ -8,8 +8,8 @@
 import Foundation
 
 public protocol CompositeSearchService: SearchService where Request == [RequestUnit], Result == [ResultUnit] {
-  
+
   associatedtype RequestUnit
   associatedtype ResultUnit
-  
+
 }

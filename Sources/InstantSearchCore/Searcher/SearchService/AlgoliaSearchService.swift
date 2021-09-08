@@ -39,11 +39,11 @@ public class AlgoliaSearchService: SearchService {
     let (queries, completion) = collect(for: request, completion: completion)
     return client.search(queries: queries, requestOptions: request.requestOptions) { completion($0.map(\.results)) }
   }
-  
+
 }
 
 extension AlgoliaSearchService {
-  
+
   func collect(for request: Request, completion: @escaping (Swift.Result<SearchResponse, Error>) -> Void) -> (queries: [IndexedQuery], completion: (Swift.Result<[MultiIndexSearchResponse.Response], Error>) -> Void) {
     let queries: [IndexedQuery]
     let transform: ([MultiIndexSearchResponse.Response]) -> SearchResponse
@@ -67,7 +67,7 @@ extension AlgoliaSearchService {
 
     return (queries, { completion($0.map(transform)) })
   }
-  
+
 }
 
 extension AlgoliaSearchService {

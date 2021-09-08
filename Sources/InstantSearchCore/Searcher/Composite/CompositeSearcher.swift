@@ -7,15 +7,14 @@
 
 import Foundation
 
-
 public typealias CompositeSearcher = AbstractCompositeSearcher<SearchClient>
 
 public extension CompositeSearcher {
-  
+
   convenience init(appID: ApplicationID, apiKey: APIKey) {
     self.init(service: .init(appID: appID, apiKey: apiKey))
   }
-  
+
   @discardableResult func addHitsSearcher(indexName: IndexName,
                                           query: Query = .init(),
                                           requestOptions: RequestOptions? = nil) -> HitsSearcher {
@@ -25,7 +24,7 @@ public extension CompositeSearcher {
                                 requestOptions: requestOptions)
     return addSearcher(searcher)
   }
-  
+
   @discardableResult func addFacetsSearcher(indexName: IndexName,
                                             query: Query = .init(),
                                             attribute: Attribute,
@@ -38,5 +37,5 @@ public extension CompositeSearcher {
                                  requestOptions: requestOptions)
     return addSearcher(searcher)
   }
-  
+
 }

@@ -9,7 +9,7 @@
 import Foundation
 
 public extension IndexSegment {
-  
+
   @available(*, deprecated, renamed: "HitsSearcherConnection")
   typealias SingleIndexSearcherConnection = HitsSearcherConnection
 

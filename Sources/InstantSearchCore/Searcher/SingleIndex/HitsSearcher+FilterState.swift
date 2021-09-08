@@ -18,7 +18,7 @@ public extension HitsSearcher {
    */
 
   struct FilterStateConnection: Connection {
-    
+
     @available(*, deprecated, renamed: "hitsSearcher")
     public var singleIndexSearcher: HitsSearcher {
       return hitsSearcher
