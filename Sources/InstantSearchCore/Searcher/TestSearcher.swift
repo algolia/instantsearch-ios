@@ -8,7 +8,10 @@
 import Foundation
 import AlgoliaSearchClient
 
-extension SearchClient: SearchService {
+extension SearchClient: CompositeSearchService {
+  
+  public typealias RequestUnit = IndexedQuery
+  public typealias ResultUnit = MultiIndexSearchResponse.Response
   
   public func search(_ queries: [IndexedQuery], completion: @escaping (Result<[MultiIndexSearchResponse.Response], Error>) -> Void) -> Operation {
     return search(queries: queries, strategy: .none, requestOptions: nil) { result in
@@ -73,7 +76,7 @@ func example() {
     
   // Composite searcher
     
-  let compositeSearcher = CompositeSearcher(appID: "anotherAPPID",
+  let compositeSearcher = AbstractCompositeSearcher(appID: "anotherAPPID",
                                             apiKey: "anotherAPIKey")
   compositeSearcher.addHitsSearcher(indexName: "myIndex2", query: sharedQuery)
   compositeSearcher.addHitsSearcher(indexName: "myIndex", query: sharedQuery)

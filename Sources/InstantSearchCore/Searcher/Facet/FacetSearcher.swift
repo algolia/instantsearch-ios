@@ -82,7 +82,7 @@ final public class FacetSearcher: IndexSearcher<FacetSearchService> {
 
 }
 
-extension FacetSearcher: MultiQueryCollectable {
+extension FacetSearcher: CompositeSearchSource {
   
   public func collect() -> (queries: [IndexedQuery], completion: (Swift.Result<[MultiIndexSearchResponse.Response], Swift.Error>) -> Void) {
     let query = IndexedQuery(indexName: request.indexName, query: request.context, attribute: request.attribute, facetQuery: request.query)
