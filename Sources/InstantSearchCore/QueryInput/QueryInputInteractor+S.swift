@@ -15,17 +15,17 @@ public protocol QuerySettable {
 
 public extension QueryInputInteractor {
 
-  struct RecieverConnection<S: AnyObject & QuerySettable> {
+  struct SubscriberConnection<S: AnyObject & QuerySettable> {
 
     public let interactor: QueryInputInteractor
-    public let searcher: S
+    public let subscriber: S
     public let searchTriggeringMode: SearchTriggeringMode
 
     public init(interactor: QueryInputInteractor,
-                searcher: S,
+                subscriber: S,
                 searchTriggeringMode: SearchTriggeringMode = .searchAsYouType) {
       self.interactor = interactor
-      self.searcher = searcher
+      self.subscriber = subscriber
       self.searchTriggeringMode = searchTriggeringMode
     }
 
@@ -33,12 +33,12 @@ public extension QueryInputInteractor {
 
       switch searchTriggeringMode {
       case .searchAsYouType:
-        interactor.onQueryChanged.subscribe(with: searcher) { searcher, query in
+        interactor.onQueryChanged.subscribe(with: subscriber) { searcher, query in
           searcher.setQuery(query)
         }
 
       case .searchOnSubmit:
-        interactor.onQuerySubmitted.subscribe(with: searcher) { searcher, query in
+        interactor.onQuerySubmitted.subscribe(with: subscriber) { searcher, query in
           searcher.setQuery(query)
         }
       }
@@ -50,10 +50,10 @@ public extension QueryInputInteractor {
 
       switch searchTriggeringMode {
       case .searchAsYouType:
-        interactor.onQueryChanged.cancelSubscription(for: searcher)
+        interactor.onQueryChanged.cancelSubscription(for: subscriber)
 
       case .searchOnSubmit:
-        interactor.onQuerySubmitted.cancelSubscription(for: searcher)
+        interactor.onQuerySubmitted.cancelSubscription(for: subscriber)
       }
 
     }
@@ -64,9 +64,9 @@ public extension QueryInputInteractor {
 
 public extension QueryInputInteractor {
 
-  @discardableResult func connectSearcherS<S: AnyObject & QuerySettable>(_ searcher: S,
-                                                                         searchTriggeringMode: SearchTriggeringMode = .searchAsYouType) -> RecieverConnection<S> {
-    let connection = RecieverConnection(interactor: self, searcher: searcher, searchTriggeringMode: searchTriggeringMode)
+  @discardableResult func connect<S: AnyObject & QuerySettable>(_ subscriber: S,
+                                                                searchTriggeringMode: SearchTriggeringMode = .searchAsYouType) -> SubscriberConnection<S> {
+    let connection = SubscriberConnection(interactor: self, subscriber: subscriber, searchTriggeringMode: searchTriggeringMode)
     connection.connect()
     return connection
   }

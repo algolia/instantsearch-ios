@@ -13,7 +13,7 @@ public protocol CompositeSearchSource {
   associatedtype ResultUnit
 
   /// Returns the list of queries and the completion that might be called with for the result of these queries
-  func collect() -> (queries: [RequestUnit], completion: (Result<[ResultUnit], Error>) -> Void)
+  func collect() -> (requests: [RequestUnit], completion: (Result<[ResultUnit], Error>) -> Void)
 
 }
 
@@ -21,14 +21,14 @@ public protocol CompositeSearchSource {
 class AnyCompositeSearchSource<RequestUnit, ResultUnit>: CompositeSearchSource {
 
   let wrapped: Any
-  let collectClosure: () -> (queries: [RequestUnit], completion: (Result<[ResultUnit], Error>) -> Void)
+  let collectClosure: () -> (requests: [RequestUnit], completion: (Result<[ResultUnit], Error>) -> Void)
 
   init<T: CompositeSearchSource>(wrapped: T) where T.RequestUnit == RequestUnit, T.ResultUnit == ResultUnit {
     self.wrapped = wrapped
     self.collectClosure = wrapped.collect
   }
 
-  func collect() -> (queries: [RequestUnit], completion: (Result<[ResultUnit], Error>) -> Void) {
+  func collect() -> (requests: [RequestUnit], completion: (Result<[ResultUnit], Error>) -> Void) {
     return collectClosure()
   }
 

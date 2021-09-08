@@ -22,26 +22,26 @@ public protocol FacetingSource: AnyObject {
 
 public extension FilterState {
 
-  struct SearcherConnection<Searcher: AnyObject & FiltersSettable>: Connection {
+  struct SubscriberConnection<S: AnyObject & FiltersSettable>: Connection {
 
     public let filterState: FilterState
-    public let searcher: Searcher
+    public let subscriber: S
 
     public func connect() {
-      filterState.onChange.subscribePast(with: searcher) { searcher, filterState in
+      filterState.onChange.subscribePast(with: subscriber) { searcher, filterState in
         let filters = FilterGroupConverter().sql(filterState.toFilterGroups())
         searcher.setFilters(filters)
       }
     }
 
     public func disconnect() {
-      filterState.onChange.cancelSubscription(for: searcher)
+      filterState.onChange.cancelSubscription(for: subscriber)
     }
 
   }
 
-  @discardableResult func connectSearcher<Searcher: FiltersSettable>(_ searcher: Searcher) -> SearcherConnection<Searcher> {
-    let connection = SearcherConnection(filterState: self, searcher: searcher)
+  @discardableResult func connect<S: FiltersSettable>(_ subscriber: S) -> SubscriberConnection<S> {
+    let connection = SubscriberConnection(filterState: self, subscriber: subscriber)
     connection.connect()
     return connection
   }

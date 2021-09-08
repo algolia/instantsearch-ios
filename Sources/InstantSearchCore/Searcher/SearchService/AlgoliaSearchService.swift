@@ -44,7 +44,7 @@ public class AlgoliaSearchService: SearchService {
 
 extension AlgoliaSearchService {
 
-  func collect(for request: Request, completion: @escaping (Swift.Result<SearchResponse, Error>) -> Void) -> (queries: [IndexedQuery], completion: (Swift.Result<[MultiIndexSearchResponse.Response], Error>) -> Void) {
+  func collect(for request: Request, completion: @escaping (Swift.Result<SearchResponse, Error>) -> Void) -> (requests: [IndexedQuery], completion: (Swift.Result<[MultiIndexSearchResponse.Response], Error>) -> Void) {
     let queries: [IndexedQuery]
     let transform: ([MultiIndexSearchResponse.Response]) -> SearchResponse
     if isDisjunctiveFacetingEnabled {

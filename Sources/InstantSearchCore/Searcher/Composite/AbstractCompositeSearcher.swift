@@ -10,20 +10,27 @@ import Foundation
 /// Extracts queries from queries sources, performs search request and dispatches the results to the corresponding receivers
 public class AbstractCompositeSearcher<Service: CompositeSearchService> where Service.Process == Operation {
 
+  public typealias RequestUnit = Service.RequestUnit
+  public typealias ResultUnit = Service.ResultUnit
+  
   /// Service which performs search requests
   public let service: Service
 
   /// Sequencer which orders and debounce redundant search operations
   internal let sequencer: Sequencer
 
+  /// List of wrapped child searchers
   internal var children: [AnyCompositeSearchSource<RequestUnit, ResultUnit>]
 
+  /// - parameter service: Service which performs search requests
   public init(service: Service) {
     self.service = service
     self.sequencer = .init()
     self.children = []
   }
 
+  /// Add a child searcher
+  /// - parameter child: child searcher to add
   @discardableResult public func addSearcher<S: CompositeSearchSource>(_ child: S) -> S where S.RequestUnit == RequestUnit, S.ResultUnit == ResultUnit {
     children.append(AnyCompositeSearchSource(wrapped: child))
     return child
@@ -33,11 +40,11 @@ public class AbstractCompositeSearcher<Service: CompositeSearchService> where Se
 
 extension AbstractCompositeSearcher: CompositeSearchSource {
 
-  public func collect() -> (queries: [Service.RequestUnit], completion: (Result<[Service.ResultUnit], Error>) -> Void) {
-    let queriesAndCompletions = children.map { $0.collect() }
+  public func collect() -> (requests: [RequestUnit], completion: (Result<[ResultUnit], Error>) -> Void) {
+    let requestsAndCompletions = children.map { $0.collect() }
 
-    let queries = queriesAndCompletions.map(\.queries)
-    let completions = queriesAndCompletions.map(\.completion)
+    let requests = requestsAndCompletions.map(\.requests)
+    let completions = requestsAndCompletions.map(\.completion)
 
     /// Maps the nested lists to the ranges corresponding to the positions of the nested list elements in the flatten list
     /// Example: [["a", "b", "c"], ["d", "e"], ["f", "g", "h"]] -> [0..<3, 3..<5, 5..<8]
@@ -53,9 +60,9 @@ extension AbstractCompositeSearcher: CompositeSearchSource {
       return ranges
     }
 
-    let rangePerCompletion = zip(completions, flatRanges(queries))
+    let rangePerCompletion = zip(completions, flatRanges(requests))
 
-    return (queries.flatMap { $0 }, { result in
+    return (requests.flatMap { $0 }, { result in
       for (completion, range) in rangePerCompletion {
         let resultForCompletion = result.map { Array($0[range]) }
         completion(resultForCompletion)

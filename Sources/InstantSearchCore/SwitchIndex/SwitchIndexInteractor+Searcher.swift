@@ -15,25 +15,25 @@ public protocol IndexNameSettable {
 
 public extension SwitchIndexInteractor {
 
-  struct SearcherConnection<Searcher: AnyObject & IndexNameSettable>: Connection {
+  struct SubscriberConnection<Subscriber: AnyObject & IndexNameSettable>: Connection {
 
     public let interactor: SwitchIndexInteractor
-    public let searcher: Searcher
+    public let subscriber: Subscriber
 
     public func connect() {
-      interactor.onSelectionChange.subscribe(with: searcher) { (_, selectedIndexName) in
-        searcher.setIndexName(selectedIndexName)
+      interactor.onSelectionChange.subscribe(with: subscriber) { (_, selectedIndexName) in
+        subscriber.setIndexName(selectedIndexName)
       }
     }
 
     public func disconnect() {
-      interactor.onSelectionChange.cancelSubscription(for: searcher)
+      interactor.onSelectionChange.cancelSubscription(for: subscriber)
     }
 
   }
 
-  @discardableResult func connectSearcher<Searcher: AnyObject & IndexNameSettable>(_ searcher: Searcher) -> SearcherConnection<Searcher> {
-    let connection = SearcherConnection(interactor: self, searcher: searcher)
+  @discardableResult func connect<Subscriber: AnyObject & IndexNameSettable>(_ subscriber: Subscriber) -> SubscriberConnection<Subscriber> {
+    let connection = SubscriberConnection(interactor: self, subscriber: subscriber)
     connection.connect()
     return connection
   }

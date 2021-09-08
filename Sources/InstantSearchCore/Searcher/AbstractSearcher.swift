@@ -8,7 +8,7 @@
 import Foundation
 
 /// Abstract search business logic
-public class AbstractSearcher<Service: SearchService>: Searcher, SequencerDelegate, SearchResultObservable, ErrorObservable where Service.Process == Operation {
+public class AbstractSearcher<Service: SearchService>: Searcher, Searchable, SequencerDelegate, SearchResultObservable, ErrorObservable where Service.Process == Operation {
 
   public typealias Request = Service.Request
   public typealias Result = Service.Result

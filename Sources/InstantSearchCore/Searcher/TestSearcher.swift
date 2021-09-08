@@ -88,19 +88,19 @@ func example() {
   compositeSearcher.search()
 
   let queryInputInteractor2 = QueryInputInteractor()
-  queryInputInteractor2.connectSearcherS(compositeSearcher)
-  queryInputInteractor2.connectSearcherS(compositeSearcher)
-  queryInputInteractor2.connectSearcherS(facetSearcher)
+  queryInputInteractor2.connect(compositeSearcher)
+  queryInputInteractor2.connect(compositeSearcher)
+  queryInputInteractor2.connect(facetSearcher)
 
   let filterState = FilterState()
-  filterState.connectSearcher(compositeSearcher)
-  filterState.connectSearcher(compositeSearcher)
-  filterState.connectSearcher(facetSearcher)
+  filterState.connect(compositeSearcher)
+  filterState.connect(compositeSearcher)
+  filterState.connect(facetSearcher)
 
   let switchIndexInteractor = SwitchIndexInteractor(indexNames: ["products", "products-price-asc", "products-price-desc"], selectedIndexName: "products")
-  switchIndexInteractor.connectSearcher(compositeSearcher)
-  switchIndexInteractor.connectSearcher(compositeSearcher)
-  switchIndexInteractor.connectSearcher(facetSearcher)
+  switchIndexInteractor.connect(compositeSearcher)
+  switchIndexInteractor.connect(compositeSearcher)
+  switchIndexInteractor.connect(facetSearcher)
 
 }
 
