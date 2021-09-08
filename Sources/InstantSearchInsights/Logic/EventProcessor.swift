@@ -16,7 +16,7 @@ import AlgoliaSearchClient
 class EventProcessor<Service: EventsService, PackageStorage: Storage>: Flushable where PackageStorage.Item == [Package<Service.Event>] {
 
   public typealias Event = Service.Event
-  
+
   /// The service to sync the events with
   let service: Service
 
