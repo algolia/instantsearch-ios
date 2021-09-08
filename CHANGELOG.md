@@ -1,5 +1,13 @@
 # ChangeLog
 
+## [7.13.3](https://github.com/algolia/instantsearch-ios/compare/7.13.2...7.13.3) (2021-09-08)
+
+### Fix
+
+- Xcode 13 compiler issues (#179) ([1665c7a](https://github.com/algolia/instantsearch-ios/commit/1665c7a))
+
+
+
 ## [7.13.2](https://github.com/algolia/instantsearch-ios/compare/7.13.1...7.13.2) (2021-08-30)
 
 ### Fix
