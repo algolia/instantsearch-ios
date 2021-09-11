@@ -7,15 +7,9 @@
 
 import Foundation
 
-public protocol QuerySettable {
-
-  func setQuery(_ query: String?)
-
-}
-
 public extension QueryInputInteractor {
 
-  struct SubscriberConnection<S: AnyObject & QuerySettable> {
+  struct SubscriberConnection<S: AnyObject & QuerySettable>: Connection {
 
     public let interactor: QueryInputInteractor
     public let subscriber: S

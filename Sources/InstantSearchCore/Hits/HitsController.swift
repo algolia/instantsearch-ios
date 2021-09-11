@@ -17,3 +17,10 @@ public protocol HitsController: AnyObject, Reloadable {
   func scrollToTop()
 
 }
+
+public extension HitsController {
+  
+  func scrollToTop() {}
+  func reload() {}
+  
+}

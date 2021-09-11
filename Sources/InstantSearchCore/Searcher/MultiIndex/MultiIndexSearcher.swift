@@ -195,6 +195,15 @@ public class MultiIndexSearcher: Searcher, SequencerDelegate, SearchResultObserv
 }
 
 @available(*, deprecated, message: "Use multiple HitsSearcher aggregated with CompositeSearcher instead of MultiIndexSearcher")
+extension MultiIndexSearcher: QuerySettable {
+  
+  public func setQuery(_ query: String?) {
+    self.query = query
+  }
+  
+}
+
+@available(*, deprecated, message: "Use multiple HitsSearcher aggregated with CompositeSearcher instead of MultiIndexSearcher")
 internal extension MultiIndexSearcher {
 
   class PageLoaderProxy: PageLoadable {

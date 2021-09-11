@@ -17,6 +17,7 @@ final public class FacetSearcher: IndexSearcher<FacetSearchService> {
   }
 
   /// Current tuple of index and query
+  @available(*, deprecated, message: "Use the `request` property instead")
   public var indexQueryState: IndexQueryState {
     get {
       return .init(indexName: request.indexName, query: request.context)
@@ -105,7 +106,6 @@ extension FacetSearcher: QuerySettable {
 
   public func setQuery(_ query: String?) {
     request.query = query ?? ""
-    search()
   }
 
 }
@@ -114,7 +114,6 @@ extension FacetSearcher: IndexNameSettable {
 
   public func setIndexName(_ indexName: IndexName) {
     request.indexName = indexName
-    search()
   }
 
 }
@@ -123,7 +122,6 @@ extension FacetSearcher: FiltersSettable {
 
   public func setFilters(_ filters: String?) {
     request.context.filters = filters
-    search()
   }
 
 }

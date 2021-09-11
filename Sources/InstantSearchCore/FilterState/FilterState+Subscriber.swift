@@ -1,24 +1,11 @@
 //
-//  FilterState+Searcher.swift
+//  FilterState+Subscriber.swift
 //  
 //
 //  Created by Vladislav Fitc on 13/08/2021.
 //
 
 import Foundation
-
-public protocol FiltersSettable {
-
-  func setFilters(_ filters: String?)
-
-}
-
-public protocol FacetingSource: AnyObject {
-
-  var disjunctiveFacetingDelegate: DisjunctiveFacetingDelegate? { get set }
-  var hierarchicalFacetingDelegate: HierarchicalFacetingDelegate? { get set }
-
-}
 
 public extension FilterState {
 

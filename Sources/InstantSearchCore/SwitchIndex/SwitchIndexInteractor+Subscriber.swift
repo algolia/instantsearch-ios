@@ -7,12 +7,6 @@
 
 import Foundation
 
-public protocol IndexNameSettable {
-
-  func setIndexName(_ indexName: IndexName)
-
-}
-
 public extension SwitchIndexInteractor {
 
   struct SubscriberConnection<Subscriber: AnyObject & IndexNameSettable>: Connection {

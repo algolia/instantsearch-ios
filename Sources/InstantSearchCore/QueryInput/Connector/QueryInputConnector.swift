@@ -15,6 +15,8 @@ public class QueryInputConnector {
 
   /// Searcher that handles your searches
   public let searcher: Searcher
+  
+  public let subscriber: QuerySettable
 
   /// Business logic that handles new search inputs
   public let interactor: QueryInputInteractor
@@ -31,12 +33,23 @@ public class QueryInputConnector {
      - interactor: Business logic that handles new search inputs
      - searchTriggeringMode: Defines the event triggering a new search
    */
-  public init<S: Searcher>(searcher: S,
-                           interactor: QueryInputInteractor = .init(),
-                           searchTriggeringMode: SearchTriggeringMode = .searchAsYouType) {
+  public init<S: Searcher & QuerySettable>(searcher: S,
+                                           interactor: QueryInputInteractor = .init(),
+                                           searchTriggeringMode: SearchTriggeringMode = .searchAsYouType) {
     self.searcher = searcher
+    self.subscriber = searcher
     self.interactor = interactor
-    self.searcherConnection = interactor.connectSearcher(searcher, searchTriggeringMode: searchTriggeringMode)
+    self.searcherConnection = interactor.connect(searcher, searchTriggeringMode: searchTriggeringMode)
+    self.controllerConnections = []
+  }
+  
+  public init<S: AnyObject & QuerySettable>(subscriber: S,
+                                            interactor: QueryInputInteractor = .init(),
+                                            searchTriggeringMode: SearchTriggeringMode = .searchAsYouType) {
+    self.searcher = HitsSearcher(appID: "", apiKey: "", indexName: "")
+    self.subscriber = subscriber
+    self.interactor = interactor
+    self.searcherConnection = interactor.connect(subscriber, searchTriggeringMode: searchTriggeringMode)
     self.controllerConnections = []
   }
 

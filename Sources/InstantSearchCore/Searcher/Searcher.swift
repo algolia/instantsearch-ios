@@ -34,6 +34,14 @@ public protocol Searcher: AnyObject, Searchable {
 
 }
 
+extension Searcher {
+  
+  public func setQuery(_ query: String?) {
+    self.query = query
+  }
+  
+}
+
 public protocol Searchable {
   func search()
 }

@@ -16,15 +16,33 @@ public extension QueryInputConnector {
      - searchTriggeringMode: Defines the event triggering a new search
      - controller: Controller interfacing with a concrete query input view
    */
-  convenience init<Controller: QueryInputController, S: Searcher>(searcher: S,
-                                                                  interactor: QueryInputInteractor = .init(),
-                                                                  searchTriggeringMode: SearchTriggeringMode = .searchAsYouType,
-                                                                  controller: Controller) {
+  convenience init<Controller: QueryInputController, S: Searcher & QuerySettable>(searcher: S,
+                                                                                  interactor: QueryInputInteractor = .init(),
+                                                                                  searchTriggeringMode: SearchTriggeringMode = .searchAsYouType,
+                                                                                  controller: Controller) {
     self.init(searcher: searcher,
               interactor: interactor,
               searchTriggeringMode: searchTriggeringMode)
     connectController(controller)
   }
+  
+  /**
+   - Parameters:
+     - subscriber: Searcher that handles your searches
+     - interactor: Logic that handles new search inputs
+     - searchTriggeringMode: Defines the event triggering a new search
+     - controller: Controller interfacing with a concrete query input view
+   */
+  convenience init<Controller: QueryInputController, S: AnyObject & QuerySettable>(subscriber: S,
+                                                                                   interactor: QueryInputInteractor = .init(),
+                                                                                   searchTriggeringMode: SearchTriggeringMode = .searchAsYouType,
+                                                                                   controller: Controller) {
+    self.init(subscriber: subscriber,
+              interactor: interactor,
+              searchTriggeringMode: searchTriggeringMode)
+    connectController(controller)
+  }
+
 
   /**
    Establishes a connection with the controller

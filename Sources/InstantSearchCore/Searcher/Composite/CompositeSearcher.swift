@@ -28,7 +28,7 @@ public extension CompositeSearcher {
   @discardableResult func addFacetsSearcher(indexName: IndexName,
                                             query: Query = .init(),
                                             attribute: Attribute,
-                                            facetQuery: String,
+                                            facetQuery: String = "",
                                             requestOptions: RequestOptions? = nil) -> FacetSearcher {
     let searcher = FacetSearcher(client: service,
                                  indexName: indexName,

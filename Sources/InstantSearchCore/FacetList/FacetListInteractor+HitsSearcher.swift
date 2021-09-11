@@ -1,5 +1,5 @@
 //
-//  FacetListInteractor+Searcher.swift
+//  FacetListInteractor+HitsSearcher.swift
 //  InstantSearchCore
 //
 //  Created by Vladislav Fitc on 02/08/2019.

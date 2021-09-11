@@ -10,7 +10,7 @@ import Foundation
 
 public extension HitsInteractor {
 
-  @available(*, deprecated, renamed: "HitsSearcher")
+  @available(*, deprecated, renamed: "HitsSearcherConnection")
   typealias SingleIndexSearcherConnection = HitsSearcherConnection
 
   struct HitsSearcherConnection: Connection {

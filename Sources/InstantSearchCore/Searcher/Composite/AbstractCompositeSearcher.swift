@@ -15,6 +15,11 @@ public class AbstractCompositeSearcher<Service: CompositeSearchService> where Se
   
   /// Service which performs search requests
   public let service: Service
+  
+  public let onSearch: Observer<Void>
+  
+  /// Event triggered when a new search result received
+  public let onResultsUpdated: Observer<Service.Result>
 
   /// Sequencer which orders and debounce redundant search operations
   internal let sequencer: Sequencer
@@ -27,6 +32,8 @@ public class AbstractCompositeSearcher<Service: CompositeSearchService> where Se
     self.service = service
     self.sequencer = .init()
     self.children = []
+    self.onSearch = .init()
+    self.onResultsUpdated = .init()
   }
 
   /// Add a child searcher
@@ -67,6 +74,7 @@ extension AbstractCompositeSearcher: CompositeSearchSource {
         let resultForCompletion = result.map { Array($0[range]) }
         completion(resultForCompletion)
       }
+      self.onResultsUpdated.fire([])
     })
   }
 
@@ -75,6 +83,7 @@ extension AbstractCompositeSearcher: CompositeSearchSource {
 extension AbstractCompositeSearcher: Searchable {
 
   public func search() {
+    onSearch.fire(())
     let (queries, completion) = collect()
     let operation = service.search(queries, completion: completion)
     sequencer.orderOperation(operationLauncher: { return operation })

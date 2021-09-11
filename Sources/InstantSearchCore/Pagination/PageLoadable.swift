@@ -26,7 +26,7 @@ extension HitsSearcher: PageLoadable {
 extension FacetSearcher: PageLoadable {
 
   public func loadPage(atIndex pageIndex: Int) {
-    indexQueryState.query.page = pageIndex
+    request.context.page = pageIndex
     search()
   }
 

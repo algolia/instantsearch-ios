@@ -16,7 +16,7 @@ public extension AbstractSearcher where Service.Request: TextualQueryProvider {
     }
 
     set {
-      let oldValue = request.textualQuery
+      _ = request.textualQuery
       request.textualQuery = newValue
     }
 
