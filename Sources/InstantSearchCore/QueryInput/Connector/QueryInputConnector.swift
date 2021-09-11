@@ -36,7 +36,7 @@ public class QueryInputConnector {
                                                          searchTriggeringMode: SearchTriggeringMode = .searchAsYouType) {
     self.searcher = searcher
     self.interactor = interactor
-    self.searcherConnection = interactor.connect(searcher, searchTriggeringMode: searchTriggeringMode)
+    self.searcherConnection = interactor.connectSearcher(searcher, searchTriggeringMode: searchTriggeringMode)
     self.controllerConnections = []
   }
 

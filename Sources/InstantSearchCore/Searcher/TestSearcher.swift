@@ -88,9 +88,9 @@ func example() {
   compositeSearcher.search()
 
   let queryInputInteractor2 = QueryInputInteractor()
-  queryInputInteractor2.connect(compositeSearcher)
-  queryInputInteractor2.connect(compositeSearcher)
-  queryInputInteractor2.connect(facetSearcher)
+  queryInputInteractor2.connectSearcher(compositeSearcher)
+  queryInputInteractor2.connectSearcher(compositeSearcher)
+  queryInputInteractor2.connectSearcher(facetSearcher)
 
   let filterState = FilterState()
   filterState.connect(compositeSearcher)
