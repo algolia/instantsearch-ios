@@ -12,7 +12,7 @@ public typealias CompositeSearcher = AbstractCompositeSearcher<SearchClient>
 public extension CompositeSearcher {
 
   convenience init(appID: ApplicationID, apiKey: APIKey) {
-    self.init(service: .init(appID: appID, apiKey: apiKey))
+    self.init(service: .init(appID: appID, apiKey: apiKey), initialRequest: [])
   }
 
   @discardableResult func addHitsSearcher(indexName: IndexName,

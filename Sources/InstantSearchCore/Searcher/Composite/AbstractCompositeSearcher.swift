@@ -8,33 +8,13 @@
 import Foundation
 
 /// Extracts queries from queries sources, performs search request and dispatches the results to the corresponding receivers
-public class AbstractCompositeSearcher<Service: CompositeSearchService> where Service.Process == Operation {
+public class AbstractCompositeSearcher<Service: CompositeSearchService>: AbstractSearcher<Service> where Service.Process == Operation {
 
   public typealias RequestUnit = Service.RequestUnit
   public typealias ResultUnit = Service.ResultUnit
-  
-  /// Service which performs search requests
-  public let service: Service
-  
-  public let onSearch: Observer<Void>
-  
-  /// Event triggered when a new search result received
-  public let onResultsUpdated: Observer<Service.Result>
-
-  /// Sequencer which orders and debounce redundant search operations
-  internal let sequencer: Sequencer
-
+      
   /// List of wrapped child searchers
-  internal var children: [AnyCompositeSearchSource<RequestUnit, ResultUnit>]
-
-  /// - parameter service: Service which performs search requests
-  public init(service: Service) {
-    self.service = service
-    self.sequencer = .init()
-    self.children = []
-    self.onSearch = .init()
-    self.onResultsUpdated = .init()
-  }
+  internal var children: [AnyCompositeSearchSource<RequestUnit, ResultUnit>] = []
 
   /// Add a child searcher
   /// - parameter child: child searcher to add
@@ -42,12 +22,24 @@ public class AbstractCompositeSearcher<Service: CompositeSearchService> where Se
     children.append(AnyCompositeSearchSource(wrapped: child))
     return child
   }
+  
+  public override func search() {
+    let (queries, completion) = collect()
+    self.request = queries
+    self.onResults.subscribeOnce(with: self) { searcher, result in
+      completion(.success(result))
+    }
+    self.onError.subscribeOnce(with: self) { searcher, error in
+      completion(.failure(error))
+    }
+    super.search()
+  }
 
 }
 
 extension AbstractCompositeSearcher: CompositeSearchSource {
-
-  public func collect() -> (requests: [RequestUnit], completion: (Result<[ResultUnit], Error>) -> Void) {
+  
+  public func collect() -> (requests: [Service.RequestUnit], completion: (Swift.Result<[Service.ResultUnit], Error>) -> Void) {
     let requestsAndCompletions = children.map { $0.collect() }
 
     let requests = requestsAndCompletions.map(\.requests)
@@ -74,19 +66,7 @@ extension AbstractCompositeSearcher: CompositeSearchSource {
         let resultForCompletion = result.map { Array($0[range]) }
         completion(resultForCompletion)
       }
-      self.onResultsUpdated.fire([])
     })
-  }
-
-}
-
-extension AbstractCompositeSearcher: Searchable {
-
-  public func search() {
-    onSearch.fire(())
-    let (queries, completion) = collect()
-    let operation = service.search(queries, completion: completion)
-    sequencer.orderOperation(operationLauncher: { return operation })
   }
 
 }
@@ -99,7 +79,6 @@ extension AbstractCompositeSearcher: QuerySettable {
       .forEach {
         $0.setQuery(query)
       }
-    search()
   }
 
 }
@@ -112,7 +91,6 @@ extension AbstractCompositeSearcher: IndexNameSettable {
       .forEach {
         $0.setIndexName(indexName)
       }
-    search()
   }
 
 }
@@ -125,7 +103,6 @@ extension AbstractCompositeSearcher: FiltersSettable {
       .forEach {
         $0.setFilters(filters)
       }
-    search()
   }
 
 }
