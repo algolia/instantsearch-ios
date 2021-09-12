@@ -9,7 +9,7 @@
 import Foundation
 import InstantSearchCore
 
-class TestSearcher: Searcher {
+class TestSearcher: Searcher, QuerySettable {
 
   var query: String? {
     didSet {

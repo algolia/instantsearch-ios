@@ -8,6 +8,9 @@
 
 import Foundation
 
+@available(*, deprecated, renamed: "SearchConnector")
+public typealias SingleIndexSearchConnector = SearchConnector
+
 /**
  Connector encapsulating basic search experience within single index
  
@@ -21,7 +24,7 @@ import Foundation
  
  Most of the components associated by this connector are created and connected automatically, it's only required to provide a proper `Controller` implementations.
  */
-public struct SingleIndexSearchConnector<Record: Codable>: Connection {
+public struct SearchConnector<Record: Codable>: Connection {
 
   /// Connector establishing the linkage between searcher, hits interactor and optionally filter state
   public let hitsConnector: HitsConnector<Record>

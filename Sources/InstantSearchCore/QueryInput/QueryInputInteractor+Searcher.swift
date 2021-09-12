@@ -9,14 +9,25 @@ import Foundation
 
 public extension QueryInputInteractor {
 
-  struct SubscriberConnection<S: AnyObject & QuerySettable & Searchable>: Connection {
+  struct SearcherConnection<Searcher: AnyObject & QuerySettable & Searchable>: Connection {
 
+    /// Business logic component that handles textual query input
     public let interactor: QueryInputInteractor
-    public let searcher: S
+    
+    /// Searcher that handles your searches
+    public let searcher: Searcher
+    
+    /// Defines the event triggering a new search
     public let searchTriggeringMode: SearchTriggeringMode
 
+    /**
+     - Parameters:
+       - interactor: Business logic that handles new search inputs
+       - searcher: Searcher that handles your searches
+       - searchTriggeringMode: Defines the event triggering a new search
+     */
     public init(interactor: QueryInputInteractor,
-                searcher: S,
+                searcher: Searcher,
                 searchTriggeringMode: SearchTriggeringMode = .searchAsYouType) {
       self.interactor = interactor
       self.searcher = searcher
@@ -24,7 +35,7 @@ public extension QueryInputInteractor {
     }
 
     public func connect() {
-
+      
       switch searchTriggeringMode {
       case .searchAsYouType:
         interactor.onQueryChanged.subscribe(with: searcher) { searcher, query in
@@ -60,9 +71,18 @@ public extension QueryInputInteractor {
 
 public extension QueryInputInteractor {
 
-  @discardableResult func connectSearcher<S: AnyObject & QuerySettable>(_ searcher: S,
-                                                                        searchTriggeringMode: SearchTriggeringMode = .searchAsYouType) -> SubscriberConnection<S> {
-    let connection = SubscriberConnection(interactor: self, searcher: searcher, searchTriggeringMode: searchTriggeringMode)
+  /**
+   Connects a searcher
+   
+   - Parameters:
+     - searcher: Searcher that handles your searches
+     - searchTriggeringMode: Defines the event triggering a new search
+   */
+  @discardableResult func connectSearcher<Searcher: AnyObject & QuerySettable>(_ searcher: Searcher,
+                                                                               searchTriggeringMode: SearchTriggeringMode = .searchAsYouType) -> SearcherConnection<Searcher> {
+    let connection = SearcherConnection(interactor: self,
+                                        searcher: searcher,
+                                        searchTriggeringMode: searchTriggeringMode)
     connection.connect()
     return connection
   }

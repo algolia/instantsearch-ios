@@ -31,12 +31,13 @@ public class QueryInputConnector {
      - interactor: Business logic that handles new search inputs
      - searchTriggeringMode: Defines the event triggering a new search
    */
-  public init<S: AnyObject & QuerySettable & Searchable>(searcher: S,
-                                                         interactor: QueryInputInteractor = .init(),
-                                                         searchTriggeringMode: SearchTriggeringMode = .searchAsYouType) {
+  public init<Searcher: AnyObject & QuerySettable & Searchable>(searcher: Searcher,
+                                                                interactor: QueryInputInteractor = .init(),
+                                                                searchTriggeringMode: SearchTriggeringMode = .searchAsYouType) {
     self.searcher = searcher
     self.interactor = interactor
-    self.searcherConnection = interactor.connectSearcher(searcher, searchTriggeringMode: searchTriggeringMode)
+    self.searcherConnection = interactor.connectSearcher(searcher,
+                                                         searchTriggeringMode: searchTriggeringMode)
     self.controllerConnections = []
   }
 

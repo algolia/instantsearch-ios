@@ -93,14 +93,14 @@ func example() {
   queryInputInteractor2.connectSearcher(facetSearcher)
 
   let filterState = FilterState()
-  filterState.connect(compositeSearcher)
-  filterState.connect(compositeSearcher)
-  filterState.connect(facetSearcher)
+  filterState.connectSearcher(compositeSearcher)
+  filterState.connectSearcher(compositeSearcher)
+  filterState.connectSearcher(facetSearcher)
 
   let switchIndexInteractor = SwitchIndexInteractor(indexNames: ["products", "products-price-asc", "products-price-desc"], selectedIndexName: "products")
-  switchIndexInteractor.connect(compositeSearcher)
-  switchIndexInteractor.connect(compositeSearcher)
-  switchIndexInteractor.connect(facetSearcher)
+  switchIndexInteractor.connectSearcher(compositeSearcher)
+  switchIndexInteractor.connectSearcher(compositeSearcher)
+  switchIndexInteractor.connectSearcher(facetSearcher)
 
 }
 

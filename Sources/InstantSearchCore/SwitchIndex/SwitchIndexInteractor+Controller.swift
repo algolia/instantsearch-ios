@@ -7,21 +7,14 @@
 
 import Foundation
 
-public protocol SwitchIndexController: AnyObject {
-
-  /// Closure to trigger when an index selected
-  var select: (IndexName) -> Void { get set }
-
-  /// External update of the indices names list and the currently selected index name
-  func set(indexNames: [IndexName], selected: IndexName)
-
-}
-
 public extension SwitchIndexInteractor {
 
   struct ControllerConnection<Controller: SwitchIndexController>: Connection {
 
+    /// Business logic component that handles the index name switching
     public let interactor: SwitchIndexInteractor
+    
+    /// Controller interfacing with a concrete switch index name view
     public let controller: Controller
 
     public func connect() {
@@ -43,8 +36,15 @@ public extension SwitchIndexInteractor {
 
   }
 
+  /**
+   Establishes a connection with a controller
+   - Parameters:
+     - controller: Controller interfacing with a concrete switch index name view
+   - Returns: Established connection
+  */
   @discardableResult func connectController<Controller: SwitchIndexController>(_ controller: Controller) -> SwitchIndexInteractor.ControllerConnection<Controller> {
-    let connection = SwitchIndexInteractor.ControllerConnection<Controller>(interactor: self, controller: controller)
+    let connection = SwitchIndexInteractor.ControllerConnection(interactor: self,
+                                                                controller: controller)
     connection.connect()
     return connection
   }

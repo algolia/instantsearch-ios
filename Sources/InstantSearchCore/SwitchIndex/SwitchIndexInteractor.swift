@@ -7,10 +7,13 @@
 
 import Foundation
 
+/// Business logic component that handles the index name switching
 public class SwitchIndexInteractor {
 
+  /// List of names of available indices
   public var indexNames: [IndexName]
 
+  /// Name of the currently selected index
   public var selectedIndexName: IndexName {
     didSet {
       guard oldValue != selectedIndexName else { return }
@@ -18,9 +21,17 @@ public class SwitchIndexInteractor {
     }
   }
 
+  /// Triggered when index name changed
+  /// - Parameter: a selected index name
   public var onSelectionChange: Observer<IndexName>
 
-  public init(indexNames: [IndexName], selectedIndexName: IndexName) {
+  /**
+   - Parameters:
+     - indexNames: List of names of available indices
+     - selectedIndexName: Name of the currently selected index
+   */
+  public init(indexNames: [IndexName],
+              selectedIndexName: IndexName) {
     assert(indexNames.contains(selectedIndexName))
     self.indexNames = indexNames
     self.selectedIndexName = selectedIndexName
