@@ -31,7 +31,7 @@ public class QueryInputConnector {
      - interactor: Business logic that handles new search inputs
      - searchTriggeringMode: Defines the event triggering a new search
    */
-  public init<Searcher: AnyObject & QuerySettable & Searchable>(searcher: Searcher,
+  public init<Searcher: AnyObject & Searchable & QuerySettable>(searcher: Searcher,
                                                                 interactor: QueryInputInteractor = .init(),
                                                                 searchTriggeringMode: SearchTriggeringMode = .searchAsYouType) {
     self.searcher = searcher

@@ -15,7 +15,7 @@ public extension SwitchIndexConnector {
      - interactor: Business logic that handles  index name switching
      - controller: Controller interfacing with a concrete switch index view
    */
-  convenience init<Controller: SwitchIndexController, Searcher: AnyObject & IndexNameSettable & Searchable>(searcher: Searcher,
+  convenience init<Controller: SwitchIndexController, Searcher: AnyObject & Searchable & IndexNameSettable>(searcher: Searcher,
                                                                                                             interactor: SwitchIndexInteractor,
                                                                                                             controller: Controller) {
     self.init(searcher: searcher,
@@ -30,7 +30,7 @@ public extension SwitchIndexConnector {
      - selectedIndexName: Name of the currently selected index
      - controller: Controller interfacing with a concrete switch index view
    */
-  convenience init<Controller: SwitchIndexController, Searcher: AnyObject & IndexNameSettable & Searchable>(searcher: Searcher,
+  convenience init<Controller: SwitchIndexController, Searcher: AnyObject & Searchable & IndexNameSettable>(searcher: Searcher,
                                                                          indexNames: [IndexName],
                                                                          selectedIndexName: IndexName,
                                                                          controller: Controller) {

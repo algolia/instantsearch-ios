@@ -9,7 +9,7 @@ import Foundation
 
 public extension QueryInputInteractor {
 
-  struct SearcherConnection<Searcher: AnyObject & QuerySettable & Searchable>: Connection {
+  struct SearcherConnection<Searcher: AnyObject & Searchable & QuerySettable>: Connection {
 
     /// Business logic component that handles textual query input
     public let interactor: QueryInputInteractor
@@ -77,9 +77,10 @@ public extension QueryInputInteractor {
    - Parameters:
      - searcher: Searcher that handles your searches
      - searchTriggeringMode: Defines the event triggering a new search
+   - returns: Established connection
    */
-  @discardableResult func connectSearcher<Searcher: AnyObject & QuerySettable>(_ searcher: Searcher,
-                                                                               searchTriggeringMode: SearchTriggeringMode = .searchAsYouType) -> SearcherConnection<Searcher> {
+  @discardableResult func connectSearcher<Searcher: AnyObject & Searchable & QuerySettable>(_ searcher: Searcher,
+                                                                                            searchTriggeringMode: SearchTriggeringMode = .searchAsYouType) -> SearcherConnection<Searcher> {
     let connection = SearcherConnection(interactor: self,
                                         searcher: searcher,
                                         searchTriggeringMode: searchTriggeringMode)

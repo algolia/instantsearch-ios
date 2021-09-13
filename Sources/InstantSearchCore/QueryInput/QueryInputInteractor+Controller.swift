@@ -17,6 +17,18 @@ public extension QueryInputInteractor {
     
     /// Controller interfacing with a concrete query input view
     public let controller: Controller
+    
+    /**
+     - Parameters:
+       - interactor: Business logic component that handles textual query input
+       - controller: Controller interfacing with a concrete query input view
+     */
+    public init(interactor: QueryInputInteractor,
+                controller: Controller) {
+      self.interactor = interactor
+      self.controller = controller
+    }
+
 
     public func connect() {
 

@@ -13,7 +13,7 @@ import Foundation
 public class SwitchIndexConnector {
   
   /// Searcher that handles your searches
-  public let searcher: IndexNameSettable & Searchable
+  public let searcher: AnyObject & Searchable & IndexNameSettable
   
   /// Business logic that handles index name switching
   public let interactor: SwitchIndexInteractor
@@ -30,8 +30,8 @@ public class SwitchIndexConnector {
      - interactor: Business logic that handles  index name switching
      - searchTriggeringMode: Defines the event triggering a new search
    */
-  public init<S: AnyObject & IndexNameSettable & Searchable>(searcher: S,
-                                                             interactor: SwitchIndexInteractor) {
+  public init<Searcher: AnyObject & Searchable & IndexNameSettable>(searcher: Searcher,
+                                                                    interactor: SwitchIndexInteractor) {
     self.searcher = searcher
     self.interactor = interactor
     self.searcherConnection = interactor.connectSearcher(searcher)
@@ -44,9 +44,9 @@ public class SwitchIndexConnector {
      - indexNames: List of names of available indices
      - selectedIndexName: Name of the currently selected index
    */
-  public convenience init<S: AnyObject & IndexNameSettable & Searchable>(searcher: S,
-                                                                         indexNames: [IndexName],
-                                                                         selectedIndexName: IndexName) {
+  public convenience init<Searcher: AnyObject & Searchable & IndexNameSettable>(searcher: Searcher,
+                                                                                indexNames: [IndexName],
+                                                                                selectedIndexName: IndexName) {
     let interactor = SwitchIndexInteractor(indexNames: indexNames,
                                            selectedIndexName: selectedIndexName)
     self.init(searcher: searcher,

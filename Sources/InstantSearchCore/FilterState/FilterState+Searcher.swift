@@ -9,10 +9,24 @@ import Foundation
 
 public extension FilterState {
 
-  struct SearcherConnection<S: AnyObject & Searchable & FiltersSettable>: Connection {
+  struct SearcherConnection<Searcher: AnyObject & Searchable & FiltersSettable>: Connection {
 
+    /// FilterState that holds search filters
     public let filterState: FilterState
-    public let searcher: S
+    
+    /// Searcher that handles search requests
+    public let searcher: Searcher
+    
+    /**
+     - Parameters:
+       - filterState: FilterState that holds search filters
+       - searcher: Searcher that handles search requests
+     */
+    public init(searcher: Searcher,
+                filterState: FilterState) {
+      self.searcher = searcher
+      self.filterState = filterState
+    }
 
     public func connect() {
       filterState.onChange.subscribePast(with: searcher) { searcher, filterState in
@@ -27,8 +41,16 @@ public extension FilterState {
 
   }
 
-  @discardableResult func connectSearcher<S: FiltersSettable>(_ searcher: S) -> SearcherConnection<S> {
-    let connection = SearcherConnection(filterState: self, searcher: searcher)
+  /**
+   Connects a searcher
+   
+   - Parameters:
+     - filterState: FilterState that holds search filters
+     - searcher: Searcher that handles search requests
+   - returns: Established connection
+   */
+  @discardableResult func connectSearcher<Searcher: AnyObject & Searchable & FiltersSettable>(_ searcher: Searcher) -> SearcherConnection<Searcher> {
+    let connection = SearcherConnection(searcher: searcher, filterState: self)
     connection.connect()
     return connection
   }
