@@ -16,23 +16,23 @@ import SwiftUI
 @available(iOS 13.0, OSX 10.15, tvOS 13.0, watchOS 6.0, *)
 public class SwitchIndexObservableController: ObservableObject, SwitchIndexController {
 
-  /// List of indices names to switch between
+  /// List of available indices names
   @Published public var indexNames: [IndexName]
 
-  /// Name of currently selected index
-  @Published public var selected: IndexName
+  /// Name of the currently selected index
+  @Published public var selectedIndexName: IndexName
 
   public var select: (IndexName) -> Void = { _ in }
 
   public func set(indexNames: [IndexName], selected: IndexName) {
     self.indexNames = indexNames
-    self.selected = selected
+    self.selectedIndexName = selected
   }
 
   public init(indexNames: [IndexName] = [],
               selected: IndexName = "") {
     self.indexNames = indexNames
-    self.selected = selected
+    self.selectedIndexName = selected
   }
 
 }

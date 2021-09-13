@@ -39,7 +39,7 @@ public extension SwitchIndexInteractor {
   /**
    Establishes a connection with a controller
    - Parameters:
-     - controller: Controller interfacing with a concrete switch index name view
+     - controller: Controller interfacing with a concrete switch index view
    - Returns: Established connection
   */
   @discardableResult func connectController<Controller: SwitchIndexController>(_ controller: Controller) -> SwitchIndexInteractor.ControllerConnection<Controller> {

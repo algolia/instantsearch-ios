@@ -10,7 +10,7 @@ import Foundation
 /// Business logic component that handles the index name switching
 public class SwitchIndexInteractor {
 
-  /// List of names of available indices
+  /// List of available indices names
   public var indexNames: [IndexName]
 
   /// Name of the currently selected index

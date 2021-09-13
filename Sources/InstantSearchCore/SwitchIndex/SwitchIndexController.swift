@@ -7,6 +7,7 @@
 
 import Foundation
 
+/// Controller interfacing with a switch index view
 public protocol SwitchIndexController: AnyObject {
 
   /// Closure to trigger when an index selected
