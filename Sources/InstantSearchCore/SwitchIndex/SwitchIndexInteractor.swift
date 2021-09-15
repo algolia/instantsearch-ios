@@ -11,7 +11,7 @@ import Foundation
 public class SwitchIndexInteractor {
 
   /// List of available indices names
-  public var indexNames: [IndexName]
+  public var indicesNames: [IndexName]
 
   /// Name of the currently selected index
   public var selectedIndexName: IndexName {
@@ -27,13 +27,13 @@ public class SwitchIndexInteractor {
 
   /**
    - Parameters:
-     - indexNames: List of names of available indices
+     - indicesNames: List of names of available indices
      - selectedIndexName: Name of the currently selected index
    */
   public init(indexNames: [IndexName],
               selectedIndexName: IndexName) {
     assert(indexNames.contains(selectedIndexName))
-    self.indexNames = indexNames
+    self.indicesNames = indexNames
     self.selectedIndexName = selectedIndexName
     self.onSelectionChange = .init()
   }

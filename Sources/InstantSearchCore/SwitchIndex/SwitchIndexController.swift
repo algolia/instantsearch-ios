@@ -14,6 +14,6 @@ public protocol SwitchIndexController: AnyObject {
   var select: (IndexName) -> Void { get set }
 
   /// External update of the indices names list and the currently selected index name
-  func set(indexNames: [IndexName], selected: IndexName)
+  func set(indicesNames: [IndexName], selected: IndexName)
 
 }

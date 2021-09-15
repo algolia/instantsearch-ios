@@ -26,7 +26,7 @@ public extension SwitchIndexConnector {
   /**
    - Parameters:
      - searcher: Searcher that handles your searches
-     - indexNames: List of names of available indices
+     - indicesNames: List of names of available indices
      - selectedIndexName: Name of the currently selected index
      - controller: Controller interfacing with a concrete switch index view
    */

@@ -41,7 +41,7 @@ public class SwitchIndexConnector {
   /**
    - Parameters:
      - searcher: Searcher that handles your searches
-     - indexNames: List of names of available indices
+     - indicesNames: List of names of available indices
      - selectedIndexName: Name of the currently selected index
    */
   public convenience init<Searcher: AnyObject & Searchable & IndexNameSettable>(searcher: Searcher,

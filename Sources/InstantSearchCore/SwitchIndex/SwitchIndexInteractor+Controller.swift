@@ -18,11 +18,11 @@ public extension SwitchIndexInteractor {
     public let controller: Controller
 
     public func connect() {
-      controller.set(indexNames: interactor.indexNames, selected: interactor.selectedIndexName)
+      controller.set(indicesNames: interactor.indicesNames, selected: interactor.selectedIndexName)
 
       interactor.onSelectionChange.subscribePast(with: controller) { [weak interactor]  (controller, selectedIndexName) in
         guard let interactor = interactor else { return }
-        controller.set(indexNames: interactor.indexNames, selected: selectedIndexName)
+        controller.set(indicesNames: interactor.indicesNames, selected: selectedIndexName)
       }.onQueue(.main)
 
       controller.select = { [weak interactor] selectedIndexName in

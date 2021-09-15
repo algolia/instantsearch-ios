@@ -17,21 +17,21 @@ import SwiftUI
 public class SwitchIndexObservableController: ObservableObject, SwitchIndexController {
 
   /// List of available indices names
-  @Published public var indexNames: [IndexName]
+  @Published public var indicesNames: [IndexName]
 
   /// Name of the currently selected index
   @Published public var selectedIndexName: IndexName
 
   public var select: (IndexName) -> Void = { _ in }
 
-  public func set(indexNames: [IndexName], selected: IndexName) {
-    self.indexNames = indexNames
+  public func set(indicesNames: [IndexName], selected: IndexName) {
+    self.indicesNames = indicesNames
     self.selectedIndexName = selected
   }
 
-  public init(indexNames: [IndexName] = [],
+  public init(indicesNames: [IndexName] = [],
               selected: IndexName = "") {
-    self.indexNames = indexNames
+    self.indicesNames = indicesNames
     self.selectedIndexName = selected
   }
 
