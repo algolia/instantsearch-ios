@@ -20,29 +20,40 @@ let package = Package(
       targets: ["InstantSearchCore"]),
     .library(
       name: "InstantSearchInsights",
-      targets: ["InstantSearchInsights"])
+      targets: ["InstantSearchInsights"]),
+    .library(
+      name: "InstantSearchSwiftUI",
+      targets: ["InstantSearchSwiftUI"])
   ],
   dependencies: [
-    .package(name: "AlgoliaSearchClient", url: "https://github.com/algolia/algoliasearch-client-swift", from: "8.10.0")
+    .package(name: "AlgoliaSearchClient",
+             url: "https://github.com/algolia/algoliasearch-client-swift", from: "8.10.0")
   ],
   targets: [
     .target(
       name: "InstantSearchInsights",
       dependencies: ["AlgoliaSearchClient"]),
+    .testTarget(
+      name: "InstantSearchInsightsTests",
+      dependencies: ["InstantSearchInsights", "AlgoliaSearchClient"]),
     .target(
       name: "InstantSearchCore",
       dependencies: ["AlgoliaSearchClient", "InstantSearchInsights"]),
+    .testTarget(
+      name: "InstantSearchCoreTests",
+      dependencies: ["InstantSearchCore", "AlgoliaSearchClient", "InstantSearchInsights"]),
     .target(
       name: "InstantSearch",
       dependencies: ["InstantSearchCore"]),
     .testTarget(
-      name: "InstantSearchInsightsTests",
-      dependencies: ["InstantSearchInsights", "AlgoliaSearchClient"]),
-    .testTarget(
-      name: "InstantSearchCoreTests",
-      dependencies: ["InstantSearchCore", "AlgoliaSearchClient", "InstantSearchInsights"]),
-    .testTarget(
       name: "InstantSearchTests",
-      dependencies: ["InstantSearch"])
+      dependencies: ["InstantSearch"]),
+    .target(
+      name: "InstantSearchSwiftUI",
+      dependencies: ["InstantSearchCore"]),
+    .testTarget(
+      name: "InstantSearchSwiftUITests",
+      dependencies: ["InstantSearchSwiftUI"])
+
   ]
 )

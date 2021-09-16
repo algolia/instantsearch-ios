@@ -9,7 +9,7 @@ Pod::Spec.new do |s|
   s.author = { "Algolia" => "contact@algolia.com" }
   s.source = { :git => 'https://github.com/algolia/instantsearch-ios.git', :tag => s.version }
 
-  s.swift_version = "5.1"
+  s.swift_version = "5.2"
   
   s.default_subspec = 'UI'
   
@@ -24,7 +24,6 @@ Pod::Spec.new do |s|
   
   s.subspec "Core" do |ss|
       ss.source_files = 'Sources/InstantSearchCore/**/*.{swift}'
-      ss.exclude_files = 'Sources/InstantSearchCore/SwiftUI/**/*.{swift}'
       ss.dependency 'AlgoliaSearchClient', '~> 8.10'
       ss.dependency 'InstantSearch/Insights'
       ss.ios.deployment_target = '9.0'
@@ -36,7 +35,6 @@ Pod::Spec.new do |s|
   
   s.subspec "UI" do |ss|
       ss.source_files = 'Sources/InstantSearch/**/*.{swift}'
-      ss.exclude_files = 'Sources/InstantSearch/SwiftUI/**/*.{swift}'
       ss.dependency 'InstantSearch/Core'
       ss.ios.deployment_target = '9.0'
       ss.osx.deployment_target = '10.10'
@@ -46,7 +44,7 @@ Pod::Spec.new do |s|
   end
   
   s.subspec "SwiftUI" do |ss|
-      ss.source_files = 'Sources/InstantSearchCore/SwiftUI/**/*.{swift}', 'Sources/InstantSearch/SwiftUI/**/*.{swift}'
+      ss.source_files = 'Sources/InstantSearchSwiftUI/**/*.{swift}'
       ss.dependency 'InstantSearch/Core'
       ss.ios.deployment_target = '13.0'
       ss.osx.deployment_target = '10.15'
