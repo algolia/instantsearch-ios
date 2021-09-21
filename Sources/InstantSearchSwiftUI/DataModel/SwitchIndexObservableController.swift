@@ -22,7 +22,7 @@ public class SwitchIndexObservableController: ObservableObject, SwitchIndexContr
   /// Name of the currently selected index
   @Published public var selectedIndexName: IndexName
 
-  public var select: (IndexName) -> Void = { _ in }
+  public var selectIndexWithName: (IndexName) -> Void = { _ in }
 
   public func set(indicesNames: [IndexName], selected: IndexName) {
     self.indicesNames = indicesNames

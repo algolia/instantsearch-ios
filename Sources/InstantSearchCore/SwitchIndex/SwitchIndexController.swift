@@ -11,7 +11,7 @@ import Foundation
 public protocol SwitchIndexController: AnyObject {
 
   /// Closure to trigger when an index selected
-  var select: (IndexName) -> Void { get set }
+  var selectIndexWithName: (IndexName) -> Void { get set }
 
   /// External update of the indices names list and the currently selected index name
   func set(indicesNames: [IndexName], selected: IndexName)

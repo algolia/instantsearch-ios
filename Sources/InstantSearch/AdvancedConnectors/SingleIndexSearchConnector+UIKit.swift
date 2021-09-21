@@ -11,7 +11,7 @@ import InstantSearchCore
 #if canImport(UIKit) && (os(iOS) || os(macOS))
 import UIKit
 
-public extension SingleIndexSearchConnector {
+public extension SearchConnector {
 
   init<HC: HitsController>(searcher: HitsSearcher,
                            searchController: UISearchController,

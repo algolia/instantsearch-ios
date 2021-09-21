@@ -21,7 +21,7 @@ public class SwitchIndexAlertControllerBuilder: SwitchIndexController {
   /// Currently selected index name
   public var selectedIndexName: IndexName
   
-  public var select: (IndexName) -> Void = { _ in }
+  public var selectIndexWithName: (IndexName) -> Void = { _ in }
   
   /// Closure that provides a title for an index name
   public var getTitle: (IndexName) -> String
@@ -55,7 +55,7 @@ public class SwitchIndexAlertControllerBuilder: SwitchIndexController {
         UIAlertAction(title: getTitle(indexName), style: .default) { [weak self] _ in
           guard let controller = self else { return }
           if indexName != controller.selectedIndexName {
-            controller.select(indexName)
+            controller.selectIndexWithName(indexName)
           }
         }
       }

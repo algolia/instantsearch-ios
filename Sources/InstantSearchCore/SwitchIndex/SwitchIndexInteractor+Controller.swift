@@ -25,7 +25,7 @@ public extension SwitchIndexInteractor {
         controller.set(indicesNames: interactor.indicesNames, selected: selectedIndexName)
       }.onQueue(.main)
 
-      controller.select = { [weak interactor] selectedIndexName in
+      controller.selectIndexWithName = { [weak interactor] selectedIndexName in
         interactor?.selectedIndexName = selectedIndexName
       }
     }
