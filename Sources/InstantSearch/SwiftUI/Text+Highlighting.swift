@@ -6,12 +6,12 @@
 //
 
 import Foundation
-#if canImport(Combine) && canImport(SwiftUI)
+#if canImport(Combine) && canImport(SwiftUI) && (arch(arm64) || arch(x86_64))
 import Combine
 import SwiftUI
 
 @available(iOS 13.0, OSX 10.15, tvOS 13.0, watchOS 6.0, *)
-public extension Text {
+public extension SwiftUI.Text {
 
   /**
    - parameter highlightedString: HighlightedString value
