@@ -11,7 +11,7 @@ import Combine
 import SwiftUI
 
 /// A specialized view for receiving search query text from the user.
-@available(iOS 13.0, OSX 10.15, tvOS 13.0, watchOS 6.0, *)
+@available(iOS 13.0, OSX 11.0, tvOS 13.0, watchOS 6.0, *)
 public struct SearchBar: View {
 
   /// Search query text
@@ -41,7 +41,6 @@ public struct SearchBar: View {
       })
       .padding(7)
       .padding(.horizontal, 25)
-      .background(Color(.systemGray5))
       .cornerRadius(8)
       .overlay(
         HStack {
@@ -81,7 +80,7 @@ public struct SearchBar: View {
 
 }
 
-@available(iOS 13.0, tvOS 13.0, watchOS 6.0, *)
+@available(iOS 13.0, OSX 10.15, tvOS 13.0, watchOS 6.0, *)
 public extension View {
   func hideKeyboard() {
 //      UIApplication.shared.sendAction(#selector(UIResponder.resignFirstResponder), to: nil, from: nil, for: nil)
