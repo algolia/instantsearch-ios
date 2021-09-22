@@ -6,7 +6,7 @@
 //
 
 import Foundation
-#if canImport(Combine) && canImport(SwiftUI) && os(iOS)
+#if canImport(Combine) && canImport(SwiftUI) && (arch(arm64) || arch(x86_64))
 import Combine
 import SwiftUI
 
@@ -60,7 +60,7 @@ public extension HierarchicalList where NoResults == Never {
 
 }
 
-@available(iOS 13.0, OSX 10.15, tvOS 13.0, watchOS 6.0, *)
+@available(iOS 13.0, OSX 11.0, tvOS 13.0, watchOS 6.0, *)
 struct HierarchicalListPreview: PreviewProvider {
 
   static var previews: some View {

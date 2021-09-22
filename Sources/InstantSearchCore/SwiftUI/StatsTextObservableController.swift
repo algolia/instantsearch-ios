@@ -6,7 +6,7 @@
 //
 
 import Foundation
-#if canImport(Combine) && canImport(SwiftUI)
+#if canImport(Combine) && canImport(SwiftUI) && (arch(arm64) || arch(x86_64))
 import Combine
 import SwiftUI
 
