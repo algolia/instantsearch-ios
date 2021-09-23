@@ -1,5 +1,13 @@
 # ChangeLog
 
+## [7.13.5](https://github.com/algolia/instantsearch-ios/compare/7.13.4...7.13.5) (2021-09-23)
+
+### Fix
+
+- tvOS and watchOS compiler issues (#197) ([9d470e8](https://github.com/algolia/instantsearch-ios/commit/9d470e8))
+
+
+
 ## [7.13.4](https://github.com/algolia/instantsearch-ios/compare/7.13.3...7.13.4) (2021-09-22)
 
 ### Fix
