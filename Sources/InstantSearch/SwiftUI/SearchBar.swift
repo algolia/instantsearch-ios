@@ -6,7 +6,7 @@
 //
 
 import Foundation
-#if canImport(Combine) && canImport(SwiftUI) && (arch(arm64) || arch(x86_64))
+#if canImport(Combine) && canImport(SwiftUI) && (arch(arm64) || arch(x86_64)) && !os(tvOS)
 import Combine
 import SwiftUI
 
@@ -78,12 +78,5 @@ public struct SearchBar: View {
     }
   }
 
-}
-
-@available(iOS 13.0, OSX 10.15, tvOS 13.0, watchOS 6.0, *)
-public extension View {
-  func hideKeyboard() {
-//      UIApplication.shared.sendAction(#selector(UIResponder.resignFirstResponder), to: nil, from: nil, for: nil)
-  }
 }
 #endif
