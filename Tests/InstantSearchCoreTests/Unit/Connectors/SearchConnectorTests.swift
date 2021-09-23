@@ -1,5 +1,5 @@
 //
-//  SingleIndexSearchConnectorTests.swift
+//  SearchConnectorTests.swift
 //  
 //
 //  Created by Vladislav Fitc on 06/08/2020.
@@ -9,7 +9,7 @@ import Foundation
 @testable import InstantSearchCore
 import XCTest
 
-class SingleIndexSearchConnectorTests: XCTestCase {
+class SearchConnectorTests: XCTestCase {
   
   struct ConnectorContainer {
     
@@ -26,12 +26,12 @@ class SingleIndexSearchConnectorTests: XCTestCase {
     let hitsController = TestHitsController<JSON>()
     let filterState = FilterState()
     
-    lazy var connector = SingleIndexSearchConnector(searcher: searcher,
-                                                    queryInputInteractor: queryInputInteractor,
-                                                    queryInputController: queryInputController,
-                                                    hitsInteractor: hitsInteractor,
-                                                    hitsController: hitsController,
-                                                    filterState: filterState)
+    lazy var connector = SearchConnector(searcher: searcher,
+                                         queryInputInteractor: queryInputInteractor,
+                                         queryInputController: queryInputController,
+                                         hitsInteractor: hitsInteractor,
+                                         hitsController: hitsController,
+                                         filterState: filterState)
     
     func getInteractor(with infiniteScrollingController: InfiniteScrollable) -> HitsInteractor<JSON> {
       

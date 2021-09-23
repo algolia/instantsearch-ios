@@ -1,5 +1,5 @@
 //
-//  SingleIndexSearchConnector+UIKit.swift
+//  SearchConnector+UIKit.swift
 //  
 //
 //  Created by Vladislav Fitc on 30/07/2020.

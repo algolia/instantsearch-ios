@@ -1,5 +1,5 @@
 //
-//  QueryRuleCustomDataInteractor+SingleIndexSearcher.swift
+//  QueryRuleCustomDataInteractor+HitsSearcher.swift
 //  
 //
 //  Created by Vladislav Fitc on 10/10/2020.

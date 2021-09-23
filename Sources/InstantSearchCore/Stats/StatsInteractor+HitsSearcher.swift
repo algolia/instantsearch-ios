@@ -1,5 +1,5 @@
 //
-//  StatsInteractor+SingleIndexSearcher.swift
+//  StatsInteractor+HitsSearcher.swift
 //  InstantSearchCore
 //
 //  Created by Vladislav Fitc on 29/07/2019.

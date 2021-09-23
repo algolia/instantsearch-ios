@@ -1,5 +1,5 @@
 //
-//  SingleIndexSearchConnector.swift
+//  SearchConnector.swift
 //  DemoDirectory
 //
 //  Created by Vladislav Fitc on 23/07/2020.

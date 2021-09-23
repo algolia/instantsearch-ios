@@ -11,9 +11,9 @@ import AlgoliaSearchClient
 extension SearchClient: CompositeSearchService {
 
   public typealias RequestUnit = IndexedQuery
-  public typealias ResultUnit = MultiIndexSearchResponse.Response
+  public typealias ResultUnit = CompoundSearchResponse.Response
 
-  public func search(_ queries: [IndexedQuery], completion: @escaping (Result<[MultiIndexSearchResponse.Response], Error>) -> Void) -> Operation {
+  public func search(_ queries: [IndexedQuery], completion: @escaping (Result<[CompoundSearchResponse.Response], Error>) -> Void) -> Operation {
     return search(queries: queries, strategy: .none, requestOptions: nil) { result in
       completion(result.map(\.results))
     }
@@ -21,27 +21,6 @@ extension SearchClient: CompositeSearchService {
 
 }
 
-extension MultiIndexSearchResponse.Response {
-
-  var hitsResponse: SearchResponse? {
-    switch self {
-    case .facet:
-      return nil
-    case .search(let searchResponse):
-      return searchResponse
-    }
-  }
-
-  var facetResponse: FacetSearchResponse? {
-    switch self {
-    case .facet(let facetResponse):
-      return facetResponse
-    case .search:
-      return nil
-    }
-  }
-
-}
 
 func example() {
 
