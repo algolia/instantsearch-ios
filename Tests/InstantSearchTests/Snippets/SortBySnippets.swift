@@ -7,7 +7,7 @@
 
 import Foundation
 import InstantSearch
-#if canImport(UIKit)
+#if canImport(UIKit) && !os(watchOS)
 import UIKit
 
 class SortBySnippets {

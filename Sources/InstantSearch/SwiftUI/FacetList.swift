@@ -6,7 +6,7 @@
 //
 
 import Foundation
-#if canImport(Combine) && canImport(SwiftUI) && (arch(arm64) || arch(x86_64))
+#if canImport(Combine) && canImport(SwiftUI) && (arch(arm64) || arch(x86_64)) && !os(tvOS)
 import Combine
 import SwiftUI
 
@@ -59,7 +59,7 @@ public extension FacetList where NoResults == Never {
 
 }
 
-@available(iOS 13.0, OSX 11.00, tvOS 13.0, watchOS 6.0, *)
+@available(iOS 13.0, OSX 11.00, tvOS 13.0, watchOS 7.0, *)
 struct Facets_Previews: PreviewProvider {
 
   static let test: [Facet] = {
