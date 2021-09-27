@@ -8,6 +8,7 @@
 
 import Foundation
 
+@available(*, deprecated, message: "Use SortByInteractor")
 public extension IndexSegment {
 
   @available(*, deprecated, message: "Use multiple HitsSearcher aggregated with CompositeSearcher instead of MultiIndexSearcher")
@@ -50,6 +51,7 @@ public extension IndexSegment {
 
 }
 
+@available(*, deprecated, message: "Use SortByInteractor")
 public extension IndexSegmentInteractor {
 
   @available(*, deprecated, message: "Use multiple HitsSearcher aggregated with CompositeSearcher instead of MultiIndexSearcher")

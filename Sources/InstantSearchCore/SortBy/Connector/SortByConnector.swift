@@ -18,7 +18,7 @@ public class SortByConnector {
   public let searcher: HitsSearcher
 
   /// Logic applied to the indices
-  public let interactor: IndexSegmentInteractor
+  public let interactor: SortByInteractor
 
   /// Connection between interactor and searcher
   public let searcherConnection: Connection
@@ -30,15 +30,14 @@ public class SortByConnector {
   public var indicesNames: [IndexName] {
 
     get {
-      return interactor.items.sorted { item1, item2 in item1.key < item2.key }.map(\.value).map(\.name)
+      return interactor.items.sorted { item1, item2 in item1.key < item2.key }.map(\.value)
     }
 
     set {
       let enumeratedIndices = newValue
-        .map(searcher.service.client.index(withName:))
         .enumerated()
         .map { $0 }
-      interactor.items = [Int: Index](uniqueKeysWithValues: enumeratedIndices)
+      interactor.items = [Int: IndexName](uniqueKeysWithValues: enumeratedIndices)
     }
 
   }
@@ -47,12 +46,12 @@ public class SortByConnector {
   public var selectedIndexName: IndexName? {
 
     get {
-      return interactor.selected.flatMap { interactor.items[$0]?.name }
+      return interactor.selected.flatMap { interactor.items[$0] }
     }
 
     set {
       interactor.items
-        .first(where: { $0.value.name == newValue })
+        .first(where: { $0.value == newValue })
         .flatMap { interactor.selected = $0.key }
     }
 
@@ -64,7 +63,7 @@ public class SortByConnector {
      - interactor: Logic applied to the indices
    */
   public init(searcher: HitsSearcher,
-              interactor: IndexSegmentInteractor) {
+              interactor: SortByInteractor) {
     self.searcher = searcher
     self.interactor = interactor
     self.searcherConnection = interactor.connectSearcher(searcher: searcher)
@@ -81,11 +80,10 @@ public class SortByConnector {
                           indicesNames: [IndexName],
                           selected: Int? = nil) {
     let enumeratedIndices = indicesNames
-      .map(searcher.service.client.index(withName:))
       .enumerated()
       .map { $0 }
-    let items = [Int: Index](uniqueKeysWithValues: enumeratedIndices)
-    let interactor = IndexSegmentInteractor(items: items)
+    let items = [Int: IndexName](uniqueKeysWithValues: enumeratedIndices)
+    let interactor = SortByInteractor(items: items)
     interactor.selected = selected
     self.init(searcher: searcher, interactor: interactor)
   }

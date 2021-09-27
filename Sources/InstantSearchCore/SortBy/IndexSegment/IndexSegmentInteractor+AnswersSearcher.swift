@@ -7,6 +7,7 @@
 
 import Foundation
 
+@available(*, deprecated, message: "Use SortByInteractor")
 public extension IndexSegment {
 
   struct AnswersSearcherConnection: Connection {
@@ -39,6 +40,7 @@ public extension IndexSegment {
 
 }
 
+@available(*, deprecated, message: "Use SortByInteractor")
 public extension IndexSegmentInteractor {
 
   @discardableResult func connectSearcher(searcher: AnswersSearcher) -> IndexSegment.AnswersSearcherConnection {

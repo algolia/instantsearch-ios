@@ -8,6 +8,7 @@
 
 import Foundation
 
+@available(*, deprecated, message: "Use SortByInteractor")
 public extension IndexSegment {
 
   @available(*, deprecated, renamed: "HitsSearcherConnection")
@@ -45,6 +46,7 @@ public extension IndexSegment {
 
 }
 
+@available(*, deprecated, message: "Use SortByInteractor")
 public extension IndexSegmentInteractor {
 
   @discardableResult func connectSearcher(searcher: HitsSearcher) -> IndexSegment.HitsSearcherConnection {

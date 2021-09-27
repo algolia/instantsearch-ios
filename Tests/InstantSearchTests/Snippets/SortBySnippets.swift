@@ -25,12 +25,12 @@ class SortBySnippets {
                                                                 "indexAscendingOrder",
                                                                 "indexDescendingOrder"],
                                                  selected: 0,
-                                                 controller: selectIndexController) { index -> String in
-      switch index.name {
+                                                 controller: selectIndexController) { indexName -> String in
+      switch indexName {
       case "indexDefault": return "Default"
       case "indexAscendingOrder": return "Year Asc"
       case "indexDescendingOrder": return "Year Desc"
-      default: return index.name.rawValue
+      default: return indexName.rawValue
       }
     }
                                                   

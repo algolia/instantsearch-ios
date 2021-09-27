@@ -8,6 +8,7 @@
 
 import Foundation
 
+@available(*, deprecated, message: "Use SortByInteractor")
 public extension IndexSegment {
 
   struct ControllerConnection<Controller: SelectableSegmentController>: Connection where Controller.SegmentKey == Int {
@@ -49,6 +50,7 @@ public extension IndexSegment {
 
 }
 
+@available(*, deprecated, message: "Use SortByInteractor")
 public extension IndexSegmentInteractor {
 
   @discardableResult func connectController<Controller: SelectableSegmentController>(_ controller: Controller,
