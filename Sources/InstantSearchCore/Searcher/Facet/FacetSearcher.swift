@@ -83,10 +83,13 @@ final public class FacetSearcher: IndexSearcher<FacetSearchService> {
 
 }
 
-extension FacetSearcher: CompositeSearchSource {
+extension FacetSearcher: SubSearcher {
 
   public func collect() -> (requests: [IndexedQuery], completion: (Swift.Result<[CompoundSearchResponse.Response], Swift.Error>) -> Void) {
-    let query = IndexedQuery(indexName: request.indexName, query: request.context, attribute: request.attribute, facetQuery: request.query)
+    let query = IndexedQuery(indexName: request.indexName,
+                             query: request.context,
+                             attribute: request.attribute,
+                             facetQuery: request.query)
     return ([query], { [weak self] result in
       guard let searcher = self else { return }
       switch result {

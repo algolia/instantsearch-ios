@@ -13,7 +13,7 @@ public extension SwitchIndexInteractor {
 
     /// Business logic component that handles the index name switching
     public let interactor: SwitchIndexInteractor
-    
+
     /// Searcher that handles your searches
     public let searcher: Searcher
 

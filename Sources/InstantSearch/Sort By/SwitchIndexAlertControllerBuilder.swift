@@ -14,30 +14,30 @@ import UIKit
 
 /// Constructs a UIAlertController instance with the indices names list and dispatches the selected index name
 public class SwitchIndexAlertControllerBuilder: SwitchIndexController {
-  
+
   /// List of the indices names
   public var indicesNames: [IndexName]
-  
+
   /// Currently selected index name
   public var selectedIndexName: IndexName
-  
+
   public var selectIndexWithName: (IndexName) -> Void = { _ in }
-  
+
   /// Closure that provides a title for an index name
   public var getTitle: (IndexName) -> String
-    
+
   /// - parameter getTitle: Closure that provides a title for an index name
   public init(getTitle: @escaping (IndexName) -> String) {
     self.indicesNames = []
     self.selectedIndexName = ""
     self.getTitle = getTitle
   }
-    
+
   public func set(indicesNames: [IndexName], selected: IndexName) {
     self.indicesNames = indicesNames
     self.selectedIndexName = selected
   }
-  
+
   /// - parameters:
   ///   - title: The title of the alert. Use this string to get the user’s attention and communicate the reason for the alert.
   ///   - message: Descriptive text that provides additional details about the reason for the alert.
@@ -65,6 +65,6 @@ public class SwitchIndexAlertControllerBuilder: SwitchIndexController {
     }
     return alertController
   }
-  
+
 }
 #endif

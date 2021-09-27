@@ -8,7 +8,7 @@
 import Foundation
 
 public extension QueryInputConnector {
-  
+
   /**
    - Parameters:
      - searcher: Searcher that handles your searches
@@ -25,7 +25,6 @@ public extension QueryInputConnector {
               searchTriggeringMode: searchTriggeringMode)
     connectController(controller)
   }
-
 
   /**
    Establishes a connection with the controller

@@ -22,7 +22,7 @@ public class QueryInputInteractor {
   /// Triggered when query text changed
   /// - Parameter: a new query text value
   public let onQueryChanged: Observer<String?>
-  
+
   /// Triggered when query text submitted
   /// - Parameter: a submitted query text value
   public let onQuerySubmitted: Observer<String?>

@@ -11,13 +11,13 @@ import Foundation
 ///
 /// [Documentation](https://www.algolia.com/doc/api-reference/widgets/sort-by/ios/)
 public class SwitchIndexConnector {
-  
+
   /// Searcher that handles your searches
   public let searcher: AnyObject & Searchable & IndexNameSettable
-  
+
   /// Business logic that handles index name switching
   public let interactor: SwitchIndexInteractor
-  
+
   /// Connection between query input interactor and searcher
   public let searcherConnection: Connection
 
@@ -37,7 +37,7 @@ public class SwitchIndexConnector {
     self.searcherConnection = interactor.connectSearcher(searcher)
     self.controllerConnections = []
   }
-  
+
   /**
    - Parameters:
      - searcher: Searcher that handles your searches
@@ -52,7 +52,7 @@ public class SwitchIndexConnector {
     self.init(searcher: searcher,
               interactor: interactor)
   }
-  
+
 }
 
 extension SwitchIndexConnector: Connection {

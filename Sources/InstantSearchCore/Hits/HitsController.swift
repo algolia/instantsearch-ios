@@ -19,8 +19,8 @@ public protocol HitsController: AnyObject, Reloadable {
 }
 
 public extension HitsController {
-  
+
   func scrollToTop() {}
   func reload() {}
-  
+
 }

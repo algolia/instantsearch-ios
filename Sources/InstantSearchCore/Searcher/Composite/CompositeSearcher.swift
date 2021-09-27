@@ -7,18 +7,23 @@
 
 import Foundation
 
-public typealias CompositeSearcher = AbstractCompositeSearcher<SearchClient>
+final public class CompositeSearcher: AbstractCompositeSearcher<AlgoliaCompositeSearchService> {
 
-public extension CompositeSearcher {
-
-  convenience init(appID: ApplicationID, apiKey: APIKey) {
-    self.init(service: .init(appID: appID, apiKey: apiKey), initialRequest: [])
+  convenience init(appID: ApplicationID,
+                   apiKey: APIKey) {
+    let service = AlgoliaCompositeSearchService(appID: appID,
+                                                apiKey: apiKey)
+    let initialRequest = Request(queries: [],
+                                 strategy: .none,
+                                 requestOptions: .none)
+    self.init(service: service,
+              initialRequest: initialRequest)
   }
 
   @discardableResult func addHitsSearcher(indexName: IndexName,
                                           query: Query = .init(),
                                           requestOptions: RequestOptions? = nil) -> HitsSearcher {
-    let searcher = HitsSearcher(client: service,
+    let searcher = HitsSearcher(client: service.client,
                                 indexName: indexName,
                                 query: query,
                                 requestOptions: requestOptions)
@@ -30,7 +35,7 @@ public extension CompositeSearcher {
                                             attribute: Attribute,
                                             facetQuery: String = "",
                                             requestOptions: RequestOptions? = nil) -> FacetSearcher {
-    let searcher = FacetSearcher(client: service,
+    let searcher = FacetSearcher(client: service.client,
                                  indexName: indexName,
                                  facetName: attribute,
                                  query: query,

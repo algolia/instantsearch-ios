@@ -13,10 +13,10 @@ public extension QueryInputInteractor {
 
     /// Business logic component that handles textual query input
     public let interactor: QueryInputInteractor
-    
+
     /// Searcher that handles your searches
     public let searcher: Searcher
-    
+
     /// Defines the event triggering a new search
     public let searchTriggeringMode: SearchTriggeringMode
 
@@ -35,7 +35,7 @@ public extension QueryInputInteractor {
     }
 
     public func connect() {
-      
+
       switch searchTriggeringMode {
       case .searchAsYouType:
         interactor.onQueryChanged.subscribe(with: searcher) { searcher, query in

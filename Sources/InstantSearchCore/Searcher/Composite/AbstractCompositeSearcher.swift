@@ -1,5 +1,5 @@
 //
-//  CompositeSearcher.swift
+//  AbstractCompositeSearcher.swift
 //  
 //
 //  Created by Vladislav Fitc on 11/08/2021.
@@ -10,26 +10,26 @@ import Foundation
 /// Extracts queries from queries sources, performs search request and dispatches the results to the corresponding receivers
 public class AbstractCompositeSearcher<Service: CompositeSearchService>: AbstractSearcher<Service> where Service.Process == Operation {
 
-  public typealias RequestUnit = Service.RequestUnit
-  public typealias ResultUnit = Service.ResultUnit
-      
-  /// List of wrapped child searchers
-  internal var children: [AnyCompositeSearchSource<RequestUnit, ResultUnit>] = []
+  public typealias SubRequest = Service.Request.SubRequest
+  public typealias SubResult = Service.Result.SubResult
+
+  /// List of wrapped sub-searchers
+  internal var subSearchers: [AnySubSearcher<SubRequest, SubResult>] = []
 
   /// Add a child searcher
   /// - parameter child: child searcher to add
-  @discardableResult public func addSearcher<S: CompositeSearchSource>(_ child: S) -> S where S.RequestUnit == RequestUnit, S.ResultUnit == ResultUnit {
-    children.append(AnyCompositeSearchSource(wrapped: child))
+  @discardableResult public func addSearcher<S: SubSearcher>(_ child: S) -> S where S.SubRequest == SubRequest, S.SubResult == SubResult {
+    subSearchers.append(AnySubSearcher(wrapped: child))
     return child
   }
-  
+
   public override func search() {
-    let (queries, completion) = collect()
-    self.request = queries
-    self.onResults.subscribeOnce(with: self) { searcher, result in
-      completion(.success(result))
+    let (requests, completion) = collect()
+    request.subRequests = requests
+    onResults.subscribeOnce(with: self) { _, result in
+      completion(.success(result.subResults))
     }
-    self.onError.subscribeOnce(with: self) { searcher, error in
+    onError.subscribeOnce(with: self) { _, error in
       completion(.failure(error))
     }
     super.search()
@@ -37,10 +37,10 @@ public class AbstractCompositeSearcher<Service: CompositeSearchService>: Abstrac
 
 }
 
-extension AbstractCompositeSearcher: CompositeSearchSource {
-  
-  public func collect() -> (requests: [Service.RequestUnit], completion: (Swift.Result<[Service.ResultUnit], Error>) -> Void) {
-    let requestsAndCompletions = children.map { $0.collect() }
+extension AbstractCompositeSearcher: SubSearcher {
+
+  public func collect() -> (requests: [SubRequest], completion: (Swift.Result<[SubResult], Error>) -> Void) {
+    let requestsAndCompletions = subSearchers.map { $0.collect() }
 
     let requests = requestsAndCompletions.map(\.requests)
     let completions = requestsAndCompletions.map(\.completion)
@@ -74,7 +74,7 @@ extension AbstractCompositeSearcher: CompositeSearchSource {
 extension AbstractCompositeSearcher: QuerySettable {
 
   public func setQuery(_ query: String?) {
-    children
+    subSearchers
       .compactMap { $0.wrapped as? QuerySettable }
       .forEach {
         $0.setQuery(query)
@@ -86,7 +86,7 @@ extension AbstractCompositeSearcher: QuerySettable {
 extension AbstractCompositeSearcher: IndexNameSettable {
 
   public func setIndexName(_ indexName: IndexName) {
-    children
+    subSearchers
       .compactMap { $0.wrapped as? IndexNameSettable }
       .forEach {
         $0.setIndexName(indexName)
@@ -98,7 +98,7 @@ extension AbstractCompositeSearcher: IndexNameSettable {
 extension AbstractCompositeSearcher: FiltersSettable {
 
   public func setFilters(_ filters: String?) {
-    children
+    subSearchers
       .compactMap { $0.wrapped as? FiltersSettable }
       .forEach {
         $0.setFilters(filters)

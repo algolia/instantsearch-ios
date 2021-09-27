@@ -8,7 +8,7 @@
 import Foundation
 
 public extension SwitchIndexConnector {
-  
+
   /**
    - Parameters:
      - searcher: Searcher that handles your searches
@@ -22,7 +22,7 @@ public extension SwitchIndexConnector {
               interactor: interactor)
     connectController(controller)
   }
-  
+
   /**
    - Parameters:
      - searcher: Searcher that handles your searches
@@ -31,16 +31,15 @@ public extension SwitchIndexConnector {
      - controller: Controller interfacing with a concrete switch index view
    */
   convenience init<Controller: SwitchIndexController, Searcher: AnyObject & Searchable & IndexNameSettable>(searcher: Searcher,
-                                                                         indexNames: [IndexName],
-                                                                         selectedIndexName: IndexName,
-                                                                         controller: Controller) {
+                                                                                                            indexNames: [IndexName],
+                                                                                                            selectedIndexName: IndexName,
+                                                                                                            controller: Controller) {
     let interactor = SwitchIndexInteractor(indexNames: indexNames,
                                            selectedIndexName: selectedIndexName)
     self.init(searcher: searcher, interactor: interactor)
     connectController(controller)
   }
 
-  
   /**
    Establishes a connection with the controller
    - Parameters:
@@ -52,5 +51,5 @@ public extension SwitchIndexConnector {
     controllerConnections.append(connection)
     return connection
   }
-  
+
 }

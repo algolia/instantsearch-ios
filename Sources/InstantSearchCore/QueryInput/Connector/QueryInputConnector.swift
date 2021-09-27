@@ -15,7 +15,7 @@ public class QueryInputConnector {
 
   /// Searcher that handles your searches
   public let searcher: QuerySettable & Searchable
-  
+
   /// Business logic that handles new search inputs
   public let interactor: QueryInputInteractor
 
@@ -24,7 +24,7 @@ public class QueryInputConnector {
 
   /// Connections between interactor and controllers
   public var controllerConnections: [Connection]
-  
+
   /**
    - Parameters:
      - searcher: Searcher that handles your searches

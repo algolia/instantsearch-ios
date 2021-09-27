@@ -6,21 +6,6 @@
 //
 
 import Foundation
-import AlgoliaSearchClient
-
-extension SearchClient: CompositeSearchService {
-
-  public typealias RequestUnit = IndexedQuery
-  public typealias ResultUnit = CompoundSearchResponse.Response
-
-  public func search(_ queries: [IndexedQuery], completion: @escaping (Result<[CompoundSearchResponse.Response], Error>) -> Void) -> Operation {
-    return search(queries: queries, strategy: .none, requestOptions: nil) { result in
-      completion(result.map(\.results))
-    }
-  }
-
-}
-
 
 func example() {
 
@@ -52,7 +37,7 @@ func example() {
 
   // Composite searcher
 
-  let compositeSearcher = AbstractCompositeSearcher(appID: "anotherAPPID",
+  let compositeSearcher = CompositeSearcher(appID: "anotherAPPID",
                                             apiKey: "anotherAPIKey")
   compositeSearcher.addHitsSearcher(indexName: "myIndex2", query: sharedQuery)
   compositeSearcher.addHitsSearcher(indexName: "myIndex", query: sharedQuery)

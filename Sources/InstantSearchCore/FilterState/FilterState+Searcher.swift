@@ -13,10 +13,10 @@ public extension FilterState {
 
     /// FilterState that holds search filters
     public let filterState: FilterState
-    
+
     /// Searcher that handles search requests
     public let searcher: Searcher
-    
+
     /**
      - Parameters:
        - filterState: FilterState that holds search filters

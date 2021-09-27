@@ -10,14 +10,14 @@ import Foundation
 
 /// Controller interfacing with a concrete query input view
 public protocol QueryInputController: AnyObject {
-  
+
   /// Closure to trigger when query changed
   var onQueryChanged: ((String?) -> Void)? { get set }
-  
+
   /// Closure to trigger when query submitted
   var onQuerySubmitted: ((String?) -> Void)? { get set }
-  
+
   /// Update query value
   func setQuery(_ query: String?)
-  
+
 }
