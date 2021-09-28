@@ -12,10 +12,10 @@ import AlgoliaSearchClient
 /// Component that displays a list of indices, allowing a user to change the way hits are sorted
 ///
 /// [Documentation](https://www.algolia.com/doc/api-reference/widgets/sort-by/ios/)
-public class SortByConnector {
+public class SortByConnector<Searcher: AnyObject & Searchable & IndexNameSettable> {
 
   /// Searcher that handles your searches
-  public let searcher: HitsSearcher
+  public let searcher: Searcher
 
   /// Logic applied to the indices
   public let interactor: SortByInteractor
@@ -62,7 +62,7 @@ public class SortByConnector {
      - searcher: Searcher that handles your searches
      - interactor: Logic applied to the indices
    */
-  public init(searcher: HitsSearcher,
+  public init(searcher: Searcher,
               interactor: SortByInteractor) {
     self.searcher = searcher
     self.interactor = interactor
@@ -76,7 +76,7 @@ public class SortByConnector {
      - indicesNames: List of the indices names to switch between
      - selected: Consecutive index of the initially selected search index in the list.
    */
-  public convenience init(searcher: HitsSearcher,
+  public convenience init(searcher: Searcher,
                           indicesNames: [IndexName],
                           selected: Int? = nil) {
     let enumeratedIndices = indicesNames
