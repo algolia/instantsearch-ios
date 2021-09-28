@@ -8,9 +8,9 @@
 import Foundation
 
 public extension SortByInteractor {
-  
+
   struct ControllerConnection<Controller: SelectableSegmentController>: Connection where Controller.SegmentKey == Int {
-    
+
     public let interactor: SortByInteractor
     public let controller: Controller
     public let presenter: IndexNamePresenter
@@ -22,7 +22,7 @@ public extension SortByInteractor {
       self.controller = controller
       self.presenter = presenter
     }
-    
+
     public func connect() {
       controller.setItems(items: interactor.items.mapValues(presenter))
       controller.setSelected(interactor.selected)
@@ -35,7 +35,7 @@ public extension SortByInteractor {
         controller.setSelected(interactor.selected)
       }.onQueue(.main)
     }
-    
+
     public func disconnect() {
       controller.setItems(items: [:])
       controller.onClick = nil
@@ -43,9 +43,9 @@ public extension SortByInteractor {
       interactor.onSelectedChanged.cancelSubscription(for: controller)
       interactor.onItemsChanged.cancelSubscription(for: controller)
     }
-    
+
   }
-  
+
 }
 
 public extension SortByInteractor {

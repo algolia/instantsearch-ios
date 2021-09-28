@@ -8,9 +8,9 @@
 import Foundation
 
 public extension SortByInteractor {
-  
+
   struct SearcherConnection<Searcher: AnyObject & Searchable & IndexNameSettable>: Connection {
-    
+
     /// Business logic component that handles the sort logic
     public let interactor: SortByInteractor
 
@@ -31,9 +31,9 @@ public extension SortByInteractor {
     public func disconnect() {
       interactor.onSelectedComputed.cancelSubscription(for: searcher)
     }
-    
+
   }
-  
+
 }
 
 public extension SortByInteractor {

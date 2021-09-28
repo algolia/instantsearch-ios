@@ -14,5 +14,3 @@ public typealias IndexSegmentInteractor = SelectableSegmentInteractor<Int, Index
 
 @available(*, deprecated, message: "Use SortByInteractor")
 public enum IndexSegment {}
-
-
