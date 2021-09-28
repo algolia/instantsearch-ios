@@ -11,7 +11,7 @@ import Foundation
 @available(*, deprecated, message: "Use SortByInteractor")
 public extension IndexSegment {
 
-  @available(*, deprecated, message: "Use multiple HitsSearcher aggregated with CompositeSearcher instead of MultiIndexSearcher")
+  @available(*, deprecated, message: "Use multiple HitsSearcher aggregated with MultiSearcher instead of MultiIndexSearcher")
   struct MultiIndexSearcherConnection: Connection {
 
     let interactor: IndexSegmentInteractor
@@ -54,7 +54,7 @@ public extension IndexSegment {
 @available(*, deprecated, message: "Use SortByInteractor")
 public extension IndexSegmentInteractor {
 
-  @available(*, deprecated, message: "Use multiple HitsSearcher aggregated with CompositeSearcher instead of MultiIndexSearcher")
+  @available(*, deprecated, message: "Use multiple HitsSearcher aggregated with MultiSearcher instead of MultiIndexSearcher")
   @discardableResult func connectSearcher(searcher: MultiIndexSearcher, toQueryAtIndex queryIndex: Int) -> IndexSegment.MultiIndexSearcherConnection {
     let connection = IndexSegment.MultiIndexSearcherConnection(interactor: self, searcher: searcher, queryIndex: queryIndex)
     connection.connect()

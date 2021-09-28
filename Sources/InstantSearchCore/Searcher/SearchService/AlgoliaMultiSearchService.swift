@@ -1,5 +1,5 @@
 //
-//  AlgoliaCompositeSearchService.swift
+//  AlgoliaMultiSearchService.swift
 //  
 //
 //  Created by Vladislav Fitc on 27/09/2021.
@@ -8,7 +8,7 @@
 import Foundation
 import AlgoliaSearchClient
 
-public class AlgoliaCompositeSearchService: CompositeSearchService {
+public class AlgoliaMultiSearchService: MultiSearchService {
 
   public let client: SearchClient
 
@@ -29,9 +29,9 @@ public class AlgoliaCompositeSearchService: CompositeSearchService {
 
 }
 
-extension AlgoliaCompositeSearchService {
+extension AlgoliaMultiSearchService {
 
-  public struct Request: AlgoliaRequest, CompositeRequest {
+  public struct Request: AlgoliaRequest, MultiRequest {
 
     public typealias SubRequest = IndexedQuery
 
@@ -61,7 +61,7 @@ extension AlgoliaCompositeSearchService {
 
 }
 
-extension CompoundSearchResponse: CompositeResult {
+extension CompoundSearchResponse: MultiResult {
 
   public var subResults: [Response] {
     return results

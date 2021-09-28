@@ -1,5 +1,5 @@
 //
-//  SubSearcher.swift
+//  MultiSearchComponent.swift
 //  
 //
 //  Created by Vladislav Fitc on 08/09/2021.
@@ -8,7 +8,7 @@
 import Foundation
 
 /// A Searcher providing a list of sub-requests to perform and a closure accepting a list of sub-results
-public protocol SubSearcher {
+public protocol MultiSearchComponent {
 
   associatedtype SubRequest
   associatedtype SubResult
@@ -19,12 +19,12 @@ public protocol SubSearcher {
 }
 
 /// Type-erased wrapper for a SubSearcher instance
-class AnySubSearcher<SubRequest, SubResult>: SubSearcher {
+class AnyMultiSearchComponent<SubRequest, SubResult>: MultiSearchComponent {
 
   let wrapped: Any
   let collectClosure: () -> (requests: [SubRequest], completion: (Result<[SubResult], Error>) -> Void)
 
-  init<T: SubSearcher>(wrapped: T) where T.SubRequest == SubRequest, T.SubResult == SubResult {
+  init<T: MultiSearchComponent>(wrapped: T) where T.SubRequest == SubRequest, T.SubResult == SubResult {
     self.wrapped = wrapped
     self.collectClosure = wrapped.collect
   }

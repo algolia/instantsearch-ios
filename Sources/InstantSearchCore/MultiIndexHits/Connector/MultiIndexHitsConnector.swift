@@ -11,7 +11,7 @@ import Foundation
 /// Component thath manages and displays a paginated list of search results from multiple indices
 ///
 /// [Documentation](https://www.algolia.com/doc/api-reference/widgets/multi-hits/ios/)
-@available(*, deprecated, message: "Use multiple HitsSearcher aggregated with CompositeSearcher instead of MultiIndexSearcher")
+@available(*, deprecated, message: "Use multiple HitsSearcher aggregated with MultiSearcher instead of MultiIndexSearcher")
 public class MultiIndexHitsConnector {
 
   /// Searcher that handles your searches
@@ -54,7 +54,7 @@ public class MultiIndexHitsConnector {
 
 }
 
-@available(*, deprecated, message: "Use multiple HitsSearcher aggregated with CompositeSearcher instead of MultiIndexSearcher")
+@available(*, deprecated, message: "Use multiple HitsSearcher aggregated with MultiSearcher instead of MultiIndexSearcher")
 extension MultiIndexHitsConnector: Connection {
 
   public func connect() {
@@ -72,7 +72,7 @@ extension MultiIndexHitsConnector: Connection {
 }
 
 // MARK: - Convenient initializers
-@available(*, deprecated, message: "Use multiple HitsSearcher aggregated with CompositeSearcher instead of MultiIndexSearcher")
+@available(*, deprecated, message: "Use multiple HitsSearcher aggregated with MultiSearcher instead of MultiIndexSearcher")
 public extension MultiIndexHitsConnector {
 
   /**

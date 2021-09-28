@@ -7,7 +7,7 @@
 
 import Foundation
 
-@available(*, deprecated, message: "Use multiple HitsSearcher aggregated with CompositeSearcher instead of MultiIndexSearcher")
+@available(*, deprecated, message: "Use multiple HitsSearcher aggregated with MultiSearcher instead of MultiIndexSearcher")
 public extension MultiIndexHitsConnector {
 
   /**
@@ -17,7 +17,7 @@ public extension MultiIndexHitsConnector {
      - indexModules: List of components representing the single index, containing its name, hits interactor and an optional filter state
      - controller: Controller interfacing with a concrete multi-index hits view
   */
-  @available(*, deprecated, message: "Use multiple HitsSearcher aggregated with CompositeSearcher instead of MultiIndexSearcher")
+  @available(*, deprecated, message: "Use multiple HitsSearcher aggregated with MultiSearcher instead of MultiIndexSearcher")
   convenience init<Controller: MultiIndexHitsController>(appID: ApplicationID,
                                                          apiKey: APIKey,
                                                          indexModules: [IndexModule],
@@ -38,7 +38,7 @@ public extension MultiIndexHitsConnector {
      - controller: Controller interfacing with a concrete multi-index hits view
    - Returns: Established connection
   */
-  @available(*, deprecated, message: "Use multiple HitsSearcher aggregated with CompositeSearcher instead of MultiIndexSearcher")
+  @available(*, deprecated, message: "Use multiple HitsSearcher aggregated with MultiSearcher instead of MultiIndexSearcher")
   @discardableResult func connectController<Controller: MultiIndexHitsController>(_ controller: Controller) -> MultiIndexHitsInteractor.ControllerConnection<Controller> {
     let connection = interactor.connectController(controller)
     connection.connect()

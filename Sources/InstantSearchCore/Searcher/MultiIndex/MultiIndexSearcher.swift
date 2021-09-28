@@ -10,7 +10,7 @@ import Foundation
 import AlgoliaSearchClient
 
 /// An entity performing search queries targeting multiple indices.
-@available(*, deprecated, message: "Use multiple HitsSearcher aggregated with CompositeSearcher instead of MultiIndexSearcher")
+@available(*, deprecated, message: "Use multiple HitsSearcher aggregated with MultiSearcher instead of MultiIndexSearcher")
 public class MultiIndexSearcher: Searcher, SequencerDelegate, SearchResultObservable {
 
   public var query: String? {
@@ -194,7 +194,7 @@ public class MultiIndexSearcher: Searcher, SequencerDelegate, SearchResultObserv
 
 }
 
-@available(*, deprecated, message: "Use multiple HitsSearcher aggregated with CompositeSearcher instead of MultiIndexSearcher")
+@available(*, deprecated, message: "Use multiple HitsSearcher aggregated with MultiSearcher instead of MultiIndexSearcher")
 extension MultiIndexSearcher: QuerySettable {
 
   public func setQuery(_ query: String?) {
@@ -203,7 +203,7 @@ extension MultiIndexSearcher: QuerySettable {
 
 }
 
-@available(*, deprecated, message: "Use multiple HitsSearcher aggregated with CompositeSearcher instead of MultiIndexSearcher")
+@available(*, deprecated, message: "Use multiple HitsSearcher aggregated with MultiSearcher instead of MultiIndexSearcher")
 internal extension MultiIndexSearcher {
 
   class PageLoaderProxy: PageLoadable {

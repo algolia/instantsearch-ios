@@ -154,7 +154,7 @@ final public class HitsSearcher: IndexSearcher<AlgoliaSearchService> {
 
 }
 
-extension HitsSearcher: SubSearcher {
+extension HitsSearcher: MultiSearchComponent {
 
   public func collect() -> (requests: [IndexedQuery], completion: (Swift.Result<[CompoundSearchResponse.Response], Swift.Error>) -> Void) {
     return service.collect(for: request) { [weak self] result in

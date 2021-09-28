@@ -53,7 +53,7 @@ public extension QueryRuleCustomDataConnector {
      - queryIndex: Index of query from response of which the user data will be extracted
      - interactor: External custom data interactor
   */
-  @available(*, deprecated, message: "Use multiple HitsSearcher aggregated with CompositeSearcher instead of MultiIndexSearcher")
+  @available(*, deprecated, message: "Use multiple HitsSearcher aggregated with MultiSearcher instead of MultiIndexSearcher")
   convenience init(searcher: MultiIndexSearcher,
                    queryIndex: Int,
                    interactor: Interactor = .init()) {

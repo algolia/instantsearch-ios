@@ -1,5 +1,5 @@
 //
-//  AbstractCompositeSearcher.swift
+//  AbstractMultiSearcher.swift
 //  
 //
 //  Created by Vladislav Fitc on 11/08/2021.
@@ -8,18 +8,18 @@
 import Foundation
 
 /// Extracts queries from queries sources, performs search request and dispatches the results to the corresponding receivers
-public class AbstractCompositeSearcher<Service: CompositeSearchService>: AbstractSearcher<Service> where Service.Process == Operation {
+public class AbstractMultiSearcher<Service: MultiSearchService>: AbstractSearcher<Service> where Service.Process == Operation {
 
   public typealias SubRequest = Service.Request.SubRequest
   public typealias SubResult = Service.Result.SubResult
 
   /// List of wrapped sub-searchers
-  internal var subSearchers: [AnySubSearcher<SubRequest, SubResult>] = []
+  internal var components: [AnyMultiSearchComponent<SubRequest, SubResult>] = []
 
   /// Add a child searcher
   /// - parameter child: child searcher to add
-  @discardableResult public func addSearcher<S: SubSearcher>(_ child: S) -> S where S.SubRequest == SubRequest, S.SubResult == SubResult {
-    subSearchers.append(AnySubSearcher(wrapped: child))
+  @discardableResult public func addSearcher<S: MultiSearchComponent>(_ child: S) -> S where S.SubRequest == SubRequest, S.SubResult == SubResult {
+    components.append(AnyMultiSearchComponent(wrapped: child))
     return child
   }
 
@@ -37,10 +37,10 @@ public class AbstractCompositeSearcher<Service: CompositeSearchService>: Abstrac
 
 }
 
-extension AbstractCompositeSearcher: SubSearcher {
+extension AbstractMultiSearcher: MultiSearchComponent {
 
   public func collect() -> (requests: [SubRequest], completion: (Swift.Result<[SubResult], Error>) -> Void) {
-    let requestsAndCompletions = subSearchers.map { $0.collect() }
+    let requestsAndCompletions = components.map { $0.collect() }
 
     let requests = requestsAndCompletions.map(\.requests)
     let completions = requestsAndCompletions.map(\.completion)
@@ -71,10 +71,10 @@ extension AbstractCompositeSearcher: SubSearcher {
 
 }
 
-extension AbstractCompositeSearcher: QuerySettable {
+extension AbstractMultiSearcher: QuerySettable {
 
   public func setQuery(_ query: String?) {
-    subSearchers
+    components
       .compactMap { $0.wrapped as? QuerySettable }
       .forEach {
         $0.setQuery(query)
@@ -83,10 +83,10 @@ extension AbstractCompositeSearcher: QuerySettable {
 
 }
 
-extension AbstractCompositeSearcher: IndexNameSettable {
+extension AbstractMultiSearcher: IndexNameSettable {
 
   public func setIndexName(_ indexName: IndexName) {
-    subSearchers
+    components
       .compactMap { $0.wrapped as? IndexNameSettable }
       .forEach {
         $0.setIndexName(indexName)
@@ -95,10 +95,10 @@ extension AbstractCompositeSearcher: IndexNameSettable {
 
 }
 
-extension AbstractCompositeSearcher: FiltersSettable {
+extension AbstractMultiSearcher: FiltersSettable {
 
   public func setFilters(_ filters: String?) {
-    subSearchers
+    components
       .compactMap { $0.wrapped as? FiltersSettable }
       .forEach {
         $0.setFilters(filters)

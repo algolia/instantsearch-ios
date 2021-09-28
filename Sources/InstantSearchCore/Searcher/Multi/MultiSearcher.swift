@@ -1,5 +1,5 @@
 //
-//  CompositeSearcher.swift
+//  MultiSearcher.swift
 //  
 //
 //  Created by Vladislav Fitc on 08/09/2021.
@@ -7,11 +7,11 @@
 
 import Foundation
 
-final public class CompositeSearcher: AbstractCompositeSearcher<AlgoliaCompositeSearchService> {
+final public class MultiSearcher: AbstractMultiSearcher<AlgoliaMultiSearchService> {
 
   convenience init(appID: ApplicationID,
                    apiKey: APIKey) {
-    let service = AlgoliaCompositeSearchService(appID: appID,
+    let service = AlgoliaMultiSearchService(appID: appID,
                                                 apiKey: apiKey)
     let initialRequest = Request(queries: [],
                                  strategy: .none,
