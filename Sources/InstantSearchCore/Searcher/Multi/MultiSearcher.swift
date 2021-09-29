@@ -2,45 +2,107 @@
 //  MultiSearcher.swift
 //  
 //
-//  Created by Vladislav Fitc on 08/09/2021.
+//  Created by Vladislav Fitc on 11/08/2021.
 //
 
 import Foundation
 
-final public class MultiSearcher: AbstractMultiSearcher<AlgoliaMultiSearchService> {
+/// Extracts queries from queries sources, performs search request and dispatches the results to the corresponding receivers
+public class MultiSearcher<Service: MultiSearchService>: AbstractSearcher<Service> where Service.Process == Operation {
 
-  convenience init(appID: ApplicationID,
-                   apiKey: APIKey) {
-    let service = AlgoliaMultiSearchService(appID: appID,
-                                                apiKey: apiKey)
-    let initialRequest = Request(queries: [],
-                                 strategy: .none,
-                                 requestOptions: .none)
-    self.init(service: service,
-              initialRequest: initialRequest)
+  public typealias SubRequest = Service.Request.SubRequest
+  public typealias SubResult = Service.Result.SubResult
+
+  /// List of wrapped sub-searchers
+  internal var components: [AnyMultiSearchComponent<SubRequest, SubResult>] = []
+
+  /// Add a child searcher
+  /// - parameter child: child searcher to add
+  @discardableResult public func addSearcher<S: MultiSearchComponent>(_ child: S) -> S where S.SubRequest == SubRequest, S.SubResult == SubResult {
+    components.append(AnyMultiSearchComponent(wrapped: child))
+    return child
   }
 
-  @discardableResult func addHitsSearcher(indexName: IndexName,
-                                          query: Query = .init(),
-                                          requestOptions: RequestOptions? = nil) -> HitsSearcher {
-    let searcher = HitsSearcher(client: service.client,
-                                indexName: indexName,
-                                query: query,
-                                requestOptions: requestOptions)
-    return addSearcher(searcher)
+  public override func search() {
+    let (requests, completion) = collect()
+    request.subRequests = requests
+    onResults.subscribeOnce(with: self) { _, result in
+      completion(.success(result.subResults))
+    }
+    onError.subscribeOnce(with: self) { _, error in
+      completion(.failure(error))
+    }
+    super.search()
   }
 
-  @discardableResult func addFacetsSearcher(indexName: IndexName,
-                                            query: Query = .init(),
-                                            attribute: Attribute,
-                                            facetQuery: String = "",
-                                            requestOptions: RequestOptions? = nil) -> FacetSearcher {
-    let searcher = FacetSearcher(client: service.client,
-                                 indexName: indexName,
-                                 facetName: attribute,
-                                 query: query,
-                                 requestOptions: requestOptions)
-    return addSearcher(searcher)
+}
+
+extension MultiSearcher: MultiSearchComponent {
+
+  public func collect() -> (requests: [SubRequest], completion: (Swift.Result<[SubResult], Error>) -> Void) {
+    let requestsAndCompletions = components.map { $0.collect() }
+
+    let requests = requestsAndCompletions.map(\.requests)
+    let completions = requestsAndCompletions.map(\.completion)
+
+    /// Maps the nested lists to the ranges corresponding to the positions of the nested list elements in the flatten list
+    /// Example: [["a", "b", "c"], ["d", "e"], ["f", "g", "h"]] -> [0..<3, 3..<5, 5..<8]
+    func flatRanges<T>(_ list: [[T]]) -> [Range<Int>] {
+      var ranges: [Range<Int>] = []
+      var offset: Int = 0
+      for sublist in list {
+        let nextOffset = offset+sublist.count
+        let range = offset..<nextOffset
+        ranges.append(range)
+        offset = nextOffset
+      }
+      return ranges
+    }
+
+    let rangePerCompletion = zip(completions, flatRanges(requests))
+
+    return (requests.flatMap { $0 }, { result in
+      for (completion, range) in rangePerCompletion {
+        let resultForCompletion = result.map { Array($0[range]) }
+        completion(resultForCompletion)
+      }
+    })
+  }
+
+}
+
+extension MultiSearcher: QuerySettable {
+
+  public func setQuery(_ query: String?) {
+    components
+      .compactMap { $0.wrapped as? QuerySettable }
+      .forEach {
+        $0.setQuery(query)
+      }
+  }
+
+}
+
+extension MultiSearcher: IndexNameSettable {
+
+  public func setIndexName(_ indexName: IndexName) {
+    components
+      .compactMap { $0.wrapped as? IndexNameSettable }
+      .forEach {
+        $0.setIndexName(indexName)
+      }
+  }
+
+}
+
+extension MultiSearcher: FiltersSettable {
+
+  public func setFilters(_ filters: String?) {
+    components
+      .compactMap { $0.wrapped as? FiltersSettable }
+      .forEach {
+        $0.setFilters(filters)
+      }
   }
 
 }

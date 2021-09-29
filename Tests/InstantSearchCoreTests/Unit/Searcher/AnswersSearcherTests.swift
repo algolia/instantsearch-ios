@@ -75,10 +75,7 @@ class AnswersSearcherTests: XCTestCase {
     let filterState = FilterState()
     searcher.connectFilterState(filterState)
     
-    let segmentedInteractor = IndexSegmentInteractor(items: [
-                                                      1: searcher.service.client.index(withName: "one"),
-                                                      2: searcher.service.client.index(withName: "two")
-    ], selected: 1)
+    let segmentedInteractor = SortByInteractor(items: [1: "one", 2: "two"], selected: 1)
     segmentedInteractor.connectSearcher(searcher: searcher)
     
     let hitsInteractor = HitsInteractor<JSON>()
