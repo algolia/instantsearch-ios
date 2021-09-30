@@ -1,6 +1,6 @@
 //
 //  HierarchicalList.swift
-//  DemoEcommerce
+//
 //
 //  Created by Vladislav Fitc on 10/04/2021.
 //

@@ -1,6 +1,6 @@
 //
 //  FilterToggleObservableController.swift
-//  DemoEcommerce
+//
 //
 //  Created by Vladislav Fitc on 11/04/2021.
 //
