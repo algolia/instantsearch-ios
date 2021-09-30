@@ -18,13 +18,16 @@ class EventTracker: EventTrackable {
   var eventProcessor: EventProcessable
   var logger: PrefixedLogger
   var userToken: UserToken?
+  var generateTimestamps: Bool
 
   init(eventProcessor: EventProcessable,
        logger: PrefixedLogger,
-       userToken: UserToken? = .none) {
+       userToken: UserToken?,
+       generateTimestamps: Bool) {
     self.eventProcessor = eventProcessor
     self.logger = logger
     self.userToken = userToken
+    self.generateTimestamps = generateTimestamps
   }
 
   /// Provides an appropriate user token
@@ -37,16 +40,21 @@ class EventTracker: EventTrackable {
   func effectiveUserToken(withEventUserToken eventUserToken: UserToken?) -> UserToken {
     return eventUserToken ?? self.userToken ?? Insights.userToken
   }
+  
+  func effectiveTimestamp(for timestamp: Date?) -> Date? {
+    return timestamp ?? (generateTimestamps ? Date() : nil)
+  }
 
   func view(eventName: EventName,
             indexName: IndexName,
             userToken: UserToken? = .none,
+            timestamp: Date?,
             objectIDs: [ObjectID]) {
     do {
       eventProcessor.process(try .view(name: eventName,
                                        indexName: indexName,
                                        userToken: effectiveUserToken(withEventUserToken: userToken),
-                                       timestamp: Date(),
+                                       timestamp: effectiveTimestamp(for: timestamp),
                                        objectIDs: objectIDs))
     } catch let error {
       logger.error(error)
@@ -56,12 +64,13 @@ class EventTracker: EventTrackable {
   func view(eventName: EventName,
             indexName: IndexName,
             userToken: UserToken? = .none,
+            timestamp: Date?,
             filters: [String]) {
     do {
       eventProcessor.process(try .view(name: eventName,
                                        indexName: indexName,
                                        userToken: effectiveUserToken(withEventUserToken: userToken),
-                                       timestamp: Date(),
+                                       timestamp: effectiveTimestamp(for: timestamp),
                                        filters: filters))
     } catch let error {
       logger.error(error)
@@ -71,6 +80,7 @@ class EventTracker: EventTrackable {
   func click(eventName: EventName,
              indexName: IndexName,
              userToken: UserToken?,
+             timestamp: Date?,
              objectIDs: [ObjectID],
              positions: [Int],
              queryID: QueryID) {
@@ -79,7 +89,7 @@ class EventTracker: EventTrackable {
       eventProcessor.process(try .click(name: eventName,
                                         indexName: indexName,
                                         userToken: effectiveUserToken(withEventUserToken: userToken),
-                                        timestamp: Date(),
+                                        timestamp: effectiveTimestamp(for: timestamp),
                                         queryID: queryID,
                                         objectIDsWithPositions: objectIDsWithPositions))
     } catch let error {
@@ -90,12 +100,13 @@ class EventTracker: EventTrackable {
   func click(eventName: EventName,
              indexName: IndexName,
              userToken: UserToken? = .none,
+             timestamp: Date?,
              objectIDs: [ObjectID]) {
     do {
       eventProcessor.process(try .click(name: eventName,
                                         indexName: indexName,
                                         userToken: effectiveUserToken(withEventUserToken: userToken),
-                                        timestamp: Date(),
+                                        timestamp: effectiveTimestamp(for: timestamp),
                                         objectIDs: objectIDs))
     } catch let error {
       logger.error(error)
@@ -106,12 +117,13 @@ class EventTracker: EventTrackable {
   func click(eventName: EventName,
              indexName: IndexName,
              userToken: UserToken? = .none,
+             timestamp: Date?,
              filters: [String]) {
     do {
       eventProcessor.process(try .click(name: eventName,
                                         indexName: indexName,
                                         userToken: effectiveUserToken(withEventUserToken: userToken),
-                                        timestamp: Date(),
+                                        timestamp: effectiveTimestamp(for: timestamp),
                                         filters: filters))
     } catch let error {
       logger.error(error)
@@ -122,12 +134,13 @@ class EventTracker: EventTrackable {
   func conversion(eventName: EventName,
                   indexName: IndexName,
                   userToken: UserToken? = .none,
+                  timestamp: Date?,
                   objectIDs: [ObjectID]) {
     do {
       eventProcessor.process(try .conversion(name: eventName,
                                              indexName: indexName,
                                              userToken: effectiveUserToken(withEventUserToken: userToken),
-                                             timestamp: Date(),
+                                             timestamp: effectiveTimestamp(for: timestamp),
                                              queryID: nil,
                                              objectIDs: objectIDs))
     } catch let error {
@@ -138,12 +151,13 @@ class EventTracker: EventTrackable {
   func conversion(eventName: EventName,
                   indexName: IndexName,
                   userToken: UserToken? = .none,
+                  timestamp: Date?,
                   filters: [String]) {
     do {
       eventProcessor.process(try .conversion(name: eventName,
                                              indexName: indexName,
                                              userToken: effectiveUserToken(withEventUserToken: userToken),
-                                             timestamp: Date(),
+                                             timestamp: effectiveTimestamp(for: timestamp),
                                              queryID: nil,
                                              filters: filters))
     } catch let error {
@@ -154,6 +168,7 @@ class EventTracker: EventTrackable {
   func conversion(eventName: EventName,
                   indexName: IndexName,
                   userToken: UserToken?,
+                  timestamp: Date?,
                   objectIDs: [ObjectID],
                   queryID: QueryID) {
 
@@ -161,7 +176,7 @@ class EventTracker: EventTrackable {
       eventProcessor.process(try .conversion(name: eventName,
                                              indexName: indexName,
                                              userToken: effectiveUserToken(withEventUserToken: userToken),
-                                             timestamp: Date(),
+                                             timestamp: effectiveTimestamp(for: timestamp),
                                              queryID: queryID,
                                              objectIDs: objectIDs))
     } catch let error {
