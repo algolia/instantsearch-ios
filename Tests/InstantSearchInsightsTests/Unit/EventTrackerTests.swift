@@ -168,5 +168,43 @@ class EventTrackerTests: XCTestCase {
     
   }
   
+  func testTimeStampGeneration() {
+    
+    let eventTracker = EventTracker(eventProcessor: eventProcessor,
+                                    logger: PrefixedLogger(prefix: "EventTrackerTests"),
+                                    userToken: .none,
+                                    generateTimestamps: true)
+    
+    let expectGeneratedTimeStamp = expectation(description: "Wait for event processor callback")
+
+    eventProcessor.didProcess = { event in
+      XCTAssertNotNil(event.timestamp)
+      expectGeneratedTimeStamp.fulfill()
+    }
+    
+    eventTracker.conversion(eventName: TestEvent.eventName,
+                            indexName: TestEvent.indexName,
+                            timestamp: nil,
+                            filters: TestEvent.filters)
+    
+    waitForExpectations(timeout: 5, handler: nil)
+    
+    eventTracker.generateTimestamps = false
+    
+    let expectEmptyTimestamp = expectation(description: "Wait for event processor callback")
+
+    eventProcessor.didProcess = { event in
+      XCTAssertNil(event.timestamp)
+      expectEmptyTimestamp.fulfill()
+    }
+    
+    eventTracker.conversion(eventName: TestEvent.eventName,
+                            indexName: TestEvent.indexName,
+                            timestamp: nil,
+                            filters: TestEvent.filters)
+    
+    waitForExpectations(timeout: 5, handler: nil)
+  }
+  
 }
 
