@@ -5,7 +5,9 @@
 //  Created by Vladislav Fitc on 26/03/2021.
 //
 
-import Foundation
+#if !InstantSearchCocoaPods
+import InstantSearchCore
+#endif
 #if canImport(Combine) && canImport(SwiftUI) && (arch(arm64) || arch(x86_64))
 import Combine
 import SwiftUI
@@ -27,17 +29,12 @@ public class HitsObservableController<Hit: Codable>: ObservableObject, HitsContr
   }
 
   public func reload() {
-    guard let paginator = self.hitsSource?.paginator, !paginator.isInvalidated,
-          let pageMap = paginator.pageMap else {
-      hits.removeAll()
-      return
-    }
-    self.hits = pageMap.map { $0 }
+    self.hits = hitsSource?.getCurrentHits() ?? []
   }
 
   /// Function to call on hit appearance  to ensure the infinite scrolling functionality
   public func notifyAppearanceOfHit(atIndex index: Int) {
-    hitsSource?.notifyForInfiniteScrolling(rowNumber: index)
+    hitsSource?.notifyDidPresentRow(atIndex: index)
   }
 
   public init() {

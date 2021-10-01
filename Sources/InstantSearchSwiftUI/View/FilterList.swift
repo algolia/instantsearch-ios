@@ -5,7 +5,9 @@
 //  Created by Vladislav Fitc on 21/06/2021.
 //
 
-import Foundation
+#if !InstantSearchCocoaPods
+import InstantSearchCore
+#endif
 #if canImport(Combine) && canImport(SwiftUI) && (arch(arm64) || arch(x86_64)) && !os(tvOS)
 import Combine
 import SwiftUI

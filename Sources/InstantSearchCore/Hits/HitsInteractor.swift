@@ -82,7 +82,7 @@ public class HitsInteractor<Record: Codable>: AnyHitsInteractor {
 
   public func hit(atIndex index: Int) -> Record? {
     guard let hitsPageMap = paginator.pageMap else { return nil }
-    notifyForInfiniteScrolling(rowNumber: index)
+    notifyDidPresentRow(atIndex: index)
     return hitsPageMap[index]
   }
 
@@ -111,12 +111,12 @@ public class HitsInteractor<Record: Codable>: AnyHitsInteractor {
     return pageMap.loadedPages.flatMap { $0.items }.compactMap(toRaw)
   }
 
-  internal func notifyForInfiniteScrolling(rowNumber: Int) {
+  public func notifyDidPresentRow(atIndex rowIndex: Int) {
     guard
       case .on(let pageLoadOffset) = settings.infiniteScrolling,
       let hitsPageMap = paginator.pageMap else { return }
 
-    infiniteScrollingController.calculatePagesAndLoad(currentRow: rowNumber, offset: pageLoadOffset, pageMap: hitsPageMap)
+    infiniteScrollingController.calculatePagesAndLoad(currentRow: rowIndex, offset: pageLoadOffset, pageMap: hitsPageMap)
   }
 
 }

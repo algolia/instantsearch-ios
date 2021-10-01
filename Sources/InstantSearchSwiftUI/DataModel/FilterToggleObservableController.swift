@@ -1,11 +1,13 @@
 //
 //  FilterToggleObservableController.swift
-//  DemoEcommerce
+//
 //
 //  Created by Vladislav Fitc on 11/04/2021.
 //
 
-import Foundation
+#if !InstantSearchCocoaPods
+import InstantSearchCore
+#endif
 #if canImport(Combine) && canImport(SwiftUI) && (arch(arm64) || arch(x86_64))
 import Combine
 import SwiftUI
