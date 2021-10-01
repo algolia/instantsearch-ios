@@ -1,5 +1,13 @@
 # ChangeLog
 
+## [7.14.0](https://github.com/algolia/instantsearch-ios/compare/7.13.5...7.14.0) (2021-10-01)
+
+### Refactor
+
+- Separate the InstantSearchSwiftUI product (#193) ([a321c41](https://github.com/algolia/instantsearch-ios/commit/a321c41))
+
+
+
 ## [7.13.5](https://github.com/algolia/instantsearch-ios/compare/7.13.4...7.13.5) (2021-09-23)
 
 ### Fix
