@@ -17,8 +17,9 @@ InstantSearch family: **InstantSearch iOS** | [InstantSearch Android][instantsea
 
  **InstantSearch iOS** consists of three products
  - *InstantSearch Insights* – library that allows developers to capture search-related events
- - *InstantSearch Core* – the business logic modules of InstantSearch without provided UIKit controllers
- - *InstantSearch* – the complete InstantSearch toolset including UIKit and SwiftUI components
+ - *InstantSearch Core* – the business logic modules of InstantSearch
+ - *InstantSearch* – the complete InstantSearch toolset including UIKit components
+ - *InstantSearch SwiftUI* – the set of SwiftUI data models and views to use on top of Core components
 
 ## Demo
 
