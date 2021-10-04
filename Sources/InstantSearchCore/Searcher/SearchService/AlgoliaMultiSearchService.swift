@@ -20,7 +20,7 @@ public class AlgoliaMultiSearchService: MultiSearchService {
     self.init(client: .init(appID: appID, apiKey: apiKey))
   }
 
-  public func search(_ request: Request, completion: @escaping (Swift.Result<CompoundSearchResponse, Error>) -> Void) -> Operation {
+  public func search(_ request: Request, completion: @escaping (Swift.Result<MultiSearchResponse, Error>) -> Void) -> Operation {
     return client.search(queries: request.queries,
                          strategy: request.strategy,
                          requestOptions: request.requestOptions,
@@ -61,7 +61,7 @@ extension AlgoliaMultiSearchService {
 
 }
 
-extension CompoundSearchResponse: MultiResult {
+extension MultiSearchResponse: MultiResult {
 
   public var subResults: [Response] {
     return results

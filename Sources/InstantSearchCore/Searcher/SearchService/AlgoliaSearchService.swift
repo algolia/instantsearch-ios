@@ -44,9 +44,9 @@ public class AlgoliaSearchService: SearchService {
 
 extension AlgoliaSearchService {
 
-  func collect(for request: Request, completion: @escaping (Swift.Result<SearchResponse, Error>) -> Void) -> (requests: [IndexedQuery], completion: (Swift.Result<[CompoundSearchResponse.Response], Error>) -> Void) {
+  func collect(for request: Request, completion: @escaping (Swift.Result<SearchResponse, Error>) -> Void) -> (requests: [IndexedQuery], completion: (Swift.Result<[MultiSearchResponse.Response], Error>) -> Void) {
     let queries: [IndexedQuery]
-    let transform: ([CompoundSearchResponse.Response]) -> SearchResponse
+    let transform: ([MultiSearchResponse.Response]) -> SearchResponse
     if isDisjunctiveFacetingEnabled {
       let filterGroups = disjunctiveFacetingDelegate?.toFilterGroups() ?? []
       let hierarchicalAttributes = hierarchicalFacetingDelegate?.hierarchicalAttributes ?? []
