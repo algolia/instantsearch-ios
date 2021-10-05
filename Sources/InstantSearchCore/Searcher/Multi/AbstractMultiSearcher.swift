@@ -1,5 +1,5 @@
 //
-//  MultiSearcher.swift
+//  AbstractMultiSearcher.swift
 //  
 //
 //  Created by Vladislav Fitc on 11/08/2021.
@@ -8,7 +8,7 @@
 import Foundation
 
 /// Extracts queries from queries sources, performs search request and dispatches the results to the corresponding receivers
-public class MultiSearcher<Service: MultiSearchService>: AbstractSearcher<Service> where Service.Process == Operation {
+public class AbstractMultiSearcher<Service: MultiSearchService>: AbstractSearcher<Service> where Service.Process == Operation {
 
   public typealias SubRequest = Service.Request.SubRequest
   public typealias SubResult = Service.Result.SubResult
@@ -37,7 +37,7 @@ public class MultiSearcher<Service: MultiSearchService>: AbstractSearcher<Servic
 
 }
 
-extension MultiSearcher: MultiSearchComponent {
+extension AbstractMultiSearcher: MultiSearchComponent {
 
   public func collect() -> (requests: [SubRequest], completion: (Swift.Result<[SubResult], Error>) -> Void) {
     let requestsAndCompletions = components.map { $0.collect() }
@@ -71,7 +71,7 @@ extension MultiSearcher: MultiSearchComponent {
 
 }
 
-extension MultiSearcher: QuerySettable {
+extension AbstractMultiSearcher: QuerySettable {
 
   public func setQuery(_ query: String?) {
     components
@@ -83,7 +83,7 @@ extension MultiSearcher: QuerySettable {
 
 }
 
-extension MultiSearcher: IndexNameSettable {
+extension AbstractMultiSearcher: IndexNameSettable {
 
   public func setIndexName(_ indexName: IndexName) {
     components
@@ -95,7 +95,7 @@ extension MultiSearcher: IndexNameSettable {
 
 }
 
-extension MultiSearcher: FiltersSettable {
+extension AbstractMultiSearcher: FiltersSettable {
 
   public func setFilters(_ filters: String?) {
     components
