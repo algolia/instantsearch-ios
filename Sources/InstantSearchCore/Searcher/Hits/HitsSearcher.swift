@@ -136,6 +136,7 @@ final public class HitsSearcher: IndexSearcher<AlgoliaSearchService> {
     let service = AlgoliaSearchService(client: client)
     let request = AlgoliaSearchService.Request(indexName: indexName, query: query, requestOptions: requestOptions)
     super.init(service: service, initialRequest: request)
+    Telemetry.shared.track(.hitsSearcher)
   }
 
   /**
