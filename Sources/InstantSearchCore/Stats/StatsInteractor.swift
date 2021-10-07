@@ -11,5 +11,6 @@ import Foundation
 public class StatsInteractor: ItemInteractor<SearchStats?> {
   public init() {
     super.init(item: .none)
+    Telemetry.shared.track(.statsInteractor)
   }
 }

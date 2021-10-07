@@ -20,6 +20,7 @@ public class FacetListInteractor: SelectableListInteractor<String, Facet> {
     super.init(items: facets, selectionMode: selectionMode)
     self.mutationQueue.maxConcurrentOperationCount = 1
     self.mutationQueue.qualityOfService = .userInitiated
+    Telemetry.shared.track(.facetListInteractor)
   }
 
 }
