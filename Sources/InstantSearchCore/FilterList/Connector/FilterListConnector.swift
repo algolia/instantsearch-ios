@@ -41,6 +41,7 @@ public class FilterListConnector<Filter: FilterType & Hashable> {
                                                                operator: `operator`,
                                                                groupName: groupName)
     self.controllerConnections = []
+    Telemetry.shared.track(.filterListConnector)
   }
 
   /**

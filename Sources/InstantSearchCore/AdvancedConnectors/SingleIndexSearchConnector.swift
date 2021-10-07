@@ -69,6 +69,8 @@ public struct SingleIndexSearchConnector<Record: Codable>: Connection {
       filterStateHitsInteractorConnection = nil
       filterStateSearcherConnection = nil
     }
+    
+    Telemetry.shared.track(.searchConnector)
 
   }
 

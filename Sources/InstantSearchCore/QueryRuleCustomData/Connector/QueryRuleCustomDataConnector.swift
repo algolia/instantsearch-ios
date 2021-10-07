@@ -29,6 +29,7 @@ public class QueryRuleCustomDataConnector<Model: Decodable> {
     searcherConnection = connectSearcher(interactor)
     controllerConnections = []
     searcherConnection.connect()
+    Telemetry.shared.track(.queryRuleCustomDataConnector)
   }
 
 }

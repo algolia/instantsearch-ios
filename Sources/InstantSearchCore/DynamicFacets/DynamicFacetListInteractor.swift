@@ -70,6 +70,7 @@ public class DynamicFacetListInteractor {
     onFacetOrderChanged.fire(orderedFacets)
     onSelectionsChanged.fire(selections)
     updateInteractors()
+    Telemetry.shared.track(.dynamicFacetsInteractor)
   }
 
   /**

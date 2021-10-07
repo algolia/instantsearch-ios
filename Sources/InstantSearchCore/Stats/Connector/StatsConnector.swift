@@ -36,6 +36,7 @@ public class StatsConnector {
     self.interactor = interactor
     searcherConnection = interactor.connectSearcher(searcher)
     controllerConnections = []
+    Telemetry.shared.track(.statsConnector)
   }
 
 }
