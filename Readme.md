@@ -235,6 +235,14 @@ By default the client transmits tracked events every 30 seconds. You can customi
 Insights.flushDelay = 60
 ```
 
+#### Event Batching
+
+By default, events are only sent by batches of 10. You can customize this setting with `minBatchSize`:
+
+```swift
+Insights.minBatchSize = 1 // Sends each event as soon as it is tracked
+```
+
 #### Setting API region
 
 By default each analytics API call is geo-routed so that each call targets the closest API. 
