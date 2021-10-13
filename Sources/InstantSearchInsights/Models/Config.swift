@@ -24,7 +24,8 @@ struct Algolia {
     // Default flush delay is 30 seconds
     static let flushDelay: TimeInterval = 30
 
-    static let maxEventCountInPackage = 1000
+    // Default events batch size
+    static let minBatchSize = 10
   }
 
 }
