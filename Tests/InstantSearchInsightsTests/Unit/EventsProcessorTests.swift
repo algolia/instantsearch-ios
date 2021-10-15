@@ -203,4 +203,38 @@ class EventsProcessorTests: XCTestCase {
     
   }
   
+  func testEventsFiltering() throws {
+    
+    let mockService = MockEventService<Int>()
+    let packageCapacity = 10
+    let queue = DispatchQueue(label: "test queue")
+    
+    let storage = TestPackageStorage<Int>()
+    storage.store([try .init(items: [1, 2], capacity: 2), try .init(items: [3, 4], capacity: 2)])
+    
+    let acceptEvent: (Int) -> Bool = { $0 % 2 == 0 }
+    
+    let eventsProcessor = EventProcessor(service: mockService,
+                                         storage: storage,
+                                         packageCapacity: packageCapacity,
+                                         flushNotificationName: nil,
+                                         flushDelay: 1000,
+                                         acceptEvent: acceptEvent,
+                                         logger: PrefixedLogger(prefix: #function),
+                                         dispatchQueue: queue)
+
+    let exp = expectation(description: "send events")
+    exp.expectedFulfillmentCount = 2
+    
+    mockService.didSendEvents = { events in
+      XCTAssertTrue(events.allSatisfy(acceptEvent))
+      exp.fulfill()
+    }
+    
+    eventsProcessor.flush()
+    
+    waitForExpectations(timeout: 10, handler: nil)
+
+  }
+  
 }

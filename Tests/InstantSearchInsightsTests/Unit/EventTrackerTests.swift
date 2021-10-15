@@ -15,7 +15,10 @@ class EventTrackerTests: XCTestCase {
   var eventTracker: EventTracker!
   
   override func setUp() {
-    eventTracker = EventTracker(eventProcessor: eventProcessor, logger: PrefixedLogger(prefix: "EventTrackerTests"))
+    eventTracker = EventTracker(eventProcessor: eventProcessor,
+                                logger: PrefixedLogger(prefix: "EventTrackerTests"),
+                                userToken: .none,
+                                generateTimestamps: true)
   }
   
   func testViewEventWithObjects() {
@@ -35,6 +38,7 @@ class EventTrackerTests: XCTestCase {
     eventTracker.view(eventName: TestEvent.eventName,
                       indexName: TestEvent.indexName,
                       userToken: TestEvent.userToken,
+                      timestamp: TestEvent.timeStamp,
                       objectIDs: TestEvent.objectIDs)
     
     
@@ -59,6 +63,7 @@ class EventTrackerTests: XCTestCase {
     eventTracker.view(eventName: TestEvent.eventName,
                       indexName: TestEvent.indexName,
                       userToken: TestEvent.userToken,
+                      timestamp: TestEvent.timeStamp,
                       filters: TestEvent.filters)
     
     waitForExpectations(timeout: 5, handler: nil)
@@ -82,6 +87,7 @@ class EventTrackerTests: XCTestCase {
     eventTracker.click(eventName: TestEvent.eventName,
                        indexName: TestEvent.indexName,
                        userToken: TestEvent.userToken,
+                       timestamp: TestEvent.timeStamp,
                        objectIDs: TestEvent.objectIDs)
     
     waitForExpectations(timeout: 5, handler: nil)
@@ -105,6 +111,7 @@ class EventTrackerTests: XCTestCase {
     eventTracker.click(eventName: TestEvent.eventName,
                        indexName: TestEvent.indexName,
                        userToken: TestEvent.userToken,
+                       timestamp: TestEvent.timeStamp,
                        filters: TestEvent.filters)
     
     waitForExpectations(timeout: 5, handler: nil)
@@ -129,6 +136,7 @@ class EventTrackerTests: XCTestCase {
     eventTracker.conversion(eventName: TestEvent.eventName,
                             indexName: TestEvent.indexName,
                             userToken: TestEvent.userToken,
+                            timestamp: TestEvent.timeStamp,
                             objectIDs: TestEvent.objectIDs)
     
     waitForExpectations(timeout: 5, handler: nil)
@@ -153,10 +161,49 @@ class EventTrackerTests: XCTestCase {
     eventTracker.conversion(eventName: TestEvent.eventName,
                             indexName: TestEvent.indexName,
                             userToken: TestEvent.userToken,
+                            timestamp: TestEvent.timeStamp,
                             filters: TestEvent.filters)
     
     waitForExpectations(timeout: 5, handler: nil)
     
+  }
+  
+  func testTimeStampGeneration() {
+    
+    let eventTracker = EventTracker(eventProcessor: eventProcessor,
+                                    logger: PrefixedLogger(prefix: "EventTrackerTests"),
+                                    userToken: .none,
+                                    generateTimestamps: true)
+    
+    let expectGeneratedTimeStamp = expectation(description: "Wait for event processor callback")
+
+    eventProcessor.didProcess = { event in
+      XCTAssertNotNil(event.timestamp)
+      expectGeneratedTimeStamp.fulfill()
+    }
+    
+    eventTracker.conversion(eventName: TestEvent.eventName,
+                            indexName: TestEvent.indexName,
+                            timestamp: nil,
+                            filters: TestEvent.filters)
+    
+    waitForExpectations(timeout: 5, handler: nil)
+    
+    eventTracker.generateTimestamps = false
+    
+    let expectEmptyTimestamp = expectation(description: "Wait for event processor callback")
+
+    eventProcessor.didProcess = { event in
+      XCTAssertNil(event.timestamp)
+      expectEmptyTimestamp.fulfill()
+    }
+    
+    eventTracker.conversion(eventName: TestEvent.eventName,
+                            indexName: TestEvent.indexName,
+                            timestamp: nil,
+                            filters: TestEvent.filters)
+    
+    waitForExpectations(timeout: 5, handler: nil)
   }
   
 }

@@ -16,16 +16,19 @@ protocol FilterTrackable {
   func viewed(eventName: EventName,
               indexName: IndexName,
               filters: [String],
+              timestamp: Date?,
               userToken: UserToken?)
 
   func clicked(eventName: EventName,
                indexName: IndexName,
                filters: [String],
+               timestamp: Date?,
                userToken: UserToken?)
 
   func converted(eventName: EventName,
                  indexName: IndexName,
                  filters: [String],
+                 timestamp: Date?,
                  userToken: UserToken?)
 
 }

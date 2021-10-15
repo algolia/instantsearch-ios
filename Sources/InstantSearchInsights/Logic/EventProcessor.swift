@@ -31,6 +31,9 @@ class EventProcessor<Service: EventsService, PackageStorage: Storage>: Flushable
 
   /// Logging component
   let logger: PrefixedLogger
+  
+  /// Closure filttering events before synchronizing them with the service
+  let acceptEvent: (Event) -> Bool
 
   /// Whether events must be sent when the timer fires
   var isActive: Bool = true {
@@ -67,6 +70,7 @@ class EventProcessor<Service: EventsService, PackageStorage: Storage>: Flushable
       - packageCapacity: Capacity of each package
       - flushNotificationName: The name of the notification triggering the events flushing
       - flushDelay: The delay between recurrent events flushing
+      - acceptEvent: Closure filttering events before synchronizing them with the service
       - logger: Logging component
       - dispatchQueue: The queue synchronizing the access to event packages
    */
@@ -75,6 +79,7 @@ class EventProcessor<Service: EventsService, PackageStorage: Storage>: Flushable
        packageCapacity: Int,
        flushNotificationName: Notification.Name?,
        flushDelay: TimeInterval,
+       acceptEvent: @escaping (Event) -> Bool = { _ in true },
        logger: PrefixedLogger,
        dispatchQueue: DispatchQueue = .init(label: "insights.events", qos: .background)) {
 
@@ -96,6 +101,7 @@ class EventProcessor<Service: EventsService, PackageStorage: Storage>: Flushable
     self.service = service
     self.dispatchQueue = dispatchQueue
     self.timerController = TimerController(delay: flushDelay)
+    self.acceptEvent = acceptEvent
     timerController.action = flush
     timerController.setup()
     if let flushNotificationName = flushNotificationName {
@@ -143,8 +149,10 @@ private extension EventProcessor {
 
   func sync(_ eventsPackage: Package<Event>) {
     logger.info("sending events package: \(eventsPackage.items)")
-
-    service.sendEvents(eventsPackage.items) { [weak self]  result in
+    
+    let eligibleEvents = eventsPackage.items.filter(acceptEvent)
+    
+    service.sendEvents(eligibleEvents) { [weak self]  result in
 
       guard let processor = self else { return }
 

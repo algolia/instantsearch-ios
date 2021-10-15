@@ -14,21 +14,25 @@ protocol EventTrackable {
     func view(eventName: EventName,
               indexName: IndexName,
               userToken: UserToken?,
+              timestamp: Date?,
               objectIDs: [ObjectID])
 
     func view(eventName: EventName,
               indexName: IndexName,
               userToken: UserToken?,
+              timestamp: Date?,
               filters: [String])
 
     func click(eventName: EventName,
                indexName: IndexName,
                userToken: UserToken?,
+               timestamp: Date?,
                objectIDs: [ObjectID])
 
     func click(eventName: EventName,
                indexName: IndexName,
                userToken: UserToken?,
+               timestamp: Date?,
                objectIDs: [ObjectID],
                positions: [Int],
                queryID: QueryID)
@@ -36,22 +40,26 @@ protocol EventTrackable {
     func click(eventName: EventName,
                indexName: IndexName,
                userToken: UserToken?,
+               timestamp: Date?,
                filters: [String])
 
     func conversion(eventName: EventName,
                     indexName: IndexName,
                     userToken: UserToken?,
+                    timestamp: Date?,
                     objectIDs: [ObjectID])
 
     func conversion(eventName: EventName,
                     indexName: IndexName,
                     userToken: UserToken?,
+                    timestamp: Date?,
                     objectIDs: [ObjectID],
                     queryID: QueryID)
 
     func conversion(eventName: EventName,
                     indexName: IndexName,
                     userToken: UserToken?,
+                    timestamp: Date?,
                     filters: [String])
 
 }

@@ -17,17 +17,20 @@ protocol HitsAfterSearchTrackable {
                           indexName: IndexName,
                           objectIDsWithPositions: [(ObjectID, Int)],
                           queryID: QueryID,
+                          timestamp: Date?,
                           userToken: UserToken?)
 
   func convertedAfterSearch(eventName: EventName,
                             indexName: IndexName,
                             objectIDs: [ObjectID],
                             queryID: QueryID,
+                            timestamp: Date?,
                             userToken: UserToken?)
 
   func viewed(eventName: EventName,
               indexName: IndexName,
               objectIDs: [ObjectID],
+              timestamp: Date?,
               userToken: UserToken?)
 
 }

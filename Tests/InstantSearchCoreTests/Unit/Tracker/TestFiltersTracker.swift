@@ -13,18 +13,30 @@ class TestFiltersTracker: FilterTrackable {
 
   enum EventType { case view, click, convert }
 
-  var did: (((EventType, eventName: EventName, indexName: IndexName, filters: [String], userToken: UserToken?)) -> Void)?
+  var did: (((EventType, eventName: EventName, indexName: IndexName, filters: [String], timestamp: Date?, userToken: UserToken?)) -> Void)?
 
-  func viewed(eventName: EventName, indexName: IndexName, filters: [String], userToken: UserToken?) {
-    did?((.view, eventName, indexName, filters, userToken))
+  func viewed(eventName: EventName,
+              indexName: IndexName,
+              filters: [String],
+              timestamp: Date?,
+              userToken: UserToken?) {
+    did?((.view, eventName, indexName, filters, timestamp, userToken))
   }
 
-  func clicked(eventName: EventName, indexName: IndexName, filters: [String], userToken: UserToken?) {
-    did?((.click, eventName, indexName, filters, userToken))
+  func clicked(eventName: EventName,
+               indexName: IndexName,
+               filters: [String],
+               timestamp: Date?,
+               userToken: UserToken?) {
+    did?((.click, eventName, indexName, filters, timestamp, userToken))
   }
 
-  func converted(eventName: EventName, indexName: IndexName, filters: [String], userToken: UserToken?) {
-    did?((.convert, eventName, indexName, filters, userToken))
+  func converted(eventName: EventName,
+                 indexName: IndexName,
+                 filters: [String],
+                 timestamp: Date?,
+                 userToken: UserToken?) {
+    did?((.convert, eventName, indexName, filters, timestamp, userToken))
   }
 
 }

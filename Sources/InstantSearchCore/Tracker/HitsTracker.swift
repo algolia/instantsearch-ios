@@ -60,6 +60,7 @@ public extension HitsTracker {
                                indexName: searcher.indexName,
                                objectIDsWithPositions: [(hit.objectID, position)],
                                queryID: queryID,
+                               timestamp: .none,
                                userToken: .none)
   }
 
@@ -70,6 +71,7 @@ public extension HitsTracker {
                                  indexName: searcher.indexName,
                                  objectIDs: [hit.objectID],
                                  queryID: queryID,
+                                 timestamp: .none,
                                  userToken: .none)
   }
 
@@ -78,6 +80,7 @@ public extension HitsTracker {
     tracker.viewed(eventName: customEventName ?? self.eventName,
                    indexName: searcher.indexName,
                    objectIDs: [hit.objectID],
+                   timestamp: .none,
                    userToken: .none)
   }
 

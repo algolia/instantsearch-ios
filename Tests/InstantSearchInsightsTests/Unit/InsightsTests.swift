@@ -55,7 +55,7 @@ class InsightsTests: XCTestCase {
     let exp = expectation(description: "callback expectation")
     exp.expectedFulfillmentCount = 3
     
-    testEventTracker.didClickObjectsAfterSearch = { eventName, indexName, userToken, objectIDs, positions, queryID in
+    testEventTracker.didClickObjectsAfterSearch = { eventName, indexName, userToken, _, objectIDs, positions, queryID in
       exp.fulfill()
       XCTAssertEqual(TestEvent.queryID, queryID)
       XCTAssertEqual(TestEvent.userToken, userToken)
@@ -97,7 +97,7 @@ class InsightsTests: XCTestCase {
     let exp = expectation(description: "callback expectation")
     exp.expectedFulfillmentCount = 2
     
-    testEventTracker.didConvertObjectsAfterSearch = { eventName, indexName, userToken, objectIDs, queryID in
+    testEventTracker.didConvertObjectsAfterSearch = { eventName, indexName, userToken, _, objectIDs, queryID in
       exp.fulfill()
       XCTAssertEqual(TestEvent.queryID, queryID)
       XCTAssertEqual(TestEvent.userToken, userToken)
@@ -130,7 +130,7 @@ class InsightsTests: XCTestCase {
     let exp = expectation(description: "callback expectation")
     exp.expectedFulfillmentCount = 2
     
-    testEventTracker.didClickObjects = { eventName, indexName, userToken, objectIDs in
+    testEventTracker.didClickObjects = { eventName, indexName, userToken, _, objectIDs in
       
       exp.fulfill()
       XCTAssertEqual(TestEvent.eventName, eventName)
@@ -161,7 +161,7 @@ class InsightsTests: XCTestCase {
   func testClickWithFilters() {
     let exp = expectation(description: "callback expectation")
     
-    testEventTracker.didClickFilters = { eventName, indexName, userToken, filters in
+    testEventTracker.didClickFilters = { eventName, indexName, userToken, _, filters in
       exp.fulfill()
       XCTAssertEqual(TestEvent.eventName, eventName)
       XCTAssertEqual(TestEvent.userToken, userToken)
@@ -182,7 +182,7 @@ class InsightsTests: XCTestCase {
     let exp = expectation(description: "callback expectation")
     exp.expectedFulfillmentCount = 2
     
-    testEventTracker.didConvertObjects = { eventName, indexName, userToken, objectIDs in
+    testEventTracker.didConvertObjects = { eventName, indexName, userToken, _, objectIDs in
       exp.fulfill()
       XCTAssertEqual(TestEvent.eventName, eventName)
       XCTAssertEqual(TestEvent.userToken, userToken)
@@ -210,7 +210,7 @@ class InsightsTests: XCTestCase {
   func testConversionWithFilters() {
     let exp = expectation(description: "callback expectation")
     
-    testEventTracker.didConvertFilters = { eventName, indexName, userToken, filters in
+    testEventTracker.didConvertFilters = { eventName, indexName, userToken, _, filters in
       exp.fulfill()
       XCTAssertEqual(TestEvent.eventName, eventName)
       XCTAssertEqual(TestEvent.userToken, userToken)
@@ -231,7 +231,7 @@ class InsightsTests: XCTestCase {
     let exp = expectation(description: "callback expectation")
     exp.expectedFulfillmentCount = 2
     
-    testEventTracker.didViewObjects = { eventName, indexName, userToken, objectIDs in
+    testEventTracker.didViewObjects = { eventName, indexName, userToken, _, objectIDs in
       exp.fulfill()
       XCTAssertEqual(TestEvent.eventName, eventName)
       XCTAssertEqual(TestEvent.userToken, userToken)
@@ -259,7 +259,14 @@ class InsightsTests: XCTestCase {
   func testViewWithFilters() {
     let exp = expectation(description: "callback expectation")
     
-    testEventTracker.didViewFilters = { eventName, indexName, userToken, filters in
+    testEventTracker.didViewFilters = { eventName, indexName, userToken, _, filters in
+      exp.fulfill()
+      XCTAssertEqual(TestEvent.eventName, eventName)
+      XCTAssertEqual(TestEvent.userToken, userToken)
+      XCTAssertEqual(TestEvent.indexName, indexName)
+      XCTAssertEqual(TestEvent.filters, filters)
+    }
+    testEventTracker.didViewFilters = { eventName, indexName, userToken, _, filters in
       exp.fulfill()
       XCTAssertEqual(TestEvent.eventName, eventName)
       XCTAssertEqual(TestEvent.userToken, userToken)
@@ -289,7 +296,14 @@ class InsightsTests: XCTestCase {
                                         flushDelay: 1,
                                         logger: logger)
     
-    let insights = Insights(eventsProcessor: eventProcessor, logger: logger)
+    let eventTracker = EventTracker(eventProcessor: eventProcessor,
+                                    logger: logger,
+                                    userToken: .none,
+                                    generateTimestamps: true)
+    
+    let insights = Insights(eventProcessor: eventProcessor,
+                            eventTracker: eventTracker,
+                            logger: logger)
     
     insights.clickedAfterSearch(eventName: TestEvent.eventName,
                                 indexName: TestEvent.indexName,
@@ -312,8 +326,15 @@ class InsightsTests: XCTestCase {
     
     let logger = PrefixedLogger(prefix: #function)
     
-    let insights = Insights(eventsProcessor: eventProcessor, logger: logger)
+    let eventTracker = EventTracker(eventProcessor: eventProcessor,
+                                    logger: logger,
+                                    userToken: .none,
+                                    generateTimestamps: true)
     
+    let insights = Insights(eventProcessor: eventProcessor,
+                            eventTracker: eventTracker,
+                            logger: logger)
+
     insights.clickedAfterSearch(eventName: TestEvent.eventName,
                                 indexName: TestEvent.indexName,
                                 objectIDsWithPositions: TestEvent.objectIDsWithPositions,
@@ -336,7 +357,14 @@ class InsightsTests: XCTestCase {
     
     let logger = PrefixedLogger(prefix: #function)
     
-    let insights = Insights(eventsProcessor: eventProcessor, userToken: "global_token", logger: logger)
+    let eventTracker = EventTracker(eventProcessor: eventProcessor,
+                                    logger: logger,
+                                    userToken: "global_token",
+                                    generateTimestamps: true)
+    
+    let insights = Insights(eventProcessor: eventProcessor,
+                            eventTracker: eventTracker,
+                            logger: logger)
     
     insights.clickedAfterSearch(eventName: TestEvent.eventName,
                                 indexName: TestEvent.indexName,
@@ -353,9 +381,13 @@ class InsightsTests: XCTestCase {
     
     let eventProcessor = TestEventProcessor()
     let logger = PrefixedLogger(prefix: #function)
+    let eventTracker = EventTracker(eventProcessor: eventProcessor,
+                                    logger: logger,
+                                    userToken: userToken,
+                                    generateTimestamps: true)
     
-    let insights = Insights(eventsProcessor: eventProcessor,
-                            userToken: userToken,
+    let insights = Insights(eventProcessor: eventProcessor,
+                            eventTracker: eventTracker,
                             logger: logger)
     
     XCTAssertEqual(insights.userToken, userToken)
@@ -383,6 +415,37 @@ class InsightsTests: XCTestCase {
     
     XCTAssertEqual(Insights.shared(appId: "myAppID")?.userToken, modifiedUserToken)
     
+    
+  }
+  
+  func testExpiredEventsPurge() {
+    
+    let exp = expectation(description: "process event expectation")
+        
+    let eventProcessor = TestEventProcessor()
+    let logger = PrefixedLogger(prefix: #function)
+
+    let eventTracker = EventTracker(eventProcessor: eventProcessor,
+                                    logger: logger,
+                                    userToken: "global_token",
+                                    generateTimestamps: true)
+    
+    eventProcessor.didProcess = { event in
+      XCTAssertEqual("global_token", event.userToken)
+      exp.fulfill()
+    }
+    
+    let insights = Insights(eventProcessor: eventProcessor,
+                            eventTracker: eventTracker,
+                            logger: logger)
+    
+    insights.clickedAfterSearch(eventName: TestEvent.eventName,
+                                indexName: TestEvent.indexName,
+                                objectIDsWithPositions: TestEvent.objectIDsWithPositions,
+                                queryID: TestEvent.queryID)
+    
+    waitForExpectations(timeout: 5, handler: nil)
+
     
   }
   

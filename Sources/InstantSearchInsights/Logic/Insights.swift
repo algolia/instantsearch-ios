@@ -151,10 +151,15 @@ public class Insights {
   /// - parameter  appId: The given app id for which you want to track the events
   /// - parameter  apiKey: The API Key for your `appId`
   /// - parameter  userToken: User token used by default for all the application events, if custom user token is not provided while calling event capturing function
+  ///   Default value: .none
+  /// - parameter  generateTimestamps: Defines if the events timestamps will be automatically attributed if not provided while calling event capturing function.
+  ///   If set to false, the events will be sent without timestamp value and will be automatically attributed on the server that may affect the events accuracy
+  ///   Defafult value: true
   /// - parameter  region: The desired API endpoint region
   @discardableResult public static func register(appId: ApplicationID,
                                                  apiKey: APIKey,
                                                  userToken: UserToken? = .none,
+                                                 generateTimestamps: Bool = true,
                                                  region: Region? = region) -> Insights {
     let logger = PrefixedLogger(prefix: "application \(appId.rawValue) - ")
     logger.info("application registered")
@@ -163,6 +168,7 @@ public class Insights {
                             region: region,
                             flushDelay: Algolia.Insights.flushDelay,
                             userToken: userToken,
+                            generateTimestamps: generateTimestamps,
                             logger: logger)
     Insights.insightsMap[appId] = insights
     return insights
@@ -176,22 +182,12 @@ public class Insights {
     self.logger = logger
   }
 
-  convenience init(eventsProcessor: EventProcessable,
-                   userToken: UserToken? = .none,
-                   logger: PrefixedLogger) {
-    let eventTracker = EventTracker(eventProcessor: eventsProcessor,
-                                    logger: logger,
-                                    userToken: userToken)
-    self.init(eventProcessor: eventsProcessor,
-              eventTracker: eventTracker,
-              logger: logger)
-  }
-
   convenience init(applicationID: ApplicationID,
                    apiKey: APIKey,
                    region: Region? = region,
                    flushDelay: TimeInterval,
-                   userToken: UserToken? = .none,
+                   userToken: UserToken?,
+                   generateTimestamps: Bool,
                    logger: PrefixedLogger) {
 
     typealias PackageStorage = JSONFilePackageStorage<[Package<InsightsEvent>]>
@@ -206,6 +202,14 @@ public class Insights {
     }
 
     let insightsClient = InsightsClient(appID: applicationID, apiKey: apiKey, region: region)
+    
+    let acceptEvent: (InsightsEvent) -> Bool = { event in
+      guard let timestamp = event.timestamp else {
+        return true
+      }
+      let timestampDelta = Date().timeIntervalSince1970.milliseconds - timestamp
+      return timestampDelta < Algolia.Insights.eventExpirationDelay
+    }
 
     let notificationName: Notification.Name?
 
@@ -224,11 +228,16 @@ public class Insights {
                                          packageCapacity: Algolia.Insights.maxEventCountInPackage,
                                          flushNotificationName: notificationName,
                                          flushDelay: flushDelay,
+                                         acceptEvent: acceptEvent,
                                          logger: logger,
                                          dispatchQueue: queue)
-
-    self.init(eventsProcessor: eventsProcessor,
-              userToken: userToken,
+    
+    let eventTracker = EventTracker(eventProcessor: eventsProcessor,
+                                    logger: logger,
+                                    userToken: userToken,
+                                    generateTimestamps: generateTimestamps)
+    self.init(eventProcessor: eventsProcessor,
+              eventTracker: eventTracker,
               logger: logger)
   }
 
