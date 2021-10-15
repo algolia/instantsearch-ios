@@ -284,7 +284,7 @@ class InsightsTests: XCTestCase {
     let logger = PrefixedLogger(prefix: #function)
     let eventProcessor = EventProcessor(service: mockService,
                                         storage: storage,
-                                        packageCapacity: Algolia.Insights.maxEventCountInPackage,
+                                        packageCapacity: Algolia.Insights.minBatchSize,
                                         flushNotificationName: nil,
                                         flushDelay: 1,
                                         logger: logger)
