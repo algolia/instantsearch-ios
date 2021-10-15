@@ -13,7 +13,7 @@ import AlgoliaSearchClient
 /// - Storing of the events in the persistent storage (if provided)
 /// - Forming the bounded packages of the events
 /// – Synchronizing the events with a provided Service
-class EventProcessor<Service: EventsService, PackageStorage: Storage>: Flushable where PackageStorage.Item == [Package<Service.Event>] {
+class EventProcessor<Service: EventsService, PackageStorage: Storage>: Flushable, PackageManageable where PackageStorage.Item == [Package<Service.Event>] {
 
   public typealias Event = Service.Event
 
@@ -108,6 +108,11 @@ class EventProcessor<Service: EventsService, PackageStorage: Storage>: Flushable
       NotificationCenter.default.addObserver(self, selector: #selector(flush), name: flushNotificationName, object: .none)
     }
   }
+  
+  func setPackageCapacity(_ capacity: Int) {
+    self.packager = Packager(packages: packager.packages,
+                             packageCapacity: capacity)
+  }
 
   /// Process a new event
   /// - Parameter event: an event to process
@@ -125,6 +130,9 @@ class EventProcessor<Service: EventsService, PackageStorage: Storage>: Flushable
         try processor.storage?.store(updatedPackages)
       } catch let error {
         processor.logger.error(error)
+      }
+      if let lastPackage = processor.packager.packages.last, lastPackage.isFull {
+        processor.flush()
       }
     }
   }

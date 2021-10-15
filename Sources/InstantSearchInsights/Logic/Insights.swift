@@ -82,6 +82,16 @@ public class Insights {
       }
     }
   }
+  
+  /// Change this variable to change the default amount of event sent at once.
+  
+  public static var minBatchSize: Int = Algolia.Insights.minBatchSize {
+    didSet {
+      for (_, insights) in insightsMap {
+        (insights.eventProcessor as? PackageManageable)?.setPackageCapacity(minBatchSize)
+      }
+    }
+  }
 
   private static var insightsMap: [ApplicationID: Insights] = [:]
   private static var logger = PrefixedLogger(prefix: nil)
@@ -225,7 +235,7 @@ public class Insights {
 
     let eventsProcessor = EventProcessor(service: insightsClient,
                                          storage: storage,
-                                         packageCapacity: Algolia.Insights.maxEventCountInPackage,
+                                         packageCapacity: Algolia.Insights.minBatchSize,
                                          flushNotificationName: notificationName,
                                          flushDelay: flushDelay,
                                          acceptEvent: acceptEvent,

@@ -11,15 +11,15 @@ import AlgoliaSearchClient
 extension Package where Item == InsightsEvent {
 
   init() {
-    self.init(capacity: Algolia.Insights.maxEventCountInPackage)
+    self.init(capacity: Algolia.Insights.minBatchSize)
   }
 
   init(event: Item) {
-    self.init(item: event, capacity: Algolia.Insights.maxEventCountInPackage)
+    self.init(item: event, capacity: Algolia.Insights.minBatchSize)
   }
 
   init(events: [Item]) throws {
-    try self.init(items: events, capacity: Algolia.Insights.maxEventCountInPackage)
+    try self.init(items: events, capacity: Algolia.Insights.minBatchSize)
   }
 
 }

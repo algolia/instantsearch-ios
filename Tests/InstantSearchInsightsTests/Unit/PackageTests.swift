@@ -19,7 +19,7 @@ class PackageTests: XCTestCase {
     ])
     try AssertEncodeDecode(package, [
       "id": .init(package.id),
-      "capacity": .init(Algolia.Insights.maxEventCountInPackage),
+      "capacity": .init(Algolia.Insights.minBatchSize),
       "items": [
         [
           "eventType": "click",
@@ -68,13 +68,13 @@ class PackageTests: XCTestCase {
   func testPackageOverflow() {
     
     let exp = expectation(description: "error callback expectation")
-    let eventsCount = Algolia.Insights.maxEventCountInPackage + 1
+    let eventsCount = Algolia.Insights.minBatchSize + 1
     let events = [InsightsEvent](repeating: TestEvent.click, count: eventsCount)
     
     XCTAssertThrowsError(try Package(events: events), "constructor must throw an error due to events count overflow") { error in
       exp.fulfill()
-      XCTAssertEqual(error as? Package<InsightsEvent>.Error, Package.Error.packageOverflow(capacity: Algolia.Insights.maxEventCountInPackage))
-      XCTAssertEqual(error.localizedDescription, "Max items count in package is \(Algolia.Insights.maxEventCountInPackage)")
+      XCTAssertEqual(error as? Package<InsightsEvent>.Error, Package.Error.packageOverflow(capacity: Algolia.Insights.minBatchSize))
+      XCTAssertEqual(error.localizedDescription, "Max items count in package is \(Algolia.Insights.minBatchSize)")
     }
     
     waitForExpectations(timeout: 5, handler: nil)
@@ -83,7 +83,7 @@ class PackageTests: XCTestCase {
   
   func testIsFull() throws {
     
-    let eventsCount = Algolia.Insights.maxEventCountInPackage
+    let eventsCount = Algolia.Insights.minBatchSize
     let events = [InsightsEvent](repeating: TestEvent.random, count: eventsCount)
     let eventsPackage = try Package(events: events)
     
@@ -92,16 +92,17 @@ class PackageTests: XCTestCase {
     
   }
   
-  func testAppend() {
+  func testAppend() throws {
     
-    let eventsCount = 100
+    let eventsCount = 5
     let events = [InsightsEvent](repeating: TestEvent.random, count: eventsCount)
-    let eventsPackage = try! Package(events: events)
-    let updatedPackage = try! eventsPackage.appending(TestEvent.random)
+    
+    let eventsPackage = try Package(events: events)
+    let updatedPackage = try eventsPackage.appending(TestEvent.random)
     
     XCTAssertEqual(updatedPackage.items.count, eventsCount + 1)
     
-    let anotherUpdatedPackage = try! eventsPackage.appending(events)
+    let anotherUpdatedPackage = try eventsPackage.appending(events)
     
     XCTAssertEqual(anotherUpdatedPackage.items.count, events.count * 2)
   }

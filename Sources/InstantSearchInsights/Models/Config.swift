@@ -27,7 +27,8 @@ struct Algolia {
     /// The delay after which the event won't be accepted by server: 4 days
     static let eventExpirationDelay = (4 * 24 * 3600 as TimeInterval).milliseconds
 
-    static let maxEventCountInPackage = 1000
+    // Default events batch size
+    static let minBatchSize = 10
   }
 
 }
