@@ -40,7 +40,7 @@ class EventTracker: EventTrackable {
   func effectiveUserToken(withEventUserToken eventUserToken: UserToken?) -> UserToken {
     return eventUserToken ?? self.userToken ?? Insights.userToken
   }
-  
+
   func effectiveTimestamp(for timestamp: Date?) -> Date? {
     return timestamp ?? (generateTimestamps ? Date() : nil)
   }

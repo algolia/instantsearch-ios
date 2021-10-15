@@ -82,9 +82,9 @@ public class Insights {
       }
     }
   }
-  
+
   /// Change this variable to change the default amount of event sent at once.
-  
+
   public static var minBatchSize: Int = Algolia.Insights.minBatchSize {
     didSet {
       for (_, insights) in insightsMap {
@@ -212,7 +212,7 @@ public class Insights {
     }
 
     let insightsClient = InsightsClient(appID: applicationID, apiKey: apiKey, region: region)
-    
+
     let acceptEvent: (InsightsEvent) -> Bool = { event in
       guard let timestamp = event.timestamp else {
         return true
@@ -241,7 +241,7 @@ public class Insights {
                                          acceptEvent: acceptEvent,
                                          logger: logger,
                                          dispatchQueue: queue)
-    
+
     let eventTracker = EventTracker(eventProcessor: eventsProcessor,
                                     logger: logger,
                                     userToken: userToken,
