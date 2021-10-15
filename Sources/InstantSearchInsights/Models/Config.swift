@@ -23,7 +23,7 @@ struct Algolia {
   struct Insights {
     // Default flush delay is 30 seconds
     static let flushDelay: TimeInterval = 30
-    
+
     /// The delay after which the event won't be accepted by server: 4 days
     static let eventExpirationDelay = (4 * 24 * 3600 as TimeInterval).milliseconds
 

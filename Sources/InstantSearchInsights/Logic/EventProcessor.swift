@@ -31,7 +31,7 @@ class EventProcessor<Service: EventsService, PackageStorage: Storage>: Flushable
 
   /// Logging component
   let logger: PrefixedLogger
-  
+
   /// Closure filttering events before synchronizing them with the service
   let acceptEvent: (Event) -> Bool
 
@@ -108,7 +108,7 @@ class EventProcessor<Service: EventsService, PackageStorage: Storage>: Flushable
       NotificationCenter.default.addObserver(self, selector: #selector(flush), name: flushNotificationName, object: .none)
     }
   }
-  
+
   func setPackageCapacity(_ capacity: Int) {
     self.packager = Packager(packages: packager.packages,
                              packageCapacity: capacity)
@@ -157,9 +157,9 @@ private extension EventProcessor {
 
   func sync(_ eventsPackage: Package<Event>) {
     logger.info("sending events package: \(eventsPackage.items)")
-    
+
     let eligibleEvents = eventsPackage.items.filter(acceptEvent)
-    
+
     service.sendEvents(eligibleEvents) { [weak self]  result in
 
       guard let processor = self else { return }
