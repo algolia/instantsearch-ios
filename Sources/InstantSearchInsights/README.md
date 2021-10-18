@@ -38,6 +38,49 @@ Insights.shared?.viewed(eventName: "view event",
 
 ```
 
+### Event Batching
+
+By default, events are only sent by batches of 10. You can customize this setting with `minBatchSize`:
+
+```swift
+Insights.minBatchSize = 1 // Sends each event as soon as it is tracked
+```
+
+### User tracking
+
+Any event should have an userToken field to specify the user it relates to. You can set it in three ways:
+
+- Globally for all events
+- Per application, for every event tracked by this app
+- Individually on an event
+
+```swift
+// Global userToken default value
+Insights.shared?.userToken = "userToken"
+
+// Application userToken, overrides global default
+Insights.register(appId: "yourApplicationID",
+                  apiKey: "yourAPIKey",
+                  userToken: "userToken")
+
+// Event userToken, overrides previous defaults
+Insights.shared?.clicked(eventName: "eventName",
+                         indexName: "indexName",
+                         objectID: "objectID1",
+                         userToken: "userToken")
+```
+
+### User opt-out
+
+You should allow users to opt-out of tracking anytime they want to. When they request opt-out, you can honor it using:
+
+```swift
+Insights.shared(appId: "appID")?.isActive = false
+
+// Or, by getting the sole registered Insights instance
+Insights.shared?.isActive = false
+```
+
 ### Logging and debuging
 
 In case you want to check if the metric was sent correctly, you need to enable the logging first
@@ -55,14 +98,6 @@ By default the client transmits tracked events every 30 seconds. You can customi
 
 ```swift
 Insights.flushDelay = 60
-```
-
-### Event Batching
-
-By default, events are only sent by batches of 10. You can customize this setting with `minBatchSize`:
-
-```swift
-Insights.minBatchSize = 1 // Sends each event as soon as it is tracked
 ```
 
 #### Setting API region
