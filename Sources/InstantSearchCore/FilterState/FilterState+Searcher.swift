@@ -32,6 +32,7 @@ public extension FilterState {
       filterState.onChange.subscribePast(with: searcher) { searcher, filterState in
         let filters = FilterGroupConverter().sql(filterState.toFilterGroups())
         searcher.setFilters(filters)
+        searcher.search()
       }
     }
 

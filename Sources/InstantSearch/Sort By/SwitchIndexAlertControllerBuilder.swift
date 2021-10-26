@@ -13,31 +13,31 @@ import InstantSearchCore
 import UIKit
 
 /// Constructs a UIAlertController instance with the indices names list and dispatches the selected index name
-public class SwitchIndexAlertControllerBuilder: SwitchIndexController {
+public class SwitchIndexAlertControllerBuilder: SelectableSegmentController {
+  
+  public typealias SegmentKey = Int
 
   /// List of the indices names
-  public var indicesNames: [IndexName]
+  public var indicesNames: [Int: String]
 
   /// Currently selected index name
-  public var selectedIndexName: IndexName
+  public var selectedIndex: Int?
 
-  public var selectIndexWithName: (IndexName) -> Void = { _ in }
+  public var onClick: ((Int) -> Void)?
 
-  /// Closure that provides a title for an index name
-  public var getTitle: (IndexName) -> String
-
-  /// - parameter getTitle: Closure that provides a title for an index name
-  public init(getTitle: @escaping (IndexName) -> String) {
-    self.indicesNames = []
-    self.selectedIndexName = ""
-    self.getTitle = getTitle
+  public init() {
+    self.indicesNames = [:]
+    self.selectedIndex = .none
   }
-
-  public func set(indicesNames: [IndexName], selected: IndexName) {
-    self.indicesNames = indicesNames
-    self.selectedIndexName = selected
+  
+  public func setSelected(_ selected: Int?) {
+    selectedIndex = selected
   }
-
+  
+  public func setItems(items: [Int : String]) {
+    indicesNames = items
+  }
+  
   /// - parameters:
   ///   - title: The title of the alert. Use this string to get the user’s attention and communicate the reason for the alert.
   ///   - message: Descriptive text that provides additional details about the reason for the alert.
@@ -51,11 +51,12 @@ public class SwitchIndexAlertControllerBuilder: SwitchIndexController {
                                             message: message,
                                             preferredStyle: .actionSheet)
     indicesNames
-      .map { indexName in
-        UIAlertAction(title: getTitle(indexName), style: .default) { [weak self] _ in
+      .sorted(by: \.key)
+      .map { (index, indexName) in
+        UIAlertAction(title: indexName, style: .default) { [weak self] _ in
           guard let controller = self else { return }
-          if indexName != controller.selectedIndexName {
-            controller.selectIndexWithName(indexName)
+          if index != controller.selectedIndex {
+            controller.onClick?(index)
           }
         }
       }

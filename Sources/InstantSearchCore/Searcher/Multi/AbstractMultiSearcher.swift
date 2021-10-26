@@ -18,9 +18,9 @@ public class AbstractMultiSearcher<Service: MultiSearchService>: AbstractSearche
 
   /// Add a child searcher
   /// - parameter child: child searcher to add
-  @discardableResult public func addSearcher<S: MultiSearchComponent>(_ child: S) -> S where S.SubRequest == SubRequest, S.SubResult == SubResult {
-    components.append(AnyMultiSearchComponent(wrapped: child))
-    return child
+  @discardableResult public func addSearcher<S: MultiSearchComponent>(_ component: S) -> S where S.SubRequest == SubRequest, S.SubResult == SubResult {
+    components.append(AnyMultiSearchComponent(wrapped: component))
+    return component
   }
 
   public override func search() {
