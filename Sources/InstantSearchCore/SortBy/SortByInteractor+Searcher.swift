@@ -38,7 +38,7 @@ public extension SortByInteractor {
 
 public extension SortByInteractor {
 
-  @discardableResult func connectSearcher<Searcher: AnyObject & Searchable & IndexNameSettable>(searcher: Searcher) -> SearcherConnection<Searcher> {
+  @discardableResult func connectSearcher<Searcher: AnyObject & Searchable & IndexNameSettable>(_ searcher: Searcher) -> SearcherConnection<Searcher> {
     let connection = SearcherConnection(interactor: self, searcher: searcher)
     connection.connect()
     return connection

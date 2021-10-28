@@ -66,7 +66,7 @@ public class SortByConnector<Searcher: AnyObject & Searchable & IndexNameSettabl
               interactor: SortByInteractor) {
     self.searcher = searcher
     self.interactor = interactor
-    self.searcherConnection = interactor.connectSearcher(searcher: searcher)
+    self.searcherConnection = interactor.connectSearcher(searcher)
     self.controllerConnections = []
   }
 

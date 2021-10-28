@@ -76,7 +76,7 @@ class AnswersSearcherTests: XCTestCase {
     searcher.connectFilterState(filterState)
     
     let segmentedInteractor = SortByInteractor(items: [1: "one", 2: "two"], selected: 1)
-    segmentedInteractor.connectSearcher(searcher: searcher)
+    segmentedInteractor.connectSearcher(searcher)
     
     let hitsInteractor = HitsInteractor<JSON>()
     hitsInteractor.connectSearcher(searcher)
