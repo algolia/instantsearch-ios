@@ -42,7 +42,7 @@ public class FilterClearConnector {
                                                                filterGroupIDs: filterGroupIDs,
                                                                clearMode: clearMode)
     self.controllerConnections = []
-    Telemetry.shared.track(.filterClearConnector)
+//    Telemetry.shared.track(.filterClearConnector)
   }
 
 }

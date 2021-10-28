@@ -121,6 +121,7 @@ final public class HitsSearcher: IndexSearcher<AlgoliaSearchService> {
                           requestOptions: RequestOptions? = nil) {
     let client = SearchClient(appID: appID, apiKey: apiKey)
     self.init(client: client, indexName: indexName, query: query, requestOptions: requestOptions)
+    track(with: .appID, .apiKey, .indexName, .query, .requestOptions)
   }
 
   /**
@@ -151,6 +152,7 @@ final public class HitsSearcher: IndexSearcher<AlgoliaSearchService> {
               indexName: indexQueryState.indexName,
               query: indexQueryState.query,
               requestOptions: requestOptions)
+    track(with: .client, .requestOptions)
   }
 
 }

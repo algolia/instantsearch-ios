@@ -73,7 +73,7 @@ public struct SearchConnector<Record: Codable>: Connection {
       filterStateSearcherConnection = nil
     }
     
-    Telemetry.shared.track(.searchConnector)
+//    Telemetry.shared.track(.searchConnector)
 
   }
 

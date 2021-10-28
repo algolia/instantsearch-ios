@@ -68,7 +68,7 @@ public class SortByConnector {
     self.interactor = interactor
     self.searcherConnection = interactor.connectSearcher(searcher)
     self.controllerConnections = []
-    Telemetry.shared.track(.sortByConnector)
+//    Telemetry.shared.track(.sortByConnector)
   }
 
   /**

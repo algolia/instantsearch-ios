@@ -37,10 +37,10 @@ let package = Package(
       dependencies: ["InstantSearchInsights", "AlgoliaSearchClient"]),
     .target(
       name: "InstantSearchCore",
-      dependencies: ["AlgoliaSearchClient", "InstantSearchInsights"]),
+      dependencies: ["AlgoliaSearchClient", "InstantSearchInsights", "SwiftProtobuf"]),
     .testTarget(
       name: "InstantSearchCoreTests",
-      dependencies: ["InstantSearchCore", "AlgoliaSearchClient", "InstantSearchInsights"]),
+      dependencies: ["InstantSearchCore", "AlgoliaSearchClient", "InstantSearchInsights", "SwiftProtobuf"]),
     .target(
       name: "InstantSearch",
       dependencies: ["InstantSearchCore"]),

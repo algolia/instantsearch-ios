@@ -12,6 +12,6 @@ import Foundation
 public class LoadingInteractor: ItemInteractor<Bool> {
   public init() {
     super.init(item: false)
-    Telemetry.shared.track(.loadingInteractor)
+//    Telemetry.shared.track(.loadingInteractor)
   }
 }

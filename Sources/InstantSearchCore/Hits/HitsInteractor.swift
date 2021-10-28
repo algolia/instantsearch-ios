@@ -82,7 +82,7 @@ public class HitsInteractor<Record: Codable>: AnyHitsInteractor {
     self.mutationQueue = .init()
     self.mutationQueue.maxConcurrentOperationCount = 1
     self.mutationQueue.qualityOfService = .userInitiated
-    Telemetry.shared.track(.hitsInteractor)
+//    Telemetry.shared.track(.hitsInteractor)
   }
 
   public func numberOfHits() -> Int {

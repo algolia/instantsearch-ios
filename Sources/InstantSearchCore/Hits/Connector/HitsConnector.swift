@@ -41,7 +41,7 @@ public class HitsConnector<Hit: Codable> {
     self.filterStateConnection = filterState.flatMap(interactor.connectFilterState)
     self.searcherConnection = connectSearcher(searcher)
     self.controllerConnections = []
-    Telemetry.shared.track(.hitsConnector)
+//    Telemetry.shared.track(.hitsConnector)
   }
 
   internal convenience init<S: Searcher, Controller: HitsController>(searcher: S,

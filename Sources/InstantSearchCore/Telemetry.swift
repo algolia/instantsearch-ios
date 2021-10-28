@@ -7,76 +7,139 @@
 
 import Foundation
 
+enum TrackableComponent: UInt8 {
+  
+  case hitsSearcher = 1
+  case facetSearcher = 2
+  case filterState = 3
+  case highlightedString
+  case searchConnector
+  
+  case currentFiltersInteractor
+  case currentFiltersConnector
+  
+  case dynamicFacetsInteractor
+  case dynamicFacetsConnector
+  
+  case facetListInteractor
+  case facetListConnector
+  
+  case filterClearInteractor
+  case filterClearConnector
+  
+  case filterListInteractor
+  case filterListConnector
+  
+  case hierarchicalInteractor
+  case hierarchicalConnector
+  
+  case hitsInteractor
+  case hitsConnector
+  
+  case loadingInteractor
+  case loadingConnector
+  
+  case numberInteractor
+  case numberConnector
+  
+  case numberRangeInteractor
+  case numberRangeConnector
+  
+  case queryInputInteractor
+  case queryInputConnector
+  
+  case queryRuleCustomDataInteractor
+  case queryRuleCustomDataConnector
+  
+  case relevantSortInteractor
+  case relevantSortConnector
+  
+  case sortByInteractor
+  case sortByConnector
+  
+  case statsInteractor
+  case statsConnector
+  
+  case filterToggleInteractor
+  case filterToggleConnector
+  
+  var description: String {
+    switch self {
+    case .hitsSearcher:
+      return "hitsSearcher"
+    default:
+      return ""
+    }
+  }
+  
+  func parameters(rawValue: UInt64) -> Set<String> {
+    switch self {
+    case .hitsSearcher:
+      return SingleIndexSearcher.TelemetryParameters(rawValue: rawValue).parameters
+    default:
+      return []
+    }
+  }
+  
+}
+
+protocol TelemetryTrackable {
+  
+  associatedtype TelemetryParameters: OptionSet = NoParameters where TelemetryParameters.RawValue == UInt64
+  
+  var telemetryID: UInt8 { get }
+  
+  
+}
+
+struct NoParameters: OptionSet {
+  
+  let rawValue: UInt64
+  
+}
+
+extension TelemetryTrackable {
+  
+  func track(with parameters: TelemetryParameters...) {
+    Telemetry.shared.track(component: self, parameters: parameters)
+  }
+  
+  func track() {
+    Telemetry.shared.track(component: self, parameters: [])
+  }
+  
+}
+
 class Telemetry {
   
   static let shared = Telemetry()
   
-  private var usage: Usage = .init()
-  
-  var value: Int {
-    return usage.rawValue
+  private var usage: [UInt8: UInt64] = [:]
+    
+  var value: String {
+    return usage.sorted(by: \.key).map { String(UInt64($0) << 56 | $1) }.joined(separator: ",")
   }
   
-  func track(_ usage: Usage) {
-    self.usage.insert(usage)
+  func track<T: TelemetryTrackable>(component: T, parameters: [T.TelemetryParameters]) {
+    usage[component.telemetryID] = parameters.map(\.rawValue).reduce(0, { $0 | 1 << $1 })
   }
   
-  struct Usage: OptionSet {
-    let rawValue: Int
-    
-    static let hitsSearcher = Usage(rawValue: 1 << 0)
-    static let facetSearcher = Usage(rawValue: 1 << 1)
-    static let filterState = Usage(rawValue: 1 << 2)
-    static let highlightedString = Usage(rawValue: 1 << 3)
-    static let searchConnector = Usage(rawValue: 1 << 4)
-    
-    static let currentFiltersInteractor = Usage(rawValue: 1 << 5)
-    static let currentFiltersConnector = Usage(rawValue: 1 << 6)
-    
-    static let dynamicFacetsInteractor = Usage(rawValue: 1 << 7)
-    static let dynamicFacetsConnector = Usage(rawValue: 1 << 8)
-    
-    static let facetListInteractor = Usage(rawValue: 1 << 9)
-    static let facetListConnector = Usage(rawValue: 1 << 10)
-    
-    static let filterClearInteractor = Usage(rawValue: 1 << 11)
-    static let filterClearConnector = Usage(rawValue: 1 << 12)
-    
-    static let filterListInteractor = Usage(rawValue: 1 << 13)
-    static let filterListConnector = Usage(rawValue: 1 << 14)
-    
-    static let hierarchicalInteractor = Usage(rawValue: 1 << 15)
-    static let hierarchicalConnector = Usage(rawValue: 1 << 16)
-    
-    static let hitsInteractor = Usage(rawValue: 1 << 17)
-    static let hitsConnector = Usage(rawValue: 1 << 18)
-    
-    static let loadingInteractor = Usage(rawValue: 1 << 19)
-    static let loadingConnector = Usage(rawValue: 1 << 20)
-    
-    static let numberInteractor = Usage(rawValue: 1 << 21)
-    static let numberConnector = Usage(rawValue: 1 << 22)
-    
-    static let numberRangeInteractor = Usage(rawValue: 1 << 23)
-    static let numberRangeConnector = Usage(rawValue: 1 << 24)
-    
-    static let queryInputInteractor = Usage(rawValue: 1 << 25)
-    static let queryInputConnector = Usage(rawValue: 1 << 26)
-    
-    static let queryRuleCustomDataInteractor = Usage(rawValue: 1 << 27)
-    static let queryRuleCustomDataConnector = Usage(rawValue: 1 << 28)
-    
-    static let relevantSortInteractor = Usage(rawValue: 1 << 29)
-    static let relevantSortConnector = Usage(rawValue: 1 << 30)
-    
-    static let sortByInteractor = Usage(rawValue: 1 << 31)
-    static let sortByConnector = Usage(rawValue: 1 << 32)
-    
-    static let statsInteractor = Usage(rawValue: 1 << 33)
-    static let statsConnector = Usage(rawValue: 1 << 34)
-    
-    static let filterToggleInteractor = Usage(rawValue: 1 << 35)
-    static let filterToggleConnector = Usage(rawValue: 1 << 36)
+}
+
+class TelemetryParser {
+  
+  let componentOffset = 56
+  let componentMask: UInt64 = 0xFF00000000000000
+  let parametersMask: UInt64 = 0x00FFFFFFFFFFFFFF
+  
+  func parse(rawString: String) -> [String: Set<String>] {
+    var output: [String: Set<String>] = [:]
+    rawString.split(separator: ",").compactMap { UInt64($0) }.forEach { rawIntComponent in
+      TrackableComponent(rawValue: UInt8((rawIntComponent & componentMask) >> componentOffset)).flatMap {
+        output[$0.description] = $0.parameters(rawValue: rawIntComponent & parametersMask)
+      }
+    }
+    return output
   }
   
 }
@@ -84,7 +147,9 @@ class Telemetry {
 extension Telemetry: UserAgentExtending {
   
   var userAgentExtension: String {
-    return "Usage: \(value)"
+    return "ISusage(\(value))"
   }
   
 }
+
+

@@ -36,7 +36,7 @@ public class LoadingConnector {
     self.interactor = interactor
     self.searcherConnection = interactor.connectSearcher(searcher)
     self.controllerConnections = []
-    Telemetry.shared.track(.loadingInteractor)
+//    Telemetry.shared.track(.loadingInteractor)
   }
 
 }
