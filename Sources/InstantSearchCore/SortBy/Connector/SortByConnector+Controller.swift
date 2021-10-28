@@ -17,7 +17,7 @@ public extension SortByConnector {
      - controller: Controller interfacing with a concrete sortBy view
      - presenter: Presenter defining how the indices appear in the controller
    */
-  convenience init<Controller: SelectableSegmentController>(searcher: Searcher,
+  convenience init<Searcher: AnyObject & Searchable & IndexNameSettable, Controller: SelectableSegmentController>(searcher: Searcher,
                                                             indicesNames: [IndexName],
                                                             selected: Int? = nil,
                                                             controller: Controller,

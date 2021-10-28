@@ -12,10 +12,10 @@ import AlgoliaSearchClient
 /// Component that displays a list of indices, allowing a user to change the way hits are sorted
 ///
 /// [Documentation](https://www.algolia.com/doc/api-reference/widgets/sort-by/ios/)
-public class SortByConnector<Searcher: AnyObject & Searchable & IndexNameSettable> {
+public class SortByConnector {
 
   /// Searcher that handles your searches
-  public let searcher: Searcher
+  public let searcher: AnyObject & Searchable & IndexNameSettable
 
   /// Logic applied to the indices
   public let interactor: SortByInteractor
@@ -62,8 +62,8 @@ public class SortByConnector<Searcher: AnyObject & Searchable & IndexNameSettabl
      - searcher: Searcher that handles your searches
      - interactor: Logic applied to the indices
    */
-  public init(searcher: Searcher,
-              interactor: SortByInteractor) {
+  public init<Searcher: AnyObject & Searchable & IndexNameSettable>(searcher: Searcher,
+                                                                    interactor: SortByInteractor) {
     self.searcher = searcher
     self.interactor = interactor
     self.searcherConnection = interactor.connectSearcher(searcher)
@@ -76,16 +76,17 @@ public class SortByConnector<Searcher: AnyObject & Searchable & IndexNameSettabl
      - indicesNames: List of the indices names to switch between
      - selected: Consecutive index of the initially selected search index in the list.
    */
-  public convenience init(searcher: Searcher,
-                          indicesNames: [IndexName],
-                          selected: Int? = nil) {
+  public convenience init<Searcher: AnyObject & Searchable & IndexNameSettable>(searcher: Searcher,
+                                                                                indicesNames: [IndexName],
+                                                                                selected: Int? = nil) {
     let enumeratedIndices = indicesNames
       .enumerated()
       .map { $0 }
     let items = [Int: IndexName](uniqueKeysWithValues: enumeratedIndices)
     let interactor = SortByInteractor(items: items)
     interactor.selected = selected
-    self.init(searcher: searcher, interactor: interactor)
+    self.init(searcher: searcher,
+              interactor: interactor)
   }
 
 }
