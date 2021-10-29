@@ -42,6 +42,20 @@ public class HitsInteractor<Record: Codable>: AnyHitsInteractor {
     }
 
   }
+  
+  /// Value defines how many pages of hits might be kept in memory
+  /// before and after the current page
+  /// When set `nil`, all the fetched pages will stay in memory
+  /// Default value: 3
+  public var pageCleanUpOffset: Int? {
+    get {
+      return paginator.pageCleanUpOffset
+    }
+    
+    set {
+      paginator.pageCleanUpOffset = newValue
+    }
+  }
 
   convenience public init(infiniteScrolling: InfiniteScrolling = Constants.Defaults.infiniteScrolling,
                           showItemsOnEmptyQuery: Bool = Constants.Defaults.showItemsOnEmptyQuery) {
