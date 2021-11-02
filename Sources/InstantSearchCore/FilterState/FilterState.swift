@@ -26,14 +26,18 @@ public class FilterState {
   public init() {
     self.filters = GroupsStorage()
     self.onChange = .init()
-//    Telemetry.shared.track(.filterState)
+    Telemetry.shared.track(type: .filterState,
+                           parameters: [],
+                           useConnector: false)
   }
 
   /// Copy constructor
   public init(_ filterState: FilterState) {
     self.filters = filterState.filters
     self.onChange = .init()
-//    Telemetry.shared.track(.filterState)
+    Telemetry.shared.track(type: .filterState,
+                           parameters: [],
+                           useConnector: false)
   }
 
   /// Replace the groups of filter state by the groups of the filter state passed as parameter

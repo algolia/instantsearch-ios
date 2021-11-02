@@ -1,0 +1,68 @@
+syntax = "proto3";
+
+enum TelemetryComponentType {
+ UNKNOWN = 0;
+ hitsSearcher = 1;
+ facetSearcher = 2;
+ multiSearcher = 3;
+ answersSearcher = 4;
+ filterState = 5;
+ dynamicFacets = 6;
+ hierarchicalFacets = 7;
+ facetList = 8;
+ filterClear = 9;
+ filterList = 10;
+ filterToggle = 11;
+ numberFilter = 12;
+ numberRangeFilter = 13;
+ currentFilters = 14;
+ hits = 15;
+ loading = 16;
+ stats = 17;
+ queryInput = 18;
+ queryRuleCustomData = 19;
+ relevantSort = 20;
+ sortBy = 21;
+}
+
+enum TelemetryComponentParams {
+  undefined = 0;
+  apiKey = 1;
+  appID = 2;
+  attribute = 3;
+  bounds = 4;
+  clearMode = 5;
+  client = 6;
+  facets = 7;
+  filter = 8;
+  filterGroupForAttribute = 9;
+  filterGroupIDs = 10;
+  groupName = 11;
+  hierarchicalAttributes = 12;
+  indexName = 13;
+  infiniteScrolling = 14;
+  item = 15;
+  items = 16;
+  operator = 17;
+  orderedFacets = 18;
+  priority = 19;
+  range = 20;
+  searchTriggeringMode = 21;
+  searcher = 22;
+  selected = 23;
+  selectionMode = 24;
+  selectionModeForAttribute = 25;
+  selections = 26;
+  separator = 27;
+  showItemsOnEmptyQuery = 28;
+}
+
+message TelemetryComponent {
+  TelemetryComponentType type = 600;
+  repeated TelemetryComponentParams parameters = 601;
+  bool isConnector = 602;
+}
+
+message TelemetrySchema {
+  repeated TelemetryComponent components = 700;
+}

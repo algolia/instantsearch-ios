@@ -13,14 +13,8 @@ public class FilterClearInteractor: EventInteractor {
 
   public init() {
     onTriggered = .init()
-    track()
+    Telemetry.shared.track(type: .filterClear,
+                           parameters: [],
+                           useConnector: false)
   }
-}
-
-extension FilterClearInteractor: TelemetryTrackable {
-  
-  var telemetryID: UInt8 {
-    return TrackableComponent.filterClearInteractor.rawValue
-  }
-  
 }
