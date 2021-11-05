@@ -6,6 +6,7 @@
 //
 import Foundation
 
+@available(*, deprecated, message: "Use SortByInteractor instead")
 public class SwitchIndexInteractor {
 
   public var indexNames: [IndexName]

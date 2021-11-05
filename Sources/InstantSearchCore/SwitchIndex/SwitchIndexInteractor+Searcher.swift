@@ -6,6 +6,7 @@
 //
 import Foundation
 
+@available(*, deprecated, message: "Use SortByInteractor instead")
 public extension SwitchIndexInteractor {
 
   struct SearcherConnection<Service: SearchService>: Connection where Service.Process == Operation, Service.Request: IndexNameProvider {

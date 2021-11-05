@@ -6,6 +6,7 @@
 //
 import Foundation
 
+@available(*, deprecated, message: "Use SortByInteractor with SelectableSegmentController instead")
 public protocol SwitchIndexController: AnyObject {
 
   /// Closure to trigger when an index selected
@@ -16,6 +17,7 @@ public protocol SwitchIndexController: AnyObject {
 
 }
 
+@available(*, deprecated, message: "Use SortByInteractor instead")
 public extension SwitchIndexInteractor {
 
   struct ControllerConnection<Controller: SwitchIndexController>: Connection {
