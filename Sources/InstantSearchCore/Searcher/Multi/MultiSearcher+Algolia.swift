@@ -24,7 +24,7 @@ public class MultiSearcher: AbstractMultiSearcher<AlgoliaMultiSearchService> {
                                  requestOptions: .none)
     self.init(service: service,
               initialRequest: initialRequest)
-    
+
   }
 
   /**
@@ -65,4 +65,3 @@ public class MultiSearcher: AbstractMultiSearcher<AlgoliaMultiSearchService> {
   }
 
 }
-

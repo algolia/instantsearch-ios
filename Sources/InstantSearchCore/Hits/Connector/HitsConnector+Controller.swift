@@ -29,7 +29,7 @@ public extension HitsConnector {
               controller: controller,
               externalReload: externalReload)
   }
-  
+
   /**
    - Parameters:
      - searcher: Searcher that handles your searches.

@@ -14,7 +14,7 @@ import UIKit
 
 /// Constructs a UIAlertController instance with the indices names list and dispatches the selected index name
 public class SwitchIndexAlertControllerBuilder: SelectableSegmentController {
-  
+
   public typealias SegmentKey = Int
 
   /// List of the indices names
@@ -29,15 +29,15 @@ public class SwitchIndexAlertControllerBuilder: SelectableSegmentController {
     self.indicesNames = [:]
     self.selectedIndex = .none
   }
-  
+
   public func setSelected(_ selected: Int?) {
     selectedIndex = selected
   }
-  
-  public func setItems(items: [Int : String]) {
+
+  public func setItems(items: [Int: String]) {
     indicesNames = items
   }
-  
+
   /// - parameters:
   ///   - title: The title of the alert. Use this string to get the user’s attention and communicate the reason for the alert.
   ///   - message: Descriptive text that provides additional details about the reason for the alert.
