@@ -17,11 +17,31 @@ public extension HitsConnector {
      - controller: Controller interfacing with a concrete hits view
      - externalReload: Defines if controller will be updated automatically by the events or manually
   */
-  convenience init<Controller: HitsController>(searcher: SingleIndexSearcher,
+  convenience init<Controller: HitsController>(searcher: HitsSearcher,
                                                interactor: HitsInteractor<Hit>,
                                                filterState: FilterState? = .none,
                                                controller: Controller,
                                                externalReload: Bool = false) where Controller.DataSource == HitsInteractor<Hit> {
+    self.init(searcher: searcher,
+              interactor: interactor,
+              filterState: filterState,
+              connectSearcher: { interactor.connectSearcher($0) },
+              controller: controller,
+              externalReload: externalReload)
+  }
+
+  /**
+   - Parameters:
+     - searcher: Searcher that handles your searches.
+     - filterState: FilterState that holds your filters
+     - controller: Controller interfacing with a concrete hits view
+     - externalReload: Defines if controller will be updated automatically by the events or manually
+  */
+  convenience init<Controller: HitsController>(searcher: HitsSearcher,
+                                               filterState: FilterState? = .none,
+                                               controller: Controller,
+                                               externalReload: Bool = false) where Controller.DataSource == HitsInteractor<Hit> {
+    let interactor = HitsInteractor<Hit>()
     self.init(searcher: searcher,
               interactor: interactor,
               filterState: filterState,
@@ -49,10 +69,11 @@ public extension HitsConnector {
                                                filterState: FilterState? = .none,
                                                controller: Controller,
                                                externalReload: Bool = false) where Controller.DataSource == HitsInteractor<Hit> {
-    let searcher = SingleIndexSearcher(appID: appID,
+    let searcher = HitsSearcher(appID: appID,
                                        apiKey: apiKey,
                                        indexName: indexName)
-    let interactor = HitsInteractor<Hit>(infiniteScrolling: infiniteScrolling, showItemsOnEmptyQuery: showItemsOnEmptyQuery)
+    let interactor = HitsInteractor<Hit>(infiniteScrolling: infiniteScrolling,
+                                         showItemsOnEmptyQuery: showItemsOnEmptyQuery)
     self.init(searcher: searcher,
               interactor: interactor,
               filterState: filterState,

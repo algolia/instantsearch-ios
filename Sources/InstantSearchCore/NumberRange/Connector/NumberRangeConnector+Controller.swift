@@ -20,7 +20,7 @@ public extension NumberRangeConnector {
      - groupName: Filter group name in the filter state. If not specified, the attribute value is used as the group name
      - controller: Controller interfacing with a concrete number range view
   */
-  convenience init<Controller: NumberRangeController>(searcher: SingleIndexSearcher,
+  convenience init<Controller: NumberRangeController>(searcher: HitsSearcher,
                                                       filterState: FilterState,
                                                       attribute: Attribute,
                                                       bounds: ClosedRange<Number>? = nil,

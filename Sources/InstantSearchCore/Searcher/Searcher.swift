@@ -10,7 +10,7 @@ import Foundation
 import AlgoliaSearchClient
 
 /// Protocol describing an entity capable to perform search requests
-public protocol Searcher: AnyObject {
+public protocol Searcher: AnyObject, Searchable {
 
   /// Current query string
   var query: String? { get set }
@@ -32,6 +32,18 @@ public protocol Searcher: AnyObject {
   /// Stops search query execution
   func cancel()
 
+}
+
+extension Searcher {
+
+  public func setQuery(_ query: String?) {
+    self.query = query
+  }
+
+}
+
+public protocol Searchable {
+  func search()
 }
 
 /// Protocol describing an entity capable to receive search result

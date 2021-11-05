@@ -30,7 +30,7 @@ class HitsInteractorRelatedItemsTests: XCTestCase {
         MatchingPattern(attribute: "categories", score: 2, filterPath: \.categories),
       ]
 
-    let searcher = SingleIndexSearcher(appID: "", apiKey: "", indexName: "")
+    let searcher = HitsSearcher(appID: "", apiKey: "", indexName: "")
     let product = Product(name: "productName", brand: "Amazon", type: "Streaming media plyr", categories: ["Streaming Media Players", "TV & Home Theater"], image: URL.init(string: "http://url.com")!)
     
     let hitsInteractor = HitsInteractor<JSON>.init()
@@ -43,9 +43,9 @@ class HitsInteractorRelatedItemsTests: XCTestCase {
       .or("categories:Streaming Media Players<score=2>", "categories:TV & Home Theater<score=2>"),
       .and("type:Streaming media plyr<score=10>")]
     
-    XCTAssertEqual(searcher.indexQueryState.query.sumOrFiltersScores, true)
-    XCTAssertEqual(searcher.indexQueryState.query.optionalFilters?.units, expectedOptionalFilter.units)
-    XCTAssertEqual(searcher.indexQueryState.query.facetFilters?.units, (["objectID:-objectID123"] as FiltersStorage).units)
+    XCTAssertEqual(searcher.request.query.sumOrFiltersScores, true)
+    XCTAssertEqual(searcher.request.query.optionalFilters?.units, expectedOptionalFilter.units)
+    XCTAssertEqual(searcher.request.query.facetFilters?.units, (["objectID:-objectID123"] as FiltersStorage).units)
     
   }
 }

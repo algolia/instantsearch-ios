@@ -12,12 +12,12 @@ import XCTest
 
 class SortByConnectorTests: XCTestCase {
   
-  var searcher: SingleIndexSearcher!
+  var searcher: HitsSearcher!
   var controller: TestSelectableSegmentController!
   var connector: SortByConnector!
   
   override func setUp() {
-    searcher = SingleIndexSearcher(appID: "", apiKey: "", indexName: "")
+    searcher = HitsSearcher(appID: "", apiKey: "", indexName: "")
     controller = TestSelectableSegmentController()
     connector = SortByConnector(searcher: searcher,
                                 indicesNames: ["Index1", "Index2", "Index3"],

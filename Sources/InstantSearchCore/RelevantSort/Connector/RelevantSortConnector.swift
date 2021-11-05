@@ -35,7 +35,7 @@ public class RelevantSortConnector {
       - searcher: Searcher that handles your searches
       - interactor: Relevant sort priority toggling logic
    */
-  public convenience init(searcher: SingleIndexSearcher,
+  public convenience init(searcher: HitsSearcher,
                           interactor: RelevantSortInteractor = .init()) {
     self.init(searcher: searcher,
               searcherConnection: interactor.connectSearcher(searcher),
@@ -48,6 +48,7 @@ public class RelevantSortConnector {
       - queryIndex: Index of query to alter by relevant sort toggling
       - interactor: Relevant sort priority toggling logic
    */
+  @available(*, deprecated, message: "Use multiple HitsSearcher aggregated with MultiSearcher instead of MultiIndexSearcher")
   public convenience init(searcher: MultiIndexSearcher,
                           queryIndex: Int,
                           interactor: RelevantSortInteractor = .init()) {

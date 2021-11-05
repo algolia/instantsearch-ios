@@ -13,7 +13,7 @@ import UIKit
 class NumberRangeSnippets {
     
   func widgetSnippet() {
-    let searcher: SingleIndexSearcher = .init(appID: "YourApplicationID",
+    let searcher: HitsSearcher = .init(appID: "YourApplicationID",
                                               apiKey: "YourApiKey",
                                               indexName: "YourIndexName")
     let filterState: FilterState = .init()
@@ -31,7 +31,7 @@ class NumberRangeSnippets {
   }
   
   func advancedSnippet() {
-    let searcher: SingleIndexSearcher = .init(appID: "YourApplicationID",
+    let searcher: HitsSearcher = .init(appID: "YourApplicationID",
                                               apiKey: "YourApiKey",
                                               indexName: "YourIndexName")
     let filterState: FilterState = .init()

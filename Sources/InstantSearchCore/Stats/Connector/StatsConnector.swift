@@ -14,7 +14,7 @@ import Foundation
 public class StatsConnector {
 
   /// Searcher that handles your searches
-  public let searcher: SingleIndexSearcher
+  public let searcher: HitsSearcher
 
   /// Logic applied to Stats
   public let interactor: StatsInteractor
@@ -30,7 +30,7 @@ public class StatsConnector {
       - searcher: Searcher that handles your searches
       - interactor: Logic applied to the stats
    */
-  public init(searcher: SingleIndexSearcher,
+  public init(searcher: HitsSearcher,
               interactor: StatsInteractor = .init()) {
     self.searcher = searcher
     self.interactor = interactor

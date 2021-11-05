@@ -9,6 +9,7 @@ import Foundation
 @testable import InstantSearchCore
 import XCTest
 
+@available(*, deprecated, message: "Test to remove when MulstIndexSearcher obsoleted")
 class MultiIndexSearchConnectorTests: XCTestCase {
   
   struct ConnectorContainer {

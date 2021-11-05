@@ -49,13 +49,4 @@ class QueryInputInteractorTests: XCTestCase {
 
   }
 
-  func testSearcherQuerySet() {
-    let searcher = TestSearcher()
-    let interactor = QueryInputInteractor()
-    let query = "q1"
-    searcher.query = query
-    interactor.connectSearcher(searcher, searchTriggeringMode: .searchOnSubmit)
-    XCTAssertEqual(interactor.query, query)
-  }
-
 }

@@ -14,7 +14,7 @@ class NumericFilterListSnippets {
   
   func widgetExample() {
     
-    let searcher: SingleIndexSearcher = SingleIndexSearcher(appID: "YourApplicationID",
+    let searcher: HitsSearcher = HitsSearcher(appID: "YourApplicationID",
                                                             apiKey: "YourSearchOnlyAPIKey",
                                                             indexName: "YourIndexName")
     
@@ -47,7 +47,7 @@ class NumericFilterListSnippets {
   
   func advancedExample() {
     
-    let searcher: SingleIndexSearcher = SingleIndexSearcher(appID: "YourApplicationID",
+    let searcher: HitsSearcher = HitsSearcher(appID: "YourApplicationID",
                                                             apiKey: "YourSearchOnlyAPIKey",
                                                             indexName: "YourIndexName")
     

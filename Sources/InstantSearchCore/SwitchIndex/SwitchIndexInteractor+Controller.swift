@@ -1,12 +1,12 @@
 //
 //  SwitchIndexInteractor+Controller.swift
-//  
+//
 //
 //  Created by Vladislav Fitc on 08/04/2021.
 //
-
 import Foundation
 
+@available(*, deprecated, message: "Use SortByInteractor with SelectableSegmentController instead")
 public protocol SwitchIndexController: AnyObject {
 
   /// Closure to trigger when an index selected
@@ -17,6 +17,7 @@ public protocol SwitchIndexController: AnyObject {
 
 }
 
+@available(*, deprecated, message: "Use SortByInteractor instead")
 public extension SwitchIndexInteractor {
 
   struct ControllerConnection<Controller: SwitchIndexController>: Connection {

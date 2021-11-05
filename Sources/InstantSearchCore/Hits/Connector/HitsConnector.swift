@@ -84,7 +84,7 @@ public extension HitsConnector {
      - interactor: External hits interactor
      - filterState: FilterState that holds your filters
   */
-  convenience init(searcher: SingleIndexSearcher,
+  convenience init(searcher: HitsSearcher,
                    interactor: HitsInteractor<Hit> = .init(),
                    filterState: FilterState? = .none) {
     self.init(searcher: searcher,
@@ -108,7 +108,7 @@ public extension HitsConnector {
                    infiniteScrolling: InfiniteScrolling = Constants.Defaults.infiniteScrolling,
                    showItemsOnEmptyQuery: Bool = Constants.Defaults.showItemsOnEmptyQuery,
                    filterState: FilterState? = .none) {
-    let searcher = SingleIndexSearcher(appID: appID,
+    let searcher = HitsSearcher(appID: appID,
                                        apiKey: apiKey,
                                        indexName: indexName)
     let interactor = HitsInteractor<Hit>(infiniteScrolling: infiniteScrolling, showItemsOnEmptyQuery: showItemsOnEmptyQuery)

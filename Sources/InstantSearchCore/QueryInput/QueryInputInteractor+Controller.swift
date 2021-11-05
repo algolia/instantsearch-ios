@@ -12,8 +12,22 @@ public extension QueryInputInteractor {
 
   struct ControllerConnection<Controller: QueryInputController>: Connection {
 
+    /// Business logic component that handles textual query input
     public let interactor: QueryInputInteractor
+
+    /// Controller interfacing with a concrete query input view
     public let controller: Controller
+
+    /**
+     - Parameters:
+       - interactor: Business logic component that handles textual query input
+       - controller: Controller interfacing with a concrete query input view
+     */
+    public init(interactor: QueryInputInteractor,
+                controller: Controller) {
+      self.interactor = interactor
+      self.controller = controller
+    }
 
     public func connect() {
 
@@ -44,8 +58,15 @@ public extension QueryInputInteractor {
 
 public extension QueryInputInteractor {
 
+  /**
+   Establishes a connection with a controller
+   - Parameters:
+     - controller: Controller interfacing with a concrete query input view
+   - Returns: Established connection
+  */
   @discardableResult func connectController<Controller: QueryInputController>(_ controller: Controller) -> ControllerConnection<Controller> {
-    let connection = ControllerConnection(interactor: self, controller: controller)
+    let connection = ControllerConnection(interactor: self,
+                                          controller: controller)
     connection.connect()
     return connection
   }

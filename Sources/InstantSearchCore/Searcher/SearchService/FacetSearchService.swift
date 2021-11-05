@@ -16,7 +16,13 @@ public class FacetSearchService: SearchService {
   }
 
   public func search(_ request: Request, completion: @escaping (Result<FacetSearchResponse, Error>) -> Void) -> Operation {
-    return client.index(withName: request.indexName).searchForFacetValues(of: request.attribute, matching: request.query, applicableFor: request.context, requestOptions: request.requestOptions, completion: completion)
+    return client
+      .index(withName: request.indexName)
+      .searchForFacetValues(of: request.attribute,
+                            matching: request.query,
+                            applicableFor: request.context,
+                            requestOptions: request.requestOptions,
+                            completion: completion)
   }
 
 }
@@ -36,7 +42,11 @@ extension FacetSearchService {
       set { query = newValue ?? "" }
     }
 
-    public init(query: String, indexName: IndexName, attribute: Attribute, context: Query, requestOptions: RequestOptions? = nil) {
+    public init(query: String,
+                indexName: IndexName,
+                attribute: Attribute,
+                context: Query,
+                requestOptions: RequestOptions? = nil) {
       self.query = query
       self.indexName = indexName
       self.attribute = attribute

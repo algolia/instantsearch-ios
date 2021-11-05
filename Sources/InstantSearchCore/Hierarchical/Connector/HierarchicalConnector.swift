@@ -14,7 +14,7 @@ import Foundation
 public class HierarchicalConnector {
 
   /// Searcher that handles your searches
-  public let searcher: SingleIndexSearcher
+  public let searcher: HitsSearcher
 
   /// FilterState that holds your filters
   public let filterState: FilterState
@@ -38,7 +38,7 @@ public class HierarchicalConnector {
      - hierarchicalAttributes: Names of the hierarchical attributes that we need to target, in ascending order.
      - separator: String separating the facets in the hierarchical facets.
   */
-  public init(searcher: SingleIndexSearcher,
+  public init(searcher: HitsSearcher,
               filterState: FilterState,
               hierarchicalAttributes: [Attribute],
               separator: String) {

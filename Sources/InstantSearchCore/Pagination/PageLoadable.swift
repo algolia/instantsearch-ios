@@ -14,10 +14,10 @@ public protocol PageLoadable: AnyObject {
 
 }
 
-extension SingleIndexSearcher: PageLoadable {
+extension HitsSearcher: PageLoadable {
 
   public func loadPage(atIndex pageIndex: Int) {
-    indexQueryState.query.page = pageIndex
+    request.query.page = pageIndex
     search()
   }
 
@@ -26,7 +26,7 @@ extension SingleIndexSearcher: PageLoadable {
 extension FacetSearcher: PageLoadable {
 
   public func loadPage(atIndex pageIndex: Int) {
-    indexQueryState.query.page = pageIndex
+    request.context.page = pageIndex
     search()
   }
 

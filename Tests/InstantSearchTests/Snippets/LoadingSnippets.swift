@@ -13,7 +13,7 @@ import UIKit
 class LoadingSnippets {
   
   func widgetSnippet() {
-    let searcher: SingleIndexSearcher = SingleIndexSearcher(appID: "YourApplicationID",
+    let searcher: HitsSearcher = HitsSearcher(appID: "YourApplicationID",
                                                             apiKey: "YourSearchOnlyAPIKey",
                                                             indexName: "YourIndexName")
     let activityIndicatorController: ActivityIndicatorController = .init(activityIndicator: UIActivityIndicatorView())
@@ -27,7 +27,7 @@ class LoadingSnippets {
   }
   
   func advancedSnippet() {
-    let searcher: SingleIndexSearcher = SingleIndexSearcher(appID: "YourApplicationID",
+    let searcher: HitsSearcher = HitsSearcher(appID: "YourApplicationID",
                                                             apiKey: "YourSearchOnlyAPIKey",
                                                             indexName: "YourIndexName")
     let loadingInteractor: LoadingInteractor = .init()

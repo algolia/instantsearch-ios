@@ -16,13 +16,15 @@ extension HitsTracker: QueryIDContainer {}
 
 public enum TrackableSearcher {
 
-  case singleIndex(SingleIndexSearcher)
+  case singleIndex(HitsSearcher)
+
+  @available(*, deprecated, message: "Use multiple HitsSearcher aggregated with MultiSearcher instead of MultiIndexSearcher")
   case multiIndex(MultiIndexSearcher, pointer: Int)
 
   var indexName: IndexName {
     switch self {
     case .singleIndex(let searcher):
-      return searcher.indexQueryState.indexName
+      return searcher.request.indexName
 
     case .multiIndex(let searcher, pointer: let index):
       return searcher.indexQueryStates[index].indexName
@@ -32,7 +34,7 @@ public enum TrackableSearcher {
   func setClickAnalyticsOn(_ on: Bool) {
     switch self {
     case .singleIndex(let searcher):
-      return searcher.indexQueryState.query.clickAnalytics = on
+      return searcher.request.query.clickAnalytics = on
 
     case .multiIndex(let searcher, pointer: let index):
       return searcher.indexQueryStates[index].query.clickAnalytics = on

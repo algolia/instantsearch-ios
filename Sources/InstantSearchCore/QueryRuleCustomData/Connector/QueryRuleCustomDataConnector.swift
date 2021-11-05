@@ -40,7 +40,7 @@ public extension QueryRuleCustomDataConnector {
      - searcher: Searcher that handles your searches
      - interactor: External custom data interactor
   */
-  convenience init(searcher: SingleIndexSearcher,
+  convenience init(searcher: HitsSearcher,
                    interactor: Interactor = .init()) {
     self.init(interactor: interactor) {
       QueryRuleCustomDataInteractor<Model>.SearcherConnection(interactor: $0, searcher: searcher)
@@ -53,6 +53,7 @@ public extension QueryRuleCustomDataConnector {
      - queryIndex: Index of query from response of which the user data will be extracted
      - interactor: External custom data interactor
   */
+  @available(*, deprecated, message: "Use multiple HitsSearcher aggregated with MultiSearcher instead of MultiIndexSearcher")
   convenience init(searcher: MultiIndexSearcher,
                    queryIndex: Int,
                    interactor: Interactor = .init()) {

@@ -16,7 +16,7 @@ public extension StatsConnector {
       - controller: Controller interfacing with a concrete stats view
       - presenter: Presenter defining how stats appear in the controller
    */
-  convenience init<Controller: ItemController, Output>(searcher: SingleIndexSearcher,
+  convenience init<Controller: ItemController, Output>(searcher: HitsSearcher,
                                                        interactor: StatsInteractor = .init(),
                                                        controller: Controller,
                                                        presenter: @escaping Presenter<SearchStats?, Output>) where Controller.Item == Output {
@@ -32,7 +32,7 @@ public extension StatsConnector {
    - controller: Controller interfacing with a concrete stats view
    - presenter: Presenter defining how stats appear in the controller
    */
-  convenience init<Controller: ItemController>(searcher: SingleIndexSearcher,
+  convenience init<Controller: ItemController>(searcher: HitsSearcher,
                                                interactor: StatsInteractor = .init(),
                                                controller: Controller,
                                                presenter: @escaping Presenter<SearchStats?, String?> = DefaultPresenter.Stats.present) where Controller.Item == String? {

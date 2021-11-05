@@ -1,5 +1,5 @@
 //
-//  ModernSearcher.swift
+//  AbstractSearcher.swift
 //  
 //
 //  Created by Vladislav Fitc on 25/11/2020.

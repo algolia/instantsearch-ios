@@ -13,7 +13,7 @@ import UIKit
 class StatsSnippets {
   
   func widgetSnippet() {
-    let searcher: SingleIndexSearcher = .init(appID: "YourApplicationID",
+    let searcher: HitsSearcher = .init(appID: "YourApplicationID",
                                               apiKey: "YourSearchOnlyAPIKey",
                                               indexName: "YourIndexName")
     let labelStatsController: LabelStatsController = LabelStatsController(label: UILabel())
@@ -29,7 +29,7 @@ class StatsSnippets {
   }
   
   func advancedSnippet() {
-    let searcher: SingleIndexSearcher = .init(appID: "YourApplicationID",
+    let searcher: HitsSearcher = .init(appID: "YourApplicationID",
                                               apiKey: "YourSearchOnlyAPIKey",
                                               indexName: "YourIndexName")
     let labelStatsController: LabelStatsController = LabelStatsController(label: UILabel())

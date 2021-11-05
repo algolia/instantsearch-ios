@@ -11,7 +11,7 @@ import Foundation
 public class SelectableFilterConnector<Filter: FilterType> {
 
   /// Searcher that handles your searches
-  public let searcher: SingleIndexSearcher
+  public let searcher: HitsSearcher
 
   /// FilterState that holds your filters
   public let filterState: FilterState
@@ -48,7 +48,7 @@ public class SelectableFilterConnector<Filter: FilterType> {
     - operator: Whether we apply an `and` or `or` behavior to the filters in the filter state
     - groupName: Filter group name
   */
-  public init(searcher: SingleIndexSearcher,
+  public init(searcher: HitsSearcher,
               filterState: FilterState,
               items: [Int: Filter],
               selected: Int,

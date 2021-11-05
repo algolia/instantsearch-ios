@@ -1,12 +1,12 @@
 //
 //  SwitchIndexInteractor+Searcher.swift
-//  
+//
 //
 //  Created by Vladislav Fitc on 08/04/2021.
 //
-
 import Foundation
 
+@available(*, deprecated, message: "Use SortByInteractor instead")
 public extension SwitchIndexInteractor {
 
   struct SearcherConnection<Service: SearchService>: Connection where Service.Process == Operation, Service.Request: IndexNameProvider {

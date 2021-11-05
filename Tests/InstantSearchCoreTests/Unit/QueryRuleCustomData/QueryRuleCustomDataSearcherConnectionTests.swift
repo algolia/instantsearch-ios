@@ -16,9 +16,9 @@ class QueryRuleCustomDataSearcherConnectionTests: XCTestCase {
     let text: String
   }
   
-  func testSingleIndexSearcherConnection() {
+  func testHitsSearcherConnection() {
     
-    let searcher = SingleIndexSearcher(appID: "", apiKey: "", indexName: "")
+    let searcher = HitsSearcher(appID: "", apiKey: "", indexName: "")
     let interactor = QueryRuleCustomDataInteractor<TestModel>()
     
     interactor.connectSearcher(searcher)
@@ -39,7 +39,7 @@ class QueryRuleCustomDataSearcherConnectionTests: XCTestCase {
     
   }
   
-  
+  @available(*, deprecated, message: "Test to remove when MulstIndexSearcher obsoleted")
   func testMultiIndexSearcherConnection() {
     
     let searcher = MultiIndexSearcher(appID: "", apiKey: "", indexNames: ["a", "b"])

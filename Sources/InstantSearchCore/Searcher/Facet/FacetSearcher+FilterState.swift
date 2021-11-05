@@ -33,7 +33,7 @@ public extension FacetSearcher {
     public func connect() {
       let shouldTriggerSearch = triggerSearchOnFilterStateChange
       filterState.onChange.subscribePast(with: facetSearcher) { searcher, filterState in
-        searcher.indexQueryState.query.filters = FilterGroupConverter().sql(filterState.toFilterGroups())
+        searcher.request.context.filters = FilterGroupConverter().sql(filterState.toFilterGroups())
         if shouldTriggerSearch {
           searcher.search()
         }

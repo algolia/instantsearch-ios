@@ -16,13 +16,13 @@ class SelectableSegmentInteractorConnectorsTests: XCTestCase {
   func testConnectSearcher() {
 
     let filterState = FilterState()
-    let searcher = SingleIndexSearcher(appID: "", apiKey: "", indexName: "")
+    let searcher = HitsSearcher(appID: "", apiKey: "", indexName: "")
 
     let interactor = SelectableSegmentInteractor<Int, Filter.Tag>(items: [0: "t1", 1: "t2", 2: "t3"])
     interactor.connectSearcher(searcher, attribute: "tags")
     interactor.connectFilterState(filterState, attribute: "tags", operator: .or)
 
-    XCTAssertTrue((searcher.indexQueryState.query.facets ?? []).contains("tags"))
+    XCTAssertTrue((searcher.request.query.facets ?? []).contains("tags"))
 
   }
 

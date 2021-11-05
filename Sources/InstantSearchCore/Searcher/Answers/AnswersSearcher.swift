@@ -41,3 +41,11 @@ public final class AnswersSearcher: IndexSearcher<AlgoliaAnswersSearchService> {
   }
 
 }
+
+extension AnswersSearcher: IndexNameSettable {
+
+  public func setIndexName(_ indexName: IndexName) {
+    request.indexName = indexName
+  }
+
+}

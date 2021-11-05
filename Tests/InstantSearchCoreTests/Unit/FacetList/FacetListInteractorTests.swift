@@ -75,7 +75,7 @@ class FacetListInteractorTests: XCTestCase {
     let interactor = FacetListInteractor(selectionMode: .single)
 
     let query = Query()
-    let searcher = SingleIndexSearcher(client: .init(appID: "", apiKey: ""), indexName: "", query: query)
+    let searcher = HitsSearcher(client: .init(appID: "", apiKey: ""), indexName: "", query: query)
 
     interactor.connectSearcher(searcher, with: "type")
 
@@ -99,6 +99,7 @@ class FacetListInteractorTests: XCTestCase {
 
   }
   
+  @available(*, deprecated, message: "Test to remove when MulstIndexSearcher obsoleted")
   func testConnectMultiIndexSearcher() {
     let interactor = FacetListInteractor(selectionMode: .single)
 

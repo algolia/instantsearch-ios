@@ -14,7 +14,7 @@ import Foundation
 public class QueryInputConnector {
 
   /// Searcher that handles your searches
-  public let searcher: Searcher
+  public let searcher: QuerySettable & Searchable
 
   /// Business logic that handles new search inputs
   public let interactor: QueryInputInteractor
@@ -31,12 +31,13 @@ public class QueryInputConnector {
      - interactor: Business logic that handles new search inputs
      - searchTriggeringMode: Defines the event triggering a new search
    */
-  public init<S: Searcher>(searcher: S,
-                           interactor: QueryInputInteractor = .init(),
-                           searchTriggeringMode: SearchTriggeringMode = .searchAsYouType) {
+  public init<Searcher: AnyObject & Searchable & QuerySettable>(searcher: Searcher,
+                                                                interactor: QueryInputInteractor = .init(),
+                                                                searchTriggeringMode: SearchTriggeringMode = .searchAsYouType) {
     self.searcher = searcher
     self.interactor = interactor
-    self.searcherConnection = interactor.connectSearcher(searcher, searchTriggeringMode: searchTriggeringMode)
+    self.searcherConnection = interactor.connectSearcher(searcher,
+                                                         searchTriggeringMode: searchTriggeringMode)
     self.controllerConnections = []
   }
 

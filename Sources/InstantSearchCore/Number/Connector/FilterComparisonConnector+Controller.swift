@@ -21,7 +21,7 @@ public extension FilterComparisonConnector {
      - groupName: Filter group name in the filter state. If not specified, the attribute value is used as the group name
      - controller: Controller interfacing with a concrete number view
   */
-  convenience init<Controller: NumberController>(searcher: SingleIndexSearcher,
+  convenience init<Controller: NumberController>(searcher: HitsSearcher,
                                                  filterState: FilterState,
                                                  attribute: Attribute,
                                                  numericOperator: Filter.Numeric.Operator,

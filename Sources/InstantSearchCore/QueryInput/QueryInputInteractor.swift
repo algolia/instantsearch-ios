@@ -8,8 +8,10 @@
 
 import Foundation
 
+/// Business logic component that handles textual query input
 public class QueryInputInteractor {
 
+  /// Textual query
   public var query: String? {
     didSet {
       guard oldValue != query else { return }
@@ -17,7 +19,12 @@ public class QueryInputInteractor {
     }
   }
 
+  /// Triggered when query text changed
+  /// - Parameter: a new query text value
   public let onQueryChanged: Observer<String?>
+
+  /// Triggered when query text submitted
+  /// - Parameter: a submitted query text value
   public let onQuerySubmitted: Observer<String?>
 
   public init() {

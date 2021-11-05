@@ -13,16 +13,16 @@ import UIKit
 class FacetListConnectorSnippets {
   
   func widgetExample() {
-    let searcher: SingleIndexSearcher = SingleIndexSearcher(appID: "YourApplicationID",
-                                                            apiKey: "YourSearchOnlyAPIKey",
-                                                            indexName: "YourIndexName")
-
+    let searcher: HitsSearcher = HitsSearcher(appID: "YourApplicationID",
+                                              apiKey: "YourSearchOnlyAPIKey",
+                                              indexName: "YourIndexName")
+    
     let filterState: FilterState = .init()
-
+    
     let categoryTableViewController: UITableViewController = .init()
     let categoryListController: FacetListTableController = .init(tableView: categoryTableViewController.tableView)
     let facetListPresenter: FacetListPresenter = .init(sortBy: [.count(order: .descending)], limit: 5, showEmptyFacets: false)
-
+    
     let categoryConnector: FacetListConnector = .init(searcher: searcher,
                                                       filterState: filterState,
                                                       attribute: "category",
@@ -35,10 +35,12 @@ class FacetListConnectorSnippets {
     
     searcher.search()
     
+    
+    _ = categoryConnector
   }
   
   func manualExample() {
-    let searcher: SingleIndexSearcher = SingleIndexSearcher(appID: "YourApplicationID",
+    let searcher: HitsSearcher = HitsSearcher(appID: "YourApplicationID",
                                                             apiKey: "YourSearchOnlyAPIKey",
                                                             indexName: "YourIndexName")
     let filterState: FilterState = .init()

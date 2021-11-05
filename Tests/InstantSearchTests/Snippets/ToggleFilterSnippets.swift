@@ -14,7 +14,7 @@ import UIKit
 class ToggleFilterSnippets {
     
   func widgetSnippet() {
-    let searcher: SingleIndexSearcher = .init(appID: "YourApplicationID",
+    let searcher: HitsSearcher = .init(appID: "YourApplicationID",
                                               apiKey: "YourSearchOnlyAPIKey",
                                               indexName: "YourIndexName")
     
@@ -32,7 +32,7 @@ class ToggleFilterSnippets {
   }
   
   func advancedSnippet() {
-    let searcher: SingleIndexSearcher = .init(appID: "YourApplicationID",
+    let searcher: HitsSearcher = .init(appID: "YourApplicationID",
                                               apiKey: "YourSearchOnlyAPIKey",
                                               indexName: "YourIndexName")
     let filterState: FilterState = .init()

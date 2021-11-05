@@ -9,7 +9,7 @@
 import Foundation
 import AlgoliaSearchClient
 
-/// An entity performing search for facet values
+/// An entity performing facet values search 
 final public class FacetSearcher: IndexSearcher<FacetSearchService> {
 
   public var client: SearchClient {
@@ -17,6 +17,7 @@ final public class FacetSearcher: IndexSearcher<FacetSearchService> {
   }
 
   /// Current tuple of index and query
+  @available(*, deprecated, message: "Use the `request` property instead")
   public var indexQueryState: IndexQueryState {
     get {
       return .init(indexName: request.indexName, query: request.context)
@@ -78,6 +79,52 @@ final public class FacetSearcher: IndexSearcher<FacetSearchService> {
     let service = FacetSearchService(client: client)
     let request = Request(query: "", indexName: indexName, attribute: facetName, context: query, requestOptions: requestOptions)
     self.init(service: service, initialRequest: request)
+  }
+
+}
+
+extension FacetSearcher: MultiSearchComponent {
+
+  public func collect() -> (requests: [MultiSearchQuery], completion: (Swift.Result<[MultiSearchResponse.Response], Swift.Error>) -> Void) {
+    let query = IndexedFacetQuery(indexName: request.indexName,
+                                  attribute: request.attribute,
+                                  facetQuery: request.query,
+                                  query: request.context)
+    return ([MultiSearchQuery(query)], { [weak self] result in
+      guard let searcher = self else { return }
+      switch result {
+      case .failure(let error):
+        searcher.onError.fire(error)
+      case .success(let responses):
+        if let response = responses.first?.facetsResponse {
+          searcher.onResults.fire(response)
+        }
+      }
+    })
+  }
+
+}
+
+extension FacetSearcher: QuerySettable {
+
+  public func setQuery(_ query: String?) {
+    request.query = query ?? ""
+  }
+
+}
+
+extension FacetSearcher: IndexNameSettable {
+
+  public func setIndexName(_ indexName: IndexName) {
+    request.indexName = indexName
+  }
+
+}
+
+extension FacetSearcher: FiltersSettable {
+
+  public func setFilters(_ filters: String?) {
+    request.context.filters = filters
   }
 
 }

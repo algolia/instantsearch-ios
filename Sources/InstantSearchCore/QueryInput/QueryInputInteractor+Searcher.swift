@@ -1,29 +1,33 @@
 //
 //  QueryInputInteractor+Searcher.swift
-//  InstantSearchCore
+//  
 //
-//  Created by Vladislav Fitc on 28/05/2019.
-//  Copyright © 2019 Algolia. All rights reserved.
+//  Created by Vladislav Fitc on 13/08/2021.
 //
 
 import Foundation
 
-public enum SearchTriggeringMode {
-  case searchAsYouType
-  case searchOnSubmit
-}
-
 public extension QueryInputInteractor {
 
-  @available(*, deprecated, message: "Use QueryInputInteractor.TextualQuerySearcherConnection")
-  struct SearcherConnection<S: Searcher>: Connection {
+  struct SearcherConnection<Searcher: AnyObject & Searchable & QuerySettable>: Connection {
 
+    /// Business logic component that handles textual query input
     public let interactor: QueryInputInteractor
-    public let searcher: S
+
+    /// Searcher that handles your searches
+    public let searcher: Searcher
+
+    /// Defines the event triggering a new search
     public let searchTriggeringMode: SearchTriggeringMode
 
+    /**
+     - Parameters:
+       - interactor: Business logic that handles new search inputs
+       - searcher: Searcher that handles your searches
+       - searchTriggeringMode: Defines the event triggering a new search
+     */
     public init(interactor: QueryInputInteractor,
-                searcher: S,
+                searcher: Searcher,
                 searchTriggeringMode: SearchTriggeringMode = .searchAsYouType) {
       self.interactor = interactor
       self.searcher = searcher
@@ -32,18 +36,16 @@ public extension QueryInputInteractor {
 
     public func connect() {
 
-      interactor.query = searcher.query
-
       switch searchTriggeringMode {
       case .searchAsYouType:
         interactor.onQueryChanged.subscribe(with: searcher) { searcher, query in
-          searcher.query = query
+          searcher.setQuery(query)
           searcher.search()
         }
 
       case .searchOnSubmit:
         interactor.onQuerySubmitted.subscribe(with: searcher) { searcher, query in
-          searcher.query = query
+          searcher.setQuery(query)
           searcher.search()
         }
       }
@@ -69,10 +71,19 @@ public extension QueryInputInteractor {
 
 public extension QueryInputInteractor {
 
-  @available(*, deprecated, message: "Use QueryInputInteractor.TextualQuerySearcherConnection")
-  @discardableResult func connectSearcher<S: Searcher>(_ searcher: S,
-                                                       searchTriggeringMode: SearchTriggeringMode = .searchAsYouType) -> SearcherConnection<S> {
-    let connection = SearcherConnection(interactor: self, searcher: searcher, searchTriggeringMode: searchTriggeringMode)
+  /**
+   Connects a searcher
+   
+   - Parameters:
+     - searcher: Searcher that handles your searches
+     - searchTriggeringMode: Defines the event triggering a new search
+   - returns: Established connection
+   */
+  @discardableResult func connectSearcher<Searcher: AnyObject & Searchable & QuerySettable>(_ searcher: Searcher,
+                                                                                            searchTriggeringMode: SearchTriggeringMode = .searchAsYouType) -> SearcherConnection<Searcher> {
+    let connection = SearcherConnection(interactor: self,
+                                        searcher: searcher,
+                                        searchTriggeringMode: searchTriggeringMode)
     connection.connect()
     return connection
   }

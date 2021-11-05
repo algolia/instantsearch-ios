@@ -38,7 +38,7 @@ class QueryRuleCustomDataSnippets {
   }
     
   func widgetExample() {
-    let searcher: SingleIndexSearcher = .init(appID: "YourApplicationID",
+    let searcher: HitsSearcher = .init(appID: "YourApplicationID",
                                               apiKey: "YourSearchOnlyAPIKey",
                                               indexName: "YourIndexName")
     let bannerViewController = BannerViewController()
@@ -52,7 +52,7 @@ class QueryRuleCustomDataSnippets {
   }
   
   func advancedExample() {
-    let searcher: SingleIndexSearcher = .init(appID: "YourApplicationID",
+    let searcher: HitsSearcher = .init(appID: "YourApplicationID",
                                               apiKey: "YourSearchOnlyAPIKey",
                                               indexName: "YourIndexName")
     let queryRuleCustomDataInteractor: QueryRuleCustomDataInteractor<Banner> = .init()
