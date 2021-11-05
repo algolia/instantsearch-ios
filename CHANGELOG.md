@@ -1,5 +1,26 @@
 # ChangeLog
 
+## [7.15.0](https://github.com/algolia/instantsearch-ios/compare/7.14.0...7.15.0) (2021-11-05)
+
+### Fix
+
+- **insights**: expired events removal (#200) ([22b5844](https://github.com/algolia/instantsearch-ios/commit/22b5844))
+
+### Refactor
+
+- **searcher**: Searchers refactoring (#184) ([9e85b7c](https://github.com/algolia/instantsearch-ios/commit/9e85b7c))
+
+### Misc
+
+- update demo video (#205) ([960ecf5](https://github.com/algolia/instantsearch-ios/commit/960ecf5))
+- fix lint issues (#204) ([6506fd1](https://github.com/algolia/instantsearch-ios/commit/6506fd1))
+
+### Feat
+
+- **insights**: Add minBatchSize parameter (#203) ([4b6e433](https://github.com/algolia/instantsearch-ios/commit/4b6e433))
+
+
+
 ## [7.14.0](https://github.com/algolia/instantsearch-ios/compare/7.13.5...7.14.0) (2021-10-01)
 
 ### Refactor
