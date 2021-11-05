@@ -33,9 +33,7 @@ extension AlgoliaMultiSearchService {
 
   public struct Request: AlgoliaRequest, MultiRequest {
 
-    public typealias SubRequest = IndexedQuery
-
-    public var subRequests: [IndexedQuery] {
+    public var subRequests: [MultiSearchQuery] {
       get {
         return queries
       }
@@ -45,11 +43,11 @@ extension AlgoliaMultiSearchService {
       }
     }
 
-    public var queries: [IndexedQuery]
+    public var queries: [MultiSearchQuery]
     public var strategy: MultipleQueriesStrategy
     public var requestOptions: RequestOptions?
 
-    public init(queries: [IndexedQuery],
+    public init(queries: [MultiSearchQuery],
                 strategy: MultipleQueriesStrategy,
                 requestOptions: RequestOptions? = nil) {
       self.queries = queries

@@ -85,12 +85,12 @@ final public class FacetSearcher: IndexSearcher<FacetSearchService> {
 
 extension FacetSearcher: MultiSearchComponent {
 
-  public func collect() -> (requests: [IndexedQuery], completion: (Swift.Result<[MultiSearchResponse.Response], Swift.Error>) -> Void) {
-    let query = IndexedQuery(indexName: request.indexName,
-                             query: request.context,
-                             attribute: request.attribute,
-                             facetQuery: request.query)
-    return ([query], { [weak self] result in
+  public func collect() -> (requests: [MultiSearchQuery], completion: (Swift.Result<[MultiSearchResponse.Response], Swift.Error>) -> Void) {
+    let query = IndexedFacetQuery(indexName: request.indexName,
+                                  attribute: request.attribute,
+                                  facetQuery: request.query,
+                                  query: request.context)
+    return ([MultiSearchQuery(query)], { [weak self] result in
       guard let searcher = self else { return }
       switch result {
       case .failure(let error):

@@ -6,6 +6,7 @@
 //
 
 import Foundation
+import AlgoliaSearchClient
 
 public class AlgoliaSearchService: SearchService {
 
@@ -44,7 +45,7 @@ public class AlgoliaSearchService: SearchService {
 
 extension AlgoliaSearchService {
 
-  func collect(for request: Request, completion: @escaping (Swift.Result<SearchResponse, Error>) -> Void) -> (requests: [IndexedQuery], completion: (Swift.Result<[MultiSearchResponse.Response], Error>) -> Void) {
+  func collect(for request: Request, completion: @escaping (Swift.Result<SearchResponse, Error>) -> Void) -> (requests: [MultiSearchQuery], completion: (Swift.Result<[MultiSearchResponse.Response], Error>) -> Void) {
     let queries: [IndexedQuery]
     let transform: ([MultiSearchResponse.Response]) -> SearchResponse
     if isDisjunctiveFacetingEnabled {
@@ -65,7 +66,7 @@ extension AlgoliaSearchService {
       transform = { $0.first!.hitsResponse! }
     }
 
-    return (queries, { completion($0.map(transform)) })
+    return (queries.map(MultiSearchQuery.init), { completion($0.map(transform)) })
   }
 
 }
