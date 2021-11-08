@@ -45,9 +45,9 @@ If you're a framework author and use InstantSearch as a dependency, update your 
 
 ```swift
 let package = Package(
-    // 7.15.0 ..< 8.0.0
+    // 7.14.0 ..< 8.0.0
     dependencies: [
-        .package(url: "https://github.com/algolia/instantsearch-ios", from: "7.15.0")
+        .package(url: "https://github.com/algolia/instantsearch-ios", from: "7.14.0")
     ],
     // ...
 )
@@ -60,7 +60,7 @@ let package = Package(
 To install InstantSearch, simply add the following line to your Podfile:
 
 ```ruby
-pod 'InstantSearch', '~> 7.15'
+pod 'InstantSearch', '~> 7.14'
 # pod 'InstantSearch/Insights' for access to Insights library only
 # pod 'InstantSearch/Core' for access business logic without UIKit components
 # pod 'InstantSearch/SwiftUI' for access to SwiftUI components
@@ -78,7 +78,7 @@ $ pod update
 
 - To install InstantSearch, simply add the following line to your Cartfile:
 ```ruby
-github "algolia/instantsearch-ios" ~> 7.15
+github "algolia/instantsearch-ios" ~> 7.14
 ```
 
 - Launch the following commands from the project directory
