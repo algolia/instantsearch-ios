@@ -47,7 +47,7 @@ If you're a framework author and use InstantSearch as a dependency, update your 
 let package = Package(
     // 7.14.0 ..< 8.0.0
     dependencies: [
-        .package(url: "https://github.com/algolia/instantsearch-ios", from: "7.13.0")
+        .package(url: "https://github.com/algolia/instantsearch-ios", from: "7.14.0")
     ],
     // ...
 )

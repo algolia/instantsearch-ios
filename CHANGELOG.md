@@ -1,5 +1,13 @@
 # ChangeLog
 
+## [7.15.0](https://github.com/algolia/instantsearch-ios/compare/7.14.0...7.15.0) (2021-11-05)
+
+### Refactor
+
+- Searchers refactoring (#184) ([9e85b7c](https://github.com/algolia/instantsearch-ios/commit/9e85b7c))
+
+
+
 ## [7.14.0](https://github.com/algolia/instantsearch-ios/compare/7.13.5...7.14.0) (2021-10-01)
 
 ### Refactor
