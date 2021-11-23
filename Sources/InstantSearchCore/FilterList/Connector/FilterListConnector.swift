@@ -41,7 +41,25 @@ public class FilterListConnector<Filter: FilterType & Hashable> {
                                                                operator: `operator`,
                                                                groupName: groupName)
     self.controllerConnections = []
-//    Telemetry.shared.track(.filterListConnector)
+    switch Filter.self {
+    case is FacetFilter.Type:
+      Telemetry.shared.track(type: .facetFilterList,
+                             parameters: [.operator, .groupName],
+                             useConnector: true)
+
+    case is NumericFilter.Type:
+      Telemetry.shared.track(type: .numericFilterList,
+                             parameters: [.operator, .groupName],
+                             useConnector: true)
+
+    case is TagFilter.Type:
+      Telemetry.shared.track(type: .tagFilterList,
+                             parameters: [.operator, .groupName],
+                             useConnector: true)
+
+    default:
+      break
+    }
   }
 
   /**

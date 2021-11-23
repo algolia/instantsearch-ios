@@ -12,7 +12,7 @@ class Telemetry {
   
   static let shared = Telemetry()
   
-  private var schema = TelemetrySchema()
+  var schema = TelemetrySchema()
     
   var value: String {
     return try! schema.serializedData().base64EncodedString()

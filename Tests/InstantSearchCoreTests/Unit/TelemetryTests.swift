@@ -13,6 +13,14 @@ import XCTest
 
 class TelemetryTests: XCTestCase {
   
+  var schema: TelemetrySchema {
+    return Telemetry.shared.schema
+  }
+  
+  override func setUp() {
+    Telemetry.shared.schema.components.removeAll()
+  }
+
   func testMaxSize() {
     let schema = TelemetrySchema.with {
       $0.components = TelemetryComponentType.allCases.map { type in
@@ -45,6 +53,77 @@ class TelemetryTests: XCTestCase {
     }
     
   }
+  
+  func testNumericFilterListInteractor() {
+    XCTAssertTrue(schema.components.isEmpty)
+    _ = NumericFilterListInteractor()
+    guard let component = schema.components.first else {
+      XCTFail()
+      return
+    }
+    XCTAssertEqual(component.type, .numericFilterList)
+    XCTAssertEqual(component.isConnector, false)
+    XCTAssertEqual(component.parameters, [.selectionMode])
+  }
+  
+  func testFacetFiltersListInteractor() {
+    XCTAssertTrue(schema.components.isEmpty)
+    _ = FacetFilterListInteractor()
+    guard let component = schema.components.first else {
+      XCTFail()
+      return
+    }
+    XCTAssertEqual(component.type, .facetFilterList)
+    XCTAssertEqual(component.isConnector, false)
+    XCTAssertEqual(component.parameters, [.selectionMode])
+  }
+  
+  func testTagFiltersListInteractor() {
+    XCTAssertTrue(schema.components.isEmpty)
+    _ = TagFilterListInteractor()
+    guard let component = schema.components.first else {
+      XCTFail()
+      return
+    }
+    XCTAssertEqual(component.type, .tagFilterList)
+    XCTAssertEqual(component.isConnector, false)
+    XCTAssertEqual(component.parameters, [.selectionMode])
+  }
+  
+  func testNumericFilterListConnector() {
+    XCTAssertTrue(schema.components.isEmpty)
+    _ = NumericFilterListConnector(filterState: .init(), operator: .and, groupName: "group")
+    guard let component = schema.components.first(where: { $0.type == .numericFilterList }) else {
+      XCTFail()
+      return
+    }
+    XCTAssertEqual(component.isConnector, true)
+    XCTAssertEqual(component.parameters, [.operator, .groupName])
+  }
+  
+  func testFacetFiltersListConnector() {
+    XCTAssertTrue(schema.components.isEmpty)
+    _ = FacetFilterListConnector(filterState: .init(), operator: .and, groupName: "group")
+    guard let component = schema.components.first(where: { $0.type == .facetFilterList }) else {
+      XCTFail()
+      return
+    }
+    XCTAssertEqual(component.isConnector, true)
+    XCTAssertEqual(component.parameters, [.operator, .groupName])
+  }
+  
+  func testTagFiltersListConnector() {
+    XCTAssertTrue(schema.components.isEmpty)
+    _ = TagFilterListConnector(filterState: .init(), operator: .and, groupName: "group")
+    guard let component = schema.components.first(where: { $0.type == .tagFilterList }) else {
+      XCTFail()
+      return
+    }
+    XCTAssertEqual(component.isConnector, true)
+    XCTAssertEqual(component.parameters, [.operator, .groupName])
+  }
+  
+  
   
   func testUserAgents() throws {
     
