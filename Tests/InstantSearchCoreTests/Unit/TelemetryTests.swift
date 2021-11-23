@@ -50,7 +50,7 @@ class TelemetryTests: XCTestCase {
     
     let expectation1 = expectation(description: "URL request expectation")
     
-    _ = SingleIndexSearcher(appID: "", apiKey: "", indexName: "")
+    _ = HitsSearcher(appID: "", apiKey: "", indexName: "")
     _ = FacetSearcher(appID: "", apiKey: "", indexName: "", facetName: "")
         
     let requester = TestRequester() { request in

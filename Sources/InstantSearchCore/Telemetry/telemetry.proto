@@ -1,28 +1,33 @@
 syntax = "proto3";
 
 enum TelemetryComponentType {
- UNKNOWN = 0;
- hitsSearcher = 1;
- facetSearcher = 2;
- multiSearcher = 3;
- answersSearcher = 4;
- filterState = 5;
- dynamicFacets = 6;
- hierarchicalFacets = 7;
- facetList = 8;
- filterClear = 9;
- filterList = 10;
- filterToggle = 11;
- numberFilter = 12;
- numberRangeFilter = 13;
- currentFilters = 14;
- hits = 15;
- loading = 16;
- stats = 17;
- queryInput = 18;
- queryRuleCustomData = 19;
- relevantSort = 20;
- sortBy = 21;
+  UNKNOWN = 0;
+  hitsSearcher = 1;
+  facetSearcher = 2;
+  multiSearcher = 3;
+  answersSearcher = 4;
+  filterState = 5;
+  dynamicFacets = 6; // Dynamic Facets
+  hierarchicalFacets = 7; // Hierarchical Menu
+  facetList = 8; // Refinement List
+  filterClear = 9; // Clear Filters
+  facetFilterList = 10; // Filter List (Facet)
+  numericFilterList = 11; // Filter List (Numeric)
+  tagFilterList = 12; // Filter List (Tag)
+  filterToggle = 13; // Filter Toggle
+  numberFilter = 14; // Filter Numeric Comparison
+  numberRangeFilter = 15; // Filter Numeric Range
+  currentFilters = 16; // Current Filters
+  hits = 17; // Hits
+  loading = 18; // Loading
+  stats = 19; // Stats
+  searchBox = 20; // SearchBox
+  queryRuleCustomData = 21; // QueryRuleCustomData
+  relevantSort = 22; // RelevantSort
+  sortBy = 23; // SortBy
+  relatedItems = 24; // Related items
+  filterMap = 25; // Filter Map
+  multiHits = 26; // Multi Hits
 }
 
 enum TelemetryComponentParams {
@@ -49,12 +54,19 @@ enum TelemetryComponentParams {
   range = 20;
   searchTriggeringMode = 21;
   searcher = 22;
-  selected = 23;
+  isSelected = 23;
   selectionMode = 24;
   selectionModeForAttribute = 25;
   selections = 26;
   separator = 27;
   showItemsOnEmptyQuery = 28;
+  isDisjunctiveFacetingEnabled = 29;
+  isLoading = 30;
+  mode = 31;
+  number = 32;
+  persistentSelection = 33;
+  searchMode = 34;
+  strategy = 35;
 }
 
 message TelemetryComponent {
