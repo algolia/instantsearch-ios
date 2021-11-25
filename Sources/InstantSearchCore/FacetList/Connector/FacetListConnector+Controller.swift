@@ -33,12 +33,10 @@ public extension FacetListConnector {
    - Parameters:
      - controller: Controller interfacing with a concrete facet list view
      - presenter: Presenter defining how a facet appears in the controller
-     - externalReload: Defines if controller will be updated automatically by the events or manually
    - Returns: Established connection
   */
   @discardableResult func connectController<Controller: FacetListController>(_ controller: Controller,
-                                                                             with presenter: SelectableListPresentable? = nil,
-                                                                             externalReload: Bool = false) -> FacetListConnector.ControllerConnection<Controller> {
+                                                                             with presenter: SelectableListPresentable? = nil) -> FacetListConnector.ControllerConnection<Controller> {
     let connection = interactor.connectController(controller, with: presenter)
     controllerConnections.append(connection)
     return connection

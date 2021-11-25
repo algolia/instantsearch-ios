@@ -240,6 +240,13 @@ enum TelemetryComponentParams: SwiftProtobuf.Enum {
   case persistentSelection // = 33
   case searchMode // = 34
   case strategy // = 35
+  case groupIds // = 36
+  case filters // = 37
+  case numericOperator // = 38
+  case selected // = 39
+  case filterStateParameter // = 40
+  case hitsSearcherParameter // = 41
+  case facetSearcherParameter // = 42
   case UNRECOGNIZED(Int)
 
   init() {
@@ -284,6 +291,13 @@ enum TelemetryComponentParams: SwiftProtobuf.Enum {
     case 33: self = .persistentSelection
     case 34: self = .searchMode
     case 35: self = .strategy
+    case 36: self = .groupIds
+    case 37: self = .filters
+    case 38: self = .numericOperator
+    case 39: self = .selected
+    case 40: self = .filterStateParameter
+    case 41: self = .hitsSearcherParameter
+    case 42: self = .facetSearcherParameter
     default: self = .UNRECOGNIZED(rawValue)
     }
   }
@@ -326,6 +340,13 @@ enum TelemetryComponentParams: SwiftProtobuf.Enum {
     case .persistentSelection: return 33
     case .searchMode: return 34
     case .strategy: return 35
+    case .groupIds: return 36
+    case .filters: return 37
+    case .numericOperator: return 38
+    case .selected: return 39
+    case .filterStateParameter: return 40
+    case .hitsSearcherParameter: return 41
+    case .facetSearcherParameter: return 42
     case .UNRECOGNIZED(let i): return i
     }
   }
@@ -373,6 +394,13 @@ extension TelemetryComponentParams: CaseIterable {
     .persistentSelection,
     .searchMode,
     .strategy,
+    .groupIds,
+    .filters,
+    .numericOperator,
+    .selected,
+    .filterStateParameter,
+    .hitsSearcherParameter,
+    .facetSearcherParameter,
   ]
 }
 
@@ -478,6 +506,13 @@ extension TelemetryComponentParams: SwiftProtobuf._ProtoNameProviding {
     33: .same(proto: "persistentSelection"),
     34: .same(proto: "searchMode"),
     35: .same(proto: "strategy"),
+    36: .same(proto: "groupIDs"),
+    37: .same(proto: "filters"),
+    38: .same(proto: "numericOperator"),
+    39: .same(proto: "selected"),
+    40: .same(proto: "filterStateParameter"),
+    41: .same(proto: "hitsSearcherParameter"),
+    42: .same(proto: "facetSearcherParameter"),
   ]
 }
 

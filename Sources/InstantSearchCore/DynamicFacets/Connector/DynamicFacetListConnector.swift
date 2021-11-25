@@ -49,7 +49,10 @@ public class DynamicFacetListConnector<Searcher: SearchResultObservable> where S
     searcherConnection = interactor.connectSearcher(searcher)
     filterStateConnection = interactor.connectFilterState(filterState,
                                                           filterGroupForAttribute: filterGroupForAttribute)
-//    Telemetry.shared.track(.dynamicFacetsConnector)
+    Telemetry.shared.trackConnector(type: .dynamicFacets,
+                                    parameters: [
+                                      filterGroupForAttribute.isEmpty ? .none : .filterGroupForAttribute
+                                    ])
   }
 
   /**
@@ -70,12 +73,19 @@ public class DynamicFacetListConnector<Searcher: SearchResultObservable> where S
                           selectionModeForAttribute: [Attribute: SelectionMode] = [:],
                           filterGroupForAttribute: [Attribute: FilterGroupDescriptor] = [:]) {
     let interactor = DynamicFacetListInteractor(orderedFacets: orderedFacets,
-                                             selections: selections,
-                                             selectionModeForAttribute: selectionModeForAttribute)
+                                                selections: selections,
+                                                selectionModeForAttribute: selectionModeForAttribute)
     self.init(searcher: searcher,
               filterState: filterState,
               interactor: interactor,
               filterGroupForAttribute: filterGroupForAttribute)
+    Telemetry.shared.trackConnector(type: .dynamicFacets,
+                                    parameters: [
+                                      orderedFacets.isEmpty ? .none : .orderedFacets,
+                                      selections.isEmpty ? .none : .selections,
+                                      selectionModeForAttribute.isEmpty ? .none : .selectionModeForAttribute,
+                                      filterGroupForAttribute.isEmpty ? .none : .filterGroupForAttribute
+                                    ])
   }
 
 }

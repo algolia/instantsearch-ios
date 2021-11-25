@@ -28,7 +28,6 @@ class FacetListConnectorSnippets {
                                                       attribute: "category",
                                                       selectionMode: .multiple,
                                                       facets: [.init(value: "initial facet", count: 10)],
-                                                      persistentSelection: true,
                                                       operator: .and,
                                                       controller: categoryListController,
                                                       presenter: facetListPresenter)

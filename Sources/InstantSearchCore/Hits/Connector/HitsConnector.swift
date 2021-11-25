@@ -41,7 +41,6 @@ public class HitsConnector<Hit: Codable> {
     self.filterStateConnection = filterState.flatMap(interactor.connectFilterState)
     self.searcherConnection = connectSearcher(searcher)
     self.controllerConnections = []
-//    Telemetry.shared.track(.hitsConnector)
   }
 
   internal convenience init<S: Searcher, Controller: HitsController>(searcher: S,
@@ -92,6 +91,10 @@ public extension HitsConnector {
               interactor: interactor,
               filterState: filterState,
               connectSearcher: interactor.connectSearcher)
+    Telemetry.shared.trackConnector(type: .hits,
+                                    parameters: [
+                                      filterState == nil ? .none : .filterStateParameter
+                                    ])
   }
 
   /**
@@ -117,6 +120,15 @@ public extension HitsConnector {
               interactor: interactor,
               filterState: filterState,
               connectSearcher: interactor.connectSearcher)
+    Telemetry.shared.trackConnector(type: .hits,
+                                    parameters: [
+                                      .appID,
+                                      .apiKey,
+                                      .indexName,
+                                      infiniteScrolling == Constants.Defaults.infiniteScrolling ? .none : .infiniteScrolling,
+                                      showItemsOnEmptyQuery == Constants.Defaults.showItemsOnEmptyQuery ? .none : .showItemsOnEmptyQuery,
+                                      filterState == nil ? .none : .filterStateParameter
+                                    ])
   }
 
 }

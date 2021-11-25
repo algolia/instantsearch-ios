@@ -69,6 +69,10 @@ public class SelectableFilterConnector<Filter: FilterType> {
                                                                     groupName: groupName)
     self.interactor.selected = selected
     self.controllerConnections = []
+    Telemetry.shared.trackConnector(type: .filterMap,
+                                    parameters: [
+                                      groupName == nil ? .none : .groupName
+                                    ])
   }
 
 }

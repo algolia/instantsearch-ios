@@ -62,6 +62,11 @@ public class HitsInteractor<Record: Codable>: AnyHitsInteractor {
     let settings = Settings(infiniteScrolling: infiniteScrolling,
                             showItemsOnEmptyQuery: showItemsOnEmptyQuery)
     self.init(settings: settings)
+    Telemetry.shared.track(type: .hits,
+                           parameters: [
+                            infiniteScrolling == Constants.Defaults.infiniteScrolling ? .none : .infiniteScrolling,
+                            showItemsOnEmptyQuery == Constants.Defaults.showItemsOnEmptyQuery ? .none : .showItemsOnEmptyQuery
+                           ])
   }
 
   public convenience init(settings: Settings? = nil) {
@@ -82,7 +87,6 @@ public class HitsInteractor<Record: Codable>: AnyHitsInteractor {
     self.mutationQueue = .init()
     self.mutationQueue.maxConcurrentOperationCount = 1
     self.mutationQueue.qualityOfService = .userInitiated
-//    Telemetry.shared.track(.hitsInteractor)
   }
 
   public func numberOfHits() -> Int {
@@ -191,7 +195,7 @@ extension HitsInteractor {
 
 }
 
-public enum InfiniteScrolling {
+public enum InfiniteScrolling: Equatable {
   case on(withOffset: Int)
   case off
 }

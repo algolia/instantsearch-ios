@@ -15,18 +15,15 @@ public class FilterListInteractor<F: FilterType & Hashable>: SelectableListInter
     switch F.self {
     case is FacetFilter.Type:
       Telemetry.shared.track(type: .facetFilterList,
-                             parameters: [.selectionMode],
-                             useConnector: false)
+                             parameters: .selectionMode)
 
     case is NumericFilter.Type:
       Telemetry.shared.track(type: .numericFilterList,
-                             parameters: [.selectionMode],
-                             useConnector: false)
+                             parameters: .selectionMode)
 
     case is TagFilter.Type:
       Telemetry.shared.track(type: .tagFilterList,
-                             parameters: [.selectionMode],
-                             useConnector: false)
+                             parameters: .selectionMode)
 
     default:
       break

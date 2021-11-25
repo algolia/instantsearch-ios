@@ -57,7 +57,7 @@ public class FilterComparisonConnector<Number: Comparable & DoubleRepresentable>
               attribute: Attribute,
               numericOperator: Filter.Numeric.Operator,
               number: Number,
-              bounds: ClosedRange<Number>?,
+              bounds: ClosedRange<Number>? = nil,
               operator: RefinementOperator,
               groupName: String? = nil) {
     self.searcher = searcher
@@ -78,7 +78,11 @@ public class FilterComparisonConnector<Number: Comparable & DoubleRepresentable>
       self.interactor.applyBounds(bounds: bounds)
     }
     self.controllerConnections = []
-//    Telemetry.shared.track(.numberConnector)
+    Telemetry.shared.trackConnector(type: .numberFilter,
+                                    parameters: [
+                                      bounds == nil ? .none : .bounds,
+                                      groupName == nil ? .none : .groupName
+                                    ])
   }
 
 }

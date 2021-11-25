@@ -59,8 +59,6 @@ public class FacetListConnector {
     case .hits(let hitsSearcher):
       searcherConnection = interactor.connectSearcher(hitsSearcher, with: attribute)
     }
-//    Telemetry.shared.track(.facetListConnector)
-
   }
 
 }

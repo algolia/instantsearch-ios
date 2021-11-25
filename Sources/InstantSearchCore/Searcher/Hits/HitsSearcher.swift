@@ -126,8 +126,7 @@ final public class HitsSearcher: IndexSearcher<AlgoliaSearchService> {
                             .appID,
                             .apiKey,
                             .indexName,
-                           ],
-                           useConnector: false)
+                           ])
   }
 
   /**
@@ -143,7 +142,7 @@ final public class HitsSearcher: IndexSearcher<AlgoliaSearchService> {
     let service = AlgoliaSearchService(client: client)
     let request = AlgoliaSearchService.Request(indexName: indexName, query: query, requestOptions: requestOptions)
     super.init(service: service, initialRequest: request)
-    Telemetry.shared.track(type: .hitsSearcher, parameters: [], useConnector: false)
+    Telemetry.shared.track(type: .hitsSearcher)
   }
 
   /**
@@ -159,10 +158,7 @@ final public class HitsSearcher: IndexSearcher<AlgoliaSearchService> {
               query: indexQueryState.query,
               requestOptions: requestOptions)
     Telemetry.shared.track(type: .hitsSearcher,
-                           parameters: [
-                            .client,
-                           ],
-                           useConnector: false)
+                           parameters: .client)
   }
 
 }

@@ -13,8 +13,6 @@ public class FilterClearInteractor: EventInteractor {
 
   public init() {
     onTriggered = .init()
-    Telemetry.shared.track(type: .filterClear,
-                           parameters: [],
-                           useConnector: false)
+    Telemetry.shared.track(type: .filterClear)
   }
 }

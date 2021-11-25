@@ -75,8 +75,7 @@ final public class FacetSearcher: IndexSearcher<FacetSearchService> {
                             .apiKey,
                             .indexName,
                             .attribute
-                           ],
-                           useConnector: false)
+                           ])
   }
 
   public convenience init(client: SearchClient,
@@ -92,8 +91,7 @@ final public class FacetSearcher: IndexSearcher<FacetSearchService> {
                             .client,
                             .indexName,
                             .attribute,
-                           ],
-                           useConnector: false)
+                           ])
   }
 
 }

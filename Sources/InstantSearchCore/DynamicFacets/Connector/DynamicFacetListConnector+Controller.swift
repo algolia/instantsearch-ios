@@ -51,8 +51,8 @@ public extension DynamicFacetListConnector {
                                                            filterGroupForAttribute: [Attribute: FilterGroupDescriptor] = [:],
                                                            controller: Controller) {
     let interactor = DynamicFacetListInteractor(orderedFacets: orderedFacets,
-                                             selections: selections,
-                                             selectionModeForAttribute: selectionModeForAttribute)
+                                                selections: selections,
+                                                selectionModeForAttribute: selectionModeForAttribute)
     self.init(searcher: searcher,
               filterState: filterState,
               interactor: interactor,

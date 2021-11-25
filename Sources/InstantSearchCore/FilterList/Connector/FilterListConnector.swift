@@ -43,19 +43,13 @@ public class FilterListConnector<Filter: FilterType & Hashable> {
     self.controllerConnections = []
     switch Filter.self {
     case is FacetFilter.Type:
-      Telemetry.shared.track(type: .facetFilterList,
-                             parameters: [.operator, .groupName],
-                             useConnector: true)
+      Telemetry.shared.trackConnector(type: .facetFilterList)
 
     case is NumericFilter.Type:
-      Telemetry.shared.track(type: .numericFilterList,
-                             parameters: [.operator, .groupName],
-                             useConnector: true)
+      Telemetry.shared.trackConnector(type: .numericFilterList)
 
     case is TagFilter.Type:
-      Telemetry.shared.track(type: .tagFilterList,
-                             parameters: [.operator, .groupName],
-                             useConnector: true)
+      Telemetry.shared.trackConnector(type: .tagFilterList)
 
     default:
       break
@@ -76,12 +70,28 @@ public class FilterListConnector<Filter: FilterType & Hashable> {
                           selectionMode: SelectionMode,
                           `operator`: RefinementOperator,
                           groupName: String) {
-    let interactor = FilterListInteractor<Filter>.init(items: filters,
-                                                       selectionMode: selectionMode)
+    let interactor = FilterListInteractor<Filter>(items: filters,
+                                                  selectionMode: selectionMode)
     self.init(filterState: filterState,
               interactor: interactor,
               operator: `operator`,
               groupName: groupName)
+    switch Filter.self {
+    case is FacetFilter.Type:
+      Telemetry.shared.trackConnector(type: .facetFilterList,
+                                      parameters: .filters, .selectionMode)
+
+    case is NumericFilter.Type:
+      Telemetry.shared.trackConnector(type: .numericFilterList,
+                                      parameters: .filters, .selectionMode)
+
+    case is TagFilter.Type:
+      Telemetry.shared.trackConnector(type: .tagFilterList,
+                                      parameters: .filters, .selectionMode)
+
+    default:
+      break
+    }
   }
 
 }

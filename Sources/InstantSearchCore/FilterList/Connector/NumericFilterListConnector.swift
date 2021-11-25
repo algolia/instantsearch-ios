@@ -52,7 +52,7 @@ public extension NumericFilterListConnector {
                                                          groupName: String,
                                                          controller: Controller) where Controller.Item == NumericFilter {
     let interactor = NumericFilterListInteractor(items: numericFilters,
-                                               selectionMode: selectionMode)
+                                                 selectionMode: selectionMode)
     self.init(filterState: filterState,
               interactor: interactor,
               operator: `operator`,

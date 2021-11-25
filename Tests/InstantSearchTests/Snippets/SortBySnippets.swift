@@ -54,7 +54,7 @@ class SortBySnippets {
         2 : "indexDescendingOrder"
     ])
 
-    indexSegmentInteractor.connectSearcher(searcher: searcher)
+//    indexSegmentInteractor.connectSearcher(searcher: searcher)
     
     indexSegmentInteractor.connectController(selectIndexController) { indexName -> String in
       switch indexName {

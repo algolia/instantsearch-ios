@@ -67,6 +67,13 @@ enum TelemetryComponentParams {
   persistentSelection = 33;
   searchMode = 34;
   strategy = 35;
+  groupIDs = 36;
+  filters = 37;
+  numericOperator = 38;
+  selected = 39;
+  filterStateParameter = 40;
+  hitsSearcherParameter = 41;
+  facetSearcherParameter = 42;
 }
 
 message TelemetryComponent {

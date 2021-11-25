@@ -42,7 +42,11 @@ public class FilterToggleConnector<Filter: FilterType> {
                                                                operator: `operator`,
                                                                groupName: groupName ?? interactor.item.attribute.rawValue)
     controllerConnections = []
-//    Telemetry.shared.track(.filterToggleConnector)
+    Telemetry.shared.trackConnector(type: .filterToggle,
+                                    parameters: [
+                                      `operator` == .and ? .none : .operator,
+                                      groupName == nil ? .none : .groupName
+                                    ])
   }
 
   /**
@@ -64,6 +68,12 @@ public class FilterToggleConnector<Filter: FilterType> {
               interactor: interactor,
               operator: `operator`,
               groupName: groupName)
+    Telemetry.shared.trackConnector(type: .filterToggle,
+                                    parameters: [
+                                      isSelected ? .isSelected : .none,
+                                      `operator` == .and ? .none : .operator,
+                                      groupName == nil ? .none : .groupName
+                                    ])
   }
 
 }
