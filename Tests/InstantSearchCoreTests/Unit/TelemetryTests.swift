@@ -9,6 +9,7 @@ import Foundation
 @testable import InstantSearchCore
 import InstantSearchInsights
 import XCTest
+import Gzip
 
 class TelemetryTests: XCTestCase {
   
@@ -20,18 +21,20 @@ class TelemetryTests: XCTestCase {
     Telemetry.shared.components.removeAll()
   }
 
-  func testMaxSize() {
+  func testMaxSize() throws {
     let schema = TelemetrySchema.with {
       $0.components = TelemetryComponentType.allCases.map { type in
         TelemetryComponent.with { w in
           w.type = type
           w.isConnector = true
-          w.parameters = TelemetryComponentParams.allCases
+          w.parameters = Array(TelemetryComponentParams.allCases.shuffled()[..<5])
         }
       }
     }
-    let data = try! schema.serializedData()
-    print(data.base64EncodedString())
+    let data = try schema.serializedData()
+    print("Telemetry base64: \(data.base64EncodedString())")
+    let compressedData = try data.gzipped()
+    print("Telemetry base64 (compressed): \(compressedData.base64EncodedString())")
     print(data.count)
   }
 

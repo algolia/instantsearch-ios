@@ -32,6 +32,9 @@ let package = Package(
     .package(name: "SwiftProtobuf",
              url: "https://github.com/apple/swift-protobuf.git",
              from: "1.6.0"),
+    .package(name: "Gzip",
+             url: "https://github.com/1024jp/GzipSwift",
+             from: "5.1.0")
   ],
   targets: [
     .target(
@@ -42,7 +45,7 @@ let package = Package(
       dependencies: ["InstantSearchInsights", "AlgoliaSearchClient"]),
     .target(
       name: "InstantSearchCore",
-      dependencies: ["AlgoliaSearchClient", "InstantSearchInsights", "SwiftProtobuf"]),
+      dependencies: ["AlgoliaSearchClient", "InstantSearchInsights", "SwiftProtobuf", "Gzip"]),
     .testTarget(
       name: "InstantSearchCoreTests",
       dependencies: ["InstantSearchCore", "AlgoliaSearchClient", "InstantSearchInsights", "SwiftProtobuf"]),
