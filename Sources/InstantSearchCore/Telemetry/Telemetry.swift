@@ -72,6 +72,8 @@ class Telemetry {
 extension TelemetryComponentParams {
   
   static let filterState = TelemetryComponentParams.filterStateParameter
+  static let hitsSearcher = TelemetryComponentParams.hitsSearcherParameter
+  static let facetSearcher = TelemetryComponentParams.facetSearcherParameter
   
 }
 

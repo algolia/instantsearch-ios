@@ -10,7 +10,6 @@ import Foundation
 import InstantSearchInsights
 import XCTest
 
-
 class TelemetryTests: XCTestCase {
   
   var schema: TelemetrySchema {
@@ -18,7 +17,7 @@ class TelemetryTests: XCTestCase {
   }
   
   override func setUp() {
-    Telemetry.shared.schema.components.removeAll()
+    Telemetry.shared.components.removeAll()
   }
 
   func testMaxSize() {
@@ -61,6 +60,8 @@ class TelemetryTests: XCTestCase {
   let hitsController = TestHitsController<String>()
   let hitsInteractor = HitsInteractor<String>()
   let filterState = FilterState()
+  let filter = FacetFilter(attribute: "a", boolValue: true)
+  let facet = Facet(value: "f", count: 0, highlighted: nil)
   
   func component(ofType type: TelemetryComponentType) throws -> TelemetryComponent {
     if let component = Telemetry.shared.components[type] {
@@ -232,7 +233,7 @@ extension TelemetryTests {
   }
   
   func testDynamicFacetsListInteractorOrderedFacets() throws {
-    _ = DynamicFacetListInteractor(orderedFacets: [.init(attribute: "a", facets: [])])
+    _ = DynamicFacetListInteractor(orderedFacets: [.init(attribute: "a", facets: [facet])])
     let component = try component(ofType: .dynamicFacets)
     XCTAssertFalse(component.isConnector)
     XCTAssertEqual(component.parameters, [.orderedFacets])
@@ -261,7 +262,7 @@ extension TelemetryTests {
   
   func testDynamicFacetsListConnectorOrderedFacets() throws {
     _ = DynamicFacetListConnector(searcher: hitsSearcher,
-                                  orderedFacets: [.init(attribute: "a", facets: [])])
+                                  orderedFacets: [.init(attribute: "a", facets: [facet])])
     let component = try component(ofType: .dynamicFacets)
     XCTAssertTrue(component.isConnector)
     XCTAssertEqual(component.parameters, [.orderedFacets])
@@ -304,7 +305,7 @@ extension TelemetryTests {
   }
   
   func testFacetListInteractorFacets() throws {
-    _ = FacetListInteractor(facets: [.init(value: "", count: 10, highlighted: nil)])
+    _ = FacetListInteractor(facets: [facet])
     let component = try component(ofType: .facetList)
     XCTAssertFalse(component.isConnector)
     XCTAssertEqual(component.parameters, [.facets])
@@ -323,7 +324,7 @@ extension TelemetryTests {
                            operator: .and)
     let component = try component(ofType: .facetList)
     XCTAssertTrue(component.isConnector)
-    XCTAssertEqual(component.parameters, [.facetSearcherParameter])
+    XCTAssertEqual(component.parameters, [.facetSearcher])
   }
   
   func testFacetListConnectorFacetSearcherGroupName() throws {
@@ -333,18 +334,18 @@ extension TelemetryTests {
                            groupName: "")
     let component = try component(ofType: .facetList)
     XCTAssertTrue(component.isConnector)
-    XCTAssertEqual(component.parameters, [.facetSearcherParameter, .groupName])
+    XCTAssertEqual(component.parameters, [.facetSearcher, .groupName])
   }
   
   func testFacetListConnectorFacetSearcherFacets() throws {
     _ = FacetListConnector(searcher: facetSearcher,
                            attribute: "",
                            selectionMode: .single,
-                           facets: [.init(value: "", count: 0, highlighted: nil)],
+                           facets: [facet],
                            operator: .and)
     let component = try component(ofType: .facetList)
     XCTAssertTrue(component.isConnector)
-    XCTAssertEqual(component.parameters, [.facetSearcherParameter, .facets])
+    XCTAssertEqual(component.parameters, [.facetSearcher, .facets])
   }
   
   func testFacetListConnectorHitsSearcher() throws {
@@ -353,7 +354,7 @@ extension TelemetryTests {
                            operator: .and)
     let component = try component(ofType: .facetList)
     XCTAssertTrue(component.isConnector)
-    XCTAssertEqual(component.parameters, [.hitsSearcherParameter])
+    XCTAssertEqual(component.parameters, [.hitsSearcher])
   }
   
   func testFacetListConnectorHitsSearcherGroupName() throws {
@@ -363,18 +364,18 @@ extension TelemetryTests {
                            groupName: "")
     let component = try component(ofType: .facetList)
     XCTAssertTrue(component.isConnector)
-    XCTAssertEqual(component.parameters, [.hitsSearcherParameter, .groupName])
+    XCTAssertEqual(component.parameters, [.hitsSearcher, .groupName])
   }
   
   func testFacetListConnectorHitsSearcherFacets() throws {
     _ = FacetListConnector(searcher: hitsSearcher,
                            attribute: "",
                            selectionMode: .single,
-                           facets: [.init(value: "", count: 0, highlighted: nil)],
+                           facets: [facet],
                            operator: .and)
     let component = try component(ofType: .facetList)
     XCTAssertTrue(component.isConnector)
-    XCTAssertEqual(component.parameters, [.hitsSearcherParameter, .facets])
+    XCTAssertEqual(component.parameters, [.hitsSearcher, .facets])
   }
   
 }
@@ -444,9 +445,7 @@ extension TelemetryTests {
   
   func testFilterListConnector() throws {
     _ = FilterListConnector(filterState: filterState,
-                            filters: [
-                              FacetFilter(attribute: "a", boolValue: true)
-                            ],
+                            filters: [filter],
                             selectionMode: .multiple,
                             operator: .and,
                             groupName: "group")
@@ -528,54 +527,417 @@ extension TelemetryTests {
 
 //MARK: - Hits
 extension TelemetryTests {
+  
+  func testHitsInteractor() throws {
+    _ = HitsInteractor<String>()
+    let component = try component(ofType: .hits)
+    XCTAssertFalse(component.isConnector)
+    XCTAssertTrue(component.parameters.isEmpty)
+  }
+  
+  func testHitsInteractorInfiniteScrolling() throws {
+    _ = HitsInteractor<String>(infiniteScrolling: .off)
+    let component = try component(ofType: .hits)
+    XCTAssertFalse(component.isConnector)
+    XCTAssertEqual(component.parameters, [.infiniteScrolling])
+  }
+  
+  func testHitsInteractorShowItemsOnEmptyQuery() throws {
+    _ = HitsInteractor<String>(showItemsOnEmptyQuery: false)
+    let component = try component(ofType: .hits)
+    XCTAssertFalse(component.isConnector)
+    XCTAssertEqual(component.parameters, [.showItemsOnEmptyQuery])
+  }
+
+  func testHitsConnector() throws {
+    _ = HitsConnector<String>(searcher: hitsSearcher)
+    let component = try component(ofType: .hits)
+    XCTAssertTrue(component.isConnector)
+    XCTAssertTrue(component.parameters.isEmpty)
+  }
+  
+  func testHitsConnectorFilterState() throws {
+    _ = HitsConnector<String>(searcher: hitsSearcher,
+                              filterState: filterState)
+    let component = try component(ofType: .hits)
+    XCTAssertTrue(component.isConnector)
+    XCTAssertEqual(component.parameters, [.filterState])
+  }
+  
+  func testHitsConnectorParams() throws {
+    _ = HitsConnector<String>(appID: "",
+                              apiKey: "",
+                              indexName: "",
+                              infiniteScrolling: .off,
+                              showItemsOnEmptyQuery: false,
+                              filterState: filterState)
+    let component = try component(ofType: .hits)
+    XCTAssertTrue(component.isConnector)
+    XCTAssertEqual(component.parameters, [
+      .appID,
+      .apiKey,
+      .indexName,
+      .infiniteScrolling,
+      .showItemsOnEmptyQuery,
+      .filterState
+    ])
+  }
+
 }
 
 //MARK: - Loading
 extension TelemetryTests {
+  
+  func testLoadingInteractor() throws {
+    _ = LoadingInteractor()
+    let component = try component(ofType: .loading)
+    XCTAssertFalse(component.isConnector)
+    XCTAssertTrue(component.parameters.isEmpty)
+  }
+  
+  func testLoadingConnector() throws {
+    _ = LoadingConnector(searcher: hitsSearcher)
+    let component = try component(ofType: .loading)
+    XCTAssertTrue(component.isConnector)
+    XCTAssertTrue(component.parameters.isEmpty)
+  }
+  
 }
 
 //MARK: - Number
 extension TelemetryTests {
+  
+  func testNumberFilterInteractor() throws {
+    _ = NumberInteractor<Int>()
+    let component = try component(ofType: .numberFilter)
+    XCTAssertFalse(component.isConnector)
+    XCTAssertTrue(component.parameters.isEmpty)
+  }
+  
+  func testNumberFilterInteractorItem() throws {
+    _ = NumberInteractor<Int>(item: 10)
+    let component = try component(ofType: .numberFilter)
+    XCTAssertFalse(component.isConnector)
+    XCTAssertEqual(component.parameters, [.number])
+  }
+  
+  func testNumberFilterConnector() throws {
+    _ = FilterComparisonConnector<Int>(searcher: hitsSearcher,
+                                       filterState: filterState,
+                                       attribute: "a",
+                                       numericOperator: .greaterThan,
+                                       number: 20,
+                                       operator: .or)
+    let component = try component(ofType: .numberFilter)
+    XCTAssertTrue(component.isConnector)
+    XCTAssertTrue(component.parameters.isEmpty)
+  }
+  
+  func testNumberFilterConnectorBounds() throws {
+    _ = FilterComparisonConnector<Int>(searcher: hitsSearcher,
+                                       filterState: filterState,
+                                       attribute: "a",
+                                       numericOperator: .greaterThan,
+                                       number: 20,
+                                       bounds: 0...20,
+                                       operator: .or)
+    let component = try component(ofType: .numberFilter)
+    XCTAssertTrue(component.isConnector)
+    XCTAssertEqual(component.parameters, [.bounds])
+
+  }
+  
+  func testNumberFilterConnectorGroupName() throws {
+    _ = FilterComparisonConnector<Int>(searcher: hitsSearcher,
+                                       filterState: filterState,
+                                       attribute: "a",
+                                       numericOperator: .greaterThan,
+                                       number: 20,
+                                       operator: .or,
+                                       groupName: "a")
+    let component = try component(ofType: .numberFilter)
+    XCTAssertTrue(component.isConnector)
+    XCTAssertEqual(component.parameters, [.groupName])
+  }
+
+  
 }
 
 //MARK: - QueryInput
 extension TelemetryTests {
+  
+  func testQueryInputInteractor() throws {
+    _ = QueryInputInteractor()
+    let component = try component(ofType: .searchBox)
+    XCTAssertFalse(component.isConnector)
+    XCTAssertTrue(component.parameters.isEmpty)
+  }
+  
+  func testQueryInputConnector() throws {
+    _ = QueryInputConnector(searcher: hitsSearcher)
+    let component = try component(ofType: .searchBox)
+    XCTAssertTrue(component.isConnector)
+    XCTAssertTrue(component.parameters.isEmpty)
+  }
+  
+  func testQueryInputConnectorSearchTriggeringMode() throws {
+    _ = QueryInputConnector(searcher: hitsSearcher,
+                            searchTriggeringMode: .searchOnSubmit)
+    let component = try component(ofType: .searchBox)
+    XCTAssertTrue(component.isConnector)
+    XCTAssertEqual(component.parameters, [.searchTriggeringMode])
+  }
+  
 }
 
 //MARK: - QueryRuleCustomData
 extension TelemetryTests {
+  
+  func testQueryRuleCustomDataInteractor() throws {
+    _ = QueryRuleCustomDataInteractor<String>()
+    let component = try component(ofType: .queryRuleCustomData)
+    XCTAssertFalse(component.isConnector)
+    XCTAssertTrue(component.parameters.isEmpty)
+  }
+  
+  func testQueryRuleCustomDataInteractorItem() throws {
+    _ = QueryRuleCustomDataInteractor<String>(item: "hey")
+    let component = try component(ofType: .queryRuleCustomData)
+    XCTAssertFalse(component.isConnector)
+    XCTAssertEqual(component.parameters, [.item])
+  }
+  
+  func testQueryRuleCustomDataConnector() throws {
+    _ = QueryRuleCustomDataConnector<String>(searcher: hitsSearcher)
+    let component = try component(ofType: .queryRuleCustomData)
+    XCTAssertTrue(component.isConnector)
+    XCTAssertTrue(component.parameters.isEmpty)
+  }
 }
 
 //MARK: - Relevant Sort
 extension TelemetryTests {
+  
+  func testRelevantSortInteractor() throws {
+    _ = RelevantSortInteractor()
+    let component = try component(ofType: .relevantSort)
+    XCTAssertFalse(component.isConnector)
+    XCTAssertTrue(component.parameters.isEmpty)
+  }
+  
+  func testRelevantSortInteractorPriority() throws {
+    _ = RelevantSortInteractor(priority: .hitsCount)
+    let component = try component(ofType: .relevantSort)
+    XCTAssertFalse(component.isConnector)
+    XCTAssertEqual(component.parameters, [.priority])
+  }
+  
+  func testRelevantSortConnector() throws {
+    _ = RelevantSortConnector(searcher: hitsSearcher)
+    let component = try component(ofType: .relevantSort)
+    XCTAssertTrue(component.isConnector)
+    XCTAssertTrue(component.parameters.isEmpty)
+  }
+
 }
 
 //MARK: - Answers Searcher
 extension TelemetryTests {
+  
+  func testAnswersSearcher() throws {
+    _ = AnswersSearcher(applicationID: "",
+                        apiKey: "",
+                        indexName: "")
+    let component = try component(ofType: .answersSearcher)
+    XCTAssertFalse(component.isConnector)
+    XCTAssertTrue(component.parameters.isEmpty)
+  }
+  
 }
 
 //MARK: - Facet Searcher
 extension TelemetryTests {
+  
+  func testFacetSearcher() throws {
+    _ = FacetSearcher(client: .init(appID: "", apiKey: ""),
+                      indexName: "",
+                      facetName: "")
+    let component = try component(ofType: .facetSearcher)
+    XCTAssertFalse(component.isConnector)
+    XCTAssertEqual(component.parameters, [.client])
+  }
+  
+  func testFacetSearcherParams() throws {
+    _ = FacetSearcher(appID: "",
+                      apiKey: "",
+                      indexName: "",
+                      facetName: "")
+    let component = try component(ofType: .facetSearcher)
+    XCTAssertFalse(component.isConnector)
+    XCTAssertEqual(component.parameters, [.appID, .apiKey])
+  }
+  
 }
 
 //MARK: - Hits Searcher
 extension TelemetryTests {
+  
+  func testHitsSearcher() throws {
+    _ = HitsSearcher(client: .init(appID: "", apiKey: ""),
+                     indexName: "")
+    let component = try component(ofType: .hitsSearcher)
+    XCTAssertFalse(component.isConnector)
+    XCTAssertEqual(component.parameters, [.client])
+  }
+  
+  func testHitsSearcherParams() throws {
+    _ = HitsSearcher(appID: "",
+                     apiKey: "",
+                     indexName: "")
+    let component = try component(ofType: .hitsSearcher)
+    XCTAssertFalse(component.isConnector)
+    XCTAssertEqual(component.parameters, [.appID, .apiKey])
+  }
+  
 }
 
 //MARK: - Multi Searcher
 extension TelemetryTests {
+  
+  func testMultiSearcher() throws {
+    _ = MultiSearcher(appID: "", apiKey: "")
+    let component = try component(ofType: .multiSearcher)
+    XCTAssertFalse(component.isConnector)
+    XCTAssertTrue(component.parameters.isEmpty)
+  }
+
 }
 
 //MARK: - Filter toggle
 extension TelemetryTests {
+  
+  func testFilterToggleConnector() throws {
+    _ = FilterToggleConnector(filterState: filterState,
+                              filter: filter)
+    let component = try component(ofType: .filterToggle)
+    XCTAssertTrue(component.isConnector)
+    XCTAssertTrue(component.parameters.isEmpty)
+  }
+  
+  func testFilterToggleConnectorParams() throws {
+    _ = FilterToggleConnector(filterState: filterState,
+                              filter: filter,
+                              isSelected: true,
+                              operator: .or,
+                              groupName: "g")
+    let component = try component(ofType: .filterToggle)
+    XCTAssertTrue(component.isConnector)
+    XCTAssertEqual(component.parameters, [.isSelected, .operator, .groupName])
+  }
+  
+}
+
+
+//MARK: - Segmented filter (filter map)
+extension TelemetryTests {
+  
+  func testSelectableFilterInteractor() throws {
+    _ = SelectableFilterInteractor(items: [0: filter])
+    let component = try component(ofType: .filterMap)
+    XCTAssertFalse(component.isConnector)
+    XCTAssertTrue(component.parameters.isEmpty)
+  }
+  
+  func testSelectableFilterInteractorSelected() throws {
+    _ = SelectableFilterInteractor(items: [0: filter],
+                                   selected: 0)
+    let component = try component(ofType: .filterMap)
+    XCTAssertFalse(component.isConnector)
+    XCTAssertEqual(component.parameters, [.selected])
+  }
+  
+  func testSelectableFilterConnector() throws {
+    _ = SelectableFilterConnector(searcher: hitsSearcher,
+                                  filterState: filterState,
+                                  items: [0: filter],
+                                  selected: 0,
+                                  attribute: "",
+                                  operator: .or)
+    let component = try component(ofType: .filterMap)
+    XCTAssertTrue(component.isConnector)
+    XCTAssertTrue(component.parameters.isEmpty)
+  }
+  
+  func testSelectableFilterConnectorGroupName() throws {
+    _ = SelectableFilterConnector(searcher: hitsSearcher,
+                                  filterState: filterState,
+                                  items: [0: filter],
+                                  selected: 0,
+                                  attribute: "",
+                                  operator: .or,
+                                  groupName: "g")
+    let component = try component(ofType: .filterMap)
+    XCTAssertTrue(component.isConnector)
+    XCTAssertEqual(component.parameters, [.groupName])
+  }
+
 }
 
 //MARK: - Sort by
 extension TelemetryTests {
+  
+  func testSortByInteractor() throws {
+    _ = SortByInteractor(items: [0: "index"])
+    let component = try component(ofType: .sortBy)
+    XCTAssertFalse(component.isConnector)
+    XCTAssertTrue(component.parameters.isEmpty)
+  }
+  
+  func testSortByInteractorSelected() throws {
+    _ = SortByInteractor(items: [0: "index"],
+                         selected: 0)
+    let component = try component(ofType: .sortBy)
+    XCTAssertFalse(component.isConnector)
+    XCTAssertEqual(component.parameters, [.selected])
+  }
+
+  
+  func testSortByConnector() throws {
+    _ = SortByConnector(searcher: hitsSearcher,
+                        indicesNames: ["index"])
+    let component = try component(ofType: .sortBy)
+    XCTAssertTrue(component.isConnector)
+    XCTAssertTrue(component.parameters.isEmpty)
+  }
+  
+  func testSortByConnectorSelected() throws {
+    _ = SortByConnector(searcher: hitsSearcher,
+                        indicesNames: ["index"],
+                        selected: 0)
+    let component = try component(ofType: .sortBy)
+    XCTAssertTrue(component.isConnector)
+    XCTAssertEqual(component.parameters, [.selected])
+  }
+
 }
 
 //MARK: - Stats
 extension TelemetryTests {
+  
+  func testStatsInteractor() throws {
+    _ = StatsInteractor()
+    let component = try component(ofType: .stats)
+    XCTAssertFalse(component.isConnector)
+    XCTAssertTrue(component.parameters.isEmpty)
+  }
+  
+  func testStatsConnector() throws {
+    _ = StatsConnector(searcher: hitsSearcher)
+    let component = try component(ofType: .stats)
+    XCTAssertTrue(component.isConnector)
+    XCTAssertTrue(component.parameters.isEmpty)
+  }
+
 }
 
 

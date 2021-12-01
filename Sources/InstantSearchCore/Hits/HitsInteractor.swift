@@ -62,17 +62,20 @@ public class HitsInteractor<Record: Codable>: AnyHitsInteractor {
     let settings = Settings(infiniteScrolling: infiniteScrolling,
                             showItemsOnEmptyQuery: showItemsOnEmptyQuery)
     self.init(settings: settings)
-    Telemetry.shared.track(type: .hits,
-                           parameters: [
-                            infiniteScrolling == Constants.Defaults.infiniteScrolling ? .none : .infiniteScrolling,
-                            showItemsOnEmptyQuery == Constants.Defaults.showItemsOnEmptyQuery ? .none : .showItemsOnEmptyQuery
-                           ])
   }
 
   public convenience init(settings: Settings? = nil) {
     self.init(settings: settings,
               paginationController: Paginator<Record>(),
               infiniteScrollingController: InfiniteScrollingController())
+    Telemetry.shared.track(type: .hits,
+                           parameters: settings.flatMap { settings in
+                             [
+                              settings.infiniteScrolling == Constants.Defaults.infiniteScrolling ? .none : .infiniteScrolling,
+                              settings.showItemsOnEmptyQuery == Constants.Defaults.showItemsOnEmptyQuery ? .none : .showItemsOnEmptyQuery
+                             ]
+                           } ?? []
+                           )
   }
 
   internal init(settings: Settings? = nil,

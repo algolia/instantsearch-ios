@@ -73,8 +73,6 @@ final public class FacetSearcher: IndexSearcher<FacetSearchService> {
                            parameters: [
                             .appID,
                             .apiKey,
-                            .indexName,
-                            .attribute
                            ])
   }
 
@@ -89,8 +87,6 @@ final public class FacetSearcher: IndexSearcher<FacetSearchService> {
     Telemetry.shared.track(type: .facetSearcher,
                            parameters: [
                             .client,
-                            .indexName,
-                            .attribute,
                            ])
   }
 
