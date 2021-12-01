@@ -60,7 +60,7 @@ public class NumberRangeConnector<Number: Comparable & DoubleRepresentable> {
                                                                operator: `operator`,
                                                                groupName: groupName)
     self.controllerConnections = []
-    Telemetry.shared.trackConnector(type: .numberRangeFilter,
+    Telemetry.shared.traceConnector(type: .numberRangeFilter,
                                     parameters: [
                                       `operator` == .and ? .none : .operator,
                                       groupName == nil ? .none : .groupName

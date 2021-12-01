@@ -30,7 +30,7 @@ public class QueryInputInteractor {
   public init() {
     onQueryChanged = .init()
     onQuerySubmitted = .init()
-    Telemetry.shared.track(type: .searchBox)
+    Telemetry.shared.trace(type: .searchBox)
   }
 
   public func submitQuery() {

@@ -6,65 +6,104 @@
 //
 
 import Foundation
-
+import Gzip
 
 class Telemetry {
   
+  /// Shared telemetry tracking instance
   static let shared = Telemetry()
   
-  var schema = TelemetrySchema()
-  
-  var components: [TelemetryComponentType: TelemetryComponent] = [:]
+  /// Is telemetry tracking on
+  var isOn: Bool = true
     
-  var value: String {
-    return try! schema.serializedData().base64EncodedString()
+  /// Dictionary mapping a component to its type, ensuring each component is tracked only once
+  var components: [TelemetryComponentType: TelemetryComponent] = [:] {
+    didSet {
+      if oldValue != components {
+        schema = .with {
+          $0.components = Array(components.values).sorted(by: \.type.rawValue)
+        }
+      }
+    }
   }
   
-  func trackConnector(type: TelemetryComponentType,
+  /// Telemetry protobuf schema
+  /// - Note: Updated after each update of the `components` dictionary
+  private var schema: TelemetrySchema = .init()
+    
+  /// gzipped base64 encoded telemetry string value
+  var encodedValue: String? {
+    guard isOn else {
+      return nil
+    }
+    guard let telemetryDataString = try? schema.serializedData().gzipped().base64EncodedString() else {
+      return nil
+    }
+    return telemetryDataString
+  }
+  
+  func traceConnector(type: TelemetryComponentType,
                       parameters: TelemetryComponentParams...) {
-    trackConnector(type: type,
+    traceConnector(type: type,
                    parameters: parameters)
   }
   
-  func trackConnector(type: TelemetryComponentType,
+  func traceConnector(type: TelemetryComponentType,
                       parameters: [TelemetryComponentParams?]) {
-    trackConnector(type: type,
+    traceConnector(type: type,
                    parameters: parameters.compactMap { $0 })
   }
   
-  func trackConnector(type: TelemetryComponentType,
+  func traceConnector(type: TelemetryComponentType,
                       parameters: [TelemetryComponentParams]) {
-    let widget = TelemetryComponent.with {
-      $0.type = type
-      $0.parameters = parameters
-      $0.isConnector = true
-    }
-    components[type] = widget
+    trace(type: type,
+          parameters: parameters,
+          isConnector: true)
   }
   
-  func track(type: TelemetryComponentType,
+  func trace(type: TelemetryComponentType,
              parameters: TelemetryComponentParams...) {
-    track(type: type,
+    trace(type: type,
           parameters: parameters)
   }
   
-  func track(type: TelemetryComponentType,
+  func trace(type: TelemetryComponentType,
              parameters: [TelemetryComponentParams?]) {
-    track(type: type,
+    trace(type: type,
           parameters: parameters.compactMap { $0 })
   }
 
   
-  func track(type: TelemetryComponentType,
+  func trace(type: TelemetryComponentType,
              parameters: [TelemetryComponentParams]) {
-    let widget = TelemetryComponent.with {
+    trace(type: type,
+          parameters: parameters,
+          isConnector: false)
+  }
+  
+  private func trace(type: TelemetryComponentType,
+                     parameters: [TelemetryComponentParams],
+                     isConnector: Bool) {
+    guard isOn else { return }
+    
+    let isExistingComponentConnector: Bool
+    let existingComponentParameters: [TelemetryComponentParams]
+    
+    if let existingComponent = components[type] {
+      isExistingComponentConnector = existingComponent.isConnector
+      existingComponentParameters = existingComponent.parameters
+    } else {
+      isExistingComponentConnector = false
+      existingComponentParameters = []
+    }
+    
+    let component = TelemetryComponent.with {
       $0.type = type
-      $0.parameters = parameters
-      $0.isConnector = false
+      $0.parameters = Array(Set(parameters).union(existingComponentParameters)).sorted(by: \.rawValue)
+      $0.isConnector = isExistingComponentConnector || isConnector
     }
-    if components[type]?.isConnector != true {
-      components[type] = widget
-    }
+    
+    components[type] = component
   }
   
 }
@@ -80,7 +119,7 @@ extension TelemetryComponentParams {
 extension Telemetry: UserAgentExtending {
   
   var userAgentExtension: String {
-    return "telemetry: \(value)"
+    return encodedValue.flatMap { "InstantSearchTelemetry(\($0))" } ?? ""
   }
   
 }

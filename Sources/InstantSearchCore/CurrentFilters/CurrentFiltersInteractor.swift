@@ -12,7 +12,7 @@ import Foundation
 public class CurrentFiltersInteractor: ItemsListInteractor<FilterAndID> {
   
   public override init(items: Set<FilterAndID> = []) {
-    Telemetry.shared.track(type: .currentFilters,
+    Telemetry.shared.trace(type: .currentFilters,
                            parameters: [
                             items.isEmpty ? .none : .items
                            ])

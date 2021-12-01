@@ -91,7 +91,7 @@ public extension HitsConnector {
               interactor: interactor,
               filterState: filterState,
               connectSearcher: interactor.connectSearcher)
-    Telemetry.shared.trackConnector(type: .hits,
+    Telemetry.shared.traceConnector(type: .hits,
                                     parameters: [
                                       filterState == nil ? .none : .filterStateParameter
                                     ])
@@ -120,7 +120,7 @@ public extension HitsConnector {
               interactor: interactor,
               filterState: filterState,
               connectSearcher: interactor.connectSearcher)
-    Telemetry.shared.trackConnector(type: .hits,
+    Telemetry.shared.traceConnector(type: .hits,
                                     parameters: [
                                       .appID,
                                       .apiKey,

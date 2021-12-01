@@ -43,13 +43,13 @@ public class FilterListConnector<Filter: FilterType & Hashable> {
     self.controllerConnections = []
     switch Filter.self {
     case is FacetFilter.Type:
-      Telemetry.shared.trackConnector(type: .facetFilterList)
+      Telemetry.shared.traceConnector(type: .facetFilterList)
 
     case is NumericFilter.Type:
-      Telemetry.shared.trackConnector(type: .numericFilterList)
+      Telemetry.shared.traceConnector(type: .numericFilterList)
 
     case is TagFilter.Type:
-      Telemetry.shared.trackConnector(type: .tagFilterList)
+      Telemetry.shared.traceConnector(type: .tagFilterList)
 
     default:
       break
@@ -78,15 +78,15 @@ public class FilterListConnector<Filter: FilterType & Hashable> {
               groupName: groupName)
     switch Filter.self {
     case is FacetFilter.Type:
-      Telemetry.shared.trackConnector(type: .facetFilterList,
+      Telemetry.shared.traceConnector(type: .facetFilterList,
                                       parameters: .filters, .selectionMode)
 
     case is NumericFilter.Type:
-      Telemetry.shared.trackConnector(type: .numericFilterList,
+      Telemetry.shared.traceConnector(type: .numericFilterList,
                                       parameters: .filters, .selectionMode)
 
     case is TagFilter.Type:
-      Telemetry.shared.trackConnector(type: .tagFilterList,
+      Telemetry.shared.traceConnector(type: .tagFilterList,
                                       parameters: .filters, .selectionMode)
 
     default:

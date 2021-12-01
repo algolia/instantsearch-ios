@@ -24,7 +24,7 @@ public class MultiSearcher: AbstractMultiSearcher<AlgoliaMultiSearchService> {
                                  requestOptions: .none)
     self.init(service: service,
               initialRequest: initialRequest)
-    Telemetry.shared.track(type: .multiSearcher)
+    Telemetry.shared.trace(type: .multiSearcher)
 
   }
 

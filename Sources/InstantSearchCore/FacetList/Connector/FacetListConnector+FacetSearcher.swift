@@ -27,7 +27,7 @@ public extension FacetListConnector {
                    interactor: FacetListInteractor = .init(),
                    operator: RefinementOperator,
                    groupName: String? = nil) {
-    Telemetry.shared.trackConnector(type: .facetList,
+    Telemetry.shared.traceConnector(type: .facetList,
                                     parameters: [
                                       .facetSearcherParameter,
                                       groupName == nil ? .none : .groupName
@@ -60,7 +60,7 @@ public extension FacetListConnector {
                                                     groupName: String? = nil,
                                                     controller: Controller,
                                                     presenter: SelectableListPresentable? = nil) {
-    Telemetry.shared.trackConnector(type: .facetList,
+    Telemetry.shared.traceConnector(type: .facetList,
                                     parameters: [
                                       .facetSearcherParameter,
                                       groupName == nil ? .none : .groupName
@@ -93,7 +93,7 @@ public extension FacetListConnector {
                    facets: [Facet] = [],
                    operator: RefinementOperator,
                    groupName: String? = nil) {
-    Telemetry.shared.trackConnector(type: .facetList,
+    Telemetry.shared.traceConnector(type: .facetList,
                                     parameters: [
                                       .facetSearcherParameter,
                                       facets.isEmpty ? .none : .facets,
@@ -129,7 +129,7 @@ public extension FacetListConnector {
                                                     groupName: String? = nil,
                                                     controller: Controller,
                                                     presenter: SelectableListPresentable? = nil) {
-    Telemetry.shared.trackConnector(type: .facetList,
+    Telemetry.shared.traceConnector(type: .facetList,
                                     parameters: [
                                       .facetSearcherParameter,
                                       facets.isEmpty ? .none : .facets,

@@ -121,7 +121,7 @@ final public class HitsSearcher: IndexSearcher<AlgoliaSearchService> {
                           requestOptions: RequestOptions? = nil) {
     let client = SearchClient(appID: appID, apiKey: apiKey)
     self.init(client: client, indexName: indexName, query: query, requestOptions: requestOptions)
-    Telemetry.shared.track(type: .hitsSearcher,
+    Telemetry.shared.trace(type: .hitsSearcher,
                            parameters: [
                             .appID,
                             .apiKey,
@@ -141,7 +141,7 @@ final public class HitsSearcher: IndexSearcher<AlgoliaSearchService> {
     let service = AlgoliaSearchService(client: client)
     let request = AlgoliaSearchService.Request(indexName: indexName, query: query, requestOptions: requestOptions)
     super.init(service: service, initialRequest: request)
-    Telemetry.shared.track(type: .hitsSearcher,
+    Telemetry.shared.trace(type: .hitsSearcher,
                            parameters: .client)
   }
 

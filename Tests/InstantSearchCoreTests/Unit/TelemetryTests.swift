@@ -12,11 +12,7 @@ import XCTest
 import Gzip
 
 class TelemetryTests: XCTestCase {
-  
-  var schema: TelemetrySchema {
-    return Telemetry.shared.schema
-  }
-  
+    
   override func setUp() {
     Telemetry.shared.components.removeAll()
   }
@@ -221,7 +217,11 @@ extension TelemetryTests {
                         filterState: filterState)
     let component = try component(ofType: .hitsSearcher)
     XCTAssertTrue(component.isConnector)
-    XCTAssertEqual(component.parameters, [.appID, .apiKey, .indexName, .filterState])
+    XCTAssertEqual(component.parameters, [.apiKey, .appID, .client, .indexName, .filterState])
+  }
+  
+  func AssertEquivalent<S: Sequence>(_ s1: S, _ s2: S) where S.Element: Hashable {
+    XCTAssertEqual(Set(s1), Set(s2))
   }
   
 }
@@ -338,7 +338,7 @@ extension TelemetryTests {
                            groupName: "")
     let component = try component(ofType: .facetList)
     XCTAssertTrue(component.isConnector)
-    XCTAssertEqual(component.parameters, [.facetSearcher, .groupName])
+    XCTAssertEqual(component.parameters, [.groupName, .facetSearcher])
   }
   
   func testFacetListConnectorFacetSearcherFacets() throws {
@@ -349,7 +349,7 @@ extension TelemetryTests {
                            operator: .and)
     let component = try component(ofType: .facetList)
     XCTAssertTrue(component.isConnector)
-    XCTAssertEqual(component.parameters, [.facetSearcher, .facets])
+    XCTAssertEqual(component.parameters, [.facets, .selectionMode, .facetSearcher])
   }
   
   func testFacetListConnectorHitsSearcher() throws {
@@ -368,7 +368,7 @@ extension TelemetryTests {
                            groupName: "")
     let component = try component(ofType: .facetList)
     XCTAssertTrue(component.isConnector)
-    XCTAssertEqual(component.parameters, [.hitsSearcher, .groupName])
+    XCTAssertEqual(component.parameters, [.groupName, .hitsSearcher])
   }
   
   func testFacetListConnectorHitsSearcherFacets() throws {
@@ -379,7 +379,7 @@ extension TelemetryTests {
                            operator: .and)
     let component = try component(ofType: .facetList)
     XCTAssertTrue(component.isConnector)
-    XCTAssertEqual(component.parameters, [.hitsSearcher, .facets])
+    XCTAssertEqual(component.parameters, [.facets, .selectionMode, .hitsSearcher])
   }
   
 }
@@ -455,7 +455,7 @@ extension TelemetryTests {
                             groupName: "group")
     let component = try component(ofType: .facetFilterList)
     XCTAssertTrue(component.isConnector)
-    XCTAssertEqual(component.parameters, [.filters, .selectionMode])
+    XCTAssertEqual(component.parameters, [.selectionMode, .filters])
   }
   
   func testNumericFilterListConnector() throws {
@@ -464,7 +464,7 @@ extension TelemetryTests {
                                    groupName: "group")
     let component = try component(ofType: .numericFilterList)
     XCTAssertTrue(component.isConnector)
-    XCTAssertTrue(component.parameters.isEmpty)
+    XCTAssertEqual(component.parameters, [.selectionMode])
   }
   
   func testFacetFiltersListConnector() throws {
@@ -473,7 +473,7 @@ extension TelemetryTests {
                                  groupName: "group")
     let component = try component(ofType: .facetFilterList)
     XCTAssertTrue(component.isConnector)
-    XCTAssertTrue(component.parameters.isEmpty)
+    XCTAssertEqual(component.parameters, [.selectionMode])
   }
   
   func testTagFiltersListConnector() throws {
@@ -482,7 +482,7 @@ extension TelemetryTests {
                                groupName: "group")
     let component = try component(ofType: .tagFilterList)
     XCTAssertTrue(component.isConnector)
-    XCTAssertTrue(component.parameters.isEmpty)
+    XCTAssertEqual(component.parameters, [.selectionMode])
   }
   
 }
@@ -578,12 +578,12 @@ extension TelemetryTests {
     let component = try component(ofType: .hits)
     XCTAssertTrue(component.isConnector)
     XCTAssertEqual(component.parameters, [
-      .appID,
       .apiKey,
+      .appID,
       .indexName,
       .infiniteScrolling,
       .showItemsOnEmptyQuery,
-      .filterState
+      .filterState,
     ])
   }
 
@@ -778,7 +778,7 @@ extension TelemetryTests {
                       facetName: "")
     let component = try component(ofType: .facetSearcher)
     XCTAssertFalse(component.isConnector)
-    XCTAssertEqual(component.parameters, [.appID, .apiKey])
+    XCTAssertEqual(component.parameters, [.apiKey, .appID])
   }
   
 }
@@ -800,7 +800,7 @@ extension TelemetryTests {
                      indexName: "")
     let component = try component(ofType: .hitsSearcher)
     XCTAssertFalse(component.isConnector)
-    XCTAssertEqual(component.parameters, [.appID, .apiKey])
+    XCTAssertEqual(component.parameters, [.apiKey, .appID, .client,])
   }
   
 }
@@ -836,7 +836,7 @@ extension TelemetryTests {
                               groupName: "g")
     let component = try component(ofType: .filterToggle)
     XCTAssertTrue(component.isConnector)
-    XCTAssertEqual(component.parameters, [.isSelected, .operator, .groupName])
+    XCTAssertEqual(component.parameters, [.groupName, .operator, .isSelected])
   }
   
 }

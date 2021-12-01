@@ -68,7 +68,7 @@ public class HitsInteractor<Record: Codable>: AnyHitsInteractor {
     self.init(settings: settings,
               paginationController: Paginator<Record>(),
               infiniteScrollingController: InfiniteScrollingController())
-    Telemetry.shared.track(type: .hits,
+    Telemetry.shared.trace(type: .hits,
                            parameters: settings.flatMap { settings in
                              [
                               settings.infiniteScrolling == Constants.Defaults.infiniteScrolling ? .none : .infiniteScrolling,

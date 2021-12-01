@@ -13,7 +13,7 @@ public class SelectableFilterInteractor<Filter: FilterType>: SelectableSegmentIn
   public override init(items: [Int : Filter], selected: Int? = .none) {
     super.init(items: items,
                selected: selected)
-    Telemetry.shared.track(type: .filterMap,
+    Telemetry.shared.trace(type: .filterMap,
                            parameters: [
                             selected == nil ? .none : .selected
                            ])

@@ -49,7 +49,7 @@ public class DynamicFacetListConnector<Searcher: SearchResultObservable> where S
     searcherConnection = interactor.connectSearcher(searcher)
     filterStateConnection = interactor.connectFilterState(filterState,
                                                           filterGroupForAttribute: filterGroupForAttribute)
-    Telemetry.shared.trackConnector(type: .dynamicFacets,
+    Telemetry.shared.traceConnector(type: .dynamicFacets,
                                     parameters: [
                                       filterGroupForAttribute.isEmpty ? .none : .filterGroupForAttribute
                                     ])
@@ -79,7 +79,7 @@ public class DynamicFacetListConnector<Searcher: SearchResultObservable> where S
               filterState: filterState,
               interactor: interactor,
               filterGroupForAttribute: filterGroupForAttribute)
-    Telemetry.shared.trackConnector(type: .dynamicFacets,
+    Telemetry.shared.traceConnector(type: .dynamicFacets,
                                     parameters: [
                                       orderedFacets.isEmpty ? .none : .orderedFacets,
                                       selections.isEmpty ? .none : .selections,

@@ -12,7 +12,7 @@ public class SortByInteractor: SelectableSegmentInteractor<Int, IndexName> {
   
   public override init(items: [Int : IndexName], selected: Int? = .none) {
     super.init(items: items, selected: selected)
-    Telemetry.shared.track(type: .sortBy,
+    Telemetry.shared.trace(type: .sortBy,
                            parameters: [
                              selected == nil ? .none : .selected
                            ])

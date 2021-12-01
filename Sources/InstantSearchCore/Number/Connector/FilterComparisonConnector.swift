@@ -78,7 +78,7 @@ public class FilterComparisonConnector<Number: Comparable & DoubleRepresentable>
       self.interactor.applyBounds(bounds: bounds)
     }
     self.controllerConnections = []
-    Telemetry.shared.trackConnector(type: .numberFilter,
+    Telemetry.shared.traceConnector(type: .numberFilter,
                                     parameters: [
                                       bounds == nil ? .none : .bounds,
                                       groupName == nil ? .none : .groupName

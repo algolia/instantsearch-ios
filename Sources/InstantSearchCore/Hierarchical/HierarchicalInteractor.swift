@@ -45,7 +45,7 @@ public class HierarchicalInteractor: ItemInteractor<[[Facet]]> {
     self.onSelectionsComputed = .init()
     self.selections = []
     super.init(item: [])
-    Telemetry.shared.track(type: .hierarchicalFacets)
+    Telemetry.shared.trace(type: .hierarchicalFacets)
   }
 
   public func computeSelection(key: String) {
