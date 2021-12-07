@@ -178,6 +178,19 @@ To get a more meaningful search experience, please follow our [Getting Started G
 If you only require business logic modules in your project and use `InstantSearchCore` framework, add `import InstantSearchCore` to your source files. 
 
 
+## Telemetry
+
+In order to understand how you use InstantSearch so we can improve it and prioritize the further development, InstantSearch gathers the telemetry data. 
+
+The collected telemetry data:
+- The name of InstantSearch components you use (e.g. `HitsInteractor`, `FilterState`) 
+- Overriden default parameters (e.g. you instantiate `HitsInteractor` with `showItemsToEmptyQuery == false`. Default `showItemsToEmptyQuery` value is true, so the name of parameter `showItemsToEmptyQuery` will be sent. **The value of the parameter won't be sent.**)
+
+If you prefer the telemetry data not to be collected, you can opt it out as follows:
+```swift
+InstantSearchTelemetry.shared.isEnabled = false
+```
+
 ## Getting Help
 
 - **Need help**? Ask a question to the [Algolia Community](https://discourse.algolia.com/) or on [Stack Overflow](http://stackoverflow.com/questions/tagged/algolia).
