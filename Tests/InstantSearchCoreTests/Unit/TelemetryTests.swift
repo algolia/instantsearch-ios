@@ -9,31 +9,14 @@ import Foundation
 @testable import InstantSearchCore
 import InstantSearchInsights
 import XCTest
-import Gzip
+import InstantSearchTelemetry
 
 class TelemetryTests: XCTestCase {
     
   override func setUp() {
-    Telemetry.shared.components.removeAll()
+    Telemetry.shared.reset()
   }
-
-  func testMaxSize() throws {
-    let schema = TelemetrySchema.with {
-      $0.components = TelemetryComponentType.allCases.map { type in
-        TelemetryComponent.with { w in
-          w.type = type
-          w.isConnector = true
-          w.parameters = Array(TelemetryComponentParams.allCases.shuffled()[..<5])
-        }
-      }
-    }
-    let data = try schema.serializedData()
-    print("Telemetry base64: \(data.base64EncodedString())")
-    let compressedData = try data.gzipped()
-    print("Telemetry base64 (compressed): \(compressedData.base64EncodedString())")
-    print(data.count)
-  }
-
+  
   class TestRequester: HTTPRequester {
     
     var onRequestPerform: (URLRequest) -> Void  = { _ in }
@@ -63,7 +46,7 @@ class TelemetryTests: XCTestCase {
   let facet = Facet(value: "f", count: 0, highlighted: nil)
   
   func component(ofType type: TelemetryComponentType) throws -> TelemetryComponent {
-    if let component = Telemetry.shared.components[type] {
+    if let component = Telemetry.shared.component(ofType: type) {
       return component
     } else {
       throw TelemetryTestError.componentNotFound(type)

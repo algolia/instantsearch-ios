@@ -29,12 +29,9 @@ let package = Package(
     .package(name: "AlgoliaSearchClient",
              url: "https://github.com/algolia/algoliasearch-client-swift",
              .branch("feat/dynamic-user-agent")),
-    .package(name: "SwiftProtobuf",
-             url: "https://github.com/apple/swift-protobuf.git",
-             from: "1.6.0"),
-    .package(name: "Gzip",
-             url: "https://github.com/1024jp/GzipSwift",
-             from: "5.1.0")
+    .package(name: "InstantSearchTelemetry",
+             url: "https://github.com/algolia/instantsearch-telemetry-native",
+             from: "0.1.0-beta1"),
   ],
   targets: [
     .target(
@@ -45,10 +42,10 @@ let package = Package(
       dependencies: ["InstantSearchInsights", "AlgoliaSearchClient"]),
     .target(
       name: "InstantSearchCore",
-      dependencies: ["AlgoliaSearchClient", "InstantSearchInsights", "SwiftProtobuf", "Gzip"]),
+      dependencies: ["AlgoliaSearchClient", "InstantSearchInsights", .product(name: "InstantSearchTelemetry", package: "InstantSearchTelemetry")]),
     .testTarget(
       name: "InstantSearchCoreTests",
-      dependencies: ["InstantSearchCore", "AlgoliaSearchClient", "InstantSearchInsights", "SwiftProtobuf"]),
+      dependencies: ["InstantSearchCore", "AlgoliaSearchClient", "InstantSearchInsights"]),
     .target(
       name: "InstantSearch",
       dependencies: ["InstantSearchCore"]),
