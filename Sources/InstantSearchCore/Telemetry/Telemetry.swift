@@ -13,7 +13,7 @@ typealias Telemetry = InstantSearchTelemetry
 extension Telemetry: UserAgentExtending {
 
   public var userAgentExtension: String {
-    return encodedValue.flatMap { "InstantSearchTelemetry(\($0))" } ?? ""
+    return encodedValue.flatMap { "ISTelemetry(\($0))" } ?? ""
   }
 
 }
