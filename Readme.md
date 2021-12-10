@@ -180,16 +180,14 @@ If you only require business logic modules in your project and use `InstantSearc
 
 ## Telemetry
 
-In order to understand how you use InstantSearch so we can improve it and prioritize the further development, InstantSearch gathers the telemetry data. 
+In order to inform how InstantSearch can be improved and prioritize its future development, the following data points are collected:
+ 
+ - version of InstantSearch
+ - the name of the instantiated InstantSearch components (e.g. `HitsInteractor`, `FilterState`) 
+ - the name of the components for which the default value has been overridden - this excludes the value itself, that do not get tracked. (e.g. By default the `facets` value of `FacetListInteractor` is set to an empty list, but in the case it gets instantiated to a non-empty list of facets, then the telemetry will track that the `facets` parameter received a custom value, not the value itself)
 
-The collected telemetry data:
-- The name of InstantSearch components you use (e.g. `HitsInteractor`, `FilterState`) 
-- Overriden default parameters (e.g. you instantiate `HitsInteractor` with `showItemsToEmptyQuery == false`. Default `showItemsToEmptyQuery` value is true, so the name of parameter `showItemsToEmptyQuery` will be sent. **The value of the parameter won't be sent.**)
-
-If you prefer the telemetry data not to be collected, you can opt it out as follows:
-```swift
-InstantSearchTelemetry.shared.isEnabled = false
-```
+We **do not** collect any metrics which may contain sensitive data, but you can opt out at any time by passing:
+`InstantSearchTelemetry.shared.isEnabled = false`
 
 ## Getting Help
 
