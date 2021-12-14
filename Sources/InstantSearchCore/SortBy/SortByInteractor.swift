@@ -9,13 +9,13 @@ import Foundation
 import AlgoliaSearchClient
 
 public class SortByInteractor: SelectableSegmentInteractor<Int, IndexName> {
-  
-  public override init(items: [Int : IndexName], selected: Int? = .none) {
+
+  public override init(items: [Int: IndexName], selected: Int? = .none) {
     super.init(items: items, selected: selected)
     Telemetry.shared.trace(type: .sortBy,
                            parameters: [
                              selected == nil ? .none : .selected
                            ])
   }
-  
+
 }

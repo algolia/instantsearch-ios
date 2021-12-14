@@ -9,7 +9,7 @@
 import Foundation
 
 public class FilterListInteractor<F: FilterType & Hashable>: SelectableListInteractor<F, F> {
-  
+
   public override init(items: [F] = [], selectionMode: SelectionMode) {
     super.init(items: items, selectionMode: selectionMode)
     switch F.self {
@@ -29,5 +29,5 @@ public class FilterListInteractor<F: FilterType & Hashable>: SelectableListInter
       break
     }
   }
-    
+
 }

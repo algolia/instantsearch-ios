@@ -72,7 +72,7 @@ public struct SearchConnector<Record: Codable>: Connection {
       filterStateHitsInteractorConnection = nil
       filterStateSearcherConnection = nil
     }
-    
+
     Telemetry.shared.traceConnector(type: .hitsSearcher,
                                     parameters: [
                                       filterState == nil ? .none : .filterState
@@ -107,7 +107,7 @@ public struct SearchConnector<Record: Codable>: Connection {
               hitsInteractor: hitsInteractor,
               hitsController: hitsController,
               filterState: filterState)
-    
+
     Telemetry.shared.traceConnector(type: .hitsSearcher,
                                     parameters: [
                                       .appID,

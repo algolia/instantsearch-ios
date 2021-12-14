@@ -72,7 +72,7 @@ final public class FacetSearcher: IndexSearcher<FacetSearchService> {
     Telemetry.shared.trace(type: .facetSearcher,
                            parameters: [
                             .appID,
-                            .apiKey,
+                            .apiKey
                            ])
   }
 
@@ -86,7 +86,7 @@ final public class FacetSearcher: IndexSearcher<FacetSearchService> {
     self.init(service: service, initialRequest: request)
     Telemetry.shared.trace(type: .facetSearcher,
                            parameters: [
-                            .client,
+                            .client
                            ])
   }
 

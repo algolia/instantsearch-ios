@@ -124,7 +124,7 @@ final public class HitsSearcher: IndexSearcher<AlgoliaSearchService> {
     Telemetry.shared.trace(type: .hitsSearcher,
                            parameters: [
                             .appID,
-                            .apiKey,
+                            .apiKey
                            ])
   }
 

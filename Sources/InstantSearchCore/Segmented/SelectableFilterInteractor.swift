@@ -9,8 +9,8 @@
 import Foundation
 
 public class SelectableFilterInteractor<Filter: FilterType>: SelectableSegmentInteractor<Int, Filter> {
-  
-  public override init(items: [Int : Filter], selected: Int? = .none) {
+
+  public override init(items: [Int: Filter], selected: Int? = .none) {
     super.init(items: items,
                selected: selected)
     Telemetry.shared.trace(type: .filterMap,
@@ -18,5 +18,5 @@ public class SelectableFilterInteractor<Filter: FilterType>: SelectableSegmentIn
                             selected == nil ? .none : .selected
                            ])
   }
-  
+
 }

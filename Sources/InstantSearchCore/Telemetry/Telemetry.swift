@@ -17,5 +17,3 @@ extension Telemetry: UserAgentExtending {
   }
 
 }
-
-
