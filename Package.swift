@@ -28,7 +28,7 @@ let package = Package(
   dependencies: [
     .package(name: "AlgoliaSearchClient",
              url: "https://github.com/algolia/algoliasearch-client-swift",
-             .branch("feat/dynamic-user-agent")),
+             from: "8.13.0"),
     .package(name: "InstantSearchTelemetry",
              url: "https://github.com/algolia/instantsearch-telemetry-native",
              from: "0.1.0-beta1"),
