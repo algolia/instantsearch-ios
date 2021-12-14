@@ -100,56 +100,65 @@ github "algolia/instantsearch-ios" ~> 7.14
 Learn more about instantSearch iOS in the [dedicated documentation website](https://www.algolia.com/doc/api-reference/widgets/ios/).
 
 ## Basic Usage
-
 In your `ViewController.swift`:
 
 ```swift
 import InstantSearch
 
-struct BestBuyItem: Codable {
+struct Item: Codable {
   let name: String
 }
 
-struct BestBuyTableViewCellConfigurator: TableViewCellConfigurable {
-   
-  let model: BestBuyItem
+class SearchResultsViewController: UITableViewController, HitsController {
   
-  init(model: BestBuyItem, indexPath: IndexPath) {
-    self.model = model
+  var hitsSource: HitsInteractor<Item>?
+    
+  override func viewDidLoad() {
+    super.viewDidLoad()
+    tableView.register(UITableViewCell.self, forCellReuseIdentifier: "cell")
+  }
+      
+  override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+    hitsSource?.numberOfHits() ?? 0
   }
   
-  func configure(_ cell: UITableViewCell) {
-    cell.textLabel?.text = model.name
+  override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+    let cell = tableView.dequeueReusableCell(withIdentifier: "cell", for: indexPath)
+    cell.textLabel?.text = hitsSource?.hit(atIndex: indexPath.row)?.name
+    return cell
   }
-
+  
+  override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+    if let _ = hitsSource?.hit(atIndex: indexPath.row) {
+      // Handle hit selection
+    }
+  }
+  
 }
-
-typealias BestBuyHitsViewController = HitsTableViewController<BestBuyTableViewCellConfigurator>
 
 class ViewController: UIViewController {
       
-  let searcher = SingleIndexSearcher(appID: "latency",
-                                     apiKey: "1f6fd3a6fb973cb08419fe7d288fa4db",
-                                     indexName: "bestbuy")
-  lazy var searchController: UISearchController = .init(searchResultsController: hitsTableViewController)
-  lazy var searchConnector: SingleIndexSearchConnector<BestBuyItem> = .init(searcher: searcher,
-                                                                            searchController: searchController,
-                                                                            hitsController: hitsTableViewController)
-  let hitsTableViewController: BestBuyHitsViewController = .init()
-  let statsInteractor: StatsInteractor = .init()
+  lazy var searchController = UISearchController(searchResultsController: hitsViewController)
+  let hitsViewController = SearchResultsViewController()
+
+  let searcher = HitsSearcher(appID: "latency",
+                              apiKey: "1f6fd3a6fb973cb08419fe7d288fa4db",
+                              indexName: "bestbuy")
+  lazy var searchConnector = SearchConnector<Item>(searcher: searcher,
+                                                    searchController: searchController,
+                                                    hitsInteractor: .init(),
+                                                    hitsController: hitsViewController)
   
   override func viewDidLoad() {
     super.viewDidLoad()
     searchConnector.connect()
-    statsInteractor.connectSearcher(searcher)
-    statsInteractor.connectController(self)
     searcher.search()
     setupUI()
   }
   
   override func viewDidAppear(_ animated: Bool) {
     super.viewDidAppear(animated)
-    searchController.searchBar.becomeFirstResponder()
+    searchController.isActive = true
   }
   
   func setupUI() {
@@ -161,19 +170,13 @@ class ViewController: UIViewController {
   }
       
 }
-
-extension ViewController: StatsTextController {
-  
-  func setItem(_ item: String?) {
-    title = item
-  }
-
-}
 ```
 
-Run your app and you will the most basic search experience: a `UISearchBar` with the number of results each time you write a query.
+You can now build and run your application to see the basic search experience in action. 
+You should see that the results are changing on each key stroke.
 
-To get a more meaningful search experience, please follow our [Getting Started Guide](https://www.algolia.com/doc/guides/building-search-ui/getting-started/ios/).
+To get a more meaningful search experience, please follow the [Getting Started Guide](https://www.algolia.com/doc/guides/building-search-ui/getting-started/ios/).
+If you build a SwiftUI application, please check out the Getting [Started with SwiftUI guide](https://www.algolia.com/doc/guides/building-search-ui/getting-started/how-to/declarative/ios/)
 
 If you only require business logic modules in your project and use `InstantSearchCore` framework, add `import InstantSearchCore` to your source files. 
 
