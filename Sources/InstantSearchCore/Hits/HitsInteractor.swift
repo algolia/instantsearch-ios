@@ -42,7 +42,7 @@ public class HitsInteractor<Record: Codable>: AnyHitsInteractor {
     }
 
   }
-  
+
   /// Value defines how many pages of hits might be kept in memory
   /// before and after the current page
   /// When set `nil`, all the fetched pages will stay in memory
@@ -51,7 +51,7 @@ public class HitsInteractor<Record: Codable>: AnyHitsInteractor {
     get {
       return paginator.pageCleanUpOffset
     }
-    
+
     set {
       paginator.pageCleanUpOffset = newValue
     }
