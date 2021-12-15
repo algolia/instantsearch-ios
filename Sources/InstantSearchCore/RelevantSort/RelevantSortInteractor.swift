@@ -19,6 +19,10 @@ public class RelevantSortInteractor: ItemInteractor<RelevantSortPriority?> {
   public init(priority: RelevantSortPriority? = nil) {
     super.init(item: priority)
     self.onItemChanged.fire(priority)
+    Telemetry.shared.trace(type: .relevantSort,
+                           parameters: [
+                            priority == nil ? .none : .priority
+                           ])
   }
 
   /// Switch the relevant sort priority to the opposite one

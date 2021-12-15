@@ -70,6 +70,12 @@ public class DynamicFacetListInteractor {
     onFacetOrderChanged.fire(orderedFacets)
     onSelectionsChanged.fire(selections)
     updateInteractors()
+    Telemetry.shared.trace(type: .dynamicFacets,
+                           parameters: [
+                            orderedFacets.isEmpty ? nil : .orderedFacets,
+                            selections.isEmpty ? nil : .selections,
+                            selectionModeForAttribute.isEmpty ? nil : .selectionModeForAttribute
+                           ])
   }
 
   /**

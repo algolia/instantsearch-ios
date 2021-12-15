@@ -17,12 +17,17 @@ public class NumberInteractor<Number: Comparable & DoubleRepresentable>: ItemInt
 
   public convenience init() {
     self.init(item: nil)
+    Telemetry.shared.trace(type: .numberFilter)
   }
 
   public override init(item: Number?) {
     self.onNumberComputed = .init()
     self.onBoundsComputed = .init()
     super.init(item: item)
+    Telemetry.shared.trace(type: .numberFilter,
+                           parameters: [
+                            item == nil ? .none : .number
+                           ])
   }
 
   public func applyBounds(bounds: ClosedRange<Number>?) {

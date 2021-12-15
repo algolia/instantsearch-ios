@@ -41,6 +41,19 @@ public class FilterListConnector<Filter: FilterType & Hashable> {
                                                                operator: `operator`,
                                                                groupName: groupName)
     self.controllerConnections = []
+    switch Filter.self {
+    case is FacetFilter.Type:
+      Telemetry.shared.traceConnector(type: .facetFilterList)
+
+    case is NumericFilter.Type:
+      Telemetry.shared.traceConnector(type: .numericFilterList)
+
+    case is TagFilter.Type:
+      Telemetry.shared.traceConnector(type: .tagFilterList)
+
+    default:
+      break
+    }
   }
 
   /**
@@ -57,12 +70,28 @@ public class FilterListConnector<Filter: FilterType & Hashable> {
                           selectionMode: SelectionMode,
                           `operator`: RefinementOperator,
                           groupName: String) {
-    let interactor = FilterListInteractor<Filter>.init(items: filters,
-                                                       selectionMode: selectionMode)
+    let interactor = FilterListInteractor<Filter>(items: filters,
+                                                  selectionMode: selectionMode)
     self.init(filterState: filterState,
               interactor: interactor,
               operator: `operator`,
               groupName: groupName)
+    switch Filter.self {
+    case is FacetFilter.Type:
+      Telemetry.shared.traceConnector(type: .facetFilterList,
+                                      parameters: .filters, .selectionMode)
+
+    case is NumericFilter.Type:
+      Telemetry.shared.traceConnector(type: .numericFilterList,
+                                      parameters: .filters, .selectionMode)
+
+    case is TagFilter.Type:
+      Telemetry.shared.traceConnector(type: .tagFilterList,
+                                      parameters: .filters, .selectionMode)
+
+    default:
+      break
+    }
   }
 
 }

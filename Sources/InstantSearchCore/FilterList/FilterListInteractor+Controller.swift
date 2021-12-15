@@ -13,6 +13,12 @@ public struct FilterListControllerConnection<Filter: FilterType & Hashable, Cont
   public let interactor: FilterListInteractor<Filter>
   public let controller: Controller
 
+  public init(interactor: FilterListInteractor<Filter>,
+              controller: Controller) {
+    self.interactor = interactor
+    self.controller = controller
+  }
+
   public func connect() {
 
     func setControllerItemsWith(items: [Filter], selections: Set<Filter>) {
@@ -42,9 +48,9 @@ public struct FilterListControllerConnection<Filter: FilterType & Hashable, Cont
 
 }
 
-public extension SelectableListInteractor where Key == Item, Item: FilterType {
+public extension FilterListInteractor {
 
-  @discardableResult func connectController<Controller: SelectableListController>(_ controller: Controller) -> FilterListControllerConnection<Key, Controller> {
+  @discardableResult func connectController<Controller: SelectableListController>(_ controller: Controller) -> FilterListControllerConnection<F, Controller> {
     let connection = FilterListControllerConnection(interactor: self, controller: controller)
     connection.connect()
     return connection

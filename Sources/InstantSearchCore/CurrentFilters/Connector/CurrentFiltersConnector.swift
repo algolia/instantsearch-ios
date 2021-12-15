@@ -42,6 +42,10 @@ public class CurrentFiltersConnector {
     self.interactor = interactor
     self.filterStateConnection = interactor.connectFilterState(filterState, filterGroupIDs: groupIDs)
     self.controllerConnections = []
+    Telemetry.shared.traceConnector(type: .currentFilters,
+                                    parameters: [
+                                      groupIDs?.isEmpty ?? true ? .none : .groupIds
+                                    ])
   }
 
 }

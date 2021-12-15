@@ -42,6 +42,11 @@ public class FilterClearConnector {
                                                                filterGroupIDs: filterGroupIDs,
                                                                clearMode: clearMode)
     self.controllerConnections = []
+    Telemetry.shared.traceConnector(type: .filterClear,
+                                    parameters: [
+                                      clearMode == .specified ? .none : .clearMode,
+                                      filterGroupIDs == nil ? .none : .filterGroupIds
+                                    ])
   }
 
 }

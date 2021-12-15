@@ -39,6 +39,10 @@ public class QueryInputConnector {
     self.searcherConnection = interactor.connectSearcher(searcher,
                                                          searchTriggeringMode: searchTriggeringMode)
     self.controllerConnections = []
+    Telemetry.shared.traceConnector(type: .searchBox,
+                                    parameters: [
+                                      searchTriggeringMode == .searchAsYouType ? .none : .searchTriggeringMode
+                                    ])
   }
 
 }

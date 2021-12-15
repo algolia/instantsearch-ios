@@ -1,4 +1,4 @@
-// swift-tools-version:5.2
+// swift-tools-version:5.5
 // The swift-tools-version declares the minimum version of Swift required to build this package.
 
 import PackageDescription
@@ -26,7 +26,12 @@ let package = Package(
       targets: ["InstantSearchSwiftUI"])
   ],
   dependencies: [
-    .package(name: "AlgoliaSearchClient", url: "https://github.com/algolia/algoliasearch-client-swift", from: "8.12.0")
+    .package(name: "AlgoliaSearchClient",
+             url: "https://github.com/algolia/algoliasearch-client-swift",
+             from: "8.13.0"),
+    .package(name: "InstantSearchTelemetry",
+             url: "https://github.com/algolia/instantsearch-telemetry-native",
+             from: "0.1.0-beta1")
   ],
   targets: [
     .target(
@@ -37,7 +42,7 @@ let package = Package(
       dependencies: ["InstantSearchInsights", "AlgoliaSearchClient"]),
     .target(
       name: "InstantSearchCore",
-      dependencies: ["AlgoliaSearchClient", "InstantSearchInsights"]),
+      dependencies: ["AlgoliaSearchClient", "InstantSearchInsights", .product(name: "InstantSearchTelemetry", package: "InstantSearchTelemetry")]),
     .testTarget(
       name: "InstantSearchCoreTests",
       dependencies: ["InstantSearchCore", "AlgoliaSearchClient", "InstantSearchInsights"]),

@@ -42,7 +42,7 @@ public class HitsInteractor<Record: Codable>: AnyHitsInteractor {
     }
 
   }
-  
+
   /// Value defines how many pages of hits might be kept in memory
   /// before and after the current page
   /// When set `nil`, all the fetched pages will stay in memory
@@ -51,7 +51,7 @@ public class HitsInteractor<Record: Codable>: AnyHitsInteractor {
     get {
       return paginator.pageCleanUpOffset
     }
-    
+
     set {
       paginator.pageCleanUpOffset = newValue
     }
@@ -68,6 +68,14 @@ public class HitsInteractor<Record: Codable>: AnyHitsInteractor {
     self.init(settings: settings,
               paginationController: Paginator<Record>(),
               infiniteScrollingController: InfiniteScrollingController())
+    Telemetry.shared.trace(type: .hits,
+                           parameters: settings.flatMap { settings in
+                             [
+                              settings.infiniteScrolling == Constants.Defaults.infiniteScrolling ? .none : .infiniteScrolling,
+                              settings.showItemsOnEmptyQuery == Constants.Defaults.showItemsOnEmptyQuery ? .none : .showItemsOnEmptyQuery
+                             ]
+                           } ?? []
+                           )
   }
 
   internal init(settings: Settings? = nil,
@@ -190,7 +198,7 @@ extension HitsInteractor {
 
 }
 
-public enum InfiniteScrolling {
+public enum InfiniteScrolling: Equatable {
   case on(withOffset: Int)
   case off
 }

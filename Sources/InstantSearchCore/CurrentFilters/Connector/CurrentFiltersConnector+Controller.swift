@@ -23,7 +23,9 @@ public extension CurrentFiltersConnector {
                                                    interactor: CurrentFiltersInteractor = .init(),
                                                    controller: Controller? = nil,
                                                    presenter: @escaping Presenter<Filter, String> = DefaultPresenter.Filter.present) where Controller.Item == FilterAndID {
-    self.init(filterState: filterState, groupIDs: groupIDs, interactor: interactor)
+    self.init(filterState: filterState,
+              groupIDs: groupIDs,
+              interactor: interactor)
     if let controller = controller {
       connectController(controller, presenter: presenter)
     }

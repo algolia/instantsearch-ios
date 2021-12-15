@@ -12,6 +12,10 @@ public class QueryRuleCustomDataInteractor<Model: Decodable>: ItemInteractor<Mod
 
   public override init(item: Model? = nil) {
     super.init(item: item)
+    Telemetry.shared.trace(type: .queryRuleCustomData,
+                           parameters: [
+                            item == nil ? .none : .item
+                           ])
   }
 
 }

@@ -91,6 +91,10 @@ public extension HitsConnector {
               interactor: interactor,
               filterState: filterState,
               connectSearcher: interactor.connectSearcher)
+    Telemetry.shared.traceConnector(type: .hits,
+                                    parameters: [
+                                      filterState == nil ? .none : .filterStateParameter
+                                    ])
   }
 
   /**
@@ -116,6 +120,15 @@ public extension HitsConnector {
               interactor: interactor,
               filterState: filterState,
               connectSearcher: interactor.connectSearcher)
+    Telemetry.shared.traceConnector(type: .hits,
+                                    parameters: [
+                                      .appID,
+                                      .apiKey,
+                                      .indexName,
+                                      infiniteScrolling == Constants.Defaults.infiniteScrolling ? .none : .infiniteScrolling,
+                                      showItemsOnEmptyQuery == Constants.Defaults.showItemsOnEmptyQuery ? .none : .showItemsOnEmptyQuery,
+                                      filterState == nil ? .none : .filterStateParameter
+                                    ])
   }
 
 }

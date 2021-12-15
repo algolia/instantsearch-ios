@@ -38,6 +38,7 @@ public final class AnswersSearcher: IndexSearcher<AlgoliaAnswersSearchService> {
                           query: query,
                           requestOptions: requestOptions)
     self.init(service: service, initialRequest: request)
+    Telemetry.shared.trace(type: .answersSearcher)
   }
 
 }

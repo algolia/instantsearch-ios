@@ -28,6 +28,7 @@ public class RelevantSortConnector {
     self.interactor = interactor
     self.searcherConnection = searcherConnection
     self.controllerConnections = []
+    Telemetry.shared.traceConnector(type: .relevantSort)
   }
 
   /**

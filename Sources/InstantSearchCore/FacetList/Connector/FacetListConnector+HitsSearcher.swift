@@ -25,6 +25,11 @@ public extension FacetListConnector {
                    interactor: FacetListInteractor = .init(),
                    operator: RefinementOperator,
                    groupName: String? = nil) {
+    Telemetry.shared.traceConnector(type: .facetList,
+                                    parameters: [
+                                      .hitsSearcherParameter,
+                                      groupName == nil ? .none : .groupName
+                                    ])
     self.init(searcher: .hits(searcher),
               filterState: filterState,
               interactor: interactor,
@@ -53,6 +58,11 @@ public extension FacetListConnector {
                                                     groupName: String? = nil,
                                                     controller: Controller,
                                                     presenter: SelectableListPresentable? = nil) {
+    Telemetry.shared.traceConnector(type: .facetList,
+                                    parameters: [
+                                      .hitsSearcherParameter,
+                                      groupName == nil ? .none : .groupName
+                                    ])
     self.init(searcher: .hits(searcher),
               filterState: filterState,
               interactor: interactor,
@@ -79,9 +89,14 @@ public extension FacetListConnector {
                    attribute: Attribute,
                    selectionMode: SelectionMode,
                    facets: [Facet] = [],
-                   persistentSelection: Bool = false,
                    operator: RefinementOperator,
                    groupName: String? = nil) {
+    Telemetry.shared.traceConnector(type: .facetList,
+                                    parameters: [
+                                      .hitsSearcherParameter,
+                                      facets.isEmpty ? .none : .facets,
+                                      groupName == nil ? .none : .groupName
+                                    ])
     self.init(searcher: .hits(searcher),
               filterState: filterState,
               interactor: .init(facets: facets, selectionMode: selectionMode),
@@ -108,11 +123,16 @@ public extension FacetListConnector {
                                                     attribute: Attribute,
                                                     selectionMode: SelectionMode,
                                                     facets: [Facet] = [],
-                                                    persistentSelection: Bool = false,
                                                     operator: RefinementOperator,
                                                     groupName: String? = nil,
                                                     controller: Controller,
                                                     presenter: SelectableListPresentable? = nil) {
+    Telemetry.shared.traceConnector(type: .facetList,
+                                    parameters: [
+                                      .hitsSearcherParameter,
+                                      facets.isEmpty ? .none : .facets,
+                                      groupName == nil ? .none : .groupName
+                                    ])
     self.init(searcher: .hits(searcher),
               filterState: filterState,
               interactor: .init(facets: facets, selectionMode: selectionMode),
