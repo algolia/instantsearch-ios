@@ -1,5 +1,13 @@
 # ChangeLog
 
+## [7.16.0](https://github.com/algolia/instantsearch-ios/compare/7.15.0...7.16.0) (2021-12-15)
+
+### Misc
+
+- expose the pageCleanUpOffset parameter (#208) ([1341c42](https://github.com/algolia/instantsearch-ios/commit/1341c42))
+
+
+
 ## [7.15.0](https://github.com/algolia/instantsearch-ios/compare/7.14.0...7.15.0) (2021-11-05)
 
 ### Refactor
