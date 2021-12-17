@@ -1,7 +1,7 @@
 name: SwiftLint
 on: [push]
 jobs:
-  Lint:
+  lint:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v1

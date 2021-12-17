@@ -1,7 +1,7 @@
 name: Cocoapods
 on: [pull_request]
 jobs:
-  LintInsights:
+  lintInsights:
     runs-on: macos-11
     steps:
      - uses: actions/checkout@v2
@@ -9,7 +9,7 @@ jobs:
        run: sudo xcode-select -s '/Applications/Xcode_13.2.app/Contents/Developer'
      - name: lint Insights
        run: pod lib lint --subspec="Insights" --allow-warnings
-  LintCore:
+  lintCore:
     runs-on: macos-11
     steps:
      - uses: actions/checkout@v2
@@ -17,7 +17,7 @@ jobs:
        run: sudo xcode-select -s '/Applications/Xcode_13.2.app/Contents/Developer'
      - name: lint Insights
        run: pod lib lint --subspec="Core" --allow-warnings
-  LintUI:
+  lintUI:
     runs-on: macos-11
     steps:
      - uses: actions/checkout@v2
@@ -25,7 +25,7 @@ jobs:
        run: sudo xcode-select -s '/Applications/Xcode_13.2.app/Contents/Developer'
      - name: lint Insights
        run: pod lib lint --subspec="UI" --allow-warnings
-  LintSwiftUI:
+  lintSwiftUI:
     runs-on: macos-11
     steps:
      - uses: actions/checkout@v2
