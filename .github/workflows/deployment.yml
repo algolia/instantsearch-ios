@@ -2,9 +2,9 @@ name: Deployment
 on: 
   push:
     tags: 
-     - patch
-     - minor
-     - major
+     - patcht
+     - minort
+     - majort
 jobs:
   deploy:
     runs-on: macos-11
@@ -17,3 +17,12 @@ jobs:
         run: |
           echo $RELEASE_TYPE
           echo ${{ env.RELEASE_TYPE }}
+      - name: Check out polyglot
+        uses: actions/checkout@master
+        with:
+          repository: algolia/polyglot
+          token: ${{ secrets.PERSONAL_ACCESS_TOKEN }}
+      - name: Install polyglot
+        run: |
+          cd polyglot
+          make install
