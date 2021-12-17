@@ -1,21 +1,19 @@
 name: Deployment
 on: 
   push:
-    branches:
-      - master
-      - 'chore/gh-actions'
     tags: 
      - patch
      - minor
      - major
 jobs:
-  depoly:
+  deploy:
     runs-on: macos-11
+    if: github.ref == 'chore/gh-actions'
     steps:
       - uses: actions/checkout@v1
       - name: Set env
-        run: echo "RELEASE_VERSION=${GITHUB_REF#refs/*/}" >> $GITHUB_ENV
+        run: echo "RELEASE_TYPE=${GITHUB_REF#refs/*/}" >> $GITHUB_ENV
       - name: Test
         run: |
-          echo $RELEASE_VERSION
-          echo ${{ env.RELEASE_VERSION }}
+          echo $RELEASE_TYPE
+          echo ${{ env.RELEASE_TYPE }}
