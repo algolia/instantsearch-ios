@@ -3,7 +3,7 @@ name: Swift
 on: [push]
 
 jobs:
-  build:
+  test:
     runs-on: macos-11
     env:
       ALGOLIA_APPLICATION_ID_1: ${{ secrets.ALGOLIA_APPLICATION_ID_1 }}
