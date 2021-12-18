@@ -24,3 +24,4 @@ jobs:
       - name: Install polyglot
         run: |
           make install
+          polyglot version
