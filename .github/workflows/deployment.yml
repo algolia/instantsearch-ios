@@ -9,7 +9,7 @@ jobs:
   deploy:
     runs-on: macos-11
     steps:
-      - uses: actions/checkout@v1
+      - uses: actions/checkout@v2
       - name: Set env
         run: echo "RELEASE_TYPE=${GITHUB_REF#refs/*/}" >> $GITHUB_ENV
       - name: Test
@@ -17,7 +17,7 @@ jobs:
           echo $RELEASE_TYPE
           echo ${{ env.RELEASE_TYPE }}
       - name: Check out polyglot
-        uses: actions/checkout@master
+        uses: actions/checkout@v2
         with:
           repository: algolia/polyglot
           token: ${{ secrets.PERSONAL_ACCESS_TOKEN }}
