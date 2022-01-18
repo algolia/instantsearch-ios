@@ -1,5 +1,9 @@
 # ChangeLog
 
+## [7.16.1](https://github.com/algolia/instantsearch-ios/compare/...7.16.1) (2022-01-18)
+
+
+
 ## [7.16.0](https://github.com/algolia/instantsearch-ios/compare/7.15.0...7.16.0) (2021-12-15)
 
 ### Feat
