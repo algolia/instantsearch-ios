@@ -85,7 +85,7 @@ lane :deploy do |options|
 
   add_git_tag(
     build_number: new_version,
-    tag: test-#{new_version}
+    tag: "test-#{new_version}"
   )
   push_to_git_remote(remote: "origin")
 
