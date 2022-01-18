@@ -2,26 +2,38 @@ name: Deployment
 on: 
   push:
     tags: 
-     - patcht
-     - minort
-     - majort
+     - patch
+     - minor
+     - major
 jobs:
   deploy:
     runs-on: macos-11
+    env:
+      GITHUB_ACTION: ${{ github.action_path }}
+      GITHUB_PERSONAL_ACCESS_TOKEN: ${{ secrets.GH_PERSONAL_ACCESS_TOKEN }}
+      COCOAPODS_TRUNK_TOKEN: ${{ secrets.COCOAPODS_TRUNK_TOKEN }}
     steps:
-      - uses: actions/checkout@v2
-      - name: Set env
-        run: echo "RELEASE_TYPE=${GITHUB_REF#refs/*/}" >> $GITHUB_ENV
-      - name: Test
+      - uses: actions/setup-go@v2
+        with:
+          go-version: '1.17'
+      - name: Set release type environment
         run: |
-          echo $RELEASE_TYPE
-          echo ${{ env.RELEASE_TYPE }}
+          echo "RELEASE_TYPE=${GITHUB_REF#refs/*/}" >> $GITHUB_ENV
       - name: Check out polyglot
         uses: actions/checkout@v2
         with:
           repository: algolia/polyglot
-          token: ${{ secrets.PERSONAL_ACCESS_TOKEN }}
+          token: ${{ secrets.GH_PERSONAL_ACCESS_TOKEN }}
       - name: Install polyglot
         run: |
           make install
-          polyglot version
+          export PATH="$GOPATH/bin:$PATH"
+      - uses: ruby/setup-ruby@v1
+        with:
+          ruby-version: '2.7.2'
+          bundler-cache: true
+      - uses: actions/checkout@v2
+      - uses: maierj/fastlane-action@v2.0.1
+        with:
+          lane: 'deploy'
+          options: '{ "type": "${{ env.RELEASE_TYPE }}" }'
