@@ -58,7 +58,7 @@ lane :deploy do |options|
   base_branch = options[:branch] || "master"
 
   # ensure branch and cleanliness locally but not on Bitrise.
-  if !ENV['BITRISE_BUILD_NUMBER'] 
+  if !ENV['GITHUB_ACTION'] 
     ensure_git_branch(
       branch: base_branch
     )
@@ -91,6 +91,7 @@ lane :deploy do |options|
 
   create_pull_request(
     repo: repository_name,
+    api_token: ENV["GITHUB_PERSONAL_ACCESS_TOKEN"],
     title: "chore: Deploying new #{release_type} version #{new_version}",
     head: branch_name,
     base: base_branch,
@@ -99,7 +100,7 @@ lane :deploy do |options|
 
   set_github_release(
   	repository_name: repository_name,
-  	api_token: ENV["GITHUB_API_TOKEN"],
+    api_token: ENV["GITHUB_PERSONAL_ACCESS_TOKEN"],
   	name: new_version,
   	tag_name: new_version,
   	description: (File.read("../release_notes.md") rescue "No release notes provided"),
