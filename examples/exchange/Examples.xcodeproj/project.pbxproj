@@ -204,6 +204,7 @@
 		AFEAC98A2732C5E600DD1478 /* SearchViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchViewController.swift; sourceTree = "<group>"; };
 		AFEFEF8227F47F7700B47F7F /* ProductTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProductTableViewCell.swift; sourceTree = "<group>"; };
 		AFEFEF8B27F47F8300B47F7F /* ProductTableViewCell+ProductHit.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "ProductTableViewCell+ProductHit.swift"; sourceTree = "<group>"; };
+		AFEFEF9427F4840000B47F7F /* README.md */ = {isa = PBXFileReference; lastKnownFileType = net.daringfireball.markdown; path = README.md; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -298,6 +299,7 @@
 		AF7FEB7C272CAC5D0003BE62 = {
 			isa = PBXGroup;
 			children = (
+				AFEFEF9427F4840000B47F7F /* README.md */,
 				AF7FEB87272CAC5D0003BE62 /* Examples */,
 				AF46A7572747EF9D004E86F3 /* CategoriesHits */,
 				AFAE55372733E09300B52A43 /* MultiIndex */,
