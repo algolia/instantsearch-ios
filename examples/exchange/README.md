@@ -9,4 +9,3 @@ The set of examples used on the [Code Exchange](https://www.algolia.com/develope
 - [Query Suggestions with recent searches](./QuerySuggestionsRecentSearches)
 - [Query Suggestions with Hits](./QuerySuggestionsHits)
 - [Query Suggestions with Categories](./QuerySuggestionsCategories)
-
