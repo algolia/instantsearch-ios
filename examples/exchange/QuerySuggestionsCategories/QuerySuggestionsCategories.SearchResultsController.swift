@@ -9,7 +9,7 @@ import Foundation
 import InstantSearch
 import UIKit
 
-extension QuerySuggestionsAndCategories {
+extension QuerySuggestionsCategories {
   
   class SearchResultsController: UITableViewController {
     

@@ -9,12 +9,21 @@ import UIKit
 
 class ViewController: UITableViewController {
   
+  private let cellID = "demoCell"
+  
+  override func viewDidLoad() {
+    super.viewDidLoad()
+    title = "Demos"
+    navigationItem.largeTitleDisplayMode = .always
+    tableView.register(UITableViewCell.self, forCellReuseIdentifier: cellID)
+  }
+  
   override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
     return Demo.allCases.count
   }
   
   override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-    let cell = tableView.dequeueReusableCell(withIdentifier: "demoCell", for: indexPath)
+    let cell = tableView.dequeueReusableCell(withIdentifier: cellID, for: indexPath)
     if let demo = Demo(rawValue: indexPath.row) {
       cell.textLabel?.text = demo.title
     }

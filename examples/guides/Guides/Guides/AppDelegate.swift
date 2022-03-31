@@ -1,14 +1,16 @@
 //
 //  AppDelegate.swift
-//  QuerySuggestionsCategories
+//  Guides
 //
-//  Created by Vladislav Fitc on 04/11/2021.
+//  Created by Vladislav Fitc on 31.03.2022.
 //
 
 import UIKit
 
 @main
 class AppDelegate: UIResponder, UIApplicationDelegate {
+
+
 
   func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey: Any]?) -> Bool {
     // Override point for customization after application launch.

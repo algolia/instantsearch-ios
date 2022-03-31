@@ -81,10 +81,6 @@
 		AF87B8F326A593250015F772 /* StatsDemoSwiftUI.swift in Sources */ = {isa = PBXBuildFile; fileRef = AF87B8F226A593250015F772 /* StatsDemoSwiftUI.swift */; };
 		AF87B8F626A594480015F772 /* QueryRuleCustomDataDemoSwiftUI.swift in Sources */ = {isa = PBXBuildFile; fileRef = AF87B8F526A594480015F772 /* QueryRuleCustomDataDemoSwiftUI.swift */; };
 		AF8D1C0123DF3E3F00CB415F /* RangeSlider.swift in Sources */ = {isa = PBXBuildFile; fileRef = AF8D1C0023DF3E3F00CB415F /* RangeSlider.swift */; };
-		AF8F5198273DA96300CE1AA1 /* InstantSearchSwiftUI in Frameworks */ = {isa = PBXBuildFile; productRef = AF8F5197273DA96300CE1AA1 /* InstantSearchSwiftUI */; };
-		AF8F519A273DA96300CE1AA1 /* InstantSearchCore in Frameworks */ = {isa = PBXBuildFile; productRef = AF8F5199273DA96300CE1AA1 /* InstantSearchCore */; };
-		AF8F519C273DA96300CE1AA1 /* InstantSearchInsights in Frameworks */ = {isa = PBXBuildFile; productRef = AF8F519B273DA96300CE1AA1 /* InstantSearchInsights */; };
-		AF8F519E273DA96300CE1AA1 /* InstantSearch in Frameworks */ = {isa = PBXBuildFile; productRef = AF8F519D273DA96300CE1AA1 /* InstantSearch */; };
 		AF9C9B9A2672894C003BBAD2 /* QueryRuleCustomDataSwiftUIDemo.swift in Sources */ = {isa = PBXBuildFile; fileRef = AF9C9B992672894C003BBAD2 /* QueryRuleCustomDataSwiftUIDemo.swift */; };
 		AF9C9B9C26780489003BBAD2 /* RelevantSortSwiftUIDemo.swift in Sources */ = {isa = PBXBuildFile; fileRef = AF9C9B9B26780489003BBAD2 /* RelevantSortSwiftUIDemo.swift */; };
 		AF9D1825268CBD2100EC68EA /* RefinementListDemoController.swift in Sources */ = {isa = PBXBuildFile; fileRef = AF9D1824268CBD2100EC68EA /* RefinementListDemoController.swift */; };
@@ -110,8 +106,9 @@
 		AFC542A827F4668200062F7F /* StoreItemTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = AFC542A727F4668200062F7F /* StoreItemTableViewCell.swift */; };
 		AFC542AB27F4669A00062F7F /* SearchSuggestionTableViewCell+QuerySuggestion.swift in Sources */ = {isa = PBXBuildFile; fileRef = AFC542A927F4669A00062F7F /* SearchSuggestionTableViewCell+QuerySuggestion.swift */; };
 		AFC542AC27F4669A00062F7F /* StoreItemTableViewCell+StoreItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = AFC542AA27F4669A00062F7F /* StoreItemTableViewCell+StoreItem.swift */; };
-		AFCAE43C24D1F6FA00FD6A7D /* GettingStartedSearchViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = AFCAE43B24D1F6FA00FD6A7D /* GettingStartedSearchViewController.swift */; };
 		AFED9C9B23C8EB37005C2D93 /* SearchControllerDemo.swift in Sources */ = {isa = PBXBuildFile; fileRef = AFED9C9A23C8EB37005C2D93 /* SearchControllerDemo.swift */; };
+		AFEFEFB527F4921C00B47F7F /* InstantSearch in Frameworks */ = {isa = PBXBuildFile; productRef = AFEFEFB427F4921C00B47F7F /* InstantSearch */; };
+		AFEFEFB727F4922D00B47F7F /* InstantSearchSwiftUI in Frameworks */ = {isa = PBXBuildFile; productRef = AFEFEFB627F4922D00B47F7F /* InstantSearchSwiftUI */; };
 		AFFB11F1260CAAE100E4E459 /* SwiftUIDemoViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = AFFB11F0260CAAE000E4E459 /* SwiftUIDemoViewController.swift */; };
 /* End PBXBuildFile section */
 
@@ -229,8 +226,8 @@
 		AFC542A727F4668200062F7F /* StoreItemTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = StoreItemTableViewCell.swift; sourceTree = "<group>"; };
 		AFC542A927F4669A00062F7F /* SearchSuggestionTableViewCell+QuerySuggestion.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "SearchSuggestionTableViewCell+QuerySuggestion.swift"; sourceTree = "<group>"; };
 		AFC542AA27F4669A00062F7F /* StoreItemTableViewCell+StoreItem.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "StoreItemTableViewCell+StoreItem.swift"; sourceTree = "<group>"; };
-		AFCAE43B24D1F6FA00FD6A7D /* GettingStartedSearchViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GettingStartedSearchViewController.swift; sourceTree = "<group>"; };
 		AFED9C9A23C8EB37005C2D93 /* SearchControllerDemo.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchControllerDemo.swift; sourceTree = "<group>"; };
+		AFEFEFB327F491EF00B47F7F /* instantsearch-ios */ = {isa = PBXFileReference; lastKnownFileType = wrapper; name = "instantsearch-ios"; path = ../..; sourceTree = "<group>"; };
 		AFFB11F0260CAAE000E4E459 /* SwiftUIDemoViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SwiftUIDemoViewController.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -239,13 +236,11 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				AFEFEFB727F4922D00B47F7F /* InstantSearchSwiftUI in Frameworks */,
+				AFEFEFB527F4921C00B47F7F /* InstantSearch in Frameworks */,
 				AFBE2B8C26A74D9F00F1E139 /* InstantSearchVoiceOverlay in Frameworks */,
 				AF521BF825CE151A000F994C /* SDWebImageSwiftUI in Frameworks */,
-				AF8F519A273DA96300CE1AA1 /* InstantSearchCore in Frameworks */,
-				AF8F5198273DA96300CE1AA1 /* InstantSearchSwiftUI in Frameworks */,
-				AF8F519E273DA96300CE1AA1 /* InstantSearch in Frameworks */,
 				AF4059862552D1EB003C8CDB /* SDWebImage in Frameworks */,
-				AF8F519C273DA96300CE1AA1 /* InstantSearchInsights in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -278,7 +273,6 @@
 			isa = PBXGroup;
 			children = (
 				AF0B717A24C9938E005CFB27 /* HitsConnectorSearchViewController.swift */,
-				AFCAE43B24D1F6FA00FD6A7D /* GettingStartedSearchViewController.swift */,
 			);
 			path = SingleIndex;
 			sourceTree = "<group>";
@@ -317,6 +311,7 @@
 		AF6778B822FB319200850ACC = {
 			isa = PBXGroup;
 			children = (
+				AFEFEFB227F491EF00B47F7F /* Packages */,
 				AF6778C322FB319200850ACC /* DemoDirectory */,
 				AF6778D822FB319300850ACC /* DemoDirectoryTests */,
 				AF6778C222FB319200850ACC /* Products */,
@@ -571,6 +566,14 @@
 			path = DemoDirectory/Demos/Sort;
 			sourceTree = SOURCE_ROOT;
 		};
+		AFEFEFB227F491EF00B47F7F /* Packages */ = {
+			isa = PBXGroup;
+			children = (
+				AFEFEFB327F491EF00B47F7F /* instantsearch-ios */,
+			);
+			name = Packages;
+			sourceTree = "<group>";
+		};
 		AFFB11EF260CAACF00E4E459 /* SwiftUI */ = {
 			isa = PBXGroup;
 			children = (
@@ -608,10 +611,8 @@
 				AF4059852552D1EB003C8CDB /* SDWebImage */,
 				AF521BF725CE151A000F994C /* SDWebImageSwiftUI */,
 				AFBE2B8B26A74D9F00F1E139 /* InstantSearchVoiceOverlay */,
-				AF8F5197273DA96300CE1AA1 /* InstantSearchSwiftUI */,
-				AF8F5199273DA96300CE1AA1 /* InstantSearchCore */,
-				AF8F519B273DA96300CE1AA1 /* InstantSearchInsights */,
-				AF8F519D273DA96300CE1AA1 /* InstantSearch */,
+				AFEFEFB427F4921C00B47F7F /* InstantSearch */,
+				AFEFEFB627F4922D00B47F7F /* InstantSearchSwiftUI */,
 			);
 			productName = DemoDirectory;
 			productReference = AF6778C122FB319200850ACC /* DemoDirectory.app */;
@@ -667,7 +668,6 @@
 				AF4059842552D1EB003C8CDB /* XCRemoteSwiftPackageReference "SDWebImage" */,
 				AF521BF625CE151A000F994C /* XCRemoteSwiftPackageReference "SDWebImageSwiftUI" */,
 				AFBE2B8A26A74D9F00F1E139 /* XCRemoteSwiftPackageReference "voice-overlay-ios" */,
-				AF8F5196273DA96300CE1AA1 /* XCRemoteSwiftPackageReference "instantsearch-ios" */,
 			);
 			productRefGroup = AF6778C222FB319200850ACC /* Products */;
 			projectDirPath = "";
@@ -770,7 +770,6 @@
 				AF87B8E526A4C9A90015F772 /* RefinementListDemoSwiftUI.swift in Sources */,
 				AF67792522FB34C000850ACC /* MultiIndexDemoViewController.swift in Sources */,
 				AF67792422FB34C000850ACC /* ClearFiltersDemoViewController.swift in Sources */,
-				AFCAE43C24D1F6FA00FD6A7D /* GettingStartedSearchViewController.swift in Sources */,
 				AF67793522FB34C000850ACC /* NumericRangeController.swift in Sources */,
 				AF82C53A26A618EE00609ECE /* DynamicFacetsSwiftUIDemoViewController.swift in Sources */,
 				AF46AE4D27EA7C0100966236 /* UITableView+EmptyMessage.swift in Sources */,
@@ -1095,14 +1094,6 @@
 				minimumVersion = 1.5.0;
 			};
 		};
-		AF8F5196273DA96300CE1AA1 /* XCRemoteSwiftPackageReference "instantsearch-ios" */ = {
-			isa = XCRemoteSwiftPackageReference;
-			repositoryURL = "https://github.com/algolia/instantsearch-ios";
-			requirement = {
-				kind = upToNextMajorVersion;
-				minimumVersion = 7.15.0;
-			};
-		};
 		AFBE2B8A26A74D9F00F1E139 /* XCRemoteSwiftPackageReference "voice-overlay-ios" */ = {
 			isa = XCRemoteSwiftPackageReference;
 			repositoryURL = "https://github.com/algolia/voice-overlay-ios";
@@ -1124,30 +1115,18 @@
 			package = AF521BF625CE151A000F994C /* XCRemoteSwiftPackageReference "SDWebImageSwiftUI" */;
 			productName = SDWebImageSwiftUI;
 		};
-		AF8F5197273DA96300CE1AA1 /* InstantSearchSwiftUI */ = {
-			isa = XCSwiftPackageProductDependency;
-			package = AF8F5196273DA96300CE1AA1 /* XCRemoteSwiftPackageReference "instantsearch-ios" */;
-			productName = InstantSearchSwiftUI;
-		};
-		AF8F5199273DA96300CE1AA1 /* InstantSearchCore */ = {
-			isa = XCSwiftPackageProductDependency;
-			package = AF8F5196273DA96300CE1AA1 /* XCRemoteSwiftPackageReference "instantsearch-ios" */;
-			productName = InstantSearchCore;
-		};
-		AF8F519B273DA96300CE1AA1 /* InstantSearchInsights */ = {
-			isa = XCSwiftPackageProductDependency;
-			package = AF8F5196273DA96300CE1AA1 /* XCRemoteSwiftPackageReference "instantsearch-ios" */;
-			productName = InstantSearchInsights;
-		};
-		AF8F519D273DA96300CE1AA1 /* InstantSearch */ = {
-			isa = XCSwiftPackageProductDependency;
-			package = AF8F5196273DA96300CE1AA1 /* XCRemoteSwiftPackageReference "instantsearch-ios" */;
-			productName = InstantSearch;
-		};
 		AFBE2B8B26A74D9F00F1E139 /* InstantSearchVoiceOverlay */ = {
 			isa = XCSwiftPackageProductDependency;
 			package = AFBE2B8A26A74D9F00F1E139 /* XCRemoteSwiftPackageReference "voice-overlay-ios" */;
 			productName = InstantSearchVoiceOverlay;
+		};
+		AFEFEFB427F4921C00B47F7F /* InstantSearch */ = {
+			isa = XCSwiftPackageProductDependency;
+			productName = InstantSearch;
+		};
+		AFEFEFB627F4922D00B47F7F /* InstantSearchSwiftUI */ = {
+			isa = XCSwiftPackageProductDependency;
+			productName = InstantSearchSwiftUI;
 		};
 /* End XCSwiftPackageProductDependency section */
 	};

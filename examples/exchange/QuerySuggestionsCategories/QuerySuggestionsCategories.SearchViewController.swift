@@ -10,7 +10,7 @@ import Foundation
 import InstantSearch
 import UIKit
 
-enum QuerySuggestionsAndCategories {
+enum QuerySuggestionsCategories {
   
   class SearchViewController: UIViewController {
     

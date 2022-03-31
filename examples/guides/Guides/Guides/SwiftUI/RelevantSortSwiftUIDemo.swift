@@ -12,6 +12,27 @@ import InstantSearchSwiftUI
 import SwiftUI
 import SDWebImageSwiftUI
 
+struct StockItem: Codable {
+  let name: String
+}
+
+class BannerObservableController: ObservableObject, ItemController {
+  
+  @Published var banner: Banner?
+  
+  func setItem(_ item: Banner?) {
+    self.banner = item
+  }
+  
+}
+
+struct Banner: Codable {
+  let title: String?
+  let banner: URL?
+  let link: URL
+}
+
+
 struct RelevantSortDemoView: View {
 
   @ObservedObject var queryInputController: QueryInputObservableController
