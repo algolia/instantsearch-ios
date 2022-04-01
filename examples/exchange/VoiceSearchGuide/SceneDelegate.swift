@@ -1,8 +1,8 @@
 //
 //  SceneDelegate.swift
-//  QuerySuggestions
+//  VoiceSearchGuide
 //
-//  Created by Vladislav Fitc on 04/11/2021.
+//  Created by Vladislav Fitc on 01.04.2022.
 //
 
 import UIKit
@@ -14,9 +14,8 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
 
   func scene(_ scene: UIScene, willConnectTo session: UISceneSession, options connectionOptions: UIScene.ConnectionOptions) {
     guard let windowScene = (scene as? UIWindowScene) else { return }
-     
     let window = UIWindow(windowScene: windowScene)
-    let viewController = QuerySuggestions.SearchViewController()
+    let viewController = VoiceInputDemoViewController()
     let navigation = UINavigationController(rootViewController: viewController)
     window.rootViewController = navigation
     self.window = window

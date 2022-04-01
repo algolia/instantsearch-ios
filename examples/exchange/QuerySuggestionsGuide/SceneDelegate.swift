@@ -1,8 +1,8 @@
 //
 //  SceneDelegate.swift
-//  QuerySuggestions
+//  QuerySuggestionsGuide
 //
-//  Created by Vladislav Fitc on 04/11/2021.
+//  Created by Vladislav Fitc on 31.03.2022.
 //
 
 import UIKit
@@ -14,9 +14,8 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
 
   func scene(_ scene: UIScene, willConnectTo session: UISceneSession, options connectionOptions: UIScene.ConnectionOptions) {
     guard let windowScene = (scene as? UIWindowScene) else { return }
-     
     let window = UIWindow(windowScene: windowScene)
-    let viewController = QuerySuggestions.SearchViewController()
+    let viewController = QuerySuggestionsDemoViewController()
     let navigation = UINavigationController(rootViewController: viewController)
     window.rootViewController = navigation
     self.window = window
