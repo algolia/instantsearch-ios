@@ -12,21 +12,18 @@ import UIKit
 
 class DynamicFacetListDemoViewController: UIViewController {
   
+  let searchController: UISearchController
   let demoController: DynamicFacetListDemoController
   
   let textFieldController: TextFieldController
   let facetsTableViewController: DynamicFacetListTableViewController
-  
-  let searchBar: UISearchTextField
-  let hintLabel: UILabel
-  
+    
   override init(nibName nibNameOrNil: String?, bundle nibBundleOrNil: Bundle?) {
-    searchBar = .init()
-    textFieldController = TextFieldController(textField: searchBar)
     facetsTableViewController = .init()
+    searchController = .init(searchResultsController: facetsTableViewController)
+    textFieldController = TextFieldController(textField: searchController.searchBar.searchTextField)
     demoController = .init(queryInputController: textFieldController,
                            DynamicFacetListController: facetsTableViewController)
-    hintLabel = .init()
     super.init(nibName: nibNameOrNil, bundle: nibBundleOrNil)
   }
   
@@ -35,48 +32,32 @@ class DynamicFacetListDemoViewController: UIViewController {
   }
   
   override func viewDidLoad() {
-    addChild(facetsTableViewController)
-    facetsTableViewController.didMove(toParent: self)
     super.viewDidLoad()
     setupUI()
-    demoController.searcher.onResults.subscribe(with: self) { (controller, searchResponse) in
-      let isEmptyFacetOrder = searchResponse.renderingContent?.facetOrdering?.values.isEmpty ?? true
-      controller.hintLabel.isHidden = !isEmptyFacetOrder
-      controller.facetsTableViewController.view.isHidden = isEmptyFacetOrder
-    }.onQueue(.main)
+  }
+  
+  override func viewDidAppear(_ animated: Bool) {
+    super.viewDidAppear(animated)
+    searchController.isActive = true
   }
   
   private func setupUI() {
+    title = "Dynamic Facets"
     view.backgroundColor = .systemBackground
-    
-    hintLabel.translatesAutoresizingMaskIntoConstraints = false
-    hintLabel.textAlignment = .center
-    hintLabel.text = "Type \"a\", \"ab\" or \"abc\" to trigger a rule"
-    
-    facetsTableViewController.view.translatesAutoresizingMaskIntoConstraints = false
-    
-    searchBar.translatesAutoresizingMaskIntoConstraints = false
-    searchBar.setContentHuggingPriority(.defaultHigh, for: .vertical)
-
-    let searchBarContainer = UIView()
-    searchBarContainer.translatesAutoresizingMaskIntoConstraints = false
-    searchBarContainer.addSubview(searchBar)
-    searchBar.pin(to: searchBarContainer, insets: .init(top: 5, left: 5, bottom: -5, right: -5))
-    
-    let stackView = UIStackView()
-    stackView.translatesAutoresizingMaskIntoConstraints = false
-    stackView.axis = .vertical
-    stackView.addArrangedSubview(searchBarContainer)
-    stackView.addArrangedSubview(facetsTableViewController.view)
-    stackView.addArrangedSubview(hintLabel)
-    view.addSubview(stackView)
-    
-    NSLayoutConstraint.activate([
-      stackView.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor),
-      stackView.leadingAnchor.constraint(equalTo: view.safeAreaLayoutGuide.leadingAnchor),
-      stackView.trailingAnchor.constraint(equalTo: view.safeAreaLayoutGuide.trailingAnchor),
-      stackView.bottomAnchor.constraint(equalTo: view.bottomAnchor),
-    ])
+    navigationItem.searchController = searchController
+    navigationItem.rightBarButtonItem = UIBarButtonItem(image: UIImage(systemName: "info.circle.fill"),
+                                                        style: .plain,
+                                                        target: self,
+                                                        action: #selector(presentHint))
+    searchController.hidesNavigationBarDuringPresentation = false
+    searchController.showsSearchResultsController = true
+    searchController.automaticallyShowsCancelButton = false
+  }
+  
+  @objc private func presentHint() {
+    let hintController = UIAlertController(title: "Help", message: "Type \"6\", \"61\" or \"616\" to trigger a rule", preferredStyle: .alert)
+    hintController.addAction(UIAlertAction(title: "OK", style: .cancel))
+    present(hintController, animated: true)
   }
   
 }
