@@ -128,8 +128,6 @@
 		AF50CA7027F7246E0036F549 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = AF50CA6E27F7246E0036F549 /* LaunchScreen.storyboard */; };
 		AF50CA7C27F7247C0036F549 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = AF50CA7B27F7247C0036F549 /* AppDelegate.swift */; };
 		AF50CA7E27F7247C0036F549 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = AF50CA7D27F7247C0036F549 /* SceneDelegate.swift */; };
-		AF50CA8027F7247C0036F549 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = AF50CA7F27F7247C0036F549 /* ViewController.swift */; };
-		AF50CA8327F7247C0036F549 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = AF50CA8127F7247C0036F549 /* Main.storyboard */; };
 		AF50CA8527F7247D0036F549 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = AF50CA8427F7247D0036F549 /* Assets.xcassets */; };
 		AF50CA8827F7247D0036F549 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = AF50CA8627F7247D0036F549 /* LaunchScreen.storyboard */; };
 		AF50CA9427F724970036F549 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = AF50CA9327F724970036F549 /* AppDelegate.swift */; };
@@ -255,6 +253,13 @@
 		AF50CC4127F735A60036F549 /* FilterStateViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = AF50CC3027F72F930036F549 /* FilterStateViewController.swift */; };
 		AF50CC4227F735AA0036F549 /* SearchStateViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = AF50CC2D27F72F750036F549 /* SearchStateViewController.swift */; };
 		AF50CC4427F736080036F549 /* InstantSearch in Frameworks */ = {isa = PBXBuildFile; productRef = AF50CC4327F736080036F549 /* InstantSearch */; };
+		AF50CC4627F73F680036F549 /* InstantSearch in Frameworks */ = {isa = PBXBuildFile; productRef = AF50CC4527F73F680036F549 /* InstantSearch */; };
+		AF50CC4827F73F680036F549 /* InstantSearchSwiftUI in Frameworks */ = {isa = PBXBuildFile; productRef = AF50CC4727F73F680036F549 /* InstantSearchSwiftUI */; };
+		AF50CC4A27F73F910036F549 /* FacetSearchDemoViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = AF50CC4927F73F910036F549 /* FacetSearchDemoViewController.swift */; };
+		AF50CC4B27F743260036F549 /* SearchStateViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = AF50CC2D27F72F750036F549 /* SearchStateViewController.swift */; };
+		AF50CC4C27F7432A0036F549 /* SearchClient.swift in Sources */ = {isa = PBXBuildFile; fileRef = AF50C96B27F623380036F549 /* SearchClient.swift */; };
+		AF50CC4D27F743390036F549 /* FilterStateViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = AF50CC3027F72F930036F549 /* FilterStateViewController.swift */; };
+		AF50CC4E27F743590036F549 /* Helpers.swift in Sources */ = {isa = PBXBuildFile; fileRef = AF50CC3327F72FF80036F549 /* Helpers.swift */; };
 		AF7FEB89272CAC5D0003BE62 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = AF7FEB88272CAC5D0003BE62 /* AppDelegate.swift */; };
 		AF7FEB8B272CAC5D0003BE62 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = AF7FEB8A272CAC5D0003BE62 /* SceneDelegate.swift */; };
 		AF7FEB8D272CAC5D0003BE62 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = AF7FEB8C272CAC5D0003BE62 /* ViewController.swift */; };
@@ -423,8 +428,6 @@
 		AF50CA7927F7247C0036F549 /* FacetSearch.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = FacetSearch.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		AF50CA7B27F7247C0036F549 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		AF50CA7D27F7247C0036F549 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
-		AF50CA7F27F7247C0036F549 /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
-		AF50CA8227F7247C0036F549 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		AF50CA8427F7247D0036F549 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		AF50CA8727F7247D0036F549 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		AF50CA8927F7247D0036F549 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
@@ -572,6 +575,7 @@
 		AF50CC3327F72FF80036F549 /* Helpers.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = Helpers.swift; path = ../../showcase/DemoDirectory/Helpers/Helpers.swift; sourceTree = "<group>"; };
 		AF50CC3627F7301D0036F549 /* FacetListTableController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = FacetListTableController.swift; path = ../../showcase/DemoDirectory/Helpers/FacetListTableController.swift; sourceTree = "<group>"; };
 		AF50CC3C27F735380036F549 /* RefinementPersistentListDemoViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = RefinementPersistentListDemoViewController.swift; path = ../../showcase/DemoDirectory/Demos/Filters/RefinementPersistentListDemoViewController.swift; sourceTree = "<group>"; };
+		AF50CC4927F73F910036F549 /* FacetSearchDemoViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = FacetSearchDemoViewController.swift; path = ../../showcase/DemoDirectory/Demos/FacetSearchDemoViewController.swift; sourceTree = "<group>"; };
 		AF7FEB85272CAC5D0003BE62 /* Examples.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Examples.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		AF7FEB88272CAC5D0003BE62 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		AF7FEB8A272CAC5D0003BE62 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -713,6 +717,8 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				AF50CC4827F73F680036F549 /* InstantSearchSwiftUI in Frameworks */,
+				AF50CC4627F73F680036F549 /* InstantSearch in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1030,8 +1036,7 @@
 			children = (
 				AF50CA7B27F7247C0036F549 /* AppDelegate.swift */,
 				AF50CA7D27F7247C0036F549 /* SceneDelegate.swift */,
-				AF50CA7F27F7247C0036F549 /* ViewController.swift */,
-				AF50CA8127F7247C0036F549 /* Main.storyboard */,
+				AF50CC4927F73F910036F549 /* FacetSearchDemoViewController.swift */,
 				AF50CA8427F7247D0036F549 /* Assets.xcassets */,
 				AF50CA8627F7247D0036F549 /* LaunchScreen.storyboard */,
 				AF50CA8927F7247D0036F549 /* Info.plist */,
@@ -1674,6 +1679,10 @@
 			dependencies = (
 			);
 			name = FacetSearch;
+			packageProductDependencies = (
+				AF50CC4527F73F680036F549 /* InstantSearch */,
+				AF50CC4727F73F680036F549 /* InstantSearchSwiftUI */,
+			);
 			productName = FacetSearch;
 			productReference = AF50CA7927F7247C0036F549 /* FacetSearch.app */;
 			productType = "com.apple.product-type.application";
@@ -2359,7 +2368,6 @@
 			files = (
 				AF50CA8827F7247D0036F549 /* LaunchScreen.storyboard in Resources */,
 				AF50CA8527F7247D0036F549 /* Assets.xcassets in Resources */,
-				AF50CA8327F7247C0036F549 /* Main.storyboard in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -2729,9 +2737,13 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				AF50CA8027F7247C0036F549 /* ViewController.swift in Sources */,
+				AF50CC4B27F743260036F549 /* SearchStateViewController.swift in Sources */,
+				AF50CC4E27F743590036F549 /* Helpers.swift in Sources */,
 				AF50CA7C27F7247C0036F549 /* AppDelegate.swift in Sources */,
+				AF50CC4D27F743390036F549 /* FilterStateViewController.swift in Sources */,
+				AF50CC4A27F73F910036F549 /* FacetSearchDemoViewController.swift in Sources */,
 				AF50CA7E27F7247C0036F549 /* SceneDelegate.swift in Sources */,
+				AF50CC4C27F7432A0036F549 /* SearchClient.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -3111,14 +3123,6 @@
 				AF50CA6F27F7246E0036F549 /* Base */,
 			);
 			name = LaunchScreen.storyboard;
-			sourceTree = "<group>";
-		};
-		AF50CA8127F7247C0036F549 /* Main.storyboard */ = {
-			isa = PBXVariantGroup;
-			children = (
-				AF50CA8227F7247C0036F549 /* Base */,
-			);
-			name = Main.storyboard;
 			sourceTree = "<group>";
 		};
 		AF50CA8627F7247D0036F549 /* LaunchScreen.storyboard */ = {
@@ -3922,7 +3926,6 @@
 				INFOPLIST_FILE = FacetSearch/Info.plist;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchStoryboardName = LaunchScreen;
-				INFOPLIST_KEY_UIMainStoryboardFile = Main;
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
 				IPHONEOS_DEPLOYMENT_TARGET = 15.4;
@@ -3951,7 +3954,6 @@
 				INFOPLIST_FILE = FacetSearch/Info.plist;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchStoryboardName = LaunchScreen;
-				INFOPLIST_KEY_UIMainStoryboardFile = Main;
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
 				IPHONEOS_DEPLOYMENT_TARGET = 15.4;
@@ -5861,6 +5863,14 @@
 		AF50CC4327F736080036F549 /* InstantSearch */ = {
 			isa = XCSwiftPackageProductDependency;
 			productName = InstantSearch;
+		};
+		AF50CC4527F73F680036F549 /* InstantSearch */ = {
+			isa = XCSwiftPackageProductDependency;
+			productName = InstantSearch;
+		};
+		AF50CC4727F73F680036F549 /* InstantSearchSwiftUI */ = {
+			isa = XCSwiftPackageProductDependency;
+			productName = InstantSearchSwiftUI;
 		};
 		AFAE55AD27342C6800B52A43 /* SDWebImage */ = {
 			isa = XCSwiftPackageProductDependency;

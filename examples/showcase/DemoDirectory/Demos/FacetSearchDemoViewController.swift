@@ -77,17 +77,21 @@ private extension FacetSearchDemoViewController {
     tableView.register(UITableViewCell.self, forCellReuseIdentifier: "CellId")
     tableView.translatesAutoresizingMaskIntoConstraints = false
 
-    searchBar
-      .set(\.translatesAutoresizingMaskIntoConstraints, to: false)
-      .set(\.searchBarStyle, to: .minimal)
-
+    searchBar.translatesAutoresizingMaskIntoConstraints = false
+    searchBar.searchBarStyle = .minimal
+      
     let stackView = UIStackView()
-      .set(\.translatesAutoresizingMaskIntoConstraints, to: false)
-      .set(\.axis, to: .vertical)
-      .set(\.spacing, to: .px16)
-    
+    stackView.translatesAutoresizingMaskIntoConstraints = false
+    stackView.axis = .vertical
+    stackView.spacing = 16
+
     view.addSubview(stackView)
-    stackView.pin(to: view.safeAreaLayoutGuide)
+    NSLayoutConstraint.activate([
+      stackView.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor),
+      stackView.leadingAnchor.constraint(equalTo: view.safeAreaLayoutGuide.leadingAnchor),
+      stackView.trailingAnchor.constraint(equalTo: view.safeAreaLayoutGuide.trailingAnchor),
+      stackView.bottomAnchor.constraint(equalTo: view.safeAreaLayoutGuide.bottomAnchor),
+    ])
     
     stackView.addArrangedSubview(searchBar)
     stackView.addArrangedSubview(searchStateViewController.view)
