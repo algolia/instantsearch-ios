@@ -25,8 +25,8 @@ class RefinementPersistentListDemoViewController: UIViewController {
   override init(nibName nibNameOrNil: String?, bundle nibBundleOrNil: Bundle?) {
     searcher = .init(client: .demo, indexName: "mobile_demo_facet_list")
     filterState = .init()
-    colorConnector = .init(searcher: searcher, filterState: filterState, attribute: "color", selectionMode: .multiple, persistentSelection: true, operator: .or)
-    categoryConnector = .init(searcher: searcher, filterState: filterState, attribute: "category", selectionMode: .single, persistentSelection: true, operator: .or)
+    colorConnector = .init(searcher: searcher, filterState: filterState, attribute: "color", selectionMode: .multiple, operator: .or)
+    categoryConnector = .init(searcher: searcher, filterState: filterState, attribute: "category", selectionMode: .single, operator: .or)
     colorListController = .init(tableView: .init(), titleDescriptor: .init(text: "Multiple choice", color: .red))
     categoryListController = .init(tableView: .init(), titleDescriptor: .init(text: "Single choice", color: .blue))
     searchStateViewController = .init()
@@ -61,19 +61,19 @@ private extension RefinementPersistentListDemoViewController {
   
   func setupLayout() {
     
-    view.backgroundColor = .swBackground
+    view.backgroundColor = .white
     
     let mainStackView = UIStackView(frame: .zero)
     mainStackView.axis = .vertical
     mainStackView.translatesAutoresizingMaskIntoConstraints = false
     mainStackView.distribution = .fill
-    mainStackView.spacing = .px16
+    mainStackView.spacing = 16
     
     let listsStackView = UIStackView(frame: .zero)
     listsStackView.translatesAutoresizingMaskIntoConstraints = false
     listsStackView.axis = .horizontal
     listsStackView.distribution = .fillEqually
-    listsStackView.spacing = .px16
+    listsStackView.spacing = 16
     listsStackView.addArrangedSubview(colorListController.tableView)
     listsStackView.addArrangedSubview(categoryListController.tableView)
     
@@ -82,9 +82,17 @@ private extension RefinementPersistentListDemoViewController {
     searchStateViewController.view.heightAnchor.constraint(equalToConstant: 150).isActive = true
     mainStackView.addArrangedSubview(searchStateViewController.view)
     mainStackView.addArrangedSubview(listsStackView)
+    let spacer = UIView()
+    spacer.translatesAutoresizingMaskIntoConstraints = false
+    mainStackView.addArrangedSubview(spacer)
     
     view.addSubview(mainStackView)
-    mainStackView.pin(to: view.safeAreaLayoutGuide)
+    NSLayoutConstraint.activate([
+      mainStackView.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor),
+      mainStackView.leadingAnchor.constraint(equalTo: view.safeAreaLayoutGuide.leadingAnchor),
+      mainStackView.trailingAnchor.constraint(equalTo: view.safeAreaLayoutGuide.trailingAnchor),
+      mainStackView.bottomAnchor.constraint(equalTo: view.safeAreaLayoutGuide.bottomAnchor),
+    ])
     
     [
       colorListController,
@@ -96,7 +104,7 @@ private extension RefinementPersistentListDemoViewController {
       $0.register(UITableViewCell.self, forCellReuseIdentifier: "CellId")
       $0.alwaysBounceVertical = false
       $0.tableFooterView = UIView(frame: .zero)
-      $0.backgroundColor = UIColor(hexString: "#f7f8fa")
+//      $0.backgroundColor = UIColor(hexString: "#f7f8fa")
     }
     
   }

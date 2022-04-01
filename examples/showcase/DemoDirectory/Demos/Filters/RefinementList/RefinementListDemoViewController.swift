@@ -74,6 +74,7 @@ extension RefinementListDemoViewController {
   
   func setupUI() {
     
+    title = "Facet List"
     view.backgroundColor = .swBackground
     
     let mainStackView = UIStackView()
@@ -109,7 +110,13 @@ extension RefinementListDemoViewController {
     
     view.addSubview(mainStackView)
     
-    mainStackView.pin(to: view.safeAreaLayoutGuide)
+    NSLayoutConstraint.activate([
+      mainStackView.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor),
+      mainStackView.leadingAnchor.constraint(equalTo: view.safeAreaLayoutGuide.leadingAnchor),
+      mainStackView.trailingAnchor.constraint(equalTo: view.safeAreaLayoutGuide.trailingAnchor),
+      mainStackView.bottomAnchor.constraint(equalTo: view.safeAreaLayoutGuide.bottomAnchor),
+
+    ])
     
     [
       colorController,

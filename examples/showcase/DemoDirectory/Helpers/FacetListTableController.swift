@@ -82,8 +82,8 @@ extension FacetListTableController: UITableViewDelegate {
     
     guard let titleDescriptor = titleDescriptor else { return nil }
     
-    let view = UIView(frame: CGRect(x: 0, y: 0, width: tableView.frame.width, height: 3 * .px16))
-    let label = UILabel(frame: CGRect(x: 5, y: .px16, width: tableView.frame.width, height: 2 * .px16))
+    let view = UIView(frame: CGRect(x: 0, y: 0, width: tableView.frame.width, height: 3 * 16))
+    let label = UILabel(frame: CGRect(x: 5, y: 16, width: tableView.frame.width, height: 2 * 16))
     label.font = .systemFont(ofSize: 12)
     label.numberOfLines = 2
     label.textAlignment = .center
@@ -99,7 +99,7 @@ extension FacetListTableController: UITableViewDelegate {
   
   func tableView(_ tableView: UITableView, heightForHeaderInSection section: Int) -> CGFloat {
     guard titleDescriptor != nil else { return 0 }
-    return 3 * .px16
+    return 3 * 16
   }
   
 }

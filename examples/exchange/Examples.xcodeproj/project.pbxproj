@@ -120,14 +120,10 @@
 		AF50CA4427F7220B0036F549 /* UITableView+EmptyResult.swift in Sources */ = {isa = PBXBuildFile; fileRef = AF50C96827F622FB0036F549 /* UITableView+EmptyResult.swift */; };
 		AF50CA4C27F724530036F549 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = AF50CA4B27F724530036F549 /* AppDelegate.swift */; };
 		AF50CA4E27F724530036F549 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = AF50CA4D27F724530036F549 /* SceneDelegate.swift */; };
-		AF50CA5027F724530036F549 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = AF50CA4F27F724530036F549 /* ViewController.swift */; };
-		AF50CA5327F724530036F549 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = AF50CA5127F724530036F549 /* Main.storyboard */; };
 		AF50CA5527F724540036F549 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = AF50CA5427F724540036F549 /* Assets.xcassets */; };
 		AF50CA5827F724540036F549 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = AF50CA5627F724540036F549 /* LaunchScreen.storyboard */; };
 		AF50CA6427F7246D0036F549 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = AF50CA6327F7246D0036F549 /* AppDelegate.swift */; };
 		AF50CA6627F7246D0036F549 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = AF50CA6527F7246D0036F549 /* SceneDelegate.swift */; };
-		AF50CA6827F7246D0036F549 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = AF50CA6727F7246D0036F549 /* ViewController.swift */; };
-		AF50CA6B27F7246D0036F549 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = AF50CA6927F7246D0036F549 /* Main.storyboard */; };
 		AF50CA6D27F7246E0036F549 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = AF50CA6C27F7246E0036F549 /* Assets.xcassets */; };
 		AF50CA7027F7246E0036F549 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = AF50CA6E27F7246E0036F549 /* LaunchScreen.storyboard */; };
 		AF50CA7C27F7247C0036F549 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = AF50CA7B27F7247C0036F549 /* AppDelegate.swift */; };
@@ -238,6 +234,27 @@
 		AF50CC1B27F72CB60036F549 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = AF50CC1927F72CB60036F549 /* Main.storyboard */; };
 		AF50CC1D27F72CB60036F549 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = AF50CC1C27F72CB60036F549 /* Assets.xcassets */; };
 		AF50CC2027F72CB60036F549 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = AF50CC1E27F72CB60036F549 /* LaunchScreen.storyboard */; };
+		AF50CC2627F72CFD0036F549 /* InstantSearch in Frameworks */ = {isa = PBXBuildFile; productRef = AF50CC2527F72CFD0036F549 /* InstantSearch */; };
+		AF50CC2A27F72D530036F549 /* RefinementListDemoSwiftUI.swift in Sources */ = {isa = PBXBuildFile; fileRef = AF50CC2727F72D530036F549 /* RefinementListDemoSwiftUI.swift */; };
+		AF50CC2B27F72D530036F549 /* RefinementListDemoViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = AF50CC2827F72D530036F549 /* RefinementListDemoViewController.swift */; };
+		AF50CC2C27F72D530036F549 /* RefinementListDemoController.swift in Sources */ = {isa = PBXBuildFile; fileRef = AF50CC2927F72D530036F549 /* RefinementListDemoController.swift */; };
+		AF50CC2E27F72F750036F549 /* SearchStateViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = AF50CC2D27F72F750036F549 /* SearchStateViewController.swift */; };
+		AF50CC2F27F72F750036F549 /* SearchStateViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = AF50CC2D27F72F750036F549 /* SearchStateViewController.swift */; };
+		AF50CC3127F72F930036F549 /* FilterStateViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = AF50CC3027F72F930036F549 /* FilterStateViewController.swift */; };
+		AF50CC3227F72F930036F549 /* FilterStateViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = AF50CC3027F72F930036F549 /* FilterStateViewController.swift */; };
+		AF50CC3427F72FF80036F549 /* Helpers.swift in Sources */ = {isa = PBXBuildFile; fileRef = AF50CC3327F72FF80036F549 /* Helpers.swift */; };
+		AF50CC3527F72FF80036F549 /* Helpers.swift in Sources */ = {isa = PBXBuildFile; fileRef = AF50CC3327F72FF80036F549 /* Helpers.swift */; };
+		AF50CC3727F7301D0036F549 /* FacetListTableController.swift in Sources */ = {isa = PBXBuildFile; fileRef = AF50CC3627F7301D0036F549 /* FacetListTableController.swift */; };
+		AF50CC3827F7301D0036F549 /* FacetListTableController.swift in Sources */ = {isa = PBXBuildFile; fileRef = AF50CC3627F7301D0036F549 /* FacetListTableController.swift */; };
+		AF50CC3927F7306D0036F549 /* SearchClient.swift in Sources */ = {isa = PBXBuildFile; fileRef = AF50C96B27F623380036F549 /* SearchClient.swift */; };
+		AF50CC3B27F7308A0036F549 /* InstantSearchSwiftUI in Frameworks */ = {isa = PBXBuildFile; productRef = AF50CC3A27F7308A0036F549 /* InstantSearchSwiftUI */; };
+		AF50CC3D27F735380036F549 /* RefinementPersistentListDemoViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = AF50CC3C27F735380036F549 /* RefinementPersistentListDemoViewController.swift */; };
+		AF50CC3E27F7359D0036F549 /* SearchClient.swift in Sources */ = {isa = PBXBuildFile; fileRef = AF50C96B27F623380036F549 /* SearchClient.swift */; };
+		AF50CC3F27F735A00036F549 /* Helpers.swift in Sources */ = {isa = PBXBuildFile; fileRef = AF50CC3327F72FF80036F549 /* Helpers.swift */; };
+		AF50CC4027F735A30036F549 /* FacetListTableController.swift in Sources */ = {isa = PBXBuildFile; fileRef = AF50CC3627F7301D0036F549 /* FacetListTableController.swift */; };
+		AF50CC4127F735A60036F549 /* FilterStateViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = AF50CC3027F72F930036F549 /* FilterStateViewController.swift */; };
+		AF50CC4227F735AA0036F549 /* SearchStateViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = AF50CC2D27F72F750036F549 /* SearchStateViewController.swift */; };
+		AF50CC4427F736080036F549 /* InstantSearch in Frameworks */ = {isa = PBXBuildFile; productRef = AF50CC4327F736080036F549 /* InstantSearch */; };
 		AF7FEB89272CAC5D0003BE62 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = AF7FEB88272CAC5D0003BE62 /* AppDelegate.swift */; };
 		AF7FEB8B272CAC5D0003BE62 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = AF7FEB8A272CAC5D0003BE62 /* SceneDelegate.swift */; };
 		AF7FEB8D272CAC5D0003BE62 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = AF7FEB8C272CAC5D0003BE62 /* ViewController.swift */; };
@@ -394,16 +411,12 @@
 		AF50CA4927F724530036F549 /* FacetList.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = FacetList.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		AF50CA4B27F724530036F549 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		AF50CA4D27F724530036F549 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
-		AF50CA4F27F724530036F549 /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
-		AF50CA5227F724530036F549 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		AF50CA5427F724540036F549 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		AF50CA5727F724540036F549 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		AF50CA5927F724540036F549 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		AF50CA6127F7246D0036F549 /* FacetListPersistentSelection.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = FacetListPersistentSelection.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		AF50CA6327F7246D0036F549 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		AF50CA6527F7246D0036F549 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
-		AF50CA6727F7246D0036F549 /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
-		AF50CA6A27F7246D0036F549 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		AF50CA6C27F7246E0036F549 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		AF50CA6F27F7246E0036F549 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		AF50CA7127F7246E0036F549 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
@@ -551,6 +564,14 @@
 		AF50CC1C27F72CB60036F549 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		AF50CC1F27F72CB60036F549 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		AF50CC2127F72CB60036F549 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		AF50CC2727F72D530036F549 /* RefinementListDemoSwiftUI.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = RefinementListDemoSwiftUI.swift; path = ../../showcase/DemoDirectory/Demos/Filters/RefinementList/RefinementListDemoSwiftUI.swift; sourceTree = "<group>"; };
+		AF50CC2827F72D530036F549 /* RefinementListDemoViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = RefinementListDemoViewController.swift; path = ../../showcase/DemoDirectory/Demos/Filters/RefinementList/RefinementListDemoViewController.swift; sourceTree = "<group>"; };
+		AF50CC2927F72D530036F549 /* RefinementListDemoController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = RefinementListDemoController.swift; path = ../../showcase/DemoDirectory/Demos/Filters/RefinementList/RefinementListDemoController.swift; sourceTree = "<group>"; };
+		AF50CC2D27F72F750036F549 /* SearchStateViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = SearchStateViewController.swift; path = ../../showcase/DemoDirectory/Helpers/SearchStateViewController.swift; sourceTree = "<group>"; };
+		AF50CC3027F72F930036F549 /* FilterStateViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = FilterStateViewController.swift; path = ../../showcase/DemoDirectory/Helpers/FilterStateViewController.swift; sourceTree = "<group>"; };
+		AF50CC3327F72FF80036F549 /* Helpers.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = Helpers.swift; path = ../../showcase/DemoDirectory/Helpers/Helpers.swift; sourceTree = "<group>"; };
+		AF50CC3627F7301D0036F549 /* FacetListTableController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = FacetListTableController.swift; path = ../../showcase/DemoDirectory/Helpers/FacetListTableController.swift; sourceTree = "<group>"; };
+		AF50CC3C27F735380036F549 /* RefinementPersistentListDemoViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = RefinementPersistentListDemoViewController.swift; path = ../../showcase/DemoDirectory/Demos/Filters/RefinementPersistentListDemoViewController.swift; sourceTree = "<group>"; };
 		AF7FEB85272CAC5D0003BE62 /* Examples.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Examples.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		AF7FEB88272CAC5D0003BE62 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		AF7FEB8A272CAC5D0003BE62 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -675,6 +696,8 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				AF50CC3B27F7308A0036F549 /* InstantSearchSwiftUI in Frameworks */,
+				AF50CC2627F72CFD0036F549 /* InstantSearch in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -682,6 +705,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				AF50CC4427F736080036F549 /* InstantSearch in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -898,7 +922,6 @@
 				AF50C94327F620740036F549 /* AppDelegate.swift */,
 				AF50C94527F620740036F549 /* SceneDelegate.swift */,
 				AF50C95727F620C50036F549 /* QuerySuggestions.swift */,
-				AF50C96B27F623380036F549 /* SearchClient.swift */,
 				AF50C95E27F622C70036F549 /* StoreItem.swift */,
 				AF50C96127F622EA0036F549 /* StoreItemsTableViewController.swift */,
 				AF50C96327F622EA0036F549 /* StoreItemTableViewCell.swift */,
@@ -979,8 +1002,9 @@
 			children = (
 				AF50CA4B27F724530036F549 /* AppDelegate.swift */,
 				AF50CA4D27F724530036F549 /* SceneDelegate.swift */,
-				AF50CA4F27F724530036F549 /* ViewController.swift */,
-				AF50CA5127F724530036F549 /* Main.storyboard */,
+				AF50CC2927F72D530036F549 /* RefinementListDemoController.swift */,
+				AF50CC2727F72D530036F549 /* RefinementListDemoSwiftUI.swift */,
+				AF50CC2827F72D530036F549 /* RefinementListDemoViewController.swift */,
 				AF50CA5427F724540036F549 /* Assets.xcassets */,
 				AF50CA5627F724540036F549 /* LaunchScreen.storyboard */,
 				AF50CA5927F724540036F549 /* Info.plist */,
@@ -992,9 +1016,8 @@
 			isa = PBXGroup;
 			children = (
 				AF50CA6327F7246D0036F549 /* AppDelegate.swift */,
+				AF50CC3C27F735380036F549 /* RefinementPersistentListDemoViewController.swift */,
 				AF50CA6527F7246D0036F549 /* SceneDelegate.swift */,
-				AF50CA6727F7246D0036F549 /* ViewController.swift */,
-				AF50CA6927F7246D0036F549 /* Main.storyboard */,
 				AF50CA6C27F7246E0036F549 /* Assets.xcassets */,
 				AF50CA6E27F7246E0036F549 /* LaunchScreen.storyboard */,
 				AF50CA7127F7246E0036F549 /* Info.plist */,
@@ -1351,6 +1374,11 @@
 				AF5089F12766CCCF00F30F18 /* CategoryTableViewCell+Facet.swift */,
 				AFAE55BA27343A3C00B52A43 /* SearchSuggestionTableViewCell.swift */,
 				AF5089EB2766CAF600F30F18 /* SearchSuggestionTableViewCell+QuerySuggestion.swift */,
+				AF50CC2D27F72F750036F549 /* SearchStateViewController.swift */,
+				AF50CC3027F72F930036F549 /* FilterStateViewController.swift */,
+				AF50CC3627F7301D0036F549 /* FacetListTableController.swift */,
+				AF50C96B27F623380036F549 /* SearchClient.swift */,
+				AF50CC3327F72FF80036F549 /* Helpers.swift */,
 				AF7FEB91272CAC5E0003BE62 /* Assets.xcassets */,
 				AF7FEB93272CAC5E0003BE62 /* LaunchScreen.storyboard */,
 				AF7FEB96272CAC5E0003BE62 /* Info.plist */,
@@ -1605,6 +1633,10 @@
 			dependencies = (
 			);
 			name = FacetList;
+			packageProductDependencies = (
+				AF50CC2527F72CFD0036F549 /* InstantSearch */,
+				AF50CC3A27F7308A0036F549 /* InstantSearchSwiftUI */,
+			);
 			productName = FacetList;
 			productReference = AF50CA4927F724530036F549 /* FacetList.app */;
 			productType = "com.apple.product-type.application";
@@ -1622,6 +1654,9 @@
 			dependencies = (
 			);
 			name = FacetListPersistentSelection;
+			packageProductDependencies = (
+				AF50CC4327F736080036F549 /* InstantSearch */,
+			);
 			productName = FacetListPersistentSelection;
 			productReference = AF50CA6127F7246D0036F549 /* FacetListPersistentSelection.app */;
 			productType = "com.apple.product-type.application";
@@ -2306,7 +2341,6 @@
 			files = (
 				AF50CA5827F724540036F549 /* LaunchScreen.storyboard in Resources */,
 				AF50CA5527F724540036F549 /* Assets.xcassets in Resources */,
-				AF50CA5327F724530036F549 /* Main.storyboard in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -2316,7 +2350,6 @@
 			files = (
 				AF50CA7027F7246E0036F549 /* LaunchScreen.storyboard in Resources */,
 				AF50CA6D27F7246E0036F549 /* Assets.xcassets in Resources */,
-				AF50CA6B27F7246D0036F549 /* Main.storyboard in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -2664,9 +2697,16 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				AF50CA5027F724530036F549 /* ViewController.swift in Sources */,
+				AF50CC2B27F72D530036F549 /* RefinementListDemoViewController.swift in Sources */,
+				AF50CC2C27F72D530036F549 /* RefinementListDemoController.swift in Sources */,
+				AF50CC2F27F72F750036F549 /* SearchStateViewController.swift in Sources */,
+				AF50CC3527F72FF80036F549 /* Helpers.swift in Sources */,
+				AF50CC3927F7306D0036F549 /* SearchClient.swift in Sources */,
 				AF50CA4C27F724530036F549 /* AppDelegate.swift in Sources */,
 				AF50CA4E27F724530036F549 /* SceneDelegate.swift in Sources */,
+				AF50CC3827F7301D0036F549 /* FacetListTableController.swift in Sources */,
+				AF50CC3227F72F930036F549 /* FilterStateViewController.swift in Sources */,
+				AF50CC2A27F72D530036F549 /* RefinementListDemoSwiftUI.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -2674,8 +2714,13 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				AF50CA6827F7246D0036F549 /* ViewController.swift in Sources */,
+				AF50CC4227F735AA0036F549 /* SearchStateViewController.swift in Sources */,
+				AF50CC4027F735A30036F549 /* FacetListTableController.swift in Sources */,
+				AF50CC3D27F735380036F549 /* RefinementPersistentListDemoViewController.swift in Sources */,
 				AF50CA6427F7246D0036F549 /* AppDelegate.swift in Sources */,
+				AF50CC3E27F7359D0036F549 /* SearchClient.swift in Sources */,
+				AF50CC3F27F735A00036F549 /* Helpers.swift in Sources */,
+				AF50CC4127F735A60036F549 /* FilterStateViewController.swift in Sources */,
 				AF50CA6627F7246D0036F549 /* SceneDelegate.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -2872,9 +2917,11 @@
 				AF50CA1E27F6FA7D0036F549 /* FacetsView.swift in Sources */,
 				AF5089FE2766CF2D00F30F18 /* Demo.swift in Sources */,
 				AFAE55972733E28800B52A43 /* QuerySuggestionsRecentSearches.SearchViewController.swift in Sources */,
+				AF50CC2E27F72F750036F549 /* SearchStateViewController.swift in Sources */,
 				AF5089F92766CE8B00F30F18 /* QuerySuggestionsRecentSearches.SearchResultController.swift in Sources */,
 				AF50CA1227F6FA500036F549 /* StoreItemTableViewCell+StoreItem.swift in Sources */,
 				AFAE559A2733E31400B52A43 /* QuerySuggestionsCategories.SearchViewController.swift in Sources */,
+				AF50CC3127F72F930036F549 /* FilterStateViewController.swift in Sources */,
 				AFAE55182733DE5100B52A43 /* QuerySuggestions.SearchViewController.swift in Sources */,
 				AF7FEB8D272CAC5D0003BE62 /* ViewController.swift in Sources */,
 				AFAE55D02734ADC800B52A43 /* QuerySuggestionsAndHits.SearchViewController.swift in Sources */,
@@ -2886,6 +2933,7 @@
 				AF50CA0F27F6FA330036F549 /* StoreItemsTableViewController.swift in Sources */,
 				AFEFEF8C27F47F8300B47F7F /* ProductTableViewCell+ProductHit.swift in Sources */,
 				AF5089FB2766CE9B00F30F18 /* CategoriesHits.SearchViewController.swift in Sources */,
+				AF50CC3427F72FF80036F549 /* Helpers.swift in Sources */,
 				AF50CA1827F6FA7D0036F549 /* SuggestionsView.swift in Sources */,
 				AF50CA0C27F6FA130036F549 /* SuggestionsTableViewController.swift in Sources */,
 				AF50CA1127F6FA490036F549 /* UITableView+EmptyResult.swift in Sources */,
@@ -2897,6 +2945,7 @@
 				AF50CA1727F6FA780036F549 /* SwiftUIDemoViewController.swift in Sources */,
 				AF5089EC2766CAF600F30F18 /* SearchSuggestionTableViewCell+QuerySuggestion.swift in Sources */,
 				AF7FEB89272CAC5D0003BE62 /* AppDelegate.swift in Sources */,
+				AF50CC3727F7301D0036F549 /* FacetListTableController.swift in Sources */,
 				AF50C91227F5D6CA0036F549 /* QuerySuggestions.SearchResultsController.swift in Sources */,
 				AF5089F72766CE3E00F30F18 /* VoiceSearch.ViewController.swift in Sources */,
 				AFAE55B42734381000B52A43 /* Product.swift in Sources */,
@@ -3048,28 +3097,12 @@
 			name = LaunchScreen.storyboard;
 			sourceTree = "<group>";
 		};
-		AF50CA5127F724530036F549 /* Main.storyboard */ = {
-			isa = PBXVariantGroup;
-			children = (
-				AF50CA5227F724530036F549 /* Base */,
-			);
-			name = Main.storyboard;
-			sourceTree = "<group>";
-		};
 		AF50CA5627F724540036F549 /* LaunchScreen.storyboard */ = {
 			isa = PBXVariantGroup;
 			children = (
 				AF50CA5727F724540036F549 /* Base */,
 			);
 			name = LaunchScreen.storyboard;
-			sourceTree = "<group>";
-		};
-		AF50CA6927F7246D0036F549 /* Main.storyboard */ = {
-			isa = PBXVariantGroup;
-			children = (
-				AF50CA6A27F7246D0036F549 /* Base */,
-			);
-			name = Main.storyboard;
 			sourceTree = "<group>";
 		};
 		AF50CA6E27F7246E0036F549 /* LaunchScreen.storyboard */ = {
@@ -3777,7 +3810,6 @@
 				INFOPLIST_FILE = FacetList/Info.plist;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchStoryboardName = LaunchScreen;
-				INFOPLIST_KEY_UIMainStoryboardFile = Main;
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
 				IPHONEOS_DEPLOYMENT_TARGET = 15.4;
@@ -3806,7 +3838,6 @@
 				INFOPLIST_FILE = FacetList/Info.plist;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchStoryboardName = LaunchScreen;
-				INFOPLIST_KEY_UIMainStoryboardFile = Main;
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
 				IPHONEOS_DEPLOYMENT_TARGET = 15.4;
@@ -3835,7 +3866,6 @@
 				INFOPLIST_FILE = FacetListPersistentSelection/Info.plist;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchStoryboardName = LaunchScreen;
-				INFOPLIST_KEY_UIMainStoryboardFile = Main;
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
 				IPHONEOS_DEPLOYMENT_TARGET = 15.4;
@@ -3864,7 +3894,6 @@
 				INFOPLIST_FILE = FacetListPersistentSelection/Info.plist;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchStoryboardName = LaunchScreen;
-				INFOPLIST_KEY_UIMainStoryboardFile = Main;
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
 				IPHONEOS_DEPLOYMENT_TARGET = 15.4;
@@ -5820,6 +5849,18 @@
 		AF50CA4227F7209B0036F549 /* InstantSearchSwiftUI */ = {
 			isa = XCSwiftPackageProductDependency;
 			productName = InstantSearchSwiftUI;
+		};
+		AF50CC2527F72CFD0036F549 /* InstantSearch */ = {
+			isa = XCSwiftPackageProductDependency;
+			productName = InstantSearch;
+		};
+		AF50CC3A27F7308A0036F549 /* InstantSearchSwiftUI */ = {
+			isa = XCSwiftPackageProductDependency;
+			productName = InstantSearchSwiftUI;
+		};
+		AF50CC4327F736080036F549 /* InstantSearch */ = {
+			isa = XCSwiftPackageProductDependency;
+			productName = InstantSearch;
 		};
 		AFAE55AD27342C6800B52A43 /* SDWebImage */ = {
 			isa = XCSwiftPackageProductDependency;
