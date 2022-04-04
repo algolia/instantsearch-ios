@@ -117,9 +117,9 @@ private extension QueryRuleCustomDataDemoViewController {
     bannerViewController.view.heightAnchor.constraint(lessThanOrEqualToConstant: 66.7).isActive = true
     
     let stackView = UIStackView()
-      .set(\.spacing, to: .px16)
-      .set(\.axis, to: .vertical)
-      .set(\.translatesAutoresizingMaskIntoConstraints, to: false)
+    stackView.spacing = 16
+    stackView.axis = .vertical
+    stackView.translatesAutoresizingMaskIntoConstraints = false
     
     stackView.addArrangedSubview(searchBar)
     stackView.addArrangedSubview(bannerViewController.view)

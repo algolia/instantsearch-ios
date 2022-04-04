@@ -51,7 +51,7 @@ private extension FilterNumericRangeDemoViewController {
     let searchStateView = searchStateViewController.view!
     let mainStackView = UIStackView()
     mainStackView.axis = .vertical
-    mainStackView.spacing = .px16
+    mainStackView.spacing = 16
     mainStackView.distribution = .fill
     mainStackView.translatesAutoresizingMaskIntoConstraints = false
     mainStackView.alignment = .center

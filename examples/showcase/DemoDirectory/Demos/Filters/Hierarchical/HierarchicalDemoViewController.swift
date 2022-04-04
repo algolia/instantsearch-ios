@@ -46,6 +46,7 @@ class HierarchicalDemoViewController: UIViewController {
   }
   
   private func setupUI() {
+    title = "Hierarchical Facets"
     view.backgroundColor = . white
     let tableView = tableViewController.view!
     tableView.translatesAutoresizingMaskIntoConstraints = false
@@ -55,7 +56,6 @@ class HierarchicalDemoViewController: UIViewController {
     mainStackView.axis = .vertical
     mainStackView.spacing = 10
     view.addSubview(mainStackView)
-    mainStackView.pin(to: view)
     
     NSLayoutConstraint.activate([
       mainStackView.leadingAnchor.constraint(equalTo: view.safeAreaLayoutGuide.leadingAnchor, constant: 10),

@@ -25,3 +25,7 @@ extension Index {
   }
   
 }
+
+extension IndexName {
+  static let recommend: IndexName = "test_FLAGSHIP_ECOM_recommend"
+}

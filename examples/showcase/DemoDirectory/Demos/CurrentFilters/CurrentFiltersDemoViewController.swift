@@ -87,12 +87,17 @@ private extension CurrentFiltersDemoViewController {
     let mainStackView = UIStackView()
     mainStackView.translatesAutoresizingMaskIntoConstraints = false
     mainStackView.axis = .vertical
-    mainStackView.spacing = .px16
+    mainStackView.spacing = 16
 
     view.addSubview(mainStackView)
 
-    mainStackView.pin(to: view.safeAreaLayoutGuide)
-
+    NSLayoutConstraint.activate([
+      mainStackView.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor),
+      mainStackView.bottomAnchor.constraint(equalTo: view.safeAreaLayoutGuide.bottomAnchor),
+      mainStackView.leadingAnchor.constraint(equalTo: view.safeAreaLayoutGuide.leadingAnchor),
+      mainStackView.trailingAnchor.constraint(equalTo: view.safeAreaLayoutGuide.trailingAnchor),
+    ])
+    
     addChild(searchStateViewController)
     searchStateViewController.didMove(toParent: self)
     searchStateViewController.view.heightAnchor.constraint(equalToConstant: 150).isActive = true
@@ -103,8 +108,12 @@ private extension CurrentFiltersDemoViewController {
     searchTextFieldContainer.heightAnchor.constraint(equalToConstant: 54).isActive = true
     searchTextFieldContainer.translatesAutoresizingMaskIntoConstraints = false
     searchTextFieldContainer.addSubview(searchTextField)
-    searchTextField.pin(to: searchTextFieldContainer, insets: UIEdgeInsets(top: 5, left: 5, bottom: -5, right: -5))
-
+    NSLayoutConstraint.activate([
+      searchTextField.topAnchor.constraint(equalTo: searchTextFieldContainer.topAnchor, constant: 5),
+      searchTextField.leadingAnchor.constraint(equalTo: searchTextFieldContainer.leadingAnchor, constant: 5),
+      searchTextField.trailingAnchor.constraint(equalTo: searchTextFieldContainer.trailingAnchor, constant: -5),
+      searchTextField.bottomAnchor.constraint(equalTo: searchTextFieldContainer.bottomAnchor, constant: -5),
+    ])
     mainStackView.addArrangedSubview(searchStateViewController.view)
     mainStackView.addArrangedSubview(searchTextFieldContainer)
     mainStackView.addArrangedSubview(tableView)

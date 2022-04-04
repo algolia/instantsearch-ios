@@ -115,7 +115,7 @@ private extension ToggleDemoViewController {
   func configureMainStackView() {
     mainStackView.axis = .vertical
     mainStackView.alignment = .center
-    mainStackView.spacing = .px16
+    mainStackView.spacing = 16
     mainStackView.distribution = .fill
     mainStackView.translatesAutoresizingMaskIntoConstraints = false
   }
@@ -129,7 +129,7 @@ private extension ToggleDemoViewController {
   func configureCouponStackView() {
     couponStackView.translatesAutoresizingMaskIntoConstraints = false
     couponStackView.axis = .horizontal
-    couponStackView.spacing = .px16
+    couponStackView.spacing = 16
     couponStackView.alignment = .center
     couponStackView.distribution = .fill
   }

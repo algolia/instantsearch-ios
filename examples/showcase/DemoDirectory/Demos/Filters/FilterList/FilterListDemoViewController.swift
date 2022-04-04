@@ -52,7 +52,7 @@ private extension FilterListDemoViewController {
     let mainStackView = UIStackView()
     mainStackView.translatesAutoresizingMaskIntoConstraints = false
     mainStackView.axis = .vertical
-    mainStackView.spacing = .px16
+    mainStackView.spacing = 16
     
     view.addSubview(mainStackView)
     

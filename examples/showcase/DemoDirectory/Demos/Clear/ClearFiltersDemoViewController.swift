@@ -69,11 +69,11 @@ class ClearFiltersDemoViewController: UIViewController {
   func configureLayout() {
 
     let mainStackView = UIStackView()
-      .set(\.axis, to: .vertical)
-      .set(\.alignment, to: .center)
-      .set(\.spacing, to: .px16)
-      .set(\.distribution, to: .fill)
-      .set(\.translatesAutoresizingMaskIntoConstraints, to: false)
+    mainStackView.axis = .vertical
+    mainStackView.alignment = .center
+    mainStackView.spacing = 16
+    mainStackView.distribution = .fill
+    mainStackView.translatesAutoresizingMaskIntoConstraints = false
     
     mainStackView.addArrangedSubview(searchStateViewController.view)
 
@@ -83,10 +83,10 @@ class ClearFiltersDemoViewController: UIViewController {
     ])
 
     let buttonsStackView = UIStackView()
-      .set(\.translatesAutoresizingMaskIntoConstraints, to: false)
-      .set(\.axis, to: .horizontal)
-      .set(\.spacing, to: .px16)
-      .set(\.distribution, to: .equalCentering)
+    buttonsStackView.translatesAutoresizingMaskIntoConstraints = false
+    buttonsStackView.axis = .horizontal
+    buttonsStackView.spacing = 16
+    buttonsStackView.distribution = .equalCentering
 
     buttonsStackView.addArrangedSubview(clearColorsController.button)
     buttonsStackView.addArrangedSubview(clearExceptColorsController.button)
@@ -95,7 +95,12 @@ class ClearFiltersDemoViewController: UIViewController {
     mainStackView.addArrangedSubview(.init())
     
     view.addSubview(mainStackView)
-    mainStackView.pin(to: view.safeAreaLayoutGuide)
+    NSLayoutConstraint.activate([
+      mainStackView.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor),
+      mainStackView.bottomAnchor.constraint(equalTo: view.safeAreaLayoutGuide.bottomAnchor),
+      mainStackView.leadingAnchor.constraint(equalTo: view.safeAreaLayoutGuide.leadingAnchor),
+      mainStackView.trailingAnchor.constraint(equalTo: view.safeAreaLayoutGuide.trailingAnchor),
+    ])
 
   }
 

@@ -101,7 +101,7 @@ private extension FilterNumericComparisonDemoViewController {
     yearTextFieldController.textField.keyboardType = .numberPad
     
     let yearInputStackView = UIStackView()
-    yearInputStackView.spacing = .px16
+    yearInputStackView.spacing = 16
     yearInputStackView.translatesAutoresizingMaskIntoConstraints = false
     yearInputStackView.axis = .horizontal
     yearInputStackView.addArrangedSubview(yearInputLabel)
@@ -140,7 +140,7 @@ private extension FilterNumericComparisonDemoViewController {
     
     let mainStackView = UIStackView()
     mainStackView.axis = .vertical
-    mainStackView.spacing = .px16
+    mainStackView.spacing = 16
     mainStackView.distribution = .fill
     mainStackView.translatesAutoresizingMaskIntoConstraints = false
     mainStackView.alignment = .leading

@@ -41,14 +41,6 @@ extension StoreItemView {
   
 }
 
-//extension StoreItemCollectionViewCell {
-//  
-//  func setup(with productHit: Hit<StoreItem>) {
-//    storeItemView.setup(with: productHit)
-//  }
-//  
-//}
-
 extension StoreItemTableViewCell {
   
   func setup(with productHit: Hit<StoreItem>) {

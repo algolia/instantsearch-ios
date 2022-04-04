@@ -7,7 +7,7 @@
 //
 
 import Foundation
-import InstantSearchCore
+import InstantSearch
 import UIKit
 
 public class NumericRangeController: UIViewController, NumberRangeController {
@@ -61,7 +61,7 @@ public class NumericRangeController: UIViewController, NumberRangeController {
     upperBoundLabel.textAlignment = .center
     let stackView = UIStackView()
     stackView.axis = .horizontal
-    stackView.spacing = .px16
+    stackView.spacing = 16
     stackView.distribution = .equalSpacing
     stackView.translatesAutoresizingMaskIntoConstraints = false
     stackView.alignment = .center

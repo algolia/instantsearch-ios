@@ -111,7 +111,7 @@ private extension MultiIndexDemoViewController {
     let stackView = UIStackView()
     stackView.translatesAutoresizingMaskIntoConstraints = false
     stackView.axis = .vertical
-    stackView.spacing = .px16 / 2
+    stackView.spacing = 16 / 2
     
     view.addSubview(stackView)
     
@@ -121,7 +121,9 @@ private extension MultiIndexDemoViewController {
     searchBar.heightAnchor.constraint(equalToConstant: 44).isActive = true
     stackView.addArrangedSubview(searchBar)
     stackView.addArrangedSubview(hitsViewController.view)
-    stackView.addArrangedSubview(UIView().set(\.translatesAutoresizingMaskIntoConstraints, to: false))
+    let spacer = UIView()
+    spacer.translatesAutoresizingMaskIntoConstraints = false
+    stackView.addArrangedSubview(spacer)
   }
   
 }
@@ -246,20 +248,20 @@ class MultiIndexHitsViewController: UIViewController {
     productsCollectionViewController.collectionView.heightAnchor.constraint(equalToConstant: 300).isActive = true
     
     let stackView = UIStackView()
-      .set(\.translatesAutoresizingMaskIntoConstraints, to: false)
-      .set(\.axis, to: .vertical)
-      .set(\.spacing, to: .px16)
+    stackView.translatesAutoresizingMaskIntoConstraints =  false
+    stackView.axis = .vertical
+    stackView.spacing = 16
     
-    stackView.addArrangedSubview(UILabel()
-      .set(\.text, to: MultiIndexDemoSection.suggestions.title)
-      .set(\.font, to: .systemFont(ofSize: 15, weight: .semibold))
-    )
+    let suggestionsTitleLabel = UILabel()
+    suggestionsTitleLabel.text =  MultiIndexDemoSection.suggestions.title
+    suggestionsTitleLabel.font = .systemFont(ofSize: 15, weight: .semibold)
+    stackView.addArrangedSubview(suggestionsTitleLabel)
+            
     stackView.addArrangedSubview(suggestionsCollectionViewController.collectionView)
     
-    stackView.addArrangedSubview(UILabel()
-      .set(\.text, to: MultiIndexDemoSection.products.title)
-      .set(\.font, to: .systemFont(ofSize: 15, weight: .semibold))
-    )
+    let productsTitleLabel = UILabel()
+    productsTitleLabel.text = MultiIndexDemoSection.products.title
+    productsTitleLabel.font = .systemFont(ofSize: 15, weight: .semibold)
     stackView.addArrangedSubview(productsCollectionViewController.collectionView)
     
     view.addSubview(stackView)

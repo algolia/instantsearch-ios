@@ -24,4 +24,5 @@ extension Index {
     static let suggestions: IndexName = "STAGING_native_ecom_demo_products_query_suggestions"
   }
   
+  
 }

@@ -29,3 +29,10 @@ class StoreItemCollectionViewCell: UICollectionViewCell {
   
 }
 
+extension StoreItemCollectionViewCell {
+  
+  func setup(with productHit: Hit<StoreItem>) {
+    storeItemView.setup(with: productHit)
+  }
+  
+}
