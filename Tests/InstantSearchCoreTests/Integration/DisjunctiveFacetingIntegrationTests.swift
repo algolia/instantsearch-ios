@@ -28,7 +28,7 @@ class DisjunctiveFacetingIntegrationTests: OnlineTestCase {
   override func setUpWithError() throws {
     try super.setUpWithError()
     let settings = Settings().set(\.attributesForFaceting, to: disjunctiveAttributes.map { .default($0) })
-    let items = try [Item](jsonFilename: "disjunctive.json")
+    let items: [Item] = try JSONDecoder().decode(fromResource: "disjunctive", withExtension: "json")
     try fillIndex(withItems: items, settings: settings)
   }
 

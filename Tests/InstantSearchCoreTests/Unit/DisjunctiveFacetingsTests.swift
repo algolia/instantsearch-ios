@@ -12,8 +12,8 @@ import XCTest
 import AlgoliaSearchClient
 
 class DisjunctiveFacetingTests: XCTestCase {
-
-  func testMergeResults() {
+  
+  func testMergeResults() throws {
 
     let query = Query()
 
@@ -21,10 +21,10 @@ class DisjunctiveFacetingTests: XCTestCase {
       FilterGroup.Or(filters: [Filter.Facet(attribute: "price", floatValue: 100)], name: "price"),
       FilterGroup.Or(filters: [Filter.Facet(attribute: "pubYear", floatValue: 2000)], name: "pubYear")
     ])
-
-    let res1 = try! SearchResponse(jsonFilename: "DisjFacetingResult1.json")
-    let res2 = try! SearchResponse(jsonFilename: "DisjFacetingResult2.json")
-    let res3 = try! SearchResponse(jsonFilename: "DisjFacetingResult3.json")
+    
+    let res1: SearchResponse = try JSONDecoder().decode(fromResource: "DisjFacetingResult1", withExtension: "json")
+    let res2: SearchResponse = try JSONDecoder().decode(fromResource: "DisjFacetingResult2", withExtension: "json")
+    let res3: SearchResponse = try JSONDecoder().decode(fromResource: "DisjFacetingResult3", withExtension: "json")
 
     do {
       let output = try queryBuilder.aggregate([res1, res2, res3])
@@ -32,9 +32,7 @@ class DisjunctiveFacetingTests: XCTestCase {
       XCTAssertEqual(output.disjunctiveFacets?.count, 2)
       XCTAssertEqual(output.disjunctiveFacets?.map { $0.key }.contains("price"), true)
       XCTAssertEqual(output.disjunctiveFacets?.map { $0.key }.contains("pubYear"), true)
-
     } catch let error {
-
       XCTFail("\(error)")
     }
 

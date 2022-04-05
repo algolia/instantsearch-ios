@@ -10,7 +10,7 @@ import Foundation
 import UIKit
 import InstantSearch
 
-class DemoListViewController<Demo: DemoProtocol & Codable>: UITableViewController {
+final class DemoListViewController<Demo: DemoProtocol & Codable>: UITableViewController {
   
   let searcher: HitsSearcher
   let filterState: FilterState

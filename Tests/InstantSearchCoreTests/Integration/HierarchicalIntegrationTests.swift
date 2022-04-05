@@ -42,7 +42,7 @@ class HierarchicalTests: OnlineTestCase {
   override func setUpWithError() throws {
     try super.setUpWithError()
     let settings = Settings().set(\.attributesForFaceting, to: hierarchicalAttributes.map { .default($0) })
-    let items = try [Item](jsonFilename: "hierarchical.json")
+    let items: [Item] = try JSONDecoder().decode(fromResource: "hierarchical", withExtension: "json")
     try fillIndex(withItems: items, settings: settings)
   }
 

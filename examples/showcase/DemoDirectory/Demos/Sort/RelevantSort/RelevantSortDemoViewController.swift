@@ -58,8 +58,18 @@ class RelevantSortDemoViewController: UIViewController {
       stackView.bottomAnchor.constraint(equalTo: view.bottomAnchor),
     ])
     stackView.addArrangedSubview(searchBar)
-    stackView.addArrangedSubview(statsController.label)
-    stackView.addArrangedSubview(relevantSortController.view)
+    let statsContainer = UIView()
+    statsContainer.translatesAutoresizingMaskIntoConstraints = false
+    statsContainer.addSubview(statsController.label)
+    statsController.label.translatesAutoresizingMaskIntoConstraints = false
+    statsController.label.pin(to: statsContainer, insets: .init(top: 0, left: 16, bottom: 0, right: -16))
+    stackView.addArrangedSubview(statsContainer)
+    let relevantSortContainer = UIView()
+    relevantSortController.view.translatesAutoresizingMaskIntoConstraints = false
+    relevantSortContainer.translatesAutoresizingMaskIntoConstraints = false
+    relevantSortContainer.addSubview(relevantSortController.view)
+    relevantSortController.view.pin(to: relevantSortContainer, insets: .init(top: 0, left: 16, bottom: 0, right: -16))
+    stackView.addArrangedSubview(relevantSortContainer)
     stackView.addArrangedSubview(hitsController.view)
   }
   

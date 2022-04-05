@@ -53,7 +53,7 @@ class DemoViewControllerFactory: ViewControllerFactory {
       return SwiftUIDemoViewController()
       
     case .showcaseImperative:
-      let factory = ShowcaseDemoViewControllerFactory(framework: .UIKit)
+      let factory = ShowcaseDemoViewControllerFactory(framework: .uikit)
       let viewController = DemoListViewController<ShowcaseDemo>(indexName: "mobile_demo_home")
       let pusher = ViewControllerPusher(factory: factory,
                                         sourceViewController: viewController)
@@ -61,7 +61,7 @@ class DemoViewControllerFactory: ViewControllerFactory {
       return viewController
       
     case .showCaseDeclarative:
-      let factory = ShowcaseDemoViewControllerFactory(framework: .SwiftUI)
+      let factory = ShowcaseDemoViewControllerFactory(framework: .swiftui)
       let viewController = DemoListViewController<ShowcaseDemo>(indexName: "mobile_demo_home")
       let pusher = ViewControllerPusher(factory: factory,
                                         sourceViewController: viewController)

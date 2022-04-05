@@ -11,8 +11,8 @@ import UIKit
 class ShowcaseDemoViewControllerFactory: ViewControllerFactory {
   
   enum Framework {
-    case UIKit
-    case SwiftUI
+    case uikit
+    case swiftui
   }
   
   let framework: Framework
@@ -30,9 +30,9 @@ class ShowcaseDemoViewControllerFactory: ViewControllerFactory {
     let viewController: UIViewController?
     
     switch framework {
-    case .UIKit:
+    case .uikit:
       viewController = uikitShowcaseViewController(for: demoID)
-    case .SwiftUI:
+    case .swiftui:
       viewController = swiftuiShowcaseViewController(for: demoID)
     }
     

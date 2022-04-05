@@ -1,8 +1,8 @@
 //
 //  SceneDelegate.swift
-//  Stats
+//  FilterList
 //
-//  Created by Vladislav Fitc on 04.04.2022.
+//  Created by Vladislav Fitc on 05.04.2022.
 //
 
 import UIKit
@@ -13,7 +13,7 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
 
 
   func scene(_ scene: UIScene, willConnectTo session: UISceneSession, options connectionOptions: UIScene.ConnectionOptions) {
-    setMain(StatsDemoViewController(), for: scene)
+    setMain(MainViewController(), for: scene)
   }
 
 }

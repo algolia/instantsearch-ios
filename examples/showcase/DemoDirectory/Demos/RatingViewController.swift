@@ -97,6 +97,7 @@ class RatingViewController: UIViewController {
       mainStackView.trailingAnchor.constraint(equalTo: view.safeAreaLayoutGuide.trailingAnchor, constant: -10),
       mainStackView.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor),
       mainStackView.bottomAnchor.constraint(equalTo: view.safeAreaLayoutGuide.bottomAnchor),
+      searchStateViewController.view.heightAnchor.constraint(equalToConstant: 200),
     ])
     
     mainStackView.addArrangedSubview(searchStateViewController.view)

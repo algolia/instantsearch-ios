@@ -57,7 +57,7 @@ private extension StatsDemoViewController {
   }
   
   func configureStackView() {
-    stackView.spacing = .px16
+    stackView.spacing = 16
     stackView.axis = .vertical
     stackView.translatesAutoresizingMaskIntoConstraints = false
   }

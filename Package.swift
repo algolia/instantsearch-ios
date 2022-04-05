@@ -36,7 +36,8 @@ let package = Package(
   targets: [
     .target(
       name: "InstantSearchInsights",
-      dependencies: ["AlgoliaSearchClient"]),
+      dependencies: ["AlgoliaSearchClient"],
+      exclude: ["Readme.md"]),
     .testTarget(
       name: "InstantSearchInsightsTests",
       dependencies: ["InstantSearchInsights", "AlgoliaSearchClient"]),
@@ -45,7 +46,16 @@ let package = Package(
       dependencies: ["AlgoliaSearchClient", "InstantSearchInsights", .product(name: "InstantSearchTelemetry", package: "InstantSearchTelemetry")]),
     .testTarget(
       name: "InstantSearchCoreTests",
-      dependencies: ["InstantSearchCore", "AlgoliaSearchClient", "InstantSearchInsights"]),
+      dependencies: ["InstantSearchCore", "AlgoliaSearchClient", "InstantSearchInsights"],
+      resources: [
+        .copy("Misc/DisjFacetingResult1.json"),
+        .copy("Misc/DisjFacetingResult2.json"),
+        .copy("Misc/DisjFacetingResult3.json"),
+        .copy("Misc/disjunctive.json"),
+        .copy("Misc/disjunctiveHierarchical.json"),
+        .copy("Misc/SearchResultFacets.json"),
+        .copy("Misc/SearchResultFacets2.json"),
+      ]),
     .target(
       name: "InstantSearch",
       dependencies: ["InstantSearchCore"]),
@@ -58,6 +68,6 @@ let package = Package(
     .testTarget(
       name: "InstantSearchSwiftUITests",
       dependencies: ["InstantSearchSwiftUI"])
-
+    
   ]
 )
