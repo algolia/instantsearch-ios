@@ -24,7 +24,6 @@ class SearchStateViewController: UIViewController {
   let filterStateViewController: FilterStateViewController
   let clearRefinementsButton: UIButton
   let activityIndicatorController: ActivityIndicatorController
-  let statsController: LabelStatsController
   let clearRefinementsController: FilterClearButtonController
   
   override init(nibName nibNameOrNil: String?, bundle nibBundleOrNil: Bundle?) {
@@ -35,13 +34,11 @@ class SearchStateViewController: UIViewController {
     self.filterStateViewController = FilterStateViewController()
     self.clearRefinementsButton = UIButton(frame: .zero)
     self.activityIndicatorController = ActivityIndicatorController(activityIndicator: activityIndicator)
-    self.statsController = LabelStatsController(label: hitsCountLabel)
     self.clearRefinementsController = FilterClearButtonController(button: clearRefinementsButton)
     self.statsInteractor = .init()
     self.loadingInteractor = .init()
     self.filterClearInteractor = .init()
     super.init(nibName: nibNameOrNil, bundle: nibBundleOrNil)
-//    statsInteractor.connectController(statsController)
     loadingInteractor.connectController(activityIndicatorController)
   }
   
@@ -159,8 +156,6 @@ class SearchStateViewController: UIViewController {
     mainStackView.addArrangedSubview(bottomStackView)
     bottomStackView.leadingAnchor.constraint(equalTo: mainStackView.layoutMarginsGuide.leadingAnchor).isActive = true
     bottomStackView.trailingAnchor.constraint(equalTo: mainStackView.layoutMarginsGuide.trailingAnchor).isActive = true
-    
-    
   }
   
 }

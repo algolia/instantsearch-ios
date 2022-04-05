@@ -58,18 +58,17 @@ class RelevantSortDemoViewController: UIViewController {
       stackView.bottomAnchor.constraint(equalTo: view.bottomAnchor),
     ])
     stackView.addArrangedSubview(searchBar)
-    let statsContainer = UIView()
-    statsContainer.translatesAutoresizingMaskIntoConstraints = false
-    statsContainer.addSubview(statsController.label)
+    let infoStackView = UIStackView()
+    infoStackView.spacing = 5
+    infoStackView.layoutMargins = UIEdgeInsets(top: 0, left: 20, bottom: 0, right: 20)
+    infoStackView.isLayoutMarginsRelativeArrangement = true
+    infoStackView.axis = .vertical
+    infoStackView.translatesAutoresizingMaskIntoConstraints = false
     statsController.label.translatesAutoresizingMaskIntoConstraints = false
-    statsController.label.pin(to: statsContainer, insets: .init(top: 0, left: 16, bottom: 0, right: -16))
-    stackView.addArrangedSubview(statsContainer)
-    let relevantSortContainer = UIView()
     relevantSortController.view.translatesAutoresizingMaskIntoConstraints = false
-    relevantSortContainer.translatesAutoresizingMaskIntoConstraints = false
-    relevantSortContainer.addSubview(relevantSortController.view)
-    relevantSortController.view.pin(to: relevantSortContainer, insets: .init(top: 0, left: 16, bottom: 0, right: -16))
-    stackView.addArrangedSubview(relevantSortContainer)
+    infoStackView.addArrangedSubview(statsController.label)
+    infoStackView.addArrangedSubview(relevantSortController.view)
+    stackView.addArrangedSubview(infoStackView)
     stackView.addArrangedSubview(hitsController.view)
   }
   

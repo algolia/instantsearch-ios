@@ -13,7 +13,9 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
 
 
   func scene(_ scene: UIScene, willConnectTo session: UISceneSession, options connectionOptions: UIScene.ConnectionOptions) {
-    setMain(RelevantSortDemoViewController(), for: scene)
+    let viewController = RelevantSortDemoViewController()
+    viewController.title = "Relevant Sort"
+    setMain(viewController, for: scene)
   }
 
   func sceneDidDisconnect(_ scene: UIScene) {

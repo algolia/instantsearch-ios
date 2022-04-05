@@ -53,6 +53,7 @@ let package = Package(
         .copy("Misc/DisjFacetingResult3.json"),
         .copy("Misc/disjunctive.json"),
         .copy("Misc/disjunctiveHierarchical.json"),
+        .copy("Misc/hierarchical.json"),
         .copy("Misc/SearchResultFacets.json"),
         .copy("Misc/SearchResultFacets2.json"),
       ]),
