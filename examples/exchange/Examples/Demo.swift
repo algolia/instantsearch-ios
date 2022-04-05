@@ -7,53 +7,38 @@
 
 import Foundation
 import UIKit
+import AlgoliaSearchClient
 
-enum CodeExchangeDemo: Int, CaseIterable {
+protocol DemoProtocol {
   
-  case querySuggestions
-  case voiceSearch
-  case multiIndex
-  case querySuggestionsAndCategories
-  case querySuggestionsAndRecentSearches
-  case querySuggestionsAndHits
+  var objectID: ObjectID { get }
+  var name: String { get }
+  var type: String { get }
   
-  var title: String {
-    switch self {
-    case .querySuggestions:
-      return "Query suggestions"
-    case .voiceSearch:
-      return "Voice search"
-    case .multiIndex:
-      return "Multi-index search"
-    case .querySuggestionsAndCategories:
-      return "Query suggestions and categories"
-    case .querySuggestionsAndRecentSearches:
-      return "Query suggestions and recent searches"
-    case .querySuggestionsAndHits:
-      return "Query suggestions and hits"
-    }
-  }
+}
+
+
+struct Demo: Codable, DemoProtocol {
   
-  var viewController: UIViewController {
-    switch self {
-    case .querySuggestions:
-      return QuerySuggestions.SearchViewController()
-    
-    case .voiceSearch:
-      return VoiceSearch.SearchViewController()
-      
-    case .multiIndex:
-      return MultiIndex.SearchViewController()
-      
-    case .querySuggestionsAndCategories:
-      return QuerySuggestionsCategories.SearchViewController()
-      
-    case .querySuggestionsAndRecentSearches:
-      return QuerySuggestionsAndRecentSearches.SearchViewController()
-      
-    case .querySuggestionsAndHits:
-      return QuerySuggestionsAndHits.SearchViewController()
-    }
+  let objectID: ObjectID
+  let name: String
+  let type: String
+  
+  enum ID: String {
+    case showcaseImperative = "showcase_imperative_ui"
+    case showCaseDeclarative = "showcase_declarative_ui"
+    case guideVoiceSearch = "guide_voice_search"
+    case guideQuerySuggestion = "guide_query_suggestion"
+    case guideInsights = "guide_insights"
+    case guideGettingStarted  = "guide_getting_started"
+    case guideDeclarativeUI  = "guide_declarative_ui"
+    case codexVoiceSearch = "codex_voice_search"
+    case codexQuerySuggestionsRecent = "codex_query_suggestions_recent"
+    case codexQuerySuggestionsHits = "codex_query_suggestions_hits"
+    case codexQuerySuggestionsCategories = "codex_query_suggestions_categories"
+    case codexQuerySuggestions = "codex_query_suggestions"
+    case codexMultipleIndex = "codex_multiple_index"
+    case codexCategoriesHits = "codex_categories_hits"
   }
   
 }

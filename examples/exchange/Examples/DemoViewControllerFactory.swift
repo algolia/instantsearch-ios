@@ -1,0 +1,74 @@
+//
+//  DemoViewControllerFactory.swift
+//  Examples
+//
+//  Created by Vladislav Fitc on 05.04.2022.
+//
+
+import Foundation
+import UIKit
+
+class DemoViewControllerFactory: ViewControllerFactory {
+  
+  func viewController(for demo: Demo) -> UIViewController? {
+    guard let id = Demo.ID(rawValue: demo.objectID.rawValue) else {
+      return .none
+    }
+    
+    switch id {
+    case .codexQuerySuggestions:
+      return QuerySuggestions.SearchViewController()
+      
+    case .codexVoiceSearch:
+      return VoiceSearch.SearchViewController()
+      
+    case .codexMultipleIndex:
+      return MultiIndex.SearchViewController()
+      
+    case .codexQuerySuggestionsCategories:
+      return QuerySuggestionsCategories.SearchViewController()
+      
+    case .codexQuerySuggestionsRecent:
+      return QuerySuggestionsAndRecentSearches.SearchViewController()
+      
+    case .codexQuerySuggestionsHits:
+      return QuerySuggestionsAndHits.SearchViewController()
+      
+    case .codexCategoriesHits:
+      return CategoriesHits.SearchViewController()
+      
+    case .guideInsights:
+      return nil
+      
+    case .guideQuerySuggestion:
+      return QuerySuggestionsDemoViewController()
+      
+    case .guideVoiceSearch:
+      return VoiceInputDemoViewController()
+      
+    case .guideGettingStarted:
+      return GettingStartedGuide.StepSeven.ViewController()
+      
+    case .guideDeclarativeUI:
+      return SwiftUIDemoViewController()
+      
+    case .showcaseImperative:
+      let factory = ShowcaseDemoViewControllerFactory(framework: .UIKit)
+      let viewController = DemoListViewController<ShowcaseDemo>(indexName: "mobile_demo_home")
+      let pusher = ViewControllerPusher(factory: factory,
+                                        sourceViewController: viewController)
+      viewController.didSelect = pusher.callAsFunction
+      return viewController
+      
+    case .showCaseDeclarative:
+      let factory = ShowcaseDemoViewControllerFactory(framework: .SwiftUI)
+      let viewController = DemoListViewController<ShowcaseDemo>(indexName: "mobile_demo_home")
+      let pusher = ViewControllerPusher(factory: factory,
+                                        sourceViewController: viewController)
+      viewController.didSelect = pusher.callAsFunction(_:)
+      return viewController
+    }
+  }
+  
+}
+

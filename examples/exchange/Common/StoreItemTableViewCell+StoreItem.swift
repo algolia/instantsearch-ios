@@ -7,10 +7,9 @@
 
 import Foundation
 import UIKit
-import AlgoliaSearchClient
 import InstantSearchCore
 
-extension StoreItemView {
+extension StoreItemTableViewCell {
   
   func setup(with productHit: Hit<StoreItem>) {
     let product = productHit.object
@@ -37,14 +36,6 @@ extension StoreItemView {
       priceLabel.text = "\(price.value) €"
     }
     
-  }
-  
-}
-
-extension StoreItemTableViewCell {
-  
-  func setup(with productHit: Hit<StoreItem>) {
-    storeItemView.setup(with: productHit)
   }
   
 }

@@ -20,7 +20,7 @@ class ResultsViewController: UIViewController {
   let statsController: LabelStatsController
   
   let loadingConnector: LoadingConnector
-  let loadingController: ActivityIndicatorController
+  let loadingController: RefreshLoadingController
   
   init(searcher: HitsSearcher) {
     stackView = .init(frame: .zero)

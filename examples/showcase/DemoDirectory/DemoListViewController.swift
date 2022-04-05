@@ -10,21 +10,22 @@ import Foundation
 import UIKit
 import InstantSearch
 
-class DemoListViewController: UITableViewController {
+class DemoListViewController<Demo: DemoProtocol & Codable>: UITableViewController {
   
   let searcher: HitsSearcher
   let filterState: FilterState
   let hitsInteractor: HitsInteractor<Demo>
   let textFieldController: TextFieldController
   let queryInputInteractor: QueryInputInteractor
+    
+  var didSelect: ((Demo) -> Void)?
   
   let searchController: UISearchController
   private let cellIdentifier = "cellID"
   var groupedDemos: [(groupName: String, demos: [Demo])]
-  weak var delegate: DemoListViewControllerDelegate?
 
-  override init(nibName nibNameOrNil: String?, bundle nibBundleOrNil: Bundle?) {
-    searcher = HitsSearcher(client: .demo, indexName: "mobile_demo_home")
+  init(indexName: IndexName) {
+    searcher = HitsSearcher(client: .demo, indexName: indexName)
     filterState = .init()
     hitsInteractor = HitsInteractor(infiniteScrolling: .on(withOffset: 10), showItemsOnEmptyQuery: true)
     groupedDemos = []
@@ -39,7 +40,7 @@ class DemoListViewController: UITableViewController {
     queryInputInteractor.connectController(textFieldController)
     queryInputInteractor.connectSearcher(searcher)
     searchController.obscuresBackgroundDuringPresentation = false
-    super.init(nibName: nibNameOrNil, bundle: nibBundleOrNil)
+    super.init(nibName: nil, bundle: nil)
     definesPresentationContext = true
     navigationItem.searchController = searchController
     tableView.register(UITableViewCell.self, forCellReuseIdentifier: cellIdentifier)
@@ -69,11 +70,7 @@ class DemoListViewController: UITableViewController {
     }
   }
 
-  
-}
-
-extension DemoListViewController {
-  
+  //MARK: UITableViewDataSource
   
   override func numberOfSections(in tableView: UITableView) -> Int {
     return groupedDemos.count
@@ -94,19 +91,11 @@ extension DemoListViewController {
     return groupedDemos[section].groupName
   }
   
-}
-
-extension DemoListViewController {
+  //MARK: UITableViewDelegate
   
   override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
     let demo = groupedDemos[indexPath.section].demos[indexPath.row]
-    delegate?.demoListViewController(self, didSelect: demo)
+    didSelect?(demo)
   }
-  
-}
 
-protocol DemoListViewControllerDelegate: AnyObject {
-  
-  func demoListViewController(_ demoListViewController: DemoListViewController, didSelect demo: Demo)
-  
 }

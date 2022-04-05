@@ -1,8 +1,8 @@
 //
 //  SceneDelegate.swift
-//  GettingStartedUIKitGuide
+//  Stats
 //
-//  Created by Vladislav Fitc on 01.04.2022.
+//  Created by Vladislav Fitc on 04.04.2022.
 //
 
 import UIKit
@@ -13,7 +13,7 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
 
 
   func scene(_ scene: UIScene, willConnectTo session: UISceneSession, options connectionOptions: UIScene.ConnectionOptions) {
-    setMain(GettingStartedGuide.StepSeven.ViewController(), for: scene)
+    setMain(StatsDemoViewController(), for: scene)
   }
 
   func sceneDidDisconnect(_ scene: UIScene) {
