@@ -156,7 +156,7 @@ class ShowcaseDemoViewControllerFactory: ViewControllerFactory {
       viewController = ToggleDemoViewController()
       
     case .dynamicFacetList:
-      viewController = DynamicFacetListDemoViewController()
+      viewController = DynamicFacetListSwiftUIDemoViewController()
       
     case .facetList:
       viewController = RefinementListDemoViewController()

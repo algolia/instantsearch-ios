@@ -7,7 +7,8 @@
 
 import Foundation
 import UIKit
-import InstantSearch
+import InstantSearchCore
+import InstantSearchSwiftUI
 import SwiftUI
 
 class FilterListSwiftUIDemoViewController<F: FilterType & Hashable>: UIHostingController<FilterListDemoView<F>> {

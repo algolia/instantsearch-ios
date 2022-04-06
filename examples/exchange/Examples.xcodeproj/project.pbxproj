@@ -632,6 +632,7 @@
 		AFB181C427FDB6A0000AA57B /* FilterStateObservable.swift in Sources */ = {isa = PBXBuildFile; fileRef = AFB181C227FDB6A0000AA57B /* FilterStateObservable.swift */; };
 		AFB181C627FDB6D3000AA57B /* FilterListSwiftUIDemoViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = AFB181C527FDB6D3000AA57B /* FilterListSwiftUIDemoViewController.swift */; };
 		AFB181C727FDB6D3000AA57B /* FilterListSwiftUIDemoViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = AFB181C527FDB6D3000AA57B /* FilterListSwiftUIDemoViewController.swift */; };
+		AFB181C827FDC9DB000AA57B /* DynamicFacetsSwiftUIDemoViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = AF50CA3A27F71D2B0036F549 /* DynamicFacetsSwiftUIDemoViewController.swift */; };
 		AFEFEF8327F47F7700B47F7F /* ProductTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = AFEFEF8227F47F7700B47F7F /* ProductTableViewCell.swift */; };
 		AFEFEF8527F47F7700B47F7F /* ProductTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = AFEFEF8227F47F7700B47F7F /* ProductTableViewCell.swift */; };
 		AFEFEF8927F47F7700B47F7F /* ProductTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = AFEFEF8227F47F7700B47F7F /* ProductTableViewCell.swift */; };
@@ -782,21 +783,6 @@
 		AF50CB2F27F72BDB0036F549 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		AF50CB3127F72BDB0036F549 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		AF50CB3927F72BE50036F549 /* FilterToggle.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = FilterToggle.app; sourceTree = BUILT_PRODUCTS_DIR; };
-		AF50CB5327F72C170036F549 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
-		AF50CB5527F72C170036F549 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
-		AF50CB5C27F72C180036F549 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
-		AF50CB5F27F72C180036F549 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
-		AF50CB6127F72C180036F549 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		AF50CB6B27F72C240036F549 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
-		AF50CB6D27F72C240036F549 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
-		AF50CB7427F72C250036F549 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
-		AF50CB7727F72C250036F549 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
-		AF50CB7927F72C250036F549 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		AF50CB8327F72C2F0036F549 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
-		AF50CB8527F72C2F0036F549 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
-		AF50CB8C27F72C300036F549 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
-		AF50CB8F27F72C300036F549 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
-		AF50CB9127F72C300036F549 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		AF50CB9927F72C510036F549 /* QueryRuleCustomData.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = QueryRuleCustomData.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		AF50CB9B27F72C510036F549 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		AF50CB9D27F72C510036F549 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -1505,42 +1491,6 @@
 			path = FilterSegment;
 			sourceTree = "<group>";
 		};
-		AF50CB5227F72C170036F549 /* FilterListFacet */ = {
-			isa = PBXGroup;
-			children = (
-				AF50CB5327F72C170036F549 /* AppDelegate.swift */,
-				AF50CB5527F72C170036F549 /* SceneDelegate.swift */,
-				AF50CB5C27F72C180036F549 /* Assets.xcassets */,
-				AF50CB5E27F72C180036F549 /* LaunchScreen.storyboard */,
-				AF50CB6127F72C180036F549 /* Info.plist */,
-			);
-			path = FilterListFacet;
-			sourceTree = "<group>";
-		};
-		AF50CB6A27F72C240036F549 /* FilterListNumeric */ = {
-			isa = PBXGroup;
-			children = (
-				AF50CB6B27F72C240036F549 /* AppDelegate.swift */,
-				AF50CB6D27F72C240036F549 /* SceneDelegate.swift */,
-				AF50CB7427F72C250036F549 /* Assets.xcassets */,
-				AF50CB7627F72C250036F549 /* LaunchScreen.storyboard */,
-				AF50CB7927F72C250036F549 /* Info.plist */,
-			);
-			path = FilterListNumeric;
-			sourceTree = "<group>";
-		};
-		AF50CB8227F72C2F0036F549 /* FilterListTag */ = {
-			isa = PBXGroup;
-			children = (
-				AF50CB8327F72C2F0036F549 /* AppDelegate.swift */,
-				AF50CB8527F72C2F0036F549 /* SceneDelegate.swift */,
-				AF50CB8C27F72C300036F549 /* Assets.xcassets */,
-				AF50CB8E27F72C300036F549 /* LaunchScreen.storyboard */,
-				AF50CB9127F72C300036F549 /* Info.plist */,
-			);
-			path = FilterListTag;
-			sourceTree = "<group>";
-		};
 		AF50CB9A27F72C510036F549 /* QueryRuleCustomData */ = {
 			isa = PBXGroup;
 			children = (
@@ -1718,9 +1668,6 @@
 				AF50CB0A27F72BCD0036F549 /* FilterRating */,
 				AF50CB2227F72BDA0036F549 /* FilterSegment */,
 				AF83122A27FC86EC00509DF5 /* FilterToggle */,
-				AF50CB5227F72C170036F549 /* FilterListFacet */,
-				AF50CB6A27F72C240036F549 /* FilterListNumeric */,
-				AF50CB8227F72C2F0036F549 /* FilterListTag */,
 				AF50CB9A27F72C510036F549 /* QueryRuleCustomData */,
 				AF50CBB227F72C610036F549 /* SortBy */,
 				AF50CBCA27F72C6F0036F549 /* RelevantSort */,
@@ -3591,6 +3538,7 @@
 				AFAE55182733DE5100B52A43 /* QuerySuggestions.SearchViewController.swift in Sources */,
 				AF50CE9827FB71780036F549 /* DynamicFacetsDemoController.swift in Sources */,
 				AF50CD4A27FAF64E0036F549 /* RelevantSortDemoViewController.swift in Sources */,
+				AFB181C827FDC9DB000AA57B /* DynamicFacetsSwiftUIDemoViewController.swift in Sources */,
 				AF50CCDB27FAE8700036F549 /* NumericRangeController.swift in Sources */,
 				AFAE55D02734ADC800B52A43 /* QuerySuggestionsAndHits.SearchViewController.swift in Sources */,
 				AF50CE6C27FB34F00036F549 /* StoreItemCollectionViewCell+StoreItem.swift in Sources */,
@@ -3929,30 +3877,6 @@
 			isa = PBXVariantGroup;
 			children = (
 				AF50CB2F27F72BDB0036F549 /* Base */,
-			);
-			name = LaunchScreen.storyboard;
-			sourceTree = "<group>";
-		};
-		AF50CB5E27F72C180036F549 /* LaunchScreen.storyboard */ = {
-			isa = PBXVariantGroup;
-			children = (
-				AF50CB5F27F72C180036F549 /* Base */,
-			);
-			name = LaunchScreen.storyboard;
-			sourceTree = "<group>";
-		};
-		AF50CB7627F72C250036F549 /* LaunchScreen.storyboard */ = {
-			isa = PBXVariantGroup;
-			children = (
-				AF50CB7727F72C250036F549 /* Base */,
-			);
-			name = LaunchScreen.storyboard;
-			sourceTree = "<group>";
-		};
-		AF50CB8E27F72C300036F549 /* LaunchScreen.storyboard */ = {
-			isa = PBXVariantGroup;
-			children = (
-				AF50CB8F27F72C300036F549 /* Base */,
 			);
 			name = LaunchScreen.storyboard;
 			sourceTree = "<group>";

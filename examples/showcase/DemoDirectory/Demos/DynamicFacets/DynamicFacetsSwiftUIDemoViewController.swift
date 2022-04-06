@@ -13,11 +13,11 @@ import SwiftUI
 
 struct DynamicFacetList: View {
   
-  @ObservedObject var DynamicFacetListController: DynamicFacetListObservableController
+  @ObservedObject var dynamicFacetListController: DynamicFacetListObservableController
     
   var body: some View {
     ScrollView {
-      ForEach(DynamicFacetListController.orderedFacets, id: \.attribute) { orderedFacet in
+      ForEach(dynamicFacetListController.orderedFacets, id: \.attribute) { orderedFacet in
         VStack(spacing: 0) {
           // Facet header
           ZStack {
@@ -31,9 +31,9 @@ struct DynamicFacetList: View {
           ForEach(orderedFacet.facets, id: \.value) { facet in
             VStack(spacing: 0) {
               FacetRow(facet: facet,
-                       isSelected: DynamicFacetListController.isSelected(facet, for: orderedFacet.attribute))
+                       isSelected: dynamicFacetListController.isSelected(facet, for: orderedFacet.attribute))
                 .onTapGesture {
-                  DynamicFacetListController.toggle(facet, for: orderedFacet.attribute)
+                  dynamicFacetListController.toggle(facet, for: orderedFacet.attribute)
                 }
                 .frame(minHeight: 44, idealHeight: 44, maxHeight: .infinity, alignment: .center)
                 .padding(.horizontal, 5)
@@ -46,7 +46,22 @@ struct DynamicFacetList: View {
   
 }
 
-class DynamicFacetListSwiftUIDemoViewController: UIHostingController<DynamicFacetList> {
+struct DynamicFacetsDemoView: View {
+  
+  @ObservedObject var queryInputController: QueryInputObservableController
+  var dynamicFacetListController: DynamicFacetListObservableController
+
+  var body: some View {
+    NavigationView {
+      DynamicFacetList(dynamicFacetListController: dynamicFacetListController)
+        .navigationBarTitle("Dynamic facets")
+    }
+    .searchable(text: $queryInputController.query)
+  }
+  
+}
+
+class DynamicFacetListSwiftUIDemoViewController: UIHostingController<DynamicFacetsDemoView> {
   
   let queryInputController: QueryInputObservableController
   let facetsController: DynamicFacetListObservableController
@@ -57,7 +72,8 @@ class DynamicFacetListSwiftUIDemoViewController: UIHostingController<DynamicFace
     facetsController = .init()
     algoliaController = .init(queryInputController: queryInputController,
                               DynamicFacetListController: facetsController)
-    super.init(rootView: DynamicFacetList(DynamicFacetListController: facetsController))
+    super.init(rootView: DynamicFacetsDemoView(queryInputController: queryInputController,
+                                               dynamicFacetListController: facetsController))
   }
   
   @objc required dynamic init?(coder aDecoder: NSCoder) {
@@ -74,7 +90,9 @@ struct DynamicFacetList_Preview: PreviewProvider {
                                                       DynamicFacetListController: facetsController)
   
   static var previews: some View {
-    DynamicFacetList(DynamicFacetListController: facetsController)
+    _ = DynamicFacetList_Preview.controller
+    return DynamicFacetsDemoView(queryInputController: DynamicFacetList_Preview.queryInputController,
+                                 dynamicFacetListController: DynamicFacetList_Preview.facetsController)
   }
   
 }
