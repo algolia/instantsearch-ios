@@ -195,13 +195,13 @@ class ShowcaseDemoViewControllerFactory: ViewControllerFactory {
       viewController = MultiIndexDemoViewController()
       
     case .facetFilterList:
-      viewController = FilterListDemo.facet()
+      viewController = FilterListDemoSwiftUI.facet()
       
     case .numericFilterList:
-      viewController = FilterListDemo.numeric()
+      viewController = FilterListDemoSwiftUI.numeric()
       
     case .tagFilterList:
-      viewController = FilterListDemo.tag()
+      viewController = FilterListDemoSwiftUI.tag()
       
     case .searchOnSubmit:
       viewController = SearchInputDemoViewController(searchTriggeringMode: .searchOnSubmit)

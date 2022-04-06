@@ -11,7 +11,90 @@ import InstantSearchCore
 import InstantSearchSwiftUI
 import SwiftUI
 
-struct FilterListDemoSwiftUI : PreviewProvider {
+struct FilterListDemoView<Filter: FilterType & Hashable>: View {
+  
+  let title: String
+  let description: (Filter) -> String
+  let controller: FilterListObservableController<Filter>
+  @ObservedObject var filterState: FilterStateObservable
+  
+  init(filterState: FilterStateObservable,
+       controller: FilterListObservableController<Filter>,
+       description: @escaping (Filter) -> String,
+       title: String) {
+    self.filterState = filterState
+    self.controller = controller
+    self.description = description
+    self.title = title
+  }
+  
+  public var body: some View {
+    NavigationView {
+      VStack {
+        VStack(alignment: .leading, spacing: 0) {
+          Text("Filters")
+            .fontWeight(.heavy)
+            .font(.title3)
+            .padding()
+          Text(filterState.filtersString)
+            .padding()
+        }
+        .frame(minWidth: 0,
+               maxWidth: .infinity,
+               alignment: .leading)
+        .overlay(
+          RoundedRectangle(cornerRadius: 10)
+            .stroke(Color.black, lineWidth: 1)
+        )
+        FilterList(controller) { filter, isSelected in
+          selectableText(text: description(filter), isSelected: isSelected)
+            .frame(height: 44)
+          Divider()
+        }
+        Spacer()
+      }
+      .navigationBarTitle(title)
+      .padding()
+    }
+  }
+  
+  func selectableText(text: String, isSelected: Bool) -> some View {
+    HStack {
+      Text(text)
+      Spacer()
+      if isSelected {
+        Image(systemName: "checkmark")
+          .foregroundColor(.accentColor)
+      }
+    }
+    .contentShape(Rectangle())
+  }
+  
+}
+
+
+struct FilterListDemoSwiftUI: PreviewProvider {
+  
+  static func facet() -> FilterListSwiftUIDemoViewController<Filter.Facet> {
+    return FilterListSwiftUIDemoViewController(filters: FilterListDemoSwiftUI.facetFilters,
+                                               title: "Color",
+                                               description: \.value.description)
+  }
+  
+  static func numeric() -> FilterListSwiftUIDemoViewController<Filter.Numeric> {
+    return FilterListSwiftUIDemoViewController(filters: FilterListDemoSwiftUI.numericFilters,
+                                               title: "Price",
+                                               description: \.value.description)
+  }
+  
+  
+  static func tag() -> FilterListSwiftUIDemoViewController<Filter.Tag> {
+    return FilterListSwiftUIDemoViewController(filters: FilterListDemoSwiftUI.tagFilters,
+                                               title: "Promotion",
+                                               description: \.value.description)
+  }
+  
+  
   
   static let facetFiltersObservableController = FilterListObservableController<Filter.Facet>()
   static let facetFilters = ["red", "blue", "green", "yellow", "black"].map {
@@ -44,49 +127,23 @@ struct FilterListDemoSwiftUI : PreviewProvider {
   static let tagFiltersDemoController = FilterListDemoController(filters: tagFilters,
                                                                  controller: tagFiltersObservableController,
                                                                  selectionMode: .multiple)
-    
-  static func selectableText(text: String, isSelected: Bool) -> some View {
-    HStack {
-      Text(text)
-      Spacer()
-      if isSelected {
-        Image(systemName: "checkmark")
-          .foregroundColor(.accentColor)
-      }
-    }
-    .contentShape(Rectangle())
-  }
-  
-  static func filterList<Filter: FilterType>(with controller: FilterListObservableController<Filter>,
-                                             title: String,
-                                             description: @escaping (Filter) -> String) -> some View {
-    NavigationView {
-      VStack {
-        FilterList(controller) { filter, isSelected in
-          selectableText(text: description(filter), isSelected: isSelected)
-            .frame(height: 44)
-          Divider()
-        }
-        Spacer()
-      }
-      .navigationBarTitle(title)
-      .padding()
-    }
-  }
-  
+
   static var previews: some View {
     let _ = facetFiltersDemoController
-    filterList(with: facetFiltersObservableController,
-               title: "Color",
-               description: \.value.description)
+    FilterListDemoView(filterState: FilterStateObservable(filterState: facetFiltersDemoController.filterState),
+                       controller: facetFiltersObservableController,
+                       description: \.value.description,
+                       title: "Color")
     let _ = numericFiltersDemoController
-    filterList(with: numericFiltersObservableController,
-               title: "Price",
-               description: \.value.description)
+    FilterListDemoView(filterState: FilterStateObservable(filterState: facetFiltersDemoController.filterState),
+                       controller: numericFiltersObservableController,
+                       description: \.value.description,
+                       title: "Price")
     let _ = tagFiltersDemoController
-    filterList(with: tagFiltersObservableController,
-               title: "Promotion",
-               description: \.value.description)
+    FilterListDemoView(filterState: FilterStateObservable(filterState: facetFiltersDemoController.filterState),
+                       controller: tagFiltersObservableController,
+                       description: \.value.description,
+                       title: "Promotion")
   }
   
 }

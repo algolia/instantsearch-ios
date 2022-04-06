@@ -628,6 +628,10 @@
 		AFB181BF27FC95B0000AA57B /* Product.swift in Sources */ = {isa = PBXBuildFile; fileRef = AFAE55B22734380200B52A43 /* Product.swift */; };
 		AFB181C027FC95B0000AA57B /* Product.swift in Sources */ = {isa = PBXBuildFile; fileRef = AFAE55B22734380200B52A43 /* Product.swift */; };
 		AFB181C127FC95B0000AA57B /* Product.swift in Sources */ = {isa = PBXBuildFile; fileRef = AFAE55B22734380200B52A43 /* Product.swift */; };
+		AFB181C327FDB6A0000AA57B /* FilterStateObservable.swift in Sources */ = {isa = PBXBuildFile; fileRef = AFB181C227FDB6A0000AA57B /* FilterStateObservable.swift */; };
+		AFB181C427FDB6A0000AA57B /* FilterStateObservable.swift in Sources */ = {isa = PBXBuildFile; fileRef = AFB181C227FDB6A0000AA57B /* FilterStateObservable.swift */; };
+		AFB181C627FDB6D3000AA57B /* FilterListSwiftUIDemoViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = AFB181C527FDB6D3000AA57B /* FilterListSwiftUIDemoViewController.swift */; };
+		AFB181C727FDB6D3000AA57B /* FilterListSwiftUIDemoViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = AFB181C527FDB6D3000AA57B /* FilterListSwiftUIDemoViewController.swift */; };
 		AFEFEF8327F47F7700B47F7F /* ProductTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = AFEFEF8227F47F7700B47F7F /* ProductTableViewCell.swift */; };
 		AFEFEF8527F47F7700B47F7F /* ProductTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = AFEFEF8227F47F7700B47F7F /* ProductTableViewCell.swift */; };
 		AFEFEF8927F47F7700B47F7F /* ProductTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = AFEFEF8227F47F7700B47F7F /* ProductTableViewCell.swift */; };
@@ -966,6 +970,8 @@
 		AFAE55D82734B5B200B52A43 /* MultiIndex.SearchResultsController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MultiIndex.SearchResultsController.swift; sourceTree = "<group>"; };
 		AFAE55DB2734B87500B52A43 /* VoiceSearch.ResultsController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VoiceSearch.ResultsController.swift; sourceTree = "<group>"; };
 		AFAE55DD2734B98700B52A43 /* QuerySuggestions.SearchResultsController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = QuerySuggestions.SearchResultsController.swift; sourceTree = "<group>"; };
+		AFB181C227FDB6A0000AA57B /* FilterStateObservable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FilterStateObservable.swift; sourceTree = "<group>"; };
+		AFB181C527FDB6D3000AA57B /* FilterListSwiftUIDemoViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FilterListSwiftUIDemoViewController.swift; sourceTree = "<group>"; };
 		AFEAC986273205CF00DD1478 /* MultiIndex.SearchViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MultiIndex.SearchViewController.swift; sourceTree = "<group>"; };
 		AFEAC987273205CF00DD1478 /* QuerySuggestionsCategories.SearchViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = QuerySuggestionsCategories.SearchViewController.swift; sourceTree = "<group>"; };
 		AFEAC98A2732C5E600DD1478 /* QuerySuggestionsRecentSearches.SearchViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = QuerySuggestionsRecentSearches.SearchViewController.swift; sourceTree = "<group>"; };
@@ -1634,6 +1640,7 @@
 				AF50C96827F622FB0036F549 /* UITableView+EmptyResult.swift */,
 				AF50CD8927FB29A10036F549 /* SceneDelegate+Convenience.swift */,
 				AF50C96B27F623380036F549 /* SearchClient.swift */,
+				AFB181C227FDB6A0000AA57B /* FilterStateObservable.swift */,
 				AF50CC3327F72FF80036F549 /* Helpers.swift */,
 				AF50CCBE27FAE6AA0036F549 /* UIView+Layout.swift */,
 			);
@@ -1799,6 +1806,7 @@
 				AF50CCF727FAEE770036F549 /* FilterListDemoController.swift */,
 				AF50CCF627FAEE770036F549 /* FilterListDemoSwiftUI.swift */,
 				AF50CCF927FAEE770036F549 /* FilterListDemoViewController.swift */,
+				AFB181C527FDB6D3000AA57B /* FilterListSwiftUIDemoViewController.swift */,
 				AF83120E27FC7F7400509DF5 /* Assets.xcassets */,
 				AF83121027FC7F7400509DF5 /* LaunchScreen.storyboard */,
 				AF83121327FC7F7400509DF5 /* Info.plist */,
@@ -3567,6 +3575,7 @@
 				AF50CA1E27F6FA7D0036F549 /* FacetsView.swift in Sources */,
 				AF5089FE2766CF2D00F30F18 /* Demo.swift in Sources */,
 				AF50CE4127FB33020036F549 /* StoreItem.swift in Sources */,
+				AFB181C327FDB6A0000AA57B /* FilterStateObservable.swift in Sources */,
 				AFAE55972733E28800B52A43 /* QuerySuggestionsRecentSearches.SearchViewController.swift in Sources */,
 				AF50CC2E27F72F750036F549 /* SearchStateViewController.swift in Sources */,
 				AF50CD2B27FAF4B60036F549 /* TemplateViewController.swift in Sources */,
@@ -3632,6 +3641,7 @@
 				AF50CE9927FB71780036F549 /* DynamicFacetsDemoViewController.swift in Sources */,
 				AF50CD7927FAFAF30036F549 /* SuggestionCollectionViewCell.swift in Sources */,
 				AF50CA1727F6FA780036F549 /* SwiftUIDemoViewController.swift in Sources */,
+				AFB181C627FDB6D3000AA57B /* FilterListSwiftUIDemoViewController.swift in Sources */,
 				AF5089EC2766CAF600F30F18 /* SearchSuggestionTableViewCell+QuerySuggestion.swift in Sources */,
 				AF7FEB89272CAC5D0003BE62 /* AppDelegate.swift in Sources */,
 				AF50CD4C27FAF64E0036F549 /* RelevantSortDemoController.swift in Sources */,
@@ -3668,9 +3678,11 @@
 			buildActionMask = 2147483647;
 			files = (
 				AF83121927FC7FA800509DF5 /* FilterListDemoSwiftUI.swift in Sources */,
+				AFB181C727FDB6D3000AA57B /* FilterListSwiftUIDemoViewController.swift in Sources */,
 				AF83121C27FC7FAD00509DF5 /* FilterListDemo.swift in Sources */,
 				AF83122427FC800100509DF5 /* SearchClient.swift in Sources */,
 				AF83122527FC800C00509DF5 /* SceneDelegate+Convenience.swift in Sources */,
+				AFB181C427FDB6A0000AA57B /* FilterStateObservable.swift in Sources */,
 				AF83121B27FC7FA800509DF5 /* FilterListDemoViewController.swift in Sources */,
 				AF83120A27FC7F7300509DF5 /* MainViewController.swift in Sources */,
 				AF83120627FC7F7300509DF5 /* AppDelegate.swift in Sources */,
