@@ -630,8 +630,6 @@
 		AFB181C127FC95B0000AA57B /* Product.swift in Sources */ = {isa = PBXBuildFile; fileRef = AFAE55B22734380200B52A43 /* Product.swift */; };
 		AFB181C327FDB6A0000AA57B /* FilterStateObservableController.swift in Sources */ = {isa = PBXBuildFile; fileRef = AFB181C227FDB6A0000AA57B /* FilterStateObservableController.swift */; };
 		AFB181C427FDB6A0000AA57B /* FilterStateObservableController.swift in Sources */ = {isa = PBXBuildFile; fileRef = AFB181C227FDB6A0000AA57B /* FilterStateObservableController.swift */; };
-		AFB181C627FDB6D3000AA57B /* FilterListSwiftUIDemoViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = AFB181C527FDB6D3000AA57B /* FilterListSwiftUIDemoViewController.swift */; };
-		AFB181C727FDB6D3000AA57B /* FilterListSwiftUIDemoViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = AFB181C527FDB6D3000AA57B /* FilterListSwiftUIDemoViewController.swift */; };
 		AFB181C827FDC9DB000AA57B /* DynamicFacetsSwiftUIDemoViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = AF50CA3A27F71D2B0036F549 /* DynamicFacetsSwiftUIDemoViewController.swift */; };
 		AFB181C927FE10B7000AA57B /* RefinementListDemoSwiftUI.swift in Sources */ = {isa = PBXBuildFile; fileRef = AF50CC2727F72D530036F549 /* RefinementListDemoSwiftUI.swift */; };
 		AFB181CB27FE1150000AA57B /* FilterStateDebugView.swift in Sources */ = {isa = PBXBuildFile; fileRef = AFB181CA27FE1150000AA57B /* FilterStateDebugView.swift */; };
@@ -970,7 +968,6 @@
 		AFAE55DB2734B87500B52A43 /* VoiceSearch.ResultsController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VoiceSearch.ResultsController.swift; sourceTree = "<group>"; };
 		AFAE55DD2734B98700B52A43 /* QuerySuggestions.SearchResultsController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = QuerySuggestions.SearchResultsController.swift; sourceTree = "<group>"; };
 		AFB181C227FDB6A0000AA57B /* FilterStateObservableController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FilterStateObservableController.swift; sourceTree = "<group>"; };
-		AFB181C527FDB6D3000AA57B /* FilterListSwiftUIDemoViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FilterListSwiftUIDemoViewController.swift; sourceTree = "<group>"; };
 		AFB181CA27FE1150000AA57B /* FilterStateDebugView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FilterStateDebugView.swift; sourceTree = "<group>"; };
 		AFB181CE27FEE8EF000AA57B /* FacetSearchDemoController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FacetSearchDemoController.swift; sourceTree = "<group>"; };
 		AFE7BE1527FEFB83003CAC71 /* FacetSearchDemoSwiftUI.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FacetSearchDemoSwiftUI.swift; sourceTree = "<group>"; };
@@ -1776,7 +1773,6 @@
 				AF50CCF727FAEE770036F549 /* FilterListDemoController.swift */,
 				AF50CCF627FAEE770036F549 /* FilterListDemoSwiftUI.swift */,
 				AF50CCF927FAEE770036F549 /* FilterListDemoViewController.swift */,
-				AFB181C527FDB6D3000AA57B /* FilterListSwiftUIDemoViewController.swift */,
 				AF83120E27FC7F7400509DF5 /* Assets.xcassets */,
 				AF83121027FC7F7400509DF5 /* LaunchScreen.storyboard */,
 				AF83121327FC7F7400509DF5 /* Info.plist */,
@@ -3622,7 +3618,6 @@
 				AF50CE9927FB71780036F549 /* DynamicFacetsDemoViewController.swift in Sources */,
 				AF50CD7927FAFAF30036F549 /* SuggestionCollectionViewCell.swift in Sources */,
 				AF50CA1727F6FA780036F549 /* SwiftUIDemoViewController.swift in Sources */,
-				AFB181C627FDB6D3000AA57B /* FilterListSwiftUIDemoViewController.swift in Sources */,
 				AF5089EC2766CAF600F30F18 /* SearchSuggestionTableViewCell+QuerySuggestion.swift in Sources */,
 				AF7FEB89272CAC5D0003BE62 /* AppDelegate.swift in Sources */,
 				AF50CD4C27FAF64E0036F549 /* RelevantSortDemoController.swift in Sources */,
@@ -3661,7 +3656,6 @@
 			buildActionMask = 2147483647;
 			files = (
 				AF83121927FC7FA800509DF5 /* FilterListDemoSwiftUI.swift in Sources */,
-				AFB181C727FDB6D3000AA57B /* FilterListSwiftUIDemoViewController.swift in Sources */,
 				AFB181CD27FE1150000AA57B /* FilterStateDebugView.swift in Sources */,
 				AF83121C27FC7FAD00509DF5 /* FilterListDemo.swift in Sources */,
 				AF4FF28C27FEF2D800A4BF61 /* FiltersDebugViewController.swift in Sources */,

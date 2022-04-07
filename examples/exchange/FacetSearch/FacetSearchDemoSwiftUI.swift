@@ -38,7 +38,7 @@ class FacetSearchDemoSwiftUI: PreviewProvider {
     var body: some View {
       SearchDemoContainerView(queryInputController) {
         VStack {
-          FilterStateDebugView(filterStateObservableController: filterStateDebugController)
+          FilterStateDebugView(filterStateDebugController)
             .padding()
           ScrollView {
             FacetList(facetListController) { facet, isSelected in

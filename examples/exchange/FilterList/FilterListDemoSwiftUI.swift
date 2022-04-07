@@ -39,7 +39,7 @@ struct FilterListDemoSwiftUI: PreviewProvider {
     let title: String
     let description: (Filter) -> String
     let controller: FilterListObservableController<Filter>
-    @ObservedObject var filterStateController: FilterStateObservableController
+    let filterStateController: FilterStateObservableController
     
     init(filterStateController: FilterStateObservableController,
          controller: FilterListObservableController<Filter>,
@@ -54,7 +54,7 @@ struct FilterListDemoSwiftUI: PreviewProvider {
     public var body: some View {
       NavigationView {
         VStack {
-          FilterStateDebugView(filterStateObservableController: filterStateController)
+          FilterStateDebugView(filterStateController)
           FilterList(controller) { filter, isSelected in
             selectableText(text: description(filter), isSelected: isSelected)
               .frame(height: 44)
@@ -104,15 +104,15 @@ struct FilterListDemoSwiftUI: PreviewProvider {
         
   }
   
-  static func facetViewController() -> ViewController<Filter.Facet> {
+  static func facetViewController() -> ViewController<FacetFilter> {
     return ViewController(controller: facetController)
   }
   
-  static func numericViewController() -> ViewController<Filter.Numeric> {
+  static func numericViewController() -> ViewController<NumericFilter> {
     return ViewController(controller: numericController)
   }
   
-  static func tagViewController() -> ViewController<Filter.Tag> {
+  static func tagViewController() -> ViewController<TagFilter> {
     return ViewController(controller: tagController)
   }
   
@@ -122,7 +122,7 @@ struct FilterListDemoSwiftUI: PreviewProvider {
                                                     "green",
                                                     "yellow",
                                                     "black"].map {
-    Filter.Facet(attribute: "color", stringValue: $0)
+    FacetFilter(attribute: "color", stringValue: $0)
   },
                                           selectionMode: .multiple,
                                           description: \.value.description)

@@ -43,7 +43,7 @@ class RefinementListDemoSwiftUI: PreviewProvider {
     var body: some View {
       NavigationView {
         VStack {
-          FilterStateDebugView(filterStateObservableController: filterStateController)
+          FilterStateDebugView(filterStateController)
             .padding()
           ScrollView {
             VStack {

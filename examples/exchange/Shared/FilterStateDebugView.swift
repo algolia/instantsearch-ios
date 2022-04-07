@@ -10,7 +10,11 @@ import SwiftUI
 
 struct FilterStateDebugView: View {
   
-  @ObservedObject var filterStateObservableController: FilterStateObservableController
+  @ObservedObject var filterStateController: FilterStateObservableController
+  
+  init(_ filterStateController: FilterStateObservableController) {
+    self.filterStateController = filterStateController
+  }
   
   var body: some View {
     VStack(alignment: .leading, spacing: 0) {
@@ -18,7 +22,7 @@ struct FilterStateDebugView: View {
         .fontWeight(.heavy)
         .font(.title3)
         .padding()
-      Text(filterStateObservableController.filtersString)
+      Text(filterStateController.filtersString)
         .padding()
     }
     .frame(minWidth: 0,

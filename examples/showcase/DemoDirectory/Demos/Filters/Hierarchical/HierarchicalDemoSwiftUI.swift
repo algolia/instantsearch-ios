@@ -12,15 +12,31 @@ import InstantSearchSwiftUI
 import SwiftUI
 
 class HierarchicalDemoSwiftUI: PreviewProvider {
+  
+  class Controller {
+    
+    let observableController: HierarchicalObservableController
+    let demoController: HierarchicalDemoController
+    let filterStateController: FilterStateObservableController
+    
+    init() {
+      observableController = HierarchicalObservableController()
+      demoController = HierarchicalDemoController(controller: observableController)
+      filterStateController = .init(filterState: demoController.filterState)
+    }
+    
+  }
     
   struct ContentView: View {
     
-    let controller: HierarchicalObservableController
-    
+    let hierarchicalController: HierarchicalObservableController
+    let filterStateController: FilterStateObservableController
+
     var body: some View {
       NavigationView {
         VStack {
-          HierarchicalList(controller) { facet, nestingLevel, isSelected in
+          FilterStateDebugView(filterStateController)
+          HierarchicalList(hierarchicalController) { facet, nestingLevel, isSelected in
               HierarchicalFacetRow(facet: facet,
                                    nestingLevel: nestingLevel,
                                    isSelected: isSelected)
@@ -36,14 +52,28 @@ class HierarchicalDemoSwiftUI: PreviewProvider {
     
   }
   
-  static let controller: HierarchicalObservableController = .init()
-  static let demoController = HierarchicalDemoController(controller: controller)
+  class ViewController: UIHostingController<ContentView> {
+    
+    let controller: Controller
+    
+    init() {
+      self.controller = Controller()
+      super.init(rootView: ContentView(hierarchicalController: controller.observableController,
+                                       filterStateController: controller.filterStateController))
+    }
+    
+    @MainActor required dynamic init?(coder aDecoder: NSCoder) {
+      fatalError("init(coder:) has not been implemented")
+    }
+    
+  }
+  
+  static let controller = Controller()
   
   static var previews: some View {
-    ContentView(controller: controller)
-      .onAppear {
-        _ = demoController
-      }
+    _ = controller
+    return ContentView(hierarchicalController: controller.observableController,
+                       filterStateController: controller.filterStateController)
   }
   
 }
