@@ -18,7 +18,7 @@ class FilterNumericComparisonDemoViewController: UIViewController {
   let yearConnector: FilterComparisonConnector<Int>
   let priceConnector: FilterComparisonConnector<Double>
   
-  let searchStateViewController: SearchStateViewController
+  let searchStateViewController: SearchDebugViewController
   
   let yearTextFieldController: NumericTextFieldController
   let numericStepperController: NumericStepperController
@@ -51,7 +51,7 @@ class FilterNumericComparisonDemoViewController: UIViewController {
                                 controller: numericStepperController)
     
     
-    self.searchStateViewController = SearchStateViewController()
+    self.searchStateViewController = SearchDebugViewController()
     super.init(nibName: nibNameOrNil, bundle: nibBundleOrNil)
     setup()
   }

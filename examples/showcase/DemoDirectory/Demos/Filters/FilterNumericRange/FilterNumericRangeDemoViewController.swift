@@ -14,7 +14,7 @@ class FilterNumericRangeDemoViewController: UIViewController {
 
   let controller: FilterNumericRangeDemoController
 
-  let searchStateViewController: SearchStateViewController
+  let searchStateViewController: SearchDebugViewController
   
   let numericRangeController: NumericRangeController
 
@@ -24,7 +24,7 @@ class FilterNumericRangeDemoViewController: UIViewController {
     
     self.controller = .init(primaryController: numericRangeController,
                             secondaryController: numericRangeController)
-    self.searchStateViewController = SearchStateViewController()
+    self.searchStateViewController = SearchDebugViewController()
     super.init(nibName: nibNameOrNil, bundle: nibBundleOrNil)
     addChild(searchStateViewController)
     searchStateViewController.didMove(toParent: self)

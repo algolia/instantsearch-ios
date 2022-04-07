@@ -22,7 +22,7 @@ class RefinementListDemoViewController: UIViewController {
   
   let controller: RefinementListDemoController
 
-  let searchStateViewController: SearchStateViewController
+  let searchStateViewController: SearchDebugViewController
   let colorController: FacetListTableController
   let categoryController: FacetListTableController
   let promotionController: FacetListTableController

@@ -15,11 +15,11 @@ class FilterListDemoViewController<F: FilterType & Hashable>: UIViewController {
   let controller: FilterListDemoController<F>
 
   let filterListController: FilterListTableController<F>
-  let searchStateViewController: SearchStateViewController
+  let searchStateViewController: SearchDebugViewController
   
   init(items: [F], selectionMode: SelectionMode) {
     filterListController = FilterListTableController(tableView: .init())
-    searchStateViewController = SearchStateViewController()
+    searchStateViewController = SearchDebugViewController()
     controller = .init(filters: items,
                        controller: filterListController,
                        selectionMode: selectionMode)

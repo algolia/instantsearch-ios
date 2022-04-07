@@ -11,88 +11,61 @@ import InstantSearchCore
 import InstantSearchSwiftUI
 import SwiftUI
 
-struct DynamicFacetList: View {
+struct DynamicFacetDemoSwiftUI: PreviewProvider {
   
-  @ObservedObject var dynamicFacetListController: DynamicFacetListObservableController
+  class Controller {
+      
+    let queryInputController: QueryInputObservableController
+    let filterStateController: FilterStateObservableController
+    let facetsController: DynamicFacetListObservableController
+    let controller: DynamicFacetListDemoController
     
-  var body: some View {
-    ScrollView {
-      ForEach(dynamicFacetListController.orderedFacets, id: \.attribute) { orderedFacet in
-        VStack(spacing: 0) {
-          // Facet header
-          ZStack {
-            Color(.systemGray5)
-            Text(orderedFacet.attribute.rawValue)
-              .fontWeight(.semibold)
-              .frame(maxWidth: .infinity, alignment: .leading)
-              .padding(.horizontal, 5)
-          }
-          // Facet values
-          ForEach(orderedFacet.facets, id: \.value) { facet in
-            VStack(spacing: 0) {
-              FacetRow(facet: facet,
-                       isSelected: dynamicFacetListController.isSelected(facet, for: orderedFacet.attribute))
-                .onTapGesture {
-                  dynamicFacetListController.toggle(facet, for: orderedFacet.attribute)
-                }
-                .frame(minHeight: 44, idealHeight: 44, maxHeight: .infinity, alignment: .center)
-                .padding(.horizontal, 5)
-            }
-          }
-        }
+    init() {
+      queryInputController = QueryInputObservableController()
+      facetsController = DynamicFacetListObservableController()
+      controller = DynamicFacetListDemoController(queryInputController: queryInputController,
+                                                             dynamicFacetListController: facetsController)
+      filterStateController = FilterStateObservableController(filterState: controller.filterState)
+    }
+  
+  }
+  
+  struct ContentView: View {
+    
+    let queryInputController: QueryInputObservableController
+    let facetsController: DynamicFacetListObservableController
+    
+    var body: some View {
+      SearchDemoContainerView(queryInputController) {
+        DynamicFacetList(dynamicFacetListController: facetsController)
+          .navigationBarTitle("Dynamic facets")
       }
     }
+    
   }
   
-}
-
-struct DynamicFacetsDemoView: View {
-  
-  @ObservedObject var queryInputController: QueryInputObservableController
-  var dynamicFacetListController: DynamicFacetListObservableController
-
-  var body: some View {
-    NavigationView {
-      DynamicFacetList(dynamicFacetListController: dynamicFacetListController)
-        .navigationBarTitle("Dynamic facets")
+  class ViewController: UIHostingController<ContentView> {
+    
+    let controller: Controller
+    
+    init() {
+      controller = Controller()
+      let rootView = ContentView(queryInputController: controller.queryInputController,
+                                 facetsController: controller.facetsController)
+      super.init(rootView: rootView)
     }
-    .searchable(text: $queryInputController.query)
+    
+    @objc required dynamic init?(coder aDecoder: NSCoder) {
+      fatalError("init(coder:) has not been implemented")
+    }
+    
   }
-  
-}
 
-class DynamicFacetListSwiftUIDemoViewController: UIHostingController<DynamicFacetsDemoView> {
-  
-  let queryInputController: QueryInputObservableController
-  let facetsController: DynamicFacetListObservableController
-  let algoliaController: DynamicFacetListDemoController
-  
-  init() {
-    queryInputController = .init()
-    facetsController = .init()
-    algoliaController = .init(queryInputController: queryInputController,
-                              DynamicFacetListController: facetsController)
-    super.init(rootView: DynamicFacetsDemoView(queryInputController: queryInputController,
-                                               dynamicFacetListController: facetsController))
-  }
-  
-  @objc required dynamic init?(coder aDecoder: NSCoder) {
-    fatalError("init(coder:) has not been implemented")
-  }
-  
-}
-
-struct DynamicFacetList_Preview: PreviewProvider {
-  
-  static let queryInputController = QueryInputObservableController()
-  static let facetsController = DynamicFacetListObservableController()
-  static let controller = DynamicFacetListDemoController(queryInputController: queryInputController,
-                                                      DynamicFacetListController: facetsController)
-  
+  static let controller = Controller()
   static var previews: some View {
-    _ = DynamicFacetList_Preview.controller
-    return DynamicFacetsDemoView(queryInputController: DynamicFacetList_Preview.queryInputController,
-                                 dynamicFacetListController: DynamicFacetList_Preview.facetsController)
+    _ = controller
+    return ContentView(queryInputController: controller.queryInputController,
+                            facetsController: controller.facetsController)
   }
   
 }

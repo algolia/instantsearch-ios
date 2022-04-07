@@ -1,5 +1,5 @@
 //
-//  SearchStateViewController.swift
+//  SearchDebugViewController.swift
 //  development-pods-instantsearch
 //
 //  Created by Vladislav Fitc on 24/05/2019.
@@ -11,7 +11,7 @@ import UIKit
 import InstantSearch
 import InstantSearchCore
 
-class SearchStateViewController: UIViewController {
+class SearchDebugViewController: UIViewController {
   
   let statsInteractor: StatsInteractor
   let loadingInteractor: LoadingInteractor
@@ -21,7 +21,7 @@ class SearchStateViewController: UIViewController {
   let titleLabel: UILabel
   let hitsCountLabel: UILabel
   let activityIndicator: UIActivityIndicatorView
-  let filterStateViewController: FilterStateViewController
+  let filterStateViewController: FiltersDebugViewController
   let clearRefinementsButton: UIButton
   let activityIndicatorController: ActivityIndicatorController
   let clearRefinementsController: FilterClearButtonController
@@ -31,7 +31,7 @@ class SearchStateViewController: UIViewController {
     self.titleLabel = UILabel(frame: .zero)
     self.hitsCountLabel = UILabel(frame: .zero)
     self.activityIndicator = UIActivityIndicatorView(frame: .zero)
-    self.filterStateViewController = FilterStateViewController()
+    self.filterStateViewController = FiltersDebugViewController()
     self.clearRefinementsButton = UIButton(frame: .zero)
     self.activityIndicatorController = ActivityIndicatorController(activityIndicator: activityIndicator)
     self.clearRefinementsController = FilterClearButtonController(button: clearRefinementsButton)
@@ -160,7 +160,7 @@ class SearchStateViewController: UIViewController {
   
 }
 
-extension SearchStateViewController {
+extension SearchDebugViewController {
   
   func connectFilterState(_ filterState: FilterState) {
     filterStateViewController.connectTo(filterState)

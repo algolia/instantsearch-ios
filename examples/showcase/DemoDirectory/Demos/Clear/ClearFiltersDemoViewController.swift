@@ -14,7 +14,7 @@ class ClearFiltersDemoViewController: UIViewController {
 
   let controller: ClearFiltersDemoController
   
-  let searchStateViewController: SearchStateViewController
+  let searchStateViewController: SearchDebugViewController
 
   let clearColorsController: FilterClearButtonController
   let clearExceptColorsController: FilterClearButtonController

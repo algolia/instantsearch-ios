@@ -19,7 +19,7 @@ class CurrentFiltersDemoViewController: UIViewController {
   let currentFiltersController: CurrentFilterListTableController
   let currentFiltersController2: SearchTextFieldCurrentFiltersController
 
-  let searchStateViewController: SearchStateViewController
+  let searchStateViewController: SearchDebugViewController
 
   let tableView: UITableView
   let searchTextField: UISearchTextField

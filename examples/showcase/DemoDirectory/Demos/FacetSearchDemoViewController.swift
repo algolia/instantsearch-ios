@@ -12,37 +12,19 @@ import UIKit
 
 class FacetSearchDemoViewController: UIViewController {
 
-  let filterState: FilterState
-  let facetSearcher: FacetSearcher
   let searchBar: UISearchBar
   let textFieldController: TextFieldController
-  let categoryController: FacetListTableController
-  let categoryListConnector: FacetListConnector
-  let queryInputConnector: QueryInputConnector
-  
-  let searchStateViewController: SearchStateViewController
+  let facetListController: FacetListTableController
+  let controller: FacetSearchDemoController
+  let searchStateViewController: SearchDebugViewController
 
-  
   override init(nibName nibNameOrNil: String?, bundle nibBundleOrNil: Bundle?) {
-        
-    filterState = .init()
-    facetSearcher = FacetSearcher(client: .demo,
-                                  indexName: "mobile_demo_facet_list_search",
-                                  facetName: "brand")
-    
-    categoryController = FacetListTableController(tableView: .init())
-    categoryListConnector = .init(searcher: facetSearcher,
-                                  filterState: filterState,
-                                  attribute: "brand",
-                                  operator: .or,
-                                  controller: categoryController)
-
     searchBar = .init()
+    facetListController = FacetListTableController(tableView: .init())
     textFieldController = TextFieldController(searchBar: searchBar)
-    queryInputConnector = QueryInputConnector(searcher: facetSearcher, controller: textFieldController)
-    
-    searchStateViewController = SearchStateViewController()
-    
+    searchStateViewController = SearchDebugViewController()
+    controller = .init(facetListController: facetListController,
+                       queryInputController: textFieldController)
     super.init(nibName: nibNameOrNil, bundle: nibBundleOrNil)
     addChild(searchStateViewController)
     searchStateViewController.didMove(toParent: self)
@@ -63,28 +45,21 @@ class FacetSearchDemoViewController: UIViewController {
 private extension FacetSearchDemoViewController {
   
   func setup() {
-    facetSearcher.search()
-    facetSearcher.connectFilterState(filterState)
-    searchStateViewController.connectFilterState(filterState)
-    searchStateViewController.connectFacetSearcher(facetSearcher)
+    searchStateViewController.connectFilterState(controller.filterState)
+    searchStateViewController.connectFacetSearcher(controller.facetSearcher)
   }
 
   func setupUI() {
-    
     view.backgroundColor = .white
-    
-    let tableView = categoryController.tableView
+    let tableView = facetListController.tableView
     tableView.register(UITableViewCell.self, forCellReuseIdentifier: "CellId")
     tableView.translatesAutoresizingMaskIntoConstraints = false
-
     searchBar.translatesAutoresizingMaskIntoConstraints = false
-    searchBar.searchBarStyle = .minimal
-      
+    searchStateViewController.view.translatesAutoresizingMaskIntoConstraints = false
     let stackView = UIStackView()
     stackView.translatesAutoresizingMaskIntoConstraints = false
     stackView.axis = .vertical
-    stackView.spacing = 16
-
+    stackView.spacing = 5
     view.addSubview(stackView)
     NSLayoutConstraint.activate([
       stackView.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor),
@@ -92,11 +67,9 @@ private extension FacetSearchDemoViewController {
       stackView.trailingAnchor.constraint(equalTo: view.safeAreaLayoutGuide.trailingAnchor),
       stackView.bottomAnchor.constraint(equalTo: view.safeAreaLayoutGuide.bottomAnchor),
     ])
-    
     stackView.addArrangedSubview(searchBar)
     stackView.addArrangedSubview(searchStateViewController.view)
     stackView.addArrangedSubview(tableView)
-    
   }
 
 }

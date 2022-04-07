@@ -19,7 +19,7 @@ class SegmentedDemoViewController: UIViewController {
 
   let genderInteractor: SelectableSegmentInteractor<Int, Filter.Facet>
   let segmentedController: SegmentedController<Filter.Facet>
-  let searchStateViewController: SearchStateViewController
+  let searchStateViewController: SearchDebugViewController
 
   let mainStackView = UIStackView(frame: .zero)
   
@@ -36,7 +36,7 @@ class SegmentedDemoViewController: UIViewController {
     ]
     self.filterState = FilterState()
     self.genderInteractor = SelectableSegmentInteractor(items: items)
-    self.searchStateViewController = SearchStateViewController()
+    self.searchStateViewController = SearchDebugViewController()
     segmentedController = SegmentedController<Filter.Facet>(segmentedControl: .init())
     super.init(nibName: nibNameOrNil, bundle: nibBundleOrNil)
     setup()

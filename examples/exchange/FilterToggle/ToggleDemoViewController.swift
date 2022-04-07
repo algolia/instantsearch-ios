@@ -14,7 +14,7 @@ class ToggleDemoViewController: UIViewController {
 
   let controller: ToggleDemoController
   
-  let searchStateViewController: SearchStateViewController
+  let searchStateViewController: SearchDebugViewController
   
   let mainStackView = UIStackView()
   let controlsStackView = UIStackView()
@@ -27,7 +27,7 @@ class ToggleDemoViewController: UIViewController {
   let couponLabel = UILabel()
   
   override init(nibName nibNameOrNil: String?, bundle nibBundleOrNil: Bundle?) {
-    searchStateViewController = SearchStateViewController()
+    searchStateViewController = SearchDebugViewController()
     sizeConstraintButtonController = SelectableFilterButtonController(button: .init())
     vintageButtonController = SelectableFilterButtonController(button: .init())
     couponSwitchController = FilterSwitchController(switch: .init())

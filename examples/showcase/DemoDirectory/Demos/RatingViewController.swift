@@ -17,7 +17,7 @@ class RatingViewController: UIViewController {
   let numberInteractor: NumberInteractor<Double>
   let ratingController: NumericRatingController
   let filterState: FilterState
-  let searchStateViewController: SearchStateViewController
+  let searchStateViewController: SearchDebugViewController
   
   var ratingControl: RatingControl {
     return ratingController.ratingControl
@@ -29,7 +29,7 @@ class RatingViewController: UIViewController {
     numberInteractor = NumberInteractor<Double>()
     ratingController = NumericRatingController()
     filterState = FilterState()
-    searchStateViewController = SearchStateViewController()
+    searchStateViewController = SearchDebugViewController()
     super.init(nibName: nibNameOrNil, bundle: nibBundleOrNil)
   }
   

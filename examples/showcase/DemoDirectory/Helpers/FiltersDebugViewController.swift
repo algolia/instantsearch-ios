@@ -10,15 +10,17 @@ import Foundation
 import UIKit
 import InstantSearchCore
 
-class FilterStateViewController: UIViewController {
+class FiltersDebugViewController: UIViewController {
   
   let stateLabel: UILabel
+  let emptyMessage = NSAttributedString(string:"No filters applied")
   var colorMap: [String: UIColor]
   
   override init(nibName nibNameOrNil: String?, bundle nibBundleOrNil: Bundle?) {
     stateLabel = UILabel(frame: .zero)
     colorMap = [:]
     super.init(nibName: nibNameOrNil, bundle: nibBundleOrNil)
+    stateLabel.attributedText = emptyMessage
   }
   
   required init?(coder aDecoder: NSCoder) {
@@ -34,7 +36,7 @@ class FilterStateViewController: UIViewController {
   func connectTo(_ filterState: FilterState) {
     filterState.onChange.subscribePast(with: self) { viewController, filterState in
       let filtersText = filterState.toFilterGroups().sqlFormWithSyntaxHighlighting(colorMap: viewController.colorMap)
-      viewController.stateLabel.attributedText = filtersText
+      viewController.stateLabel.attributedText = filtersText.string.isEmpty ?  viewController.emptyMessage : filtersText
       viewController.view.layoutIfNeeded()
     }.onQueue(.main)
   }
@@ -82,7 +84,6 @@ extension NSMutableAttributedString {
 extension NSAttributedString {
   
   public static func makeWith(color: UIColor = UIColor.darkText, weight: UIFont.Weight = .regular, ofSize: CGFloat = 12.0, _ text: String) -> NSMutableAttributedString {
-    
     let attrs = [NSAttributedString.Key.font: UIFont.systemFont(ofSize: ofSize, weight: weight), NSAttributedString.Key.foregroundColor: color]
     return NSMutableAttributedString(string: text, attributes:attrs)
   }

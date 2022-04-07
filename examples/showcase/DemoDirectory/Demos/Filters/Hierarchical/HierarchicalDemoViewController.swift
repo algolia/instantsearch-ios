@@ -15,7 +15,7 @@ class HierarchicalDemoViewController: UIViewController {
   let demoController: HierarchicalDemoController
 
   let hierarchicalTableViewController: HierarchicalTableViewController
-  let searchStateViewController: SearchStateViewController
+  let searchStateViewController: SearchDebugViewController
 
   let tableViewController: UITableViewController
 

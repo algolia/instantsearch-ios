@@ -1,5 +1,5 @@
 //
-//  FilterStateObservable.swift
+//  FilterStateObservableController.swift
 //  Examples
 //
 //  Created by Vladislav Fitc on 06.04.2022.
@@ -9,7 +9,7 @@ import Foundation
 import UIKit
 import InstantSearch
 
-class FilterStateObservable: ObservableObject {
+class FilterStateObservableController: ObservableObject {
   
   @Published public var filtersString: String
   
