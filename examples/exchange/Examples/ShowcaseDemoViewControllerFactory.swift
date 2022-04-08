@@ -162,7 +162,7 @@ class ShowcaseDemoViewControllerFactory: ViewControllerFactory {
       viewController = RefinementListDemoSwiftUI.ViewController()
       
     case .facetListPersistentSelection:
-      viewController = RefinementListDemoViewController()
+      viewController = RefinementListDemoSwiftUI.ViewController()
       
     case .segmented:
       viewController = SegmentedDemoViewController()
@@ -219,7 +219,7 @@ class ShowcaseDemoViewControllerFactory: ViewControllerFactory {
       viewController = SearchInputDemoViewController(searchTriggeringMode: .searchAsYouType)
       
     case .hierarchical:
-      viewController = HierarchicalDemoViewController()
+      viewController = HierarchicalDemoSwiftUI.ViewController()
       
     case .querySuggestions:
       viewController = QuerySuggestionsDemoViewController()

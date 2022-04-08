@@ -24,45 +24,47 @@ struct RelevantSortDemoSwiftUI : PreviewProvider {
     @State var isEditing: Bool = false
         
     var body: some View {
-      VStack {
-        SearchBar(text: $queryInputController.query,
-                  isEditing: $isEditing)
-          .padding(.all, 5)
-        if #available(iOS 14.0, *) {
-          Menu {
-            ForEach(0 ..< sortByController.segmentsTitles.count, id: \.self) { index in
-              let indexName = sortByController.segmentsTitles[index]
-              Button(indexName) {
-                sortByController.select(index)
+      NavigationView {
+        VStack {
+          HStack {
+            Text(statsController.stats)
+            Spacer()
+            Menu {
+              ForEach(0 ..< sortByController.segmentsTitles.count, id: \.self) { index in
+                let indexName = sortByController.segmentsTitles[index]
+                Button(indexName) {
+                  sortByController.select(index)
+                }
+              }
+            } label: {
+              if let selectedSegmentIndex = sortByController.selectedSegmentIndex {
+                Label(sortByController.segmentsTitles[selectedSegmentIndex], systemImage: "arrow.up.arrow.down.circle")
               }
             }
-          } label: {
-            if let selectedSegmentIndex = sortByController.selectedSegmentIndex {
-              Label(sortByController.segmentsTitles[selectedSegmentIndex], systemImage: "arrow.up.arrow.down.circle")
-            }
-          }
-        }
-        Text(statsController.stats)
-        if let state = relevantSortController.state {
-          HStack {
-            Text(state.hintText)
-              .foregroundColor(.gray)
-              .font(.footnote)
-            Spacer()
-            Button(state.toggleTitle,
-                   action: relevantSortController.toggle)
-          }.padding(.all, 5)
-        }
-        HitsList(hitsController) { hit, index in
-          VStack {
+          }.padding()
+          if let state = relevantSortController.state {
             HStack {
-              Text(hit?.name ?? "")
+              Text(state.hintText)
+                .foregroundColor(.gray)
+                .font(.footnote)
               Spacer()
-            }
-            Divider()
+              Button(state.toggleTitle,
+                     action: relevantSortController.toggle)
+            }.padding()
           }
-          .padding(.horizontal, 5)
+          HitsList(hitsController) { hit, index in
+            VStack {
+              HStack {
+                Text(hit?.name ?? "")
+                Spacer()
+              }
+              Divider()
+            }
+            .padding()
+          }
         }
+        .navigationBarTitle("Relevant Sort")
+        .searchable(text: $queryInputController.query)
       }
     }
 
@@ -73,7 +75,6 @@ struct RelevantSortDemoSwiftUI : PreviewProvider {
   static let hitsController = HitsObservableController<RelevantSortDemoController.Item>()
   static let queryInputController = QueryInputObservableController()
   static let statsController = StatsTextObservableController()
-  
   static let demoController = RelevantSortDemoController(sortByController: sortByController,
                                                          relevantSortController: relevantSortController,
                                                          hitsController: hitsController,
