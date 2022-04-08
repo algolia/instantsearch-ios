@@ -12,12 +12,11 @@ import InstantSearch
 class FilterStateObservableController: ObservableObject {
   
   @Published public var filtersString: String
-  
   private let emptyMessage = "No filters applied"
   
   public init(filterState: FilterState) {
     filtersString = emptyMessage
-    filterState.onChange.subscribe(with: self) { vc, _ in
+    filterState.onChange.subscribePast(with: self) { vc, _ in
       let sqlString = filterState.toFilterGroups().sqlFormWithSyntaxHighlighting(colorMap: [:]).string
       vc.filtersString = sqlString.isEmpty ? vc.emptyMessage : sqlString
     }

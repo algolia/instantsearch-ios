@@ -165,7 +165,7 @@ class ShowcaseDemoViewControllerFactory: ViewControllerFactory {
       viewController = RefinementListDemoSwiftUI.ViewController()
       
     case .segmented:
-      viewController = SegmentedDemoViewController()
+      viewController = SegmentedDemoSwiftUI.ViewController()
       
     case .filterNumericComparison:
       viewController = FilterNumericComparisonDemoViewController()

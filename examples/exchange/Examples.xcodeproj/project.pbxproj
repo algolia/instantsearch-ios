@@ -647,6 +647,10 @@
 		AFE7BE2027FF2697003CAC71 /* SegmentedDemoSwiftUI.swift in Sources */ = {isa = PBXBuildFile; fileRef = AFE7BE1F27FF2697003CAC71 /* SegmentedDemoSwiftUI.swift */; };
 		AFE7BE2127FF2697003CAC71 /* SegmentedDemoSwiftUI.swift in Sources */ = {isa = PBXBuildFile; fileRef = AFE7BE1F27FF2697003CAC71 /* SegmentedDemoSwiftUI.swift */; };
 		AFE7BE2327FF2764003CAC71 /* InstantSearchSwiftUI in Frameworks */ = {isa = PBXBuildFile; productRef = AFE7BE2227FF2764003CAC71 /* InstantSearchSwiftUI */; };
+		AFE7BE2428006B40003CAC71 /* FilterStateObservableController.swift in Sources */ = {isa = PBXBuildFile; fileRef = AFB181C227FDB6A0000AA57B /* FilterStateObservableController.swift */; };
+		AFE7BE2528006C7F003CAC71 /* FilterStateDebugView.swift in Sources */ = {isa = PBXBuildFile; fileRef = AFB181CA27FE1150000AA57B /* FilterStateDebugView.swift */; };
+		AFE7BE2728006E11003CAC71 /* SegmentedFilterDemoController.swift in Sources */ = {isa = PBXBuildFile; fileRef = AFE7BE2628006E11003CAC71 /* SegmentedFilterDemoController.swift */; };
+		AFE7BE2828006E11003CAC71 /* SegmentedFilterDemoController.swift in Sources */ = {isa = PBXBuildFile; fileRef = AFE7BE2628006E11003CAC71 /* SegmentedFilterDemoController.swift */; };
 		AFEFEF8327F47F7700B47F7F /* ProductTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = AFEFEF8227F47F7700B47F7F /* ProductTableViewCell.swift */; };
 		AFEFEF8527F47F7700B47F7F /* ProductTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = AFEFEF8227F47F7700B47F7F /* ProductTableViewCell.swift */; };
 		AFEFEF8927F47F7700B47F7F /* ProductTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = AFEFEF8227F47F7700B47F7F /* ProductTableViewCell.swift */; };
@@ -977,6 +981,7 @@
 		AFE7BE1827FF0023003CAC71 /* SearchDemoContainerView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchDemoContainerView.swift; sourceTree = "<group>"; };
 		AFE7BE1C27FF07C8003CAC71 /* DynamicFacetList.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DynamicFacetList.swift; sourceTree = "<group>"; };
 		AFE7BE1F27FF2697003CAC71 /* SegmentedDemoSwiftUI.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SegmentedDemoSwiftUI.swift; sourceTree = "<group>"; };
+		AFE7BE2628006E11003CAC71 /* SegmentedFilterDemoController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SegmentedFilterDemoController.swift; sourceTree = "<group>"; };
 		AFEAC986273205CF00DD1478 /* MultiIndex.SearchViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MultiIndex.SearchViewController.swift; sourceTree = "<group>"; };
 		AFEAC987273205CF00DD1478 /* QuerySuggestionsCategories.SearchViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = QuerySuggestionsCategories.SearchViewController.swift; sourceTree = "<group>"; };
 		AFEAC98A2732C5E600DD1478 /* QuerySuggestionsRecentSearches.SearchViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = QuerySuggestionsRecentSearches.SearchViewController.swift; sourceTree = "<group>"; };
@@ -1506,6 +1511,7 @@
 				AF50CB2327F72BDA0036F549 /* AppDelegate.swift */,
 				AF50CB2527F72BDA0036F549 /* SceneDelegate.swift */,
 				AF50CCE527FAEB750036F549 /* SegmentedDemoViewController.swift */,
+				AFE7BE2628006E11003CAC71 /* SegmentedFilterDemoController.swift */,
 				AFE7BE1F27FF2697003CAC71 /* SegmentedDemoSwiftUI.swift */,
 				AF50CB2C27F72BDB0036F549 /* Assets.xcassets */,
 				AF50CB2E27F72BDB0036F549 /* LaunchScreen.storyboard */,
@@ -3350,11 +3356,13 @@
 			buildActionMask = 2147483647;
 			files = (
 				AF50CB2427F72BDA0036F549 /* AppDelegate.swift in Sources */,
+				AFE7BE2828006E11003CAC71 /* SegmentedFilterDemoController.swift in Sources */,
 				AF50CC9F27F746400036F549 /* Helpers.swift in Sources */,
 				AF50CB2627F72BDA0036F549 /* SceneDelegate.swift in Sources */,
 				AF50CDA027FB29A10036F549 /* SceneDelegate+Convenience.swift in Sources */,
 				AF4FF29227FEF2D800A4BF61 /* FiltersDebugViewController.swift in Sources */,
 				AF50CC9D27F746400036F549 /* SearchClient.swift in Sources */,
+				AFE7BE2428006B40003CAC71 /* FilterStateObservableController.swift in Sources */,
 				AFB181AB27FC95B0000AA57B /* Product.swift in Sources */,
 				AF50CE2C27FB31810036F549 /* UITableView+EmptyResult.swift in Sources */,
 				AF50CDE127FB31810036F549 /* StoreItem.swift in Sources */,
@@ -3362,6 +3370,7 @@
 				AF50CC8927F7462C0036F549 /* SearchDebugViewController.swift in Sources */,
 				AFE7BE2127FF2697003CAC71 /* SegmentedDemoSwiftUI.swift in Sources */,
 				AF50CCCF27FAE6AA0036F549 /* UIView+Layout.swift in Sources */,
+				AFE7BE2528006C7F003CAC71 /* FilterStateDebugView.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -3561,6 +3570,7 @@
 				AFAE55972733E28800B52A43 /* QuerySuggestionsRecentSearches.SearchViewController.swift in Sources */,
 				AF50CC2E27F72F750036F549 /* SearchDebugViewController.swift in Sources */,
 				AF50CD2B27FAF4B60036F549 /* TemplateViewController.swift in Sources */,
+				AFE7BE2728006E11003CAC71 /* SegmentedFilterDemoController.swift in Sources */,
 				AF4FF28727FEF2D800A4BF61 /* FiltersDebugViewController.swift in Sources */,
 				AF5089F92766CE8B00F30F18 /* QuerySuggestionsRecentSearches.SearchResultController.swift in Sources */,
 				AFAE559A2733E31400B52A43 /* QuerySuggestionsCategories.SearchViewController.swift in Sources */,
