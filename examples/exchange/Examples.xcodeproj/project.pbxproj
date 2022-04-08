@@ -651,6 +651,9 @@
 		AFE7BE2528006C7F003CAC71 /* FilterStateDebugView.swift in Sources */ = {isa = PBXBuildFile; fileRef = AFB181CA27FE1150000AA57B /* FilterStateDebugView.swift */; };
 		AFE7BE2728006E11003CAC71 /* SegmentedFilterDemoController.swift in Sources */ = {isa = PBXBuildFile; fileRef = AFE7BE2628006E11003CAC71 /* SegmentedFilterDemoController.swift */; };
 		AFE7BE2828006E11003CAC71 /* SegmentedFilterDemoController.swift in Sources */ = {isa = PBXBuildFile; fileRef = AFE7BE2628006E11003CAC71 /* SegmentedFilterDemoController.swift */; };
+		AFE7BE292800737A003CAC71 /* FilterStateDebugView.swift in Sources */ = {isa = PBXBuildFile; fileRef = AFB181CA27FE1150000AA57B /* FilterStateDebugView.swift */; };
+		AFE7BE2A2800739F003CAC71 /* FilterStateObservableController.swift in Sources */ = {isa = PBXBuildFile; fileRef = AFB181C227FDB6A0000AA57B /* FilterStateObservableController.swift */; };
+		AFE7BE2B28008D57003CAC71 /* ClearFiltersDemoSwiftUI.swift in Sources */ = {isa = PBXBuildFile; fileRef = AF50CC7E27F746040036F549 /* ClearFiltersDemoSwiftUI.swift */; };
 		AFEFEF8327F47F7700B47F7F /* ProductTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = AFEFEF8227F47F7700B47F7F /* ProductTableViewCell.swift */; };
 		AFEFEF8527F47F7700B47F7F /* ProductTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = AFEFEF8227F47F7700B47F7F /* ProductTableViewCell.swift */; };
 		AFEFEF8927F47F7700B47F7F /* ProductTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = AFEFEF8227F47F7700B47F7F /* ProductTableViewCell.swift */; };
@@ -3253,6 +3256,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				AFE7BE2A2800739F003CAC71 /* FilterStateObservableController.swift in Sources */,
 				AF50CE2E27FB31810036F549 /* UITableView+EmptyResult.swift in Sources */,
 				AF50CC8227F746050036F549 /* ClearFiltersDemoController.swift in Sources */,
 				AF50CC8327F746050036F549 /* ClearFiltersDemoViewController.swift in Sources */,
@@ -3267,6 +3271,7 @@
 				AF50CAAC27F724C30036F549 /* AppDelegate.swift in Sources */,
 				AF50CAAE27F724C30036F549 /* SceneDelegate.swift in Sources */,
 				AFB181B427FC95B0000AA57B /* Product.swift in Sources */,
+				AFE7BE292800737A003CAC71 /* FilterStateDebugView.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -3567,6 +3572,7 @@
 				AFE7BE2027FF2697003CAC71 /* SegmentedDemoSwiftUI.swift in Sources */,
 				AF50CE4127FB33020036F549 /* StoreItem.swift in Sources */,
 				AFB181C327FDB6A0000AA57B /* FilterStateObservableController.swift in Sources */,
+				AFE7BE2B28008D57003CAC71 /* ClearFiltersDemoSwiftUI.swift in Sources */,
 				AFAE55972733E28800B52A43 /* QuerySuggestionsRecentSearches.SearchViewController.swift in Sources */,
 				AF50CC2E27F72F750036F549 /* SearchDebugViewController.swift in Sources */,
 				AF50CD2B27FAF4B60036F549 /* TemplateViewController.swift in Sources */,

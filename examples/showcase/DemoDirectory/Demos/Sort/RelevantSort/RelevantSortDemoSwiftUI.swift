@@ -13,6 +13,30 @@ import SwiftUI
 
 struct RelevantSortDemoSwiftUI : PreviewProvider {
   
+  class Controller {
+    
+    let relevantSortController: RelevantSortObservableController
+    let sortByController: SelectableSegmentObservableController
+    let hitsController: HitsObservableController<RelevantSortDemoController.Item>
+    let queryInputController: QueryInputObservableController
+    let statsController: StatsTextObservableController
+    let demoController: RelevantSortDemoController
+    
+    init() {
+      relevantSortController = RelevantSortObservableController()
+      sortByController = SelectableSegmentObservableController()
+      hitsController = HitsObservableController<RelevantSortDemoController.Item>()
+      queryInputController = QueryInputObservableController()
+      statsController = StatsTextObservableController()
+      demoController = RelevantSortDemoController(sortByController: sortByController,
+                                                  relevantSortController: relevantSortController,
+                                                  hitsController: hitsController,
+                                                  queryInputController: queryInputController,
+                                                  statsController: statsController)
+    }
+    
+  }
+  
   struct ContentView: View {
     
     @ObservedObject var queryInputController: QueryInputObservableController
@@ -70,27 +94,35 @@ struct RelevantSortDemoSwiftUI : PreviewProvider {
 
   }
   
-  static let relevantSortController = RelevantSortObservableController()
-  static let sortByController = SelectableSegmentObservableController()
-  static let hitsController = HitsObservableController<RelevantSortDemoController.Item>()
-  static let queryInputController = QueryInputObservableController()
-  static let statsController = StatsTextObservableController()
-  static let demoController = RelevantSortDemoController(sortByController: sortByController,
-                                                         relevantSortController: relevantSortController,
-                                                         hitsController: hitsController,
-                                                         queryInputController: queryInputController,
-                                                         statsController: statsController)
+  class ViewController: UIHostingController<ContentView> {
+    
+    let controller: Controller
+    
+    init() {
+      controller = Controller()
+      let contentView = ContentView(queryInputController: controller.queryInputController,
+                                    sortByController: controller.sortByController,
+                                    relevantSortController: controller.relevantSortController,
+                                    hitsController: controller.hitsController,
+                                    statsController: controller.statsController)
+      super.init(rootView: contentView)
+    }
+    
+    @MainActor required dynamic init?(coder aDecoder: NSCoder) {
+      fatalError("init(coder:) has not been implemented")
+    }
+    
+  }
   
+
+  static let controller = Controller()
   static var previews: some View {
-    let _ = (demoController,
-             relevantSortController,
-             sortByController,
-             queryInputController)
-    ContentView(queryInputController: queryInputController,
-                sortByController: sortByController,
-                relevantSortController: relevantSortController,
-                hitsController: hitsController,
-                statsController: statsController)
+    let _ = controller
+    ContentView(queryInputController: controller.queryInputController,
+                sortByController: controller.sortByController,
+                relevantSortController: controller.relevantSortController,
+                hitsController: controller.hitsController,
+                statsController: controller.statsController)
   }
   
 

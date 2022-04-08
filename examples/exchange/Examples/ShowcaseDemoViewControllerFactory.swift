@@ -183,10 +183,10 @@ class ShowcaseDemoViewControllerFactory: ViewControllerFactory {
       viewController = CurrentFiltersDemoViewController()
       
     case .clearFilters:
-      viewController = ClearFiltersDemoViewController()
+      viewController = ClearFiltersDemoSwiftUI.ViewController()
       
     case .relevantSort:
-      viewController = RelevantSortDemoViewController()
+      viewController = RelevantSortDemoSwiftUI.ViewController()
       
     case .voiceSearch:
       viewController = VoiceInputDemoViewController()
