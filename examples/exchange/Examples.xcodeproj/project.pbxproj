@@ -659,6 +659,8 @@
 		AFE7BE2F2800BF4A003CAC71 /* FilterStateObservableController.swift in Sources */ = {isa = PBXBuildFile; fileRef = AFB181C227FDB6A0000AA57B /* FilterStateObservableController.swift */; };
 		AFE7BE302800BFD9003CAC71 /* FilterStateDebugView.swift in Sources */ = {isa = PBXBuildFile; fileRef = AFB181CA27FE1150000AA57B /* FilterStateDebugView.swift */; };
 		AFE7BE312804FA08003CAC71 /* CurrentFiltersDemoSwiftUI.swift in Sources */ = {isa = PBXBuildFile; fileRef = AF50CCB027F7499F0036F549 /* CurrentFiltersDemoSwiftUI.swift */; };
+		AFE7BE3228063AEC003CAC71 /* FilterStateObservableController.swift in Sources */ = {isa = PBXBuildFile; fileRef = AFB181C227FDB6A0000AA57B /* FilterStateObservableController.swift */; };
+		AFE7BE3328063AFA003CAC71 /* FilterStateDebugView.swift in Sources */ = {isa = PBXBuildFile; fileRef = AFB181CA27FE1150000AA57B /* FilterStateDebugView.swift */; };
 		AFEFEF8327F47F7700B47F7F /* ProductTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = AFEFEF8227F47F7700B47F7F /* ProductTableViewCell.swift */; };
 		AFEFEF8527F47F7700B47F7F /* ProductTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = AFEFEF8227F47F7700B47F7F /* ProductTableViewCell.swift */; };
 		AFEFEF8927F47F7700B47F7F /* ProductTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = AFEFEF8227F47F7700B47F7F /* ProductTableViewCell.swift */; };
@@ -3403,9 +3405,11 @@
 				AF83123527FC86EC00509DF5 /* ToggleDemoSwiftUI.swift in Sources */,
 				AF4FF29327FEF2D800A4BF61 /* FiltersDebugViewController.swift in Sources */,
 				AF50CDF027FB31810036F549 /* StoreItem.swift in Sources */,
+				AFE7BE3228063AEC003CAC71 /* FilterStateObservableController.swift in Sources */,
 				AF83123A27FC86EC00509DF5 /* SceneDelegate.swift in Sources */,
 				AF83123727FC86EC00509DF5 /* AppDelegate.swift in Sources */,
 				AF83123627FC86EC00509DF5 /* ToggleDemoViewController.swift in Sources */,
+				AFE7BE3328063AFA003CAC71 /* FilterStateDebugView.swift in Sources */,
 				AFB181B127FC95B0000AA57B /* Product.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

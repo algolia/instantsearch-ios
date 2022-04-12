@@ -139,8 +139,8 @@ private extension ToggleDemoViewController {
     let button = sizeConstraintButtonController.button
     button.translatesAutoresizingMaskIntoConstraints = false
     button.setTitle("size > 40", for: .normal)
-    button.setTitleColor(.black, for: .normal)
-    button.setTitleColor(.systemGreen, for: .selected)
+    button.setTitleColor(.systemGray, for: .normal)
+    button.setTitleColor(UIColor.tintColor, for: .selected)
     button.layer.borderWidth = 1
     button.layer.cornerRadius = 10
     button.contentEdgeInsets = .init(top: 5, left: 5, bottom: 5, right: 5)
@@ -148,7 +148,7 @@ private extension ToggleDemoViewController {
   }
   
   @objc func didTapSizeButton(_ button: UIButton) {
-    let borderColor: UIColor =  button.isSelected ? .black : .systemGreen
+    let borderColor: UIColor =  button.isSelected ? .systemGray : UIColor.tintColor
     button.layer.borderColor = borderColor.cgColor
   }
   
@@ -158,8 +158,8 @@ private extension ToggleDemoViewController {
     button.setTitle("vintage", for: .normal)
     button.titleEdgeInsets = UIEdgeInsets(top: 0, left: 5, bottom: 0, right: -5)
     button.setTitleColor(.black, for: .normal)
-    button.setImage(UIImage(named: "square"), for: .normal)
-    button.setImage(UIImage(named: "check-square"), for: .selected)
+    button.setImage(UIImage(systemName: "square"), for: .normal)
+    button.setImage(UIImage(systemName: "checkmark.square"), for: .selected)
   }
   
   func configureCouponSwitch() {

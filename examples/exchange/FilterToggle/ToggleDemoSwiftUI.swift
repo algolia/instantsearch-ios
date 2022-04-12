@@ -11,6 +11,18 @@ import InstantSearchCore
 import InstantSearchSwiftUI
 import SwiftUI
 
+struct CheckboxToggleStyle: ToggleStyle {
+    func makeBody(configuration: ToggleStyleConfiguration) -> some View {
+        return HStack {
+            configuration.label
+            Spacer()
+            Image(systemName: configuration.isOn ? "checkmark.square" : "square")
+                .resizable()
+                .frame(width: 22, height: 22)
+                .onTapGesture { configuration.isOn.toggle() }
+        }
+    }
+}
 
 struct ToggleDemoSwiftUI: PreviewProvider {
   
@@ -52,8 +64,9 @@ struct ToggleDemoSwiftUI: PreviewProvider {
           }
           if let tagFilter = tagFilterFilterObservableController.filter {
             Toggle(tagFilter.description, isOn: $tagFilterFilterObservableController.isSelected)
+              .toggleStyle(CheckboxToggleStyle())
           }
-          if let facetFilter = facetFilterFilterObservableController.filter {
+          if let _ = facetFilterFilterObservableController.filter {
             Toggle("Coupon", isOn: $facetFilterFilterObservableController.isSelected)
           }
         }
