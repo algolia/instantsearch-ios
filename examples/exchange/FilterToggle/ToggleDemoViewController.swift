@@ -31,10 +31,8 @@ class ToggleDemoViewController: UIViewController {
     sizeConstraintButtonController = SelectableFilterButtonController(button: .init())
     vintageButtonController = SelectableFilterButtonController(button: .init())
     couponSwitchController = FilterSwitchController(switch: .init())
-    controller = .init(sizeConstraintButtonController: sizeConstraintButtonController,
-                                 vintageButtonController: vintageButtonController,
-                                 couponSwitchController: couponSwitchController)
-
+    controller = .init()
+    
     super.init(nibName: nibNameOrNil, bundle: nibBundleOrNil)
     
     setup()
@@ -57,6 +55,9 @@ private extension ToggleDemoViewController {
   func setup() {
     searchStateViewController.connectSearcher(controller.searcher)
     searchStateViewController.connectFilterState(controller.filterState)
+    controller.sizeConstraintConnector.connectController(sizeConstraintButtonController)
+    controller.vintageConnector.connectController(vintageButtonController)
+    controller.couponConnector.connectController(couponSwitchController)
   }
   
   func setupUI() {

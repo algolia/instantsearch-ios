@@ -11,21 +11,84 @@ import InstantSearchCore
 import InstantSearchSwiftUI
 import SwiftUI
 
+
 struct ToggleDemoSwiftUI: PreviewProvider {
   
-  struct ContentView: View {
+  class Controller {
     
-    @ObservedObject var toggleController: FilterToggleObservableController<Filter.Tag>
-    
-    var body: some View {
-      Toggle(toggleController.filter?.description ?? "No filter",
-             isOn: $toggleController.isSelected).padding()
+    let demoController: ToggleDemoController
+    let tagFilterFilterObservableController: FilterToggleObservableController<Filter.Tag>
+    let facetFilterFilterObservableController: FilterToggleObservableController<Filter.Facet>
+    let numericFilterFilterObservableController: FilterToggleObservableController<Filter.Numeric>
+    let filterStateController: FilterStateObservableController
+
+    init() {
+      self.tagFilterFilterObservableController = .init()
+      self.facetFilterFilterObservableController = .init()
+      self.numericFilterFilterObservableController = .init()
+      self.demoController = .init()
+      self.filterStateController = .init(filterState: demoController.filterState)
+      demoController.sizeConstraintConnector.connectController(numericFilterFilterObservableController)
+      demoController.couponConnector.connectController(facetFilterFilterObservableController)
+      demoController.vintageConnector.connectController(tagFilterFilterObservableController)
     }
     
   }
   
+  struct ContentView: View {
+    
+    @ObservedObject var filterStateController: FilterStateObservableController
+    @ObservedObject var tagFilterFilterObservableController: FilterToggleObservableController<Filter.Tag>
+    @ObservedObject var facetFilterFilterObservableController: FilterToggleObservableController<Filter.Facet>
+    @ObservedObject var numericFilterFilterObservableController: FilterToggleObservableController<Filter.Numeric>
+    
+    var body: some View {
+      VStack(spacing: 40) {
+        FilterStateDebugView(filterStateController)
+        HStack {
+          if let numericFilter = numericFilterFilterObservableController.filter {
+            Toggle(numericFilter.description, isOn: $numericFilterFilterObservableController.isSelected)
+              .toggleStyle(.button)
+          }
+          if let tagFilter = tagFilterFilterObservableController.filter {
+            Toggle(tagFilter.description, isOn: $tagFilterFilterObservableController.isSelected)
+          }
+          if let facetFilter = facetFilterFilterObservableController.filter {
+            Toggle("Coupon", isOn: $facetFilterFilterObservableController.isSelected)
+          }
+        }
+        Spacer()
+      }.padding()
+    }
+    
+  }
+  
+  class ViewController: UIHostingController<ContentView> {
+    
+    let demoController: Controller
+    
+    init() {
+      self.demoController = .init()
+      let contentView = ContentView(filterStateController: demoController.filterStateController,
+                                    tagFilterFilterObservableController: demoController.tagFilterFilterObservableController,
+                                    facetFilterFilterObservableController: demoController.facetFilterFilterObservableController,
+                                    numericFilterFilterObservableController: demoController.numericFilterFilterObservableController)
+      super.init(rootView: contentView)
+    }
+    
+    @MainActor required dynamic init?(coder aDecoder: NSCoder) {
+      fatalError("init(coder:) has not been implemented")
+    }
+    
+  }
+  
+  static let controller = Controller()
   static var previews: some View {
-    ContentView(toggleController: .init(filter: "On Sale", isSelected: true))
+    _ = controller
+    return ContentView(filterStateController: controller.filterStateController,
+                       tagFilterFilterObservableController: controller.tagFilterFilterObservableController,
+                       facetFilterFilterObservableController: controller.facetFilterFilterObservableController,
+                       numericFilterFilterObservableController: controller.numericFilterFilterObservableController)
   }
   
 }

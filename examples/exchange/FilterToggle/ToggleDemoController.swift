@@ -18,29 +18,24 @@ class ToggleDemoController {
   let vintageConnector: FilterToggleConnector<Filter.Tag>
   let couponConnector: FilterToggleConnector<Filter.Facet>
   
-  init(sizeConstraintButtonController: SelectableFilterButtonController<Filter.Numeric>,
-       vintageButtonController: SelectableFilterButtonController<Filter.Tag>,
-       couponSwitchController: FilterSwitchController<Filter.Facet>) {
+  init() {
     searcher = HitsSearcher(client: .demo, indexName: "mobile_demo_filter_toggle")
     filterState = .init()
     
     // Size constraint button
     let sizeConstraintFilter = Filter.Numeric(attribute: "size", operator: .greaterThan, value: 40)
     sizeConstraintConnector = .init(filterState: filterState,
-                                    filter: sizeConstraintFilter,
-                                    controller: sizeConstraintButtonController)
+                                    filter: sizeConstraintFilter)
 
     // Vintage tag button
     let vintageFilter = Filter.Tag(value: "vintage")
     vintageConnector = .init(filterState: filterState,
-                             filter: vintageFilter,
-                             controller: vintageButtonController)
+                             filter: vintageFilter)
 
     // Coupon switch
     let couponFacet = Filter.Facet(attribute: "promotions", stringValue: "coupon")
     couponConnector = .init(filterState: filterState,
-                            filter: couponFacet,
-                            controller: couponSwitchController)
+                            filter: couponFacet)
 
     
     searcher.connectFilterState(filterState)

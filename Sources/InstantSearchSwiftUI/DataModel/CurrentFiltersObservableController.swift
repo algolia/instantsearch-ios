@@ -32,6 +32,10 @@ public class CurrentFiltersObservableController: ObservableObject, CurrentFilter
   public init(filters: [FilterAndID] = []) {
     self.filters = filters
   }
+  
+  public func remove(_ filter: FilterAndID) {
+    onRemoveItem?(filter)
+  }
 
 }
 #endif

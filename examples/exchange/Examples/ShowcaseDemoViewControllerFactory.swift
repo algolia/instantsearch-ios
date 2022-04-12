@@ -150,10 +150,10 @@ class ShowcaseDemoViewControllerFactory: ViewControllerFactory {
       viewController = FacetSearchDemoSwiftUI.ViewController()
       
     case .toggle:
-      viewController = ToggleDemoViewController()
+      viewController = ToggleDemoSwiftUI.ViewController()
       
     case .toggleDefault:
-      viewController = ToggleDemoViewController()
+      viewController = ToggleDemoSwiftUI.ViewController()
       
     case .dynamicFacetList:
       viewController = DynamicFacetDemoSwiftUI.ViewController()
@@ -180,7 +180,7 @@ class ShowcaseDemoViewControllerFactory: ViewControllerFactory {
       viewController = SortByDemoViewController()
       
     case .currentFilters:
-      viewController = CurrentFiltersDemoViewController()
+      viewController = CurrentFiltersDemoSwiftUI.ViewController()
       
     case .clearFilters:
       viewController = ClearFiltersDemoSwiftUI.ViewController()

@@ -12,34 +12,26 @@ import UIKit
 
 class CurrentFiltersDemoViewController: UIViewController {
 
-  let filterState: FilterState
-  let currentFiltersListConnector: CurrentFiltersConnector
-  let currentFiltersListConnector2: CurrentFiltersConnector
-
+  let demoController: CurrentFiltersDemoController
   let currentFiltersController: CurrentFilterListTableController
   let currentFiltersController2: SearchTextFieldCurrentFiltersController
-
   let searchStateViewController: SearchDebugViewController
 
   let tableView: UITableView
   let searchTextField: UISearchTextField
 
   override init(nibName nibNameOrNil: String?, bundle nibBundleOrNil: Bundle?) {
+    demoController = CurrentFiltersDemoController()
     searchStateViewController = .init()
-    filterState = .init()
 
     tableView = .init()
     searchTextField = .init()
 
     currentFiltersController = .init(tableView: tableView)
     currentFiltersController2 = .init(searchTextField: searchTextField)
-    
-    currentFiltersListConnector = .init(filterState: filterState,
-                                        controller: currentFiltersController)
+    demoController.currentFiltersListConnector.connectController(currentFiltersController)
+    demoController.currentFiltersListConnector.connectController(currentFiltersController2)
 
-    currentFiltersListConnector2 = .init(filterState: filterState,
-                                         groupIDs: [.or(name: "filterFacets", filterType: .facet)],
-                                         controller: currentFiltersController2)
     super.init(nibName: nibNameOrNil, bundle: nibBundleOrNil)
   }
 
@@ -49,36 +41,13 @@ class CurrentFiltersDemoViewController: UIViewController {
 
   override func viewDidLoad() {
     super.viewDidLoad()
-    setup()
+    searchStateViewController.connectFilterState(demoController.filterState)
     setupUI()
   }
   
 }
 
 private extension CurrentFiltersDemoViewController {
-
-  func setup() {
-
-    searchStateViewController.connectFilterState(filterState)
-
-    let filterFacet1 = Filter.Facet(attribute: "category", value: "table")
-    let filterFacet2 = Filter.Facet(attribute: "category", value: "chair")
-    let filterFacet3 = Filter.Facet(attribute: "category", value: "clothes")
-    let filterFacet4 = Filter.Facet(attribute: "category", value: "kitchen")
-
-    filterState[or: "filterFacets"].add(filterFacet1,
-                                        filterFacet2,
-                                        filterFacet3,
-                                        filterFacet4)
-    
-    let filterNumeric1 = Filter.Numeric(attribute: "price", operator: .greaterThan, value: 10)
-    let filterNumeric2 = Filter.Numeric(attribute: "price", operator: .lessThan, value: 20)
-
-    filterState[and: "filterNumerics"].add(filterNumeric1,
-                                           filterNumeric2)
-
-    filterState.notifyChange()
-  }
 
   func setupUI() {
 
