@@ -11,6 +11,7 @@ import InstantSearch
 import UIKit
 
 public class NumericRangeController: UIViewController, NumberRangeController {
+  
   public var onRangeChanged: ((ClosedRange<Double>) -> Void)?
 
   public typealias Number = Double

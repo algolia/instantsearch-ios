@@ -73,7 +73,7 @@ class ShowcaseDemoViewControllerFactory: ViewControllerFactory {
       viewController = FilterNumericComparisonDemoViewController()
       
     case .filterNumericRange:
-      viewController = FilterNumericRangeDemoViewController()
+      viewController = FilterNumberRangeDemoViewController()
       
     case .filterRating:
       viewController = RatingViewController()
@@ -171,7 +171,7 @@ class ShowcaseDemoViewControllerFactory: ViewControllerFactory {
       viewController = FilterNumericComparisonDemoViewController()
       
     case .filterNumericRange:
-      viewController = FilterNumericRangeDemoViewController()
+      viewController = FilterNumberRangeDemoSwiftUI.ViewController()
       
     case .filterRating:
       viewController = RatingViewController()

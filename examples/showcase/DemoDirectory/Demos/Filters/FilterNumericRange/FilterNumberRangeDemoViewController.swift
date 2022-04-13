@@ -10,9 +10,9 @@ import Foundation
 import UIKit
 import InstantSearch
 
-class FilterNumericRangeDemoViewController: UIViewController {
+class FilterNumberRangeDemoViewController: UIViewController {
 
-  let controller: FilterNumericRangeDemoController
+  let controller: FilterNumberRangeDemoController
 
   let searchStateViewController: SearchDebugViewController
   
@@ -22,10 +22,10 @@ class FilterNumericRangeDemoViewController: UIViewController {
 
     numericRangeController = NumericRangeController(rangeSlider: .init())
     
-    self.controller = .init(primaryController: numericRangeController,
-                            secondaryController: numericRangeController)
+    self.controller = .init()
     self.searchStateViewController = SearchDebugViewController()
     super.init(nibName: nibNameOrNil, bundle: nibBundleOrNil)
+    controller.rangeConnector.connectController(numericRangeController)
     addChild(searchStateViewController)
     searchStateViewController.didMove(toParent: self)
   }
@@ -44,7 +44,7 @@ class FilterNumericRangeDemoViewController: UIViewController {
 }
 
 
-private extension FilterNumericRangeDemoViewController {
+private extension FilterNumberRangeDemoViewController {
 
   func setupUI() {
     view.backgroundColor = .white
@@ -67,12 +67,3 @@ private extension FilterNumericRangeDemoViewController {
   }
 
 }
-
-extension Double {
-  /// Rounds the double to decimal places value
-  func rounded(toPlaces places:Int) -> Double {
-    let divisor = pow(10.0, Double(places))
-    return (self * divisor).rounded() / divisor
-  }
-}
-
