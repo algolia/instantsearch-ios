@@ -29,35 +29,38 @@ struct ShopItemRow: View {
           .indicator(.activity)
           .scaledToFit()
           .clipped()
-          .frame(width: 100, height: 100, alignment: .center)
+          .frame(width: 60, height: 60, alignment: .center)
         VStack(alignment: .leading, spacing: 5) {
           if let highlightedTitle = highlightedTitle {
-            Text(highlightedString: highlightedTitle, highlighted: { Text($0).foregroundColor(.blue) })
-              .font(.system(.headline))
+            Text(highlightedString: highlightedTitle,
+                 highlighted: { Text($0).foregroundColor(.blue) })
+              .font(.system(.subheadline))
           } else {
             Text(title)
               .font(.system(.headline))
           }
-          Spacer()
-            .frame(height: 1, alignment: /*@START_MENU_TOKEN@*/.center/*@END_MENU_TOKEN@*/)
-          Text(subtitle)
-            .font(.system(size: 14, weight: .medium, design: .default))
-          Text(details)
-            .font(.system(.caption))
-            .foregroundColor(.gray)
+          if !subtitle.isEmpty {
+            Text(subtitle)
+              .font(.system(.footnote))
+              .foregroundColor(.gray)
+          }
+          if !details.isEmpty {
+            Text(details)
+              .font(.system(.caption2))
+          }
           if let priceString = self.priceString {
             HStack(alignment: .bottom, spacing: 2) {
-              Text("$")
-                .foregroundColor(.orange)
-                .font(.system(.footnote))
-              Text(priceString)
+              Text("\(priceString)€")
                 .foregroundColor(.black)
-                .font(.system(.callout))
+                .font(.system(.caption))
             }
           }
         }.multilineTextAlignment(.leading)
       }
-      .frame(minWidth: /*@START_MENU_TOKEN@*/0/*@END_MENU_TOKEN@*/, idealWidth: 100, maxWidth: /*@START_MENU_TOKEN@*/.infinity/*@END_MENU_TOKEN@*/, minHeight: /*@START_MENU_TOKEN@*/0/*@END_MENU_TOKEN@*/, idealHeight: 140, maxHeight: 140, alignment: .leading)
+      .frame(maxWidth: .infinity,
+             idealHeight: 80,
+             maxHeight: 80,
+             alignment: .leading)
       .padding(.horizontal, 20)
       Divider()
     }
@@ -128,7 +131,7 @@ struct ShopItemRow: View {
     self.details = ""//item.description ?? ""
     self.imageURL = item.images.first ?? URL(string: "google.com")!
     self.highlightedTitle = product?.hightlightedString(forKey: "name")
-    self.price = 100 //item.price
+    self.price = item.price?.value
   }
 
   

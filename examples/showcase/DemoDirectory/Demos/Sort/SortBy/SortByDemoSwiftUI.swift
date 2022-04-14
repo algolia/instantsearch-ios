@@ -13,70 +13,86 @@ import SwiftUI
 
 struct SortByDemoSwiftUI: PreviewProvider {
   
+  class Controller {
+    
+    let demoController: SortByDemoController
+    let queryInputController: QueryInputObservableController
+    let selectableSegmentObservableController: SelectableSegmentObservableController
+    let hitsController: HitsObservableController<Hit<StoreItem>>
+    
+    init() {
+      demoController = SortByDemoController()
+      queryInputController = QueryInputObservableController()
+      selectableSegmentObservableController = SelectableSegmentObservableController()
+      hitsController = HitsObservableController<Hit<StoreItem>>()
+      
+      demoController.queryInputConnector.connectController(queryInputController)
+      demoController.hitsConnector.connectController(hitsController)
+      demoController.sortByConnector.connectController(selectableSegmentObservableController,
+                                                       presenter: demoController.title(for:))
+    }
+    
+  }
+  
   struct ContentView: View {
     
     @ObservedObject var queryInputController: QueryInputObservableController
     @ObservedObject var selectableSegmentObservableController: SelectableSegmentObservableController
     @ObservedObject var hitsController: HitsObservableController<Hit<StoreItem>>
-    
-    @State var isEditing: Bool = false
-    
+        
     var body: some View {
+      let selectedBinding = Binding(
+        get: { self.selectableSegmentObservableController.selectedSegmentIndex ?? 0 },
+        set: { self.selectableSegmentObservableController.select($0) }
+      )
       VStack {
-        SearchBar(text: $queryInputController.query,
-                  isEditing: $isEditing)
-          .padding(.all, 5)
-        if #available(iOS 14.0, *) {
-          Menu {
-            let segmentTitles = selectableSegmentObservableController.segmentsTitles
-            ForEach(0..<segmentTitles.count) { segmentIndex in
-              Button(segmentTitles[segmentIndex]) {
-                selectableSegmentObservableController.select(segmentIndex)
-              }
-            }
-          } label: {
-            if let selectedSegmentIndex = selectableSegmentObservableController.selectedSegmentIndex {
-              Label(selectableSegmentObservableController.segmentsTitles[selectedSegmentIndex], systemImage: "arrow.up.arrow.down.circle")
+        Picker("Filter Segment", selection: selectedBinding) {
+          ForEach(0 ..< selectableSegmentObservableController.segmentsTitles.count, id: \.self) { index in
+            let title = selectableSegmentObservableController.segmentsTitles[index]
+            Button(title) {
+              selectableSegmentObservableController.select(index)
             }
           }
-        }
+         }
+         .pickerStyle(.segmented)
         HitsList(hitsController) { hit, index in
-          VStack {
-            HStack {
-              hit.flatMap {
-                Text("\($0.object.name) (\($0.object.brand ?? ""))")
-              }
-              Spacer()
-            }
-            Divider()
-          }
-          .padding(.horizontal, 5)
+          ShopItemRow(product: hit)
         }
       }
+      .padding()
+      .searchable(text: $queryInputController.query)
     }
 
   }
   
-  static let demoController = SortByDemoController()
-  static let queryInputController = QueryInputObservableController()
-  static let selectableSegmentObservableController = SelectableSegmentObservableController()
-  static let hitsController = HitsObservableController<Hit<StoreItem>>()
-  
-  static func connect() {
-    demoController.queryInputConnector.connectController(queryInputController)
-    demoController.hitsConnector.connectController(hitsController)
-    demoController.sortByConnector.connectController(selectableSegmentObservableController,
-                                                     presenter: demoController.title(for:))
+  class ViewController: UIHostingController<ContentView> {
+    
+    let controller: Controller
+    
+    init() {
+      controller = Controller()
+      let rootView = ContentView(queryInputController: controller.queryInputController,
+                                 selectableSegmentObservableController: controller.selectableSegmentObservableController,
+                                 hitsController: controller.hitsController)
+      super.init(rootView: rootView)
+    }
+    
+    @MainActor required dynamic init?(coder aDecoder: NSCoder) {
+      fatalError("init(coder:) has not been implemented")
+    }
+    
   }
 
-  
+  static let controller = Controller()
   static var previews: some View {
-    ContentView(queryInputController: queryInputController,
-                selectableSegmentObservableController: selectableSegmentObservableController,
-                hitsController: hitsController).onAppear {
-                  connect()
-                }
+    _ = controller
+    return NavigationView {
+      ContentView(queryInputController: controller.queryInputController,
+                  selectableSegmentObservableController: controller.selectableSegmentObservableController,
+                  hitsController: controller.hitsController)
+      .navigationBarTitle("Sort By")
+    }
+
   }
   
-
 }

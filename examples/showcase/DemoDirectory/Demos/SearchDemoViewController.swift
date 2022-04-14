@@ -1,5 +1,5 @@
 //
-//  SearchInputDemoViewController.swift
+//  SearchDemoViewController.swift
 //  development-pods-instantsearch
 //
 //  Created by Vladislav Fitc on 13/06/2019.
@@ -10,29 +10,20 @@ import Foundation
 import UIKit
 import InstantSearch
 
-class SearchInputDemoViewController: UIViewController {
+
+class SearchDemoViewController: UIViewController {
   
-  let searcher: HitsSearcher
-  
-  let hitsInteractor: HitsInteractor<Hit<StoreItem>>
-  
+  let demoController: SearchDemoController
   let searchController: UISearchController
   let textFieldController: TextFieldController
-  let queryInputConnector: QueryInputConnector
   let resultsViewController: ResultsViewController
   
-  init(searchTriggeringMode: SearchTriggeringMode) {
-    searcher = .init(client: .newDemo,
-                     indexName: Index.Ecommerce.products)
-    resultsViewController = .init(searcher: searcher)
+  init(searchTriggeringMode: SearchTriggeringMode = .searchAsYouType) {
+    demoController = SearchDemoController(searchTriggeringMode: searchTriggeringMode)
+    resultsViewController = .init(searcher: demoController.searcher)
     searchController = .init(searchResultsController: resultsViewController)
     textFieldController = .init(searchBar: searchController.searchBar)
-    queryInputConnector = .init(searcher: searcher,
-                                searchTriggeringMode: searchTriggeringMode,
-                                controller: textFieldController)
-    hitsInteractor = .init()
     super.init(nibName: .none, bundle: .none)
-    setup()
   }
   
   required init?(coder aDecoder: NSCoder) {
@@ -42,6 +33,9 @@ class SearchInputDemoViewController: UIViewController {
   override func viewDidLoad() {
     super.viewDidLoad()
     setupUI()
+    demoController.queryInputConnector.connectController(textFieldController)
+    demoController.hitsInteractor.connectController(resultsViewController.hitsViewController)
+    demoController.searcher.search()
   }
   
   override func viewDidAppear(_ animated: Bool) {
@@ -58,12 +52,6 @@ class SearchInputDemoViewController: UIViewController {
     searchController.hidesNavigationBarDuringPresentation = false
     searchController.showsSearchResultsController = true
     searchController.automaticallyShowsCancelButton = false
-  }
-  
-  private func setup() {
-    hitsInteractor.connectSearcher(searcher)
-    hitsInteractor.connectController(resultsViewController.hitsViewController)
-    searcher.search()
   }
   
 }

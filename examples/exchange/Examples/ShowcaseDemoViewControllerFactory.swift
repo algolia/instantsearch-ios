@@ -46,7 +46,7 @@ class ShowcaseDemoViewControllerFactory: ViewControllerFactory {
     
     switch demoID {
     case .singleIndex:
-      viewController = SearchInputDemoViewController(searchTriggeringMode: .searchAsYouType)
+      viewController = SearchDemoViewController()
       
     case .sffv:
       viewController = FacetSearchDemoViewController()
@@ -106,19 +106,19 @@ class ShowcaseDemoViewControllerFactory: ViewControllerFactory {
       viewController = FilterListDemo.tag()
       
     case .searchOnSubmit:
-      viewController = SearchInputDemoViewController(searchTriggeringMode: .searchOnSubmit)
+      viewController = SearchDemoViewController(searchTriggeringMode: .searchOnSubmit)
       
     case .searchAsYouType:
-      viewController = SearchInputDemoViewController(searchTriggeringMode: .searchAsYouType)
+      viewController = SearchDemoViewController()
       
     case .stats:
       viewController = StatsDemoViewController()
       
     case .highlighting:
-      viewController = SearchInputDemoViewController(searchTriggeringMode: .searchAsYouType)
+      viewController = SearchDemoViewController()
       
     case .loading:
-      viewController = SearchInputDemoViewController(searchTriggeringMode: .searchAsYouType)
+      viewController = SearchDemoViewController()
       
     case .hierarchical:
       viewController = HierarchicalDemoViewController()
@@ -144,7 +144,7 @@ class ShowcaseDemoViewControllerFactory: ViewControllerFactory {
     
     switch demoID {
     case .singleIndex:
-      viewController = SearchInputDemoViewController(searchTriggeringMode: .searchAsYouType)
+      viewController = SearchDemoViewController()
       
     case .sffv:
       viewController = FacetSearchDemoSwiftUI.ViewController()
@@ -177,7 +177,7 @@ class ShowcaseDemoViewControllerFactory: ViewControllerFactory {
       viewController = RatingFilterDemoSwiftUI.ViewController()
       
     case .sortBy:
-      viewController = SortByDemoViewController()
+      viewController = SortByDemoSwiftUI.ViewController()
       
     case .currentFilters:
       viewController = CurrentFiltersDemoSwiftUI.ViewController()
@@ -204,19 +204,19 @@ class ShowcaseDemoViewControllerFactory: ViewControllerFactory {
       viewController = FilterListDemoSwiftUI.tagViewController()
       
     case .searchOnSubmit:
-      viewController = SearchInputDemoViewController(searchTriggeringMode: .searchOnSubmit)
+      viewController = SearchDemoViewController(searchTriggeringMode: .searchOnSubmit)
       
     case .searchAsYouType:
-      viewController = SearchInputDemoViewController(searchTriggeringMode: .searchAsYouType)
+      viewController = SearchDemoSwiftUI.ViewController()
       
     case .stats:
       viewController = StatsDemoViewController()
       
     case .highlighting:
-      viewController = SearchInputDemoViewController(searchTriggeringMode: .searchAsYouType)
+      viewController = SearchDemoSwiftUI.ViewController()
       
     case .loading:
-      viewController = SearchInputDemoViewController(searchTriggeringMode: .searchAsYouType)
+      viewController = SearchDemoSwiftUI.ViewController()
       
     case .hierarchical:
       viewController = HierarchicalDemoSwiftUI.ViewController()

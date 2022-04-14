@@ -52,17 +52,17 @@ class ResultsViewController: UIViewController {
     statsController.label.translatesAutoresizingMaskIntoConstraints = false
     loadingController.activityIndicator.translatesAutoresizingMaskIntoConstraints = false
     loadingController.activityIndicator.hidesWhenStopped = true
-    let statsContainer = UIView()
-    statsContainer.translatesAutoresizingMaskIntoConstraints = false
-    statsContainer.addSubview(statsController.label)
-    NSLayoutConstraint.activate([
-      statsController.label.topAnchor.constraint(equalTo: statsContainer.topAnchor),
-      statsController.label.leadingAnchor.constraint(equalTo: statsContainer.leadingAnchor, constant: 20),
-      statsController.label.trailingAnchor.constraint(equalTo: statsContainer.trailingAnchor, constant: -5),
-      statsController.label.bottomAnchor.constraint(equalTo: statsContainer.bottomAnchor, constant: -5),
-    ])
-    stackView.addArrangedSubview(statsContainer)
-    stackView.addArrangedSubview(loadingController.activityIndicator)
+    let spacer = UIView()
+    spacer.translatesAutoresizingMaskIntoConstraints = false
+    let detailsStackView = UIStackView()
+    detailsStackView.translatesAutoresizingMaskIntoConstraints = false
+    detailsStackView.axis = .horizontal
+    detailsStackView.layoutMargins = UIEdgeInsets(top: 0, left: 20, bottom: 0, right: 20)
+    detailsStackView.isLayoutMarginsRelativeArrangement = true
+    detailsStackView.addArrangedSubview(statsController.label)
+    detailsStackView.addArrangedSubview(spacer)
+    detailsStackView.addArrangedSubview(loadingController.activityIndicator)
+    stackView.addArrangedSubview(detailsStackView)
     stackView.addArrangedSubview(hitsViewController.view)
   }
   
