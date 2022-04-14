@@ -12,11 +12,10 @@ import InstantSearch
 
 class RatingViewController: UIViewController {
   
+  let demoController: RatingFilterDemoController
   let valueLabel: UILabel
   let stepper: UIStepper
-  let numberInteractor: NumberInteractor<Double>
   let ratingController: NumericRatingController
-  let filterState: FilterState
   let searchStateViewController: SearchDebugViewController
   
   var ratingControl: RatingControl {
@@ -24,11 +23,10 @@ class RatingViewController: UIViewController {
   }
 
   override init(nibName nibNameOrNil: String?, bundle nibBundleOrNil: Bundle?) {
+    demoController = .init()
     valueLabel = UILabel()
     stepper = UIStepper()
-    numberInteractor = NumberInteractor<Double>()
     ratingController = NumericRatingController()
-    filterState = FilterState()
     searchStateViewController = SearchDebugViewController()
     super.init(nibName: nibNameOrNil, bundle: nibBundleOrNil)
   }
@@ -46,12 +44,8 @@ class RatingViewController: UIViewController {
   private func setup() {
     addChild(searchStateViewController)
     searchStateViewController.didMove(toParent: self)
-
-    searchStateViewController.connectFilterState(filterState)
-    numberInteractor.connectNumberController(ratingController)
-    numberInteractor.connectFilterState(filterState,
-                                        attribute: "rating",
-                                        numericOperator: .greaterThanOrEqual)
+    demoController.numberInteractor.connectNumberController(ratingController)
+    searchStateViewController.connectFilterState(demoController.filterState)
   }
   
   func setupLayout() {

@@ -14,6 +14,16 @@
 		4073B59C280705FE00E05EF6 /* RangeUISlider in Frameworks */ = {isa = PBXBuildFile; productRef = 4073B59B280705FE00E05EF6 /* RangeUISlider */; };
 		4073B59E28076B6F00E05EF6 /* Double+Range.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4073B59D28076B6F00E05EF6 /* Double+Range.swift */; };
 		4073B59F28076B6F00E05EF6 /* Double+Range.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4073B59D28076B6F00E05EF6 /* Double+Range.swift */; };
+		4073B5A128076E9600E05EF6 /* RatingFilterDemoController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4073B5A028076E9600E05EF6 /* RatingFilterDemoController.swift */; };
+		4073B5A228076E9600E05EF6 /* RatingFilterDemoController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4073B5A028076E9600E05EF6 /* RatingFilterDemoController.swift */; };
+		4073B5A42807720100E05EF6 /* RatingFilterDemoSwiftUI.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4073B5A32807720100E05EF6 /* RatingFilterDemoSwiftUI.swift */; };
+		4073B5A52807720100E05EF6 /* RatingFilterDemoSwiftUI.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4073B5A32807720100E05EF6 /* RatingFilterDemoSwiftUI.swift */; };
+		40E1B06728078B0A0092B424 /* RatingView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 40E1B06628078B0A0092B424 /* RatingView.swift */; };
+		40E1B06828078B0A0092B424 /* RatingView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 40E1B06628078B0A0092B424 /* RatingView.swift */; };
+		40E1B06928078B650092B424 /* FilterStateObservableController.swift in Sources */ = {isa = PBXBuildFile; fileRef = AFB181C227FDB6A0000AA57B /* FilterStateObservableController.swift */; };
+		40E1B06A28078B6B0092B424 /* FilterStateObservableController.swift in Sources */ = {isa = PBXBuildFile; fileRef = AFB181C227FDB6A0000AA57B /* FilterStateObservableController.swift */; };
+		40E1B06C28078BF80092B424 /* InstantSearchSwiftUI in Frameworks */ = {isa = PBXBuildFile; productRef = 40E1B06B28078BF80092B424 /* InstantSearchSwiftUI */; };
+		40E1B06D28078C5E0092B424 /* FilterStateDebugView.swift in Sources */ = {isa = PBXBuildFile; fileRef = AFB181CA27FE1150000AA57B /* FilterStateDebugView.swift */; };
 		AF46A7592747EF9D004E86F3 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = AF46A7582747EF9D004E86F3 /* AppDelegate.swift */; };
 		AF46A75B2747EF9D004E86F3 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = AF46A75A2747EF9D004E86F3 /* SceneDelegate.swift */; };
 		AF46A7622747EF9F004E86F3 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = AF46A7612747EF9F004E86F3 /* Assets.xcassets */; };
@@ -691,6 +701,9 @@
 /* Begin PBXFileReference section */
 		4073B5942806CAE200E05EF6 /* SliderView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SliderView.swift; sourceTree = "<group>"; };
 		4073B59D28076B6F00E05EF6 /* Double+Range.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Double+Range.swift"; sourceTree = "<group>"; };
+		4073B5A028076E9600E05EF6 /* RatingFilterDemoController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RatingFilterDemoController.swift; sourceTree = "<group>"; };
+		4073B5A32807720100E05EF6 /* RatingFilterDemoSwiftUI.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RatingFilterDemoSwiftUI.swift; sourceTree = "<group>"; };
+		40E1B06628078B0A0092B424 /* RatingView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RatingView.swift; sourceTree = "<group>"; };
 		AF46A7562747EF9C004E86F3 /* CategoriesHits.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = CategoriesHits.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		AF46A7582747EF9D004E86F3 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		AF46A75A2747EF9D004E86F3 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -1142,6 +1155,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				40E1B06C28078BF80092B424 /* InstantSearchSwiftUI in Frameworks */,
 				AF50CC6727F7453F0036F549 /* InstantSearch in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -1521,7 +1535,10 @@
 			children = (
 				AF50CB0B27F72BCD0036F549 /* AppDelegate.swift */,
 				AF50CB0D27F72BCD0036F549 /* SceneDelegate.swift */,
+				4073B5A028076E9600E05EF6 /* RatingFilterDemoController.swift */,
 				AF50CCE227FAEA980036F549 /* RatingViewController.swift */,
+				4073B5A32807720100E05EF6 /* RatingFilterDemoSwiftUI.swift */,
+				40E1B06628078B0A0092B424 /* RatingView.swift */,
 				AF50CB1427F72BCD0036F549 /* Assets.xcassets */,
 				AF50CB1627F72BCD0036F549 /* LaunchScreen.storyboard */,
 				AF50CB1927F72BCD0036F549 /* Info.plist */,
@@ -2249,6 +2266,7 @@
 			name = FilterRating;
 			packageProductDependencies = (
 				AF50CC6627F7453F0036F549 /* InstantSearch */,
+				40E1B06B28078BF80092B424 /* InstantSearchSwiftUI */,
 			);
 			productName = FilterRating;
 			productReference = AF50CB0927F72BCD0036F549 /* FilterRating.app */;
@@ -3354,6 +3372,7 @@
 				AF50CCDF27FAE8A40036F549 /* RangeSlider.swift in Sources */,
 				AF50CC9727F7463F0036F549 /* SearchClient.swift in Sources */,
 				AF50CDE227FB31810036F549 /* StoreItem.swift in Sources */,
+				40E1B06A28078B6B0092B424 /* FilterStateObservableController.swift in Sources */,
 				AF50CCCD27FAE6AA0036F549 /* UIView+Layout.swift in Sources */,
 				AF50CD9E27FB29A10036F549 /* SceneDelegate+Convenience.swift in Sources */,
 				AFB181BA27FC95B0000AA57B /* Product.swift in Sources */,
@@ -3371,9 +3390,12 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				40E1B06928078B650092B424 /* FilterStateObservableController.swift in Sources */,
 				AF50CB0C27F72BCD0036F549 /* AppDelegate.swift in Sources */,
 				AF50CCE427FAEA980036F549 /* RatingViewController.swift in Sources */,
+				40E1B06D28078C5E0092B424 /* FilterStateDebugView.swift in Sources */,
 				AF50CC9C27F746400036F549 /* Helpers.swift in Sources */,
+				40E1B06828078B0A0092B424 /* RatingView.swift in Sources */,
 				AF50CD9F27FB29A10036F549 /* SceneDelegate+Convenience.swift in Sources */,
 				AF4FF29127FEF2D800A4BF61 /* FiltersDebugViewController.swift in Sources */,
 				AF50CB0E27F72BCD0036F549 /* SceneDelegate.swift in Sources */,
@@ -3381,8 +3403,10 @@
 				AF50CE3F27FB31810036F549 /* UITableView+EmptyResult.swift in Sources */,
 				AF50CDF327FB31810036F549 /* StoreItem.swift in Sources */,
 				AF50CC9A27F746400036F549 /* SearchClient.swift in Sources */,
+				4073B5A228076E9600E05EF6 /* RatingFilterDemoController.swift in Sources */,
 				AF50CC8827F7462C0036F549 /* SearchDebugViewController.swift in Sources */,
 				AF50CCCE27FAE6AA0036F549 /* UIView+Layout.swift in Sources */,
+				4073B5A52807720100E05EF6 /* RatingFilterDemoSwiftUI.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -3617,12 +3641,14 @@
 				AFAE559A2733E31400B52A43 /* QuerySuggestionsCategories.SearchViewController.swift in Sources */,
 				AF50CE9227FB71070036F549 /* HierarchicalDemoController.swift in Sources */,
 				AF83121F27FC7FC200509DF5 /* FilterListDemo.swift in Sources */,
+				40E1B06728078B0A0092B424 /* RatingView.swift in Sources */,
 				AF50CE8F27FB3A560036F549 /* SceneDelegate+Convenience.swift in Sources */,
 				AFB181A727FC9004000AA57B /* ToggleDemoSwiftUI.swift in Sources */,
 				AF50CD3527FAF5120036F549 /* SortByDemoViewController.swift in Sources */,
 				AF83121E27FC7FC200509DF5 /* FilterListDemoViewController.swift in Sources */,
 				AFAE55182733DE5100B52A43 /* QuerySuggestions.SearchViewController.swift in Sources */,
 				AF50CE9827FB71780036F549 /* DynamicFacetsDemoController.swift in Sources */,
+				4073B5A42807720100E05EF6 /* RatingFilterDemoSwiftUI.swift in Sources */,
 				AF50CD4A27FAF64E0036F549 /* RelevantSortDemoViewController.swift in Sources */,
 				AFB181C827FDC9DB000AA57B /* DynamicFacetsSwiftUIDemoViewController.swift in Sources */,
 				AF50CCDB27FAE8700036F549 /* NumericRangeController.swift in Sources */,
@@ -3687,6 +3713,7 @@
 				AF5089F72766CE3E00F30F18 /* VoiceSearch.ViewController.swift in Sources */,
 				AF50CEC827FC44A30036F549 /* ViewControllerFactory.swift in Sources */,
 				AFAE55B42734381000B52A43 /* Product.swift in Sources */,
+				4073B5A128076E9600E05EF6 /* RatingFilterDemoController.swift in Sources */,
 				AFE7BE1D27FF07C8003CAC71 /* DynamicFacetList.swift in Sources */,
 				AF7FEB8B272CAC5D0003BE62 /* SceneDelegate.swift in Sources */,
 				AFB181A627FC8FF3000AA57B /* ToggleDemoController.swift in Sources */,
@@ -6339,6 +6366,10 @@
 			isa = XCSwiftPackageProductDependency;
 			package = 4073B598280705D700E05EF6 /* XCRemoteSwiftPackageReference "RangeUISlider" */;
 			productName = RangeUISlider;
+		};
+		40E1B06B28078BF80092B424 /* InstantSearchSwiftUI */ = {
+			isa = XCSwiftPackageProductDependency;
+			productName = InstantSearchSwiftUI;
 		};
 		AF508A032766D08200F30F18 /* SDWebImage */ = {
 			isa = XCSwiftPackageProductDependency;

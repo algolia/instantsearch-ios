@@ -174,7 +174,7 @@ class ShowcaseDemoViewControllerFactory: ViewControllerFactory {
       viewController = FilterNumberRangeDemoSwiftUI.ViewController()
       
     case .filterRating:
-      viewController = RatingViewController()
+      viewController = RatingFilterDemoSwiftUI.ViewController()
       
     case .sortBy:
       viewController = SortByDemoViewController()
