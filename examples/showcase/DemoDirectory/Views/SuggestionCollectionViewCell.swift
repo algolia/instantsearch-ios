@@ -25,10 +25,11 @@ class SuggestionCollectionViewCell: UICollectionViewCell {
   }
   
   private func layout() {
+    contentView.backgroundColor = .white
+    contentView.layer.cornerRadius = 12
     label.translatesAutoresizingMaskIntoConstraints = false
     label.textAlignment = .center
     label.numberOfLines = 0
-    contentView.backgroundColor = .white
     contentView.addSubview(label)
     label.pin(to: contentView.layoutMarginsGuide)
   }
@@ -42,8 +43,8 @@ extension SuggestionCollectionViewCell {
       .highlighted
       .flatMap(HighlightedString.init)
       .flatMap { NSAttributedString(highlightedString: $0,
-                                    inverted: true,
-                                    attributes: [.font: UIFont.boldSystemFont(ofSize: label.font.pointSize)])
+                                    inverted: false,
+                                    attributes: [.foregroundColor: UIColor.tintColor])
     }
   }
   

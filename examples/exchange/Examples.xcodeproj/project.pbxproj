@@ -33,6 +33,13 @@
 		40E1B076280811840092B424 /* SearchDemoSwiftUI.swift in Sources */ = {isa = PBXBuildFile; fileRef = 40E1B073280811840092B424 /* SearchDemoSwiftUI.swift */; };
 		40E1B077280811840092B424 /* SearchDemoSwiftUI.swift in Sources */ = {isa = PBXBuildFile; fileRef = 40E1B073280811840092B424 /* SearchDemoSwiftUI.swift */; };
 		40E1B079280812200092B424 /* InstantSearchSwiftUI in Frameworks */ = {isa = PBXBuildFile; productRef = 40E1B078280812200092B424 /* InstantSearchSwiftUI */; };
+		40E1B07B280845970092B424 /* MultiIndexDemoController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 40E1B07A280845970092B424 /* MultiIndexDemoController.swift */; };
+		40E1B07C280845970092B424 /* MultiIndexDemoController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 40E1B07A280845970092B424 /* MultiIndexDemoController.swift */; };
+		40E1B07D280845970092B424 /* MultiIndexDemoController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 40E1B07A280845970092B424 /* MultiIndexDemoController.swift */; };
+		40E1B07E280845970092B424 /* MultiIndexDemoController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 40E1B07A280845970092B424 /* MultiIndexDemoController.swift */; };
+		40E1B080280849EB0092B424 /* MultiIndexSwiftUIDemo.swift in Sources */ = {isa = PBXBuildFile; fileRef = 40E1B07F280849EB0092B424 /* MultiIndexSwiftUIDemo.swift */; };
+		40E1B081280849EB0092B424 /* MultiIndexSwiftUIDemo.swift in Sources */ = {isa = PBXBuildFile; fileRef = 40E1B07F280849EB0092B424 /* MultiIndexSwiftUIDemo.swift */; };
+		40E1B082280849EB0092B424 /* MultiIndexSwiftUIDemo.swift in Sources */ = {isa = PBXBuildFile; fileRef = 40E1B07F280849EB0092B424 /* MultiIndexSwiftUIDemo.swift */; };
 		AF46A7592747EF9D004E86F3 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = AF46A7582747EF9D004E86F3 /* AppDelegate.swift */; };
 		AF46A75B2747EF9D004E86F3 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = AF46A75A2747EF9D004E86F3 /* SceneDelegate.swift */; };
 		AF46A7622747EF9F004E86F3 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = AF46A7612747EF9F004E86F3 /* Assets.xcassets */; };
@@ -715,6 +722,8 @@
 		40E1B06628078B0A0092B424 /* RatingView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RatingView.swift; sourceTree = "<group>"; };
 		40E1B06E280810440092B424 /* SearchDemoController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchDemoController.swift; sourceTree = "<group>"; };
 		40E1B073280811840092B424 /* SearchDemoSwiftUI.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchDemoSwiftUI.swift; sourceTree = "<group>"; };
+		40E1B07A280845970092B424 /* MultiIndexDemoController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MultiIndexDemoController.swift; sourceTree = "<group>"; };
+		40E1B07F280849EB0092B424 /* MultiIndexSwiftUIDemo.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MultiIndexSwiftUIDemo.swift; sourceTree = "<group>"; };
 		AF46A7562747EF9C004E86F3 /* CategoriesHits.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = CategoriesHits.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		AF46A7582747EF9D004E86F3 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		AF46A75A2747EF9D004E86F3 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -1656,6 +1665,8 @@
 				AF50CD7827FAFAF30036F549 /* SuggestionCollectionViewCell.swift */,
 				AF50CC1527F72CB60036F549 /* SceneDelegate.swift */,
 				AF50CD6A27FAF9810036F549 /* MultiIndexDemoViewController.swift */,
+				40E1B07A280845970092B424 /* MultiIndexDemoController.swift */,
+				40E1B07F280849EB0092B424 /* MultiIndexSwiftUIDemo.swift */,
 				AF50CC1C27F72CB60036F549 /* Assets.xcassets */,
 				AF50CC1E27F72CB60036F549 /* LaunchScreen.storyboard */,
 				AF50CC2127F72CB60036F549 /* Info.plist */,
@@ -3418,11 +3429,13 @@
 				AF50CB0E27F72BCD0036F549 /* SceneDelegate.swift in Sources */,
 				AFB181BF27FC95B0000AA57B /* Product.swift in Sources */,
 				AF50CE3F27FB31810036F549 /* UITableView+EmptyResult.swift in Sources */,
+				40E1B07C280845970092B424 /* MultiIndexDemoController.swift in Sources */,
 				AF50CDF327FB31810036F549 /* StoreItem.swift in Sources */,
 				AF50CC9A27F746400036F549 /* SearchClient.swift in Sources */,
 				4073B5A228076E9600E05EF6 /* RatingFilterDemoController.swift in Sources */,
 				AF50CC8827F7462C0036F549 /* SearchDebugViewController.swift in Sources */,
 				AF50CCCE27FAE6AA0036F549 /* UIView+Layout.swift in Sources */,
+				40E1B081280849EB0092B424 /* MultiIndexSwiftUIDemo.swift in Sources */,
 				4073B5A52807720100E05EF6 /* RatingFilterDemoSwiftUI.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -3582,6 +3595,7 @@
 				AF50CBFE27F72CA80036F549 /* SceneDelegate.swift in Sources */,
 				AF50CCD827FAE6AA0036F549 /* UIView+Layout.swift in Sources */,
 				AF50CD7F27FAFB7A0036F549 /* ResultsViewController.swift in Sources */,
+				40E1B07D280845970092B424 /* MultiIndexDemoController.swift in Sources */,
 				AF50CD8727FAFBC10036F549 /* StoreItemTableViewCell+StoreItem.swift in Sources */,
 				40E1B076280811840092B424 /* SearchDemoSwiftUI.swift in Sources */,
 			);
@@ -3604,11 +3618,13 @@
 				AF50CE3627FB31810036F549 /* UITableView+EmptyResult.swift in Sources */,
 				AF50CCD927FAE6AA0036F549 /* UIView+Layout.swift in Sources */,
 				AF50CDAA27FB29A10036F549 /* SceneDelegate+Convenience.swift in Sources */,
+				40E1B07E280845970092B424 /* MultiIndexDemoController.swift in Sources */,
 				AF50CE0327FB31810036F549 /* StoreItemsTableViewController.swift in Sources */,
 				AF50CD6D27FAF9A50036F549 /* SearchClient.swift in Sources */,
 				AF50CE8C27FB34F00036F549 /* StoreItemCollectionViewCell+StoreItem.swift in Sources */,
 				AF50CD7A27FAFAF30036F549 /* SuggestionCollectionViewCell.swift in Sources */,
 				AF50CD7627FAFAAD0036F549 /* StoreItemTableViewCell.swift in Sources */,
+				40E1B082280849EB0092B424 /* MultiIndexSwiftUIDemo.swift in Sources */,
 				AF50CD7227FAFA6C0036F549 /* StoreItemTableViewCell+StoreItem.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -3674,6 +3690,7 @@
 				AF50CD4A27FAF64E0036F549 /* RelevantSortDemoViewController.swift in Sources */,
 				AFB181C827FDC9DB000AA57B /* DynamicFacetsSwiftUIDemoViewController.swift in Sources */,
 				AF50CCDB27FAE8700036F549 /* NumericRangeController.swift in Sources */,
+				40E1B080280849EB0092B424 /* MultiIndexSwiftUIDemo.swift in Sources */,
 				AFAE55D02734ADC800B52A43 /* QuerySuggestionsAndHits.SearchViewController.swift in Sources */,
 				AFE7BE1627FEFB83003CAC71 /* FacetSearchDemoSwiftUI.swift in Sources */,
 				AF50CE6C27FB34F00036F549 /* StoreItemCollectionViewCell+StoreItem.swift in Sources */,
@@ -3758,6 +3775,7 @@
 				AF50CEB827FB72480036F549 /* StatsDemoController.swift in Sources */,
 				AF50CA1927F6FA7D0036F549 /* AlgoliaController.swift in Sources */,
 				AFB181A827FC9009000AA57B /* ToggleDemoViewController.swift in Sources */,
+				40E1B07B280845970092B424 /* MultiIndexDemoController.swift in Sources */,
 				AFB181CF27FEE8EF000AA57B /* FacetSearchDemoController.swift in Sources */,
 				AF50CEC527FC42CA0036F549 /* ShowcaseDemoViewControllerFactory.swift in Sources */,
 			);

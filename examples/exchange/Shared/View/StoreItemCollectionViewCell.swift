@@ -36,6 +36,9 @@ class StoreItemCollectionViewCell: UICollectionViewCell {
   }
   
   private func layout() {
+    contentView.backgroundColor = .white
+    contentView.layer.cornerRadius = 12
+    
     itemImageView.sd_imageIndicator = SDWebImageActivityIndicator.gray
     itemImageView.translatesAutoresizingMaskIntoConstraints = false
     itemImageView.clipsToBounds = true

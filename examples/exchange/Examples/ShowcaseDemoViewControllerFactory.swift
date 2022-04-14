@@ -192,7 +192,7 @@ class ShowcaseDemoViewControllerFactory: ViewControllerFactory {
       viewController = VoiceInputDemoViewController()
       
     case .multiIndex:
-      viewController = MultiIndexDemoViewController()
+      viewController = MultiIndexSwiftUIDemo.ViewController()
       
     case .facetFilterList:
       viewController = FilterListDemoSwiftUI.facetViewController()

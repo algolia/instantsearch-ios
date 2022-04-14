@@ -51,39 +51,20 @@ enum MultiIndexDemoSection: CaseIterable {
 
 class MultiIndexDemoViewController: UIViewController {
   
+  let searchController: UISearchController
+  let demoController: MultiIndexDemoController
   let textFieldController: TextFieldController
-  
-  let queryInputConnector: QueryInputConnector
-  let searchBar: UISearchBar
-  
-  let multiSearcher: MultiSearcher
-  let suggestionsHitsConnector: HitsConnector<QuerySuggestion>
-  let productsHitsConnector: HitsConnector<Hit<StoreItem>>
-  
   let hitsViewController: MultiIndexHitsViewController
   
   init() {
-    searchBar = UISearchBar()
-    
-    textFieldController = .init(searchBar: searchBar)
-    
+    demoController = .init()
     hitsViewController = .init()
-    
-    multiSearcher = MultiSearcher(appID: SearchClient.newDemo.applicationID,
-                                  apiKey: SearchClient.newDemo.apiKey)
-    
-    let suggestionsSearcher = multiSearcher.addHitsSearcher(indexName: Index.Ecommerce.suggestions)
-    let productsSearcher = multiSearcher.addHitsSearcher(indexName: Index.Ecommerce.products)
-    
-    queryInputConnector = .init(searcher: multiSearcher,
-                                controller: textFieldController)
-    productsHitsConnector = .init(searcher: productsSearcher,
-                                  controller: hitsViewController.productsCollectionViewController)
-    suggestionsHitsConnector = .init(searcher: suggestionsSearcher,
-                                     controller: hitsViewController.suggestionsCollectionViewController)
-    
+    searchController = .init(searchResultsController: hitsViewController)
+    textFieldController = .init(searchBar: searchController.searchBar)
+    demoController.queryInputConnector.connectController(textFieldController)
+    demoController.productsHitsConnector.connectController(hitsViewController.productsCollectionViewController)
+    demoController.suggestionsHitsConnector.connectController(hitsViewController.suggestionsCollectionViewController)
     super.init(nibName: nil, bundle: nil)
-    setup()
   }
   
   required init?(coder aDecoder: NSCoder) {
@@ -95,35 +76,23 @@ class MultiIndexDemoViewController: UIViewController {
     setupUI()
   }
   
+  override func viewDidAppear(_ animated: Bool) {
+    super.viewDidAppear(animated)
+    searchController.isActive = true
+  }
+  
 }
 
 private extension MultiIndexDemoViewController {
   
-  func setup() {
-    multiSearcher.search()
-    addChild(hitsViewController)
-    hitsViewController.didMove(toParent: self)
-  }
-  
   func setupUI() {
-    view.backgroundColor = UIColor(hexString: "#f7f8fa")
-    
-    let stackView = UIStackView()
-    stackView.translatesAutoresizingMaskIntoConstraints = false
-    stackView.axis = .vertical
-    stackView.spacing = 16 / 2
-    
-    view.addSubview(stackView)
-    
-    stackView.pin(to: view.safeAreaLayoutGuide)
-    
-    searchBar.searchBarStyle = .minimal
-    searchBar.heightAnchor.constraint(equalToConstant: 44).isActive = true
-    stackView.addArrangedSubview(searchBar)
-    stackView.addArrangedSubview(hitsViewController.view)
-    let spacer = UIView()
-    spacer.translatesAutoresizingMaskIntoConstraints = false
-    stackView.addArrangedSubview(spacer)
+    view.backgroundColor = .white
+    definesPresentationContext = true
+    navigationItem.searchController = searchController
+    navigationItem.hidesSearchBarWhenScrolling = false
+    searchController.hidesNavigationBarDuringPresentation = false
+    searchController.showsSearchResultsController = true
+    searchController.automaticallyShowsCancelButton = false
   }
   
 }
@@ -139,23 +108,23 @@ class ProductsCollectionViewController: UICollectionViewController, UICollection
   }
   
   func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, insetForSectionAt section: Int) -> UIEdgeInsets {
-    return UIEdgeInsets(top: 5, left: 5, bottom: 5, right: 5)
+    UIEdgeInsets(top: 5, left: 5, bottom: 5, right: 5)
   }
   
   func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, minimumInteritemSpacingForSectionAt section: Int) -> CGFloat {
-    return 10
+    10
   }
   
   func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, minimumLineSpacingForSectionAt section: Int) -> CGFloat {
-    return 10
+    10
   }
   
   func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
-    return CGSize(width: collectionView.bounds.width / 2 - 10, height: collectionView.bounds.height - 10)
+    CGSize(width: collectionView.bounds.width / 2 - 10, height: collectionView.bounds.height - 10)
   }
   
   override func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-    return hitsSource?.numberOfHits() ?? 0
+    hitsSource?.numberOfHits() ?? 0
   }
   
   override func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
@@ -179,23 +148,23 @@ class SuggestionsCollectionViewController: UICollectionViewController, UICollect
   }
   
   func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, insetForSectionAt section: Int) -> UIEdgeInsets {
-    return UIEdgeInsets(top: 5, left: 5, bottom: 5, right: 5)
+    UIEdgeInsets(top: 5, left: 5, bottom: 5, right: 5)
   }
   
   func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, minimumInteritemSpacingForSectionAt section: Int) -> CGFloat {
-    return 10
+    10
   }
   
   func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, minimumLineSpacingForSectionAt section: Int) -> CGFloat {
-    return 10
+    10
   }
   
   func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
-    return CGSize(width: collectionView.bounds.width / 3, height: 40)
+    CGSize(width: collectionView.bounds.width / 3, height: 40)
   }
   
   override func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-    return hitsSource?.numberOfHits() ?? 0
+    hitsSource?.numberOfHits() ?? 0
   }
   
   override func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
@@ -207,7 +176,6 @@ class SuggestionsCollectionViewController: UICollectionViewController, UICollect
   }
   
 }
-
 
 class MultiIndexHitsViewController: UIViewController {
   
@@ -236,6 +204,7 @@ class MultiIndexHitsViewController: UIViewController {
   }
   
   func setupUI() {
+    view.backgroundColor = UIColor.systemGray6
     configureCollectionView()
     
     addChild(productsCollectionViewController)
@@ -253,16 +222,20 @@ class MultiIndexHitsViewController: UIViewController {
     stackView.spacing = 16
     
     let suggestionsTitleLabel = UILabel()
-    suggestionsTitleLabel.text =  MultiIndexDemoSection.suggestions.title
+    suggestionsTitleLabel.text = MultiIndexDemoSection.suggestions.title
     suggestionsTitleLabel.font = .systemFont(ofSize: 15, weight: .semibold)
     stackView.addArrangedSubview(suggestionsTitleLabel)
-            
     stackView.addArrangedSubview(suggestionsCollectionViewController.collectionView)
     
     let productsTitleLabel = UILabel()
     productsTitleLabel.text = MultiIndexDemoSection.products.title
     productsTitleLabel.font = .systemFont(ofSize: 15, weight: .semibold)
+    stackView.addArrangedSubview(productsTitleLabel)
     stackView.addArrangedSubview(productsCollectionViewController.collectionView)
+    
+    let spacer = UIView()
+    spacer.translatesAutoresizingMaskIntoConstraints = false
+    stackView.addArrangedSubview(spacer)
     
     view.addSubview(stackView)
     stackView.layoutMargins = UIEdgeInsets(top: 0, left: 12, bottom: 0, right: 12)
