@@ -38,6 +38,42 @@ struct MultiIndexSwiftUIDemo: PreviewProvider {
     @ObservedObject var suggestionsHitsController: HitsObservableController<QuerySuggestion>
     @ObservedObject var productsHitsController: HitsObservableController<Hit<StoreItem>>
     
+    var body: some View {
+      VStack {
+        HStack {
+          Text("Popular searches")
+            .font(.title3)
+          Spacer()
+        }
+        ScrollView(.horizontal) {
+          let hitsCount = suggestionsHitsController.hits.count
+          LazyHStack {
+            ForEach(0..<hitsCount, id: \.self) { index in
+              cellForSuggestion(atIndex: index)
+            }
+          }
+        }
+        .frame(maxHeight: 50)
+        HStack {
+          Text("Products")
+            .font(.title3)
+          Spacer()
+        }
+        ScrollView(.horizontal) {
+          let hitsCount = productsHitsController.hits.count
+          LazyHStack {
+            ForEach(0..<hitsCount, id: \.self) { index in
+              cellForProduct(atIndex: index)
+            }
+          }
+        }
+        .frame(maxHeight: 200)
+        Spacer()
+      }
+      .padding()
+      .searchable(text: $queryInputController.query)
+      .background(Color(.systemGray6))
+    }
     
     func cellForSuggestion(atIndex index: Int) -> some View {
       let suggestion = suggestionsHitsController.hits[index]!
@@ -92,43 +128,6 @@ struct MultiIndexSwiftUIDemo: PreviewProvider {
       .onAppear {
         productsHitsController.notifyAppearanceOfHit(atIndex: index)
       }
-    }
-    
-    var body: some View {
-      VStack {
-        HStack {
-          Text("Popular searches")
-            .font(.title3)
-          Spacer()
-        }
-        ScrollView(.horizontal) {
-          let hitsCount = suggestionsHitsController.hits.count
-          LazyHStack {
-            ForEach(0..<hitsCount, id: \.self) { index in
-              cellForSuggestion(atIndex: index)
-            }
-          }
-        }
-        .frame(maxHeight: 50)
-        HStack {
-          Text("Products")
-            .font(.title3)
-          Spacer()
-        }
-        ScrollView(.horizontal) {
-          let hitsCount = productsHitsController.hits.count
-          LazyHStack {
-            ForEach(0..<hitsCount, id: \.self) { index in
-              cellForProduct(atIndex: index)
-            }
-          }
-        }
-        .frame(maxHeight: 200)
-        Spacer()
-      }
-      .padding()
-      .searchable(text: $queryInputController.query)
-      .background(Color(.systemGray6))
     }
     
   }
