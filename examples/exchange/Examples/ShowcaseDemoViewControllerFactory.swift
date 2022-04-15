@@ -228,7 +228,7 @@ class ShowcaseDemoViewControllerFactory: ViewControllerFactory {
       viewController = RelatedItemsDemoViewController()
       
     case .queryRuleCustomData:
-      viewController = QueryRuleCustomDataDemoViewController()
+      viewController = QueryRuleCustomDataSwiftUI.ViewController()
       
     case .mergedList:
       viewController = QuerySuggestionsAndHits.SearchViewController()

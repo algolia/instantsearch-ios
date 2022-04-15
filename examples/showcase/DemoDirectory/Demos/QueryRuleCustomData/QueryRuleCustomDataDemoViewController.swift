@@ -89,12 +89,7 @@ class QueryRuleCustomDataDemoViewController: UIViewController {
   }
   
   @objc func presentInfo() {
-    let message = """
-    - Type "iphone" to show image banner. Click banner to redirect.\n
-    - Type "discount" to show textual banner. Click banner to redirect.\n
-    - Type "help" to activate redirect on submit. Submit by clicking "search" button on the keyboard to redirect.
-    """
-    let alertController = UIAlertController(title: "Help", message: message, preferredStyle: .alert)
+    let alertController = UIAlertController(title: "Help", message: QueryRuleCustomDataDemoController.helpMessage, preferredStyle: .alert)
     alertController.addAction(.init(title: "OK", style: .cancel, handler: nil))
     present(alertController, animated: true, completion: nil)
   }
@@ -104,7 +99,6 @@ class QueryRuleCustomDataDemoViewController: UIViewController {
 private extension QueryRuleCustomDataDemoViewController {
   
   func configureUI() {
-    title = "Amazing"
     view.backgroundColor = .white
     configureLayout()
   }

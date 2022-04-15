@@ -12,66 +12,191 @@ import InstantSearchSwiftUI
 import SwiftUI
 import SDWebImageSwiftUI
 
-struct StockItem: Codable {
-  let name: String
-}
-
-struct QRCDContentView: View {
+struct QueryRuleCustomDataSwiftUI: PreviewProvider {
   
-  @ObservedObject var queryInputController: QueryInputObservableController
-  @ObservedObject var hitsController: HitsObservableController<StockItem>
-  @ObservedObject var bannerController: BannerObservableController
+  class Controller {
+    
+    let demoController: QueryRuleCustomDataDemoController
+    let queryInputController: QueryInputObservableController
+    let bannerController: BannerObservableController
+    let hitsController: HitsObservableController<Hit<StoreItem>>
 
-  @State private var isEditing = false
-  @State private var isShowingAlert = false
+    init() {
+      self.demoController = .init()
+      self.queryInputController = .init()
+      self.bannerController = .init()
+      self.hitsController = .init()
+      demoController.hitsInteractor.connectController(hitsController)
+      demoController.queryInputInteractor.connectController(queryInputController)
+      demoController.queryRuleCustomDataConnector.connectController(bannerController)
+      demoController.searcher.search()
+    }
+  }
   
-  @ViewBuilder func getView(for banner: Banner?) -> some View {
-    if let banner = bannerController.banner {
-      if let imageURL = banner.banner {
+  struct SView: View {
+    
+    var body: some View {
+      VStack {
+        Text("Yo")
+          .background(Color.red)
+          .frame(maxWidth: .infinity)
+        Text("Kek")
+          .background(Color.green)
+        Spacer()
+      }
+      .background(Color.brown)
+      .navigationTitle("Hello world")
+      .safeAreaInset(edge: .top, alignment: .center, spacing: 0) {
+        Color.clear
+            .frame(height: 0)
+            .background(Material.bar)
+    }
+    }
+    
+  }
+  
+  struct ContentView: View {
+    
+    struct Redirect: Identifiable {
+      var id: String { url }
+      let url: String
+    }
+    
+    @ObservedObject var queryInputController: QueryInputObservableController
+    @ObservedObject var hitsController: HitsObservableController<Hit<StoreItem>>
+    @ObservedObject var bannerController: BannerObservableController
+    
+    @State private var isHelpPresented: Bool = false
+    @State private var selectedRedirect: Redirect?
+    
+    var body: some View {
+      VStack {
+        if let imageURL = bannerController.banner?.banner {
+          WebImage(url: imageURL)
+            .resizable()
+            .aspectRatio(contentMode: .fit)
+            .onTapGesture {
+              handleBannerTap()
+            }
+        } else if let title = bannerController.banner?.title {
+          Text(title)
+            .font(.headline)
+            .foregroundColor(.white)
+            .padding()
+            .frame(maxWidth: .infinity)
+            .background(Color(.algoliaCyan))
+            .frame(maxHeight: 44)
+            .onTapGesture {
+              handleBannerTap()
+            }
+        }
+        HitsList(hitsController) { (hit, _) in
+          ShopItemRow(product: hit)
+        } noResults: {
+          Text("No Results")
+            .frame(maxWidth: .infinity, maxHeight: .infinity)
+        }
+        .alert(item: $selectedRedirect) { redirect in
+          Alert(title: Text("Redirect"),
+                message: Text(redirect.id),
+                dismissButton: .cancel())
+
+        }
+        .alert(isPresented: $isHelpPresented) {
+          Alert(title: Text("Help"),
+                message: Text(QueryRuleCustomDataDemoController.helpMessage),
+                dismissButton: .default(Text("OK")))
+        }
+      }
+      .toolbar {
+          ToolbarItem(placement: .navigationBarTrailing) {
+            Button(action: { isHelpPresented = true }) {
+              Image(systemName: "info.circle.fill")
+            }
+          }
+      }
+      .safeAreaInset(edge: .top, alignment: .center, spacing: 0) {
+        Color.clear
+            .frame(height: 0)
+            .background(Material.bar)
+      }
+      .searchable(text: $queryInputController.query)
+      .onSubmit(of: .search) {
+        handleSubmit()
+      }
+    }
+    
+    @ViewBuilder func getView(for banner: Banner?) -> some View {
+      if let imageURL = bannerController.banner?.banner {
         WebImage(url: imageURL)
           .resizable()
           .aspectRatio(contentMode: .fit)
-      } else if let title = banner.title {
+      } else if let title = bannerController.banner?.title {
         Text(title)
           .font(.headline)
           .foregroundColor(.white)
           .padding()
           .frame(maxWidth: .infinity)
           .background(Color(.algoliaCyan))
+          .frame(maxHeight: 44)
       } else {
-        let _ = isShowingAlert = true
         EmptyView()
       }
-    } else {
-      let _ = isShowingAlert = false
-      EmptyView()
     }
-
+    
+    func handleSubmit() {
+      guard let link = bannerController.banner?.link else {
+        return
+      }
+      if link.absoluteString == "algoliademo://help" {
+        selectedRedirect = .init(url: link.absoluteString)
+      }
+    }
+    
+    func handleBannerTap() {
+      guard let link = bannerController.banner?.link else {
+        return
+      }
+      switch link.absoluteString {
+      case "algoliademo://discounts":
+        selectedRedirect = Redirect(url: link.absoluteString)
+      default:
+        UIApplication.shared.open(link)
+      }
+    }
+    
   }
   
-  var body: some View {
-    VStack(spacing: 7) {
-      SearchBar(text: $queryInputController.query,
-                isEditing: $isEditing,
-                onSubmit: queryInputController.submit)
-        .padding(.horizontal)
-      getView(for: bannerController.banner).onTapGesture {
-        (bannerController.banner?.link).flatMap({ UIApplication.shared.open($0) })
-      }
-      HitsList(hitsController) { (hit, _) in
-        VStack(alignment: .leading, spacing: 10) {
-          Text(hit?.name ?? "")
-            .padding(.all, 10)
-          Divider()
-        }
-      } noResults: {
-        Text("No Results")
-          .frame(maxWidth: .infinity, maxHeight: .infinity)
-      }.alert(isPresented: $isShowingAlert) {
-        Alert(title: Text("Hello"), message: Text("world"), dismissButton: .cancel())
-      }.padding(.horizontal)
+  class ViewController: UIHostingController<ContentView> {
+    
+    let controller: Controller
+    
+    init() {
+      controller = Controller()
+      let contentView = ContentView(queryInputController: controller.queryInputController,
+                                    hitsController: controller.hitsController,
+                                    bannerController: controller.bannerController)
+      super.init(rootView: contentView)
+    }
+    
+    @MainActor required dynamic init?(coder aDecoder: NSCoder) {
+      fatalError("init(coder:) has not been implemented")
+    }
+    
+  }
+  
+  static let controller = Controller()
+  static var previews: some View {
+    _ = controller
+    return NavigationView {
+      ContentView(queryInputController: controller.queryInputController,
+                  hitsController: controller.hitsController,
+                  bannerController: controller.bannerController)
+      .navigationBarTitle("Query Rule Custom Data")
     }
   }
+  
+  
 }
 
 class BannerObservableController: ObservableObject, ItemController {
@@ -80,55 +205,6 @@ class BannerObservableController: ObservableObject, ItemController {
   
   func setItem(_ item: Banner?) {
     self.banner = item
-  }
-  
-}
-
-struct QRCDContentView_Previews : PreviewProvider {
-  
-  class ViewModel {
-        
-    let searcher: HitsSearcher
-    let queryInputInteractor: QueryInputInteractor
-    let queryInputController: QueryInputObservableController
-
-    let hitsInteractor: HitsInteractor<StockItem>
-    let hitsController: HitsObservableController<StockItem>
-    
-    let queryRuleCustomDataConnector: QueryRuleCustomDataConnector<Banner>
-    let bannerController: BannerObservableController
-    
-    init() {
-      searcher = HitsSearcher(client: .demo, indexName: "instant_search")
-      self.queryInputInteractor = .init()
-      self.queryInputController = .init()
-      self.hitsInteractor = .init()
-      self.hitsController = .init()
-      self.bannerController = .init()
-      self.queryRuleCustomDataConnector = .init(searcher: searcher, controller: bannerController)
-      setupConnections()
-    }
-    
-    func setupConnections() {
-       queryInputInteractor.connectSearcher(searcher)
-       queryInputInteractor.connectController(queryInputController)
-       hitsInteractor.connectSearcher(searcher)
-       hitsInteractor.connectController(hitsController)
-    }
-    
-  }
-  
-  static let viewModel = ViewModel()
-  
-  static var previews: some View {
-    let contentView = QRCDContentView(queryInputController: viewModel.queryInputController,
-                                      hitsController: viewModel.hitsController,
-                                      bannerController: viewModel.bannerController).navigationBarTitle("Redirect")
-    NavigationView {
-      contentView
-    }.onAppear {
-      viewModel.searcher.search()
-    }
   }
   
 }

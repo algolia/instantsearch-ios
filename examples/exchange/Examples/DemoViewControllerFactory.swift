@@ -58,6 +58,7 @@ class DemoViewControllerFactory: ViewControllerFactory {
       let pusher = ViewControllerPusher(factory: factory,
                                         sourceViewController: viewController)
       viewController.didSelect = pusher.callAsFunction
+      viewController.title = "Imperative UI"
       return viewController
       
     case .showCaseDeclarative:
@@ -66,6 +67,7 @@ class DemoViewControllerFactory: ViewControllerFactory {
       let pusher = ViewControllerPusher(factory: factory,
                                         sourceViewController: viewController)
       viewController.didSelect = pusher.callAsFunction(_:)
+      viewController.title = "Declarative UI"
       return viewController
     }
   }

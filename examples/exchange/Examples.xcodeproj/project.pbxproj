@@ -7,6 +7,8 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		400366CA2808835800A5F29E /* QueryRuleCustomDataDemoController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 400366C92808835800A5F29E /* QueryRuleCustomDataDemoController.swift */; };
+		400366CB2808835800A5F29E /* QueryRuleCustomDataDemoController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 400366C92808835800A5F29E /* QueryRuleCustomDataDemoController.swift */; };
 		4073B5952806CAE200E05EF6 /* SliderView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4073B5942806CAE200E05EF6 /* SliderView.swift */; };
 		4073B5962806CAE200E05EF6 /* SliderView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4073B5942806CAE200E05EF6 /* SliderView.swift */; };
 		4073B5972806DBEF00E05EF6 /* FilterNumberRangeDemoSwiftUI.swift in Sources */ = {isa = PBXBuildFile; fileRef = AF50CCB627F74A9E0036F549 /* FilterNumberRangeDemoSwiftUI.swift */; };
@@ -715,6 +717,7 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		400366C92808835800A5F29E /* QueryRuleCustomDataDemoController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = QueryRuleCustomDataDemoController.swift; sourceTree = "<group>"; };
 		4073B5942806CAE200E05EF6 /* SliderView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SliderView.swift; sourceTree = "<group>"; };
 		4073B59D28076B6F00E05EF6 /* Double+Range.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Double+Range.swift"; sourceTree = "<group>"; };
 		4073B5A028076E9600E05EF6 /* RatingFilterDemoController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RatingFilterDemoController.swift; sourceTree = "<group>"; };
@@ -1588,6 +1591,7 @@
 				AF50CB9B27F72C510036F549 /* AppDelegate.swift */,
 				AF50CB9D27F72C510036F549 /* SceneDelegate.swift */,
 				AF50CD1127FAF37C0036F549 /* QueryRuleCustomDataDemoSwiftUI.swift */,
+				400366C92808835800A5F29E /* QueryRuleCustomDataDemoController.swift */,
 				AF50CD1027FAF37C0036F549 /* QueryRuleCustomDataDemoViewController.swift */,
 				AF50CD1C27FAF4000036F549 /* BannerViewController.swift */,
 				AF50CD1F27FAF4140036F549 /* Banner.swift */,
@@ -3504,6 +3508,7 @@
 				AF50CD1327FAF37C0036F549 /* QueryRuleCustomDataDemoViewController.swift in Sources */,
 				AF50CD2D27FAF4D90036F549 /* Helpers.swift in Sources */,
 				AF50CD1527FAF37C0036F549 /* QueryRuleCustomDataDemoSwiftUI.swift in Sources */,
+				400366CB2808835800A5F29E /* QueryRuleCustomDataDemoController.swift in Sources */,
 				AF50CD2127FAF4140036F549 /* Banner.swift in Sources */,
 				AF50CD2827FAF4910036F549 /* UITableView+EmptyResult.swift in Sources */,
 				AF50CB9E27F72C510036F549 /* SceneDelegate.swift in Sources */,
@@ -3729,6 +3734,7 @@
 				AFE7BE1927FF0023003CAC71 /* SearchDemoContainerView.swift in Sources */,
 				AF50CD3327FAF5120036F549 /* SortByDemoController.swift in Sources */,
 				AF50CD5227FAF64E0036F549 /* SortByController.swift in Sources */,
+				400366CA2808835800A5F29E /* QueryRuleCustomDataDemoController.swift in Sources */,
 				AF50CA1527F6FA650036F549 /* ResultsViewController.swift in Sources */,
 				AF50CE4527FB33260036F549 /* UITableView+EmptyResult.swift in Sources */,
 				AFB181C927FE10B7000AA57B /* RefinementListDemoSwiftUI.swift in Sources */,
