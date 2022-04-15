@@ -12,22 +12,17 @@ import InstantSearch
 
 class StatsDemoViewController: UIViewController {
   
-  let stackView = UIStackView()
-  let searchBar = UISearchBar()
+  let searchController: UISearchController
   let controller: StatsDemoController
   
   let textFieldController: TextFieldController
-  
-  let labelStatsController: LabelStatsController
-  let attributedLabelStatsController: AttributedLabelStatsController
+  let resultsViewController: ResultsViewController
   
   init() {
-    self.textFieldController = .init(searchBar: searchBar)
-    self.attributedLabelStatsController = AttributedLabelStatsController(label: .init())
-    self.labelStatsController = LabelStatsController(label: .init())
-    self.controller = .init(queryInputController: textFieldController,
-                            statsController: labelStatsController,
-                            attributedStatsController: attributedLabelStatsController)
+    self.resultsViewController = ResultsViewController()
+    self.searchController = .init(searchResultsController: resultsViewController)
+    self.textFieldController = .init(searchBar: searchController.searchBar)
+    self.controller = .init()
     super.init(nibName: .none, bundle: .none)
   }
   
@@ -37,61 +32,81 @@ class StatsDemoViewController: UIViewController {
   
   override func viewDidLoad() {
     super.viewDidLoad()
-    configureUI()
+    controller.queryInputConnector.connectController(textFieldController)
+    controller.statsConnector.connectController(resultsViewController.labelStatsController) { stats -> String? in
+      guard let stats = stats else {
+        return nil
+      }
+      return "\(stats.totalHitsCount) hits in \(stats.processingTimeMS) ms"
+    }
+    controller.statsConnector.connectController(resultsViewController.attributedLabelStatsController) { stats -> NSAttributedString? in
+      guard let stats = stats else {
+        return nil
+      }
+      let string = NSMutableAttributedString()
+      string.append(NSAttributedString(string: "\(stats.totalHitsCount)", attributes: [NSAttributedString.Key.font: UIFont(name: "Chalkduster", size: 15)!]))
+      string.append(NSAttributedString(string: "  hits"))
+      return string
+    }
+    setupUI()
   }
   
-}
-
-private extension StatsDemoViewController {
+  override func viewDidAppear(_ animated: Bool) {
+    super.viewDidAppear(animated)
+    searchController.isActive = true
+  }
   
-  func configureUI() {
+  private func setupUI() {
     view.backgroundColor = .white
-    configureSearchBar()
-    configureStackView()
-    configureLayout()
+    definesPresentationContext = true
+    navigationItem.searchController = searchController
+    navigationItem.hidesSearchBarWhenScrolling = false
+    searchController.hidesNavigationBarDuringPresentation = false
+    searchController.showsSearchResultsController = true
+    searchController.automaticallyShowsCancelButton = false
   }
   
-  func configureSearchBar() {
-    searchBar.translatesAutoresizingMaskIntoConstraints = false
-    searchBar.searchBarStyle = .minimal
-  }
-  
-  func configureStackView() {
-    stackView.spacing = 16
-    stackView.axis = .vertical
-    stackView.translatesAutoresizingMaskIntoConstraints = false
-  }
-  
-  func configureLayout() {
+  class ResultsViewController: UIViewController {
     
-    searchBar.heightAnchor.constraint(equalToConstant: 40).isActive = true
+    let stackView: UIStackView
+    let labelStatsController: LabelStatsController
+    let attributedLabelStatsController: AttributedLabelStatsController
+
+    init() {
+      stackView = UIStackView()
+      attributedLabelStatsController = AttributedLabelStatsController(label: .init())
+      labelStatsController = LabelStatsController(label: .init())
+      super.init(nibName: nil, bundle: nil)
+    }
     
-    stackView.addArrangedSubview(searchBar)
-    let statsMSContainer = UIView()
-    statsMSContainer.heightAnchor.constraint(equalToConstant: 44).isActive = true
-    statsMSContainer.translatesAutoresizingMaskIntoConstraints = false
-    statsMSContainer.layoutMargins = UIEdgeInsets(top: 4, left: 20, bottom: 4, right: 20)
-    labelStatsController.label.translatesAutoresizingMaskIntoConstraints = false
-    statsMSContainer.addSubview(labelStatsController.label)
-    labelStatsController.label.pin(to: statsMSContainer.layoutMarginsGuide)
-    stackView.addArrangedSubview(statsMSContainer)
+    required init?(coder: NSCoder) {
+      fatalError("init(coder:) has not been implemented")
+    }
     
-    let attributedStatsContainer = UIView()
-    attributedStatsContainer.heightAnchor.constraint(equalToConstant: 44).isActive = true
-    attributedStatsContainer.translatesAutoresizingMaskIntoConstraints = false
-    attributedStatsContainer.layoutMargins = UIEdgeInsets(top: 4, left: 20, bottom: 4, right: 20)
-    attributedLabelStatsController.label.translatesAutoresizingMaskIntoConstraints = false
-    attributedStatsContainer.addSubview(attributedLabelStatsController.label)
-    attributedLabelStatsController.label.pin(to: attributedStatsContainer.layoutMarginsGuide)
+    override func viewDidLoad() {
+      super.viewDidLoad()
+      configureUI()
+    }
     
-    stackView.addArrangedSubview(attributedStatsContainer)
-    stackView.addArrangedSubview(UIView())
-    
-    view.addSubview(stackView)
-    
-    stackView.pin(to: view.safeAreaLayoutGuide)
-    
+    private func configureUI() {
+      view.backgroundColor = .white
+      stackView.spacing = 16
+      stackView.alignment = .center
+      stackView.axis = .vertical
+      stackView.translatesAutoresizingMaskIntoConstraints = false
+      stackView.isLayoutMarginsRelativeArrangement = true
+      stackView.layoutMargins = UIEdgeInsets(top: 10, left: 10, bottom: -10, right: -10)
+      labelStatsController.label.translatesAutoresizingMaskIntoConstraints = false
+      stackView.addArrangedSubview(labelStatsController.label)
+      attributedLabelStatsController.label.translatesAutoresizingMaskIntoConstraints = false
+      stackView.addArrangedSubview(attributedLabelStatsController.label)
+      let spacer = UIView()
+      spacer.translatesAutoresizingMaskIntoConstraints = false
+      stackView.addArrangedSubview(UIView())
+      view.addSubview(stackView)
+      stackView.pin(to: view.safeAreaLayoutGuide)
+    }
+
   }
   
 }
-

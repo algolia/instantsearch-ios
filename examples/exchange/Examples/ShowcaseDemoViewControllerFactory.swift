@@ -210,7 +210,7 @@ class ShowcaseDemoViewControllerFactory: ViewControllerFactory {
       viewController = SearchDemoSwiftUI.ViewController()
       
     case .stats:
-      viewController = StatsDemoViewController()
+      viewController = StatsDemoSwiftUI.ViewController()
       
     case .highlighting:
       viewController = SearchDemoSwiftUI.ViewController()

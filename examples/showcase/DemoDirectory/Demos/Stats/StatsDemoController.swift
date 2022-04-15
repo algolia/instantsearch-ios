@@ -16,30 +16,11 @@ class StatsDemoController {
   let statsConnector: StatsConnector
   let queryInputConnector: QueryInputConnector
 
-  init<QI: QueryInputController, SC: LabelStatsController, ASC: AttributedLabelStatsController>(queryInputController: QI,
-                                                                                                statsController: SC,
-                                                                                                attributedStatsController: ASC) {
+  init() {
     self.searcher = HitsSearcher(client: .demo, indexName: "mobile_demo_movies")
-    self.queryInputConnector = .init(searcher: searcher, controller: queryInputController)
-    self.statsConnector = .init(searcher: searcher, controller: statsController) { stats -> String? in
-      guard let stats = stats else {
-        return nil
-      }
-      return "\(stats.totalHitsCount) hits in \(stats.processingTimeMS) ms"
-    }
-    
-    statsConnector.interactor.connectController(attributedStatsController) { stats -> NSAttributedString? in
-      guard let stats = stats else {
-        return nil
-      }
-      let string = NSMutableAttributedString()
-      string.append(NSAttributedString(string: "\(stats.totalHitsCount)", attributes: [NSAttributedString.Key.font: UIFont(name: "Chalkduster", size: 15)!]))
-      string.append(NSAttributedString(string: "  hits"))
-      return string
-    }
-    
+    self.queryInputConnector = .init(searcher: searcher)
+    self.statsConnector = .init(searcher: searcher)
     searcher.search()
-    
   }
   
   
