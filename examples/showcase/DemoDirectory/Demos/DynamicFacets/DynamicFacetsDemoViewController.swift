@@ -55,7 +55,7 @@ class DynamicFacetListDemoViewController: UIViewController {
   }
   
   @objc private func presentHint() {
-    let hintController = UIAlertController(title: "Help", message: "Type \"6\", \"61\" or \"616\" to trigger a rule", preferredStyle: .alert)
+    let hintController = UIAlertController(title: "Help", message: DynamicFacetListDemoController.helpMessage, preferredStyle: .alert)
     hintController.addAction(UIAlertAction(title: "OK", style: .cancel))
     present(hintController, animated: true)
   }

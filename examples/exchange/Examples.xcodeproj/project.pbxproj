@@ -157,7 +157,7 @@
 		AF50CA2B27F71CCA0036F549 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = AF50CA2A27F71CCA0036F549 /* SceneDelegate.swift */; };
 		AF50CA3227F71CCB0036F549 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = AF50CA3127F71CCB0036F549 /* Assets.xcassets */; };
 		AF50CA3527F71CCB0036F549 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = AF50CA3327F71CCB0036F549 /* LaunchScreen.storyboard */; };
-		AF50CA3D27F71D2B0036F549 /* DynamicFacetsSwiftUIDemoViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = AF50CA3A27F71D2B0036F549 /* DynamicFacetsSwiftUIDemoViewController.swift */; };
+		AF50CA3D27F71D2B0036F549 /* DynamicFacetDemoSwiftUI.swift in Sources */ = {isa = PBXBuildFile; fileRef = AF50CA3A27F71D2B0036F549 /* DynamicFacetDemoSwiftUI.swift */; };
 		AF50CA3E27F71D2B0036F549 /* DynamicFacetsDemoController.swift in Sources */ = {isa = PBXBuildFile; fileRef = AF50CA3B27F71D2B0036F549 /* DynamicFacetsDemoController.swift */; };
 		AF50CA3F27F71D2B0036F549 /* DynamicFacetsDemoViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = AF50CA3C27F71D2B0036F549 /* DynamicFacetsDemoViewController.swift */; };
 		AF50CA4127F720910036F549 /* InstantSearch in Frameworks */ = {isa = PBXBuildFile; productRef = AF50CA4027F720910036F549 /* InstantSearch */; };
@@ -669,7 +669,7 @@
 		AFB181C127FC95B0000AA57B /* Product.swift in Sources */ = {isa = PBXBuildFile; fileRef = AFAE55B22734380200B52A43 /* Product.swift */; };
 		AFB181C327FDB6A0000AA57B /* FilterStateObservableController.swift in Sources */ = {isa = PBXBuildFile; fileRef = AFB181C227FDB6A0000AA57B /* FilterStateObservableController.swift */; };
 		AFB181C427FDB6A0000AA57B /* FilterStateObservableController.swift in Sources */ = {isa = PBXBuildFile; fileRef = AFB181C227FDB6A0000AA57B /* FilterStateObservableController.swift */; };
-		AFB181C827FDC9DB000AA57B /* DynamicFacetsSwiftUIDemoViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = AF50CA3A27F71D2B0036F549 /* DynamicFacetsSwiftUIDemoViewController.swift */; };
+		AFB181C827FDC9DB000AA57B /* DynamicFacetDemoSwiftUI.swift in Sources */ = {isa = PBXBuildFile; fileRef = AF50CA3A27F71D2B0036F549 /* DynamicFacetDemoSwiftUI.swift */; };
 		AFB181C927FE10B7000AA57B /* RefinementListDemoSwiftUI.swift in Sources */ = {isa = PBXBuildFile; fileRef = AF50CC2727F72D530036F549 /* RefinementListDemoSwiftUI.swift */; };
 		AFB181CB27FE1150000AA57B /* FilterStateDebugView.swift in Sources */ = {isa = PBXBuildFile; fileRef = AFB181CA27FE1150000AA57B /* FilterStateDebugView.swift */; };
 		AFB181CC27FE1150000AA57B /* FilterStateDebugView.swift in Sources */ = {isa = PBXBuildFile; fileRef = AFB181CA27FE1150000AA57B /* FilterStateDebugView.swift */; };
@@ -678,9 +678,6 @@
 		AFB181D027FEE8EF000AA57B /* FacetSearchDemoController.swift in Sources */ = {isa = PBXBuildFile; fileRef = AFB181CE27FEE8EF000AA57B /* FacetSearchDemoController.swift */; };
 		AFE7BE1627FEFB83003CAC71 /* FacetSearchDemoSwiftUI.swift in Sources */ = {isa = PBXBuildFile; fileRef = AFE7BE1527FEFB83003CAC71 /* FacetSearchDemoSwiftUI.swift */; };
 		AFE7BE1727FEFB83003CAC71 /* FacetSearchDemoSwiftUI.swift in Sources */ = {isa = PBXBuildFile; fileRef = AFE7BE1527FEFB83003CAC71 /* FacetSearchDemoSwiftUI.swift */; };
-		AFE7BE1927FF0023003CAC71 /* SearchDemoContainerView.swift in Sources */ = {isa = PBXBuildFile; fileRef = AFE7BE1827FF0023003CAC71 /* SearchDemoContainerView.swift */; };
-		AFE7BE1A27FF0023003CAC71 /* SearchDemoContainerView.swift in Sources */ = {isa = PBXBuildFile; fileRef = AFE7BE1827FF0023003CAC71 /* SearchDemoContainerView.swift */; };
-		AFE7BE1B27FF0023003CAC71 /* SearchDemoContainerView.swift in Sources */ = {isa = PBXBuildFile; fileRef = AFE7BE1827FF0023003CAC71 /* SearchDemoContainerView.swift */; };
 		AFE7BE1D27FF07C8003CAC71 /* DynamicFacetList.swift in Sources */ = {isa = PBXBuildFile; fileRef = AFE7BE1C27FF07C8003CAC71 /* DynamicFacetList.swift */; };
 		AFE7BE1E27FF07C8003CAC71 /* DynamicFacetList.swift in Sources */ = {isa = PBXBuildFile; fileRef = AFE7BE1C27FF07C8003CAC71 /* DynamicFacetList.swift */; };
 		AFE7BE2027FF2697003CAC71 /* SegmentedDemoSwiftUI.swift in Sources */ = {isa = PBXBuildFile; fileRef = AFE7BE1F27FF2697003CAC71 /* SegmentedDemoSwiftUI.swift */; };
@@ -797,7 +794,7 @@
 		AF50CA3127F71CCB0036F549 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		AF50CA3427F71CCB0036F549 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		AF50CA3627F71CCB0036F549 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		AF50CA3A27F71D2B0036F549 /* DynamicFacetsSwiftUIDemoViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = DynamicFacetsSwiftUIDemoViewController.swift; path = ../../showcase/DemoDirectory/Demos/DynamicFacets/DynamicFacetsSwiftUIDemoViewController.swift; sourceTree = "<group>"; };
+		AF50CA3A27F71D2B0036F549 /* DynamicFacetDemoSwiftUI.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = DynamicFacetDemoSwiftUI.swift; path = ../../showcase/DemoDirectory/Demos/DynamicFacets/DynamicFacetDemoSwiftUI.swift; sourceTree = "<group>"; };
 		AF50CA3B27F71D2B0036F549 /* DynamicFacetsDemoController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = DynamicFacetsDemoController.swift; path = ../../showcase/DemoDirectory/Demos/DynamicFacets/DynamicFacetsDemoController.swift; sourceTree = "<group>"; };
 		AF50CA3C27F71D2B0036F549 /* DynamicFacetsDemoViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = DynamicFacetsDemoViewController.swift; path = ../../showcase/DemoDirectory/Demos/DynamicFacets/DynamicFacetsDemoViewController.swift; sourceTree = "<group>"; };
 		AF50CA4927F724530036F549 /* FacetList.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = FacetList.app; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -1037,7 +1034,6 @@
 		AFB181CA27FE1150000AA57B /* FilterStateDebugView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FilterStateDebugView.swift; sourceTree = "<group>"; };
 		AFB181CE27FEE8EF000AA57B /* FacetSearchDemoController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FacetSearchDemoController.swift; sourceTree = "<group>"; };
 		AFE7BE1527FEFB83003CAC71 /* FacetSearchDemoSwiftUI.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FacetSearchDemoSwiftUI.swift; sourceTree = "<group>"; };
-		AFE7BE1827FF0023003CAC71 /* SearchDemoContainerView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchDemoContainerView.swift; sourceTree = "<group>"; };
 		AFE7BE1C27FF07C8003CAC71 /* DynamicFacetList.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DynamicFacetList.swift; sourceTree = "<group>"; };
 		AFE7BE1F27FF2697003CAC71 /* SegmentedDemoSwiftUI.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SegmentedDemoSwiftUI.swift; sourceTree = "<group>"; };
 		AFE7BE2628006E11003CAC71 /* SegmentedFilterDemoController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SegmentedFilterDemoController.swift; sourceTree = "<group>"; };
@@ -1433,7 +1429,7 @@
 				AF50CA2A27F71CCA0036F549 /* SceneDelegate.swift */,
 				AF50CA3B27F71D2B0036F549 /* DynamicFacetsDemoController.swift */,
 				AF50CA3C27F71D2B0036F549 /* DynamicFacetsDemoViewController.swift */,
-				AF50CA3A27F71D2B0036F549 /* DynamicFacetsSwiftUIDemoViewController.swift */,
+				AF50CA3A27F71D2B0036F549 /* DynamicFacetDemoSwiftUI.swift */,
 				AF50CA3127F71CCB0036F549 /* Assets.xcassets */,
 				AF50CA3327F71CCB0036F549 /* LaunchScreen.storyboard */,
 				AF50CA3627F71CCB0036F549 /* Info.plist */,
@@ -1701,7 +1697,6 @@
 				4073B59D28076B6F00E05EF6 /* Double+Range.swift */,
 				AF4FF28627FEF2D800A4BF61 /* FiltersDebugViewController.swift */,
 				AF50CC2D27F72F750036F549 /* SearchDebugViewController.swift */,
-				AFE7BE1827FF0023003CAC71 /* SearchDemoContainerView.swift */,
 			);
 			path = Shared;
 			sourceTree = "<group>";
@@ -3234,14 +3229,13 @@
 				AF50CA4427F7220B0036F549 /* UITableView+EmptyResult.swift in Sources */,
 				400366CF2809BA2000A5F29E /* FilterStateObservableController.swift in Sources */,
 				AFE7BE1E27FF07C8003CAC71 /* DynamicFacetList.swift in Sources */,
-				AF50CA3D27F71D2B0036F549 /* DynamicFacetsSwiftUIDemoViewController.swift in Sources */,
+				AF50CA3D27F71D2B0036F549 /* DynamicFacetDemoSwiftUI.swift in Sources */,
 				AF50CA2927F71CCA0036F549 /* AppDelegate.swift in Sources */,
 				AF50CD9627FB29A10036F549 /* SceneDelegate+Convenience.swift in Sources */,
 				AF50CA3F27F71D2B0036F549 /* DynamicFacetsDemoViewController.swift in Sources */,
 				AF50CA3E27F71D2B0036F549 /* DynamicFacetsDemoController.swift in Sources */,
 				400366D02809BA3B00A5F29E /* FiltersDebugViewController.swift in Sources */,
 				AF50CCC527FAE6AA0036F549 /* UIView+Layout.swift in Sources */,
-				AFE7BE1A27FF0023003CAC71 /* SearchDemoContainerView.swift in Sources */,
 				AFB181BE27FC95B0000AA57B /* Product.swift in Sources */,
 				AF50CA2B27F71CCA0036F549 /* SceneDelegate.swift in Sources */,
 				AF50CDEC27FB31810036F549 /* StoreItem.swift in Sources */,
@@ -3297,7 +3291,6 @@
 			buildActionMask = 2147483647;
 			files = (
 				AF50CC4B27F743260036F549 /* SearchDebugViewController.swift in Sources */,
-				AFE7BE1B27FF0023003CAC71 /* SearchDemoContainerView.swift in Sources */,
 				AF50CC4E27F743590036F549 /* Helpers.swift in Sources */,
 				AF50CE2827FB31810036F549 /* UITableView+EmptyResult.swift in Sources */,
 				AF50CA7C27F7247C0036F549 /* AppDelegate.swift in Sources */,
@@ -3700,7 +3693,7 @@
 				AF50CE9827FB71780036F549 /* DynamicFacetsDemoController.swift in Sources */,
 				4073B5A42807720100E05EF6 /* RatingFilterDemoSwiftUI.swift in Sources */,
 				AF50CD4A27FAF64E0036F549 /* RelevantSortDemoViewController.swift in Sources */,
-				AFB181C827FDC9DB000AA57B /* DynamicFacetsSwiftUIDemoViewController.swift in Sources */,
+				AFB181C827FDC9DB000AA57B /* DynamicFacetDemoSwiftUI.swift in Sources */,
 				AF50CCDB27FAE8700036F549 /* NumericRangeController.swift in Sources */,
 				40E1B080280849EB0092B424 /* MultiIndexSwiftUIDemo.swift in Sources */,
 				AFAE55D02734ADC800B52A43 /* QuerySuggestionsAndHits.SearchViewController.swift in Sources */,
@@ -3738,7 +3731,6 @@
 				AF50CA0C27F6FA130036F549 /* SuggestionsTableViewController.swift in Sources */,
 				AF50CD4E27FAF64E0036F549 /* RelevantSortDemoSwiftUI.swift in Sources */,
 				AF5089F82766CE7B00F30F18 /* VoiceSearch.ResultsController.swift in Sources */,
-				AFE7BE1927FF0023003CAC71 /* SearchDemoContainerView.swift in Sources */,
 				AF50CD3327FAF5120036F549 /* SortByDemoController.swift in Sources */,
 				AF50CD5227FAF64E0036F549 /* SortByController.swift in Sources */,
 				400366CA2808835800A5F29E /* QueryRuleCustomDataDemoController.swift in Sources */,

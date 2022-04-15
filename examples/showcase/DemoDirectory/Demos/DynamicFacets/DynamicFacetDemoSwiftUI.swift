@@ -1,5 +1,5 @@
 //
-//  DynamicFacetListSwiftUIDemoViewController.swift
+//  DynamicFacetDemoSwiftUI.swift
 //  DemoDirectory
 //
 //  Created by Vladislav Fitc on 16/06/2021.
@@ -32,14 +32,27 @@ struct DynamicFacetDemoSwiftUI: PreviewProvider {
   
   struct ContentView: View {
     
-    let queryInputController: QueryInputObservableController
+    @ObservedObject var queryInputController: QueryInputObservableController
     let facetsController: DynamicFacetListObservableController
     
+    @State private var isHelpPresented: Bool = false
+    
     var body: some View {
-      SearchDemoContainerView(queryInputController) {
-        DynamicFacetList(dynamicFacetListController: facetsController)
-          .navigationBarTitle("Dynamic facets")
-      }
+      DynamicFacetList(dynamicFacetListController: facetsController)
+        .navigationBarTitle("Dynamic facets")
+        .alert(isPresented: $isHelpPresented) {
+          Alert(title: Text("Help"),
+                message: Text(DynamicFacetListDemoController.helpMessage),
+                dismissButton: .default(Text("OK")))
+        }
+        .toolbar {
+            ToolbarItem(placement: .navigationBarTrailing) {
+              Button(action: { isHelpPresented = true }) {
+                Image(systemName: "info.circle.fill")
+              }
+            }
+        }
+        .searchable(text: $queryInputController.query)
     }
     
   }
@@ -64,8 +77,10 @@ struct DynamicFacetDemoSwiftUI: PreviewProvider {
   static let controller = Controller()
   static var previews: some View {
     _ = controller
-    return ContentView(queryInputController: controller.queryInputController,
-                            facetsController: controller.facetsController)
+    return NavigationView {
+      ContentView(queryInputController: controller.queryInputController,
+                  facetsController: controller.facetsController)
+    }
   }
   
 }

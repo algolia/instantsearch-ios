@@ -17,6 +17,8 @@ class DynamicFacetListDemoController {
   let dynamicFacetListConnector: DynamicFacetListConnector<HitsSearcher>
   let filterState: FilterState
   
+  static let helpMessage = "Type \"6\", \"61\" or \"616\" to trigger a rule"
+  
   init<QIC: QueryInputController, DFC: DynamicFacetListController>(queryInputController: QIC,
                                                                    dynamicFacetListController: DFC) {
     searcher = .init(client: .init(appID: "RVURKQXRHU",

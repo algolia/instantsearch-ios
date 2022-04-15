@@ -23,7 +23,7 @@ class FacetSearchDemoSwiftUI: PreviewProvider {
       facetListController = FacetListObservableController()
       queryInputController = QueryInputObservableController()
       demoController = FacetSearchDemoController(facetListController: facetListController,
-                                                            queryInputController: queryInputController)
+                                                 queryInputController: queryInputController)
       filterStateController = FilterStateObservableController(filterState: demoController.filterState)
     }
     
@@ -36,18 +36,18 @@ class FacetSearchDemoSwiftUI: PreviewProvider {
     @ObservedObject var filterStateDebugController: FilterStateObservableController
     
     var body: some View {
-      SearchDemoContainerView(queryInputController) {
-        VStack {
-          FilterStateDebugView(filterStateDebugController)
-            .padding()
-          ScrollView {
-            FacetList(facetListController) { facet, isSelected in
-              FacetRow(facet: facet, isSelected: isSelected)
-                .padding()
-            }.navigationBarTitle("Facet Search")
+      VStack {
+        FilterStateDebugView(filterStateDebugController)
+          .padding()
+        ScrollView {
+          FacetList(facetListController) { facet, isSelected in
+            FacetRow(facet: facet, isSelected: isSelected)
+              .padding()
           }
+          .navigationBarTitle("Facet Search")
         }
       }
+      .searchable(text: $queryInputController.query)
     }
     
   }
@@ -72,10 +72,11 @@ class FacetSearchDemoSwiftUI: PreviewProvider {
   static let controller = Controller()
   static var previews: some View {
     _ = controller
-    return ContentView(queryInputController: controller.queryInputController,
-                       facetListController: controller.facetListController,
-                       filterStateDebugController: controller.filterStateController)
-
+    return NavigationView {
+      ContentView(queryInputController: controller.queryInputController,
+                  facetListController: controller.facetListController,
+                  filterStateDebugController: controller.filterStateController)
+    }
   }
   
 }
