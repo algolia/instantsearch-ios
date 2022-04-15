@@ -31,6 +31,11 @@
 		40C7C2422809BC9E005DEC68 /* FilterStateObservableController.swift in Sources */ = {isa = PBXBuildFile; fileRef = AFB181C227FDB6A0000AA57B /* FilterStateObservableController.swift */; };
 		40C7C2432809BCBF005DEC68 /* FilterStateObservableController.swift in Sources */ = {isa = PBXBuildFile; fileRef = AFB181C227FDB6A0000AA57B /* FilterStateObservableController.swift */; };
 		40C7C2442809BCCA005DEC68 /* FilterStateDebugView.swift in Sources */ = {isa = PBXBuildFile; fileRef = AFB181CA27FE1150000AA57B /* FilterStateDebugView.swift */; };
+		40C7C245280A1639005DEC68 /* FacetListPersistentDemoViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = AF50CC3C27F735380036F549 /* FacetListPersistentDemoViewController.swift */; };
+		40C7C247280A16B8005DEC68 /* FacetListPersistentSelectionDemoController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 40C7C246280A16B8005DEC68 /* FacetListPersistentSelectionDemoController.swift */; };
+		40C7C248280A16B8005DEC68 /* FacetListPersistentSelectionDemoController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 40C7C246280A16B8005DEC68 /* FacetListPersistentSelectionDemoController.swift */; };
+		40C7C24A280A202F005DEC68 /* FacetListPersistentDemoSwiftUI.swift in Sources */ = {isa = PBXBuildFile; fileRef = 40C7C249280A202F005DEC68 /* FacetListPersistentDemoSwiftUI.swift */; };
+		40C7C24B280A202F005DEC68 /* FacetListPersistentDemoSwiftUI.swift in Sources */ = {isa = PBXBuildFile; fileRef = 40C7C249280A202F005DEC68 /* FacetListPersistentDemoSwiftUI.swift */; };
 		40E1B06728078B0A0092B424 /* RatingView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 40E1B06628078B0A0092B424 /* RatingView.swift */; };
 		40E1B06828078B0A0092B424 /* RatingView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 40E1B06628078B0A0092B424 /* RatingView.swift */; };
 		40E1B06928078B650092B424 /* FilterStateObservableController.swift in Sources */ = {isa = PBXBuildFile; fileRef = AFB181C227FDB6A0000AA57B /* FilterStateObservableController.swift */; };
@@ -228,9 +233,9 @@
 		AF50CC1D27F72CB60036F549 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = AF50CC1C27F72CB60036F549 /* Assets.xcassets */; };
 		AF50CC2027F72CB60036F549 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = AF50CC1E27F72CB60036F549 /* LaunchScreen.storyboard */; };
 		AF50CC2627F72CFD0036F549 /* InstantSearch in Frameworks */ = {isa = PBXBuildFile; productRef = AF50CC2527F72CFD0036F549 /* InstantSearch */; };
-		AF50CC2A27F72D530036F549 /* RefinementListDemoSwiftUI.swift in Sources */ = {isa = PBXBuildFile; fileRef = AF50CC2727F72D530036F549 /* RefinementListDemoSwiftUI.swift */; };
-		AF50CC2B27F72D530036F549 /* RefinementListDemoViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = AF50CC2827F72D530036F549 /* RefinementListDemoViewController.swift */; };
-		AF50CC2C27F72D530036F549 /* RefinementListDemoController.swift in Sources */ = {isa = PBXBuildFile; fileRef = AF50CC2927F72D530036F549 /* RefinementListDemoController.swift */; };
+		AF50CC2A27F72D530036F549 /* FacetListDemoSwiftUI.swift in Sources */ = {isa = PBXBuildFile; fileRef = AF50CC2727F72D530036F549 /* FacetListDemoSwiftUI.swift */; };
+		AF50CC2B27F72D530036F549 /* FacetListDemoViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = AF50CC2827F72D530036F549 /* FacetListDemoViewController.swift */; };
+		AF50CC2C27F72D530036F549 /* FacetListDemoController.swift in Sources */ = {isa = PBXBuildFile; fileRef = AF50CC2927F72D530036F549 /* FacetListDemoController.swift */; };
 		AF50CC2E27F72F750036F549 /* SearchDebugViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = AF50CC2D27F72F750036F549 /* SearchDebugViewController.swift */; };
 		AF50CC2F27F72F750036F549 /* SearchDebugViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = AF50CC2D27F72F750036F549 /* SearchDebugViewController.swift */; };
 		AF50CC3427F72FF80036F549 /* Helpers.swift in Sources */ = {isa = PBXBuildFile; fileRef = AF50CC3327F72FF80036F549 /* Helpers.swift */; };
@@ -239,7 +244,7 @@
 		AF50CC3827F7301D0036F549 /* FacetListTableController.swift in Sources */ = {isa = PBXBuildFile; fileRef = AF50CC3627F7301D0036F549 /* FacetListTableController.swift */; };
 		AF50CC3927F7306D0036F549 /* SearchClient.swift in Sources */ = {isa = PBXBuildFile; fileRef = AF50C96B27F623380036F549 /* SearchClient.swift */; };
 		AF50CC3B27F7308A0036F549 /* InstantSearchSwiftUI in Frameworks */ = {isa = PBXBuildFile; productRef = AF50CC3A27F7308A0036F549 /* InstantSearchSwiftUI */; };
-		AF50CC3D27F735380036F549 /* RefinementPersistentListDemoViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = AF50CC3C27F735380036F549 /* RefinementPersistentListDemoViewController.swift */; };
+		AF50CC3D27F735380036F549 /* FacetListPersistentDemoViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = AF50CC3C27F735380036F549 /* FacetListPersistentDemoViewController.swift */; };
 		AF50CC3E27F7359D0036F549 /* SearchClient.swift in Sources */ = {isa = PBXBuildFile; fileRef = AF50C96B27F623380036F549 /* SearchClient.swift */; };
 		AF50CC3F27F735A00036F549 /* Helpers.swift in Sources */ = {isa = PBXBuildFile; fileRef = AF50CC3327F72FF80036F549 /* Helpers.swift */; };
 		AF50CC4027F735A30036F549 /* FacetListTableController.swift in Sources */ = {isa = PBXBuildFile; fileRef = AF50CC3627F7301D0036F549 /* FacetListTableController.swift */; };
@@ -521,8 +526,8 @@
 		AF50CE9727FB715D0036F549 /* ClearFiltersDemoController.swift in Sources */ = {isa = PBXBuildFile; fileRef = AF50CC7F27F746040036F549 /* ClearFiltersDemoController.swift */; };
 		AF50CE9827FB71780036F549 /* DynamicFacetsDemoController.swift in Sources */ = {isa = PBXBuildFile; fileRef = AF50CA3B27F71D2B0036F549 /* DynamicFacetsDemoController.swift */; };
 		AF50CE9927FB71780036F549 /* DynamicFacetsDemoViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = AF50CA3C27F71D2B0036F549 /* DynamicFacetsDemoViewController.swift */; };
-		AF50CE9A27FB71A90036F549 /* RefinementListDemoViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = AF50CC2827F72D530036F549 /* RefinementListDemoViewController.swift */; };
-		AF50CE9B27FB71AD0036F549 /* RefinementListDemoController.swift in Sources */ = {isa = PBXBuildFile; fileRef = AF50CC2927F72D530036F549 /* RefinementListDemoController.swift */; };
+		AF50CE9A27FB71A90036F549 /* FacetListDemoViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = AF50CC2827F72D530036F549 /* FacetListDemoViewController.swift */; };
+		AF50CE9B27FB71AD0036F549 /* FacetListDemoController.swift in Sources */ = {isa = PBXBuildFile; fileRef = AF50CC2927F72D530036F549 /* FacetListDemoController.swift */; };
 		AF50CE9C27FB71C20036F549 /* CurrentFiltersDemoViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = AF50CCB127F7499F0036F549 /* CurrentFiltersDemoViewController.swift */; };
 		AF50CEA427FB72090036F549 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = AF50CEA327FB72090036F549 /* AppDelegate.swift */; };
 		AF50CEA627FB72090036F549 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = AF50CEA527FB72090036F549 /* SceneDelegate.swift */; };
@@ -670,7 +675,7 @@
 		AFB181C327FDB6A0000AA57B /* FilterStateObservableController.swift in Sources */ = {isa = PBXBuildFile; fileRef = AFB181C227FDB6A0000AA57B /* FilterStateObservableController.swift */; };
 		AFB181C427FDB6A0000AA57B /* FilterStateObservableController.swift in Sources */ = {isa = PBXBuildFile; fileRef = AFB181C227FDB6A0000AA57B /* FilterStateObservableController.swift */; };
 		AFB181C827FDC9DB000AA57B /* DynamicFacetDemoSwiftUI.swift in Sources */ = {isa = PBXBuildFile; fileRef = AF50CA3A27F71D2B0036F549 /* DynamicFacetDemoSwiftUI.swift */; };
-		AFB181C927FE10B7000AA57B /* RefinementListDemoSwiftUI.swift in Sources */ = {isa = PBXBuildFile; fileRef = AF50CC2727F72D530036F549 /* RefinementListDemoSwiftUI.swift */; };
+		AFB181C927FE10B7000AA57B /* FacetListDemoSwiftUI.swift in Sources */ = {isa = PBXBuildFile; fileRef = AF50CC2727F72D530036F549 /* FacetListDemoSwiftUI.swift */; };
 		AFB181CB27FE1150000AA57B /* FilterStateDebugView.swift in Sources */ = {isa = PBXBuildFile; fileRef = AFB181CA27FE1150000AA57B /* FilterStateDebugView.swift */; };
 		AFB181CC27FE1150000AA57B /* FilterStateDebugView.swift in Sources */ = {isa = PBXBuildFile; fileRef = AFB181CA27FE1150000AA57B /* FilterStateDebugView.swift */; };
 		AFB181CD27FE1150000AA57B /* FilterStateDebugView.swift in Sources */ = {isa = PBXBuildFile; fileRef = AFB181CA27FE1150000AA57B /* FilterStateDebugView.swift */; };
@@ -723,6 +728,8 @@
 		4073B59D28076B6F00E05EF6 /* Double+Range.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Double+Range.swift"; sourceTree = "<group>"; };
 		4073B5A028076E9600E05EF6 /* RatingFilterDemoController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RatingFilterDemoController.swift; sourceTree = "<group>"; };
 		4073B5A32807720100E05EF6 /* RatingFilterDemoSwiftUI.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RatingFilterDemoSwiftUI.swift; sourceTree = "<group>"; };
+		40C7C246280A16B8005DEC68 /* FacetListPersistentSelectionDemoController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FacetListPersistentSelectionDemoController.swift; sourceTree = "<group>"; };
+		40C7C249280A202F005DEC68 /* FacetListPersistentDemoSwiftUI.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FacetListPersistentDemoSwiftUI.swift; sourceTree = "<group>"; };
 		40E1B06628078B0A0092B424 /* RatingView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RatingView.swift; sourceTree = "<group>"; };
 		40E1B06E280810440092B424 /* SearchDemoController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchDemoController.swift; sourceTree = "<group>"; };
 		40E1B073280811840092B424 /* SearchDemoSwiftUI.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchDemoSwiftUI.swift; sourceTree = "<group>"; };
@@ -894,13 +901,13 @@
 		AF50CC1C27F72CB60036F549 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		AF50CC1F27F72CB60036F549 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		AF50CC2127F72CB60036F549 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		AF50CC2727F72D530036F549 /* RefinementListDemoSwiftUI.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = RefinementListDemoSwiftUI.swift; path = ../../showcase/DemoDirectory/Demos/Filters/RefinementList/RefinementListDemoSwiftUI.swift; sourceTree = "<group>"; };
-		AF50CC2827F72D530036F549 /* RefinementListDemoViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = RefinementListDemoViewController.swift; path = ../../showcase/DemoDirectory/Demos/Filters/RefinementList/RefinementListDemoViewController.swift; sourceTree = "<group>"; };
-		AF50CC2927F72D530036F549 /* RefinementListDemoController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = RefinementListDemoController.swift; path = ../../showcase/DemoDirectory/Demos/Filters/RefinementList/RefinementListDemoController.swift; sourceTree = "<group>"; };
+		AF50CC2727F72D530036F549 /* FacetListDemoSwiftUI.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = FacetListDemoSwiftUI.swift; path = ../../showcase/DemoDirectory/Demos/Filters/RefinementList/FacetListDemoSwiftUI.swift; sourceTree = "<group>"; };
+		AF50CC2827F72D530036F549 /* FacetListDemoViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = FacetListDemoViewController.swift; path = ../../showcase/DemoDirectory/Demos/Filters/RefinementList/FacetListDemoViewController.swift; sourceTree = "<group>"; };
+		AF50CC2927F72D530036F549 /* FacetListDemoController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = FacetListDemoController.swift; path = ../../showcase/DemoDirectory/Demos/Filters/RefinementList/FacetListDemoController.swift; sourceTree = "<group>"; };
 		AF50CC2D27F72F750036F549 /* SearchDebugViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = SearchDebugViewController.swift; path = ../../showcase/DemoDirectory/Helpers/SearchDebugViewController.swift; sourceTree = "<group>"; };
 		AF50CC3327F72FF80036F549 /* Helpers.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Helpers.swift; sourceTree = "<group>"; };
 		AF50CC3627F7301D0036F549 /* FacetListTableController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = FacetListTableController.swift; path = ../../showcase/DemoDirectory/Helpers/FacetListTableController.swift; sourceTree = "<group>"; };
-		AF50CC3C27F735380036F549 /* RefinementPersistentListDemoViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = RefinementPersistentListDemoViewController.swift; path = ../../showcase/DemoDirectory/Demos/Filters/RefinementPersistentListDemoViewController.swift; sourceTree = "<group>"; };
+		AF50CC3C27F735380036F549 /* FacetListPersistentDemoViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = FacetListPersistentDemoViewController.swift; path = ../../showcase/DemoDirectory/Demos/Filters/FacetListPersistentDemoViewController.swift; sourceTree = "<group>"; };
 		AF50CC4927F73F910036F549 /* FacetSearchDemoViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = FacetSearchDemoViewController.swift; path = ../../showcase/DemoDirectory/Demos/FacetSearchDemoViewController.swift; sourceTree = "<group>"; };
 		AF50CC5327F743FF0036F549 /* HierarchicalDemoController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = HierarchicalDemoController.swift; path = ../../showcase/DemoDirectory/Demos/Filters/Hierarchical/HierarchicalDemoController.swift; sourceTree = "<group>"; };
 		AF50CC5427F743FF0036F549 /* HierarchicalDemoSwiftUI.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = HierarchicalDemoSwiftUI.swift; path = ../../showcase/DemoDirectory/Demos/Filters/Hierarchical/HierarchicalDemoSwiftUI.swift; sourceTree = "<group>"; };
@@ -1442,9 +1449,9 @@
 			children = (
 				AF50CA4B27F724530036F549 /* AppDelegate.swift */,
 				AF50CA4D27F724530036F549 /* SceneDelegate.swift */,
-				AF50CC2927F72D530036F549 /* RefinementListDemoController.swift */,
-				AF50CC2727F72D530036F549 /* RefinementListDemoSwiftUI.swift */,
-				AF50CC2827F72D530036F549 /* RefinementListDemoViewController.swift */,
+				AF50CC2927F72D530036F549 /* FacetListDemoController.swift */,
+				AF50CC2727F72D530036F549 /* FacetListDemoSwiftUI.swift */,
+				AF50CC2827F72D530036F549 /* FacetListDemoViewController.swift */,
 				AF50CA5427F724540036F549 /* Assets.xcassets */,
 				AF50CA5627F724540036F549 /* LaunchScreen.storyboard */,
 				AF50CA5927F724540036F549 /* Info.plist */,
@@ -1456,7 +1463,9 @@
 			isa = PBXGroup;
 			children = (
 				AF50CA6327F7246D0036F549 /* AppDelegate.swift */,
-				AF50CC3C27F735380036F549 /* RefinementPersistentListDemoViewController.swift */,
+				AF50CC3C27F735380036F549 /* FacetListPersistentDemoViewController.swift */,
+				40C7C249280A202F005DEC68 /* FacetListPersistentDemoSwiftUI.swift */,
+				40C7C246280A16B8005DEC68 /* FacetListPersistentSelectionDemoController.swift */,
 				AF50CA6527F7246D0036F549 /* SceneDelegate.swift */,
 				AF50CA6C27F7246E0036F549 /* Assets.xcassets */,
 				AF50CA6E27F7246E0036F549 /* LaunchScreen.storyboard */,
@@ -3246,8 +3255,8 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				AF50CC2B27F72D530036F549 /* RefinementListDemoViewController.swift in Sources */,
-				AF50CC2C27F72D530036F549 /* RefinementListDemoController.swift in Sources */,
+				AF50CC2B27F72D530036F549 /* FacetListDemoViewController.swift in Sources */,
+				AF50CC2C27F72D530036F549 /* FacetListDemoController.swift in Sources */,
 				AFB181CC27FE1150000AA57B /* FilterStateDebugView.swift in Sources */,
 				AFB181BC27FC95B0000AA57B /* Product.swift in Sources */,
 				AF4FF28827FEF2D800A4BF61 /* FiltersDebugViewController.swift in Sources */,
@@ -3262,7 +3271,7 @@
 				AF50CCC627FAE6AA0036F549 /* UIView+Layout.swift in Sources */,
 				AF50CA4E27F724530036F549 /* SceneDelegate.swift in Sources */,
 				AF50CC3827F7301D0036F549 /* FacetListTableController.swift in Sources */,
-				AF50CC2A27F72D530036F549 /* RefinementListDemoSwiftUI.swift in Sources */,
+				AF50CC2A27F72D530036F549 /* FacetListDemoSwiftUI.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -3273,16 +3282,18 @@
 				AF50CC4227F735AA0036F549 /* SearchDebugViewController.swift in Sources */,
 				AF50CC4027F735A30036F549 /* FacetListTableController.swift in Sources */,
 				AF50CE2B27FB31810036F549 /* UITableView+EmptyResult.swift in Sources */,
-				AF50CC3D27F735380036F549 /* RefinementPersistentListDemoViewController.swift in Sources */,
+				AF50CC3D27F735380036F549 /* FacetListPersistentDemoViewController.swift in Sources */,
 				AF50CA6427F7246D0036F549 /* AppDelegate.swift in Sources */,
 				AF50CC3E27F7359D0036F549 /* SearchClient.swift in Sources */,
 				AF50CD9827FB29A10036F549 /* SceneDelegate+Convenience.swift in Sources */,
+				40C7C24B280A202F005DEC68 /* FacetListPersistentDemoSwiftUI.swift in Sources */,
 				AF50CCC727FAE6AA0036F549 /* UIView+Layout.swift in Sources */,
 				AF4FF28927FEF2D800A4BF61 /* FiltersDebugViewController.swift in Sources */,
 				AF50CDE027FB31810036F549 /* StoreItem.swift in Sources */,
 				AF50CC3F27F735A00036F549 /* Helpers.swift in Sources */,
 				AF50CA6627F7246D0036F549 /* SceneDelegate.swift in Sources */,
 				AFB181BB27FC95B0000AA57B /* Product.swift in Sources */,
+				40C7C248280A16B8005DEC68 /* FacetListPersistentSelectionDemoController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -3697,6 +3708,7 @@
 				AF50CCDB27FAE8700036F549 /* NumericRangeController.swift in Sources */,
 				40E1B080280849EB0092B424 /* MultiIndexSwiftUIDemo.swift in Sources */,
 				AFAE55D02734ADC800B52A43 /* QuerySuggestionsAndHits.SearchViewController.swift in Sources */,
+				40C7C245280A1639005DEC68 /* FacetListPersistentDemoViewController.swift in Sources */,
 				AFE7BE1627FEFB83003CAC71 /* FacetSearchDemoSwiftUI.swift in Sources */,
 				AF50CE6C27FB34F00036F549 /* StoreItemCollectionViewCell+StoreItem.swift in Sources */,
 				AF50CCE327FAEA980036F549 /* RatingViewController.swift in Sources */,
@@ -3708,7 +3720,7 @@
 				AF5089FC2766CE9E00F30F18 /* CategoriesHits.SearchResultsController.swift in Sources */,
 				AF50CECE27FC52650036F549 /* ViewControllerPusher.swift in Sources */,
 				AF50CD5027FAF64E0036F549 /* RelevantSortToggleController.swift in Sources */,
-				AF50CE9A27FB71A90036F549 /* RefinementListDemoViewController.swift in Sources */,
+				AF50CE9A27FB71A90036F549 /* FacetListDemoViewController.swift in Sources */,
 				AF5089FA2766CE9300F30F18 /* QuerySuggestionsAndHits.SearchResultsController.swift in Sources */,
 				AF50CD1D27FAF4000036F549 /* BannerViewController.swift in Sources */,
 				AF50CEBC27FB72480036F549 /* StatsDemoViewController.swift in Sources */,
@@ -3716,7 +3728,7 @@
 				AF5089F62766CDEE00F30F18 /* QuerySuggestionsCategories.SearchResultsController.swift in Sources */,
 				AF50CE8E27FB39FC0036F549 /* DemoListViewController.swift in Sources */,
 				AF50CCDE27FAE8A40036F549 /* RangeSlider.swift in Sources */,
-				AF50CE9B27FB71AD0036F549 /* RefinementListDemoController.swift in Sources */,
+				AF50CE9B27FB71AD0036F549 /* FacetListDemoController.swift in Sources */,
 				AF50CD7027FAFA630036F549 /* StoreItemCollectionViewCell.swift in Sources */,
 				AF50CE4327FB33150036F549 /* StoreItemTableViewCell.swift in Sources */,
 				AFEFEF8C27F47F8300B47F7F /* ProductTableViewCell+ProductHit.swift in Sources */,
@@ -3730,13 +3742,14 @@
 				AF50CEBA27FB72480036F549 /* StatsDemoSwiftUI.swift in Sources */,
 				AF50CA0C27F6FA130036F549 /* SuggestionsTableViewController.swift in Sources */,
 				AF50CD4E27FAF64E0036F549 /* RelevantSortDemoSwiftUI.swift in Sources */,
+				40C7C247280A16B8005DEC68 /* FacetListPersistentSelectionDemoController.swift in Sources */,
 				AF5089F82766CE7B00F30F18 /* VoiceSearch.ResultsController.swift in Sources */,
 				AF50CD3327FAF5120036F549 /* SortByDemoController.swift in Sources */,
 				AF50CD5227FAF64E0036F549 /* SortByController.swift in Sources */,
 				400366CA2808835800A5F29E /* QueryRuleCustomDataDemoController.swift in Sources */,
 				AF50CA1527F6FA650036F549 /* ResultsViewController.swift in Sources */,
 				AF50CE4527FB33260036F549 /* UITableView+EmptyResult.swift in Sources */,
-				AFB181C927FE10B7000AA57B /* RefinementListDemoSwiftUI.swift in Sources */,
+				AFB181C927FE10B7000AA57B /* FacetListDemoSwiftUI.swift in Sources */,
 				AF50CA1A27F6FA7D0036F549 /* ShopItemRow.swift in Sources */,
 				AF83121D27FC7FC200509DF5 /* MainViewController.swift in Sources */,
 				AF50CCE627FAEB750036F549 /* SegmentedDemoViewController.swift in Sources */,
@@ -3761,6 +3774,7 @@
 				AFE7BE1D27FF07C8003CAC71 /* DynamicFacetList.swift in Sources */,
 				AF7FEB8B272CAC5D0003BE62 /* SceneDelegate.swift in Sources */,
 				AFB181A627FC8FF3000AA57B /* ToggleDemoController.swift in Sources */,
+				40C7C24A280A202F005DEC68 /* FacetListPersistentDemoSwiftUI.swift in Sources */,
 				AF50CA1B27F6FA7D0036F549 /* InstantSearchItem.swift in Sources */,
 				AF50CE9027FB71020036F549 /* HierarchicalDemoViewController.swift in Sources */,
 				4073B5952806CAE200E05EF6 /* SliderView.swift in Sources */,

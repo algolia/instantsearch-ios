@@ -17,7 +17,6 @@ class ProductTableViewCell: UITableViewCell {
   
   let mainStackView: UIStackView
   let labelsStackView: UIStackView
-    
   
   override init(style: UITableViewCell.CellStyle, reuseIdentifier: String?) {
     itemImageView = .init(frame: .zero)
@@ -48,7 +47,7 @@ class ProductTableViewCell: UITableViewCell {
     subtitleLabel.translatesAutoresizingMaskIntoConstraints = false
     subtitleLabel.font = .systemFont(ofSize: 13, weight: .regular)
     subtitleLabel.textColor = .gray
-    subtitleLabel.numberOfLines = 0
+    subtitleLabel.numberOfLines = 2
         
     labelsStackView.axis = .vertical
     labelsStackView.translatesAutoresizingMaskIntoConstraints = false
@@ -68,10 +67,12 @@ class ProductTableViewCell: UITableViewCell {
     
     contentView.addSubview(mainStackView)
     
-    contentView.pin(to: contentView.layoutMarginsGuide)
-    itemImageView.widthAnchor.constraint(equalTo: itemImageView.heightAnchor).isActive = true
+    NSLayoutConstraint.activate([
+      itemImageView.widthAnchor.constraint(equalTo: itemImageView.heightAnchor),
+      itemImageView.widthAnchor.constraint(equalToConstant: 60)
+    ])
     
-    
+    mainStackView.pin(to: contentView.layoutMarginsGuide)
   }
   
 }

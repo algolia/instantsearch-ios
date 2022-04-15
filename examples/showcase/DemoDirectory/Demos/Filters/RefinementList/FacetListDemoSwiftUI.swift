@@ -11,7 +11,7 @@ import InstantSearchCore
 import InstantSearchSwiftUI
 import SwiftUI
 
-class RefinementListDemoSwiftUI: PreviewProvider {
+class FacetListDemoSwiftUI: PreviewProvider {
   
   class Controller {
     
@@ -19,15 +19,15 @@ class RefinementListDemoSwiftUI: PreviewProvider {
     let colorController: FacetListObservableController
     let promotionController: FacetListObservableController
     let categoryController: FacetListObservableController
-    let demoController: RefinementListDemoController
+    let demoController: FacetListDemoController
     
     init() {
       colorController = FacetListObservableController()
       promotionController = FacetListObservableController()
       categoryController = FacetListObservableController()
-      demoController = RefinementListDemoController(colorController: colorController,
-                                                    promotionController: promotionController,
-                                                    categoryController: categoryController)
+      demoController = FacetListDemoController(colorController: colorController,
+                                               promotionController: promotionController,
+                                               categoryController: categoryController)
       filterStateController = FilterStateObservableController(filterState: demoController.filterState)
     }
     
@@ -84,10 +84,10 @@ class RefinementListDemoSwiftUI: PreviewProvider {
     
     init() {
       controller = Controller()
-      let rootView = RefinementListDemoSwiftUI.ContentView(filterStateController: controller.filterStateController,
-                                                           colorController: controller.colorController,
-                                                           promotionController: controller.promotionController,
-                                                           categoryController: controller.categoryController)
+      let rootView = FacetListDemoSwiftUI.ContentView(filterStateController: controller.filterStateController,
+                                                      colorController: controller.colorController,
+                                                      promotionController: controller.promotionController,
+                                                      categoryController: controller.categoryController)
       super.init(rootView: rootView)
     }
     
@@ -96,7 +96,7 @@ class RefinementListDemoSwiftUI: PreviewProvider {
     }
     
   }
-    
+  
   static let controller = Controller()
   static var previews: some View {
     _ = controller

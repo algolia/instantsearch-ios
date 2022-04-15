@@ -17,7 +17,7 @@ struct RelevantSortDemoSwiftUI : PreviewProvider {
     
     let relevantSortController: RelevantSortObservableController
     let sortByController: SelectableSegmentObservableController
-    let hitsController: HitsObservableController<RelevantSortDemoController.Item>
+    let hitsController: HitsObservableController<Hit<Product>>
     let queryInputController: QueryInputObservableController
     let statsController: StatsTextObservableController
     let demoController: RelevantSortDemoController
@@ -25,14 +25,26 @@ struct RelevantSortDemoSwiftUI : PreviewProvider {
     init() {
       relevantSortController = RelevantSortObservableController()
       sortByController = SelectableSegmentObservableController()
-      hitsController = HitsObservableController<RelevantSortDemoController.Item>()
+      hitsController = HitsObservableController()
       queryInputController = QueryInputObservableController()
       statsController = StatsTextObservableController()
-      demoController = RelevantSortDemoController(sortByController: sortByController,
-                                                  relevantSortController: relevantSortController,
-                                                  hitsController: hitsController,
-                                                  queryInputController: queryInputController,
-                                                  statsController: statsController)
+      demoController = RelevantSortDemoController()
+      demoController.sortByConnector.connectController(sortByController) { indexName in
+        switch indexName {
+        case "test_Bestbuy":
+          return "Most relevant"
+        case "test_Bestbuy_vr_price_asc":
+          return "Relevant Sort - Lowest Price"
+        case "test_Bestbuy_replica_price_asc":
+          return "Hard Sort - Lowest Price"
+        default:
+          return indexName.rawValue
+        }
+      }
+      demoController.relevantSortConnector.connectController(relevantSortController)
+      demoController.hitsConnector.connectController(hitsController)
+      demoController.queryInputConnector.connectController(queryInputController)
+      demoController.statsConnector.connectController(statsController)
     }
     
   }
@@ -42,56 +54,51 @@ struct RelevantSortDemoSwiftUI : PreviewProvider {
     @ObservedObject var queryInputController: QueryInputObservableController
     @ObservedObject var sortByController: SelectableSegmentObservableController
     @ObservedObject var relevantSortController: RelevantSortObservableController
-    @ObservedObject var hitsController: HitsObservableController<RelevantSortDemoController.Item>
+    @ObservedObject var hitsController: HitsObservableController<Hit<Product>>
     @ObservedObject var statsController: StatsTextObservableController
     
     @State var isEditing: Bool = false
-        
+    
     var body: some View {
-      NavigationView {
-        VStack {
-          HStack {
-            Text(statsController.stats)
-            Spacer()
-            Menu {
-              ForEach(0 ..< sortByController.segmentsTitles.count, id: \.self) { index in
-                let indexName = sortByController.segmentsTitles[index]
-                Button(indexName) {
-                  sortByController.select(index)
-                }
-              }
-            } label: {
-              if let selectedSegmentIndex = sortByController.selectedSegmentIndex {
-                Label(sortByController.segmentsTitles[selectedSegmentIndex], systemImage: "arrow.up.arrow.down.circle")
+      VStack {
+        HStack {
+          Text(statsController.stats)
+          Spacer()
+          Menu {
+            ForEach(0 ..< sortByController.segmentsTitles.count, id: \.self) { index in
+              let indexName = sortByController.segmentsTitles[index]
+              Button(indexName) {
+                sortByController.select(index)
               }
             }
-          }.padding()
-          if let state = relevantSortController.state {
-            HStack {
-              Text(state.hintText)
-                .foregroundColor(.gray)
-                .font(.footnote)
-              Spacer()
-              Button(state.toggleTitle,
-                     action: relevantSortController.toggle)
-            }.padding()
+          } label: {
+            if let selectedSegmentIndex = sortByController.selectedSegmentIndex {
+              Label(sortByController.segmentsTitles[selectedSegmentIndex], systemImage: "arrow.up.arrow.down.circle")
+            }
           }
-          HitsList(hitsController) { hit, index in
-            VStack {
-              HStack {
-                Text(hit?.name ?? "")
-                Spacer()
-              }
-              Divider()
-            }
-            .padding()
+        }.padding()
+        if let state = relevantSortController.state {
+          HStack {
+            Text(state.hintText)
+              .foregroundColor(.gray)
+              .font(.footnote)
+            Spacer()
+            Button(state.toggleTitle,
+                   action: relevantSortController.toggle)
+          }.padding()
+        }
+        HitsList(hitsController) { hit, _ in
+          if let hit = hit {
+            ShopItemRow(productHit: hit)
+          } else {
+            EmptyView()
           }
         }
-        .navigationBarTitle("Relevant Sort")
-        .searchable(text: $queryInputController.query)
       }
+      .navigationBarTitle("Relevant Sort")
+      .searchable(text: $queryInputController.query)
     }
-
+    
   }
   
   class ViewController: UIHostingController<ContentView> {
@@ -114,16 +121,18 @@ struct RelevantSortDemoSwiftUI : PreviewProvider {
     
   }
   
-
+  
   static let controller = Controller()
   static var previews: some View {
     let _ = controller
-    ContentView(queryInputController: controller.queryInputController,
-                sortByController: controller.sortByController,
-                relevantSortController: controller.relevantSortController,
-                hitsController: controller.hitsController,
-                statsController: controller.statsController)
+    NavigationView {
+      ContentView(queryInputController: controller.queryInputController,
+                  sortByController: controller.sortByController,
+                  relevantSortController: controller.relevantSortController,
+                  hitsController: controller.hitsController,
+                  statsController: controller.statsController)
+    }
   }
   
-
+  
 }

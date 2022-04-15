@@ -13,7 +13,7 @@ import UIKit
 class RelevantSortDemoViewController: UIViewController {
   
   let searchBar: UISearchBar
-  let controller: RelevantSortDemoController
+  let demoController: RelevantSortDemoController
   let hitsController: RelevantHitsController
   let textFieldController: TextFieldController
   let relevantSortController: RelevantSortToggleController
@@ -27,12 +27,24 @@ class RelevantSortDemoViewController: UIViewController {
     self.relevantSortController = .init()
     self.sortByController = .init(searchBar: searchBar)
     self.statsController = .init(label: .init())
-    self.controller = .init(sortByController: sortByController,
-                            relevantSortController: relevantSortController,
-                            hitsController: hitsController,
-                            queryInputController: textFieldController,
-                            statsController: statsController)
+    self.demoController = .init()
     super.init(nibName: nil, bundle: nil)
+    demoController.sortByConnector.connectController(sortByController)  { indexName in
+      switch indexName {
+      case "test_Bestbuy":
+        return "Most relevant"
+      case "test_Bestbuy_vr_price_asc":
+        return "Relevant Sort - Lowest Price"
+      case "test_Bestbuy_replica_price_asc":
+        return "Hard Sort - Lowest Price"
+      default:
+        return indexName.rawValue
+      }
+    }
+    demoController.relevantSortConnector.connectController(relevantSortController)
+    demoController.hitsConnector.connectController(hitsController)
+    demoController.queryInputConnector.connectController(textFieldController)
+    demoController.statsConnector.connectController(statsController)
   }
   
   required init?(coder: NSCoder) {
@@ -76,13 +88,13 @@ class RelevantSortDemoViewController: UIViewController {
 
 class RelevantHitsController: UITableViewController, HitsController {
   
-  var hitsSource: HitsInteractor<RelevantSortDemoController.Item>?
+  var hitsSource: HitsInteractor<Hit<Product>>?
   
-  let cellID = "cellID"
+  private let cellID = "cellID"
   
   override func viewDidLoad() {
     super.viewDidLoad()
-    tableView.register(UITableViewCell.self, forCellReuseIdentifier: cellID)
+    tableView.register(ProductTableViewCell.self, forCellReuseIdentifier: cellID)
   }
   
   override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
@@ -91,7 +103,11 @@ class RelevantHitsController: UITableViewController, HitsController {
   
   override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
     let cell = tableView.dequeueReusableCell(withIdentifier: cellID, for: indexPath)
-    cell.textLabel?.text = hitsSource?.hit(atIndex: indexPath.row)?.name
+    if
+      let productTableViewCell = cell as? ProductTableViewCell,
+      let product = hitsSource?.hit(atIndex: indexPath.row) {
+        productTableViewCell.setup(with: product)
+    }
     return cell
   }
   

@@ -61,10 +61,10 @@ class ShowcaseDemoViewControllerFactory: ViewControllerFactory {
       viewController = DynamicFacetListDemoViewController()
       
     case .facetList:
-      viewController = RefinementListDemoViewController()
+      viewController = FacetListDemoViewController()
       
     case .facetListPersistentSelection:
-      viewController = RefinementListDemoViewController()
+      viewController = FacetListPersistentDemoViewController()
       
     case .segmented:
       viewController = SegmentedDemoViewController()
@@ -159,10 +159,10 @@ class ShowcaseDemoViewControllerFactory: ViewControllerFactory {
       viewController = DynamicFacetDemoSwiftUI.ViewController()
       
     case .facetList:
-      viewController = RefinementListDemoSwiftUI.ViewController()
+      viewController = FacetListDemoSwiftUI.ViewController()
       
     case .facetListPersistentSelection:
-      viewController = RefinementListDemoSwiftUI.ViewController()
+      viewController = FacetListPersistentDemoSwiftUI.ViewController()
       
     case .segmented:
       viewController = SegmentedDemoSwiftUI.ViewController()

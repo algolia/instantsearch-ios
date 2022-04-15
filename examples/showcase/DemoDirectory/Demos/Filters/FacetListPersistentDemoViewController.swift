@@ -1,5 +1,5 @@
 //
-//  RefinementPersistentListDemoViewController.swift
+//  FacetListPersistentDemoViewController.swift
 //  development-pods-instantsearch
 //
 //  Created by Vladislav Fitc on 19/06/2019.
@@ -10,27 +10,21 @@ import Foundation
 import UIKit
 import InstantSearch
 
-class RefinementPersistentListDemoViewController: UIViewController {
+class FacetListPersistentDemoViewController: UIViewController {
   
-  let searcher: HitsSearcher
-  let filterState: FilterState
-  
-  let colorConnector: FacetListConnector
-  let categoryConnector: FacetListConnector
-
+  let demoController: FacetListPersistentSelectionDemoController
   let searchStateViewController: SearchDebugViewController
   let colorListController: FacetListTableController
   let categoryListController: FacetListTableController
 
-  override init(nibName nibNameOrNil: String?, bundle nibBundleOrNil: Bundle?) {
-    searcher = .init(client: .demo, indexName: "mobile_demo_facet_list")
-    filterState = .init()
-    colorConnector = .init(searcher: searcher, filterState: filterState, attribute: "color", selectionMode: .multiple, operator: .or)
-    categoryConnector = .init(searcher: searcher, filterState: filterState, attribute: "category", selectionMode: .single, operator: .or)
-    colorListController = .init(tableView: .init(), titleDescriptor: .init(text: "Multiple choice", color: .red))
-    categoryListController = .init(tableView: .init(), titleDescriptor: .init(text: "Single choice", color: .blue))
+  init() {
+    demoController = .init()
+    colorListController = .init(tableView: .init(),
+                                titleDescriptor: .init(text: "Multiple choice", color: .red))
+    categoryListController = .init(tableView: .init(),
+                                   titleDescriptor: .init(text: "Single choice", color: .blue))
     searchStateViewController = .init()
-    super.init(nibName: nibNameOrNil, bundle: nibBundleOrNil)
+    super.init(nibName: nil, bundle: nil)
     setup()
   }
   
@@ -45,22 +39,16 @@ class RefinementPersistentListDemoViewController: UIViewController {
   
 }
 
-private extension RefinementPersistentListDemoViewController {
+private extension FacetListPersistentDemoViewController {
 
   func setup() {
-    searcher.connectFilterState(filterState)
-    
-    colorConnector.interactor.connectController(colorListController)
-    categoryConnector.interactor.connectController(categoryListController)
-    
-    searchStateViewController.connectSearcher(searcher)
-    searchStateViewController.connectFilterState(filterState)
-
-    searcher.search()
+    demoController.colorConnector.interactor.connectController(colorListController)
+    demoController.categoryConnector.interactor.connectController(categoryListController)
+    searchStateViewController.connectSearcher(demoController.searcher)
+    searchStateViewController.connectFilterState(demoController.filterState)
   }
   
   func setupLayout() {
-    
     view.backgroundColor = .white
     
     let mainStackView = UIStackView(frame: .zero)
@@ -98,7 +86,6 @@ private extension RefinementPersistentListDemoViewController {
       $0.register(UITableViewCell.self, forCellReuseIdentifier: "CellId")
       $0.alwaysBounceVertical = false
       $0.tableFooterView = UIView(frame: .zero)
-//      $0.backgroundColor = UIColor(hexString: "#f7f8fa")
     }
     
   }

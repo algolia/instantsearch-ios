@@ -18,9 +18,9 @@ extension CGFloat {
   static let px16: CGFloat = 16
 }
 
-class RefinementListDemoViewController: UIViewController {
+class FacetListDemoViewController: UIViewController {
   
-  let controller: RefinementListDemoController
+  let controller: FacetListDemoController
 
   let searchStateViewController: SearchDebugViewController
   let colorController: FacetListTableController
@@ -61,7 +61,7 @@ class RefinementListDemoViewController: UIViewController {
 
 }
 
-private extension RefinementListDemoViewController {
+private extension FacetListDemoViewController {
   
   func setup() {
     searchStateViewController.connectSearcher(controller.searcher)
@@ -70,7 +70,7 @@ private extension RefinementListDemoViewController {
   
 }
 
-extension RefinementListDemoViewController {
+extension FacetListDemoViewController {
   
   func setupUI() {
     

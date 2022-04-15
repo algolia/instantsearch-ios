@@ -11,19 +11,6 @@ import InstantSearchCore
 import InstantSearchSwiftUI
 import SwiftUI
 
-struct CheckboxToggleStyle: ToggleStyle {
-    func makeBody(configuration: ToggleStyleConfiguration) -> some View {
-        return HStack(spacing: 7) {
-            configuration.label
-            Image(systemName: configuration.isOn ? "checkmark.square" : "square")
-                .resizable()
-                .frame(width: 22, height: 22)
-                .onTapGesture { configuration.isOn.toggle() }
-        }.onTapGesture {
-            configuration.isOn = !configuration.isOn
-        }
-    }
-}
 
 struct ToggleDemoSwiftUI: PreviewProvider {
   
@@ -34,7 +21,7 @@ struct ToggleDemoSwiftUI: PreviewProvider {
     let facetFilterFilterObservableController: FilterToggleObservableController<Filter.Facet>
     let numericFilterFilterObservableController: FilterToggleObservableController<Filter.Numeric>
     let filterStateController: FilterStateObservableController
-
+    
     init() {
       self.tagFilterFilterObservableController = .init()
       self.facetFilterFilterObservableController = .init()
@@ -56,9 +43,9 @@ struct ToggleDemoSwiftUI: PreviewProvider {
     @ObservedObject var numericFilterFilterObservableController: FilterToggleObservableController<Filter.Numeric>
     
     var body: some View {
-      VStack(spacing: 40) {
+      VStack(spacing: 20) {
         FilterStateDebugView(filterStateController)
-        HStack {
+        HStack() {
           if let numericFilter = numericFilterFilterObservableController.filter {
             Toggle(numericFilter.description, isOn: $numericFilterFilterObservableController.isSelected)
               .toggleStyle(.button)
@@ -105,4 +92,18 @@ struct ToggleDemoSwiftUI: PreviewProvider {
                        numericFilterFilterObservableController: controller.numericFilterFilterObservableController)
   }
   
+}
+
+struct CheckboxToggleStyle: ToggleStyle {
+  func makeBody(configuration: ToggleStyleConfiguration) -> some View {
+    return HStack(spacing: 7) {
+      configuration.label
+      Image(systemName: configuration.isOn ? "checkmark.square" : "square")
+        .resizable()
+        .frame(width: 22, height: 22)
+        .onTapGesture { configuration.isOn.toggle() }
+    }.onTapGesture {
+      configuration.isOn = !configuration.isOn
+    }
+  }
 }

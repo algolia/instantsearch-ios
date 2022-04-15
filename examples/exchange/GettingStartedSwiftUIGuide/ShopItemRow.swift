@@ -133,7 +133,16 @@ struct ShopItemRow: View {
     self.highlightedTitle = product?.hightlightedString(forKey: "name")
     self.price = item.price?.value
   }
-
+  
+  init(productHit: Hit<Product>) {
+    let product = productHit.object
+    title = product.name
+    subtitle = product.brand ?? ""
+    details = product.description
+    imageURL = product.image
+    highlightedTitle = productHit.hightlightedString(forKey: "name")
+    price = nil
+  }
   
 }
 

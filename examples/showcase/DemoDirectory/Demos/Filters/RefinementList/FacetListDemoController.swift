@@ -1,5 +1,5 @@
 //
-//  RefinementListDemoController.swift
+//  FacetListDemoController.swift
 //  DemoDirectory
 //
 //  Created by Vladislav Fitc on 30/06/2021.
@@ -9,7 +9,7 @@
 import Foundation
 import InstantSearch
 
-class RefinementListDemoController {
+class FacetListDemoController {
   
   let searcher: HitsSearcher
   let filterState: FilterState
