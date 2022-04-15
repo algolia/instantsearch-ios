@@ -68,13 +68,8 @@ class ProductTableViewCell: UITableViewCell {
     
     contentView.addSubview(mainStackView)
     
-    NSLayoutConstraint.activate([
-      itemImageView.widthAnchor.constraint(equalTo: itemImageView.heightAnchor),
-      mainStackView.topAnchor.constraint(equalTo: contentView.layoutMarginsGuide.topAnchor),
-      mainStackView.bottomAnchor.constraint(equalTo: contentView.layoutMarginsGuide.bottomAnchor),
-      mainStackView.leadingAnchor.constraint(equalTo: contentView.layoutMarginsGuide.leadingAnchor),
-      mainStackView.trailingAnchor.constraint(equalTo: contentView.layoutMarginsGuide.trailingAnchor),
-    ])
+    contentView.pin(to: contentView.layoutMarginsGuide)
+    itemImageView.widthAnchor.constraint(equalTo: itemImageView.heightAnchor).isActive = true
     
     
   }

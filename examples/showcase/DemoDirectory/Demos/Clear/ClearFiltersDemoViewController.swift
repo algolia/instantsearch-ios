@@ -95,12 +95,7 @@ class ClearFiltersDemoViewController: UIViewController {
     mainStackView.addArrangedSubview(.init())
     
     view.addSubview(mainStackView)
-    NSLayoutConstraint.activate([
-      mainStackView.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor),
-      mainStackView.bottomAnchor.constraint(equalTo: view.safeAreaLayoutGuide.bottomAnchor),
-      mainStackView.leadingAnchor.constraint(equalTo: view.safeAreaLayoutGuide.leadingAnchor),
-      mainStackView.trailingAnchor.constraint(equalTo: view.safeAreaLayoutGuide.trailingAnchor),
-    ])
+    mainStackView.pin(to: view.safeAreaLayoutGuide)
 
   }
 

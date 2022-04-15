@@ -233,9 +233,7 @@ class MultiIndexHitsViewController: UIViewController {
     stackView.addArrangedSubview(productsTitleLabel)
     stackView.addArrangedSubview(productsCollectionViewController.collectionView)
     
-    let spacer = UIView()
-    spacer.translatesAutoresizingMaskIntoConstraints = false
-    stackView.addArrangedSubview(spacer)
+    stackView.addArrangedSubview(.spacer)
     
     view.addSubview(stackView)
     stackView.layoutMargins = UIEdgeInsets(top: 0, left: 12, bottom: 0, right: 12)

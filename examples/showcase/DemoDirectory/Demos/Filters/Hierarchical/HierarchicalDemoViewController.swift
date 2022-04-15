@@ -57,13 +57,7 @@ class HierarchicalDemoViewController: UIViewController {
     mainStackView.spacing = 10
     view.addSubview(mainStackView)
     
-    NSLayoutConstraint.activate([
-      mainStackView.leadingAnchor.constraint(equalTo: view.safeAreaLayoutGuide.leadingAnchor, constant: 10),
-      mainStackView.trailingAnchor.constraint(equalTo: view.safeAreaLayoutGuide.trailingAnchor, constant: -10),
-      mainStackView.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor),
-      mainStackView.bottomAnchor.constraint(equalTo: view.safeAreaLayoutGuide.bottomAnchor),
-    ])
-    
+    mainStackView.pin(to: view.safeAreaLayoutGuide, insets: .init(top: 0, left: 10, bottom: 0, right: -10))    
     mainStackView.addArrangedSubview(searchStateViewController.view)
     mainStackView.addArrangedSubview(tableView)
   }

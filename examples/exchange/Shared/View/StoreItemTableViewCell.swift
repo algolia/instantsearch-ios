@@ -70,13 +70,8 @@ class StoreItemTableViewCell: UITableViewCell {
     contentView.addSubview(mainStackView)
     contentView.layoutMargins = .init(top: 5, left: 3, bottom: 5, right: 3)
     
-    NSLayoutConstraint.activate([
-      itemImageView.widthAnchor.constraint(equalTo: itemImageView.heightAnchor),
-      mainStackView.topAnchor.constraint(equalTo: contentView.layoutMarginsGuide.topAnchor),
-      mainStackView.bottomAnchor.constraint(equalTo: contentView.layoutMarginsGuide.bottomAnchor),
-      mainStackView.leadingAnchor.constraint(equalTo: contentView.layoutMarginsGuide.leadingAnchor),
-      mainStackView.trailingAnchor.constraint(equalTo: contentView.layoutMarginsGuide.trailingAnchor),
-    ])
+    mainStackView.pin(to: contentView.layoutMarginsGuide)
+    itemImageView.widthAnchor.constraint(equalTo: itemImageView.heightAnchor).isActive = true
   }
   
 }

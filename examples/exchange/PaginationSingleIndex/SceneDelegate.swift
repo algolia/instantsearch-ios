@@ -13,7 +13,7 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
 
 
   func scene(_ scene: UIScene, willConnectTo session: UISceneSession, options connectionOptions: UIScene.ConnectionOptions) {
-    setMain(SearchInputDemoViewController(searchTriggeringMode: .searchAsYouType), for: scene)
+    setMain(SearchDemoViewController(searchTriggeringMode: .searchAsYouType), for: scene)
   }
 
   func sceneDidDisconnect(_ scene: UIScene) {

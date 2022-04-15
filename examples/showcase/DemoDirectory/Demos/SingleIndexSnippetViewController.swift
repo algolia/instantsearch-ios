@@ -117,7 +117,7 @@ class SingleIndexSnippetViewController: UIViewController {
       stackView.bottomAnchor.constraint(equalTo: view.bottomAnchor),
       stackView.leadingAnchor.constraint(equalTo: view.safeAreaLayoutGuide.leadingAnchor),
       stackView.trailingAnchor.constraint(equalTo: view.safeAreaLayoutGuide.trailingAnchor),
-      ])
+    ])
     
     categoryTableViewController.title = "Category"
     categoryTableViewController.view.backgroundColor = .white

@@ -9,6 +9,12 @@
 /* Begin PBXBuildFile section */
 		400366CA2808835800A5F29E /* QueryRuleCustomDataDemoController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 400366C92808835800A5F29E /* QueryRuleCustomDataDemoController.swift */; };
 		400366CB2808835800A5F29E /* QueryRuleCustomDataDemoController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 400366C92808835800A5F29E /* QueryRuleCustomDataDemoController.swift */; };
+		400366CC2809B9A900A5F29E /* UIView+Layout.swift in Sources */ = {isa = PBXBuildFile; fileRef = AF50CCBE27FAE6AA0036F549 /* UIView+Layout.swift */; };
+		400366CD2809B9C200A5F29E /* UIView+Layout.swift in Sources */ = {isa = PBXBuildFile; fileRef = AF50CCBE27FAE6AA0036F549 /* UIView+Layout.swift */; };
+		400366CE2809B9F300A5F29E /* UIView+Layout.swift in Sources */ = {isa = PBXBuildFile; fileRef = AF50CCBE27FAE6AA0036F549 /* UIView+Layout.swift */; };
+		400366CF2809BA2000A5F29E /* FilterStateObservableController.swift in Sources */ = {isa = PBXBuildFile; fileRef = AFB181C227FDB6A0000AA57B /* FilterStateObservableController.swift */; };
+		400366D02809BA3B00A5F29E /* FiltersDebugViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = AF4FF28627FEF2D800A4BF61 /* FiltersDebugViewController.swift */; };
+		400366D22809BAE000A5F29E /* FilterStateDebugView.swift in Sources */ = {isa = PBXBuildFile; fileRef = AFB181CA27FE1150000AA57B /* FilterStateDebugView.swift */; };
 		4073B5952806CAE200E05EF6 /* SliderView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4073B5942806CAE200E05EF6 /* SliderView.swift */; };
 		4073B5962806CAE200E05EF6 /* SliderView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4073B5942806CAE200E05EF6 /* SliderView.swift */; };
 		4073B5972806DBEF00E05EF6 /* FilterNumberRangeDemoSwiftUI.swift in Sources */ = {isa = PBXBuildFile; fileRef = AF50CCB627F74A9E0036F549 /* FilterNumberRangeDemoSwiftUI.swift */; };
@@ -20,6 +26,11 @@
 		4073B5A228076E9600E05EF6 /* RatingFilterDemoController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4073B5A028076E9600E05EF6 /* RatingFilterDemoController.swift */; };
 		4073B5A42807720100E05EF6 /* RatingFilterDemoSwiftUI.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4073B5A32807720100E05EF6 /* RatingFilterDemoSwiftUI.swift */; };
 		4073B5A52807720100E05EF6 /* RatingFilterDemoSwiftUI.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4073B5A32807720100E05EF6 /* RatingFilterDemoSwiftUI.swift */; };
+		40C7C23F2809BC55005DEC68 /* InstantSearchSwiftUI in Frameworks */ = {isa = PBXBuildFile; productRef = 40C7C23E2809BC55005DEC68 /* InstantSearchSwiftUI */; };
+		40C7C2412809BC62005DEC68 /* SDWebImageSwiftUI in Frameworks */ = {isa = PBXBuildFile; productRef = 40C7C2402809BC62005DEC68 /* SDWebImageSwiftUI */; };
+		40C7C2422809BC9E005DEC68 /* FilterStateObservableController.swift in Sources */ = {isa = PBXBuildFile; fileRef = AFB181C227FDB6A0000AA57B /* FilterStateObservableController.swift */; };
+		40C7C2432809BCBF005DEC68 /* FilterStateObservableController.swift in Sources */ = {isa = PBXBuildFile; fileRef = AFB181C227FDB6A0000AA57B /* FilterStateObservableController.swift */; };
+		40C7C2442809BCCA005DEC68 /* FilterStateDebugView.swift in Sources */ = {isa = PBXBuildFile; fileRef = AFB181CA27FE1150000AA57B /* FilterStateDebugView.swift */; };
 		40E1B06728078B0A0092B424 /* RatingView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 40E1B06628078B0A0092B424 /* RatingView.swift */; };
 		40E1B06828078B0A0092B424 /* RatingView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 40E1B06628078B0A0092B424 /* RatingView.swift */; };
 		40E1B06928078B650092B424 /* FilterStateObservableController.swift in Sources */ = {isa = PBXBuildFile; fileRef = AFB181C227FDB6A0000AA57B /* FilterStateObservableController.swift */; };
@@ -31,16 +42,12 @@
 		40E1B071280810440092B424 /* SearchDemoController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 40E1B06E280810440092B424 /* SearchDemoController.swift */; };
 		40E1B072280810440092B424 /* SearchDemoController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 40E1B06E280810440092B424 /* SearchDemoController.swift */; };
 		40E1B074280811840092B424 /* SearchDemoSwiftUI.swift in Sources */ = {isa = PBXBuildFile; fileRef = 40E1B073280811840092B424 /* SearchDemoSwiftUI.swift */; };
-		40E1B075280811840092B424 /* SearchDemoSwiftUI.swift in Sources */ = {isa = PBXBuildFile; fileRef = 40E1B073280811840092B424 /* SearchDemoSwiftUI.swift */; };
-		40E1B076280811840092B424 /* SearchDemoSwiftUI.swift in Sources */ = {isa = PBXBuildFile; fileRef = 40E1B073280811840092B424 /* SearchDemoSwiftUI.swift */; };
-		40E1B077280811840092B424 /* SearchDemoSwiftUI.swift in Sources */ = {isa = PBXBuildFile; fileRef = 40E1B073280811840092B424 /* SearchDemoSwiftUI.swift */; };
 		40E1B079280812200092B424 /* InstantSearchSwiftUI in Frameworks */ = {isa = PBXBuildFile; productRef = 40E1B078280812200092B424 /* InstantSearchSwiftUI */; };
 		40E1B07B280845970092B424 /* MultiIndexDemoController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 40E1B07A280845970092B424 /* MultiIndexDemoController.swift */; };
 		40E1B07C280845970092B424 /* MultiIndexDemoController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 40E1B07A280845970092B424 /* MultiIndexDemoController.swift */; };
 		40E1B07D280845970092B424 /* MultiIndexDemoController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 40E1B07A280845970092B424 /* MultiIndexDemoController.swift */; };
 		40E1B07E280845970092B424 /* MultiIndexDemoController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 40E1B07A280845970092B424 /* MultiIndexDemoController.swift */; };
 		40E1B080280849EB0092B424 /* MultiIndexSwiftUIDemo.swift in Sources */ = {isa = PBXBuildFile; fileRef = 40E1B07F280849EB0092B424 /* MultiIndexSwiftUIDemo.swift */; };
-		40E1B081280849EB0092B424 /* MultiIndexSwiftUIDemo.swift in Sources */ = {isa = PBXBuildFile; fileRef = 40E1B07F280849EB0092B424 /* MultiIndexSwiftUIDemo.swift */; };
 		40E1B082280849EB0092B424 /* MultiIndexSwiftUIDemo.swift in Sources */ = {isa = PBXBuildFile; fileRef = 40E1B07F280849EB0092B424 /* MultiIndexSwiftUIDemo.swift */; };
 		AF46A7592747EF9D004E86F3 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = AF46A7582747EF9D004E86F3 /* AppDelegate.swift */; };
 		AF46A75B2747EF9D004E86F3 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = AF46A75A2747EF9D004E86F3 /* SceneDelegate.swift */; };
@@ -336,7 +343,6 @@
 		AF50CD1227FAF37C0036F549 /* QueryRuleCustomDataDemoViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = AF50CD1027FAF37C0036F549 /* QueryRuleCustomDataDemoViewController.swift */; };
 		AF50CD1327FAF37C0036F549 /* QueryRuleCustomDataDemoViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = AF50CD1027FAF37C0036F549 /* QueryRuleCustomDataDemoViewController.swift */; };
 		AF50CD1427FAF37C0036F549 /* QueryRuleCustomDataDemoSwiftUI.swift in Sources */ = {isa = PBXBuildFile; fileRef = AF50CD1127FAF37C0036F549 /* QueryRuleCustomDataDemoSwiftUI.swift */; };
-		AF50CD1527FAF37C0036F549 /* QueryRuleCustomDataDemoSwiftUI.swift in Sources */ = {isa = PBXBuildFile; fileRef = AF50CD1127FAF37C0036F549 /* QueryRuleCustomDataDemoSwiftUI.swift */; };
 		AF50CD1727FAF3BB0036F549 /* SDWebImage in Frameworks */ = {isa = PBXBuildFile; productRef = AF50CD1627FAF3BB0036F549 /* SDWebImage */; };
 		AF50CD1927FAF3BF0036F549 /* InstantSearchSwiftUI in Frameworks */ = {isa = PBXBuildFile; productRef = AF50CD1827FAF3BF0036F549 /* InstantSearchSwiftUI */; };
 		AF50CD1B27FAF3C40036F549 /* SDWebImageSwiftUI in Frameworks */ = {isa = PBXBuildFile; productRef = AF50CD1A27FAF3C40036F549 /* SDWebImageSwiftUI */; };
@@ -355,7 +361,6 @@
 		AF50CD2C27FAF4B60036F549 /* TemplateViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = AF50CD2A27FAF4B60036F549 /* TemplateViewController.swift */; };
 		AF50CD2D27FAF4D90036F549 /* Helpers.swift in Sources */ = {isa = PBXBuildFile; fileRef = AF50CC3327F72FF80036F549 /* Helpers.swift */; };
 		AF50CD3127FAF5120036F549 /* SortByDemoSwiftUI.swift in Sources */ = {isa = PBXBuildFile; fileRef = AF50CD2E27FAF5120036F549 /* SortByDemoSwiftUI.swift */; };
-		AF50CD3227FAF5120036F549 /* SortByDemoSwiftUI.swift in Sources */ = {isa = PBXBuildFile; fileRef = AF50CD2E27FAF5120036F549 /* SortByDemoSwiftUI.swift */; };
 		AF50CD3327FAF5120036F549 /* SortByDemoController.swift in Sources */ = {isa = PBXBuildFile; fileRef = AF50CD2F27FAF5120036F549 /* SortByDemoController.swift */; };
 		AF50CD3427FAF5120036F549 /* SortByDemoController.swift in Sources */ = {isa = PBXBuildFile; fileRef = AF50CD2F27FAF5120036F549 /* SortByDemoController.swift */; };
 		AF50CD3527FAF5120036F549 /* SortByDemoViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = AF50CD3027FAF5120036F549 /* SortByDemoViewController.swift */; };
@@ -504,7 +509,6 @@
 		AF50CE6927FB34970036F549 /* StoreItemsTableViewController+SearchResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = AF50CE4927FB34970036F549 /* StoreItemsTableViewController+SearchResponse.swift */; };
 		AF50CE6A27FB34970036F549 /* StoreItemsTableViewController+SearchResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = AF50CE4927FB34970036F549 /* StoreItemsTableViewController+SearchResponse.swift */; };
 		AF50CE6C27FB34F00036F549 /* StoreItemCollectionViewCell+StoreItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = AF50CE6B27FB34F00036F549 /* StoreItemCollectionViewCell+StoreItem.swift */; };
-		AF50CE8B27FB34F00036F549 /* StoreItemCollectionViewCell+StoreItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = AF50CE6B27FB34F00036F549 /* StoreItemCollectionViewCell+StoreItem.swift */; };
 		AF50CE8C27FB34F00036F549 /* StoreItemCollectionViewCell+StoreItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = AF50CE6B27FB34F00036F549 /* StoreItemCollectionViewCell+StoreItem.swift */; };
 		AF50CE8E27FB39FC0036F549 /* DemoListViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = AF50CE8D27FB39FC0036F549 /* DemoListViewController.swift */; };
 		AF50CE8F27FB3A560036F549 /* SceneDelegate+Convenience.swift in Sources */ = {isa = PBXBuildFile; fileRef = AF50CD8927FB29A10036F549 /* SceneDelegate+Convenience.swift */; };
@@ -1255,6 +1259,8 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				40C7C2412809BC62005DEC68 /* SDWebImageSwiftUI in Frameworks */,
+				40C7C23F2809BC55005DEC68 /* InstantSearchSwiftUI in Frameworks */,
 				AF50CD7527FAFA900036F549 /* SDWebImage in Frameworks */,
 				AF50CC7D27F7458B0036F549 /* InstantSearch in Frameworks */,
 			);
@@ -2469,6 +2475,8 @@
 			packageProductDependencies = (
 				AF50CC7C27F7458B0036F549 /* InstantSearch */,
 				AF50CD7427FAFA900036F549 /* SDWebImage */,
+				40C7C23E2809BC55005DEC68 /* InstantSearchSwiftUI */,
+				40C7C2402809BC62005DEC68 /* SDWebImageSwiftUI */,
 			);
 			productName = PaginationMultiIndex;
 			productReference = AF50CC1127F72CB50036F549 /* PaginationMultiIndex.app */;
@@ -3224,12 +3232,14 @@
 			buildActionMask = 2147483647;
 			files = (
 				AF50CA4427F7220B0036F549 /* UITableView+EmptyResult.swift in Sources */,
+				400366CF2809BA2000A5F29E /* FilterStateObservableController.swift in Sources */,
 				AFE7BE1E27FF07C8003CAC71 /* DynamicFacetList.swift in Sources */,
 				AF50CA3D27F71D2B0036F549 /* DynamicFacetsSwiftUIDemoViewController.swift in Sources */,
 				AF50CA2927F71CCA0036F549 /* AppDelegate.swift in Sources */,
 				AF50CD9627FB29A10036F549 /* SceneDelegate+Convenience.swift in Sources */,
 				AF50CA3F27F71D2B0036F549 /* DynamicFacetsDemoViewController.swift in Sources */,
 				AF50CA3E27F71D2B0036F549 /* DynamicFacetsDemoController.swift in Sources */,
+				400366D02809BA3B00A5F29E /* FiltersDebugViewController.swift in Sources */,
 				AF50CCC527FAE6AA0036F549 /* UIView+Layout.swift in Sources */,
 				AFE7BE1A27FF0023003CAC71 /* SearchDemoContainerView.swift in Sources */,
 				AFB181BE27FC95B0000AA57B /* Product.swift in Sources */,
@@ -3247,6 +3257,7 @@
 				AFB181CC27FE1150000AA57B /* FilterStateDebugView.swift in Sources */,
 				AFB181BC27FC95B0000AA57B /* Product.swift in Sources */,
 				AF4FF28827FEF2D800A4BF61 /* FiltersDebugViewController.swift in Sources */,
+				40C7C2422809BC9E005DEC68 /* FilterStateObservableController.swift in Sources */,
 				AF50CE2927FB31810036F549 /* UITableView+EmptyResult.swift in Sources */,
 				AF50CC2F27F72F750036F549 /* SearchDebugViewController.swift in Sources */,
 				AF50CD9727FB29A10036F549 /* SceneDelegate+Convenience.swift in Sources */,
@@ -3318,9 +3329,11 @@
 				AF50CC5D27F744660036F549 /* Helpers.swift in Sources */,
 				AF4FF28B27FEF2D800A4BF61 /* FiltersDebugViewController.swift in Sources */,
 				AF50CC5827F743FF0036F549 /* HierarchicalDemoViewController.swift in Sources */,
+				40C7C2432809BCBF005DEC68 /* FilterStateObservableController.swift in Sources */,
 				AF50CDE927FB31810036F549 /* StoreItem.swift in Sources */,
 				AF50CC5627F743FF0036F549 /* HierarchicalDemoController.swift in Sources */,
 				AF50CC5727F743FF0036F549 /* HierarchicalDemoSwiftUI.swift in Sources */,
+				40C7C2442809BCCA005DEC68 /* FilterStateDebugView.swift in Sources */,
 				AFB181C027FC95B0000AA57B /* Product.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -3408,6 +3421,7 @@
 				AFB181BA27FC95B0000AA57B /* Product.swift in Sources */,
 				4073B5962806CAE200E05EF6 /* SliderView.swift in Sources */,
 				AF50CC8727F7462B0036F549 /* SearchDebugViewController.swift in Sources */,
+				400366D22809BAE000A5F29E /* FilterStateDebugView.swift in Sources */,
 				AF50CCB927F74A9E0036F549 /* FilterNumberRangeDemoSwiftUI.swift in Sources */,
 				AF50CCBB27F74A9E0036F549 /* FilterNumberRangeDemoController.swift in Sources */,
 				AF50CE2D27FB31810036F549 /* UITableView+EmptyResult.swift in Sources */,
@@ -3429,7 +3443,6 @@
 				40E1B06828078B0A0092B424 /* RatingView.swift in Sources */,
 				AF50CD9F27FB29A10036F549 /* SceneDelegate+Convenience.swift in Sources */,
 				AF4FF29127FEF2D800A4BF61 /* FiltersDebugViewController.swift in Sources */,
-				40E1B075280811840092B424 /* SearchDemoSwiftUI.swift in Sources */,
 				AF50CB0E27F72BCD0036F549 /* SceneDelegate.swift in Sources */,
 				AFB181BF27FC95B0000AA57B /* Product.swift in Sources */,
 				AF50CE3F27FB31810036F549 /* UITableView+EmptyResult.swift in Sources */,
@@ -3439,7 +3452,6 @@
 				4073B5A228076E9600E05EF6 /* RatingFilterDemoController.swift in Sources */,
 				AF50CC8827F7462C0036F549 /* SearchDebugViewController.swift in Sources */,
 				AF50CCCE27FAE6AA0036F549 /* UIView+Layout.swift in Sources */,
-				40E1B081280849EB0092B424 /* MultiIndexSwiftUIDemo.swift in Sources */,
 				4073B5A52807720100E05EF6 /* RatingFilterDemoSwiftUI.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -3507,7 +3519,6 @@
 				AF50CD2527FAF4720036F549 /* StoreItemsTableViewController.swift in Sources */,
 				AF50CD1327FAF37C0036F549 /* QueryRuleCustomDataDemoViewController.swift in Sources */,
 				AF50CD2D27FAF4D90036F549 /* Helpers.swift in Sources */,
-				AF50CD1527FAF37C0036F549 /* QueryRuleCustomDataDemoSwiftUI.swift in Sources */,
 				400366CB2808835800A5F29E /* QueryRuleCustomDataDemoController.swift in Sources */,
 				AF50CD2127FAF4140036F549 /* Banner.swift in Sources */,
 				AF50CD2827FAF4910036F549 /* UITableView+EmptyResult.swift in Sources */,
@@ -3526,7 +3537,6 @@
 				AF50CD3927FAF54E0036F549 /* StoreItemTableViewCell.swift in Sources */,
 				AF50CE6627FB34970036F549 /* StoreItemsTableViewController+SearchResponse.swift in Sources */,
 				AF50CD4227FAF5960036F549 /* SearchClient.swift in Sources */,
-				AF50CD3227FAF5120036F549 /* SortByDemoSwiftUI.swift in Sources */,
 				AF50CD3427FAF5120036F549 /* SortByDemoController.swift in Sources */,
 				AF50CD3727FAF5400036F549 /* ResultsViewController.swift in Sources */,
 				AF50CD3827FAF54A0036F549 /* StoreItemsTableViewController.swift in Sources */,
@@ -3585,7 +3595,6 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				AF50CE8B27FB34F00036F549 /* StoreItemCollectionViewCell+StoreItem.swift in Sources */,
 				AF50CD7D27FAFB2B0036F549 /* SearchDemoViewController.swift in Sources */,
 				AFB181AD27FC95B0000AA57B /* Product.swift in Sources */,
 				AF50CE6927FB34970036F549 /* StoreItemsTableViewController+SearchResponse.swift in Sources */,
@@ -3602,7 +3611,6 @@
 				AF50CD7F27FAFB7A0036F549 /* ResultsViewController.swift in Sources */,
 				40E1B07D280845970092B424 /* MultiIndexDemoController.swift in Sources */,
 				AF50CD8727FAFBC10036F549 /* StoreItemTableViewCell+StoreItem.swift in Sources */,
-				40E1B076280811840092B424 /* SearchDemoSwiftUI.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -3619,7 +3627,6 @@
 				AFB181BD27FC95B0000AA57B /* Product.swift in Sources */,
 				AF50CD7727FAFAD00036F549 /* Helpers.swift in Sources */,
 				AF50CC1627F72CB60036F549 /* SceneDelegate.swift in Sources */,
-				40E1B077280811840092B424 /* SearchDemoSwiftUI.swift in Sources */,
 				AF50CE3627FB31810036F549 /* UITableView+EmptyResult.swift in Sources */,
 				AF50CCD927FAE6AA0036F549 /* UIView+Layout.swift in Sources */,
 				AF50CDAA27FB29A10036F549 /* SceneDelegate+Convenience.swift in Sources */,
@@ -3837,6 +3844,7 @@
 				AF50CD8C27FB29A10036F549 /* SceneDelegate+Convenience.swift in Sources */,
 				AFAE55212733E07A00B52A43 /* AppDelegate.swift in Sources */,
 				AFAE55DC2734B87500B52A43 /* VoiceSearch.ResultsController.swift in Sources */,
+				400366CE2809B9F300A5F29E /* UIView+Layout.swift in Sources */,
 				AFAE55232733E07A00B52A43 /* SceneDelegate.swift in Sources */,
 				AF50CE3427FB31810036F549 /* UITableView+EmptyResult.swift in Sources */,
 				AFEFEF8527F47F7700B47F7F /* ProductTableViewCell.swift in Sources */,
@@ -3890,6 +3898,7 @@
 				AFB181AC27FC95B0000AA57B /* Product.swift in Sources */,
 				AFAE55952733E26B00B52A43 /* QuerySuggestionsRecentSearches.SearchViewController.swift in Sources */,
 				AFAE556B2733E19700B52A43 /* SceneDelegate.swift in Sources */,
+				400366CD2809B9C200A5F29E /* UIView+Layout.swift in Sources */,
 				AF50CE3D27FB31810036F549 /* UITableView+EmptyResult.swift in Sources */,
 				AFAE55BE27343A3C00B52A43 /* SearchSuggestionTableViewCell.swift in Sources */,
 				AF50CDF127FB31810036F549 /* StoreItem.swift in Sources */,
@@ -3912,6 +3921,7 @@
 				AF50CDF427FB31810036F549 /* StoreItem.swift in Sources */,
 				AF5089EE2766CBB200F30F18 /* SearchSuggestionTableViewCell+QuerySuggestion.swift in Sources */,
 				AFAE55812733E1C400B52A43 /* AppDelegate.swift in Sources */,
+				400366CC2809B9A900A5F29E /* UIView+Layout.swift in Sources */,
 				AFAE55832733E1C400B52A43 /* SceneDelegate.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -6413,6 +6423,15 @@
 			isa = XCSwiftPackageProductDependency;
 			package = 4073B598280705D700E05EF6 /* XCRemoteSwiftPackageReference "RangeUISlider" */;
 			productName = RangeUISlider;
+		};
+		40C7C23E2809BC55005DEC68 /* InstantSearchSwiftUI */ = {
+			isa = XCSwiftPackageProductDependency;
+			productName = InstantSearchSwiftUI;
+		};
+		40C7C2402809BC62005DEC68 /* SDWebImageSwiftUI */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = AF50C9FB27F6ED820036F549 /* XCRemoteSwiftPackageReference "SDWebImageSwiftUI" */;
+			productName = SDWebImageSwiftUI;
 		};
 		40E1B06B28078BF80092B424 /* InstantSearchSwiftUI */ = {
 			isa = XCSwiftPackageProductDependency;

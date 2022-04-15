@@ -86,13 +86,8 @@ class RatingViewController: UIViewController {
     view.addSubview(mainStackView)
     mainStackView.pin(to: view)
     
-    NSLayoutConstraint.activate([
-      mainStackView.leadingAnchor.constraint(equalTo: view.safeAreaLayoutGuide.leadingAnchor, constant: 10),
-      mainStackView.trailingAnchor.constraint(equalTo: view.safeAreaLayoutGuide.trailingAnchor, constant: -10),
-      mainStackView.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor),
-      mainStackView.bottomAnchor.constraint(equalTo: view.safeAreaLayoutGuide.bottomAnchor),
-      searchStateViewController.view.heightAnchor.constraint(equalToConstant: 200),
-    ])
+    mainStackView.pin(to: view.safeAreaLayoutGuide, insets: .init(top: 0, left: 10, bottom: 0, right: -10))
+    searchStateViewController.view.heightAnchor.constraint(equalToConstant: 200).isActive = true
     
     mainStackView.addArrangedSubview(searchStateViewController.view)
     mainStackView.addArrangedSubview(ratingStackView)

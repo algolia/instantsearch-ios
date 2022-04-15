@@ -16,7 +16,7 @@ extension UIView {
       bottomAnchor.constraint(equalTo: view.bottomAnchor, constant: insets.bottom),
       leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: insets.left),
       trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: insets.right),
-      ])
+    ])
   }
   
   func pin(to layoutGuide: UILayoutGuide, insets: UIEdgeInsets = .init()) {
@@ -25,7 +25,13 @@ extension UIView {
       bottomAnchor.constraint(equalTo: layoutGuide.bottomAnchor, constant: insets.bottom),
       leadingAnchor.constraint(equalTo: layoutGuide.leadingAnchor, constant: insets.left),
       trailingAnchor.constraint(equalTo: layoutGuide.trailingAnchor, constant: insets.right),
-      ])
+    ])
+  }
+  
+  static var spacer: UIView {
+    let view = UIView()
+    view.translatesAutoresizingMaskIntoConstraints = false
+    return view
   }
   
 }

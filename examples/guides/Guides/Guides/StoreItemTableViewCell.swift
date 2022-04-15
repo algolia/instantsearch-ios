@@ -18,13 +18,7 @@ class StoreItemTableViewCell: UITableViewCell {
     super.init(style: style, reuseIdentifier: reuseIdentifier)
     storeItemView.translatesAutoresizingMaskIntoConstraints = false
     contentView.addSubview(storeItemView)
-    NSLayoutConstraint.activate([
-      storeItemView.topAnchor.constraint(equalTo: contentView.topAnchor),
-      storeItemView.bottomAnchor.constraint(equalTo: contentView.bottomAnchor),
-      storeItemView.leadingAnchor.constraint(equalTo: contentView.leadingAnchor),
-      storeItemView.trailingAnchor.constraint(equalTo: contentView.trailingAnchor),
-
-    ])
+    storeItemView.pin(to: contentView)
   }
   
   required init?(coder: NSCoder) {

@@ -10,8 +10,6 @@ import Foundation
 import UIKit
 import InstantSearch
 
-
-
 class SegmentedDemoViewController: UIViewController {
   
   let demoController: SegmentedFilterDemoController
@@ -62,9 +60,7 @@ private extension SegmentedDemoViewController {
     mainStackView.addArrangedSubview(segmentedController.segmentedControl)
     segmentedController.segmentedControl.widthAnchor.constraint(equalTo: mainStackView.widthAnchor, multiplier: 0.9).isActive = true
 
-    let spacerView = UIView()
-    spacerView.setContentHuggingPriority(.defaultLow, for: .vertical)
-    mainStackView.addArrangedSubview(spacerView)
+    mainStackView.addArrangedSubview(.spacer)
     
     view.addSubview(mainStackView)
     

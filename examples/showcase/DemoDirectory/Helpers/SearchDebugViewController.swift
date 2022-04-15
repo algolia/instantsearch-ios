@@ -115,12 +115,7 @@ class SearchDebugViewController: UIViewController {
     
     view.addSubview(mainStackView)
 
-    NSLayoutConstraint.activate([
-      mainStackView.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor),
-      mainStackView.bottomAnchor.constraint(equalTo: view.safeAreaLayoutGuide.bottomAnchor),
-      mainStackView.leadingAnchor.constraint(equalTo: view.safeAreaLayoutGuide.leadingAnchor, constant: 4),
-      mainStackView.trailingAnchor.constraint(equalTo: view.safeAreaLayoutGuide.trailingAnchor, constant: -4),
-    ])
+    mainStackView.pin(to: view.safeAreaLayoutGuide, insets: .init(top: 0, left: 4, bottom: 0, right: -4))
     
     let topStackView = UIStackView(frame: .zero)
     topStackView.translatesAutoresizingMaskIntoConstraints = false

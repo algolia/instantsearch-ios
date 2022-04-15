@@ -59,13 +59,7 @@ private extension CurrentFiltersDemoViewController {
     mainStackView.spacing = 16
 
     view.addSubview(mainStackView)
-
-    NSLayoutConstraint.activate([
-      mainStackView.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor),
-      mainStackView.bottomAnchor.constraint(equalTo: view.safeAreaLayoutGuide.bottomAnchor),
-      mainStackView.leadingAnchor.constraint(equalTo: view.safeAreaLayoutGuide.leadingAnchor),
-      mainStackView.trailingAnchor.constraint(equalTo: view.safeAreaLayoutGuide.trailingAnchor),
-    ])
+    mainStackView.pin(to: view.safeAreaLayoutGuide)
     
     addChild(searchStateViewController)
     searchStateViewController.didMove(toParent: self)
@@ -77,12 +71,7 @@ private extension CurrentFiltersDemoViewController {
     searchTextFieldContainer.heightAnchor.constraint(equalToConstant: 54).isActive = true
     searchTextFieldContainer.translatesAutoresizingMaskIntoConstraints = false
     searchTextFieldContainer.addSubview(searchTextField)
-    NSLayoutConstraint.activate([
-      searchTextField.topAnchor.constraint(equalTo: searchTextFieldContainer.topAnchor, constant: 5),
-      searchTextField.leadingAnchor.constraint(equalTo: searchTextFieldContainer.leadingAnchor, constant: 5),
-      searchTextField.trailingAnchor.constraint(equalTo: searchTextFieldContainer.trailingAnchor, constant: -5),
-      searchTextField.bottomAnchor.constraint(equalTo: searchTextFieldContainer.bottomAnchor, constant: -5),
-    ])
+    searchTextField.pin(to: searchTextFieldContainer, insets: .init(top: 5, left: 5, bottom: -5, right: -5))
     mainStackView.addArrangedSubview(searchStateViewController.view)
     mainStackView.addArrangedSubview(searchTextFieldContainer)
     mainStackView.addArrangedSubview(tableView)

@@ -74,13 +74,8 @@ class StoreItemCollectionViewCell: UICollectionViewCell {
     contentView.addSubview(mainStackView)
     layoutMargins = .init(top: 5, left: 3, bottom: 5, right: 3)
     
-    NSLayoutConstraint.activate([
-      itemImageView.widthAnchor.constraint(equalTo: itemImageView.heightAnchor),
-      mainStackView.topAnchor.constraint(equalTo: layoutMarginsGuide.topAnchor),
-      mainStackView.bottomAnchor.constraint(equalTo: layoutMarginsGuide.bottomAnchor),
-      mainStackView.leadingAnchor.constraint(equalTo: layoutMarginsGuide.leadingAnchor),
-      mainStackView.trailingAnchor.constraint(equalTo: layoutMarginsGuide.trailingAnchor),
-    ])
+    itemImageView.widthAnchor.constraint(equalTo: itemImageView.heightAnchor).isActive = true
+    mainStackView.pin(to: layoutMarginsGuide)
   }
   
 }

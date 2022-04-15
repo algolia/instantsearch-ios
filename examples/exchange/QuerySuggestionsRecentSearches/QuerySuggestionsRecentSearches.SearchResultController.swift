@@ -195,17 +195,14 @@ private class SectionHeader: UIView {
     
     let stackView = UIStackView()
     stackView.distribution = .fill
+    stackView.isLayoutMarginsRelativeArrangement = true
+    stackView.layoutMargins = .init(top: 0, left: 20, bottom: 0, right: -20)
     stackView.translatesAutoresizingMaskIntoConstraints = false
     stackView.addArrangedSubview(label)
     stackView.addArrangedSubview(separator)
     stackView.addArrangedSubview(button)
     addSubview(stackView)
-    NSLayoutConstraint.activate([
-      stackView.topAnchor.constraint(equalTo: topAnchor),
-      stackView.bottomAnchor.constraint(equalTo: bottomAnchor),
-      stackView.leadingAnchor.constraint(equalTo: leadingAnchor, constant: 20),
-      stackView.trailingAnchor.constraint(equalTo: trailingAnchor, constant: -20)
-    ])
+    stackView.pin(to: self)
   }
   
   required init?(coder: NSCoder) {

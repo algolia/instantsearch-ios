@@ -100,9 +100,7 @@ class StatsDemoViewController: UIViewController {
       stackView.addArrangedSubview(labelStatsController.label)
       attributedLabelStatsController.label.translatesAutoresizingMaskIntoConstraints = false
       stackView.addArrangedSubview(attributedLabelStatsController.label)
-      let spacer = UIView()
-      spacer.translatesAutoresizingMaskIntoConstraints = false
-      stackView.addArrangedSubview(UIView())
+      stackView.addArrangedSubview(.spacer)
       view.addSubview(stackView)
       stackView.pin(to: view.safeAreaLayoutGuide)
     }

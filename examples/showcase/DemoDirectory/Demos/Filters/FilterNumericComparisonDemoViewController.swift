@@ -78,13 +78,7 @@ private extension FilterNumericComparisonDemoViewController {
   }
   
   func setupUI() {
-    
-    func spacer() -> UIView {
-      let spacerView = UIView()
-      spacerView.translatesAutoresizingMaskIntoConstraints = false
-      return spacerView
-    }
-    
+        
     view.backgroundColor = .white
     
     addChild(searchStateViewController)
@@ -105,7 +99,7 @@ private extension FilterNumericComparisonDemoViewController {
     yearInputStackView.translatesAutoresizingMaskIntoConstraints = false
     yearInputStackView.axis = .horizontal
     yearInputStackView.addArrangedSubview(yearInputLabel)
-    yearInputStackView.addArrangedSubview(spacer())
+    yearInputStackView.addArrangedSubview(.spacer)
     yearInputStackView.addArrangedSubview(yearTextFieldController.textField)
     
     
@@ -129,7 +123,7 @@ private extension FilterNumericComparisonDemoViewController {
     priceStepperStackView.axis = .horizontal
     priceStepperStackView.spacing = 8
     priceStepperStackView.addArrangedSubview(priceStepperTitleLabel)
-    priceStepperStackView.addArrangedSubview(spacer())
+    priceStepperStackView.addArrangedSubview(.spacer)
     priceStepperStackView.addArrangedSubview(priceStepperValueLabel)
     priceStepperStackView.addArrangedSubview(numericStepperController.stepper)
     
@@ -147,7 +141,7 @@ private extension FilterNumericComparisonDemoViewController {
     mainStackView.addArrangedSubview(searchStateViewController.view)
     mainStackView.addArrangedSubview(yearInputContainer)
     mainStackView.addArrangedSubview(priceStepperContainer)
-    mainStackView.addArrangedSubview(spacer())
+    mainStackView.addArrangedSubview(.spacer)
     
     searchStateViewController.view.widthAnchor.constraint(equalTo: mainStackView.widthAnchor).isActive = true
     yearInputContainer.widthAnchor.constraint(equalTo: mainStackView.widthAnchor).isActive = true

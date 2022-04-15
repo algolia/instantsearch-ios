@@ -52,15 +52,13 @@ class ResultsViewController: UIViewController {
     statsController.label.translatesAutoresizingMaskIntoConstraints = false
     loadingController.activityIndicator.translatesAutoresizingMaskIntoConstraints = false
     loadingController.activityIndicator.hidesWhenStopped = true
-    let spacer = UIView()
-    spacer.translatesAutoresizingMaskIntoConstraints = false
     let detailsStackView = UIStackView()
     detailsStackView.translatesAutoresizingMaskIntoConstraints = false
     detailsStackView.axis = .horizontal
     detailsStackView.layoutMargins = UIEdgeInsets(top: 0, left: 20, bottom: 0, right: 20)
     detailsStackView.isLayoutMarginsRelativeArrangement = true
     detailsStackView.addArrangedSubview(statsController.label)
-    detailsStackView.addArrangedSubview(spacer)
+    detailsStackView.addArrangedSubview(.spacer)
     detailsStackView.addArrangedSubview(loadingController.activityIndicator)
     stackView.addArrangedSubview(detailsStackView)
     stackView.addArrangedSubview(hitsViewController.view)

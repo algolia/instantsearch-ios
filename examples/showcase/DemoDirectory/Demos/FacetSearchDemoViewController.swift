@@ -61,12 +61,7 @@ private extension FacetSearchDemoViewController {
     stackView.axis = .vertical
     stackView.spacing = 5
     view.addSubview(stackView)
-    NSLayoutConstraint.activate([
-      stackView.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor),
-      stackView.leadingAnchor.constraint(equalTo: view.safeAreaLayoutGuide.leadingAnchor),
-      stackView.trailingAnchor.constraint(equalTo: view.safeAreaLayoutGuide.trailingAnchor),
-      stackView.bottomAnchor.constraint(equalTo: view.safeAreaLayoutGuide.bottomAnchor),
-    ])
+    stackView.pin(to: view.safeAreaLayoutGuide)
     stackView.addArrangedSubview(searchBar)
     stackView.addArrangedSubview(searchStateViewController.view)
     stackView.addArrangedSubview(tableView)

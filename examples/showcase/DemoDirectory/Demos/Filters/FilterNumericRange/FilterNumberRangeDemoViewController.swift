@@ -57,9 +57,7 @@ private extension FilterNumberRangeDemoViewController {
     mainStackView.alignment = .center
     mainStackView.addArrangedSubview(searchStateView)
     mainStackView.addArrangedSubview(numericRangeController.view)
-    let spacer = UIView()
-    spacer.translatesAutoresizingMaskIntoConstraints = false
-    mainStackView.addArrangedSubview(spacer)
+    mainStackView.addArrangedSubview(.spacer)
     view.addSubview(mainStackView)
     mainStackView.pin(to: view.safeAreaLayoutGuide)
     searchStateView.heightAnchor.constraint(equalToConstant: 150).isActive = true

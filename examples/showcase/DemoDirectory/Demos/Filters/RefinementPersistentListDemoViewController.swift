@@ -18,7 +18,7 @@ class RefinementPersistentListDemoViewController: UIViewController {
   let colorConnector: FacetListConnector
   let categoryConnector: FacetListConnector
 
-  let searchStateViewController: SearchStateViewController
+  let searchStateViewController: SearchDebugViewController
   let colorListController: FacetListTableController
   let categoryListController: FacetListTableController
 
@@ -82,18 +82,12 @@ private extension RefinementPersistentListDemoViewController {
     searchStateViewController.view.heightAnchor.constraint(equalToConstant: 150).isActive = true
     mainStackView.addArrangedSubview(searchStateViewController.view)
     mainStackView.addArrangedSubview(listsStackView)
-    let spacer = UIView()
-    spacer.translatesAutoresizingMaskIntoConstraints = false
-    mainStackView.addArrangedSubview(spacer)
+    mainStackView.addArrangedSubview(.spacer)
     
     view.addSubview(mainStackView)
-    NSLayoutConstraint.activate([
-      mainStackView.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor),
-      mainStackView.leadingAnchor.constraint(equalTo: view.safeAreaLayoutGuide.leadingAnchor),
-      mainStackView.trailingAnchor.constraint(equalTo: view.safeAreaLayoutGuide.trailingAnchor),
-      mainStackView.bottomAnchor.constraint(equalTo: view.safeAreaLayoutGuide.bottomAnchor),
-    ])
     
+    mainStackView.pin(to: view.safeAreaLayoutGuide)
+
     [
       colorListController,
       categoryListController

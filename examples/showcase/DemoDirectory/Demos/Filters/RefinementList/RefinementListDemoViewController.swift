@@ -110,14 +110,8 @@ extension RefinementListDemoViewController {
     
     view.addSubview(mainStackView)
     
-    NSLayoutConstraint.activate([
-      mainStackView.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor),
-      mainStackView.leadingAnchor.constraint(equalTo: view.safeAreaLayoutGuide.leadingAnchor),
-      mainStackView.trailingAnchor.constraint(equalTo: view.safeAreaLayoutGuide.trailingAnchor),
-      mainStackView.bottomAnchor.constraint(equalTo: view.safeAreaLayoutGuide.bottomAnchor),
+    mainStackView.pin(to: view.safeAreaLayoutGuide)
 
-    ])
-    
     [
       colorController,
       promotionController,
