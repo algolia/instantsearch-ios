@@ -144,7 +144,7 @@ class ShowcaseDemoViewControllerFactory: ViewControllerFactory {
     
     switch demoID {
     case .singleIndex:
-      viewController = SearchDemoViewController()
+      viewController = SearchDemoSwiftUI.ViewController()
       
     case .sffv:
       viewController = FacetSearchDemoSwiftUI.ViewController()
@@ -156,7 +156,7 @@ class ShowcaseDemoViewControllerFactory: ViewControllerFactory {
       viewController = ToggleDemoSwiftUI.ViewController()
       
     case .dynamicFacetList:
-      viewController = DynamicFacetDemoSwiftUI.ViewController()
+      viewController = DynamicFacetDemoSwiftUI.viewController()
       
     case .facetList:
       viewController = FacetListDemoSwiftUI.ViewController()
@@ -204,7 +204,7 @@ class ShowcaseDemoViewControllerFactory: ViewControllerFactory {
       viewController = FilterListDemoSwiftUI.tagViewController()
       
     case .searchOnSubmit:
-      viewController = SearchDemoViewController(searchTriggeringMode: .searchOnSubmit)
+      viewController = SearchDemoSwiftUI.ViewController(searchTriggeringMode: .searchOnSubmit)
       
     case .searchAsYouType:
       viewController = SearchDemoSwiftUI.ViewController()

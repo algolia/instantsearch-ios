@@ -20,7 +20,7 @@ struct SearchDemoSwiftUI: PreviewProvider {
     let statsController: StatsTextObservableController
     let loadingController: LoadingObservableController
 
-    init() {
+    init(searchTriggeringMode: SearchTriggeringMode = .searchAsYouType) {
       demoController = SearchDemoController()
       hitsController = HitsObservableController()
       queryInputController = QueryInputObservableController()
@@ -39,8 +39,8 @@ struct SearchDemoSwiftUI: PreviewProvider {
     
     let controller: Controller
     
-    init() {
-      self.controller = Controller()
+    init(searchTriggeringMode: SearchTriggeringMode = .searchAsYouType) {
+      self.controller = Controller(searchTriggeringMode: searchTriggeringMode)
       let rootView = ContentView(queryInputController: controller.queryInputController,
                                  hitsController: controller.hitsController,
                                  statsController: controller.statsController,
