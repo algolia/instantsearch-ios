@@ -11,7 +11,7 @@ import InstantSearchCore
 import InstantSearchSwiftUI
 import SwiftUI
 
-struct StatsDemoSwiftUI: PreviewProvider {
+struct StatsDemoSwiftUI: SwiftUIDemo, PreviewProvider {
   
   class Controller {
     
@@ -33,7 +33,7 @@ struct StatsDemoSwiftUI: PreviewProvider {
     }
     
   }
-    
+  
   struct ContentView: View {
     
     @ObservedObject var queryInputController: QueryInputObservableController
@@ -53,30 +53,16 @@ struct StatsDemoSwiftUI: PreviewProvider {
     
   }
   
-  class ViewController: UIHostingController<ContentView> {
-    
-    let controller: Controller
-    
-    init() {
-      controller = Controller()
-      let contentView = ContentView(queryInputController: controller.queryInputController,
-                                    statsController: controller.statsController)
-      super.init(rootView: contentView)
-    }
-    
-    @MainActor required dynamic init?(coder aDecoder: NSCoder) {
-      fatalError("init(coder:) has not been implemented")
-    }
-    
+  static func contentView(with controller: Controller) -> ContentView {
+    ContentView(queryInputController: controller.queryInputController,
+                statsController: controller.statsController)
   }
   
   static let controller = Controller()
   static var previews: some View {
-    _ = controller
-    return NavigationView {
-      ContentView(queryInputController: controller.queryInputController,
-                         statsController: controller.statsController)
-      .navigationBarTitle("Stats")
+    NavigationView {
+      contentView(with: controller)
+        .navigationBarTitle("Stats")
     }
   }
 }

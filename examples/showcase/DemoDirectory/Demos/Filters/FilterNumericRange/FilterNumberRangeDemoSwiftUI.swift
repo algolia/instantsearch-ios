@@ -11,7 +11,7 @@ import InstantSearchCore
 import InstantSearchSwiftUI
 import SwiftUI
 
-struct FilterNumberRangeDemoSwiftUI: PreviewProvider {
+struct FilterNumberRangeDemoSwiftUI: SwiftUIDemo, PreviewProvider {
   
   class Controller {
     let demoController = FilterNumberRangeDemoController()
@@ -67,28 +67,17 @@ struct FilterNumberRangeDemoSwiftUI: PreviewProvider {
     
   }
   
-  class ViewController: UIHostingController<ContentView> {
-    
-    let controller: Controller
-    
-    init() {
-      self.controller = .init()
-      let contentView = ContentView(numberRangeController: controller.numberRangeController,
-                                    filterStateController: controller.filterStateController)
-      super.init(rootView: contentView)
-    }
-    
-    @MainActor required dynamic init?(coder aDecoder: NSCoder) {
-      fatalError("init(coder:) has not been implemented")
-    }
-    
+  static func contentView(with controller: Controller) -> ContentView {
+    ContentView(numberRangeController: controller.numberRangeController,
+                filterStateController: controller.filterStateController)
   }
   
   static let controller = Controller()
   static var previews: some View {
-    _ = controller
-    return ContentView(numberRangeController: controller.numberRangeController,
-                       filterStateController: controller.filterStateController)
+    NavigationView {
+      contentView(with: controller)
+        .navigationBarTitle("Number Range Filter")
+    }
   }
   
 }

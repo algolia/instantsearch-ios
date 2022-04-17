@@ -11,7 +11,7 @@ import InstantSearchCore
 import InstantSearchSwiftUI
 import SwiftUI
 
-struct ClearFiltersDemoSwiftUI: PreviewProvider {
+struct ClearFiltersDemoSwiftUI: SwiftUIDemo, PreviewProvider {
   
   class Controller {
     
@@ -35,52 +35,40 @@ struct ClearFiltersDemoSwiftUI: PreviewProvider {
     @ObservedObject var filterStateController: FilterStateObservableController
     @ObservedObject var filterClearController: FilterClearObservableController
     @ObservedObject var filterClearExceptController: FilterClearObservableController
-
+    
     var body: some View {
-      NavigationView {
-        VStack {
-          FilterStateDebugView(filterStateController)
-          HStack {
-            Button("Clear Colors") {
-              filterClearController.clear()
-            }.padding().overlay(RoundedRectangle(cornerRadius: 10)
-                .stroke(Color.blue, lineWidth: 1))
-            Spacer()
-            Button("Clear except Colors") {
-              filterClearExceptController.clear()
-            }.padding().overlay(RoundedRectangle(cornerRadius: 10)
-                .stroke(Color.blue, lineWidth: 1))
-          }
+      VStack {
+        FilterStateDebugView(filterStateController)
+        HStack {
+          Button("Clear Colors") {
+            filterClearController.clear()
+          }.padding().overlay(RoundedRectangle(cornerRadius: 10)
+            .stroke(Color.blue, lineWidth: 1))
           Spacer()
-        }.padding()
-        .navigationBarTitle("Filter Clear")
-      }
+          Button("Clear except Colors") {
+            filterClearExceptController.clear()
+          }.padding().overlay(RoundedRectangle(cornerRadius: 10)
+            .stroke(Color.blue, lineWidth: 1))
+        }
+        Spacer()
+      }.padding()
+      
     }
     
   }
   
-  class ViewController: UIHostingController<ContentView> {
-    
-    let controller: Controller
-    
-    init() {
-      controller = .init()
-      let contentView = ContentView(filterStateController: controller.filterStateController,
-                                    filterClearController: controller.filterClearController,
-                                    filterClearExceptController: controller.filterClearExceptController)
-      super.init(rootView: contentView)
-    }
-    
-    @MainActor required dynamic init?(coder aDecoder: NSCoder) {
-      fatalError("init(coder:) has not been implemented")
-    }
-    
+  static func contentView(with controller: Controller) -> ContentView {
+    ContentView(filterStateController: controller.filterStateController,
+                filterClearController: controller.filterClearController,
+                filterClearExceptController: controller.filterClearExceptController)
   }
   
   static let controller = Controller()
   static var previews: some View {
-    _ = controller
-    return ContentView(filterStateController: controller.filterStateController, filterClearController: controller.filterClearController, filterClearExceptController: controller.filterClearExceptController)
+    NavigationView {
+      contentView(with: controller)
+        .navigationBarTitle("Filter Clear")
+    }
   }
   
 }

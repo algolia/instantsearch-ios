@@ -10,7 +10,7 @@ import InstantSearchCore
 import InstantSearchSwiftUI
 import SwiftUI
 
-class FacetSearchDemoSwiftUI: PreviewProvider {
+class FacetSearchDemoSwiftUI: SwiftUIDemo, PreviewProvider {
   
   class Controller {
     
@@ -52,30 +52,17 @@ class FacetSearchDemoSwiftUI: PreviewProvider {
     
   }
   
-  class ViewController: UIHostingController<ContentView> {
-    
-    let controller: Controller
-    
-    init() {
-      self.controller = Controller()
-      super.init(rootView: ContentView(queryInputController: controller.queryInputController,
-                                       facetListController: controller.facetListController,
-                                       filterStateDebugController: controller.filterStateController))
-    }
-    
-    @MainActor required dynamic init?(coder aDecoder: NSCoder) {
-      fatalError("init(coder:) has not been implemented")
-    }
-    
+  static func contentView(with controller: Controller) -> ContentView {
+    ContentView(queryInputController: controller.queryInputController,
+                facetListController: controller.facetListController,
+                filterStateDebugController: controller.filterStateController)
   }
   
   static let controller = Controller()
   static var previews: some View {
-    _ = controller
-    return NavigationView {
-      ContentView(queryInputController: controller.queryInputController,
-                  facetListController: controller.facetListController,
-                  filterStateDebugController: controller.filterStateController)
+    NavigationView {
+      contentView(with: controller)
+        .navigationBarTitle("Facet Search")
     }
   }
   

@@ -44,7 +44,6 @@ struct DynamicFacetDemoSwiftUI: SwiftUIDemo, PreviewProvider {
     
     var body: some View {
       DynamicFacetList(dynamicFacetListController: facetsController)
-        .navigationBarTitle("Dynamic facets")
         .alert(isPresented: $isHelpPresented) {
           Alert(title: Text("Help"),
                 message: Text(DynamicFacetListDemoController.helpMessage),
@@ -62,29 +61,14 @@ struct DynamicFacetDemoSwiftUI: SwiftUIDemo, PreviewProvider {
     
   }
   
-//  class ViewController: UIHostingController<ContentView> {
-//    
-//    let controller: Controller
-//    
-//    init() {
-//      controller = Controller()
-//      let rootView = ContentView(queryInputController: controller.queryInputController,
-//                                 facetsController: controller.facetsController)
-//      super.init(rootView: rootView)
-//    }
-//    
-//    @objc required dynamic init?(coder aDecoder: NSCoder) {
-//      fatalError("init(coder:) has not been implemented")
-//    }
-//    
-//  }
-  
   static let controller = Controller()
   static var previews: some View {
-    _ = controller
     return NavigationView {
-      ContentView(queryInputController: controller.queryInputController,
-                  facetsController: controller.facetsController)
+      NavigationView {
+        ContentView(queryInputController: controller.queryInputController,
+                    facetsController: controller.facetsController)
+        .navigationBarTitle("Dynamic facets")
+      }
     }
   }
   

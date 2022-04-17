@@ -11,7 +11,7 @@ import InstantSearchCore
 import InstantSearchSwiftUI
 import SwiftUI
 
-struct SortByDemoSwiftUI: PreviewProvider {
+struct SortByDemoSwiftUI: SwiftUIDemo, PreviewProvider {
   
   class Controller {
     
@@ -39,7 +39,7 @@ struct SortByDemoSwiftUI: PreviewProvider {
     @ObservedObject var queryInputController: QueryInputObservableController
     @ObservedObject var selectableSegmentObservableController: SelectableSegmentObservableController
     @ObservedObject var hitsController: HitsObservableController<Hit<StoreItem>>
-        
+    
     var body: some View {
       let selectedBinding = Binding(
         get: { self.selectableSegmentObservableController.selectedSegmentIndex ?? 0 },
@@ -53,8 +53,8 @@ struct SortByDemoSwiftUI: PreviewProvider {
               selectableSegmentObservableController.select(index)
             }
           }
-         }
-         .pickerStyle(.segmented)
+        }
+        .pickerStyle(.segmented)
         HitsList(hitsController) { hit, index in
           ShopItemRow(product: hit)
         }
@@ -62,37 +62,22 @@ struct SortByDemoSwiftUI: PreviewProvider {
       .padding()
       .searchable(text: $queryInputController.query)
     }
-
+    
   }
   
-  class ViewController: UIHostingController<ContentView> {
-    
-    let controller: Controller
-    
-    init() {
-      controller = Controller()
-      let rootView = ContentView(queryInputController: controller.queryInputController,
-                                 selectableSegmentObservableController: controller.selectableSegmentObservableController,
-                                 hitsController: controller.hitsController)
-      super.init(rootView: rootView)
-    }
-    
-    @MainActor required dynamic init?(coder aDecoder: NSCoder) {
-      fatalError("init(coder:) has not been implemented")
-    }
-    
+  static func contentView(with controller: Controller) -> ContentView {
+    ContentView(queryInputController: controller.queryInputController,
+                selectableSegmentObservableController: controller.selectableSegmentObservableController,
+                hitsController: controller.hitsController)
   }
-
+  
   static let controller = Controller()
   static var previews: some View {
-    _ = controller
-    return NavigationView {
-      ContentView(queryInputController: controller.queryInputController,
-                  selectableSegmentObservableController: controller.selectableSegmentObservableController,
-                  hitsController: controller.hitsController)
-      .navigationBarTitle("Sort By")
+    NavigationView {
+      contentView(with: controller)
+        .navigationBarTitle("Sort By")
     }
-
+    
   }
   
 }

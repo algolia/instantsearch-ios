@@ -10,7 +10,7 @@ import SwiftUI
 import InstantSearchCore
 import InstantSearchSwiftUI
 
-struct SearchDemoSwiftUI: PreviewProvider {
+struct SearchDemoSwiftUI: SwiftUIDemo, PreviewProvider {
   
   class Controller {
     
@@ -19,7 +19,7 @@ struct SearchDemoSwiftUI: PreviewProvider {
     let queryInputController: QueryInputObservableController
     let statsController: StatsTextObservableController
     let loadingController: LoadingObservableController
-
+    
     init(searchTriggeringMode: SearchTriggeringMode = .searchAsYouType) {
       demoController = SearchDemoController()
       hitsController = HitsObservableController()
@@ -31,25 +31,6 @@ struct SearchDemoSwiftUI: PreviewProvider {
       demoController.statsConnector.connectController(statsController)
       demoController.loadingConnector.connectController(loadingController)
       demoController.searcher.search()
-    }
-    
-  }
-  
-  class ViewController: UIHostingController<ContentView> {
-    
-    let controller: Controller
-    
-    init(searchTriggeringMode: SearchTriggeringMode = .searchAsYouType) {
-      self.controller = Controller(searchTriggeringMode: searchTriggeringMode)
-      let rootView = ContentView(queryInputController: controller.queryInputController,
-                                 hitsController: controller.hitsController,
-                                 statsController: controller.statsController,
-                                 loadingController: controller.loadingController)
-      super.init(rootView: rootView)
-    }
-    
-    @MainActor required dynamic init?(coder aDecoder: NSCoder) {
-      fatalError("init(coder:) has not been implemented")
     }
     
   }
@@ -86,14 +67,24 @@ struct SearchDemoSwiftUI: PreviewProvider {
     
   }
   
+  static func contentView(with controller: Controller) -> ContentView {
+    ContentView(queryInputController: controller.queryInputController,
+                hitsController: controller.hitsController,
+                statsController: controller.statsController,
+                loadingController: controller.loadingController)
+  }
+  
+  static func viewController(searchTriggeringMode: SearchTriggeringMode) -> UIViewController {
+    let controller = Controller(searchTriggeringMode: searchTriggeringMode)
+    let contentView = contentView(with: controller)
+    return CommonSwiftUIDemoViewController(controller: controller,
+                                           rootView: contentView)
+  }
+  
   static let controller = Controller()
   static var previews: some View {
-    _ = controller
-    return NavigationView {
-      ContentView(queryInputController: controller.queryInputController,
-                         hitsController: controller.hitsController,
-                         statsController: controller.statsController,
-                         loadingController: controller.loadingController)
+    NavigationView {
+      contentView(with: controller)
     }
   }
   

@@ -11,7 +11,7 @@ import InstantSearchCore
 import InstantSearchSwiftUI
 import SwiftUI
 
-struct RelevantSortDemoSwiftUI : PreviewProvider {
+struct RelevantSortDemoSwiftUI: SwiftUIDemo, PreviewProvider {
   
   class Controller {
     
@@ -95,42 +95,25 @@ struct RelevantSortDemoSwiftUI : PreviewProvider {
           }
         }
       }
-      .navigationBarTitle("Relevant Sort")
       .searchable(text: $queryInputController.query)
     }
     
   }
   
-  class ViewController: UIHostingController<ContentView> {
-    
-    let controller: Controller
-    
-    init() {
-      controller = Controller()
-      let contentView = ContentView(queryInputController: controller.queryInputController,
-                                    sortByController: controller.sortByController,
-                                    relevantSortController: controller.relevantSortController,
-                                    hitsController: controller.hitsController,
-                                    statsController: controller.statsController)
-      super.init(rootView: contentView)
-    }
-    
-    @MainActor required dynamic init?(coder aDecoder: NSCoder) {
-      fatalError("init(coder:) has not been implemented")
-    }
+  static func contentView(with controller: Controller) -> ContentView {
+    ContentView(queryInputController: controller.queryInputController,
+                sortByController: controller.sortByController,
+                relevantSortController: controller.relevantSortController,
+                hitsController: controller.hitsController,
+                statsController: controller.statsController)
     
   }
   
-  
   static let controller = Controller()
   static var previews: some View {
-    let _ = controller
     NavigationView {
-      ContentView(queryInputController: controller.queryInputController,
-                  sortByController: controller.sortByController,
-                  relevantSortController: controller.relevantSortController,
-                  hitsController: controller.hitsController,
-                  statsController: controller.statsController)
+      contentView(with: controller)
+        .navigationBarTitle("Relevant Sort")
     }
   }
   

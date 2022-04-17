@@ -18,7 +18,7 @@ struct FilterNumericComparisonDemoSwiftUI: SwiftUIDemo, PreviewProvider {
     let yearController: NumberObservableController<Int>
     let priceController: NumberObservableController<Double>
     let filterStateController: FilterStateObservableController
-
+    
     init() {
       demoController = .init()
       yearController = .init()
@@ -72,7 +72,7 @@ struct FilterNumericComparisonDemoSwiftUI: SwiftUIDemo, PreviewProvider {
         yearValue = "\(yearController.number)"
       }
     }
-
+    
   }
   
   static func contentView(with controller: Controller) -> ContentView {
@@ -83,9 +83,9 @@ struct FilterNumericComparisonDemoSwiftUI: SwiftUIDemo, PreviewProvider {
   
   static let controller = Controller()
   static var previews: some View {
-    _ = controller
-    return NavigationView {
+    NavigationView {
       contentView(with: controller)
+        .navigationBarTitle("Filter Numeric Comparison")
     }
   }
   
@@ -118,5 +118,5 @@ public class NumberObservableController<Number: Numeric & Comparable>: Observabl
   public func setComputation(computation: Computation<Number>) {
     self.computation = computation
   }
-      
+  
 }

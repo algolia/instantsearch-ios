@@ -54,9 +54,6 @@ class ShowcaseDemoViewControllerFactory: ViewControllerFactory {
     case .toggle:
       viewController = ToggleDemoViewController()
       
-    case .toggleDefault:
-      viewController = ToggleDemoViewController()
-      
     case .dynamicFacetList:
       viewController = DynamicFacetListDemoViewController()
       
@@ -89,10 +86,7 @@ class ShowcaseDemoViewControllerFactory: ViewControllerFactory {
       
     case .relevantSort:
       viewController = RelevantSortDemoViewController()
-      
-    case .voiceSearch:
-      viewController = VoiceInputDemoViewController()
-      
+            
     case .multiIndex:
       viewController = MultiIndexDemoViewController()
       
@@ -123,17 +117,11 @@ class ShowcaseDemoViewControllerFactory: ViewControllerFactory {
     case .hierarchical:
       viewController = HierarchicalDemoViewController()
       
-    case .querySuggestions:
-      viewController = QuerySuggestionsDemoViewController()
-      
     case .relatedItems:
       viewController = RelatedItemsDemoViewController()
       
     case .queryRuleCustomData:
       viewController = QueryRuleCustomDataDemoViewController()
-      
-    case .mergedList:
-      viewController = QuerySuggestionsAndHits.SearchViewController()
     }
     
     return viewController
@@ -144,55 +132,49 @@ class ShowcaseDemoViewControllerFactory: ViewControllerFactory {
     
     switch demoID {
     case .singleIndex:
-      viewController = SearchDemoSwiftUI.ViewController()
+      viewController = SearchDemoSwiftUI.viewController()
       
     case .sffv:
-      viewController = FacetSearchDemoSwiftUI.ViewController()
+      viewController = FacetSearchDemoSwiftUI.viewController()
       
     case .toggle:
-      viewController = ToggleDemoSwiftUI.ViewController()
-      
-    case .toggleDefault:
-      viewController = ToggleDemoSwiftUI.ViewController()
+      viewController = ToggleDemoSwiftUI.viewController()
       
     case .dynamicFacetList:
       viewController = DynamicFacetDemoSwiftUI.viewController()
       
     case .facetList:
-      viewController = FacetListDemoSwiftUI.ViewController()
+      viewController = FacetListDemoSwiftUI.viewController()
       
     case .facetListPersistentSelection:
-      viewController = FacetListPersistentDemoSwiftUI.ViewController()
+      viewController = FacetListPersistentDemoSwiftUI.viewController()
       
     case .segmented:
-      viewController = SegmentedDemoSwiftUI.ViewController()
+      viewController = SegmentedDemoSwiftUI.viewController()
       
     case .filterNumericComparison:
       viewController = FilterNumericComparisonDemoSwiftUI.viewController()
       
     case .filterNumericRange:
-      viewController = FilterNumberRangeDemoSwiftUI.ViewController()
+      viewController = FilterNumberRangeDemoSwiftUI.viewController()
       
     case .filterRating:
-      viewController = RatingFilterDemoSwiftUI.ViewController()
+      viewController = RatingFilterDemoSwiftUI.viewController()
       
     case .sortBy:
-      viewController = SortByDemoSwiftUI.ViewController()
+      viewController = SortByDemoSwiftUI.viewController()
       
     case .currentFilters:
-      viewController = CurrentFiltersDemoSwiftUI.ViewController()
+      viewController = CurrentFiltersDemoSwiftUI.viewController()
       
     case .clearFilters:
-      viewController = ClearFiltersDemoSwiftUI.ViewController()
+      viewController = ClearFiltersDemoSwiftUI.viewController()
       
     case .relevantSort:
-      viewController = RelevantSortDemoSwiftUI.ViewController()
-      
-    case .voiceSearch:
-      viewController = VoiceInputDemoViewController()
-      
+      viewController = RelevantSortDemoSwiftUI.viewController()
+            
     case .multiIndex:
-      viewController = MultiIndexSwiftUIDemo.ViewController()
+      viewController = MultiIndexSwiftUIDemo.viewController()
       
     case .facetFilterList:
       viewController = FilterListDemoSwiftUI.facetViewController()
@@ -204,34 +186,28 @@ class ShowcaseDemoViewControllerFactory: ViewControllerFactory {
       viewController = FilterListDemoSwiftUI.tagViewController()
       
     case .searchOnSubmit:
-      viewController = SearchDemoSwiftUI.ViewController(searchTriggeringMode: .searchOnSubmit)
+      viewController = SearchDemoSwiftUI.viewController(searchTriggeringMode: .searchOnSubmit)
       
     case .searchAsYouType:
-      viewController = SearchDemoSwiftUI.ViewController()
+      viewController = SearchDemoSwiftUI.viewController()
       
     case .stats:
-      viewController = StatsDemoSwiftUI.ViewController()
+      viewController = StatsDemoSwiftUI.viewController()
       
     case .highlighting:
-      viewController = SearchDemoSwiftUI.ViewController()
+      viewController = SearchDemoSwiftUI.viewController()
       
     case .loading:
-      viewController = SearchDemoSwiftUI.ViewController()
+      viewController = SearchDemoSwiftUI.viewController()
       
     case .hierarchical:
-      viewController = HierarchicalDemoSwiftUI.ViewController()
-      
-    case .querySuggestions:
-      viewController = QuerySuggestionsDemoViewController()
+      viewController = HierarchicalDemoSwiftUI.viewController()
       
     case .relatedItems:
       viewController = RelatedItemsDemoViewController()
       
     case .queryRuleCustomData:
-      viewController = QueryRuleCustomDataSwiftUI.ViewController()
-      
-    case .mergedList:
-      viewController = QuerySuggestionsAndHits.SearchViewController()
+      viewController = QueryRuleCustomDataSwiftUI.viewController()
     }
     
     return viewController

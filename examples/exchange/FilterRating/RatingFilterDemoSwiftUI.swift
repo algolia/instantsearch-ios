@@ -9,25 +9,25 @@ import Foundation
 import SwiftUI
 import InstantSearchSwiftUI
 
-struct RatingFilterDemoSwiftUI: PreviewProvider {
+struct RatingFilterDemoSwiftUI: SwiftUIDemo, PreviewProvider {
   
   class Controller {
     
     let demoController: RatingFilterDemoController
     let filterStateController: FilterStateObservableController
-
+    
     init() {
       self.demoController = .init()
       self.filterStateController = .init(filterState: demoController.filterState)
     }
     
   }
-    
+  
   struct ContentView: View {
-        
+    
     @State var value: Double = 3.5
     @ObservedObject var filterStateController: FilterStateObservableController
-
+    
     var body: some View {
       VStack {
         FilterStateDebugView(filterStateController)
@@ -46,26 +46,16 @@ struct RatingFilterDemoSwiftUI: PreviewProvider {
     
   }
   
-  class ViewController: UIHostingController<ContentView> {
-    
-    let controller: Controller
-    
-    init() {
-      self.controller = .init()
-      let contentView = ContentView(filterStateController: controller.filterStateController)
-      super.init(rootView: contentView)
-    }
-    
-    @MainActor required dynamic init?(coder aDecoder: NSCoder) {
-      fatalError("init(coder:) has not been implemented")
-    }
-    
+  static func contentView(with controller: Controller) -> ContentView {
+    ContentView(filterStateController: controller.filterStateController)
   }
   
   static let controller = Controller()
   static var previews: some View {
-    _ = controller
-    return ContentView(filterStateController: controller.filterStateController)
+    NavigationView {
+      contentView(with: controller)
+        .navigationBarTitle("Filter Rating")
+    }
   }
-    
+  
 }

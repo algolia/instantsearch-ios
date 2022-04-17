@@ -12,7 +12,7 @@ import InstantSearchSwiftUI
 import SwiftUI
 
 
-struct ToggleDemoSwiftUI: PreviewProvider {
+struct ToggleDemoSwiftUI: SwiftUIDemo, PreviewProvider {
   
   class Controller {
     
@@ -64,32 +64,19 @@ struct ToggleDemoSwiftUI: PreviewProvider {
     
   }
   
-  class ViewController: UIHostingController<ContentView> {
-    
-    let demoController: Controller
-    
-    init() {
-      self.demoController = .init()
-      let contentView = ContentView(filterStateController: demoController.filterStateController,
-                                    tagFilterFilterObservableController: demoController.tagFilterFilterObservableController,
-                                    facetFilterFilterObservableController: demoController.facetFilterFilterObservableController,
-                                    numericFilterFilterObservableController: demoController.numericFilterFilterObservableController)
-      super.init(rootView: contentView)
-    }
-    
-    @MainActor required dynamic init?(coder aDecoder: NSCoder) {
-      fatalError("init(coder:) has not been implemented")
-    }
-    
+  static func contentView(with controller: Controller) -> ContentView {
+    ContentView(filterStateController: controller.filterStateController,
+                tagFilterFilterObservableController: controller.tagFilterFilterObservableController,
+                facetFilterFilterObservableController: controller.facetFilterFilterObservableController,
+                numericFilterFilterObservableController: controller.numericFilterFilterObservableController)
   }
   
   static let controller = Controller()
   static var previews: some View {
-    _ = controller
-    return ContentView(filterStateController: controller.filterStateController,
-                       tagFilterFilterObservableController: controller.tagFilterFilterObservableController,
-                       facetFilterFilterObservableController: controller.facetFilterFilterObservableController,
-                       numericFilterFilterObservableController: controller.numericFilterFilterObservableController)
+    NavigationView {
+      contentView(with: controller)
+        .navigationBarTitle("Filter Toggle")
+    }
   }
   
 }

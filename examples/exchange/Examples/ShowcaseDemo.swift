@@ -19,12 +19,10 @@ struct ShowcaseDemo: Codable, DemoProtocol {
     case multiIndex = "paging_multiple_index"
     case sffv = "facet_list_search"
     case toggle = "filter_toggle"
-    case toggleDefault = "filter_toggle_default"
     case facetList = "facet_list"
     case dynamicFacetList = "dynamic_facets"
     case facetListPersistentSelection = "facet_list_persistent"
     case segmented = "filter_segment"
-    case mergedList = "merged_list"
     case facetFilterList = "filter_list_facet"
     case numericFilterList = "filter_list_numeric"
     case tagFilterList = "filter_list_tag"
@@ -40,11 +38,9 @@ struct ShowcaseDemo: Codable, DemoProtocol {
     case highlighting
     case loading
     case hierarchical = "filter_hierarchical"
-    case querySuggestions = "query_suggestions"
     case relatedItems = "personalisation_related_items"
     case queryRuleCustomData = "query_rule_custom_data"
     case relevantSort = "dynamic_sort"
-    case voiceSearch = "voice_search"
   }
   
 }

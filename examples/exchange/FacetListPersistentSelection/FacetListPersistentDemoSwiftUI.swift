@@ -9,7 +9,7 @@ import Foundation
 import SwiftUI
 import InstantSearchSwiftUI
 
-struct FacetListPersistentDemoSwiftUI: PreviewProvider {
+struct FacetListPersistentDemoSwiftUI: SwiftUIDemo, PreviewProvider {
   
   class Controller {
     
@@ -79,31 +79,17 @@ struct FacetListPersistentDemoSwiftUI: PreviewProvider {
     
   }
   
-  class ViewController: UIHostingController<ContentView> {
-    
-    let controller: Controller
-    
-    init() {
-      controller = .init()
-      let contentView = ContentView(filterStateController: controller.filterStateController,
-                                    colorController: controller.colorController,
-                                    categoryController: controller.categoryController)
-      super.init(rootView: contentView)
-    }
-    
-    @MainActor required dynamic init?(coder aDecoder: NSCoder) {
-      fatalError("init(coder:) has not been implemented")
-    }
-    
+  static func contentView(with controller: Controller) -> ContentView {
+    ContentView(filterStateController: controller.filterStateController,
+                colorController: controller.colorController,
+                categoryController: controller.categoryController)
   }
   
   static let controller = Controller()
   static var previews: some View {
     NavigationView {
-      ContentView(filterStateController: controller.filterStateController,
-                  colorController: controller.colorController,
-                  categoryController: controller.categoryController)
-      .navigationBarTitle("Facet List Persistent Selection")
+      contentView(with: controller)
+        .navigationBarTitle("Facet List Persistent Selection")
     }
   }
   

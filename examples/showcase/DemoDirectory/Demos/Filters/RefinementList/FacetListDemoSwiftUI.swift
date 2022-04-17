@@ -11,7 +11,7 @@ import InstantSearchCore
 import InstantSearchSwiftUI
 import SwiftUI
 
-class FacetListDemoSwiftUI: PreviewProvider {
+class FacetListDemoSwiftUI: SwiftUIDemo, PreviewProvider {
   
   class Controller {
     
@@ -41,69 +41,54 @@ class FacetListDemoSwiftUI: PreviewProvider {
     @ObservedObject var categoryController: FacetListObservableController
     
     var body: some View {
-      NavigationView {
-        VStack {
-          FilterStateDebugView(filterStateController)
-            .padding()
-          ScrollView {
-            VStack {
-              ForEach([
-                (title: "Color", controller: colorController),
-                (title: "Promotion", controller: promotionController),
-                (title: "Category", controller: categoryController),
-              ], id: \.title) { facetElement in
-                VStack {
-                  HStack {
-                    Text(facetElement.title)
-                      .font(.headline)
-                    Spacer()
-                  }
-                  .padding(.bottom, 5)
-                  FacetList(facetElement.controller) { facet, isSelected in
-                    FacetRow(facet: facet, isSelected: isSelected)
-                      .frame(height: 40)
-                    Divider()
-                  }
-                }
-                .padding(.bottom, 15)
-              }
-              Spacer()
-            }
-          }
+      VStack {
+        FilterStateDebugView(filterStateController)
           .padding()
-          .navigationBarTitle("Refinement List")
+        ScrollView {
+          VStack {
+            ForEach([
+              (title: "Color", controller: colorController),
+              (title: "Promotion", controller: promotionController),
+              (title: "Category", controller: categoryController),
+            ], id: \.title) { facetElement in
+              VStack {
+                HStack {
+                  Text(facetElement.title)
+                    .font(.headline)
+                  Spacer()
+                }
+                .padding(.bottom, 5)
+                FacetList(facetElement.controller) { facet, isSelected in
+                  FacetRow(facet: facet, isSelected: isSelected)
+                    .frame(height: 40)
+                  Divider()
+                }
+              }
+              .padding(.bottom, 15)
+            }
+            Spacer()
+          }
         }
+        .padding()
       }
     }
     
   }
   
-  class ViewController: UIHostingController<ContentView> {
-    
-    let controller: Controller
-    
-    init() {
-      controller = Controller()
-      let rootView = FacetListDemoSwiftUI.ContentView(filterStateController: controller.filterStateController,
-                                                      colorController: controller.colorController,
-                                                      promotionController: controller.promotionController,
-                                                      categoryController: controller.categoryController)
-      super.init(rootView: rootView)
-    }
-    
-    @MainActor required dynamic init?(coder aDecoder: NSCoder) {
-      fatalError("init(coder:) has not been implemented")
-    }
-    
+  static func contentView(with controller: Controller) -> ContentView {
+    ContentView(filterStateController: controller.filterStateController,
+                colorController: controller.colorController,
+                promotionController: controller.promotionController,
+                categoryController: controller.categoryController)
   }
   
   static let controller = Controller()
   static var previews: some View {
-    _ = controller
-    return ContentView(filterStateController: controller.filterStateController,
-                       colorController: controller.colorController,
-                       promotionController: controller.promotionController,
-                       categoryController: controller.categoryController)
+    NavigationView {
+      contentView(with: controller)
+        .navigationBarTitle("Refinement List")
+    }
+    
   }
   
 }

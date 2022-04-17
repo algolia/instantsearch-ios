@@ -12,7 +12,7 @@ import InstantSearchSwiftUI
 import SwiftUI
 import SDWebImageSwiftUI
 
-struct QueryRuleCustomDataSwiftUI: PreviewProvider {
+struct QueryRuleCustomDataSwiftUI: SwiftUIDemo, PreviewProvider {
   
   class Controller {
     
@@ -20,7 +20,7 @@ struct QueryRuleCustomDataSwiftUI: PreviewProvider {
     let queryInputController: QueryInputObservableController
     let bannerController: BannerObservableController
     let hitsController: HitsObservableController<Hit<StoreItem>>
-
+    
     init() {
       self.demoController = .init()
       self.queryInputController = .init()
@@ -48,9 +48,9 @@ struct QueryRuleCustomDataSwiftUI: PreviewProvider {
       .navigationTitle("Hello world")
       .safeAreaInset(edge: .top, alignment: .center, spacing: 0) {
         Color.clear
-            .frame(height: 0)
-            .background(Material.bar)
-    }
+          .frame(height: 0)
+          .background(Material.bar)
+      }
     }
     
   }
@@ -100,7 +100,7 @@ struct QueryRuleCustomDataSwiftUI: PreviewProvider {
           Alert(title: Text("Redirect"),
                 message: Text(redirect.id),
                 dismissButton: .cancel())
-
+          
         }
         .alert(isPresented: $isHelpPresented) {
           Alert(title: Text("Help"),
@@ -109,16 +109,16 @@ struct QueryRuleCustomDataSwiftUI: PreviewProvider {
         }
       }
       .toolbar {
-          ToolbarItem(placement: .navigationBarTrailing) {
-            Button(action: { isHelpPresented = true }) {
-              Image(systemName: "info.circle.fill")
-            }
+        ToolbarItem(placement: .navigationBarTrailing) {
+          Button(action: { isHelpPresented = true }) {
+            Image(systemName: "info.circle.fill")
           }
+        }
       }
       .safeAreaInset(edge: .top, alignment: .center, spacing: 0) {
         Color.clear
-            .frame(height: 0)
-            .background(Material.bar)
+          .frame(height: 0)
+          .background(Material.bar)
       }
       .searchable(text: $queryInputController.query)
       .onSubmit(of: .search) {
@@ -167,32 +167,17 @@ struct QueryRuleCustomDataSwiftUI: PreviewProvider {
     
   }
   
-  class ViewController: UIHostingController<ContentView> {
-    
-    let controller: Controller
-    
-    init() {
-      controller = Controller()
-      let contentView = ContentView(queryInputController: controller.queryInputController,
-                                    hitsController: controller.hitsController,
-                                    bannerController: controller.bannerController)
-      super.init(rootView: contentView)
-    }
-    
-    @MainActor required dynamic init?(coder aDecoder: NSCoder) {
-      fatalError("init(coder:) has not been implemented")
-    }
-    
+  static func contentView(with controller: Controller) -> ContentView {
+    ContentView(queryInputController: controller.queryInputController,
+                hitsController: controller.hitsController,
+                bannerController: controller.bannerController)
   }
   
   static let controller = Controller()
   static var previews: some View {
-    _ = controller
-    return NavigationView {
-      ContentView(queryInputController: controller.queryInputController,
-                  hitsController: controller.hitsController,
-                  bannerController: controller.bannerController)
-      .navigationBarTitle("Query Rule Custom Data")
+    NavigationView {
+      contentView(with: controller)
+        .navigationBarTitle("Query Rule Custom Data")
     }
   }
   

@@ -11,7 +11,7 @@ import InstantSearchCore
 import InstantSearchSwiftUI
 import SDWebImageSwiftUI
 
-struct MultiIndexSwiftUIDemo: PreviewProvider {
+struct MultiIndexSwiftUIDemo: SwiftUIDemo, PreviewProvider {
   
   class Controller {
     
@@ -104,7 +104,7 @@ struct MultiIndexSwiftUIDemo: PreviewProvider {
         if let highlightedTitle = product.hightlightedString(forKey: "name") {
           Text(highlightedString: highlightedTitle,
                highlighted: { Text($0).foregroundColor(.blue) })
-            .font(.system(.subheadline))
+          .font(.system(.subheadline))
         } else {
           Text(product.object.name)
             .font(.system(.headline))
@@ -132,32 +132,18 @@ struct MultiIndexSwiftUIDemo: PreviewProvider {
     
   }
   
-  class ViewController: UIHostingController<ContentView> {
-    
-    let controller: Controller
-    
-    init() {
-      controller = .init()
-      let contentView = ContentView(queryInputController: controller.queryInputController,
-                                    suggestionsHitsController: controller.suggestionsHitsController,
-                                    productsHitsController: controller.productsHitsController)
-      super.init(rootView: contentView)
-    }
-    
-    @MainActor required dynamic init?(coder aDecoder: NSCoder) {
-      fatalError("init(coder:) has not been implemented")
-    }
-    
+  static func contentView(with controller: Controller) -> ContentView {
+    ContentView(queryInputController: controller.queryInputController,
+                suggestionsHitsController: controller.suggestionsHitsController,
+                productsHitsController: controller.productsHitsController)
   }
   
   static let controller = Controller()
   static var previews: some View {
-    _ = controller
-    return NavigationView {
-      ContentView(queryInputController: controller.queryInputController,
-                  suggestionsHitsController: controller.suggestionsHitsController,
-                  productsHitsController: controller.productsHitsController)
-      .navigationBarTitle("Paging Multiple Index")
+    NavigationView {
+      contentView(with: controller)
+        .navigationBarTitle("Paging Multiple Index")
     }
   }
+  
 }
