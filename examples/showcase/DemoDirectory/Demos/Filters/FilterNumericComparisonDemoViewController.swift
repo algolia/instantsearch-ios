@@ -12,46 +12,17 @@ import InstantSearch
 
 class FilterNumericComparisonDemoViewController: UIViewController {
   
-  let searcher: HitsSearcher
-  let filterState: FilterState
-  
-  let yearConnector: FilterComparisonConnector<Int>
-  let priceConnector: FilterComparisonConnector<Double>
-  
+  let demoController: FilterNumericComparisonDemoController
   let searchStateViewController: SearchDebugViewController
-  
   let yearTextFieldController: NumericTextFieldController
   let numericStepperController: NumericStepperController
-  
   let priceStepperValueLabel = UILabel()
   
   override init(nibName nibNameOrNil: String?, bundle nibBundleOrNil: Bundle?) {
-    self.searcher = HitsSearcher(client: .demo, indexName: "mobile_demo_filter_numeric_comparison")
-    self.filterState = .init()
-    
+    demoController = .init()
     yearTextFieldController = NumericTextFieldController()
     numericStepperController = NumericStepperController()
-    
-    self.yearConnector = .init(searcher: searcher,
-                               filterState: filterState,
-                               attribute: "year",
-                               numericOperator: .greaterThanOrEqual,
-                               number: 0,
-                               bounds: nil,
-                               operator: .and,
-                               controller: yearTextFieldController)
-    
-    self.priceConnector = .init(searcher: searcher,
-                                filterState: filterState,
-                                attribute: "price",
-                                numericOperator: .greaterThanOrEqual,
-                                number: 0,
-                                bounds: nil,
-                                operator: .and,
-                                controller: numericStepperController)
-    
-    
-    self.searchStateViewController = SearchDebugViewController()
+    searchStateViewController = SearchDebugViewController()
     super.init(nibName: nibNameOrNil, bundle: nibBundleOrNil)
     setup()
   }
@@ -70,15 +41,15 @@ class FilterNumericComparisonDemoViewController: UIViewController {
 private extension FilterNumericComparisonDemoViewController {
   
   func setup() {
-    searcher.connectFilterState(filterState)
-    searchStateViewController.connectSearcher(searcher)
-    searchStateViewController.connectFilterState(filterState)
-    searcher.search()
-    priceStepperValueLabel.text = priceConnector.interactor.item.flatMap { "\($0)" }
+    searchStateViewController.connectSearcher(demoController.searcher)
+    searchStateViewController.connectFilterState(demoController.filterState)
+    demoController.priceConnector.connectNumberController(numericStepperController)
+    demoController.yearConnector.connectNumberController(yearTextFieldController)
+    priceStepperValueLabel.text = demoController.priceConnector.interactor.item.flatMap { "\($0)" }
   }
   
   func setupUI() {
-        
+    
     view.backgroundColor = .white
     
     addChild(searchStateViewController)
@@ -152,9 +123,7 @@ private extension FilterNumericComparisonDemoViewController {
   }
   
   @objc func onStepperValueChanged(sender: UIStepper) {
-    priceStepperValueLabel.text = priceConnector.interactor.item.flatMap { "\($0)" }
+    priceStepperValueLabel.text = demoController.priceConnector.interactor.item.flatMap { "\($0)" }
   }
   
 }
-
-extension UIView: Builder {}

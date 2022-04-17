@@ -56,6 +56,10 @@
 		404C404F280A281800EC9FEB /* SwiftUIDemo.swift in Sources */ = {isa = PBXBuildFile; fileRef = 404C403C280A281800EC9FEB /* SwiftUIDemo.swift */; };
 		404C4050280A281800EC9FEB /* SwiftUIDemo.swift in Sources */ = {isa = PBXBuildFile; fileRef = 404C403C280A281800EC9FEB /* SwiftUIDemo.swift */; };
 		404C4051280A281800EC9FEB /* SwiftUIDemo.swift in Sources */ = {isa = PBXBuildFile; fileRef = 404C403C280A281800EC9FEB /* SwiftUIDemo.swift */; };
+		404C4053280A30A200EC9FEB /* FilterNumericComparisonDemoController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 404C4052280A30A200EC9FEB /* FilterNumericComparisonDemoController.swift */; };
+		404C4054280A30A200EC9FEB /* FilterNumericComparisonDemoController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 404C4052280A30A200EC9FEB /* FilterNumericComparisonDemoController.swift */; };
+		404C4056280A316500EC9FEB /* FilterNumericComparisonDemoSwiftUI.swift in Sources */ = {isa = PBXBuildFile; fileRef = 404C4055280A316500EC9FEB /* FilterNumericComparisonDemoSwiftUI.swift */; };
+		404C4057280A316500EC9FEB /* FilterNumericComparisonDemoSwiftUI.swift in Sources */ = {isa = PBXBuildFile; fileRef = 404C4055280A316500EC9FEB /* FilterNumericComparisonDemoSwiftUI.swift */; };
 		4073B5952806CAE200E05EF6 /* SliderView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4073B5942806CAE200E05EF6 /* SliderView.swift */; };
 		4073B5962806CAE200E05EF6 /* SliderView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4073B5942806CAE200E05EF6 /* SliderView.swift */; };
 		4073B5972806DBEF00E05EF6 /* FilterNumberRangeDemoSwiftUI.swift in Sources */ = {isa = PBXBuildFile; fileRef = AF50CCB627F74A9E0036F549 /* FilterNumberRangeDemoSwiftUI.swift */; };
@@ -767,6 +771,8 @@
 		400366C92808835800A5F29E /* QueryRuleCustomDataDemoController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = QueryRuleCustomDataDemoController.swift; sourceTree = "<group>"; };
 		404C4027280A27EE00EC9FEB /* CommonSwiftUIDemoViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CommonSwiftUIDemoViewController.swift; sourceTree = "<group>"; };
 		404C403C280A281800EC9FEB /* SwiftUIDemo.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SwiftUIDemo.swift; sourceTree = "<group>"; };
+		404C4052280A30A200EC9FEB /* FilterNumericComparisonDemoController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FilterNumericComparisonDemoController.swift; sourceTree = "<group>"; };
+		404C4055280A316500EC9FEB /* FilterNumericComparisonDemoSwiftUI.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FilterNumericComparisonDemoSwiftUI.swift; sourceTree = "<group>"; };
 		4073B5942806CAE200E05EF6 /* SliderView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SliderView.swift; sourceTree = "<group>"; };
 		4073B59D28076B6F00E05EF6 /* Double+Range.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Double+Range.swift"; sourceTree = "<group>"; };
 		4073B5A028076E9600E05EF6 /* RatingFilterDemoController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RatingFilterDemoController.swift; sourceTree = "<group>"; };
@@ -1583,6 +1589,8 @@
 				AF50CADB27F724EE0036F549 /* AppDelegate.swift */,
 				AF50CADD27F724EE0036F549 /* SceneDelegate.swift */,
 				AF50CCBC27F74AC90036F549 /* FilterNumericComparisonDemoViewController.swift */,
+				404C4052280A30A200EC9FEB /* FilterNumericComparisonDemoController.swift */,
+				404C4055280A316500EC9FEB /* FilterNumericComparisonDemoSwiftUI.swift */,
 				AF50CAE427F724EF0036F549 /* Assets.xcassets */,
 				AF50CAE627F724EF0036F549 /* LaunchScreen.storyboard */,
 				AF50CAE927F724EF0036F549 /* Info.plist */,
@@ -3456,6 +3464,8 @@
 				AF50CD9D27FB29A10036F549 /* SceneDelegate+Convenience.swift in Sources */,
 				AF4FF28F27FEF2D800A4BF61 /* FiltersDebugViewController.swift in Sources */,
 				AF50CCBD27F74AC90036F549 /* FilterNumericComparisonDemoViewController.swift in Sources */,
+				404C4054280A30A200EC9FEB /* FilterNumericComparisonDemoController.swift in Sources */,
+				404C4057280A316500EC9FEB /* FilterNumericComparisonDemoSwiftUI.swift in Sources */,
 				404C4046280A281800EC9FEB /* SwiftUIDemo.swift in Sources */,
 				AFB181B027FC95B0000AA57B /* Product.swift in Sources */,
 				AF50CE3327FB31810036F549 /* UITableView+EmptyResult.swift in Sources */,
@@ -3787,6 +3797,8 @@
 				AF50CE9827FB71780036F549 /* DynamicFacetsDemoController.swift in Sources */,
 				4073B5A42807720100E05EF6 /* RatingFilterDemoSwiftUI.swift in Sources */,
 				AF50CD4A27FAF64E0036F549 /* RelevantSortDemoViewController.swift in Sources */,
+				404C4053280A30A200EC9FEB /* FilterNumericComparisonDemoController.swift in Sources */,
+				404C4056280A316500EC9FEB /* FilterNumericComparisonDemoSwiftUI.swift in Sources */,
 				AFB181C827FDC9DB000AA57B /* DynamicFacetDemoSwiftUI.swift in Sources */,
 				AF50CCDB27FAE8700036F549 /* NumericRangeController.swift in Sources */,
 				40E1B080280849EB0092B424 /* MultiIndexSwiftUIDemo.swift in Sources */,
