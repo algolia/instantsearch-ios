@@ -14,6 +14,18 @@
 		400366CE2809B9F300A5F29E /* UIView+Layout.swift in Sources */ = {isa = PBXBuildFile; fileRef = AF50CCBE27FAE6AA0036F549 /* UIView+Layout.swift */; };
 		400366CF2809BA2000A5F29E /* FilterStateObservableController.swift in Sources */ = {isa = PBXBuildFile; fileRef = AFB181C227FDB6A0000AA57B /* FilterStateObservableController.swift */; };
 		400366D22809BAE000A5F29E /* FilterStateDebugView.swift in Sources */ = {isa = PBXBuildFile; fileRef = AFB181CA27FE1150000AA57B /* FilterStateDebugView.swift */; };
+		4022E817280DA10400D71D66 /* SearchWatch WatchKit App.app in Embed Watch Content */ = {isa = PBXBuildFile; fileRef = 4022E816280DA10400D71D66 /* SearchWatch WatchKit App.app */; settings = {ATTRIBUTES = (RemoveHeadersOnCopy, ); }; };
+		4022E81C280DA10600D71D66 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 4022E81B280DA10600D71D66 /* Assets.xcassets */; };
+		4022E822280DA10600D71D66 /* SearchWatch WatchKit Extension.appex in Embed App Extensions */ = {isa = PBXBuildFile; fileRef = 4022E821280DA10600D71D66 /* SearchWatch WatchKit Extension.appex */; settings = {ATTRIBUTES = (RemoveHeadersOnCopy, ); }; };
+		4022E827280DA10600D71D66 /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4022E826280DA10600D71D66 /* ContentView.swift */; };
+		4022E829280DA10600D71D66 /* ExamplesApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4022E828280DA10600D71D66 /* ExamplesApp.swift */; };
+		4022E82B280DA10600D71D66 /* ComplicationController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4022E82A280DA10600D71D66 /* ComplicationController.swift */; };
+		4022E82D280DA10600D71D66 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 4022E82C280DA10600D71D66 /* Assets.xcassets */; };
+		4022E830280DA10600D71D66 /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 4022E82F280DA10600D71D66 /* Preview Assets.xcassets */; };
+		4022E83E280DA1A900D71D66 /* InstantSearchSwiftUI in Frameworks */ = {isa = PBXBuildFile; productRef = 4022E83D280DA1A900D71D66 /* InstantSearchSwiftUI */; };
+		4022E83F280DA1FD00D71D66 /* SearchDemoController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 40E1B06E280810440092B424 /* SearchDemoController.swift */; };
+		4022E840280DA24500D71D66 /* StoreItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = AF50C95E27F622C70036F549 /* StoreItem.swift */; };
+		4022E841280DA25400D71D66 /* SearchClient.swift in Sources */ = {isa = PBXBuildFile; fileRef = AF50C96B27F623380036F549 /* SearchClient.swift */; };
 		404C4028280A27EE00EC9FEB /* CommonSwiftUIDemoViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 404C4027280A27EE00EC9FEB /* CommonSwiftUIDemoViewController.swift */; };
 		404C4029280A27EE00EC9FEB /* CommonSwiftUIDemoViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 404C4027280A27EE00EC9FEB /* CommonSwiftUIDemoViewController.swift */; };
 		404C402A280A27EE00EC9FEB /* CommonSwiftUIDemoViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 404C4027280A27EE00EC9FEB /* CommonSwiftUIDemoViewController.swift */; };
@@ -782,8 +794,60 @@
 		AFEFEFAF27F48F7E00B47F7F /* InstantSearch in Frameworks */ = {isa = PBXBuildFile; productRef = AFEFEFAE27F48F7E00B47F7F /* InstantSearch */; };
 /* End PBXBuildFile section */
 
+/* Begin PBXContainerItemProxy section */
+		4022E818280DA10400D71D66 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = AF7FEB7D272CAC5D0003BE62 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 4022E815280DA10400D71D66;
+			remoteInfo = "SearchWatch WatchKit App";
+		};
+		4022E823280DA10600D71D66 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = AF7FEB7D272CAC5D0003BE62 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 4022E820280DA10600D71D66;
+			remoteInfo = "SearchWatch WatchKit Extension";
+		};
+/* End PBXContainerItemProxy section */
+
+/* Begin PBXCopyFilesBuildPhase section */
+		4022E835280DA10600D71D66 /* Embed App Extensions */ = {
+			isa = PBXCopyFilesBuildPhase;
+			buildActionMask = 2147483647;
+			dstPath = "";
+			dstSubfolderSpec = 13;
+			files = (
+				4022E822280DA10600D71D66 /* SearchWatch WatchKit Extension.appex in Embed App Extensions */,
+			);
+			name = "Embed App Extensions";
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		4022E839280DA10600D71D66 /* Embed Watch Content */ = {
+			isa = PBXCopyFilesBuildPhase;
+			buildActionMask = 2147483647;
+			dstPath = "$(CONTENTS_FOLDER_PATH)/Watch";
+			dstSubfolderSpec = 16;
+			files = (
+				4022E817280DA10400D71D66 /* SearchWatch WatchKit App.app in Embed Watch Content */,
+			);
+			name = "Embed Watch Content";
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXCopyFilesBuildPhase section */
+
 /* Begin PBXFileReference section */
 		400366C92808835800A5F29E /* QueryRuleCustomDataDemoController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = QueryRuleCustomDataDemoController.swift; sourceTree = "<group>"; };
+		4022E813280DA10400D71D66 /* SearchWatch.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = SearchWatch.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		4022E816280DA10400D71D66 /* SearchWatch WatchKit App.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "SearchWatch WatchKit App.app"; sourceTree = BUILT_PRODUCTS_DIR; };
+		4022E81B280DA10600D71D66 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
+		4022E821280DA10600D71D66 /* SearchWatch WatchKit Extension.appex */ = {isa = PBXFileReference; explicitFileType = "wrapper.app-extension"; includeInIndex = 0; path = "SearchWatch WatchKit Extension.appex"; sourceTree = BUILT_PRODUCTS_DIR; };
+		4022E826280DA10600D71D66 /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
+		4022E828280DA10600D71D66 /* ExamplesApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ExamplesApp.swift; sourceTree = "<group>"; };
+		4022E82A280DA10600D71D66 /* ComplicationController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ComplicationController.swift; sourceTree = "<group>"; };
+		4022E82C280DA10600D71D66 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
+		4022E82F280DA10600D71D66 /* Preview Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = "Preview Assets.xcassets"; sourceTree = "<group>"; };
+		4022E831280DA10600D71D66 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		404C4027280A27EE00EC9FEB /* CommonSwiftUIDemoViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CommonSwiftUIDemoViewController.swift; sourceTree = "<group>"; };
 		404C403C280A281800EC9FEB /* SwiftUIDemo.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SwiftUIDemo.swift; sourceTree = "<group>"; };
 		404C4052280A30A200EC9FEB /* FilterNumericComparisonDemoController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FilterNumericComparisonDemoController.swift; sourceTree = "<group>"; };
@@ -1119,6 +1183,14 @@
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
+		4022E81E280DA10600D71D66 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				4022E83E280DA1A900D71D66 /* InstantSearchSwiftUI in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 		AF46A7532747EF9C004E86F3 /* Frameworks */ = {
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
@@ -1424,6 +1496,35 @@
 				AFEFEF8B27F47F8300B47F7F /* ProductTableViewCell+ProductHit.swift */,
 			);
 			path = Product;
+			sourceTree = "<group>";
+		};
+		4022E81A280DA10400D71D66 /* SearchWatch WatchKit App */ = {
+			isa = PBXGroup;
+			children = (
+				4022E81B280DA10600D71D66 /* Assets.xcassets */,
+			);
+			path = "SearchWatch WatchKit App";
+			sourceTree = "<group>";
+		};
+		4022E825280DA10600D71D66 /* SearchWatch WatchKit Extension */ = {
+			isa = PBXGroup;
+			children = (
+				4022E826280DA10600D71D66 /* ContentView.swift */,
+				4022E828280DA10600D71D66 /* ExamplesApp.swift */,
+				4022E82A280DA10600D71D66 /* ComplicationController.swift */,
+				4022E82C280DA10600D71D66 /* Assets.xcassets */,
+				4022E831280DA10600D71D66 /* Info.plist */,
+				4022E82E280DA10600D71D66 /* Preview Content */,
+			);
+			path = "SearchWatch WatchKit Extension";
+			sourceTree = "<group>";
+		};
+		4022E82E280DA10600D71D66 /* Preview Content */ = {
+			isa = PBXGroup;
+			children = (
+				4022E82F280DA10600D71D66 /* Preview Assets.xcassets */,
+			);
+			path = "Preview Content";
 			sourceTree = "<group>";
 		};
 		40935544280CA8AA00EB9AEA /* filter */ = {
@@ -1894,6 +1995,8 @@
 				AF50CB9A27F72C510036F549 /* QueryRuleCustomData */,
 				AF50CBE227F72C880036F549 /* RelatedItems */,
 				AF50CEA227FB72090036F549 /* Stats */,
+				4022E81A280DA10400D71D66 /* SearchWatch WatchKit App */,
+				4022E825280DA10600D71D66 /* SearchWatch WatchKit Extension */,
 				AF7FEB86272CAC5D0003BE62 /* Products */,
 				AFAE55152733643D00B52A43 /* Frameworks */,
 			);
@@ -1934,6 +2037,9 @@
 				AF50CC1127F72CB50036F549 /* PaginationMultiIndex.app */,
 				AF50CEA127FB72090036F549 /* Stats.app */,
 				AF83120327FC7F7300509DF5 /* FilterList.app */,
+				4022E813280DA10400D71D66 /* SearchWatch.app */,
+				4022E816280DA10400D71D66 /* SearchWatch WatchKit App.app */,
+				4022E821280DA10600D71D66 /* SearchWatch WatchKit Extension.appex */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -2099,6 +2205,60 @@
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
+		4022E812280DA10400D71D66 /* SearchWatch */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 4022E83A280DA10600D71D66 /* Build configuration list for PBXNativeTarget "SearchWatch" */;
+			buildPhases = (
+				4022E811280DA10400D71D66 /* Resources */,
+				4022E839280DA10600D71D66 /* Embed Watch Content */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				4022E819280DA10400D71D66 /* PBXTargetDependency */,
+			);
+			name = SearchWatch;
+			productName = SearchWatch;
+			productReference = 4022E813280DA10400D71D66 /* SearchWatch.app */;
+			productType = "com.apple.product-type.application.watchapp2-container";
+		};
+		4022E815280DA10400D71D66 /* SearchWatch WatchKit App */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 4022E836280DA10600D71D66 /* Build configuration list for PBXNativeTarget "SearchWatch WatchKit App" */;
+			buildPhases = (
+				4022E814280DA10400D71D66 /* Resources */,
+				4022E835280DA10600D71D66 /* Embed App Extensions */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				4022E824280DA10600D71D66 /* PBXTargetDependency */,
+			);
+			name = "SearchWatch WatchKit App";
+			productName = "SearchWatch WatchKit App";
+			productReference = 4022E816280DA10400D71D66 /* SearchWatch WatchKit App.app */;
+			productType = "com.apple.product-type.application.watchapp2";
+		};
+		4022E820280DA10600D71D66 /* SearchWatch WatchKit Extension */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 4022E832280DA10600D71D66 /* Build configuration list for PBXNativeTarget "SearchWatch WatchKit Extension" */;
+			buildPhases = (
+				4022E81D280DA10600D71D66 /* Sources */,
+				4022E81E280DA10600D71D66 /* Frameworks */,
+				4022E81F280DA10600D71D66 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = "SearchWatch WatchKit Extension";
+			packageProductDependencies = (
+				4022E83D280DA1A900D71D66 /* InstantSearchSwiftUI */,
+			);
+			productName = "SearchWatch WatchKit Extension";
+			productReference = 4022E821280DA10600D71D66 /* SearchWatch WatchKit Extension.appex */;
+			productType = "com.apple.product-type.watchkit2-extension";
+		};
 		AF46A7552747EF9C004E86F3 /* CategoriesHits */ = {
 			isa = PBXNativeTarget;
 			buildConfigurationList = AF46A7672747EF9F004E86F3 /* Build configuration list for PBXNativeTarget "CategoriesHits" */;
@@ -2784,6 +2944,15 @@
 				LastSwiftUpdateCheck = 1330;
 				LastUpgradeCheck = 1310;
 				TargetAttributes = {
+					4022E812280DA10400D71D66 = {
+						CreatedOnToolsVersion = 13.3.1;
+					};
+					4022E815280DA10400D71D66 = {
+						CreatedOnToolsVersion = 13.3.1;
+					};
+					4022E820280DA10600D71D66 = {
+						CreatedOnToolsVersion = 13.3.1;
+					};
 					AF46A7552747EF9C004E86F3 = {
 						CreatedOnToolsVersion = 13.1;
 					};
@@ -2931,11 +3100,38 @@
 				AF50CBF827F72CA80036F549 /* PaginationSingleIndex */,
 				AF50CC1027F72CB50036F549 /* PaginationMultiIndex */,
 				AF50CEA027FB72090036F549 /* Stats */,
+				4022E812280DA10400D71D66 /* SearchWatch */,
+				4022E815280DA10400D71D66 /* SearchWatch WatchKit App */,
+				4022E820280DA10600D71D66 /* SearchWatch WatchKit Extension */,
 			);
 		};
 /* End PBXProject section */
 
 /* Begin PBXResourcesBuildPhase section */
+		4022E811280DA10400D71D66 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		4022E814280DA10400D71D66 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				4022E81C280DA10600D71D66 /* Assets.xcassets in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		4022E81F280DA10600D71D66 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				4022E830280DA10600D71D66 /* Preview Assets.xcassets in Resources */,
+				4022E82D280DA10600D71D66 /* Assets.xcassets in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 		AF46A7542747EF9C004E86F3 /* Resources */ = {
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
@@ -3227,6 +3423,19 @@
 /* End PBXResourcesBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
+		4022E81D280DA10600D71D66 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				4022E83F280DA1FD00D71D66 /* SearchDemoController.swift in Sources */,
+				4022E840280DA24500D71D66 /* StoreItem.swift in Sources */,
+				4022E841280DA25400D71D66 /* SearchClient.swift in Sources */,
+				4022E829280DA10600D71D66 /* ExamplesApp.swift in Sources */,
+				4022E827280DA10600D71D66 /* ContentView.swift in Sources */,
+				4022E82B280DA10600D71D66 /* ComplicationController.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 		AF46A7522747EF9C004E86F3 /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
@@ -4095,6 +4304,19 @@
 		};
 /* End PBXSourcesBuildPhase section */
 
+/* Begin PBXTargetDependency section */
+		4022E819280DA10400D71D66 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = 4022E815280DA10400D71D66 /* SearchWatch WatchKit App */;
+			targetProxy = 4022E818280DA10400D71D66 /* PBXContainerItemProxy */;
+		};
+		4022E824280DA10600D71D66 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = 4022E820280DA10600D71D66 /* SearchWatch WatchKit Extension */;
+			targetProxy = 4022E823280DA10600D71D66 /* PBXContainerItemProxy */;
+		};
+/* End PBXTargetDependency section */
+
 /* Begin PBXVariantGroup section */
 		AF46A7632747EF9F004E86F3 /* LaunchScreen.storyboard */ = {
 			isa = PBXVariantGroup;
@@ -4347,6 +4569,146 @@
 /* End PBXVariantGroup section */
 
 /* Begin XCBuildConfiguration section */
+		4022E833280DA10600D71D66 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_COMPLICATION_NAME = Complication;
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_ASSET_PATHS = "\"SearchWatch WatchKit Extension/Preview Content\"";
+				DEVELOPMENT_TEAM = 5RDFJYUV23;
+				ENABLE_PREVIEWS = YES;
+				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_FILE = "SearchWatch WatchKit Extension/Info.plist";
+				INFOPLIST_KEY_CFBundleDisplayName = "SearchWatch WatchKit Extension";
+				INFOPLIST_KEY_CLKComplicationPrincipalClass = "$(PRODUCT_MODULE_NAME).ComplicationController";
+				INFOPLIST_KEY_NSHumanReadableCopyright = "";
+				INFOPLIST_KEY_WKWatchOnly = YES;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@executable_path/../../Frameworks",
+				);
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = com.algolia.SearchWatch.watchkitapp.watchkitextension;
+				PRODUCT_NAME = "${TARGET_NAME}";
+				SDKROOT = watchos;
+				SKIP_INSTALL = YES;
+				SWIFT_EMIT_LOC_STRINGS = YES;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = 4;
+				WATCHOS_DEPLOYMENT_TARGET = 8.5;
+			};
+			name = Debug;
+		};
+		4022E834280DA10600D71D66 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_COMPLICATION_NAME = Complication;
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_ASSET_PATHS = "\"SearchWatch WatchKit Extension/Preview Content\"";
+				DEVELOPMENT_TEAM = 5RDFJYUV23;
+				ENABLE_PREVIEWS = YES;
+				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_FILE = "SearchWatch WatchKit Extension/Info.plist";
+				INFOPLIST_KEY_CFBundleDisplayName = "SearchWatch WatchKit Extension";
+				INFOPLIST_KEY_CLKComplicationPrincipalClass = "$(PRODUCT_MODULE_NAME).ComplicationController";
+				INFOPLIST_KEY_NSHumanReadableCopyright = "";
+				INFOPLIST_KEY_WKWatchOnly = YES;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@executable_path/../../Frameworks",
+				);
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = com.algolia.SearchWatch.watchkitapp.watchkitextension;
+				PRODUCT_NAME = "${TARGET_NAME}";
+				SDKROOT = watchos;
+				SKIP_INSTALL = YES;
+				SWIFT_EMIT_LOC_STRINGS = YES;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = 4;
+				WATCHOS_DEPLOYMENT_TARGET = 8.5;
+			};
+			name = Release;
+		};
+		4022E837280DA10600D71D66 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_TEAM = 5RDFJYUV23;
+				GENERATE_INFOPLIST_FILE = YES;
+				IBSC_MODULE = SearchWatch_WatchKit_Extension;
+				INFOPLIST_KEY_CFBundleDisplayName = "SearchWatch WatchKit App";
+				INFOPLIST_KEY_UISupportedInterfaceOrientations = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown";
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = com.algolia.SearchWatch.watchkitapp;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SDKROOT = watchos;
+				SKIP_INSTALL = YES;
+				SWIFT_EMIT_LOC_STRINGS = YES;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = 4;
+				WATCHOS_DEPLOYMENT_TARGET = 8.5;
+			};
+			name = Debug;
+		};
+		4022E838280DA10600D71D66 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_TEAM = 5RDFJYUV23;
+				GENERATE_INFOPLIST_FILE = YES;
+				IBSC_MODULE = SearchWatch_WatchKit_Extension;
+				INFOPLIST_KEY_CFBundleDisplayName = "SearchWatch WatchKit App";
+				INFOPLIST_KEY_UISupportedInterfaceOrientations = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown";
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = com.algolia.SearchWatch.watchkitapp;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SDKROOT = watchos;
+				SKIP_INSTALL = YES;
+				SWIFT_EMIT_LOC_STRINGS = YES;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = 4;
+				WATCHOS_DEPLOYMENT_TARGET = 8.5;
+			};
+			name = Release;
+		};
+		4022E83B280DA10600D71D66 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_TEAM = 5RDFJYUV23;
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = com.algolia.SearchWatch;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_VERSION = 5.0;
+			};
+			name = Debug;
+		};
+		4022E83C280DA10600D71D66 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_TEAM = 5RDFJYUV23;
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = com.algolia.SearchWatch;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_VERSION = 5.0;
+			};
+			name = Release;
+		};
 		AF46A7682747EF9F004E86F3 /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
@@ -6246,6 +6608,33 @@
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
+		4022E832280DA10600D71D66 /* Build configuration list for PBXNativeTarget "SearchWatch WatchKit Extension" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				4022E833280DA10600D71D66 /* Debug */,
+				4022E834280DA10600D71D66 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		4022E836280DA10600D71D66 /* Build configuration list for PBXNativeTarget "SearchWatch WatchKit App" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				4022E837280DA10600D71D66 /* Debug */,
+				4022E838280DA10600D71D66 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		4022E83A280DA10600D71D66 /* Build configuration list for PBXNativeTarget "SearchWatch" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				4022E83B280DA10600D71D66 /* Debug */,
+				4022E83C280DA10600D71D66 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
 		AF46A7672747EF9F004E86F3 /* Build configuration list for PBXNativeTarget "CategoriesHits" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
@@ -6565,6 +6954,10 @@
 /* End XCRemoteSwiftPackageReference section */
 
 /* Begin XCSwiftPackageProductDependency section */
+		4022E83D280DA1A900D71D66 /* InstantSearchSwiftUI */ = {
+			isa = XCSwiftPackageProductDependency;
+			productName = InstantSearchSwiftUI;
+		};
 		404C412A280C9D1C00EC9FEB /* SDWebImage */ = {
 			isa = XCSwiftPackageProductDependency;
 			package = AFAE55AA27342C5900B52A43 /* XCRemoteSwiftPackageReference "SDWebImage" */;
