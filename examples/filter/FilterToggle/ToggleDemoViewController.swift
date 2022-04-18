@@ -14,8 +14,7 @@ class ToggleDemoViewController: UIViewController {
 
   let controller: ToggleDemoController
   
-  let searchStateViewController: SearchDebugViewController
-  
+
   let mainStackView = UIStackView()
   let controlsStackView = UIStackView()
   let couponStackView = UIStackView()
@@ -24,17 +23,17 @@ class ToggleDemoViewController: UIViewController {
   let sizeConstraintButtonController: SelectableFilterButtonController<Filter.Numeric>
   let couponSwitchController: FilterSwitchController<Filter.Facet>
   
+  let searchDebugViewController: SearchDebugViewController
+  
   let couponLabel = UILabel()
   
   override init(nibName nibNameOrNil: String?, bundle nibBundleOrNil: Bundle?) {
-    searchStateViewController = SearchDebugViewController()
     sizeConstraintButtonController = SelectableFilterButtonController(button: .init())
     vintageButtonController = SelectableFilterButtonController(button: .init())
     couponSwitchController = FilterSwitchController(switch: .init())
     controller = .init()
-    
+    searchDebugViewController = SearchDebugViewController(filterState: controller.filterState)
     super.init(nibName: nibNameOrNil, bundle: nibBundleOrNil)
-    
     setup()
   }
   
@@ -53,8 +52,6 @@ class ToggleDemoViewController: UIViewController {
 private extension ToggleDemoViewController {
   
   func setup() {
-    searchStateViewController.connectSearcher(controller.searcher)
-    searchStateViewController.connectFilterState(controller.filterState)
     controller.sizeConstraintConnector.connectController(sizeConstraintButtonController)
     controller.vintageConnector.connectController(vintageButtonController)
     controller.couponConnector.connectController(couponSwitchController)
@@ -76,24 +73,16 @@ private extension ToggleDemoViewController {
     
     view.addSubview(mainStackView)
     
-    mainStackView.pin(to: view.safeAreaLayoutGuide)
+    mainStackView.pin(to: view)
     
-    addChild(searchStateViewController)
+    addChild(searchDebugViewController)
+    searchDebugViewController.didMove(toParent: self)
+    searchDebugViewController.view.heightAnchor.constraint(equalToConstant: 150).isActive = true
 
-    searchStateViewController.didMove(toParent: self)
-    mainStackView.addArrangedSubview(searchStateViewController.view)
-    
-    NSLayoutConstraint.activate([
-      searchStateViewController.view.heightAnchor.constraint(equalToConstant: 150),
-      searchStateViewController.view.widthAnchor.constraint(equalTo: mainStackView.widthAnchor, multiplier: 0.98)
-    ])
-    
-    sizeConstraintButtonController.button.heightAnchor.constraint(equalToConstant: 44).isActive = true
-    vintageButtonController.button.heightAnchor.constraint(equalToConstant: 44).isActive = true
-    
+    mainStackView.addArrangedSubview(searchDebugViewController.view)
+      
     couponStackView.addArrangedSubview(couponLabel)
     couponStackView.addArrangedSubview(couponSwitchController.switch)
-    couponStackView.heightAnchor.constraint(equalToConstant: 44).isActive = true
     
     controlsStackView.addArrangedSubview(spacer())
     controlsStackView.addArrangedSubview(sizeConstraintButtonController.button)
@@ -104,7 +93,6 @@ private extension ToggleDemoViewController {
     controlsStackView.addArrangedSubview(spacer())
     mainStackView.addArrangedSubview(controlsStackView)
     mainStackView.addArrangedSubview(spacer())
-    controlsStackView.widthAnchor.constraint(equalTo: mainStackView.widthAnchor, multiplier: 1).isActive = true
   }
   
   private func spacer() -> UIView {
@@ -114,10 +102,10 @@ private extension ToggleDemoViewController {
   }
   
   func configureMainStackView() {
+    mainStackView.isLayoutMarginsRelativeArrangement = true
+    mainStackView.layoutMargins = .init(top: 10, left: 10, bottom: 10, right: 10)
     mainStackView.axis = .vertical
-    mainStackView.alignment = .center
-    mainStackView.spacing = 16
-    mainStackView.distribution = .fill
+    mainStackView.spacing = 10
     mainStackView.translatesAutoresizingMaskIntoConstraints = false
   }
   

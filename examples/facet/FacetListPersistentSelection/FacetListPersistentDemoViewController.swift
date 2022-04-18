@@ -13,9 +13,9 @@ import InstantSearch
 class FacetListPersistentDemoViewController: UIViewController {
   
   let demoController: FacetListPersistentSelectionDemoController
-  let searchStateViewController: SearchDebugViewController
   let colorListController: FacetListTableController
   let categoryListController: FacetListTableController
+  let searchDebugViewController: SearchDebugViewController
 
   init() {
     demoController = .init()
@@ -23,7 +23,7 @@ class FacetListPersistentDemoViewController: UIViewController {
                                 titleDescriptor: .init(text: "Multiple choice", color: .red))
     categoryListController = .init(tableView: .init(),
                                    titleDescriptor: .init(text: "Single choice", color: .blue))
-    searchStateViewController = .init()
+    searchDebugViewController = .init(filterState: demoController.filterState)
     super.init(nibName: nil, bundle: nil)
     setup()
   }
@@ -44,8 +44,6 @@ private extension FacetListPersistentDemoViewController {
   func setup() {
     demoController.colorConnector.interactor.connectController(colorListController)
     demoController.categoryConnector.interactor.connectController(categoryListController)
-    searchStateViewController.connectSearcher(demoController.searcher)
-    searchStateViewController.connectFilterState(demoController.filterState)
   }
   
   func setupLayout() {
@@ -55,20 +53,21 @@ private extension FacetListPersistentDemoViewController {
     mainStackView.axis = .vertical
     mainStackView.translatesAutoresizingMaskIntoConstraints = false
     mainStackView.distribution = .fill
-    mainStackView.spacing = 16
+    mainStackView.isLayoutMarginsRelativeArrangement = true
+    mainStackView.layoutMargins = .init(top: 10, left: 10, bottom: 10, right: 10)
     
     let listsStackView = UIStackView(frame: .zero)
     listsStackView.translatesAutoresizingMaskIntoConstraints = false
     listsStackView.axis = .horizontal
     listsStackView.distribution = .fillEqually
-    listsStackView.spacing = 16
+    listsStackView.spacing = 10
     listsStackView.addArrangedSubview(colorListController.tableView)
     listsStackView.addArrangedSubview(categoryListController.tableView)
     
-    addChild(searchStateViewController)
-    searchStateViewController.didMove(toParent: self)
-    searchStateViewController.view.heightAnchor.constraint(equalToConstant: 150).isActive = true
-    mainStackView.addArrangedSubview(searchStateViewController.view)
+    addChild(searchDebugViewController)
+    searchDebugViewController.didMove(toParent: self)
+    searchDebugViewController.view.heightAnchor.constraint(equalToConstant: 150).isActive = true
+    mainStackView.addArrangedSubview(searchDebugViewController.view)
     mainStackView.addArrangedSubview(listsStackView)
     mainStackView.addArrangedSubview(.spacer)
     

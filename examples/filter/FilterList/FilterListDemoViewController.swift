@@ -15,14 +15,14 @@ class FilterListDemoViewController<F: FilterType & Hashable>: UIViewController {
   let controller: FilterListDemoController<F>
 
   let filterListController: FilterListTableController<F>
-  let searchStateViewController: SearchDebugViewController
+  let searchDebugViewController: SearchDebugViewController
   
   init(items: [F], selectionMode: SelectionMode) {
     filterListController = FilterListTableController(tableView: .init())
-    searchStateViewController = SearchDebugViewController()
     controller = .init(filters: items,
                        controller: filterListController,
                        selectionMode: selectionMode)
+    searchDebugViewController = SearchDebugViewController(filterState: controller.filterState)
     super.init(nibName: nil, bundle: nil)
   }
   
@@ -32,39 +32,34 @@ class FilterListDemoViewController<F: FilterType & Hashable>: UIViewController {
   
   override func viewDidLoad() {
     super.viewDidLoad()
-    setup()
     setupUI()
   }
   
 }
 
 private extension FilterListDemoViewController {
-  
-  func setup() {
-    searchStateViewController.connectFilterState(controller.filterState)
-    searchStateViewController.connectSearcher(controller.searcher)
-  }
-  
+    
   func setupUI() {
     
     view.backgroundColor = .white
     
     let mainStackView = UIStackView()
+    mainStackView.isLayoutMarginsRelativeArrangement = true
+    mainStackView.layoutMargins = .init(top: 10, left: 10, bottom: 10, right: 10)
     mainStackView.translatesAutoresizingMaskIntoConstraints = false
     mainStackView.axis = .vertical
-    mainStackView.spacing = 16
+    mainStackView.spacing = 10
     
     view.addSubview(mainStackView)
     
-    mainStackView.pin(to: view.safeAreaLayoutGuide)
+    mainStackView.pin(to: view)
     
-    addChild(searchStateViewController)
-    searchStateViewController.didMove(toParent: self)
-    searchStateViewController.view.heightAnchor.constraint(equalToConstant: 150).isActive = true
+    addChild(searchDebugViewController)
+    searchDebugViewController.didMove(toParent: self)
+    searchDebugViewController.view.heightAnchor.constraint(equalToConstant: 150).isActive = true
     
-    mainStackView.addArrangedSubview(searchStateViewController.view)
+    mainStackView.addArrangedSubview(searchDebugViewController.view)
     mainStackView.addArrangedSubview(filterListController.tableView)
-    
   }
   
 }

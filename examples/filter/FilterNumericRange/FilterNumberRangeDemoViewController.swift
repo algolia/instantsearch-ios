@@ -13,21 +13,14 @@ import InstantSearch
 class FilterNumberRangeDemoViewController: UIViewController {
 
   let controller: FilterNumberRangeDemoController
-
-  let searchStateViewController: SearchDebugViewController
-  
   let numericRangeController: NumericRangeController
+  let searchDebugViewController: SearchDebugViewController
 
   override init(nibName nibNameOrNil: String?, bundle nibBundleOrNil: Bundle?) {
-
     numericRangeController = NumericRangeController(rangeSlider: .init())
-    
-    self.controller = .init()
-    self.searchStateViewController = SearchDebugViewController()
+    controller = .init()
+    searchDebugViewController = SearchDebugViewController(filterState: controller.filterState)
     super.init(nibName: nibNameOrNil, bundle: nibBundleOrNil)
-    controller.rangeConnector.connectController(numericRangeController)
-    addChild(searchStateViewController)
-    searchStateViewController.didMove(toParent: self)
   }
 
   required init?(coder aDecoder: NSCoder) {
@@ -36,32 +29,38 @@ class FilterNumberRangeDemoViewController: UIViewController {
 
   override func viewDidLoad() {
     super.viewDidLoad()
+    setup()
     setupUI()
-    searchStateViewController.connectSearcher(controller.searcher)
-    searchStateViewController.connectFilterState(controller.filterState)
   }
 
 }
 
-
 private extension FilterNumberRangeDemoViewController {
+  
+  func setup() {
+    controller.rangeConnector.connectController(numericRangeController)
+    addChild(searchDebugViewController)
+    searchDebugViewController.didMove(toParent: self)
+
+  }
 
   func setupUI() {
     view.backgroundColor = .white
-    let searchStateView = searchStateViewController.view!
     let mainStackView = UIStackView()
     mainStackView.axis = .vertical
-    mainStackView.spacing = 16
-    mainStackView.distribution = .fill
+    mainStackView.spacing = 10
+    mainStackView.isLayoutMarginsRelativeArrangement = true
+    mainStackView.layoutMargins = .init(top: 10, left: 10, bottom: 10, right: 10)
     mainStackView.translatesAutoresizingMaskIntoConstraints = false
-    mainStackView.alignment = .center
-    mainStackView.addArrangedSubview(searchStateView)
+    
+    let searchDebugView = searchDebugViewController.view!
+    searchDebugView.translatesAutoresizingMaskIntoConstraints = false
+    searchDebugView.heightAnchor.constraint(equalToConstant: 150).isActive = true
+    mainStackView.addArrangedSubview(searchDebugView)
     mainStackView.addArrangedSubview(numericRangeController.view)
     mainStackView.addArrangedSubview(.spacer)
     view.addSubview(mainStackView)
     mainStackView.pin(to: view.safeAreaLayoutGuide)
-    searchStateView.heightAnchor.constraint(equalToConstant: 150).isActive = true
-    searchStateView.widthAnchor.constraint(equalTo: view.widthAnchor, multiplier: 1).isActive = true
   }
 
 }

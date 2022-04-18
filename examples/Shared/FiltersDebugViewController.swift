@@ -10,34 +10,24 @@ import Foundation
 import UIKit
 import InstantSearchCore
 
-class FiltersDebugViewController: UIViewController {
+class FiltersDebugViewController {
   
   let stateLabel: UILabel
   let emptyMessage = NSAttributedString(string:"No filters applied")
   var colorMap: [String: UIColor]
   
-  override init(nibName nibNameOrNil: String?, bundle nibBundleOrNil: Bundle?) {
+  init() {
     stateLabel = UILabel(frame: .zero)
     colorMap = [:]
-    super.init(nibName: nibNameOrNil, bundle: nibBundleOrNil)
     stateLabel.attributedText = emptyMessage
-  }
-  
-  required init?(coder aDecoder: NSCoder) {
-    fatalError("init(coder:) has not been implemented")
-  }
-  
-  override func viewDidLoad() {
-    super.viewDidLoad()
     stateLabel.font = .systemFont(ofSize: 16)
     stateLabel.numberOfLines = 0
   }
-  
+    
   func connectTo(_ filterState: FilterState) {
     filterState.onChange.subscribePast(with: self) { viewController, filterState in
       let filtersText = filterState.toFilterGroups().sqlFormWithSyntaxHighlighting(colorMap: viewController.colorMap)
       viewController.stateLabel.attributedText = filtersText.string.isEmpty ?  viewController.emptyMessage : filtersText
-      viewController.view.layoutIfNeeded()
     }.onQueue(.main)
   }
   

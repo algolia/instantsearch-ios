@@ -11,14 +11,18 @@ import InstantSearch
 import UIKit
 
 public class NumericRangeController: UIViewController, NumberRangeController {
+
+  public typealias Number = Double
+  
+  public let lowerBoundLabel: UILabel
+  public let upperBoundLabel: UILabel
+  public let rangeSlider: RangeSlider
   
   public var onRangeChanged: ((ClosedRange<Double>) -> Void)?
 
-  public typealias Number = Double
-
   public func setItem(_ item: ClosedRange<Double>) {
-    rangerSlider.lowerValue = item.lowerBound
-    rangerSlider.upperValue = item.upperBound
+    rangeSlider.lowerValue = item.lowerBound
+    rangeSlider.upperValue = item.upperBound
   }
 
   @objc func onValueChanged(sender: RangeSlider) {
@@ -26,20 +30,15 @@ public class NumericRangeController: UIViewController, NumberRangeController {
   }
 
   public func setBounds(_ bounds: ClosedRange<Double>) {
-    rangerSlider.minimumValue = bounds.lowerBound
-    rangerSlider.maximumValue = bounds.upperBound
+    rangeSlider.minimumValue = bounds.lowerBound
+    rangeSlider.maximumValue = bounds.upperBound
     setItem(bounds)
     lowerBoundLabel.text = "\(bounds.lowerBound.rounded(toPlaces: 2))"
     upperBoundLabel.text = "\(bounds.upperBound.rounded(toPlaces: 2))"
   }
-
   
-  public let lowerBoundLabel: UILabel
-  public let upperBoundLabel: UILabel
-  public let rangerSlider: RangeSlider
-
   public init(rangeSlider: RangeSlider) {
-    self.rangerSlider = rangeSlider
+    self.rangeSlider = rangeSlider
     self.lowerBoundLabel = .init()
     self.upperBoundLabel = .init()
     super.init(nibName: nil, bundle: nil)
@@ -48,26 +47,25 @@ public class NumericRangeController: UIViewController, NumberRangeController {
   
   public override func viewDidLoad() {
     super.viewDidLoad()
-    rangerSlider.translatesAutoresizingMaskIntoConstraints = false
     
     lowerBoundLabel.translatesAutoresizingMaskIntoConstraints = false
     lowerBoundLabel.widthAnchor.constraint(equalToConstant: 50).isActive = true
     lowerBoundLabel.textAlignment = .center
+    
     upperBoundLabel.translatesAutoresizingMaskIntoConstraints = false
     upperBoundLabel.widthAnchor.constraint(equalToConstant: 50).isActive = true
-    
-    rangerSlider.heightAnchor.constraint(equalToConstant: 30).isActive = true
-    rangerSlider.widthAnchor.constraint(equalToConstant: 500).isActive = true
-        
     upperBoundLabel.textAlignment = .center
+
+    rangeSlider.translatesAutoresizingMaskIntoConstraints = false
+    rangeSlider.heightAnchor.constraint(equalToConstant: 30).isActive = true
+        
     let stackView = UIStackView()
     stackView.axis = .horizontal
-    stackView.spacing = 16
-    stackView.distribution = .equalSpacing
+    stackView.spacing = 0
     stackView.translatesAutoresizingMaskIntoConstraints = false
     stackView.alignment = .center
     stackView.addArrangedSubview(lowerBoundLabel)
-    stackView.addArrangedSubview(rangerSlider)
+    stackView.addArrangedSubview(rangeSlider)
     stackView.addArrangedSubview(upperBoundLabel)
     view.addSubview(stackView)
     stackView.pin(to: view)

@@ -15,18 +15,16 @@ class HierarchicalDemoViewController: UIViewController {
   let demoController: HierarchicalDemoController
 
   let hierarchicalTableViewController: HierarchicalTableViewController
-  let searchStateViewController: SearchDebugViewController
+  let searchDebugViewController: SearchDebugViewController
 
   let tableViewController: UITableViewController
 
   override init(nibName nibNameOrNil: String?, bundle nibBundleOrNil: Bundle?) {
     tableViewController = .init(style: .plain)
     hierarchicalTableViewController = .init(tableView: tableViewController.tableView)
-    searchStateViewController = .init()
     demoController = .init(controller: hierarchicalTableViewController)
+    searchDebugViewController = .init(filterState: demoController.filterState)
     super.init(nibName: nibNameOrNil, bundle: nibBundleOrNil)
-    addChild(tableViewController)
-    tableViewController.didMove(toParent: self)
   }
 
   required init?(coder aDecoder: NSCoder) {
@@ -40,26 +38,35 @@ class HierarchicalDemoViewController: UIViewController {
   }
   
   private func setup() {
-    addChild(searchStateViewController)
-    searchStateViewController.didMove(toParent: self)
-    searchStateViewController.connectFilterState(demoController.filterState)
+    addChild(searchDebugViewController)
+    searchDebugViewController.didMove(toParent: self)
+
+    addChild(tableViewController)
+    tableViewController.didMove(toParent: self)
   }
   
   private func setupUI() {
     title = "Hierarchical Facets"
     view.backgroundColor = . white
-    let tableView = tableViewController.view!
-    tableView.translatesAutoresizingMaskIntoConstraints = false
-    
+
     let mainStackView = UIStackView()
     mainStackView.translatesAutoresizingMaskIntoConstraints = false
     mainStackView.axis = .vertical
     mainStackView.spacing = 10
-    view.addSubview(mainStackView)
+    mainStackView.isLayoutMarginsRelativeArrangement = true
+    mainStackView.layoutMargins = .init(top: 10, left: 10, bottom: 10, right: 10)
     
-    mainStackView.pin(to: view.safeAreaLayoutGuide, insets: .init(top: 0, left: 10, bottom: 0, right: -10))    
-    mainStackView.addArrangedSubview(searchStateViewController.view)
+    let searchDebugView = searchDebugViewController.view!
+    searchDebugView.translatesAutoresizingMaskIntoConstraints = false
+    searchDebugView.heightAnchor.constraint(equalToConstant: 150).isActive = true
+    mainStackView.addArrangedSubview(searchDebugViewController.view)
+
+    let tableView = tableViewController.view!
+    tableView.translatesAutoresizingMaskIntoConstraints = false
     mainStackView.addArrangedSubview(tableView)
+
+    view.addSubview(mainStackView)
+    mainStackView.pin(to: view)
   }
 
 }

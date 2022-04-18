@@ -13,16 +13,16 @@ import InstantSearch
 class FilterNumericComparisonDemoViewController: UIViewController {
   
   let demoController: FilterNumericComparisonDemoController
-  let searchStateViewController: SearchDebugViewController
   let yearTextFieldController: NumericTextFieldController
   let numericStepperController: NumericStepperController
   let priceStepperValueLabel = UILabel()
-  
+  let searchDebugViewController: SearchDebugViewController
+
   override init(nibName nibNameOrNil: String?, bundle nibBundleOrNil: Bundle?) {
     demoController = .init()
     yearTextFieldController = NumericTextFieldController()
     numericStepperController = NumericStepperController()
-    searchStateViewController = SearchDebugViewController()
+    searchDebugViewController = SearchDebugViewController(filterState: demoController.filterState)
     super.init(nibName: nibNameOrNil, bundle: nibBundleOrNil)
     setup()
   }
@@ -41,8 +41,6 @@ class FilterNumericComparisonDemoViewController: UIViewController {
 private extension FilterNumericComparisonDemoViewController {
   
   func setup() {
-    searchStateViewController.connectSearcher(demoController.searcher)
-    searchStateViewController.connectFilterState(demoController.filterState)
     demoController.priceConnector.connectNumberController(numericStepperController)
     demoController.yearConnector.connectNumberController(yearTextFieldController)
     priceStepperValueLabel.text = demoController.priceConnector.interactor.item.flatMap { "\($0)" }
@@ -52,9 +50,12 @@ private extension FilterNumericComparisonDemoViewController {
     
     view.backgroundColor = .white
     
-    addChild(searchStateViewController)
-    searchStateViewController.didMove(toParent: self)
-    searchStateViewController.view.heightAnchor.constraint(equalToConstant: 150).isActive = true
+    addChild(searchDebugViewController)
+    searchDebugViewController.didMove(toParent: self)
+    
+    let searchDebugView = searchDebugViewController.view!
+    searchDebugView.heightAnchor.constraint(equalToConstant: 150).isActive = true
+    searchDebugView.translatesAutoresizingMaskIntoConstraints = false
     
     let yearInputLabel = UILabel()
     yearInputLabel.translatesAutoresizingMaskIntoConstraints = false
@@ -66,18 +67,12 @@ private extension FilterNumericComparisonDemoViewController {
     yearTextFieldController.textField.keyboardType = .numberPad
     
     let yearInputStackView = UIStackView()
-    yearInputStackView.spacing = 16
+    yearInputStackView.spacing = 10
     yearInputStackView.translatesAutoresizingMaskIntoConstraints = false
     yearInputStackView.axis = .horizontal
     yearInputStackView.addArrangedSubview(yearInputLabel)
     yearInputStackView.addArrangedSubview(.spacer)
     yearInputStackView.addArrangedSubview(yearTextFieldController.textField)
-    
-    
-    let yearInputContainer = UIView()
-    yearInputContainer.translatesAutoresizingMaskIntoConstraints = false
-    yearInputContainer.addSubview(yearInputStackView)
-    yearInputStackView.pin(to: yearInputContainer, insets: .init(top: 0, left: 8, bottom: 0, right: -8))
     
     let priceStepperTitleLabel = UILabel()
     priceStepperTitleLabel.translatesAutoresizingMaskIntoConstraints = false
@@ -92,34 +87,26 @@ private extension FilterNumericComparisonDemoViewController {
     let priceStepperStackView = UIStackView()
     priceStepperStackView.translatesAutoresizingMaskIntoConstraints = false
     priceStepperStackView.axis = .horizontal
-    priceStepperStackView.spacing = 8
+    priceStepperStackView.spacing = 10
     priceStepperStackView.addArrangedSubview(priceStepperTitleLabel)
     priceStepperStackView.addArrangedSubview(.spacer)
     priceStepperStackView.addArrangedSubview(priceStepperValueLabel)
     priceStepperStackView.addArrangedSubview(numericStepperController.stepper)
-    
-    let priceStepperContainer = UIView()
-    priceStepperContainer.translatesAutoresizingMaskIntoConstraints = false
-    priceStepperContainer.addSubview(priceStepperStackView)
-    priceStepperStackView.pin(to: priceStepperContainer, insets: .init(top: 0, left: 8, bottom: 0, right: -8))
-    
+        
     let mainStackView = UIStackView()
+    mainStackView.isLayoutMarginsRelativeArrangement = true
+    mainStackView.layoutMargins = .init(top: 10, left: 10, bottom: 10, right: 10)
     mainStackView.axis = .vertical
-    mainStackView.spacing = 16
+    mainStackView.spacing = 10
     mainStackView.distribution = .fill
     mainStackView.translatesAutoresizingMaskIntoConstraints = false
-    mainStackView.alignment = .leading
-    mainStackView.addArrangedSubview(searchStateViewController.view)
-    mainStackView.addArrangedSubview(yearInputContainer)
-    mainStackView.addArrangedSubview(priceStepperContainer)
+    mainStackView.addArrangedSubview(searchDebugView)
+    mainStackView.addArrangedSubview(yearInputStackView)
+    mainStackView.addArrangedSubview(priceStepperStackView)
     mainStackView.addArrangedSubview(.spacer)
-    
-    searchStateViewController.view.widthAnchor.constraint(equalTo: mainStackView.widthAnchor).isActive = true
-    yearInputContainer.widthAnchor.constraint(equalTo: mainStackView.widthAnchor).isActive = true
-    priceStepperContainer.widthAnchor.constraint(equalTo: mainStackView.widthAnchor).isActive = true
-    
+        
     view.addSubview(mainStackView)
-    mainStackView.pin(to: view.safeAreaLayoutGuide)
+    mainStackView.pin(to: view)
   }
   
   @objc func onStepperValueChanged(sender: UIStepper) {

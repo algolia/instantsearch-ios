@@ -16,8 +16,8 @@ class RatingViewController: UIViewController {
   let valueLabel: UILabel
   let stepper: UIStepper
   let ratingController: NumericRatingController
-  let searchStateViewController: SearchDebugViewController
-  
+  let searchDebugViewController: SearchDebugViewController
+
   var ratingControl: RatingControl {
     return ratingController.ratingControl
   }
@@ -27,7 +27,7 @@ class RatingViewController: UIViewController {
     valueLabel = UILabel()
     stepper = UIStepper()
     ratingController = NumericRatingController()
-    searchStateViewController = SearchDebugViewController()
+    searchDebugViewController = SearchDebugViewController(filterState: demoController.filterState)
     super.init(nibName: nibNameOrNil, bundle: nibBundleOrNil)
   }
   
@@ -42,14 +42,27 @@ class RatingViewController: UIViewController {
   }
   
   private func setup() {
-    addChild(searchStateViewController)
-    searchStateViewController.didMove(toParent: self)
+    addChild(searchDebugViewController)
+    searchDebugViewController.didMove(toParent: self)
     demoController.numberInteractor.connectNumberController(ratingController)
-    searchStateViewController.connectFilterState(demoController.filterState)
   }
   
   func setupLayout() {
     view.backgroundColor = .white
+    
+    let mainStackView = UIStackView()
+    mainStackView.isLayoutMarginsRelativeArrangement = true
+    mainStackView.layoutMargins = .init(top: 10, left: 10, bottom: 10, right: 10)
+    mainStackView.translatesAutoresizingMaskIntoConstraints = false
+    mainStackView.axis = .vertical
+    mainStackView.spacing = 10
+    view.addSubview(mainStackView)
+    mainStackView.pin(to: view)
+    
+    let searchDebugView = searchDebugViewController.view!
+    searchDebugView.translatesAutoresizingMaskIntoConstraints = false
+    searchDebugView.heightAnchor.constraint(equalToConstant: 150).isActive = true
+    mainStackView.addArrangedSubview(searchDebugView)
     
     ratingControl.translatesAutoresizingMaskIntoConstraints = false
     ratingControl.value = 3.5
@@ -77,19 +90,6 @@ class RatingViewController: UIViewController {
     ratingStackView.addArrangedSubview(ratingControl)
     ratingStackView.addArrangedSubview(valueLabel)
     ratingStackView.addArrangedSubview(stepper)
-    
-    let mainStackView = UIStackView()
-    mainStackView.translatesAutoresizingMaskIntoConstraints = false
-    mainStackView.axis = .vertical
-    mainStackView.spacing = 10
-    
-    view.addSubview(mainStackView)
-    mainStackView.pin(to: view)
-    
-    mainStackView.pin(to: view.safeAreaLayoutGuide, insets: .init(top: 0, left: 10, bottom: 0, right: -10))
-    searchStateViewController.view.heightAnchor.constraint(equalToConstant: 200).isActive = true
-    
-    mainStackView.addArrangedSubview(searchStateViewController.view)
     mainStackView.addArrangedSubview(ratingStackView)
   }
 

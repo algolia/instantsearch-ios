@@ -22,14 +22,12 @@ class FacetListDemoViewController: UIViewController {
   
   let controller: FacetListDemoController
 
-  let searchStateViewController: SearchDebugViewController
   let colorController: FacetListTableController
   let categoryController: FacetListTableController
   let promotionController: FacetListTableController
+  let searchDebugViewController: SearchDebugViewController
     
-  override init(nibName nibNameOrNil: String?, bundle nibBundleOrNil: Bundle?) {
-    searchStateViewController = .init()
-    
+  init() {
     // Color
     let colorTitleDescriptor = TitleDescriptor(text: "And, IsRefined-AlphaAsc, I=3", color: .init(hexString: "#ffcc0000"))
     colorController = FacetListTableController(tableView: .init(), titleDescriptor: colorTitleDescriptor)
@@ -45,9 +43,8 @@ class FacetListDemoViewController: UIViewController {
     controller = .init(colorController: colorController,
                        promotionController: promotionController,
                        categoryController: categoryController)
-    
-    super.init(nibName: nibNameOrNil, bundle: nibBundleOrNil)
-    setup()
+    searchDebugViewController = .init(filterState: controller.filterState)
+    super.init(nibName: nil, bundle: nil)
   }
   
   required init?(coder aDecoder: NSCoder) {
@@ -61,15 +58,6 @@ class FacetListDemoViewController: UIViewController {
 
 }
 
-private extension FacetListDemoViewController {
-  
-  func setup() {
-    searchStateViewController.connectSearcher(controller.searcher)
-    searchStateViewController.connectFilterState(controller.filterState)
-  }
-  
-}
-
 extension FacetListDemoViewController {
   
   func setupUI() {
@@ -78,26 +66,27 @@ extension FacetListDemoViewController {
     view.backgroundColor = .swBackground
     
     let mainStackView = UIStackView()
+    mainStackView.isLayoutMarginsRelativeArrangement = true
+    mainStackView.layoutMargins = .init(top: 10, left: 10, bottom: 10, right: 10)
     mainStackView.axis = .vertical
     mainStackView.distribution = .fill
     mainStackView.translatesAutoresizingMaskIntoConstraints = false
-    mainStackView.spacing = .px16
     
-    addChild(searchStateViewController)
-    searchStateViewController.didMove(toParent: self)
-    searchStateViewController.view.heightAnchor.constraint(equalToConstant: 150).isActive = true
-    mainStackView.addArrangedSubview(searchStateViewController.view)
+    addChild(searchDebugViewController)
+    searchDebugViewController.didMove(toParent: self)
+    searchDebugViewController.view.heightAnchor.constraint(equalToConstant: 150).isActive = true
+    mainStackView.addArrangedSubview(searchDebugViewController.view)
     
     let gridStackView = UIStackView()
     gridStackView.axis = .horizontal
-    gridStackView.spacing = .px16
+    gridStackView.spacing = 10
     gridStackView.distribution = .fillEqually
     
     gridStackView.translatesAutoresizingMaskIntoConstraints = false
     
     let firstColumn = UIStackView()
     firstColumn.axis = .vertical
-    firstColumn.spacing = .px16
+    firstColumn.spacing = 10
     firstColumn.distribution = .fillEqually
     
     firstColumn.addArrangedSubview(colorController.tableView)
@@ -124,7 +113,6 @@ extension FacetListDemoViewController {
         $0.tableFooterView = UIView(frame: .zero)
         $0.backgroundColor = .swBackground
     }
-    
   }
   
 }

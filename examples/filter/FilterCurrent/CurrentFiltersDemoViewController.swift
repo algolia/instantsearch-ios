@@ -15,14 +15,14 @@ class CurrentFiltersDemoViewController: UIViewController {
   let demoController: CurrentFiltersDemoController
   let currentFiltersController: CurrentFilterListTableController
   let currentFiltersController2: SearchTextFieldCurrentFiltersController
-  let searchStateViewController: SearchDebugViewController
+  let searchDebugViewController: SearchDebugViewController
 
   let tableView: UITableView
   let searchTextField: UISearchTextField
 
   override init(nibName nibNameOrNil: String?, bundle nibBundleOrNil: Bundle?) {
     demoController = CurrentFiltersDemoController()
-    searchStateViewController = .init()
+    searchDebugViewController = .init(filterState: demoController.filterState)
 
     tableView = .init()
     searchTextField = .init()
@@ -41,7 +41,6 @@ class CurrentFiltersDemoViewController: UIViewController {
 
   override func viewDidLoad() {
     super.viewDidLoad()
-    searchStateViewController.connectFilterState(demoController.filterState)
     setupUI()
   }
   
@@ -54,25 +53,26 @@ private extension CurrentFiltersDemoViewController {
     view.backgroundColor = .white
 
     let mainStackView = UIStackView()
+    mainStackView.isLayoutMarginsRelativeArrangement = true
+    mainStackView.layoutMargins = .init(top: 10, left: 10, bottom: 10, right: 10)
     mainStackView.translatesAutoresizingMaskIntoConstraints = false
     mainStackView.axis = .vertical
-    mainStackView.spacing = 16
+    mainStackView.spacing = 10
 
     view.addSubview(mainStackView)
-    mainStackView.pin(to: view.safeAreaLayoutGuide)
+    mainStackView.pin(to: view)
     
-    addChild(searchStateViewController)
-    searchStateViewController.didMove(toParent: self)
-    searchStateViewController.view.heightAnchor.constraint(equalToConstant: 150).isActive = true
+    addChild(searchDebugViewController)
+    searchDebugViewController.didMove(toParent: self)
+    searchDebugViewController.view.heightAnchor.constraint(equalToConstant: 150).isActive = true
 
-    tableView.heightAnchor.constraint(equalToConstant: 300).isActive = true
     searchTextField.translatesAutoresizingMaskIntoConstraints = false
     let searchTextFieldContainer = UIView()
     searchTextFieldContainer.heightAnchor.constraint(equalToConstant: 54).isActive = true
     searchTextFieldContainer.translatesAutoresizingMaskIntoConstraints = false
     searchTextFieldContainer.addSubview(searchTextField)
     searchTextField.pin(to: searchTextFieldContainer, insets: .init(top: 5, left: 5, bottom: -5, right: -5))
-    mainStackView.addArrangedSubview(searchStateViewController.view)
+    mainStackView.addArrangedSubview(searchDebugViewController.view)
     mainStackView.addArrangedSubview(searchTextFieldContainer)
     mainStackView.addArrangedSubview(tableView)
     

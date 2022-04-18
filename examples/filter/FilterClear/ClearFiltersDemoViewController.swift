@@ -14,24 +14,19 @@ class ClearFiltersDemoViewController: UIViewController {
 
   let controller: ClearFiltersDemoController
   
-  let searchStateViewController: SearchDebugViewController
+  let searchDebugViewController: SearchDebugViewController
 
   let clearColorsController: FilterClearButtonController
   let clearExceptColorsController: FilterClearButtonController
 
   override init(nibName nibNameOrNil: String?, bundle nibBundleOrNil: Bundle?) {
-
-    searchStateViewController = .init()
-
     clearColorsController = .init(button: .init())
     clearExceptColorsController = .init(button: .init())
     controller = .init(clearController: clearColorsController,
                        clearExceptController: clearExceptColorsController)
-
+    searchDebugViewController = .init(filterState: controller.filterState)
     super.init(nibName: nibNameOrNil, bundle: nibBundleOrNil)
-
     setup()
-
   }
 
   required init?(coder aDecoder: NSCoder) {
@@ -44,9 +39,8 @@ class ClearFiltersDemoViewController: UIViewController {
   }
 
   func setup() {
-    addChild(searchStateViewController)
-    searchStateViewController.didMove(toParent: self)
-    searchStateViewController.connectFilterState(controller.filterState)
+    addChild(searchDebugViewController)
+    searchDebugViewController.didMove(toParent: self)
   }
 
   func setupUI() {
@@ -70,23 +64,18 @@ class ClearFiltersDemoViewController: UIViewController {
 
     let mainStackView = UIStackView()
     mainStackView.axis = .vertical
-    mainStackView.alignment = .center
-    mainStackView.spacing = 16
-    mainStackView.distribution = .fill
+    mainStackView.isLayoutMarginsRelativeArrangement = true
+    mainStackView.layoutMargins = .init(top: 10, left: 10, bottom: 10, right: 10)
+    mainStackView.spacing = 10
     mainStackView.translatesAutoresizingMaskIntoConstraints = false
     
-    mainStackView.addArrangedSubview(searchStateViewController.view)
-
-    NSLayoutConstraint.activate([
-      searchStateViewController.view.heightAnchor.constraint(equalToConstant: 150),
-      searchStateViewController.view.widthAnchor.constraint(equalTo: mainStackView.widthAnchor, multiplier: 0.98)
-    ])
+    mainStackView.addArrangedSubview(searchDebugViewController.view)
+    searchDebugViewController.view.heightAnchor.constraint(equalToConstant: 150).isActive = true
 
     let buttonsStackView = UIStackView()
     buttonsStackView.translatesAutoresizingMaskIntoConstraints = false
     buttonsStackView.axis = .horizontal
-    buttonsStackView.spacing = 16
-    buttonsStackView.distribution = .equalCentering
+    buttonsStackView.distribution = .equalSpacing
 
     buttonsStackView.addArrangedSubview(clearColorsController.button)
     buttonsStackView.addArrangedSubview(clearExceptColorsController.button)
