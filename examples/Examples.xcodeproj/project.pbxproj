@@ -858,6 +858,8 @@
 		4022E85C280EA5EC00D71D66 /* README.md */ = {isa = PBXFileReference; lastKnownFileType = net.daringfireball.markdown; path = README.md; sourceTree = "<group>"; };
 		4022E85E280EBB0E00D71D66 /* Item.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Item.swift; sourceTree = "<group>"; };
 		4022E862280EBC1900D71D66 /* README.md */ = {isa = PBXFileReference; lastKnownFileType = net.daringfireball.markdown; path = README.md; sourceTree = "<group>"; };
+		4022E863280ECEFB00D71D66 /* README.md */ = {isa = PBXFileReference; lastKnownFileType = net.daringfireball.markdown; path = README.md; sourceTree = "<group>"; };
+		4022E864280ECF0800D71D66 /* README.md */ = {isa = PBXFileReference; lastKnownFileType = net.daringfireball.markdown; path = README.md; sourceTree = "<group>"; };
 		404C4027280A27EE00EC9FEB /* CommonSwiftUIDemoViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CommonSwiftUIDemoViewController.swift; sourceTree = "<group>"; };
 		404C403C280A281800EC9FEB /* SwiftUIDemo.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SwiftUIDemo.swift; sourceTree = "<group>"; };
 		404C4052280A30A200EC9FEB /* FilterNumericComparisonDemoController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FilterNumericComparisonDemoController.swift; sourceTree = "<group>"; };
@@ -1630,6 +1632,7 @@
 				AF50C94C27F620740036F549 /* Assets.xcassets */,
 				AF50C94E27F620740036F549 /* LaunchScreen.storyboard */,
 				AF50C95127F620740036F549 /* Info.plist */,
+				4022E864280ECF0800D71D66 /* README.md */,
 			);
 			path = QuerySuggestionsGuide;
 			sourceTree = "<group>";
@@ -1643,6 +1646,7 @@
 				AF50C9A727F6E89E0036F549 /* Assets.xcassets */,
 				AF50C9A927F6E89E0036F549 /* LaunchScreen.storyboard */,
 				AF50C9AC27F6E89E0036F549 /* Info.plist */,
+				4022E863280ECEFB00D71D66 /* README.md */,
 			);
 			path = VoiceSearchGuide;
 			sourceTree = "<group>";

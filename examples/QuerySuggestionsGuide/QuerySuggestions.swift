@@ -66,7 +66,12 @@ public class QuerySuggestionsDemoViewController: UIViewController {
     resultsViewController.didMove(toParent: self)
     resultsViewController.view.translatesAutoresizingMaskIntoConstraints = false
     view.addSubview(resultsViewController.view)
-    resultsViewController.view.pin(to: view.safeAreaLayoutGuide)
+    NSLayoutConstraint.activate([
+      resultsViewController.view.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor),
+      resultsViewController.view.leadingAnchor.constraint(equalTo: view.safeAreaLayoutGuide.leadingAnchor),
+      resultsViewController.view.trailingAnchor.constraint(equalTo: view.safeAreaLayoutGuide.trailingAnchor),
+      resultsViewController.view.bottomAnchor.constraint(equalTo: view.bottomAnchor),
+    ])
   }
   
   private func setup() {
