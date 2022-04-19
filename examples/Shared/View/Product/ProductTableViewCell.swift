@@ -67,10 +67,7 @@ class ProductTableViewCell: UITableViewCell {
     
     contentView.addSubview(mainStackView)
     
-    NSLayoutConstraint.activate([
-      itemImageView.widthAnchor.constraint(equalTo: itemImageView.heightAnchor),
-      itemImageView.widthAnchor.constraint(equalToConstant: 60)
-    ])
+    itemImageView.widthAnchor.constraint(equalTo: itemImageView.heightAnchor).isActive = true
     
     mainStackView.pin(to: contentView.layoutMarginsGuide)
   }
