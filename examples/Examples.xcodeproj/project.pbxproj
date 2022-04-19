@@ -36,6 +36,7 @@
 		4022E858280DD69700D71D66 /* SearchClient.swift in Sources */ = {isa = PBXBuildFile; fileRef = AF50C96B27F623380036F549 /* SearchClient.swift */; };
 		4022E85A280E334800D71D66 /* ProductsTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4022E859280E334800D71D66 /* ProductsTableViewController.swift */; };
 		4022E85B280E334800D71D66 /* ProductsTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4022E859280E334800D71D66 /* ProductsTableViewController.swift */; };
+		4022E85D280EB94200D71D66 /* CommonSwiftUIDemoViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 404C4027280A27EE00EC9FEB /* CommonSwiftUIDemoViewController.swift */; };
 		404C4028280A27EE00EC9FEB /* CommonSwiftUIDemoViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 404C4027280A27EE00EC9FEB /* CommonSwiftUIDemoViewController.swift */; };
 		404C4029280A27EE00EC9FEB /* CommonSwiftUIDemoViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 404C4027280A27EE00EC9FEB /* CommonSwiftUIDemoViewController.swift */; };
 		404C402A280A27EE00EC9FEB /* CommonSwiftUIDemoViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 404C4027280A27EE00EC9FEB /* CommonSwiftUIDemoViewController.swift */; };
@@ -174,7 +175,6 @@
 		404C4109280C98B200EC9FEB /* BannerViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 404C4107280C98B200EC9FEB /* BannerViewController.swift */; };
 		404C410A280C98C800EC9FEB /* TemplateViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 404C405B280C910D00EC9FEB /* TemplateViewController.swift */; };
 		404C410B280C98D300EC9FEB /* ShopItemRow.swift in Sources */ = {isa = PBXBuildFile; fileRef = AF50CA0527F6EE0C0036F549 /* ShopItemRow.swift */; };
-		404C410C280C98E600EC9FEB /* InstantSearchItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = AF50CA0927F6EE430036F549 /* InstantSearchItem.swift */; };
 		404C4110280C991000EC9FEB /* SortByDemoViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 404C410D280C991000EC9FEB /* SortByDemoViewController.swift */; };
 		404C4111280C991000EC9FEB /* SortByDemoViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 404C410D280C991000EC9FEB /* SortByDemoViewController.swift */; };
 		404C4112280C991000EC9FEB /* SortByDemoSwiftUI.swift in Sources */ = {isa = PBXBuildFile; fileRef = 404C410E280C991000EC9FEB /* SortByDemoSwiftUI.swift */; };
@@ -182,7 +182,6 @@
 		404C4114280C991000EC9FEB /* SortByDemoController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 404C410F280C991000EC9FEB /* SortByDemoController.swift */; };
 		404C4115280C991000EC9FEB /* SortByDemoController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 404C410F280C991000EC9FEB /* SortByDemoController.swift */; };
 		404C4116280C993400EC9FEB /* ShopItemRow.swift in Sources */ = {isa = PBXBuildFile; fileRef = AF50CA0527F6EE0C0036F549 /* ShopItemRow.swift */; };
-		404C4117280C993D00EC9FEB /* InstantSearchItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = AF50CA0927F6EE430036F549 /* InstantSearchItem.swift */; };
 		404C411D280C996600EC9FEB /* SortByController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 404C4118280C996500EC9FEB /* SortByController.swift */; };
 		404C411E280C996600EC9FEB /* SortByController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 404C4118280C996500EC9FEB /* SortByController.swift */; };
 		404C411F280C996600EC9FEB /* RelevantSortDemoSwiftUI.swift in Sources */ = {isa = PBXBuildFile; fileRef = 404C4119280C996500EC9FEB /* RelevantSortDemoSwiftUI.swift */; };
@@ -194,7 +193,6 @@
 		404C4125280C996600EC9FEB /* RelevantSortToggleController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 404C411C280C996600EC9FEB /* RelevantSortToggleController.swift */; };
 		404C4126280C996600EC9FEB /* RelevantSortToggleController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 404C411C280C996600EC9FEB /* RelevantSortToggleController.swift */; };
 		404C4127280C99A700EC9FEB /* ShopItemRow.swift in Sources */ = {isa = PBXBuildFile; fileRef = AF50CA0527F6EE0C0036F549 /* ShopItemRow.swift */; };
-		404C4128280C9CEC00EC9FEB /* InstantSearchItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = AF50CA0927F6EE430036F549 /* InstantSearchItem.swift */; };
 		404C4129280C9D1000EC9FEB /* ProductTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = AFEFEF8227F47F7700B47F7F /* ProductTableViewCell.swift */; };
 		404C412B280C9D1C00EC9FEB /* SDWebImage in Frameworks */ = {isa = PBXBuildFile; productRef = 404C412A280C9D1C00EC9FEB /* SDWebImage */; };
 		404C412C280C9D2800EC9FEB /* ProductTableViewCell+ProductHit.swift in Sources */ = {isa = PBXBuildFile; fileRef = AFEFEF8B27F47F8300B47F7F /* ProductTableViewCell+ProductHit.swift */; };
@@ -211,14 +209,12 @@
 		404C413C280C9F5400EC9FEB /* MultiIndexDemoViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 404C413A280C9F5400EC9FEB /* MultiIndexDemoViewController.swift */; };
 		404C413D280C9F7300EC9FEB /* ShopItemRow.swift in Sources */ = {isa = PBXBuildFile; fileRef = AF50CA0527F6EE0C0036F549 /* ShopItemRow.swift */; };
 		404C413E280C9F7C00EC9FEB /* ShopItemRow.swift in Sources */ = {isa = PBXBuildFile; fileRef = AF50CA0527F6EE0C0036F549 /* ShopItemRow.swift */; };
-		404C413F280C9F8300EC9FEB /* InstantSearchItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = AF50CA0927F6EE430036F549 /* InstantSearchItem.swift */; };
 		404C4143280C9FAA00EC9FEB /* StatsDemoViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 404C4140280C9FAA00EC9FEB /* StatsDemoViewController.swift */; };
 		404C4144280C9FAA00EC9FEB /* StatsDemoViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 404C4140280C9FAA00EC9FEB /* StatsDemoViewController.swift */; };
 		404C4145280C9FAA00EC9FEB /* StatsDemoSwiftUI.swift in Sources */ = {isa = PBXBuildFile; fileRef = 404C4141280C9FAA00EC9FEB /* StatsDemoSwiftUI.swift */; };
 		404C4146280C9FAA00EC9FEB /* StatsDemoSwiftUI.swift in Sources */ = {isa = PBXBuildFile; fileRef = 404C4141280C9FAA00EC9FEB /* StatsDemoSwiftUI.swift */; };
 		404C4147280C9FAA00EC9FEB /* StatsDemoController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 404C4142280C9FAA00EC9FEB /* StatsDemoController.swift */; };
 		404C4148280C9FAA00EC9FEB /* StatsDemoController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 404C4142280C9FAA00EC9FEB /* StatsDemoController.swift */; };
-		404C4149280C9FCC00EC9FEB /* InstantSearchItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = AF50CA0927F6EE430036F549 /* InstantSearchItem.swift */; };
 		404C414A280CA00600EC9FEB /* DynamicFacetDemoSwiftUI.swift in Sources */ = {isa = PBXBuildFile; fileRef = 404C40A5280C942000EC9FEB /* DynamicFacetDemoSwiftUI.swift */; };
 		404C414B280CA00D00EC9FEB /* DynamicFacetsDemoController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 404C40A4280C942000EC9FEB /* DynamicFacetsDemoController.swift */; };
 		404C414C280CA01000EC9FEB /* DynamicFacetsDemoViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 404C40A3280C942000EC9FEB /* DynamicFacetsDemoViewController.swift */; };
@@ -323,27 +319,19 @@
 		AF50C9EC27F6EA7C0036F549 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = AF50C9EA27F6EA7C0036F549 /* LaunchScreen.storyboard */; };
 		AF50C9F227F6EA890036F549 /* GettingStartedSearchViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = AF50C9F127F6EA890036F549 /* GettingStartedSearchViewController.swift */; };
 		AF50C9F427F6EAA10036F549 /* InstantSearch in Frameworks */ = {isa = PBXBuildFile; productRef = AF50C9F327F6EAA10036F549 /* InstantSearch */; };
-		AF50C9F627F6EC8C0036F549 /* SwiftUIDemoViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = AF50C9F527F6EC8C0036F549 /* SwiftUIDemoViewController.swift */; };
 		AF50C9F827F6EC980036F549 /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = AF50C9F727F6EC980036F549 /* ContentView.swift */; };
 		AF50C9FA27F6ECC00036F549 /* InstantSearchSwiftUI in Frameworks */ = {isa = PBXBuildFile; productRef = AF50C9F927F6ECC00036F549 /* InstantSearchSwiftUI */; };
 		AF50C9FF27F6ED930036F549 /* AlgoliaController.swift in Sources */ = {isa = PBXBuildFile; fileRef = AF50C9FE27F6ED930036F549 /* AlgoliaController.swift */; };
-		AF50CA0127F6ED9F0036F549 /* FacetsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = AF50CA0027F6ED9F0036F549 /* FacetsView.swift */; };
 		AF50CA0227F6EDE30036F549 /* StoreItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = AF50C95E27F622C70036F549 /* StoreItem.swift */; };
-		AF50CA0427F6EE010036F549 /* SuggestionsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = AF50CA0327F6EE010036F549 /* SuggestionsView.swift */; };
 		AF50CA0627F6EE0C0036F549 /* ShopItemRow.swift in Sources */ = {isa = PBXBuildFile; fileRef = AF50CA0527F6EE0C0036F549 /* ShopItemRow.swift */; };
-		AF50CA0A27F6EE430036F549 /* InstantSearchItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = AF50CA0927F6EE430036F549 /* InstantSearchItem.swift */; };
 		AF50CA0B27F6FA0C0036F549 /* QuerySuggestions.swift in Sources */ = {isa = PBXBuildFile; fileRef = AF50C95727F620C50036F549 /* QuerySuggestions.swift */; };
 		AF50CA0C27F6FA130036F549 /* SuggestionsTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = AF50C95527F620B30036F549 /* SuggestionsTableViewController.swift */; };
 		AF50CA0D27F6FA280036F549 /* SearchClient.swift in Sources */ = {isa = PBXBuildFile; fileRef = AF50C96B27F623380036F549 /* SearchClient.swift */; };
 		AF50CA1427F6FA620036F549 /* VoiceInputDemoViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = AF50C9B127F6E8DF0036F549 /* VoiceInputDemoViewController.swift */; };
 		AF50CA1527F6FA650036F549 /* ResultsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = AF50C9B027F6E8DF0036F549 /* ResultsViewController.swift */; };
 		AF50CA1627F6FA750036F549 /* GettingStartedSearchViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = AF50C9F127F6EA890036F549 /* GettingStartedSearchViewController.swift */; };
-		AF50CA1727F6FA780036F549 /* SwiftUIDemoViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = AF50C9F527F6EC8C0036F549 /* SwiftUIDemoViewController.swift */; };
-		AF50CA1827F6FA7D0036F549 /* SuggestionsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = AF50CA0327F6EE010036F549 /* SuggestionsView.swift */; };
 		AF50CA1927F6FA7D0036F549 /* AlgoliaController.swift in Sources */ = {isa = PBXBuildFile; fileRef = AF50C9FE27F6ED930036F549 /* AlgoliaController.swift */; };
 		AF50CA1A27F6FA7D0036F549 /* ShopItemRow.swift in Sources */ = {isa = PBXBuildFile; fileRef = AF50CA0527F6EE0C0036F549 /* ShopItemRow.swift */; };
-		AF50CA1B27F6FA7D0036F549 /* InstantSearchItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = AF50CA0927F6EE430036F549 /* InstantSearchItem.swift */; };
-		AF50CA1E27F6FA7D0036F549 /* FacetsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = AF50CA0027F6ED9F0036F549 /* FacetsView.swift */; };
 		AF50CA1F27F6FA7D0036F549 /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = AF50C9F727F6EC980036F549 /* ContentView.swift */; };
 		AF50CA2127F6FB220036F549 /* InstantSearchSwiftUI in Frameworks */ = {isa = PBXBuildFile; productRef = AF50CA2027F6FB220036F549 /* InstantSearchSwiftUI */; };
 		AF50CA2927F71CCA0036F549 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = AF50CA2827F71CCA0036F549 /* AppDelegate.swift */; };
@@ -982,13 +970,9 @@
 		AF50C9EB27F6EA7C0036F549 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		AF50C9ED27F6EA7C0036F549 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		AF50C9F127F6EA890036F549 /* GettingStartedSearchViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GettingStartedSearchViewController.swift; sourceTree = "<group>"; };
-		AF50C9F527F6EC8C0036F549 /* SwiftUIDemoViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SwiftUIDemoViewController.swift; sourceTree = "<group>"; };
 		AF50C9F727F6EC980036F549 /* ContentView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
 		AF50C9FE27F6ED930036F549 /* AlgoliaController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AlgoliaController.swift; sourceTree = "<group>"; };
-		AF50CA0027F6ED9F0036F549 /* FacetsView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FacetsView.swift; sourceTree = "<group>"; };
-		AF50CA0327F6EE010036F549 /* SuggestionsView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SuggestionsView.swift; sourceTree = "<group>"; };
 		AF50CA0527F6EE0C0036F549 /* ShopItemRow.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ShopItemRow.swift; sourceTree = "<group>"; };
-		AF50CA0927F6EE430036F549 /* InstantSearchItem.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = InstantSearchItem.swift; sourceTree = "<group>"; };
 		AF50CA2627F71CCA0036F549 /* DynamicFacets.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = DynamicFacets.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		AF50CA2827F71CCA0036F549 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		AF50CA2A27F71CCA0036F549 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -1675,14 +1659,9 @@
 			isa = PBXGroup;
 			children = (
 				AF50C9DF27F6EA7C0036F549 /* AppDelegate.swift */,
-				AF50C9F527F6EC8C0036F549 /* SwiftUIDemoViewController.swift */,
 				AF50C9F727F6EC980036F549 /* ContentView.swift */,
-				AF50CA0327F6EE010036F549 /* SuggestionsView.swift */,
 				AF50C9FE27F6ED930036F549 /* AlgoliaController.swift */,
 				AF50C9E127F6EA7C0036F549 /* SceneDelegate.swift */,
-				AF50CA0527F6EE0C0036F549 /* ShopItemRow.swift */,
-				AF50CA0927F6EE430036F549 /* InstantSearchItem.swift */,
-				AF50CA0027F6ED9F0036F549 /* FacetsView.swift */,
 				AF50C9E827F6EA7C0036F549 /* Assets.xcassets */,
 				AF50C9EA27F6EA7C0036F549 /* LaunchScreen.storyboard */,
 				AF50C9ED27F6EA7C0036F549 /* Info.plist */,
@@ -2002,6 +1981,7 @@
 				AF5089EB2766CAF600F30F18 /* SearchSuggestionTableViewCell+QuerySuggestion.swift */,
 				AFAE55C227344E9000B52A43 /* CategoryTableViewCell.swift */,
 				AF5089F12766CCCF00F30F18 /* CategoryTableViewCell+Facet.swift */,
+				AF50CA0527F6EE0C0036F549 /* ShopItemRow.swift */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -3612,14 +3592,11 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				4022E85D280EB94200D71D66 /* CommonSwiftUIDemoViewController.swift in Sources */,
 				AF50CE3127FB31810036F549 /* UITableView+EmptyResult.swift in Sources */,
-				AF50CA0427F6EE010036F549 /* SuggestionsView.swift in Sources */,
-				AF50CA0A27F6EE430036F549 /* InstantSearchItem.swift in Sources */,
 				AF50CA0627F6EE0C0036F549 /* ShopItemRow.swift in Sources */,
 				AF50CD9527FB29A10036F549 /* SceneDelegate+Convenience.swift in Sources */,
-				AF50CA0127F6ED9F0036F549 /* FacetsView.swift in Sources */,
 				AF50C9F827F6EC980036F549 /* ContentView.swift in Sources */,
-				AF50C9F627F6EC8C0036F549 /* SwiftUIDemoViewController.swift in Sources */,
 				AF50CCC427FAE6AA0036F549 /* UIView+Layout.swift in Sources */,
 				AF50C9FF27F6ED930036F549 /* AlgoliaController.swift in Sources */,
 				AF50C9E027F6EA7C0036F549 /* AppDelegate.swift in Sources */,
@@ -3939,7 +3916,6 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				404C410C280C98E600EC9FEB /* InstantSearchItem.swift in Sources */,
 				AFB181AE27FC95B0000AA57B /* Product.swift in Sources */,
 				AF50CDA527FB29A10036F549 /* SceneDelegate+Convenience.swift in Sources */,
 				AF50CB9C27F72C510036F549 /* AppDelegate.swift in Sources */,
@@ -3983,7 +3959,6 @@
 				AFB181B527FC95B0000AA57B /* Product.swift in Sources */,
 				404C4116280C993400EC9FEB /* ShopItemRow.swift in Sources */,
 				404C4111280C991000EC9FEB /* SortByDemoViewController.swift in Sources */,
-				404C4117280C993D00EC9FEB /* InstantSearchItem.swift in Sources */,
 				AF50CBB627F72C610036F549 /* SceneDelegate.swift in Sources */,
 				AF50CD4327FAF59D0036F549 /* UITableView+EmptyResult.swift in Sources */,
 				AF50CD4427FAF5A90036F549 /* StoreItemTableViewCell+StoreItem.swift in Sources */,
@@ -4008,7 +3983,6 @@
 				AF50CBCE27F72C6F0036F549 /* SceneDelegate.swift in Sources */,
 				AFB181B827FC95B0000AA57B /* Product.swift in Sources */,
 				404C404D280A281800EC9FEB /* SwiftUIDemo.swift in Sources */,
-				404C4128280C9CEC00EC9FEB /* InstantSearchItem.swift in Sources */,
 				404C4126280C996600EC9FEB /* RelevantSortToggleController.swift in Sources */,
 				AF50CE3027FB31810036F549 /* UITableView+EmptyResult.swift in Sources */,
 				AF50CDE527FB31810036F549 /* StoreItem.swift in Sources */,
@@ -4059,7 +4033,6 @@
 				404C4136280C9EFB00EC9FEB /* SearchDemoSwiftUI.swift in Sources */,
 				404C413E280C9F7C00EC9FEB /* ShopItemRow.swift in Sources */,
 				AF50CD8227FAFB930036F549 /* SearchClient.swift in Sources */,
-				404C413F280C9F8300EC9FEB /* InstantSearchItem.swift in Sources */,
 				AF50CDA927FB29A10036F549 /* SceneDelegate+Convenience.swift in Sources */,
 				AF50CD8327FAFB9D0036F549 /* StoreItemsTableViewController.swift in Sources */,
 				AF50CBFE27F72CA80036F549 /* SceneDelegate.swift in Sources */,
@@ -4074,7 +4047,6 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				404C4149280C9FCC00EC9FEB /* InstantSearchItem.swift in Sources */,
 				40E1B072280810440092B424 /* SearchDemoController.swift in Sources */,
 				AF50CD6E27FAF9BD0036F549 /* StoreItem.swift in Sources */,
 				AF50CC1427F72CB60036F549 /* AppDelegate.swift in Sources */,
@@ -4135,7 +4107,6 @@
 				AF5089F22766CCCF00F30F18 /* CategoryTableViewCell+Facet.swift in Sources */,
 				AF50CA1427F6FA620036F549 /* VoiceInputDemoViewController.swift in Sources */,
 				404C403D280A281800EC9FEB /* SwiftUIDemo.swift in Sources */,
-				AF50CA1E27F6FA7D0036F549 /* FacetsView.swift in Sources */,
 				AFB181CB27FE1150000AA57B /* FilterStateDebugView.swift in Sources */,
 				AF5089FE2766CF2D00F30F18 /* Demo.swift in Sources */,
 				404C411F280C996600EC9FEB /* RelevantSortDemoSwiftUI.swift in Sources */,
@@ -4189,7 +4160,6 @@
 				AFEFEF8C27F47F8300B47F7F /* ProductTableViewCell+ProductHit.swift in Sources */,
 				AF5089FB2766CE9B00F30F18 /* CategoriesHits.SearchViewController.swift in Sources */,
 				AF50CC3427F72FF80036F549 /* Helpers.swift in Sources */,
-				AF50CA1827F6FA7D0036F549 /* SuggestionsView.swift in Sources */,
 				AF50CA0C27F6FA130036F549 /* SuggestionsTableViewController.swift in Sources */,
 				404C4102280C986A00EC9FEB /* QueryRuleCustomDataDemoViewController.swift in Sources */,
 				404C4134280C9E8300EC9FEB /* SearchDemoViewController.swift in Sources */,
@@ -4208,7 +4178,6 @@
 				404C405E280C910D00EC9FEB /* TemplateViewController.swift in Sources */,
 				404C40C7280C954100EC9FEB /* ClearFiltersDemoController.swift in Sources */,
 				404C414A280CA00600EC9FEB /* DynamicFacetDemoSwiftUI.swift in Sources */,
-				AF50CA1727F6FA780036F549 /* SwiftUIDemoViewController.swift in Sources */,
 				404C412E280C9E3100EC9FEB /* RelatedItemsDemoViewController.swift in Sources */,
 				404C4147280C9FAA00EC9FEB /* StatsDemoController.swift in Sources */,
 				404C4028280A27EE00EC9FEB /* CommonSwiftUIDemoViewController.swift in Sources */,
@@ -4233,7 +4202,6 @@
 				AFB181A627FC8FF3000AA57B /* ToggleDemoController.swift in Sources */,
 				40C7C24A280A202F005DEC68 /* FacetListPersistentDemoSwiftUI.swift in Sources */,
 				404C40BE280C950600EC9FEB /* HierarchicalDemoController.swift in Sources */,
-				AF50CA1B27F6FA7D0036F549 /* InstantSearchItem.swift in Sources */,
 				4073B5952806CAE200E05EF6 /* SliderView.swift in Sources */,
 				404C405D280C910D00EC9FEB /* FacetListTableController.swift in Sources */,
 				404C40AF280C946700EC9FEB /* FacetListDemoController.swift in Sources */,

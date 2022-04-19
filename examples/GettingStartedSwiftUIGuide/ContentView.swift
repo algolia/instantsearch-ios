@@ -13,128 +13,65 @@ import SwiftUI
 
 struct ContentView: View {
   
-  let areFacetsSearchable: Bool
-  let allowSuggestions: Bool = true
-  
   @ObservedObject var queryInputController: QueryInputObservableController
+  @ObservedObject var hitsController: HitsObservableController<StockItem>
   @ObservedObject var statsController: StatsTextObservableController
-  @ObservedObject var hitsController: HitsObservableController<Hit<Product>>
-  
-  // Shared models
-  @ObservedObject var currentFiltersController: CurrentFiltersObservableController
-  @ObservedObject var sortByController: SelectableSegmentObservableController
-
-  // Suggestions models
-  @ObservedObject var suggestionsController: HitsObservableController<QuerySuggestion>
-  
-  // Facet list models
-  @ObservedObject var facetSearchQueryInputController: QueryInputObservableController
   @ObservedObject var facetListController: FacetListObservableController
-  @ObservedObject var filterClearController: FilterClearObservableController
-  
-  // State
-  @State private var isPresentingFacets = false
+
   @State private var isEditing = false
-  
-  @Environment(\.presentationMode) var presentation
-  
-  init(areFacetsSearchable: Bool) {
-    statsController = .init()
-    hitsController = .init()
-    currentFiltersController = .init()
-    queryInputController = .init()
-    filterClearController = .init()
-    suggestionsController = .init()
-    sortByController = .init()
-    facetSearchQueryInputController = .init()
-    facetListController = .init()
-    self.areFacetsSearchable = areFacetsSearchable
-  }
+  @State private var isPresentingFacets = false
   
   var body: some View {
-      VStack(spacing: 7) {
-        SearchBar(text: $queryInputController.query,
-                  isEditing: $isEditing,
-                  onSubmit: queryInputController.submit)
-        if isEditing && allowSuggestions {
-          SuggestionsView(query: $queryInputController.query,
-                          isEditing: $isEditing,
-                          suggestionsController: suggestionsController)
-        } else {
-          VStack {
-            HStack {
-              Text(statsController.stats)
-                .fontWeight(.medium)
-              Spacer()
-              if #available(iOS 14.0, *) {
-                sortMenu()
-              }
-            }
-            HitsList(hitsController) { (hit, index) in
-              ShopItemRow(productHit: hit!)
-            } noResults: {
-              Text("No Results")
-                .frame(maxWidth: .infinity, maxHeight: .infinity)
-            }
-          }
+    VStack(spacing: 7) {
+      SearchBar(text: $queryInputController.query,
+                isEditing: $isEditing,
+                onSubmit: queryInputController.submit)
+      Text(statsController.stats)
+        .fontWeight(.medium)
+      HitsList(hitsController) { (hit, _) in
+        VStack(alignment: .leading, spacing: 10) {
+          Text(hit?.name ?? "")
+            .padding(.all, /*@START_MENU_TOKEN@*/10/*@END_MENU_TOKEN@*/)
+          Divider()
         }
+      } noResults: {
+        Text("No Results")
+          .frame(maxWidth: .infinity, maxHeight: .infinity)
       }
-      .padding()
-      .navigationBarTitle("Algolia & SwiftUI")
-      .navigationBarItems(trailing: facetsButton())
-      .sheet(isPresented: $isPresentingFacets) {
-        NavigationView {
-          FacetsView(isSearchable: areFacetsSearchable,
-                     facetSearchQueryInputController: facetSearchQueryInputController,
-                     facetListController: facetListController,
-                     statsController: statsController,
-                     currentFiltersController: currentFiltersController,
-                     filterClearController: filterClearController)
-        }
-      }
+    }
+    .padding()
+    .navigationBarTitle("Algolia & SwiftUI")
+    .navigationBarItems(trailing: facetsButton())
+    .sheet(isPresented: $isPresentingFacets, content: facets)
   }
   
-  @available(iOS 14.0, *)
-  private func sortMenu() -> some View {
-    Menu {
-      ForEach(0 ..< sortByController.segmentsTitles.count, id: \.self) { index in
-        let indexName = sortByController.segmentsTitles[index]
-        Button(indexName) {
-          sortByController.select(index)
+  @ViewBuilder
+  private func facets() -> some View {
+    NavigationView {
+      ScrollView {
+        FacetList(facetListController) { facet, isSelected in
+          VStack {
+            FacetRow(facet: facet, isSelected: isSelected)
+              .padding()
+            Divider()
+          }
+        } noResults: {
+          Text("No facet found")
+            .frame(maxWidth: .infinity, maxHeight: .infinity)
         }
       }
-    } label: {
-      if let index = sortByController.selectedSegmentIndex {
-        Label(sortByController.segmentsTitles[index], systemImage: "arrow.up.arrow.down.circle")
-      }
+      .navigationBarTitle("Brand")
     }
   }
   
   private func facetsButton() -> some View {
     Button(action: {
-      withAnimation {
-        isPresentingFacets.toggle()
-      }
+      isPresentingFacets.toggle()
     },
     label: {
-      let imageName = currentFiltersController.filters.isEmpty ? "line.horizontal.3.decrease.circle" : "line.horizontal.3.decrease.circle.fill"
-      Image(systemName: imageName)
+      Image(systemName: "line.horizontal.3.decrease.circle")
         .font(.title)
     })
-  }
-    
-}
-
-struct ContentView_Previews : PreviewProvider {
-  
-  static let viewModel = AlgoliaController.test(areFacetsSearchable: true)
-  
-  static var previews: some View {
-    let contentView = ContentView(areFacetsSearchable: viewModel.areFacetsSearchable)
-    let _ = viewModel.setup(contentView)
-    NavigationView {
-      contentView
-    }
   }
   
 }

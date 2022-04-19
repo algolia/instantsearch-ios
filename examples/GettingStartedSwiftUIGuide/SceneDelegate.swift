@@ -11,9 +11,15 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
 
   var window: UIWindow?
 
-
   func scene(_ scene: UIScene, willConnectTo session: UISceneSession, options connectionOptions: UIScene.ConnectionOptions) {
-    setMain(SwiftUIDemoViewController(), for: scene)
+    let controller = AlgoliaController()
+    let rootView = ContentView(queryInputController: controller.queryInputController,
+                               hitsController: controller.hitsController,
+                               statsController: controller.statsController,
+                               facetListController: controller.facetListController)
+    let viewController = CommonSwiftUIDemoViewController(controller: controller,
+                                                         rootView: rootView)
+    setMain(viewController, for: scene)
   }
 
 }

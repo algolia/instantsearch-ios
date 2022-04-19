@@ -66,6 +66,8 @@ public struct SearchBar: View {
       .onTapGesture {
         isEditing = true
       }
+      .background(Color(.sRGB, red: 239/255, green: 239/255, blue: 240/255, opacity: 1))
+      .cornerRadius(10)
       if isEditing {
         Button(action: {
                 isEditing = false

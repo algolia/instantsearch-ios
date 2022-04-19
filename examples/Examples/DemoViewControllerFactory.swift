@@ -50,7 +50,13 @@ class DemoViewControllerFactory: ViewControllerFactory {
       return GettingStartedGuide.StepSeven.ViewController()
       
     case .guideDeclarativeUI:
-      return SwiftUIDemoViewController()
+      let controller = AlgoliaController()
+      let rootView = ContentView(queryInputController: controller.queryInputController,
+                                 hitsController: controller.hitsController,
+                                 statsController: controller.statsController,
+                                 facetListController: controller.facetListController)
+      return CommonSwiftUIDemoViewController(controller: controller,
+                                             rootView: rootView)
       
     case .showcaseImperative:
       let factory = ShowcaseDemoViewControllerFactory(framework: .uikit)
