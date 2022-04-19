@@ -4,7 +4,7 @@ Query Suggestions is a search experience that displays a list of possible querie
 they type.
 
 <p align="center">
-<img src="/Resources/query-sugggestions-guide.gif" width="300"/>
+<img src="/Resources/query-suggestions-guide.gif" width="300"/>
 </p>
 
 
