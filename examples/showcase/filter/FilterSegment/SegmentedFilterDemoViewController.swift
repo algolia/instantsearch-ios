@@ -1,5 +1,5 @@
 //
-//  SegmentedDemoViewController.swift
+//  SegmentedFilterDemoViewController.swift
 //  development-pods-instantsearch
 //
 //  Created by Vladislav Fitc on 13/05/2019.
@@ -10,7 +10,7 @@ import Foundation
 import UIKit
 import InstantSearch
 
-class SegmentedDemoViewController: UIViewController {
+class SegmentedFilterDemoViewController: UIViewController {
   
   let demoController: SegmentedFilterDemoController
   let segmentedController: SegmentedController<Filter.Facet>
@@ -35,11 +35,12 @@ class SegmentedDemoViewController: UIViewController {
   
 }
 
-private extension SegmentedDemoViewController {
+private extension SegmentedFilterDemoViewController {
     
   func setup() {
     demoController.selectableFilterConnector.connectController(segmentedController)
     demoController.clearFilterConnector.connectController(filterDebugViewController.clearFilterController)
+    segmentedController.segmentedControl.selectedSegmentIndex = 0
   }
   
   func setupUI() {

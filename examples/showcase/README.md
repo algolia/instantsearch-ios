@@ -31,6 +31,8 @@ Build and run the `Examples` target
 The UIKit widgets showcase is available under `Showcase > Imperative UI`.
 The SwiftUI widgets showcase is available under `Showcase > Declarative UI`. 
 
+The SwiftUI previews are also available in Xcode live previews.
+
 ## Additional resources
 Learn more about InstantSearch iOS [widgets](https://www.algolia.com/doc/guides/building-search-ui/widgets/showcase/ios/) in the Algolia documentation.
 

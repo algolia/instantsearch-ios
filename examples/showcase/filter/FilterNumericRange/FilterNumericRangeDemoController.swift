@@ -1,5 +1,5 @@
 //
-//  FilterNumberRangeDemoController.swift
+//  FilterNumericRangeDemoController.swift
 //  DemoDirectory
 //
 //  Created by Vladislav Fitc on 30/06/2021.
@@ -9,7 +9,7 @@
 import Foundation
 import InstantSearchCore
 
-class FilterNumberRangeDemoController {
+class FilterNumericRangeDemoController {
   
   let searcher: HitsSearcher
   let filterState: FilterState

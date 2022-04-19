@@ -1,5 +1,5 @@
 //
-//  RatingViewController.swift
+//  RatingFilterDemoViewController.swift
 //  DemoDirectory
 //
 //  Created by Vladislav Fitc on 04/11/2020.
@@ -10,7 +10,7 @@ import Foundation
 import UIKit
 import InstantSearch
 
-class RatingViewController: UIViewController {
+class RatingFilterDemoViewController: UIViewController {
   
   let demoController: RatingFilterDemoController
   let valueLabel: UILabel

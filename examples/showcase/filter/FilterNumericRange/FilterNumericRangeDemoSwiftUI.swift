@@ -1,5 +1,5 @@
 //
-//  FilterNumberRangeDemoSwiftUI.swift
+//  FilterNumericRangeDemoSwiftUI.swift
 //  DemoDirectory
 //
 //  Created by Vladislav Fitc on 19/07/2021.
@@ -11,10 +11,10 @@ import InstantSearchCore
 import InstantSearchSwiftUI
 import SwiftUI
 
-struct FilterNumberRangeDemoSwiftUI: SwiftUIDemo, PreviewProvider {
+struct FilterNumericRangeDemoSwiftUI: SwiftUIDemo, PreviewProvider {
   
   class Controller {
-    let demoController = FilterNumberRangeDemoController()
+    let demoController = FilterNumericRangeDemoController()
     let numberRangeController = NumberRangeObservableController<Double>(range: 0...5,
                                                                         bounds: 0...5)
     let filterStateController: FilterStateObservableController

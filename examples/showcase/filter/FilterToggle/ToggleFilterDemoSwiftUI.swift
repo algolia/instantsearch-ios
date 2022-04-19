@@ -1,5 +1,5 @@
 //
-//  ToggleDemoSwiftUI.swift
+//  ToggleFilterDemoSwiftUI.swift
 //  DemoDirectory
 //
 //  Created by Vladislav Fitc on 01/07/2021.
@@ -11,12 +11,11 @@ import InstantSearchCore
 import InstantSearchSwiftUI
 import SwiftUI
 
-
-struct ToggleDemoSwiftUI: SwiftUIDemo, PreviewProvider {
+struct ToggleFilterDemoSwiftUI: SwiftUIDemo, PreviewProvider {
   
   class Controller {
     
-    let demoController: ToggleDemoController
+    let demoController: ToggleFilterDemoController
     
     let filterStateController: FilterStateObservableController
     let clearFilterController: FilterClearObservableController

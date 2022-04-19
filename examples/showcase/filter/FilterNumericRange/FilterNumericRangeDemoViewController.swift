@@ -1,5 +1,5 @@
 //
-//  NumericRangeDemoViewController.swift
+//  FilterNumericRangeDemoViewController.swift
 //  development-pods-instantsearch
 //
 //  Created by Guy Daher on 14/06/2019.
@@ -10,9 +10,9 @@ import Foundation
 import UIKit
 import InstantSearch
 
-class FilterNumberRangeDemoViewController: UIViewController {
+class FilterNumericRangeDemoViewController: UIViewController {
 
-  let demoController: FilterNumberRangeDemoController
+  let demoController: FilterNumericRangeDemoController
   let numericRangeController: NumericRangeController
   let filterDebugViewController: FilterDebugViewController
 
@@ -35,7 +35,7 @@ class FilterNumberRangeDemoViewController: UIViewController {
 
 }
 
-private extension FilterNumberRangeDemoViewController {
+private extension FilterNumericRangeDemoViewController {
   
   func setup() {
     addChild(filterDebugViewController)

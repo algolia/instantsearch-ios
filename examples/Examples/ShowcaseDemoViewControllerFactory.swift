@@ -52,7 +52,7 @@ class ShowcaseDemoViewControllerFactory: ViewControllerFactory {
       viewController = FacetSearchDemoViewController()
       
     case .toggle:
-      viewController = ToggleDemoViewController()
+      viewController = ToggleFilterDemoViewController()
       
     case .dynamicFacetList:
       viewController = DynamicFacetListDemoViewController()
@@ -64,16 +64,16 @@ class ShowcaseDemoViewControllerFactory: ViewControllerFactory {
       viewController = FacetListPersistentDemoViewController()
       
     case .segmented:
-      viewController = SegmentedDemoViewController()
+      viewController = SegmentedFilterDemoViewController()
       
     case .filterNumericComparison:
       viewController = FilterNumericComparisonDemoViewController()
       
     case .filterNumericRange:
-      viewController = FilterNumberRangeDemoViewController()
+      viewController = FilterNumericRangeDemoViewController()
       
     case .filterRating:
-      viewController = RatingViewController()
+      viewController = RatingFilterDemoViewController()
       
     case .sortBy:
       viewController = SortByDemoViewController()
@@ -138,7 +138,7 @@ class ShowcaseDemoViewControllerFactory: ViewControllerFactory {
       viewController = FacetSearchDemoSwiftUI.viewController()
       
     case .toggle:
-      viewController = ToggleDemoSwiftUI.viewController()
+      viewController = ToggleFilterDemoSwiftUI.viewController()
       
     case .dynamicFacetList:
       viewController = DynamicFacetDemoSwiftUI.viewController()
@@ -156,7 +156,7 @@ class ShowcaseDemoViewControllerFactory: ViewControllerFactory {
       viewController = FilterNumericComparisonDemoSwiftUI.viewController()
       
     case .filterNumericRange:
-      viewController = FilterNumberRangeDemoSwiftUI.viewController()
+      viewController = FilterNumericRangeDemoSwiftUI.viewController()
       
     case .filterRating:
       viewController = RatingFilterDemoSwiftUI.viewController()

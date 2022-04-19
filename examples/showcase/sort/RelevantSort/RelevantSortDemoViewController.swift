@@ -14,7 +14,7 @@ class RelevantSortDemoViewController: UIViewController {
   
   let searchBar: UISearchBar
   let demoController: RelevantSortDemoController
-  let hitsController: RelevantHitsController
+  let hitsController: ProductsTableViewController
   let textFieldController: TextFieldController
   let relevantSortController: RelevantSortToggleController
   let sortByController: SortByController
@@ -82,33 +82,6 @@ class RelevantSortDemoViewController: UIViewController {
     infoStackView.addArrangedSubview(relevantSortController.view)
     stackView.addArrangedSubview(infoStackView)
     stackView.addArrangedSubview(hitsController.view)
-  }
-  
-}
-
-class RelevantHitsController: UITableViewController, HitsController {
-  
-  var hitsSource: HitsInteractor<Hit<Product>>?
-  
-  private let cellID = "cellID"
-  
-  override func viewDidLoad() {
-    super.viewDidLoad()
-    tableView.register(ProductTableViewCell.self, forCellReuseIdentifier: cellID)
-  }
-  
-  override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-    return hitsSource?.numberOfHits() ?? 0
-  }
-  
-  override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-    let cell = tableView.dequeueReusableCell(withIdentifier: cellID, for: indexPath)
-    if
-      let productTableViewCell = cell as? ProductTableViewCell,
-      let product = hitsSource?.hit(atIndex: indexPath.row) {
-        productTableViewCell.setup(with: product)
-    }
-    return cell
   }
   
 }

@@ -1,5 +1,5 @@
 //
-//  ToggleDemoViewController.swift
+//  ToggleFilterDemoViewController.swift
 //  development-pods-instantsearch
 //
 //  Created by Vladislav Fitc on 03/05/2019.
@@ -10,9 +10,9 @@ import Foundation
 import UIKit
 import InstantSearch
 
-class ToggleDemoViewController: UIViewController {
+class ToggleFilterDemoViewController: UIViewController {
 
-  let demoController: ToggleDemoController
+  let demoController: ToggleFilterDemoController
 
   let mainStackView = UIStackView()
   let controlsStackView = UIStackView()
@@ -48,7 +48,7 @@ class ToggleDemoViewController: UIViewController {
 }
 
 
-private extension ToggleDemoViewController {
+private extension ToggleFilterDemoViewController {
   
   func setup() {
     demoController.clearFilterConnector.connectController(filterDebugViewController.clearFilterController)
