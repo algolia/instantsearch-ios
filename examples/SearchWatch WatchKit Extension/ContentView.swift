@@ -40,18 +40,17 @@ struct ContentView: View {
   var body: some View {
     NavigationView {
       HitsList(hitsController) { (hit, index) in
-        HStack(alignment: .top, spacing: 5) {
+        HStack(alignment: .top, spacing: 10) {
           image(for: hit)
-            .frame(minWidth: nil, idealWidth: nil, maxWidth: 60, minHeight: nil, idealHeight: nil, maxHeight: nil, alignment: .center)
+            .frame(maxWidth: 60)
+            .cornerRadius(10)
           Text(hit?.object.name ?? "")
             .multilineTextAlignment(.leading)
             .font(.footnote)
-            .foregroundColor(.black)
             .lineLimit(2)
-            .padding(.vertical, 10)
           Spacer()
         }
-        .background(Color.white)
+        .padding(.vertical, 10)
         .cornerRadius(10)
         Divider()
       } noResults: {

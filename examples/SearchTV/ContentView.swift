@@ -42,7 +42,8 @@ struct ContentView: View {
         HitsList(hitsController) { (hit, index) in
           HStack(alignment: .top, spacing: 30) {
             image(for: hit)
-              .frame(minWidth: nil, idealWidth: nil, maxWidth: 200, minHeight: nil, idealHeight: nil, maxHeight: nil, alignment: .center)
+              .frame(maxWidth: 200)
+              .cornerRadius(10)
             Text(hit?.object.name ?? "")
               .multilineTextAlignment(.leading)
               .font(.footnote)
