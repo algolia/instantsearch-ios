@@ -8,7 +8,7 @@ Search experience using the libraries provided by Algolia and UIKit:
 * A facet list for filtering results
 
 <p align="center">
-<img src="./Resources/getting-started-uikit.gif" width="300"/>
+<img src="/Resources/getting-started-uikit.gif" width="300"/>
 </p>
 
 
