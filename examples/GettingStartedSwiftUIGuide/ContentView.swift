@@ -31,7 +31,7 @@ struct ContentView: View {
       HitsList(hitsController) { (hit, _) in
         VStack(alignment: .leading, spacing: 10) {
           Text(hit?.name ?? "")
-            .padding(.all, /*@START_MENU_TOKEN@*/10/*@END_MENU_TOKEN@*/)
+            .padding(.all, 10)
           Divider()
         }
       } noResults: {
@@ -39,7 +39,8 @@ struct ContentView: View {
           .frame(maxWidth: .infinity, maxHeight: .infinity)
       }
     }
-    .padding()
+    .padding(.horizontal)
+    .padding(.top, 10)
     .navigationBarTitle("Algolia & SwiftUI")
     .navigationBarItems(trailing: facetsButton())
     .sheet(isPresented: $isPresentingFacets, content: facets)

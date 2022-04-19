@@ -7,6 +7,11 @@ Search experience using the libraries provided by Algolia and SwiftUI:
 * Statistics about the current search
 * A facet list for filtering results
 
+<p align="center">
+<img src="/Resources/getting-started-swiftui.gif" width="300"/>
+</p>
+
+
 ## How to run this example
 
 ### 1. Clone this repository
