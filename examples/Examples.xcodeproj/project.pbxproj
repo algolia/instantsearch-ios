@@ -1649,7 +1649,6 @@
 			children = (
 				AF50C99E27F6E89E0036F549 /* AppDelegate.swift */,
 				AF50C9A027F6E89E0036F549 /* SceneDelegate.swift */,
-				AF50C9B027F6E8DF0036F549 /* ResultsViewController.swift */,
 				AF50C9B127F6E8DF0036F549 /* VoiceInputDemoViewController.swift */,
 				AF50C9A727F6E89E0036F549 /* Assets.xcassets */,
 				AF50C9A927F6E89E0036F549 /* LaunchScreen.storyboard */,
@@ -1959,6 +1958,8 @@
 				AF50C96127F622EA0036F549 /* StoreItemsTableViewController.swift */,
 				4022E859280E334800D71D66 /* ProductsTableViewController.swift */,
 				AF50CE4927FB34970036F549 /* StoreItemsTableViewController+SearchResponse.swift */,
+				AF50C9B027F6E8DF0036F549 /* ResultsViewController.swift */,
+				404C4027280A27EE00EC9FEB /* CommonSwiftUIDemoViewController.swift */,
 				AF50C96827F622FB0036F549 /* UITableView+EmptyResult.swift */,
 				AF50CD8927FB29A10036F549 /* SceneDelegate+Convenience.swift */,
 				AF50C96B27F623380036F549 /* SearchClient.swift */,
@@ -1969,7 +1970,6 @@
 				4073B59D28076B6F00E05EF6 /* Double+Range.swift */,
 				404C409D280C935600EC9FEB /* FiltersDebugViewController.swift */,
 				404C40A0280C936E00EC9FEB /* SearchDebugViewController.swift */,
-				404C4027280A27EE00EC9FEB /* CommonSwiftUIDemoViewController.swift */,
 				404C403C280A281800EC9FEB /* SwiftUIDemo.swift */,
 			);
 			path = Shared;

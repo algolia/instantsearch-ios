@@ -12,10 +12,11 @@ import InstantSearchVoiceOverlay
 
 class VoiceInputDemoViewController: UIViewController, UISearchBarDelegate {
   
+  let searchController: UISearchController
+  
   let searcher: HitsSearcher
   let searchConnector: SearchConnector<Hit<StoreItem>>
   
-  let searchController: UISearchController
   let resultsViewController: ResultsViewController
   let voiceOverlayController: VoiceOverlayController
 
