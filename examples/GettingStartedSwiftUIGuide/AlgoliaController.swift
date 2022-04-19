@@ -10,10 +10,6 @@ import Foundation
 import InstantSearchCore
 import InstantSearchSwiftUI
 
-struct StockItem: Codable {
-  let name: String
-}
-
 class AlgoliaController {
   
   let searcher: HitsSearcher
@@ -21,8 +17,8 @@ class AlgoliaController {
   let queryInputInteractor: QueryInputInteractor
   let queryInputController: QueryInputObservableController
 
-  let hitsInteractor: HitsInteractor<StockItem>
-  let hitsController: HitsObservableController<StockItem>
+  let hitsInteractor: HitsInteractor<Item>
+  let hitsController: HitsObservableController<Item>
 
   let statsInteractor: StatsInteractor
   let statsController: StatsTextObservableController

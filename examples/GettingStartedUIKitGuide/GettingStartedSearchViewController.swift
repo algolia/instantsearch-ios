@@ -70,10 +70,12 @@ enum GettingStartedGuide {
  Structure must conform to `Codable` protocol to work properly with `InstantSearch`. Add the following declaration to ViewController.swift file.
  */
 
+/**
 struct Item: Codable {
   let name: String
 }
-
+*/
+ 
 /**
  ## Hits view controller
  

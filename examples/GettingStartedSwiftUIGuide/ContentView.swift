@@ -14,7 +14,7 @@ import SwiftUI
 struct ContentView: View {
   
   @ObservedObject var queryInputController: QueryInputObservableController
-  @ObservedObject var hitsController: HitsObservableController<StockItem>
+  @ObservedObject var hitsController: HitsObservableController<Item>
   @ObservedObject var statsController: StatsTextObservableController
   @ObservedObject var facetListController: FacetListObservableController
 

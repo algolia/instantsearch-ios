@@ -37,6 +37,9 @@
 		4022E85A280E334800D71D66 /* ProductsTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4022E859280E334800D71D66 /* ProductsTableViewController.swift */; };
 		4022E85B280E334800D71D66 /* ProductsTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4022E859280E334800D71D66 /* ProductsTableViewController.swift */; };
 		4022E85D280EB94200D71D66 /* CommonSwiftUIDemoViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 404C4027280A27EE00EC9FEB /* CommonSwiftUIDemoViewController.swift */; };
+		4022E85F280EBB0E00D71D66 /* Item.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4022E85E280EBB0E00D71D66 /* Item.swift */; };
+		4022E860280EBB0E00D71D66 /* Item.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4022E85E280EBB0E00D71D66 /* Item.swift */; };
+		4022E861280EBB0E00D71D66 /* Item.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4022E85E280EBB0E00D71D66 /* Item.swift */; };
 		404C4028280A27EE00EC9FEB /* CommonSwiftUIDemoViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 404C4027280A27EE00EC9FEB /* CommonSwiftUIDemoViewController.swift */; };
 		404C4029280A27EE00EC9FEB /* CommonSwiftUIDemoViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 404C4027280A27EE00EC9FEB /* CommonSwiftUIDemoViewController.swift */; };
 		404C402A280A27EE00EC9FEB /* CommonSwiftUIDemoViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 404C4027280A27EE00EC9FEB /* CommonSwiftUIDemoViewController.swift */; };
@@ -853,6 +856,7 @@
 		4022E84F280DD5C000D71D66 /* Preview Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = "Preview Assets.xcassets"; sourceTree = "<group>"; };
 		4022E859280E334800D71D66 /* ProductsTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProductsTableViewController.swift; sourceTree = "<group>"; };
 		4022E85C280EA5EC00D71D66 /* README.md */ = {isa = PBXFileReference; lastKnownFileType = net.daringfireball.markdown; path = README.md; sourceTree = "<group>"; };
+		4022E85E280EBB0E00D71D66 /* Item.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Item.swift; sourceTree = "<group>"; };
 		404C4027280A27EE00EC9FEB /* CommonSwiftUIDemoViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CommonSwiftUIDemoViewController.swift; sourceTree = "<group>"; };
 		404C403C280A281800EC9FEB /* SwiftUIDemo.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SwiftUIDemo.swift; sourceTree = "<group>"; };
 		404C4052280A30A200EC9FEB /* FilterNumericComparisonDemoController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FilterNumericComparisonDemoController.swift; sourceTree = "<group>"; };
@@ -1989,6 +1993,7 @@
 		AF50CED927FC56BD0036F549 /* Model */ = {
 			isa = PBXGroup;
 			children = (
+				4022E85E280EBB0E00D71D66 /* Item.swift */,
 				AF50C95E27F622C70036F549 /* StoreItem.swift */,
 				AFAE55B22734380200B52A43 /* Product.swift */,
 				404C4104280C989B00EC9FEB /* Banner.swift */,
@@ -3578,6 +3583,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				AF50CD9427FB29A10036F549 /* SceneDelegate+Convenience.swift in Sources */,
+				4022E860280EBB0E00D71D66 /* Item.swift in Sources */,
 				AFB181B927FC95B0000AA57B /* Product.swift in Sources */,
 				AF50CE3A27FB31810036F549 /* UITableView+EmptyResult.swift in Sources */,
 				AF50CCC327FAE6AA0036F549 /* UIView+Layout.swift in Sources */,
@@ -3596,6 +3602,7 @@
 				AF50CE3127FB31810036F549 /* UITableView+EmptyResult.swift in Sources */,
 				AF50CA0627F6EE0C0036F549 /* ShopItemRow.swift in Sources */,
 				AF50CD9527FB29A10036F549 /* SceneDelegate+Convenience.swift in Sources */,
+				4022E861280EBB0E00D71D66 /* Item.swift in Sources */,
 				AF50C9F827F6EC980036F549 /* ContentView.swift in Sources */,
 				AF50CCC427FAE6AA0036F549 /* UIView+Layout.swift in Sources */,
 				AF50C9FF27F6ED930036F549 /* AlgoliaController.swift in Sources */,
@@ -4125,6 +4132,7 @@
 				40E1B06728078B0A0092B424 /* RatingView.swift in Sources */,
 				AF50CE8F27FB3A560036F549 /* SceneDelegate+Convenience.swift in Sources */,
 				AFB181A727FC9004000AA57B /* ToggleDemoSwiftUI.swift in Sources */,
+				4022E85F280EBB0E00D71D66 /* Item.swift in Sources */,
 				AF83121E27FC7FC200509DF5 /* FilterListDemoViewController.swift in Sources */,
 				AFAE55182733DE5100B52A43 /* QuerySuggestions.SearchViewController.swift in Sources */,
 				4073B5A42807720100E05EF6 /* RatingFilterDemoSwiftUI.swift in Sources */,
