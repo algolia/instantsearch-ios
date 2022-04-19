@@ -12,4 +12,5 @@ struct Product: Codable {
   let description: String
   let brand: String?
   let image: URL
+  let price: Double?
 }

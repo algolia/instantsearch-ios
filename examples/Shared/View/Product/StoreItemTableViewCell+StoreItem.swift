@@ -33,7 +33,7 @@ extension StoreItemTableViewCell {
     }
     
     if let price = product.price {
-      priceLabel.text = "\(price.value) €"
+      priceLabel.text = "\(price) €"
     }
     
   }

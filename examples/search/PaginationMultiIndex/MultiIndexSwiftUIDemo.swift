@@ -120,9 +120,9 @@ struct MultiIndexSwiftUIDemo: SwiftUIDemo, PreviewProvider {
             .font(.system(.footnote))
             .foregroundColor(.gray)
         }
-        if let priceString = product.object.price?.value {
+        if let price = product.object.price {
           HStack(alignment: .bottom, spacing: 2) {
-            Text(String(format: "%.2f€", priceString))
+            Text(String(format: "%.2f€", price))
               .foregroundColor(.black)
               .font(.system(.caption))
           }

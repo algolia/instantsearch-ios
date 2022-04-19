@@ -52,19 +52,17 @@ struct FilterListDemoSwiftUI: PreviewProvider {
     }
     
     public var body: some View {
-      NavigationView {
-        VStack {
-          FilterStateDebugView(filterStateController)
-          FilterList(controller) { filter, isSelected in
-            selectableText(text: description(filter), isSelected: isSelected)
-              .frame(height: 44)
-            Divider()
-          }
-          Spacer()
+      VStack {
+        FilterStateDebugView(filterStateController)
+        FilterList(controller) { filter, isSelected in
+          selectableText(text: description(filter), isSelected: isSelected)
+            .frame(height: 44)
+          Divider()
         }
-        .navigationBarTitle(title)
-        .padding()
+        Spacer()
       }
+      .navigationBarTitle(title)
+      .padding()
     }
     
     func selectableText(text: String, isSelected: Bool) -> some View {
@@ -101,7 +99,7 @@ struct FilterListDemoSwiftUI: PreviewProvider {
     @objc required dynamic init?(coder aDecoder: NSCoder) {
       fatalError("init(coder:) has not been implemented")
     }
-        
+    
   }
   
   static func facetViewController() -> ViewController<FacetFilter> {
@@ -150,21 +148,24 @@ struct FilterListDemoSwiftUI: PreviewProvider {
                                         description: \.value.description)
   
   static var previews: some View {
-    let _ = facetController
-    ContentView(filterStateController: FilterStateObservableController(filterState: facetController.demoController.filterState),
-                controller: facetController.observableController,
-                description: \.value.description,
-                title: facetController.title)
-    let _ = numericController
-    ContentView(filterStateController: FilterStateObservableController(filterState: numericController.demoController.filterState),
-                controller: numericController.observableController,
-                description: \.value.description,
-                title: numericController.title)
-    let _ = tagController
-    ContentView(filterStateController: FilterStateObservableController(filterState: tagController.demoController.filterState),
-                controller: tagController.observableController,
-                description: \.value.description,
-                title: tagController.title)
+    NavigationView {
+      ContentView(filterStateController: FilterStateObservableController(filterState: facetController.demoController.filterState),
+                  controller: facetController.observableController,
+                  description: \.value.description,
+                  title: facetController.title)
+    }
+    NavigationView {
+      ContentView(filterStateController: FilterStateObservableController(filterState: numericController.demoController.filterState),
+                  controller: numericController.observableController,
+                  description: \.value.description,
+                  title: numericController.title)
+    }
+    NavigationView {
+      ContentView(filterStateController: FilterStateObservableController(filterState: tagController.demoController.filterState),
+                  controller: tagController.observableController,
+                  description: \.value.description,
+                  title: tagController.title)
+    }
   }
   
 }

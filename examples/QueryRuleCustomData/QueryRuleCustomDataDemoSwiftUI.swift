@@ -18,7 +18,7 @@ struct QueryRuleCustomDataSwiftUI: SwiftUIDemo, PreviewProvider {
     let demoController: QueryRuleCustomDataDemoController
     let queryInputController: QueryInputObservableController
     let bannerController: BannerObservableController
-    let hitsController: HitsObservableController<Hit<StoreItem>>
+    let hitsController: HitsObservableController<Hit<Product>>
     
     init() {
       self.demoController = .init()
@@ -62,7 +62,7 @@ struct QueryRuleCustomDataSwiftUI: SwiftUIDemo, PreviewProvider {
     }
     
     @ObservedObject var queryInputController: QueryInputObservableController
-    @ObservedObject var hitsController: HitsObservableController<Hit<StoreItem>>
+    @ObservedObject var hitsController: HitsObservableController<Hit<Product>>
     @ObservedObject var bannerController: BannerObservableController
     
     @State private var isHelpPresented: Bool = false
@@ -97,7 +97,7 @@ struct QueryRuleCustomDataSwiftUI: SwiftUIDemo, PreviewProvider {
             }
         }
         HitsList(hitsController) { (hit, _) in
-          ShopItemRow(product: hit)
+          ShopItemRow(productHit: hit!)
         } noResults: {
           Text("No Results")
             .frame(maxWidth: .infinity, maxHeight: .infinity)

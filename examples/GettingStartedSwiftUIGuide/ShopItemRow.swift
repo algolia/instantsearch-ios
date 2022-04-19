@@ -13,10 +13,9 @@ import InstantSearchSwiftUI
 
 struct ShopItemRow: View {
   
-  let title: String
-  let highlightedTitle: HighlightedString?
-  let subtitle: String
-  let details: String
+  let title: HighlightedString
+  let subtitle: HighlightedString
+  let details: HighlightedString
   let imageURL: URL?
   let price: Double?
   
@@ -25,11 +24,16 @@ struct ShopItemRow: View {
       HStack(alignment: .center, spacing: 20) {
         AsyncImage(url: imageURL,
                    content: { image in
-          image.resizable()
+          image
+            .resizable()
             .aspectRatio(contentMode: .fit)
         },
                    placeholder: {
-          ProgressView()
+          if imageURL != nil {
+            ProgressView()
+          } else {
+            Image(systemName: "photo")
+          }
         }
         )
         .scaledToFit()
@@ -37,21 +41,18 @@ struct ShopItemRow: View {
                height: 60,
                alignment: .center)
         VStack(alignment: .leading, spacing: 5) {
-          if let highlightedTitle = highlightedTitle {
-            Text(highlightedString: highlightedTitle,
-                 highlighted: { Text($0).foregroundColor(.blue) })
-            .font(.system(.subheadline))
-          } else {
-            Text(title)
-              .font(.system(.headline))
+          Text(highlightedString: title,
+               highlighted: { Text($0).foregroundColor(Color(.tintColor)) })
+          .font(.system(.subheadline))
+          if !subtitle.taggedString.input.isEmpty {
+            Text(highlightedString: subtitle,
+                 highlighted: { Text($0).foregroundColor(Color(.tintColor)) })
+            .font(.system(.footnote))
+            .foregroundColor(.gray)
           }
-          if !subtitle.isEmpty {
-            Text(subtitle)
-              .font(.system(.footnote))
-              .foregroundColor(.gray)
-          }
-          if !details.isEmpty {
-            Text(details)
+          if !details.taggedString.input.isEmpty {
+            Text(highlightedString: details,
+                 highlighted: { Text($0).foregroundColor(Color(.tintColor)) })
               .font(.system(.caption2))
           }
           if let priceString = self.priceString {
@@ -85,68 +86,36 @@ struct ShopItemRow: View {
       .flatMap(ShopItemRow.priceFormatter.string)
   }
   
-  init(title: String = "",
-       subtitle: String = "",
-       details: String = "",
+  init(title: HighlightedString = .init(string: ""),
+       subtitle: HighlightedString = .init(string: ""),
+       details: HighlightedString = .init(string: ""),
        imageURL: URL? = nil,
-       highlightedTitle: HighlightedString? = nil,
        price: Double? = nil) {
     self.title = title
     self.subtitle = subtitle
     self.details = details
     self.imageURL = imageURL
-    self.highlightedTitle = highlightedTitle
     self.price = price
   }
   
-  init<T>(item: T,
-          title: KeyPath<T, String>? = nil,
-          subtitle: KeyPath<T, String>? = nil,
-          details: KeyPath<T, String>? = nil,
-          imageURL: KeyPath<T, URL?>? = nil,
-          highlightedTitle: KeyPath<T, HighlightedString?>? = nil,
-          price: KeyPath<T, Double?>? = nil) {
-    self.title = title.flatMap { item[keyPath: $0] } ?? ""
-    self.subtitle = subtitle.flatMap { item[keyPath: $0] } ?? ""
-    self.details = details.flatMap { item[keyPath: $0] } ?? ""
-    self.imageURL = imageURL.flatMap { item[keyPath: $0] }
-    self.highlightedTitle = highlightedTitle.flatMap { item[keyPath: $0] }
-    self.price = price.flatMap { item[keyPath: $0] }
-  }
-  
-  init(isitem: Hit<InstantSearchItem>?) {
-    guard let item = isitem?.object else {
+  init(storeItemHit: Hit<StoreItem>?) {
+    guard let item = storeItemHit?.object else {
       self = .init()
       return
     }
-    self.title = item.name
-    self.subtitle = item.brand ?? ""
-    self.details = item.description ?? ""
-    self.imageURL = item.image ?? URL(string: "google.com")!
-    self.highlightedTitle = isitem?.hightlightedString(forKey: "name")
-    self.price = item.price
-  }
-  
-  init(product: Hit<StoreItem>?) {
-    guard let item = product?.object else {
-      self = .init()
-      return
-    }
-    self.title = item.name
-    self.subtitle = item.brand ?? ""
-    self.details = ""//item.description ?? ""
+    self.title = storeItemHit?.hightlightedString(forKey: "name") ?? HighlightedString(string: item.name)
+    self.subtitle = storeItemHit?.hightlightedString(forKey: "brand") ?? HighlightedString(string: item.brand ?? "")
+    self.details = HighlightedString(string: "")
     self.imageURL = item.images.first ?? URL(string: "google.com")!
-    self.highlightedTitle = product?.hightlightedString(forKey: "name")
-    self.price = item.price?.value
+    self.price = item.price
   }
   
   init(productHit: Hit<Product>) {
     let product = productHit.object
-    title = product.name
-    subtitle = product.brand ?? ""
-    details = product.description
+    title = productHit.hightlightedString(forKey: "name") ?? HighlightedString(string: product.name)
+    subtitle = productHit.hightlightedString(forKey: "brand") ?? HighlightedString(string: product.brand ?? "")
+    details = productHit.hightlightedString(forKey: "description") ?? HighlightedString(string: product.description)
     imageURL = product.image
-    highlightedTitle = productHit.hightlightedString(forKey: "name")
     price = nil
   }
   
@@ -156,13 +125,20 @@ struct ShopItemRow_Previews : PreviewProvider {
   
   static var previews: some View {
     ShopItemRow(
-      title: "Samsung - Galaxy S7 32GB - Black Onyx (AT&T)",
-      subtitle: "Samsung",
-      details: "Enjoy the exceptional display and all-day power of the Samsung Galaxy S7 smartphone. A 12MP rear-facing camera and 5MP front-facing camera capture memories as they happen, and the 5.1-inch display uses dual-pixel technology to display them with superior clarity. The Samsung Galaxy S7 smartphone features durable housing and a water-resistant design.",
-      imageURL: URL(string: "https://cdn-demo.algolia.com/bestbuy-0118/4897502_sb.jpg")!,
-      highlightedTitle: .init(string: "Samsung - <em>Galaxy</em> S7 32GB - Black Onyx (AT&T)"),
+      title: HighlightedString(string: "Samsung - <em>Galaxy</em> S7 32GB - Black Onyx (AT&T)"),
+      subtitle: HighlightedString(string: "Samsung"),
+      details: HighlightedString(string: "Enjoy the exceptional display and all-day power of the Samsung <em>Galaxy</em> S7 smartphone. A 12MP rear-facing camera and 5MP front-facing camera capture memories as they happen, and the 5.1-inch display uses dual-pixel technology to display them with superior clarity. The Samsung <em>Galaxy<em> S7 smartphone features durable housing and a water-resistant design."),
+      imageURL: URL(string: "https://cdn-demo.algolia.com/bestbuy-0118/4897502_sb.jpg"),
       price: 694.99
     )
+    ShopItemRow(
+      title: HighlightedString(string: "<em>Samsung</em> - Galaxy S7 32GB - Black Onyx (AT&T)"),
+      subtitle: HighlightedString(string: "<em>Samsung</em>"),
+      details: HighlightedString(string: "Enjoy the exceptional display and all-day power of the <em>Samsung</em> Galaxy S7 smartphone. A 12MP rear-facing camera and 5MP front-facing camera capture memories as they happen, and the 5.1-inch display uses dual-pixel technology to display them with superior clarity. The <em>Samsung</em> Galaxy S7 smartphone features durable housing and a water-resistant design."),
+      imageURL: .none,
+      price: 694.99
+    )
+    
   }
   
 }

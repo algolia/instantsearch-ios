@@ -18,7 +18,7 @@ struct ContentView: View {
   
   @ObservedObject var queryInputController: QueryInputObservableController
   @ObservedObject var statsController: StatsTextObservableController
-  @ObservedObject var hitsController: HitsObservableController<Hit<StoreItem>>
+  @ObservedObject var hitsController: HitsObservableController<Hit<Product>>
   
   // Shared models
   @ObservedObject var currentFiltersController: CurrentFiltersObservableController
@@ -71,7 +71,7 @@ struct ContentView: View {
               }
             }
             HitsList(hitsController) { (hit, index) in
-              ShopItemRow(product: hit)
+              ShopItemRow(productHit: hit!)
             } noResults: {
               Text("No Results")
                 .frame(maxWidth: .infinity, maxHeight: .infinity)

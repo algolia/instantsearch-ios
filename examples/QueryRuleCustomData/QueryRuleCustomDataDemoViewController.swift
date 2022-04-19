@@ -19,8 +19,8 @@ class QueryRuleCustomDataDemoViewController: UIViewController {
   let queryInputConnector: QueryInputConnector
   let textFieldController: TextFieldController
     
-  let hitsConnector: HitsConnector<Hit<StoreItem>>
-  let hitsTableViewController: ResultsViewController
+  let hitsConnector: HitsConnector<Hit<Product>>
+  let hitsTableViewController: ProductsTableViewController
   
   let queryRuleCustomDataConnector: QueryRuleCustomDataConnector<Banner>
   let bannerViewController: BannerViewController
@@ -28,11 +28,15 @@ class QueryRuleCustomDataDemoViewController: UIViewController {
   override init(nibName nibNameOrNil: String?, bundle nibBundleOrNil: Bundle?) {
     self.searcher = HitsSearcher(client: .demo, indexName: "instant_search")
     self.textFieldController = .init(searchBar: searchBar)
-    self.hitsTableViewController = .init(searcher: searcher)
+    self.hitsTableViewController = .init()
     self.bannerViewController = BannerViewController()
-    self.queryInputConnector = .init(searcher: searcher, controller: textFieldController)
-    self.hitsConnector = .init(searcher: searcher, interactor: .init(), controller: hitsTableViewController.hitsViewController)
-    self.queryRuleCustomDataConnector = .init(searcher: searcher, controller: bannerViewController)
+    self.queryInputConnector = .init(searcher: searcher,
+                                     controller: textFieldController)
+    self.hitsConnector = .init(searcher: searcher,
+                               interactor: .init(),
+                               controller: hitsTableViewController)
+    self.queryRuleCustomDataConnector = .init(searcher: searcher,
+                                              controller: bannerViewController)
     super.init(nibName: nibNameOrNil, bundle: nibBundleOrNil)
     setup()
   }
@@ -53,7 +57,7 @@ class QueryRuleCustomDataDemoViewController: UIViewController {
     
     addChild(hitsTableViewController)
     hitsTableViewController.didMove(toParent: self)
-    hitsTableViewController.hitsViewController.tableView.keyboardDismissMode = .onDrag
+    hitsTableViewController.tableView.keyboardDismissMode = .onDrag
     
     bannerViewController.didTapBanner = { [weak self] in
       if let link = self?.bannerViewController.banner?.link {

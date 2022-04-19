@@ -20,8 +20,8 @@ struct SearchDemoSwiftUI: SwiftUIDemo, PreviewProvider {
     let statsController: StatsTextObservableController
     let loadingController: LoadingObservableController
     
-    init(searchTriggeringMode: SearchTriggeringMode = .searchAsYouType) {
-      demoController = SearchDemoController()
+    init(searchTriggeringMode: SearchTriggeringMode) {
+      demoController = SearchDemoController(searchTriggeringMode: searchTriggeringMode)
       hitsController = HitsObservableController()
       queryInputController = QueryInputObservableController()
       statsController = StatsTextObservableController()
@@ -53,7 +53,7 @@ struct SearchDemoSwiftUI: SwiftUIDemo, PreviewProvider {
         }
         .padding(.horizontal, 20)
         HitsList(hitsController) { (hit, index) in
-          ShopItemRow(product: hit)
+          ShopItemRow(storeItemHit: hit)
         } noResults: {
           Text("No Results")
             .frame(maxWidth: .infinity, maxHeight: .infinity)
@@ -81,7 +81,7 @@ struct SearchDemoSwiftUI: SwiftUIDemo, PreviewProvider {
                                            rootView: contentView)
   }
   
-  static let controller = Controller()
+  static let controller = Controller(searchTriggeringMode: .searchAsYouType)
   static var previews: some View {
     NavigationView {
       contentView(with: controller)

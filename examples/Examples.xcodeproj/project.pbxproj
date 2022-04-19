@@ -26,6 +26,16 @@
 		4022E83F280DA1FD00D71D66 /* SearchDemoController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 40E1B06E280810440092B424 /* SearchDemoController.swift */; };
 		4022E840280DA24500D71D66 /* StoreItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = AF50C95E27F622C70036F549 /* StoreItem.swift */; };
 		4022E841280DA25400D71D66 /* SearchClient.swift in Sources */ = {isa = PBXBuildFile; fileRef = AF50C96B27F623380036F549 /* SearchClient.swift */; };
+		4022E849280DD5BE00D71D66 /* SearchTVApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4022E848280DD5BE00D71D66 /* SearchTVApp.swift */; };
+		4022E84B280DD5BE00D71D66 /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4022E84A280DD5BE00D71D66 /* ContentView.swift */; };
+		4022E84D280DD5C000D71D66 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 4022E84C280DD5C000D71D66 /* Assets.xcassets */; };
+		4022E850280DD5C000D71D66 /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 4022E84F280DD5C000D71D66 /* Preview Assets.xcassets */; };
+		4022E855280DD60000D71D66 /* InstantSearchSwiftUI in Frameworks */ = {isa = PBXBuildFile; productRef = 4022E854280DD60000D71D66 /* InstantSearchSwiftUI */; };
+		4022E856280DD67900D71D66 /* SearchDemoController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 40E1B06E280810440092B424 /* SearchDemoController.swift */; };
+		4022E857280DD68A00D71D66 /* StoreItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = AF50C95E27F622C70036F549 /* StoreItem.swift */; };
+		4022E858280DD69700D71D66 /* SearchClient.swift in Sources */ = {isa = PBXBuildFile; fileRef = AF50C96B27F623380036F549 /* SearchClient.swift */; };
+		4022E85A280E334800D71D66 /* ProductsTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4022E859280E334800D71D66 /* ProductsTableViewController.swift */; };
+		4022E85B280E334800D71D66 /* ProductsTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4022E859280E334800D71D66 /* ProductsTableViewController.swift */; };
 		404C4028280A27EE00EC9FEB /* CommonSwiftUIDemoViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 404C4027280A27EE00EC9FEB /* CommonSwiftUIDemoViewController.swift */; };
 		404C4029280A27EE00EC9FEB /* CommonSwiftUIDemoViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 404C4027280A27EE00EC9FEB /* CommonSwiftUIDemoViewController.swift */; };
 		404C402A280A27EE00EC9FEB /* CommonSwiftUIDemoViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 404C4027280A27EE00EC9FEB /* CommonSwiftUIDemoViewController.swift */; };
@@ -848,6 +858,12 @@
 		4022E82C280DA10600D71D66 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		4022E82F280DA10600D71D66 /* Preview Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = "Preview Assets.xcassets"; sourceTree = "<group>"; };
 		4022E831280DA10600D71D66 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		4022E846280DD5BE00D71D66 /* SearchTV.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = SearchTV.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		4022E848280DD5BE00D71D66 /* SearchTVApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchTVApp.swift; sourceTree = "<group>"; };
+		4022E84A280DD5BE00D71D66 /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
+		4022E84C280DD5C000D71D66 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
+		4022E84F280DD5C000D71D66 /* Preview Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = "Preview Assets.xcassets"; sourceTree = "<group>"; };
+		4022E859280E334800D71D66 /* ProductsTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProductsTableViewController.swift; sourceTree = "<group>"; };
 		404C4027280A27EE00EC9FEB /* CommonSwiftUIDemoViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CommonSwiftUIDemoViewController.swift; sourceTree = "<group>"; };
 		404C403C280A281800EC9FEB /* SwiftUIDemo.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SwiftUIDemo.swift; sourceTree = "<group>"; };
 		404C4052280A30A200EC9FEB /* FilterNumericComparisonDemoController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FilterNumericComparisonDemoController.swift; sourceTree = "<group>"; };
@@ -1191,6 +1207,14 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
+		4022E843280DD5BE00D71D66 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				4022E855280DD60000D71D66 /* InstantSearchSwiftUI in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 		AF46A7532747EF9C004E86F3 /* Frameworks */ = {
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
@@ -1523,6 +1547,25 @@
 			isa = PBXGroup;
 			children = (
 				4022E82F280DA10600D71D66 /* Preview Assets.xcassets */,
+			);
+			path = "Preview Content";
+			sourceTree = "<group>";
+		};
+		4022E847280DD5BE00D71D66 /* SearchTV */ = {
+			isa = PBXGroup;
+			children = (
+				4022E848280DD5BE00D71D66 /* SearchTVApp.swift */,
+				4022E84A280DD5BE00D71D66 /* ContentView.swift */,
+				4022E84C280DD5C000D71D66 /* Assets.xcassets */,
+				4022E84E280DD5C000D71D66 /* Preview Content */,
+			);
+			path = SearchTV;
+			sourceTree = "<group>";
+		};
+		4022E84E280DD5C000D71D66 /* Preview Content */ = {
+			isa = PBXGroup;
+			children = (
+				4022E84F280DD5C000D71D66 /* Preview Assets.xcassets */,
 			);
 			path = "Preview Content";
 			sourceTree = "<group>";
@@ -1914,6 +1957,7 @@
 				AF50CED927FC56BD0036F549 /* Model */,
 				AF50CED827FC568E0036F549 /* View */,
 				AF50C96127F622EA0036F549 /* StoreItemsTableViewController.swift */,
+				4022E859280E334800D71D66 /* ProductsTableViewController.swift */,
 				AF50CE4927FB34970036F549 /* StoreItemsTableViewController+SearchResponse.swift */,
 				AF50C96827F622FB0036F549 /* UITableView+EmptyResult.swift */,
 				AF50CD8927FB29A10036F549 /* SceneDelegate+Convenience.swift */,
@@ -1997,6 +2041,7 @@
 				AF50CEA227FB72090036F549 /* Stats */,
 				4022E81A280DA10400D71D66 /* SearchWatch WatchKit App */,
 				4022E825280DA10600D71D66 /* SearchWatch WatchKit Extension */,
+				4022E847280DD5BE00D71D66 /* SearchTV */,
 				AF7FEB86272CAC5D0003BE62 /* Products */,
 				AFAE55152733643D00B52A43 /* Frameworks */,
 			);
@@ -2040,6 +2085,7 @@
 				4022E813280DA10400D71D66 /* SearchWatch.app */,
 				4022E816280DA10400D71D66 /* SearchWatch WatchKit App.app */,
 				4022E821280DA10600D71D66 /* SearchWatch WatchKit Extension.appex */,
+				4022E846280DD5BE00D71D66 /* SearchTV.app */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -2258,6 +2304,26 @@
 			productName = "SearchWatch WatchKit Extension";
 			productReference = 4022E821280DA10600D71D66 /* SearchWatch WatchKit Extension.appex */;
 			productType = "com.apple.product-type.watchkit2-extension";
+		};
+		4022E845280DD5BE00D71D66 /* SearchTV */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 4022E851280DD5C000D71D66 /* Build configuration list for PBXNativeTarget "SearchTV" */;
+			buildPhases = (
+				4022E842280DD5BE00D71D66 /* Sources */,
+				4022E843280DD5BE00D71D66 /* Frameworks */,
+				4022E844280DD5BE00D71D66 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = SearchTV;
+			packageProductDependencies = (
+				4022E854280DD60000D71D66 /* InstantSearchSwiftUI */,
+			);
+			productName = SearchTV;
+			productReference = 4022E846280DD5BE00D71D66 /* SearchTV.app */;
+			productType = "com.apple.product-type.application";
 		};
 		AF46A7552747EF9C004E86F3 /* CategoriesHits */ = {
 			isa = PBXNativeTarget;
@@ -2953,6 +3019,9 @@
 					4022E820280DA10600D71D66 = {
 						CreatedOnToolsVersion = 13.3.1;
 					};
+					4022E845280DD5BE00D71D66 = {
+						CreatedOnToolsVersion = 13.3.1;
+					};
 					AF46A7552747EF9C004E86F3 = {
 						CreatedOnToolsVersion = 13.1;
 					};
@@ -3103,6 +3172,7 @@
 				4022E812280DA10400D71D66 /* SearchWatch */,
 				4022E815280DA10400D71D66 /* SearchWatch WatchKit App */,
 				4022E820280DA10600D71D66 /* SearchWatch WatchKit Extension */,
+				4022E845280DD5BE00D71D66 /* SearchTV */,
 			);
 		};
 /* End PBXProject section */
@@ -3129,6 +3199,15 @@
 			files = (
 				4022E830280DA10600D71D66 /* Preview Assets.xcassets in Resources */,
 				4022E82D280DA10600D71D66 /* Assets.xcassets in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		4022E844280DD5BE00D71D66 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				4022E850280DD5C000D71D66 /* Preview Assets.xcassets in Resources */,
+				4022E84D280DD5C000D71D66 /* Assets.xcassets in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -3433,6 +3512,18 @@
 				4022E829280DA10600D71D66 /* ExamplesApp.swift in Sources */,
 				4022E827280DA10600D71D66 /* ContentView.swift in Sources */,
 				4022E82B280DA10600D71D66 /* ComplicationController.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		4022E842280DD5BE00D71D66 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				4022E856280DD67900D71D66 /* SearchDemoController.swift in Sources */,
+				4022E84B280DD5BE00D71D66 /* ContentView.swift in Sources */,
+				4022E857280DD68A00D71D66 /* StoreItem.swift in Sources */,
+				4022E849280DD5BE00D71D66 /* SearchTVApp.swift in Sources */,
+				4022E858280DD69700D71D66 /* SearchClient.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -3855,6 +3946,7 @@
 				404C410B280C98D300EC9FEB /* ShopItemRow.swift in Sources */,
 				404C4109280C98B200EC9FEB /* BannerViewController.swift in Sources */,
 				AF50CE6527FB34970036F549 /* StoreItemsTableViewController+SearchResponse.swift in Sources */,
+				4022E85B280E334800D71D66 /* ProductsTableViewController.swift in Sources */,
 				AF50CD2927FAF4A10036F549 /* StoreItemTableViewCell+StoreItem.swift in Sources */,
 				AF50CD2327FAF45A0036F549 /* StoreItem.swift in Sources */,
 				AF50CD2527FAF4720036F549 /* StoreItemsTableViewController.swift in Sources */,
@@ -4080,6 +4172,7 @@
 				AF50CEC227FC41BF0036F549 /* ShowcaseDemo.swift in Sources */,
 				AF50CA0D27F6FA280036F549 /* SearchClient.swift in Sources */,
 				404C40F0280C976100EC9FEB /* RatingViewController.swift in Sources */,
+				4022E85A280E334800D71D66 /* ProductsTableViewController.swift in Sources */,
 				404C4123280C996600EC9FEB /* RelevantSortDemoController.swift in Sources */,
 				AF5089FC2766CE9E00F30F18 /* CategoriesHits.SearchResultsController.swift in Sources */,
 				AF50CECE27FC52650036F549 /* ViewControllerPusher.swift in Sources */,
@@ -4706,6 +4799,62 @@
 				PRODUCT_BUNDLE_IDENTIFIER = com.algolia.SearchWatch;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 5.0;
+			};
+			name = Release;
+		};
+		4022E852280DD5C000D71D66 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = "App Icon & Top Shelf Image";
+				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_ASSET_PATHS = "\"SearchTV/Preview Content\"";
+				DEVELOPMENT_TEAM = 5RDFJYUV23;
+				ENABLE_PREVIEWS = YES;
+				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_KEY_UILaunchScreen_Generation = YES;
+				INFOPLIST_KEY_UIUserInterfaceStyle = Automatic;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+				);
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = com.algolia.SearchTV;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SDKROOT = appletvos;
+				SWIFT_EMIT_LOC_STRINGS = YES;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = 3;
+				TVOS_DEPLOYMENT_TARGET = 15.4;
+			};
+			name = Debug;
+		};
+		4022E853280DD5C000D71D66 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = "App Icon & Top Shelf Image";
+				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_ASSET_PATHS = "\"SearchTV/Preview Content\"";
+				DEVELOPMENT_TEAM = 5RDFJYUV23;
+				ENABLE_PREVIEWS = YES;
+				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_KEY_UILaunchScreen_Generation = YES;
+				INFOPLIST_KEY_UIUserInterfaceStyle = Automatic;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+				);
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = com.algolia.SearchTV;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SDKROOT = appletvos;
+				SWIFT_EMIT_LOC_STRINGS = YES;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = 3;
+				TVOS_DEPLOYMENT_TARGET = 15.4;
 			};
 			name = Release;
 		};
@@ -6635,6 +6784,15 @@
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
 		};
+		4022E851280DD5C000D71D66 /* Build configuration list for PBXNativeTarget "SearchTV" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				4022E852280DD5C000D71D66 /* Debug */,
+				4022E853280DD5C000D71D66 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
 		AF46A7672747EF9F004E86F3 /* Build configuration list for PBXNativeTarget "CategoriesHits" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
@@ -6955,6 +7113,10 @@
 
 /* Begin XCSwiftPackageProductDependency section */
 		4022E83D280DA1A900D71D66 /* InstantSearchSwiftUI */ = {
+			isa = XCSwiftPackageProductDependency;
+			productName = InstantSearchSwiftUI;
+		};
+		4022E854280DD60000D71D66 /* InstantSearchSwiftUI */ = {
 			isa = XCSwiftPackageProductDependency;
 			productName = InstantSearchSwiftUI;
 		};

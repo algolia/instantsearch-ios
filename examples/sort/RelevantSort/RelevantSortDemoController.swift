@@ -10,10 +10,6 @@ import Foundation
 import InstantSearch
 
 class RelevantSortDemoController {
-
-  struct Item: Codable {
-    let name: String
-  }
   
   let searcher: HitsSearcher
   let queryInputConnector: QueryInputConnector

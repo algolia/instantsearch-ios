@@ -22,7 +22,7 @@ class AlgoliaController {
   
   let searcher: HitsSearcher
   let queryInputInteractor: QueryInputInteractor
-  let hitsInteractor: HitsInteractor<Hit<StoreItem>>
+  let hitsInteractor: HitsInteractor<Hit<Product>>
   let statsInteractor: StatsInteractor
   let currentFiltersInteractor: CurrentFiltersInteractor
   let filterState: FilterState

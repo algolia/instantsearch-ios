@@ -12,7 +12,7 @@ class QueryRuleCustomDataDemoController {
       
   let searcher: HitsSearcher
   let queryInputInteractor: QueryInputInteractor
-  let hitsInteractor: HitsInteractor<Hit<StoreItem>>
+  let hitsInteractor: HitsInteractor<Hit<Product>>
   let queryRuleCustomDataConnector: QueryRuleCustomDataConnector<Banner>
   
   static let helpMessage = """
