@@ -864,6 +864,7 @@
 		4022E84C280DD5C000D71D66 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		4022E84F280DD5C000D71D66 /* Preview Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = "Preview Assets.xcassets"; sourceTree = "<group>"; };
 		4022E859280E334800D71D66 /* ProductsTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProductsTableViewController.swift; sourceTree = "<group>"; };
+		4022E85C280EA5EC00D71D66 /* README.md */ = {isa = PBXFileReference; lastKnownFileType = net.daringfireball.markdown; path = README.md; sourceTree = "<group>"; };
 		404C4027280A27EE00EC9FEB /* CommonSwiftUIDemoViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CommonSwiftUIDemoViewController.swift; sourceTree = "<group>"; };
 		404C403C280A281800EC9FEB /* SwiftUIDemo.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SwiftUIDemo.swift; sourceTree = "<group>"; };
 		404C4052280A30A200EC9FEB /* FilterNumericComparisonDemoController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FilterNumericComparisonDemoController.swift; sourceTree = "<group>"; };
@@ -1685,6 +1686,7 @@
 				AF50C9E827F6EA7C0036F549 /* Assets.xcassets */,
 				AF50C9EA27F6EA7C0036F549 /* LaunchScreen.storyboard */,
 				AF50C9ED27F6EA7C0036F549 /* Info.plist */,
+				4022E85C280EA5EC00D71D66 /* README.md */,
 			);
 			path = GettingStartedSwiftUIGuide;
 			sourceTree = "<group>";
