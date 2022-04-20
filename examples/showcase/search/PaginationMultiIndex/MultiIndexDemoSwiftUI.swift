@@ -1,5 +1,5 @@
 //
-//  MultiIndexSwiftUIDemo.swift
+//  MultiIndexDemoSwiftUI.swift
 //  Examples
 //
 //  Created by Vladislav Fitc on 14/04/2022.
@@ -10,7 +10,7 @@ import SwiftUI
 import InstantSearchCore
 import InstantSearchSwiftUI
 
-struct MultiIndexSwiftUIDemo: SwiftUIDemo, PreviewProvider {
+struct MultiIndexDemoSwiftUI: SwiftUIDemo, PreviewProvider {
   
   class Controller {
     

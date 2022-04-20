@@ -14,16 +14,18 @@ class ProductTableViewCell: UITableViewCell {
   let itemImageView: UIImageView
   let titleLabel: UILabel
   let subtitleLabel: UILabel
-  
+  let priceLabel: UILabel
+
   let mainStackView: UIStackView
   let labelsStackView: UIStackView
   
   override init(style: UITableViewCell.CellStyle, reuseIdentifier: String?) {
-    itemImageView = .init(frame: .zero)
-    titleLabel = .init(frame: .zero)
-    subtitleLabel = .init(frame: .zero)
-    mainStackView = .init(frame: .zero)
-    labelsStackView = .init(frame: .zero)
+    itemImageView = .init()
+    titleLabel = .init()
+    subtitleLabel = .init()
+    mainStackView = .init()
+    labelsStackView = .init()
+    priceLabel = .init()
     super.init(style: style, reuseIdentifier: reuseIdentifier)
     layout()
     backgroundColor = .white
@@ -48,12 +50,16 @@ class ProductTableViewCell: UITableViewCell {
     subtitleLabel.font = .systemFont(ofSize: 13, weight: .regular)
     subtitleLabel.textColor = .gray
     subtitleLabel.numberOfLines = 1
+    
+    priceLabel.translatesAutoresizingMaskIntoConstraints = false
+    priceLabel.font = .systemFont(ofSize: 14)
         
     labelsStackView.axis = .vertical
     labelsStackView.translatesAutoresizingMaskIntoConstraints = false
     labelsStackView.spacing = 3
     labelsStackView.addArrangedSubview(titleLabel)
     labelsStackView.addArrangedSubview(subtitleLabel)
+    labelsStackView.addArrangedSubview(priceLabel)
     labelsStackView.addArrangedSubview(UIView())
     
     mainStackView.axis = .horizontal
@@ -62,14 +68,11 @@ class ProductTableViewCell: UITableViewCell {
     mainStackView.addArrangedSubview(itemImageView)
     mainStackView.addArrangedSubview(labelsStackView)
     
-    addSubview(mainStackView)
-    layoutMargins = .init(top: 5, left: 3, bottom: 5, right: 3)
-    
     contentView.addSubview(mainStackView)
-    
-    itemImageView.widthAnchor.constraint(equalTo: itemImageView.heightAnchor).isActive = true
-    
+    contentView.layoutMargins = .init(top: 5, left: 3, bottom: 5, right: 3)
+
     mainStackView.pin(to: contentView.layoutMarginsGuide)
+    itemImageView.widthAnchor.constraint(equalTo: itemImageView.heightAnchor).isActive = true
   }
   
 }

@@ -1,15 +1,15 @@
 //
-//  StoreItemTableViewCell+StoreItem.swift
-//  Guides
+//  ProductTableViewCell+StoreItem.swift
+//  Examples
 //
-//  Created by Vladislav Fitc on 31.03.2022.
+//  Created by Vladislav Fitc on 20/04/2022.
 //
 
 import Foundation
 import UIKit
-import InstantSearchCore
+import AlgoliaSearchClient
 
-extension StoreItemTableViewCell {
+extension ProductTableViewCell {
   
   func setup(with productHit: Hit<StoreItem>) {
     let product = productHit.object
@@ -37,5 +37,5 @@ extension StoreItemTableViewCell {
     }
     
   }
-  
+
 }

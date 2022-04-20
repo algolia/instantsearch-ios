@@ -64,8 +64,7 @@ class DemoViewControllerFactory: ViewControllerFactory {
       let pusher = ViewControllerPusher(factory: factory,
                                         sourceViewController: viewController)
       viewController.didSelect = pusher.callAsFunction
-      viewController.title = "Showcase"
-      viewController.navigationItem.hidesBackButton = true
+      viewController.title = "Imperative UI"
       return viewController
       
     case .showCaseDeclarative:

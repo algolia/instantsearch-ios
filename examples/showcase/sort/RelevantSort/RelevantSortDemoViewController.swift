@@ -12,39 +12,22 @@ import UIKit
 
 class RelevantSortDemoViewController: UIViewController {
   
-  let searchBar: UISearchBar
   let demoController: RelevantSortDemoController
-  let hitsController: ProductsTableViewController
+
+  let searchController: UISearchController
   let textFieldController: TextFieldController
-  let relevantSortController: RelevantSortToggleController
-  let sortByController: SortByController
-  let statsController: LabelStatsController
+  let resultsViewController: RelevantSortResultsViewController
+  
+  var onClick: ((Int) -> Void)?
   
   init() {
-    self.searchBar = UISearchBar()
-    self.hitsController = .init()
-    self.textFieldController = .init(searchBar: searchBar)
-    self.relevantSortController = .init()
-    self.sortByController = .init(searchBar: searchBar)
-    self.statsController = .init(label: .init())
+    resultsViewController = .init()
+    self.searchController = .init(searchResultsController: resultsViewController)
+    self.textFieldController = .init(searchBar: searchController.searchBar)
     self.demoController = .init()
     super.init(nibName: nil, bundle: nil)
-    demoController.sortByConnector.connectController(sortByController)  { indexName in
-      switch indexName {
-      case "test_Bestbuy":
-        return "Most relevant"
-      case "test_Bestbuy_vr_price_asc":
-        return "Relevant Sort - Lowest Price"
-      case "test_Bestbuy_replica_price_asc":
-        return "Hard Sort - Lowest Price"
-      default:
-        return indexName.rawValue
-      }
-    }
-    demoController.relevantSortConnector.connectController(relevantSortController)
-    demoController.hitsConnector.connectController(hitsController)
-    demoController.queryInputConnector.connectController(textFieldController)
-    demoController.statsConnector.connectController(statsController)
+    demoController.sortByConnector.connectController(self, presenter: demoController.title(for:))
+    setup()
   }
   
   required init?(coder: NSCoder) {
@@ -56,32 +39,48 @@ class RelevantSortDemoViewController: UIViewController {
     setupUI()
   }
   
-  func setupUI() {
+  override func viewDidAppear(_ animated: Bool) {
+    super.viewDidAppear(animated)
+    searchController.isActive = true
+  }
+  
+  private func setup() {
+    searchController.searchBar.delegate = self
+    demoController.queryInputConnector.connectController(textFieldController)
+    demoController.relevantSortConnector.connectController(resultsViewController.relevantSortController)
+    demoController.hitsConnector.connectController(resultsViewController.hitsController)
+    demoController.statsConnector.connectController(resultsViewController.statsController)
+  }
+  
+  private func setupUI() {
     view.backgroundColor = .white
-    searchBar.showsScopeBar = true
-    let stackView = UIStackView()
-    stackView.axis = .vertical
-    stackView.translatesAutoresizingMaskIntoConstraints = false
-    view.addSubview(stackView)
-    NSLayoutConstraint.activate([
-      stackView.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor),
-      stackView.leadingAnchor.constraint(equalTo: view.safeAreaLayoutGuide.leadingAnchor),
-      stackView.trailingAnchor.constraint(equalTo: view.safeAreaLayoutGuide.trailingAnchor),
-      stackView.bottomAnchor.constraint(equalTo: view.bottomAnchor),
-    ])
-    stackView.addArrangedSubview(searchBar)
-    let infoStackView = UIStackView()
-    infoStackView.spacing = 5
-    infoStackView.layoutMargins = UIEdgeInsets(top: 0, left: 20, bottom: 0, right: 20)
-    infoStackView.isLayoutMarginsRelativeArrangement = true
-    infoStackView.axis = .vertical
-    infoStackView.translatesAutoresizingMaskIntoConstraints = false
-    statsController.label.translatesAutoresizingMaskIntoConstraints = false
-    relevantSortController.view.translatesAutoresizingMaskIntoConstraints = false
-    infoStackView.addArrangedSubview(statsController.label)
-    infoStackView.addArrangedSubview(relevantSortController.view)
-    stackView.addArrangedSubview(infoStackView)
-    stackView.addArrangedSubview(hitsController.view)
+    definesPresentationContext = true
+    navigationItem.searchController = searchController
+    searchController.hidesNavigationBarDuringPresentation = false
+    searchController.showsSearchResultsController = true
+    searchController.automaticallyShowsCancelButton = false
+  }
+  
+}
+
+extension RelevantSortDemoViewController: UISearchBarDelegate {
+  
+  func searchBar(_ searchBar: UISearchBar, selectedScopeButtonIndexDidChange selectedScope: Int) {
+    onClick?(selectedScope)
+  }
+  
+}
+
+extension RelevantSortDemoViewController: SelectableSegmentController {
+  
+  func setSelected(_ selected: Int?) {
+    if let index = selected {
+      searchController.searchBar.selectedScopeButtonIndex = index
+    }
+  }
+  
+  func setItems(items: [Int : String]) {
+    searchController.searchBar.scopeButtonTitles = items.sorted(by: \.key).map(\.value)
   }
   
 }

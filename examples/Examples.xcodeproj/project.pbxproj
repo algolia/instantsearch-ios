@@ -40,6 +40,16 @@
 		4022E85F280EBB0E00D71D66 /* Item.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4022E85E280EBB0E00D71D66 /* Item.swift */; };
 		4022E860280EBB0E00D71D66 /* Item.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4022E85E280EBB0E00D71D66 /* Item.swift */; };
 		4022E861280EBB0E00D71D66 /* Item.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4022E85E280EBB0E00D71D66 /* Item.swift */; };
+		4034B6E3280F8A2600F4A303 /* ProductTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = AFEFEF8227F47F7700B47F7F /* ProductTableViewCell.swift */; };
+		4034B6E4280F8A3000F4A303 /* ProductTableViewCell+ProductHit.swift in Sources */ = {isa = PBXBuildFile; fileRef = AFEFEF8B27F47F8300B47F7F /* ProductTableViewCell+ProductHit.swift */; };
+		4034B6E6280F8AB000F4A303 /* ProductTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = AFEFEF8227F47F7700B47F7F /* ProductTableViewCell.swift */; };
+		4034B6E7280F8AB900F4A303 /* ProductTableViewCell+ProductHit.swift in Sources */ = {isa = PBXBuildFile; fileRef = AFEFEF8B27F47F8300B47F7F /* ProductTableViewCell+ProductHit.swift */; };
+		4034B6E8280F8AD500F4A303 /* ProductTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = AFEFEF8227F47F7700B47F7F /* ProductTableViewCell.swift */; };
+		4034B6E9280F8AE300F4A303 /* ProductTableViewCell+ProductHit.swift in Sources */ = {isa = PBXBuildFile; fileRef = AFEFEF8B27F47F8300B47F7F /* ProductTableViewCell+ProductHit.swift */; };
+		4034B6EA280F8B0700F4A303 /* ProductTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = AFEFEF8227F47F7700B47F7F /* ProductTableViewCell.swift */; };
+		4034B6EB280F8B1000F4A303 /* ProductTableViewCell+ProductHit.swift in Sources */ = {isa = PBXBuildFile; fileRef = AFEFEF8B27F47F8300B47F7F /* ProductTableViewCell+ProductHit.swift */; };
+		4034B6EC280F8BAA00F4A303 /* ProductTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = AFEFEF8227F47F7700B47F7F /* ProductTableViewCell.swift */; };
+		4034B6ED280F8BB300F4A303 /* ProductTableViewCell+ProductHit.swift in Sources */ = {isa = PBXBuildFile; fileRef = AFEFEF8B27F47F8300B47F7F /* ProductTableViewCell+ProductHit.swift */; };
 		404C4028280A27EE00EC9FEB /* CommonSwiftUIDemoViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 404C4027280A27EE00EC9FEB /* CommonSwiftUIDemoViewController.swift */; };
 		404C4029280A27EE00EC9FEB /* CommonSwiftUIDemoViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 404C4027280A27EE00EC9FEB /* CommonSwiftUIDemoViewController.swift */; };
 		404C402A280A27EE00EC9FEB /* CommonSwiftUIDemoViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 404C4027280A27EE00EC9FEB /* CommonSwiftUIDemoViewController.swift */; };
@@ -242,6 +252,30 @@
 		40C7C24B280A202F005DEC68 /* FacetListPersistentDemoSwiftUI.swift in Sources */ = {isa = PBXBuildFile; fileRef = 40C7C249280A202F005DEC68 /* FacetListPersistentDemoSwiftUI.swift */; };
 		40E003B7280F28DD00544E9F /* ProductTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = AFEFEF8227F47F7700B47F7F /* ProductTableViewCell.swift */; };
 		40E003B8280F28E800544E9F /* ProductTableViewCell+ProductHit.swift in Sources */ = {isa = PBXBuildFile; fileRef = AFEFEF8B27F47F8300B47F7F /* ProductTableViewCell+ProductHit.swift */; };
+		40E003BA280F80F800544E9F /* RelevantSortResultsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 40E003B9280F80F700544E9F /* RelevantSortResultsViewController.swift */; };
+		40E003BB280F80F800544E9F /* RelevantSortResultsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 40E003B9280F80F700544E9F /* RelevantSortResultsViewController.swift */; };
+		40E003BC280F814900544E9F /* ProductsTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4022E859280E334800D71D66 /* ProductsTableViewController.swift */; };
+		40E003BE280F833000544E9F /* ProductTableViewCell+StoreItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = 40E003BD280F833000544E9F /* ProductTableViewCell+StoreItem.swift */; };
+		40E003BF280F833000544E9F /* ProductTableViewCell+StoreItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = 40E003BD280F833000544E9F /* ProductTableViewCell+StoreItem.swift */; };
+		40E003C0280F835800544E9F /* ProductTableViewCell+StoreItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = 40E003BD280F833000544E9F /* ProductTableViewCell+StoreItem.swift */; };
+		40E003C1280F835900544E9F /* ProductTableViewCell+StoreItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = 40E003BD280F833000544E9F /* ProductTableViewCell+StoreItem.swift */; };
+		40E003C2280F835B00544E9F /* ProductTableViewCell+StoreItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = 40E003BD280F833000544E9F /* ProductTableViewCell+StoreItem.swift */; };
+		40E003C3280F836700544E9F /* ProductTableViewCell+StoreItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = 40E003BD280F833000544E9F /* ProductTableViewCell+StoreItem.swift */; };
+		40E003C4280F836800544E9F /* ProductTableViewCell+StoreItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = 40E003BD280F833000544E9F /* ProductTableViewCell+StoreItem.swift */; };
+		40E003C6280F837A00544E9F /* ProductTableViewCell+StoreItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = 40E003BD280F833000544E9F /* ProductTableViewCell+StoreItem.swift */; };
+		40E003C7280F84CD00544E9F /* ProductsTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4022E859280E334800D71D66 /* ProductsTableViewController.swift */; };
+		40E003C8280F84CD00544E9F /* ProductsTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4022E859280E334800D71D66 /* ProductsTableViewController.swift */; };
+		40E003C9280F84D200544E9F /* ProductsTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4022E859280E334800D71D66 /* ProductsTableViewController.swift */; };
+		40E003CA280F84D400544E9F /* ProductsTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4022E859280E334800D71D66 /* ProductsTableViewController.swift */; };
+		40E003CC280F84DA00544E9F /* ProductsTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4022E859280E334800D71D66 /* ProductsTableViewController.swift */; };
+		40E003CD280F85A700544E9F /* StoreItemsTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = AF50C96127F622EA0036F549 /* StoreItemsTableViewController.swift */; };
+		40E003CE280F85AC00544E9F /* StoreItemsTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = AF50C96127F622EA0036F549 /* StoreItemsTableViewController.swift */; };
+		40E003CF280F85AD00544E9F /* StoreItemsTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = AF50C96127F622EA0036F549 /* StoreItemsTableViewController.swift */; };
+		40E003D0280F85B100544E9F /* StoreItemsTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = AF50C96127F622EA0036F549 /* StoreItemsTableViewController.swift */; };
+		40E003D1280F85B200544E9F /* StoreItemsTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = AF50C96127F622EA0036F549 /* StoreItemsTableViewController.swift */; };
+		40E003D2280F85B200544E9F /* StoreItemsTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = AF50C96127F622EA0036F549 /* StoreItemsTableViewController.swift */; };
+		40E003D4280F85B700544E9F /* StoreItemsTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = AF50C96127F622EA0036F549 /* StoreItemsTableViewController.swift */; };
+		40E003D5280F85B700544E9F /* StoreItemsTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = AF50C96127F622EA0036F549 /* StoreItemsTableViewController.swift */; };
 		40E1B06728078B0A0092B424 /* RatingView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 40E1B06628078B0A0092B424 /* RatingView.swift */; };
 		40E1B06828078B0A0092B424 /* RatingView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 40E1B06628078B0A0092B424 /* RatingView.swift */; };
 		40E1B06928078B650092B424 /* FilterStateObservableController.swift in Sources */ = {isa = PBXBuildFile; fileRef = AFB181C227FDB6A0000AA57B /* FilterStateObservableController.swift */; };
@@ -256,8 +290,8 @@
 		40E1B079280812200092B424 /* InstantSearchSwiftUI in Frameworks */ = {isa = PBXBuildFile; productRef = 40E1B078280812200092B424 /* InstantSearchSwiftUI */; };
 		40E1B07B280845970092B424 /* MultiIndexDemoController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 40E1B07A280845970092B424 /* MultiIndexDemoController.swift */; };
 		40E1B07E280845970092B424 /* MultiIndexDemoController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 40E1B07A280845970092B424 /* MultiIndexDemoController.swift */; };
-		40E1B080280849EB0092B424 /* MultiIndexSwiftUIDemo.swift in Sources */ = {isa = PBXBuildFile; fileRef = 40E1B07F280849EB0092B424 /* MultiIndexSwiftUIDemo.swift */; };
-		40E1B082280849EB0092B424 /* MultiIndexSwiftUIDemo.swift in Sources */ = {isa = PBXBuildFile; fileRef = 40E1B07F280849EB0092B424 /* MultiIndexSwiftUIDemo.swift */; };
+		40E1B080280849EB0092B424 /* MultiIndexDemoSwiftUI.swift in Sources */ = {isa = PBXBuildFile; fileRef = 40E1B07F280849EB0092B424 /* MultiIndexDemoSwiftUI.swift */; };
+		40E1B082280849EB0092B424 /* MultiIndexDemoSwiftUI.swift in Sources */ = {isa = PBXBuildFile; fileRef = 40E1B07F280849EB0092B424 /* MultiIndexDemoSwiftUI.swift */; };
 		AF46A7592747EF9D004E86F3 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = AF46A7582747EF9D004E86F3 /* AppDelegate.swift */; };
 		AF46A75B2747EF9D004E86F3 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = AF46A75A2747EF9D004E86F3 /* SceneDelegate.swift */; };
 		AF46A7622747EF9F004E86F3 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = AF46A7612747EF9F004E86F3 /* Assets.xcassets */; };
@@ -295,7 +329,6 @@
 		AF50C95C27F620E00036F549 /* SDWebImage in Frameworks */ = {isa = PBXBuildFile; productRef = AF50C95B27F620E00036F549 /* SDWebImage */; };
 		AF50C95D27F620FB0036F549 /* SearchSuggestionTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = AFAE55BA27343A3C00B52A43 /* SearchSuggestionTableViewCell.swift */; };
 		AF50C95F27F622C70036F549 /* StoreItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = AF50C95E27F622C70036F549 /* StoreItem.swift */; };
-		AF50C96527F622EA0036F549 /* StoreItemsTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = AF50C96127F622EA0036F549 /* StoreItemsTableViewController.swift */; };
 		AF50C96927F622FB0036F549 /* UITableView+EmptyResult.swift in Sources */ = {isa = PBXBuildFile; fileRef = AF50C96827F622FB0036F549 /* UITableView+EmptyResult.swift */; };
 		AF50C96A27F623130036F549 /* SearchSuggestionTableViewCell+QuerySuggestion.swift in Sources */ = {isa = PBXBuildFile; fileRef = AF5089EB2766CAF600F30F18 /* SearchSuggestionTableViewCell+QuerySuggestion.swift */; };
 		AF50C96C27F623380036F549 /* SearchClient.swift in Sources */ = {isa = PBXBuildFile; fileRef = AF50C96B27F623380036F549 /* SearchClient.swift */; };
@@ -308,12 +341,9 @@
 		AF50C9B527F6E8F30036F549 /* InstantSearchVoiceOverlay in Frameworks */ = {isa = PBXBuildFile; productRef = AF50C9B427F6E8F30036F549 /* InstantSearchVoiceOverlay */; };
 		AF50C9B727F6E8F70036F549 /* InstantSearch in Frameworks */ = {isa = PBXBuildFile; productRef = AF50C9B627F6E8F70036F549 /* InstantSearch */; };
 		AF50C9B927F6E8FB0036F549 /* SDWebImage in Frameworks */ = {isa = PBXBuildFile; productRef = AF50C9B827F6E8FB0036F549 /* SDWebImage */; };
-		AF50C9BA27F6E90A0036F549 /* StoreItemsTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = AF50C96127F622EA0036F549 /* StoreItemsTableViewController.swift */; };
 		AF50C9BB27F6E92F0036F549 /* StoreItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = AF50C95E27F622C70036F549 /* StoreItem.swift */; };
-		AF50C9BC27F6E93C0036F549 /* StoreItemTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = AF50C96327F622EA0036F549 /* StoreItemTableViewCell.swift */; };
 		AF50C9BE27F6E9630036F549 /* UITableView+EmptyResult.swift in Sources */ = {isa = PBXBuildFile; fileRef = AF50C96827F622FB0036F549 /* UITableView+EmptyResult.swift */; };
 		AF50C9BF27F6E9680036F549 /* SearchClient.swift in Sources */ = {isa = PBXBuildFile; fileRef = AF50C96B27F623380036F549 /* SearchClient.swift */; };
-		AF50C9C027F6E9730036F549 /* StoreItemTableViewCell+StoreItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = AF50C96027F622EA0036F549 /* StoreItemTableViewCell+StoreItem.swift */; };
 		AF50C9C827F6EA6C0036F549 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = AF50C9C727F6EA6C0036F549 /* AppDelegate.swift */; };
 		AF50C9CA27F6EA6C0036F549 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = AF50C9C927F6EA6C0036F549 /* SceneDelegate.swift */; };
 		AF50C9D127F6EA6D0036F549 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = AF50C9D027F6EA6D0036F549 /* Assets.xcassets */; };
@@ -487,45 +517,31 @@
 		AF50CD2227FAF4280036F549 /* SearchClient.swift in Sources */ = {isa = PBXBuildFile; fileRef = AF50C96B27F623380036F549 /* SearchClient.swift */; };
 		AF50CD2327FAF45A0036F549 /* StoreItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = AF50C95E27F622C70036F549 /* StoreItem.swift */; };
 		AF50CD2427FAF46B0036F549 /* ResultsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = AF50C9B027F6E8DF0036F549 /* ResultsViewController.swift */; };
-		AF50CD2527FAF4720036F549 /* StoreItemsTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = AF50C96127F622EA0036F549 /* StoreItemsTableViewController.swift */; };
-		AF50CD2627FAF47B0036F549 /* StoreItemTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = AF50C96327F622EA0036F549 /* StoreItemTableViewCell.swift */; };
 		AF50CD2827FAF4910036F549 /* UITableView+EmptyResult.swift in Sources */ = {isa = PBXBuildFile; fileRef = AF50C96827F622FB0036F549 /* UITableView+EmptyResult.swift */; };
-		AF50CD2927FAF4A10036F549 /* StoreItemTableViewCell+StoreItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = AF50C96027F622EA0036F549 /* StoreItemTableViewCell+StoreItem.swift */; };
 		AF50CD2D27FAF4D90036F549 /* Helpers.swift in Sources */ = {isa = PBXBuildFile; fileRef = AF50CC3327F72FF80036F549 /* Helpers.swift */; };
 		AF50CD3727FAF5400036F549 /* ResultsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = AF50C9B027F6E8DF0036F549 /* ResultsViewController.swift */; };
-		AF50CD3827FAF54A0036F549 /* StoreItemsTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = AF50C96127F622EA0036F549 /* StoreItemsTableViewController.swift */; };
-		AF50CD3927FAF54E0036F549 /* StoreItemTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = AF50C96327F622EA0036F549 /* StoreItemTableViewCell.swift */; };
 		AF50CD3C27FAF5650036F549 /* SDWebImage in Frameworks */ = {isa = PBXBuildFile; productRef = AF50CD3B27FAF5650036F549 /* SDWebImage */; };
 		AF50CD3E27FAF56A0036F549 /* InstantSearchSwiftUI in Frameworks */ = {isa = PBXBuildFile; productRef = AF50CD3D27FAF56A0036F549 /* InstantSearchSwiftUI */; };
 		AF50CD4127FAF57D0036F549 /* StoreItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = AF50C95E27F622C70036F549 /* StoreItem.swift */; };
 		AF50CD4227FAF5960036F549 /* SearchClient.swift in Sources */ = {isa = PBXBuildFile; fileRef = AF50C96B27F623380036F549 /* SearchClient.swift */; };
 		AF50CD4327FAF59D0036F549 /* UITableView+EmptyResult.swift in Sources */ = {isa = PBXBuildFile; fileRef = AF50C96827F622FB0036F549 /* UITableView+EmptyResult.swift */; };
-		AF50CD4427FAF5A90036F549 /* StoreItemTableViewCell+StoreItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = AF50C96027F622EA0036F549 /* StoreItemTableViewCell+StoreItem.swift */; };
 		AF50CD5627FAF6970036F549 /* InstantSearchSwiftUI in Frameworks */ = {isa = PBXBuildFile; productRef = AF50CD5527FAF6970036F549 /* InstantSearchSwiftUI */; };
 		AF50CD5D27FAF76B0036F549 /* SDWebImage in Frameworks */ = {isa = PBXBuildFile; productRef = AF50CD5C27FAF76B0036F549 /* SDWebImage */; };
 		AF50CD5E27FAF7CD0036F549 /* StoreItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = AF50C95E27F622C70036F549 /* StoreItem.swift */; };
 		AF50CD5F27FAF7D50036F549 /* SearchClient.swift in Sources */ = {isa = PBXBuildFile; fileRef = AF50C96B27F623380036F549 /* SearchClient.swift */; };
 		AF50CD6027FAF7E90036F549 /* ResultsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = AF50C9B027F6E8DF0036F549 /* ResultsViewController.swift */; };
-		AF50CD6227FAF7EF0036F549 /* StoreItemsTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = AF50C96127F622EA0036F549 /* StoreItemsTableViewController.swift */; };
-		AF50CD6327FAF7F40036F549 /* StoreItemTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = AF50C96327F622EA0036F549 /* StoreItemTableViewCell.swift */; };
 		AF50CD6527FAF80F0036F549 /* UITableView+EmptyResult.swift in Sources */ = {isa = PBXBuildFile; fileRef = AF50C96827F622FB0036F549 /* UITableView+EmptyResult.swift */; };
-		AF50CD6927FAF8890036F549 /* StoreItemTableViewCell+StoreItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = AF50C96027F622EA0036F549 /* StoreItemTableViewCell+StoreItem.swift */; };
 		AF50CD6D27FAF9A50036F549 /* SearchClient.swift in Sources */ = {isa = PBXBuildFile; fileRef = AF50C96B27F623380036F549 /* SearchClient.swift */; };
 		AF50CD6E27FAF9BD0036F549 /* StoreItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = AF50C95E27F622C70036F549 /* StoreItem.swift */; };
-		AF50CD7027FAFA630036F549 /* StoreItemCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = AF50CD6F27FAFA630036F549 /* StoreItemCollectionViewCell.swift */; };
-		AF50CD7127FAFA630036F549 /* StoreItemCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = AF50CD6F27FAFA630036F549 /* StoreItemCollectionViewCell.swift */; };
-		AF50CD7227FAFA6C0036F549 /* StoreItemTableViewCell+StoreItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = AF50C96027F622EA0036F549 /* StoreItemTableViewCell+StoreItem.swift */; };
+		AF50CD7027FAFA630036F549 /* ProductCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = AF50CD6F27FAFA630036F549 /* ProductCollectionViewCell.swift */; };
+		AF50CD7127FAFA630036F549 /* ProductCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = AF50CD6F27FAFA630036F549 /* ProductCollectionViewCell.swift */; };
 		AF50CD7527FAFA900036F549 /* SDWebImage in Frameworks */ = {isa = PBXBuildFile; productRef = AF50CD7427FAFA900036F549 /* SDWebImage */; };
-		AF50CD7627FAFAAD0036F549 /* StoreItemTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = AF50C96327F622EA0036F549 /* StoreItemTableViewCell.swift */; };
 		AF50CD7727FAFAD00036F549 /* Helpers.swift in Sources */ = {isa = PBXBuildFile; fileRef = AF50CC3327F72FF80036F549 /* Helpers.swift */; };
 		AF50CD7E27FAFB6C0036F549 /* StoreItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = AF50C95E27F622C70036F549 /* StoreItem.swift */; };
 		AF50CD7F27FAFB7A0036F549 /* ResultsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = AF50C9B027F6E8DF0036F549 /* ResultsViewController.swift */; };
 		AF50CD8127FAFB880036F549 /* SDWebImage in Frameworks */ = {isa = PBXBuildFile; productRef = AF50CD8027FAFB880036F549 /* SDWebImage */; };
 		AF50CD8227FAFB930036F549 /* SearchClient.swift in Sources */ = {isa = PBXBuildFile; fileRef = AF50C96B27F623380036F549 /* SearchClient.swift */; };
-		AF50CD8327FAFB9D0036F549 /* StoreItemsTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = AF50C96127F622EA0036F549 /* StoreItemsTableViewController.swift */; };
-		AF50CD8427FAFBA30036F549 /* StoreItemTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = AF50C96327F622EA0036F549 /* StoreItemTableViewCell.swift */; };
 		AF50CD8627FAFBBB0036F549 /* UITableView+EmptyResult.swift in Sources */ = {isa = PBXBuildFile; fileRef = AF50C96827F622FB0036F549 /* UITableView+EmptyResult.swift */; };
-		AF50CD8727FAFBC10036F549 /* StoreItemTableViewCell+StoreItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = AF50C96027F622EA0036F549 /* StoreItemTableViewCell+StoreItem.swift */; };
 		AF50CD8B27FB29A10036F549 /* SceneDelegate+Convenience.swift in Sources */ = {isa = PBXBuildFile; fileRef = AF50CD8927FB29A10036F549 /* SceneDelegate+Convenience.swift */; };
 		AF50CD8C27FB29A10036F549 /* SceneDelegate+Convenience.swift in Sources */ = {isa = PBXBuildFile; fileRef = AF50CD8927FB29A10036F549 /* SceneDelegate+Convenience.swift */; };
 		AF50CD8D27FB29A10036F549 /* SceneDelegate+Convenience.swift in Sources */ = {isa = PBXBuildFile; fileRef = AF50CD8927FB29A10036F549 /* SceneDelegate+Convenience.swift */; };
@@ -576,7 +592,6 @@
 		AF50CDF227FB31810036F549 /* StoreItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = AF50C95E27F622C70036F549 /* StoreItem.swift */; };
 		AF50CDF327FB31810036F549 /* StoreItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = AF50C95E27F622C70036F549 /* StoreItem.swift */; };
 		AF50CDF427FB31810036F549 /* StoreItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = AF50C95E27F622C70036F549 /* StoreItem.swift */; };
-		AF50CE0327FB31810036F549 /* StoreItemsTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = AF50C96127F622EA0036F549 /* StoreItemsTableViewController.swift */; };
 		AF50CE2827FB31810036F549 /* UITableView+EmptyResult.swift in Sources */ = {isa = PBXBuildFile; fileRef = AF50C96827F622FB0036F549 /* UITableView+EmptyResult.swift */; };
 		AF50CE2927FB31810036F549 /* UITableView+EmptyResult.swift in Sources */ = {isa = PBXBuildFile; fileRef = AF50C96827F622FB0036F549 /* UITableView+EmptyResult.swift */; };
 		AF50CE2A27FB31810036F549 /* UITableView+EmptyResult.swift in Sources */ = {isa = PBXBuildFile; fileRef = AF50C96827F622FB0036F549 /* UITableView+EmptyResult.swift */; };
@@ -600,10 +615,7 @@
 		AF50CE3F27FB31810036F549 /* UITableView+EmptyResult.swift in Sources */ = {isa = PBXBuildFile; fileRef = AF50C96827F622FB0036F549 /* UITableView+EmptyResult.swift */; };
 		AF50CE4027FB31810036F549 /* UITableView+EmptyResult.swift in Sources */ = {isa = PBXBuildFile; fileRef = AF50C96827F622FB0036F549 /* UITableView+EmptyResult.swift */; };
 		AF50CE4127FB33020036F549 /* StoreItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = AF50C95E27F622C70036F549 /* StoreItem.swift */; };
-		AF50CE4227FB330E0036F549 /* StoreItemsTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = AF50C96127F622EA0036F549 /* StoreItemsTableViewController.swift */; };
-		AF50CE4327FB33150036F549 /* StoreItemTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = AF50C96327F622EA0036F549 /* StoreItemTableViewCell.swift */; };
 		AF50CE4527FB33260036F549 /* UITableView+EmptyResult.swift in Sources */ = {isa = PBXBuildFile; fileRef = AF50C96827F622FB0036F549 /* UITableView+EmptyResult.swift */; };
-		AF50CE4627FB332C0036F549 /* StoreItemTableViewCell+StoreItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = AF50C96027F622EA0036F549 /* StoreItemTableViewCell+StoreItem.swift */; };
 		AF50CE4A27FB34970036F549 /* StoreItemsTableViewController+SearchResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = AF50CE4927FB34970036F549 /* StoreItemsTableViewController+SearchResponse.swift */; };
 		AF50CE5227FB34970036F549 /* StoreItemsTableViewController+SearchResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = AF50CE4927FB34970036F549 /* StoreItemsTableViewController+SearchResponse.swift */; };
 		AF50CE5327FB34970036F549 /* StoreItemsTableViewController+SearchResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = AF50CE4927FB34970036F549 /* StoreItemsTableViewController+SearchResponse.swift */; };
@@ -611,9 +623,8 @@
 		AF50CE6627FB34970036F549 /* StoreItemsTableViewController+SearchResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = AF50CE4927FB34970036F549 /* StoreItemsTableViewController+SearchResponse.swift */; };
 		AF50CE6827FB34970036F549 /* StoreItemsTableViewController+SearchResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = AF50CE4927FB34970036F549 /* StoreItemsTableViewController+SearchResponse.swift */; };
 		AF50CE6927FB34970036F549 /* StoreItemsTableViewController+SearchResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = AF50CE4927FB34970036F549 /* StoreItemsTableViewController+SearchResponse.swift */; };
-		AF50CE6A27FB34970036F549 /* StoreItemsTableViewController+SearchResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = AF50CE4927FB34970036F549 /* StoreItemsTableViewController+SearchResponse.swift */; };
-		AF50CE6C27FB34F00036F549 /* StoreItemCollectionViewCell+StoreItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = AF50CE6B27FB34F00036F549 /* StoreItemCollectionViewCell+StoreItem.swift */; };
-		AF50CE8C27FB34F00036F549 /* StoreItemCollectionViewCell+StoreItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = AF50CE6B27FB34F00036F549 /* StoreItemCollectionViewCell+StoreItem.swift */; };
+		AF50CE6C27FB34F00036F549 /* ProductCollectionViewCell+StoreItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = AF50CE6B27FB34F00036F549 /* ProductCollectionViewCell+StoreItem.swift */; };
+		AF50CE8C27FB34F00036F549 /* ProductCollectionViewCell+StoreItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = AF50CE6B27FB34F00036F549 /* ProductCollectionViewCell+StoreItem.swift */; };
 		AF50CE8F27FB3A560036F549 /* SceneDelegate+Convenience.swift in Sources */ = {isa = PBXBuildFile; fileRef = AF50CD8927FB29A10036F549 /* SceneDelegate+Convenience.swift */; };
 		AF50CEA427FB72090036F549 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = AF50CEA327FB72090036F549 /* AppDelegate.swift */; };
 		AF50CEA627FB72090036F549 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = AF50CEA527FB72090036F549 /* SceneDelegate.swift */; };
@@ -663,8 +674,6 @@
 		AF83123727FC86EC00509DF5 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = AF83122F27FC86EC00509DF5 /* AppDelegate.swift */; };
 		AF83123827FC86EC00509DF5 /* ToggleFilterDemoController.swift in Sources */ = {isa = PBXBuildFile; fileRef = AF83123027FC86EC00509DF5 /* ToggleFilterDemoController.swift */; };
 		AF83123A27FC86EC00509DF5 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = AF83123227FC86EC00509DF5 /* SceneDelegate.swift */; };
-		AF8CBDCE27FC8F1F00DBF20C /* StoreItemTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = AF50C96327F622EA0036F549 /* StoreItemTableViewCell.swift */; };
-		AF8CBDCF27FC8F2B00DBF20C /* StoreItemTableViewCell+StoreItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = AF50C96027F622EA0036F549 /* StoreItemTableViewCell+StoreItem.swift */; };
 		AFAE5503273363CE00B52A43 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = AFAE5502273363CE00B52A43 /* AppDelegate.swift */; };
 		AFAE5505273363CE00B52A43 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = AFAE5504273363CE00B52A43 /* SceneDelegate.swift */; };
 		AFAE550C273363CF00B52A43 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = AFAE550B273363CF00B52A43 /* Assets.xcassets */; };
@@ -923,11 +932,13 @@
 		4073B5A32807720100E05EF6 /* RatingFilterDemoSwiftUI.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RatingFilterDemoSwiftUI.swift; sourceTree = "<group>"; };
 		40C7C246280A16B8005DEC68 /* FacetListPersistentSelectionDemoController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FacetListPersistentSelectionDemoController.swift; sourceTree = "<group>"; };
 		40C7C249280A202F005DEC68 /* FacetListPersistentDemoSwiftUI.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FacetListPersistentDemoSwiftUI.swift; sourceTree = "<group>"; };
+		40E003B9280F80F700544E9F /* RelevantSortResultsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RelevantSortResultsViewController.swift; sourceTree = "<group>"; };
+		40E003BD280F833000544E9F /* ProductTableViewCell+StoreItem.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "ProductTableViewCell+StoreItem.swift"; sourceTree = "<group>"; };
 		40E1B06628078B0A0092B424 /* RatingView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RatingView.swift; sourceTree = "<group>"; };
 		40E1B06E280810440092B424 /* SearchDemoController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchDemoController.swift; sourceTree = "<group>"; };
 		40E1B073280811840092B424 /* SearchDemoSwiftUI.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchDemoSwiftUI.swift; sourceTree = "<group>"; };
 		40E1B07A280845970092B424 /* MultiIndexDemoController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MultiIndexDemoController.swift; sourceTree = "<group>"; };
-		40E1B07F280849EB0092B424 /* MultiIndexSwiftUIDemo.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MultiIndexSwiftUIDemo.swift; sourceTree = "<group>"; };
+		40E1B07F280849EB0092B424 /* MultiIndexDemoSwiftUI.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MultiIndexDemoSwiftUI.swift; sourceTree = "<group>"; };
 		AF46A7562747EF9C004E86F3 /* CategoriesHits.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = CategoriesHits.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		AF46A7582747EF9D004E86F3 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		AF46A75A2747EF9D004E86F3 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -954,9 +965,7 @@
 		AF50C95527F620B30036F549 /* SuggestionsTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SuggestionsTableViewController.swift; sourceTree = "<group>"; };
 		AF50C95727F620C50036F549 /* QuerySuggestions.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = QuerySuggestions.swift; sourceTree = "<group>"; };
 		AF50C95E27F622C70036F549 /* StoreItem.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StoreItem.swift; sourceTree = "<group>"; };
-		AF50C96027F622EA0036F549 /* StoreItemTableViewCell+StoreItem.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "StoreItemTableViewCell+StoreItem.swift"; sourceTree = "<group>"; };
 		AF50C96127F622EA0036F549 /* StoreItemsTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = StoreItemsTableViewController.swift; sourceTree = "<group>"; };
-		AF50C96327F622EA0036F549 /* StoreItemTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = StoreItemTableViewCell.swift; sourceTree = "<group>"; };
 		AF50C96827F622FB0036F549 /* UITableView+EmptyResult.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "UITableView+EmptyResult.swift"; sourceTree = "<group>"; };
 		AF50C96B27F623380036F549 /* SearchClient.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SearchClient.swift; sourceTree = "<group>"; };
 		AF50C99C27F6E89E0036F549 /* VoiceSearchGuide.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = VoiceSearchGuide.app; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -1092,10 +1101,10 @@
 		AF50CCF727FAEE770036F549 /* FilterListDemoController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FilterListDemoController.swift; sourceTree = "<group>"; };
 		AF50CCF827FAEE770036F549 /* FilterListDemo.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FilterListDemo.swift; sourceTree = "<group>"; };
 		AF50CCF927FAEE770036F549 /* FilterListDemoViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FilterListDemoViewController.swift; sourceTree = "<group>"; };
-		AF50CD6F27FAFA630036F549 /* StoreItemCollectionViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = StoreItemCollectionViewCell.swift; sourceTree = "<group>"; };
+		AF50CD6F27FAFA630036F549 /* ProductCollectionViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ProductCollectionViewCell.swift; sourceTree = "<group>"; };
 		AF50CD8927FB29A10036F549 /* SceneDelegate+Convenience.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "SceneDelegate+Convenience.swift"; sourceTree = "<group>"; };
 		AF50CE4927FB34970036F549 /* StoreItemsTableViewController+SearchResponse.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "StoreItemsTableViewController+SearchResponse.swift"; sourceTree = "<group>"; };
-		AF50CE6B27FB34F00036F549 /* StoreItemCollectionViewCell+StoreItem.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "StoreItemCollectionViewCell+StoreItem.swift"; sourceTree = "<group>"; };
+		AF50CE6B27FB34F00036F549 /* ProductCollectionViewCell+StoreItem.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "ProductCollectionViewCell+StoreItem.swift"; sourceTree = "<group>"; };
 		AF50CEA127FB72090036F549 /* Stats.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Stats.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		AF50CEA327FB72090036F549 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		AF50CEA527FB72090036F549 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -1507,12 +1516,11 @@
 		4022E810280CEB8C00D71D66 /* Product */ = {
 			isa = PBXGroup;
 			children = (
-				AF50C96327F622EA0036F549 /* StoreItemTableViewCell.swift */,
-				AF50C96027F622EA0036F549 /* StoreItemTableViewCell+StoreItem.swift */,
-				AF50CD6F27FAFA630036F549 /* StoreItemCollectionViewCell.swift */,
-				AF50CE6B27FB34F00036F549 /* StoreItemCollectionViewCell+StoreItem.swift */,
 				AFEFEF8227F47F7700B47F7F /* ProductTableViewCell.swift */,
 				AFEFEF8B27F47F8300B47F7F /* ProductTableViewCell+ProductHit.swift */,
+				40E003BD280F833000544E9F /* ProductTableViewCell+StoreItem.swift */,
+				AF50CD6F27FAFA630036F549 /* ProductCollectionViewCell.swift */,
+				AF50CE6B27FB34F00036F549 /* ProductCollectionViewCell+StoreItem.swift */,
 			);
 			path = Product;
 			sourceTree = "<group>";
@@ -1714,8 +1722,8 @@
 			children = (
 				AF50CA2827F71CCA0036F549 /* AppDelegate.swift */,
 				AF50CA2A27F71CCA0036F549 /* SceneDelegate.swift */,
-				404C40A5280C942000EC9FEB /* DynamicFacetDemoSwiftUI.swift */,
 				404C40A4280C942000EC9FEB /* DynamicFacetsDemoController.swift */,
+				404C40A5280C942000EC9FEB /* DynamicFacetDemoSwiftUI.swift */,
 				404C40A3280C942000EC9FEB /* DynamicFacetsDemoViewController.swift */,
 				AF50CA3127F71CCB0036F549 /* Assets.xcassets */,
 				AF50CA3327F71CCB0036F549 /* LaunchScreen.storyboard */,
@@ -1744,9 +1752,9 @@
 			children = (
 				AF50CA6327F7246D0036F549 /* AppDelegate.swift */,
 				AF50CA6527F7246D0036F549 /* SceneDelegate.swift */,
-				404C4095280C92BC00EC9FEB /* FacetListPersistentDemoViewController.swift */,
-				40C7C249280A202F005DEC68 /* FacetListPersistentDemoSwiftUI.swift */,
 				40C7C246280A16B8005DEC68 /* FacetListPersistentSelectionDemoController.swift */,
+				40C7C249280A202F005DEC68 /* FacetListPersistentDemoSwiftUI.swift */,
+				404C4095280C92BC00EC9FEB /* FacetListPersistentDemoViewController.swift */,
 				AF50CA6C27F7246E0036F549 /* Assets.xcassets */,
 				AF50CA6E27F7246E0036F549 /* LaunchScreen.storyboard */,
 				AF50CA7127F7246E0036F549 /* Info.plist */,
@@ -1759,9 +1767,9 @@
 			children = (
 				AF50CA7B27F7247C0036F549 /* AppDelegate.swift */,
 				AF50CA7D27F7247C0036F549 /* SceneDelegate.swift */,
-				404C40B3280C94C000EC9FEB /* FacetSearchDemoViewController.swift */,
 				AFB181CE27FEE8EF000AA57B /* FacetSearchDemoController.swift */,
 				AFE7BE1527FEFB83003CAC71 /* FacetSearchDemoSwiftUI.swift */,
+				404C40B3280C94C000EC9FEB /* FacetSearchDemoViewController.swift */,
 				AF50CA8427F7247D0036F549 /* Assets.xcassets */,
 				AF50CA8627F7247D0036F549 /* LaunchScreen.storyboard */,
 				AF50CA8927F7247D0036F549 /* Info.plist */,
@@ -1789,8 +1797,8 @@
 			children = (
 				AF50CAAB27F724C30036F549 /* AppDelegate.swift */,
 				AF50CAAD27F724C30036F549 /* SceneDelegate.swift */,
-				404C40C6280C954100EC9FEB /* ClearFiltersDemoSwiftUI.swift */,
 				404C40C4280C954100EC9FEB /* ClearFiltersDemoController.swift */,
+				404C40C6280C954100EC9FEB /* ClearFiltersDemoSwiftUI.swift */,
 				404C40C5280C954100EC9FEB /* ClearFiltersDemoViewController.swift */,
 				AF50CAB427F724C40036F549 /* Assets.xcassets */,
 				AF50CAB627F724C40036F549 /* LaunchScreen.storyboard */,
@@ -1804,9 +1812,9 @@
 			children = (
 				AF50CAC327F724D50036F549 /* AppDelegate.swift */,
 				AF50CAC527F724D50036F549 /* SceneDelegate.swift */,
+				AFE7BE2C2800BECD003CAC71 /* CurrentFiltersDemoController.swift */,
 				404C40D0280C959F00EC9FEB /* CurrentFiltersDemoSwiftUI.swift */,
 				404C40CF280C959F00EC9FEB /* CurrentFiltersDemoViewController.swift */,
-				AFE7BE2C2800BECD003CAC71 /* CurrentFiltersDemoController.swift */,
 				AF50CACC27F724D60036F549 /* Assets.xcassets */,
 				AF50CACE27F724D60036F549 /* LaunchScreen.storyboard */,
 				AF50CAD127F724D60036F549 /* Info.plist */,
@@ -1819,9 +1827,9 @@
 			children = (
 				AF50CADB27F724EE0036F549 /* AppDelegate.swift */,
 				AF50CADD27F724EE0036F549 /* SceneDelegate.swift */,
-				404C40D7280C95EE00EC9FEB /* FilterNumericComparisonDemoViewController.swift */,
 				404C4052280A30A200EC9FEB /* FilterNumericComparisonDemoController.swift */,
 				404C4055280A316500EC9FEB /* FilterNumericComparisonDemoSwiftUI.swift */,
+				404C40D7280C95EE00EC9FEB /* FilterNumericComparisonDemoViewController.swift */,
 				AF50CAE427F724EF0036F549 /* Assets.xcassets */,
 				AF50CAE627F724EF0036F549 /* LaunchScreen.storyboard */,
 				AF50CAE927F724EF0036F549 /* Info.plist */,
@@ -1835,8 +1843,8 @@
 				AF50CAF327F724FF0036F549 /* AppDelegate.swift */,
 				AF50CAF527F724FF0036F549 /* SceneDelegate.swift */,
 				404C40DF280C967F00EC9FEB /* FilterNumericRangeDemoController.swift */,
-				404C40E0280C967F00EC9FEB /* FilterNumericRangeDemoViewController.swift */,
 				404C40DE280C967E00EC9FEB /* FilterNumericRangeDemoSwiftUI.swift */,
+				404C40E0280C967F00EC9FEB /* FilterNumericRangeDemoViewController.swift */,
 				404C40E7280C969E00EC9FEB /* NumericRangeController.swift */,
 				404C40E8280C969E00EC9FEB /* RangeSlider.swift */,
 				4073B5942806CAE200E05EF6 /* SliderView.swift */,
@@ -1853,8 +1861,8 @@
 				AF50CB0B27F72BCD0036F549 /* AppDelegate.swift */,
 				AF50CB0D27F72BCD0036F549 /* SceneDelegate.swift */,
 				4073B5A028076E9600E05EF6 /* RatingFilterDemoController.swift */,
-				404C40EF280C976100EC9FEB /* RatingFilterDemoViewController.swift */,
 				4073B5A32807720100E05EF6 /* RatingFilterDemoSwiftUI.swift */,
+				404C40EF280C976100EC9FEB /* RatingFilterDemoViewController.swift */,
 				40E1B06628078B0A0092B424 /* RatingView.swift */,
 				AF50CB1427F72BCD0036F549 /* Assets.xcassets */,
 				AF50CB1627F72BCD0036F549 /* LaunchScreen.storyboard */,
@@ -1869,8 +1877,8 @@
 				AF50CB2327F72BDA0036F549 /* AppDelegate.swift */,
 				AF50CB2527F72BDA0036F549 /* SceneDelegate.swift */,
 				AFE7BE2628006E11003CAC71 /* SegmentedFilterDemoController.swift */,
-				404C40F4280C97AC00EC9FEB /* SegmentedFilterDemoViewController.swift */,
 				AFE7BE1F27FF2697003CAC71 /* SegmentedDemoSwiftUI.swift */,
+				404C40F4280C97AC00EC9FEB /* SegmentedFilterDemoViewController.swift */,
 				AF50CB2C27F72BDB0036F549 /* Assets.xcassets */,
 				AF50CB2E27F72BDB0036F549 /* LaunchScreen.storyboard */,
 				AF50CB3127F72BDB0036F549 /* Info.plist */,
@@ -1883,9 +1891,9 @@
 			children = (
 				AF50CB9B27F72C510036F549 /* AppDelegate.swift */,
 				AF50CB9D27F72C510036F549 /* SceneDelegate.swift */,
+				400366C92808835800A5F29E /* QueryRuleCustomDataDemoController.swift */,
 				404C40FE280C986900EC9FEB /* QueryRuleCustomDataDemoSwiftUI.swift */,
 				404C40FF280C986900EC9FEB /* QueryRuleCustomDataDemoViewController.swift */,
-				400366C92808835800A5F29E /* QueryRuleCustomDataDemoController.swift */,
 				404C4107280C98B200EC9FEB /* BannerViewController.swift */,
 				AF50CBA427F72C520036F549 /* Assets.xcassets */,
 				AF50CBA627F72C520036F549 /* LaunchScreen.storyboard */,
@@ -1917,6 +1925,7 @@
 				404C411B280C996600EC9FEB /* RelevantSortDemoController.swift */,
 				404C4119280C996500EC9FEB /* RelevantSortDemoSwiftUI.swift */,
 				404C411A280C996500EC9FEB /* RelevantSortDemoViewController.swift */,
+				40E003B9280F80F700544E9F /* RelevantSortResultsViewController.swift */,
 				404C411C280C996600EC9FEB /* RelevantSortToggleController.swift */,
 				404C4118280C996500EC9FEB /* SortByController.swift */,
 				AF50CBD427F72C6F0036F549 /* Assets.xcassets */,
@@ -1959,10 +1968,10 @@
 			children = (
 				AF50CC1327F72CB60036F549 /* AppDelegate.swift */,
 				AF50CC1527F72CB60036F549 /* SceneDelegate.swift */,
-				404C4137280C9F3C00EC9FEB /* SuggestionCollectionViewCell.swift */,
-				404C413A280C9F5400EC9FEB /* MultiIndexDemoViewController.swift */,
 				40E1B07A280845970092B424 /* MultiIndexDemoController.swift */,
-				40E1B07F280849EB0092B424 /* MultiIndexSwiftUIDemo.swift */,
+				40E1B07F280849EB0092B424 /* MultiIndexDemoSwiftUI.swift */,
+				404C413A280C9F5400EC9FEB /* MultiIndexDemoViewController.swift */,
+				404C4137280C9F3C00EC9FEB /* SuggestionCollectionViewCell.swift */,
 				AF50CC1C27F72CB60036F549 /* Assets.xcassets */,
 				AF50CC1E27F72CB60036F549 /* LaunchScreen.storyboard */,
 				AF50CC2127F72CB60036F549 /* Info.plist */,
@@ -3564,14 +3573,17 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				40E003C0280F835800544E9F /* ProductTableViewCell+StoreItem.swift in Sources */,
+				4034B6ED280F8BB300F4A303 /* ProductTableViewCell+ProductHit.swift in Sources */,
 				AF50CD9227FB29A10036F549 /* SceneDelegate+Convenience.swift in Sources */,
 				AF50C95827F620C50036F549 /* QuerySuggestions.swift in Sources */,
 				AF50C95D27F620FB0036F549 /* SearchSuggestionTableViewCell.swift in Sources */,
+				40E003CE280F85AC00544E9F /* StoreItemsTableViewController.swift in Sources */,
+				4034B6EC280F8BAA00F4A303 /* ProductTableViewCell.swift in Sources */,
 				AF50CE5227FB34970036F549 /* StoreItemsTableViewController+SearchResponse.swift in Sources */,
+				40E003C7280F84CD00544E9F /* ProductsTableViewController.swift in Sources */,
 				AF50C95F27F622C70036F549 /* StoreItem.swift in Sources */,
 				AF50C95627F620B30036F549 /* SuggestionsTableViewController.swift in Sources */,
-				AF8CBDCE27FC8F1F00DBF20C /* StoreItemTableViewCell.swift in Sources */,
-				AF8CBDCF27FC8F2B00DBF20C /* StoreItemTableViewCell+StoreItem.swift in Sources */,
 				AF50C96927F622FB0036F549 /* UITableView+EmptyResult.swift in Sources */,
 				AFB181AF27FC95B0000AA57B /* Product.swift in Sources */,
 				AF50C94427F620740036F549 /* AppDelegate.swift in Sources */,
@@ -3579,7 +3591,6 @@
 				AF50C96C27F623380036F549 /* SearchClient.swift in Sources */,
 				AF50C96A27F623130036F549 /* SearchSuggestionTableViewCell+QuerySuggestion.swift in Sources */,
 				AF50CCC127FAE6AA0036F549 /* UIView+Layout.swift in Sources */,
-				AF50C96527F622EA0036F549 /* StoreItemsTableViewController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -3589,17 +3600,19 @@
 			files = (
 				AF50C99F27F6E89E0036F549 /* AppDelegate.swift in Sources */,
 				AF50CE5327FB34970036F549 /* StoreItemsTableViewController+SearchResponse.swift in Sources */,
-				AF50C9BA27F6E90A0036F549 /* StoreItemsTableViewController.swift in Sources */,
+				4034B6E6280F8AB000F4A303 /* ProductTableViewCell.swift in Sources */,
 				AF50C9BB27F6E92F0036F549 /* StoreItem.swift in Sources */,
 				AF50C9BF27F6E9680036F549 /* SearchClient.swift in Sources */,
+				4034B6E7280F8AB900F4A303 /* ProductTableViewCell+ProductHit.swift in Sources */,
 				AF50C9A127F6E89E0036F549 /* SceneDelegate.swift in Sources */,
 				AF50C9B327F6E8DF0036F549 /* VoiceInputDemoViewController.swift in Sources */,
+				40E003C8280F84CD00544E9F /* ProductsTableViewController.swift in Sources */,
 				AF50C9BE27F6E9630036F549 /* UITableView+EmptyResult.swift in Sources */,
+				40E003CF280F85AD00544E9F /* StoreItemsTableViewController.swift in Sources */,
 				AF50CD9327FB29A10036F549 /* SceneDelegate+Convenience.swift in Sources */,
-				AF50C9BC27F6E93C0036F549 /* StoreItemTableViewCell.swift in Sources */,
 				AF50CCC227FAE6AA0036F549 /* UIView+Layout.swift in Sources */,
 				AF50C9B227F6E8DF0036F549 /* ResultsViewController.swift in Sources */,
-				AF50C9C027F6E9730036F549 /* StoreItemTableViewCell+StoreItem.swift in Sources */,
+				40E003C1280F835900544E9F /* ProductTableViewCell+StoreItem.swift in Sources */,
 				AFB181AA27FC95B0000AA57B /* Product.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -3953,15 +3966,15 @@
 				AF50CDA527FB29A10036F549 /* SceneDelegate+Convenience.swift in Sources */,
 				AF50CB9C27F72C510036F549 /* AppDelegate.swift in Sources */,
 				40E003B8280F28E800544E9F /* ProductTableViewCell+ProductHit.swift in Sources */,
+				40E003C4280F836800544E9F /* ProductTableViewCell+StoreItem.swift in Sources */,
 				AF50CD2227FAF4280036F549 /* SearchClient.swift in Sources */,
 				AF50CD2427FAF46B0036F549 /* ResultsViewController.swift in Sources */,
 				404C410B280C98D300EC9FEB /* ShopItemRow.swift in Sources */,
 				404C4109280C98B200EC9FEB /* BannerViewController.swift in Sources */,
+				40E003D4280F85B700544E9F /* StoreItemsTableViewController.swift in Sources */,
 				AF50CE6527FB34970036F549 /* StoreItemsTableViewController+SearchResponse.swift in Sources */,
 				4022E85B280E334800D71D66 /* ProductsTableViewController.swift in Sources */,
-				AF50CD2927FAF4A10036F549 /* StoreItemTableViewCell+StoreItem.swift in Sources */,
 				AF50CD2327FAF45A0036F549 /* StoreItem.swift in Sources */,
-				AF50CD2527FAF4720036F549 /* StoreItemsTableViewController.swift in Sources */,
 				40E003B7280F28DD00544E9F /* ProductTableViewCell.swift in Sources */,
 				404C4101280C986A00EC9FEB /* QueryRuleCustomDataDemoSwiftUI.swift in Sources */,
 				404C4035280A27EE00EC9FEB /* CommonSwiftUIDemoViewController.swift in Sources */,
@@ -3972,7 +3985,6 @@
 				404C410A280C98C800EC9FEB /* TemplateViewController.swift in Sources */,
 				404C4103280C986A00EC9FEB /* QueryRuleCustomDataDemoViewController.swift in Sources */,
 				AF50CB9E27F72C510036F549 /* SceneDelegate.swift in Sources */,
-				AF50CD2627FAF47B0036F549 /* StoreItemTableViewCell.swift in Sources */,
 				AF50CCD427FAE6AA0036F549 /* UIView+Layout.swift in Sources */,
 				404C404B280A281800EC9FEB /* SwiftUIDemo.swift in Sources */,
 			);
@@ -3983,23 +3995,25 @@
 			buildActionMask = 2147483647;
 			files = (
 				AF50CDA627FB29A10036F549 /* SceneDelegate+Convenience.swift in Sources */,
+				4034B6E9280F8AE300F4A303 /* ProductTableViewCell+ProductHit.swift in Sources */,
 				AF50CBB427F72C610036F549 /* AppDelegate.swift in Sources */,
-				AF50CD3927FAF54E0036F549 /* StoreItemTableViewCell.swift in Sources */,
 				AF50CE6627FB34970036F549 /* StoreItemsTableViewController+SearchResponse.swift in Sources */,
 				AF50CD4227FAF5960036F549 /* SearchClient.swift in Sources */,
 				AF50CD3727FAF5400036F549 /* ResultsViewController.swift in Sources */,
+				40E003D0280F85B100544E9F /* StoreItemsTableViewController.swift in Sources */,
 				404C4113280C991000EC9FEB /* SortByDemoSwiftUI.swift in Sources */,
-				AF50CD3827FAF54A0036F549 /* StoreItemsTableViewController.swift in Sources */,
 				404C4036280A27EE00EC9FEB /* CommonSwiftUIDemoViewController.swift in Sources */,
 				AFB181B527FC95B0000AA57B /* Product.swift in Sources */,
 				404C4116280C993400EC9FEB /* ShopItemRow.swift in Sources */,
 				404C4111280C991000EC9FEB /* SortByDemoViewController.swift in Sources */,
 				AF50CBB627F72C610036F549 /* SceneDelegate.swift in Sources */,
 				AF50CD4327FAF59D0036F549 /* UITableView+EmptyResult.swift in Sources */,
-				AF50CD4427FAF5A90036F549 /* StoreItemTableViewCell+StoreItem.swift in Sources */,
 				AF50CCD527FAE6AA0036F549 /* UIView+Layout.swift in Sources */,
 				404C4115280C991000EC9FEB /* SortByDemoController.swift in Sources */,
+				40E003C9280F84D200544E9F /* ProductsTableViewController.swift in Sources */,
 				AF50CD4127FAF57D0036F549 /* StoreItem.swift in Sources */,
+				4034B6E8280F8AD500F4A303 /* ProductTableViewCell.swift in Sources */,
+				40E003C2280F835B00544E9F /* ProductTableViewCell+StoreItem.swift in Sources */,
 				404C404C280A281800EC9FEB /* SwiftUIDemo.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -4016,14 +4030,18 @@
 				AF50CDA727FB29A10036F549 /* SceneDelegate+Convenience.swift in Sources */,
 				404C4129280C9D1000EC9FEB /* ProductTableViewCell.swift in Sources */,
 				AF50CBCE27F72C6F0036F549 /* SceneDelegate.swift in Sources */,
+				40E003D1280F85B200544E9F /* StoreItemsTableViewController.swift in Sources */,
 				AFB181B827FC95B0000AA57B /* Product.swift in Sources */,
 				404C404D280A281800EC9FEB /* SwiftUIDemo.swift in Sources */,
+				40E003BB280F80F800544E9F /* RelevantSortResultsViewController.swift in Sources */,
 				404C4126280C996600EC9FEB /* RelevantSortToggleController.swift in Sources */,
 				AF50CE3027FB31810036F549 /* UITableView+EmptyResult.swift in Sources */,
 				AF50CDE527FB31810036F549 /* StoreItem.swift in Sources */,
 				AF50CCD627FAE6AA0036F549 /* UIView+Layout.swift in Sources */,
+				40E003BC280F814900544E9F /* ProductsTableViewController.swift in Sources */,
 				404C411E280C996600EC9FEB /* SortByController.swift in Sources */,
 				404C4037280A27EE00EC9FEB /* CommonSwiftUIDemoViewController.swift in Sources */,
+				40E003BF280F833000544E9F /* ProductTableViewCell+StoreItem.swift in Sources */,
 				404C4122280C996600EC9FEB /* RelevantSortDemoViewController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -4035,18 +4053,20 @@
 				AF50CBE427F72C880036F549 /* AppDelegate.swift in Sources */,
 				AF50CDA827FB29A10036F549 /* SceneDelegate+Convenience.swift in Sources */,
 				404C412F280C9E3100EC9FEB /* RelatedItemsDemoViewController.swift in Sources */,
+				4034B6EB280F8B1000F4A303 /* ProductTableViewCell+ProductHit.swift in Sources */,
 				AFB181C127FC95B0000AA57B /* Product.swift in Sources */,
-				AF50CD6327FAF7F40036F549 /* StoreItemTableViewCell.swift in Sources */,
+				40E003C6280F837A00544E9F /* ProductTableViewCell+StoreItem.swift in Sources */,
 				AF50CD5E27FAF7CD0036F549 /* StoreItem.swift in Sources */,
 				AF50CD6527FAF80F0036F549 /* UITableView+EmptyResult.swift in Sources */,
 				AF50CD5F27FAF7D50036F549 /* SearchClient.swift in Sources */,
 				AF50CD6027FAF7E90036F549 /* ResultsViewController.swift in Sources */,
+				40E003CC280F84DA00544E9F /* ProductsTableViewController.swift in Sources */,
 				404C4038280A27EE00EC9FEB /* CommonSwiftUIDemoViewController.swift in Sources */,
-				AF50CD6227FAF7EF0036F549 /* StoreItemsTableViewController.swift in Sources */,
+				4034B6EA280F8B0700F4A303 /* ProductTableViewCell.swift in Sources */,
+				40E003D5280F85B700544E9F /* StoreItemsTableViewController.swift in Sources */,
 				404C4132280C9E3E00EC9FEB /* RecommendController.swift in Sources */,
 				AF50CBE627F72C880036F549 /* SceneDelegate.swift in Sources */,
 				AF50CE6827FB34970036F549 /* StoreItemsTableViewController+SearchResponse.swift in Sources */,
-				AF50CD6927FAF8890036F549 /* StoreItemTableViewCell+StoreItem.swift in Sources */,
 				AF50CCD727FAE6AA0036F549 /* UIView+Layout.swift in Sources */,
 				404C404E280A281800EC9FEB /* SwiftUIDemo.swift in Sources */,
 			);
@@ -4057,11 +4077,12 @@
 			buildActionMask = 2147483647;
 			files = (
 				AFB181AD27FC95B0000AA57B /* Product.swift in Sources */,
+				4034B6E4280F8A3000F4A303 /* ProductTableViewCell+ProductHit.swift in Sources */,
 				404C4039280A27EE00EC9FEB /* CommonSwiftUIDemoViewController.swift in Sources */,
 				AF50CE6927FB34970036F549 /* StoreItemsTableViewController+SearchResponse.swift in Sources */,
 				40E1B071280810440092B424 /* SearchDemoController.swift in Sources */,
-				AF50CD8427FAFBA30036F549 /* StoreItemTableViewCell.swift in Sources */,
 				AF50CD7E27FAFB6C0036F549 /* StoreItem.swift in Sources */,
+				40E003D2280F85B200544E9F /* StoreItemsTableViewController.swift in Sources */,
 				AF50CD8627FAFBBB0036F549 /* UITableView+EmptyResult.swift in Sources */,
 				404C404F280A281800EC9FEB /* SwiftUIDemo.swift in Sources */,
 				AF50CBFC27F72CA80036F549 /* AppDelegate.swift in Sources */,
@@ -4069,12 +4090,13 @@
 				404C413E280C9F7C00EC9FEB /* ShopItemRow.swift in Sources */,
 				AF50CD8227FAFB930036F549 /* SearchClient.swift in Sources */,
 				AF50CDA927FB29A10036F549 /* SceneDelegate+Convenience.swift in Sources */,
-				AF50CD8327FAFB9D0036F549 /* StoreItemsTableViewController.swift in Sources */,
 				AF50CBFE27F72CA80036F549 /* SceneDelegate.swift in Sources */,
 				AF50CCD827FAE6AA0036F549 /* UIView+Layout.swift in Sources */,
+				40E003CA280F84D400544E9F /* ProductsTableViewController.swift in Sources */,
 				404C4135280C9E8300EC9FEB /* SearchDemoViewController.swift in Sources */,
+				4034B6E3280F8A2600F4A303 /* ProductTableViewCell.swift in Sources */,
 				AF50CD7F27FAFB7A0036F549 /* ResultsViewController.swift in Sources */,
-				AF50CD8727FAFBC10036F549 /* StoreItemTableViewCell+StoreItem.swift in Sources */,
+				40E003C3280F836700544E9F /* ProductTableViewCell+StoreItem.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -4086,9 +4108,8 @@
 				AF50CD6E27FAF9BD0036F549 /* StoreItem.swift in Sources */,
 				AF50CC1427F72CB60036F549 /* AppDelegate.swift in Sources */,
 				404C413C280C9F5400EC9FEB /* MultiIndexDemoViewController.swift in Sources */,
-				AF50CE6A27FB34970036F549 /* StoreItemsTableViewController+SearchResponse.swift in Sources */,
 				404C413D280C9F7300EC9FEB /* ShopItemRow.swift in Sources */,
-				AF50CD7127FAFA630036F549 /* StoreItemCollectionViewCell.swift in Sources */,
+				AF50CD7127FAFA630036F549 /* ProductCollectionViewCell.swift in Sources */,
 				AFB181BD27FC95B0000AA57B /* Product.swift in Sources */,
 				AF50CD7727FAFAD00036F549 /* Helpers.swift in Sources */,
 				404C4050280A281800EC9FEB /* SwiftUIDemo.swift in Sources */,
@@ -4097,14 +4118,11 @@
 				AF50CCD927FAE6AA0036F549 /* UIView+Layout.swift in Sources */,
 				AF50CDAA27FB29A10036F549 /* SceneDelegate+Convenience.swift in Sources */,
 				40E1B07E280845970092B424 /* MultiIndexDemoController.swift in Sources */,
-				AF50CE0327FB31810036F549 /* StoreItemsTableViewController.swift in Sources */,
 				AF50CD6D27FAF9A50036F549 /* SearchClient.swift in Sources */,
 				404C403A280A27EE00EC9FEB /* CommonSwiftUIDemoViewController.swift in Sources */,
-				AF50CE8C27FB34F00036F549 /* StoreItemCollectionViewCell+StoreItem.swift in Sources */,
-				AF50CD7627FAFAAD0036F549 /* StoreItemTableViewCell.swift in Sources */,
+				AF50CE8C27FB34F00036F549 /* ProductCollectionViewCell+StoreItem.swift in Sources */,
 				404C4139280C9F3C00EC9FEB /* SuggestionCollectionViewCell.swift in Sources */,
-				40E1B082280849EB0092B424 /* MultiIndexSwiftUIDemo.swift in Sources */,
-				AF50CD7227FAFA6C0036F549 /* StoreItemTableViewCell+StoreItem.swift in Sources */,
+				40E1B082280849EB0092B424 /* MultiIndexDemoSwiftUI.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -4150,6 +4168,7 @@
 				404C4100280C986A00EC9FEB /* QueryRuleCustomDataDemoSwiftUI.swift in Sources */,
 				AF50CE4127FB33020036F549 /* StoreItem.swift in Sources */,
 				AFB181C327FDB6A0000AA57B /* FilterStateObservableController.swift in Sources */,
+				40E003BE280F833000544E9F /* ProductTableViewCell+StoreItem.swift in Sources */,
 				AFAE55972733E28800B52A43 /* QuerySuggestionsRecentSearches.SearchViewController.swift in Sources */,
 				AFE7BE2D2800BECD003CAC71 /* CurrentFiltersDemoController.swift in Sources */,
 				AFE7BE2728006E11003CAC71 /* SegmentedFilterDemoController.swift in Sources */,
@@ -4168,11 +4187,11 @@
 				404C40E1280C967F00EC9FEB /* FilterNumericRangeDemoSwiftUI.swift in Sources */,
 				404C4056280A316500EC9FEB /* FilterNumericComparisonDemoSwiftUI.swift in Sources */,
 				404C40E9280C969E00EC9FEB /* NumericRangeController.swift in Sources */,
-				40E1B080280849EB0092B424 /* MultiIndexSwiftUIDemo.swift in Sources */,
+				40E1B080280849EB0092B424 /* MultiIndexDemoSwiftUI.swift in Sources */,
 				AFAE55D02734ADC800B52A43 /* QuerySuggestionsAndHits.SearchViewController.swift in Sources */,
 				404C4114280C991000EC9FEB /* SortByDemoController.swift in Sources */,
 				AFE7BE1627FEFB83003CAC71 /* FacetSearchDemoSwiftUI.swift in Sources */,
-				AF50CE6C27FB34F00036F549 /* StoreItemCollectionViewCell+StoreItem.swift in Sources */,
+				AF50CE6C27FB34F00036F549 /* ProductCollectionViewCell+StoreItem.swift in Sources */,
 				404C40C0280C950600EC9FEB /* HierarchicalDemoViewController.swift in Sources */,
 				404C40F5280C97AD00EC9FEB /* SegmentedFilterDemoViewController.swift in Sources */,
 				404C4125280C996600EC9FEB /* RelevantSortToggleController.swift in Sources */,
@@ -4190,9 +4209,8 @@
 				AF5089FA2766CE9300F30F18 /* QuerySuggestionsAndHits.SearchResultsController.swift in Sources */,
 				AF5089F62766CDEE00F30F18 /* QuerySuggestionsCategories.SearchResultsController.swift in Sources */,
 				404C4138280C9F3C00EC9FEB /* SuggestionCollectionViewCell.swift in Sources */,
-				AF50CD7027FAFA630036F549 /* StoreItemCollectionViewCell.swift in Sources */,
+				AF50CD7027FAFA630036F549 /* ProductCollectionViewCell.swift in Sources */,
 				404C411D280C996600EC9FEB /* SortByController.swift in Sources */,
-				AF50CE4327FB33150036F549 /* StoreItemTableViewCell.swift in Sources */,
 				AFEFEF8C27F47F8300B47F7F /* ProductTableViewCell+ProductHit.swift in Sources */,
 				AF5089FB2766CE9B00F30F18 /* CategoriesHits.SearchViewController.swift in Sources */,
 				AF50CC3427F72FF80036F549 /* Helpers.swift in Sources */,
@@ -4223,7 +4241,6 @@
 				AF5089EC2766CAF600F30F18 /* SearchSuggestionTableViewCell+QuerySuggestion.swift in Sources */,
 				AF7FEB89272CAC5D0003BE62 /* AppDelegate.swift in Sources */,
 				404C405C280C910D00EC9FEB /* DemoListViewController.swift in Sources */,
-				AF50CE4227FB330E0036F549 /* StoreItemsTableViewController.swift in Sources */,
 				AF50C91227F5D6CA0036F549 /* QuerySuggestions.SearchResultsController.swift in Sources */,
 				AF5089F72766CE3E00F30F18 /* VoiceSearch.ViewController.swift in Sources */,
 				AF50CEC827FC44A30036F549 /* ViewControllerFactory.swift in Sources */,
@@ -4237,6 +4254,7 @@
 				404C40D1280C95A000EC9FEB /* CurrentFiltersDemoViewController.swift in Sources */,
 				AFB181A627FC8FF3000AA57B /* ToggleFilterDemoController.swift in Sources */,
 				40C7C24A280A202F005DEC68 /* FacetListPersistentDemoSwiftUI.swift in Sources */,
+				40E003CD280F85A700544E9F /* StoreItemsTableViewController.swift in Sources */,
 				404C40BE280C950600EC9FEB /* HierarchicalDemoController.swift in Sources */,
 				4073B5952806CAE200E05EF6 /* SliderView.swift in Sources */,
 				404C405D280C910D00EC9FEB /* FacetListTableController.swift in Sources */,
@@ -4245,7 +4263,6 @@
 				AF50CA0B27F6FA0C0036F549 /* QuerySuggestions.swift in Sources */,
 				404C40D8280C95EE00EC9FEB /* FilterNumericComparisonDemoViewController.swift in Sources */,
 				AF50CE4A27FB34970036F549 /* StoreItemsTableViewController+SearchResponse.swift in Sources */,
-				AF50CE4627FB332C0036F549 /* StoreItemTableViewCell+StoreItem.swift in Sources */,
 				AFAE55BB27343A3C00B52A43 /* SearchSuggestionTableViewCell.swift in Sources */,
 				40E1B06F280810440092B424 /* SearchDemoController.swift in Sources */,
 				AFAE55D92734B5B200B52A43 /* MultiIndex.SearchResultsController.swift in Sources */,
@@ -4259,6 +4276,7 @@
 				404C4131280C9E3E00EC9FEB /* RecommendController.swift in Sources */,
 				AFB181A827FC9009000AA57B /* ToggleFilterDemoViewController.swift in Sources */,
 				40E1B07B280845970092B424 /* MultiIndexDemoController.swift in Sources */,
+				40E003BA280F80F800544E9F /* RelevantSortResultsViewController.swift in Sources */,
 				404C413B280C9F5400EC9FEB /* MultiIndexDemoViewController.swift in Sources */,
 				AFB181CF27FEE8EF000AA57B /* FacetSearchDemoController.swift in Sources */,
 				404C40EB280C969E00EC9FEB /* RangeSlider.swift in Sources */,

@@ -10,7 +10,7 @@ import UIKit
 import InstantSearch
 
 class StoreItemsTableViewController: UITableViewController, HitsController {
-    
+  
   let cellIdentifier = "cellID"
   
   var hitsSource: HitsInteractor<Hit<StoreItem>>?
@@ -19,9 +19,9 @@ class StoreItemsTableViewController: UITableViewController, HitsController {
   
   override func viewDidLoad() {
     super.viewDidLoad()
-    tableView.register(StoreItemTableViewCell.self, forCellReuseIdentifier: cellIdentifier)
+    tableView.register(ProductTableViewCell.self, forCellReuseIdentifier: cellIdentifier)
   }
-    
+  
   override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
     let hitsCount = hitsSource?.numberOfHits() ?? 0
     if hitsCount == 0 {
@@ -33,7 +33,7 @@ class StoreItemsTableViewController: UITableViewController, HitsController {
   }
   
   override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-    guard let cell = tableView.dequeueReusableCell(withIdentifier: cellIdentifier, for: indexPath) as? StoreItemTableViewCell else {
+    guard let cell = tableView.dequeueReusableCell(withIdentifier: cellIdentifier, for: indexPath) as? ProductTableViewCell else {
       return UITableViewCell()
     }
     guard let hit = hitsSource?.hit(atIndex: indexPath.row) else {
@@ -42,7 +42,7 @@ class StoreItemsTableViewController: UITableViewController, HitsController {
     cell.setup(with: hit)
     return cell
   }
-    
+  
   override func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
     return 80
   }
@@ -52,5 +52,6 @@ class StoreItemsTableViewController: UITableViewController, HitsController {
       didSelect?(hit)
     }
   }
-    
+  
 }
+

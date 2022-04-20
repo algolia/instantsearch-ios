@@ -174,7 +174,7 @@ class ShowcaseDemoViewControllerFactory: ViewControllerFactory {
       viewController = RelevantSortDemoSwiftUI.viewController()
             
     case .multiIndex:
-      viewController = MultiIndexSwiftUIDemo.viewController()
+      viewController = MultiIndexDemoSwiftUI.viewController()
       
     case .facetFilterList:
       viewController = FilterListDemoSwiftUI.facetViewController()

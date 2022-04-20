@@ -1,5 +1,5 @@
 //
-//  StoreItemCollectionViewCell+StoreItem.swift
+//  ProductCollectionViewCell+StoreItem.swift
 //  Examples
 //
 //  Created by Vladislav Fitc on 04.04.2022.
@@ -9,7 +9,7 @@ import Foundation
 import UIKit
 import InstantSearchCore
 
-extension StoreItemCollectionViewCell {
+extension ProductCollectionViewCell {
   
   func setup(with productHit: Hit<StoreItem>) {
     let product = productHit.object

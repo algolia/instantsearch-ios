@@ -1,15 +1,16 @@
 //
-//  StoreItemTableViewCell.swift
-//  Guides
+//  ProductCollectionViewCell.swift
+//  DemoDirectory
 //
-//  Created by Vladislav Fitc on 31.03.2022.
+//  Created by Vladislav Fitc on 23/03/2022.
+//  Copyright © 2022 Algolia. All rights reserved.
 //
 
 import Foundation
 import UIKit
 import SDWebImage
 
-class StoreItemTableViewCell: UITableViewCell {
+class ProductCollectionViewCell: UICollectionViewCell {
   
   let itemImageView: UIImageView
   let titleLabel: UILabel
@@ -18,15 +19,15 @@ class StoreItemTableViewCell: UITableViewCell {
   
   let mainStackView: UIStackView
   let labelsStackView: UIStackView
-
-  override init(style: UITableViewCell.CellStyle, reuseIdentifier: String?) {
+  
+  override init(frame: CGRect) {
     itemImageView = .init(frame: .zero)
     titleLabel = .init(frame: .zero)
     subtitleLabel = .init(frame: .zero)
     mainStackView = .init(frame: .zero)
     labelsStackView = .init(frame: .zero)
     priceLabel = .init(frame: .zero)
-    super.init(style: style, reuseIdentifier: reuseIdentifier)
+    super.init(frame: frame)
     layout()
   }
   
@@ -35,6 +36,9 @@ class StoreItemTableViewCell: UITableViewCell {
   }
   
   private func layout() {
+    contentView.backgroundColor = .white
+    contentView.layer.cornerRadius = 12
+    
     itemImageView.sd_imageIndicator = SDWebImageActivityIndicator.gray
     itemImageView.translatesAutoresizingMaskIntoConstraints = false
     itemImageView.clipsToBounds = true
@@ -48,7 +52,7 @@ class StoreItemTableViewCell: UITableViewCell {
     subtitleLabel.translatesAutoresizingMaskIntoConstraints = false
     subtitleLabel.font = .systemFont(ofSize: 13, weight: .regular)
     subtitleLabel.textColor = .gray
-    subtitleLabel.numberOfLines = 1
+    subtitleLabel.numberOfLines = 0
     
     priceLabel.translatesAutoresizingMaskIntoConstraints = false
     priceLabel.font = .systemFont(ofSize: 14)
@@ -61,17 +65,18 @@ class StoreItemTableViewCell: UITableViewCell {
     labelsStackView.addArrangedSubview(priceLabel)
     labelsStackView.addArrangedSubview(UIView())
     
-    mainStackView.axis = .horizontal
+    mainStackView.axis = .vertical
     mainStackView.translatesAutoresizingMaskIntoConstraints = false
     mainStackView.spacing = 20
     mainStackView.addArrangedSubview(itemImageView)
     mainStackView.addArrangedSubview(labelsStackView)
     
     contentView.addSubview(mainStackView)
-    contentView.layoutMargins = .init(top: 5, left: 3, bottom: 5, right: 3)
+    layoutMargins = .init(top: 5, left: 3, bottom: 5, right: 3)
     
-    mainStackView.pin(to: contentView.layoutMarginsGuide)
     itemImageView.widthAnchor.constraint(equalTo: itemImageView.heightAnchor).isActive = true
+    mainStackView.pin(to: layoutMarginsGuide)
   }
   
 }
+

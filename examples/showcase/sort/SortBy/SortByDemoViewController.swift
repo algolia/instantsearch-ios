@@ -11,13 +11,14 @@ import InstantSearch
 
 class SortByDemoViewController: UIViewController {
     
-  var onClick: ((Int) -> Void)? = nil
   
   let demoController: SortByDemoController
 
   let searchController: UISearchController
   let textFieldController: TextFieldController
   let resultsViewController: ResultsViewController
+  
+  var onClick: ((Int) -> Void)? = nil
   
   override init(nibName nibNameOrNil: String?, bundle nibBundleOrNil: Bundle?) {
     self.demoController = .init()
@@ -36,6 +37,11 @@ class SortByDemoViewController: UIViewController {
     super.viewDidLoad()
     setupUI()
   }
+  
+  override func viewDidAppear(_ animated: Bool) {
+    super.viewDidAppear(animated)
+    searchController.isActive = true
+  }
 
   private func setup() {
     searchController.searchBar.delegate = self
@@ -43,6 +49,16 @@ class SortByDemoViewController: UIViewController {
     demoController.hitsConnector.connectController(resultsViewController.hitsViewController)
     demoController.queryInputConnector.connectController(textFieldController)
     demoController.sortByConnector.connectController(self, presenter: demoController.title(for:))
+  }
+  
+  private func setupUI() {
+    title = "Sort By"
+    view.backgroundColor = .white
+    definesPresentationContext = true
+    navigationItem.searchController = searchController
+    searchController.hidesNavigationBarDuringPresentation = false
+    searchController.showsSearchResultsController = true
+    searchController.automaticallyShowsCancelButton = false
   }
 
 }
@@ -69,24 +85,3 @@ extension SortByDemoViewController: SelectableSegmentController {
   }
   
 }
-
-
-extension SortByDemoViewController {
-  
-  fileprivate func setupUI() {
-    title = "Sort By"
-    view.backgroundColor = .white
-    definesPresentationContext = true
-    navigationItem.searchController = searchController
-    searchController.hidesNavigationBarDuringPresentation = false
-    searchController.showsSearchResultsController = true
-    searchController.automaticallyShowsCancelButton = false
-  }
-  
-  override func viewDidAppear(_ animated: Bool) {
-    super.viewDidAppear(animated)
-    searchController.isActive = true
-  }
-
-}
-

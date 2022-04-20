@@ -31,6 +31,11 @@ extension ProductTableViewCell {
     } else {
       subtitleLabel.text = product.brand
     }
+    
+    if let price = product.price {
+      priceLabel.text = "\(price) €"
+    }
+    
   }
   
 }

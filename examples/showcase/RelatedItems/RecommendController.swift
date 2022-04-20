@@ -10,7 +10,6 @@ import Foundation
 import UIKit
 import AlgoliaSearchClient
 
-
 class RecommendController {
     
   let recommendClient: RecommendClient

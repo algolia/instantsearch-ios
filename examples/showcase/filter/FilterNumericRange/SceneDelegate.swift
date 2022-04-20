@@ -13,7 +13,7 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
 
 
   func scene(_ scene: UIScene, willConnectTo session: UISceneSession, options connectionOptions: UIScene.ConnectionOptions) {
-    setMain(FilterNumberRangeDemoViewController(), for: scene)
+    setMain(FilterNumericRangeDemoViewController(), for: scene)
   }
 
 }

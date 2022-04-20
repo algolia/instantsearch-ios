@@ -29,18 +29,8 @@ struct RelevantSortDemoSwiftUI: SwiftUIDemo, PreviewProvider {
       queryInputController = QueryInputObservableController()
       statsController = StatsTextObservableController()
       demoController = RelevantSortDemoController()
-      demoController.sortByConnector.connectController(sortByController) { indexName in
-        switch indexName {
-        case "test_Bestbuy":
-          return "Most relevant"
-        case "test_Bestbuy_vr_price_asc":
-          return "Relevant Sort - Lowest Price"
-        case "test_Bestbuy_replica_price_asc":
-          return "Hard Sort - Lowest Price"
-        default:
-          return indexName.rawValue
-        }
-      }
+      demoController.sortByConnector.connectController(sortByController,
+                                                       presenter: demoController.title(for:))
       demoController.relevantSortConnector.connectController(relevantSortController)
       demoController.hitsConnector.connectController(hitsController)
       demoController.queryInputConnector.connectController(queryInputController)

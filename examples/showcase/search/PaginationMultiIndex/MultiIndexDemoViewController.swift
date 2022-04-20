@@ -104,7 +104,7 @@ class ProductsCollectionViewController: UICollectionViewController, UICollection
   override func viewDidLoad() {
     super.viewDidLoad()
     collectionView.backgroundColor = .clear
-    collectionView.register(StoreItemCollectionViewCell.self, forCellWithReuseIdentifier: MultiIndexDemoSection.products.cellIdentifier)
+    collectionView.register(ProductCollectionViewCell.self, forCellWithReuseIdentifier: MultiIndexDemoSection.products.cellIdentifier)
   }
   
   func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, insetForSectionAt section: Int) -> UIEdgeInsets {
@@ -130,7 +130,7 @@ class ProductsCollectionViewController: UICollectionViewController, UICollection
   override func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
     let cell = collectionView.dequeueReusableCell(withReuseIdentifier: MultiIndexDemoSection.products.cellIdentifier, for: indexPath)
     if let item = hitsSource?.hit(atIndex: indexPath.row) {
-      (cell as? StoreItemCollectionViewCell)?.setup(with: item)
+      (cell as? ProductCollectionViewCell)?.setup(with: item)
     }
     return cell
   }
