@@ -54,6 +54,9 @@ struct SearchDemoSwiftUI: SwiftUIDemo, PreviewProvider {
         .padding(.horizontal, 20)
         HitsList(hitsController) { (hit, index) in
           ProductRow(storeItemHit: hit!)
+            .padding()
+            .frame(height: 100)
+          Divider()
         } noResults: {
           Text("No Results")
             .frame(maxWidth: .infinity, maxHeight: .infinity)
@@ -63,6 +66,7 @@ struct SearchDemoSwiftUI: SwiftUIDemo, PreviewProvider {
       .onSubmit(of: .search) {
         queryInputController.submit()
       }
+      .padding(.horizontal, 15)
     }
     
   }

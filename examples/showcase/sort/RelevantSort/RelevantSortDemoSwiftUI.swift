@@ -66,7 +66,7 @@ struct RelevantSortDemoSwiftUI: SwiftUIDemo, PreviewProvider {
               Label(sortByController.segmentsTitles[selectedSegmentIndex], systemImage: "arrow.up.arrow.down.circle")
             }
           }
-        }.padding()
+        }
         if let state = relevantSortController.state {
           HStack {
             Text(state.hintText)
@@ -75,12 +75,18 @@ struct RelevantSortDemoSwiftUI: SwiftUIDemo, PreviewProvider {
             Spacer()
             Button(state.toggleTitle,
                    action: relevantSortController.toggle)
-          }.padding()
+          }
         }
         HitsList(hitsController) { hit, _ in
-          ProductRow(productHit: hit!)
+          VStack {
+            ProductRow(productHit: hit!)
+              .padding()
+            Divider()
+          }
+          .frame(height: 130)
         }
       }
+      .padding()
       .searchable(text: $queryInputController.query)
     }
     

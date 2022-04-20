@@ -57,9 +57,12 @@ struct SortByDemoSwiftUI: SwiftUIDemo, PreviewProvider {
         .pickerStyle(.segmented)
         HitsList(hitsController) { hit, index in
           ProductRow(storeItemHit: hit!)
+            .padding()
+            .frame(height: 100)
+          Divider()
         }
       }
-      .padding()
+      .padding(.horizontal, 16)
       .searchable(text: $queryInputController.query)
     }
     

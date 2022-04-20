@@ -8,7 +8,7 @@
 
 import Foundation
 import SwiftUI
-import InstantSearch
+import InstantSearchCore
 import InstantSearchSwiftUI
 
 struct ProductRow: View {
@@ -18,10 +18,24 @@ struct ProductRow: View {
   let details: HighlightedString
   let imageURL: URL?
   let price: Double?
+  let configuration: Configuration
+  
+  struct Configuration {
+    
+    let showDescription: Bool
+    let imageWidth: CGFloat
+    let horizontalSpacing: CGFloat
+    let verticalSpacing: CGFloat
+    
+    static let phone = Self(showDescription: true, imageWidth: 60, horizontalSpacing: 20, verticalSpacing: 5)
+    static let watch = Self(showDescription: false, imageWidth: 60, horizontalSpacing: 7, verticalSpacing: 5)
+    static let tv = Self(showDescription: true, imageWidth: 200, horizontalSpacing: 30, verticalSpacing: 10)
+
+  }
   
   var body: some View {
-    VStack {
-      HStack(alignment: .center, spacing: 20) {
+    VStack() {
+      HStack(alignment: .top, spacing: configuration.horizontalSpacing) {
         AsyncImage(url: imageURL,
                    content: { image in
           image
@@ -36,84 +50,47 @@ struct ProductRow: View {
           }
         }
         )
+        .cornerRadius(10)
         .scaledToFit()
-        .frame(width: 60,
-               height: 60,
+        .frame(maxWidth: configuration.imageWidth,
                alignment: .center)
-        VStack(alignment: .leading, spacing: 5) {
+        VStack(alignment: .leading, spacing: configuration.verticalSpacing) {
           Text(highlightedString: title,
-               highlighted: { Text($0).foregroundColor(Color(.tintColor)) })
-          .font(.system(.subheadline))
+               highlighted: { Text($0).foregroundColor(Color(.algoliaCyan)) })
+          .font(.system(.headline))
           if !subtitle.taggedString.input.isEmpty {
             Text(highlightedString: subtitle,
-                 highlighted: { Text($0).foregroundColor(Color(.tintColor)) })
-            .font(.system(.footnote))
-            .foregroundColor(.gray)
+                 highlighted: { Text($0).foregroundColor(Color(.algoliaCyan)) })
+            .font(.system(.subheadline))
           }
-          if !details.taggedString.input.isEmpty {
+          if !details.taggedString.input.isEmpty, configuration.showDescription {
             Text(highlightedString: details,
-                 highlighted: { Text($0).foregroundColor(Color(.tintColor)) })
-              .font(.system(.caption2))
+                 highlighted: { Text($0).foregroundColor(Color(.algoliaCyan)) })
+            .font(.system(.caption))
           }
-          if let priceString = self.priceString {
-            HStack(alignment: .bottom, spacing: 2) {
-              Text("\(priceString)€")
-                .foregroundColor(.black)
-                .font(.system(.caption))
-            }
+          if let price = price {
+            Text(String(format: "%.2f €", price))
+              .font(.system(.callout))
           }
         }.multilineTextAlignment(.leading)
+        Spacer()
       }
-      .frame(maxWidth: .infinity,
-             idealHeight: 80,
-             maxHeight: 80,
-             alignment: .leading)
-      .padding(.horizontal, 20)
-      Divider()
+      Spacer()
     }
-  }
-  
-  static let priceFormatter: NumberFormatter = {
-    let formatter = NumberFormatter()
-    formatter.numberStyle = .decimal
-    formatter.maximumFractionDigits = 2
-    return formatter
-  }()
-  
-  var priceString: String? {
-    price
-      .flatMap(NSNumber.init)
-      .flatMap(ProductRow.priceFormatter.string)
   }
   
   init(title: HighlightedString = .init(string: ""),
        subtitle: HighlightedString = .init(string: ""),
        details: HighlightedString = .init(string: ""),
        imageURL: URL? = nil,
-       price: Double? = nil) {
+       price: Double? = nil,
+       configuration: Configuration = .phone) {
     self.title = title
     self.subtitle = subtitle
     self.details = details
     self.imageURL = imageURL
     self.price = price
-  }
-  
-  init(storeItemHit: Hit<StoreItem>) {
-    let item = storeItemHit.object
-    self.title = storeItemHit.hightlightedString(forKey: "name") ?? HighlightedString(string: item.name)
-    self.subtitle = storeItemHit.hightlightedString(forKey: "brand") ?? HighlightedString(string: item.brand ?? "")
-    self.details = HighlightedString(string: "")
-    self.imageURL = item.images.first ?? URL(string: "google.com")!
-    self.price = item.price
-  }
-  
-  init(productHit: Hit<Product>) {
-    let product = productHit.object
-    title = productHit.hightlightedString(forKey: "name") ?? HighlightedString(string: product.name)
-    subtitle = productHit.hightlightedString(forKey: "brand") ?? HighlightedString(string: product.brand ?? "")
-    details = productHit.hightlightedString(forKey: "description") ?? HighlightedString(string: product.description)
-    imageURL = product.image
-    price = nil
+    self.configuration = configuration
   }
   
 }

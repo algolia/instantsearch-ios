@@ -40,17 +40,9 @@ struct ContentView: View {
     var body: some View {
       NavigationView {
         HitsList(hitsController) { (hit, index) in
-          HStack(alignment: .top, spacing: 30) {
-            image(for: hit)
-              .frame(maxWidth: 200)
-              .cornerRadius(10)
-            Text(hit?.object.name ?? "")
-              .multilineTextAlignment(.leading)
-              .font(.footnote)
-              .lineLimit(2)
-              .padding(.vertical, 10)
-            Spacer()
-          }
+          ProductRow(storeItemHit: hit!, configuration: .tv)
+            .padding(.vertical, 5)
+            .frame(height: 300)
           Divider()
         } noResults: {
           Text("No Results")

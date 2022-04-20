@@ -37,3 +37,9 @@ extension UIColor {
   static let algoliaCyan = UIColor(hexString: "5468FF")
 
 }
+
+extension CGColor {
+  
+  static let algoliaCyan = CGColor(red: 84/255, green: 104/255, blue: 255/255, alpha: 1)
+  
+}
