@@ -122,14 +122,14 @@
 		404C4099280C92FA00EC9FEB /* FilterStateObservableController.swift in Sources */ = {isa = PBXBuildFile; fileRef = AFB181C227FDB6A0000AA57B /* FilterStateObservableController.swift */; };
 		404C409B280C932600EC9FEB /* FilterStateDebugView.swift in Sources */ = {isa = PBXBuildFile; fileRef = AFB181CA27FE1150000AA57B /* FilterStateDebugView.swift */; };
 		404C409C280C932B00EC9FEB /* FilterStateDebugView.swift in Sources */ = {isa = PBXBuildFile; fileRef = AFB181CA27FE1150000AA57B /* FilterStateDebugView.swift */; };
-		404C409E280C935600EC9FEB /* FiltersDebugViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 404C409D280C935600EC9FEB /* FiltersDebugViewController.swift */; };
-		404C409F280C935600EC9FEB /* FiltersDebugViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 404C409D280C935600EC9FEB /* FiltersDebugViewController.swift */; };
+		404C409E280C935600EC9FEB /* FilterDebugController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 404C409D280C935600EC9FEB /* FilterDebugController.swift */; };
+		404C409F280C935600EC9FEB /* FilterDebugController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 404C409D280C935600EC9FEB /* FilterDebugController.swift */; };
 		404C40A1280C936E00EC9FEB /* FilterDebugViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 404C40A0280C936E00EC9FEB /* FilterDebugViewController.swift */; };
 		404C40A2280C936E00EC9FEB /* FilterDebugViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 404C40A0280C936E00EC9FEB /* FilterDebugViewController.swift */; };
 		404C40A6280C942000EC9FEB /* DynamicFacetsDemoViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 404C40A3280C942000EC9FEB /* DynamicFacetsDemoViewController.swift */; };
 		404C40A7280C942000EC9FEB /* DynamicFacetsDemoController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 404C40A4280C942000EC9FEB /* DynamicFacetsDemoController.swift */; };
 		404C40A8280C942000EC9FEB /* DynamicFacetDemoSwiftUI.swift in Sources */ = {isa = PBXBuildFile; fileRef = 404C40A5280C942000EC9FEB /* DynamicFacetDemoSwiftUI.swift */; };
-		404C40A9280C944B00EC9FEB /* FiltersDebugViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 404C409D280C935600EC9FEB /* FiltersDebugViewController.swift */; };
+		404C40A9280C944B00EC9FEB /* FilterDebugController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 404C409D280C935600EC9FEB /* FilterDebugController.swift */; };
 		404C40AD280C946700EC9FEB /* FacetListDemoViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 404C40AA280C946700EC9FEB /* FacetListDemoViewController.swift */; };
 		404C40AE280C946700EC9FEB /* FacetListDemoViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 404C40AA280C946700EC9FEB /* FacetListDemoViewController.swift */; };
 		404C40AF280C946700EC9FEB /* FacetListDemoController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 404C40AB280C946700EC9FEB /* FacetListDemoController.swift */; };
@@ -140,7 +140,7 @@
 		404C40B5280C94C000EC9FEB /* FacetSearchDemoViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 404C40B3280C94C000EC9FEB /* FacetSearchDemoViewController.swift */; };
 		404C40B6280C94CE00EC9FEB /* FilterDebugViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 404C40A0280C936E00EC9FEB /* FilterDebugViewController.swift */; };
 		404C40B7280C94D500EC9FEB /* FilterStateObservableController.swift in Sources */ = {isa = PBXBuildFile; fileRef = AFB181C227FDB6A0000AA57B /* FilterStateObservableController.swift */; };
-		404C40B8280C94DB00EC9FEB /* FiltersDebugViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 404C409D280C935600EC9FEB /* FiltersDebugViewController.swift */; };
+		404C40B8280C94DB00EC9FEB /* FilterDebugController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 404C409D280C935600EC9FEB /* FilterDebugController.swift */; };
 		404C40BC280C950600EC9FEB /* HierarchicalDemoSwiftUI.swift in Sources */ = {isa = PBXBuildFile; fileRef = 404C40B9280C950500EC9FEB /* HierarchicalDemoSwiftUI.swift */; };
 		404C40BD280C950600EC9FEB /* HierarchicalDemoSwiftUI.swift in Sources */ = {isa = PBXBuildFile; fileRef = 404C40B9280C950500EC9FEB /* HierarchicalDemoSwiftUI.swift */; };
 		404C40BE280C950600EC9FEB /* HierarchicalDemoController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 404C40BA280C950500EC9FEB /* HierarchicalDemoController.swift */; };
@@ -148,7 +148,7 @@
 		404C40C0280C950600EC9FEB /* HierarchicalDemoViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 404C40BB280C950600EC9FEB /* HierarchicalDemoViewController.swift */; };
 		404C40C1280C950600EC9FEB /* HierarchicalDemoViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 404C40BB280C950600EC9FEB /* HierarchicalDemoViewController.swift */; };
 		404C40C2280C951B00EC9FEB /* FilterDebugViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 404C40A0280C936E00EC9FEB /* FilterDebugViewController.swift */; };
-		404C40C3280C952200EC9FEB /* FiltersDebugViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 404C409D280C935600EC9FEB /* FiltersDebugViewController.swift */; };
+		404C40C3280C952200EC9FEB /* FilterDebugController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 404C409D280C935600EC9FEB /* FilterDebugController.swift */; };
 		404C40C7280C954100EC9FEB /* ClearFiltersDemoController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 404C40C4280C954100EC9FEB /* ClearFiltersDemoController.swift */; };
 		404C40C8280C954100EC9FEB /* ClearFiltersDemoController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 404C40C4280C954100EC9FEB /* ClearFiltersDemoController.swift */; };
 		404C40C9280C954100EC9FEB /* ClearFiltersDemoViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 404C40C5280C954100EC9FEB /* ClearFiltersDemoViewController.swift */; };
@@ -156,17 +156,17 @@
 		404C40CB280C954100EC9FEB /* ClearFiltersDemoSwiftUI.swift in Sources */ = {isa = PBXBuildFile; fileRef = 404C40C6280C954100EC9FEB /* ClearFiltersDemoSwiftUI.swift */; };
 		404C40CC280C954100EC9FEB /* ClearFiltersDemoSwiftUI.swift in Sources */ = {isa = PBXBuildFile; fileRef = 404C40C6280C954100EC9FEB /* ClearFiltersDemoSwiftUI.swift */; };
 		404C40CD280C955800EC9FEB /* FilterDebugViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 404C40A0280C936E00EC9FEB /* FilterDebugViewController.swift */; };
-		404C40CE280C955E00EC9FEB /* FiltersDebugViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 404C409D280C935600EC9FEB /* FiltersDebugViewController.swift */; };
+		404C40CE280C955E00EC9FEB /* FilterDebugController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 404C409D280C935600EC9FEB /* FilterDebugController.swift */; };
 		404C40D1280C95A000EC9FEB /* CurrentFiltersDemoViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 404C40CF280C959F00EC9FEB /* CurrentFiltersDemoViewController.swift */; };
 		404C40D2280C95A000EC9FEB /* CurrentFiltersDemoViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 404C40CF280C959F00EC9FEB /* CurrentFiltersDemoViewController.swift */; };
 		404C40D3280C95A000EC9FEB /* CurrentFiltersDemoSwiftUI.swift in Sources */ = {isa = PBXBuildFile; fileRef = 404C40D0280C959F00EC9FEB /* CurrentFiltersDemoSwiftUI.swift */; };
 		404C40D4280C95A000EC9FEB /* CurrentFiltersDemoSwiftUI.swift in Sources */ = {isa = PBXBuildFile; fileRef = 404C40D0280C959F00EC9FEB /* CurrentFiltersDemoSwiftUI.swift */; };
 		404C40D5280C95BA00EC9FEB /* FilterDebugViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 404C40A0280C936E00EC9FEB /* FilterDebugViewController.swift */; };
-		404C40D6280C95C100EC9FEB /* FiltersDebugViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 404C409D280C935600EC9FEB /* FiltersDebugViewController.swift */; };
+		404C40D6280C95C100EC9FEB /* FilterDebugController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 404C409D280C935600EC9FEB /* FilterDebugController.swift */; };
 		404C40D8280C95EE00EC9FEB /* FilterNumericComparisonDemoViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 404C40D7280C95EE00EC9FEB /* FilterNumericComparisonDemoViewController.swift */; };
 		404C40D9280C95EE00EC9FEB /* FilterNumericComparisonDemoViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 404C40D7280C95EE00EC9FEB /* FilterNumericComparisonDemoViewController.swift */; };
 		404C40DA280C960B00EC9FEB /* FilterDebugViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 404C40A0280C936E00EC9FEB /* FilterDebugViewController.swift */; };
-		404C40DB280C961400EC9FEB /* FiltersDebugViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 404C409D280C935600EC9FEB /* FiltersDebugViewController.swift */; };
+		404C40DB280C961400EC9FEB /* FilterDebugController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 404C409D280C935600EC9FEB /* FilterDebugController.swift */; };
 		404C40DC280C961B00EC9FEB /* FilterStateObservableController.swift in Sources */ = {isa = PBXBuildFile; fileRef = AFB181C227FDB6A0000AA57B /* FilterStateObservableController.swift */; };
 		404C40DD280C962800EC9FEB /* FilterStateDebugView.swift in Sources */ = {isa = PBXBuildFile; fileRef = AFB181CA27FE1150000AA57B /* FilterStateDebugView.swift */; };
 		404C40E1280C967F00EC9FEB /* FilterNumericRangeDemoSwiftUI.swift in Sources */ = {isa = PBXBuildFile; fileRef = 404C40DE280C967E00EC9FEB /* FilterNumericRangeDemoSwiftUI.swift */; };
@@ -180,19 +180,19 @@
 		404C40EB280C969E00EC9FEB /* RangeSlider.swift in Sources */ = {isa = PBXBuildFile; fileRef = 404C40E8280C969E00EC9FEB /* RangeSlider.swift */; };
 		404C40EC280C969E00EC9FEB /* RangeSlider.swift in Sources */ = {isa = PBXBuildFile; fileRef = 404C40E8280C969E00EC9FEB /* RangeSlider.swift */; };
 		404C40ED280C96AF00EC9FEB /* FilterDebugViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 404C40A0280C936E00EC9FEB /* FilterDebugViewController.swift */; };
-		404C40EE280C96B600EC9FEB /* FiltersDebugViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 404C409D280C935600EC9FEB /* FiltersDebugViewController.swift */; };
+		404C40EE280C96B600EC9FEB /* FilterDebugController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 404C409D280C935600EC9FEB /* FilterDebugController.swift */; };
 		404C40F0280C976100EC9FEB /* RatingFilterDemoViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 404C40EF280C976100EC9FEB /* RatingFilterDemoViewController.swift */; };
 		404C40F1280C976100EC9FEB /* RatingFilterDemoViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 404C40EF280C976100EC9FEB /* RatingFilterDemoViewController.swift */; };
-		404C40F2280C977C00EC9FEB /* FiltersDebugViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 404C409D280C935600EC9FEB /* FiltersDebugViewController.swift */; };
+		404C40F2280C977C00EC9FEB /* FilterDebugController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 404C409D280C935600EC9FEB /* FilterDebugController.swift */; };
 		404C40F3280C978300EC9FEB /* FilterDebugViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 404C40A0280C936E00EC9FEB /* FilterDebugViewController.swift */; };
 		404C40F5280C97AD00EC9FEB /* SegmentedFilterDemoViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 404C40F4280C97AC00EC9FEB /* SegmentedFilterDemoViewController.swift */; };
 		404C40F6280C97AD00EC9FEB /* SegmentedFilterDemoViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 404C40F4280C97AC00EC9FEB /* SegmentedFilterDemoViewController.swift */; };
-		404C40F7280C97C000EC9FEB /* FiltersDebugViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 404C409D280C935600EC9FEB /* FiltersDebugViewController.swift */; };
+		404C40F7280C97C000EC9FEB /* FilterDebugController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 404C409D280C935600EC9FEB /* FilterDebugController.swift */; };
 		404C40F8280C97C800EC9FEB /* FilterDebugViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 404C40A0280C936E00EC9FEB /* FilterDebugViewController.swift */; };
 		404C40F9280C980300EC9FEB /* FilterDebugViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 404C40A0280C936E00EC9FEB /* FilterDebugViewController.swift */; };
-		404C40FA280C980A00EC9FEB /* FiltersDebugViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 404C409D280C935600EC9FEB /* FiltersDebugViewController.swift */; };
+		404C40FA280C980A00EC9FEB /* FilterDebugController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 404C409D280C935600EC9FEB /* FilterDebugController.swift */; };
 		404C40FB280C982600EC9FEB /* FilterDebugViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 404C40A0280C936E00EC9FEB /* FilterDebugViewController.swift */; };
-		404C40FD280C983500EC9FEB /* FiltersDebugViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 404C409D280C935600EC9FEB /* FiltersDebugViewController.swift */; };
+		404C40FD280C983500EC9FEB /* FilterDebugController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 404C409D280C935600EC9FEB /* FilterDebugController.swift */; };
 		404C4100280C986A00EC9FEB /* QueryRuleCustomDataDemoSwiftUI.swift in Sources */ = {isa = PBXBuildFile; fileRef = 404C40FE280C986900EC9FEB /* QueryRuleCustomDataDemoSwiftUI.swift */; };
 		404C4101280C986A00EC9FEB /* QueryRuleCustomDataDemoSwiftUI.swift in Sources */ = {isa = PBXBuildFile; fileRef = 404C40FE280C986900EC9FEB /* QueryRuleCustomDataDemoSwiftUI.swift */; };
 		404C4102280C986A00EC9FEB /* QueryRuleCustomDataDemoViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 404C40FF280C986900EC9FEB /* QueryRuleCustomDataDemoViewController.swift */; };
@@ -256,7 +256,7 @@
 		4073B5A42807720100E05EF6 /* RatingFilterDemoSwiftUI.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4073B5A32807720100E05EF6 /* RatingFilterDemoSwiftUI.swift */; };
 		4073B5A52807720100E05EF6 /* RatingFilterDemoSwiftUI.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4073B5A32807720100E05EF6 /* RatingFilterDemoSwiftUI.swift */; };
 		40935542280CA54E00EB9AEA /* FilterDebugViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 404C40A0280C936E00EC9FEB /* FilterDebugViewController.swift */; };
-		40935543280CA55700EB9AEA /* FiltersDebugViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 404C409D280C935600EC9FEB /* FiltersDebugViewController.swift */; };
+		40935543280CA55700EB9AEA /* FilterDebugController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 404C409D280C935600EC9FEB /* FilterDebugController.swift */; };
 		40C7C23F2809BC55005DEC68 /* InstantSearchSwiftUI in Frameworks */ = {isa = PBXBuildFile; productRef = 40C7C23E2809BC55005DEC68 /* InstantSearchSwiftUI */; };
 		40C7C2422809BC9E005DEC68 /* FilterStateObservableController.swift in Sources */ = {isa = PBXBuildFile; fileRef = AFB181C227FDB6A0000AA57B /* FilterStateObservableController.swift */; };
 		40C7C2432809BCBF005DEC68 /* FilterStateObservableController.swift in Sources */ = {isa = PBXBuildFile; fileRef = AFB181C227FDB6A0000AA57B /* FilterStateObservableController.swift */; };
@@ -897,7 +897,7 @@
 		404C405A280C910C00EC9FEB /* FacetListTableController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FacetListTableController.swift; sourceTree = "<group>"; };
 		404C405B280C910D00EC9FEB /* TemplateViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TemplateViewController.swift; sourceTree = "<group>"; };
 		404C4095280C92BC00EC9FEB /* FacetListPersistentDemoViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FacetListPersistentDemoViewController.swift; sourceTree = "<group>"; };
-		404C409D280C935600EC9FEB /* FiltersDebugViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FiltersDebugViewController.swift; sourceTree = "<group>"; };
+		404C409D280C935600EC9FEB /* FilterDebugController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FilterDebugController.swift; sourceTree = "<group>"; };
 		404C40A0280C936E00EC9FEB /* FilterDebugViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FilterDebugViewController.swift; sourceTree = "<group>"; };
 		404C40A3280C942000EC9FEB /* DynamicFacetsDemoViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DynamicFacetsDemoViewController.swift; sourceTree = "<group>"; };
 		404C40A4280C942000EC9FEB /* DynamicFacetsDemoController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DynamicFacetsDemoController.swift; sourceTree = "<group>"; };
@@ -2016,7 +2016,7 @@
 				40E1B06E280810440092B424 /* SearchDemoController.swift */,
 				AF50CCBE27FAE6AA0036F549 /* UIView+Layout.swift */,
 				4073B59D28076B6F00E05EF6 /* Double+Range.swift */,
-				404C409D280C935600EC9FEB /* FiltersDebugViewController.swift */,
+				404C409D280C935600EC9FEB /* FilterDebugController.swift */,
 				404C40A0280C936E00EC9FEB /* FilterDebugViewController.swift */,
 				404C403C280A281800EC9FEB /* SwiftUIDemo.swift */,
 			);
@@ -3683,7 +3683,7 @@
 				404C40A8280C942000EC9FEB /* DynamicFacetDemoSwiftUI.swift in Sources */,
 				AF50CA4427F7220B0036F549 /* UITableView+EmptyResult.swift in Sources */,
 				400366CF2809BA2000A5F29E /* FilterStateObservableController.swift in Sources */,
-				404C40A9280C944B00EC9FEB /* FiltersDebugViewController.swift in Sources */,
+				404C40A9280C944B00EC9FEB /* FilterDebugController.swift in Sources */,
 				AFE7BE1E27FF07C8003CAC71 /* DynamicFacetList.swift in Sources */,
 				AF50CA2927F71CCA0036F549 /* AppDelegate.swift in Sources */,
 				404C4088280C91C800EC9FEB /* CommonSwiftUIDemoViewController.swift in Sources */,
@@ -3717,7 +3717,7 @@
 				404C4094280C927900EC9FEB /* FacetListTableController.swift in Sources */,
 				404C40AE280C946700EC9FEB /* FacetListDemoViewController.swift in Sources */,
 				404C40B0280C946700EC9FEB /* FacetListDemoController.swift in Sources */,
-				40935543280CA55700EB9AEA /* FiltersDebugViewController.swift in Sources */,
+				40935543280CA55700EB9AEA /* FilterDebugController.swift in Sources */,
 				AF50CCC627FAE6AA0036F549 /* UIView+Layout.swift in Sources */,
 				404C40B2280C946700EC9FEB /* FacetListDemoSwiftUI.swift in Sources */,
 				AF50CA4E27F724530036F549 /* SceneDelegate.swift in Sources */,
@@ -3743,7 +3743,7 @@
 				AFB181BB27FC95B0000AA57B /* Product.swift in Sources */,
 				404C40A2280C936E00EC9FEB /* FilterDebugViewController.swift in Sources */,
 				404C4098280C92ED00EC9FEB /* FacetListTableController.swift in Sources */,
-				404C409F280C935600EC9FEB /* FiltersDebugViewController.swift in Sources */,
+				404C409F280C935600EC9FEB /* FilterDebugController.swift in Sources */,
 				40C7C248280A16B8005DEC68 /* FacetListPersistentSelectionDemoController.swift in Sources */,
 				404C4099280C92FA00EC9FEB /* FilterStateObservableController.swift in Sources */,
 				404C4040280A281800EC9FEB /* SwiftUIDemo.swift in Sources */,
@@ -3758,7 +3758,7 @@
 				AF50CE2827FB31810036F549 /* UITableView+EmptyResult.swift in Sources */,
 				AF50CA7C27F7247C0036F549 /* AppDelegate.swift in Sources */,
 				404C40B5280C94C000EC9FEB /* FacetSearchDemoViewController.swift in Sources */,
-				404C40B8280C94DB00EC9FEB /* FiltersDebugViewController.swift in Sources */,
+				404C40B8280C94DB00EC9FEB /* FilterDebugController.swift in Sources */,
 				404C409C280C932B00EC9FEB /* FilterStateDebugView.swift in Sources */,
 				404C40B7280C94D500EC9FEB /* FilterStateObservableController.swift in Sources */,
 				AF50CD9927FB29A10036F549 /* SceneDelegate+Convenience.swift in Sources */,
@@ -3783,7 +3783,7 @@
 				AF50CA9427F724970036F549 /* AppDelegate.swift in Sources */,
 				404C402C280A27EE00EC9FEB /* CommonSwiftUIDemoViewController.swift in Sources */,
 				AF50CA9627F724970036F549 /* SceneDelegate.swift in Sources */,
-				404C40C3280C952200EC9FEB /* FiltersDebugViewController.swift in Sources */,
+				404C40C3280C952200EC9FEB /* FilterDebugController.swift in Sources */,
 				AF50CC5C27F744350036F549 /* SearchClient.swift in Sources */,
 				AF50CCC927FAE6AA0036F549 /* UIView+Layout.swift in Sources */,
 				AF50CD9A27FB29A10036F549 /* SceneDelegate+Convenience.swift in Sources */,
@@ -3808,7 +3808,7 @@
 				AFE7BE2A2800739F003CAC71 /* FilterStateObservableController.swift in Sources */,
 				404C40CC280C954100EC9FEB /* ClearFiltersDemoSwiftUI.swift in Sources */,
 				AF50CE2E27FB31810036F549 /* UITableView+EmptyResult.swift in Sources */,
-				404C40CE280C955E00EC9FEB /* FiltersDebugViewController.swift in Sources */,
+				404C40CE280C955E00EC9FEB /* FilterDebugController.swift in Sources */,
 				404C40CA280C954100EC9FEB /* ClearFiltersDemoViewController.swift in Sources */,
 				404C402E280A27EE00EC9FEB /* CommonSwiftUIDemoViewController.swift in Sources */,
 				AF50CCCA27FAE6AA0036F549 /* UIView+Layout.swift in Sources */,
@@ -3833,7 +3833,7 @@
 				404C402F280A27EE00EC9FEB /* CommonSwiftUIDemoViewController.swift in Sources */,
 				AFE7BE2E2800BECD003CAC71 /* CurrentFiltersDemoController.swift in Sources */,
 				AF50CE3E27FB31810036F549 /* UITableView+EmptyResult.swift in Sources */,
-				404C40D6280C95C100EC9FEB /* FiltersDebugViewController.swift in Sources */,
+				404C40D6280C95C100EC9FEB /* FilterDebugController.swift in Sources */,
 				AF50CC9327F7463E0036F549 /* Helpers.swift in Sources */,
 				AF50CAC627F724D50036F549 /* SceneDelegate.swift in Sources */,
 				404C4045280A281800EC9FEB /* SwiftUIDemo.swift in Sources */,
@@ -3858,7 +3858,7 @@
 				AF50CCCC27FAE6AA0036F549 /* UIView+Layout.swift in Sources */,
 				AF50CADC27F724EE0036F549 /* AppDelegate.swift in Sources */,
 				AF50CC9627F7463F0036F549 /* Helpers.swift in Sources */,
-				404C40DB280C961400EC9FEB /* FiltersDebugViewController.swift in Sources */,
+				404C40DB280C961400EC9FEB /* FilterDebugController.swift in Sources */,
 				404C40DC280C961B00EC9FEB /* FilterStateObservableController.swift in Sources */,
 				AF50CD9D27FB29A10036F549 /* SceneDelegate+Convenience.swift in Sources */,
 				404C4054280A30A200EC9FEB /* FilterNumericComparisonDemoController.swift in Sources */,
@@ -3895,7 +3895,7 @@
 				404C40EA280C969E00EC9FEB /* NumericRangeController.swift in Sources */,
 				4073B5962806CAE200E05EF6 /* SliderView.swift in Sources */,
 				404C40EC280C969E00EC9FEB /* RangeSlider.swift in Sources */,
-				404C40EE280C96B600EC9FEB /* FiltersDebugViewController.swift in Sources */,
+				404C40EE280C96B600EC9FEB /* FilterDebugController.swift in Sources */,
 				400366D22809BAE000A5F29E /* FilterStateDebugView.swift in Sources */,
 				404C4031280A27EE00EC9FEB /* CommonSwiftUIDemoViewController.swift in Sources */,
 				404C40E6280C967F00EC9FEB /* FilterNumericRangeDemoViewController.swift in Sources */,
@@ -3924,7 +3924,7 @@
 				AF50CDF327FB31810036F549 /* StoreItem.swift in Sources */,
 				AF50CC9A27F746400036F549 /* SearchClient.swift in Sources */,
 				4073B5A228076E9600E05EF6 /* RatingFilterDemoController.swift in Sources */,
-				404C40F2280C977C00EC9FEB /* FiltersDebugViewController.swift in Sources */,
+				404C40F2280C977C00EC9FEB /* FilterDebugController.swift in Sources */,
 				AF50CCCE27FAE6AA0036F549 /* UIView+Layout.swift in Sources */,
 				4073B5A52807720100E05EF6 /* RatingFilterDemoSwiftUI.swift in Sources */,
 				404C4048280A281800EC9FEB /* SwiftUIDemo.swift in Sources */,
@@ -3952,7 +3952,7 @@
 				404C40F8280C97C800EC9FEB /* FilterDebugViewController.swift in Sources */,
 				404C40F6280C97AD00EC9FEB /* SegmentedFilterDemoViewController.swift in Sources */,
 				AFE7BE2528006C7F003CAC71 /* FilterStateDebugView.swift in Sources */,
-				404C40F7280C97C000EC9FEB /* FiltersDebugViewController.swift in Sources */,
+				404C40F7280C97C000EC9FEB /* FilterDebugController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -3964,7 +3964,7 @@
 				AF50CE3C27FB31810036F549 /* UITableView+EmptyResult.swift in Sources */,
 				404C4034280A27EE00EC9FEB /* CommonSwiftUIDemoViewController.swift in Sources */,
 				AF50CCA227F746410036F549 /* Helpers.swift in Sources */,
-				404C40FA280C980A00EC9FEB /* FiltersDebugViewController.swift in Sources */,
+				404C40FA280C980A00EC9FEB /* FilterDebugController.swift in Sources */,
 				AF50CCA027F746410036F549 /* SearchClient.swift in Sources */,
 				AF50CDA127FB29A10036F549 /* SceneDelegate+Convenience.swift in Sources */,
 				AF50CCD027FAE6AA0036F549 /* UIView+Layout.swift in Sources */,
@@ -4256,7 +4256,7 @@
 				404C40B4280C94C000EC9FEB /* FacetSearchDemoViewController.swift in Sources */,
 				AF50CA1A27F6FA7D0036F549 /* ProductRow.swift in Sources */,
 				404C40B1280C946700EC9FEB /* FacetListDemoSwiftUI.swift in Sources */,
-				404C409E280C935600EC9FEB /* FiltersDebugViewController.swift in Sources */,
+				404C409E280C935600EC9FEB /* FilterDebugController.swift in Sources */,
 				AF83121D27FC7FC200509DF5 /* MainViewController.swift in Sources */,
 				404C40E5280C967F00EC9FEB /* FilterNumericRangeDemoViewController.swift in Sources */,
 				404C40E3280C967F00EC9FEB /* FilterNumericRangeDemoController.swift in Sources */,
@@ -4337,7 +4337,7 @@
 				AF83122927FC802B00509DF5 /* Helpers.swift in Sources */,
 				AF83120827FC7F7300509DF5 /* SceneDelegate.swift in Sources */,
 				404C4043280A281800EC9FEB /* SwiftUIDemo.swift in Sources */,
-				404C40FD280C983500EC9FEB /* FiltersDebugViewController.swift in Sources */,
+				404C40FD280C983500EC9FEB /* FilterDebugController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

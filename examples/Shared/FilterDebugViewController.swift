@@ -14,12 +14,12 @@ import InstantSearchCore
 class FilterDebugViewController: UIViewController {
     
   let titleLabel: UILabel
-  let filterStateViewController: FiltersDebugViewController
+  let filterStateViewController: FilterDebugController
   let clearFilterController: FilterClearButtonController
   
   init(filterState: FilterState) {
     self.titleLabel = UILabel()
-    self.filterStateViewController = FiltersDebugViewController()
+    self.filterStateViewController = FilterDebugController()
     self.clearFilterController = .init(button: .init())
     super.init(nibName: nil, bundle: nil)
     configureFilterStateViewController()

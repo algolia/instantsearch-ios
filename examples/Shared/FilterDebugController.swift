@@ -1,5 +1,5 @@
 //
-//  FilterStateViewController.swift
+//  FilterDebugController.swift
 //  development-pods-instantsearch
 //
 //  Created by Vladislav Fitc on 23/05/2019.
@@ -10,7 +10,7 @@ import Foundation
 import UIKit
 import InstantSearchCore
 
-class FiltersDebugViewController {
+class FilterDebugController {
   
   let stateLabel: UILabel
   let emptyMessage = NSAttributedString(string:"No filters applied")
