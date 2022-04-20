@@ -78,11 +78,7 @@ struct RelevantSortDemoSwiftUI: SwiftUIDemo, PreviewProvider {
           }.padding()
         }
         HitsList(hitsController) { hit, _ in
-          if let hit = hit {
-            ShopItemRow(productHit: hit)
-          } else {
-            EmptyView()
-          }
+          ProductRow(productHit: hit!)
         }
       }
       .searchable(text: $queryInputController.query)

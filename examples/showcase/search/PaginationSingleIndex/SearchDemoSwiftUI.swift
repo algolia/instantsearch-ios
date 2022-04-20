@@ -53,7 +53,7 @@ struct SearchDemoSwiftUI: SwiftUIDemo, PreviewProvider {
         }
         .padding(.horizontal, 20)
         HitsList(hitsController) { (hit, index) in
-          ShopItemRow(storeItemHit: hit)
+          ProductRow(storeItemHit: hit!)
         } noResults: {
           Text("No Results")
             .frame(maxWidth: .infinity, maxHeight: .infinity)

@@ -75,7 +75,7 @@ struct QueryRuleCustomDataSwiftUI: SwiftUIDemo, PreviewProvider {
             }
         }
         HitsList(hitsController) { (hit, _) in
-          ShopItemRow(productHit: hit!)
+          ProductRow(productHit: hit!)
         } noResults: {
           Text("No Results")
             .frame(maxWidth: .infinity, maxHeight: .infinity)

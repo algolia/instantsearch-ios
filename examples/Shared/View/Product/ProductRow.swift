@@ -1,5 +1,5 @@
 //
-//  ShopItemRow.swift
+//  ProductRow.swift
 //  DemoDirectory
 //
 //  Created by Vladislav Fitc on 03/04/2021.
@@ -11,7 +11,7 @@ import SwiftUI
 import InstantSearch
 import InstantSearchSwiftUI
 
-struct ShopItemRow: View {
+struct ProductRow: View {
   
   let title: HighlightedString
   let subtitle: HighlightedString
@@ -83,7 +83,7 @@ struct ShopItemRow: View {
   var priceString: String? {
     price
       .flatMap(NSNumber.init)
-      .flatMap(ShopItemRow.priceFormatter.string)
+      .flatMap(ProductRow.priceFormatter.string)
   }
   
   init(title: HighlightedString = .init(string: ""),
@@ -98,13 +98,10 @@ struct ShopItemRow: View {
     self.price = price
   }
   
-  init(storeItemHit: Hit<StoreItem>?) {
-    guard let item = storeItemHit?.object else {
-      self = .init()
-      return
-    }
-    self.title = storeItemHit?.hightlightedString(forKey: "name") ?? HighlightedString(string: item.name)
-    self.subtitle = storeItemHit?.hightlightedString(forKey: "brand") ?? HighlightedString(string: item.brand ?? "")
+  init(storeItemHit: Hit<StoreItem>) {
+    let item = storeItemHit.object
+    self.title = storeItemHit.hightlightedString(forKey: "name") ?? HighlightedString(string: item.name)
+    self.subtitle = storeItemHit.hightlightedString(forKey: "brand") ?? HighlightedString(string: item.brand ?? "")
     self.details = HighlightedString(string: "")
     self.imageURL = item.images.first ?? URL(string: "google.com")!
     self.price = item.price
@@ -121,17 +118,17 @@ struct ShopItemRow: View {
   
 }
 
-struct ShopItemRow_Previews : PreviewProvider {
+struct ProductRow_Previews : PreviewProvider {
   
   static var previews: some View {
-    ShopItemRow(
+    ProductRow(
       title: HighlightedString(string: "Samsung - <em>Galaxy</em> S7 32GB - Black Onyx (AT&T)"),
       subtitle: HighlightedString(string: "Samsung"),
       details: HighlightedString(string: "Enjoy the exceptional display and all-day power of the Samsung <em>Galaxy</em> S7 smartphone. A 12MP rear-facing camera and 5MP front-facing camera capture memories as they happen, and the 5.1-inch display uses dual-pixel technology to display them with superior clarity. The Samsung <em>Galaxy<em> S7 smartphone features durable housing and a water-resistant design."),
       imageURL: URL(string: "https://cdn-demo.algolia.com/bestbuy-0118/4897502_sb.jpg"),
       price: 694.99
     )
-    ShopItemRow(
+    ProductRow(
       title: HighlightedString(string: "<em>Samsung</em> - Galaxy S7 32GB - Black Onyx (AT&T)"),
       subtitle: HighlightedString(string: "<em>Samsung</em>"),
       details: HighlightedString(string: "Enjoy the exceptional display and all-day power of the <em>Samsung</em> Galaxy S7 smartphone. A 12MP rear-facing camera and 5MP front-facing camera capture memories as they happen, and the 5.1-inch display uses dual-pixel technology to display them with superior clarity. The <em>Samsung</em> Galaxy S7 smartphone features durable housing and a water-resistant design."),

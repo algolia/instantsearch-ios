@@ -56,7 +56,7 @@ struct SortByDemoSwiftUI: SwiftUIDemo, PreviewProvider {
         }
         .pickerStyle(.segmented)
         HitsList(hitsController) { hit, index in
-          ShopItemRow(storeItemHit: hit)
+          ProductRow(storeItemHit: hit!)
         }
       }
       .padding()
