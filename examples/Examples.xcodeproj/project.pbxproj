@@ -1592,7 +1592,7 @@
 			path = "Preview Content";
 			sourceTree = "<group>";
 		};
-		4022E865280EE06E00D71D66 /* guide */ = {
+		4022E865280EE06E00D71D66 /* Guide */ = {
 			isa = PBXGroup;
 			children = (
 				AF50C99D27F6E89E0036F549 /* VoiceSearchGuide */,
@@ -1600,25 +1600,25 @@
 				AF50C9C627F6EA6C0036F549 /* GettingStartedUIKitGuide */,
 				AF50C9DE27F6EA7C0036F549 /* GettingStartedSwiftUIGuide */,
 			);
-			path = guide;
+			path = Guide;
 			sourceTree = "<group>";
 		};
-		4022E866280EE07C00D71D66 /* showcase */ = {
+		4022E866280EE07C00D71D66 /* Showcase */ = {
 			isa = PBXGroup;
 			children = (
 				4022E867280EED7200D71D66 /* README.md */,
-				40935545280CA8B300EB9AEA /* facet */,
-				40935544280CA8AA00EB9AEA /* filter */,
-				40935547280CA9A100EB9AEA /* search */,
-				40935546280CA8B800EB9AEA /* sort */,
+				40935545280CA8B300EB9AEA /* Facet */,
+				40935544280CA8AA00EB9AEA /* Filter */,
+				40935547280CA9A100EB9AEA /* Search */,
+				40935546280CA8B800EB9AEA /* Sort */,
 				AF50CB9A27F72C510036F549 /* QueryRuleCustomData */,
 				AF50CBE227F72C880036F549 /* RelatedItems */,
 				AF50CEA227FB72090036F549 /* Stats */,
 			);
-			path = showcase;
+			path = Showcase;
 			sourceTree = "<group>";
 		};
-		40935544280CA8AA00EB9AEA /* filter */ = {
+		40935544280CA8AA00EB9AEA /* Filter */ = {
 			isa = PBXGroup;
 			children = (
 				AF50CAAA27F724C30036F549 /* FilterClear */,
@@ -1630,10 +1630,10 @@
 				AF50CB2227F72BDA0036F549 /* FilterSegment */,
 				AF83122A27FC86EC00509DF5 /* FilterToggle */,
 			);
-			path = filter;
+			path = Filter;
 			sourceTree = "<group>";
 		};
-		40935545280CA8B300EB9AEA /* facet */ = {
+		40935545280CA8B300EB9AEA /* Facet */ = {
 			isa = PBXGroup;
 			children = (
 				AF50CA2727F71CCA0036F549 /* DynamicFacets */,
@@ -1642,25 +1642,25 @@
 				AF50CA7A27F7247C0036F549 /* FacetSearch */,
 				AF50CA9227F724970036F549 /* HierarchicalFacets */,
 			);
-			path = facet;
+			path = Facet;
 			sourceTree = "<group>";
 		};
-		40935546280CA8B800EB9AEA /* sort */ = {
+		40935546280CA8B800EB9AEA /* Sort */ = {
 			isa = PBXGroup;
 			children = (
 				AF50CBB227F72C610036F549 /* SortBy */,
 				AF50CBCA27F72C6F0036F549 /* RelevantSort */,
 			);
-			path = sort;
+			path = Sort;
 			sourceTree = "<group>";
 		};
-		40935547280CA9A100EB9AEA /* search */ = {
+		40935547280CA9A100EB9AEA /* Search */ = {
 			isa = PBXGroup;
 			children = (
 				AF50CBFA27F72CA80036F549 /* PaginationSingleIndex */,
 				AF50CC1227F72CB50036F549 /* PaginationMultiIndex */,
 			);
-			path = search;
+			path = Search;
 			sourceTree = "<group>";
 		};
 		AF46A7572747EF9D004E86F3 /* CategoriesHits */ = {
@@ -2067,8 +2067,8 @@
 			isa = PBXGroup;
 			children = (
 				AFEFEF9427F4840000B47F7F /* README.md */,
-				4022E865280EE06E00D71D66 /* guide */,
-				4022E866280EE07C00D71D66 /* showcase */,
+				4022E865280EE06E00D71D66 /* Guide */,
+				4022E866280EE07C00D71D66 /* Showcase */,
 				AFEFEF9527F48ABB00B47F7F /* Packages */,
 				AF50CD8827FB27CE0036F549 /* Shared */,
 				AF7FEB87272CAC5D0003BE62 /* Examples */,
@@ -4977,7 +4977,7 @@
 				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_TEAM = 5RDFJYUV23;
 				GENERATE_INFOPLIST_FILE = YES;
-				INFOPLIST_FILE = guide/QuerySuggestionsGuide/Info.plist;
+				INFOPLIST_FILE = Guide/QuerySuggestionsGuide/Info.plist;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchStoryboardName = LaunchScreen;
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
@@ -5005,7 +5005,7 @@
 				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_TEAM = 5RDFJYUV23;
 				GENERATE_INFOPLIST_FILE = YES;
-				INFOPLIST_FILE = guide/QuerySuggestionsGuide/Info.plist;
+				INFOPLIST_FILE = Guide/QuerySuggestionsGuide/Info.plist;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchStoryboardName = LaunchScreen;
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
@@ -5033,7 +5033,7 @@
 				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_TEAM = 5RDFJYUV23;
 				GENERATE_INFOPLIST_FILE = YES;
-				INFOPLIST_FILE = guide/VoiceSearchGuide/Info.plist;
+				INFOPLIST_FILE = Guide/VoiceSearchGuide/Info.plist;
 				INFOPLIST_KEY_NSMicrophoneUsageDescription = "Test Voiceoverlay";
 				INFOPLIST_KEY_NSSpeechRecognitionUsageDescription = "Test Voiceoverlay";
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
@@ -5063,7 +5063,7 @@
 				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_TEAM = 5RDFJYUV23;
 				GENERATE_INFOPLIST_FILE = YES;
-				INFOPLIST_FILE = guide/VoiceSearchGuide/Info.plist;
+				INFOPLIST_FILE = Guide/VoiceSearchGuide/Info.plist;
 				INFOPLIST_KEY_NSMicrophoneUsageDescription = "Test Voiceoverlay";
 				INFOPLIST_KEY_NSSpeechRecognitionUsageDescription = "Test Voiceoverlay";
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
@@ -5093,7 +5093,7 @@
 				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_TEAM = 5RDFJYUV23;
 				GENERATE_INFOPLIST_FILE = YES;
-				INFOPLIST_FILE = guide/GettingStartedUIKitGuide/Info.plist;
+				INFOPLIST_FILE = Guide/GettingStartedUIKitGuide/Info.plist;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchStoryboardName = LaunchScreen;
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
@@ -5121,7 +5121,7 @@
 				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_TEAM = 5RDFJYUV23;
 				GENERATE_INFOPLIST_FILE = YES;
-				INFOPLIST_FILE = guide/GettingStartedUIKitGuide/Info.plist;
+				INFOPLIST_FILE = Guide/GettingStartedUIKitGuide/Info.plist;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchStoryboardName = LaunchScreen;
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
@@ -5149,7 +5149,7 @@
 				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_TEAM = 5RDFJYUV23;
 				GENERATE_INFOPLIST_FILE = YES;
-				INFOPLIST_FILE = guide/GettingStartedSwiftUIGuide/Info.plist;
+				INFOPLIST_FILE = Guide/GettingStartedSwiftUIGuide/Info.plist;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchStoryboardName = LaunchScreen;
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
@@ -5177,7 +5177,7 @@
 				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_TEAM = 5RDFJYUV23;
 				GENERATE_INFOPLIST_FILE = YES;
-				INFOPLIST_FILE = guide/GettingStartedSwiftUIGuide/Info.plist;
+				INFOPLIST_FILE = Guide/GettingStartedSwiftUIGuide/Info.plist;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchStoryboardName = LaunchScreen;
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
@@ -5205,7 +5205,7 @@
 				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_TEAM = 5RDFJYUV23;
 				GENERATE_INFOPLIST_FILE = YES;
-				INFOPLIST_FILE = showcase/facet/DynamicFacets/Info.plist;
+				INFOPLIST_FILE = Showcase/Facet/DynamicFacets/Info.plist;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchStoryboardName = LaunchScreen;
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
@@ -5233,7 +5233,7 @@
 				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_TEAM = 5RDFJYUV23;
 				GENERATE_INFOPLIST_FILE = YES;
-				INFOPLIST_FILE = showcase/facet/DynamicFacets/Info.plist;
+				INFOPLIST_FILE = Showcase/Facet/DynamicFacets/Info.plist;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchStoryboardName = LaunchScreen;
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
@@ -5261,7 +5261,7 @@
 				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_TEAM = 5RDFJYUV23;
 				GENERATE_INFOPLIST_FILE = YES;
-				INFOPLIST_FILE = showcase/facet/FacetList/Info.plist;
+				INFOPLIST_FILE = Showcase/Facet/FacetList/Info.plist;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchStoryboardName = LaunchScreen;
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
@@ -5289,7 +5289,7 @@
 				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_TEAM = 5RDFJYUV23;
 				GENERATE_INFOPLIST_FILE = YES;
-				INFOPLIST_FILE = showcase/facet/FacetList/Info.plist;
+				INFOPLIST_FILE = Showcase/Facet/FacetList/Info.plist;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchStoryboardName = LaunchScreen;
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
@@ -5317,7 +5317,7 @@
 				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_TEAM = 5RDFJYUV23;
 				GENERATE_INFOPLIST_FILE = YES;
-				INFOPLIST_FILE = showcase/facet/FacetListPersistentSelection/Info.plist;
+				INFOPLIST_FILE = Showcase/Facet/FacetListPersistentSelection/Info.plist;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchStoryboardName = LaunchScreen;
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
@@ -5345,7 +5345,7 @@
 				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_TEAM = 5RDFJYUV23;
 				GENERATE_INFOPLIST_FILE = YES;
-				INFOPLIST_FILE = showcase/facet/FacetListPersistentSelection/Info.plist;
+				INFOPLIST_FILE = Showcase/Facet/FacetListPersistentSelection/Info.plist;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchStoryboardName = LaunchScreen;
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
@@ -5373,7 +5373,7 @@
 				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_TEAM = 5RDFJYUV23;
 				GENERATE_INFOPLIST_FILE = YES;
-				INFOPLIST_FILE = showcase/facet/FacetSearch/Info.plist;
+				INFOPLIST_FILE = Showcase/Facet/FacetSearch/Info.plist;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchStoryboardName = LaunchScreen;
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
@@ -5401,7 +5401,7 @@
 				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_TEAM = 5RDFJYUV23;
 				GENERATE_INFOPLIST_FILE = YES;
-				INFOPLIST_FILE = showcase/facet/FacetSearch/Info.plist;
+				INFOPLIST_FILE = Showcase/Facet/FacetSearch/Info.plist;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchStoryboardName = LaunchScreen;
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
@@ -5429,7 +5429,7 @@
 				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_TEAM = 5RDFJYUV23;
 				GENERATE_INFOPLIST_FILE = YES;
-				INFOPLIST_FILE = showcase/facet/HierarchicalFacets/Info.plist;
+				INFOPLIST_FILE = Showcase/Facet/HierarchicalFacets/Info.plist;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchStoryboardName = LaunchScreen;
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
@@ -5457,7 +5457,7 @@
 				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_TEAM = 5RDFJYUV23;
 				GENERATE_INFOPLIST_FILE = YES;
-				INFOPLIST_FILE = showcase/facet/HierarchicalFacets/Info.plist;
+				INFOPLIST_FILE = Showcase/Facet/HierarchicalFacets/Info.plist;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchStoryboardName = LaunchScreen;
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
@@ -5485,7 +5485,7 @@
 				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_TEAM = 5RDFJYUV23;
 				GENERATE_INFOPLIST_FILE = YES;
-				INFOPLIST_FILE = showcase/filter/FilterClear/Info.plist;
+				INFOPLIST_FILE = Showcase/Filter/FilterClear/Info.plist;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchStoryboardName = LaunchScreen;
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
@@ -5513,7 +5513,7 @@
 				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_TEAM = 5RDFJYUV23;
 				GENERATE_INFOPLIST_FILE = YES;
-				INFOPLIST_FILE = showcase/filter/FilterClear/Info.plist;
+				INFOPLIST_FILE = Showcase/Filter/FilterClear/Info.plist;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchStoryboardName = LaunchScreen;
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
@@ -5541,7 +5541,7 @@
 				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_TEAM = 5RDFJYUV23;
 				GENERATE_INFOPLIST_FILE = YES;
-				INFOPLIST_FILE = showcase/filter/FilterCurrent/Info.plist;
+				INFOPLIST_FILE = Showcase/Filter/FilterCurrent/Info.plist;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchStoryboardName = LaunchScreen;
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
@@ -5569,7 +5569,7 @@
 				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_TEAM = 5RDFJYUV23;
 				GENERATE_INFOPLIST_FILE = YES;
-				INFOPLIST_FILE = showcase/filter/FilterCurrent/Info.plist;
+				INFOPLIST_FILE = Showcase/Filter/FilterCurrent/Info.plist;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchStoryboardName = LaunchScreen;
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
@@ -5597,7 +5597,7 @@
 				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_TEAM = 5RDFJYUV23;
 				GENERATE_INFOPLIST_FILE = YES;
-				INFOPLIST_FILE = showcase/filter/FilterNumericComparison/Info.plist;
+				INFOPLIST_FILE = Showcase/Filter/FilterNumericComparison/Info.plist;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchStoryboardName = LaunchScreen;
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
@@ -5625,7 +5625,7 @@
 				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_TEAM = 5RDFJYUV23;
 				GENERATE_INFOPLIST_FILE = YES;
-				INFOPLIST_FILE = showcase/filter/FilterNumericComparison/Info.plist;
+				INFOPLIST_FILE = Showcase/Filter/FilterNumericComparison/Info.plist;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchStoryboardName = LaunchScreen;
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
@@ -5653,7 +5653,7 @@
 				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_TEAM = 5RDFJYUV23;
 				GENERATE_INFOPLIST_FILE = YES;
-				INFOPLIST_FILE = showcase/filter/FilterNumericRange/Info.plist;
+				INFOPLIST_FILE = Showcase/Filter/FilterNumericRange/Info.plist;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchStoryboardName = LaunchScreen;
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
@@ -5681,7 +5681,7 @@
 				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_TEAM = 5RDFJYUV23;
 				GENERATE_INFOPLIST_FILE = YES;
-				INFOPLIST_FILE = showcase/filter/FilterNumericRange/Info.plist;
+				INFOPLIST_FILE = Showcase/Filter/FilterNumericRange/Info.plist;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchStoryboardName = LaunchScreen;
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
@@ -5709,7 +5709,7 @@
 				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_TEAM = 5RDFJYUV23;
 				GENERATE_INFOPLIST_FILE = YES;
-				INFOPLIST_FILE = showcase/filter/FilterRating/Info.plist;
+				INFOPLIST_FILE = Showcase/Filter/FilterRating/Info.plist;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchStoryboardName = LaunchScreen;
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
@@ -5737,7 +5737,7 @@
 				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_TEAM = 5RDFJYUV23;
 				GENERATE_INFOPLIST_FILE = YES;
-				INFOPLIST_FILE = showcase/filter/FilterRating/Info.plist;
+				INFOPLIST_FILE = Showcase/Filter/FilterRating/Info.plist;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchStoryboardName = LaunchScreen;
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
@@ -5765,7 +5765,7 @@
 				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_TEAM = 5RDFJYUV23;
 				GENERATE_INFOPLIST_FILE = YES;
-				INFOPLIST_FILE = showcase/filter/FilterSegment/Info.plist;
+				INFOPLIST_FILE = Showcase/Filter/FilterSegment/Info.plist;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchStoryboardName = LaunchScreen;
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
@@ -5793,7 +5793,7 @@
 				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_TEAM = 5RDFJYUV23;
 				GENERATE_INFOPLIST_FILE = YES;
-				INFOPLIST_FILE = showcase/filter/FilterSegment/Info.plist;
+				INFOPLIST_FILE = Showcase/Filter/FilterSegment/Info.plist;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchStoryboardName = LaunchScreen;
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
@@ -5821,7 +5821,7 @@
 				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_TEAM = 5RDFJYUV23;
 				GENERATE_INFOPLIST_FILE = YES;
-				INFOPLIST_FILE = showcase/filter/FilterToggle/Info.plist;
+				INFOPLIST_FILE = Showcase/Filter/FilterToggle/Info.plist;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchStoryboardName = LaunchScreen;
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
@@ -5849,7 +5849,7 @@
 				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_TEAM = 5RDFJYUV23;
 				GENERATE_INFOPLIST_FILE = YES;
-				INFOPLIST_FILE = showcase/filter/FilterToggle/Info.plist;
+				INFOPLIST_FILE = Showcase/Filter/FilterToggle/Info.plist;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchStoryboardName = LaunchScreen;
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
@@ -5933,7 +5933,7 @@
 				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_TEAM = 5RDFJYUV23;
 				GENERATE_INFOPLIST_FILE = YES;
-				INFOPLIST_FILE = showcase/sort/SortBy/Info.plist;
+				INFOPLIST_FILE = Showcase/Sort/SortBy/Info.plist;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchStoryboardName = LaunchScreen;
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
@@ -5961,7 +5961,7 @@
 				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_TEAM = 5RDFJYUV23;
 				GENERATE_INFOPLIST_FILE = YES;
-				INFOPLIST_FILE = showcase/sort/SortBy/Info.plist;
+				INFOPLIST_FILE = Showcase/Sort/SortBy/Info.plist;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchStoryboardName = LaunchScreen;
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
@@ -5989,7 +5989,7 @@
 				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_TEAM = 5RDFJYUV23;
 				GENERATE_INFOPLIST_FILE = YES;
-				INFOPLIST_FILE = showcase/sort/RelevantSort/Info.plist;
+				INFOPLIST_FILE = Showcase/Sort/RelevantSort/Info.plist;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchStoryboardName = LaunchScreen;
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
@@ -6017,7 +6017,7 @@
 				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_TEAM = 5RDFJYUV23;
 				GENERATE_INFOPLIST_FILE = YES;
-				INFOPLIST_FILE = showcase/sort/RelevantSort/Info.plist;
+				INFOPLIST_FILE = Showcase/Sort/RelevantSort/Info.plist;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchStoryboardName = LaunchScreen;
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
@@ -6101,7 +6101,7 @@
 				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_TEAM = 5RDFJYUV23;
 				GENERATE_INFOPLIST_FILE = YES;
-				INFOPLIST_FILE = showcase/search/PaginationSingleIndex/Info.plist;
+				INFOPLIST_FILE = Showcase/Search/PaginationSingleIndex/Info.plist;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchStoryboardName = LaunchScreen;
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
@@ -6129,7 +6129,7 @@
 				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_TEAM = 5RDFJYUV23;
 				GENERATE_INFOPLIST_FILE = YES;
-				INFOPLIST_FILE = showcase/search/PaginationSingleIndex/Info.plist;
+				INFOPLIST_FILE = Showcase/Search/PaginationSingleIndex/Info.plist;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchStoryboardName = LaunchScreen;
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
@@ -6157,7 +6157,7 @@
 				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_TEAM = 5RDFJYUV23;
 				GENERATE_INFOPLIST_FILE = YES;
-				INFOPLIST_FILE = showcase/search/PaginationMultiIndex/Info.plist;
+				INFOPLIST_FILE = Showcase/Search/PaginationMultiIndex/Info.plist;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchStoryboardName = LaunchScreen;
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
@@ -6185,7 +6185,7 @@
 				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_TEAM = 5RDFJYUV23;
 				GENERATE_INFOPLIST_FILE = YES;
-				INFOPLIST_FILE = showcase/search/PaginationMultiIndex/Info.plist;
+				INFOPLIST_FILE = Showcase/Search/PaginationMultiIndex/Info.plist;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchStoryboardName = LaunchScreen;
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
@@ -6439,7 +6439,7 @@
 				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_TEAM = 5RDFJYUV23;
 				GENERATE_INFOPLIST_FILE = YES;
-				INFOPLIST_FILE = showcase/filter/FilterList/Info.plist;
+				INFOPLIST_FILE = Showcase/Filter/FilterList/Info.plist;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchStoryboardName = LaunchScreen;
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
@@ -6467,7 +6467,7 @@
 				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_TEAM = 5RDFJYUV23;
 				GENERATE_INFOPLIST_FILE = YES;
-				INFOPLIST_FILE = showcase/filter/FilterList/Info.plist;
+				INFOPLIST_FILE = Showcase/Filter/FilterList/Info.plist;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchStoryboardName = LaunchScreen;
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
