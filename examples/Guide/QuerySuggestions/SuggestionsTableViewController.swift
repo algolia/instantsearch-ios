@@ -16,7 +16,7 @@ class SuggestionsTableViewController: UITableViewController, HitsController, Que
   
   public var hitsSource: HitsInteractor<QuerySuggestion>?
 
-  let cellID = "suggestionCellID"
+  let cellID = "сellID"
 
   public override init(style: UITableView.Style) {
     super.init(style: style)

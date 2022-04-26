@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <Scheme
-   LastUpgradeVersion = "1310"
+   LastUpgradeVersion = "1330"
    version = "1.3">
    <BuildAction
       parallelizeBuildables = "YES"
@@ -14,8 +14,8 @@
             buildForAnalyzing = "YES">
             <BuildableReference
                BuildableIdentifier = "primary"
-               BlueprintIdentifier = "AFAE54FF273363CE00B52A43"
-               BuildableName = "QuerySuggestions.app"
+               BlueprintIdentifier = "AF50C94027F620740036F549"
+               BuildableName = "QuerySuggestionsGuide.app"
                BlueprintName = "QuerySuggestions"
                ReferencedContainer = "container:Examples.xcodeproj">
             </BuildableReference>
@@ -44,8 +44,8 @@
          runnableDebuggingMode = "0">
          <BuildableReference
             BuildableIdentifier = "primary"
-            BlueprintIdentifier = "AFAE54FF273363CE00B52A43"
-            BuildableName = "QuerySuggestions.app"
+            BlueprintIdentifier = "AF50C94027F620740036F549"
+            BuildableName = "QuerySuggestionsGuide.app"
             BlueprintName = "QuerySuggestions"
             ReferencedContainer = "container:Examples.xcodeproj">
          </BuildableReference>
@@ -61,8 +61,8 @@
          runnableDebuggingMode = "0">
          <BuildableReference
             BuildableIdentifier = "primary"
-            BlueprintIdentifier = "AFAE54FF273363CE00B52A43"
-            BuildableName = "QuerySuggestions.app"
+            BlueprintIdentifier = "AF50C94027F620740036F549"
+            BuildableName = "QuerySuggestionsGuide.app"
             BlueprintName = "QuerySuggestions"
             ReferencedContainer = "container:Examples.xcodeproj">
          </BuildableReference>

@@ -47,6 +47,7 @@ enum QuerySuggestionsAndHits {
       configureUI()
       
       let suggestionsSearcher = searcher.addHitsSearcher(indexName: "instant_search_demo_query_suggestions")
+      suggestionsSearcher.request.query.hitsPerPage = 5
       suggestionsInteractor.connectSearcher(suggestionsSearcher)
       searchResultsController.suggestionsHitsInteractor = suggestionsInteractor
       

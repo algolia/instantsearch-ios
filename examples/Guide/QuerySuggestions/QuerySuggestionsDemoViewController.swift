@@ -1,5 +1,5 @@
 //
-//  QuerySuggestions.swift
+//  QuerySuggestionsDemoViewController.swift
 //  Guides
 //
 //  Created by Vladislav Fitc on 31.03.2022.
@@ -59,18 +59,18 @@ public class QuerySuggestionsDemoViewController: UIViewController {
   }
       
   private func configureUI() {
-    definesPresentationContext = true
-    searchController.showsSearchResultsController = true
     view.backgroundColor = .white
+    searchController.showsSearchResultsController = true
     addChild(resultsViewController)
     resultsViewController.didMove(toParent: self)
-    resultsViewController.view.translatesAutoresizingMaskIntoConstraints = false
-    view.addSubview(resultsViewController.view)
+    let resultsView = resultsViewController.view!
+    resultsView.translatesAutoresizingMaskIntoConstraints = false
+    view.addSubview(resultsView)
     NSLayoutConstraint.activate([
-      resultsViewController.view.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor),
-      resultsViewController.view.leadingAnchor.constraint(equalTo: view.safeAreaLayoutGuide.leadingAnchor),
-      resultsViewController.view.trailingAnchor.constraint(equalTo: view.safeAreaLayoutGuide.trailingAnchor),
-      resultsViewController.view.bottomAnchor.constraint(equalTo: view.bottomAnchor),
+      resultsView.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor),
+      resultsView.leadingAnchor.constraint(equalTo: view.safeAreaLayoutGuide.leadingAnchor),
+      resultsView.trailingAnchor.constraint(equalTo: view.safeAreaLayoutGuide.trailingAnchor),
+      resultsView.bottomAnchor.constraint(equalTo: view.bottomAnchor),
     ])
   }
   
