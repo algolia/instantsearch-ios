@@ -56,18 +56,18 @@ struct FilterNumericComparisonDemoSwiftUI: SwiftUIDemo, PreviewProvider {
             .multilineTextAlignment(.trailing)
             .onSubmit {
               if let year = Int(yearValue) {
-                yearController.number = year
+                yearController.value = year
               }
             }
         }
         HStack {
-          Stepper(value: $priceController.number,
+          Stepper(value: $priceController.value,
                   in: priceController.bounds,
                   step: 0.1) {
             HStack{
               Text("Price:")
               Spacer()
-              Text(String(format: "%.2f", priceController.number))
+              Text(String(format: "%.2f", priceController.value))
             }
           }
         }
@@ -75,7 +75,7 @@ struct FilterNumericComparisonDemoSwiftUI: SwiftUIDemo, PreviewProvider {
       }
       .padding()
       .onAppear {
-        yearValue = "\(yearController.number)"
+        yearValue = "\(yearController.value)"
       }
     }
     
@@ -99,31 +99,3 @@ struct FilterNumericComparisonDemoSwiftUI: SwiftUIDemo, PreviewProvider {
 }
 
 
-public class NumberObservableController<Number: Numeric & Comparable>: ObservableObject, NumberController {
-  
-  @Published public var number: Number = 1 {
-    didSet {
-      guard number != oldValue else { return }
-      computation.just(value: number)
-    }
-  }
-  
-  @Published public var bounds: ClosedRange<Number> = 0...10000
-  
-  private var computation: Computation<Number>!
-  
-  public func setItem(_ number: Number) {
-    self.number = number
-  }
-  
-  public func setBounds(bounds: ClosedRange<Number>?) {
-    if let bounds = bounds {
-      self.bounds = bounds
-    }
-  }
-  
-  public func setComputation(computation: Computation<Number>) {
-    self.computation = computation
-  }
-  
-}
