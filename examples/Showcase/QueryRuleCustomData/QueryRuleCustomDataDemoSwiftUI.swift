@@ -43,7 +43,6 @@ struct QueryRuleCustomDataSwiftUI: SwiftUIDemo, PreviewProvider {
     @ObservedObject var hitsController: HitsObservableController<Hit<Product>>
     @ObservedObject var bannerController: BannerObservableController
     
-    @State private var isHelpPresented: Bool = false
     @State private var selectedRedirect: Redirect?
     
     var body: some View {
@@ -91,18 +90,6 @@ struct QueryRuleCustomDataSwiftUI: SwiftUIDemo, PreviewProvider {
               message: Text(redirect.id),
               dismissButton: .cancel())
         
-      }
-      .alert(isPresented: $isHelpPresented) {
-        Alert(title: Text("Help"),
-              message: Text(QueryRuleCustomDataDemoController.helpMessage),
-              dismissButton: .default(Text("OK")))
-      }
-      .toolbar {
-        ToolbarItem(placement: .navigationBarTrailing) {
-          Button(action: { isHelpPresented = true }) {
-            Image(systemName: "info.circle.fill")
-          }
-        }
       }
       .safeAreaInset(edge: .top, alignment: .center, spacing: 0) {
         Color.clear
