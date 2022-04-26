@@ -53,7 +53,7 @@ class FacetSearchDemoSwiftUI: SwiftUIDemo, PreviewProvider {
               FacetRow(facet: facet, isSelected: isSelected)
               Divider()
             }
-            .padding()
+            .padding(.horizontal, 20)
           }
           .navigationBarTitle("Facet Search")
         }
