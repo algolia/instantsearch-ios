@@ -11,11 +11,11 @@ import InstantSearch
 
 class StoreItemsTableViewController: UITableViewController, HitsController {
   
-  let cellIdentifier = "cellID"
-  
   var hitsSource: HitsInteractor<Hit<StoreItem>>?
   
   var didSelect: ((Hit<StoreItem>) -> Void)?
+  
+  let cellIdentifier = "cellID"
   
   override func viewDidLoad() {
     super.viewDidLoad()
@@ -23,13 +23,8 @@ class StoreItemsTableViewController: UITableViewController, HitsController {
   }
   
   override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-    let hitsCount = hitsSource?.numberOfHits() ?? 0
-    if hitsCount == 0 {
-      tableView.setEmptyMessage("No results")
-    } else {
-      tableView.restore()
-    }
-    return hitsCount
+    setEmptyStateIfNeeded()
+    return hitsSource?.numberOfHits() ?? 0
   }
   
   override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
@@ -50,6 +45,14 @@ class StoreItemsTableViewController: UITableViewController, HitsController {
   override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
     if let hit = hitsSource?.hit(atIndex: indexPath.row) {
       didSelect?(hit)
+    }
+  }
+  
+  private func setEmptyStateIfNeeded() {
+    if hitsSource?.numberOfHits() ?? 0 == 0 {
+      tableView.setEmptyMessage("No results")
+    } else {
+      tableView.restore()
     }
   }
   

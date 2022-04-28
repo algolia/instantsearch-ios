@@ -1,8 +1,8 @@
 //
-//  VoiceInputDemoViewController.swift
-//  Guides
+//  SearchViewController.swift
+//  Examples
 //
-//  Created by Vladislav Fitc on 31.03.2022.
+//  Created by Vladislav Fitc on 04/11/2021.
 //
 
 import Foundation
@@ -10,28 +10,32 @@ import UIKit
 import InstantSearch
 import InstantSearchVoiceOverlay
 
-class VoiceInputDemoViewController: UIViewController, UISearchBarDelegate {
+class VoiceSearchViewController: UIViewController, UISearchBarDelegate {
   
   let searchController: UISearchController
   
-  let searcher: HitsSearcher
-  let searchConnector: SearchConnector<Hit<StoreItem>>
+  let queryInputConnector: QueryInputConnector
+  let textFieldController: TextFieldController
   
-  let resultsViewController: ResultsViewController
+  let hitsSearcher: HitsSearcher
+  let hitsInteractor: HitsInteractor<Hit<StoreItem>>
+  
+  let searchResultsController: StoreItemsTableViewController
   let voiceOverlayController: VoiceOverlayController
-
-  init() {
-    searcher = .init(client: .newDemo,
-                     indexName: Index.Ecommerce.products)
-    resultsViewController = .init(searcher: searcher)
+  
+  override init(nibName nibNameOrNil: String?, bundle nibBundleOrNil: Bundle?) {
+    hitsSearcher = .init(client: .newDemo,
+                         indexName: Index.Ecommerce.products)
+    searchResultsController = .init()
     voiceOverlayController = .init()
-    searchController = .init(searchResultsController: resultsViewController)
-    searchConnector = .init(searcher: searcher,
-                            searchController: searchController,
-                            hitsInteractor: .init(),
-                            hitsController: resultsViewController.hitsViewController)
-    searchConnector.connect()
-    super.init(nibName: nil, bundle: nil)
+    hitsInteractor = .init()
+    searchController = .init(searchResultsController: searchResultsController)
+    textFieldController = .init(searchBar: searchController.searchBar)
+    queryInputConnector = .init(searcher: hitsSearcher,
+                                controller: textFieldController)
+    hitsInteractor.connectSearcher(hitsSearcher)
+    hitsInteractor.connectController(searchResultsController)
+    super.init(nibName: nibNameOrNil, bundle: nibBundleOrNil)
   }
   
   required init?(coder: NSCoder) {
@@ -40,8 +44,8 @@ class VoiceInputDemoViewController: UIViewController, UISearchBarDelegate {
   
   override func viewDidLoad() {
     super.viewDidLoad()
-    setupUI()
-    searcher.search()
+    configureUI()
+    hitsSearcher.search()
   }
   
   override func viewDidAppear(_ animated: Bool) {
@@ -49,13 +53,13 @@ class VoiceInputDemoViewController: UIViewController, UISearchBarDelegate {
     searchController.isActive = true
   }
   
-  private func setupUI() {
+  func configureUI() {
     title = "Voice Search"
     view.backgroundColor = .white
+    navigationItem.searchController = searchController
     searchController.hidesNavigationBarDuringPresentation = false
     searchController.showsSearchResultsController = true
     searchController.automaticallyShowsCancelButton = false
-    navigationItem.searchController = searchController
     searchController.searchBar.setImage(UIImage(systemName: "mic.fill"), for: .bookmark, state: .normal)
     searchController.searchBar.showsBookmarkButton = true
     searchController.searchBar.delegate = self
@@ -63,7 +67,7 @@ class VoiceInputDemoViewController: UIViewController, UISearchBarDelegate {
   
   func searchBarBookmarkButtonClicked(_ searchBar: UISearchBar) {
     voiceOverlayController.start(on: self.navigationController!) { [weak self] (text, isFinal, _) in
-      self?.searchConnector.queryInputConnector.interactor.query = text
+      self?.queryInputConnector.interactor.query = text
     } errorHandler: { error in
       guard let error = error else { return }
       DispatchQueue.main.async { [weak self] in
@@ -83,5 +87,5 @@ class VoiceInputDemoViewController: UIViewController, UISearchBarDelegate {
                                   animated: true,
                                   completion: nil)
   }
-
+  
 }

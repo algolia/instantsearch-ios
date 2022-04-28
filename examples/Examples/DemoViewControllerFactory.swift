@@ -17,10 +17,10 @@ class DemoViewControllerFactory: ViewControllerFactory {
     
     switch id {
     case .codexQuerySuggestions:
-      return QuerySuggestions.SearchViewController()
+      return QuerySuggestionsDemoViewController()
       
     case .codexVoiceSearch:
-      return VoiceSearch.SearchViewController()
+      return VoiceSearchViewController()
       
     case .codexMultipleIndex:
       return MultiIndex.SearchViewController()
@@ -44,7 +44,7 @@ class DemoViewControllerFactory: ViewControllerFactory {
       return QuerySuggestionsDemoViewController()
       
     case .guideVoiceSearch:
-      return VoiceInputDemoViewController()
+      return VoiceSearchViewController()
       
     case .guideGettingStarted:
       return GettingStartedGuide.StepSeven.ViewController()

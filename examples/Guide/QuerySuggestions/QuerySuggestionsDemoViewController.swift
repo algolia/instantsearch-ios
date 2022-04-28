@@ -11,39 +11,42 @@ import InstantSearch
 
 public class QuerySuggestionsDemoViewController: UIViewController {
   
-  // Search controller responsible for the presentation of suggestions
   let searchController: UISearchController
+  let searcher: MultiSearcher
   
-  // Query input interactor + controller
-  let queryInputInteractor: QueryInputInteractor
+  let queryInputConnector: QueryInputConnector
   let textFieldController: TextFieldController
     
-  // Search suggestions interactor + controller
-  let suggestionsHitsInteractor: HitsInteractor<QuerySuggestion>
+  let suggestionsHitsConnector: HitsConnector<QuerySuggestion>
   let suggestionsViewController: SuggestionsTableViewController
   
-  // Search results interactor + controller
-  let resultsHitsInteractor: HitsInteractor<Hit<StoreItem>>
+  let resultsHitsConnector: HitsConnector<Hit<StoreItem>>
   let resultsViewController: StoreItemsTableViewController
   
-  // Multi searcher which aggregates hits and suggestions search
-  let multiSearcher: MultiSearcher
   
   override init(nibName nibNameOrNil: String?, bundle nibBundleOrNil: Bundle?) {
-    suggestionsHitsInteractor = .init(infiniteScrolling: .off, showItemsOnEmptyQuery: true)
-    suggestionsViewController = .init(style: .plain)
     
-    resultsHitsInteractor = .init()
+    searcher = .init(appID: SearchClient.newDemo.applicationID,
+                     apiKey: SearchClient.newDemo.apiKey)
+    
+    let suggestionsSearcher = searcher.addHitsSearcher(indexName: Index.Ecommerce.suggestions)
+    suggestionsViewController = .init(style: .plain)
+    suggestionsHitsConnector = HitsConnector(searcher: suggestionsSearcher,
+                                             interactor: .init(infiniteScrolling: .off),
+                                             controller: suggestionsViewController)
+    
+    let resultsSearcher = searcher.addHitsSearcher(indexName: Index.Ecommerce.products)
     resultsViewController = .init(style: .plain)
+    resultsHitsConnector = HitsConnector(searcher: resultsSearcher,
+                                         interactor: .init(),
+                                         controller: resultsViewController)
     
     searchController = .init(searchResultsController: suggestionsViewController)
         
-    queryInputInteractor = .init()
     textFieldController = .init(searchBar: searchController.searchBar)
-    
-    multiSearcher = .init(appID: SearchClient.newDemo.applicationID,
-                          apiKey: SearchClient.newDemo.apiKey)
-    
+    queryInputConnector = .init(searcher: searcher,
+                                controller: textFieldController)
+        
     super.init(nibName: nibNameOrNil, bundle: nibBundleOrNil)
     
     setup()
@@ -60,9 +63,6 @@ public class QuerySuggestionsDemoViewController: UIViewController {
       
   private func configureUI() {
     view.backgroundColor = .white
-    searchController.showsSearchResultsController = true
-    addChild(resultsViewController)
-    resultsViewController.didMove(toParent: self)
     let resultsView = resultsViewController.view!
     resultsView.translatesAutoresizingMaskIntoConstraints = false
     view.addSubview(resultsView)
@@ -75,28 +75,20 @@ public class QuerySuggestionsDemoViewController: UIViewController {
   }
   
   private func setup() {
-    
     navigationItem.searchController = searchController
     navigationItem.hidesSearchBarWhenScrolling = false
     
-    let suggestionsSearcher = multiSearcher.addHitsSearcher(indexName: Index.Ecommerce.suggestions)
-    suggestionsHitsInteractor.connectSearcher(suggestionsSearcher)
-
-    let resultsSearchers = multiSearcher.addHitsSearcher(indexName: Index.Ecommerce.products)
-    resultsHitsInteractor.connectSearcher(resultsSearchers)
+    searchController.showsSearchResultsController = true
     
-    queryInputInteractor.connectSearcher(multiSearcher)
-    queryInputInteractor.connectController(textFieldController)
-    queryInputInteractor.connectController(suggestionsViewController)
-    
-    queryInputInteractor.onQuerySubmitted.subscribe(with: searchController) { (searchController, _) in
+    addChild(resultsViewController)
+    resultsViewController.didMove(toParent: self)
+            
+    queryInputConnector.connectController(suggestionsViewController)
+    queryInputConnector.interactor.onQuerySubmitted.subscribe(with: searchController) { (searchController, _) in
       searchController.dismiss(animated: true, completion: .none)
     }
-        
-    suggestionsHitsInteractor.connectController(suggestionsViewController)
-    resultsHitsInteractor.connectController(resultsViewController)
     
-    multiSearcher.search()
+    searcher.search()
   }
   
 }
