@@ -10,31 +10,31 @@ import UIKit
 import InstantSearch
 import InstantSearchVoiceOverlay
 
-class VoiceSearchViewController: UIViewController, UISearchBarDelegate {
+class VoiceSearchViewController: UIViewController {
   
   let searchController: UISearchController
+  let searcher: HitsSearcher
+  
+  let voiceOverlayController: VoiceOverlayController
   
   let queryInputConnector: QueryInputConnector
   let textFieldController: TextFieldController
   
-  let hitsSearcher: HitsSearcher
-  let hitsInteractor: HitsInteractor<Hit<StoreItem>>
-  
+  let hitsConnector: HitsConnector<Hit<StoreItem>>
   let searchResultsController: StoreItemsTableViewController
-  let voiceOverlayController: VoiceOverlayController
+
   
   override init(nibName nibNameOrNil: String?, bundle nibBundleOrNil: Bundle?) {
-    hitsSearcher = .init(client: .newDemo,
-                         indexName: Index.Ecommerce.products)
+    searcher = .init(client: .newDemo,
+                     indexName: Index.Ecommerce.products)
     searchResultsController = .init()
     voiceOverlayController = .init()
-    hitsInteractor = .init()
+    hitsConnector = .init(searcher: searcher,
+                          controller: searchResultsController)
     searchController = .init(searchResultsController: searchResultsController)
     textFieldController = .init(searchBar: searchController.searchBar)
-    queryInputConnector = .init(searcher: hitsSearcher,
+    queryInputConnector = .init(searcher: searcher,
                                 controller: textFieldController)
-    hitsInteractor.connectSearcher(hitsSearcher)
-    hitsInteractor.connectController(searchResultsController)
     super.init(nibName: nibNameOrNil, bundle: nibBundleOrNil)
   }
   
@@ -44,8 +44,7 @@ class VoiceSearchViewController: UIViewController, UISearchBarDelegate {
   
   override func viewDidLoad() {
     super.viewDidLoad()
-    configureUI()
-    hitsSearcher.search()
+    setup()
   }
   
   override func viewDidAppear(_ animated: Bool) {
@@ -53,7 +52,7 @@ class VoiceSearchViewController: UIViewController, UISearchBarDelegate {
     searchController.isActive = true
   }
   
-  func configureUI() {
+  private func setup() {
     title = "Voice Search"
     view.backgroundColor = .white
     navigationItem.searchController = searchController
@@ -63,7 +62,24 @@ class VoiceSearchViewController: UIViewController, UISearchBarDelegate {
     searchController.searchBar.setImage(UIImage(systemName: "mic.fill"), for: .bookmark, state: .normal)
     searchController.searchBar.showsBookmarkButton = true
     searchController.searchBar.delegate = self
+    searcher.search()
   }
+  
+  private func present(_ error: Error) {
+    let alertController = UIAlertController(title: "Error",
+                                            message: error.localizedDescription,
+                                            preferredStyle: .alert)
+    alertController.addAction(.init(title: "OK",
+                                    style: .cancel,
+                                    handler: .none))
+    navigationController?.present(alertController,
+                                  animated: true,
+                                  completion: nil)
+  }
+  
+}
+
+extension VoiceSearchViewController: UISearchBarDelegate {
   
   func searchBarBookmarkButtonClicked(_ searchBar: UISearchBar) {
     voiceOverlayController.start(on: self.navigationController!) { [weak self] (text, isFinal, _) in
@@ -74,18 +90,6 @@ class VoiceSearchViewController: UIViewController, UISearchBarDelegate {
         self?.present(error)
       }
     }
-  }
-  
-  func present(_ error: Error) {
-    let alertController = UIAlertController(title: "Error",
-                                            message: error.localizedDescription,
-                                            preferredStyle: .alert)
-    alertController.addAction(.init(title: "OK",
-                                    style: .cancel,
-                                    handler: .none))
-    navigationController?.present(alertController,
-                                  animated: true,
-                                  completion: nil)
   }
   
 }
