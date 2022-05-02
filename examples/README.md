@@ -17,10 +17,10 @@ Source code for documentation examples
 
 The set of examples used on the [Code Exchange](https://www.algolia.com/developers/code-exchange/)
 
-- [Multi-index search](/MultiIndex)
-- [Autocomplete with Voice search](/VoiceSearch)
-- [Categories with Hits](/CategoriesHits)
-- [Query Suggestions](/QuerySuggestions)
-- [Query Suggestions with recent searches](/QuerySuggestionsRecentSearches)
-- [Query Suggestions with Hits](/QuerySuggestionsHits)
-- [Query Suggestions with Categories](/QuerySuggestionsCategories)
+- [Multi-index search](/examples/MultiIndex)
+- [Autocomplete with Voice search](/examples/VoiceSearch)
+- [Categories with Hits](/examples/CategoriesHits)
+- [Query Suggestions](/examples/QuerySuggestions)
+- [Query Suggestions with recent searches](/examples/QuerySuggestionsRecentSearches)
+- [Query Suggestions with Hits](/examples/QuerySuggestionsHits)
+- [Query Suggestions with Categories](/examples/QuerySuggestionsCategories)
