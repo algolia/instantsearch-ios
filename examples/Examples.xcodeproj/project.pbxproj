@@ -1604,8 +1604,7 @@
 				AF50C95127F620740036F549 /* Info.plist */,
 				4022E864280ECF0800D71D66 /* README.md */,
 			);
-			name = QuerySuggestions;
-			path = Guide/QuerySuggestions;
+			path = QuerySuggestions;
 			sourceTree = "<group>";
 		};
 		AF50C9C627F6EA6C0036F549 /* GettingStartedUIKitGuide */ = {
