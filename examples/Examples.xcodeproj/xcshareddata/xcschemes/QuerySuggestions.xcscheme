@@ -15,7 +15,7 @@
             <BuildableReference
                BuildableIdentifier = "primary"
                BlueprintIdentifier = "AF50C94027F620740036F549"
-               BuildableName = "QuerySuggestionsGuide.app"
+               BuildableName = "QuerySuggestions.app"
                BlueprintName = "QuerySuggestions"
                ReferencedContainer = "container:Examples.xcodeproj">
             </BuildableReference>
@@ -45,7 +45,7 @@
          <BuildableReference
             BuildableIdentifier = "primary"
             BlueprintIdentifier = "AF50C94027F620740036F549"
-            BuildableName = "QuerySuggestionsGuide.app"
+            BuildableName = "QuerySuggestions.app"
             BlueprintName = "QuerySuggestions"
             ReferencedContainer = "container:Examples.xcodeproj">
          </BuildableReference>
@@ -62,7 +62,7 @@
          <BuildableReference
             BuildableIdentifier = "primary"
             BlueprintIdentifier = "AF50C94027F620740036F549"
-            BuildableName = "QuerySuggestionsGuide.app"
+            BuildableName = "QuerySuggestions.app"
             BlueprintName = "QuerySuggestions"
             ReferencedContainer = "container:Examples.xcodeproj">
          </BuildableReference>

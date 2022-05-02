@@ -6,4 +6,6 @@ Search experience consisting of two results sections:
 
 Demonstrates simultaneous search in multiple indices
 
-<img src="./demo.gif" width="300"/>
+<p align="center">
+<img src="/Resources/query-suggestions-hits.gif" width="300"/>
+</p>

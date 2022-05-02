@@ -60,20 +60,6 @@ public class QuerySuggestionsDemoViewController: UIViewController {
     super.viewDidLoad()
     configureUI()
   }
-      
-  private func configureUI() {
-    title = "Query Suggestions"
-    view.backgroundColor = .white
-    let resultsView = resultsViewController.view!
-    resultsView.translatesAutoresizingMaskIntoConstraints = false
-    view.addSubview(resultsView)
-    NSLayoutConstraint.activate([
-      resultsView.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor),
-      resultsView.leadingAnchor.constraint(equalTo: view.safeAreaLayoutGuide.leadingAnchor),
-      resultsView.trailingAnchor.constraint(equalTo: view.safeAreaLayoutGuide.trailingAnchor),
-      resultsView.bottomAnchor.constraint(equalTo: view.bottomAnchor),
-    ])
-  }
   
   private func setup() {
     navigationItem.searchController = searchController
@@ -90,6 +76,20 @@ public class QuerySuggestionsDemoViewController: UIViewController {
     }
     
     searcher.search()
+  }
+  
+  private func configureUI() {
+    title = "Query Suggestions"
+    view.backgroundColor = .white
+    let resultsView = resultsViewController.view!
+    resultsView.translatesAutoresizingMaskIntoConstraints = false
+    view.addSubview(resultsView)
+    NSLayoutConstraint.activate([
+      resultsView.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor),
+      resultsView.leadingAnchor.constraint(equalTo: view.safeAreaLayoutGuide.leadingAnchor),
+      resultsView.trailingAnchor.constraint(equalTo: view.safeAreaLayoutGuide.trailingAnchor),
+      resultsView.bottomAnchor.constraint(equalTo: view.bottomAnchor),
+    ])
   }
   
 }

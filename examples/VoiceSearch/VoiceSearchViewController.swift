@@ -15,26 +15,25 @@ class VoiceSearchViewController: UIViewController {
   let searchController: UISearchController
   let searcher: HitsSearcher
   
-  let voiceOverlayController: VoiceOverlayController
-  
   let queryInputConnector: QueryInputConnector
   let textFieldController: TextFieldController
   
   let hitsConnector: HitsConnector<Hit<StoreItem>>
   let searchResultsController: StoreItemsTableViewController
-
+  
+  let voiceOverlayController: VoiceOverlayController
   
   override init(nibName nibNameOrNil: String?, bundle nibBundleOrNil: Bundle?) {
     searcher = .init(client: .newDemo,
                      indexName: Index.Ecommerce.products)
     searchResultsController = .init()
-    voiceOverlayController = .init()
     hitsConnector = .init(searcher: searcher,
                           controller: searchResultsController)
     searchController = .init(searchResultsController: searchResultsController)
     textFieldController = .init(searchBar: searchController.searchBar)
     queryInputConnector = .init(searcher: searcher,
                                 controller: textFieldController)
+    voiceOverlayController = .init()
     super.init(nibName: nibNameOrNil, bundle: nibBundleOrNil)
   }
   

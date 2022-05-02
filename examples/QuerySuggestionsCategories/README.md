@@ -7,4 +7,6 @@ Search experience consisting of two results sections:
 Demonstrates simultaneous search for hits (suggestions) and facet values.
 
 
-<img src="./demo.gif" width="300"/>
+<p align="center">
+<img src="/Resources/query-suggestions-categories.gif" width="300"/>
+</p>
