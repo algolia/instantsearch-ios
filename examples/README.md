@@ -4,10 +4,8 @@
 
 Source code for documentation examples
 
-- [Getting Started guide with UIKit](/guide/GettingStartedUIKitGuide)
-- [Getting Started guide with SwiftUI](/guide/GettingStartedSwiftUIGuide)
-- [Query Suggestions guide](/guide/QuerySuggestionsGuides)
-- [Voice Search guide](/guide/VoiceSearch)
+- [Getting Started guide with UIKit](/Guide/GettingStartedUIKitGuide)
+- [Getting Started guide with SwiftUI](/Guide/GettingStartedSwiftUIGuide)
 
 ## Showcase
 
