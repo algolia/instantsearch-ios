@@ -4,12 +4,12 @@
 
 Source code for documentation examples
 
-- [Getting Started guide with UIKit](/Guide/GettingStartedUIKitGuide)
-- [Getting Started guide with SwiftUI](/Guide/GettingStartedSwiftUIGuide)
+- [Getting Started guide with UIKit](/examples/Guide/GettingStartedUIKitGuide)
+- [Getting Started guide with SwiftUI](/examples/Guide/GettingStartedSwiftUIGuide)
 
 ## Showcase
 
-- [Showcase of UIKit and SwiftUI widgets implementations](/showcase) 
+- [Showcase of UIKit and SwiftUI widgets implementations](/examples/Showcase) 
 
 ## Code Exchange examples
 
