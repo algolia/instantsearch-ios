@@ -6,10 +6,25 @@
 //
 
 import Foundation
+import AlgoliaSearchClient
 
 /// Searcher performing search for hits or facets in multiple indices simultaneously
 public class MultiSearcher: AbstractMultiSearcher<AlgoliaMultiSearchService> {
 
+  /**
+   - Parameters:
+      - client: Algolia search client
+  */
+  public convenience init(client: SearchClient) {
+    let service = AlgoliaMultiSearchService(client: client)
+    let initialRequest = Request(queries: [],
+                                 strategy: .none,
+                                 requestOptions: .none)
+    self.init(service: service,
+              initialRequest: initialRequest)
+    Telemetry.shared.trace(type: .multiSearcher)
+  }
+  
   /**
    - Parameters:
       - appID: Application ID
@@ -17,15 +32,8 @@ public class MultiSearcher: AbstractMultiSearcher<AlgoliaMultiSearchService> {
   */
   public convenience init(appID: ApplicationID,
                           apiKey: APIKey) {
-    let service = AlgoliaMultiSearchService(appID: appID,
-                                                apiKey: apiKey)
-    let initialRequest = Request(queries: [],
-                                 strategy: .none,
-                                 requestOptions: .none)
-    self.init(service: service,
-              initialRequest: initialRequest)
-    Telemetry.shared.trace(type: .multiSearcher)
-
+    let client = SearchClient(appID: appID, apiKey: apiKey)
+    self.init(client: client)
   }
 
   /**
