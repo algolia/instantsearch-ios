@@ -27,8 +27,6 @@ struct Demo: Codable, DemoProtocol {
   enum ID: String {
     case showcaseImperative = "showcase_imperative_ui"
     case showCaseDeclarative = "showcase_declarative_ui"
-    case guideVoiceSearch = "guide_voice_search"
-    case guideQuerySuggestion = "guide_query_suggestion"
     case guideInsights = "guide_insights"
     case guideGettingStarted  = "guide_getting_started"
     case guideDeclarativeUI  = "guide_declarative_ui"

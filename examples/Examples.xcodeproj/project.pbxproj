@@ -296,9 +296,6 @@
 		40E003C1280F835900544E9F /* ProductTableViewCell+StoreItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = 40E003BD280F833000544E9F /* ProductTableViewCell+StoreItem.swift */; };
 		40E003C3280F836700544E9F /* ProductTableViewCell+StoreItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = 40E003BD280F833000544E9F /* ProductTableViewCell+StoreItem.swift */; };
 		40E003C6280F837A00544E9F /* ProductTableViewCell+StoreItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = 40E003BD280F833000544E9F /* ProductTableViewCell+StoreItem.swift */; };
-		40E003C9280F84D200544E9F /* ProductsTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4022E859280E334800D71D66 /* ProductsTableViewController.swift */; };
-		40E003CA280F84D400544E9F /* ProductsTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4022E859280E334800D71D66 /* ProductsTableViewController.swift */; };
-		40E003CC280F84DA00544E9F /* ProductsTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4022E859280E334800D71D66 /* ProductsTableViewController.swift */; };
 		40E003CD280F85A700544E9F /* StoreItemsTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = AF50C96127F622EA0036F549 /* StoreItemsTableViewController.swift */; };
 		40E003CE280F85AC00544E9F /* StoreItemsTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = AF50C96127F622EA0036F549 /* StoreItemsTableViewController.swift */; };
 		40E003CF280F85AD00544E9F /* StoreItemsTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = AF50C96127F622EA0036F549 /* StoreItemsTableViewController.swift */; };
@@ -3956,7 +3953,6 @@
 				AF50CCD527FAE6AA0036F549 /* UIView+Layout.swift in Sources */,
 				4034B700281039E700F4A303 /* Helpers.swift in Sources */,
 				404C4115280C991000EC9FEB /* SortByDemoController.swift in Sources */,
-				40E003C9280F84D200544E9F /* ProductsTableViewController.swift in Sources */,
 				AF50CD4127FAF57D0036F549 /* StoreItem.swift in Sources */,
 				4034B6E8280F8AD500F4A303 /* ProductTableViewCell.swift in Sources */,
 				404C404C280A281800EC9FEB /* SwiftUIDemo.swift in Sources */,
@@ -4002,7 +3998,6 @@
 				AF50CD6527FAF80F0036F549 /* UITableView+EmptyResult.swift in Sources */,
 				AF50CD5F27FAF7D50036F549 /* SearchClient.swift in Sources */,
 				AF50CD6027FAF7E90036F549 /* ResultsViewController.swift in Sources */,
-				40E003CC280F84DA00544E9F /* ProductsTableViewController.swift in Sources */,
 				404C4038280A27EE00EC9FEB /* CommonSwiftUIDemoViewController.swift in Sources */,
 				4034B6EA280F8B0700F4A303 /* ProductTableViewCell.swift in Sources */,
 				40E003D5280F85B700544E9F /* StoreItemsTableViewController.swift in Sources */,
@@ -4033,7 +4028,6 @@
 				AF50CDA927FB29A10036F549 /* SceneDelegate+Convenience.swift in Sources */,
 				AF50CBFE27F72CA80036F549 /* SceneDelegate.swift in Sources */,
 				AF50CCD827FAE6AA0036F549 /* UIView+Layout.swift in Sources */,
-				40E003CA280F84D400544E9F /* ProductsTableViewController.swift in Sources */,
 				404C4135280C9E8300EC9FEB /* SearchDemoViewController.swift in Sources */,
 				4034B6E3280F8A2600F4A303 /* ProductTableViewCell.swift in Sources */,
 				4034B6FA2810166700F4A303 /* ProductRow+StoreItem.swift in Sources */,
@@ -4914,7 +4908,7 @@
 				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_TEAM = 5RDFJYUV23;
 				GENERATE_INFOPLIST_FILE = YES;
-				INFOPLIST_FILE = Guide/QuerySuggestions/Info.plist;
+				INFOPLIST_FILE = QuerySuggestions/Info.plist;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchStoryboardName = LaunchScreen;
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
@@ -4942,7 +4936,7 @@
 				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_TEAM = 5RDFJYUV23;
 				GENERATE_INFOPLIST_FILE = YES;
-				INFOPLIST_FILE = Guide/QuerySuggestions/Info.plist;
+				INFOPLIST_FILE = QuerySuggestions/Info.plist;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchStoryboardName = LaunchScreen;
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";

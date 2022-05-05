@@ -40,12 +40,6 @@ class DemoViewControllerFactory: ViewControllerFactory {
     case .guideInsights:
       return InsightsViewController()
       
-    case .guideQuerySuggestion:
-      return QuerySuggestionsDemoViewController()
-      
-    case .guideVoiceSearch:
-      return VoiceSearchViewController()
-      
     case .guideGettingStarted:
       return GettingStartedGuide.StepSeven.ViewController()
       
