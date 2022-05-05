@@ -55,17 +55,22 @@ private extension FacetSearchDemoViewController {
     tableView.register(UITableViewCell.self, forCellReuseIdentifier: "CellId")
     tableView.translatesAutoresizingMaskIntoConstraints = false
     searchBar.translatesAutoresizingMaskIntoConstraints = false
-    filterDebugViewController.view.translatesAutoresizingMaskIntoConstraints = false
-    filterDebugViewController.view.heightAnchor.constraint(equalToConstant: 150).isActive = true
+    let filterDebugView = filterDebugViewController.view!
+    filterDebugView.translatesAutoresizingMaskIntoConstraints = false
+    filterDebugView.heightAnchor.constraint(equalToConstant: 150).isActive = true
+    let filterDebugViewContainer = UIView()
+    filterDebugViewContainer.translatesAutoresizingMaskIntoConstraints = false
+    filterDebugViewContainer.addSubview(filterDebugView)
+    filterDebugView.pin(to: filterDebugViewContainer, insets: .init(top: 0, left: 10, bottom: 0, right: -10))
     let stackView = UIStackView()
+    stackView.spacing = 5
     stackView.isLayoutMarginsRelativeArrangement = true
-    stackView.layoutMargins = .init(top: 10, left: 10, bottom: 10, right: 10)
     stackView.translatesAutoresizingMaskIntoConstraints = false
     stackView.axis = .vertical
     view.addSubview(stackView)
     stackView.pin(to: view)
     stackView.addArrangedSubview(searchBar)
-    stackView.addArrangedSubview(filterDebugViewController.view)
+    stackView.addArrangedSubview(filterDebugViewContainer)
     stackView.addArrangedSubview(tableView)
   }
 
