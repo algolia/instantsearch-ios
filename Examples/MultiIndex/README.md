@@ -6,4 +6,4 @@ Search experience consisting of search in two indices:
 
 Demonstrates simultaneous search in multiple indices
 
-<img src="./demo.gif" width="300"/>
+<img src="/Resources/multi-index.gif" width="300"/>
