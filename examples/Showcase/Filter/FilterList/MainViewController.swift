@@ -53,6 +53,12 @@ class MainViewController: UIViewController {
     title = "Filter List"
     view.backgroundColor = .white
     
+    segmentedControl.translatesAutoresizingMaskIntoConstraints = false
+    let segmentedControlContainer = UIView()
+    segmentedControlContainer.translatesAutoresizingMaskIntoConstraints = false
+    segmentedControlContainer.addSubview(segmentedControl)
+    segmentedControl.pin(to: segmentedControlContainer, insets: .init(top: 0, left: 10, bottom: 0, right: -10))
+    
     let mainStackView = UIStackView()
     mainStackView.axis = .vertical
     mainStackView.spacing = 10
@@ -73,7 +79,7 @@ class MainViewController: UIViewController {
       viewStack.addArrangedSubview(viewController.view)
     }
     
-    mainStackView.addArrangedSubview(segmentedControl)
+    mainStackView.addArrangedSubview(segmentedControlContainer)
     mainStackView.addArrangedSubview(viewStack)
     view.addSubview(mainStackView)
     mainStackView.pin(to: view.safeAreaLayoutGuide)
