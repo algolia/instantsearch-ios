@@ -11,22 +11,16 @@ import InstantSearchCore
 
 class Controller {
   
-  let demoController: SearchDemoController
-  let hitsController: HitsObservableController<Hit<StoreItem>>
+  let demoController: MovieDemoController
+  let hitsController: HitsObservableController<Hit<Movie>>
   let queryInputController: QueryInputObservableController
-  let statsController: StatsTextObservableController
-  let loadingController: LoadingObservableController
   
   init(searchTriggeringMode: SearchTriggeringMode = .searchAsYouType) {
-    demoController = SearchDemoController()
+    demoController = MovieDemoController()
     hitsController = HitsObservableController()
     queryInputController = QueryInputObservableController()
-    statsController = StatsTextObservableController()
-    loadingController = LoadingObservableController()
     demoController.queryInputConnector.connectController(queryInputController)
     demoController.hitsInteractor.connectController(hitsController)
-    demoController.statsConnector.connectController(statsController)
-    demoController.loadingConnector.connectController(loadingController)
     demoController.searcher.search()
   }
   
@@ -35,15 +29,14 @@ class Controller {
 struct ContentView: View {
   
   @ObservedObject var queryInputController: QueryInputObservableController
-  @ObservedObject var hitsController: HitsObservableController<Hit<StoreItem>>
+  @ObservedObject var hitsController: HitsObservableController<Hit<Movie>>
   
   var body: some View {
     NavigationView {
-      HitsList(hitsController) { (hit, index) in
-        ProductRow(storeItemHit: hit!, configuration: .watch)
-          .frame(height: 50)
-          .padding(.vertical, 3)
+      HitsList(hitsController) { hit, _ in
+        MovieRow(movieHit: hit!)
           .frame(height: 80)
+          .padding(.vertical, 3)
         Divider()
       } noResults: {
         Text("No Results")
@@ -52,30 +45,17 @@ struct ContentView: View {
     .searchable(text: $queryInputController.query)
   }
   
-  @ViewBuilder func image(for hit: Hit<StoreItem>?) -> some View {
-    AsyncImage(url: hit!.object.images.first!,
-               content: { image in
-                image
-                  .resizable()
-                  .aspectRatio(contentMode: .fill)
-                },
-                placeholder: {
-                  ProgressView()
-              })
-  }
-  
 }
-
 
 struct ContentView_Previews: PreviewProvider {
   
   static let controller = Controller()
   
   static var previews: some View {
-      ContentView(queryInputController: controller.queryInputController,
-                  hitsController: controller.hitsController)
-      .navigationBarTitle("Algolia")
-
+    ContentView(queryInputController: controller.queryInputController,
+                hitsController: controller.hitsController)
+    .navigationBarTitle("Algolia")
+    
   }
   
 }

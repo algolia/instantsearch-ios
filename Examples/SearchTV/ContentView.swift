@@ -11,22 +11,20 @@ import InstantSearchSwiftUI
 
 class Controller {
   
-  let demoController: SearchDemoController
-  let hitsController: HitsObservableController<Hit<StoreItem>>
+  let demoController: MovieDemoController
+  let hitsController: HitsObservableController<Hit<Movie>>
   let queryInputController: QueryInputObservableController
   let statsController: StatsTextObservableController
   let loadingController: LoadingObservableController
   
   init(searchTriggeringMode: SearchTriggeringMode = .searchAsYouType) {
-    demoController = SearchDemoController()
+    demoController = MovieDemoController()
     hitsController = HitsObservableController()
     queryInputController = QueryInputObservableController()
     statsController = StatsTextObservableController()
     loadingController = LoadingObservableController()
     demoController.queryInputConnector.connectController(queryInputController)
     demoController.hitsInteractor.connectController(hitsController)
-    demoController.statsConnector.connectController(statsController)
-    demoController.loadingConnector.connectController(loadingController)
     demoController.searcher.search()
   }
   
@@ -35,42 +33,30 @@ class Controller {
 struct ContentView: View {
   
   @ObservedObject var queryInputController: QueryInputObservableController
-  @ObservedObject var hitsController: HitsObservableController<Hit<StoreItem>>
+  @ObservedObject var hitsController: HitsObservableController<Hit<Movie>>
   
-    var body: some View {
-      NavigationView {
-        HitsList(hitsController) { (hit, index) in
-          ProductRow(storeItemHit: hit!, configuration: .tv)
-            .padding(.vertical, 5)
-            .frame(height: 300)
-          Divider()
-        } noResults: {
-          Text("No Results")
-        }
+  var body: some View {
+    NavigationView {
+      HitsList(hitsController) { hit, _ in
+        MovieRow(movieHit: hit!)
+          .padding(.bottom, 10)
+          .focusable(true)
+        Divider()
+      } noResults: {
+        Text("No Results")
       }
-      .searchable(text: $queryInputController.query)
     }
-  
-  @ViewBuilder func image(for hit: Hit<StoreItem>?) -> some View {
-    AsyncImage(url: hit!.object.images.first!,
-               content: { image in
-                image
-                  .resizable()
-                  .aspectRatio(contentMode: .fill)
-                },
-                placeholder: {
-                  ProgressView()
-              })
-    .cornerRadius(10)
+    .searchable(text: $queryInputController.query)
   }
-    
+  
 }
+
 
 struct ContentView_Previews: PreviewProvider {
   
-    static let controller = Controller()
-    static var previews: some View {
-      ContentView(queryInputController: controller.queryInputController,
-                  hitsController: controller.hitsController)
-    }
+  static let controller = Controller()
+  static var previews: some View {
+    ContentView(queryInputController: controller.queryInputController,
+                hitsController: controller.hitsController)
+  }
 }
