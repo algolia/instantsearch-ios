@@ -34,6 +34,9 @@ public class RatingControl: UIControl {
   /// The default value for this property is 0.
   public var value: Double = 0 {
     didSet {
+      guard value != oldValue else {
+        return
+      }
       refresh()
       sendActions(for: .valueChanged)
     }
