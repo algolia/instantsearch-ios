@@ -18,15 +18,15 @@ class SortByDemoController {
   let sortByConnector: SortByConnector
   
   init() {
-    self.searcher = HitsSearcher(client: .newDemo,
-                                 indexName: Index.Ecommerce.products)
+    self.searcher = HitsSearcher(client: .ecommerce,
+                                 indexName: .ecommerceProducts)
     self.queryInputConnector = .init(searcher: searcher)
     self.hitsConnector = .init(searcher: searcher)
     self.statsConnector = .init(searcher: searcher)
     sortByConnector = .init(searcher: searcher,
-                            indicesNames: [Index.Ecommerce.products,
-                                           Index.Ecommerce.productsAsc,
-                                           Index.Ecommerce.productsDesc],
+                            indicesNames: [.ecommerceProducts,
+                                           .ecommerceProductsAsc,
+                                           .ecommerceProductsDesc],
                             selected: 0)
     searcher.search()
     searcher.isDisjunctiveFacetingEnabled = false
@@ -34,11 +34,11 @@ class SortByDemoController {
   
   func title(for indexName: IndexName) -> String {
     switch indexName {
-    case Index.Ecommerce.products:
+    case .ecommerceProducts:
       return "Default"
-    case Index.Ecommerce.productsAsc:
+    case .ecommerceProductsAsc:
       return "Price Asc"
-    case Index.Ecommerce.productsDesc:
+    case .ecommerceProductsDesc:
       return "Price Desc"
     default:
       return indexName.rawValue

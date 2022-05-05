@@ -18,7 +18,7 @@ class FilterNumericComparisonDemoController {
   let priceConnector: FilterComparisonConnector<Double>
   
   init() {
-    searcher = HitsSearcher(client: .demo,
+    searcher = HitsSearcher(client: .instantSearch,
                             indexName: "mobile_demo_filter_numeric_comparison")
     filterState = .init()
     clearFilterConnector = .init(filterState: filterState)

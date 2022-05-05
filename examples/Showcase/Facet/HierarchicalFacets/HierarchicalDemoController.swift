@@ -30,7 +30,7 @@ class HierarchicalDemoController {
   ]
   
   init<Controller: HierarchicalController>(controller: Controller) where Controller.Item == [HierarchicalFacet] {
-    searcher = HitsSearcher(client: .demo, indexName: "mobile_demo_hierarchical")
+    searcher = HitsSearcher(client: .instantSearch, indexName: "mobile_demo_hierarchical")
     filterState = .init()
     clearFilterConnector = .init(filterState: filterState)
     hierarchicalConnector = .init(searcher: searcher,

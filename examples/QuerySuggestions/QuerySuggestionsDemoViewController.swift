@@ -26,16 +26,15 @@ public class QuerySuggestionsDemoViewController: UIViewController {
   
   override init(nibName nibNameOrNil: String?, bundle nibBundleOrNil: Bundle?) {
     
-    searcher = .init(appID: SearchClient.newDemo.applicationID,
-                     apiKey: SearchClient.newDemo.apiKey)
+    searcher = .init(client: .ecommerce)
     
-    let suggestionsSearcher = searcher.addHitsSearcher(indexName: Index.Ecommerce.suggestions)
+    let suggestionsSearcher = searcher.addHitsSearcher(indexName: .ecommerceSuggestions)
     suggestionsViewController = .init(style: .plain)
     suggestionsHitsConnector = HitsConnector(searcher: suggestionsSearcher,
                                              interactor: .init(infiniteScrolling: .off),
                                              controller: suggestionsViewController)
     
-    let resultsSearcher = searcher.addHitsSearcher(indexName: Index.Ecommerce.products)
+    let resultsSearcher = searcher.addHitsSearcher(indexName: .ecommerceProducts)
     resultsViewController = .init(style: .plain)
     resultsHitsConnector = HitsConnector(searcher: resultsSearcher,
                                          interactor: .init(),

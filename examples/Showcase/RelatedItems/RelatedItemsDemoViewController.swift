@@ -22,10 +22,9 @@ class RelatedItemsDemoViewController: UIViewController {
   let recommendController: RecommendController
   
   override init(nibName nibNameOrNil: String?, bundle nibBundleOrNil: Bundle?) {
-    self.searcher = .init(client: .recommend,
-                          indexName: .recommend)
-    self.recommendController = .init(recommendClient: .init(appID: SearchClient.recommend.applicationID,
-                                                            apiKey: SearchClient.recommend.apiKey))
+    self.searcher = .init(client: .ecommerceRecommend,
+                          indexName: .ecommerceRecommend)
+    self.recommendController = .init(recommendClient: .ecommerceRecommend)
     self.resultsViewController = .init(searcher: searcher)
     self.searchController = .init(searchResultsController: resultsViewController)
     self.textFieldController = TextFieldController(searchBar: searchController.searchBar)

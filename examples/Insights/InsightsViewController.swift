@@ -23,8 +23,8 @@ class InsightsViewController: UIViewController {
   let hitsTracker: HitsTracker
 
   override init(nibName nibNameOrNil: String?, bundle nibBundleOrNil: Bundle?) {
-    searcher = .init(client: .newDemo,
-                     indexName: Index.Ecommerce.products)
+    searcher = .init(client: .ecommerce,
+                     indexName: .ecommerceProducts)
     searchResultsController = .init()
     hitsConnector = .init(searcher: searcher,
                           controller: searchResultsController)
@@ -32,7 +32,7 @@ class InsightsViewController: UIViewController {
     textFieldController = .init(searchBar: searchController.searchBar)
     queryInputConnector = .init(searcher: searcher,
                                 controller: textFieldController)
-    let insights = Insights.register(appId: SearchClient.newDemo.applicationID, apiKey: SearchClient.newDemo.apiKey)
+    let insights = Insights.register(appId: SearchClient.ecommerce.applicationID, apiKey: SearchClient.ecommerce.apiKey)
     hitsTracker = .init(eventName: "demo",
                         searcher: searcher,
                         insights: insights)

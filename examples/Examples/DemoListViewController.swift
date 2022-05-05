@@ -25,7 +25,7 @@ final class DemoListViewController<Demo: DemoProtocol & Codable>: UITableViewCon
   var groupedDemos: [(groupName: String, demos: [Demo])]
 
   init(indexName: IndexName) {
-    searcher = HitsSearcher(client: .demo, indexName: indexName)
+    searcher = HitsSearcher(client: .instantSearch, indexName: indexName)
     filterState = .init()
     hitsInteractor = HitsInteractor(infiniteScrolling: .on(withOffset: 10), showItemsOnEmptyQuery: true)
     groupedDemos = []

@@ -24,8 +24,8 @@ class VoiceSearchViewController: UIViewController {
   let voiceOverlayController: VoiceOverlayController
   
   override init(nibName nibNameOrNil: String?, bundle nibBundleOrNil: Bundle?) {
-    searcher = .init(client: .newDemo,
-                     indexName: Index.Ecommerce.products)
+    searcher = .init(client: .ecommerce,
+                     indexName: .ecommerceProducts)
     searchResultsController = .init()
     hitsConnector = .init(searcher: searcher,
                           controller: searchResultsController)

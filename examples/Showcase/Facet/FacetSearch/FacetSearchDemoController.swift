@@ -19,7 +19,7 @@ class FacetSearchDemoController {
   init() {
     filterState = .init()
     clearFilterConnector = .init(filterState: filterState)
-    facetSearcher = FacetSearcher(client: .demo,
+    facetSearcher = FacetSearcher(client: .instantSearch,
                                   indexName: "mobile_demo_facet_list_search",
                                   facetName: "brand")
     facetListConnector = .init(searcher: facetSearcher,

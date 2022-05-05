@@ -18,7 +18,7 @@ class FilterNumericRangeDemoController {
   let rangeConnector: NumberRangeConnector<Double>
   
   init() {
-    self.searcher = HitsSearcher(client: .demo, indexName: "mobile_demo_filter_numeric_comparison")
+    self.searcher = HitsSearcher(client: .instantSearch, indexName: "mobile_demo_filter_numeric_comparison")
     self.filterState = .init()
     self.filterClearConnector = .init(filterState: filterState)
     rangeConnector = .init(searcher: searcher,

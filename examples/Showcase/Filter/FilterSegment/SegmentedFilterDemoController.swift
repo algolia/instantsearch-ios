@@ -21,7 +21,7 @@ class SegmentedFilterDemoController {
     let female = Filter.Facet(attribute: "gender", stringValue: "female")
     let notSpecified = Filter.Facet(attribute: "gender", stringValue: "not specified")
     
-    self.searcher = HitsSearcher(client: .demo,
+    self.searcher = HitsSearcher(client: .instantSearch,
                                  indexName: "mobile_demo_filter_segment")
     let items: [Int: Filter.Facet] = [
       0: male,

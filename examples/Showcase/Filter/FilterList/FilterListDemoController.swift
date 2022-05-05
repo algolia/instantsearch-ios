@@ -19,7 +19,7 @@ class FilterListDemoController<Filter: FilterType & Hashable> {
   init<Controller: SelectableListController>(filters: [Filter],
                                              controller: Controller,
                                              selectionMode: SelectionMode) where Controller.Item == Filter {
-    searcher = HitsSearcher(client: .demo,
+    searcher = HitsSearcher(client: .instantSearch,
                             indexName: "mobile_demo_filter_list")
     filterState = .init()
     clearFilterConnector = .init(filterState: filterState)

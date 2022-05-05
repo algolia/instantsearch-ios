@@ -17,8 +17,8 @@ class SearchDemoController {
   let loadingConnector: LoadingConnector
 
   init(searchTriggeringMode: SearchTriggeringMode = .searchAsYouType) {
-    searcher = .init(client: .newDemo,
-                     indexName: Index.Ecommerce.products)
+    searcher = .init(client: .ecommerce,
+                     indexName: .ecommerceProducts)
     hitsInteractor = .init()
     queryInputConnector = .init(searcher: searcher, searchTriggeringMode: searchTriggeringMode)
     statsConnector = .init(searcher: searcher)

@@ -17,7 +17,7 @@ class StatsDemoController {
   let queryInputConnector: QueryInputConnector
 
   init() {
-    self.searcher = HitsSearcher(client: .demo, indexName: "mobile_demo_movies")
+    self.searcher = HitsSearcher(client: .instantSearch, indexName: "mobile_demo_movies")
     self.queryInputConnector = .init(searcher: searcher)
     self.statsConnector = .init(searcher: searcher)
     searcher.search()

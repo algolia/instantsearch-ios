@@ -31,10 +31,10 @@ enum MultiIndexDemoSection: CaseIterable {
   var indexName: IndexName {
     switch self {
     case .suggestions:
-      return Index.Ecommerce.suggestions
+      return .ecommerceSuggestions
       
     case .products:
-      return Index.Ecommerce.products
+      return .ecommerceProducts
     }
   }
   

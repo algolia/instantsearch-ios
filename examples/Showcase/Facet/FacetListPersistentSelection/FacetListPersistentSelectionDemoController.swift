@@ -18,7 +18,7 @@ class FacetListPersistentSelectionDemoController {
   let categoryConnector: FacetListConnector
   
   init() {
-    searcher = .init(client: .demo,
+    searcher = .init(client: .instantSearch,
                      indexName: "mobile_demo_facet_list")
     filterState = .init()
     clearFilterConnector = .init(filterState: filterState)
