@@ -38,7 +38,7 @@ class DemoViewControllerFactory: ViewControllerFactory {
       return CategoriesHits.SearchViewController()
       
     case .guideInsights:
-      return nil
+      return InsightsViewController()
       
     case .guideQuerySuggestion:
       return QuerySuggestionsDemoViewController()

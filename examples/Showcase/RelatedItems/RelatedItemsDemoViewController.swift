@@ -43,7 +43,7 @@ class RelatedItemsDemoViewController: UIViewController {
   override func viewDidLoad() {
     super.viewDidLoad()
     setupUI()
-    resultsViewController.hitsViewController.didSelect = { [weak self] hit in
+    resultsViewController.hitsViewController.didSelect = { [weak self] _, hit in
       guard let viewController = self else { return }
       viewController.recommendController.presentRelatedItems(for: hit.objectID, from: viewController)
     }

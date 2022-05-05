@@ -13,7 +13,7 @@ class StoreItemsTableViewController: UITableViewController, HitsController {
   
   var hitsSource: HitsInteractor<Hit<StoreItem>>?
   
-  var didSelect: ((Hit<StoreItem>) -> Void)?
+  var didSelect: ((Int, Hit<StoreItem>) -> Void)?
   
   let cellIdentifier = "cellID"
   
@@ -44,7 +44,7 @@ class StoreItemsTableViewController: UITableViewController, HitsController {
   
   override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
     if let hit = hitsSource?.hit(atIndex: indexPath.row) {
-      didSelect?(hit)
+      didSelect?(indexPath.row, hit)
     }
   }
   

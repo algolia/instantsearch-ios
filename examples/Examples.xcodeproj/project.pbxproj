@@ -14,6 +14,22 @@
 		400366CE2809B9F300A5F29E /* UIView+Layout.swift in Sources */ = {isa = PBXBuildFile; fileRef = AF50CCBE27FAE6AA0036F549 /* UIView+Layout.swift */; };
 		400366CF2809BA2000A5F29E /* FilterStateObservableController.swift in Sources */ = {isa = PBXBuildFile; fileRef = AFB181C227FDB6A0000AA57B /* FilterStateObservableController.swift */; };
 		400366D22809BAE000A5F29E /* FilterStateDebugView.swift in Sources */ = {isa = PBXBuildFile; fileRef = AFB181CA27FE1150000AA57B /* FilterStateDebugView.swift */; };
+		4011DC1A2823314900336C42 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4011DC192823314900336C42 /* AppDelegate.swift */; };
+		4011DC1C2823314900336C42 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4011DC1B2823314900336C42 /* SceneDelegate.swift */; };
+		4011DC1E2823314900336C42 /* InsightsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4011DC1D2823314900336C42 /* InsightsViewController.swift */; };
+		4011DC232823314A00336C42 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 4011DC222823314A00336C42 /* Assets.xcassets */; };
+		4011DC262823314A00336C42 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 4011DC242823314A00336C42 /* LaunchScreen.storyboard */; };
+		4011DC2B2823317800336C42 /* SceneDelegate+Convenience.swift in Sources */ = {isa = PBXBuildFile; fileRef = AF50CD8927FB29A10036F549 /* SceneDelegate+Convenience.swift */; };
+		4011DC2C2823384A00336C42 /* StoreItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = AF50C95E27F622C70036F549 /* StoreItem.swift */; };
+		4011DC2E2823385500336C42 /* StoreItemsTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = AF50C96127F622EA0036F549 /* StoreItemsTableViewController.swift */; };
+		4011DC2F2823386200336C42 /* UITableView+EmptyResult.swift in Sources */ = {isa = PBXBuildFile; fileRef = AF50C96827F622FB0036F549 /* UITableView+EmptyResult.swift */; };
+		4011DC302823386900336C42 /* ProductTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = AFEFEF8227F47F7700B47F7F /* ProductTableViewCell.swift */; };
+		4011DC322823387C00336C42 /* InstantSearch in Frameworks */ = {isa = PBXBuildFile; productRef = 4011DC312823387C00336C42 /* InstantSearch */; };
+		4011DC342823388300336C42 /* SDWebImage in Frameworks */ = {isa = PBXBuildFile; productRef = 4011DC332823388300336C42 /* SDWebImage */; };
+		4011DC352823392700336C42 /* SearchClient.swift in Sources */ = {isa = PBXBuildFile; fileRef = AF50C96B27F623380036F549 /* SearchClient.swift */; };
+		4011DC3728233A6000336C42 /* ProductTableViewCell+StoreItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = 40E003BD280F833000544E9F /* ProductTableViewCell+StoreItem.swift */; };
+		4011DC3828233A6F00336C42 /* UIView+Layout.swift in Sources */ = {isa = PBXBuildFile; fileRef = AF50CCBE27FAE6AA0036F549 /* UIView+Layout.swift */; };
+		4011DC3928233D1A00336C42 /* InsightsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4011DC1D2823314900336C42 /* InsightsViewController.swift */; };
 		4022E817280DA10400D71D66 /* SearchWatch WatchKit App.app in Embed Watch Content */ = {isa = PBXBuildFile; fileRef = 4022E816280DA10400D71D66 /* SearchWatch WatchKit App.app */; settings = {ATTRIBUTES = (RemoveHeadersOnCopy, ); }; };
 		4022E81C280DA10600D71D66 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 4022E81B280DA10600D71D66 /* Assets.xcassets */; };
 		4022E822280DA10600D71D66 /* SearchWatch WatchKit Extension.appex in Embed App Extensions */ = {isa = PBXBuildFile; fileRef = 4022E821280DA10600D71D66 /* SearchWatch WatchKit Extension.appex */; settings = {ATTRIBUTES = (RemoveHeadersOnCopy, ); }; };
@@ -804,6 +820,13 @@
 
 /* Begin PBXFileReference section */
 		400366C92808835800A5F29E /* QueryRuleCustomDataDemoController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = QueryRuleCustomDataDemoController.swift; sourceTree = "<group>"; };
+		4011DC172823314900336C42 /* Insights.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Insights.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		4011DC192823314900336C42 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
+		4011DC1B2823314900336C42 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
+		4011DC1D2823314900336C42 /* InsightsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InsightsViewController.swift; sourceTree = "<group>"; };
+		4011DC222823314A00336C42 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
+		4011DC252823314A00336C42 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
+		4011DC272823314A00336C42 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		4022E813280DA10400D71D66 /* SearchWatch.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = SearchWatch.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		4022E816280DA10400D71D66 /* SearchWatch WatchKit App.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "SearchWatch WatchKit App.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		4022E81B280DA10600D71D66 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
@@ -1143,6 +1166,15 @@
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
+		4011DC142823314900336C42 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				4011DC342823388300336C42 /* SDWebImage in Frameworks */,
+				4011DC322823387C00336C42 /* InstantSearch in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 		4022E81E280DA10600D71D66 /* Frameworks */ = {
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
@@ -1445,6 +1477,19 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		4011DC182823314900336C42 /* Insights */ = {
+			isa = PBXGroup;
+			children = (
+				4011DC192823314900336C42 /* AppDelegate.swift */,
+				4011DC1B2823314900336C42 /* SceneDelegate.swift */,
+				4011DC1D2823314900336C42 /* InsightsViewController.swift */,
+				4011DC222823314A00336C42 /* Assets.xcassets */,
+				4011DC242823314A00336C42 /* LaunchScreen.storyboard */,
+				4011DC272823314A00336C42 /* Info.plist */,
+			);
+			path = Insights;
+			sourceTree = "<group>";
+		};
 		4022E810280CEB8C00D71D66 /* Product */ = {
 			isa = PBXGroup;
 			children = (
@@ -1983,6 +2028,7 @@
 				4022E81A280DA10400D71D66 /* SearchWatch WatchKit App */,
 				4022E825280DA10600D71D66 /* SearchWatch WatchKit Extension */,
 				4022E847280DD5BE00D71D66 /* SearchTV */,
+				4011DC182823314900336C42 /* Insights */,
 				AF7FEB86272CAC5D0003BE62 /* Products */,
 				AFAE55152733643D00B52A43 /* Frameworks */,
 			);
@@ -2026,6 +2072,7 @@
 				4022E816280DA10400D71D66 /* SearchWatch WatchKit App.app */,
 				4022E821280DA10600D71D66 /* SearchWatch WatchKit Extension.appex */,
 				4022E846280DD5BE00D71D66 /* SearchTV.app */,
+				4011DC172823314900336C42 /* Insights.app */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -2175,6 +2222,27 @@
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
+		4011DC162823314900336C42 /* Insights */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 4011DC2A2823314A00336C42 /* Build configuration list for PBXNativeTarget "Insights" */;
+			buildPhases = (
+				4011DC132823314900336C42 /* Sources */,
+				4011DC142823314900336C42 /* Frameworks */,
+				4011DC152823314900336C42 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = Insights;
+			packageProductDependencies = (
+				4011DC312823387C00336C42 /* InstantSearch */,
+				4011DC332823388300336C42 /* SDWebImage */,
+			);
+			productName = Insights;
+			productReference = 4011DC172823314900336C42 /* Insights.app */;
+			productType = "com.apple.product-type.application";
+		};
 		4022E812280DA10400D71D66 /* SearchWatch */ = {
 			isa = PBXNativeTarget;
 			buildConfigurationList = 4022E83A280DA10600D71D66 /* Build configuration list for PBXNativeTarget "SearchWatch" */;
@@ -2914,6 +2982,9 @@
 				LastSwiftUpdateCheck = 1330;
 				LastUpgradeCheck = 1310;
 				TargetAttributes = {
+					4011DC162823314900336C42 = {
+						CreatedOnToolsVersion = 13.3.1;
+					};
 					4022E812280DA10400D71D66 = {
 						CreatedOnToolsVersion = 13.3.1;
 					};
@@ -3073,11 +3144,21 @@
 				4022E815280DA10400D71D66 /* SearchWatch WatchKit App */,
 				4022E820280DA10600D71D66 /* SearchWatch WatchKit Extension */,
 				4022E845280DD5BE00D71D66 /* SearchTV */,
+				4011DC162823314900336C42 /* Insights */,
 			);
 		};
 /* End PBXProject section */
 
 /* Begin PBXResourcesBuildPhase section */
+		4011DC152823314900336C42 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				4011DC262823314A00336C42 /* LaunchScreen.storyboard in Resources */,
+				4011DC232823314A00336C42 /* Assets.xcassets in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 		4022E811280DA10400D71D66 /* Resources */ = {
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
@@ -3391,6 +3472,24 @@
 /* End PBXResourcesBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
+		4011DC132823314900336C42 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				4011DC1E2823314900336C42 /* InsightsViewController.swift in Sources */,
+				4011DC302823386900336C42 /* ProductTableViewCell.swift in Sources */,
+				4011DC2C2823384A00336C42 /* StoreItem.swift in Sources */,
+				4011DC2E2823385500336C42 /* StoreItemsTableViewController.swift in Sources */,
+				4011DC2F2823386200336C42 /* UITableView+EmptyResult.swift in Sources */,
+				4011DC352823392700336C42 /* SearchClient.swift in Sources */,
+				4011DC3828233A6F00336C42 /* UIView+Layout.swift in Sources */,
+				4011DC1A2823314900336C42 /* AppDelegate.swift in Sources */,
+				4011DC1C2823314900336C42 /* SceneDelegate.swift in Sources */,
+				4011DC3728233A6000336C42 /* ProductTableViewCell+StoreItem.swift in Sources */,
+				4011DC2B2823317800336C42 /* SceneDelegate+Convenience.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 		4022E81D280DA10600D71D66 /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
@@ -4075,6 +4174,7 @@
 				404C412E280C9E3100EC9FEB /* RelatedItemsDemoViewController.swift in Sources */,
 				404C4147280C9FAA00EC9FEB /* StatsDemoController.swift in Sources */,
 				404C4028280A27EE00EC9FEB /* CommonSwiftUIDemoViewController.swift in Sources */,
+				4011DC3928233D1A00336C42 /* InsightsViewController.swift in Sources */,
 				404C414B280CA00D00EC9FEB /* DynamicFacetsDemoController.swift in Sources */,
 				404C40BC280C950600EC9FEB /* HierarchicalDemoSwiftUI.swift in Sources */,
 				404C4145280C9FAA00EC9FEB /* StatsDemoSwiftUI.swift in Sources */,
@@ -4254,6 +4354,14 @@
 /* End PBXTargetDependency section */
 
 /* Begin PBXVariantGroup section */
+		4011DC242823314A00336C42 /* LaunchScreen.storyboard */ = {
+			isa = PBXVariantGroup;
+			children = (
+				4011DC252823314A00336C42 /* Base */,
+			);
+			name = LaunchScreen.storyboard;
+			sourceTree = "<group>";
+		};
 		AF46A7632747EF9F004E86F3 /* LaunchScreen.storyboard */ = {
 			isa = PBXVariantGroup;
 			children = (
@@ -4489,6 +4597,64 @@
 /* End PBXVariantGroup section */
 
 /* Begin XCBuildConfiguration section */
+		4011DC282823314A00336C42 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_TEAM = 5RDFJYUV23;
+				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_FILE = Insights/Info.plist;
+				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
+				INFOPLIST_KEY_UILaunchStoryboardName = LaunchScreen;
+				INFOPLIST_KEY_UIMainStoryboardFile = "";
+				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
+				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
+				IPHONEOS_DEPLOYMENT_TARGET = 15.4;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+				);
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = com.algolia.Insights;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_EMIT_LOC_STRINGS = YES;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+			};
+			name = Debug;
+		};
+		4011DC292823314A00336C42 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_TEAM = 5RDFJYUV23;
+				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_FILE = Insights/Info.plist;
+				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
+				INFOPLIST_KEY_UILaunchStoryboardName = LaunchScreen;
+				INFOPLIST_KEY_UIMainStoryboardFile = "";
+				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
+				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
+				IPHONEOS_DEPLOYMENT_TARGET = 15.4;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+				);
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = com.algolia.Insights;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_EMIT_LOC_STRINGS = YES;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+			};
+			name = Release;
+		};
 		4022E833280DA10600D71D66 /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
@@ -6530,6 +6696,15 @@
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
+		4011DC2A2823314A00336C42 /* Build configuration list for PBXNativeTarget "Insights" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				4011DC282823314A00336C42 /* Debug */,
+				4011DC292823314A00336C42 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
 		4022E832280DA10600D71D66 /* Build configuration list for PBXNativeTarget "SearchWatch WatchKit Extension" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
@@ -6876,6 +7051,15 @@
 /* End XCRemoteSwiftPackageReference section */
 
 /* Begin XCSwiftPackageProductDependency section */
+		4011DC312823387C00336C42 /* InstantSearch */ = {
+			isa = XCSwiftPackageProductDependency;
+			productName = InstantSearch;
+		};
+		4011DC332823388300336C42 /* SDWebImage */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = AFAE55AA27342C5900B52A43 /* XCRemoteSwiftPackageReference "SDWebImage" */;
+			productName = SDWebImage;
+		};
 		4022E83D280DA1A900D71D66 /* InstantSearchSwiftUI */ = {
 			isa = XCSwiftPackageProductDependency;
 			productName = InstantSearchSwiftUI;
