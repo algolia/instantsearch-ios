@@ -12,13 +12,13 @@ import InstantSearch
 
 class SearchDemoViewController: UIViewController {
   
-  let demoController: SearchDemoController
+  let demoController: EcommerceDemoController
   let searchController: UISearchController
   let textFieldController: TextFieldController
   let resultsViewController: ResultsViewController
   
   init(searchTriggeringMode: SearchTriggeringMode = .searchAsYouType) {
-    demoController = SearchDemoController(searchTriggeringMode: searchTriggeringMode)
+    demoController = EcommerceDemoController(searchTriggeringMode: searchTriggeringMode)
     resultsViewController = .init(searcher: demoController.searcher)
     searchController = .init(searchResultsController: resultsViewController)
     textFieldController = .init(searchBar: searchController.searchBar)
@@ -44,8 +44,7 @@ class SearchDemoViewController: UIViewController {
   
   private func setupUI() {
     title = "Search"
-    view.backgroundColor = .white
-    definesPresentationContext = true
+    view.backgroundColor = .systemBackground
     navigationItem.searchController = searchController
     navigationItem.hidesSearchBarWhenScrolling = false
     searchController.hidesNavigationBarDuringPresentation = false

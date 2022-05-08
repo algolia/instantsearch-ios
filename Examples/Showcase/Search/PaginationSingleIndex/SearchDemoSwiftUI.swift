@@ -14,14 +14,14 @@ struct SearchDemoSwiftUI: SwiftUIDemo, PreviewProvider {
   
   class Controller {
     
-    let demoController: SearchDemoController
+    let demoController: EcommerceDemoController
     let hitsController: HitsObservableController<Hit<StoreItem>>
     let queryInputController: QueryInputObservableController
     let statsController: StatsTextObservableController
     let loadingController: LoadingObservableController
     
     init(searchTriggeringMode: SearchTriggeringMode) {
-      demoController = SearchDemoController(searchTriggeringMode: searchTriggeringMode)
+      demoController = EcommerceDemoController(searchTriggeringMode: searchTriggeringMode)
       hitsController = HitsObservableController()
       queryInputController = QueryInputObservableController()
       statsController = StatsTextObservableController()

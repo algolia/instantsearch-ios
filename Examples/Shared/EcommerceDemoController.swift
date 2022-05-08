@@ -1,5 +1,5 @@
 //
-//  SearchDemoController.swift
+//  EcommerceDemoController.swift
 //  Examples
 //
 //  Created by Vladislav Fitc on 14/04/2022.
@@ -8,7 +8,7 @@
 import Foundation
 import InstantSearchCore
 
-class SearchDemoController {
+class EcommerceDemoController {
   
   let searcher: HitsSearcher
   let hitsInteractor: HitsInteractor<Hit<StoreItem>>

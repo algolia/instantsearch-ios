@@ -28,7 +28,7 @@ class ProductTableViewCell: UITableViewCell {
     priceLabel = .init()
     super.init(style: style, reuseIdentifier: reuseIdentifier)
     layout()
-    backgroundColor = .white
+    backgroundColor = .systemBackground
   }
   
   required init?(coder: NSCoder) {
@@ -48,7 +48,7 @@ class ProductTableViewCell: UITableViewCell {
     
     subtitleLabel.translatesAutoresizingMaskIntoConstraints = false
     subtitleLabel.font = .systemFont(ofSize: 13, weight: .regular)
-    subtitleLabel.textColor = .gray
+    subtitleLabel.textColor = .systemGray
     subtitleLabel.numberOfLines = 1
     
     priceLabel.translatesAutoresizingMaskIntoConstraints = false
