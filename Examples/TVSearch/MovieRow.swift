@@ -1,8 +1,8 @@
 //
 //  MovieRow.swift
-//  Examples
+//  TVSearch
 //
-//  Created by Vladislav Fitc on 05/05/2022.
+//  Created by Vladislav Fitc on 08/05/2022.
 //
 
 import Foundation
@@ -24,15 +24,15 @@ struct MovieRow: View {
                    },
                    placeholder: {
                     Image(systemName: "photo")
-                   })
-                  .cornerRadius(10)
-                  .scaledToFit()
-                  .frame(maxWidth: 150,
-                         alignment: .center)
+                   }
+        )
+        .cornerRadius(10)
+        .scaledToFit()
+        .frame(maxWidth: 150)
         VStack(alignment: .leading, spacing: 9) {
-          Text(movieHit.object.title)
+          movieHit.titleText
             .font(.title3)
-          Text(movieHit.object.genres.joined(separator: ", "))
+          movieHit.genresText
             .font(.footnote)
             .foregroundColor(.gray)
           HStack(spacing: 10) {
@@ -51,4 +51,3 @@ struct MovieRow: View {
   }
   
 }
-

@@ -30,26 +30,6 @@
 		4011DC3728233A6000336C42 /* ProductTableViewCell+StoreItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = 40E003BD280F833000544E9F /* ProductTableViewCell+StoreItem.swift */; };
 		4011DC3828233A6F00336C42 /* UIView+Layout.swift in Sources */ = {isa = PBXBuildFile; fileRef = AF50CCBE27FAE6AA0036F549 /* UIView+Layout.swift */; };
 		4011DC3928233D1A00336C42 /* InsightsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4011DC1D2823314900336C42 /* InsightsViewController.swift */; };
-		4022E817280DA10400D71D66 /* SearchWatch WatchKit App.app in Embed Watch Content */ = {isa = PBXBuildFile; fileRef = 4022E816280DA10400D71D66 /* SearchWatch WatchKit App.app */; settings = {ATTRIBUTES = (RemoveHeadersOnCopy, ); }; };
-		4022E81C280DA10600D71D66 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 4022E81B280DA10600D71D66 /* Assets.xcassets */; };
-		4022E822280DA10600D71D66 /* SearchWatch WatchKit Extension.appex in Embed App Extensions */ = {isa = PBXBuildFile; fileRef = 4022E821280DA10600D71D66 /* SearchWatch WatchKit Extension.appex */; settings = {ATTRIBUTES = (RemoveHeadersOnCopy, ); }; };
-		4022E827280DA10600D71D66 /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4022E826280DA10600D71D66 /* ContentView.swift */; };
-		4022E829280DA10600D71D66 /* ExamplesApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4022E828280DA10600D71D66 /* ExamplesApp.swift */; };
-		4022E82B280DA10600D71D66 /* ComplicationController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4022E82A280DA10600D71D66 /* ComplicationController.swift */; };
-		4022E82D280DA10600D71D66 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 4022E82C280DA10600D71D66 /* Assets.xcassets */; };
-		4022E830280DA10600D71D66 /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 4022E82F280DA10600D71D66 /* Preview Assets.xcassets */; };
-		4022E83E280DA1A900D71D66 /* InstantSearchSwiftUI in Frameworks */ = {isa = PBXBuildFile; productRef = 4022E83D280DA1A900D71D66 /* InstantSearchSwiftUI */; };
-		4022E83F280DA1FD00D71D66 /* SearchDemoController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 40E1B06E280810440092B424 /* SearchDemoController.swift */; };
-		4022E840280DA24500D71D66 /* StoreItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = AF50C95E27F622C70036F549 /* StoreItem.swift */; };
-		4022E841280DA25400D71D66 /* SearchClient.swift in Sources */ = {isa = PBXBuildFile; fileRef = AF50C96B27F623380036F549 /* SearchClient.swift */; };
-		4022E849280DD5BE00D71D66 /* SearchTVApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4022E848280DD5BE00D71D66 /* SearchTVApp.swift */; };
-		4022E84B280DD5BE00D71D66 /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4022E84A280DD5BE00D71D66 /* ContentView.swift */; };
-		4022E84D280DD5C000D71D66 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 4022E84C280DD5C000D71D66 /* Assets.xcassets */; };
-		4022E850280DD5C000D71D66 /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 4022E84F280DD5C000D71D66 /* Preview Assets.xcassets */; };
-		4022E855280DD60000D71D66 /* InstantSearchSwiftUI in Frameworks */ = {isa = PBXBuildFile; productRef = 4022E854280DD60000D71D66 /* InstantSearchSwiftUI */; };
-		4022E856280DD67900D71D66 /* SearchDemoController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 40E1B06E280810440092B424 /* SearchDemoController.swift */; };
-		4022E857280DD68A00D71D66 /* StoreItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = AF50C95E27F622C70036F549 /* StoreItem.swift */; };
-		4022E858280DD69700D71D66 /* SearchClient.swift in Sources */ = {isa = PBXBuildFile; fileRef = AF50C96B27F623380036F549 /* SearchClient.swift */; };
 		4022E85A280E334800D71D66 /* ProductsTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4022E859280E334800D71D66 /* ProductsTableViewController.swift */; };
 		4022E85B280E334800D71D66 /* ProductsTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4022E859280E334800D71D66 /* ProductsTableViewController.swift */; };
 		4022E85D280EB94200D71D66 /* CommonSwiftUIDemoViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 404C4027280A27EE00EC9FEB /* CommonSwiftUIDemoViewController.swift */; };
@@ -61,15 +41,9 @@
 		4034B6E8280F8AD500F4A303 /* ProductTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = AFEFEF8227F47F7700B47F7F /* ProductTableViewCell.swift */; };
 		4034B6EA280F8B0700F4A303 /* ProductTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = AFEFEF8227F47F7700B47F7F /* ProductTableViewCell.swift */; };
 		4034B6EC280F8BAA00F4A303 /* ProductTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = AFEFEF8227F47F7700B47F7F /* ProductTableViewCell.swift */; };
-		4034B6EE281006DB00F4A303 /* ProductRow.swift in Sources */ = {isa = PBXBuildFile; fileRef = AF50CA0527F6EE0C0036F549 /* ProductRow.swift */; };
-		4034B6EF281006DC00F4A303 /* ProductRow.swift in Sources */ = {isa = PBXBuildFile; fileRef = AF50CA0527F6EE0C0036F549 /* ProductRow.swift */; };
 		4034B6F12810078100F4A303 /* ProductRow+ProductHit.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4034B6F02810078100F4A303 /* ProductRow+ProductHit.swift */; };
 		4034B6F32810078B00F4A303 /* ProductRow+StoreItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4034B6F22810078B00F4A303 /* ProductRow+StoreItem.swift */; };
-		4034B6F8281007E000F4A303 /* ProductRow+StoreItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4034B6F22810078B00F4A303 /* ProductRow+StoreItem.swift */; };
-		4034B6F928100BC900F4A303 /* ProductRow+StoreItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4034B6F22810078B00F4A303 /* ProductRow+StoreItem.swift */; };
 		4034B6FA2810166700F4A303 /* ProductRow+StoreItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4034B6F22810078B00F4A303 /* ProductRow+StoreItem.swift */; };
-		4034B6FB2810322700F4A303 /* Helpers.swift in Sources */ = {isa = PBXBuildFile; fileRef = AF50CC3327F72FF80036F549 /* Helpers.swift */; };
-		4034B6FC2810322800F4A303 /* Helpers.swift in Sources */ = {isa = PBXBuildFile; fileRef = AF50CC3327F72FF80036F549 /* Helpers.swift */; };
 		4034B6FD2810327400F4A303 /* Helpers.swift in Sources */ = {isa = PBXBuildFile; fileRef = AF50CC3327F72FF80036F549 /* Helpers.swift */; };
 		4034B6FE2810394700F4A303 /* ProductRow+ProductHit.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4034B6F02810078100F4A303 /* ProductRow+ProductHit.swift */; };
 		4034B6FF2810395500F4A303 /* Helpers.swift in Sources */ = {isa = PBXBuildFile; fileRef = AF50CC3327F72FF80036F549 /* Helpers.swift */; };
@@ -259,13 +233,7 @@
 		404C414C280CA01000EC9FEB /* DynamicFacetsDemoViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 404C40A3280C942000EC9FEB /* DynamicFacetsDemoViewController.swift */; };
 		404C414E280CA43300EC9FEB /* InstantSearchSwiftUI in Frameworks */ = {isa = PBXBuildFile; productRef = 404C414D280CA43300EC9FEB /* InstantSearchSwiftUI */; };
 		405FAB6728245F49002E3E4B /* Movie.swift in Sources */ = {isa = PBXBuildFile; fileRef = 405FAB6628245F49002E3E4B /* Movie.swift */; };
-		405FAB6828245F49002E3E4B /* Movie.swift in Sources */ = {isa = PBXBuildFile; fileRef = 405FAB6628245F49002E3E4B /* Movie.swift */; };
 		405FAB6A28246046002E3E4B /* MovieDemoController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 405FAB6928246046002E3E4B /* MovieDemoController.swift */; };
-		405FAB6B28246046002E3E4B /* MovieDemoController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 405FAB6928246046002E3E4B /* MovieDemoController.swift */; };
-		405FAB6E28246F7D002E3E4B /* MovieRow.swift in Sources */ = {isa = PBXBuildFile; fileRef = 405FAB6C28246F7D002E3E4B /* MovieRow.swift */; };
-		405FAB7028247001002E3E4B /* MovieDemoController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 405FAB6928246046002E3E4B /* MovieDemoController.swift */; };
-		405FAB712824701B002E3E4B /* Movie.swift in Sources */ = {isa = PBXBuildFile; fileRef = 405FAB6628245F49002E3E4B /* Movie.swift */; };
-		405FAB7328247533002E3E4B /* MovieRow.swift in Sources */ = {isa = PBXBuildFile; fileRef = 405FAB7228247533002E3E4B /* MovieRow.swift */; };
 		4073B5952806CAE200E05EF6 /* SliderView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4073B5942806CAE200E05EF6 /* SliderView.swift */; };
 		4073B5962806CAE200E05EF6 /* SliderView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4073B5942806CAE200E05EF6 /* SliderView.swift */; };
 		4073B59E28076B6F00E05EF6 /* Double+Range.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4073B59D28076B6F00E05EF6 /* Double+Range.swift */; };
@@ -326,6 +294,34 @@
 		40E1B07E280845970092B424 /* MultiIndexDemoController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 40E1B07A280845970092B424 /* MultiIndexDemoController.swift */; };
 		40E1B080280849EB0092B424 /* MultiIndexDemoSwiftUI.swift in Sources */ = {isa = PBXBuildFile; fileRef = 40E1B07F280849EB0092B424 /* MultiIndexDemoSwiftUI.swift */; };
 		40E1B082280849EB0092B424 /* MultiIndexDemoSwiftUI.swift in Sources */ = {isa = PBXBuildFile; fileRef = 40E1B07F280849EB0092B424 /* MultiIndexDemoSwiftUI.swift */; };
+		40F61ECC2827F5A50040ECD2 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 40F61ECB2827F5A50040ECD2 /* Assets.xcassets */; };
+		40F61ED22827F5A50040ECD2 /* WatchSearch WatchKit Extension.appex in Embed App Extensions */ = {isa = PBXBuildFile; fileRef = 40F61ED12827F5A50040ECD2 /* WatchSearch WatchKit Extension.appex */; settings = {ATTRIBUTES = (RemoveHeadersOnCopy, ); }; };
+		40F61ED72827F5A50040ECD2 /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 40F61ED62827F5A50040ECD2 /* ContentView.swift */; };
+		40F61ED92827F5A50040ECD2 /* ExamplesApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 40F61ED82827F5A50040ECD2 /* ExamplesApp.swift */; };
+		40F61EDB2827F5A50040ECD2 /* ComplicationController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 40F61EDA2827F5A50040ECD2 /* ComplicationController.swift */; };
+		40F61EDD2827F5A60040ECD2 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 40F61EDC2827F5A60040ECD2 /* Assets.xcassets */; };
+		40F61EE02827F5A60040ECD2 /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 40F61EDF2827F5A60040ECD2 /* Preview Assets.xcassets */; };
+		40F61EE42827F5A60040ECD2 /* WatchSearch.app in Embed Watch Content */ = {isa = PBXBuildFile; fileRef = 40F61EC92827F5A40040ECD2 /* WatchSearch.app */; settings = {ATTRIBUTES = (RemoveHeadersOnCopy, ); }; };
+		40F61EEE2827F8930040ECD2 /* InstantSearchSwiftUI in Frameworks */ = {isa = PBXBuildFile; productRef = 40F61EED2827F8930040ECD2 /* InstantSearchSwiftUI */; };
+		40F61EEF2827F9040040ECD2 /* Movie.swift in Sources */ = {isa = PBXBuildFile; fileRef = 405FAB6628245F49002E3E4B /* Movie.swift */; };
+		40F61EF12827F91C0040ECD2 /* Controller.swift in Sources */ = {isa = PBXBuildFile; fileRef = 40F61EF02827F91C0040ECD2 /* Controller.swift */; };
+		40F61EF22827F9320040ECD2 /* MovieDemoController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 405FAB6928246046002E3E4B /* MovieDemoController.swift */; };
+		40F61EF32827F93A0040ECD2 /* SearchClient.swift in Sources */ = {isa = PBXBuildFile; fileRef = AF50C96B27F623380036F549 /* SearchClient.swift */; };
+		40F61EF52827F94B0040ECD2 /* MovieRow.swift in Sources */ = {isa = PBXBuildFile; fileRef = 40F61EF42827F94B0040ECD2 /* MovieRow.swift */; };
+		40F61EF72827F9680040ECD2 /* MovieHit+Text.swift in Sources */ = {isa = PBXBuildFile; fileRef = 40BF0BAD28255084007B3BBD /* MovieHit+Text.swift */; };
+		40F61EF82827F9790040ECD2 /* Helpers.swift in Sources */ = {isa = PBXBuildFile; fileRef = AF50CC3327F72FF80036F549 /* Helpers.swift */; };
+		40F61F002827FAD10040ECD2 /* TVSearchApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 40F61EFF2827FAD10040ECD2 /* TVSearchApp.swift */; };
+		40F61F022827FAD10040ECD2 /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 40F61F012827FAD10040ECD2 /* ContentView.swift */; };
+		40F61F042827FAD10040ECD2 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 40F61F032827FAD10040ECD2 /* Assets.xcassets */; };
+		40F61F072827FAD10040ECD2 /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 40F61F062827FAD10040ECD2 /* Preview Assets.xcassets */; };
+		40F61F0C2827FAF70040ECD2 /* MovieRow.swift in Sources */ = {isa = PBXBuildFile; fileRef = 40F61F0B2827FAF70040ECD2 /* MovieRow.swift */; };
+		40F61F0E2827FB160040ECD2 /* InstantSearchSwiftUI in Frameworks */ = {isa = PBXBuildFile; productRef = 40F61F0D2827FB160040ECD2 /* InstantSearchSwiftUI */; };
+		40F61F0F2827FB2A0040ECD2 /* Movie.swift in Sources */ = {isa = PBXBuildFile; fileRef = 405FAB6628245F49002E3E4B /* Movie.swift */; };
+		40F61F102827FB3C0040ECD2 /* MovieHit+Text.swift in Sources */ = {isa = PBXBuildFile; fileRef = 40BF0BAD28255084007B3BBD /* MovieHit+Text.swift */; };
+		40F61F112827FB440040ECD2 /* Helpers.swift in Sources */ = {isa = PBXBuildFile; fileRef = AF50CC3327F72FF80036F549 /* Helpers.swift */; };
+		40F61F132827FB740040ECD2 /* Controller.swift in Sources */ = {isa = PBXBuildFile; fileRef = 40F61F122827FB740040ECD2 /* Controller.swift */; };
+		40F61F142827FB830040ECD2 /* MovieDemoController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 405FAB6928246046002E3E4B /* MovieDemoController.swift */; };
+		40F61F152827FB890040ECD2 /* SearchClient.swift in Sources */ = {isa = PBXBuildFile; fileRef = AF50C96B27F623380036F549 /* SearchClient.swift */; };
 		AF46A7592747EF9D004E86F3 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = AF46A7582747EF9D004E86F3 /* AppDelegate.swift */; };
 		AF46A75B2747EF9D004E86F3 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = AF46A75A2747EF9D004E86F3 /* SceneDelegate.swift */; };
 		AF46A7622747EF9F004E86F3 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = AF46A7612747EF9F004E86F3 /* Assets.xcassets */; };
@@ -782,41 +778,41 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
-		4022E818280DA10400D71D66 /* PBXContainerItemProxy */ = {
+		40F61ED32827F5A50040ECD2 /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
 			containerPortal = AF7FEB7D272CAC5D0003BE62 /* Project object */;
 			proxyType = 1;
-			remoteGlobalIDString = 4022E815280DA10400D71D66;
-			remoteInfo = "SearchWatch WatchKit App";
+			remoteGlobalIDString = 40F61ED02827F5A50040ECD2;
+			remoteInfo = "WatchSearch WatchKit Extension";
 		};
-		4022E823280DA10600D71D66 /* PBXContainerItemProxy */ = {
+		40F61EE22827F5A60040ECD2 /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
 			containerPortal = AF7FEB7D272CAC5D0003BE62 /* Project object */;
 			proxyType = 1;
-			remoteGlobalIDString = 4022E820280DA10600D71D66;
-			remoteInfo = "SearchWatch WatchKit Extension";
+			remoteGlobalIDString = 40F61EC82827F5A40040ECD2;
+			remoteInfo = WatchSearch;
 		};
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXCopyFilesBuildPhase section */
-		4022E835280DA10600D71D66 /* Embed App Extensions */ = {
+		40F61EE82827F5A60040ECD2 /* Embed App Extensions */ = {
 			isa = PBXCopyFilesBuildPhase;
 			buildActionMask = 2147483647;
 			dstPath = "";
 			dstSubfolderSpec = 13;
 			files = (
-				4022E822280DA10600D71D66 /* SearchWatch WatchKit Extension.appex in Embed App Extensions */,
+				40F61ED22827F5A50040ECD2 /* WatchSearch WatchKit Extension.appex in Embed App Extensions */,
 			);
 			name = "Embed App Extensions";
 			runOnlyForDeploymentPostprocessing = 0;
 		};
-		4022E839280DA10600D71D66 /* Embed Watch Content */ = {
+		40F61EEC2827F5A60040ECD2 /* Embed Watch Content */ = {
 			isa = PBXCopyFilesBuildPhase;
 			buildActionMask = 2147483647;
 			dstPath = "$(CONTENTS_FOLDER_PATH)/Watch";
 			dstSubfolderSpec = 16;
 			files = (
-				4022E817280DA10400D71D66 /* SearchWatch WatchKit App.app in Embed Watch Content */,
+				40F61EE42827F5A60040ECD2 /* WatchSearch.app in Embed Watch Content */,
 			);
 			name = "Embed Watch Content";
 			runOnlyForDeploymentPostprocessing = 0;
@@ -832,21 +828,6 @@
 		4011DC222823314A00336C42 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		4011DC252823314A00336C42 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		4011DC272823314A00336C42 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		4022E813280DA10400D71D66 /* SearchWatch.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = SearchWatch.app; sourceTree = BUILT_PRODUCTS_DIR; };
-		4022E816280DA10400D71D66 /* SearchWatch WatchKit App.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "SearchWatch WatchKit App.app"; sourceTree = BUILT_PRODUCTS_DIR; };
-		4022E81B280DA10600D71D66 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
-		4022E821280DA10600D71D66 /* SearchWatch WatchKit Extension.appex */ = {isa = PBXFileReference; explicitFileType = "wrapper.app-extension"; includeInIndex = 0; path = "SearchWatch WatchKit Extension.appex"; sourceTree = BUILT_PRODUCTS_DIR; };
-		4022E826280DA10600D71D66 /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
-		4022E828280DA10600D71D66 /* ExamplesApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ExamplesApp.swift; sourceTree = "<group>"; };
-		4022E82A280DA10600D71D66 /* ComplicationController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ComplicationController.swift; sourceTree = "<group>"; };
-		4022E82C280DA10600D71D66 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
-		4022E82F280DA10600D71D66 /* Preview Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = "Preview Assets.xcassets"; sourceTree = "<group>"; };
-		4022E831280DA10600D71D66 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		4022E846280DD5BE00D71D66 /* SearchTV.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = SearchTV.app; sourceTree = BUILT_PRODUCTS_DIR; };
-		4022E848280DD5BE00D71D66 /* SearchTVApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchTVApp.swift; sourceTree = "<group>"; };
-		4022E84A280DD5BE00D71D66 /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
-		4022E84C280DD5C000D71D66 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
-		4022E84F280DD5C000D71D66 /* Preview Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = "Preview Assets.xcassets"; sourceTree = "<group>"; };
 		4022E859280E334800D71D66 /* ProductsTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProductsTableViewController.swift; sourceTree = "<group>"; };
 		4022E85C280EA5EC00D71D66 /* README.md */ = {isa = PBXFileReference; lastKnownFileType = net.daringfireball.markdown; path = README.md; sourceTree = "<group>"; };
 		4022E85E280EBB0E00D71D66 /* Item.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Item.swift; sourceTree = "<group>"; };
@@ -911,13 +892,12 @@
 		404C4142280C9FAA00EC9FEB /* StatsDemoController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = StatsDemoController.swift; sourceTree = "<group>"; };
 		405FAB6628245F49002E3E4B /* Movie.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Movie.swift; sourceTree = "<group>"; };
 		405FAB6928246046002E3E4B /* MovieDemoController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MovieDemoController.swift; sourceTree = "<group>"; };
-		405FAB6C28246F7D002E3E4B /* MovieRow.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MovieRow.swift; sourceTree = "<group>"; };
-		405FAB7228247533002E3E4B /* MovieRow.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MovieRow.swift; sourceTree = "<group>"; };
 		4073B5942806CAE200E05EF6 /* SliderView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SliderView.swift; sourceTree = "<group>"; };
 		4073B59D28076B6F00E05EF6 /* Double+Range.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Double+Range.swift"; sourceTree = "<group>"; };
 		4073B5A028076E9600E05EF6 /* RatingFilterDemoController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RatingFilterDemoController.swift; sourceTree = "<group>"; };
 		4073B5A32807720100E05EF6 /* RatingFilterDemoSwiftUI.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RatingFilterDemoSwiftUI.swift; sourceTree = "<group>"; };
 		407D0D9D2818ADA1005FB854 /* NumberObservableController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NumberObservableController.swift; sourceTree = "<group>"; };
+		40BF0BAD28255084007B3BBD /* MovieHit+Text.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "MovieHit+Text.swift"; sourceTree = "<group>"; };
 		40C7C246280A16B8005DEC68 /* FacetListPersistentSelectionDemoController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FacetListPersistentSelectionDemoController.swift; sourceTree = "<group>"; };
 		40C7C249280A202F005DEC68 /* FacetListPersistentDemoSwiftUI.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FacetListPersistentDemoSwiftUI.swift; sourceTree = "<group>"; };
 		40E003B9280F80F700544E9F /* RelevantSortResultsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RelevantSortResultsViewController.swift; sourceTree = "<group>"; };
@@ -927,6 +907,24 @@
 		40E1B073280811840092B424 /* SearchDemoSwiftUI.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchDemoSwiftUI.swift; sourceTree = "<group>"; };
 		40E1B07A280845970092B424 /* MultiIndexDemoController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MultiIndexDemoController.swift; sourceTree = "<group>"; };
 		40E1B07F280849EB0092B424 /* MultiIndexDemoSwiftUI.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MultiIndexDemoSwiftUI.swift; sourceTree = "<group>"; };
+		40F61EC92827F5A40040ECD2 /* WatchSearch.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = WatchSearch.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		40F61ECB2827F5A50040ECD2 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
+		40F61ED12827F5A50040ECD2 /* WatchSearch WatchKit Extension.appex */ = {isa = PBXFileReference; explicitFileType = "wrapper.app-extension"; includeInIndex = 0; path = "WatchSearch WatchKit Extension.appex"; sourceTree = BUILT_PRODUCTS_DIR; };
+		40F61ED62827F5A50040ECD2 /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
+		40F61ED82827F5A50040ECD2 /* ExamplesApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ExamplesApp.swift; sourceTree = "<group>"; };
+		40F61EDA2827F5A50040ECD2 /* ComplicationController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ComplicationController.swift; sourceTree = "<group>"; };
+		40F61EDC2827F5A60040ECD2 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
+		40F61EDF2827F5A60040ECD2 /* Preview Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = "Preview Assets.xcassets"; sourceTree = "<group>"; };
+		40F61EE12827F5A60040ECD2 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		40F61EF02827F91C0040ECD2 /* Controller.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Controller.swift; sourceTree = "<group>"; };
+		40F61EF42827F94B0040ECD2 /* MovieRow.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MovieRow.swift; sourceTree = "<group>"; };
+		40F61EFD2827FAD10040ECD2 /* TVSearch.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = TVSearch.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		40F61EFF2827FAD10040ECD2 /* TVSearchApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TVSearchApp.swift; sourceTree = "<group>"; };
+		40F61F012827FAD10040ECD2 /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
+		40F61F032827FAD10040ECD2 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
+		40F61F062827FAD10040ECD2 /* Preview Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = "Preview Assets.xcassets"; sourceTree = "<group>"; };
+		40F61F0B2827FAF70040ECD2 /* MovieRow.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MovieRow.swift; sourceTree = "<group>"; };
+		40F61F122827FB740040ECD2 /* Controller.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Controller.swift; sourceTree = "<group>"; };
 		AF46A7562747EF9C004E86F3 /* CategoriesHits.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = CategoriesHits.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		AF46A7582747EF9D004E86F3 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		AF46A75A2747EF9D004E86F3 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -1184,19 +1182,19 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
-		4022E81E280DA10600D71D66 /* Frameworks */ = {
+		40F61ECE2827F5A50040ECD2 /* Frameworks */ = {
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				4022E83E280DA1A900D71D66 /* InstantSearchSwiftUI in Frameworks */,
+				40F61EEE2827F8930040ECD2 /* InstantSearchSwiftUI in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
-		4022E843280DD5BE00D71D66 /* Frameworks */ = {
+		40F61EFA2827FAD00040ECD2 /* Frameworks */ = {
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				4022E855280DD60000D71D66 /* InstantSearchSwiftUI in Frameworks */,
+				40F61F0E2827FB160040ECD2 /* InstantSearchSwiftUI in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1514,56 +1512,6 @@
 			path = Product;
 			sourceTree = "<group>";
 		};
-		4022E81A280DA10400D71D66 /* SearchWatch WatchKit App */ = {
-			isa = PBXGroup;
-			children = (
-				4022E81B280DA10600D71D66 /* Assets.xcassets */,
-			);
-			path = "SearchWatch WatchKit App";
-			sourceTree = "<group>";
-		};
-		4022E825280DA10600D71D66 /* SearchWatch WatchKit Extension */ = {
-			isa = PBXGroup;
-			children = (
-				4022E826280DA10600D71D66 /* ContentView.swift */,
-				405FAB7228247533002E3E4B /* MovieRow.swift */,
-				4022E828280DA10600D71D66 /* ExamplesApp.swift */,
-				4022E82A280DA10600D71D66 /* ComplicationController.swift */,
-				4022E82C280DA10600D71D66 /* Assets.xcassets */,
-				4022E831280DA10600D71D66 /* Info.plist */,
-				4022E82E280DA10600D71D66 /* Preview Content */,
-			);
-			path = "SearchWatch WatchKit Extension";
-			sourceTree = "<group>";
-		};
-		4022E82E280DA10600D71D66 /* Preview Content */ = {
-			isa = PBXGroup;
-			children = (
-				4022E82F280DA10600D71D66 /* Preview Assets.xcassets */,
-			);
-			path = "Preview Content";
-			sourceTree = "<group>";
-		};
-		4022E847280DD5BE00D71D66 /* SearchTV */ = {
-			isa = PBXGroup;
-			children = (
-				4022E848280DD5BE00D71D66 /* SearchTVApp.swift */,
-				4022E84A280DD5BE00D71D66 /* ContentView.swift */,
-				405FAB6C28246F7D002E3E4B /* MovieRow.swift */,
-				4022E84C280DD5C000D71D66 /* Assets.xcassets */,
-				4022E84E280DD5C000D71D66 /* Preview Content */,
-			);
-			path = SearchTV;
-			sourceTree = "<group>";
-		};
-		4022E84E280DD5C000D71D66 /* Preview Content */ = {
-			isa = PBXGroup;
-			children = (
-				4022E84F280DD5C000D71D66 /* Preview Assets.xcassets */,
-			);
-			path = "Preview Content";
-			sourceTree = "<group>";
-		};
 		4022E865280EE06E00D71D66 /* Guide */ = {
 			isa = PBXGroup;
 			children = (
@@ -1631,6 +1579,58 @@
 				AF50CC1227F72CB50036F549 /* PaginationMultiIndex */,
 			);
 			path = Search;
+			sourceTree = "<group>";
+		};
+		40F61ECA2827F5A40040ECD2 /* WatchSearch */ = {
+			isa = PBXGroup;
+			children = (
+				40F61ECB2827F5A50040ECD2 /* Assets.xcassets */,
+			);
+			path = WatchSearch;
+			sourceTree = "<group>";
+		};
+		40F61ED52827F5A50040ECD2 /* WatchSearch WatchKit Extension */ = {
+			isa = PBXGroup;
+			children = (
+				40F61ED62827F5A50040ECD2 /* ContentView.swift */,
+				40F61EF42827F94B0040ECD2 /* MovieRow.swift */,
+				40F61EF02827F91C0040ECD2 /* Controller.swift */,
+				40F61ED82827F5A50040ECD2 /* ExamplesApp.swift */,
+				40F61EDA2827F5A50040ECD2 /* ComplicationController.swift */,
+				40F61EDC2827F5A60040ECD2 /* Assets.xcassets */,
+				40F61EE12827F5A60040ECD2 /* Info.plist */,
+				40F61EDE2827F5A60040ECD2 /* Preview Content */,
+			);
+			path = "WatchSearch WatchKit Extension";
+			sourceTree = "<group>";
+		};
+		40F61EDE2827F5A60040ECD2 /* Preview Content */ = {
+			isa = PBXGroup;
+			children = (
+				40F61EDF2827F5A60040ECD2 /* Preview Assets.xcassets */,
+			);
+			path = "Preview Content";
+			sourceTree = "<group>";
+		};
+		40F61EFE2827FAD10040ECD2 /* TVSearch */ = {
+			isa = PBXGroup;
+			children = (
+				40F61EFF2827FAD10040ECD2 /* TVSearchApp.swift */,
+				40F61F0B2827FAF70040ECD2 /* MovieRow.swift */,
+				40F61F012827FAD10040ECD2 /* ContentView.swift */,
+				40F61F122827FB740040ECD2 /* Controller.swift */,
+				40F61F032827FAD10040ECD2 /* Assets.xcassets */,
+				40F61F052827FAD10040ECD2 /* Preview Content */,
+			);
+			path = TVSearch;
+			sourceTree = "<group>";
+		};
+		40F61F052827FAD10040ECD2 /* Preview Content */ = {
+			isa = PBXGroup;
+			children = (
+				40F61F062827FAD10040ECD2 /* Preview Assets.xcassets */,
+			);
+			path = "Preview Content";
 			sourceTree = "<group>";
 		};
 		AF46A7572747EF9D004E86F3 /* CategoriesHits */ = {
@@ -2006,6 +2006,7 @@
 				AF5089EB2766CAF600F30F18 /* SearchSuggestionTableViewCell+QuerySuggestion.swift */,
 				AFAE55C227344E9000B52A43 /* CategoryTableViewCell.swift */,
 				AF5089F12766CCCF00F30F18 /* CategoryTableViewCell+Facet.swift */,
+				40BF0BAD28255084007B3BBD /* MovieHit+Text.swift */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -2038,10 +2039,10 @@
 				AFAE557F2733E1C400B52A43 /* QuerySuggestionsHits */,
 				AFAE55672733E19700B52A43 /* QuerySuggestionsRecentSearches */,
 				AFAE551F2733E07A00B52A43 /* VoiceSearch */,
-				4022E81A280DA10400D71D66 /* SearchWatch WatchKit App */,
-				4022E825280DA10600D71D66 /* SearchWatch WatchKit Extension */,
-				4022E847280DD5BE00D71D66 /* SearchTV */,
 				4011DC182823314900336C42 /* Insights */,
+				40F61ECA2827F5A40040ECD2 /* WatchSearch */,
+				40F61ED52827F5A50040ECD2 /* WatchSearch WatchKit Extension */,
+				40F61EFE2827FAD10040ECD2 /* TVSearch */,
 				AF7FEB86272CAC5D0003BE62 /* Products */,
 				AFAE55152733643D00B52A43 /* Frameworks */,
 			);
@@ -2081,11 +2082,10 @@
 				AF50CC1127F72CB50036F549 /* PaginationMultiIndex.app */,
 				AF50CEA127FB72090036F549 /* Stats.app */,
 				AF83120327FC7F7300509DF5 /* FilterList.app */,
-				4022E813280DA10400D71D66 /* SearchWatch.app */,
-				4022E816280DA10400D71D66 /* SearchWatch WatchKit App.app */,
-				4022E821280DA10600D71D66 /* SearchWatch WatchKit Extension.appex */,
-				4022E846280DD5BE00D71D66 /* SearchTV.app */,
 				4011DC172823314900336C42 /* Insights.app */,
+				40F61EC92827F5A40040ECD2 /* WatchSearch.app */,
+				40F61ED12827F5A50040ECD2 /* WatchSearch WatchKit Extension.appex */,
+				40F61EFD2827FAD10040ECD2 /* TVSearch.app */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -2256,78 +2256,61 @@
 			productReference = 4011DC172823314900336C42 /* Insights.app */;
 			productType = "com.apple.product-type.application";
 		};
-		4022E812280DA10400D71D66 /* SearchWatch */ = {
+		40F61EC82827F5A40040ECD2 /* WatchSearch */ = {
 			isa = PBXNativeTarget;
-			buildConfigurationList = 4022E83A280DA10600D71D66 /* Build configuration list for PBXNativeTarget "SearchWatch" */;
+			buildConfigurationList = 40F61EE92827F5A60040ECD2 /* Build configuration list for PBXNativeTarget "WatchSearch" */;
 			buildPhases = (
-				4022E811280DA10400D71D66 /* Resources */,
-				4022E839280DA10600D71D66 /* Embed Watch Content */,
+				40F61EC72827F5A40040ECD2 /* Resources */,
+				40F61EE82827F5A60040ECD2 /* Embed App Extensions */,
 			);
 			buildRules = (
 			);
 			dependencies = (
-				4022E819280DA10400D71D66 /* PBXTargetDependency */,
+				40F61ED42827F5A50040ECD2 /* PBXTargetDependency */,
 			);
-			name = SearchWatch;
-			productName = SearchWatch;
-			productReference = 4022E813280DA10400D71D66 /* SearchWatch.app */;
-			productType = "com.apple.product-type.application.watchapp2-container";
-		};
-		4022E815280DA10400D71D66 /* SearchWatch WatchKit App */ = {
-			isa = PBXNativeTarget;
-			buildConfigurationList = 4022E836280DA10600D71D66 /* Build configuration list for PBXNativeTarget "SearchWatch WatchKit App" */;
-			buildPhases = (
-				4022E814280DA10400D71D66 /* Resources */,
-				4022E835280DA10600D71D66 /* Embed App Extensions */,
-			);
-			buildRules = (
-			);
-			dependencies = (
-				4022E824280DA10600D71D66 /* PBXTargetDependency */,
-			);
-			name = "SearchWatch WatchKit App";
-			productName = "SearchWatch WatchKit App";
-			productReference = 4022E816280DA10400D71D66 /* SearchWatch WatchKit App.app */;
+			name = WatchSearch;
+			productName = WatchSearch;
+			productReference = 40F61EC92827F5A40040ECD2 /* WatchSearch.app */;
 			productType = "com.apple.product-type.application.watchapp2";
 		};
-		4022E820280DA10600D71D66 /* SearchWatch WatchKit Extension */ = {
+		40F61ED02827F5A50040ECD2 /* WatchSearch WatchKit Extension */ = {
 			isa = PBXNativeTarget;
-			buildConfigurationList = 4022E832280DA10600D71D66 /* Build configuration list for PBXNativeTarget "SearchWatch WatchKit Extension" */;
+			buildConfigurationList = 40F61EE52827F5A60040ECD2 /* Build configuration list for PBXNativeTarget "WatchSearch WatchKit Extension" */;
 			buildPhases = (
-				4022E81D280DA10600D71D66 /* Sources */,
-				4022E81E280DA10600D71D66 /* Frameworks */,
-				4022E81F280DA10600D71D66 /* Resources */,
+				40F61ECD2827F5A50040ECD2 /* Sources */,
+				40F61ECE2827F5A50040ECD2 /* Frameworks */,
+				40F61ECF2827F5A50040ECD2 /* Resources */,
 			);
 			buildRules = (
 			);
 			dependencies = (
 			);
-			name = "SearchWatch WatchKit Extension";
+			name = "WatchSearch WatchKit Extension";
 			packageProductDependencies = (
-				4022E83D280DA1A900D71D66 /* InstantSearchSwiftUI */,
+				40F61EED2827F8930040ECD2 /* InstantSearchSwiftUI */,
 			);
-			productName = "SearchWatch WatchKit Extension";
-			productReference = 4022E821280DA10600D71D66 /* SearchWatch WatchKit Extension.appex */;
+			productName = "WatchSearch WatchKit Extension";
+			productReference = 40F61ED12827F5A50040ECD2 /* WatchSearch WatchKit Extension.appex */;
 			productType = "com.apple.product-type.watchkit2-extension";
 		};
-		4022E845280DD5BE00D71D66 /* SearchTV */ = {
+		40F61EFC2827FAD00040ECD2 /* TVSearch */ = {
 			isa = PBXNativeTarget;
-			buildConfigurationList = 4022E851280DD5C000D71D66 /* Build configuration list for PBXNativeTarget "SearchTV" */;
+			buildConfigurationList = 40F61F082827FAD10040ECD2 /* Build configuration list for PBXNativeTarget "TVSearch" */;
 			buildPhases = (
-				4022E842280DD5BE00D71D66 /* Sources */,
-				4022E843280DD5BE00D71D66 /* Frameworks */,
-				4022E844280DD5BE00D71D66 /* Resources */,
+				40F61EF92827FAD00040ECD2 /* Sources */,
+				40F61EFA2827FAD00040ECD2 /* Frameworks */,
+				40F61EFB2827FAD00040ECD2 /* Resources */,
 			);
 			buildRules = (
 			);
 			dependencies = (
 			);
-			name = SearchTV;
+			name = TVSearch;
 			packageProductDependencies = (
-				4022E854280DD60000D71D66 /* InstantSearchSwiftUI */,
+				40F61F0D2827FB160040ECD2 /* InstantSearchSwiftUI */,
 			);
-			productName = SearchTV;
-			productReference = 4022E846280DD5BE00D71D66 /* SearchTV.app */;
+			productName = TVSearch;
+			productReference = 40F61EFD2827FAD10040ECD2 /* TVSearch.app */;
 			productType = "com.apple.product-type.application";
 		};
 		AF46A7552747EF9C004E86F3 /* CategoriesHits */ = {
@@ -2845,10 +2828,12 @@
 				AF7FEB82272CAC5D0003BE62 /* Frameworks */,
 				AF7FEB81272CAC5D0003BE62 /* Sources */,
 				AF7FEB83272CAC5D0003BE62 /* Resources */,
+				40F61EEC2827F5A60040ECD2 /* Embed Watch Content */,
 			);
 			buildRules = (
 			);
 			dependencies = (
+				40F61EE32827F5A60040ECD2 /* PBXTargetDependency */,
 			);
 			name = Examples;
 			packageProductDependencies = (
@@ -2998,16 +2983,13 @@
 					4011DC162823314900336C42 = {
 						CreatedOnToolsVersion = 13.3.1;
 					};
-					4022E812280DA10400D71D66 = {
+					40F61EC82827F5A40040ECD2 = {
 						CreatedOnToolsVersion = 13.3.1;
 					};
-					4022E815280DA10400D71D66 = {
+					40F61ED02827F5A50040ECD2 = {
 						CreatedOnToolsVersion = 13.3.1;
 					};
-					4022E820280DA10600D71D66 = {
-						CreatedOnToolsVersion = 13.3.1;
-					};
-					4022E845280DD5BE00D71D66 = {
+					40F61EFC2827FAD00040ECD2 = {
 						CreatedOnToolsVersion = 13.3.1;
 					};
 					AF46A7552747EF9C004E86F3 = {
@@ -3153,11 +3135,10 @@
 				AF50CB9827F72C510036F549 /* QueryRuleCustomData */,
 				AF50CBE027F72C880036F549 /* RelatedItems */,
 				AF50CEA027FB72090036F549 /* Stats */,
-				4022E812280DA10400D71D66 /* SearchWatch */,
-				4022E815280DA10400D71D66 /* SearchWatch WatchKit App */,
-				4022E820280DA10600D71D66 /* SearchWatch WatchKit Extension */,
-				4022E845280DD5BE00D71D66 /* SearchTV */,
 				4011DC162823314900336C42 /* Insights */,
+				40F61EC82827F5A40040ECD2 /* WatchSearch */,
+				40F61ED02827F5A50040ECD2 /* WatchSearch WatchKit Extension */,
+				40F61EFC2827FAD00040ECD2 /* TVSearch */,
 			);
 		};
 /* End PBXProject section */
@@ -3172,36 +3153,29 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
-		4022E811280DA10400D71D66 /* Resources */ = {
+		40F61EC72827F5A40040ECD2 /* Resources */ = {
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				40F61ECC2827F5A50040ECD2 /* Assets.xcassets in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
-		4022E814280DA10400D71D66 /* Resources */ = {
+		40F61ECF2827F5A50040ECD2 /* Resources */ = {
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				4022E81C280DA10600D71D66 /* Assets.xcassets in Resources */,
+				40F61EE02827F5A60040ECD2 /* Preview Assets.xcassets in Resources */,
+				40F61EDD2827F5A60040ECD2 /* Assets.xcassets in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
-		4022E81F280DA10600D71D66 /* Resources */ = {
+		40F61EFB2827FAD00040ECD2 /* Resources */ = {
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				4022E830280DA10600D71D66 /* Preview Assets.xcassets in Resources */,
-				4022E82D280DA10600D71D66 /* Assets.xcassets in Resources */,
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
-		4022E844280DD5BE00D71D66 /* Resources */ = {
-			isa = PBXResourcesBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-				4022E850280DD5C000D71D66 /* Preview Assets.xcassets in Resources */,
-				4022E84D280DD5C000D71D66 /* Assets.xcassets in Resources */,
+				40F61F072827FAD10040ECD2 /* Preview Assets.xcassets in Resources */,
+				40F61F042827FAD10040ECD2 /* Assets.xcassets in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -3503,40 +3477,36 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
-		4022E81D280DA10600D71D66 /* Sources */ = {
+		40F61ECD2827F5A50040ECD2 /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				4022E83F280DA1FD00D71D66 /* SearchDemoController.swift in Sources */,
-				405FAB712824701B002E3E4B /* Movie.swift in Sources */,
-				405FAB7328247533002E3E4B /* MovieRow.swift in Sources */,
-				4022E840280DA24500D71D66 /* StoreItem.swift in Sources */,
-				4022E841280DA25400D71D66 /* SearchClient.swift in Sources */,
-				405FAB7028247001002E3E4B /* MovieDemoController.swift in Sources */,
-				4022E829280DA10600D71D66 /* ExamplesApp.swift in Sources */,
-				4034B6FB2810322700F4A303 /* Helpers.swift in Sources */,
-				4034B6EE281006DB00F4A303 /* ProductRow.swift in Sources */,
-				4034B6F928100BC900F4A303 /* ProductRow+StoreItem.swift in Sources */,
-				4022E827280DA10600D71D66 /* ContentView.swift in Sources */,
-				4022E82B280DA10600D71D66 /* ComplicationController.swift in Sources */,
+				40F61EF12827F91C0040ECD2 /* Controller.swift in Sources */,
+				40F61EF52827F94B0040ECD2 /* MovieRow.swift in Sources */,
+				40F61EF72827F9680040ECD2 /* MovieHit+Text.swift in Sources */,
+				40F61EF82827F9790040ECD2 /* Helpers.swift in Sources */,
+				40F61EF22827F9320040ECD2 /* MovieDemoController.swift in Sources */,
+				40F61ED92827F5A50040ECD2 /* ExamplesApp.swift in Sources */,
+				40F61EF32827F93A0040ECD2 /* SearchClient.swift in Sources */,
+				40F61ED72827F5A50040ECD2 /* ContentView.swift in Sources */,
+				40F61EEF2827F9040040ECD2 /* Movie.swift in Sources */,
+				40F61EDB2827F5A50040ECD2 /* ComplicationController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
-		4022E842280DD5BE00D71D66 /* Sources */ = {
+		40F61EF92827FAD00040ECD2 /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				4022E856280DD67900D71D66 /* SearchDemoController.swift in Sources */,
-				4034B6F8281007E000F4A303 /* ProductRow+StoreItem.swift in Sources */,
-				405FAB6828245F49002E3E4B /* Movie.swift in Sources */,
-				4022E84B280DD5BE00D71D66 /* ContentView.swift in Sources */,
-				4034B6FC2810322800F4A303 /* Helpers.swift in Sources */,
-				405FAB6E28246F7D002E3E4B /* MovieRow.swift in Sources */,
-				4034B6EF281006DC00F4A303 /* ProductRow.swift in Sources */,
-				4022E857280DD68A00D71D66 /* StoreItem.swift in Sources */,
-				4022E849280DD5BE00D71D66 /* SearchTVApp.swift in Sources */,
-				4022E858280DD69700D71D66 /* SearchClient.swift in Sources */,
-				405FAB6B28246046002E3E4B /* MovieDemoController.swift in Sources */,
+				40F61F102827FB3C0040ECD2 /* MovieHit+Text.swift in Sources */,
+				40F61F112827FB440040ECD2 /* Helpers.swift in Sources */,
+				40F61F022827FAD10040ECD2 /* ContentView.swift in Sources */,
+				40F61F0C2827FAF70040ECD2 /* MovieRow.swift in Sources */,
+				40F61F0F2827FB2A0040ECD2 /* Movie.swift in Sources */,
+				40F61F152827FB890040ECD2 /* SearchClient.swift in Sources */,
+				40F61F142827FB830040ECD2 /* MovieDemoController.swift in Sources */,
+				40F61F002827FAD10040ECD2 /* TVSearchApp.swift in Sources */,
+				40F61F132827FB740040ECD2 /* Controller.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -4359,15 +4329,15 @@
 /* End PBXSourcesBuildPhase section */
 
 /* Begin PBXTargetDependency section */
-		4022E819280DA10400D71D66 /* PBXTargetDependency */ = {
+		40F61ED42827F5A50040ECD2 /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
-			target = 4022E815280DA10400D71D66 /* SearchWatch WatchKit App */;
-			targetProxy = 4022E818280DA10400D71D66 /* PBXContainerItemProxy */;
+			target = 40F61ED02827F5A50040ECD2 /* WatchSearch WatchKit Extension */;
+			targetProxy = 40F61ED32827F5A50040ECD2 /* PBXContainerItemProxy */;
 		};
-		4022E824280DA10600D71D66 /* PBXTargetDependency */ = {
+		40F61EE32827F5A60040ECD2 /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
-			target = 4022E820280DA10600D71D66 /* SearchWatch WatchKit Extension */;
-			targetProxy = 4022E823280DA10600D71D66 /* PBXContainerItemProxy */;
+			target = 40F61EC82827F5A40040ECD2 /* WatchSearch */;
+			targetProxy = 40F61EE22827F5A60040ECD2 /* PBXContainerItemProxy */;
 		};
 /* End PBXTargetDependency section */
 
@@ -4673,28 +4643,27 @@
 			};
 			name = Release;
 		};
-		4022E833280DA10600D71D66 /* Debug */ = {
+		40F61EE62827F5A60040ECD2 /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_COMPLICATION_NAME = Complication;
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
-				DEVELOPMENT_ASSET_PATHS = "\"SearchWatch WatchKit Extension/Preview Content\"";
+				DEVELOPMENT_ASSET_PATHS = "\"WatchSearch WatchKit Extension/Preview Content\"";
 				DEVELOPMENT_TEAM = 5RDFJYUV23;
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
-				INFOPLIST_FILE = "SearchWatch WatchKit Extension/Info.plist";
-				INFOPLIST_KEY_CFBundleDisplayName = "SearchWatch WatchKit Extension";
+				INFOPLIST_FILE = "WatchSearch WatchKit Extension/Info.plist";
+				INFOPLIST_KEY_CFBundleDisplayName = "WatchSearch WatchKit Extension";
 				INFOPLIST_KEY_CLKComplicationPrincipalClass = "$(PRODUCT_MODULE_NAME).ComplicationController";
 				INFOPLIST_KEY_NSHumanReadableCopyright = "";
-				INFOPLIST_KEY_WKWatchOnly = YES;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
 					"@executable_path/../../Frameworks",
 				);
 				MARKETING_VERSION = 1.0;
-				PRODUCT_BUNDLE_IDENTIFIER = com.algolia.SearchWatch.watchkitapp.watchkitextension;
+				PRODUCT_BUNDLE_IDENTIFIER = com.algolia.instantsearch.examples.watchkitapp.watchkitextension;
 				PRODUCT_NAME = "${TARGET_NAME}";
 				SDKROOT = watchos;
 				SKIP_INSTALL = YES;
@@ -4705,28 +4674,27 @@
 			};
 			name = Debug;
 		};
-		4022E834280DA10600D71D66 /* Release */ = {
+		40F61EE72827F5A60040ECD2 /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_COMPLICATION_NAME = Complication;
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
-				DEVELOPMENT_ASSET_PATHS = "\"SearchWatch WatchKit Extension/Preview Content\"";
+				DEVELOPMENT_ASSET_PATHS = "\"WatchSearch WatchKit Extension/Preview Content\"";
 				DEVELOPMENT_TEAM = 5RDFJYUV23;
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
-				INFOPLIST_FILE = "SearchWatch WatchKit Extension/Info.plist";
-				INFOPLIST_KEY_CFBundleDisplayName = "SearchWatch WatchKit Extension";
+				INFOPLIST_FILE = "WatchSearch WatchKit Extension/Info.plist";
+				INFOPLIST_KEY_CFBundleDisplayName = "WatchSearch WatchKit Extension";
 				INFOPLIST_KEY_CLKComplicationPrincipalClass = "$(PRODUCT_MODULE_NAME).ComplicationController";
 				INFOPLIST_KEY_NSHumanReadableCopyright = "";
-				INFOPLIST_KEY_WKWatchOnly = YES;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
 					"@executable_path/../../Frameworks",
 				);
 				MARKETING_VERSION = 1.0;
-				PRODUCT_BUNDLE_IDENTIFIER = com.algolia.SearchWatch.watchkitapp.watchkitextension;
+				PRODUCT_BUNDLE_IDENTIFIER = com.algolia.instantsearch.examples.watchkitapp.watchkitextension;
 				PRODUCT_NAME = "${TARGET_NAME}";
 				SDKROOT = watchos;
 				SKIP_INSTALL = YES;
@@ -4737,7 +4705,7 @@
 			};
 			name = Release;
 		};
-		4022E837280DA10600D71D66 /* Debug */ = {
+		40F61EEA2827F5A60040ECD2 /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
@@ -4745,13 +4713,14 @@
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
-				DEVELOPMENT_TEAM = 5RDFJYUV23;
+				DEVELOPMENT_TEAM = JF98Q6D3JZ;
 				GENERATE_INFOPLIST_FILE = YES;
-				IBSC_MODULE = SearchWatch_WatchKit_Extension;
-				INFOPLIST_KEY_CFBundleDisplayName = "SearchWatch WatchKit App";
+				IBSC_MODULE = WatchSearch_WatchKit_Extension;
+				INFOPLIST_KEY_CFBundleDisplayName = WatchSearch;
 				INFOPLIST_KEY_UISupportedInterfaceOrientations = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown";
+				INFOPLIST_KEY_WKCompanionAppBundleIdentifier = com.algolia.instantsearch.examples;
 				MARKETING_VERSION = 1.0;
-				PRODUCT_BUNDLE_IDENTIFIER = com.algolia.SearchWatch.watchkitapp;
+				PRODUCT_BUNDLE_IDENTIFIER = com.algolia.instantsearch.examples.watchkitapp;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SDKROOT = watchos;
 				SKIP_INSTALL = YES;
@@ -4762,7 +4731,7 @@
 			};
 			name = Debug;
 		};
-		4022E838280DA10600D71D66 /* Release */ = {
+		40F61EEB2827F5A60040ECD2 /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
@@ -4770,13 +4739,14 @@
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
-				DEVELOPMENT_TEAM = 5RDFJYUV23;
+				DEVELOPMENT_TEAM = JF98Q6D3JZ;
 				GENERATE_INFOPLIST_FILE = YES;
-				IBSC_MODULE = SearchWatch_WatchKit_Extension;
-				INFOPLIST_KEY_CFBundleDisplayName = "SearchWatch WatchKit App";
+				IBSC_MODULE = WatchSearch_WatchKit_Extension;
+				INFOPLIST_KEY_CFBundleDisplayName = WatchSearch;
 				INFOPLIST_KEY_UISupportedInterfaceOrientations = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown";
+				INFOPLIST_KEY_WKCompanionAppBundleIdentifier = com.algolia.instantsearch.examples;
 				MARKETING_VERSION = 1.0;
-				PRODUCT_BUNDLE_IDENTIFIER = com.algolia.SearchWatch.watchkitapp;
+				PRODUCT_BUNDLE_IDENTIFIER = com.algolia.instantsearch.examples.watchkitapp;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SDKROOT = watchos;
 				SKIP_INSTALL = YES;
@@ -4787,40 +4757,14 @@
 			};
 			name = Release;
 		};
-		4022E83B280DA10600D71D66 /* Debug */ = {
-			isa = XCBuildConfiguration;
-			buildSettings = {
-				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 1;
-				DEVELOPMENT_TEAM = 5RDFJYUV23;
-				MARKETING_VERSION = 1.0;
-				PRODUCT_BUNDLE_IDENTIFIER = com.algolia.SearchWatch;
-				PRODUCT_NAME = "$(TARGET_NAME)";
-				SWIFT_VERSION = 5.0;
-			};
-			name = Debug;
-		};
-		4022E83C280DA10600D71D66 /* Release */ = {
-			isa = XCBuildConfiguration;
-			buildSettings = {
-				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 1;
-				DEVELOPMENT_TEAM = 5RDFJYUV23;
-				MARKETING_VERSION = 1.0;
-				PRODUCT_BUNDLE_IDENTIFIER = com.algolia.SearchWatch;
-				PRODUCT_NAME = "$(TARGET_NAME)";
-				SWIFT_VERSION = 5.0;
-			};
-			name = Release;
-		};
-		4022E852280DD5C000D71D66 /* Debug */ = {
+		40F61F092827FAD10040ECD2 /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = "App Icon & Top Shelf Image";
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
-				DEVELOPMENT_ASSET_PATHS = "\"SearchTV/Preview Content\"";
+				DEVELOPMENT_ASSET_PATHS = "\"TVSearch/Preview Content\"";
 				DEVELOPMENT_TEAM = 5RDFJYUV23;
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
@@ -4831,7 +4775,7 @@
 					"@executable_path/Frameworks",
 				);
 				MARKETING_VERSION = 1.0;
-				PRODUCT_BUNDLE_IDENTIFIER = com.algolia.SearchTV;
+				PRODUCT_BUNDLE_IDENTIFIER = com.algolia.TVSearch;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SDKROOT = appletvos;
 				SWIFT_EMIT_LOC_STRINGS = YES;
@@ -4841,14 +4785,14 @@
 			};
 			name = Debug;
 		};
-		4022E853280DD5C000D71D66 /* Release */ = {
+		40F61F0A2827FAD10040ECD2 /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = "App Icon & Top Shelf Image";
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
-				DEVELOPMENT_ASSET_PATHS = "\"SearchTV/Preview Content\"";
+				DEVELOPMENT_ASSET_PATHS = "\"TVSearch/Preview Content\"";
 				DEVELOPMENT_TEAM = 5RDFJYUV23;
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
@@ -4859,7 +4803,7 @@
 					"@executable_path/Frameworks",
 				);
 				MARKETING_VERSION = 1.0;
-				PRODUCT_BUNDLE_IDENTIFIER = com.algolia.SearchTV;
+				PRODUCT_BUNDLE_IDENTIFIER = com.algolia.TVSearch;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SDKROOT = appletvos;
 				SWIFT_EMIT_LOC_STRINGS = YES;
@@ -6723,38 +6667,29 @@
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
 		};
-		4022E832280DA10600D71D66 /* Build configuration list for PBXNativeTarget "SearchWatch WatchKit Extension" */ = {
+		40F61EE52827F5A60040ECD2 /* Build configuration list for PBXNativeTarget "WatchSearch WatchKit Extension" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
-				4022E833280DA10600D71D66 /* Debug */,
-				4022E834280DA10600D71D66 /* Release */,
+				40F61EE62827F5A60040ECD2 /* Debug */,
+				40F61EE72827F5A60040ECD2 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
 		};
-		4022E836280DA10600D71D66 /* Build configuration list for PBXNativeTarget "SearchWatch WatchKit App" */ = {
+		40F61EE92827F5A60040ECD2 /* Build configuration list for PBXNativeTarget "WatchSearch" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
-				4022E837280DA10600D71D66 /* Debug */,
-				4022E838280DA10600D71D66 /* Release */,
+				40F61EEA2827F5A60040ECD2 /* Debug */,
+				40F61EEB2827F5A60040ECD2 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
 		};
-		4022E83A280DA10600D71D66 /* Build configuration list for PBXNativeTarget "SearchWatch" */ = {
+		40F61F082827FAD10040ECD2 /* Build configuration list for PBXNativeTarget "TVSearch" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
-				4022E83B280DA10600D71D66 /* Debug */,
-				4022E83C280DA10600D71D66 /* Release */,
-			);
-			defaultConfigurationIsVisible = 0;
-			defaultConfigurationName = Release;
-		};
-		4022E851280DD5C000D71D66 /* Build configuration list for PBXNativeTarget "SearchTV" */ = {
-			isa = XCConfigurationList;
-			buildConfigurations = (
-				4022E852280DD5C000D71D66 /* Debug */,
-				4022E853280DD5C000D71D66 /* Release */,
+				40F61F092827FAD10040ECD2 /* Debug */,
+				40F61F0A2827FAD10040ECD2 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
@@ -7078,14 +7013,6 @@
 			package = AFAE55AA27342C5900B52A43 /* XCRemoteSwiftPackageReference "SDWebImage" */;
 			productName = SDWebImage;
 		};
-		4022E83D280DA1A900D71D66 /* InstantSearchSwiftUI */ = {
-			isa = XCSwiftPackageProductDependency;
-			productName = InstantSearchSwiftUI;
-		};
-		4022E854280DD60000D71D66 /* InstantSearchSwiftUI */ = {
-			isa = XCSwiftPackageProductDependency;
-			productName = InstantSearchSwiftUI;
-		};
 		404C412A280C9D1C00EC9FEB /* SDWebImage */ = {
 			isa = XCSwiftPackageProductDependency;
 			package = AFAE55AA27342C5900B52A43 /* XCRemoteSwiftPackageReference "SDWebImage" */;
@@ -7104,6 +7031,14 @@
 			productName = InstantSearchSwiftUI;
 		};
 		40E1B078280812200092B424 /* InstantSearchSwiftUI */ = {
+			isa = XCSwiftPackageProductDependency;
+			productName = InstantSearchSwiftUI;
+		};
+		40F61EED2827F8930040ECD2 /* InstantSearchSwiftUI */ = {
+			isa = XCSwiftPackageProductDependency;
+			productName = InstantSearchSwiftUI;
+		};
+		40F61F0D2827FB160040ECD2 /* InstantSearchSwiftUI */ = {
 			isa = XCSwiftPackageProductDependency;
 			productName = InstantSearchSwiftUI;
 		};

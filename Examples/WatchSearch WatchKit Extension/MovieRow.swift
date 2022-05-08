@@ -1,8 +1,8 @@
 //
 //  MovieRow.swift
-//  SearchWatch WatchKit Extension
+//  WatchSearch WatchKit Extension
 //
-//  Created by Vladislav Fitc on 05/05/2022.
+//  Created by Vladislav Fitc on 08/05/2022.
 //
 
 import Foundation
@@ -29,9 +29,9 @@ struct MovieRow: View {
       .scaledToFit()
       .frame(maxWidth: 60)
       VStack(alignment: .leading, spacing: 3) {
-        Text(movieHit.object.title)
+        movieHit.titleText
           .font(.system(size: 14, weight: .bold))
-        Text(movieHit.object.genres.joined(separator: ", "))
+        movieHit.genresText
           .font(.system(size: 12))
           .foregroundColor(.gray)
         Spacer()

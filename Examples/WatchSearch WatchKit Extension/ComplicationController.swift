@@ -1,8 +1,8 @@
 //
 //  ComplicationController.swift
-//  SearchWatch WatchKit Extension
+//  WatchSearch WatchKit Extension
 //
-//  Created by Vladislav Fitc on 18/04/2022.
+//  Created by Vladislav Fitc on 08/05/2022.
 //
 
 import ClockKit

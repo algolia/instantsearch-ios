@@ -1,30 +1,13 @@
 //
 //  ContentView.swift
-//  SearchWatch WatchKit Extension
+//  WatchSearch WatchKit Extension
 //
-//  Created by Vladislav Fitc on 18/04/2022.
+//  Created by Vladislav Fitc on 08/05/2022.
 //
 
-import SwiftUI
-import InstantSearchSwiftUI
 import InstantSearchCore
-
-class Controller {
-  
-  let demoController: MovieDemoController
-  let hitsController: HitsObservableController<Hit<Movie>>
-  let queryInputController: QueryInputObservableController
-  
-  init(searchTriggeringMode: SearchTriggeringMode = .searchAsYouType) {
-    demoController = MovieDemoController()
-    hitsController = HitsObservableController()
-    queryInputController = QueryInputObservableController()
-    demoController.queryInputConnector.connectController(queryInputController)
-    demoController.hitsInteractor.connectController(hitsController)
-    demoController.searcher.search()
-  }
-  
-}
+import InstantSearchSwiftUI
+import SwiftUI
 
 struct ContentView: View {
   
