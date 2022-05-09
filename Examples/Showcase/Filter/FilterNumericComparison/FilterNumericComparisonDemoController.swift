@@ -19,7 +19,7 @@ class FilterNumericComparisonDemoController {
   
   init() {
     searcher = HitsSearcher(client: .instantSearch,
-                            indexName: "mobile_demo_filter_numeric_comparison")
+                            indexName: .filterNumericComparison)
     filterState = .init()
     clearFilterConnector = .init(filterState: filterState)
     yearConnector = .init(searcher: searcher,

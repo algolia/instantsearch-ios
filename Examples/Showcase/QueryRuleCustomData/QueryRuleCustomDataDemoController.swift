@@ -22,7 +22,8 @@ class QueryRuleCustomDataDemoController {
   """
   
   init() {
-    searcher = .init(client: .ecommerce, indexName: "instant_search")
+    searcher = .init(client: .instantSearch,
+                     indexName: .instantSearch)
     queryInputConnector = .init(searcher: searcher)
     hitsConnector = .init(searcher: searcher)
     queryRuleCustomDataConnector = .init(searcher: searcher)

@@ -25,8 +25,7 @@ enum CategoriesHits {
     let searchResultsController: SearchResultsController
       
     override init(nibName nibNameOrNil: String?, bundle nibBundleOrNil: Bundle?) {
-      searcher = .init(appID: "latency",
-                       apiKey: "6be0576ff61c053d5f9a3225e2a90f76")
+      searcher = .init(client: .instantSearch)
       searchResultsController = .init(style: .plain)
       categoriesInteractor = .init()
       hitsInteractor = .init(infiniteScrolling: .off)
@@ -46,12 +45,12 @@ enum CategoriesHits {
       
       configureUI()
       
-      let facetsSearcher = searcher.addFacetsSearcher(indexName: "instant_search",
+      let facetsSearcher = searcher.addFacetsSearcher(indexName: .instantSearch,
                                                       attribute: "categories")
       categoriesInteractor.connectFacetSearcher(facetsSearcher)
       searchResultsController.categoriesInteractor = categoriesInteractor
       
-      let hitsSearchers = searcher.addHitsSearcher(indexName: "instant_search")
+      let hitsSearchers = searcher.addHitsSearcher(indexName: .instantSearch)
       hitsInteractor.connectSearcher(hitsSearchers)
       searchResultsController.hitsInteractor = hitsInteractor
       
@@ -64,6 +63,7 @@ enum CategoriesHits {
     }
     
     func configureUI() {
+      title = "Categories & Hits"
       view.backgroundColor = .white
       definesPresentationContext = true
       searchController.hidesNavigationBarDuringPresentation = false

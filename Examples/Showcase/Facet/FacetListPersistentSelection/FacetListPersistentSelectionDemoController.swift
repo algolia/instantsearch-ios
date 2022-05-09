@@ -19,7 +19,7 @@ class FacetListPersistentSelectionDemoController {
   
   init() {
     searcher = .init(client: .instantSearch,
-                     indexName: "mobile_demo_facet_list")
+                     indexName: .facetList)
     filterState = .init()
     clearFilterConnector = .init(filterState: filterState)
     colorConnector = .init(searcher: searcher,

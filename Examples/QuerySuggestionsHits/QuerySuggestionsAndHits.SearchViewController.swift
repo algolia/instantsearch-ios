@@ -25,8 +25,7 @@ enum QuerySuggestionsAndHits {
     let searchResultsController: SearchResultsController
       
     override init(nibName nibNameOrNil: String?, bundle nibBundleOrNil: Bundle?) {
-      searcher = .init(appID: "latency",
-                       apiKey: "6be0576ff61c053d5f9a3225e2a90f76")
+      searcher = .init(client: .instantSearch)
       searchResultsController = .init(style: .plain)
       suggestionsInteractor = .init(infiniteScrolling: .off)
       hitsInteractor = .init(infiniteScrolling: .off)
@@ -46,12 +45,12 @@ enum QuerySuggestionsAndHits {
       
       configureUI()
       
-      let suggestionsSearcher = searcher.addHitsSearcher(indexName: "instant_search_demo_query_suggestions")
+      let suggestionsSearcher = searcher.addHitsSearcher(indexName: .instantSearchSuggestions)
       suggestionsSearcher.request.query.hitsPerPage = 5
       suggestionsInteractor.connectSearcher(suggestionsSearcher)
       searchResultsController.suggestionsHitsInteractor = suggestionsInteractor
       
-      let hitsSearchers = searcher.addHitsSearcher(indexName: "instant_search")
+      let hitsSearchers = searcher.addHitsSearcher(indexName: .instantSearch)
       hitsInteractor.connectSearcher(hitsSearchers)
       searchResultsController.hitsInteractor = hitsInteractor
       
@@ -64,6 +63,7 @@ enum QuerySuggestionsAndHits {
     }
     
     func configureUI() {
+      title = "Suggestions & Hits"
       view.backgroundColor = .white
       definesPresentationContext = true
       searchController.hidesNavigationBarDuringPresentation = false

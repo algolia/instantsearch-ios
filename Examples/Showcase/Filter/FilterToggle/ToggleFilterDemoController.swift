@@ -20,7 +20,8 @@ class ToggleFilterDemoController {
   let couponConnector: FilterToggleConnector<Filter.Facet>
   
   init() {
-    searcher = HitsSearcher(client: .instantSearch, indexName: "mobile_demo_filter_toggle")
+    searcher = HitsSearcher(client: .instantSearch,
+                            indexName: .filterToggle)
     filterState = .init()
     clearFilterConnector = .init(filterState: filterState)
     

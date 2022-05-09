@@ -1,5 +1,5 @@
 //
-//  Helpers.swift
+//  UIColor+Convenience.swift
 //  development-pods-instantsearch
 //
 //  Created by Guy Daher on 08/03/2019.

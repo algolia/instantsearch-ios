@@ -34,8 +34,7 @@ enum MultiIndex {
     let searchResultsController: SearchResultsController
       
     override init(nibName nibNameOrNil: String?, bundle nibBundleOrNil: Bundle?) {
-      searcher = .init(appID: "latency",
-                       apiKey: "1f6fd3a6fb973cb08419fe7d288fa4db")
+      searcher = .init(client: .instantSearch)
       searchResultsController = .init()
       actorHitsInteractor = .init(infiniteScrolling: .off)
       movieHitsInteractor = .init(infiniteScrolling: .off)
@@ -55,11 +54,11 @@ enum MultiIndex {
       
       configureUI()
       
-      let actorsSearcher = searcher.addHitsSearcher(indexName: "mobile_demo_actors")
+      let actorsSearcher = searcher.addHitsSearcher(indexName: .actors)
       actorHitsInteractor.connectSearcher(actorsSearcher)
       searchResultsController.actorsHitsInteractor = actorHitsInteractor
       
-      let moviesSearcher = searcher.addHitsSearcher(indexName: "mobile_demo_movies")
+      let moviesSearcher = searcher.addHitsSearcher(indexName: .movies)
       movieHitsInteractor.connectSearcher(moviesSearcher)
       searchResultsController.moviesHitsInteractor = movieHitsInteractor
       
@@ -72,6 +71,7 @@ enum MultiIndex {
     }
     
     func configureUI() {
+      title = "Multi-Index Search"
       view.backgroundColor = .white
       definesPresentationContext = true
       searchController.hidesNavigationBarDuringPresentation = false

@@ -22,7 +22,8 @@ class FacetListDemoController {
   init<CC: FacetListController, PC: FacetListController, CTC: FacetListController>(colorController: CC,
                                                                                    promotionController: PC,
                                                                                    categoryController: CTC) {
-    searcher = .init(client: .instantSearch, indexName: "mobile_demo_facet_list")
+    searcher = .init(client: .instantSearch,
+                     indexName: .facetList)
     filterState = .init()
     clearConnector = .init(filterState: filterState)
     

@@ -89,6 +89,7 @@ class StatsDemoViewController: UIViewController {
     }
     
     private func configureUI() {
+      title = "Stats"
       view.backgroundColor = .white
       stackView.spacing = 16
       stackView.alignment = .center

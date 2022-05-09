@@ -92,6 +92,7 @@ class QueryRuleCustomDataDemoViewController: UIViewController {
 private extension QueryRuleCustomDataDemoViewController {
   
   func configureUI() {
+    title = "Query Rule Custom Data"
     view.backgroundColor = .white
     configureLayout()
   }

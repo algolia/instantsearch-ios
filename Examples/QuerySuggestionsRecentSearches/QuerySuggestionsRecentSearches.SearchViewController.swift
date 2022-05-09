@@ -24,9 +24,8 @@ enum QuerySuggestionsAndRecentSearches {
     let searchResultsController: SearchResultsController
         
     override init(nibName nibNameOrNil: String?, bundle nibBundleOrNil: Bundle?) {
-      hitsSearcher = .init(appID: "latency",
-                           apiKey: "afc3dd66dd1293e2e2736a5a51b05c0a",
-                           indexName: "instantsearch_query_suggestions")
+      hitsSearcher = .init(client: .instantSearch,
+                           indexName: .instantSearchSuggestions)
       searchResultsController = .init()
       hitsInteractor = .init()
       searchController = .init(searchResultsController: searchResultsController)
@@ -58,6 +57,7 @@ enum QuerySuggestionsAndRecentSearches {
     }
     
     func configureUI() {
+      title = "Recent Searches & Suggestions"
       view.backgroundColor = .white
       searchController.hidesNavigationBarDuringPresentation = false
       searchController.showsSearchResultsController = true

@@ -13,6 +13,7 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
 
   func scene(_ scene: UIScene, willConnectTo session: UISceneSession, options connectionOptions: UIScene.ConnectionOptions) {
     let demoListViewController = DemoListViewController<Demo>(indexName: "mobile_demos")
+    demoListViewController.title = "Examples"
     let pusher = ViewControllerPusher(factory: DemoViewControllerFactory(),
                                       sourceViewController: demoListViewController)
     demoListViewController.didSelect = pusher.callAsFunction

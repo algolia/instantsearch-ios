@@ -54,6 +54,7 @@ class RelatedItemsDemoViewController: UIViewController {
   }
   
   fileprivate func setupUI() {
+    title = "Related Items"
     view.backgroundColor = .white
     definesPresentationContext = true
     navigationItem.searchController = searchController

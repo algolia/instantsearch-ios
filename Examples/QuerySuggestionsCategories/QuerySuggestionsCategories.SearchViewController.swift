@@ -26,8 +26,7 @@ enum QuerySuggestionsCategories {
     let searchResultsController: SearchResultsController
     
     override init(nibName nibNameOrNil: String?, bundle nibBundleOrNil: Bundle?) {
-      searcher = .init(appID: "latency",
-                       apiKey: "afc3dd66dd1293e2e2736a5a51b05c0a")
+      searcher = .init(client: .instantSearch)
       searchResultsController = .init()
       categoriesInteractor = .init()
       suggestionsInteractor = .init(infiniteScrolling: .off)
@@ -47,12 +46,12 @@ enum QuerySuggestionsCategories {
       
       configureUI()
       
-      let facetsSearcher = searcher.addFacetsSearcher(indexName: "instant_search",
+      let facetsSearcher = searcher.addFacetsSearcher(indexName: .instantSearch,
                                                       attribute: "categories")
       categoriesInteractor.connectFacetSearcher(facetsSearcher)
       searchResultsController.categoriesInteractor = categoriesInteractor
 
-      let suggestionsSearcher = searcher.addHitsSearcher(indexName: "instantsearch_query_suggestions")
+      let suggestionsSearcher = searcher.addHitsSearcher(indexName: .instantSearchSuggestions)
       suggestionsInteractor.connectSearcher(suggestionsSearcher)
       searchResultsController.suggestionsInteractor = suggestionsInteractor
       
@@ -69,6 +68,7 @@ enum QuerySuggestionsCategories {
     }
     
     func configureUI() {
+      title = "Suggestions & Categories"
       view.backgroundColor = .white
       definesPresentationContext = true
       searchController.hidesNavigationBarDuringPresentation = false
