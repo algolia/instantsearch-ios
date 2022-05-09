@@ -38,7 +38,7 @@ class SegmentedFilterDemoViewController: UIViewController {
 private extension SegmentedFilterDemoViewController {
     
   func setup() {
-    demoController.selectableFilterConnector.connectController(segmentedController)
+    demoController.filterMapConnector.connectController(segmentedController)
     demoController.clearFilterConnector.connectController(filterDebugViewController.clearFilterController)
     segmentedController.segmentedControl.selectedSegmentIndex = 0
   }

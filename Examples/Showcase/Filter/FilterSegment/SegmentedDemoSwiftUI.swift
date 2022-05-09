@@ -25,7 +25,7 @@ class SegmentedDemoSwiftUI: SwiftUIDemo, PreviewProvider {
       demoController = SegmentedFilterDemoController()
       filterStateController = FilterStateObservableController(filterState: demoController.filterState)
       clearFilterController = FilterClearObservableController()
-      demoController.selectableFilterConnector.connectController(selectableSegmentController)
+      demoController.filterMapConnector.connectController(selectableSegmentController)
       demoController.clearFilterConnector.connectController(clearFilterController)
     }
     

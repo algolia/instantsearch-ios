@@ -1,5 +1,5 @@
 //
-//  SelectableSegmentInteractor+Filter+Controller.swift
+//  FilterMapInteractor+Controller.swift
 //  InstantSearchCore
 //
 //  Created by Vladislav Fitc on 02/08/2019.
@@ -9,7 +9,7 @@
 
 import Foundation
 
-public struct SelectableFilterInteractorControllerConnection<Filter: FilterType, Controller: SelectableSegmentController>: Connection where Controller.SegmentKey == Int {
+public struct FilterMapInteractorControllerConnection<Filter: FilterType, Controller: SelectableSegmentController>: Connection where Controller.SegmentKey == Int {
 
   public typealias Interactor = SelectableSegmentInteractor<Int, Filter>
 
@@ -50,13 +50,16 @@ public struct SelectableFilterInteractorControllerConnection<Filter: FilterType,
 
 }
 
-public extension SelectableSegmentInteractor where Segment: FilterType, SegmentKey == Int {
+public extension FilterMapInteractor {
 
   @discardableResult func connectController<Controller: SelectableSegmentController>(_ controller: Controller,
-                                                                                     presenter: @escaping FilterPresenter = DefaultPresenter.Filter.present) -> SelectableFilterInteractorControllerConnection<Segment, Controller> where Controller.SegmentKey == Int {
-    let connection = SelectableFilterInteractorControllerConnection(interactor: self, controller: controller, presenter: presenter)
+                                                                                     presenter: @escaping FilterPresenter = DefaultPresenter.Filter.present) -> FilterMapInteractorControllerConnection<Filter, Controller> where Controller.SegmentKey == Int {
+    let connection = FilterMapInteractorControllerConnection(interactor: self, controller: controller, presenter: presenter)
     connection.connect()
     return connection
   }
 
 }
+
+@available(*, deprecated, renamed: "FilterMapInteractorControllerConnection")
+public typealias SelectableFilterInteractorControllerConnection = FilterMapInteractorControllerConnection

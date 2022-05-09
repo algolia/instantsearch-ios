@@ -1,5 +1,5 @@
 //
-//  SelectableFilterConnector.swift
+//  FilterMapConnector.swift
 //  InstantSearchCore
 //
 //  Created by Vladislav Fitc on 29/11/2019.
@@ -8,7 +8,7 @@
 
 import Foundation
 
-public class SelectableFilterConnector<Filter: FilterType> {
+public class FilterMapConnector<Filter: FilterType> {
 
   /// Searcher that handles your searches
   public let searcher: HitsSearcher
@@ -17,7 +17,7 @@ public class SelectableFilterConnector<Filter: FilterType> {
   public let filterState: FilterState
 
   /// Logic applied to the filters
-  public let interactor: SelectableSegmentInteractor<Int, Filter>
+  public let interactor: FilterMapInteractor<Filter>
 
   /// Attribute to filter
   public let attribute: Attribute
@@ -29,10 +29,10 @@ public class SelectableFilterConnector<Filter: FilterType> {
   public let groupName: String
 
   /// Connection between interactor and searcher
-  public let searcherConnection: SelectableFilterInteractorSearcherConnection<Filter>
+  public let searcherConnection: FilterMapInteractorSearcherConnection<Filter>
 
   /// Connection between interactor and filterState
-  public let filterStateConnection: SelectableFilterInteractorFilterStateConnection<Filter>
+  public let filterStateConnection: FilterMapInteractorFilterStateConnection<Filter>
 
   /// Connections between interactor and controllers
   public var controllerConnections: [Connection]
@@ -77,7 +77,7 @@ public class SelectableFilterConnector<Filter: FilterType> {
 
 }
 
-extension SelectableFilterConnector: Connection {
+extension FilterMapConnector: Connection {
 
   public func connect() {
     searcherConnection.connect()
@@ -92,3 +92,6 @@ extension SelectableFilterConnector: Connection {
   }
 
 }
+
+@available(*, deprecated, renamed: "FilterMapConnector")
+typealias SelectableFilterConnector = FilterMapConnector

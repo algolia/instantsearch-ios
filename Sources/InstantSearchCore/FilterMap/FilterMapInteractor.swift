@@ -1,5 +1,5 @@
 //
-//  SelectableFilterInteractor.swift
+//  FilterMapInteractor.swift
 //  InstantSearchCore
 //
 //  Created by Vladislav Fitc on 29/11/2019.
@@ -8,7 +8,7 @@
 
 import Foundation
 
-public class SelectableFilterInteractor<Filter: FilterType>: SelectableSegmentInteractor<Int, Filter> {
+public class FilterMapInteractor<Filter: FilterType>: SelectableSegmentInteractor<Int, Filter> {
 
   public override init(items: [Int: Filter], selected: Int? = .none) {
     super.init(items: items,
@@ -20,3 +20,6 @@ public class SelectableFilterInteractor<Filter: FilterType>: SelectableSegmentIn
   }
 
 }
+
+@available(*, deprecated, renamed: "FilterMapInteractor")
+typealias SelectableFilterInteractor = FilterMapInteractor

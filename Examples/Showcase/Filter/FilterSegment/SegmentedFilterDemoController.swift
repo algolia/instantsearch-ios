@@ -9,10 +9,10 @@ import Foundation
 import InstantSearch
 
 class SegmentedFilterDemoController {
-
+  
   let searcher: HitsSearcher
   let filterState: FilterState
-  let selectableFilterConnector: SelectableFilterConnector<Filter.Facet>
+  let filterMapConnector: FilterMapConnector<Filter.Facet>
   let clearFilterConnector: FilterClearConnector
   
   init() {
@@ -30,12 +30,12 @@ class SegmentedFilterDemoController {
     ]
     self.filterState = FilterState()
     self.clearFilterConnector = .init(filterState: filterState)
-    self.selectableFilterConnector = .init(searcher: searcher,
-                                           filterState: filterState,
-                                           items: items,
-                                           selected: 0,
-                                           attribute: gender,
-                                           operator: .or)
+    self.filterMapConnector = .init(searcher: searcher,
+                                    filterState: filterState,
+                                    items: items,
+                                    selected: 0,
+                                    attribute: gender,
+                                    operator: .or)
     
     searcher.search()
     searcher.connectFilterState(filterState)

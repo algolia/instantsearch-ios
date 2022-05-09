@@ -1,5 +1,5 @@
 //
-//  SelectableSegmentInteractor+Filter+FilterState.swift
+//  FilterMapInteractor+FilterState.swift
 //  InstantSearchCore
 //
 //  Created by Vladislav Fitc on 02/08/2019.
@@ -9,17 +9,15 @@
 
 import Foundation
 
-public struct SelectableFilterInteractorFilterStateConnection<Filter: FilterType>: Connection {
+public struct FilterMapInteractorFilterStateConnection<Filter: FilterType>: Connection {
 
-  public typealias Interactor = SelectableSegmentInteractor<Int, Filter>
-
-  public let interactor: Interactor
+  public let interactor: FilterMapInteractor<Filter>
   public let filterState: FilterState
   public let attribute: Attribute
   public let `operator`: RefinementOperator
   public let groupName: String
 
-  public init(interactor: Interactor,
+  public init(interactor: FilterMapInteractor<Filter>,
               filterState: FilterState,
               attribute: Attribute,
               `operator`: RefinementOperator,
@@ -46,14 +44,14 @@ public struct SelectableFilterInteractorFilterStateConnection<Filter: FilterType
   }
 
   private func connectFilterState<Accessor: SpecializedGroupAccessor>(_ filterState: FilterState,
-                                                                      to interactor: Interactor,
+                                                                      to interactor: FilterMapInteractor<Filter>,
 
                                                                       via accessor: Accessor) where Accessor.Filter == Filter {
     whenSelectedComputedThenUpdateFilterState(interactor: interactor, filterState: filterState, via: accessor)
     whenFilterStateChangedThenUpdateSelected(interactor: interactor, filterState: filterState, via: accessor)
   }
 
-  private func whenSelectedComputedThenUpdateFilterState<Accessor: SpecializedGroupAccessor>(interactor: Interactor,
+  private func whenSelectedComputedThenUpdateFilterState<Accessor: SpecializedGroupAccessor>(interactor: FilterMapInteractor<Filter>,
                                                                                              filterState: FilterState,
 
                                                                                              via accessor: Accessor) where Accessor.Filter == Filter {
@@ -74,10 +72,10 @@ public struct SelectableFilterInteractorFilterStateConnection<Filter: FilterType
 
   }
 
-  private func whenFilterStateChangedThenUpdateSelected<Accessor: SpecializedGroupAccessor>(interactor: Interactor,
+  private func whenFilterStateChangedThenUpdateSelected<Accessor: SpecializedGroupAccessor>(interactor: FilterMapInteractor<Filter>,
                                                                                             filterState: FilterState,
                                                                                             via accessor: Accessor) where Accessor.Filter == Filter {
-    let onChange: (Interactor, ReadOnlyFiltersContainer) -> Void = { interactor, _ in
+    let onChange: (FilterMapInteractor<Filter>, ReadOnlyFiltersContainer) -> Void = { interactor, _ in
       interactor.selected = interactor.items.first(where: { accessor.contains($0.value) })?.key
     }
 
@@ -88,15 +86,18 @@ public struct SelectableFilterInteractorFilterStateConnection<Filter: FilterType
 
 }
 
-public extension SelectableSegmentInteractor where SegmentKey == Int, Segment: FilterType {
+public extension FilterMapInteractor {
 
   @discardableResult func connectFilterState(_ filterState: FilterState,
                                              attribute: Attribute,
                                              operator: RefinementOperator,
-                                             groupName: String? = nil) -> SelectableFilterInteractorFilterStateConnection<Segment> {
-    let connection = SelectableFilterInteractorFilterStateConnection(interactor: self, filterState: filterState, attribute: attribute, operator: `operator`, groupName: groupName)
+                                             groupName: String? = nil) -> FilterMapInteractorFilterStateConnection<Filter> {
+    let connection = FilterMapInteractorFilterStateConnection(interactor: self, filterState: filterState, attribute: attribute, operator: `operator`, groupName: groupName)
     connection.connect()
     return connection
   }
 
 }
+
+@available(*, deprecated, renamed: "FilterMapInteractorFilterStateConnection")
+public typealias SelectableFilterInteractorFilterStateConnection = FilterMapInteractorFilterStateConnection
