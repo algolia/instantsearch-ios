@@ -14,8 +14,8 @@ class AlgoliaController {
   
   let searcher: HitsSearcher
 
-  let queryInputInteractor: QueryInputInteractor
-  let queryInputController: QueryInputObservableController
+  let searchBoxInteractor: SearchBoxInteractor
+  let searchBoxController: SearchBoxObservableController
 
   let hitsInteractor: HitsInteractor<Item>
   let hitsController: HitsObservableController<Item>
@@ -32,8 +32,8 @@ class AlgoliaController {
     self.searcher = HitsSearcher(appID: "latency",
                                  apiKey: "1f6fd3a6fb973cb08419fe7d288fa4db",
                                  indexName: "bestbuy")
-    self.queryInputInteractor = .init()
-    self.queryInputController = .init()
+    self.searchBoxInteractor = .init()
+    self.searchBoxController = .init()
     self.hitsInteractor = .init()
     self.hitsController = .init()
     self.statsInteractor = .init()
@@ -46,8 +46,8 @@ class AlgoliaController {
   }
   
   func setupConnections() {
-    queryInputInteractor.connectSearcher(searcher)
-    queryInputInteractor.connectController(queryInputController)
+    searchBoxInteractor.connectSearcher(searcher)
+    searchBoxInteractor.connectController(searchBoxController)
     hitsInteractor.connectSearcher(searcher)
     hitsInteractor.connectController(hitsController)
     statsInteractor.connectSearcher(searcher)

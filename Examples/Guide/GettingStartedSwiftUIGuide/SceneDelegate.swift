@@ -13,7 +13,7 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
 
   func scene(_ scene: UIScene, willConnectTo session: UISceneSession, options connectionOptions: UIScene.ConnectionOptions) {
     let controller = AlgoliaController()
-    let rootView = ContentView(queryInputController: controller.queryInputController,
+    let rootView = ContentView(searchBoxController: controller.searchBoxController,
                                hitsController: controller.hitsController,
                                statsController: controller.statsController,
                                facetListController: controller.facetListController)

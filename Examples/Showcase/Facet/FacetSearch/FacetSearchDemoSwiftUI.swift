@@ -18,17 +18,17 @@ class FacetSearchDemoSwiftUI: SwiftUIDemo, PreviewProvider {
 
     let facetListController: FacetListObservableController
     let clearFilterController: FilterClearObservableController
-    let queryInputController: QueryInputObservableController
+    let searchBoxController: SearchBoxObservableController
     let filterStateController: FilterStateObservableController
     
     init() {
       facetListController = FacetListObservableController()
-      queryInputController = QueryInputObservableController()
+      searchBoxController = SearchBoxObservableController()
       demoController = FacetSearchDemoController()
       filterStateController = FilterStateObservableController(filterState: demoController.filterState)
       clearFilterController = .init()
       demoController.facetListConnector.connectController(facetListController)
-      demoController.queryInputConnector.connectController(queryInputController)
+      demoController.searchBoxConnector.connectController(searchBoxController)
       demoController.clearFilterConnector.connectController(clearFilterController)
     }
     
@@ -39,7 +39,7 @@ class FacetSearchDemoSwiftUI: SwiftUIDemo, PreviewProvider {
     @ObservedObject var filterStateController: FilterStateObservableController
     @ObservedObject var clearFilterController: FilterClearObservableController
     
-    @ObservedObject var queryInputController: QueryInputObservableController
+    @ObservedObject var searchBoxController: SearchBoxObservableController
     @ObservedObject var facetListController: FacetListObservableController
 
     var body: some View {
@@ -58,7 +58,7 @@ class FacetSearchDemoSwiftUI: SwiftUIDemo, PreviewProvider {
           .navigationBarTitle("Facet Search")
         }
       }
-      .searchable(text: $queryInputController.query)
+      .searchable(text: $searchBoxController.query)
     }
     
   }
@@ -66,7 +66,7 @@ class FacetSearchDemoSwiftUI: SwiftUIDemo, PreviewProvider {
   static func contentView(with controller: Controller) -> ContentView {
     ContentView(filterStateController: controller.filterStateController,
                 clearFilterController: controller.clearFilterController,
-                queryInputController: controller.queryInputController,
+                searchBoxController: controller.searchBoxController,
                 facetListController: controller.facetListController)
   }
   

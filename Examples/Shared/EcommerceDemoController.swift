@@ -12,7 +12,7 @@ class EcommerceDemoController {
   
   let searcher: HitsSearcher
   let hitsInteractor: HitsInteractor<Hit<StoreItem>>
-  let queryInputConnector: QueryInputConnector
+  let searchBoxConnector: SearchBoxConnector
   let statsConnector: StatsConnector
   let loadingConnector: LoadingConnector
 
@@ -20,7 +20,7 @@ class EcommerceDemoController {
     searcher = .init(client: .ecommerce,
                      indexName: .ecommerceProducts)
     hitsInteractor = .init()
-    queryInputConnector = .init(searcher: searcher, searchTriggeringMode: searchTriggeringMode)
+    searchBoxConnector = .init(searcher: searcher, searchTriggeringMode: searchTriggeringMode)
     statsConnector = .init(searcher: searcher)
     loadingConnector = .init(searcher: searcher)
     hitsInteractor.connectSearcher(searcher)

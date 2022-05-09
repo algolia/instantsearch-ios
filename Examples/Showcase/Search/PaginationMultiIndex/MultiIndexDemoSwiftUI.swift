@@ -15,16 +15,16 @@ struct MultiIndexDemoSwiftUI: SwiftUIDemo, PreviewProvider {
   class Controller {
     
     let demoController: MultiIndexDemoController
-    let queryInputController: QueryInputObservableController
+    let searchBoxController: SearchBoxObservableController
     let suggestionsHitsController: HitsObservableController<QuerySuggestion>
     let productsHitsController: HitsObservableController<Hit<StoreItem>>
     
     init() {
       demoController = .init()
-      queryInputController = .init()
+      searchBoxController = .init()
       suggestionsHitsController = .init()
       productsHitsController = .init()
-      demoController.queryInputConnector.connectController(queryInputController)
+      demoController.searchBoxConnector.connectController(searchBoxController)
       demoController.suggestionsHitsConnector.connectController(suggestionsHitsController)
       demoController.productsHitsConnector.connectController(productsHitsController)
     }
@@ -33,7 +33,7 @@ struct MultiIndexDemoSwiftUI: SwiftUIDemo, PreviewProvider {
   
   struct ContentView: View {
     
-    @ObservedObject var queryInputController: QueryInputObservableController
+    @ObservedObject var searchBoxController: SearchBoxObservableController
     @ObservedObject var suggestionsHitsController: HitsObservableController<QuerySuggestion>
     @ObservedObject var productsHitsController: HitsObservableController<Hit<StoreItem>>
     
@@ -70,7 +70,7 @@ struct MultiIndexDemoSwiftUI: SwiftUIDemo, PreviewProvider {
         Spacer()
       }
       .padding()
-      .searchable(text: $queryInputController.query)
+      .searchable(text: $searchBoxController.query)
       .background(Color(.systemGray6))
     }
     
@@ -139,7 +139,7 @@ struct MultiIndexDemoSwiftUI: SwiftUIDemo, PreviewProvider {
   }
   
   static func contentView(with controller: Controller) -> ContentView {
-    ContentView(queryInputController: controller.queryInputController,
+    ContentView(searchBoxController: controller.searchBoxController,
                 suggestionsHitsController: controller.suggestionsHitsController,
                 productsHitsController: controller.productsHitsController)
   }

@@ -16,7 +16,7 @@ enum QuerySuggestionsCategories {
     
     let searchController: UISearchController
     
-    let queryInputConnector: QueryInputConnector
+    let searchBoxConnector: SearchBoxConnector
     let textFieldController: TextFieldController
 
     let searcher: MultiSearcher
@@ -32,8 +32,8 @@ enum QuerySuggestionsCategories {
       suggestionsInteractor = .init(infiniteScrolling: .off)
       searchController = .init(searchResultsController: searchResultsController)
       textFieldController = .init(searchBar: searchController.searchBar)
-      queryInputConnector = .init(searcher: searcher,
-                                  controller: textFieldController)
+      searchBoxConnector = .init(searcher: searcher,
+                                 controller: textFieldController)
       super.init(nibName: nibNameOrNil, bundle: nibBundleOrNil)
     }
     
@@ -56,7 +56,7 @@ enum QuerySuggestionsCategories {
       searchResultsController.suggestionsInteractor = suggestionsInteractor
       
       searchResultsController.didSelectSuggestion = { [weak self] suggestion in
-        self?.queryInputConnector.interactor.query = suggestion
+        self?.searchBoxConnector.interactor.query = suggestion
       }
       
       searcher.search()

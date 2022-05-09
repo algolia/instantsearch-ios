@@ -15,15 +15,15 @@ struct DynamicFacetDemoSwiftUI: SwiftUIDemo, PreviewProvider {
   
   class Controller {
     
-    let queryInputController: QueryInputObservableController
+    let searchBoxController: SearchBoxObservableController
     let filterStateController: FilterStateObservableController
     let facetsController: DynamicFacetListObservableController
     let demoController: DynamicFacetListDemoController
     
     init() {
-      queryInputController = QueryInputObservableController()
+      searchBoxController = SearchBoxObservableController()
       facetsController = DynamicFacetListObservableController()
-      demoController = DynamicFacetListDemoController(queryInputController: queryInputController,
+      demoController = DynamicFacetListDemoController(searchBoxController: searchBoxController,
                                                       dynamicFacetListController: facetsController)
       filterStateController = FilterStateObservableController(filterState: demoController.filterState)
     }
@@ -31,13 +31,13 @@ struct DynamicFacetDemoSwiftUI: SwiftUIDemo, PreviewProvider {
   }
   
   static func contentView(with controller: Controller) -> ContentView {
-    ContentView(queryInputController: controller.queryInputController,
+    ContentView(searchBoxController: controller.searchBoxController,
                 facetsController: controller.facetsController)
   }
   
   struct ContentView: View {
     
-    @ObservedObject var queryInputController: QueryInputObservableController
+    @ObservedObject var searchBoxController: SearchBoxObservableController
     let facetsController: DynamicFacetListObservableController
     
     @State private var isHelpPresented: Bool = false
@@ -56,7 +56,7 @@ struct DynamicFacetDemoSwiftUI: SwiftUIDemo, PreviewProvider {
             }
           }
         }
-        .searchable(text: $queryInputController.query)
+        .searchable(text: $searchBoxController.query)
     }
     
   }
@@ -65,7 +65,7 @@ struct DynamicFacetDemoSwiftUI: SwiftUIDemo, PreviewProvider {
   static var previews: some View {
     return NavigationView {
       NavigationView {
-        ContentView(queryInputController: controller.queryInputController,
+        ContentView(searchBoxController: controller.searchBoxController,
                     facetsController: controller.facetsController)
         .navigationBarTitle("Dynamic facets")
       }

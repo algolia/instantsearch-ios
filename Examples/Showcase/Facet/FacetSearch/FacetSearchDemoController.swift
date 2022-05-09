@@ -14,7 +14,7 @@ class FacetSearchDemoController {
   let filterState: FilterState
   let clearFilterConnector: FilterClearConnector
   let facetListConnector: FacetListConnector
-  let queryInputConnector: QueryInputConnector
+  let searchBoxConnector: SearchBoxConnector
   
   init() {
     filterState = .init()
@@ -26,7 +26,7 @@ class FacetSearchDemoController {
                                filterState: filterState,
                                attribute: "brand",
                                operator: .or)
-    queryInputConnector = QueryInputConnector(searcher: facetSearcher)
+    searchBoxConnector = SearchBoxConnector(searcher: facetSearcher)
     facetSearcher.search()
   }
   

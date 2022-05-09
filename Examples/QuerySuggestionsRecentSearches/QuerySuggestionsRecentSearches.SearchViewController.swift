@@ -15,7 +15,7 @@ enum QuerySuggestionsAndRecentSearches {
     
     let searchController: UISearchController
     
-    let queryInputConnector: QueryInputConnector
+    let searchBoxConnector: SearchBoxConnector
     let textFieldController: TextFieldController
 
     let hitsSearcher: HitsSearcher
@@ -30,13 +30,13 @@ enum QuerySuggestionsAndRecentSearches {
       hitsInteractor = .init()
       searchController = .init(searchResultsController: searchResultsController)
       textFieldController = .init(searchBar: searchController.searchBar)
-      queryInputConnector = .init(searcher: hitsSearcher,
-                                  controller: textFieldController)
+      searchBoxConnector = .init(searcher: hitsSearcher,
+                                 controller: textFieldController)
       hitsInteractor.connectSearcher(hitsSearcher)
       hitsInteractor.connectController(searchResultsController)
       super.init(nibName: nibNameOrNil, bundle: nibBundleOrNil)
       searchResultsController.onSelection = { [weak self] in
-        self?.queryInputConnector.interactor.query = $0
+        self?.searchBoxConnector.interactor.query = $0
       }
       searchController.searchBar.searchTextField.addTarget(self, action: #selector(textFieldSubmitted), for: .editingDidEndOnExit)
     }

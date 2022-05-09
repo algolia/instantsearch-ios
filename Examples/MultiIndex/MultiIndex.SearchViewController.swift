@@ -24,7 +24,7 @@ enum MultiIndex {
     
     let searchController: UISearchController
     
-    let queryInputConnector: QueryInputConnector
+    let searchBoxConnector: SearchBoxConnector
     let textFieldController: TextFieldController
 
     let searcher: MultiSearcher
@@ -40,8 +40,8 @@ enum MultiIndex {
       movieHitsInteractor = .init(infiniteScrolling: .off)
       searchController = .init(searchResultsController: searchResultsController)
       textFieldController = .init(searchBar: searchController.searchBar)
-      queryInputConnector = .init(searcher: searcher,
-                                  controller: textFieldController)
+      searchBoxConnector = .init(searcher: searcher,
+                                 controller: textFieldController)
       super.init(nibName: nibNameOrNil, bundle: nibBundleOrNil)
     }
     

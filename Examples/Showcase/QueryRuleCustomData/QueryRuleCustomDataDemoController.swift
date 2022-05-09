@@ -11,7 +11,7 @@ import InstantSearchCore
 class QueryRuleCustomDataDemoController {
       
   let searcher: HitsSearcher
-  let queryInputConnector: QueryInputConnector
+  let searchBoxConnector: SearchBoxConnector
   let hitsConnector: HitsConnector<Hit<Product>>
   let queryRuleCustomDataConnector: QueryRuleCustomDataConnector<Banner>
   
@@ -24,7 +24,7 @@ class QueryRuleCustomDataDemoController {
   init() {
     searcher = .init(client: .instantSearch,
                      indexName: .instantSearch)
-    queryInputConnector = .init(searcher: searcher)
+    searchBoxConnector = .init(searcher: searcher)
     hitsConnector = .init(searcher: searcher)
     queryRuleCustomDataConnector = .init(searcher: searcher)
     searcher.search()

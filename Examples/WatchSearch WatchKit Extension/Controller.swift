@@ -13,13 +13,13 @@ class Controller {
   
   let demoController: MovieDemoController
   let hitsController: HitsObservableController<Hit<Movie>>
-  let queryInputController: QueryInputObservableController
+  let searchBoxController: SearchBoxObservableController
   
   init(searchTriggeringMode: SearchTriggeringMode = .searchAsYouType) {
     demoController = MovieDemoController()
     hitsController = HitsObservableController()
-    queryInputController = QueryInputObservableController()
-    demoController.queryInputConnector.connectController(queryInputController)
+    searchBoxController = SearchBoxObservableController()
+    demoController.searchBoxConnector.connectController(searchBoxController)
     demoController.hitsInteractor.connectController(hitsController)
     demoController.searcher.search()
   }

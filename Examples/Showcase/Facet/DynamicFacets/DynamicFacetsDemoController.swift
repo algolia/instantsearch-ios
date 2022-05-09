@@ -13,19 +13,19 @@ import InstantSearch
 class DynamicFacetListDemoController {
   
   let searcher: HitsSearcher
-  let queryInputConnector: QueryInputConnector
+  let searchBoxConnector: SearchBoxConnector
   let dynamicFacetListConnector: DynamicFacetListConnector<HitsSearcher>
   let filterState: FilterState
   
   static let helpMessage = "Type \"6\", \"61\" or \"616\" to trigger a rule"
   
-  init<QIC: QueryInputController, DFC: DynamicFacetListController>(queryInputController: QIC,
-                                                                   dynamicFacetListController: DFC) {
+  init<SBC: SearchBoxController, DFC: DynamicFacetListController>(searchBoxController: SBC,
+                                                                  dynamicFacetListController: DFC) {
     searcher = .init(client: .init(appID: "RVURKQXRHU",
                                    apiKey: "937e4e6ec422ff69fe89b569dba30180"),
                      indexName: "test_facet_ordering")
     filterState = .init()
-    queryInputConnector = .init(searcher: searcher, controller: queryInputController)
+    searchBoxConnector = .init(searcher: searcher, controller: searchBoxController)
     dynamicFacetListConnector = .init(searcher: searcher,
                                       filterState: filterState,
                                       selectionModeForAttribute: [

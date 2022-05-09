@@ -16,17 +16,17 @@ struct SearchDemoSwiftUI: SwiftUIDemo, PreviewProvider {
     
     let demoController: EcommerceDemoController
     let hitsController: HitsObservableController<Hit<StoreItem>>
-    let queryInputController: QueryInputObservableController
+    let searchBoxController: SearchBoxObservableController
     let statsController: StatsTextObservableController
     let loadingController: LoadingObservableController
     
     init(searchTriggeringMode: SearchTriggeringMode) {
       demoController = EcommerceDemoController(searchTriggeringMode: searchTriggeringMode)
       hitsController = HitsObservableController()
-      queryInputController = QueryInputObservableController()
+      searchBoxController = SearchBoxObservableController()
       statsController = StatsTextObservableController()
       loadingController = LoadingObservableController()
-      demoController.queryInputConnector.connectController(queryInputController)
+      demoController.searchBoxConnector.connectController(searchBoxController)
       demoController.hitsInteractor.connectController(hitsController)
       demoController.statsConnector.connectController(statsController)
       demoController.loadingConnector.connectController(loadingController)
@@ -37,7 +37,7 @@ struct SearchDemoSwiftUI: SwiftUIDemo, PreviewProvider {
   
   struct ContentView: View {
     
-    @ObservedObject var queryInputController: QueryInputObservableController
+    @ObservedObject var searchBoxController: SearchBoxObservableController
     @ObservedObject var hitsController: HitsObservableController<Hit<StoreItem>>
     @ObservedObject var statsController: StatsTextObservableController
     @ObservedObject var loadingController: LoadingObservableController
@@ -62,9 +62,9 @@ struct SearchDemoSwiftUI: SwiftUIDemo, PreviewProvider {
             .frame(maxWidth: .infinity, maxHeight: .infinity)
         }
       }
-      .searchable(text: $queryInputController.query)
+      .searchable(text: $searchBoxController.query)
       .onSubmit(of: .search) {
-        queryInputController.submit()
+        searchBoxController.submit()
       }
       .padding(.horizontal, 15)
     }
@@ -72,7 +72,7 @@ struct SearchDemoSwiftUI: SwiftUIDemo, PreviewProvider {
   }
   
   static func contentView(with controller: Controller) -> ContentView {
-    ContentView(queryInputController: controller.queryInputController,
+    ContentView(searchBoxController: controller.searchBoxController,
                 hitsController: controller.hitsController,
                 statsController: controller.statsController,
                 loadingController: controller.loadingController)

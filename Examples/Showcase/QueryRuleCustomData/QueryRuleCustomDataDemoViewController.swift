@@ -39,7 +39,7 @@ class QueryRuleCustomDataDemoViewController: UIViewController {
   
   private func setup() {
     
-    demoController.queryInputConnector.connectController(textFieldController)
+    demoController.searchBoxConnector.connectController(textFieldController)
     demoController.hitsConnector.connectController(hitsTableViewController)
     demoController.queryRuleCustomDataConnector.connectController(bannerViewController)
     
@@ -64,7 +64,7 @@ class QueryRuleCustomDataDemoViewController: UIViewController {
       }
     }
     
-    demoController.queryInputConnector.interactor.onQuerySubmitted.subscribe(with: self) { (viewController, _) in
+    demoController.searchBoxConnector.interactor.onQuerySubmitted.subscribe(with: self) { (viewController, _) in
       guard let link = viewController.demoController.queryRuleCustomDataConnector.interactor.item?.link else { return }
       if link.absoluteString == "algoliademo://help" {
         UIApplication.shared.open(link)

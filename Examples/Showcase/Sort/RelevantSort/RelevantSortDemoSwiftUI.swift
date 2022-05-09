@@ -18,7 +18,7 @@ struct RelevantSortDemoSwiftUI: SwiftUIDemo, PreviewProvider {
     let relevantSortController: RelevantSortObservableController
     let sortByController: SelectableSegmentObservableController
     let hitsController: HitsObservableController<Hit<Product>>
-    let queryInputController: QueryInputObservableController
+    let searchBoxController: SearchBoxObservableController
     let statsController: StatsTextObservableController
     let demoController: RelevantSortDemoController
     
@@ -26,14 +26,14 @@ struct RelevantSortDemoSwiftUI: SwiftUIDemo, PreviewProvider {
       relevantSortController = RelevantSortObservableController()
       sortByController = SelectableSegmentObservableController()
       hitsController = HitsObservableController()
-      queryInputController = QueryInputObservableController()
+      searchBoxController = SearchBoxObservableController()
       statsController = StatsTextObservableController()
       demoController = RelevantSortDemoController()
       demoController.sortByConnector.connectController(sortByController,
                                                        presenter: demoController.title(for:))
       demoController.relevantSortConnector.connectController(relevantSortController)
       demoController.hitsConnector.connectController(hitsController)
-      demoController.queryInputConnector.connectController(queryInputController)
+      demoController.searchBoxConnector.connectController(searchBoxController)
       demoController.statsConnector.connectController(statsController)
     }
     
@@ -41,7 +41,7 @@ struct RelevantSortDemoSwiftUI: SwiftUIDemo, PreviewProvider {
   
   struct ContentView: View {
     
-    @ObservedObject var queryInputController: QueryInputObservableController
+    @ObservedObject var searchBoxController: SearchBoxObservableController
     @ObservedObject var sortByController: SelectableSegmentObservableController
     @ObservedObject var relevantSortController: RelevantSortObservableController
     @ObservedObject var hitsController: HitsObservableController<Hit<Product>>
@@ -87,13 +87,13 @@ struct RelevantSortDemoSwiftUI: SwiftUIDemo, PreviewProvider {
         }
       }
       .padding()
-      .searchable(text: $queryInputController.query)
+      .searchable(text: $searchBoxController.query)
     }
     
   }
   
   static func contentView(with controller: Controller) -> ContentView {
-    ContentView(queryInputController: controller.queryInputController,
+    ContentView(searchBoxController: controller.searchBoxController,
                 sortByController: controller.sortByController,
                 relevantSortController: controller.relevantSortController,
                 hitsController: controller.hitsController,

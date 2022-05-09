@@ -13,13 +13,13 @@ class MultiIndexDemoController {
   let multiSearcher: MultiSearcher
   let suggestionsHitsConnector: HitsConnector<QuerySuggestion>
   let productsHitsConnector: HitsConnector<Hit<StoreItem>>
-  let queryInputConnector: QueryInputConnector
+  let searchBoxConnector: SearchBoxConnector
   
   init() {
     multiSearcher = .init(client: .ecommerce)
     let suggestionsSearcher = multiSearcher.addHitsSearcher(indexName: .ecommerceSuggestions)
     let productsSearcher = multiSearcher.addHitsSearcher(indexName: .ecommerceProducts)
-    queryInputConnector = .init(searcher: multiSearcher)
+    searchBoxConnector = .init(searcher: multiSearcher)
     productsHitsConnector = .init(searcher: productsSearcher)
     suggestionsHitsConnector = .init(searcher: suggestionsSearcher)
     multiSearcher.search()

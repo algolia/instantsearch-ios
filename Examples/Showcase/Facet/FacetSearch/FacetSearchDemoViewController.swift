@@ -45,7 +45,7 @@ private extension FacetSearchDemoViewController {
     addChild(filterDebugViewController)
     filterDebugViewController.didMove(toParent: self)
     demoController.facetListConnector.connectController(facetListController)
-    demoController.queryInputConnector.connectController(textFieldController)
+    demoController.searchBoxConnector.connectController(textFieldController)
     demoController.clearFilterConnector.connectController(filterDebugViewController.clearFilterController)
   }
   

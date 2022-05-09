@@ -61,7 +61,7 @@ class MultiIndexDemoViewController: UIViewController {
     hitsViewController = .init()
     searchController = .init(searchResultsController: hitsViewController)
     textFieldController = .init(searchBar: searchController.searchBar)
-    demoController.queryInputConnector.connectController(textFieldController)
+    demoController.searchBoxConnector.connectController(textFieldController)
     demoController.productsHitsConnector.connectController(hitsViewController.productsCollectionViewController)
     demoController.suggestionsHitsConnector.connectController(hitsViewController.suggestionsCollectionViewController)
     super.init(nibName: nil, bundle: nil)

@@ -16,17 +16,17 @@ struct SortByDemoSwiftUI: SwiftUIDemo, PreviewProvider {
   class Controller {
     
     let demoController: SortByDemoController
-    let queryInputController: QueryInputObservableController
+    let searchBoxController: SearchBoxObservableController
     let selectableSegmentObservableController: SelectableSegmentObservableController
     let hitsController: HitsObservableController<Hit<StoreItem>>
     
     init() {
       demoController = SortByDemoController()
-      queryInputController = QueryInputObservableController()
+      searchBoxController = SearchBoxObservableController()
       selectableSegmentObservableController = SelectableSegmentObservableController()
       hitsController = HitsObservableController<Hit<StoreItem>>()
       
-      demoController.queryInputConnector.connectController(queryInputController)
+      demoController.searchBoxConnector.connectController(searchBoxController)
       demoController.hitsConnector.connectController(hitsController)
       demoController.sortByConnector.connectController(selectableSegmentObservableController,
                                                        presenter: demoController.title(for:))
@@ -36,7 +36,7 @@ struct SortByDemoSwiftUI: SwiftUIDemo, PreviewProvider {
   
   struct ContentView: View {
     
-    @ObservedObject var queryInputController: QueryInputObservableController
+    @ObservedObject var searchBoxController: SearchBoxObservableController
     @ObservedObject var selectableSegmentObservableController: SelectableSegmentObservableController
     @ObservedObject var hitsController: HitsObservableController<Hit<StoreItem>>
     
@@ -63,13 +63,13 @@ struct SortByDemoSwiftUI: SwiftUIDemo, PreviewProvider {
         }
       }
       .padding(.horizontal, 16)
-      .searchable(text: $queryInputController.query)
+      .searchable(text: $searchBoxController.query)
     }
     
   }
   
   static func contentView(with controller: Controller) -> ContentView {
-    ContentView(queryInputController: controller.queryInputController,
+    ContentView(searchBoxController: controller.searchBoxController,
                 selectableSegmentObservableController: controller.selectableSegmentObservableController,
                 hitsController: controller.hitsController)
   }

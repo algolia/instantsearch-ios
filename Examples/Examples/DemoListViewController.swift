@@ -16,7 +16,7 @@ final class DemoListViewController<Demo: DemoProtocol & Codable>: UITableViewCon
   let filterState: FilterState
   let hitsInteractor: HitsInteractor<Demo>
   let textFieldController: TextFieldController
-  let queryInputInteractor: QueryInputInteractor
+  let searchBoxInteractor: SearchBoxInteractor
     
   var didSelect: ((Demo) -> Void)?
   
@@ -36,9 +36,9 @@ final class DemoListViewController<Demo: DemoProtocol & Codable>: UITableViewCon
     hitsInteractor.connectFilterState(filterState)
     searchController = UISearchController(searchResultsController: .none)
     textFieldController = TextFieldController(searchBar: searchController.searchBar)
-    queryInputInteractor = .init()
-    queryInputInteractor.connectController(textFieldController)
-    queryInputInteractor.connectSearcher(searcher)
+    searchBoxInteractor = .init()
+    searchBoxInteractor.connectController(textFieldController)
+    searchBoxInteractor.connectSearcher(searcher)
     searchController.obscuresBackgroundDuringPresentation = false
     super.init(nibName: nil, bundle: nil)
     definesPresentationContext = true

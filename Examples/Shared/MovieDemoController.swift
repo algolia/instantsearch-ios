@@ -12,14 +12,14 @@ class MovieDemoController {
   
   let searcher: HitsSearcher
   let hitsInteractor: HitsInteractor<Hit<Movie>>
-  let queryInputConnector: QueryInputConnector
+  let searchBoxConnector: SearchBoxConnector
 
   init(searchTriggeringMode: SearchTriggeringMode = .searchAsYouType) {
     searcher = .init(client: .tmdb,
                      indexName: .tmdbMovies)
     hitsInteractor = .init()
-    queryInputConnector = .init(searcher: searcher,
-                                searchTriggeringMode: searchTriggeringMode)
+    searchBoxConnector = .init(searcher: searcher,
+                               searchTriggeringMode: searchTriggeringMode)
     hitsInteractor.connectSearcher(searcher)
   }
   
