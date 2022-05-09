@@ -1,5 +1,5 @@
 //
-//  QueryInputSearcherConnectionTests.swift
+//  SearchBoxSearcherConnectionTests.swift
 //  InstantSearchCore
 //
 //  Created by Vladislav Fitc on 04/12/2019.
@@ -10,15 +10,15 @@ import Foundation
 import XCTest
 @testable import InstantSearchCore
 
-class QueryInputSearcherConnectionTests: XCTestCase {
+class SearchBoxSearcherConnectionTests: XCTestCase {
   
   weak var disposableSearcher: TestSearcher?
-  weak var disposableInteractor: QueryInputInteractor?
+  weak var disposableInteractor: SearchBoxInteractor?
   
   func testLeak() {
     let searcher = TestSearcher()
-    let interactor = QueryInputInteractor()
-    let connection = QueryInputInteractor.SearcherConnection(interactor: interactor, searcher: searcher, searchTriggeringMode: .searchAsYouType)
+    let interactor = SearchBoxInteractor()
+    let connection = SearchBoxInteractor.SearcherConnection(interactor: interactor, searcher: searcher, searchTriggeringMode: .searchAsYouType)
     connection.connect()
   }
   
@@ -29,61 +29,61 @@ class QueryInputSearcherConnectionTests: XCTestCase {
   
   func testSearchAsYouTypeConnect() {
     let searcher = TestSearcher()
-    let interactor = QueryInputInteractor()
+    let interactor = SearchBoxInteractor()
     check(connect: true, interactor: interactor, searcher: searcher, mode: .searchAsYouType)
   }
-
+  
   func testSearchAsYouTypeConnectMethod() {
     let searcher = TestSearcher()
-    let interactor = QueryInputInteractor()
+    let interactor = SearchBoxInteractor()
     interactor.connectSearcher(searcher, searchTriggeringMode: .searchAsYouType)
-    let tester = QueryInputSearcherConnectionTester(interactor: interactor,
-                                                    searcher: searcher,
-                                                    triggeringMode: .searchAsYouType,
-                                                    source: self)
+    let tester = SearchBoxSearcherConnectionTester(interactor: interactor,
+                                                   searcher: searcher,
+                                                   triggeringMode: .searchAsYouType,
+                                                   source: self)
     tester.check(isConnected: true)
   }
-
+  
   func testSearchAsYouTypeDisconnect() {
     let searcher = TestSearcher()
-    let interactor = QueryInputInteractor()
+    let interactor = SearchBoxInteractor()
     check(connect: false, interactor: interactor, searcher: searcher, mode: .searchAsYouType)
   }
-
+  
   func testSearchOnSubmitConnect() {
     let searcher = TestSearcher()
-    let interactor = QueryInputInteractor()
+    let interactor = SearchBoxInteractor()
     check(connect: true, interactor: interactor, searcher: searcher, mode: .searchOnSubmit)
   }
-
+  
   func testSearchOnSubmitConnectMethod() {
     let searcher = TestSearcher()
-    let interactor = QueryInputInteractor()
+    let interactor = SearchBoxInteractor()
     interactor.connectSearcher(searcher, searchTriggeringMode: .searchOnSubmit)
-    let tester = QueryInputSearcherConnectionTester(interactor: interactor,
-                                                    searcher: searcher,
-                                                    triggeringMode: .searchOnSubmit,
-                                                    source: self)
+    let tester = SearchBoxSearcherConnectionTester(interactor: interactor,
+                                                   searcher: searcher,
+                                                   triggeringMode: .searchOnSubmit,
+                                                   source: self)
     tester.check(isConnected: true)
   }
-
+  
   func testSearchOnSubmitDisconnect() {
     let searcher = TestSearcher()
-    let interactor = QueryInputInteractor()
+    let interactor = SearchBoxInteractor()
     check(connect: false, interactor: interactor, searcher: searcher, mode: .searchOnSubmit)
   }
-
+  
   func check(connect: Bool,
-             interactor: QueryInputInteractor,
+             interactor: SearchBoxInteractor,
              searcher: TestSearcher,
              mode: SearchTriggeringMode) {
-    let connection = QueryInputInteractor.SearcherConnection(interactor: interactor, searcher: searcher, searchTriggeringMode: mode)
+    let connection = SearchBoxInteractor.SearcherConnection(interactor: interactor, searcher: searcher, searchTriggeringMode: mode)
     connection.connect()
-
-    let tester = QueryInputSearcherConnectionTester(interactor: interactor,
-                                                    searcher: searcher,
-                                                    triggeringMode: mode,
-                                                    source: self)
+    
+    let tester = SearchBoxSearcherConnectionTester(interactor: interactor,
+                                                   searcher: searcher,
+                                                   triggeringMode: mode,
+                                                   source: self)
     
     if connect {
       tester.check(isConnected: true)
@@ -91,19 +91,19 @@ class QueryInputSearcherConnectionTests: XCTestCase {
       connection.disconnect()
       tester.check(isConnected: false)
     }
-
+    
   }
-
+  
 }
 
-class QueryInputSearcherConnectionTester {
+class SearchBoxSearcherConnectionTester {
   
-  let interactor: QueryInputInteractor
+  let interactor: SearchBoxInteractor
   let searcher: TestSearcher
   let triggeringMode: SearchTriggeringMode
   let source: XCTestCase
   
-  init(interactor: QueryInputInteractor,
+  init(interactor: SearchBoxInteractor,
        searcher: TestSearcher,
        triggeringMode: SearchTriggeringMode,
        source: XCTestCase) {
@@ -114,21 +114,21 @@ class QueryInputSearcherConnectionTester {
   }
   
   func check(isConnected: Bool, file: StaticString = #file, line: UInt = #line) {
-
+    
     let query = "q1"
-
+    
     let launchSearchExpectation = source.expectation(description: "search launched search")
     launchSearchExpectation.isInverted = !isConnected
-
+    
     let queryChangedExpectation = source.expectation(description: "query changed expectation")
-
+    
     let querySubmittedExpectation = source.expectation(description: "query submitted expectation")
     querySubmittedExpectation.isInverted = triggeringMode != .searchOnSubmit
-
+    
     interactor.onQuerySubmitted.subscribe(with: self) { _, _ in
       querySubmittedExpectation.fulfill()
     }
-
+    
     interactor.onQueryChanged.subscribe(with: self) { (_, _) in
       queryChangedExpectation.fulfill()
     }
@@ -137,16 +137,16 @@ class QueryInputSearcherConnectionTester {
       XCTAssertEqual(test.searcher.query, query)
       launchSearchExpectation.fulfill()
     }
-
+    
     interactor.query = query
-
+    
     if triggeringMode == .searchOnSubmit {
       interactor.submitQuery()
     }
-
+    
     source.waitForExpectations(timeout: 5, handler: nil)
-
+    
   }
-
+  
   
 }

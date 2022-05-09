@@ -1,5 +1,5 @@
 //
-//  QueryInputInteractorTests.swift
+//  SearchBoxInteractorTests.swift
 //  InstantSearchCore
 //
 //  Created by Vladislav Fitc on 28/05/2019.
@@ -10,11 +10,11 @@ import Foundation
 import XCTest
 @testable import InstantSearchCore
 
-class QueryInputInteractorTests: XCTestCase {
+class SearchBoxInteractorTests: XCTestCase {
 
   func testOnQueryChangedEvent() {
 
-    let interactor = QueryInputInteractor()
+    let interactor = SearchBoxInteractor()
 
     let onQueryChangedExpectation = expectation(description: "on query changed")
 
@@ -33,7 +33,7 @@ class QueryInputInteractorTests: XCTestCase {
 
   func testOnQuerySubmittedEvent() {
 
-    let interactor = QueryInputInteractor()
+    let interactor = SearchBoxInteractor()
     let onQuerySubmittedExpectation = expectation(description: "on query submitted")
     let submittedQuery = "q2"
 

@@ -1,5 +1,5 @@
 //
-//  QueryInputInteractor.swift
+//  SearchBoxInteractor.swift
 //  InstantSearchCore
 //
 //  Created by Vladislav Fitc on 28/05/2019.
@@ -9,7 +9,7 @@
 import Foundation
 
 /// Business logic component that handles textual query input
-public class QueryInputInteractor {
+public class SearchBoxInteractor {
 
   /// Textual query
   public var query: String? {
@@ -38,3 +38,6 @@ public class QueryInputInteractor {
   }
 
 }
+
+@available(*, deprecated, renamed: "SearchBoxInteractor")
+public typealias QueryInputInteractor = SearchBoxInteractor

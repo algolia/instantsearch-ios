@@ -13,7 +13,7 @@ import InstantSearchCore
 import UIKit
 
 @available(iOS, deprecated: 13.0, message: "Use TextFieldController instead")
-public class SearchBarController: NSObject, QueryInputController {
+public class SearchBarController: NSObject, SearchBoxController {
 
   public var onQueryChanged: ((String?) -> Void)?
   public var onQuerySubmitted: ((String?) -> Void)?
