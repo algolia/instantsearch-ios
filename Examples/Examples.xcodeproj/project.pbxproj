@@ -232,6 +232,7 @@
 		404C414C280CA01000EC9FEB /* DynamicFacetsDemoViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 404C40A3280C942000EC9FEB /* DynamicFacetsDemoViewController.swift */; };
 		404C414E280CA43300EC9FEB /* InstantSearchSwiftUI in Frameworks */ = {isa = PBXBuildFile; productRef = 404C414D280CA43300EC9FEB /* InstantSearchSwiftUI */; };
 		405FAB6728245F49002E3E4B /* Movie.swift in Sources */ = {isa = PBXBuildFile; fileRef = 405FAB6628245F49002E3E4B /* Movie.swift */; };
+		40718B47282923920061DC87 /* Ecommerce.swift in Sources */ = {isa = PBXBuildFile; fileRef = 40F61F192828017B0040ECD2 /* Ecommerce.swift */; };
 		4073B5952806CAE200E05EF6 /* SliderView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4073B5942806CAE200E05EF6 /* SliderView.swift */; };
 		4073B5962806CAE200E05EF6 /* SliderView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4073B5942806CAE200E05EF6 /* SliderView.swift */; };
 		4073B59E28076B6F00E05EF6 /* Double+Range.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4073B59D28076B6F00E05EF6 /* Double+Range.swift */; };
@@ -3952,6 +3953,7 @@
 				404C4036280A27EE00EC9FEB /* CommonSwiftUIDemoViewController.swift in Sources */,
 				404C4116280C993400EC9FEB /* ProductRow.swift in Sources */,
 				404C4111280C991000EC9FEB /* SortByDemoViewController.swift in Sources */,
+				40718B47282923920061DC87 /* Ecommerce.swift in Sources */,
 				AF50CBB627F72C610036F549 /* SceneDelegate.swift in Sources */,
 				AF50CD4327FAF59D0036F549 /* UITableView+EmptyResult.swift in Sources */,
 				407D0DA9281BEFB4005FB854 /* ProductTableViewCell+StoreItem.swift in Sources */,
