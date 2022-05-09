@@ -1,8 +1,8 @@
 //
 //  ContentView.swift
-//  TVSearch
+//  MediaDemo
 //
-//  Created by Vladislav Fitc on 08/05/2022.
+//  Created by Vladislav Fitc on 09/05/2022.
 //
 
 import SwiftUI
@@ -17,23 +17,28 @@ struct ContentView: View {
   var body: some View {
     HitsList(hitsController) { hit, _ in
       MovieRow(movieHit: hit!)
-        .padding(.bottom, 10)
-        .focusable(true)
+        .frame(height: 80)
+        .padding(.vertical, 3)
       Divider()
     } noResults: {
       Text("No Results")
     }
     .searchable(text: $queryInputController.query)
+    .navigationBarTitle("Movies")
   }
   
 }
 
-
 struct ContentView_Previews: PreviewProvider {
   
   static let controller = Controller()
+  
   static var previews: some View {
-    ContentView(queryInputController: controller.queryInputController,
-                hitsController: controller.hitsController)
+    NavigationView {
+      ContentView(queryInputController: controller.queryInputController,
+                  hitsController: controller.hitsController)
+    }
+    .navigationBarTitle("Movies")
   }
+  
 }

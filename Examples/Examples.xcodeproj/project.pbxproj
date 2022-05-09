@@ -233,6 +233,18 @@
 		404C414E280CA43300EC9FEB /* InstantSearchSwiftUI in Frameworks */ = {isa = PBXBuildFile; productRef = 404C414D280CA43300EC9FEB /* InstantSearchSwiftUI */; };
 		405FAB6728245F49002E3E4B /* Movie.swift in Sources */ = {isa = PBXBuildFile; fileRef = 405FAB6628245F49002E3E4B /* Movie.swift */; };
 		40718B47282923920061DC87 /* Ecommerce.swift in Sources */ = {isa = PBXBuildFile; fileRef = 40F61F192828017B0040ECD2 /* Ecommerce.swift */; };
+		40718B4F282923E80061DC87 /* MediaDemoApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 40718B4E282923E80061DC87 /* MediaDemoApp.swift */; };
+		40718B51282923E80061DC87 /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 40718B50282923E80061DC87 /* ContentView.swift */; };
+		40718B53282923E90061DC87 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 40718B52282923E90061DC87 /* Assets.xcassets */; };
+		40718B56282923E90061DC87 /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 40718B55282923E90061DC87 /* Preview Assets.xcassets */; };
+		40718B5B2829240C0061DC87 /* Controller.swift in Sources */ = {isa = PBXBuildFile; fileRef = 40718B5A2829240C0061DC87 /* Controller.swift */; };
+		40718B5D282924210061DC87 /* InstantSearchSwiftUI in Frameworks */ = {isa = PBXBuildFile; productRef = 40718B5C282924210061DC87 /* InstantSearchSwiftUI */; };
+		40718B5F282924310061DC87 /* MovieRow.swift in Sources */ = {isa = PBXBuildFile; fileRef = 40718B5E282924310061DC87 /* MovieRow.swift */; };
+		40718B60282924510061DC87 /* Movie.swift in Sources */ = {isa = PBXBuildFile; fileRef = 405FAB6628245F49002E3E4B /* Movie.swift */; };
+		40718B612829245C0061DC87 /* MovieHit+Text.swift in Sources */ = {isa = PBXBuildFile; fileRef = 40BF0BAD28255084007B3BBD /* MovieHit+Text.swift */; };
+		40718B62282924640061DC87 /* UIColor+Convenience.swift in Sources */ = {isa = PBXBuildFile; fileRef = AF50CC3327F72FF80036F549 /* UIColor+Convenience.swift */; };
+		40718B632829246F0061DC87 /* MovieDemoController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 405FAB6928246046002E3E4B /* MovieDemoController.swift */; };
+		40718B64282924770061DC87 /* TMDB.swift in Sources */ = {isa = PBXBuildFile; fileRef = 40F61F1B282801840040ECD2 /* TMDB.swift */; };
 		4073B5952806CAE200E05EF6 /* SliderView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4073B5942806CAE200E05EF6 /* SliderView.swift */; };
 		4073B5962806CAE200E05EF6 /* SliderView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4073B5942806CAE200E05EF6 /* SliderView.swift */; };
 		4073B59E28076B6F00E05EF6 /* Double+Range.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4073B59D28076B6F00E05EF6 /* Double+Range.swift */; };
@@ -896,6 +908,13 @@
 		404C4142280C9FAA00EC9FEB /* StatsDemoController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = StatsDemoController.swift; sourceTree = "<group>"; };
 		405FAB6628245F49002E3E4B /* Movie.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Movie.swift; sourceTree = "<group>"; };
 		405FAB6928246046002E3E4B /* MovieDemoController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MovieDemoController.swift; sourceTree = "<group>"; };
+		40718B4C282923E80061DC87 /* MediaDemo.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = MediaDemo.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		40718B4E282923E80061DC87 /* MediaDemoApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MediaDemoApp.swift; sourceTree = "<group>"; };
+		40718B50282923E80061DC87 /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
+		40718B52282923E90061DC87 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
+		40718B55282923E90061DC87 /* Preview Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = "Preview Assets.xcassets"; sourceTree = "<group>"; };
+		40718B5A2829240C0061DC87 /* Controller.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Controller.swift; sourceTree = "<group>"; };
+		40718B5E282924310061DC87 /* MovieRow.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MovieRow.swift; sourceTree = "<group>"; };
 		4073B5942806CAE200E05EF6 /* SliderView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SliderView.swift; sourceTree = "<group>"; };
 		4073B59D28076B6F00E05EF6 /* Double+Range.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Double+Range.swift"; sourceTree = "<group>"; };
 		4073B5A028076E9600E05EF6 /* RatingFilterDemoController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RatingFilterDemoController.swift; sourceTree = "<group>"; };
@@ -1185,6 +1204,14 @@
 			files = (
 				4011DC342823388300336C42 /* SDWebImage in Frameworks */,
 				4011DC322823387C00336C42 /* InstantSearch in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		40718B49282923E80061DC87 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				40718B5D282924210061DC87 /* InstantSearchSwiftUI in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1540,6 +1567,27 @@
 				AF50CEA227FB72090036F549 /* Stats */,
 			);
 			path = Showcase;
+			sourceTree = "<group>";
+		};
+		40718B4D282923E80061DC87 /* MediaDemo */ = {
+			isa = PBXGroup;
+			children = (
+				40718B4E282923E80061DC87 /* MediaDemoApp.swift */,
+				40718B50282923E80061DC87 /* ContentView.swift */,
+				40718B5A2829240C0061DC87 /* Controller.swift */,
+				40718B5E282924310061DC87 /* MovieRow.swift */,
+				40718B52282923E90061DC87 /* Assets.xcassets */,
+				40718B54282923E90061DC87 /* Preview Content */,
+			);
+			path = MediaDemo;
+			sourceTree = "<group>";
+		};
+		40718B54282923E90061DC87 /* Preview Content */ = {
+			isa = PBXGroup;
+			children = (
+				40718B55282923E90061DC87 /* Preview Assets.xcassets */,
+			);
+			path = "Preview Content";
 			sourceTree = "<group>";
 		};
 		40935544280CA8AA00EB9AEA /* Filter */ = {
@@ -2059,6 +2107,7 @@
 				40F61ECA2827F5A40040ECD2 /* WatchSearch */,
 				40F61ED52827F5A50040ECD2 /* WatchSearch WatchKit Extension */,
 				40F61EFE2827FAD10040ECD2 /* TVSearch */,
+				40718B4D282923E80061DC87 /* MediaDemo */,
 				AF7FEB86272CAC5D0003BE62 /* Products */,
 				AFAE55152733643D00B52A43 /* Frameworks */,
 			);
@@ -2102,6 +2151,7 @@
 				40F61EC92827F5A40040ECD2 /* WatchSearch.app */,
 				40F61ED12827F5A50040ECD2 /* WatchSearch WatchKit Extension.appex */,
 				40F61EFD2827FAD10040ECD2 /* TVSearch.app */,
+				40718B4C282923E80061DC87 /* MediaDemo.app */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -2270,6 +2320,26 @@
 			);
 			productName = Insights;
 			productReference = 4011DC172823314900336C42 /* Insights.app */;
+			productType = "com.apple.product-type.application";
+		};
+		40718B4B282923E80061DC87 /* MediaDemo */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 40718B57282923E90061DC87 /* Build configuration list for PBXNativeTarget "MediaDemo" */;
+			buildPhases = (
+				40718B48282923E80061DC87 /* Sources */,
+				40718B49282923E80061DC87 /* Frameworks */,
+				40718B4A282923E80061DC87 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = MediaDemo;
+			packageProductDependencies = (
+				40718B5C282924210061DC87 /* InstantSearchSwiftUI */,
+			);
+			productName = MediaDemo;
+			productReference = 40718B4C282923E80061DC87 /* MediaDemo.app */;
 			productType = "com.apple.product-type.application";
 		};
 		40F61EC82827F5A40040ECD2 /* WatchSearch */ = {
@@ -2999,6 +3069,9 @@
 					4011DC162823314900336C42 = {
 						CreatedOnToolsVersion = 13.3.1;
 					};
+					40718B4B282923E80061DC87 = {
+						CreatedOnToolsVersion = 13.3.1;
+					};
 					40F61EC82827F5A40040ECD2 = {
 						CreatedOnToolsVersion = 13.3.1;
 					};
@@ -3155,6 +3228,7 @@
 				40F61EC82827F5A40040ECD2 /* WatchSearch */,
 				40F61ED02827F5A50040ECD2 /* WatchSearch WatchKit Extension */,
 				40F61EFC2827FAD00040ECD2 /* TVSearch */,
+				40718B4B282923E80061DC87 /* MediaDemo */,
 			);
 		};
 /* End PBXProject section */
@@ -3166,6 +3240,15 @@
 			files = (
 				4011DC262823314A00336C42 /* LaunchScreen.storyboard in Resources */,
 				4011DC232823314A00336C42 /* Assets.xcassets in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		40718B4A282923E80061DC87 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				40718B56282923E90061DC87 /* Preview Assets.xcassets in Resources */,
+				40718B53282923E90061DC87 /* Assets.xcassets in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -3490,6 +3573,22 @@
 				4011DC1C2823314900336C42 /* SceneDelegate.swift in Sources */,
 				4011DC3728233A6000336C42 /* ProductTableViewCell+StoreItem.swift in Sources */,
 				4011DC2B2823317800336C42 /* SceneDelegate+Convenience.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		40718B48282923E80061DC87 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				40718B5B2829240C0061DC87 /* Controller.swift in Sources */,
+				40718B5F282924310061DC87 /* MovieRow.swift in Sources */,
+				40718B51282923E80061DC87 /* ContentView.swift in Sources */,
+				40718B4F282923E80061DC87 /* MediaDemoApp.swift in Sources */,
+				40718B64282924770061DC87 /* TMDB.swift in Sources */,
+				40718B60282924510061DC87 /* Movie.swift in Sources */,
+				40718B632829246F0061DC87 /* MovieDemoController.swift in Sources */,
+				40718B612829245C0061DC87 /* MovieHit+Text.swift in Sources */,
+				40718B62282924640061DC87 /* UIColor+Convenience.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -4656,6 +4755,66 @@
 				);
 				MARKETING_VERSION = 1.0;
 				PRODUCT_BUNDLE_IDENTIFIER = com.algolia.Insights;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_EMIT_LOC_STRINGS = YES;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+			};
+			name = Release;
+		};
+		40718B58282923E90061DC87 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_ASSET_PATHS = "\"MediaDemo/Preview Content\"";
+				DEVELOPMENT_TEAM = 5RDFJYUV23;
+				ENABLE_PREVIEWS = YES;
+				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
+				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
+				INFOPLIST_KEY_UILaunchScreen_Generation = YES;
+				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
+				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
+				IPHONEOS_DEPLOYMENT_TARGET = 15.4;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+				);
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = com.algolia.MediaDemo;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_EMIT_LOC_STRINGS = YES;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+			};
+			name = Debug;
+		};
+		40718B59282923E90061DC87 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_ASSET_PATHS = "\"MediaDemo/Preview Content\"";
+				DEVELOPMENT_TEAM = 5RDFJYUV23;
+				ENABLE_PREVIEWS = YES;
+				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
+				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
+				INFOPLIST_KEY_UILaunchScreen_Generation = YES;
+				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
+				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
+				IPHONEOS_DEPLOYMENT_TARGET = 15.4;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+				);
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = com.algolia.MediaDemo;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_EMIT_LOC_STRINGS = YES;
 				SWIFT_VERSION = 5.0;
@@ -6687,6 +6846,15 @@
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
 		};
+		40718B57282923E90061DC87 /* Build configuration list for PBXNativeTarget "MediaDemo" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				40718B58282923E90061DC87 /* Debug */,
+				40718B59282923E90061DC87 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
 		40F61EE52827F5A60040ECD2 /* Build configuration list for PBXNativeTarget "WatchSearch WatchKit Extension" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
@@ -7039,6 +7207,10 @@
 			productName = SDWebImage;
 		};
 		404C414D280CA43300EC9FEB /* InstantSearchSwiftUI */ = {
+			isa = XCSwiftPackageProductDependency;
+			productName = InstantSearchSwiftUI;
+		};
+		40718B5C282924210061DC87 /* InstantSearchSwiftUI */ = {
 			isa = XCSwiftPackageProductDependency;
 			productName = InstantSearchSwiftUI;
 		};
