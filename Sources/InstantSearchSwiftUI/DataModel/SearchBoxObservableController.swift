@@ -44,5 +44,6 @@ public class SearchBoxObservableController: ObservableObject, SearchBoxControlle
 
 /// QueryInputController implementation adapted for usage with SwiftUI views
 @available(iOS 13.0, OSX 10.15, tvOS 13.0, watchOS 6.0, *)
+@available(*, deprecated, renamed: "SearchBoxObservableController")
 public typealias QueryInputObservableController = SearchBoxObservableController
 #endif
