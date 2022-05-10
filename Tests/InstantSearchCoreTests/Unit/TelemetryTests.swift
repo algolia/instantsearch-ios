@@ -12,7 +12,7 @@ import XCTest
 import InstantSearchTelemetry
 
 class TelemetryTests: XCTestCase {
-    
+  
   override func setUp() {
     Telemetry.shared.reset()
   }
@@ -64,7 +64,7 @@ class TelemetryTests: XCTestCase {
     
     _ = HitsSearcher(appID: "", apiKey: "", indexName: "")
     _ = FacetSearcher(appID: "", apiKey: "", indexName: "", facetName: "")
-        
+    
     let requester = TestRequester() { request in
       guard let userAgentValue = request.allHTTPHeaderFields?["User-Agent"] else {
         XCTFail("Missing user-agent value")
@@ -92,7 +92,7 @@ class TelemetryTests: XCTestCase {
     wait(for: [expectation1], timeout: 5)
     
     _ = FilterState()
-        
+    
     let expectation2 = expectation(description: "URL request expectation")
     
     requester.onRequestPerform = { request in
@@ -160,7 +160,7 @@ extension TelemetryTests {
     XCTAssertFalse(component.isConnector)
     XCTAssertEqual(component.parameters, [.items])
   }
-
+  
   
 }
 
@@ -211,7 +211,7 @@ extension TelemetryTests {
 
 //MARK: - Dynamic facets
 extension TelemetryTests {
-
+  
   func testDynamicFacetsListInteractor() throws {
     _ = DynamicFacetListInteractor()
     let component = try component(ofType: .dynamicFacets)
@@ -391,7 +391,7 @@ extension TelemetryTests {
     XCTAssertTrue(component.isConnector)
     XCTAssertEqual(component.parameters, [.clearMode])
   }
-
+  
   func testFilterClearConnectorSetFilterGroupIDs() throws {
     _ = FilterClearConnector(filterState: .init(),
                              filterGroupIDs: [
@@ -535,7 +535,7 @@ extension TelemetryTests {
     XCTAssertFalse(component.isConnector)
     XCTAssertEqual(component.parameters, [.showItemsOnEmptyQuery])
   }
-
+  
   func testHitsConnector() throws {
     _ = HitsConnector<String>(searcher: hitsSearcher)
     let component = try component(ofType: .hits)
@@ -569,7 +569,7 @@ extension TelemetryTests {
       .filterState,
     ])
   }
-
+  
 }
 
 //MARK: - Loading
@@ -631,7 +631,7 @@ extension TelemetryTests {
     let component = try component(ofType: .numberFilter)
     XCTAssertTrue(component.isConnector)
     XCTAssertEqual(component.parameters, [.bounds])
-
+    
   }
   
   func testNumberFilterConnectorGroupName() throws {
@@ -646,7 +646,7 @@ extension TelemetryTests {
     XCTAssertTrue(component.isConnector)
     XCTAssertEqual(component.parameters, [.groupName])
   }
-
+  
   
 }
 
@@ -725,7 +725,7 @@ extension TelemetryTests {
     XCTAssertTrue(component.isConnector)
     XCTAssertTrue(component.parameters.isEmpty)
   }
-
+  
 }
 
 //MARK: - Answers Searcher
@@ -797,7 +797,7 @@ extension TelemetryTests {
     XCTAssertFalse(component.isConnector)
     XCTAssertTrue(component.parameters.isEmpty)
   }
-
+  
 }
 
 //MARK: - Filter toggle
@@ -829,45 +829,45 @@ extension TelemetryTests {
 extension TelemetryTests {
   
   func testSelectableFilterInteractor() throws {
-    _ = SelectableFilterInteractor(items: [0: filter])
+    _ = FilterMapInteractor(items: [0: filter])
     let component = try component(ofType: .filterMap)
     XCTAssertFalse(component.isConnector)
     XCTAssertTrue(component.parameters.isEmpty)
   }
   
   func testSelectableFilterInteractorSelected() throws {
-    _ = SelectableFilterInteractor(items: [0: filter],
-                                   selected: 0)
+    _ = FilterMapInteractor(items: [0: filter],
+                            selected: 0)
     let component = try component(ofType: .filterMap)
     XCTAssertFalse(component.isConnector)
     XCTAssertEqual(component.parameters, [.selected])
   }
   
   func testSelectableFilterConnector() throws {
-    _ = SelectableFilterConnector(searcher: hitsSearcher,
-                                  filterState: filterState,
-                                  items: [0: filter],
-                                  selected: 0,
-                                  attribute: "",
-                                  operator: .or)
+    _ = FilterMapConnector(searcher: hitsSearcher,
+                           filterState: filterState,
+                           items: [0: filter],
+                           selected: 0,
+                           attribute: "",
+                           operator: .or)
     let component = try component(ofType: .filterMap)
     XCTAssertTrue(component.isConnector)
     XCTAssertTrue(component.parameters.isEmpty)
   }
   
   func testSelectableFilterConnectorGroupName() throws {
-    _ = SelectableFilterConnector(searcher: hitsSearcher,
-                                  filterState: filterState,
-                                  items: [0: filter],
-                                  selected: 0,
-                                  attribute: "",
-                                  operator: .or,
-                                  groupName: "g")
+    _ = FilterMapConnector(searcher: hitsSearcher,
+                           filterState: filterState,
+                           items: [0: filter],
+                           selected: 0,
+                           attribute: "",
+                           operator: .or,
+                           groupName: "g")
     let component = try component(ofType: .filterMap)
     XCTAssertTrue(component.isConnector)
     XCTAssertEqual(component.parameters, [.groupName])
   }
-
+  
 }
 
 //MARK: - Sort by
@@ -887,7 +887,7 @@ extension TelemetryTests {
     XCTAssertFalse(component.isConnector)
     XCTAssertEqual(component.parameters, [.selected])
   }
-
+  
   
   func testSortByConnector() throws {
     _ = SortByConnector(searcher: hitsSearcher,
@@ -905,7 +905,7 @@ extension TelemetryTests {
     XCTAssertTrue(component.isConnector)
     XCTAssertEqual(component.parameters, [.selected])
   }
-
+  
 }
 
 //MARK: - Stats
@@ -924,7 +924,7 @@ extension TelemetryTests {
     XCTAssertTrue(component.isConnector)
     XCTAssertTrue(component.parameters.isEmpty)
   }
-
+  
 }
 
 
@@ -944,5 +944,5 @@ extension TelemetrySchema {
     }
     self = schema
   }
- 
+  
 }

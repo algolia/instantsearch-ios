@@ -18,7 +18,7 @@ class SelectableSegmentInteractorConnectorsTests: XCTestCase {
     let filterState = FilterState()
     let searcher = HitsSearcher(appID: "", apiKey: "", indexName: "")
 
-    let interactor = SelectableSegmentInteractor<Int, Filter.Tag>(items: [0: "t1", 1: "t2", 2: "t3"])
+    let interactor = FilterMapInteractor<Filter.Tag>(items: [0: "t1", 1: "t2", 2: "t3"])
     interactor.connectSearcher(searcher, attribute: "tags")
     interactor.connectFilterState(filterState, attribute: "tags", operator: .or)
 
@@ -29,7 +29,7 @@ class SelectableSegmentInteractorConnectorsTests: XCTestCase {
   func testConnectFilterState() {
 
     let filterState = FilterState()
-    let interactor = SelectableSegmentInteractor<Int, Filter.Tag>(items: [0: "t1", 1: "t2", 2: "t3"])
+    let interactor = FilterMapInteractor<Filter.Tag>(items: [0: "t1", 1: "t2", 2: "t3"])
 
     interactor.connectFilterState(filterState, attribute: "tags", operator: .or)
     // Interactor -> FilterState
@@ -52,7 +52,7 @@ class SelectableSegmentInteractorConnectorsTests: XCTestCase {
 
   func testConnectController() {
 
-    let interactor = SelectableSegmentInteractor<Int, Filter.Tag>(items: [0: "t1", 1: "t2", 2: "t3"])
+    let interactor = FilterMapInteractor<Filter.Tag>(items: [0: "t1", 1: "t2", 2: "t3"])
     let controller = TestSelectableSegmentController()
 
     interactor.selected = 1
