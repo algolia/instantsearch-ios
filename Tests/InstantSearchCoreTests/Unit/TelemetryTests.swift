@@ -829,40 +829,40 @@ extension TelemetryTests {
 extension TelemetryTests {
   
   func testSelectableFilterInteractor() throws {
-    _ = SelectableFilterInteractor(items: [0: filter])
+    _ = FilterMapInteractor(items: [0: filter])
     let component = try component(ofType: .filterMap)
     XCTAssertFalse(component.isConnector)
     XCTAssertTrue(component.parameters.isEmpty)
   }
   
   func testSelectableFilterInteractorSelected() throws {
-    _ = SelectableFilterInteractor(items: [0: filter],
-                                   selected: 0)
+    _ = FilterMapInteractor(items: [0: filter],
+                            selected: 0)
     let component = try component(ofType: .filterMap)
     XCTAssertFalse(component.isConnector)
     XCTAssertEqual(component.parameters, [.selected])
   }
   
   func testSelectableFilterConnector() throws {
-    _ = SelectableFilterConnector(searcher: hitsSearcher,
-                                  filterState: filterState,
-                                  items: [0: filter],
-                                  selected: 0,
-                                  attribute: "",
-                                  operator: .or)
+    _ = FilterMapConnector(searcher: hitsSearcher,
+                           filterState: filterState,
+                           items: [0: filter],
+                           selected: 0,
+                           attribute: "",
+                           operator: .or)
     let component = try component(ofType: .filterMap)
     XCTAssertTrue(component.isConnector)
     XCTAssertTrue(component.parameters.isEmpty)
   }
   
   func testSelectableFilterConnectorGroupName() throws {
-    _ = SelectableFilterConnector(searcher: hitsSearcher,
-                                  filterState: filterState,
-                                  items: [0: filter],
-                                  selected: 0,
-                                  attribute: "",
-                                  operator: .or,
-                                  groupName: "g")
+    _ = FilterMapConnector(searcher: hitsSearcher,
+                           filterState: filterState,
+                           items: [0: filter],
+                           selected: 0,
+                           attribute: "",
+                           operator: .or,
+                           groupName: "g")
     let component = try component(ofType: .filterMap)
     XCTAssertTrue(component.isConnector)
     XCTAssertEqual(component.parameters, [.groupName])

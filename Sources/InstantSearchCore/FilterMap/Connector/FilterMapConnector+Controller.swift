@@ -1,5 +1,5 @@
 //
-//  SelectableFilterConnector+Controller.swift
+//  FilterMapConnector+Controller.swift
 //  
 //
 //  Created by Vladislav Fitc on 17/09/2020.
@@ -7,7 +7,7 @@
 
 import Foundation
 
-public extension SelectableFilterConnector {
+public extension FilterMapConnector {
 
   /**
   Init with implicit interactor & controller
@@ -49,7 +49,7 @@ public extension SelectableFilterConnector {
    - Returns: Established connection
   */
   @discardableResult func connectController<Controller: SelectableSegmentController>(_ controller: Controller,
-                                                                                     presenter: @escaping FilterPresenter = DefaultPresenter.Filter.present) -> SelectableFilterInteractorControllerConnection<Filter, Controller> where Controller.SegmentKey == Int {
+                                                                                     presenter: @escaping FilterPresenter = DefaultPresenter.Filter.present) -> FilterMapInteractorControllerConnection<Filter, Controller> where Controller.SegmentKey == Int {
     let connection = interactor.connectController(controller, presenter: presenter)
     controllerConnections.append(connection)
     return connection
