@@ -12,7 +12,7 @@ import InstantSearchCore
 #if canImport(UIKit) && (os(iOS) || os(tvOS) || os(macOS))
 import UIKit
 
-public class TextFieldController: NSObject, QueryInputController {
+public class TextFieldController: NSObject, SearchBoxController {
 
   public var onQueryChanged: ((String?) -> Void)?
   public var onQuerySubmitted: ((String?) -> Void)?

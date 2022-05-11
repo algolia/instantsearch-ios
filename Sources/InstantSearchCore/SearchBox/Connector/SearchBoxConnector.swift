@@ -1,5 +1,5 @@
 //
-//  QueryInputConnector.swift
+//  SearchBoxConnector.swift
 //  InstantSearchCore
 //
 //  Created by Vladislav Fitc on 28/11/2019.
@@ -11,13 +11,13 @@ import Foundation
 /// Component that performs a text-based query
 ///
 /// [Documentation](https://www.algolia.com/doc/api-reference/widgets/search-box/ios/)
-public class QueryInputConnector {
+public class SearchBoxConnector {
 
   /// Searcher that handles your searches
   public let searcher: QuerySettable & Searchable
 
   /// Business logic that handles new search inputs
-  public let interactor: QueryInputInteractor
+  public let interactor: SearchBoxInteractor
 
   /// Connection between query input interactor and searcher
   public let searcherConnection: Connection
@@ -32,7 +32,7 @@ public class QueryInputConnector {
      - searchTriggeringMode: Defines the event triggering a new search
    */
   public init<Searcher: AnyObject & Searchable & QuerySettable>(searcher: Searcher,
-                                                                interactor: QueryInputInteractor = .init(),
+                                                                interactor: SearchBoxInteractor = .init(),
                                                                 searchTriggeringMode: SearchTriggeringMode = .searchAsYouType) {
     self.searcher = searcher
     self.interactor = interactor
@@ -47,7 +47,7 @@ public class QueryInputConnector {
 
 }
 
-extension QueryInputConnector: Connection {
+extension SearchBoxConnector: Connection {
 
   public func connect() {
     searcherConnection.connect()
@@ -60,3 +60,6 @@ extension QueryInputConnector: Connection {
   }
 
 }
+
+@available(*, deprecated, renamed: "SearchBoxConnector")
+public typealias QueryInputConnector = SearchBoxConnector

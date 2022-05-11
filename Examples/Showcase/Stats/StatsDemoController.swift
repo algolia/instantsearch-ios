@@ -14,12 +14,12 @@ class StatsDemoController {
   
   let searcher: HitsSearcher
   let statsConnector: StatsConnector
-  let queryInputConnector: QueryInputConnector
+  let searchBoxConnector: SearchBoxConnector
 
   init() {
     self.searcher = HitsSearcher(client: .instantSearch,
                                  indexName: .movies)
-    self.queryInputConnector = .init(searcher: searcher)
+    self.searchBoxConnector = .init(searcher: searcher)
     self.statsConnector = .init(searcher: searcher)
     searcher.search()
   }

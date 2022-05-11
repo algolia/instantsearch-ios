@@ -11,7 +11,7 @@ import InstantSearchSwiftUI
 
 struct ContentView: View {
   
-  @ObservedObject var queryInputController: QueryInputObservableController
+  @ObservedObject var searchBoxController: SearchBoxObservableController
   @ObservedObject var hitsController: HitsObservableController<Hit<Movie>>
   
   var body: some View {
@@ -23,7 +23,7 @@ struct ContentView: View {
     } noResults: {
       Text("No Results")
     }
-    .searchable(text: $queryInputController.query)
+    .searchable(text: $searchBoxController.query)
     .navigationBarTitle("Movies")
   }
   
@@ -35,7 +35,7 @@ struct ContentView_Previews: PreviewProvider {
   
   static var previews: some View {
     NavigationView {
-      ContentView(queryInputController: controller.queryInputController,
+      ContentView(searchBoxController: controller.searchBoxController,
                   hitsController: controller.hitsController)
     }
     .navigationBarTitle("Movies")

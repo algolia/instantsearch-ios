@@ -32,7 +32,7 @@ class StatsDemoViewController: UIViewController {
   
   override func viewDidLoad() {
     super.viewDidLoad()
-    controller.queryInputConnector.connectController(textFieldController)
+    controller.searchBoxConnector.connectController(textFieldController)
     controller.statsConnector.connectController(resultsViewController.labelStatsController) { stats -> String? in
       guard let stats = stats else {
         return nil

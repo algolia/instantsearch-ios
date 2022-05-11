@@ -12,7 +12,7 @@ import InstantSearch
 class SortByDemoController {
   
   let searcher: HitsSearcher
-  let queryInputConnector: QueryInputConnector
+  let searchBoxConnector: SearchBoxConnector
   let statsConnector: StatsConnector
   let hitsConnector: HitsConnector<Hit<StoreItem>>
   let sortByConnector: SortByConnector
@@ -20,7 +20,7 @@ class SortByDemoController {
   init() {
     self.searcher = HitsSearcher(client: .ecommerce,
                                  indexName: .ecommerceProducts)
-    self.queryInputConnector = .init(searcher: searcher)
+    self.searchBoxConnector = .init(searcher: searcher)
     self.hitsConnector = .init(searcher: searcher)
     self.statsConnector = .init(searcher: searcher)
     sortByConnector = .init(searcher: searcher,

@@ -15,7 +15,7 @@ struct ExamplesApp: App {
   var body: some Scene {
     WindowGroup {
       NavigationView {
-        ContentView(queryInputController: controller.queryInputController,
+        ContentView(searchBoxController: controller.searchBoxController,
                     hitsController: controller.hitsController)
       }
     }

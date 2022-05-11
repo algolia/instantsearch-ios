@@ -20,15 +20,15 @@ class SearchConnectorTests: XCTestCase {
     }()
     
     let searcher = HitsSearcher(client: SearchClient(appID: "", apiKey: ""), indexName: "")
-    let queryInputInteractor = QueryInputInteractor()
-    let queryInputController = TestQueryInputController()
+    let searchBoxInteractor = SearchBoxInteractor()
+    let searchBoxController = TestSearchBoxController()
     lazy var hitsInteractor = getInteractor(with: infiniteScrollingController)
     let hitsController = TestHitsController<JSON>()
     let filterState = FilterState()
     
     lazy var connector = SearchConnector(searcher: searcher,
-                                         queryInputInteractor: queryInputInteractor,
-                                         queryInputController: queryInputController,
+                                         searchBoxInteractor: searchBoxInteractor,
+                                         searchBoxController: searchBoxController,
                                          hitsInteractor: hitsInteractor,
                                          hitsController: hitsController,
                                          filterState: filterState)
@@ -78,17 +78,17 @@ class SearchConnectorTests: XCTestCase {
     tester.check(isConnected: true)
   }
   
-  func testQueryInputSearcherConnect() {
+  func testSearchBoxSearcherConnect() {
     // to complete when SingleIndexSearcher become abstract enough
   }
   
-  func testQueryInputControllerConnect() {
+  func testSearchBoxControllerConnect() {
     var module = ConnectorContainer()
     module.connector.connect()
-    let tester = QueryInputControllerConnectionTester(interactor: module.queryInputInteractor,
-                                                      controller: module.queryInputController,
-                                                      presetQuery: nil,
-                                                      source: self)
+    let tester = SearchBoxControllerConnectionTester(interactor: module.searchBoxInteractor,
+                                                     controller: module.searchBoxController,
+                                                     presetQuery: nil,
+                                                     source: self)
     tester.check(isConnected: true)
   }
   
@@ -110,10 +110,10 @@ class SearchConnectorTests: XCTestCase {
                                                            infiniteScrollingController: module.infiniteScrollingController,
                                                            source: self).check(isConnected: false)
     
-    QueryInputControllerConnectionTester(interactor: module.queryInputInteractor,
-                                         controller: module.queryInputController,
-                                         presetQuery: nil,
-                                         source: self).check(isConnected: false)
+    SearchBoxControllerConnectionTester(interactor: module.searchBoxInteractor,
+                                        controller: module.searchBoxController,
+                                        presetQuery: nil,
+                                        source: self).check(isConnected: false)
   }
   
 }

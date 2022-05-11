@@ -12,7 +12,7 @@ import InstantSearch
 class RelevantSortDemoController {
   
   let searcher: HitsSearcher
-  let queryInputConnector: QueryInputConnector
+  let searchBoxConnector: SearchBoxConnector
   let hitsConnector: HitsConnector<Hit<Product>>
   let sortByConnector: SortByConnector
   let relevantSortConnector: RelevantSortConnector
@@ -27,7 +27,7 @@ class RelevantSortDemoController {
     self.searcher = .init(appID: "C7RIRJRYR9",
                           apiKey: "6861aeb4f69b81db206d49ddb9f1dc1e",
                           indexName: indices.first!)
-    self.queryInputConnector = .init(searcher: searcher)
+    self.searchBoxConnector = .init(searcher: searcher)
     self.sortByConnector = .init(searcher: searcher,
                                  indicesNames: indices,
                                  selected: 0)

@@ -13,7 +13,7 @@ struct TVSearchApp: App {
   let controller = Controller()
   var body: some Scene {
     WindowGroup {
-      ContentView(queryInputController: controller.queryInputController,
+      ContentView(searchBoxController: controller.searchBoxController,
                   hitsController: controller.hitsController)
     }
   }

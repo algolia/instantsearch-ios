@@ -15,7 +15,7 @@ class RelatedItemsDemoViewController: UIViewController {
   let searcher: HitsSearcher
   let hitsInteractor: HitsInteractor<Hit<StoreItem>>
   
-  let queryInputConnector: QueryInputConnector
+  let searchBoxConnector: SearchBoxConnector
   let searchController: UISearchController
   let textFieldController: TextFieldController
   let resultsViewController: ResultsViewController
@@ -28,8 +28,8 @@ class RelatedItemsDemoViewController: UIViewController {
     self.resultsViewController = .init(searcher: searcher)
     self.searchController = .init(searchResultsController: resultsViewController)
     self.textFieldController = TextFieldController(searchBar: searchController.searchBar)
-    self.queryInputConnector = .init(searcher: searcher,
-                                     controller: textFieldController)
+    self.searchBoxConnector = .init(searcher: searcher,
+                                    controller: textFieldController)
     hitsInteractor = .init()
     super.init(nibName: nibNameOrNil, bundle: nibBundleOrNil)
     setup()
@@ -62,7 +62,7 @@ class RelatedItemsDemoViewController: UIViewController {
     searchController.showsSearchResultsController = true
     searchController.automaticallyShowsCancelButton = false
   }
-    
+  
   private func setup() {
     hitsInteractor.connectSearcher(searcher)
     hitsInteractor.connectController(resultsViewController.hitsViewController)

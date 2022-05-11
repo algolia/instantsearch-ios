@@ -15,7 +15,7 @@ class VoiceSearchViewController: UIViewController {
   let searchController: UISearchController
   let searcher: HitsSearcher
   
-  let queryInputConnector: QueryInputConnector
+  let searchBoxConnector: SearchBoxConnector
   let textFieldController: TextFieldController
   
   let hitsConnector: HitsConnector<Hit<StoreItem>>
@@ -31,8 +31,8 @@ class VoiceSearchViewController: UIViewController {
                           controller: searchResultsController)
     searchController = .init(searchResultsController: searchResultsController)
     textFieldController = .init(searchBar: searchController.searchBar)
-    queryInputConnector = .init(searcher: searcher,
-                                controller: textFieldController)
+    searchBoxConnector = .init(searcher: searcher,
+                               controller: textFieldController)
     voiceOverlayController = .init()
     super.init(nibName: nibNameOrNil, bundle: nibBundleOrNil)
   }
@@ -82,7 +82,7 @@ extension VoiceSearchViewController: UISearchBarDelegate {
   
   func searchBarBookmarkButtonClicked(_ searchBar: UISearchBar) {
     voiceOverlayController.start(on: self.navigationController!) { [weak self] (text, isFinal, _) in
-      self?.queryInputConnector.interactor.query = text
+      self?.searchBoxConnector.interactor.query = text
     } errorHandler: { error in
       guard let error = error else { return }
       DispatchQueue.main.async { [weak self] in

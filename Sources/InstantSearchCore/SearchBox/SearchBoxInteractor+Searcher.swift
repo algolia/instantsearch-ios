@@ -1,5 +1,5 @@
 //
-//  QueryInputInteractor+Searcher.swift
+//  SearchBoxInteractor+Searcher.swift
 //  
 //
 //  Created by Vladislav Fitc on 13/08/2021.
@@ -7,12 +7,12 @@
 
 import Foundation
 
-public extension QueryInputInteractor {
+public extension SearchBoxInteractor {
 
   struct SearcherConnection<Searcher: AnyObject & Searchable & QuerySettable>: Connection {
 
     /// Business logic component that handles textual query input
-    public let interactor: QueryInputInteractor
+    public let interactor: SearchBoxInteractor
 
     /// Searcher that handles your searches
     public let searcher: Searcher
@@ -26,7 +26,7 @@ public extension QueryInputInteractor {
        - searcher: Searcher that handles your searches
        - searchTriggeringMode: Defines the event triggering a new search
      */
-    public init(interactor: QueryInputInteractor,
+    public init(interactor: SearchBoxInteractor,
                 searcher: Searcher,
                 searchTriggeringMode: SearchTriggeringMode = .searchAsYouType) {
       self.interactor = interactor
@@ -69,7 +69,7 @@ public extension QueryInputInteractor {
 
 }
 
-public extension QueryInputInteractor {
+public extension SearchBoxInteractor {
 
   /**
    Connects a searcher

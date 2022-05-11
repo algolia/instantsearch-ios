@@ -46,7 +46,7 @@ class RelevantSortDemoViewController: UIViewController {
   
   private func setup() {
     searchController.searchBar.delegate = self
-    demoController.queryInputConnector.connectController(textFieldController)
+    demoController.searchBoxConnector.connectController(textFieldController)
     demoController.relevantSortConnector.connectController(resultsViewController.relevantSortController)
     demoController.hitsConnector.connectController(resultsViewController.hitsController)
     demoController.statsConnector.connectController(resultsViewController.statsController)

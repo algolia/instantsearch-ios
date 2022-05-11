@@ -10,7 +10,6 @@ import UIKit
 import InstantSearch
 
 class SortByDemoViewController: UIViewController {
-    
   
   let demoController: SortByDemoController
 
@@ -47,7 +46,7 @@ class SortByDemoViewController: UIViewController {
     searchController.searchBar.delegate = self
     demoController.statsConnector.connectController(resultsViewController.statsController)
     demoController.hitsConnector.connectController(resultsViewController.hitsViewController)
-    demoController.queryInputConnector.connectController(textFieldController)
+    demoController.searchBoxConnector.connectController(textFieldController)
     demoController.sortByConnector.connectController(self, presenter: demoController.title(for:))
   }
   

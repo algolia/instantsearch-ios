@@ -16,17 +16,17 @@ struct QueryRuleCustomDataSwiftUI: SwiftUIDemo, PreviewProvider {
   class Controller {
     
     let demoController: QueryRuleCustomDataDemoController
-    let queryInputController: QueryInputObservableController
+    let searchBoxController: SearchBoxObservableController
     let bannerController: BannerObservableController
     let hitsController: HitsObservableController<Hit<Product>>
     
     init() {
       self.demoController = .init()
-      self.queryInputController = .init()
+      self.searchBoxController = .init()
       self.bannerController = .init()
       self.hitsController = .init()
       demoController.hitsConnector.connectController(hitsController)
-      demoController.queryInputConnector.connectController(queryInputController)
+      demoController.searchBoxConnector.connectController(searchBoxController)
       demoController.queryRuleCustomDataConnector.connectController(bannerController)
       demoController.searcher.search()
     }
@@ -39,7 +39,7 @@ struct QueryRuleCustomDataSwiftUI: SwiftUIDemo, PreviewProvider {
       let url: String
     }
     
-    @ObservedObject var queryInputController: QueryInputObservableController
+    @ObservedObject var searchBoxController: SearchBoxObservableController
     @ObservedObject var hitsController: HitsObservableController<Hit<Product>>
     @ObservedObject var bannerController: BannerObservableController
     
@@ -96,7 +96,7 @@ struct QueryRuleCustomDataSwiftUI: SwiftUIDemo, PreviewProvider {
           .frame(height: 0)
           .background(Material.bar)
       }
-      .searchable(text: $queryInputController.query)
+      .searchable(text: $searchBoxController.query)
       .onSubmit(of: .search) {
         handleSubmit()
       }
@@ -126,7 +126,7 @@ struct QueryRuleCustomDataSwiftUI: SwiftUIDemo, PreviewProvider {
   }
   
   static func contentView(with controller: Controller) -> ContentView {
-    ContentView(queryInputController: controller.queryInputController,
+    ContentView(searchBoxController: controller.searchBoxController,
                 hitsController: controller.hitsController,
                 bannerController: controller.bannerController)
   }

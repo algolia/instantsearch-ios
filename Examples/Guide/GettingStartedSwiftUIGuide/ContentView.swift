@@ -13,7 +13,7 @@ import SwiftUI
 
 struct ContentView: View {
   
-  @ObservedObject var queryInputController: QueryInputObservableController
+  @ObservedObject var searchBoxController: SearchBoxObservableController
   @ObservedObject var hitsController: HitsObservableController<Item>
   @ObservedObject var statsController: StatsTextObservableController
   @ObservedObject var facetListController: FacetListObservableController
@@ -23,9 +23,9 @@ struct ContentView: View {
   
   var body: some View {
     VStack(spacing: 7) {
-      SearchBar(text: $queryInputController.query,
+      SearchBar(text: $searchBoxController.query,
                 isEditing: $isEditing,
-                onSubmit: queryInputController.submit)
+                onSubmit: searchBoxController.submit)
       Text(statsController.stats)
         .fontWeight(.medium)
       HitsList(hitsController) { (hit, _) in

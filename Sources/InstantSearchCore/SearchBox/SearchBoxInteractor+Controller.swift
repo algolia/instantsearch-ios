@@ -1,5 +1,5 @@
 //
-//  QueryInputInteractor+Controller.swift
+//  SearchBox+Controller.swift
 //  InstantSearchCore
 //
 //  Created by Vladislav Fitc on 28/05/2019.
@@ -8,12 +8,12 @@
 
 import Foundation
 
-public extension QueryInputInteractor {
+public extension SearchBoxInteractor {
 
-  struct ControllerConnection<Controller: QueryInputController>: Connection {
+  struct ControllerConnection<Controller: SearchBoxController>: Connection {
 
     /// Business logic component that handles textual query input
-    public let interactor: QueryInputInteractor
+    public let interactor: SearchBoxInteractor
 
     /// Controller interfacing with a concrete query input view
     public let controller: Controller
@@ -23,7 +23,7 @@ public extension QueryInputInteractor {
        - interactor: Business logic component that handles textual query input
        - controller: Controller interfacing with a concrete query input view
      */
-    public init(interactor: QueryInputInteractor,
+    public init(interactor: SearchBoxInteractor,
                 controller: Controller) {
       self.interactor = interactor
       self.controller = controller
@@ -56,7 +56,7 @@ public extension QueryInputInteractor {
 
 }
 
-public extension QueryInputInteractor {
+public extension SearchBoxInteractor {
 
   /**
    Establishes a connection with a controller
@@ -64,7 +64,7 @@ public extension QueryInputInteractor {
      - controller: Controller interfacing with a concrete query input view
    - Returns: Established connection
   */
-  @discardableResult func connectController<Controller: QueryInputController>(_ controller: Controller) -> ControllerConnection<Controller> {
+  @discardableResult func connectController<Controller: SearchBoxController>(_ controller: Controller) -> ControllerConnection<Controller> {
     let connection = ControllerConnection(interactor: self,
                                           controller: controller)
     connection.connect()

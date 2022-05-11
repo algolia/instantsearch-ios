@@ -65,6 +65,7 @@ class SortBySnippets {
       }
     }
 
+    _ = searcher
   }
     
 }

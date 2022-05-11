@@ -32,7 +32,7 @@ class SearchDemoViewController: UIViewController {
   override func viewDidLoad() {
     super.viewDidLoad()
     setupUI()
-    demoController.queryInputConnector.connectController(textFieldController)
+    demoController.searchBoxConnector.connectController(textFieldController)
     demoController.hitsInteractor.connectController(resultsViewController.hitsViewController)
     demoController.searcher.search()
   }

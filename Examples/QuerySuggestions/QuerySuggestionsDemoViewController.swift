@@ -14,7 +14,7 @@ public class QuerySuggestionsDemoViewController: UIViewController {
   let searchController: UISearchController
   let searcher: MultiSearcher
   
-  let queryInputConnector: QueryInputConnector
+  let searchBoxConnector: SearchBoxConnector
   let textFieldController: TextFieldController
     
   let suggestionsHitsConnector: HitsConnector<QuerySuggestion>
@@ -43,8 +43,8 @@ public class QuerySuggestionsDemoViewController: UIViewController {
     searchController = .init(searchResultsController: suggestionsViewController)
         
     textFieldController = .init(searchBar: searchController.searchBar)
-    queryInputConnector = .init(searcher: searcher,
-                                controller: textFieldController)
+    searchBoxConnector = .init(searcher: searcher,
+                               controller: textFieldController)
         
     super.init(nibName: nibNameOrNil, bundle: nibBundleOrNil)
     
@@ -69,8 +69,8 @@ public class QuerySuggestionsDemoViewController: UIViewController {
     addChild(resultsViewController)
     resultsViewController.didMove(toParent: self)
             
-    queryInputConnector.connectController(suggestionsViewController)
-    queryInputConnector.interactor.onQuerySubmitted.subscribe(with: searchController) { (searchController, _) in
+    searchBoxConnector.connectController(suggestionsViewController)
+    searchBoxConnector.interactor.onQuerySubmitted.subscribe(with: searchController) { (searchController, _) in
       searchController.dismiss(animated: true, completion: .none)
     }
     

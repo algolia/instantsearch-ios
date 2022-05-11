@@ -22,7 +22,7 @@ class DynamicFacetListDemoViewController: UIViewController {
     facetsTableViewController = .init()
     searchController = .init(searchResultsController: facetsTableViewController)
     textFieldController = TextFieldController(textField: searchController.searchBar.searchTextField)
-    demoController = .init(queryInputController: textFieldController,
+    demoController = .init(searchBoxController: textFieldController,
                            dynamicFacetListController: facetsTableViewController)
     super.init(nibName: nibNameOrNil, bundle: nibBundleOrNil)
   }

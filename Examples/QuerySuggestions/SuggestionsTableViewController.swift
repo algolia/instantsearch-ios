@@ -9,7 +9,7 @@ import Foundation
 import UIKit
 import InstantSearch
 
-class SuggestionsTableViewController: UITableViewController, HitsController, QueryInputController {
+class SuggestionsTableViewController: UITableViewController, HitsController, SearchBoxController {
   
   var onQueryChanged: ((String?) -> Void)?
   var onQuerySubmitted: ((String?) -> Void)?

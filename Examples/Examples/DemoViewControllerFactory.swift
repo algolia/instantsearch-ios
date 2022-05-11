@@ -45,7 +45,7 @@ class DemoViewControllerFactory: ViewControllerFactory {
       
     case .guideDeclarativeUI:
       let controller = AlgoliaController()
-      let rootView = ContentView(queryInputController: controller.queryInputController,
+      let rootView = ContentView(searchBoxController: controller.searchBoxController,
                                  hitsController: controller.hitsController,
                                  statsController: controller.statsController,
                                  facetListController: controller.facetListController)

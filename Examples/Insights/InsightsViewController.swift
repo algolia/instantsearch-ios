@@ -14,7 +14,7 @@ class InsightsViewController: UIViewController {
   let searchController: UISearchController
   let searcher: HitsSearcher
   
-  let queryInputConnector: QueryInputConnector
+  let searchBoxConnector: SearchBoxConnector
   let textFieldController: TextFieldController
   
   let hitsConnector: HitsConnector<Hit<StoreItem>>
@@ -30,8 +30,8 @@ class InsightsViewController: UIViewController {
                           controller: searchResultsController)
     searchController = .init(searchResultsController: searchResultsController)
     textFieldController = .init(searchBar: searchController.searchBar)
-    queryInputConnector = .init(searcher: searcher,
-                                controller: textFieldController)
+    searchBoxConnector = .init(searcher: searcher,
+                               controller: textFieldController)
     let insights = Insights.register(appId: SearchClient.ecommerce.applicationID, apiKey: SearchClient.ecommerce.apiKey)
     hitsTracker = .init(eventName: "demo",
                         searcher: searcher,

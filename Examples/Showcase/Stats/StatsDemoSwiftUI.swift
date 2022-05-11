@@ -16,14 +16,14 @@ struct StatsDemoSwiftUI: SwiftUIDemo, PreviewProvider {
   class Controller {
     
     let demoController: StatsDemoController
-    let queryInputController: QueryInputObservableController
+    let searchBoxController: SearchBoxObservableController
     let statsController: StatsTextObservableController
     
     init() {
-      queryInputController = .init()
+      searchBoxController = .init()
       demoController = .init()
       statsController = .init()
-      demoController.queryInputConnector.connectController(queryInputController)
+      demoController.searchBoxConnector.connectController(searchBoxController)
       demoController.statsConnector.interactor.connectController(statsController) { stats -> String? in
         guard let stats = stats else {
           return nil
@@ -36,7 +36,7 @@ struct StatsDemoSwiftUI: SwiftUIDemo, PreviewProvider {
   
   struct ContentView: View {
     
-    @ObservedObject var queryInputController: QueryInputObservableController
+    @ObservedObject var searchBoxController: SearchBoxObservableController
     @ObservedObject var statsController: StatsTextObservableController
     
     var body: some View {
@@ -48,13 +48,13 @@ struct StatsDemoSwiftUI: SwiftUIDemo, PreviewProvider {
           .font(Font(UIFont(name: "Chalkduster", size: 15)! as CTFont))
         Spacer()
       }
-      .searchable(text: $queryInputController.query)
+      .searchable(text: $searchBoxController.query)
     }
     
   }
   
   static func contentView(with controller: Controller) -> ContentView {
-    ContentView(queryInputController: controller.queryInputController,
+    ContentView(searchBoxController: controller.searchBoxController,
                 statsController: controller.statsController)
   }
   

@@ -1,5 +1,5 @@
 //
-//  TestQueryInputController.swift
+//  TestSearchBoxController.swift
 //  InstantSearchCore
 //
 //  Created by Vladislav Fitc on 04/12/2019.
@@ -9,7 +9,7 @@
 import Foundation
 import InstantSearchCore
 
-class TestQueryInputController: QueryInputController {
+class TestSearchBoxController: SearchBoxController {
 
   var query: String? {
     didSet {
