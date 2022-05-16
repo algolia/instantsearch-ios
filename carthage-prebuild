@@ -2,6 +2,7 @@ packages=(
   algoliasearch-client-swift
   swift-log
   instantsearch-telemetry-native
+  instantsearch-ios
 )
 
 cd Carthage/Checkouts/
