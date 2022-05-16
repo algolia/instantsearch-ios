@@ -1,7 +1,6 @@
 packages=(
   algoliasearch-client-swift
   swift-log
-  swift-protobuf
   instantsearch-telemetry-native
 )
 
