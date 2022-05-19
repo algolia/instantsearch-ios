@@ -2,7 +2,7 @@
 
 InstantSearch implementation example for tvOS
 
-<img src="/Resources/instant-search-tv.png" width="300"/>
+<img src="/Resources/instant-search-tv.png" width="600"/>
 
 ## How to run this example
 
