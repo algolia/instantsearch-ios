@@ -51,7 +51,7 @@ class MainViewController: UIViewController {
   
   private func layout() {
     title = "Filter List"
-    view.backgroundColor = .white
+    view.backgroundColor = .systemBackground
     
     segmentedControl.translatesAutoresizingMaskIntoConstraints = false
     let segmentedControlContainer = UIView()

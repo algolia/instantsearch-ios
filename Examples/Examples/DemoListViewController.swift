@@ -56,7 +56,7 @@ final class DemoListViewController<Demo: DemoProtocol & Codable>: UITableViewCon
   
   override func viewDidLoad() {
     super.viewDidLoad()
-    view.backgroundColor = .white
+    view.backgroundColor = .systemBackground
     searcher.search()
   }
   

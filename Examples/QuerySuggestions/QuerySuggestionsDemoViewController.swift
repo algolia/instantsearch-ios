@@ -79,7 +79,7 @@ public class QuerySuggestionsDemoViewController: UIViewController {
   
   private func configureUI() {
     title = "Query Suggestions"
-    view.backgroundColor = .white
+    view.backgroundColor = .systemBackground
     let resultsView = resultsViewController.view!
     resultsView.translatesAutoresizingMaskIntoConstraints = false
     view.addSubview(resultsView)

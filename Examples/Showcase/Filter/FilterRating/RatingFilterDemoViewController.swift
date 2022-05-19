@@ -49,7 +49,7 @@ class RatingFilterDemoViewController: UIViewController {
   }
   
   func setupLayout() {
-    view.backgroundColor = .white
+    view.backgroundColor = .systemBackground
     
     let mainStackView = UIStackView()
     mainStackView.isLayoutMarginsRelativeArrangement = true

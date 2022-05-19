@@ -72,7 +72,7 @@ enum MultiIndex {
     
     func configureUI() {
       title = "Multi-Index Search"
-      view.backgroundColor = .white
+      view.backgroundColor = .systemBackground
       definesPresentationContext = true
       searchController.hidesNavigationBarDuringPresentation = false
       searchController.showsSearchResultsController = true

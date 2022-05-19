@@ -58,7 +58,7 @@ enum QuerySuggestionsAndRecentSearches {
     
     func configureUI() {
       title = "Recent Searches & Suggestions"
-      view.backgroundColor = .white
+      view.backgroundColor = .systemBackground
       searchController.hidesNavigationBarDuringPresentation = false
       searchController.showsSearchResultsController = true
       searchController.automaticallyShowsCancelButton = false

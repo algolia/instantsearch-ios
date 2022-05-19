@@ -25,7 +25,7 @@ class SuggestionCollectionViewCell: UICollectionViewCell {
   }
   
   private func layout() {
-    contentView.backgroundColor = .white
+    contentView.backgroundColor = .systemBackground
     contentView.layer.cornerRadius = 12
     label.translatesAutoresizingMaskIntoConstraints = false
     label.textAlignment = .center

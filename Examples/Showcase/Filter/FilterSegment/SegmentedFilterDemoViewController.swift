@@ -44,7 +44,7 @@ private extension SegmentedFilterDemoViewController {
   }
   
   func setupUI() {
-    view.backgroundColor = .white
+    view.backgroundColor = .systemBackground
     
     let mainStackView = UIStackView()
     mainStackView.axis = .vertical

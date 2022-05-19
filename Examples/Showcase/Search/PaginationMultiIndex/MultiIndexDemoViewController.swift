@@ -86,7 +86,7 @@ class MultiIndexDemoViewController: UIViewController {
 private extension MultiIndexDemoViewController {
   
   func setupUI() {
-    view.backgroundColor = .white
+    view.backgroundColor = .systemBackground
     definesPresentationContext = true
     navigationItem.searchController = searchController
     navigationItem.hidesSearchBarWhenScrolling = false

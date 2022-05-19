@@ -45,7 +45,7 @@ private extension FilterNumericRangeDemoViewController {
   }
 
   func setupUI() {
-    view.backgroundColor = .white
+    view.backgroundColor = .systemBackground
     let mainStackView = UIStackView()
     mainStackView.axis = .vertical
     mainStackView.spacing = 10

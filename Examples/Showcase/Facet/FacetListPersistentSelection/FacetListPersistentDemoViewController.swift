@@ -48,7 +48,7 @@ private extension FacetListPersistentDemoViewController {
   }
   
   func setupLayout() {
-    view.backgroundColor = .white
+    view.backgroundColor = .systemBackground
     
     let mainStackView = UIStackView(frame: .zero)
     mainStackView.axis = .vertical

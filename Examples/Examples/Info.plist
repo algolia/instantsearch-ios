@@ -2,10 +2,12 @@
 <!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
 <plist version="1.0">
 <dict>
-  <key>NSSpeechRecognitionUsageDescription</key>
-  <string>Voice search</string>
-  <key>NSMicrophoneUsageDescription</key>
-  <string>Voice search</string>
+	<key>UIUserInterfaceStyle</key>
+	<string>Light</string>
+	<key>NSSpeechRecognitionUsageDescription</key>
+	<string>Voice search</string>
+	<key>NSMicrophoneUsageDescription</key>
+	<string>Voice search</string>
 	<key>UIApplicationSceneManifest</key>
 	<dict>
 		<key>UIApplicationSupportsMultipleScenes</key>

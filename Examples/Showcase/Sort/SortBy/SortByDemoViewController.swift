@@ -52,7 +52,7 @@ class SortByDemoViewController: UIViewController {
   
   private func setupUI() {
     title = "Sort By"
-    view.backgroundColor = .white
+    view.backgroundColor = .systemBackground
     definesPresentationContext = true
     navigationItem.searchController = searchController
     searchController.hidesNavigationBarDuringPresentation = false

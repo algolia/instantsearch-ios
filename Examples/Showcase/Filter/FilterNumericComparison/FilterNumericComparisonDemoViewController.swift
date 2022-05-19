@@ -49,7 +49,7 @@ private extension FilterNumericComparisonDemoViewController {
   
   func setupUI() {
     
-    view.backgroundColor = .white
+    view.backgroundColor = .systemBackground
     
     addChild(filterDebugViewController)
     filterDebugViewController.didMove(toParent: self)

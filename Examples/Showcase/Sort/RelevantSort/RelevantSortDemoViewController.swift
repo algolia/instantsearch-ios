@@ -53,7 +53,7 @@ class RelevantSortDemoViewController: UIViewController {
   }
   
   private func setupUI() {
-    view.backgroundColor = .white
+    view.backgroundColor = .systemBackground
     definesPresentationContext = true
     navigationItem.searchController = searchController
     searchController.hidesNavigationBarDuringPresentation = false

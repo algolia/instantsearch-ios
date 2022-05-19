@@ -32,7 +32,7 @@ class BannerViewController: UIViewController, ItemController {
     imageView = .init()
     label = .init()
     super.init(nibName: nil, bundle: nil)
-    label.textColor = .white
+    label.textColor = .systemBackground
     imageView.contentMode = .scaleAspectFit
     let tapGestureRecognizer = UITapGestureRecognizer(target: self, action: #selector(didTapBanner(_:)))
     view.isUserInteractionEnabled = true
@@ -62,7 +62,7 @@ class BannerViewController: UIViewController, ItemController {
     banner = item
     if banner == nil {
       view.isHidden = true
-      view.backgroundColor = .white
+      view.backgroundColor = .systemBackground
       imageView.sd_setImage(with: nil)
       label.text = nil
     } else {

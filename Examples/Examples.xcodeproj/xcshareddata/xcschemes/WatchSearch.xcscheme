@@ -54,8 +54,10 @@
       debugDocumentVersioning = "YES"
       debugServiceExtension = "internal"
       allowLocationSimulation = "YES">
-      <BuildableProductRunnable
-         runnableDebuggingMode = "0">
+      <RemoteRunnable
+         runnableDebuggingMode = "2"
+         BundleIdentifier = "com.apple.Carousel"
+         RemotePath = "/WatchSearch">
          <BuildableReference
             BuildableIdentifier = "primary"
             BlueprintIdentifier = "40F61EC82827F5A40040ECD2"
@@ -63,7 +65,7 @@
             BlueprintName = "WatchSearch"
             ReferencedContainer = "container:Examples.xcodeproj">
          </BuildableReference>
-      </BuildableProductRunnable>
+      </RemoteRunnable>
    </LaunchAction>
    <ProfileAction
       buildConfiguration = "Release"
@@ -71,8 +73,10 @@
       savedToolIdentifier = ""
       useCustomWorkingDirectory = "NO"
       debugDocumentVersioning = "YES">
-      <BuildableProductRunnable
-         runnableDebuggingMode = "0">
+      <RemoteRunnable
+         runnableDebuggingMode = "2"
+         BundleIdentifier = "com.apple.Carousel"
+         RemotePath = "/WatchSearch">
          <BuildableReference
             BuildableIdentifier = "primary"
             BlueprintIdentifier = "40F61EC82827F5A40040ECD2"
@@ -80,7 +84,16 @@
             BlueprintName = "WatchSearch"
             ReferencedContainer = "container:Examples.xcodeproj">
          </BuildableReference>
-      </BuildableProductRunnable>
+      </RemoteRunnable>
+      <MacroExpansion>
+         <BuildableReference
+            BuildableIdentifier = "primary"
+            BlueprintIdentifier = "40F61EC82827F5A40040ECD2"
+            BuildableName = "WatchSearch.app"
+            BlueprintName = "WatchSearch"
+            ReferencedContainer = "container:Examples.xcodeproj">
+         </BuildableReference>
+      </MacroExpansion>
    </ProfileAction>
    <AnalyzeAction
       buildConfiguration = "Debug">

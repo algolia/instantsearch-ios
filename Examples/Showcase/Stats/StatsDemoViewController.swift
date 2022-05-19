@@ -57,7 +57,7 @@ class StatsDemoViewController: UIViewController {
   }
   
   private func setupUI() {
-    view.backgroundColor = .white
+    view.backgroundColor = .systemBackground
     definesPresentationContext = true
     navigationItem.searchController = searchController
     navigationItem.hidesSearchBarWhenScrolling = false
@@ -90,7 +90,7 @@ class StatsDemoViewController: UIViewController {
     
     private func configureUI() {
       title = "Stats"
-      view.backgroundColor = .white
+      view.backgroundColor = .systemBackground
       stackView.spacing = 16
       stackView.alignment = .center
       stackView.axis = .vertical

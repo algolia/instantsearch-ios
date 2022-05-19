@@ -64,7 +64,7 @@ enum QuerySuggestionsAndHits {
     
     func configureUI() {
       title = "Suggestions & Hits"
-      view.backgroundColor = .white
+      view.backgroundColor = .systemBackground
       definesPresentationContext = true
       searchController.hidesNavigationBarDuringPresentation = false
       searchController.showsSearchResultsController = true

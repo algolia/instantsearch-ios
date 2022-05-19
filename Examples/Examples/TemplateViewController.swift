@@ -15,7 +15,7 @@ class TemplateViewController: UIViewController {
 
   override func viewDidLoad() {
     super.viewDidLoad()
-    view.backgroundColor = .white
+    view.backgroundColor = .systemBackground
     label.translatesAutoresizingMaskIntoConstraints = false
     view.addSubview(label)
     label.pin(to: view.safeAreaLayoutGuide)

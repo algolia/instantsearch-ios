@@ -53,7 +53,7 @@ class VoiceSearchViewController: UIViewController {
   
   private func setup() {
     title = "Voice Search"
-    view.backgroundColor = .white
+    view.backgroundColor = .systemBackground
     navigationItem.searchController = searchController
     searchController.hidesNavigationBarDuringPresentation = false
     searchController.showsSearchResultsController = true

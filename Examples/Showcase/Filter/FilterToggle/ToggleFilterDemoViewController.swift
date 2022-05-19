@@ -58,7 +58,7 @@ private extension ToggleFilterDemoViewController {
   }
   
   func setupUI() {
-    view.backgroundColor = .white
+    view.backgroundColor = .systemBackground
     configureSizeButton()
     configureVintageButton()
     configureCouponLabel()

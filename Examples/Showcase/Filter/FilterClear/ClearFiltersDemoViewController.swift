@@ -46,7 +46,7 @@ class ClearFiltersDemoViewController: UIViewController {
   }
 
   func setupUI() {
-    view.backgroundColor = .white
+    view.backgroundColor = .systemBackground
     configureButton(clearGroupController.button, text: "Clear Colors")
     configureButton(clearExceptGroupController.button, text: "Clear Except Colors")
     configureLayout()

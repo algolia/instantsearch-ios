@@ -50,7 +50,7 @@ private extension FacetSearchDemoViewController {
   }
   
   func setupUI() {
-    view.backgroundColor = .white
+    view.backgroundColor = .systemBackground
     let tableView = facetListController.tableView
     tableView.register(UITableViewCell.self, forCellReuseIdentifier: "CellId")
     tableView.translatesAutoresizingMaskIntoConstraints = false

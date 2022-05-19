@@ -56,7 +56,7 @@ class InsightsViewController: UIViewController {
 
   private func setup() {
     title = "Insights"
-    view.backgroundColor = .white
+    view.backgroundColor = .systemBackground
     navigationItem.searchController = searchController
     searchController.hidesNavigationBarDuringPresentation = false
     searchController.showsSearchResultsController = true

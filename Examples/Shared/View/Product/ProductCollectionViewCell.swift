@@ -36,7 +36,7 @@ class ProductCollectionViewCell: UICollectionViewCell {
   }
   
   private func layout() {
-    contentView.backgroundColor = .white
+    contentView.backgroundColor = .systemBackground
     contentView.layer.cornerRadius = 12
     
     itemImageView.sd_imageIndicator = SDWebImageActivityIndicator.gray
