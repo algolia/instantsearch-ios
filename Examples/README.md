@@ -4,21 +4,23 @@
 
 Source code for documentation examples
 
-- [Getting Started guide with UIKit](/examples/Guide/GettingStartedUIKitGuide)
-- [Getting Started guide with SwiftUI](/examples/Guide/GettingStartedSwiftUIGuide)
+- [Getting Started guide with UIKit](/Examples/Guide/GettingStartedUIKitGuide)
+- [Getting Started guide with SwiftUI](/Examples/Guide/GettingStartedSwiftUIGuide)
 
 ## Showcase
 
-- [Showcase of UIKit and SwiftUI widgets implementations](/examples/Showcase) 
+- [watchOS](/Examples/WatchSearch%20WatchKit%20Extension) 
+- [tvOS](/Examples/TVSearch) 
+- [iOS (UIKit & SwiftUI)](/Examples/Showcase) 
 
 ## Code Exchange examples
 
 The set of examples used on the [Code Exchange](https://www.algolia.com/developers/code-exchange/)
 
-- [Multi-index search](/examples/MultiIndex)
-- [Autocomplete with Voice search](/examples/VoiceSearch)
-- [Categories with Hits](/examples/CategoriesHits)
-- [Query Suggestions](/examples/QuerySuggestions)
-- [Query Suggestions with recent searches](/examples/QuerySuggestionsRecentSearches)
-- [Query Suggestions with Hits](/examples/QuerySuggestionsHits)
-- [Query Suggestions with Categories](/examples/QuerySuggestionsCategories)
+- [Multi-index search](/Examples/MultiIndex)
+- [Autocomplete with Voice search](/Examples/VoiceSearch)
+- [Categories with Hits](/Examples/CategoriesHits)
+- [Query Suggestions](/Examples/QuerySuggestions)
+- [Query Suggestions with recent searches](/Examples/QuerySuggestionsRecentSearches)
+- [Query Suggestions with Hits](/Examples/QuerySuggestionsHits)
+- [Query Suggestions with Categories](/Examples/QuerySuggestionsCategories)
