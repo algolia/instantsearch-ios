@@ -23,7 +23,7 @@ InstantSearch family: **InstantSearch iOS** | [InstantSearch Android][instantsea
 
 ## Examples
 
-You can see InstantSearch iOS in action in the [Examples project][/examples]. It contains search components ans experiences built with InstantSearch and written in Swift.
+You can see InstantSearch iOS in action in the [Examples project](/Examples). It contains search components ans experiences built with InstantSearch and written in Swift.
 
 <p align="center">
 <img src="./Resources/instant-results.gif" width="300"/>
