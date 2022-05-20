@@ -21,15 +21,14 @@ InstantSearch family: **InstantSearch iOS** | [InstantSearch Android][instantsea
  - *InstantSearch* – the complete InstantSearch toolset including UIKit components
  - *InstantSearch SwiftUI* – the set of SwiftUI data models and views to use on top of Core components
 
-## Demo
+## Examples
 
-You can see InstantSearch iOS in action in our [Examples repository][examples-url], in which we published search experiences built with InstantSearch and written in Swift:
+You can see InstantSearch iOS in action in the [Examples project](/Examples). It contains search components ans experiences built with InstantSearch and written in Swift.
 
 <p align="center">
 <img src="./Resources/instant-results.gif" width="300"/>
 </p>
 
-[examples-url]: https://github.com/algolia/instantsearch-swift-examples
 
 ## Installation
 

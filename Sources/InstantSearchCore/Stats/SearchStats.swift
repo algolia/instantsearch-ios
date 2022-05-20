@@ -48,7 +48,7 @@ public struct SearchStats: Codable {
   ///
   public let queryID: QueryID?
 
-  init() {
+  public init() {
     self.hitsPerPage = 0
     self.nbSortedHits = nil
     self.totalHitsCount = 0
@@ -59,14 +59,14 @@ public struct SearchStats: Codable {
     self.queryID = nil
   }
 
-  init(totalHitsCount: Int,
-       nbSortedHits: Int? = nil,
-       hitsPerPage: Int? = nil,
-       pagesCount: Int = 1,
-       page: Int = 0,
-       processingTimeMS: Int,
-       query: String? = nil,
-       queryID: QueryID? = nil) {
+  public init(totalHitsCount: Int,
+              nbSortedHits: Int? = nil,
+              hitsPerPage: Int? = nil,
+              pagesCount: Int = 1,
+              page: Int = 0,
+              processingTimeMS: Int,
+              query: String? = nil,
+              queryID: QueryID? = nil) {
     self.totalHitsCount = totalHitsCount
     self.nbSortedHits = nbSortedHits
     self.hitsPerPage = hitsPerPage ?? totalHitsCount

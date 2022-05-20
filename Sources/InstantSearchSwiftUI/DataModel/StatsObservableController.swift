@@ -25,7 +25,7 @@ public class StatsObservableController: ObservableObject, ItemController {
     }
   }
 
-  public init(stats: SearchStats) {
+  public init(stats: SearchStats = .init()) {
     self.stats = stats
   }
 

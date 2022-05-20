@@ -80,7 +80,7 @@ class FacetListInteractorTests: XCTestCase {
     interactor.connectSearcher(searcher, with: "type")
 
     do {
-      let results = try SearchResponse(jsonFilename: "SearchResultFacets.json")
+      let results: SearchResponse = try JSONDecoder().decode(fromResource: "SearchResultFacets", withExtension: "json")
 
       searcher.onResults.fire(results)
 
@@ -108,8 +108,8 @@ class FacetListInteractorTests: XCTestCase {
     interactor.connectSearcher(searcher, with: "kind", queryIndex: 1)
 
     do {
-      let results1 = try SearchResponse(jsonFilename: "SearchResultFacets.json")
-      let results2 = try SearchResponse(jsonFilename: "SearchResultFacets2.json")
+      let results1: SearchResponse = try JSONDecoder().decode(fromResource: "SearchResultFacets", withExtension: "json")
+      let results2: SearchResponse = try JSONDecoder().decode(fromResource: "SearchResultFacets2", withExtension: "json")
 
       let searchResponses = SearchesResponse(results: [results1, results2])
       

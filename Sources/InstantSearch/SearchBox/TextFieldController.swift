@@ -12,7 +12,7 @@ import InstantSearchCore
 #if canImport(UIKit) && (os(iOS) || os(tvOS) || os(macOS))
 import UIKit
 
-public class TextFieldController: NSObject, QueryInputController {
+public class TextFieldController: NSObject, SearchBoxController {
 
   public var onQueryChanged: ((String?) -> Void)?
   public var onQuerySubmitted: ((String?) -> Void)?
@@ -49,7 +49,6 @@ public class TextFieldController: NSObject, QueryInputController {
   private func setupTextField() {
     textField.returnKeyType = .search
     textField.addTarget(self, action: #selector(textFieldTextChanged), for: .editingChanged)
-    textField.addTarget(self, action: #selector(textFieldTextChanged), for: .editingDidEnd)
     textField.addTarget(self, action: #selector(textFieldSubmitted), for: .editingDidEndOnExit)
   }
 

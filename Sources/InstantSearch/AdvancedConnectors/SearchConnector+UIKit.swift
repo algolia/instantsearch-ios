@@ -18,20 +18,20 @@ public extension SearchConnector {
                            hitsInteractor: HitsInteractor<Record>,
                            hitsController: HC,
                            filterState: FilterState? = nil)  where HC.DataSource == HitsInteractor<Record> {
-    let queryInputInteractor = QueryInputInteractor()
+    let searchBoxInteractor = SearchBoxInteractor()
     if #available(iOS 13.0, *) {
       let textFieldController = TextFieldController(searchBar: searchController.searchBar)
       self.init(searcher: searcher,
-                queryInputInteractor: queryInputInteractor,
-                queryInputController: textFieldController,
+                searchBoxInteractor: searchBoxInteractor,
+                searchBoxController: textFieldController,
                 hitsInteractor: hitsInteractor,
                 hitsController: hitsController,
                 filterState: filterState)
     } else {
       let searchBarController = SearchBarController(searchBar: searchController.searchBar)
       self.init(searcher: searcher,
-                queryInputInteractor: queryInputInteractor,
-                queryInputController: searchBarController,
+                searchBoxInteractor: searchBoxInteractor,
+                searchBoxController: searchBarController,
                 hitsInteractor: hitsInteractor,
                 hitsController: hitsController,
                 filterState: filterState)

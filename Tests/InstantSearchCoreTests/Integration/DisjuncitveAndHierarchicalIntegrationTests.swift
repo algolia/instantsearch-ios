@@ -54,7 +54,7 @@ class DisjuncitveAndHierarchicalIntegrationTests: OnlineTestCase {
   override func setUpWithError() throws {
     try super.setUpWithError()
     let settings = Settings().set(\.attributesForFaceting, to: facetAttributes.map { .default($0) })
-    let items = try [Item](jsonFilename: "disjunctiveHierarchical.json")
+    let items: [Item] = try JSONDecoder().decode(fromResource: "disjunctiveHierarchical", withExtension: "json")
     try fillIndex(withItems: items, settings: settings)
   }
 

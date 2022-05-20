@@ -21,7 +21,7 @@ class MultiIndexSearchConnectorTests: XCTestCase {
     ]
     let controller = TestMultiIndexHitsController()
     let queryInputInteractor = QueryInputInteractor()
-    let queryInputController = TestQueryInputController()
+    let queryInputController = TestSearchBoxController()
     
     lazy var connector = MultiIndexSearchConnector(searcher: searcher,
                                                    indexModules: indexModules,
@@ -55,10 +55,10 @@ class MultiIndexSearchConnectorTests: XCTestCase {
   func testQueryInputControllerConnect() {
     var module = ConnectorContainer()
     module.connector.connect()
-    let tester = QueryInputControllerConnectionTester(interactor: module.queryInputInteractor,
-                                                      controller: module.queryInputController,
-                                                      presetQuery: nil,
-                                                      source: self)
+    let tester = SearchBoxControllerConnectionTester(interactor: module.queryInputInteractor,
+                                                     controller: module.queryInputController,
+                                                     presetQuery: nil,
+                                                     source: self)
     tester.check(isConnected: true)
   }
   
@@ -72,10 +72,10 @@ class MultiIndexSearchConnectorTests: XCTestCase {
     MultiIndexHitsInteractorControllerConnectionTests.ConnectionTester(controller: module.controller,
                                                                        interactor: module.connector.hitsConnector.interactor,
                                                                        source: self).check(isConnected: false)
-    QueryInputControllerConnectionTester(interactor: module.queryInputInteractor,
-                                         controller: module.queryInputController,
-                                         presetQuery: nil,
-                                         source: self).check(isConnected: false)
+    SearchBoxControllerConnectionTester(interactor: module.queryInputInteractor,
+                                        controller: module.queryInputController,
+                                        presetQuery: nil,
+                                        source: self).check(isConnected: false)
   }
   
 }

@@ -11,7 +11,7 @@ import InstantSearchCore
 #if canImport(UIKit) && (os(iOS) || os(tvOS) || os(macOS))
 import UIKit
 
-public class QuerySuggestionsViewController: UITableViewController, HitsController, QueryInputController {
+public class QuerySuggestionsViewController: UITableViewController, HitsController, SearchBoxController {
 
   public var onQuerySubmitted: ((String?) -> Void)?
   public var onQueryChanged: ((String?) -> Void)?
