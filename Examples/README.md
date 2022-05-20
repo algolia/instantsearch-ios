@@ -9,9 +9,9 @@ Source code for documentation examples
 
 ## Showcase
 
+- [iOS (UIKit & SwiftUI)](/Examples/Showcase) 
 - [watchOS](/Examples/WatchSearch) 
 - [tvOS](/Examples/TVSearch) 
-- [iOS (UIKit & SwiftUI)](/Examples/Showcase) 
 
 ## Code Exchange examples
 
