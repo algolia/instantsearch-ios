@@ -6,5 +6,5 @@ Search experience consisting of two results sections:
 
 Demonstrates simultaneous search for hits and facet values.
 
-<img src="./Resources/categories-hits.gif" width="300"/>
+<img src="/Resources/categories-hits.gif" width="300"/>
 
