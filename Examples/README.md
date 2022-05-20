@@ -9,7 +9,7 @@ Source code for documentation examples
 
 ## Showcase
 
-- [watchOS](/Examples/WatchSearch%20WatchKit%20Extension) 
+- [watchOS](/Examples/WatchSearch) 
 - [tvOS](/Examples/TVSearch) 
 - [iOS (UIKit & SwiftUI)](/Examples/Showcase) 
 
