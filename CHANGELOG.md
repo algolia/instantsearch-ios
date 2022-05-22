@@ -2,6 +2,18 @@
 
 ## [7.17.0](https://github.com/algolia/instantsearch-ios/compare/...7.17.0) (2022-05-22)
 
+### Feat
+
+- **CurrentFiltersObservableController**: add removal capability
+- **StatsObservableController**: add empty constructor
+- **SearchBar**: fix the appearance, make platform-agnostic
+- **QueryInput**: rename to **SearchBox**
+- **SelectableFilter**: rename to **FilterMap**
+
+### Chore
+
+- Migrate the demos from the separate [repository](https://github.com/algolia/instantsearch-ios-examples) (#217) ([a4fb97e](https://github.com/algolia/instantsearch-ios/commit/a4fb97e))
+- Declare json files used in unit tests as library resources and update the tests accordingly
 
 
 ## [7.16.0](https://github.com/algolia/instantsearch-ios/compare/7.15.0...7.16.0) (2021-12-15)
