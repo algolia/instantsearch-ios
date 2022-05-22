@@ -11,16 +11,16 @@ import InstantSearchSwiftUI
 import SwiftUI
 
 class FacetSearchDemoSwiftUI: SwiftUIDemo, PreviewProvider {
-  
+
   class Controller {
-    
+
     let demoController: FacetSearchDemoController
 
     let facetListController: FacetListObservableController
     let clearFilterController: FilterClearObservableController
     let searchBoxController: SearchBoxObservableController
     let filterStateController: FilterStateObservableController
-    
+
     init() {
       facetListController = FacetListObservableController()
       searchBoxController = SearchBoxObservableController()
@@ -31,14 +31,14 @@ class FacetSearchDemoSwiftUI: SwiftUIDemo, PreviewProvider {
       demoController.searchBoxConnector.connectController(searchBoxController)
       demoController.clearFilterConnector.connectController(clearFilterController)
     }
-    
+
   }
-  
+
   struct ContentView: View {
-    
+
     @ObservedObject var filterStateController: FilterStateObservableController
     @ObservedObject var clearFilterController: FilterClearObservableController
-    
+
     @ObservedObject var searchBoxController: SearchBoxObservableController
     @ObservedObject var facetListController: FacetListObservableController
 
@@ -60,16 +60,16 @@ class FacetSearchDemoSwiftUI: SwiftUIDemo, PreviewProvider {
       }
       .searchable(text: $searchBoxController.query)
     }
-    
+
   }
-  
+
   static func contentView(with controller: Controller) -> ContentView {
     ContentView(filterStateController: controller.filterStateController,
                 clearFilterController: controller.clearFilterController,
                 searchBoxController: controller.searchBoxController,
                 facetListController: controller.facetListController)
   }
-  
+
   static let controller = Controller()
   static var previews: some View {
     NavigationView {
@@ -77,5 +77,5 @@ class FacetSearchDemoSwiftUI: SwiftUIDemo, PreviewProvider {
         .navigationBarTitle("Facet Search")
     }
   }
-  
+
 }

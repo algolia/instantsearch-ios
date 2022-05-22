@@ -12,29 +12,30 @@ import InstantSearchCore
 import InstantSearchSwiftUI
 
 struct ProductRow: View {
-  
+
   let title: HighlightedString
   let subtitle: HighlightedString
   let details: HighlightedString
   let imageURL: URL?
   let price: Double?
   let configuration: Configuration
-  
+
   struct Configuration {
-    
+
     let showDescription: Bool
     let imageWidth: CGFloat
     let horizontalSpacing: CGFloat
     let verticalSpacing: CGFloat
-    
+
     static let phone = Self(showDescription: true, imageWidth: 60, horizontalSpacing: 20, verticalSpacing: 5)
     static let watch = Self(showDescription: false, imageWidth: 60, horizontalSpacing: 7, verticalSpacing: 5)
+    // swiftlint:disable identifier_name
     static let tv = Self(showDescription: true, imageWidth: 200, horizontalSpacing: 30, verticalSpacing: 10)
 
   }
-  
+
   var body: some View {
-    VStack() {
+    VStack {
       HStack(alignment: .top, spacing: configuration.horizontalSpacing) {
         AsyncImage(url: imageURL,
                    content: { image in
@@ -78,7 +79,7 @@ struct ProductRow: View {
       Spacer()
     }
   }
-  
+
   init(title: HighlightedString = .init(string: ""),
        subtitle: HighlightedString = .init(string: ""),
        details: HighlightedString = .init(string: ""),
@@ -92,11 +93,12 @@ struct ProductRow: View {
     self.price = price
     self.configuration = configuration
   }
-  
+
 }
 
-struct ProductRow_Previews : PreviewProvider {
-  
+// swiftlint:disable line_length
+struct ProductRow_Previews: PreviewProvider {
+
   static var previews: some View {
     ProductRow(
       title: HighlightedString(string: "Samsung - <em>Galaxy</em> S7 32GB - Black Onyx (AT&T)"),
@@ -112,7 +114,7 @@ struct ProductRow_Previews : PreviewProvider {
       imageURL: .none,
       price: 694.99
     )
-    
+
   }
-  
+
 }

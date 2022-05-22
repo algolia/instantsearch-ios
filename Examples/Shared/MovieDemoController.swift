@@ -9,7 +9,7 @@ import Foundation
 import InstantSearchCore
 
 class MovieDemoController {
-  
+
   let searcher: HitsSearcher
   let hitsInteractor: HitsInteractor<Hit<Movie>>
   let searchBoxConnector: SearchBoxConnector
@@ -22,5 +22,5 @@ class MovieDemoController {
                                searchTriggeringMode: searchTriggeringMode)
     hitsInteractor.connectSearcher(searcher)
   }
-  
+
 }

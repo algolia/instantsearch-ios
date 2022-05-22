@@ -26,11 +26,11 @@ class FacetSearchDemoViewController: UIViewController {
     filterDebugViewController = FilterDebugViewController(filterState: demoController.filterState)
     super.init(nibName: nibNameOrNil, bundle: nibBundleOrNil)
   }
-  
+
   required init?(coder aDecoder: NSCoder) {
     fatalError("init(coder:) has not been implemented")
   }
-  
+
   override func viewDidLoad() {
     super.viewDidLoad()
     setup()
@@ -40,7 +40,7 @@ class FacetSearchDemoViewController: UIViewController {
 }
 
 private extension FacetSearchDemoViewController {
-  
+
   func setup() {
     addChild(filterDebugViewController)
     filterDebugViewController.didMove(toParent: self)
@@ -48,7 +48,7 @@ private extension FacetSearchDemoViewController {
     demoController.searchBoxConnector.connectController(textFieldController)
     demoController.clearFilterConnector.connectController(filterDebugViewController.clearFilterController)
   }
-  
+
   func setupUI() {
     view.backgroundColor = .systemBackground
     let tableView = facetListController.tableView
@@ -75,4 +75,3 @@ private extension FacetSearchDemoViewController {
   }
 
 }
-

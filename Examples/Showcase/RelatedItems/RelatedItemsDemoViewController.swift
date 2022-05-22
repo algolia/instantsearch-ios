@@ -11,16 +11,16 @@ import InstantSearch
 import SDWebImage
 
 class RelatedItemsDemoViewController: UIViewController {
-  
+
   let searcher: HitsSearcher
   let hitsInteractor: HitsInteractor<Hit<StoreItem>>
-  
+
   let searchBoxConnector: SearchBoxConnector
   let searchController: UISearchController
   let textFieldController: TextFieldController
   let resultsViewController: ResultsViewController
   let recommendController: RecommendController
-  
+
   override init(nibName nibNameOrNil: String?, bundle nibBundleOrNil: Bundle?) {
     self.searcher = .init(client: .ecommerceRecommend,
                           indexName: .ecommerceRecommend)
@@ -34,11 +34,11 @@ class RelatedItemsDemoViewController: UIViewController {
     super.init(nibName: nibNameOrNil, bundle: nibBundleOrNil)
     setup()
   }
-  
+
   required init?(coder: NSCoder) {
     fatalError("init(coder:) has not been implemented")
   }
-  
+
   override func viewDidLoad() {
     super.viewDidLoad()
     setupUI()
@@ -47,12 +47,12 @@ class RelatedItemsDemoViewController: UIViewController {
       viewController.recommendController.presentRelatedItems(for: hit.objectID, from: viewController)
     }
   }
-  
+
   override func viewDidAppear(_ animated: Bool) {
     super.viewDidAppear(animated)
     searchController.isActive = true
   }
-  
+
   fileprivate func setupUI() {
     title = "Related Items"
     view.backgroundColor = .systemBackground
@@ -62,11 +62,11 @@ class RelatedItemsDemoViewController: UIViewController {
     searchController.showsSearchResultsController = true
     searchController.automaticallyShowsCancelButton = false
   }
-  
+
   private func setup() {
     hitsInteractor.connectSearcher(searcher)
     hitsInteractor.connectController(resultsViewController.hitsViewController)
     searcher.search()
   }
-  
+
 }

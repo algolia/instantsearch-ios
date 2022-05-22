@@ -12,7 +12,7 @@ import InstantSearchSwiftUI
 import SwiftUI
 
 struct ContentView: View {
-  
+
   @ObservedObject var searchBoxController: SearchBoxObservableController
   @ObservedObject var hitsController: HitsObservableController<Item>
   @ObservedObject var statsController: StatsTextObservableController
@@ -20,7 +20,7 @@ struct ContentView: View {
 
   @State private var isEditing = false
   @State private var isPresentingFacets = false
-  
+
   var body: some View {
     VStack(spacing: 7) {
       SearchBar(text: $searchBoxController.query,
@@ -45,7 +45,7 @@ struct ContentView: View {
     .navigationBarItems(trailing: facetsButton())
     .sheet(isPresented: $isPresentingFacets, content: facets)
   }
-  
+
   @ViewBuilder
   private func facets() -> some View {
     NavigationView {
@@ -64,7 +64,7 @@ struct ContentView: View {
       .navigationBarTitle("Brand")
     }
   }
-  
+
   private func facetsButton() -> some View {
     Button(action: {
       isPresentingFacets.toggle()
@@ -74,5 +74,5 @@ struct ContentView: View {
         .font(.title)
     })
   }
-  
+
 }

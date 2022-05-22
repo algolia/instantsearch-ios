@@ -9,18 +9,18 @@ import Foundation
 import InstantSearchCore
 
 class CurrentFiltersDemoController {
-  
+
   let filterState: FilterState
   let clearFiltersConnector: FilterClearConnector
   let currentFiltersListConnector: CurrentFiltersConnector
-  
+
   init() {
     filterState = .init()
     currentFiltersListConnector = .init(filterState: filterState)
     clearFiltersConnector = .init(filterState: filterState)
     setup()
   }
-  
+
   func setup() {
 
     let filterFacet1 = Filter.Facet(attribute: "category", value: "table")
@@ -32,7 +32,7 @@ class CurrentFiltersDemoController {
                                         filterFacet2,
                                         filterFacet3,
                                         filterFacet4)
-    
+
     let filterNumeric1 = Filter.Numeric(attribute: "price", operator: .greaterThan, value: 10)
     let filterNumeric2 = Filter.Numeric(attribute: "price", operator: .lessThan, value: 20)
 
@@ -41,5 +41,5 @@ class CurrentFiltersDemoController {
 
     filterState.notifyChange()
   }
-  
+
 }

@@ -10,10 +10,10 @@ import InstantSearchCore
 import InstantSearchSwiftUI
 
 struct ContentView: View {
-  
+
   @ObservedObject var searchBoxController: SearchBoxObservableController
   @ObservedObject var hitsController: HitsObservableController<Hit<Movie>>
-  
+
   var body: some View {
     HitsList(hitsController) { hit, _ in
       MovieRow(movieHit: hit!)
@@ -25,12 +25,11 @@ struct ContentView: View {
     }
     .searchable(text: $searchBoxController.query)
   }
-  
+
 }
 
-
 struct ContentView_Previews: PreviewProvider {
-  
+
   static let controller = Controller()
   static var previews: some View {
     ContentView(searchBoxController: controller.searchBoxController,

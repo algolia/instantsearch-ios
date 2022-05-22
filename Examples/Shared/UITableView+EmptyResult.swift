@@ -26,5 +26,5 @@ extension UITableView {
         self.backgroundView = nil
         self.separatorStyle = .singleLine
     }
-  
+
 }

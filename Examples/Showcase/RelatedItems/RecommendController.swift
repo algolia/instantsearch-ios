@@ -11,13 +11,13 @@ import UIKit
 import AlgoliaSearchClient
 
 class RecommendController {
-    
+
   let recommendClient: RecommendClient
 
   init(recommendClient: RecommendClient) {
     self.recommendClient = recommendClient
   }
-  
+
   func presentRelatedItems(for objectID: ObjectID, from sourceViewController: UIViewController, animated: Bool = true) {
     recommendClient.getRelatedProducts(options: [.init(indexName: .ecommerceRecommend, objectID: objectID)]) { result in
       DispatchQueue.main.async {
@@ -36,5 +36,5 @@ class RecommendController {
     }
 
   }
-  
+
 }

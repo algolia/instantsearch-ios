@@ -12,14 +12,14 @@ import InstantSearchSwiftUI
 import SwiftUI
 
 struct DynamicFacetDemoSwiftUI: SwiftUIDemo, PreviewProvider {
-  
+
   class Controller {
-    
+
     let searchBoxController: SearchBoxObservableController
     let filterStateController: FilterStateObservableController
     let facetsController: DynamicFacetListObservableController
     let demoController: DynamicFacetListDemoController
-    
+
     init() {
       searchBoxController = SearchBoxObservableController()
       facetsController = DynamicFacetListObservableController()
@@ -27,21 +27,21 @@ struct DynamicFacetDemoSwiftUI: SwiftUIDemo, PreviewProvider {
                                                       dynamicFacetListController: facetsController)
       filterStateController = FilterStateObservableController(filterState: demoController.filterState)
     }
-    
+
   }
-  
+
   static func contentView(with controller: Controller) -> ContentView {
     ContentView(searchBoxController: controller.searchBoxController,
                 facetsController: controller.facetsController)
   }
-  
+
   struct ContentView: View {
-    
+
     @ObservedObject var searchBoxController: SearchBoxObservableController
     let facetsController: DynamicFacetListObservableController
-    
+
     @State private var isHelpPresented: Bool = false
-    
+
     var body: some View {
       DynamicFacetList(dynamicFacetListController: facetsController)
         .alert(isPresented: $isHelpPresented) {
@@ -51,16 +51,15 @@ struct DynamicFacetDemoSwiftUI: SwiftUIDemo, PreviewProvider {
         }
         .toolbar {
           ToolbarItem(placement: .navigationBarTrailing) {
-            Button(action: { isHelpPresented = true }) {
-              Image(systemName: "info.circle.fill")
-            }
+            Button(action: { isHelpPresented = true },
+                   label: { Image(systemName: "info.circle.fill") })
           }
         }
         .searchable(text: $searchBoxController.query)
     }
-    
+
   }
-  
+
   static let controller = Controller()
   static var previews: some View {
     return NavigationView {
@@ -71,5 +70,5 @@ struct DynamicFacetDemoSwiftUI: SwiftUIDemo, PreviewProvider {
       }
     }
   }
-  
+
 }

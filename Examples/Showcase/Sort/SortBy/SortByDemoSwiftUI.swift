@@ -12,34 +12,34 @@ import InstantSearchSwiftUI
 import SwiftUI
 
 struct SortByDemoSwiftUI: SwiftUIDemo, PreviewProvider {
-  
+
   class Controller {
-    
+
     let demoController: SortByDemoController
     let searchBoxController: SearchBoxObservableController
     let selectableSegmentObservableController: SelectableSegmentObservableController
     let hitsController: HitsObservableController<Hit<StoreItem>>
-    
+
     init() {
       demoController = SortByDemoController()
       searchBoxController = SearchBoxObservableController()
       selectableSegmentObservableController = SelectableSegmentObservableController()
       hitsController = HitsObservableController<Hit<StoreItem>>()
-      
+
       demoController.searchBoxConnector.connectController(searchBoxController)
       demoController.hitsConnector.connectController(hitsController)
       demoController.sortByConnector.connectController(selectableSegmentObservableController,
                                                        presenter: demoController.title(for:))
     }
-    
+
   }
-  
+
   struct ContentView: View {
-    
+
     @ObservedObject var searchBoxController: SearchBoxObservableController
     @ObservedObject var selectableSegmentObservableController: SelectableSegmentObservableController
     @ObservedObject var hitsController: HitsObservableController<Hit<StoreItem>>
-    
+
     var body: some View {
       let selectedBinding = Binding(
         get: { self.selectableSegmentObservableController.selectedSegmentIndex ?? 0 },
@@ -55,7 +55,7 @@ struct SortByDemoSwiftUI: SwiftUIDemo, PreviewProvider {
           }
         }
         .pickerStyle(.segmented)
-        HitsList(hitsController) { hit, index in
+        HitsList(hitsController) { hit, _ in
           ProductRow(storeItemHit: hit!)
             .padding()
             .frame(height: 100)
@@ -65,22 +65,22 @@ struct SortByDemoSwiftUI: SwiftUIDemo, PreviewProvider {
       .padding(.horizontal, 16)
       .searchable(text: $searchBoxController.query)
     }
-    
+
   }
-  
+
   static func contentView(with controller: Controller) -> ContentView {
     ContentView(searchBoxController: controller.searchBoxController,
                 selectableSegmentObservableController: controller.selectableSegmentObservableController,
                 hitsController: controller.hitsController)
   }
-  
+
   static let controller = Controller()
   static var previews: some View {
     NavigationView {
       contentView(with: controller)
         .navigationBarTitle("Sort By")
     }
-    
+
   }
-  
+
 }

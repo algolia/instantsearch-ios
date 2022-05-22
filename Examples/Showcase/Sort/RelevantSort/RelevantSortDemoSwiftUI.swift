@@ -12,16 +12,16 @@ import InstantSearchSwiftUI
 import SwiftUI
 
 struct RelevantSortDemoSwiftUI: SwiftUIDemo, PreviewProvider {
-  
+
   class Controller {
-    
+
     let relevantSortController: RelevantSortObservableController
     let sortByController: SelectableSegmentObservableController
     let hitsController: HitsObservableController<Hit<Product>>
     let searchBoxController: SearchBoxObservableController
     let statsController: StatsTextObservableController
     let demoController: RelevantSortDemoController
-    
+
     init() {
       relevantSortController = RelevantSortObservableController()
       sortByController = SelectableSegmentObservableController()
@@ -36,19 +36,19 @@ struct RelevantSortDemoSwiftUI: SwiftUIDemo, PreviewProvider {
       demoController.searchBoxConnector.connectController(searchBoxController)
       demoController.statsConnector.connectController(statsController)
     }
-    
+
   }
-  
+
   struct ContentView: View {
-    
+
     @ObservedObject var searchBoxController: SearchBoxObservableController
     @ObservedObject var sortByController: SelectableSegmentObservableController
     @ObservedObject var relevantSortController: RelevantSortObservableController
     @ObservedObject var hitsController: HitsObservableController<Hit<Product>>
     @ObservedObject var statsController: StatsTextObservableController
-    
+
     @State var isEditing: Bool = false
-    
+
     var body: some View {
       VStack {
         HStack {
@@ -89,18 +89,18 @@ struct RelevantSortDemoSwiftUI: SwiftUIDemo, PreviewProvider {
       .padding()
       .searchable(text: $searchBoxController.query)
     }
-    
+
   }
-  
+
   static func contentView(with controller: Controller) -> ContentView {
     ContentView(searchBoxController: controller.searchBoxController,
                 sortByController: controller.sortByController,
                 relevantSortController: controller.relevantSortController,
                 hitsController: controller.hitsController,
                 statsController: controller.statsController)
-    
+
   }
-  
+
   static let controller = Controller()
   static var previews: some View {
     NavigationView {
@@ -108,6 +108,5 @@ struct RelevantSortDemoSwiftUI: SwiftUIDemo, PreviewProvider {
         .navigationBarTitle("Relevant Sort")
     }
   }
-  
-  
+
 }

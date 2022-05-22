@@ -11,15 +11,15 @@ import InstantSearchCore
 import InstantSearchSwiftUI
 
 struct SearchDemoSwiftUI: SwiftUIDemo, PreviewProvider {
-  
+
   class Controller {
-    
+
     let demoController: EcommerceDemoController
     let hitsController: HitsObservableController<Hit<StoreItem>>
     let searchBoxController: SearchBoxObservableController
     let statsController: StatsTextObservableController
     let loadingController: LoadingObservableController
-    
+
     init(searchTriggeringMode: SearchTriggeringMode) {
       demoController = EcommerceDemoController(searchTriggeringMode: searchTriggeringMode)
       hitsController = HitsObservableController()
@@ -32,16 +32,16 @@ struct SearchDemoSwiftUI: SwiftUIDemo, PreviewProvider {
       demoController.loadingConnector.connectController(loadingController)
       demoController.searcher.search()
     }
-    
+
   }
-  
+
   struct ContentView: View {
-    
+
     @ObservedObject var searchBoxController: SearchBoxObservableController
     @ObservedObject var hitsController: HitsObservableController<Hit<StoreItem>>
     @ObservedObject var statsController: StatsTextObservableController
     @ObservedObject var loadingController: LoadingObservableController
-    
+
     var body: some View {
       VStack {
         HStack {
@@ -52,7 +52,7 @@ struct SearchDemoSwiftUI: SwiftUIDemo, PreviewProvider {
           }
         }
         .padding(.horizontal, 20)
-        HitsList(hitsController) { (hit, index) in
+        HitsList(hitsController) { (hit, _) in
           ProductRow(storeItemHit: hit!)
             .padding()
             .frame(height: 100)
@@ -68,28 +68,28 @@ struct SearchDemoSwiftUI: SwiftUIDemo, PreviewProvider {
       }
       .padding(.horizontal, 15)
     }
-    
+
   }
-  
+
   static func contentView(with controller: Controller) -> ContentView {
     ContentView(searchBoxController: controller.searchBoxController,
                 hitsController: controller.hitsController,
                 statsController: controller.statsController,
                 loadingController: controller.loadingController)
   }
-  
+
   static func viewController(searchTriggeringMode: SearchTriggeringMode) -> UIViewController {
     let controller = Controller(searchTriggeringMode: searchTriggeringMode)
     let contentView = contentView(with: controller)
     return CommonSwiftUIDemoViewController(controller: controller,
                                            rootView: contentView)
   }
-  
+
   static let controller = Controller(searchTriggeringMode: .searchAsYouType)
   static var previews: some View {
     NavigationView {
       contentView(with: controller)
     }
   }
-  
+
 }

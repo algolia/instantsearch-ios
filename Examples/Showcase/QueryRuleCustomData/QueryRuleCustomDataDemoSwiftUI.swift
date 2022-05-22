@@ -12,14 +12,14 @@ import InstantSearchCore
 import InstantSearchSwiftUI
 
 struct QueryRuleCustomDataSwiftUI: SwiftUIDemo, PreviewProvider {
-  
+
   class Controller {
-    
+
     let demoController: QueryRuleCustomDataDemoController
     let searchBoxController: SearchBoxObservableController
     let bannerController: BannerObservableController
     let hitsController: HitsObservableController<Hit<Product>>
-    
+
     init() {
       self.demoController = .init()
       self.searchBoxController = .init()
@@ -31,20 +31,20 @@ struct QueryRuleCustomDataSwiftUI: SwiftUIDemo, PreviewProvider {
       demoController.searcher.search()
     }
   }
-  
+
   struct ContentView: View {
-    
+
     struct Redirect: Identifiable {
       var id: String { url }
       let url: String
     }
-    
+
     @ObservedObject var searchBoxController: SearchBoxObservableController
     @ObservedObject var hitsController: HitsObservableController<Hit<Product>>
     @ObservedObject var bannerController: BannerObservableController
-    
+
     @State private var selectedRedirect: Redirect?
-    
+
     var body: some View {
       VStack {
         if let imageURL = bannerController.banner?.banner {
@@ -89,7 +89,7 @@ struct QueryRuleCustomDataSwiftUI: SwiftUIDemo, PreviewProvider {
         Alert(title: Text("Redirect"),
               message: Text(redirect.id),
               dismissButton: .cancel())
-        
+
       }
       .safeAreaInset(edge: .top, alignment: .center, spacing: 0) {
         Color.clear
@@ -101,7 +101,7 @@ struct QueryRuleCustomDataSwiftUI: SwiftUIDemo, PreviewProvider {
         handleSubmit()
       }
     }
-    
+
     func handleSubmit() {
       guard let link = bannerController.banner?.link else {
         return
@@ -110,7 +110,7 @@ struct QueryRuleCustomDataSwiftUI: SwiftUIDemo, PreviewProvider {
         selectedRedirect = .init(url: link.absoluteString)
       }
     }
-    
+
     func handleBannerTap() {
       guard let link = bannerController.banner?.link else {
         return
@@ -122,15 +122,15 @@ struct QueryRuleCustomDataSwiftUI: SwiftUIDemo, PreviewProvider {
         UIApplication.shared.open(link)
       }
     }
-    
+
   }
-  
+
   static func contentView(with controller: Controller) -> ContentView {
     ContentView(searchBoxController: controller.searchBoxController,
                 hitsController: controller.hitsController,
                 bannerController: controller.bannerController)
   }
-  
+
   static let controller = Controller()
   static var previews: some View {
     NavigationView {
@@ -138,15 +138,15 @@ struct QueryRuleCustomDataSwiftUI: SwiftUIDemo, PreviewProvider {
         .navigationBarTitle("Query Rule Custom Data")
     }
   }
-  
+
 }
 
 class BannerObservableController: ObservableObject, ItemController {
-  
+
   @Published var banner: Banner?
-  
+
   func setItem(_ item: Banner?) {
     self.banner = item
   }
-  
+
 }

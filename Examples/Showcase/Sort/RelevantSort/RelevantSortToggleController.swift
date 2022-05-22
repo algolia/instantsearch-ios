@@ -11,27 +11,27 @@ import UIKit
 import InstantSearch
 
 class RelevantSortToggleController: UIViewController, RelevantSortController {
-  
+
   var didToggle: (() -> Void)?
-  
+
   let label: UILabel
   let button: UIButton
-  
+
   init() {
     self.label = .init()
     self.button = .init()
     super.init(nibName: nil, bundle: nil)
   }
-  
+
   required init?(coder: NSCoder) {
     fatalError("init(coder:) has not been implemented")
   }
-  
+
   override func viewDidLoad() {
     super.viewDidLoad()
     layout()
   }
-  
+
   func layout() {
     label.numberOfLines = 2
     label.translatesAutoresizingMaskIntoConstraints = false
@@ -63,9 +63,9 @@ class RelevantSortToggleController: UIViewController, RelevantSortController {
     label.text = item.hintText
     button.setTitle(item.toggleTitle, for: .normal)
   }
-  
+
   @objc func didTapButton() {
     didToggle?()
   }
-  
+
 }

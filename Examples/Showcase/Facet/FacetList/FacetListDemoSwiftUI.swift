@@ -12,16 +12,16 @@ import InstantSearchSwiftUI
 import SwiftUI
 
 class FacetListDemoSwiftUI: SwiftUIDemo, PreviewProvider {
-  
+
   class Controller {
-    
+
     let demoController: FacetListDemoController
     let filterStateController: FilterStateObservableController
     let clearFilterController: FilterClearObservableController
     let colorController: FacetListObservableController
     let promotionController: FacetListObservableController
     let categoryController: FacetListObservableController
-    
+
     init() {
       colorController = FacetListObservableController()
       promotionController = FacetListObservableController()
@@ -33,18 +33,18 @@ class FacetListDemoSwiftUI: SwiftUIDemo, PreviewProvider {
       filterStateController = FilterStateObservableController(filterState: demoController.filterState)
       demoController.clearConnector.connectController(clearFilterController)
     }
-    
+
   }
-  
+
   struct ContentView: View {
-    
+
     @ObservedObject var filterStateController: FilterStateObservableController
     @ObservedObject var clearFilterController: FilterClearObservableController
 
     @ObservedObject var colorController: FacetListObservableController
     @ObservedObject var promotionController: FacetListObservableController
     @ObservedObject var categoryController: FacetListObservableController
-    
+
     var body: some View {
       VStack {
         FilterStateDebugView(filterStateController: filterStateController,
@@ -55,7 +55,7 @@ class FacetListDemoSwiftUI: SwiftUIDemo, PreviewProvider {
             ForEach([
               (title: "Color", controller: colorController),
               (title: "Promotion", controller: promotionController),
-              (title: "Category", controller: categoryController),
+              (title: "Category", controller: categoryController)
             ], id: \.title) { facetElement in
               VStack {
                 HStack {
@@ -78,9 +78,9 @@ class FacetListDemoSwiftUI: SwiftUIDemo, PreviewProvider {
         .padding()
       }
     }
-    
+
   }
-  
+
   static func contentView(with controller: Controller) -> ContentView {
     ContentView(filterStateController: controller.filterStateController,
                 clearFilterController: controller.clearFilterController,
@@ -88,14 +88,14 @@ class FacetListDemoSwiftUI: SwiftUIDemo, PreviewProvider {
                 promotionController: controller.promotionController,
                 categoryController: controller.categoryController)
   }
-  
+
   static let controller = Controller()
   static var previews: some View {
     NavigationView {
       contentView(with: controller)
         .navigationBarTitle("Refinement List")
     }
-    
+
   }
-  
+
 }

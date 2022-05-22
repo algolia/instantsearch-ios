@@ -10,14 +10,14 @@ import SwiftUI
 import InstantSearchSwiftUI
 
 struct RatingFilterDemoSwiftUI: SwiftUIDemo, PreviewProvider {
-  
+
   class Controller {
-    
+
     let demoController: RatingFilterDemoController
     let ratingController: NumberObservableController<Double>
     let filterStateController: FilterStateObservableController
     let clearFilterController: FilterClearObservableController
-    
+
     init() {
       demoController = .init()
       ratingController = .init(value: 3.5)
@@ -26,16 +26,16 @@ struct RatingFilterDemoSwiftUI: SwiftUIDemo, PreviewProvider {
       demoController.clearFilterConnector.connectController(clearFilterController)
       demoController.numberInteractor.connectNumberController(ratingController)
     }
-    
+
   }
-  
+
   struct ContentView: View {
-    
+
     @State var value: Double = 3.5
     @ObservedObject var ratingController: NumberObservableController<Double>
     @ObservedObject var filterStateController: FilterStateObservableController
     @ObservedObject var clearFilterController: FilterClearObservableController
-    
+
     var body: some View {
       VStack {
         FilterStateDebugView(filterStateController: filterStateController,
@@ -52,15 +52,15 @@ struct RatingFilterDemoSwiftUI: SwiftUIDemo, PreviewProvider {
       }
       .padding()
     }
-    
+
   }
-  
+
   static func contentView(with controller: Controller) -> ContentView {
     ContentView(ratingController: controller.ratingController,
                 filterStateController: controller.filterStateController,
                 clearFilterController: controller.clearFilterController)
   }
-  
+
   static let controller = Controller()
   static var previews: some View {
     NavigationView {
@@ -68,5 +68,5 @@ struct RatingFilterDemoSwiftUI: SwiftUIDemo, PreviewProvider {
         .navigationBarTitle("Filter Rating")
     }
   }
-  
+
 }

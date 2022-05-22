@@ -10,20 +10,20 @@ import UIKit
 import AlgoliaSearchClient
 
 protocol DemoProtocol {
-  
+
   var objectID: ObjectID { get }
   var name: String { get }
   var type: String { get }
-  
+
 }
 
-
 struct Demo: Codable, DemoProtocol {
-  
+
   let objectID: ObjectID
   let name: String
   let type: String
-  
+
+  // swiftlint:disable type_name
   enum ID: String {
     case showcaseImperative = "showcase_imperative_ui"
     case showCaseDeclarative = "showcase_declarative_ui"
@@ -38,5 +38,5 @@ struct Demo: Codable, DemoProtocol {
     case codexMultipleIndex = "codex_multiple_index"
     case codexCategoriesHits = "codex_categories_hits"
   }
-  
+
 }

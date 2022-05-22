@@ -11,7 +11,7 @@ import InstantSearch
 import UIKit
 
 class StatsDemoController {
-  
+
   let searcher: HitsSearcher
   let statsConnector: StatsConnector
   let searchBoxConnector: SearchBoxConnector
@@ -23,6 +23,5 @@ class StatsDemoController {
     self.statsConnector = .init(searcher: searcher)
     searcher.search()
   }
-  
-  
+
 }

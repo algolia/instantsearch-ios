@@ -10,25 +10,25 @@ import Foundation
 import InstantSearch
 
 class HierarchicalDemoController {
-  
+
   let searcher: HitsSearcher
   let filterState: FilterState
   let clearFilterConnector: FilterClearConnector
   let hierarchicalConnector: HierarchicalConnector
-  
+
   struct HierarchicalCategory {
     static var base: Attribute = "hierarchicalCategories"
     static var lvl0: Attribute { "\(base).lvl0" }
     static var lvl1: Attribute { "\(base).lvl1" }
     static var lvl2: Attribute { "\(base).lvl2" }
   }
-  
+
   let order = [
     HierarchicalCategory.lvl0,
     HierarchicalCategory.lvl1,
-    HierarchicalCategory.lvl2,
+    HierarchicalCategory.lvl2
   ]
-  
+
   init<Controller: HierarchicalController>(controller: Controller) where Controller.Item == [HierarchicalFacet] {
     searcher = HitsSearcher(client: .instantSearch,
                             indexName: .hierarchicalFacets)
@@ -43,5 +43,5 @@ class HierarchicalDemoController {
     searcher.connectFilterState(filterState)
     searcher.search()
   }
-  
+
 }

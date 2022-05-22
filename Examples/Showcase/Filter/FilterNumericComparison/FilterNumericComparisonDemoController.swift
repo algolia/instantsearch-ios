@@ -9,14 +9,14 @@ import Foundation
 import InstantSearchCore
 
 class FilterNumericComparisonDemoController {
-  
+
   let searcher: HitsSearcher
   let filterState: FilterState
   let clearFilterConnector: FilterClearConnector
-  
+
   let yearConnector: FilterComparisonConnector<Int>
   let priceConnector: FilterComparisonConnector<Double>
-  
+
   init() {
     searcher = HitsSearcher(client: .instantSearch,
                             indexName: .filterNumericComparison)
@@ -29,7 +29,7 @@ class FilterNumericComparisonDemoController {
                           number: 2014,
                           bounds: nil,
                           operator: .and)
-    
+
     priceConnector = .init(searcher: searcher,
                            filterState: filterState,
                            attribute: "price",
@@ -39,11 +39,10 @@ class FilterNumericComparisonDemoController {
                            operator: .and)
     setup()
   }
-  
+
   private func setup() {
     searcher.connectFilterState(filterState)
     searcher.search()
   }
-  
-  
+
 }

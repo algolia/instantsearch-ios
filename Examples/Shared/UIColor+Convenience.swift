@@ -10,6 +10,8 @@ import Foundation
 import UIKit
 
 extension UIColor {
+
+  // swiftlint:disable identifier_name
   convenience init(hexString: String) {
     var hexFormatted = hexString.trimmingCharacters(in: CharacterSet.alphanumerics.inverted)
     if hexFormatted.hasPrefix("#") {
@@ -39,7 +41,7 @@ extension UIColor {
 }
 
 extension CGColor {
-  
+
   static let algoliaCyan = CGColor(red: 84/255, green: 104/255, blue: 255/255, alpha: 1)
-  
+
 }

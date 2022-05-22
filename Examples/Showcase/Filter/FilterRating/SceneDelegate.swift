@@ -15,6 +15,4 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
     setMain(RatingFilterDemoViewController(), for: scene)
   }
 
-
 }
-

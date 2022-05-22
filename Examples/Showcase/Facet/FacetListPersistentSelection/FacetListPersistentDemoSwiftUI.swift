@@ -10,15 +10,15 @@ import SwiftUI
 import InstantSearchSwiftUI
 
 struct FacetListPersistentDemoSwiftUI: SwiftUIDemo, PreviewProvider {
-  
+
   class Controller {
-    
+
     let demoController: FacetListPersistentSelectionDemoController
     let clearFilterController: FilterClearObservableController
     let filterStateController: FilterStateObservableController
     let colorController: FacetListObservableController
     let categoryController: FacetListObservableController
-    
+
     init() {
       demoController = .init()
       clearFilterController = .init()
@@ -29,17 +29,17 @@ struct FacetListPersistentDemoSwiftUI: SwiftUIDemo, PreviewProvider {
       demoController.categoryConnector.connectController(categoryController)
       demoController.colorConnector.connectController(colorController)
     }
-    
+
   }
-  
+
   struct ContentView: View {
-    
+
     @ObservedObject var filterStateController: FilterStateObservableController
     @ObservedObject var clearFilterController: FilterClearObservableController
 
     @ObservedObject var colorController: FacetListObservableController
     @ObservedObject var categoryController: FacetListObservableController
-    
+
     var body: some View {
       VStack(spacing: 20) {
         FilterStateDebugView(filterStateController: filterStateController,
@@ -74,7 +74,7 @@ struct FacetListPersistentDemoSwiftUI: SwiftUIDemo, PreviewProvider {
       }
       .padding()
     }
-    
+
     @ViewBuilder func header(withTitle title: String) -> some View {
       Text(title)
         .font(.footnote)
@@ -82,16 +82,16 @@ struct FacetListPersistentDemoSwiftUI: SwiftUIDemo, PreviewProvider {
         .frame(maxWidth: .infinity)
         .background(Color(UIColor.systemGray5))
     }
-    
+
   }
-  
+
   static func contentView(with controller: Controller) -> ContentView {
     ContentView(filterStateController: controller.filterStateController,
                 clearFilterController: controller.clearFilterController,
                 colorController: controller.colorController,
                 categoryController: controller.categoryController)
   }
-  
+
   static let controller = Controller()
   static var previews: some View {
     NavigationView {
@@ -99,5 +99,5 @@ struct FacetListPersistentDemoSwiftUI: SwiftUIDemo, PreviewProvider {
         .navigationBarTitle("Facet List Persistent Selection")
     }
   }
-  
+
 }

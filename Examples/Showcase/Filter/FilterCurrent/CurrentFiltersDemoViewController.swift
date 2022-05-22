@@ -39,7 +39,7 @@ class CurrentFiltersDemoViewController: UIViewController {
     setup()
     setupUI()
   }
-  
+
 }
 
 private extension CurrentFiltersDemoViewController {
@@ -49,7 +49,7 @@ private extension CurrentFiltersDemoViewController {
     demoController.currentFiltersListConnector.connectController(currentFiltersController2)
     demoController.clearFiltersConnector.connectController(filterDebugViewController.clearFilterController)
   }
-  
+
   func setupUI() {
 
     view.backgroundColor = .systemBackground
@@ -63,7 +63,7 @@ private extension CurrentFiltersDemoViewController {
 
     view.addSubview(mainStackView)
     mainStackView.pin(to: view)
-    
+
     addChild(filterDebugViewController)
     filterDebugViewController.didMove(toParent: self)
     filterDebugViewController.view.heightAnchor.constraint(equalToConstant: 150).isActive = true
@@ -77,8 +77,7 @@ private extension CurrentFiltersDemoViewController {
     mainStackView.addArrangedSubview(filterDebugViewController.view)
     mainStackView.addArrangedSubview(searchTextFieldContainer)
     mainStackView.addArrangedSubview(tableView)
-    
+
   }
 
 }
-

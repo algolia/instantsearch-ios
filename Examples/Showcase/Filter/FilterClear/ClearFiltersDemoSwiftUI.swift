@@ -12,15 +12,15 @@ import InstantSearchSwiftUI
 import SwiftUI
 
 struct ClearFiltersDemoSwiftUI: SwiftUIDemo, PreviewProvider {
-  
+
   class Controller {
-    
+
     let demoController: ClearFiltersDemoController
     let filterStateController: FilterStateObservableController
     let clearFilterController: FilterClearObservableController
     let clearFilterGroupController: FilterClearObservableController
     let clearExceptFilterGroupController: FilterClearObservableController
-    
+
     init() {
       clearFilterController = .init()
       clearFilterGroupController = .init()
@@ -31,17 +31,17 @@ struct ClearFiltersDemoSwiftUI: SwiftUIDemo, PreviewProvider {
       demoController.clearGroupConnector.connectController(clearFilterGroupController)
       demoController.clearExceptGroupConnector.connectController(clearExceptFilterGroupController)
     }
-    
+
   }
-  
+
   struct ContentView: View {
-    
+
     @ObservedObject var filterStateController: FilterStateObservableController
     @ObservedObject var clearFilterController: FilterClearObservableController
-    
+
     @ObservedObject var clearFilterGroupController: FilterClearObservableController
     @ObservedObject var clearExceptFilterGroupController: FilterClearObservableController
-    
+
     var body: some View {
       VStack {
         FilterStateDebugView(filterStateController: filterStateController,
@@ -59,18 +59,18 @@ struct ClearFiltersDemoSwiftUI: SwiftUIDemo, PreviewProvider {
         }
         Spacer()
       }.padding()
-      
+
     }
-    
+
   }
-  
+
   static func contentView(with controller: Controller) -> ContentView {
     ContentView(filterStateController: controller.filterStateController,
                 clearFilterController: controller.clearFilterController,
                 clearFilterGroupController: controller.clearFilterGroupController,
                 clearExceptFilterGroupController: controller.clearExceptFilterGroupController)
   }
-  
+
   static let controller = Controller()
   static var previews: some View {
     NavigationView {
@@ -78,5 +78,5 @@ struct ClearFiltersDemoSwiftUI: SwiftUIDemo, PreviewProvider {
         .navigationBarTitle("Filter Clear")
     }
   }
-  
+
 }

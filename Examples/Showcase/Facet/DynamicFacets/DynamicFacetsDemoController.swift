@@ -11,14 +11,14 @@ import Foundation
 import InstantSearch
 
 class DynamicFacetListDemoController {
-  
+
   let searcher: HitsSearcher
   let searchBoxConnector: SearchBoxConnector
   let dynamicFacetListConnector: DynamicFacetListConnector<HitsSearcher>
   let filterState: FilterState
-  
+
   static let helpMessage = "Type \"6\", \"61\" or \"616\" to trigger a rule"
-  
+
   init<SBC: SearchBoxController, DFC: DynamicFacetListController>(searchBoxController: SBC,
                                                                   dynamicFacetListController: DFC) {
     searcher = .init(client: .init(appID: "RVURKQXRHU",
@@ -34,7 +34,7 @@ class DynamicFacetListDemoController {
                                       ],
                                       filterGroupForAttribute: [
                                         "brand": ("brand", .or),
-                                        "color" : ("color", .or),
+                                        "color": ("color", .or),
                                         "size": ("size", .or),
                                         "country": ("country", .or)
                                       ],
@@ -43,5 +43,5 @@ class DynamicFacetListDemoController {
     searcher.connectFilterState(filterState)
     searcher.search()
   }
-  
+
 }

@@ -11,20 +11,20 @@ import InstantSearch
 import UIKit
 
 enum QuerySuggestionsCategories {
-  
+
   class SearchViewController: UIViewController {
-    
+
     let searchController: UISearchController
-    
+
     let searchBoxConnector: SearchBoxConnector
     let textFieldController: TextFieldController
 
     let searcher: MultiSearcher
     let categoriesInteractor: FacetListInteractor
     let suggestionsInteractor: HitsInteractor<QuerySuggestion>
-    
+
     let searchResultsController: SearchResultsController
-    
+
     override init(nibName nibNameOrNil: String?, bundle nibBundleOrNil: Bundle?) {
       searcher = .init(client: .instantSearch)
       searchResultsController = .init()
@@ -36,16 +36,16 @@ enum QuerySuggestionsCategories {
                                  controller: textFieldController)
       super.init(nibName: nibNameOrNil, bundle: nibBundleOrNil)
     }
-    
+
     required init?(coder: NSCoder) {
       fatalError("init(coder:) has not been implemented")
     }
-    
+
     override func viewDidLoad() {
       super.viewDidLoad()
-      
+
       configureUI()
-      
+
       let facetsSearcher = searcher.addFacetsSearcher(indexName: .instantSearch,
                                                       attribute: "categories")
       categoriesInteractor.connectFacetSearcher(facetsSearcher)
@@ -54,19 +54,19 @@ enum QuerySuggestionsCategories {
       let suggestionsSearcher = searcher.addHitsSearcher(indexName: .instantSearchSuggestions)
       suggestionsInteractor.connectSearcher(suggestionsSearcher)
       searchResultsController.suggestionsInteractor = suggestionsInteractor
-      
+
       searchResultsController.didSelectSuggestion = { [weak self] suggestion in
         self?.searchBoxConnector.interactor.query = suggestion
       }
-      
+
       searcher.search()
     }
-    
+
     override func viewDidAppear(_ animated: Bool) {
       super.viewDidAppear(animated)
       searchController.isActive = true
     }
-    
+
     func configureUI() {
       title = "Suggestions & Categories"
       view.backgroundColor = .systemBackground
@@ -76,7 +76,7 @@ enum QuerySuggestionsCategories {
       searchController.automaticallyShowsCancelButton = false
       navigationItem.searchController = searchController
     }
-    
+
   }
 
 }

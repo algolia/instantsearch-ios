@@ -11,7 +11,7 @@ import InstantSearch
 import UIKit
 
 class HierarchicalDemoViewController: UIViewController {
-  
+
   let demoController: HierarchicalDemoController
 
   let hierarchicalTableViewController: HierarchicalTableViewController
@@ -36,17 +36,17 @@ class HierarchicalDemoViewController: UIViewController {
     setupUI()
     setup()
   }
-  
+
   private func setup() {
     addChild(filterDebugViewController)
     filterDebugViewController.didMove(toParent: self)
 
     addChild(tableViewController)
     tableViewController.didMove(toParent: self)
-    
+
     demoController.clearFilterConnector.connectController(filterDebugViewController.clearFilterController)
   }
-  
+
   private func setupUI() {
     title = "Hierarchical Facets"
     view.backgroundColor = . white
@@ -57,7 +57,7 @@ class HierarchicalDemoViewController: UIViewController {
     mainStackView.spacing = 10
     mainStackView.isLayoutMarginsRelativeArrangement = true
     mainStackView.layoutMargins = .init(top: 10, left: 10, bottom: 10, right: 10)
-    
+
     let searchDebugView = filterDebugViewController.view!
     searchDebugView.translatesAutoresizingMaskIntoConstraints = false
     searchDebugView.heightAnchor.constraint(equalToConstant: 150).isActive = true
@@ -72,4 +72,3 @@ class HierarchicalDemoViewController: UIViewController {
   }
 
 }
-

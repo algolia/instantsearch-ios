@@ -16,7 +16,7 @@ extension IndexName {
   static let instantSearchSuggestions: IndexName = "instant_search_demo_query_suggestions"
   static let movies: IndexName = "mobile_demo_movies"
   static let actors: IndexName = "mobile_demo_actors"
-  
+
   static let facetList: IndexName = "mobile_demo_facet_list"
   static let facetSearch: IndexName = "mobile_demo_facet_list_search"
   static let hierarchicalFacets: IndexName = "mobile_demo_hierarchical"

@@ -12,14 +12,14 @@ import InstantSearchSwiftUI
 import SwiftUI
 
 struct FilterNumericRangeDemoSwiftUI: SwiftUIDemo, PreviewProvider {
-  
+
   class Controller {
     let demoController = FilterNumericRangeDemoController()
     let numberRangeController = NumberRangeObservableController<Double>(range: 0...5,
                                                                         bounds: 0...5)
     let filterStateController: FilterStateObservableController
     let clearFilterController: FilterClearObservableController
-    
+
     init() {
       filterStateController = .init(filterState: demoController.filterState)
       clearFilterController = .init()
@@ -27,17 +27,17 @@ struct FilterNumericRangeDemoSwiftUI: SwiftUIDemo, PreviewProvider {
       demoController.filterClearConnector.connectController(clearFilterController)
     }
   }
-  
+
   struct ContentView: View {
-    
+
     @ObservedObject var slider = CustomSlider(bounds: 0.0...5, values: 0...5)
     @ObservedObject var numberRangeController: NumberRangeObservableController<Double>
     @ObservedObject var filterStateController: FilterStateObservableController
     @ObservedObject var clearFilterController: FilterClearObservableController
-    
+
     var body: some View {
       let range = numberRangeController.range
-      VStack(spacing: 40){
+      VStack(spacing: 40) {
         FilterStateDebugView(filterStateController: filterStateController,
                              clearFilterController: clearFilterController)
         HStack(spacing: 20) {
@@ -59,7 +59,7 @@ struct FilterNumericRangeDemoSwiftUI: SwiftUIDemo, PreviewProvider {
         slider.highHandle.currentValue = newValue.upperBound
       }.padding()
     }
-    
+
     func makeRange(_ lowerBound: Double, _ upperBound: Double) -> ClosedRange<Double>? {
       if lowerBound < upperBound &&
           numberRangeController.bounds.contains(lowerBound) &&
@@ -69,15 +69,15 @@ struct FilterNumericRangeDemoSwiftUI: SwiftUIDemo, PreviewProvider {
         return nil
       }
     }
-    
+
   }
-  
+
   static func contentView(with controller: Controller) -> ContentView {
     ContentView(numberRangeController: controller.numberRangeController,
                 filterStateController: controller.filterStateController,
                 clearFilterController: controller.clearFilterController)
   }
-  
+
   static let controller = Controller()
   static var previews: some View {
     NavigationView {
@@ -85,5 +85,5 @@ struct FilterNumericRangeDemoSwiftUI: SwiftUIDemo, PreviewProvider {
         .navigationBarTitle("Number Range Filter")
     }
   }
-  
+
 }

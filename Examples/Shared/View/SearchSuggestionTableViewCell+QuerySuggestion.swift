@@ -10,7 +10,7 @@ import UIKit
 import InstantSearchCore
 
 extension SearchSuggestionTableViewCell {
-  
+
   func setup(with querySuggestion: QuerySuggestion) {
     guard let textLabel = textLabel else { return }
     textLabel.attributedText = querySuggestion
@@ -21,5 +21,5 @@ extension SearchSuggestionTableViewCell {
                                     attributes: [.font: UIFont.boldSystemFont(ofSize: textLabel.font.pointSize)])
     }
   }
-  
+
 }

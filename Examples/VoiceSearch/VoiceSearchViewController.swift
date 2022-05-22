@@ -11,18 +11,18 @@ import InstantSearch
 import InstantSearchVoiceOverlay
 
 class VoiceSearchViewController: UIViewController {
-  
+
   let searchController: UISearchController
   let searcher: HitsSearcher
-  
+
   let searchBoxConnector: SearchBoxConnector
   let textFieldController: TextFieldController
-  
+
   let hitsConnector: HitsConnector<Hit<StoreItem>>
   let searchResultsController: StoreItemsTableViewController
-  
+
   let voiceOverlayController: VoiceOverlayController
-  
+
   override init(nibName nibNameOrNil: String?, bundle nibBundleOrNil: Bundle?) {
     searcher = .init(client: .ecommerce,
                      indexName: .ecommerceProducts)
@@ -36,21 +36,21 @@ class VoiceSearchViewController: UIViewController {
     voiceOverlayController = .init()
     super.init(nibName: nibNameOrNil, bundle: nibBundleOrNil)
   }
-  
+
   required init?(coder: NSCoder) {
     fatalError("init(coder:) has not been implemented")
   }
-  
+
   override func viewDidLoad() {
     super.viewDidLoad()
     setup()
   }
-  
+
   override func viewDidAppear(_ animated: Bool) {
     super.viewDidAppear(animated)
     searchController.isActive = true
   }
-  
+
   private func setup() {
     title = "Voice Search"
     view.backgroundColor = .systemBackground
@@ -63,7 +63,7 @@ class VoiceSearchViewController: UIViewController {
     searchController.searchBar.delegate = self
     searcher.search()
   }
-  
+
   private func present(_ error: Error) {
     let alertController = UIAlertController(title: "Error",
                                             message: error.localizedDescription,
@@ -75,13 +75,13 @@ class VoiceSearchViewController: UIViewController {
                                   animated: true,
                                   completion: nil)
   }
-  
+
 }
 
 extension VoiceSearchViewController: UISearchBarDelegate {
-  
+
   func searchBarBookmarkButtonClicked(_ searchBar: UISearchBar) {
-    voiceOverlayController.start(on: self.navigationController!) { [weak self] (text, isFinal, _) in
+    voiceOverlayController.start(on: self.navigationController!) { [weak self] (text, _, _) in
       self?.searchBoxConnector.interactor.query = text
     } errorHandler: { error in
       guard let error = error else { return }
@@ -90,5 +90,5 @@ extension VoiceSearchViewController: UISearchBarDelegate {
       }
     }
   }
-  
+
 }

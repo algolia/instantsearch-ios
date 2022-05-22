@@ -8,11 +8,11 @@
 import Foundation
 
 struct Product: Codable {
-  
+
   let name: String
   let description: String
   let brand: String?
   let image: URL
   let price: Double?
-  
+
 }
