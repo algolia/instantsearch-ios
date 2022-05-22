@@ -9,7 +9,7 @@
 import Foundation
 
 public protocol Boundable: AnyObject {
-  associatedtype Number: Comparable & DoubleRepresentable
+  associatedtype Number: Comparable, DoubleRepresentable
 
   func applyBounds(bounds: ClosedRange<Number>?)
 }

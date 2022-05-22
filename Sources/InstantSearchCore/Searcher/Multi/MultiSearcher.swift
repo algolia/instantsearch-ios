@@ -24,7 +24,7 @@ public class MultiSearcher: AbstractMultiSearcher<AlgoliaMultiSearchService> {
               initialRequest: initialRequest)
     Telemetry.shared.trace(type: .multiSearcher)
   }
-  
+
   /**
    - Parameters:
       - appID: Application ID

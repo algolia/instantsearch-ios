@@ -22,25 +22,25 @@ import Foundation
  Most of the components associated by this connector are created and connected automatically, it's only required to provide a proper `Controller` implementations.
  */
 public struct SearchConnector<Record: Codable>: Connection {
-  
+
   /// Connector establishing the linkage between searcher, hits interactor and optionally filter state
   public let hitsConnector: HitsConnector<Record>
-  
+
   /// Connection between hits interactor of hits connector and provided hits controller
   public let hitsControllerConnection: Connection
-  
+
   /// Connector establishing the linkage between searcher and search box interactor
   public let searchBoxConnector: SearchBoxConnector
-  
+
   /// Connection between query input interactor of search box connector and provided search box controller
   public let searchBoxControllerConnection: Connection
-  
+
   /// Connection between filter state and hits interactor of hits connector
   public let filterStateHitsInteractorConnection: Connection?
-  
+
   /// Connection between filter state and searcher
   public let filterStateSearcherConnection: Connection?
-  
+
   /**
    - Parameters:
    - searcher: External single index sercher
@@ -58,10 +58,10 @@ public struct SearchConnector<Record: Codable>: Connection {
                                                             filterState: FilterState? = nil) where HC.DataSource == HitsInteractor<Record> {
     hitsConnector = .init(searcher: searcher, interactor: hitsInteractor, filterState: filterState)
     searchBoxConnector = .init(searcher: searcher, interactor: searchBoxInteractor)
-    
+
     searchBoxControllerConnection = searchBoxInteractor.connectController(searchBoxController)
     hitsControllerConnection = hitsInteractor.connectController(hitsController)
-    
+
     if let filterState = filterState {
       filterStateHitsInteractorConnection = hitsInteractor.connectFilterState(filterState)
       filterStateSearcherConnection = searcher.connectFilterState(filterState)
@@ -69,13 +69,13 @@ public struct SearchConnector<Record: Codable>: Connection {
       filterStateHitsInteractorConnection = nil
       filterStateSearcherConnection = nil
     }
-    
+
     Telemetry.shared.traceConnector(type: .hitsSearcher,
                                     parameters: [
                                       filterState == nil ? .none : .filterState
                                     ])
   }
-  
+
   /**
    - Parameters:
    - appID: Application ID
@@ -104,7 +104,7 @@ public struct SearchConnector<Record: Codable>: Connection {
               hitsInteractor: hitsInteractor,
               hitsController: hitsController,
               filterState: filterState)
-    
+
     Telemetry.shared.traceConnector(type: .hitsSearcher,
                                     parameters: [
                                       .appID,
@@ -113,7 +113,7 @@ public struct SearchConnector<Record: Codable>: Connection {
                                       filterState == nil ? .none : .filterStateParameter
                                     ])
   }
-  
+
   public func connect() {
     disconnect()
     searchBoxConnector.connect()
@@ -123,7 +123,7 @@ public struct SearchConnector<Record: Codable>: Connection {
     filterStateSearcherConnection?.connect()
     filterStateHitsInteractorConnection?.connect()
   }
-  
+
   public func disconnect() {
     searchBoxConnector.disconnect()
     searchBoxControllerConnection.disconnect()
@@ -132,26 +132,26 @@ public struct SearchConnector<Record: Codable>: Connection {
     filterStateSearcherConnection?.disconnect()
     filterStateHitsInteractorConnection?.disconnect()
   }
-  
+
 }
 
 @available(*, deprecated, renamed: "SearchConnector")
 public typealias SingleIndexSearchConnector = SearchConnector
 
 public extension SearchConnector {
-  
+
   /// Connector establishing the linkage between searcher and query input interactor
   @available(*, deprecated, renamed: "searchBoxConnector")
   var queryInputConnector: QueryInputConnector {
     searchBoxConnector
   }
-  
+
   /// Connection between query input interactor of query input connector and provided query input controller
   @available(*, deprecated, renamed: "searchBoxControllerConnection")
   var queryInputControllerConnection: Connection {
     searchBoxControllerConnection
   }
-  
+
   /**
    - Parameters:
    - searcher: External single index sercher
@@ -175,7 +175,7 @@ public extension SearchConnector {
               hitsController: hitsController,
               filterState: filterState)
   }
-  
+
   /**
    - Parameters:
    - appID: Application ID
@@ -205,5 +205,5 @@ public extension SearchConnector {
               hitsController: hitsController,
               filterState: filterState)
   }
-  
+
 }
