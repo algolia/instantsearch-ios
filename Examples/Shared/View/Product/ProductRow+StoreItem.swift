@@ -11,7 +11,7 @@ import InstantSearchCore
 import InstantSearchSwiftUI
 
 extension ProductRow {
-  
+
   init(storeItemHit: Hit<StoreItem>, configuration: Configuration = .phone) {
     let item = storeItemHit.object
     self.title = storeItemHit.hightlightedString(forKey: "name") ?? HighlightedString(string: item.name)
@@ -21,5 +21,5 @@ extension ProductRow {
     self.price = item.price
     self.configuration = configuration
   }
-  
+
 }

@@ -10,13 +10,13 @@ import UIKit
 import InstantSearch
 
 extension QuerySuggestionsAndHits {
-      
+
   class SearchResultsController: UITableViewController {
-    
+
     enum Section: Int, CaseIterable {
       case suggestions
       case hits
-      
+
       var title: String {
         switch self {
         case .suggestions:
@@ -25,7 +25,7 @@ extension QuerySuggestionsAndHits {
           return "Products"
         }
       }
-      
+
       var cellReuseIdentifier: String {
         switch self {
         case .suggestions:
@@ -34,17 +34,17 @@ extension QuerySuggestionsAndHits {
           return "productCellID"
         }
       }
-          
+
       init?(section: Int) {
         self.init(rawValue: section)
       }
-      
+
       init?(indexPath: IndexPath) {
         self.init(section: indexPath.section)
       }
-      
+
     }
-        
+
     weak var suggestionsHitsInteractor: HitsInteractor<QuerySuggestion>? {
       didSet {
         oldValue?.onResultsUpdated.cancelSubscription(for: tableView)
@@ -54,7 +54,7 @@ extension QuerySuggestionsAndHits {
         }.onQueue(.main)
       }
     }
-    
+
     weak var hitsInteractor: HitsInteractor<Hit<Product>>? {
       didSet {
         oldValue?.onResultsUpdated.cancelSubscription(for: tableView)
@@ -64,17 +64,17 @@ extension QuerySuggestionsAndHits {
         }.onQueue(.main)
       }
     }
-    
+
     override func viewDidLoad() {
       super.viewDidLoad()
       tableView.register(SearchSuggestionTableViewCell.self, forCellReuseIdentifier: Section.suggestions.cellReuseIdentifier)
       tableView.register(ProductTableViewCell.self, forCellReuseIdentifier: Section.hits.cellReuseIdentifier)
     }
-    
+
     override func numberOfSections(in tableView: UITableView) -> Int {
       return Section.allCases.count
     }
-    
+
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
       guard let section = Section(section: section) else { return 0 }
       switch section {
@@ -84,13 +84,13 @@ extension QuerySuggestionsAndHits {
         return hitsInteractor?.numberOfHits() ?? 0
       }
     }
-    
+
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-      
+
       guard let section = Section(indexPath: indexPath) else { return UITableViewCell() }
-      
+
       let cell: UITableViewCell
-      
+
       switch section {
       case .suggestions:
         cell = tableView.dequeueReusableCell(withIdentifier: Section.suggestions.cellReuseIdentifier, for: indexPath)
@@ -108,10 +108,10 @@ extension QuerySuggestionsAndHits {
             productTableViewCell.setup(with: product)
         }
       }
-      
+
       return cell
     }
-    
+
     override func tableView(_ tableView: UITableView, titleForHeaderInSection section: Int) -> String? {
       guard let section = Section(section: section) else { return nil }
       switch section {
@@ -123,7 +123,7 @@ extension QuerySuggestionsAndHits {
         return section.title
       }
     }
-    
+
     override func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
       guard let section = Section(indexPath: indexPath) else { return 0 }
       switch section {
@@ -133,7 +133,7 @@ extension QuerySuggestionsAndHits {
         return 100
       }
     }
-    
+
   }
-  
+
 }

@@ -8,7 +8,7 @@
 import Foundation
 
 public extension SearchBoxConnector {
-  
+
   /**
    - Parameters:
    - searcher: Searcher that handles your searches
@@ -25,7 +25,7 @@ public extension SearchBoxConnector {
               searchTriggeringMode: searchTriggeringMode)
     connectController(controller)
   }
-  
+
   /**
    Establishes a connection with the controller
    - Parameters:
@@ -37,5 +37,5 @@ public extension SearchBoxConnector {
     controllerConnections.append(connection)
     return connection
   }
-  
+
 }

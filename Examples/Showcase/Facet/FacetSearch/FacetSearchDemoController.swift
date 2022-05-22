@@ -9,13 +9,13 @@ import Foundation
 import InstantSearch
 
 class FacetSearchDemoController {
-  
+
   let facetSearcher: FacetSearcher
   let filterState: FilterState
   let clearFilterConnector: FilterClearConnector
   let facetListConnector: FacetListConnector
   let searchBoxConnector: SearchBoxConnector
-  
+
   init() {
     filterState = .init()
     clearFilterConnector = .init(filterState: filterState)
@@ -29,5 +29,5 @@ class FacetSearchDemoController {
     searchBoxConnector = SearchBoxConnector(searcher: facetSearcher)
     facetSearcher.search()
   }
-  
+
 }

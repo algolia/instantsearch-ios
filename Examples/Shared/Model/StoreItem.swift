@@ -8,13 +8,13 @@
 import Foundation
 
 struct StoreItem: Codable {
-  
+
   let name: String
   let brand: String?
   let description: String?
   let images: [URL]
   let price: Double?
-  
+
   enum CodingKeys: String, CodingKey {
     case name
     case brand
@@ -22,11 +22,11 @@ struct StoreItem: Codable {
     case images = "image_urls"
     case price
   }
-  
+
   enum PriceCodingKeys: String, CodingKey {
     case value
   }
-  
+
   init(from decoder: Decoder) throws {
     let container = try decoder.container(keyedBy: CodingKeys.self)
     self.name = try container.decode(String.self, forKey: .name)
@@ -45,7 +45,7 @@ struct StoreItem: Codable {
       self.price = .none
     }
   }
-  
+
   func encode(to encoder: Encoder) throws {
     var container = encoder.container(keyedBy: CodingKeys.self)
     try container.encode(name, forKey: .name)
@@ -54,5 +54,5 @@ struct StoreItem: Codable {
     try container.encode(images, forKey: .images)
     try container.encode(price, forKey: .price)
   }
-  
+
 }

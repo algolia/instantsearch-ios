@@ -10,16 +10,16 @@ import SwiftUI
 import InstantSearchSwiftUI
 
 struct FilterStateDebugView: View {
-  
+
   @ObservedObject var filterStateController: FilterStateObservableController
   @ObservedObject var clearFilterController: FilterClearObservableController
-  
+
   init(filterStateController: FilterStateObservableController,
        clearFilterController: FilterClearObservableController) {
     self.filterStateController = filterStateController
     self.clearFilterController = clearFilterController
   }
-  
+
   var body: some View {
     VStack(alignment: .leading, spacing: 0) {
       HStack {
@@ -27,7 +27,7 @@ struct FilterStateDebugView: View {
           .fontWeight(.heavy)
           .font(.title3)
         Spacer()
-        Button(action: { clearFilterController.clear() }) {
+        Button(action: clearFilterController.clear) {
           Image(systemName: "trash.fill")
         }
       }.padding()
@@ -42,5 +42,5 @@ struct FilterStateDebugView: View {
         .stroke(Color.black, lineWidth: 1)
     )
   }
-  
+
 }

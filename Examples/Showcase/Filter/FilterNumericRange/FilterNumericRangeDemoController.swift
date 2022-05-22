@@ -10,13 +10,13 @@ import Foundation
 import InstantSearchCore
 
 class FilterNumericRangeDemoController {
-  
+
   let searcher: HitsSearcher
   let filterState: FilterState
   let filterClearConnector: FilterClearConnector
-  
+
   let rangeConnector: NumberRangeConnector<Double>
-  
+
   init() {
     self.searcher = HitsSearcher(client: .instantSearch,
                                  indexName: .filterNumericComparison)
@@ -27,7 +27,7 @@ class FilterNumericRangeDemoController {
                            attribute: "price")
     searcher.connectFilterState(filterState)
     searcher.search()
-    
+
   }
-  
+
 }

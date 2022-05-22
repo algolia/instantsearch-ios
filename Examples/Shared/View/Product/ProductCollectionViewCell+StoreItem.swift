@@ -10,11 +10,11 @@ import UIKit
 import InstantSearchCore
 
 extension ProductCollectionViewCell {
-  
+
   func setup(with productHit: Hit<StoreItem>) {
     let product = productHit.object
     itemImageView.sd_setImage(with: product.images.first)
-    
+
     if let highlightedName = productHit.hightlightedString(forKey: "name") {
       titleLabel.attributedText = NSAttributedString(highlightedString: highlightedName,
                                                      attributes: [
@@ -22,7 +22,7 @@ extension ProductCollectionViewCell {
     } else {
       titleLabel.text = product.name
     }
-    
+
     if let highlightedDescription = productHit.hightlightedString(forKey: "brand") {
       subtitleLabel.attributedText = NSAttributedString(highlightedString: highlightedDescription,
                                                         attributes: [
@@ -31,11 +31,10 @@ extension ProductCollectionViewCell {
     } else {
       subtitleLabel.text = product.brand
     }
-    
+
     if let price = product.price {
       priceLabel.text = "\(price) €"
     }
   }
-  
-}
 
+}

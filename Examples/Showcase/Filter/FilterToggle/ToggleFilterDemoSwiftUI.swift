@@ -12,18 +12,18 @@ import InstantSearchSwiftUI
 import SwiftUI
 
 struct ToggleFilterDemoSwiftUI: SwiftUIDemo, PreviewProvider {
-  
+
   class Controller {
-    
+
     let demoController: ToggleFilterDemoController
-    
+
     let filterStateController: FilterStateObservableController
     let clearFilterController: FilterClearObservableController
-    
+
     let tagFilterFilterObservableController: FilterToggleObservableController<Filter.Tag>
     let facetFilterFilterObservableController: FilterToggleObservableController<Filter.Facet>
     let numericFilterFilterObservableController: FilterToggleObservableController<Filter.Numeric>
-    
+
     init() {
       self.tagFilterFilterObservableController = .init()
       self.facetFilterFilterObservableController = .init()
@@ -36,23 +36,23 @@ struct ToggleFilterDemoSwiftUI: SwiftUIDemo, PreviewProvider {
       demoController.couponConnector.connectController(facetFilterFilterObservableController)
       demoController.vintageConnector.connectController(tagFilterFilterObservableController)
     }
-    
+
   }
-  
+
   struct ContentView: View {
-    
+
     @ObservedObject var filterStateController: FilterStateObservableController
     @ObservedObject var clearFilterController: FilterClearObservableController
 
     @ObservedObject var tagFilterFilterObservableController: FilterToggleObservableController<Filter.Tag>
     @ObservedObject var facetFilterFilterObservableController: FilterToggleObservableController<Filter.Facet>
     @ObservedObject var numericFilterFilterObservableController: FilterToggleObservableController<Filter.Numeric>
-    
+
     var body: some View {
       VStack(spacing: 20) {
         FilterStateDebugView(filterStateController: filterStateController,
                              clearFilterController: clearFilterController)
-        HStack() {
+        HStack {
           if let numericFilter = numericFilterFilterObservableController.filter {
             Toggle(numericFilter.description, isOn: $numericFilterFilterObservableController.isSelected)
               .toggleStyle(.button)
@@ -61,16 +61,16 @@ struct ToggleFilterDemoSwiftUI: SwiftUIDemo, PreviewProvider {
             Toggle(tagFilter.description, isOn: $tagFilterFilterObservableController.isSelected)
               .toggleStyle(CheckboxToggleStyle())
           }
-          if let _ = facetFilterFilterObservableController.filter {
+          if facetFilterFilterObservableController.filter != nil {
             Toggle("Coupon", isOn: $facetFilterFilterObservableController.isSelected)
           }
         }
         Spacer()
       }.padding()
     }
-    
+
   }
-  
+
   static func contentView(with controller: Controller) -> ContentView {
     ContentView(filterStateController: controller.filterStateController,
                 clearFilterController: controller.clearFilterController,
@@ -78,7 +78,7 @@ struct ToggleFilterDemoSwiftUI: SwiftUIDemo, PreviewProvider {
                 facetFilterFilterObservableController: controller.facetFilterFilterObservableController,
                 numericFilterFilterObservableController: controller.numericFilterFilterObservableController)
   }
-  
+
   static let controller = Controller()
   static var previews: some View {
     NavigationView {
@@ -86,7 +86,7 @@ struct ToggleFilterDemoSwiftUI: SwiftUIDemo, PreviewProvider {
         .navigationBarTitle("Filter Toggle")
     }
   }
-  
+
 }
 
 struct CheckboxToggleStyle: ToggleStyle {

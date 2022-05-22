@@ -10,13 +10,13 @@ import Foundation
 import InstantSearch
 
 class SortByDemoController {
-  
+
   let searcher: HitsSearcher
   let searchBoxConnector: SearchBoxConnector
   let statsConnector: StatsConnector
   let hitsConnector: HitsConnector<Hit<StoreItem>>
   let sortByConnector: SortByConnector
-  
+
   init() {
     self.searcher = HitsSearcher(client: .ecommerce,
                                  indexName: .ecommerceProducts)
@@ -31,7 +31,7 @@ class SortByDemoController {
     searcher.search()
     searcher.isDisjunctiveFacetingEnabled = false
   }
-  
+
   func title(for indexName: IndexName) -> String {
     switch indexName {
     case .ecommerceProducts:
@@ -44,5 +44,5 @@ class SortByDemoController {
       return indexName.rawValue
     }
   }
-  
+
 }

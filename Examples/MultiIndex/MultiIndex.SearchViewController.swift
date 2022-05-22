@@ -11,7 +11,7 @@ import InstantSearch
 import UIKit
 
 enum MultiIndex {
-  
+
   struct Movie: Codable {
     let title: String
   }
@@ -19,20 +19,20 @@ enum MultiIndex {
   struct Actor: Codable {
     let name: String
   }
-  
+
   class SearchViewController: UIViewController {
-    
+
     let searchController: UISearchController
-    
+
     let searchBoxConnector: SearchBoxConnector
     let textFieldController: TextFieldController
 
     let searcher: MultiSearcher
     let actorHitsInteractor: HitsInteractor<Hit<Actor>>
     let movieHitsInteractor: HitsInteractor<Hit<Movie>>
-    
+
     let searchResultsController: SearchResultsController
-      
+
     override init(nibName nibNameOrNil: String?, bundle nibBundleOrNil: Bundle?) {
       searcher = .init(client: .instantSearch)
       searchResultsController = .init()
@@ -44,32 +44,32 @@ enum MultiIndex {
                                  controller: textFieldController)
       super.init(nibName: nibNameOrNil, bundle: nibBundleOrNil)
     }
-    
+
     required init?(coder: NSCoder) {
       fatalError("init(coder:) has not been implemented")
     }
-    
+
     override func viewDidLoad() {
       super.viewDidLoad()
-      
+
       configureUI()
-      
+
       let actorsSearcher = searcher.addHitsSearcher(indexName: .actors)
       actorHitsInteractor.connectSearcher(actorsSearcher)
       searchResultsController.actorsHitsInteractor = actorHitsInteractor
-      
+
       let moviesSearcher = searcher.addHitsSearcher(indexName: .movies)
       movieHitsInteractor.connectSearcher(moviesSearcher)
       searchResultsController.moviesHitsInteractor = movieHitsInteractor
-      
+
       searcher.search()
     }
-    
+
     override func viewDidAppear(_ animated: Bool) {
       super.viewDidAppear(animated)
       searchController.isActive = true
     }
-    
+
     func configureUI() {
       title = "Multi-Index Search"
       view.backgroundColor = .systemBackground
@@ -79,7 +79,7 @@ enum MultiIndex {
       searchController.automaticallyShowsCancelButton = false
       navigationItem.searchController = searchController
     }
-    
+
   }
-    
+
 }

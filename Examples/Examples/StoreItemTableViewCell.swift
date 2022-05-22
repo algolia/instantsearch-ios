@@ -10,7 +10,7 @@ import AlgoliaSearchClient
 import UIKit
 
 class StoreItemTableViewCell: UITableViewCell {
-  
+
   let storeItemView: StoreItemView
 
   override init(style: UITableViewCell.CellStyle, reuseIdentifier: String?) {
@@ -20,9 +20,9 @@ class StoreItemTableViewCell: UITableViewCell {
     contentView.addSubview(storeItemView)
     storeItemView.pin(to: contentView)
   }
-  
+
   required init?(coder: NSCoder) {
     fatalError("init(coder:) has not been implemented")
   }
-  
+
 }

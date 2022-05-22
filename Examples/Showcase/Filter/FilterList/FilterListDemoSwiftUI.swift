@@ -12,16 +12,16 @@ import InstantSearchSwiftUI
 import SwiftUI
 
 struct FilterListDemoSwiftUI: PreviewProvider {
-  
+
   class Controller<F: FilterType & Hashable> {
-    
+
     let title: String
     let observableController: FilterListObservableController<F>
     let demoController: FilterListDemoController<F>
     let clearFilterController: FilterClearObservableController
     let filters: [F]
     let description: (F) -> String
-    
+
     init(title: String,
          filters: [F],
          selectionMode: SelectionMode,
@@ -36,17 +36,17 @@ struct FilterListDemoSwiftUI: PreviewProvider {
       self.description = description
       demoController.clearFilterConnector.connectController(clearFilterController)
     }
-    
+
   }
-  
+
   struct ContentView<Filter: FilterType & Hashable>: View {
-    
+
     let title: String
     let description: (Filter) -> String
     let controller: FilterListObservableController<Filter>
     let filterStateController: FilterStateObservableController
     @ObservedObject var clearFilterController: FilterClearObservableController
-    
+
     init(filterStateController: FilterStateObservableController,
          clearFilterController: FilterClearObservableController,
          controller: FilterListObservableController<Filter>,
@@ -58,7 +58,7 @@ struct FilterListDemoSwiftUI: PreviewProvider {
       self.description = description
       self.title = title
     }
-    
+
     public var body: some View {
       VStack {
         FilterStateDebugView(filterStateController: filterStateController,
@@ -73,7 +73,7 @@ struct FilterListDemoSwiftUI: PreviewProvider {
       .navigationBarTitle(title)
       .padding()
     }
-    
+
     func selectableText(text: String, isSelected: Bool) -> some View {
       HStack {
         Text(text)
@@ -85,14 +85,14 @@ struct FilterListDemoSwiftUI: PreviewProvider {
       }
       .contentShape(Rectangle())
     }
-    
+
   }
-  
+
   class ViewController<F: FilterType & Hashable>: UIHostingController<ContentView<F>> {
-    
+
     let controller: Controller<F>
     let filterStateObservableController: FilterStateObservableController
-    
+
     init(controller: Controller<F>) {
       self.controller = controller
       filterStateObservableController = .init(filterState: controller.demoController.filterState)
@@ -103,27 +103,27 @@ struct FilterListDemoSwiftUI: PreviewProvider {
                                     title: controller.title)
       super.init(rootView: contentView)
       UIScrollView.appearance().keyboardDismissMode = .interactive
-      
+
     }
-    
+
     @objc required dynamic init?(coder aDecoder: NSCoder) {
       fatalError("init(coder:) has not been implemented")
     }
-    
+
   }
-  
+
   static func facetViewController() -> ViewController<FacetFilter> {
     return ViewController(controller: facetController)
   }
-  
+
   static func numericViewController() -> ViewController<NumericFilter> {
     return ViewController(controller: numericController)
   }
-  
+
   static func tagViewController() -> ViewController<TagFilter> {
     return ViewController(controller: tagController)
   }
-  
+
   static let facetController = Controller(title: "Color",
                                           filters: ["red",
                                                     "blue",
@@ -134,8 +134,7 @@ struct FilterListDemoSwiftUI: PreviewProvider {
   },
                                           selectionMode: .multiple,
                                           description: \.value.description)
-  
-  
+
   static let numericController = Controller(title: "Price", filters: [
     NumericFilter(attribute: "price", operator: .lessThan, value: 5),
     NumericFilter(attribute: "price", range: 5...10),
@@ -144,8 +143,7 @@ struct FilterListDemoSwiftUI: PreviewProvider {
     NumericFilter(attribute: "price", operator: .greaterThan, value: 100)
   ], selectionMode: .single,
                                             description: \.value.description)
-  
-  
+
   static let tagController = Controller(title: "Promotion",
                                         filters: [Filter.Tag]([
                                           "coupon",
@@ -156,7 +154,7 @@ struct FilterListDemoSwiftUI: PreviewProvider {
                                         ]),
                                         selectionMode: .multiple,
                                         description: \.value.description)
-  
+
   static var previews: some View {
     NavigationView {
       ContentView(filterStateController: FilterStateObservableController(filterState: facetController.demoController.filterState),
@@ -180,5 +178,5 @@ struct FilterListDemoSwiftUI: PreviewProvider {
                   title: tagController.title)
     }
   }
-  
+
 }

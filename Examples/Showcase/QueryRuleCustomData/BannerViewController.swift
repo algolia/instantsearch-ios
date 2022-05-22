@@ -11,7 +11,7 @@ import UIKit
 import InstantSearchCore
 
 class BannerViewController: UIViewController, ItemController {
-  
+
   var banner: Banner? {
     didSet {
       guard let banner = banner else { return }
@@ -23,11 +23,11 @@ class BannerViewController: UIViewController, ItemController {
       }
     }
   }
-  
+
   let imageView: UIImageView
   let label: UILabel
   var didTapBanner: (() -> Void)?
-  
+
   override init(nibName nibNameOrNil: String?, bundle nibBundleOrNil: Bundle?) {
     imageView = .init()
     label = .init()
@@ -38,11 +38,11 @@ class BannerViewController: UIViewController, ItemController {
     view.isUserInteractionEnabled = true
     view.addGestureRecognizer(tapGestureRecognizer)
   }
-  
+
   required init?(coder: NSCoder) {
     fatalError("init(coder:) has not been implemented")
   }
-  
+
   override func viewDidLoad() {
     super.viewDidLoad()
     imageView.translatesAutoresizingMaskIntoConstraints = false
@@ -53,11 +53,11 @@ class BannerViewController: UIViewController, ItemController {
     view.addSubview(label)
     label.pin(to: view, insets: .init(top: 10, left: 10, bottom: -10, right: -10))
   }
-  
+
   @objc func didTapBanner(_ tapGestureRecognizer: UITapGestureRecognizer) {
     didTapBanner?()
   }
-  
+
   func setItem(_ item: Banner?) {
     banner = item
     if banner == nil {
@@ -69,5 +69,5 @@ class BannerViewController: UIViewController, ItemController {
       view.isHidden = false
     }
   }
-  
+
 }

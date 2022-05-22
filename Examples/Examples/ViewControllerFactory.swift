@@ -9,9 +9,9 @@ import Foundation
 import UIKit
 
 protocol ViewControllerFactory {
-  
+
   associatedtype Model
-  
+
   func viewController(for model: Model) -> UIViewController?
-  
+
 }

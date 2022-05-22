@@ -10,15 +10,15 @@ import UIKit
 import InstantSearch
 
 class SortByDemoViewController: UIViewController {
-  
+
   let demoController: SortByDemoController
 
   let searchController: UISearchController
   let textFieldController: TextFieldController
   let resultsViewController: ResultsViewController
-  
-  var onClick: ((Int) -> Void)? = nil
-  
+
+  var onClick: ((Int) -> Void)?
+
   override init(nibName nibNameOrNil: String?, bundle nibBundleOrNil: Bundle?) {
     self.demoController = .init()
     self.resultsViewController = .init(searcher: demoController.searcher)
@@ -36,7 +36,7 @@ class SortByDemoViewController: UIViewController {
     super.viewDidLoad()
     setupUI()
   }
-  
+
   override func viewDidAppear(_ animated: Bool) {
     super.viewDidAppear(animated)
     searchController.isActive = true
@@ -49,7 +49,7 @@ class SortByDemoViewController: UIViewController {
     demoController.searchBoxConnector.connectController(textFieldController)
     demoController.sortByConnector.connectController(self, presenter: demoController.title(for:))
   }
-  
+
   private func setupUI() {
     title = "Sort By"
     view.backgroundColor = .systemBackground
@@ -63,24 +63,23 @@ class SortByDemoViewController: UIViewController {
 }
 
 extension SortByDemoViewController: UISearchBarDelegate {
-    
+
   func searchBar(_ searchBar: UISearchBar, selectedScopeButtonIndexDidChange selectedScope: Int) {
     onClick?(selectedScope)
   }
-  
+
 }
 
 extension SortByDemoViewController: SelectableSegmentController {
-      
+
   func setItems(items: [Int: String]) {
     searchController.searchBar.scopeButtonTitles = items.sorted(by: \.key).map(\.value)
   }
 
-  
   func setSelected(_ selected: Int?) {
     if let index = selected {
       searchController.searchBar.selectedScopeButtonIndex = index
     }
   }
-  
+
 }

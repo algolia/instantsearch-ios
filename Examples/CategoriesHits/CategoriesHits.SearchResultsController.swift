@@ -10,15 +10,15 @@ import InstantSearch
 import UIKit
 
 extension CategoriesHits {
-  
+
   class SearchResultsController: UITableViewController {
-    
+
     var didSelectSuggestion: ((String) -> Void)?
-    
+
     enum Section: Int, CaseIterable {
       case categories
       case hits
-      
+
       var title: String {
         switch self {
         case .categories:
@@ -27,7 +27,7 @@ extension CategoriesHits {
           return "Products"
         }
       }
-      
+
       var cellReuseIdentifier: String {
         switch self {
         case .categories:
@@ -36,15 +36,15 @@ extension CategoriesHits {
           return "hits"
         }
       }
-      
+
       init?(section: Int) {
         self.init(rawValue: section)
       }
-      
+
       init?(indexPath: IndexPath) {
         self.init(section: indexPath.section)
       }
-                  
+
     }
 
     weak var categoriesInteractor: FacetListInteractor? {
@@ -56,7 +56,7 @@ extension CategoriesHits {
         }.onQueue(.main)
       }
     }
-    
+
     weak var hitsInteractor: HitsInteractor<Hit<Product>>? {
       didSet {
         oldValue?.onResultsUpdated.cancelSubscription(for: tableView)
@@ -66,17 +66,17 @@ extension CategoriesHits {
         }.onQueue(.main)
       }
     }
-    
+
     override func viewDidLoad() {
       super.viewDidLoad()
       tableView.register(CategoryTableViewCell.self, forCellReuseIdentifier: Section.categories.cellReuseIdentifier)
       tableView.register(ProductTableViewCell.self, forCellReuseIdentifier: Section.hits.cellReuseIdentifier)
     }
-    
+
     override func numberOfSections(in tableView: UITableView) -> Int {
       return Section.allCases.count
     }
-    
+
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
       guard let section = Section(rawValue: section) else { return 0 }
       switch section {
@@ -86,12 +86,12 @@ extension CategoriesHits {
         return hitsInteractor?.numberOfHits() ?? 0
       }
     }
-    
+
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
       guard let section = Section(rawValue: indexPath.section) else { return UITableViewCell() }
 
       let cell: UITableViewCell
-      
+
       switch section {
       case .categories:
         cell = tableView.dequeueReusableCell(withIdentifier: Section.categories.cellReuseIdentifier, for: indexPath)
@@ -108,10 +108,10 @@ extension CategoriesHits {
           productTableViewCell.setup(with: hit)
         }
       }
-      
+
       return cell
     }
-    
+
     override func tableView(_ tableView: UITableView, titleForHeaderInSection section: Int) -> String? {
       guard let section = Section(rawValue: section) else { return nil }
       switch section {
@@ -123,7 +123,7 @@ extension CategoriesHits {
         return section.title
       }
     }
-    
+
     override func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
       guard let section = Section(indexPath: indexPath) else { return 0 }
       switch section {
@@ -133,7 +133,7 @@ extension CategoriesHits {
         return 100
       }
     }
-    
+
     override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
       guard let section = Section(rawValue: indexPath.section) else { return }
       switch section {
@@ -148,5 +148,5 @@ extension CategoriesHits {
     }
 
   }
-  
+
 }

@@ -10,14 +10,14 @@ import Foundation
 import InstantSearch
 
 class RelevantSortDemoController {
-  
+
   let searcher: HitsSearcher
   let searchBoxConnector: SearchBoxConnector
   let hitsConnector: HitsConnector<Hit<Product>>
   let sortByConnector: SortByConnector
   let relevantSortConnector: RelevantSortConnector
   let statsConnector: StatsConnector
-  
+
   init() {
     let indices: [IndexName] = [
       "test_Bestbuy",
@@ -36,7 +36,7 @@ class RelevantSortDemoController {
     self.statsConnector = .init(searcher: searcher)
     searcher.search()
   }
-  
+
   func title(for indexName: IndexName) -> String {
     switch indexName {
     case "test_Bestbuy":
@@ -49,5 +49,5 @@ class RelevantSortDemoController {
       return indexName.rawValue
     }
   }
-  
+
 }

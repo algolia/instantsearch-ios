@@ -20,7 +20,6 @@ extension IndexName {
   static let ecommerceSuggestions: IndexName = "STAGING_native_ecom_demo_products_query_suggestions"
 }
 
-
 extension RecommendClient {
   static let ecommerceRecommend = Self(appID: "XX85YRZZMV", apiKey: "d17ff64e913b3293cfba3d3665480217")
 }

@@ -9,9 +9,9 @@ import SwiftUI
 
 @main
 struct MediaDemoApp: App {
-  
+
   let controller = Controller()
-  
+
   var body: some Scene {
     WindowGroup {
       NavigationView {

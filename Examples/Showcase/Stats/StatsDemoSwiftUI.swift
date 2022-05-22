@@ -12,13 +12,13 @@ import InstantSearchSwiftUI
 import SwiftUI
 
 struct StatsDemoSwiftUI: SwiftUIDemo, PreviewProvider {
-  
+
   class Controller {
-    
+
     let demoController: StatsDemoController
     let searchBoxController: SearchBoxObservableController
     let statsController: StatsTextObservableController
-    
+
     init() {
       searchBoxController = .init()
       demoController = .init()
@@ -31,16 +31,16 @@ struct StatsDemoSwiftUI: SwiftUIDemo, PreviewProvider {
         return "\(stats.totalHitsCount) hits in \(stats.processingTimeMS) ms"
       }
     }
-    
+
   }
-  
+
   struct ContentView: View {
-    
+
     @ObservedObject var searchBoxController: SearchBoxObservableController
     @ObservedObject var statsController: StatsTextObservableController
-    
+
     var body: some View {
-      VStack() {
+      VStack {
         Text(statsController.stats)
           .padding()
         Text(statsController.stats)
@@ -50,14 +50,14 @@ struct StatsDemoSwiftUI: SwiftUIDemo, PreviewProvider {
       }
       .searchable(text: $searchBoxController.query)
     }
-    
+
   }
-  
+
   static func contentView(with controller: Controller) -> ContentView {
     ContentView(searchBoxController: controller.searchBoxController,
                 statsController: controller.statsController)
   }
-  
+
   static let controller = Controller()
   static var previews: some View {
     NavigationView {
@@ -66,4 +66,3 @@ struct StatsDemoSwiftUI: SwiftUIDemo, PreviewProvider {
     }
   }
 }
-

@@ -10,21 +10,21 @@ import Foundation
 import InstantSearch
 
 class ToggleFilterDemoController {
-  
+
   let searcher: HitsSearcher
   let filterState: FilterState
   let clearFilterConnector: FilterClearConnector
-  
+
   let sizeConstraintConnector: FilterToggleConnector<Filter.Numeric>
   let vintageConnector: FilterToggleConnector<Filter.Tag>
   let couponConnector: FilterToggleConnector<Filter.Facet>
-  
+
   init() {
     searcher = HitsSearcher(client: .instantSearch,
                             indexName: .filterToggle)
     filterState = .init()
     clearFilterConnector = .init(filterState: filterState)
-    
+
     // Size constraint button
     let sizeConstraintFilter = Filter.Numeric(attribute: "size", operator: .greaterThan, value: 40)
     sizeConstraintConnector = .init(filterState: filterState,
@@ -40,10 +40,8 @@ class ToggleFilterDemoController {
     couponConnector = .init(filterState: filterState,
                             filter: couponFacet)
 
-    
     searcher.connectFilterState(filterState)
     searcher.search()
   }
-  
-  
+
 }

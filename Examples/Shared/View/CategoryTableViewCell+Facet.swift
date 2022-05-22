@@ -10,7 +10,7 @@ import UIKit
 import AlgoliaSearchClient
 
 extension CategoryTableViewCell {
-  
+
   func setup(with facet: Facet) {
     guard let textLabel = textLabel else { return }
     if let rawHighlighted = facet.highlighted {
@@ -23,5 +23,5 @@ extension CategoryTableViewCell {
       textLabel.text = facet.value
     }
   }
-  
+
 }

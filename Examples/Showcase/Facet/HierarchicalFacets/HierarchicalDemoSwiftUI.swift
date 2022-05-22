@@ -12,14 +12,14 @@ import InstantSearchSwiftUI
 import SwiftUI
 
 class HierarchicalDemoSwiftUI: SwiftUIDemo, PreviewProvider {
-  
+
   class Controller {
-    
+
     let demoController: HierarchicalDemoController
     let filterStateController: FilterStateObservableController
     let clearFilterController: FilterClearObservableController
     let observableController: HierarchicalObservableController
-    
+
     init() {
       observableController = HierarchicalObservableController()
       demoController = HierarchicalDemoController(controller: observableController)
@@ -27,11 +27,11 @@ class HierarchicalDemoSwiftUI: SwiftUIDemo, PreviewProvider {
       clearFilterController = .init()
       demoController.clearFilterConnector.connectController(clearFilterController)
     }
-    
+
   }
-  
+
   struct ContentView: View {
-    
+
     let hierarchicalController: HierarchicalObservableController
     let filterStateController: FilterStateObservableController
     @ObservedObject var clearFilterController: FilterClearObservableController
@@ -51,15 +51,15 @@ class HierarchicalDemoSwiftUI: SwiftUIDemo, PreviewProvider {
       }
       .padding()
     }
-    
+
   }
-  
+
   static func contentView(with controller: Controller) -> ContentView {
     ContentView(hierarchicalController: controller.observableController,
                 filterStateController: controller.filterStateController,
                 clearFilterController: controller.clearFilterController)
   }
-  
+
   static let controller = Controller()
   static var previews: some View {
     NavigationView {
@@ -67,6 +67,5 @@ class HierarchicalDemoSwiftUI: SwiftUIDemo, PreviewProvider {
         .navigationBarTitle("Hierarchical Facets")
     }
   }
-  
-}
 
+}

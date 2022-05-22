@@ -10,10 +10,10 @@ import InstantSearchSwiftUI
 import SwiftUI
 
 struct ContentView: View {
-  
+
   @ObservedObject var searchBoxController: SearchBoxObservableController
   @ObservedObject var hitsController: HitsObservableController<Hit<Movie>>
-  
+
   var body: some View {
     NavigationView {
       HitsList(hitsController) { hit, _ in
@@ -27,18 +27,18 @@ struct ContentView: View {
     }
     .searchable(text: $searchBoxController.query)
   }
-  
+
 }
 
 struct ContentView_Previews: PreviewProvider {
-  
+
   static let controller = Controller()
-  
+
   static var previews: some View {
     ContentView(searchBoxController: controller.searchBoxController,
                 hitsController: controller.hitsController)
     .navigationBarTitle("Algolia")
-    
+
   }
-  
+
 }

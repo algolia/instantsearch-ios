@@ -10,9 +10,9 @@ import InstantSearchCore
 import SwiftUI
 
 struct MovieRow: View {
-  
+
   let movieHit: Hit<Movie>
-  
+
   var body: some View {
     VStack {
       HStack {
@@ -46,8 +46,7 @@ struct MovieRow: View {
         Spacer()
       }
     }
-    
-  }
-  
-}
 
+  }
+
+}

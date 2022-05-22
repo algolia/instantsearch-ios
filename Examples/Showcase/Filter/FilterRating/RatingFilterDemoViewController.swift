@@ -11,7 +11,7 @@ import UIKit
 import InstantSearch
 
 class RatingFilterDemoViewController: UIViewController {
-  
+
   let demoController: RatingFilterDemoController
   let valueLabel: UILabel
   let stepper: UIStepper
@@ -30,27 +30,27 @@ class RatingFilterDemoViewController: UIViewController {
     filterDebugViewController = FilterDebugViewController(filterState: demoController.filterState)
     super.init(nibName: nibNameOrNil, bundle: nibBundleOrNil)
   }
-  
+
   required init?(coder: NSCoder) {
     fatalError("init(coder:) has not been implemented")
   }
-  
+
   override func viewDidLoad() {
     super.viewDidLoad()
     setupLayout()
     setup()
   }
-  
+
   private func setup() {
     addChild(filterDebugViewController)
     filterDebugViewController.didMove(toParent: self)
     demoController.numberInteractor.connectNumberController(ratingController)
     demoController.clearFilterConnector.connectController(filterDebugViewController.clearFilterController)
   }
-  
+
   func setupLayout() {
     view.backgroundColor = .systemBackground
-    
+
     let mainStackView = UIStackView()
     mainStackView.isLayoutMarginsRelativeArrangement = true
     mainStackView.layoutMargins = .init(top: 10, left: 10, bottom: 10, right: 10)
@@ -59,12 +59,12 @@ class RatingFilterDemoViewController: UIViewController {
     mainStackView.spacing = 10
     view.addSubview(mainStackView)
     mainStackView.pin(to: view)
-    
+
     let searchDebugView = filterDebugViewController.view!
     searchDebugView.translatesAutoresizingMaskIntoConstraints = false
     searchDebugView.heightAnchor.constraint(equalToConstant: 150).isActive = true
     mainStackView.addArrangedSubview(searchDebugView)
-    
+
     ratingControl.translatesAutoresizingMaskIntoConstraints = false
     ratingControl.value = 3.5
     ratingControl.maximumValue = 5
@@ -105,11 +105,11 @@ class RatingFilterDemoViewController: UIViewController {
     }
     refreshLabel()
   }
-  
+
   private func refreshLabel() {
     valueLabel.text = fractionalString(for: ratingControl.value, fractionDigits: 1)
   }
-  
+
   private func fractionalString(for value: Double, fractionDigits: Int) -> String {
     let formatter = NumberFormatter()
     formatter.minimumFractionDigits = fractionDigits

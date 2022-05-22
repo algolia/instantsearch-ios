@@ -11,16 +11,16 @@ import InstantSearch
 import SDWebImage
 
 class ResultsViewController: UIViewController {
-  
+
   let stackView: UIStackView
   let hitsViewController: StoreItemsTableViewController
-  
+
   let statsConnector: StatsConnector
   let statsController: LabelStatsController
-  
+
   let loadingConnector: LoadingConnector
   let loadingController: ActivityIndicatorController
-  
+
   init(searcher: HitsSearcher) {
     stackView = .init(frame: .zero)
     hitsViewController = .init(style: .plain)
@@ -32,11 +32,11 @@ class ResultsViewController: UIViewController {
     addChild(hitsViewController)
     hitsViewController.didMove(toParent: self)
   }
-  
+
   required init?(coder: NSCoder) {
     fatalError("init(coder:) has not been implemented")
   }
-  
+
   override func viewDidLoad() {
     super.viewDidLoad()
     stackView.translatesAutoresizingMaskIntoConstraints = false
@@ -46,7 +46,7 @@ class ResultsViewController: UIViewController {
       stackView.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor),
       stackView.bottomAnchor.constraint(equalTo: view.bottomAnchor),
       stackView.leadingAnchor.constraint(equalTo: view.leadingAnchor),
-      stackView.trailingAnchor.constraint(equalTo: view.trailingAnchor),
+      stackView.trailingAnchor.constraint(equalTo: view.trailingAnchor)
     ])
     statsController.label.heightAnchor.constraint(equalToConstant: 25).isActive = true
     statsController.label.translatesAutoresizingMaskIntoConstraints = false
@@ -63,5 +63,5 @@ class ResultsViewController: UIViewController {
     stackView.addArrangedSubview(detailsStackView)
     stackView.addArrangedSubview(hitsViewController.view)
   }
-  
+
 }

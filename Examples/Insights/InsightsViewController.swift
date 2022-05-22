@@ -10,16 +10,16 @@ import InstantSearchInsights
 import InstantSearch
 
 class InsightsViewController: UIViewController {
-  
+
   let searchController: UISearchController
   let searcher: HitsSearcher
-  
+
   let searchBoxConnector: SearchBoxConnector
   let textFieldController: TextFieldController
-  
+
   let hitsConnector: HitsConnector<Hit<StoreItem>>
   let searchResultsController: StoreItemsTableViewController
-  
+
   let hitsTracker: HitsTracker
 
   override init(nibName nibNameOrNil: String?, bundle nibBundleOrNil: Bundle?) {
@@ -38,17 +38,16 @@ class InsightsViewController: UIViewController {
                         insights: insights)
     super.init(nibName: nibNameOrNil, bundle: nibBundleOrNil)
   }
-  
+
   required init?(coder: NSCoder) {
     fatalError("init(coder:) has not been implemented")
   }
 
-  
   override func viewDidLoad() {
     super.viewDidLoad()
     setup()
   }
-  
+
   override func viewDidAppear(_ animated: Bool) {
     super.viewDidAppear(animated)
     searchController.isActive = true
@@ -62,12 +61,11 @@ class InsightsViewController: UIViewController {
     searchController.showsSearchResultsController = true
     searchController.automaticallyShowsCancelButton = false
     searcher.search()
-    
+
     searchResultsController.didSelect = { [weak self]  index, hit in
       self?.hitsTracker.trackClick(for: hit, position: index)
     }
-    
+
   }
 
 }
-

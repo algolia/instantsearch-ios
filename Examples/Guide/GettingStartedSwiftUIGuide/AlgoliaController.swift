@@ -11,7 +11,7 @@ import InstantSearchCore
 import InstantSearchSwiftUI
 
 class AlgoliaController {
-  
+
   let searcher: HitsSearcher
 
   let searchBoxInteractor: SearchBoxInteractor
@@ -24,7 +24,7 @@ class AlgoliaController {
   let statsController: StatsTextObservableController
 
   let filterState: FilterState
-  
+
   let facetListInteractor: FacetListInteractor
   let facetListController: FacetListObservableController
 
@@ -44,7 +44,7 @@ class AlgoliaController {
     setupConnections()
     searcher.search()
   }
-  
+
   func setupConnections() {
     searchBoxInteractor.connectSearcher(searcher)
     searchBoxInteractor.connectController(searchBoxController)
@@ -57,5 +57,5 @@ class AlgoliaController {
     facetListInteractor.connectFilterState(filterState, with: "manufacturer", operator: .or)
     facetListInteractor.connectController(facetListController, with: FacetListPresenter(sortBy: [.isRefined, .count(order: .descending)]))
   }
-      
+
 }

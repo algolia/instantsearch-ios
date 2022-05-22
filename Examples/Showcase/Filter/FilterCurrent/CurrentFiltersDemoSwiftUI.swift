@@ -12,14 +12,14 @@ import InstantSearchSwiftUI
 import SwiftUI
 
 struct CurrentFiltersDemoSwiftUI: SwiftUIDemo, PreviewProvider {
-  
+
   class Controller {
-    
+
     let demoController: CurrentFiltersDemoController
     let filterStateController: FilterStateObservableController
     let clearFilterController: FilterClearObservableController
     let currentFiltersController: CurrentFiltersObservableController
-    
+
     init() {
       demoController = .init()
       currentFiltersController = .init()
@@ -28,11 +28,11 @@ struct CurrentFiltersDemoSwiftUI: SwiftUIDemo, PreviewProvider {
       demoController.currentFiltersListConnector.connectController(currentFiltersController)
       demoController.clearFiltersConnector.connectController(clearFilterController)
     }
-    
+
   }
-  
+
   struct ContentView: View {
-    
+
     @ObservedObject var filterStateController: FilterStateObservableController
     @ObservedObject var clearFilterController: FilterClearObservableController
 
@@ -70,15 +70,15 @@ struct CurrentFiltersDemoSwiftUI: SwiftUIDemo, PreviewProvider {
       }
       .padding()
     }
-    
+
   }
-  
+
   static func contentView(with controller: Controller) -> ContentView {
     ContentView(filterStateController: controller.filterStateController,
                 clearFilterController: controller.clearFilterController,
                 currentFiltersController: controller.currentFiltersController)
   }
-  
+
   static let controller = Controller()
   static var previews: some View {
     NavigationView {
@@ -86,5 +86,5 @@ struct CurrentFiltersDemoSwiftUI: SwiftUIDemo, PreviewProvider {
         .navigationBarTitle("Current Filter")
     }
   }
-  
+
 }

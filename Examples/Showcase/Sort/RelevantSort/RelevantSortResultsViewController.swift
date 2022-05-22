@@ -10,7 +10,7 @@ import UIKit
 import InstantSearch
 
 class RelevantSortResultsViewController: UIViewController {
-    
+
   let hitsController: ProductsTableViewController
   let relevantSortController: RelevantSortToggleController
   let statsController: LabelStatsController
@@ -21,16 +21,16 @@ class RelevantSortResultsViewController: UIViewController {
     statsController = .init(label: .init())
     super.init(nibName: nil, bundle: nil)
   }
-  
+
   required init?(coder: NSCoder) {
     fatalError("init(coder:) has not been implemented")
   }
-  
+
   override func viewDidLoad() {
     super.viewDidLoad()
     setupUI()
   }
-  
+
   private func setupUI() {
     let infoStackView = UIStackView()
     infoStackView.spacing = 5
@@ -38,13 +38,13 @@ class RelevantSortResultsViewController: UIViewController {
     infoStackView.isLayoutMarginsRelativeArrangement = true
     infoStackView.axis = .vertical
     infoStackView.translatesAutoresizingMaskIntoConstraints = false
-    
+
     statsController.label.translatesAutoresizingMaskIntoConstraints = false
     infoStackView.addArrangedSubview(statsController.label)
 
     relevantSortController.view.translatesAutoresizingMaskIntoConstraints = false
     infoStackView.addArrangedSubview(relevantSortController.view)
-    
+
     let stackView = UIStackView()
     stackView.translatesAutoresizingMaskIntoConstraints = false
     stackView.axis = .vertical
@@ -53,11 +53,11 @@ class RelevantSortResultsViewController: UIViewController {
       stackView.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor),
       stackView.leadingAnchor.constraint(equalTo: view.safeAreaLayoutGuide.leadingAnchor),
       stackView.trailingAnchor.constraint(equalTo: view.safeAreaLayoutGuide.trailingAnchor),
-      stackView.bottomAnchor.constraint(equalTo: view.bottomAnchor),
+      stackView.bottomAnchor.constraint(equalTo: view.bottomAnchor)
     ])
 
     stackView.addArrangedSubview(infoStackView)
     stackView.addArrangedSubview(hitsController.view)
   }
-  
+
 }

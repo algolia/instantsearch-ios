@@ -13,7 +13,7 @@ import UIKit
 class ClearFiltersDemoViewController: UIViewController {
 
   let demoController: ClearFiltersDemoController
-  
+
   let filterDebugViewController: FilterDebugViewController
 
   let clearGroupController: FilterClearButtonController
@@ -70,7 +70,7 @@ class ClearFiltersDemoViewController: UIViewController {
     mainStackView.layoutMargins = .init(top: 10, left: 10, bottom: 10, right: 10)
     mainStackView.spacing = 10
     mainStackView.translatesAutoresizingMaskIntoConstraints = false
-    
+
     mainStackView.addArrangedSubview(filterDebugViewController.view)
     filterDebugViewController.view.heightAnchor.constraint(equalToConstant: 150).isActive = true
 
@@ -81,10 +81,10 @@ class ClearFiltersDemoViewController: UIViewController {
 
     buttonsStackView.addArrangedSubview(clearGroupController.button)
     buttonsStackView.addArrangedSubview(clearExceptGroupController.button)
-    
+
     mainStackView.addArrangedSubview(buttonsStackView)
     mainStackView.addArrangedSubview(.init())
-    
+
     view.addSubview(mainStackView)
     mainStackView.pin(to: view.safeAreaLayoutGuide)
 

@@ -55,7 +55,7 @@ let package = Package(
         .copy("Misc/disjunctiveHierarchical.json"),
         .copy("Misc/hierarchical.json"),
         .copy("Misc/SearchResultFacets.json"),
-        .copy("Misc/SearchResultFacets2.json"),
+        .copy("Misc/SearchResultFacets2.json")
       ]),
     .target(
       name: "InstantSearch",
@@ -69,6 +69,6 @@ let package = Package(
     .testTarget(
       name: "InstantSearchSwiftUITests",
       dependencies: ["InstantSearchSwiftUI"])
-    
+
   ]
 )

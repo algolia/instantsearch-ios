@@ -9,9 +9,9 @@ import SwiftUI
 
 @main
 struct WatchSearchApp: App {
-  
+
   let controller = Controller()
-  
+
   @SceneBuilder var body: some Scene {
     WindowGroup {
       NavigationView {
@@ -19,7 +19,7 @@ struct WatchSearchApp: App {
                     hitsController: controller.hitsController)
       }
     }
-    
+
     WKNotificationScene(controller: NotificationController.self, category: "myCategory")
   }
 }

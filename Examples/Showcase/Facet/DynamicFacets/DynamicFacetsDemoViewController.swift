@@ -11,13 +11,13 @@ import InstantSearch
 import UIKit
 
 class DynamicFacetListDemoViewController: UIViewController {
-  
+
   let searchController: UISearchController
   let demoController: DynamicFacetListDemoController
-  
+
   let textFieldController: TextFieldController
   let facetsTableViewController: DynamicFacetListTableViewController
-    
+
   override init(nibName nibNameOrNil: String?, bundle nibBundleOrNil: Bundle?) {
     facetsTableViewController = .init()
     searchController = .init(searchResultsController: facetsTableViewController)
@@ -26,21 +26,21 @@ class DynamicFacetListDemoViewController: UIViewController {
                            dynamicFacetListController: facetsTableViewController)
     super.init(nibName: nibNameOrNil, bundle: nibBundleOrNil)
   }
-  
+
   required init?(coder: NSCoder) {
     fatalError("init(coder:) has not been implemented")
   }
-  
+
   override func viewDidLoad() {
     super.viewDidLoad()
     setupUI()
   }
-  
+
   override func viewDidAppear(_ animated: Bool) {
     super.viewDidAppear(animated)
     searchController.isActive = true
   }
-  
+
   private func setupUI() {
     title = "Dynamic Facets"
     view.backgroundColor = .systemBackground
@@ -53,11 +53,11 @@ class DynamicFacetListDemoViewController: UIViewController {
     searchController.showsSearchResultsController = true
     searchController.automaticallyShowsCancelButton = false
   }
-  
+
   @objc private func presentHint() {
     let hintController = UIAlertController(title: "Help", message: DynamicFacetListDemoController.helpMessage, preferredStyle: .alert)
     hintController.addAction(UIAlertAction(title: "OK", style: .cancel))
     present(hintController, animated: true)
   }
-  
+
 }

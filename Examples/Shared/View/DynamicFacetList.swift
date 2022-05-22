@@ -10,15 +10,15 @@ import InstantSearchSwiftUI
 import SwiftUI
 
 struct DynamicFacetList: View {
-  
+
   @ObservedObject var dynamicFacetListController: DynamicFacetListObservableController
-  
+
   var body: some View {
     ScrollView {
       ForEach(dynamicFacetListController.orderedFacets, id: \.attribute) { orderedFacet in
         Section(header: header(withTitle: "\(orderedFacet.attribute.rawValue)")) {
           ForEach(orderedFacet.facets, id: \.value) { facet in
-            VStack() {
+            VStack {
               FacetRow(facet: facet,
                        isSelected: dynamicFacetListController.isSelected(facet, for: orderedFacet.attribute))
               .onTapGesture {
@@ -33,7 +33,7 @@ struct DynamicFacetList: View {
       }
     }
   }
-  
+
   @ViewBuilder func header(withTitle title: String) -> some View {
     VStack(spacing: 0) {
       Text(title)
@@ -44,5 +44,5 @@ struct DynamicFacetList: View {
     }
     .padding(.horizontal, 20)
   }
-  
+
 }

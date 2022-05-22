@@ -47,11 +47,11 @@ class FacetListTableController: NSObject, FacetListController {
 }
 
 extension FacetListTableController: UITableViewDataSource {
-  
+
   func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
     return selectableItems.count
   }
-  
+
   func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
     let cell = tableView.dequeueReusableCell(withIdentifier: cellID, for: indexPath)
     let selectableRefinement = selectableItems[indexPath.row]
@@ -60,28 +60,28 @@ extension FacetListTableController: UITableViewDataSource {
                                                                 .font: UIFont.systemFont(ofSize: 14)]
     let facetCountString = NSAttributedString(string: " (\(selectableRefinement.item.count))", attributes: facetCountStringColor)
     facetAttributedString.append(facetCountString)
-    
+
     cell.textLabel?.attributedText = facetAttributedString
-    
+
     cell.accessoryType = selectableRefinement.isSelected ? .checkmark : .none
-    
+
     return cell
   }
-  
+
 }
 
 extension FacetListTableController: UITableViewDelegate {
-  
+
   func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
     let selectableItem = selectableItems[indexPath.row]
-    
+
     self.onClick?(selectableItem.item)
   }
-  
+
   func tableView(_ tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
-    
+
     guard let titleDescriptor = titleDescriptor else { return nil }
-    
+
     let view = UIView(frame: CGRect(x: 0, y: 0, width: tableView.frame.width, height: 3 * 16))
     let label = UILabel(frame: CGRect(x: 5, y: 16, width: tableView.frame.width, height: 2 * 16))
     label.font = .systemFont(ofSize: 12)
@@ -90,16 +90,16 @@ extension FacetListTableController: UITableViewDelegate {
     view.addSubview(label)
     view.backgroundColor = UIColor(hexString: "#f7f8fa")
     label.textColor = .gray
-    
+
     label.text = titleDescriptor.text
     label.textColor = titleDescriptor.color
-    
+
     return view
   }
-  
+
   func tableView(_ tableView: UITableView, heightForHeaderInSection section: Int) -> CGFloat {
     guard titleDescriptor != nil else { return 0 }
     return 3 * 16
   }
-  
+
 }

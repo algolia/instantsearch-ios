@@ -5,6 +5,7 @@
 //  Created by Vladislav Fitc on 29/07/2020.
 //  Copyright © 2020 Algolia. All rights reserved.
 //
+// swiftlint:disable file_length line_length unused_optional_binding
 
 import Foundation
 import UIKit
@@ -75,7 +76,7 @@ struct Item: Codable {
   let name: String
 }
 */
- 
+
 /**
  ## Hits view controller
  
@@ -85,30 +86,30 @@ struct Item: Codable {
  */
 
 class SearchResultsViewController: UITableViewController, HitsController {
-  
+
   var hitsSource: HitsInteractor<Item>?
-    
+
   override func viewDidLoad() {
     super.viewDidLoad()
     tableView.register(UITableViewCell.self, forCellReuseIdentifier: "cell")
   }
-      
+
   override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
     hitsSource?.numberOfHits() ?? 0
   }
-  
+
   override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
     let cell = tableView.dequeueReusableCell(withIdentifier: "cell", for: indexPath)
     cell.textLabel?.text = hitsSource?.hit(atIndex: indexPath.row)?.name
     return cell
   }
-  
+
   override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
     if let _ = hitsSource?.hit(atIndex: indexPath.row) {
       // Handle hit selection
     }
   }
-  
+
 }
 
 /**
@@ -118,12 +119,12 @@ class SearchResultsViewController: UITableViewController, HitsController {
  */
 
 extension GettingStartedGuide.StepOne {
-  
+
   class ViewController: UIViewController {
-    
+
     lazy var searchController = UISearchController(searchResultsController: hitsViewController)
     let hitsViewController = SearchResultsViewController()
-    
+
   }
 
 }
@@ -140,10 +141,10 @@ extension GettingStartedGuide.StepOne {
 extension GettingStartedGuide.StepTwo {
 
   class ViewController: UIViewController {
-        
+
     lazy var searchController = UISearchController(searchResultsController: hitsViewController)
     let hitsViewController = SearchResultsViewController()
-    
+
     let searcher = HitsSearcher(appID: "latency",
                                 apiKey: "1f6fd3a6fb973cb08419fe7d288fa4db",
                                 indexName: "bestbuy")
@@ -151,15 +152,15 @@ extension GettingStartedGuide.StepTwo {
                                                      searchController: searchController,
                                                      hitsInteractor: .init(),
                                                      hitsController: hitsViewController)
-    
+
     override func viewDidLoad() {
       super.viewDidLoad()
       searchConnector.connect()
       searcher.search()
     }
-                
+
   }
-  
+
 }
 
 /**
@@ -167,10 +168,9 @@ extension GettingStartedGuide.StepTwo {
  */
 
 extension GettingStartedGuide.StepThree {
-  
+
   class ViewController: UIViewController {
-        
-    
+
     lazy var searchController = UISearchController(searchResultsController: hitsViewController)
     let hitsViewController = SearchResultsViewController()
 
@@ -181,19 +181,19 @@ extension GettingStartedGuide.StepThree {
                                                      searchController: searchController,
                                                      hitsInteractor: .init(),
                                                      hitsController: hitsViewController)
-    
+
     override func viewDidLoad() {
       super.viewDidLoad()
       searchConnector.connect()
       searcher.search()
       setupUI()
     }
-    
+
     override func viewDidAppear(_ animated: Bool) {
       super.viewDidAppear(animated)
       searchController.isActive = true
     }
-    
+
     func setupUI() {
       view.backgroundColor = .white
       navigationItem.searchController = searchController
@@ -201,9 +201,9 @@ extension GettingStartedGuide.StepThree {
       searchController.showsSearchResultsController = true
       searchController.automaticallyShowsCancelButton = false
     }
-        
+
   }
-  
+
 }
 
 /**
@@ -215,9 +215,9 @@ extension GettingStartedGuide.StepThree {
  */
 
 extension GettingStartedGuide.StepFour {
-  
+
   class ViewController: UIViewController {
-    
+
     lazy var searchController = UISearchController(searchResultsController: hitsViewController)
     let hitsViewController = SearchResultsViewController()
 
@@ -229,7 +229,7 @@ extension GettingStartedGuide.StepFour {
                                                      hitsInteractor: .init(),
                                                      hitsController: hitsViewController)
     let statsInteractor = StatsInteractor()
-    
+
     override func viewDidLoad() {
       super.viewDidLoad()
       searchConnector.connect()
@@ -237,12 +237,12 @@ extension GettingStartedGuide.StepFour {
       searcher.search()
       setupUI()
     }
-    
+
     override func viewDidAppear(_ animated: Bool) {
       super.viewDidAppear(animated)
       searchController.isActive = true
     }
-    
+
     func setupUI() {
       view.backgroundColor = .white
       navigationItem.searchController = searchController
@@ -250,9 +250,9 @@ extension GettingStartedGuide.StepFour {
       searchController.showsSearchResultsController = true
       searchController.automaticallyShowsCancelButton = false
     }
-        
+
   }
-  
+
 }
 
 /**
@@ -263,9 +263,9 @@ extension GettingStartedGuide.StepFour {
  */
 
 extension GettingStartedGuide.StepFive {
- 
+
   class ViewController: UIViewController {
-        
+
     lazy var searchController = UISearchController(searchResultsController: hitsTableViewController)
     let hitsTableViewController = SearchResultsViewController()
 
@@ -277,7 +277,7 @@ extension GettingStartedGuide.StepFive {
                                                      hitsInteractor: .init(),
                                                      hitsController: hitsTableViewController)
     let statsInteractor = StatsInteractor()
-    
+
     override func viewDidLoad() {
       super.viewDidLoad()
       searchConnector.connect()
@@ -286,12 +286,12 @@ extension GettingStartedGuide.StepFive {
       searcher.search()
       setupUI()
     }
-    
+
     override func viewDidAppear(_ animated: Bool) {
       super.viewDidAppear(animated)
       searchController.isActive = true
     }
-    
+
     func setupUI() {
       view.backgroundColor = .white
       navigationItem.searchController = searchController
@@ -299,13 +299,13 @@ extension GettingStartedGuide.StepFive {
       searchController.showsSearchResultsController = true
       searchController.automaticallyShowsCancelButton = false
     }
-        
+
   }
 
 }
 
 extension GettingStartedGuide.StepFive.ViewController: StatsTextController {
-  
+
   func setItem(_ item: String?) {
     title = item
   }
@@ -325,9 +325,9 @@ extension GettingStartedGuide.StepFive.ViewController: StatsTextController {
  */
 
 extension GettingStartedGuide.StepSix {
-  
+
   class ViewController: UIViewController {
-        
+
     lazy var searchController = UISearchController(searchResultsController: hitsViewController)
     let hitsViewController = SearchResultsViewController()
 
@@ -346,10 +346,10 @@ extension GettingStartedGuide.StepSix {
                                                     attribute: "category",
                                                     operator: .and,
                                                     controller: categoryListController)
-    
+
     lazy var categoryListController = FacetListTableController(tableView: categoryTableViewController.tableView)
     let categoryTableViewController = UITableViewController()
-    
+
     override func viewDidLoad() {
       super.viewDidLoad()
       searchConnector.connect()
@@ -359,12 +359,12 @@ extension GettingStartedGuide.StepSix {
       searcher.search()
       setupUI()
     }
-    
+
     override func viewDidAppear(_ animated: Bool) {
       super.viewDidAppear(animated)
       searchController.isActive = true
     }
-    
+
     func setupUI() {
       view.backgroundColor = .white
       navigationItem.searchController = searchController
@@ -372,17 +372,17 @@ extension GettingStartedGuide.StepSix {
       searchController.showsSearchResultsController = true
       searchController.automaticallyShowsCancelButton = false
     }
-        
+
   }
 
 }
 
 extension GettingStartedGuide.StepSix.ViewController: StatsTextController {
-  
+
   func setItem(_ item: String?) {
     title = item
   }
-  
+
 }
 
 /**
@@ -391,9 +391,9 @@ extension GettingStartedGuide.StepSix.ViewController: StatsTextController {
  */
 
 extension GettingStartedGuide.StepSeven {
-  
+
   class ViewController: UIViewController {
-        
+
     lazy var searchController = UISearchController(searchResultsController: hitsViewController)
     let hitsViewController = SearchResultsViewController()
 
@@ -412,10 +412,10 @@ extension GettingStartedGuide.StepSeven {
                                                     attribute: "category",
                                                     operator: .and,
                                                     controller: categoryListController)
-    
+
     lazy var categoryListController = FacetListTableController(tableView: categoryTableViewController.tableView)
     let categoryTableViewController = UITableViewController()
-    
+
     override func viewDidLoad() {
       super.viewDidLoad()
       searchConnector.connect()
@@ -425,12 +425,12 @@ extension GettingStartedGuide.StepSeven {
       searcher.search()
       setupUI()
     }
-    
+
     override func viewDidAppear(_ animated: Bool) {
       super.viewDidAppear(animated)
       searchController.isActive = true
     }
-    
+
     func setupUI() {
       view.backgroundColor = .white
       navigationItem.searchController = searchController
@@ -440,27 +440,27 @@ extension GettingStartedGuide.StepSeven {
       searchController.automaticallyShowsCancelButton = false
       categoryTableViewController.title = "Category"
     }
-    
+
     @objc func showFilters() {
       let navigationController = UINavigationController(rootViewController: categoryTableViewController)
       categoryTableViewController.navigationItem.rightBarButtonItem = UIBarButtonItem(barButtonSystemItem: .done, target: self, action: #selector(dismissFilters))
       present(navigationController, animated: true, completion: .none)
     }
-    
+
     @objc func dismissFilters() {
       categoryTableViewController.navigationController?.dismiss(animated: true, completion: .none)
     }
-    
+
   }
 
 }
 
 extension GettingStartedGuide.StepSeven.ViewController: StatsTextController {
-  
+
   func setItem(_ item: String?) {
     title = item
   }
-  
+
 }
 
 /**

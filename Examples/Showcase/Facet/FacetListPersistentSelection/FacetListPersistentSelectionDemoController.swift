@@ -7,16 +7,16 @@
 
 import Foundation
 import InstantSearchCore
-
+// swiftlint:disable type_name
 class FacetListPersistentSelectionDemoController {
-  
+
   let searcher: HitsSearcher
   let filterState: FilterState
-  
+
   let clearFilterConnector: FilterClearConnector
   let colorConnector: FacetListConnector
   let categoryConnector: FacetListConnector
-  
+
   init() {
     searcher = .init(client: .instantSearch,
                      indexName: .facetList)
@@ -34,10 +34,10 @@ class FacetListPersistentSelectionDemoController {
                               operator: .or)
     setup()
   }
-  
+
   private func setup() {
     searcher.connectFilterState(filterState)
     searcher.search()
   }
-  
+
 }

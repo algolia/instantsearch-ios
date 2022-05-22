@@ -9,7 +9,7 @@ import Foundation
 import InstantSearchCore
 
 extension ProductRow {
-  
+
   init(productHit: Hit<Product>, configuration: Configuration = .phone) {
     let product = productHit.object
     self.title = productHit.hightlightedString(forKey: "name") ?? HighlightedString(string: product.name)
@@ -19,5 +19,5 @@ extension ProductRow {
     self.price = product.price
     self.configuration = configuration
   }
-  
+
 }

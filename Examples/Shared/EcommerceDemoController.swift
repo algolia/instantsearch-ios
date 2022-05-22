@@ -9,7 +9,7 @@ import Foundation
 import InstantSearchCore
 
 class EcommerceDemoController {
-  
+
   let searcher: HitsSearcher
   let hitsInteractor: HitsInteractor<Hit<StoreItem>>
   let searchBoxConnector: SearchBoxConnector
@@ -25,5 +25,5 @@ class EcommerceDemoController {
     loadingConnector = .init(searcher: searcher)
     hitsInteractor.connectSearcher(searcher)
   }
-  
+
 }

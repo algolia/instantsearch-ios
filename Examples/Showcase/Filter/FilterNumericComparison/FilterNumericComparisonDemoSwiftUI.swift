@@ -11,15 +11,15 @@ import InstantSearchCore
 import InstantSearchSwiftUI
 
 struct FilterNumericComparisonDemoSwiftUI: SwiftUIDemo, PreviewProvider {
-  
+
   class Controller {
-    
+
     let demoController: FilterNumericComparisonDemoController
     let clearFilterController: FilterClearObservableController
     let yearController: NumberObservableController<Int>
     let priceController: NumberObservableController<Double>
     let filterStateController: FilterStateObservableController
-    
+
     init() {
       demoController = .init()
       yearController = .init()
@@ -30,24 +30,24 @@ struct FilterNumericComparisonDemoSwiftUI: SwiftUIDemo, PreviewProvider {
       demoController.clearFilterConnector.connectController(clearFilterController)
       filterStateController = .init(filterState: demoController.filterState)
     }
-    
+
   }
-  
+
   struct ContentView: View {
-    
+
     @ObservedObject var filterStateController: FilterStateObservableController
     @ObservedObject var clearFilterController: FilterClearObservableController
 
     @ObservedObject var priceController: NumberObservableController<Double>
     @ObservedObject var yearController: NumberObservableController<Int>
-    
+
     @State private var yearValue: String = ""
-    
+
     var body: some View {
-      return VStack(spacing: 40){
+      return VStack(spacing: 40) {
         FilterStateDebugView(filterStateController: filterStateController,
                              clearFilterController: clearFilterController)
-        HStack() {
+        HStack {
           Text("Year")
           Spacer()
           TextField("Year", text: $yearValue)
@@ -64,7 +64,7 @@ struct FilterNumericComparisonDemoSwiftUI: SwiftUIDemo, PreviewProvider {
           Stepper(value: $priceController.value,
                   in: priceController.bounds,
                   step: 0.1) {
-            HStack{
+            HStack {
               Text("Price:")
               Spacer()
               Text(String(format: "%.2f", priceController.value))
@@ -78,16 +78,16 @@ struct FilterNumericComparisonDemoSwiftUI: SwiftUIDemo, PreviewProvider {
         yearValue = "\(yearController.value)"
       }
     }
-    
+
   }
-  
+
   static func contentView(with controller: Controller) -> ContentView {
     return ContentView(filterStateController: controller.filterStateController,
                        clearFilterController: controller.clearFilterController,
                        priceController: controller.priceController,
                        yearController: controller.yearController)
   }
-  
+
   static let controller = Controller()
   static var previews: some View {
     NavigationView {
@@ -95,7 +95,5 @@ struct FilterNumericComparisonDemoSwiftUI: SwiftUIDemo, PreviewProvider {
         .navigationBarTitle("Filter Numeric Comparison")
     }
   }
-  
+
 }
-
-

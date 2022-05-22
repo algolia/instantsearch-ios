@@ -10,19 +10,19 @@ import InstantSearch
 import UIKit
 
 enum QuerySuggestionsAndRecentSearches {
-  
+
   class SearchViewController: UIViewController {
-    
+
     let searchController: UISearchController
-    
+
     let searchBoxConnector: SearchBoxConnector
     let textFieldController: TextFieldController
 
     let hitsSearcher: HitsSearcher
     let hitsInteractor: HitsInteractor<QuerySuggestion>
-    
+
     let searchResultsController: SearchResultsController
-        
+
     override init(nibName nibNameOrNil: String?, bundle nibBundleOrNil: Bundle?) {
       hitsSearcher = .init(client: .instantSearch,
                            indexName: .instantSearchSuggestions)
@@ -40,22 +40,22 @@ enum QuerySuggestionsAndRecentSearches {
       }
       searchController.searchBar.searchTextField.addTarget(self, action: #selector(textFieldSubmitted), for: .editingDidEndOnExit)
     }
-    
+
     required init?(coder: NSCoder) {
       fatalError("init(coder:) has not been implemented")
     }
-    
+
     override func viewDidLoad() {
       super.viewDidLoad()
       configureUI()
       hitsSearcher.search()
     }
-    
+
     override func viewDidAppear(_ animated: Bool) {
       super.viewDidAppear(animated)
       searchController.isActive = true
     }
-    
+
     func configureUI() {
       title = "Recent Searches & Suggestions"
       view.backgroundColor = .systemBackground
@@ -64,7 +64,7 @@ enum QuerySuggestionsAndRecentSearches {
       searchController.automaticallyShowsCancelButton = false
       navigationItem.searchController = searchController
     }
-    
+
     @objc func textFieldSubmitted() {
       guard let text = searchController.searchBar.text else { return }
       if let alreadyPresentIndex = searchResultsController.recentSearches.firstIndex(where: { $0 == text }) {
@@ -73,7 +73,7 @@ enum QuerySuggestionsAndRecentSearches {
       searchResultsController.recentSearches.insert(text, at: searchResultsController.recentSearches.startIndex)
       searchResultsController.tableView.reloadData()
     }
-    
+
   }
 
 }

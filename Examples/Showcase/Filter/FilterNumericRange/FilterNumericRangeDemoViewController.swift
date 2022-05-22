@@ -36,7 +36,7 @@ class FilterNumericRangeDemoViewController: UIViewController {
 }
 
 private extension FilterNumericRangeDemoViewController {
-  
+
   func setup() {
     addChild(filterDebugViewController)
     filterDebugViewController.didMove(toParent: self)
@@ -52,7 +52,7 @@ private extension FilterNumericRangeDemoViewController {
     mainStackView.isLayoutMarginsRelativeArrangement = true
     mainStackView.layoutMargins = .init(top: 10, left: 10, bottom: 10, right: 10)
     mainStackView.translatesAutoresizingMaskIntoConstraints = false
-    
+
     let searchDebugView = filterDebugViewController.view!
     searchDebugView.translatesAutoresizingMaskIntoConstraints = false
     searchDebugView.heightAnchor.constraint(equalToConstant: 150).isActive = true

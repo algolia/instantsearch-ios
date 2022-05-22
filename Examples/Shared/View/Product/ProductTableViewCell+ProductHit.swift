@@ -10,11 +10,11 @@ import UIKit
 import AlgoliaSearchClient
 
 extension ProductTableViewCell {
-  
+
   func setup(with productHit: Hit<Product>) {
     let product = productHit.object
     itemImageView.sd_setImage(with: product.image)
-    
+
     if let highlightedName = productHit.hightlightedString(forKey: "name") {
       titleLabel.attributedText = NSAttributedString(highlightedString: highlightedName,
                                                      attributes: [
@@ -22,7 +22,7 @@ extension ProductTableViewCell {
     } else {
       titleLabel.text = product.name
     }
-    
+
     if let highlightedDescription = productHit.hightlightedString(forKey: "description") {
       subtitleLabel.attributedText = NSAttributedString(highlightedString: highlightedDescription,
                                                         attributes: [
@@ -31,11 +31,11 @@ extension ProductTableViewCell {
     } else {
       subtitleLabel.text = product.brand
     }
-    
+
     if let price = product.price {
       priceLabel.text = "\(price) €"
     }
-    
+
   }
-  
+
 }

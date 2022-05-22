@@ -17,15 +17,15 @@ class ToggleFilterDemoViewController: UIViewController {
   let mainStackView = UIStackView()
   let controlsStackView = UIStackView()
   let couponStackView = UIStackView()
-  
+
   let vintageButtonController: SelectableFilterButtonController<Filter.Tag>
   let sizeConstraintButtonController: SelectableFilterButtonController<Filter.Numeric>
   let couponSwitchController: FilterSwitchController<Filter.Facet>
-  
+
   let filterDebugViewController: FilterDebugViewController
-  
+
   let couponLabel = UILabel()
-  
+
   override init(nibName nibNameOrNil: String?, bundle nibBundleOrNil: Bundle?) {
     sizeConstraintButtonController = SelectableFilterButtonController(button: .init())
     vintageButtonController = SelectableFilterButtonController(button: .init())
@@ -35,28 +35,27 @@ class ToggleFilterDemoViewController: UIViewController {
     super.init(nibName: nibNameOrNil, bundle: nibBundleOrNil)
     setup()
   }
-  
+
   required init?(coder aDecoder: NSCoder) {
     fatalError("init(coder:) has not been implemented")
   }
-  
+
   override func viewDidLoad() {
     super.viewDidLoad()
     setupUI()
   }
-  
+
 }
 
-
 private extension ToggleFilterDemoViewController {
-  
+
   func setup() {
     demoController.clearFilterConnector.connectController(filterDebugViewController.clearFilterController)
     demoController.sizeConstraintConnector.connectController(sizeConstraintButtonController)
     demoController.vintageConnector.connectController(vintageButtonController)
     demoController.couponConnector.connectController(couponSwitchController)
   }
-  
+
   func setupUI() {
     view.backgroundColor = .systemBackground
     configureSizeButton()
@@ -68,22 +67,22 @@ private extension ToggleFilterDemoViewController {
     configureControlsStackView()
     configureLayout()
   }
-  
+
   func configureLayout() {
-    
+
     view.addSubview(mainStackView)
-    
+
     mainStackView.pin(to: view)
-    
+
     addChild(filterDebugViewController)
     filterDebugViewController.didMove(toParent: self)
     filterDebugViewController.view.heightAnchor.constraint(equalToConstant: 150).isActive = true
 
     mainStackView.addArrangedSubview(filterDebugViewController.view)
-      
+
     couponStackView.addArrangedSubview(couponLabel)
     couponStackView.addArrangedSubview(couponSwitchController.switch)
-    
+
     controlsStackView.addArrangedSubview(spacer())
     controlsStackView.addArrangedSubview(sizeConstraintButtonController.button)
     controlsStackView.addArrangedSubview(spacer())
@@ -94,13 +93,13 @@ private extension ToggleFilterDemoViewController {
     mainStackView.addArrangedSubview(controlsStackView)
     mainStackView.addArrangedSubview(spacer())
   }
-  
+
   private func spacer() -> UIView {
     let view = UIView()
     view.setContentHuggingPriority(.defaultLow, for: .horizontal)
     return view
   }
-  
+
   func configureMainStackView() {
     mainStackView.isLayoutMarginsRelativeArrangement = true
     mainStackView.layoutMargins = .init(top: 10, left: 10, bottom: 10, right: 10)
@@ -108,13 +107,13 @@ private extension ToggleFilterDemoViewController {
     mainStackView.spacing = 10
     mainStackView.translatesAutoresizingMaskIntoConstraints = false
   }
-  
+
   func configureControlsStackView() {
     controlsStackView.axis = .horizontal
     controlsStackView.distribution = .equalSpacing
     controlsStackView.translatesAutoresizingMaskIntoConstraints = false
   }
-  
+
   func configureCouponStackView() {
     couponStackView.translatesAutoresizingMaskIntoConstraints = false
     couponStackView.axis = .horizontal
@@ -122,7 +121,7 @@ private extension ToggleFilterDemoViewController {
     couponStackView.alignment = .center
     couponStackView.distribution = .fill
   }
-    
+
   func configureSizeButton() {
     let button = sizeConstraintButtonController.button
     button.translatesAutoresizingMaskIntoConstraints = false
@@ -134,12 +133,12 @@ private extension ToggleFilterDemoViewController {
     button.contentEdgeInsets = .init(top: 5, left: 5, bottom: 5, right: 5)
     button.addTarget(self, action: #selector(didTapSizeButton), for: .touchUpInside)
   }
-  
+
   @objc func didTapSizeButton(_ button: UIButton) {
     let borderColor: UIColor =  button.isSelected ? .systemGray : UIColor.tintColor
     button.layer.borderColor = borderColor.cgColor
   }
-  
+
   func configureVintageButton() {
     let button = vintageButtonController.button
     button.translatesAutoresizingMaskIntoConstraints = false
@@ -149,14 +148,14 @@ private extension ToggleFilterDemoViewController {
     button.setImage(UIImage(systemName: "square"), for: .normal)
     button.setImage(UIImage(systemName: "checkmark.square"), for: .selected)
   }
-  
+
   func configureCouponSwitch() {
     couponSwitchController.switch.translatesAutoresizingMaskIntoConstraints = false
   }
-  
+
   func configureCouponLabel() {
     couponLabel.text = "Coupon"
     couponLabel.translatesAutoresizingMaskIntoConstraints = false
   }
-  
+
 }

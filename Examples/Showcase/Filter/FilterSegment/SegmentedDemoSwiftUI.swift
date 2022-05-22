@@ -12,14 +12,14 @@ import InstantSearch
 import InstantSearchSwiftUI
 
 class SegmentedDemoSwiftUI: SwiftUIDemo, PreviewProvider {
-  
+
   class Controller {
-    
+
     let demoController: SegmentedFilterDemoController
     let selectableSegmentController: SelectableSegmentObservableController
     let filterStateController: FilterStateObservableController
     let clearFilterController: FilterClearObservableController
-    
+
     init() {
       selectableSegmentController = SelectableSegmentObservableController()
       demoController = SegmentedFilterDemoController()
@@ -28,18 +28,18 @@ class SegmentedDemoSwiftUI: SwiftUIDemo, PreviewProvider {
       demoController.filterMapConnector.connectController(selectableSegmentController)
       demoController.clearFilterConnector.connectController(clearFilterController)
     }
-    
+
   }
-  
+
   struct ContentView: View {
-    
+
     @ObservedObject var filterStateController: FilterStateObservableController
     @ObservedObject var clearFilterController: FilterClearObservableController
-    
+
     @ObservedObject var selectableSegmentController: SelectableSegmentObservableController
 
     @State private var selected = 0
-    
+
     var body: some View {
       let selectedBinding = Binding(
         get: { self.selectableSegmentController.selectedSegmentIndex ?? 0 },
@@ -62,15 +62,15 @@ class SegmentedDemoSwiftUI: SwiftUIDemo, PreviewProvider {
         Spacer()
       }
     }
-    
+
   }
-  
+
   static func contentView(with controller: Controller) -> ContentView {
     ContentView(filterStateController: controller.filterStateController,
                 clearFilterController: controller.clearFilterController,
                 selectableSegmentController: controller.selectableSegmentController)
   }
-  
+
   static let controller = Controller()
   static var previews: some View {
     NavigationView {
@@ -78,5 +78,5 @@ class SegmentedDemoSwiftUI: SwiftUIDemo, PreviewProvider {
         .navigationBarTitle("Filter Segment")
     }
   }
-  
+
 }

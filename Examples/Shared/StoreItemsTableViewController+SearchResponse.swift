@@ -10,7 +10,7 @@ import UIKit
 import InstantSearch
 
 extension StoreItemsTableViewController {
-  
+
   static func with(_ response: SearchResponse) -> Self {
     let hitsInteractor = HitsInteractor<Hit<StoreItem>>(infiniteScrolling: .off)
     hitsInteractor.update(response)
@@ -18,5 +18,5 @@ extension StoreItemsTableViewController {
     hitsInteractor.connectController(viewController)
     return viewController
   }
-  
+
 }

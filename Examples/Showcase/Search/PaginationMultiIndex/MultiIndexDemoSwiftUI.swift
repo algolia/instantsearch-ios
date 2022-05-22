@@ -11,14 +11,14 @@ import InstantSearchCore
 import InstantSearchSwiftUI
 
 struct MultiIndexDemoSwiftUI: SwiftUIDemo, PreviewProvider {
-  
+
   class Controller {
-    
+
     let demoController: MultiIndexDemoController
     let searchBoxController: SearchBoxObservableController
     let suggestionsHitsController: HitsObservableController<QuerySuggestion>
     let productsHitsController: HitsObservableController<Hit<StoreItem>>
-    
+
     init() {
       demoController = .init()
       searchBoxController = .init()
@@ -28,15 +28,15 @@ struct MultiIndexDemoSwiftUI: SwiftUIDemo, PreviewProvider {
       demoController.suggestionsHitsConnector.connectController(suggestionsHitsController)
       demoController.productsHitsConnector.connectController(productsHitsController)
     }
-    
+
   }
-  
+
   struct ContentView: View {
-    
+
     @ObservedObject var searchBoxController: SearchBoxObservableController
     @ObservedObject var suggestionsHitsController: HitsObservableController<QuerySuggestion>
     @ObservedObject var productsHitsController: HitsObservableController<Hit<StoreItem>>
-    
+
     var body: some View {
       VStack {
         HStack {
@@ -73,10 +73,10 @@ struct MultiIndexDemoSwiftUI: SwiftUIDemo, PreviewProvider {
       .searchable(text: $searchBoxController.query)
       .background(Color(.systemGray6))
     }
-    
+
     func cellForSuggestion(atIndex index: Int) -> some View {
       let suggestion = suggestionsHitsController.hits[index]!
-      
+
       return Text(highlightedString: HighlightedString(string: suggestion.highlighted!)) { string in
         Text(string)
           .foregroundColor(Color(.tintColor))
@@ -90,7 +90,7 @@ struct MultiIndexDemoSwiftUI: SwiftUIDemo, PreviewProvider {
         suggestionsHitsController.notifyAppearanceOfHit(atIndex: index)
       }
     }
-    
+
     func cellForProduct(atIndex index: Int) -> some View {
       let product = productsHitsController.hits[index]!
       return VStack {
@@ -135,15 +135,15 @@ struct MultiIndexDemoSwiftUI: SwiftUIDemo, PreviewProvider {
         productsHitsController.notifyAppearanceOfHit(atIndex: index)
       }
     }
-    
+
   }
-  
+
   static func contentView(with controller: Controller) -> ContentView {
     ContentView(searchBoxController: controller.searchBoxController,
                 suggestionsHitsController: controller.suggestionsHitsController,
                 productsHitsController: controller.productsHitsController)
   }
-  
+
   static let controller = Controller()
   static var previews: some View {
     NavigationView {
@@ -151,5 +151,5 @@ struct MultiIndexDemoSwiftUI: SwiftUIDemo, PreviewProvider {
         .navigationBarTitle("Paging Multiple Index")
     }
   }
-  
+
 }

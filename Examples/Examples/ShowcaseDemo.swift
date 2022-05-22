@@ -9,11 +9,12 @@ import Foundation
 import AlgoliaSearchClient
 
 struct ShowcaseDemo: Codable, DemoProtocol {
-  
+
   let objectID: ObjectID
   let name: String
   let type: String
-  
+
+  // swiftlint:disable type_name
   enum ID: String {
     case singleIndex = "paging_single_index"
     case multiIndex = "paging_multiple_index"
@@ -42,5 +43,5 @@ struct ShowcaseDemo: Codable, DemoProtocol {
     case queryRuleCustomData = "query_rule_custom_data"
     case relevantSort = "dynamic_sort"
   }
-  
+
 }

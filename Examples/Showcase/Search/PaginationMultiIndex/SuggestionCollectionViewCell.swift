@@ -11,19 +11,19 @@ import UIKit
 import InstantSearchCore
 
 class SuggestionCollectionViewCell: UICollectionViewCell {
-  
+
   let label: UILabel
-  
+
   override init(frame: CGRect) {
     self.label = UILabel(frame: .zero)
     super.init(frame: frame)
     layout()
   }
-  
+
   required init?(coder aDecoder: NSCoder) {
     fatalError("init(coder:) has not been implemented")
   }
-  
+
   private func layout() {
     contentView.backgroundColor = .systemBackground
     contentView.layer.cornerRadius = 12
@@ -33,11 +33,11 @@ class SuggestionCollectionViewCell: UICollectionViewCell {
     contentView.addSubview(label)
     label.pin(to: contentView.layoutMarginsGuide)
   }
-  
+
 }
 
 extension SuggestionCollectionViewCell {
-  
+
   func setup(with querySuggestion: QuerySuggestion) {
     label.attributedText = querySuggestion
       .highlighted
@@ -47,5 +47,5 @@ extension SuggestionCollectionViewCell {
                                     attributes: [.foregroundColor: UIColor.tintColor])
     }
   }
-  
+
 }

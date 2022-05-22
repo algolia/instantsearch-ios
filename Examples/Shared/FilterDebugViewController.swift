@@ -12,11 +12,11 @@ import InstantSearch
 import InstantSearchCore
 
 class FilterDebugViewController: UIViewController {
-    
+
   let titleLabel: UILabel
   let filterStateViewController: FilterDebugController
   let clearFilterController: FilterClearButtonController
-  
+
   init(filterState: FilterState) {
     self.titleLabel = UILabel()
     self.filterStateViewController = FilterDebugController()
@@ -25,33 +25,33 @@ class FilterDebugViewController: UIViewController {
     configureFilterStateViewController()
     filterStateViewController.connectTo(filterState)
   }
-  
+
   required init?(coder: NSCoder) {
     fatalError("init(coder:) has not been implemented")
   }
-  
+
   override func viewDidLoad() {
     super.viewDidLoad()
     setupUI()
   }
-  
+
   private func setupUI() {
     configureTitleLabel()
     configureClearButton()
     configureLayout()
   }
-  
+
   func configureTitleLabel() {
     titleLabel.font = .boldSystemFont(ofSize: 25)
     titleLabel.text = "Filters"
     titleLabel.translatesAutoresizingMaskIntoConstraints = false
   }
-  
+
   func configureClearButton() {
     clearFilterController.button.setImage(UIImage(systemName: "trash.fill"), for: .normal)
     clearFilterController.button.translatesAutoresizingMaskIntoConstraints = false
   }
-  
+
   func configureFilterStateViewController() {
     filterStateViewController.colorMap = [
       "_tags": .systemIndigo,
@@ -61,7 +61,7 @@ class FilterDebugViewController: UIViewController {
       "category": .systemGreen
     ]
   }
-  
+
   func configureLayout() {
     let headerStackView = UIStackView()
     headerStackView.translatesAutoresizingMaskIntoConstraints = false
@@ -77,7 +77,7 @@ class FilterDebugViewController: UIViewController {
     mainStackView.addArrangedSubview(headerStackView)
     mainStackView.addArrangedSubview(filterStateViewController.stateLabel)
     mainStackView.addArrangedSubview(.spacer)
-    
+
     let containerView = UIView()
     containerView.translatesAutoresizingMaskIntoConstraints = false
     containerView.layer.borderWidth = 0.5
@@ -86,9 +86,9 @@ class FilterDebugViewController: UIViewController {
     containerView.layer.cornerRadius = 10
     containerView.addSubview(mainStackView)
     view.addSubview(containerView)
-    
+
     mainStackView.pin(to: containerView, insets: .init(top: 10, left: 10, bottom: -10, right: -10))
     containerView.pin(to: view)
   }
-  
+
 }

@@ -10,9 +10,9 @@ import InstantSearchCore
 import SwiftUI
 
 struct MovieRow: View {
-  
+
   let movieHit: Hit<Movie>
-  
+
   var body: some View {
     HStack(alignment: .top, spacing: 8) {
       AsyncImage(url: movieHit.object.imageURL,
@@ -45,5 +45,5 @@ struct MovieRow: View {
       Spacer()
     }
   }
-  
+
 }
