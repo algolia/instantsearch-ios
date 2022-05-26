@@ -1,7 +1,6 @@
 packages=(
   algoliasearch-client-swift
   swift-log
-  instantsearch-ios
 )
 
 cd Carthage/Checkouts/
@@ -11,6 +10,9 @@ for package in "${packages[@]}"; do
   cd ..
 done
 cd instantsearch-telemetry-native
+swift package resolve
+cd ..
+cd instantsearch-ios
 swift package resolve
 cd ..
 cd ../../..
