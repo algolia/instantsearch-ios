@@ -9,8 +9,8 @@ for package in "${packages[@]}"; do
   swift package generate-xcodeproj
   cd ..
 done
+cd instantsearch-telemetry-native
+swift package resolve
+cd ..
 cd ../../..
 
-cd Carthage/Checkouts/instantsearch-telemetry-native
-swift package resolve
-cd ../../..
