@@ -10,3 +10,7 @@ for package in "${packages[@]}"; do
   cd ..
 done
 cd ../../..
+
+cd Carthage/Checkouts/instantsearch-telemetry-native
+swift package resolve
+cd ../../..
