@@ -7,7 +7,7 @@ let package = Package(
   name: "InstantSearch",
   platforms: [
     .iOS(.v9),
-    .macOS(.v10_10),
+    .macOS(.v10_11),
     .watchOS(.v2),
     .tvOS(.v9)
   ],
