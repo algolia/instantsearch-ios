@@ -1,4 +1,3 @@
-github "algolia/algoliasearch-client-swift" ~> 8.14
-#github "algolia/instantsearch-telemetry-native" 
 github "apple/swift-log" ~> 1.4
-git "file:///Users/vladislav.fitc/Workspace/algolia/instantsearch-telemetry-native" "fix/carthage-build"
+github "algolia/algoliasearch-client-swift" ~> 8.14
+github "algolia/instantsearch-telemetry-native" "fix/carthage-build"
