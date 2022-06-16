@@ -12,3 +12,6 @@ jobs:
         pwd
         ls
         tee Cartfile <<<"github \"algolia/instantsearch-ios\" \"${{ github.head_ref }}\""
+        carthage update --no-build
+        sh ./Carthage/Checkouts/instantsearch-ios/carthage-prebuild
+        carthage build --use-xcframeworks --platform ios
