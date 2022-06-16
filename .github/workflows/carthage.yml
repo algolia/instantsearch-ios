@@ -11,5 +11,4 @@ jobs:
        run: |
         pwd
         ls
-        touch Cartfile
-        tee Cartfile <<<'github "algolia/instantsearch-ios" "${GITHUB_REF##*/}"'
+        tee Cartfile <<<"github \"algolia/instantsearch-ios\" \"${GITHUB_REF##*/}\""
