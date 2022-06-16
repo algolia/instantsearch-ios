@@ -1,0 +1,14 @@
+name: Carthage
+on: [pull_request]
+jobs:
+  check-Carthage:
+    runs-on: macos-11
+    steps:
+     - uses: actions/checkout@v2
+     - name: Select Xcode version
+       run: sudo xcode-select -s '/Applications/Xcode_13.2.app/Contents/Developer'
+     - name: Initialize Cartfile
+       run: |
+        touch Cartfile
+        pwd
+        ls
