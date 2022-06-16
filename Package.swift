@@ -31,7 +31,7 @@ let package = Package(
              from: "8.13.0"),
     .package(name: "InstantSearchTelemetry",
              url: "https://github.com/algolia/instantsearch-telemetry-native",
-             .branch("fix/carthage-build"))
+             from: "0.1.1")
   ],
   targets: [
     .target(
