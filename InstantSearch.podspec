@@ -1,7 +1,7 @@
 Pod::Spec.new do |s|
   s.name = 'InstantSearch'
   s.version = '7.17.0'
-  s.platforms = { :ios => "9.0", :osx => "10.13", :watchos => "3.0", :tvos => "9.0" }
+  s.platforms = { :ios => "9.0", :osx => "10.11", :watchos => "2.0", :tvos => "9.0" }
 
   s.license = { type: 'Apache 2.0', file: 'LICENSE.md' }
   s.summary = 'A library of widgets and helpers to build instant-search applications on iOS.'
@@ -18,7 +18,7 @@ Pod::Spec.new do |s|
       ss.dependency 'AlgoliaSearchClient', '~> 8.13'
       ss.ios.deployment_target = '9.0'
       ss.osx.deployment_target = '10.10'
-      ss.watchos.deployment_target = '3.0'
+      ss.watchos.deployment_target = '2.0'
       ss.tvos.deployment_target = '9.0'
   end
   
@@ -26,10 +26,10 @@ Pod::Spec.new do |s|
       ss.source_files = 'Sources/InstantSearchCore/**/*.{swift}'
       ss.dependency 'AlgoliaSearchClient', '~> 8.13'
       ss.dependency 'InstantSearch/Insights'
-      ss.dependency 'InstantSearchTelemetry', '~> 0.1.1'
+      ss.dependency 'InstantSearchTelemetry', '~> 0.1.2'
       ss.ios.deployment_target = '9.0'
-      ss.osx.deployment_target = '10.13'
-      ss.watchos.deployment_target = '3.0'
+      ss.osx.deployment_target = '10.11'
+      ss.watchos.deployment_target = '2.0'
       ss.tvos.deployment_target = '9.0'
       ss.pod_target_xcconfig = { 'OTHER_SWIFT_FLAGS' => '-DInstantSearchCocoaPods' }
   end
@@ -38,8 +38,8 @@ Pod::Spec.new do |s|
       ss.source_files = 'Sources/InstantSearch/**/*.{swift}'
       ss.dependency 'InstantSearch/Core'
       ss.ios.deployment_target = '9.0'
-      ss.osx.deployment_target = '10.13'
-      ss.watchos.deployment_target = '3.0'
+      ss.osx.deployment_target = '10.11'
+      ss.watchos.deployment_target = '2.0'
       ss.tvos.deployment_target = '9.0'
       ss.pod_target_xcconfig = { 'OTHER_SWIFT_FLAGS' => '-DInstantSearchCocoaPods' }
   end
