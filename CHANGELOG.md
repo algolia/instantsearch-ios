@@ -2,6 +2,10 @@
 
 ## [7.18.0](https://github.com/algolia/instantsearch-ios/compare/...7.18.0) (2022-06-21)
 
+### Fix
+
+- Carthage build issue (#224) ([e3384dc](https://github.com/algolia/instantsearch-ios/commit/e3384dc))
+
 
 
 ## [7.17.0](https://github.com/algolia/instantsearch-ios/compare/...7.17.0) (2022-05-22)
