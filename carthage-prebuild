@@ -1,13 +1,27 @@
-packages=(
+# packages requiring xcodeproj file generation for Carthage
+PACKAGES_TO_GEN_XCODEPROJ=(
   algoliasearch-client-swift
   swift-log
-  instantsearch-telemetry-native
 )
 
 cd Carthage/Checkouts/
-for package in "${packages[@]}"; do
-  cd ./$package
+for PACKAGE in "${PACKAGES_TO_GEN_XCODEPROJ[@]}"; do
+  cd ./$PACKAGE
   swift package generate-xcodeproj
   cd ..
 done
+
+# packages requiring manual SPM resolve for Carthage
+PACKAGES_TO_RESOLVE=(
+  instantsearch-telemetry-native
+  instantsearch-ios
+)
+
+for PACKAGE in "${PACKAGES_TO_RESOLVE[@]}"; do
+  cd ./$PACKAGE
+  swift package resolve
+  cd ..
+done
+
 cd ../../..
+

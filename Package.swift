@@ -7,7 +7,7 @@ let package = Package(
   name: "InstantSearch",
   platforms: [
     .iOS(.v9),
-    .macOS(.v10_10),
+    .macOS(.v10_11),
     .watchOS(.v2),
     .tvOS(.v9)
   ],
@@ -31,7 +31,7 @@ let package = Package(
              from: "8.13.0"),
     .package(name: "InstantSearchTelemetry",
              url: "https://github.com/algolia/instantsearch-telemetry-native",
-             from: "0.1.0-beta1")
+             from: "0.1.2")
   ],
   targets: [
     .target(
