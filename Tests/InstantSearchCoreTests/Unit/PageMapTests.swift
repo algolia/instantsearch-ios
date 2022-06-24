@@ -101,6 +101,35 @@ class PageMapTests: XCTestCase {
     XCTAssertEqual(updatedPageMap.count, 6)
 
   }
+  
+  func testArrayTransformationEmptyMiddlePage() {
+    let p0 = ["i4", "i5", "i6"]
+    let p1 = ["i7", "i8", "i9"]
+    let p2 = ["i10", "i11", "i12"]
+
+    var pageMap = PageMap(p0)!
+    pageMap.insert(p1, withIndex: 1)
+    pageMap.insert(p2, withIndex: 2)
+    pageMap.removePage(atIndex: 1)
+    
+    let array = Array(pageMap)
+    XCTAssertEqual(array, ["i4", "i5", "i6", nil, nil, nil, "i10", "i11", "i12"])
+  }
+  
+  func testArrayTransformationEmptyFirstPage() {
+    let p0 = ["i4", "i5", "i6"]
+    let p1 = ["i7", "i8", "i9"]
+    let p2 = ["i10", "i11", "i12"]
+
+    var pageMap = PageMap(p0)!
+    pageMap.insert(p1, withIndex: 1)
+    pageMap.insert(p2, withIndex: 2)
+    pageMap.removePage(atIndex: 0)
+    
+    let array = Array(pageMap)
+    XCTAssertEqual(array, [nil, nil, nil, "i7", "i8", "i9", "i10", "i11", "i12"])
+  }
+
 
   func testInsertionKeepingMissingPage() {
 
