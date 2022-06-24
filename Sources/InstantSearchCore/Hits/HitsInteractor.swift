@@ -101,7 +101,7 @@ public class HitsInteractor<Record: Codable>: AnyHitsInteractor {
       return hitsPageMap.count
     }
   }
-  
+
   /// Map hits pages into the list of hits. The hits contained by pages unloaded from memory are represented as nil values.
   public var hits: [Record?] {
     guard let pageMap = paginator.pageMap else { return [] }
