@@ -253,11 +253,8 @@
 		4073B5A228076E9600E05EF6 /* RatingFilterDemoController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4073B5A028076E9600E05EF6 /* RatingFilterDemoController.swift */; };
 		4073B5A42807720100E05EF6 /* RatingFilterDemoSwiftUI.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4073B5A32807720100E05EF6 /* RatingFilterDemoSwiftUI.swift */; };
 		4073B5A52807720100E05EF6 /* RatingFilterDemoSwiftUI.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4073B5A32807720100E05EF6 /* RatingFilterDemoSwiftUI.swift */; };
-		407D0D9E2818ADA1005FB854 /* NumberObservableController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 407D0D9D2818ADA1005FB854 /* NumberObservableController.swift */; };
-		407D0D9F2818ADA1005FB854 /* NumberObservableController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 407D0D9D2818ADA1005FB854 /* NumberObservableController.swift */; };
 		407D0DA228196AFC005FB854 /* StoreItemsTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = AF50C96127F622EA0036F549 /* StoreItemsTableViewController.swift */; };
 		407D0DA328196B1B005FB854 /* ProductTableViewCell+StoreItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = 40E003BD280F833000544E9F /* ProductTableViewCell+StoreItem.swift */; };
-		407D0DA5281B2F5F005FB854 /* NumberObservableController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 407D0D9D2818ADA1005FB854 /* NumberObservableController.swift */; };
 		407D0DA8281BEF4E005FB854 /* StoreItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = AF50C95E27F622C70036F549 /* StoreItem.swift */; };
 		407D0DA9281BEFB4005FB854 /* ProductTableViewCell+StoreItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = 40E003BD280F833000544E9F /* ProductTableViewCell+StoreItem.swift */; };
 		407D0DAA281BEFFA005FB854 /* Product.swift in Sources */ = {isa = PBXBuildFile; fileRef = AFAE55B22734380200B52A43 /* Product.swift */; };
@@ -894,7 +891,6 @@
 		4073B59D28076B6F00E05EF6 /* Double+Range.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Double+Range.swift"; sourceTree = "<group>"; };
 		4073B5A028076E9600E05EF6 /* RatingFilterDemoController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RatingFilterDemoController.swift; sourceTree = "<group>"; };
 		4073B5A32807720100E05EF6 /* RatingFilterDemoSwiftUI.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RatingFilterDemoSwiftUI.swift; sourceTree = "<group>"; };
-		407D0D9D2818ADA1005FB854 /* NumberObservableController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NumberObservableController.swift; sourceTree = "<group>"; };
 		40BF0BAD28255084007B3BBD /* MovieHit+Text.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "MovieHit+Text.swift"; sourceTree = "<group>"; };
 		40C7C246280A16B8005DEC68 /* FacetListPersistentSelectionDemoController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FacetListPersistentSelectionDemoController.swift; sourceTree = "<group>"; };
 		40C7C249280A202F005DEC68 /* FacetListPersistentDemoSwiftUI.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FacetListPersistentDemoSwiftUI.swift; sourceTree = "<group>"; };
@@ -1759,7 +1755,6 @@
 				404C4052280A30A200EC9FEB /* FilterNumericComparisonDemoController.swift */,
 				404C4055280A316500EC9FEB /* FilterNumericComparisonDemoSwiftUI.swift */,
 				404C40D7280C95EE00EC9FEB /* FilterNumericComparisonDemoViewController.swift */,
-				407D0D9D2818ADA1005FB854 /* NumberObservableController.swift */,
 				AF50CAE427F724EF0036F549 /* Assets.xcassets */,
 				AF50CAE627F724EF0036F549 /* LaunchScreen.storyboard */,
 				AF50CAE927F724EF0036F549 /* Info.plist */,
@@ -3682,7 +3677,6 @@
 				AF50CC9627F7463F0036F549 /* UIColor+Convenience.swift in Sources */,
 				404C40DB280C961400EC9FEB /* FilterDebugController.swift in Sources */,
 				40F61F3028291ACE0040ECD2 /* InstantSearch.swift in Sources */,
-				407D0D9E2818ADA1005FB854 /* NumberObservableController.swift in Sources */,
 				404C40DC280C961B00EC9FEB /* FilterStateObservableController.swift in Sources */,
 				AF50CD9D27FB29A10036F549 /* SceneDelegate+Convenience.swift in Sources */,
 				404C4054280A30A200EC9FEB /* FilterNumericComparisonDemoController.swift in Sources */,
@@ -3737,7 +3731,6 @@
 				AF50CC9C27F746400036F549 /* UIColor+Convenience.swift in Sources */,
 				40E1B06828078B0A0092B424 /* RatingView.swift in Sources */,
 				AF50CD9F27FB29A10036F549 /* SceneDelegate+Convenience.swift in Sources */,
-				407D0D9F2818ADA1005FB854 /* NumberObservableController.swift in Sources */,
 				AF50CB0E27F72BCD0036F549 /* SceneDelegate.swift in Sources */,
 				AF50CE3F27FB31810036F549 /* UITableView+EmptyResult.swift in Sources */,
 				404C4032280A27EE00EC9FEB /* CommonSwiftUIDemoViewController.swift in Sources */,
@@ -4083,7 +4076,6 @@
 				AF7FEB8B272CAC5D0003BE62 /* SceneDelegate.swift in Sources */,
 				404C40D1280C95A000EC9FEB /* CurrentFiltersDemoViewController.swift in Sources */,
 				AFB181A627FC8FF3000AA57B /* ToggleFilterDemoController.swift in Sources */,
-				407D0DA5281B2F5F005FB854 /* NumberObservableController.swift in Sources */,
 				40C7C24A280A202F005DEC68 /* FacetListPersistentDemoSwiftUI.swift in Sources */,
 				40E003CD280F85A700544E9F /* StoreItemsTableViewController.swift in Sources */,
 				404C40BE280C950600EC9FEB /* HierarchicalDemoController.swift in Sources */,

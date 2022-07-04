@@ -58,7 +58,7 @@ public class FilterComparisonConnector<Number: Comparable & DoubleRepresentable>
               numericOperator: Filter.Numeric.Operator,
               number: Number? = nil,
               bounds: ClosedRange<Number>? = nil,
-              operator: RefinementOperator,
+              operator: RefinementOperator = .and,
               groupName: String? = nil) {
     self.searcher = searcher
     self.interactor = .init()
