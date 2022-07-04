@@ -101,7 +101,7 @@ class PageMapTests: XCTestCase {
     XCTAssertEqual(updatedPageMap.count, 6)
 
   }
-  
+
   func testInsertionKeepingMissingPage() {
 
     let p0 = ["i4", "i5", "i6"]
