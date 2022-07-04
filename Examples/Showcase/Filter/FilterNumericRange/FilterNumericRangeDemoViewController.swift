@@ -12,14 +12,20 @@ import InstantSearch
 
 class FilterNumericRangeDemoViewController: UIViewController {
 
+  let searchController: UISearchController
   let demoController: FilterNumericRangeDemoController
+  let statsController: LabelStatsController
   let numericRangeController: NumericRangeController
   let filterDebugViewController: FilterDebugViewController
+  let searchBoxController: TextFieldController
 
   override init(nibName nibNameOrNil: String?, bundle nibBundleOrNil: Bundle?) {
+    searchController = UISearchController()
     demoController = .init()
     numericRangeController = NumericRangeController(rangeSlider: .init())
     filterDebugViewController = FilterDebugViewController(filterState: demoController.filterState)
+    statsController = LabelStatsController()
+    searchBoxController = TextFieldController(searchBar: searchController.searchBar)
     super.init(nibName: nibNameOrNil, bundle: nibBundleOrNil)
   }
 
@@ -38,9 +44,13 @@ class FilterNumericRangeDemoViewController: UIViewController {
 private extension FilterNumericRangeDemoViewController {
 
   func setup() {
+    navigationItem.searchController = searchController
     addChild(filterDebugViewController)
     filterDebugViewController.didMove(toParent: self)
+    demoController.searchBoxConnector.connectController(searchBoxController)
+    demoController.statsConnector.connectController(statsController)
     demoController.rangeConnector.connectController(numericRangeController)
+    demoController.rangeConnector.interactor.connectSearcher(demoController.searcher, attribute: "price")
     demoController.filterClearConnector.connectController(filterDebugViewController.clearFilterController)
   }
 
@@ -57,6 +67,7 @@ private extension FilterNumericRangeDemoViewController {
     searchDebugView.translatesAutoresizingMaskIntoConstraints = false
     searchDebugView.heightAnchor.constraint(equalToConstant: 150).isActive = true
     mainStackView.addArrangedSubview(searchDebugView)
+    mainStackView.addArrangedSubview(statsController.label)
     mainStackView.addArrangedSubview(numericRangeController.view)
     mainStackView.addArrangedSubview(.spacer)
     view.addSubview(mainStackView)
