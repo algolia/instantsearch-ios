@@ -10,6 +10,7 @@ import Foundation
 /// An entity performing Answers search
 ///
 /// [Documentation](https://www.algolia.com/doc/guides/algolia-ai/answers/)
+@available(*, deprecated, message: "Answers feature is deprecated")
 public final class AnswersSearcher: IndexSearcher<AlgoliaAnswersSearchService> {
 
   public override var request: Request {
@@ -43,6 +44,7 @@ public final class AnswersSearcher: IndexSearcher<AlgoliaAnswersSearchService> {
 
 }
 
+@available(*, deprecated, message: "Answers feature is deprecated")
 extension AnswersSearcher: IndexNameSettable {
 
   public func setIndexName(_ indexName: IndexName) {
