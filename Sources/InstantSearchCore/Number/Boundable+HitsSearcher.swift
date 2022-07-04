@@ -1,5 +1,5 @@
 //
-//  FilterComparisonComputeBounds.swift
+//  Boundable+HitsSearcher.swift
 //  InstantSearchCore
 //
 //  Created by Guy Daher on 04/06/2019.
