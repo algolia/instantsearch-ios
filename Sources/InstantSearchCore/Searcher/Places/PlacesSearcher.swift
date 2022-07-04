@@ -9,6 +9,7 @@
 import Foundation
 import AlgoliaSearchClient
 
+@available(*, deprecated, message: "Places feature is deprecated")
 final public class PlacesSearcher: AbstractSearcher<AlgoliaPlacesSearchService> {
 
   public var placesQuery: PlacesQuery {

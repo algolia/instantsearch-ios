@@ -8,6 +8,7 @@
 
 import Foundation
 
+@available(*, deprecated, message: "Places feature is deprecated")
 public extension HitsInteractor where Record == Hit<Place> {
 
   struct PlacesSearcherConnection: Connection {
@@ -48,6 +49,7 @@ public extension HitsInteractor where Record == Hit<Place> {
 
 public extension HitsInteractor where Record == Hit<Place> {
 
+  @available(*, deprecated, message: "Places feature is deprecated")
   @discardableResult func connectPlacesSearcher(_ searcher: PlacesSearcher) -> PlacesSearcherConnection {
     let connection = PlacesSearcherConnection(interactor: self, searcher: searcher)
     connection.connect()
