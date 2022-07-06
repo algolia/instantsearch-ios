@@ -7,6 +7,7 @@
 
 import Foundation
 
+@available(*, deprecated, message: "Answers feature is deprecated")
 public final class AlgoliaAnswersSearchService: SearchService {
 
   public let client: SearchClient
@@ -21,6 +22,7 @@ public final class AlgoliaAnswersSearchService: SearchService {
 
 }
 
+@available(*, deprecated, message: "Answers feature is deprecated")
 extension AlgoliaAnswersSearchService {
 
   public struct Request: IndexNameProvider, TextualQueryProvider, AlgoliaRequest {

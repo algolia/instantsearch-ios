@@ -8,11 +8,13 @@
 import Foundation
 import AlgoliaSearchClient
 
+@available(*, deprecated, message: "Answers feature is deprecated")
 public extension AnswersSearcher {
 
   /**
    Connection between AnswersSearcher and FilterState
    */
+  @available(*, deprecated, message: "Answers feature is deprecated")
   struct FilterStateConnection: Connection {
 
     public let searcher: AnswersSearcher
@@ -38,6 +40,7 @@ public extension AnswersSearcher {
 
 }
 
+@available(*, deprecated, message: "Answers feature is deprecated")
 public extension AnswersSearcher {
 
   /**
