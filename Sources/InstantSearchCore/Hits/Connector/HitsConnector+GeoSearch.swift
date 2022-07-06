@@ -8,8 +8,11 @@
 import Foundation
 
 extension Hit: Geolocated {}
+
+@available(*, deprecated, message: "Places feature is deprecated")
 public typealias PlaceHit = Hit<Place>
 
+@available(*, deprecated, message: "Places feature is deprecated")
 public extension HitsConnector where Hit == PlaceHit {
 
   /**
@@ -18,6 +21,7 @@ public extension HitsConnector where Hit == PlaceHit {
      - searcher: Places Searcher that handles your searches
      - interactor: External hits interactor
   */
+  @available(*, deprecated, message: "Places feature is deprecated")
   convenience init(searcher: PlacesSearcher,
                    interactor: HitsInteractor<Hit>) {
     self.init(searcher: searcher,
@@ -34,6 +38,7 @@ public extension HitsConnector where Hit == PlaceHit {
      - infiniteScrolling: Whether or not infinite scrolling is enabled
      - showItemsOnEmptyQuery: If false, no results are displayed when the user hasn’t entered any query text
   */
+  @available(*, deprecated, message: "Places feature is deprecated")
   convenience init(placesAppID: ApplicationID,
                    apiKey: APIKey,
                    infiniteScrolling: InfiniteScrolling = Constants.Defaults.infiniteScrolling,
@@ -48,6 +53,7 @@ public extension HitsConnector where Hit == PlaceHit {
 
 }
 
+@available(*, deprecated, message: "Places feature is deprecated")
 public extension HitsConnector where Hit == PlaceHit {
 
   /**
@@ -57,6 +63,7 @@ public extension HitsConnector where Hit == PlaceHit {
      - interactor: External hits interactor
      - controller: Controller interfacing with a concrete hits view
   */
+  @available(*, deprecated, message: "Places feature is deprecated")
   convenience init<Controller: GeoHitsController>(searcher: PlacesSearcher,
                                                   interactor: HitsInteractor<Hit>,
                                                   controller: Controller) where Controller.DataSource == HitsInteractor<PlaceHit> {
@@ -76,6 +83,7 @@ public extension HitsConnector where Hit == PlaceHit {
      - showItemsOnEmptyQuery: If false, no results are displayed when the user hasn’t entered any query text
      - controller: Controller interfacing with a concrete hits view
   */
+  @available(*, deprecated, message: "Places feature is deprecated")
   convenience init<Controller: GeoHitsController>(placesAppID: ApplicationID,
                                                   apiKey: APIKey,
                                                   infiniteScrolling: InfiniteScrolling = Constants.Defaults.infiniteScrolling,
@@ -96,6 +104,7 @@ public extension HitsConnector where Hit == PlaceHit {
      - controller: Controller interfacing with a concrete hits view
    - Returns: Established connection
   */
+  @available(*, deprecated, message: "Places feature is deprecated")
   @discardableResult func connectController<Controller: GeoHitsController>(_ controller: Controller) -> HitsInteractor<PlaceHit>.GeoHitsControllerConnection<Controller> where Controller.DataSource == HitsInteractor<PlaceHit> {
     let connection = interactor.connectController(controller)
     controllerConnections.append(connection)
