@@ -102,6 +102,12 @@ public class HitsInteractor<Record: Codable>: AnyHitsInteractor {
     }
   }
 
+  /// Map hits pages into the list of hits. The hits contained by pages unloaded from memory are represented as nil values.
+  public var hits: [Record?] {
+    guard let pageMap = paginator.pageMap else { return [] }
+    return Array(pageMap)
+  }
+
   public func hit(atIndex index: Int) -> Record? {
     guard let hitsPageMap = paginator.pageMap else { return nil }
     notifyDidPresentRow(atIndex: index)

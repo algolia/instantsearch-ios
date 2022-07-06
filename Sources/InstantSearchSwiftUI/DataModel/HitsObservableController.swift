@@ -29,7 +29,7 @@ public class HitsObservableController<Hit: Codable>: ObservableObject, HitsContr
   }
 
   public func reload() {
-    self.hits = hitsSource?.getCurrentHits() ?? []
+    self.hits = hitsSource?.hits ?? []
   }
 
   /// Function to call on hit appearance  to ensure the infinite scrolling functionality
