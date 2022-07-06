@@ -47,7 +47,7 @@ public class FilterComparisonConnector<Number: Comparable & DoubleRepresentable>
      - filterState: FilterState that holds your filters
      - attribute: Attribute to filter with a numeric comparison
      - numericOperator: Comparison operator to apply
-     - number: Initial number value
+     - number: Initial numeric value to filter on.
      - bounds: Optional bounds limiting the max and the min value of the number
      - operator: Whether the filter is added to a conjuncitve(`and`) or  a disjuncitve (`or`) group in the filter state. Default value: .and
      - groupName: Filter group name in the filter state. If not specified, the attribute value is used as the group name
@@ -56,9 +56,9 @@ public class FilterComparisonConnector<Number: Comparable & DoubleRepresentable>
               filterState: FilterState,
               attribute: Attribute,
               numericOperator: Filter.Numeric.Operator,
-              number: Number,
+              number: Number? = nil,
               bounds: ClosedRange<Number>? = nil,
-              operator: RefinementOperator,
+              operator: RefinementOperator = .and,
               groupName: String? = nil) {
     self.searcher = searcher
     self.interactor = .init()
@@ -73,7 +73,9 @@ public class FilterComparisonConnector<Number: Comparable & DoubleRepresentable>
                                                                numericOperator: numericOperator,
                                                                operator: `operator`,
                                                                groupName: groupName)
-    self.interactor.computeNumber(number: number)
+    if let number = number {
+      self.interactor.computeNumber(number: number)
+    }
     if let bounds = bounds {
       self.interactor.applyBounds(bounds: bounds)
     }
