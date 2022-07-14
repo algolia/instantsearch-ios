@@ -15,6 +15,7 @@ public protocol FacetStatsProvider {
 
 extension SearchResponse: FacetStatsProvider {}
 
+@available(*, deprecated, message: "use BoundableHitsSearcherConnection")
 public struct BoundableSearchResultProvderConnection<B: Boundable, SearchResponseProvider: SearchResultObservable>: Connection where SearchResponseProvider.SearchResult: FacetStatsProvider {
 
   public let boundable: B
@@ -23,7 +24,7 @@ public struct BoundableSearchResultProvderConnection<B: Boundable, SearchRespons
 
   public func connect() {
     let attribute = self.attribute
-    searchResultProvider.onResults.subscribePast(with: boundable) { boundable, searchResult in
+    searchResultProvider.onResults.subscribePastOnce(with: boundable) { boundable, searchResult in
       boundable.computeBoundsFromFacetStats(attribute: attribute, facetStats: searchResult.facetStats)
     }
   }
@@ -36,6 +37,7 @@ public struct BoundableSearchResultProvderConnection<B: Boundable, SearchRespons
 
 extension Boundable {
 
+  @available(*, deprecated, message: "use connectSearcher(_ searcher: HitsSearcher, attribute: Attribute)")
   @discardableResult public func connect<SearchResponseProvider>(_ searchResultProvider: SearchResponseProvider, attribute: Attribute) -> BoundableSearchResultProvderConnection<Self, SearchResponseProvider> {
     let connection = BoundableSearchResultProvderConnection(boundable: self, searchResultProvider: searchResultProvider, attribute: attribute)
     connection.connect()

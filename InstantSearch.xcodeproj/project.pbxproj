@@ -24,6 +24,7 @@
 /* End PBXAggregateTarget section */
 
 /* Begin PBXBuildFile section */
+		40B737ED287F923000323B26 /* Boundable+HitsSearcher.swift in Sources */ = {isa = PBXBuildFile; fileRef = 40B737EC287F923000323B26 /* Boundable+HitsSearcher.swift */; };
 		OBJ_1175 /* AsyncOperation.swift in Sources */ = {isa = PBXBuildFile; fileRef = OBJ_757 /* AsyncOperation.swift */; };
 		OBJ_1176 /* WaitTask.swift in Sources */ = {isa = PBXBuildFile; fileRef = OBJ_758 /* WaitTask.swift */; };
 		OBJ_1177 /* AccountClient.swift in Sources */ = {isa = PBXBuildFile; fileRef = OBJ_760 /* AccountClient.swift */; };
@@ -568,7 +569,6 @@
 		OBJ_1744 /* FilterComparisonConnector.swift in Sources */ = {isa = PBXBuildFile; fileRef = OBJ_294 /* FilterComparisonConnector.swift */; };
 		OBJ_1745 /* FilterComparison+Controller.swift in Sources */ = {isa = PBXBuildFile; fileRef = OBJ_295 /* FilterComparison+Controller.swift */; };
 		OBJ_1746 /* FilterComparison+FilterState.swift in Sources */ = {isa = PBXBuildFile; fileRef = OBJ_296 /* FilterComparison+FilterState.swift */; };
-		OBJ_1747 /* FilterComparisonComputeBounds.swift in Sources */ = {isa = PBXBuildFile; fileRef = OBJ_297 /* FilterComparisonComputeBounds.swift */; };
 		OBJ_1748 /* NumberController.swift in Sources */ = {isa = PBXBuildFile; fileRef = OBJ_298 /* NumberController.swift */; };
 		OBJ_1749 /* NumberInteractor.swift in Sources */ = {isa = PBXBuildFile; fileRef = OBJ_299 /* NumberInteractor.swift */; };
 		OBJ_1750 /* NumberRangeConnector+Controller.swift in Sources */ = {isa = PBXBuildFile; fileRef = OBJ_302 /* NumberRangeConnector+Controller.swift */; };
@@ -1333,6 +1333,7 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		40B737EC287F923000323B26 /* Boundable+HitsSearcher.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "Boundable+HitsSearcher.swift"; sourceTree = "<group>"; };
 		OBJ_10 /* MultiIndexSearchConnector+UIKit.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "MultiIndexSearchConnector+UIKit.swift"; sourceTree = "<group>"; };
 		OBJ_1000 /* SnippetResult.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SnippetResult.swift; sourceTree = "<group>"; };
 		OBJ_1001 /* IndexName.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = IndexName.swift; sourceTree = "<group>"; };
@@ -1633,7 +1634,6 @@
 		OBJ_294 /* FilterComparisonConnector.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FilterComparisonConnector.swift; sourceTree = "<group>"; };
 		OBJ_295 /* FilterComparison+Controller.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "FilterComparison+Controller.swift"; sourceTree = "<group>"; };
 		OBJ_296 /* FilterComparison+FilterState.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "FilterComparison+FilterState.swift"; sourceTree = "<group>"; };
-		OBJ_297 /* FilterComparisonComputeBounds.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FilterComparisonComputeBounds.swift; sourceTree = "<group>"; };
 		OBJ_298 /* NumberController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NumberController.swift; sourceTree = "<group>"; };
 		OBJ_299 /* NumberInteractor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NumberInteractor.swift; sourceTree = "<group>"; };
 		OBJ_302 /* NumberRangeConnector+Controller.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "NumberRangeConnector+Controller.swift"; sourceTree = "<group>"; };
@@ -3248,12 +3248,12 @@
 		OBJ_289 /* Number */ = {
 			isa = PBXGroup;
 			children = (
+				40B737EC287F923000323B26 /* Boundable+HitsSearcher.swift */,
 				OBJ_290 /* Boundable+SearchResultProvider.swift */,
 				OBJ_291 /* Computation.swift */,
 				OBJ_292 /* Connector */,
 				OBJ_295 /* FilterComparison+Controller.swift */,
 				OBJ_296 /* FilterComparison+FilterState.swift */,
-				OBJ_297 /* FilterComparisonComputeBounds.swift */,
 				OBJ_298 /* NumberController.swift */,
 				OBJ_299 /* NumberInteractor.swift */,
 			);
@@ -3809,7 +3809,7 @@
 			path = View;
 			sourceTree = "<group>";
 		};
-		OBJ_5 /*  */ = {
+		OBJ_5 = {
 			isa = PBXGroup;
 			children = (
 				OBJ_6 /* Package.swift */,
@@ -3831,7 +3831,6 @@
 				OBJ_1168 /* Gemfile.lock */,
 				OBJ_1169 /* generate_version */,
 			);
-			name = "";
 			sourceTree = "<group>";
 		};
 		OBJ_509 /* Tests */ = {
@@ -5431,7 +5430,7 @@
 			knownRegions = (
 				en,
 			);
-			mainGroup = OBJ_5 /*  */;
+			mainGroup = OBJ_5;
 			productRefGroup = OBJ_1144 /* Products */;
 			projectDirPath = "";
 			projectRoot = "";
@@ -5888,6 +5887,7 @@
 				OBJ_1611 /* DynamicFacetListConnector.swift in Sources */,
 				OBJ_1612 /* DynamicFacetListController.swift in Sources */,
 				OBJ_1613 /* DynamicFacetListInteractor+Controller.swift in Sources */,
+				40B737ED287F923000323B26 /* Boundable+HitsSearcher.swift in Sources */,
 				OBJ_1614 /* DynamicFacetListInteractor+FilterState.swift in Sources */,
 				OBJ_1615 /* DynamicFacetListInteractor+Searcher.swift in Sources */,
 				OBJ_1616 /* DynamicFacetListInteractor.swift in Sources */,
@@ -6021,7 +6021,6 @@
 				OBJ_1744 /* FilterComparisonConnector.swift in Sources */,
 				OBJ_1745 /* FilterComparison+Controller.swift in Sources */,
 				OBJ_1746 /* FilterComparison+FilterState.swift in Sources */,
-				OBJ_1747 /* FilterComparisonComputeBounds.swift in Sources */,
 				OBJ_1748 /* NumberController.swift in Sources */,
 				OBJ_1749 /* NumberInteractor.swift in Sources */,
 				OBJ_1750 /* NumberRangeConnector+Controller.swift in Sources */,
