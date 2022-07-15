@@ -26,6 +26,8 @@ public struct SearchBar: View {
   @State public var searchBarBackgroundColor =
     Color(.sRGB, red: 239/255, green: 239/255, blue: 240/255, opacity: 1)
 
+  @State public var searchBarForegroundColor = Color(.gray)
+    
   private let placeholder: String
   private var onSubmit: () -> Void
 
@@ -51,7 +53,7 @@ public struct SearchBar: View {
       .overlay(
         HStack {
           Image(systemName: "magnifyingglass")
-            .foregroundColor(.gray)
+            .foregroundColor(searchBarForegroundColor)
             .frame(minWidth: 0, maxWidth: .infinity, alignment: .leading)
             .padding(.leading, 8)
             .disabled(true)
@@ -61,7 +63,7 @@ public struct SearchBar: View {
                    },
                    label: {
                     Image(systemName: "multiply.circle.fill")
-                      .foregroundColor(.gray)
+                      .foregroundColor(searchBarForegroundColor)
                       .padding(.trailing, 8)
                    })
           }
