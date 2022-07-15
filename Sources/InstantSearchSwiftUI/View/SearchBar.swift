@@ -21,6 +21,10 @@ public struct SearchBar: View {
 
   /// Whether the search bar is in the editing state
   @Binding public var isEditing: Bool
+    
+  /// Customizable background color for the main text field
+  @State public var searchBarBackgroundColor =
+    Color(.sRGB, red: 239/255, green: 239/255, blue: 240/255, opacity: 1)
 
   private let placeholder: String
   private var onSubmit: () -> Void
@@ -66,15 +70,15 @@ public struct SearchBar: View {
       .onTapGesture {
         isEditing = true
       }
-      .background(Color(.sRGB, red: 239/255, green: 239/255, blue: 240/255, opacity: 1))
+      .background(searchBarBackgroundColor)
       .cornerRadius(10)
       if isEditing {
-        Button(action: {
-                isEditing = false
-               },
-               label: {
-                Text("Cancel")
-               })
+          
+        Button<Text> {
+          isEditing = false
+        } label: {
+          Text("Cancel")
+        }
         .padding(.trailing, 10)
         .transition(.move(edge: .trailing))
         .animation(.default)
