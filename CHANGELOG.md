@@ -1,5 +1,24 @@
 # ChangeLog
 
+## [7.19.0](https://github.com/algolia/instantsearch-ios/compare/...7.19.0) (2022-07-18)
+
+### Feat
+
+- NumberObservableController implementation (#233) ([7c9cfa9](https://github.com/algolia/instantsearch-ios/commit/7c9cfa9))
+
+### Fix
+
+- SwiftUI infinite scrolling issue (#228) ([6f924e3](https://github.com/algolia/instantsearch-ios/commit/6f924e3))
+
+### Chore
+
+- Update GitHub actions (#229) ([712e190](https://github.com/algolia/instantsearch-ios/commit/712e190))
+- Deprecate Boundable <-> Search Result Provider connection (#230) ([bbde414](https://github.com/algolia/instantsearch-ios/commit/bbde414))
+- Deprecate Answers components (#231) ([35e6848](https://github.com/algolia/instantsearch-ios/commit/35e6848))
+- Deprecate Places components (#232) ([180909a](https://github.com/algolia/instantsearch-ios/commit/180909a))
+
+
+
 ## [7.18.0](https://github.com/algolia/instantsearch-ios/compare/...7.18.0) (2022-06-21)
 
 ### Fix
