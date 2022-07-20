@@ -26,7 +26,7 @@ public extension HierarchicalInteractor {
         interactor?.selections = hierarchicalPath.map { $0.value.description }
 
         filterState[hierarchical: groupName].removeAll()
-        
+
         if let lastSelectedFilter = hierarchicalPath.last {
           filterState[hierarchical: groupName].add(lastSelectedFilter)
           filterState[hierarchical: groupName].set(hierarchicalPath)
@@ -34,7 +34,7 @@ public extension HierarchicalInteractor {
           let emptyFiltersList: [Filter.Facet] = []
           filterState[hierarchical: groupName].set(emptyFiltersList)
         }
-        
+
         filterState.notifyChange()
 
       }
