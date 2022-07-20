@@ -49,8 +49,11 @@ public class HierarchicalInteractor: ItemInteractor<[[Facet]]> {
   }
 
   public func computeSelection(key: String) {
-    let selections = key.subPaths(withSeparator: separator)
-    let hierarchicalPath = zip(hierarchicalAttributes, selections).map { Filter.Facet(attribute: $0, stringValue: $1) }
+    let selections = key.subpaths(withSeparator: separator)
+    var hierarchicalPath = zip(hierarchicalAttributes, selections).map { Filter.Facet(attribute: $0, stringValue: $1) }
+    if self.selections == selections {
+      hierarchicalPath.removeLast()
+    }
     onSelectionsComputed.fire(hierarchicalPath)
   }
 }
@@ -59,7 +62,12 @@ public enum Hierarchical {}
 
 extension String {
 
-  func subPaths(withSeparator separator: String) -> [String] {
+  /** Build a list of all subpaths for a path with a provided separator
+      Example:
+        - input: Clothing > Women > Bags
+        - output: ["Clothing", "Clothing > Women". "Clothing > Women > Bags"]
+  */
+  func subpaths(withSeparator separator: String) -> [String] {
     return components(separatedBy: separator).reduce([]) { (paths, component) in
       let newPath = paths.last.flatMap { $0 + separator + component } ?? component
       return paths + [newPath]
