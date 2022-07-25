@@ -16,18 +16,11 @@ class HierarchicalDemoController {
   let clearFilterConnector: FilterClearConnector
   let hierarchicalConnector: HierarchicalConnector
 
-  struct HierarchicalCategory {
-    static var base: Attribute = "hierarchicalCategories"
-    static var lvl0: Attribute { "\(base).lvl0" }
-    static var lvl1: Attribute { "\(base).lvl1" }
-    static var lvl2: Attribute { "\(base).lvl2" }
-  }
-
-  let order = [
-    HierarchicalCategory.lvl0,
-    HierarchicalCategory.lvl1,
-    HierarchicalCategory.lvl2
-  ]
+  let hierarchicalAttributes: [Attribute] = [
+    "lvl0",
+    "lvl1",
+    "lvl2"
+  ].map { "hierarchicalCategories.\($0)" }
 
   init<Controller: HierarchicalController>(controller: Controller) where Controller.Item == [HierarchicalFacet] {
     searcher = HitsSearcher(client: .instantSearch,
@@ -36,7 +29,7 @@ class HierarchicalDemoController {
     clearFilterConnector = .init(filterState: filterState)
     hierarchicalConnector = .init(searcher: searcher,
                                   filterState: filterState,
-                                  hierarchicalAttributes: order,
+                                  hierarchicalAttributes: hierarchicalAttributes,
                                   separator: " > ",
                                   controller: controller,
                                   presenter: DefaultPresenter.Hierarchical.present)

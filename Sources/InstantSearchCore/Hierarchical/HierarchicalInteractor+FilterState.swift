@@ -21,19 +21,20 @@ public extension HierarchicalInteractor {
 
       filterState[hierarchical: groupName].set(interactor.hierarchicalAttributes)
 
-      interactor.onSelectionsComputed.subscribePast(with: filterState) { [weak interactor] filterState, selections in
+      interactor.onSelectionsComputed.subscribePast(with: filterState) { [weak interactor] filterState, hierarchicalPath in
 
-        interactor?.selections = selections.map { $0.value.description }
+        interactor?.selections = hierarchicalPath.map { $0.value.description }
 
         filterState[hierarchical: groupName].removeAll()
 
-        guard let lastSelectedFilter = selections.last else {
-          filterState[hierarchical: groupName].set([Filter.Facet]())
-          return
+        if let lastSelectedFilter = hierarchicalPath.last {
+          filterState[hierarchical: groupName].add(lastSelectedFilter)
+          filterState[hierarchical: groupName].set(hierarchicalPath)
+        } else {
+          let emptyFiltersList: [Filter.Facet] = []
+          filterState[hierarchical: groupName].set(emptyFiltersList)
         }
 
-        filterState[hierarchical: groupName].add(lastSelectedFilter)
-        filterState[hierarchical: groupName].set(selections)
         filterState.notifyChange()
 
       }
