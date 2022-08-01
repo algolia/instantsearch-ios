@@ -33,7 +33,8 @@ jobs:
           ruby-version: '2.7.2'
           bundler-cache: true
       - uses: actions/checkout@v2
-      - uses: maierj/fastlane-action@v2.0.1
+      - uses: maierj/fastlane-action@v2.2.1
         with:
           lane: 'deploy'
+          verbose: 'true'
           options: '{ "type": "${{ env.RELEASE_TYPE }}" }'
