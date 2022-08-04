@@ -12,6 +12,7 @@ import InstantSearchCore
 import UIKit
 
 @available(*, unavailable, message: "Use your own UICollectionViewController conforming to HitsController protocol")
+@available(*, deprecated, message: "Use your own UICollectionViewController conforming to HitsController protocol")
 open class MultiIndexHitsCollectionViewDelegate: NSObject, UICollectionViewDelegate {
 
   typealias ClickHandler = (UICollectionView, Int) throws -> Void

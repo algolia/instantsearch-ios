@@ -12,6 +12,7 @@ import InstantSearchCore
 import UIKit
 
 @available(*, unavailable, message: "Use your own UITableViewController conforming to MultiIndexHitsController protocol")
+@available(*, deprecated, message: "Use your own UITableViewController conforming to MultiIndexHitsController protocol")
 open class MultiIndexHitsTableViewDelegate: NSObject, UITableViewDelegate {
 
   typealias ClickHandler = (UITableView, Int) throws -> Void

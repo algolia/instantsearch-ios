@@ -13,7 +13,7 @@ import AlgoliaSearchClient
 class DisjunctiveFacetingIntegrationTests: OnlineTestCase {
 
   struct Item: Codable {
-    let objectID: String = UUID().uuidString
+//    let objectID: String = UUID().uuidString
     let category: String
     let color: String?
     let promotions: TreeModel<String>?
@@ -29,7 +29,7 @@ class DisjunctiveFacetingIntegrationTests: OnlineTestCase {
     try super.setUpWithError()
     let settings = Settings().set(\.attributesForFaceting, to: disjunctiveAttributes.map { .default($0) })
     let items: [Item] = try JSONDecoder().decode(fromResource: "disjunctive", withExtension: "json")
-    try fillIndex(withItems: items, settings: settings)
+    try fillIndex(withItems: items, autoGeneratingObjectID: true, settings: settings)
   }
 
   func testDisjunctive() {

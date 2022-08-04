@@ -731,6 +731,7 @@ extension TelemetryTests {
 //MARK: - Answers Searcher
 extension TelemetryTests {
   
+  @available(*, deprecated, message: "Answers feature is deprecated")
   func testAnswersSearcher() throws {
     _ = AnswersSearcher(applicationID: "",
                         apiKey: "",

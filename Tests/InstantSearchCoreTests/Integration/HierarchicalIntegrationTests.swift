@@ -13,7 +13,6 @@ import AlgoliaSearchClient
 class HierarchicalTests: OnlineTestCase {
 
   struct Item: Codable {
-    let objectID: String = UUID().uuidString
     let name: String
     let hierarchicalCategories: [String: String]
   }
@@ -43,7 +42,7 @@ class HierarchicalTests: OnlineTestCase {
     try super.setUpWithError()
     let settings = Settings().set(\.attributesForFaceting, to: hierarchicalAttributes.map { .default($0) })
     let items: [Item] = try JSONDecoder().decode(fromResource: "hierarchical", withExtension: "json")
-    try fillIndex(withItems: items, settings: settings)
+    try fillIndex(withItems: items, autoGeneratingObjectID: true, settings: settings)
   }
 
   func testHierachical() {

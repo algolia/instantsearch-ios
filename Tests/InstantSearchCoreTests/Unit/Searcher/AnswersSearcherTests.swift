@@ -9,6 +9,7 @@ import Foundation
 import XCTest
 @testable import InstantSearchCore
 
+@available(*, deprecated, message: "Answers feature is deprecated")
 class AnswersSearcherTests: XCTestCase {
   
   func testOnQueryChanged() {

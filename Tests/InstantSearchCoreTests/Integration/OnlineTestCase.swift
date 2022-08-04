@@ -66,8 +66,8 @@ class OnlineTestCase: XCTestCase {
     waitForExpectations(timeout: expectationTimeout, handler: nil)
   }
 
-    func fillIndex<O: Encodable>(withItems items: [O], settings: Settings) throws {
-      try index.saveObjects(items).wait()
+    func fillIndex<O: Encodable>(withItems items: [O], autoGeneratingObjectID: Bool, settings: Settings) throws {
+      try index.saveObjects(items, autoGeneratingObjectID: autoGeneratingObjectID).wait()
       try index.setSettings(settings).wait()
     }
 
