@@ -7,6 +7,7 @@
 
 #if !InstantSearchCocoaPods
 import InstantSearchCore
+import InstantSearchTelemetry
 #endif
 #if canImport(Combine) && canImport(SwiftUI) && (arch(arm64) || arch(x86_64))
 import Combine
@@ -32,6 +33,7 @@ public class HierarchicalObservableController: ObservableObject, HierarchicalCon
 
   public init(hierarchicalFacets: [HierarchicalFacet] = []) {
     self.hierarchicalFacets = hierarchicalFacets
+    Telemetry.shared.traceDeclarative(type: .hierarchicalFacets)
   }
 
 }

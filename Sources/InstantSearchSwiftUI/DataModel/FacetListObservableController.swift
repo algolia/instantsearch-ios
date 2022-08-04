@@ -7,6 +7,7 @@
 
 #if !InstantSearchCocoaPods
 import InstantSearchCore
+import InstantSearchTelemetry
 #endif
 #if canImport(Combine) && canImport(SwiftUI) && (arch(arm64) || arch(x86_64))
 import Combine
@@ -55,6 +56,7 @@ public class FacetListObservableController: ObservableObject, FacetListControlle
     self.facets = facets
     self.selections = selections
     self.onClick = onClick
+    Telemetry.shared.traceDeclarative(type: .facetList)
   }
 
 }

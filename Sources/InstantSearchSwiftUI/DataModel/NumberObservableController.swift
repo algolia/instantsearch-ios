@@ -33,6 +33,7 @@ public class NumberObservableController<Number: Numeric & Comparable>: Observabl
               bounds: ClosedRange<Number> = 0...1000000) {
     self.value = value
     self.bounds = bounds
+    Telemetry.shared.traceDeclarative(type: .numberFilter)
   }
 
   public func setItem(_ value: Number) {

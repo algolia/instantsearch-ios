@@ -33,6 +33,7 @@ public class SearchBoxObservableController: ObservableObject, SearchBoxControlle
 
   public init(query: String = "") {
     self.query = query
+    Telemetry.shared.traceDeclarative(type: .searchBox)
   }
 
   /// Trigger query submit event

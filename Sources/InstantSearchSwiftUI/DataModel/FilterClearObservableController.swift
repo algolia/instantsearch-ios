@@ -7,6 +7,7 @@
 
 #if !InstantSearchCocoaPods
 import InstantSearchCore
+import InstantSearchTelemetry
 #endif
 #if canImport(Combine) && canImport(SwiftUI) && (arch(arm64) || arch(x86_64))
 import Combine
@@ -23,7 +24,9 @@ public class FilterClearObservableController: ObservableObject, FilterClearContr
     onClick?()
   }
 
-  public init() {}
+  public init() {
+    Telemetry.shared.traceDeclarative(type: .filterClear)
+  }
 
 }
 #endif

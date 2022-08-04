@@ -41,6 +41,7 @@ public class FilterToggleObservableController<Filter: FilterType>: ObservableObj
   public init(filter: Filter? = nil, isSelected: Bool = false) {
     self.filter = filter
     self.isSelected = isSelected
+    Telemetry.shared.traceDeclarative(type: .filterToggle)
   }
 
 }

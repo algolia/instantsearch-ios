@@ -25,6 +25,7 @@ public class LoadingObservableController: ObservableObject, LoadingController {
 
   public init(isLoading: Bool = false) {
     self.isLoading = isLoading
+    Telemetry.shared.traceDeclarative(type: .loading)
   }
 
 }

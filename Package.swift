@@ -31,7 +31,7 @@ let package = Package(
              from: "8.15.0"),
     .package(name: "InstantSearchTelemetry",
              url: "https://github.com/algolia/instantsearch-telemetry-native",
-             from: "0.1.2")
+             branch: "feat/declarative-frameworks-tracking")
   ],
   targets: [
     .target(
@@ -65,7 +65,7 @@ let package = Package(
       dependencies: ["InstantSearch"]),
     .target(
       name: "InstantSearchSwiftUI",
-      dependencies: ["InstantSearchCore"]),
+      dependencies: ["InstantSearchCore", .product(name: "InstantSearchTelemetry", package: "InstantSearchTelemetry")]),
     .testTarget(
       name: "InstantSearchSwiftUITests",
       dependencies: ["InstantSearchSwiftUI"])

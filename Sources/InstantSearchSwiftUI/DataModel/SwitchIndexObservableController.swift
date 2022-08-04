@@ -6,6 +6,7 @@
 //
 #if !InstantSearchCocoaPods
 import InstantSearchCore
+import InstantSearchTelemetry
 #endif
 #if canImport(Combine) && canImport(SwiftUI) && (arch(arm64) || arch(x86_64))
 import Combine
@@ -33,6 +34,7 @@ public class SwitchIndexObservableController: ObservableObject, SwitchIndexContr
               selected: IndexName = "") {
     self.indexNames = indexNames
     self.selected = selected
+    Telemetry.shared.traceDeclarative(type: .sortBy)
   }
 
 }
