@@ -1,5 +1,13 @@
 # ChangeLog
 
+## [7.19.1](https://github.com/algolia/instantsearch-ios/compare/7.19.0...7.19.1) (2022-08-04)
+
+### Fix
+
+- **hierarchical**: deselect item (#236) ([804ca2b](https://github.com/algolia/instantsearch-ios/commit/804ca2b))
+
+
+
 ## [7.19.0](https://github.com/algolia/instantsearch-ios/compare/...7.19.0) (2022-07-18)
 
 ### Feat
