@@ -13,7 +13,6 @@ import AlgoliaSearchClient
 class DisjuncitveAndHierarchicalIntegrationTests: OnlineTestCase {
 
   struct Item: Codable {
-//    let objectID: String
     let name: String
     let color: String?
     let hierarchicalCategories: [String: String]
