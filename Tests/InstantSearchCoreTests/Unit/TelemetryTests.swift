@@ -57,8 +57,7 @@ class TelemetryTests: XCTestCase {
     case componentNotFound(TelemetryComponentType)
   }
   
-  func testUserAgents() throws {
-    throw XCTSkip()
+  func userAgentsTest() throws {
     
     let expectation1 = expectation(description: "URL request expectation")
     
