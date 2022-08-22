@@ -187,7 +187,7 @@ class EventTracker: EventTrackable {
     }
 
   }
-  
+
   private func log(_ error: Error) {
     logger.error("\(error.localizedDescription)")
   }
