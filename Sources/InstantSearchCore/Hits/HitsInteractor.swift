@@ -56,10 +56,6 @@ public class HitsInteractor<Record: Codable>: AnyHitsInteractor {
       paginator.pageCleanUpOffset = newValue
     }
   }
-  
-  public static func test(level: LogLevel, text: String) {
-    Log.logger.log(level: level.swiftLogLevel, "\(text)")
-  }
 
   convenience public init(infiniteScrolling: InfiniteScrolling = Constants.Defaults.infiniteScrolling,
                           showItemsOnEmptyQuery: Bool = Constants.Defaults.showItemsOnEmptyQuery) {

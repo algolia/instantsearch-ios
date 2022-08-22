@@ -154,10 +154,6 @@ public class Insights {
 
     return insightsInstance
   }
-  
-  public static func test(level: LogLevel, text: String) {
-    Log.logger.log(level: level.swiftLogLevel, "\(text)")
-  }
 
   /// Register your index with a given appId and apiKey
   ///

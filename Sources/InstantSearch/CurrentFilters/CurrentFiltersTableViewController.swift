@@ -21,10 +21,6 @@ open class CurrentFilterListTableController: NSObject, CurrentFiltersController,
   public var items: [FilterAndID] = []
 
   private let cellIdentifier = "CurrentFilterListTableControllerCellID"
-  
-  public static func test(level: LogLevel, text: String) {
-    Log.logger.log(level: level.swiftLogLevel, "\(text)")
-  }
 
   public init(tableView: UITableView) {
     self.tableView = tableView
