@@ -26,7 +26,7 @@ open class HitsTableViewDataSource<DataSource: HitsSource>: NSObject, UITableVie
   open func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
 
     guard let hitsSource = hitsSource else {
-      InstantSearchLogger.missingHitsSourceWarning()
+      Log.missingHitsSourceWarning()
       return 0
     }
 
@@ -37,7 +37,7 @@ open class HitsTableViewDataSource<DataSource: HitsSource>: NSObject, UITableVie
   open func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
 
     guard let hitsSource = hitsSource else {
-      InstantSearchLogger.missingHitsSourceWarning()
+      Log.missingHitsSourceWarning()
       return .init()
     }
 

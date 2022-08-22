@@ -5,66 +5,67 @@
 //  Created by Vladislav Fitc on 31/01/2020.
 //
 
-import Logging
+import Foundation
 #if !InstantSearchCocoaPods
-import struct InstantSearchInsights.Logger
-import enum InstantSearchInsights.LogLevel
-import protocol InstantSearchInsights.LogCollector
-import protocol InstantSearchInsights.LogService
+import Logging
+import struct InstantSearchInsights.Logs
 #endif
 
-public extension Logger {
-
-  struct InstantSearch: LogCollector {
-
-    public static var minLogSeverityLevel: LogLevel {
-
-      get {
-        return service.minLogSeverityLevel
+struct Log {
+  
+  static var logger: Logging.Logger = {
+    NotificationCenter.default.addObserver(forName: Notification.Name("com.algolia.logLevelChange"), object: nil, queue: .main) { notification in
+      if let logLevel = notification.userInfo?["logLevel"] as? LogLevel {
+        Log.logger.logLevel = logLevel.swiftLogLevel
       }
-
-      set {
-        service.minLogSeverityLevel = newValue
-      }
-
     }
-
-    public static var isEnabled: Bool = true
-
-    static var service: LogService = {
-      var swiftLog = Logging.Logger(label: "com.algolia.InstantSearch")
-      swiftLog.logLevel = .info
-      swiftLog.info("Default minimal log severity level is info. Change Logger.InstantSearch.minLogSeverityLevel value if you want to change it.")
-      return swiftLog
-    }()
-
-    public static func log(level: LogLevel, message: String) {
-      guard Logger.InstantSearch.isEnabled else { return }
-      service.log(level: level, message: message)
-    }
-
+    var logger = Logging.Logger(label: "InstantSearch")
+    logger.logLevel = Logs.logSeverityLevel.swiftLogLevel
+    return logger
+  }()
+  
+  static func trace(_ message: String) {
+    logger.log(level: .trace, "\(message)")
+  }
+  
+  static func debug(_ message: String) {
+    logger.log(level: .debug, "\(message)")
+  }
+  
+  static func info(_ message: String) {
+    logger.log(level: .info, "\(message)")
+  }
+  
+  static func notice(_ message: String) {
+    logger.log(level: .notice, "\(message)")
+  }
+  
+  static func warning(_ message: String) {
+    logger.log(level: .warning, "\(message)")
+  }
+  
+  static func error(_ message: String) {
+    logger.log(level: .error, "\(message)")
+  }
+  
+  static func critical(_ message: String) {
+    logger.log(level: .critical, "\(message)")
   }
 
-}
-
-typealias InstantSearchLogger = Logger.InstantSearch
-
-extension InstantSearchLogger {
-
   static func missingHitsSourceWarning() {
-    warning("Missing hits source")
+    logger.warning("Missing hits source")
   }
 
   static func missingCellConfiguratorWarning(forSection section: Int) {
-    warning("No cell configurator found for section \(section)")
+    logger.warning("No cell configurator found for section \(section)")
   }
 
   static func missingClickHandlerWarning(forSection section: Int) {
-    warning("No click handler found for section \(section)")
+    logger.warning("No click handler found for section \(section)")
   }
 
   static func error(_ error: Error) {
-    self.error("\(error)")
+    logger.error("\(error)")
   }
 
 }

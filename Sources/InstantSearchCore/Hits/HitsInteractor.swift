@@ -56,6 +56,10 @@ public class HitsInteractor<Record: Codable>: AnyHitsInteractor {
       paginator.pageCleanUpOffset = newValue
     }
   }
+  
+  public static func test(level: LogLevel, text: String) {
+    Log.logger.log(level: level.swiftLogLevel, "\(text)")
+  }
 
   convenience public init(infiniteScrolling: InfiniteScrolling = Constants.Defaults.infiniteScrolling,
                           showItemsOnEmptyQuery: Bool = Constants.Defaults.showItemsOnEmptyQuery) {
@@ -226,7 +230,7 @@ extension HitsInteractor: ResultUpdatable {
         hitsInteractor.paginator.process(page)
         hitsInteractor.onResultsUpdated.fire(searchResults)
       } catch let error {
-        InstantSearchCoreLogger.HitsDecoding.failure(hitsInteractor: hitsInteractor, error: error)
+        Log.HitsDecoding.failure(hitsInteractor: hitsInteractor, error: error)
         hitsInteractor.onError.fire(error)
       }
     }

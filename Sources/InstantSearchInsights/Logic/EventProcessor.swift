@@ -30,7 +30,7 @@ class EventProcessor<Service: EventsService, PackageStorage: Storage>: Flushable
   let timerController: TimerController
 
   /// Logging component
-  let logger: PrefixedLogger
+  var logger: Logger
 
   /// Closure filttering events before synchronizing them with the service
   let acceptEvent: (Event) -> Bool
@@ -80,7 +80,7 @@ class EventProcessor<Service: EventsService, PackageStorage: Storage>: Flushable
        flushNotificationName: Notification.Name?,
        flushDelay: TimeInterval,
        acceptEvent: @escaping (Event) -> Bool = { _ in true },
-       logger: PrefixedLogger,
+       logger: Logger,
        dispatchQueue: DispatchQueue = .init(label: "insights.events", qos: .background)) {
 
     self.packager = .init(packageCapacity: packageCapacity)
@@ -104,6 +104,9 @@ class EventProcessor<Service: EventsService, PackageStorage: Storage>: Flushable
     self.acceptEvent = acceptEvent
     timerController.action = flush
     timerController.setup()
+    Log.subscribeForLogLevelChange { [weak self] logLevel in
+      self?.logger.logLevel = logLevel
+    }
     if let flushNotificationName = flushNotificationName {
       NotificationCenter.default.addObserver(self, selector: #selector(flush), name: flushNotificationName, object: .none)
     }
@@ -129,7 +132,7 @@ class EventProcessor<Service: EventsService, PackageStorage: Storage>: Flushable
       do {
         try processor.storage?.store(updatedPackages)
       } catch let error {
-        processor.logger.error(error)
+        processor.logger.error("\(error.localizedDescription)")
       }
       if let lastPackage = processor.packager.packages.last, lastPackage.isFull {
         processor.flush()
@@ -183,7 +186,7 @@ private extension EventProcessor {
         do {
           try processor.storage?.store(updatedPackages)
         } catch let error {
-          processor.logger.error(error)
+          processor.logger.error("\(error.localizedDescription)")
         }
       }
 

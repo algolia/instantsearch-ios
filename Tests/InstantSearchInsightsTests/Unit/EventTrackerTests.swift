@@ -16,7 +16,7 @@ class EventTrackerTests: XCTestCase {
   
   override func setUp() {
     eventTracker = EventTracker(eventProcessor: eventProcessor,
-                                logger: PrefixedLogger(prefix: "EventTrackerTests"),
+                                logger: Logger(label: "EventTrackerTests"),
                                 userToken: .none,
                                 generateTimestamps: true)
   }
@@ -171,7 +171,7 @@ class EventTrackerTests: XCTestCase {
   func testTimeStampGeneration() {
     
     let eventTracker = EventTracker(eventProcessor: eventProcessor,
-                                    logger: PrefixedLogger(prefix: "EventTrackerTests"),
+                                    logger: Logger(label: "EventTrackerTests"),
                                     userToken: .none,
                                     generateTimestamps: true)
     

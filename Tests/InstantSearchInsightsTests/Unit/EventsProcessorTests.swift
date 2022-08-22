@@ -31,7 +31,7 @@ class EventsProcessorTests: XCTestCase {
                                          packageCapacity: packageCapacity,
                                          flushNotificationName: nil,
                                          flushDelay: 1000,
-                                         logger: PrefixedLogger(prefix: #function),
+                                         logger: Logger(label: #function),
                                          dispatchQueue: queue)
     
     // Expectation must no be fullfilled as eventsProcessor is deactivated
@@ -61,7 +61,7 @@ class EventsProcessorTests: XCTestCase {
                                          packageCapacity: packageCapacity,
                                          flushNotificationName: nil,
                                          flushDelay: 1000,
-                                         logger: PrefixedLogger(prefix: #function),
+                                         logger: Logger(label: #function),
                                          dispatchQueue: queue)
 
     
@@ -88,7 +88,7 @@ class EventsProcessorTests: XCTestCase {
                                          packageCapacity: packageCapacity,
                                          flushNotificationName: nil,
                                          flushDelay: 1000,
-                                         logger: PrefixedLogger(prefix: #function),
+                                         logger: Logger(label: #function),
                                          dispatchQueue: queue)
     
     eventsProcessor.process("Test event")
@@ -127,7 +127,7 @@ class EventsProcessorTests: XCTestCase {
                                          packageCapacity: packageCapacity,
                                          flushNotificationName: nil,
                                          flushDelay: 1000,
-                                         logger: PrefixedLogger(prefix: #function),
+                                         logger: Logger(label: #function),
                                          dispatchQueue: queue)
         
     eventsProcessor.process("Test event")
@@ -148,7 +148,7 @@ class EventsProcessorTests: XCTestCase {
                                          packageCapacity: packageCapacity,
                                          flushNotificationName: nil,
                                          flushDelay: 2,
-                                         logger: PrefixedLogger(prefix: #function),
+                                         logger: Logger(label: #function),
                                          dispatchQueue: queue)
     
     eventsProcessor.process("Test event")
@@ -169,7 +169,7 @@ class EventsProcessorTests: XCTestCase {
                                          packageCapacity: packageCapacity,
                                          flushNotificationName: flushNotificationName,
                                          flushDelay: 1000,
-                                         logger: PrefixedLogger(prefix: #function),
+                                         logger: Logger(label: #function),
                                          dispatchQueue: queue)
     
     eventsProcessor.process("Test event")
@@ -194,7 +194,7 @@ class EventsProcessorTests: XCTestCase {
                                          packageCapacity: packageCapacity,
                                          flushNotificationName: nil,
                                          flushDelay: 1000,
-                                         logger: PrefixedLogger(prefix: #function),
+                                         logger: Logger(label: #function),
                                          dispatchQueue: queue)
     
     eventsProcessor.process("5")
@@ -220,7 +220,7 @@ class EventsProcessorTests: XCTestCase {
                                          flushNotificationName: nil,
                                          flushDelay: 1000,
                                          acceptEvent: acceptEvent,
-                                         logger: PrefixedLogger(prefix: #function),
+                                         logger: Logger(label: #function),
                                          dispatchQueue: queue)
 
     let exp = expectation(description: "send events")

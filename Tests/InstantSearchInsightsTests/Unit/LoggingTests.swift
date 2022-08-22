@@ -7,84 +7,118 @@
 
 import Foundation
 @testable import InstantSearchInsights
+import Logging
 import XCTest
 
-class LoggingTests: XCTestCase {
-
-  typealias LogLevel = InstantSearchInsights.LogLevel
+class TestLogHandler: LogHandler {
   
-  class TestLoggingService: LogService {
-    
-    var minLogSeverityLevel: LogLevel = .trace
-    
-    var closure: (LogLevel, String) -> Void
-
-    init(_ closure: @escaping (LogLevel, String) -> Void) {
-      self.closure = closure
+  subscript(metadataKey _: String) -> Logger.Metadata.Value? {
+    get {
+      return nil
     }
-
-    func log(level: LogLevel, message: String) {
-      closure(level, message)
+    set(newValue) {
+      
     }
-
   }
+  
+  var metadata: Logger.Metadata = [:]
+  
+  var logLevel: Logger.Level = .trace
+  
+  var handler: (Logger.Level, Logger.Message) -> Void
+  let label: String
+  
+  init(label: String, handler: @escaping (Logger.Level, Logger.Message) -> Void) {
+    self.label = label
+    self.handler = handler
+  }
+  
+  func log(level: Logger.Level,
+           message: Logger.Message,
+           metadata: Logger.Metadata?,
+           source: String,
+           file: String,
+           function: String,
+           line: UInt) {
+    handler(level, message)
+  }
+  
+}
+
+class LoggingTests: XCTestCase {
+  
+  let logLevels: [LogLevel] = [.trace, .debug, .info, .notice, .warning, .error, .critical]
   
   func testMatchLevel() {
     
-    let logLevels: [LogLevel] = [.trace, .debug, .info, .notice, .warning, .error, .critical]
-    
     let messages = [LogLevel: String](logLevels.map { ($0, .random()) }, uniquingKeysWith: { k, _ in k })
-    
+
     let expectation = self.expectation(description: "All messages captured")
     expectation.expectedFulfillmentCount = messages.count
     
-    let service = TestLoggingService { (level, message) in
-      XCTAssertEqual(message, messages[level])
-      expectation.fulfill()
-    }
-    
-    Logger.InstantSearchInsights.service = service
+    Log.logger = Logger(label: "test insights logger", factory: { label in
+      return TestLogHandler(label: label) { level, message in
+        XCTAssertEqual("\(message)", messages[LogLevel(swiftLogLevel: level)])
+        expectation.fulfill()
+      }
+    })
     
     for (level, message) in messages {
-      Logger.InstantSearchInsights.log(level: level, message: message)
+      Log.logger.log(level: level.swiftLogLevel, "\(message)")
     }
     
     waitForExpectations(timeout: 5, handler: nil)
 
   }
   
-  func testMute() {
+  func testSetLogSeverityLevel() {
     
-    let logLevels: [LogLevel] = [.trace, .debug, .info, .notice, .warning, .error, .critical]
-    
-    let messages = [LogLevel: String](logLevels.map { ($0, .random()) }, uniquingKeysWith: { k, _ in k })
-    
-    let expectation = self.expectation(description: "No message captured")
-    expectation.isInverted = true
-
-    let service = TestLoggingService { (level, message) in
-      expectation.fulfill()
+    let logLevels = Array(self.logLevels.reversed())
+        
+    // Ensure that logs with level < logSeverityLevel not captured
+    for (index, logLevel) in logLevels.enumerated() {
+      
+      let exp = expectation(description: "unexpected log for \(logLevel)")
+      exp.isInverted = true
+      
+      Log.logger = Logger(label: "test insights logger", factory: { label in
+        return TestLogHandler(label: label) { level, message in
+          exp.fulfill()
+        }
+      })
+      
+      Logs.logSeverityLevel = logLevel
+      
+      for nextLogLevel in logLevels.dropFirst(index+1) {
+        Log.logger.log(level: nextLogLevel.swiftLogLevel, "test")
+      }
     }
-    
-    Logger.InstantSearchInsights.service = service
-    Logger.InstantSearchInsights.isEnabled = false
-    
-    for (level, message) in messages {
-      Logger.InstantSearchInsights.log(level: level, message: message)
-    }
-    
     waitForExpectations(timeout: 5, handler: nil)
-  }
-  
-  func testSetMinSeverityLevel() {
     
-    let logLevels: [LogLevel] = [.trace, .debug, .info, .notice, .warning, .error, .critical]
-    let loggingService = TestLoggingService { _, _ in }
-    Logger.InstantSearchInsights.service = loggingService
-    for level in logLevels {
-      Logger.InstantSearchInsights.minLogSeverityLevel = level
-      XCTAssertEqual(loggingService.minLogSeverityLevel, level)
+    // Ensure that logs with level > logSeverityLevel captured
+    for (index, logLevel) in logLevels.enumerated() {
+      
+      let exp = expectation(description: "expected log for \(logLevel)")
+      exp.expectedFulfillmentCount = index + 1
+      
+      Log.logger = Logger(label: "test insights logger", factory: { label in
+        return TestLogHandler(label: label) { level, message in
+          exp.fulfill()
+        }
+      })
+      
+      Logs.logSeverityLevel = logLevel
+      
+      guard index != 0 else {
+        Log.logger.log(level: logLevels[0].swiftLogLevel, "test")
+        continue
+      }
+      for nextLogLevel in logLevels[0...index] {
+        Log.logger.log(level: nextLogLevel.swiftLogLevel, "test")
+      }
     }
+    waitForExpectations(timeout: 2, handler: nil)
+    
   }
     
 }

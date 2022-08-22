@@ -24,7 +24,7 @@ open class HitsTableViewDelegate<DataSource: HitsSource>: NSObject, UITableViewD
   open func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
 
     guard let hitsSource = hitsSource else {
-      InstantSearchLogger.missingHitsSourceWarning()
+      Log.missingHitsSourceWarning()
       return
     }
 
