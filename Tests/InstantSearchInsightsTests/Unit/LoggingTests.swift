@@ -49,6 +49,18 @@ class LoggingTests: XCTestCase {
   
   let logLevels: [LogLevel] = [.trace, .debug, .info, .notice, .warning, .error, .critical]
   
+  static var defaultLogger: Logging.Logger?
+  
+  override class func setUp() {
+    defaultLogger = Log.logger
+  }
+  
+  override class func tearDown() {
+    defaultLogger.flatMap { value in
+      Log.logger = value
+    }
+  }
+  
   func testMatchLevel() {
     
     let messages = [LogLevel: String](logLevels.map { ($0, .random()) }, uniquingKeysWith: { k, _ in k })
