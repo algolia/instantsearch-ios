@@ -179,6 +179,15 @@ If you build a SwiftUI application, please check out the Getting [Started with S
 
 If you only require business logic modules in your project and use `InstantSearchCore` framework, add `import InstantSearchCore` to your source files. 
 
+## Logs
+
+There are 7 levels of logs severity produced by the library. 
+The default severity level is `.info`. 
+You can configure the logging level as follows: 
+```
+Logs.logSeverityLevel = .debug
+```  
+
 
 ## Telemetry
 
