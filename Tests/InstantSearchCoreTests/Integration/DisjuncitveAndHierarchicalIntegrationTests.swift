@@ -13,7 +13,6 @@ import AlgoliaSearchClient
 class DisjuncitveAndHierarchicalIntegrationTests: OnlineTestCase {
 
   struct Item: Codable {
-    let objectID: String = UUID().uuidString
     let name: String
     let color: String?
     let hierarchicalCategories: [String: String]
@@ -55,7 +54,7 @@ class DisjuncitveAndHierarchicalIntegrationTests: OnlineTestCase {
     try super.setUpWithError()
     let settings = Settings().set(\.attributesForFaceting, to: facetAttributes.map { .default($0) })
     let items: [Item] = try JSONDecoder().decode(fromResource: "disjunctiveHierarchical", withExtension: "json")
-    try fillIndex(withItems: items, settings: settings)
+    try fillIndex(withItems: items, autoGeneratingObjectID: true, settings: settings)
   }
 
   func testDisjuncitiveHierarchical() {

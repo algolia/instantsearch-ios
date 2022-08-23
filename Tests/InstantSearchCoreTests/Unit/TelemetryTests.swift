@@ -57,8 +57,7 @@ class TelemetryTests: XCTestCase {
     case componentNotFound(TelemetryComponentType)
   }
   
-  func testUserAgents() throws {
-    throw XCTSkip()
+  func userAgentsTest() throws {
     
     let expectation1 = expectation(description: "URL request expectation")
     
@@ -731,6 +730,7 @@ extension TelemetryTests {
 //MARK: - Answers Searcher
 extension TelemetryTests {
   
+  @available(*, deprecated, message: "Answers feature is deprecated")
   func testAnswersSearcher() throws {
     _ = AnswersSearcher(applicationID: "",
                         apiKey: "",

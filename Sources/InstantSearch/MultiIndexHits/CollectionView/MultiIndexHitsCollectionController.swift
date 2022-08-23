@@ -14,6 +14,7 @@ import InstantSearchCore
 import UIKit
 
 @available(*, unavailable, message: "Use your own UICollectionViewController conforming to MultiIndexHitsController protocol")
+@available(*, deprecated, message: "Use your own UICollectionViewController conforming to MultiIndexHitsController protocol")
 public class MultiIndexHitsCollectionController: NSObject, MultiIndexHitsController, HitsCollectionViewContainer {
 
   public let collectionView: UICollectionView

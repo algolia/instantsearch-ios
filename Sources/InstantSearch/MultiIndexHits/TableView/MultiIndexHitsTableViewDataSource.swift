@@ -12,6 +12,7 @@ import InstantSearchCore
 import UIKit
 
 @available(*, unavailable, message: "Use your own UITableViewController conforming to MultiIndexHitsController protocol")
+@available(*, deprecated, message: "Use your own UITableViewController conforming to MultiIndexHitsController protocol")
 open class MultiIndexHitsTableViewDataSource: NSObject, UITableViewDataSource {
 
   private typealias CellConfigurator = (UITableView, Int) throws -> UITableViewCell
