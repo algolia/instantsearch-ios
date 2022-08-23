@@ -13,7 +13,7 @@ public protocol LogCollectable {
 }
 
 public extension LogCollectable {
-  
+
   static func trace(_ message: String) {
     logger.log(level: .trace, "\(message)")
   }

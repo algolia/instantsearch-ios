@@ -24,7 +24,7 @@ struct InstantSearchLog: LogCollectable {
     logger.logLevel = Logs.logSeverityLevel.swiftLogLevel
     return logger
   }()
-  
+
   static func missingHitsSourceWarning() {
     warning("Missing hits source")
   }

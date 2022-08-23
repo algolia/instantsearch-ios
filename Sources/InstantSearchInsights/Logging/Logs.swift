@@ -9,7 +9,7 @@ import Foundation
 import AlgoliaSearchClient
 
 public struct Logs {
-  
+
   public static let logLevelChangeNotficationName = Notification.Name("com.algolia.logLevelChange")
 
   public static var logSeverityLevel: LogLevel = .info {
