@@ -1,20 +1,21 @@
 //
-//  Log.swift
+//  Log+InstantSearch.swift
 //  
 //
 //  Created by Vladislav Fitc on 11/06/2020.
 //
 
-import Logging
 import Foundation
 #if !InstantSearchCocoaPods
+import Logging
 import struct InstantSearchInsights.Logs
+import protocol InstantSearchInsights.LogCollectable
 #endif
 
-struct Log {
+struct Log: LogCollectable {
 
   static var logger: Logging.Logger = {
-    NotificationCenter.default.addObserver(forName: Notification.Name("com.algolia.logLevelChange"), object: nil, queue: .main) { notification in
+    NotificationCenter.default.addObserver(forName: Logs.logLevelChangeNotficationName, object: nil, queue: .main) { notification in
       if let logLevel = notification.userInfo?["logLevel"] as? LogLevel {
         Log.logger.logLevel = logLevel.swiftLogLevel
       }
@@ -23,34 +24,6 @@ struct Log {
     logger.logLevel = Logs.logSeverityLevel.swiftLogLevel
     return logger
   }()
-
-  static func trace(_ message: String) {
-    logger.log(level: .trace, "\(message)")
-  }
-
-  static func debug(_ message: String) {
-    logger.log(level: .debug, "\(message)")
-  }
-
-  static func info(_ message: String) {
-    logger.log(level: .info, "\(message)")
-  }
-
-  static func notice(_ message: String) {
-    logger.log(level: .notice, "\(message)")
-  }
-
-  static func warning(_ message: String) {
-    logger.log(level: .warning, "\(message)")
-  }
-
-  static func error(_ message: String) {
-    logger.log(level: .error, "\(message)")
-  }
-
-  static func critical(_ message: String) {
-    logger.log(level: .critical, "\(message)")
-  }
 
 }
 

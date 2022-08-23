@@ -9,10 +9,12 @@ import Foundation
 import AlgoliaSearchClient
 
 public struct Logs {
+  
+  public static let logLevelChangeNotficationName = Notification.Name("com.algolia.logLevelChange")
 
   public static var logSeverityLevel: LogLevel = .info {
     didSet {
-      let notification = Notification(name: Notification.Name("com.algolia.logLevelChange"), object: nil, userInfo: ["logLevel": logSeverityLevel])
+      let notification = Notification(name: logLevelChangeNotficationName, object: nil, userInfo: ["logLevel": logSeverityLevel])
       NotificationCenter.default.post(notification)
     }
   }

@@ -1,5 +1,5 @@
 //
-//  Log.swift
+//  Log+InstantSearchInsights.swift
 //  
 //
 //  Created by Vladislav Fitc on 18/08/2022.
@@ -10,7 +10,7 @@ import Logging
 
 typealias Logger = Logging.Logger
 
-class Log {
+class Log: LogCollectable {
 
   static var logger: Logging.Logger = {
     subscribeForLogLevelChange { logLevel in
@@ -31,6 +31,14 @@ class Log {
 
   private init() {}
 
+}
+
+public protocol LogCollectable {
+  static var logger: Logging.Logger { get }
+}
+
+public extension LogCollectable {
+  
   static func trace(_ message: String) {
     logger.log(level: .trace, "\(message)")
   }
