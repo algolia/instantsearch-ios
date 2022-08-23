@@ -28,7 +28,7 @@ class EventTracker: EventTrackable {
     self.logger = logger
     self.userToken = userToken
     self.generateTimestamps = generateTimestamps
-    Log.subscribeForLogLevelChange { [weak self] logLevel in
+    InstantSearchInsightsLog.subscribeForLogLevelChange { [weak self] logLevel in
       self?.logger.logLevel = logLevel
     }
   }

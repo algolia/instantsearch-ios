@@ -104,7 +104,7 @@ class EventProcessor<Service: EventsService, PackageStorage: Storage>: Flushable
     self.acceptEvent = acceptEvent
     timerController.action = flush
     timerController.setup()
-    Log.subscribeForLogLevelChange { [weak self] logLevel in
+    InstantSearchInsightsLog.subscribeForLogLevelChange { [weak self] logLevel in
       self?.logger.logLevel = logLevel
     }
     if let flushNotificationName = flushNotificationName {

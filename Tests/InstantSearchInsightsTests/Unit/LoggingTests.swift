@@ -52,12 +52,12 @@ class LoggingTests: XCTestCase {
   static var defaultLogger: Logging.Logger?
   
   override class func setUp() {
-    defaultLogger = Log.logger
+    defaultLogger = InstantSearchInsightsLog.logger
   }
   
   override class func tearDown() {
     defaultLogger.flatMap { value in
-      Log.logger = value
+      InstantSearchInsightsLog.logger = value
     }
   }
   
@@ -68,7 +68,7 @@ class LoggingTests: XCTestCase {
     let expectation = self.expectation(description: "All messages captured")
     expectation.expectedFulfillmentCount = messages.count
     
-    Log.logger = Logger(label: "test insights logger", factory: { label in
+    InstantSearchInsightsLog.logger = Logger(label: "test insights logger", factory: { label in
       return TestLogHandler(label: label) { level, message in
         XCTAssertEqual("\(message)", messages[LogLevel(swiftLogLevel: level)])
         expectation.fulfill()
@@ -76,7 +76,7 @@ class LoggingTests: XCTestCase {
     })
     
     for (level, message) in messages {
-      Log.logger.log(level: level.swiftLogLevel, "\(message)")
+      InstantSearchInsightsLog.logger.log(level: level.swiftLogLevel, "\(message)")
     }
     
     waitForExpectations(timeout: 5, handler: nil)
@@ -93,7 +93,7 @@ class LoggingTests: XCTestCase {
       let exp = expectation(description: "unexpected log for \(logLevel)")
       exp.isInverted = true
       
-      Log.logger = Logger(label: "test insights logger", factory: { label in
+      InstantSearchInsightsLog.logger = Logger(label: "test insights logger", factory: { label in
         return TestLogHandler(label: label) { level, message in
           exp.fulfill()
         }
@@ -102,7 +102,7 @@ class LoggingTests: XCTestCase {
       Logs.logSeverityLevel = logLevel
       
       for nextLogLevel in logLevels.dropFirst(index+1) {
-        Log.logger.log(level: nextLogLevel.swiftLogLevel, "test")
+        InstantSearchInsightsLog.logger.log(level: nextLogLevel.swiftLogLevel, "test")
       }
     }
     waitForExpectations(timeout: 5, handler: nil)
@@ -113,7 +113,7 @@ class LoggingTests: XCTestCase {
       let exp = expectation(description: "expected log for \(logLevel)")
       exp.expectedFulfillmentCount = index + 1
       
-      Log.logger = Logger(label: "test insights logger", factory: { label in
+      InstantSearchInsightsLog.logger = Logger(label: "test insights logger", factory: { label in
         return TestLogHandler(label: label) { level, message in
           exp.fulfill()
         }
@@ -122,11 +122,11 @@ class LoggingTests: XCTestCase {
       Logs.logSeverityLevel = logLevel
       
       guard index != 0 else {
-        Log.logger.log(level: logLevels[0].swiftLogLevel, "test")
+        InstantSearchInsightsLog.logger.log(level: logLevels[0].swiftLogLevel, "test")
         continue
       }
       for nextLogLevel in logLevels[0...index] {
-        Log.logger.log(level: nextLogLevel.swiftLogLevel, "test")
+        InstantSearchInsightsLog.logger.log(level: nextLogLevel.swiftLogLevel, "test")
       }
     }
     waitForExpectations(timeout: 2, handler: nil)

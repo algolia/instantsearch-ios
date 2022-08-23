@@ -211,7 +211,7 @@ extension PageMap {
     let pagesToRemove = loadedPageIndexes.filter { $0 < leastPageIndex || $0 > lastPageIndex }
 
     guard !pagesToRemove.isEmpty else { return }
-    Log.trace("InfiniteScrolling: clean pages: \(pagesToRemove.map(String.init).joined(separator: ", "))")
+    InstantSearchCoreLog.trace("InfiniteScrolling: clean pages: \(pagesToRemove.map(String.init).joined(separator: ", "))")
 
     for pageIndex in pagesToRemove {
       storage.removeValue(forKey: pageIndex)

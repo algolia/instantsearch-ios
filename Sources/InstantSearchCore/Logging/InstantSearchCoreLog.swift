@@ -1,23 +1,23 @@
 //
-//  Log+InstantSearch.swift
+//  InstantSearchCoreLog.swift
 //  
 //
 //  Created by Vladislav Fitc on 11/06/2020.
 //
 
 import Foundation
-#if !InstantSearchCocoaPods
 import Logging
+#if !InstantSearchCocoaPods
 import struct InstantSearchInsights.Logs
 import protocol InstantSearchInsights.LogCollectable
 #endif
 
-struct Log: LogCollectable {
+struct InstantSearchCoreLog: LogCollectable {
 
   static var logger: Logging.Logger = {
     NotificationCenter.default.addObserver(forName: Logs.logLevelChangeNotficationName, object: nil, queue: .main) { notification in
       if let logLevel = notification.userInfo?["logLevel"] as? LogLevel {
-        Log.logger.logLevel = logLevel.swiftLogLevel
+        InstantSearchCoreLog.logger.logLevel = logLevel.swiftLogLevel
       }
     }
     var logger = Logging.Logger(label: "InstantSearchCore")
@@ -27,7 +27,7 @@ struct Log: LogCollectable {
 
 }
 
-extension Log {
+extension InstantSearchCoreLog {
 
   static func error(prefix: String = "", _ error: Error) {
     let errorMessage: String
@@ -41,7 +41,7 @@ extension Log {
 
 }
 
-extension Log {
+extension InstantSearchCoreLog {
 
   enum HitsDecoding {
 
@@ -53,7 +53,7 @@ extension Log {
 
 }
 
-extension Log {
+extension InstantSearchCoreLog {
 
   enum Results {
 

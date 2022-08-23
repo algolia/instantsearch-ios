@@ -115,7 +115,7 @@ public class Insights {
 
   public var isLoggingEnabled: Bool = false {
     didSet {
-      Log.logger.logLevel = .critical
+      InstantSearchInsightsLog.logger.logLevel = .critical
     }
   }
 
@@ -129,14 +129,14 @@ public class Insights {
 
     switch insightsMap.count {
     case 0:
-      Log.debug("none registered application found. Please use `register(appId:, apiKey:)` method to register your application.")
+      InstantSearchInsightsLog.debug("none registered application found. Please use `register(appId:, apiKey:)` method to register your application.")
       return nil
 
     case 1:
       return insightsMap.first?.value
 
     default:
-      Log.debug("multiple applications registered. Please use `shared(appId:)` function to specify the applicaton.")
+      InstantSearchInsightsLog.debug("multiple applications registered. Please use `shared(appId:)` function to specify the applicaton.")
       return nil
     }
 
@@ -148,7 +148,7 @@ public class Insights {
 
   public static func shared(appId: ApplicationID) -> Insights? {
     guard let insightsInstance = insightsMap[appId] else {
-      Log.debug("application for this app ID (\(appId)) is not registered. Please use `register(appId:, apiKey:)` method to register your application.")
+      InstantSearchInsightsLog.debug("application for this app ID (\(appId)) is not registered. Please use `register(appId:, apiKey:)` method to register your application.")
       return nil
     }
 
