@@ -94,7 +94,7 @@ public class Insights {
   }
 
   private static var insightsMap: [ApplicationID: Insights] = [:]
-  private static var logger = PrefixedLogger(prefix: nil)
+//  private static var logger = InsightsLogger.logger
 
   /// Defines if event tracking is active. Default value is `true`.
   /// In case of set to false, all the events for current application will be ignored.
@@ -115,13 +115,12 @@ public class Insights {
 
   public var isLoggingEnabled: Bool = false {
     didSet {
-      Logger.InstantSearchInsights.isEnabled = isLoggingEnabled
+      InstantSearchInsightsLog.logger.logLevel = .critical
     }
   }
 
   let eventTracker: EventTrackable
   let eventProcessor: EventProcessable
-  let logger: PrefixedLogger
 
   /// Access an already registered `Insights` without having to pass the `apiKey` and `appId`.
   /// If none or more than one application has been registered, the nil value will be returned.
@@ -130,14 +129,14 @@ public class Insights {
 
     switch insightsMap.count {
     case 0:
-      logger.debug("none registered application found. Please use `register(appId:, apiKey:)` method to register your application.")
+      InstantSearchInsightsLog.debug("none registered application found. Please use `register(appId:, apiKey:)` method to register your application.")
       return nil
 
     case 1:
       return insightsMap.first?.value
 
     default:
-      logger.debug("multiple applications registered. Please use `shared(appId:)` function to specify the applicaton.")
+      InstantSearchInsightsLog.debug("multiple applications registered. Please use `shared(appId:)` function to specify the applicaton.")
       return nil
     }
 
@@ -149,7 +148,7 @@ public class Insights {
 
   public static func shared(appId: ApplicationID) -> Insights? {
     guard let insightsInstance = insightsMap[appId] else {
-      logger.debug("application for this app ID (\(appId)) is not registered. Please use `register(appId:, apiKey:)` method to register your application.")
+      InstantSearchInsightsLog.debug("application for this app ID (\(appId)) is not registered. Please use `register(appId:, apiKey:)` method to register your application.")
       return nil
     }
 
@@ -171,7 +170,7 @@ public class Insights {
                                                  userToken: UserToken? = .none,
                                                  generateTimestamps: Bool = true,
                                                  region: Region? = region) -> Insights {
-    let logger = PrefixedLogger(prefix: "application \(appId.rawValue) - ")
+    let logger = Logger(label: "Insights (\(appId.rawValue))")
     logger.info("application registered")
     let insights = Insights(applicationID: appId,
                             apiKey: apiKey,
@@ -186,10 +185,9 @@ public class Insights {
 
   init(eventProcessor: EventProcessable,
        eventTracker: EventTrackable,
-       logger: PrefixedLogger) {
+       logger: Logger) {
     self.eventProcessor = eventProcessor
     self.eventTracker = eventTracker
-    self.logger = logger
   }
 
   convenience init(applicationID: ApplicationID,
@@ -198,7 +196,7 @@ public class Insights {
                    flushDelay: TimeInterval,
                    userToken: UserToken?,
                    generateTimestamps: Bool,
-                   logger: PrefixedLogger) {
+                   logger: Logger) {
 
     typealias PackageStorage = JSONFilePackageStorage<[Package<InsightsEvent>]>
 
@@ -208,7 +206,7 @@ public class Insights {
       storage = try PackageStorage(filename: "\(applicationID.rawValue).storage.events")
     } catch let error {
       storage = nil
-      logger.error(error)
+      logger.error("\(error.localizedDescription)")
     }
 
     let insightsClient = InsightsClient(appID: applicationID, apiKey: apiKey, region: region)

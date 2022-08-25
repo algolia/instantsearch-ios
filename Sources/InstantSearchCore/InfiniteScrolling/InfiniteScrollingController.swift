@@ -25,13 +25,13 @@ class InfiniteScrollingController: InfiniteScrollable {
 
   /// Remove a page index from a pending set
   public func notifyPending(pageIndex: Int) {
-    InstantSearchCoreLogger.trace("InfiniteScrolling: remove page from pending: \(pageIndex)")
+    InstantSearchCoreLog.trace("InfiniteScrolling: remove page from pending: \(pageIndex)")
     pendingPageIndexes.remove(pageIndex)
   }
 
   /// Remove all pages from a pending set
   public func notifyPendingAll() {
-    InstantSearchCoreLogger.trace("InfiniteScrolling: remove all pages from pending")
+    InstantSearchCoreLog.trace("InfiniteScrolling: remove all pages from pending")
     pendingPageIndexes.removeAll()
   }
 
@@ -62,7 +62,7 @@ class InfiniteScrollingController: InfiniteScrollable {
 
     let pagesToLoad = previousPagesToLoad.union(nextPagesToLoad)
 
-    InstantSearchCoreLogger.trace("InfiniteScrolling: required rows: \(currentRow)±\(offset), pages to load: \(pagesToLoad.sorted())")
+    InstantSearchCoreLog.trace("InfiniteScrolling: required rows: \(currentRow)±\(offset), pages to load: \(pagesToLoad.sorted())")
 
     for pageIndex in pagesToLoad {
       pendingPageIndexes.insert(pageIndex)

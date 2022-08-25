@@ -24,7 +24,7 @@ open class HitsCollectionViewDelegate<DataSource: HitsSource>: NSObject, UIColle
   open func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
 
     guard let hitsSource = hitsSource else {
-      InstantSearchLogger.missingHitsSourceWarning()
+      InstantSearchLog.missingHitsSourceWarning()
       return
     }
 

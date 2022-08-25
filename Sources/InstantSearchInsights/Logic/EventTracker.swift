@@ -16,18 +16,21 @@ import AlgoliaSearchClient
 class EventTracker: EventTrackable {
 
   var eventProcessor: EventProcessable
-  var logger: PrefixedLogger
+  var logger: Logger
   var userToken: UserToken?
   var generateTimestamps: Bool
 
   init(eventProcessor: EventProcessable,
-       logger: PrefixedLogger,
+       logger: Logger,
        userToken: UserToken?,
        generateTimestamps: Bool) {
     self.eventProcessor = eventProcessor
     self.logger = logger
     self.userToken = userToken
     self.generateTimestamps = generateTimestamps
+    InstantSearchInsightsLog.subscribeForLogLevelChange { [weak self] logLevel in
+      self?.logger.logLevel = logLevel
+    }
   }
 
   /// Provides an appropriate user token
@@ -57,7 +60,7 @@ class EventTracker: EventTrackable {
                                        timestamp: effectiveTimestamp(for: timestamp),
                                        objectIDs: objectIDs))
     } catch let error {
-      logger.error(error)
+      log(error)
     }
   }
 
@@ -73,7 +76,7 @@ class EventTracker: EventTrackable {
                                        timestamp: effectiveTimestamp(for: timestamp),
                                        filters: filters))
     } catch let error {
-      logger.error(error)
+      log(error)
     }
   }
 
@@ -93,7 +96,7 @@ class EventTracker: EventTrackable {
                                         queryID: queryID,
                                         objectIDsWithPositions: objectIDsWithPositions))
     } catch let error {
-      logger.error(error)
+      log(error)
     }
   }
 
@@ -109,7 +112,7 @@ class EventTracker: EventTrackable {
                                         timestamp: effectiveTimestamp(for: timestamp),
                                         objectIDs: objectIDs))
     } catch let error {
-      logger.error(error)
+      log(error)
     }
 
   }
@@ -126,7 +129,7 @@ class EventTracker: EventTrackable {
                                         timestamp: effectiveTimestamp(for: timestamp),
                                         filters: filters))
     } catch let error {
-      logger.error(error)
+      log(error)
     }
 
   }
@@ -144,7 +147,7 @@ class EventTracker: EventTrackable {
                                              queryID: nil,
                                              objectIDs: objectIDs))
     } catch let error {
-      logger.error(error)
+      log(error)
     }
   }
 
@@ -161,7 +164,7 @@ class EventTracker: EventTrackable {
                                              queryID: nil,
                                              filters: filters))
     } catch let error {
-      logger.error(error)
+      log(error)
     }
   }
 
@@ -180,9 +183,13 @@ class EventTracker: EventTrackable {
                                              queryID: queryID,
                                              objectIDs: objectIDs))
     } catch let error {
-      logger.error(error)
+      log(error)
     }
 
+  }
+
+  private func log(_ error: Error) {
+    logger.error("\(error.localizedDescription)")
   }
 
 }

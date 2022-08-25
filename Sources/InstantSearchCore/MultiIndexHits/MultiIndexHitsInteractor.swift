@@ -37,7 +37,7 @@ public class MultiIndexHitsInteractor {
     self.mutationQueue.qualityOfService = .userInitiated
     for interactor in hitsInteractors {
       interactor.onError.subscribe(with: self) { multIndexInteractor, error in
-        InstantSearchCoreLogger.HitsDecoding.failure(hitsInteractor: interactor, error: error)
+        InstantSearchCoreLog.HitsDecoding.failure(hitsInteractor: interactor, error: error)
         multIndexInteractor.onError.fire(error)
       }
     }

@@ -16,7 +16,7 @@ class InsightsTests: XCTestCase {
   let testEventTracker = TestEventTracker()
   let testEventProcessor = TestEventProcessor()
   lazy var testInsights: Insights = {
-    return Insights(eventProcessor: testEventProcessor, eventTracker: testEventTracker, logger: PrefixedLogger(prefix: "InsightsTests"))
+    return Insights(eventProcessor: testEventProcessor, eventTracker: testEventTracker, logger: Logger(label: "InsightsTest"))
   }()
   
   func testInitShouldFail() {
@@ -288,7 +288,7 @@ class InsightsTests: XCTestCase {
     
     let mockService = MockEventService<InsightsEvent> { _ in exp.fulfill() }
     let storage = TestPackageStorage<InsightsEvent>()
-    let logger = PrefixedLogger(prefix: #function)
+    let logger = Logger(label: #function)
     let eventProcessor = EventProcessor(service: mockService,
                                         storage: storage,
                                         packageCapacity: Algolia.Insights.minBatchSize,
@@ -324,7 +324,7 @@ class InsightsTests: XCTestCase {
       exp.fulfill()
     }
     
-    let logger = PrefixedLogger(prefix: #function)
+    let logger = Logger(label: #function)
     
     let eventTracker = EventTracker(eventProcessor: eventProcessor,
                                     logger: logger,
@@ -355,7 +355,7 @@ class InsightsTests: XCTestCase {
       exp.fulfill()
     }
     
-    let logger = PrefixedLogger(prefix: #function)
+    let logger = Logger(label: #function)
     
     let eventTracker = EventTracker(eventProcessor: eventProcessor,
                                     logger: logger,
@@ -380,7 +380,7 @@ class InsightsTests: XCTestCase {
     let userToken: UserToken = "testUserToken1"
     
     let eventProcessor = TestEventProcessor()
-    let logger = PrefixedLogger(prefix: #function)
+    let logger = Logger(label: #function)
     let eventTracker = EventTracker(eventProcessor: eventProcessor,
                                     logger: logger,
                                     userToken: userToken,
@@ -423,7 +423,7 @@ class InsightsTests: XCTestCase {
     let exp = expectation(description: "process event expectation")
         
     let eventProcessor = TestEventProcessor()
-    let logger = PrefixedLogger(prefix: #function)
+    let logger = Logger(label: #function)
 
     let eventTracker = EventTracker(eventProcessor: eventProcessor,
                                     logger: logger,

@@ -31,7 +31,7 @@ open class MultiIndexHitsCollectionViewDelegate: NSObject, UICollectionViewDeleg
       guard let delegate = self else { return }
 
       guard let hitsSource = delegate.hitsSource else {
-        InstantSearchLogger.missingHitsSourceWarning()
+        InstantSearchLog.missingHitsSourceWarning()
         return
       }
 
@@ -46,13 +46,13 @@ open class MultiIndexHitsCollectionViewDelegate: NSObject, UICollectionViewDeleg
 
   open func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
     guard let clickHandler = clickHandlers[indexPath.section] else {
-      InstantSearchLogger.missingClickHandlerWarning(forSection: indexPath.section)
+      InstantSearchLog.missingClickHandlerWarning(forSection: indexPath.section)
       return
     }
     do {
       try clickHandler(collectionView, indexPath.row)
     } catch let underlyingError {
-      InstantSearchLogger.error(underlyingError)
+      InstantSearchLog.error(underlyingError)
     }
   }
 
