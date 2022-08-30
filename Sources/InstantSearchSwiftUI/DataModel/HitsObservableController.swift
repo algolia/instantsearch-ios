@@ -8,6 +8,7 @@
 #if !InstantSearchCocoaPods
 import InstantSearchCore
 #endif
+import InstantSearchTelemetry
 #if canImport(Combine) && canImport(SwiftUI) && (arch(arm64) || arch(x86_64))
 import Combine
 import SwiftUI
@@ -40,6 +41,7 @@ public class HitsObservableController<Hit: Codable>: ObservableObject, HitsContr
   public init() {
     self.hits = []
     self.scrollID = .init()
+    InstantSearchTelemetry.shared.traceDeclarative(type: .hits)
   }
 
 }

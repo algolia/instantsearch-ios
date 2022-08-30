@@ -8,6 +8,7 @@
 #if !InstantSearchCocoaPods
 import InstantSearchCore
 #endif
+import InstantSearchTelemetry
 #if canImport(Combine) && canImport(SwiftUI) && (arch(arm64) || arch(x86_64))
 import Combine
 import SwiftUI
@@ -55,6 +56,7 @@ public class FilterListObservableController<Filter: FilterType & Hashable>: Obse
     self.filters = filters
     self.selections = selections
     self.onClick = onClick
+    InstantSearchTelemetry.shared.traceDeclarative(type: .filterList)
   }
 
 }

@@ -8,6 +8,7 @@
 #if !InstantSearchCocoaPods
 import InstantSearchCore
 #endif
+import InstantSearchTelemetry
 #if canImport(Combine) && canImport(SwiftUI) && (arch(arm64) || arch(x86_64))
 import Combine
 import SwiftUI
@@ -21,7 +22,9 @@ public class RelevantSortObservableController: ObservableObject, RelevantSortCon
 
   public var didToggle: (() -> Void)?
 
-  public init() {}
+  public init() {
+    InstantSearchTelemetry.shared.traceDeclarative(type: .relevantSort)
+  }
 
   public func setItem(_ state: RelevantSortTextualRepresentation?) {
     self.state = state

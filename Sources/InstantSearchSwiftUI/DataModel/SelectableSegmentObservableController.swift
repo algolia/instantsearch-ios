@@ -8,6 +8,7 @@
 #if !InstantSearchCocoaPods
 import InstantSearchCore
 #endif
+import InstantSearchTelemetry
 #if canImport(Combine) && canImport(SwiftUI) && (arch(arm64) || arch(x86_64))
 import Combine
 import SwiftUI
@@ -41,6 +42,7 @@ public class SelectableSegmentObservableController: ObservableObject, Selectable
               selectedSegmentIndex: Int? = nil) {
     self.segmentsTitles = segmentTitles
     self.selectedSegmentIndex = selectedSegmentIndex
+    InstantSearchTelemetry.shared.traceDeclarative(type: .sortBy)
   }
 
 }

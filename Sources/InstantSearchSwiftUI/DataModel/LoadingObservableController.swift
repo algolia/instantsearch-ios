@@ -8,6 +8,7 @@
 #if !InstantSearchCocoaPods
 import InstantSearchCore
 #endif
+import InstantSearchTelemetry
 #if canImport(Combine) && canImport(SwiftUI) && (arch(arm64) || arch(x86_64))
 import Combine
 import SwiftUI
@@ -25,6 +26,7 @@ public class LoadingObservableController: ObservableObject, LoadingController {
 
   public init(isLoading: Bool = false) {
     self.isLoading = isLoading
+    InstantSearchTelemetry.shared.traceDeclarative(type: .loading)
   }
 
 }

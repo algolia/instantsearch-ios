@@ -8,6 +8,7 @@
 #if !InstantSearchCocoaPods
 import InstantSearchCore
 #endif
+import InstantSearchTelemetry
 #if canImport(Combine) && canImport(SwiftUI) && (arch(arm64) || arch(x86_64))
 import Combine
 import SwiftUI
@@ -31,6 +32,7 @@ public class CurrentFiltersObservableController: ObservableObject, CurrentFilter
 
   public init(filters: [FilterAndID] = []) {
     self.filters = filters
+    InstantSearchTelemetry.shared.traceDeclarative(type: .currentFilters)
   }
 
   public func remove(_ filter: FilterAndID) {
