@@ -34,7 +34,7 @@ public class SwitchIndexObservableController: ObservableObject, SwitchIndexContr
               selected: IndexName = "") {
     self.indexNames = indexNames
     self.selected = selected
-    Telemetry.shared.traceDeclarative(type: .sortBy)
+    InstantSearchTelemetry.shared.traceDeclarative(type: .sortBy)
   }
 
 }

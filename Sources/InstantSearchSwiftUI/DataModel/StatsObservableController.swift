@@ -28,7 +28,7 @@ public class StatsObservableController: ObservableObject, ItemController {
 
   public init(stats: SearchStats = .init()) {
     self.stats = stats
-    Telemetry.shared.traceDeclarative(type: .stats)
+    InstantSearchTelemetry.shared.traceDeclarative(type: .stats)
   }
 
 }

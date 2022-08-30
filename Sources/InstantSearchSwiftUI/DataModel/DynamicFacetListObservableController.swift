@@ -59,7 +59,7 @@ public class DynamicFacetListObservableController: ObservableObject, DynamicFace
     self.orderedFacets = orderedFacets
     self.selections = selections
     self.didSelect = didSelect
-    Telemetry.shared.traceDeclarative(type: .dynamicFacets)
+    InstantSearchTelemetry.shared.traceDeclarative(type: .dynamicFacets)
   }
 
 }

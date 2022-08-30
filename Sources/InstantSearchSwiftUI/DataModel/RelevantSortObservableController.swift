@@ -23,7 +23,7 @@ public class RelevantSortObservableController: ObservableObject, RelevantSortCon
   public var didToggle: (() -> Void)?
 
   public init() {
-    Telemetry.shared.traceDeclarative(type: .relevantSort)
+    InstantSearchTelemetry.shared.traceDeclarative(type: .relevantSort)
   }
 
   public func setItem(_ state: RelevantSortTextualRepresentation?) {

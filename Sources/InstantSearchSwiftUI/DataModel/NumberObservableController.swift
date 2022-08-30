@@ -7,6 +7,7 @@
 
 #if !InstantSearchCocoaPods
 import InstantSearchCore
+import InstantSearchTelemetry
 #endif
 #if canImport(Combine) && canImport(SwiftUI) && (arch(arm64) || arch(x86_64))
 import Combine
@@ -33,7 +34,7 @@ public class NumberObservableController<Number: Numeric & Comparable>: Observabl
               bounds: ClosedRange<Number> = 0...1000000) {
     self.value = value
     self.bounds = bounds
-    Telemetry.shared.traceDeclarative(type: .numberFilter)
+    InstantSearchTelemetry.shared.traceDeclarative(type: .numberFilter)
   }
 
   public func setItem(_ value: Number) {

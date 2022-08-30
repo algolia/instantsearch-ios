@@ -56,7 +56,7 @@ public class FacetListObservableController: ObservableObject, FacetListControlle
     self.facets = facets
     self.selections = selections
     self.onClick = onClick
-    Telemetry.shared.traceDeclarative(type: .facetList)
+    InstantSearchTelemetry.shared.traceDeclarative(type: .facetList)
   }
 
 }

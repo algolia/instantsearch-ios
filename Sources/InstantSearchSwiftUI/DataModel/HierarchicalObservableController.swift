@@ -33,7 +33,7 @@ public class HierarchicalObservableController: ObservableObject, HierarchicalCon
 
   public init(hierarchicalFacets: [HierarchicalFacet] = []) {
     self.hierarchicalFacets = hierarchicalFacets
-    Telemetry.shared.traceDeclarative(type: .hierarchicalFacets)
+    InstantSearchTelemetry.shared.traceDeclarative(type: .hierarchicalFacets)
   }
 
 }

@@ -26,7 +26,7 @@ public class StatsTextObservableController: ObservableObject, StatsTextControlle
 
   public init(stats: String = "") {
     self.stats = stats
-    Telemetry.shared.traceDeclarative(type: .stats)
+    InstantSearchTelemetry.shared.traceDeclarative(type: .stats)
   }
 
 }

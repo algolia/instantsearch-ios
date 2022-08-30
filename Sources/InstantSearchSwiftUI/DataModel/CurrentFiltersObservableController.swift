@@ -32,7 +32,7 @@ public class CurrentFiltersObservableController: ObservableObject, CurrentFilter
 
   public init(filters: [FilterAndID] = []) {
     self.filters = filters
-    Telemetry.shared.traceDeclarative(type: .currentFilters)
+    InstantSearchTelemetry.shared.traceDeclarative(type: .currentFilters)
   }
 
   public func remove(_ filter: FilterAndID) {

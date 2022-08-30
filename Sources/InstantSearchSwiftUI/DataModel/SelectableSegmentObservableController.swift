@@ -42,7 +42,7 @@ public class SelectableSegmentObservableController: ObservableObject, Selectable
               selectedSegmentIndex: Int? = nil) {
     self.segmentsTitles = segmentTitles
     self.selectedSegmentIndex = selectedSegmentIndex
-    Telemetry.shared.traceDeclarative(type: .sortBy)
+    InstantSearchTelemetry.shared.traceDeclarative(type: .sortBy)
   }
 
 }

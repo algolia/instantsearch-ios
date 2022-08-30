@@ -54,7 +54,7 @@ public class NumberRangeObservableController<Number: Comparable & DoubleRepresen
               bounds: ClosedRange<Number> = Number(0)...Number(1)) {
     self.range = range.clamped(to: bounds)
     self.bounds = bounds
-    Telemetry.shared.traceDeclarative(type: .numberRangeFilter)
+    InstantSearchTelemetry.shared.traceDeclarative(type: .numberRangeFilter)
   }
 
 }

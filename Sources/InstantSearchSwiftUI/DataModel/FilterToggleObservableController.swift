@@ -7,6 +7,7 @@
 
 #if !InstantSearchCocoaPods
 import InstantSearchCore
+import InstantSearchTelemetry
 #endif
 #if canImport(Combine) && canImport(SwiftUI) && (arch(arm64) || arch(x86_64))
 import Combine
@@ -41,7 +42,7 @@ public class FilterToggleObservableController<Filter: FilterType>: ObservableObj
   public init(filter: Filter? = nil, isSelected: Bool = false) {
     self.filter = filter
     self.isSelected = isSelected
-    Telemetry.shared.traceDeclarative(type: .filterToggle)
+    InstantSearchTelemetry.shared.traceDeclarative(type: .filterToggle)
   }
 
 }

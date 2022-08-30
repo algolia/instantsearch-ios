@@ -25,7 +25,7 @@ public class FilterClearObservableController: ObservableObject, FilterClearContr
   }
 
   public init() {
-    Telemetry.shared.traceDeclarative(type: .filterClear)
+    InstantSearchTelemetry.shared.traceDeclarative(type: .filterClear)
   }
 
 }

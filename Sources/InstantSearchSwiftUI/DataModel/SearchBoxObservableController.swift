@@ -7,6 +7,7 @@
 
 #if !InstantSearchCocoaPods
 import InstantSearchCore
+import InstantSearchTelemetry
 #endif
 #if canImport(Combine) && canImport(SwiftUI) && (arch(arm64) || arch(x86_64))
 import Combine
@@ -33,7 +34,7 @@ public class SearchBoxObservableController: ObservableObject, SearchBoxControlle
 
   public init(query: String = "") {
     self.query = query
-    Telemetry.shared.traceDeclarative(type: .searchBox)
+    InstantSearchTelemetry.shared.traceDeclarative(type: .searchBox)
   }
 
   /// Trigger query submit event
