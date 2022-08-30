@@ -12,16 +12,5 @@ for PACKAGE in "${PACKAGES_TO_GEN_XCODEPROJ[@]}"; do
   cd ..
 done
 
-# packages requiring manual SPM resolve for Carthage
-PACKAGES_TO_RESOLVE=(
-  instantsearch-ios
-)
-
-for PACKAGE in "${PACKAGES_TO_RESOLVE[@]}"; do
-  cd ./$PACKAGE
-  swift package resolve
-  cd ..
-done
-
 cd ../../..
 
