@@ -1,6 +1,7 @@
 # packages requiring xcodeproj file generation for Carthage
 PACKAGES_TO_GEN_XCODEPROJ=(
   algoliasearch-client-swift
+  instantsearch-telemetry-native
   swift-log
 )
 
@@ -13,7 +14,6 @@ done
 
 # packages requiring manual SPM resolve for Carthage
 PACKAGES_TO_RESOLVE=(
-  instantsearch-telemetry-native
   instantsearch-ios
 )
 
