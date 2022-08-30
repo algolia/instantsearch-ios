@@ -6,8 +6,8 @@
 //
 #if !InstantSearchCocoaPods
 import InstantSearchCore
-import InstantSearchTelemetry
 #endif
+import InstantSearchTelemetry
 #if canImport(Combine) && canImport(SwiftUI) && (arch(arm64) || arch(x86_64))
 import Combine
 import SwiftUI
