@@ -1,5 +1,13 @@
 # ChangeLog
 
+## [7.20.0](https://github.com/algolia/instantsearch-ios/compare/7.19.1...7.20.0) (2022-08-31)
+
+### Refactor
+
+- **logging**: Logging logic (#248) ([25d5e3e](https://github.com/algolia/instantsearch-ios/commit/25d5e3e))
+
+
+
 ## [7.19.1](https://github.com/algolia/instantsearch-ios/compare/7.19.0...7.19.1) (2022-08-04)
 
 ### Fix
