@@ -147,7 +147,9 @@ extension GroupsStorage: FiltersWritable {
     for groupID in groupIDs {
       switch groupID {
       case .hierarchical:
-        filterGroups[groupID] = filterGroups[groupID]?.withFilters([])
+        var cleanHierarchicalGroup = filterGroups[groupID]?.withFilters([]) as! FilterGroup.Hierarchical
+        cleanHierarchicalGroup.hierarchicalFilters.removeAll()
+        filterGroups[groupID] = cleanHierarchicalGroup
       default:
         filterGroups.removeValue(forKey: groupID)
       }
@@ -182,7 +184,7 @@ extension GroupsStorage: FiltersWritable {
   }
 
   mutating func removeAll() {
-    filterGroups.removeAll()
+    removeAll(fromGroupWithIDs: Array(getGroupIDs()))
   }
 
 }
