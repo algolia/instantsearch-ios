@@ -1,5 +1,13 @@
 # ChangeLog
 
+## [7.20.1](https://github.com/algolia/instantsearch-ios/compare/7.20.0...7.20.1) (2022-09-27)
+
+### Fix
+
+- **hierarchical**: Hierarchical facets clearing (#252) ([3ba16f7](https://github.com/algolia/instantsearch-ios/commit/3ba16f7))
+
+
+
 ## [7.20.0](https://github.com/algolia/instantsearch-ios/compare/7.19.1...7.20.0) (2022-08-31)
 
 ### Refactor
