@@ -39,8 +39,10 @@ public extension HierarchicalInteractor {
 
       }
 
-      filterState.onChange.subscribePast(with: interactor) { _, _ in
-        // TODO
+      filterState.onChange.subscribePast(with: interactor) { interactor, filterState in
+        if filterState[hierarchical: groupName].isEmpty {
+          interactor.selections = []
+        }
       }
 
     }
