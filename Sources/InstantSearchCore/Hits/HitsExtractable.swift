@@ -15,12 +15,12 @@ public protocol HitsExtractable {
 }
 
 extension SearchResponse: HitsExtractable {
-  
+
   public func extractHits<T>(jsonDecoder: JSONDecoder) throws -> [T] where T: Decodable {
     let hitsData = try JSONEncoder().encode(hits)
     return try jsonDecoder.decode([T].self, from: hitsData)
   }
-  
+
 }
 
 extension PlacesResponse: HitsExtractable {

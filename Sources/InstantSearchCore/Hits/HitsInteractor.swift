@@ -56,7 +56,7 @@ public class HitsInteractor<Record: Codable>: AnyHitsInteractor {
       paginator.pageCleanUpOffset = newValue
     }
   }
-  
+
   /// JSONDecoder used for hits decoding from the search response
   public var jsonDecoder: JSONDecoder
 
