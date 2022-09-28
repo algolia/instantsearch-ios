@@ -8,7 +8,7 @@
 import Foundation
 
 /// Abstract search service the request of which includes IndexName
-public class IndexSearcher<Service: SearchService>: AbstractSearcher<Service> where Service.Process == Operation, Service.Request: IndexNameProvider {
+open class IndexSearcher<Service: SearchService>: AbstractSearcher<Service> where Service.Process == Operation, Service.Request: IndexNameProvider {
 
   public override var request: Request {
     didSet {
