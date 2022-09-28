@@ -198,5 +198,42 @@ class HitsInteractorTests: XCTestCase {
     waitForExpectations(timeout: 3, handler: nil)
 
   }
+  
+  struct Person: Codable, Equatable {
+    let firstName: String
+    let lastName: String
+  }
+  
+  func testCustomJSONDecoder() throws {
+        
+    let snakeCaseDecoder = JSONDecoder()
+    snakeCaseDecoder.keyDecodingStrategy = .convertFromSnakeCase
+    
+    let hitsInteractor = HitsInteractor<Person>(
+      settings: .init(infiniteScrolling: .on(withOffset: 10), showItemsOnEmptyQuery: true),
+      paginationController: Paginator(),
+      infiniteScrollingController: TestInfiniteScrollingController(),
+      jsonDecoder: snakeCaseDecoder)
+    
+    var response = SearchResponse(hits: [
+      try Hit(json: ["objectID": "1", "first_name": "Jack", "last_name": "Johnson"]),
+      try Hit(json: ["objectID": "2", "first_name": "Helen", "last_name": "Smith"]),
+    ])
+    response.page = 0
+    
+    hitsInteractor.update(response)
+    
+    let exp = expectation(description: "on results updated")
+    
+    hitsInteractor.onResultsUpdated.subscribe(with: self) { _, results in
+      XCTAssertEqual(hitsInteractor.hits.count, 2)
+      XCTAssertEqual(hitsInteractor.hit(atIndex: 0), Person(firstName: "Jack", lastName: "Johnson"))
+      XCTAssertEqual(hitsInteractor.hit(atIndex: 1), Person(firstName: "Helen", lastName: "Smith"))
+      exp.fulfill()
+    }
+    
+    waitForExpectations(timeout: 5)
+    
+  }
 
 }

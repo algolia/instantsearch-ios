@@ -27,9 +27,9 @@ struct HitsPage<Item: Codable>: Pageable {
 
 extension HitsPage {
 
-  init(searchResults: HitsExtractable & SearchStatsConvertible) throws {
+  init(searchResults: HitsExtractable & SearchStatsConvertible, jsonDecoder: JSONDecoder) throws {
     self.index = searchResults.searchStats.page
-    self.items = try searchResults.extractHits()
+    self.items = try searchResults.extractHits(jsonDecoder: jsonDecoder)
   }
 
 }

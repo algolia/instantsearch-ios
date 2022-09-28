@@ -15,7 +15,7 @@ class HitsInteractorControllerConnectionTests: XCTestCase {
   var interactor: HitsInteractor<JSON> {
     return HitsInteractor<JSON>(settings: .init(infiniteScrolling: .on(withOffset: 10), showItemsOnEmptyQuery: true),
           paginationController: .init(),
-    infiniteScrollingController: TestInfiniteScrollingController())
+    infiniteScrollingController: TestInfiniteScrollingController(), jsonDecoder: JSONDecoder())
   }
   
   weak var disposableController: TestHitsController<JSON>?

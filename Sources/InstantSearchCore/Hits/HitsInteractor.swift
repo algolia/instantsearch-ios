@@ -56,18 +56,24 @@ public class HitsInteractor<Record: Codable>: AnyHitsInteractor {
       paginator.pageCleanUpOffset = newValue
     }
   }
+  
+  /// JSONDecoder used for hits decoding from the search response
+  public var jsonDecoder: JSONDecoder
 
   convenience public init(infiniteScrolling: InfiniteScrolling = Constants.Defaults.infiniteScrolling,
-                          showItemsOnEmptyQuery: Bool = Constants.Defaults.showItemsOnEmptyQuery) {
+                          showItemsOnEmptyQuery: Bool = Constants.Defaults.showItemsOnEmptyQuery,
+                          jsonDecoder: JSONDecoder = JSONDecoder()) {
     let settings = Settings(infiniteScrolling: infiniteScrolling,
                             showItemsOnEmptyQuery: showItemsOnEmptyQuery)
     self.init(settings: settings)
   }
 
-  public convenience init(settings: Settings? = nil) {
+  public convenience init(settings: Settings? = nil,
+                          jsonDecoder: JSONDecoder = JSONDecoder()) {
     self.init(settings: settings,
               paginationController: Paginator<Record>(),
-              infiniteScrollingController: InfiniteScrollingController())
+              infiniteScrollingController: InfiniteScrollingController(),
+              jsonDecoder: jsonDecoder)
     Telemetry.shared.trace(type: .hits,
                            parameters: settings.flatMap { settings in
                              [
@@ -80,7 +86,8 @@ public class HitsInteractor<Record: Codable>: AnyHitsInteractor {
 
   internal init(settings: Settings? = nil,
                 paginationController: Paginator<Record>,
-                infiniteScrollingController: InfiniteScrollable) {
+                infiniteScrollingController: InfiniteScrollable,
+                jsonDecoder: JSONDecoder = JSONDecoder()) {
     self.settings = settings ?? Settings()
     self.paginator = paginationController
     self.infiniteScrollingController = infiniteScrollingController
@@ -90,6 +97,7 @@ public class HitsInteractor<Record: Codable>: AnyHitsInteractor {
     self.mutationQueue = .init()
     self.mutationQueue.maxConcurrentOperationCount = 1
     self.mutationQueue.qualityOfService = .userInitiated
+    self.jsonDecoder = jsonDecoder
   }
 
   public func numberOfHits() -> Int {
@@ -222,7 +230,7 @@ extension HitsInteractor: ResultUpdatable {
       hitsInteractor.isLastQueryEmpty = stats.query.isNilOrEmpty
 
       do {
-        let page: HitsPage<Record> = try HitsPage(searchResults: searchResults)
+        let page: HitsPage<Record> = try HitsPage(searchResults: searchResults, jsonDecoder: hitsInteractor.jsonDecoder)
         hitsInteractor.paginator.process(page)
         hitsInteractor.onResultsUpdated.fire(searchResults)
       } catch let error {
