@@ -1,5 +1,17 @@
 # ChangeLog
 
+## [7.21.0](https://github.com/algolia/instantsearch-ios/compare/7.20.1...7.21.0) (2022-09-29)
+
+### Fix
+
+- **Searcher**: make AbstractSearcher and IndexSearcher open (#255) ([f67cf46](https://github.com/algolia/instantsearch-ios/commit/f67cf46))
+
+### Feat
+
+- **HitsInteractor**: ability to set a custom json decoder to hits interactor (#254) ([91628d7](https://github.com/algolia/instantsearch-ios/commit/91628d7))
+
+
+
 ## [7.20.1](https://github.com/algolia/instantsearch-ios/compare/7.20.0...7.20.1) (2022-09-27)
 
 ### Fix
