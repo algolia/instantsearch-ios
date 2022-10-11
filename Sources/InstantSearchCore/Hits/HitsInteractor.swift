@@ -60,12 +60,12 @@ public class HitsInteractor<Record: Codable>: AnyHitsInteractor {
   /// JSONDecoder used for hits decoding from the search response
   public var jsonDecoder: JSONDecoder
 
-  convenience public init(infiniteScrolling: InfiniteScrolling = Constants.Defaults.infiniteScrolling,
+  public convenience init(infiniteScrolling: InfiniteScrolling = Constants.Defaults.infiniteScrolling,
                           showItemsOnEmptyQuery: Bool = Constants.Defaults.showItemsOnEmptyQuery,
                           jsonDecoder: JSONDecoder = JSONDecoder()) {
     let settings = Settings(infiniteScrolling: infiniteScrolling,
                             showItemsOnEmptyQuery: showItemsOnEmptyQuery)
-    self.init(settings: settings)
+    self.init(settings: settings, jsonDecoder: jsonDecoder)
   }
 
   public convenience init(settings: Settings? = nil,
