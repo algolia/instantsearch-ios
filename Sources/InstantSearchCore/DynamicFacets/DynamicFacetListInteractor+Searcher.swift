@@ -68,7 +68,7 @@ extension DynamicFacetListInteractor {
     }
     let commonFacets = searchResponse.facets ?? [:]
     let disjunctiveFacets = searchResponse.disjunctiveFacets ?? [:]
-    let facets = disjunctiveFacets.merging(commonFacets, uniquingKeysWith: { df, _ in df })
+    let facets = disjunctiveFacets.merging(commonFacets, uniquingKeysWith: { disjunctiveFacets, _ in disjunctiveFacets })
     orderedFacets = FacetsOrderer(facetOrder: facetOrdering, facets: facets)()
   }
 
