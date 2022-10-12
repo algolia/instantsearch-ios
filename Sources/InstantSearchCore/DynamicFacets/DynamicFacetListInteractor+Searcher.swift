@@ -58,7 +58,7 @@ public extension DynamicFacetListInteractor {
 }
 
 extension DynamicFacetListInteractor {
-  
+
   /// Update `orderedFacets` property with `renderingContent` and
   /// `facets`/`disjunctiveFacets` received of the `SearchResponse` instance
   public func update(with searchResponse: SearchResponse) {
@@ -68,8 +68,8 @@ extension DynamicFacetListInteractor {
     }
     let commonFacets = searchResponse.facets ?? [:]
     let disjunctiveFacets = searchResponse.disjunctiveFacets ?? [:]
-    let facets = disjunctiveFacets.merging(commonFacets, uniquingKeysWith: { df, cf in df })
+    let facets = disjunctiveFacets.merging(commonFacets, uniquingKeysWith: { df, _ in df })
     orderedFacets = FacetsOrderer(facetOrder: facetOrdering, facets: facets)()
   }
-  
+
 }
