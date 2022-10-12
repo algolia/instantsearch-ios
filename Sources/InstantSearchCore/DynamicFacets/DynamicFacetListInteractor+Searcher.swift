@@ -31,12 +31,7 @@ public extension DynamicFacetListInteractor {
 
     public func connect() {
       searcher.onResults.subscribe(with: interactor) { (interactor, searchResponse) in
-        if let facetOrdering = searchResponse.renderingContent?.facetOrdering,
-           let facets = searchResponse.facets {
-            interactor.orderedFacets = FacetsOrderer(facetOrder: facetOrdering, facets: facets)()
-        } else {
-          interactor.orderedFacets = []
-        }
+        interactor.update(with: searchResponse)
       }
       (searcher as? ErrorObservable)?.onError.subscribe(with: interactor) { interactor, _ in
         interactor.orderedFacets = []
@@ -60,4 +55,21 @@ public extension DynamicFacetListInteractor {
     return connection
   }
 
+}
+
+extension DynamicFacetListInteractor {
+  
+  /// Update `orderedFacets` property with `renderingContent` and
+  /// `facets`/`disjunctiveFacets` received of the `SearchResponse` instance
+  public func update(with searchResponse: SearchResponse) {
+    guard let facetOrdering = searchResponse.renderingContent?.facetOrdering else {
+      orderedFacets = []
+      return
+    }
+    let commonFacets = searchResponse.facets ?? [:]
+    let disjunctiveFacets = searchResponse.disjunctiveFacets ?? [:]
+    let facets = disjunctiveFacets.merging(commonFacets, uniquingKeysWith: { df, cf in df })
+    orderedFacets = FacetsOrderer(facetOrder: facetOrdering, facets: facets)()
+  }
+  
 }
