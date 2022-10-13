@@ -8,7 +8,7 @@
 import Foundation
 
 /// List of ordered facets with their attribute.
-public struct AttributedFacets: Codable {
+public struct AttributedFacets: Codable, Equatable {
 
   /// Facet attribute
   public let attribute: Attribute
