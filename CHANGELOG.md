@@ -1,5 +1,14 @@
 # ChangeLog
 
+## [7.21.1](https://github.com/algolia/instantsearch-ios/compare/7.21.0...7.21.1) (2022-10-13)
+
+### Fix
+
+- **DynamicFacetListInteractor**: Updating `orderedFacets` of the `DynamicFacetListInteractor` ignores `disjunctiveFacets` (#258) ([abcc825](https://github.com/algolia/instantsearch-ios/commit/abcc825))
+- **HitsInteractor**: Missing json decoder in convenience initalizer (#257) ([5981de8](https://github.com/algolia/instantsearch-ios/commit/5981de8))
+
+
+
 ## [7.21.0](https://github.com/algolia/instantsearch-ios/compare/7.20.1...7.21.0) (2022-09-29)
 
 ### Fix
