@@ -4,7 +4,7 @@
 
 ### Fix
 
-- updating `orderedFacets` of the `DynamicFacetListInteractor` ignores `disjunctiveFacets` (#258) ([abcc825](https://github.com/algolia/instantsearch-ios/commit/abcc825))
+- **DynamicFacetListInteractor**: Updating `orderedFacets` of the `DynamicFacetListInteractor` ignores `disjunctiveFacets` (#258) ([abcc825](https://github.com/algolia/instantsearch-ios/commit/abcc825))
 - **HitsInteractor**: Missing json decoder in convenience initalizer (#257) ([5981de8](https://github.com/algolia/instantsearch-ios/commit/5981de8))
 
 
