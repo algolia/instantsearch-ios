@@ -21,6 +21,8 @@ class ResultsViewController: UIViewController {
   let loadingConnector: LoadingConnector
   let loadingController: ActivityIndicatorController
 
+  var didTap: ((Bool) -> Void)?
+
   init(searcher: HitsSearcher) {
     stackView = .init(frame: .zero)
     hitsViewController = .init(style: .plain)
@@ -52,16 +54,29 @@ class ResultsViewController: UIViewController {
     statsController.label.translatesAutoresizingMaskIntoConstraints = false
     loadingController.activityIndicator.translatesAutoresizingMaskIntoConstraints = false
     loadingController.activityIndicator.hidesWhenStopped = true
+    let button = UIButton()
+    button.translatesAutoresizingMaskIntoConstraints = false
+    button.setTitle("Apply filters", for: .normal)
+    button.setTitleColor(.black, for: .normal)
+    button.setTitleColor(.systemBlue, for: .selected)
+    button.addTarget(self, action: #selector(didTapButton), for: .touchUpInside)
     let detailsStackView = UIStackView()
     detailsStackView.translatesAutoresizingMaskIntoConstraints = false
     detailsStackView.axis = .horizontal
     detailsStackView.layoutMargins = UIEdgeInsets(top: 0, left: 20, bottom: 0, right: 20)
     detailsStackView.isLayoutMarginsRelativeArrangement = true
+    detailsStackView.addArrangedSubview(button)
+    detailsStackView.addArrangedSubview(.spacer)
     detailsStackView.addArrangedSubview(statsController.label)
     detailsStackView.addArrangedSubview(.spacer)
     detailsStackView.addArrangedSubview(loadingController.activityIndicator)
     stackView.addArrangedSubview(detailsStackView)
     stackView.addArrangedSubview(hitsViewController.view)
+  }
+  
+  @objc func didTapButton(_ button: UIButton) {
+    button.isSelected = !button.isSelected
+    didTap?(button.isSelected)
   }
 
 }

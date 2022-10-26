@@ -16,9 +16,11 @@ class SearchDemoViewController: UIViewController {
   let searchController: UISearchController
   let textFieldController: TextFieldController
   let resultsViewController: ResultsViewController
+  let filterState: FilterState
 
   init(searchTriggeringMode: SearchTriggeringMode = .searchAsYouType) {
     demoController = EcommerceDemoController(searchTriggeringMode: searchTriggeringMode)
+    filterState = .init()
     resultsViewController = .init(searcher: demoController.searcher)
     searchController = .init(searchResultsController: resultsViewController)
     textFieldController = .init(searchBar: searchController.searchBar)
@@ -34,7 +36,17 @@ class SearchDemoViewController: UIViewController {
     setupUI()
     demoController.searchBoxConnector.connectController(textFieldController)
     demoController.hitsInteractor.connectController(resultsViewController.hitsViewController)
+    demoController.searcher.connectFilterState(filterState)
+    demoController.hitsInteractor.connectFilterState(filterState)
     demoController.searcher.search()
+    resultsViewController.didTap = { [weak filterState] isSelected in
+      if isSelected {
+        filterState?[and: "brand"].add(FacetFilter(attribute: "brand", stringValue: "Kaos"))
+      } else {
+        filterState?.removeAll()
+      }
+      filterState?.notifyChange()
+    }
   }
 
   override func viewDidAppear(_ animated: Bool) {

@@ -24,6 +24,7 @@ class StoreItemsTableViewController: UITableViewController, HitsController {
 
   override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
     setEmptyStateIfNeeded()
+    print("hitsSource.numberOfHits: \(hitsSource?.numberOfHits() ?? 0)")
     return hitsSource?.numberOfHits() ?? 0
   }
 
