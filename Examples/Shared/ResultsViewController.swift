@@ -54,6 +54,9 @@ class ResultsViewController: UIViewController {
     statsController.label.translatesAutoresizingMaskIntoConstraints = false
     loadingController.activityIndicator.translatesAutoresizingMaskIntoConstraints = false
     loadingController.activityIndicator.hidesWhenStopped = true
+    statsConnector.interactor.onItemChanged.subscribe(with: self) { _, stats in
+      print("stats.totalHitsCount: \(stats?.totalHitsCount ?? 0)")
+    }
     let button = UIButton()
     button.translatesAutoresizingMaskIntoConstraints = false
     button.setTitle("Apply filters", for: .normal)
