@@ -7,9 +7,8 @@
 
 import Foundation
 
-
 extension Array where Element: RandomAccessCollection, Element.Index == Int {
-  
+
   /// Maps the nested lists to the ranges corresponding to the positions of the nested list elements in the flatten list
   /// Example: [["a", "b", "c"], ["d", "e"], ["f", "g", "h"]] -> [0..<3, 3..<5, 5..<8]
   func flatRanges() -> [Range<Int>] {
@@ -23,5 +22,5 @@ extension Array where Element: RandomAccessCollection, Element.Index == Int {
     }
     return ranges
   }
-  
+
 }

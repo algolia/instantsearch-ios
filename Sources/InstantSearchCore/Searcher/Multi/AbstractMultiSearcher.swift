@@ -105,7 +105,7 @@ extension AbstractMultiSearcher: FiltersSettable {
 public enum MultiSearchError: LocalizedError {
   case rangeError(Range<Int>, Range<Int>)
   case serviceError(Error)
-  
+
   var localizedDescription: String {
     switch self {
     case .serviceError(let error):
