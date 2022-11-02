@@ -44,27 +44,22 @@ extension AbstractMultiSearcher: MultiSearchComponent {
 
     let requests = requestsAndCompletions.map(\.requests)
     let completions = requestsAndCompletions.map(\.completion)
-
-    /// Maps the nested lists to the ranges corresponding to the positions of the nested list elements in the flatten list
-    /// Example: [["a", "b", "c"], ["d", "e"], ["f", "g", "h"]] -> [0..<3, 3..<5, 5..<8]
-    func flatRanges<T>(_ list: [[T]]) -> [Range<Int>] {
-      var ranges: [Range<Int>] = []
-      var offset: Int = 0
-      for sublist in list {
-        let nextOffset = offset+sublist.count
-        let range = offset..<nextOffset
-        ranges.append(range)
-        offset = nextOffset
-      }
-      return ranges
-    }
-
-    let rangePerCompletion = zip(completions, flatRanges(requests))
+    let rangePerCompletion = zip(completions, requests.flatRanges())
 
     return (requests.flatMap { $0 }, { result in
       for (completion, range) in rangePerCompletion {
-        let resultForCompletion = result.map { Array($0[range]) }
-        completion(resultForCompletion)
+        switch result {
+        case .success(let subresults):
+          guard
+            range.lowerBound <= subresults.endIndex,
+            range.upperBound <= subresults.endIndex else {
+            completion(.failure(MultiSearchError.resultsRangeMismatch(range, subresults.startIndex..<subresults.endIndex) ))
+            return
+          }
+          completion(.success(Array(subresults[range])))
+        case .failure(let error):
+          completion(.failure(MultiSearchError.serviceError(error)))
+        }
       }
     })
   }
