@@ -1,5 +1,13 @@
 # ChangeLog
 
+## [7.21.2](https://github.com/algolia/instantsearch-ios/compare/7.21.1...7.21.2) (2022-11-02)
+
+### Fix
+
+- **multi-search**: crash in case of requests-results count mismatch (#261) ([47ae361](https://github.com/algolia/instantsearch-ios/commit/47ae361))
+
+
+
 ## [7.21.1](https://github.com/algolia/instantsearch-ios/compare/7.21.0...7.21.1) (2022-10-13)
 
 ### Fix
