@@ -53,7 +53,7 @@ extension AbstractMultiSearcher: MultiSearchComponent {
           guard
             range.lowerBound <= subresults.endIndex,
             range.upperBound <= subresults.endIndex else {
-            completion(.failure(MultiSearchError.rangeError(range, subresults.startIndex..<subresults.endIndex) ))
+            completion(.failure(MultiSearchError.resultsRangeMismatch(range, subresults.startIndex..<subresults.endIndex) ))
             return
           }
           completion(.success(Array(subresults[range])))
@@ -98,21 +98,6 @@ extension AbstractMultiSearcher: FiltersSettable {
       .forEach {
         $0.setFilters(filters)
       }
-  }
-
-}
-
-public enum MultiSearchError: LocalizedError {
-  case rangeError(Range<Int>, Range<Int>)
-  case serviceError(Error)
-
-  var localizedDescription: String {
-    switch self {
-    case .serviceError(let error):
-      return "Search service error: \(error.localizedDescription)"
-    case .rangeError(let subRange, let range):
-      return "The calculated results subrange \(subRange) can't be extracted from the results list with bounds \(range)"
-    }
   }
 
 }

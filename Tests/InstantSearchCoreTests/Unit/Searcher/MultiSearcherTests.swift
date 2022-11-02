@@ -34,7 +34,7 @@ class MultiSearcherTests: XCTestCase {
     
     anotherSubSearcher.completion = { result in
       switch result {
-      case .failure(MultiSearchError.rangeError(2..<5, 0..<4)):
+      case .failure(MultiSearchError.resultsRangeMismatch(2..<5, 0..<4)):
         break
       case .failure(let error):
         XCTFail("Unexpected error: \(error)")
