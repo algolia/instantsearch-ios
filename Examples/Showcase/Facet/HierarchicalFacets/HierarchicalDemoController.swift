@@ -19,12 +19,15 @@ class HierarchicalDemoController {
   let hierarchicalAttributes: [Attribute] = [
     "lvl0",
     "lvl1",
-    "lvl2"
-  ].map { "hierarchicalCategories.\($0)" }
+    "lvl2",
+    "lvl3"
+  ].map { "taxon.tree.\($0)" }
 
   init<Controller: HierarchicalController>(controller: Controller) where Controller.Item == [HierarchicalFacet] {
-    searcher = HitsSearcher(client: .instantSearch,
-                            indexName: .hierarchicalFacets)
+    searcher = HitsSearcher(appID: "APPID",
+                            apiKey: "APIKEY",
+                            indexName: "STAGING_product_variants")
+    searcher.query = "sunnies"
     filterState = .init()
     clearFilterConnector = .init(filterState: filterState)
     hierarchicalConnector = .init(searcher: searcher,

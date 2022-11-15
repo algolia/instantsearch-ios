@@ -51,7 +51,8 @@ extension HierarchicalTableViewController: UITableViewDataSource {
 
     let maxSelectedLevel = Set(items.filter { $0.isSelected }.map { $0.level }).max() ?? 0
     let item = items[indexPath.row]
-    cell.textLabel?.text = "\(item.facet.description)"
+    let trimmedValue = item.facet.value.components(separatedBy: " > ").last ?? ""
+    cell.textLabel?.text = "\(trimmedValue) (\(item.facet.count))"
     cell.indentationLevel = item.level
     cell.accessoryType = item.level == maxSelectedLevel && item.isSelected ? .checkmark : .none
     return cell

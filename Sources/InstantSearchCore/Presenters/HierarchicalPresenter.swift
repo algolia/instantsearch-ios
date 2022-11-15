@@ -7,6 +7,7 @@
 //
 
 import Foundation
+import AlgoliaSearchClient
 
 public typealias HierarchicalPresenter = ([HierarchicalFacet]) -> [HierarchicalFacet]
 
@@ -26,13 +27,13 @@ public extension DefaultPresenter {
       levels.forEach { level in
         let facetsForLevel = facets
           .filter { $0.level == level }
-          .sorted { $0.facet.value < $1.facet.value }
+          .sorted { $0.facet.count > $1.facet.count }
         let indexToInsert = output
           .lastIndex { $0.isSelected }
           .flatMap { output.index(after: $0) } ?? output.endIndex
         output.insert(contentsOf: facetsForLevel, at: indexToInsert)
       }
-
+      
       return output
     }
 
