@@ -235,5 +235,31 @@ class HitsInteractorTests: XCTestCase {
     waitForExpectations(timeout: 5)
     
   }
+  
+  func testClearTriggering() throws {
+    let paginationController = Paginator<TestRecord<Int>>()
+    let infiniteScrollingController = TestInfiniteScrollingController()
+    
+    let hits = (0..<20).map(TestRecord.withValue)
+    let results = SearchResponse(hits: hits)
+    
+    let vm = HitsInteractor(
+      settings: .init(showItemsOnEmptyQuery: true),
+      paginationController: paginationController,
+      infiniteScrollingController: infiniteScrollingController
+    )
+    
+    let exp = expectation(description: "on results updated")
+    
+    vm.onResultsUpdated.subscribe(with: self) { (_, _) in
+      XCTAssertEqual(vm.numberOfHits(), hits.count)
+      exp.fulfill()
+    }
+    vm.update(results)
+    waitForExpectations(timeout: 3, handler: .none)
+    
+    vm.clear()
+    XCTAssertEqual(vm.numberOfHits(), 0)
+  }
 
 }

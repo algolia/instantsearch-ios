@@ -13,7 +13,7 @@ class TestHitsSource: HitsSource {
   
   typealias Hit = String
   
-  let hits: [String]
+  var hits: [String]
   
   init(hits: [String]) {
     self.hits = hits
@@ -28,4 +28,7 @@ class TestHitsSource: HitsSource {
     return hits[index]
   }
   
+  func clear() {
+    hits = []
+  }
 }

@@ -39,4 +39,7 @@ class Paginator<Item> {
     isInvalidated = true
   }
 
+  public func clear() {
+    pageMap = nil
+  }
 }

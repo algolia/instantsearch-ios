@@ -154,7 +154,10 @@ public class HitsInteractor<Record: Codable>: AnyHitsInteractor {
 
     infiniteScrollingController.calculatePagesAndLoad(currentRow: rowIndex, offset: pageLoadOffset, pageMap: hitsPageMap)
   }
-
+  
+  public func clear() {
+    paginator.clear()
+  }
 }
 
 extension HitsInteractor {
