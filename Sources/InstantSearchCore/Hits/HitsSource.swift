@@ -14,6 +14,7 @@ public protocol HitsSource: AnyObject {
 
   func numberOfHits() -> Int
   func hit(atIndex index: Int) -> Record?
+
 }
 
 extension HitsInteractor: HitsSource {}

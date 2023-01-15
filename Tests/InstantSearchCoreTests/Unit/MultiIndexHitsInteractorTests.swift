@@ -383,6 +383,10 @@ class MultiIndexHitsInteractorTests: XCTestCase {
     func loadMoreResults() {
       didCallLoadMoreResults()
     }
+    
+    func clear() {
+        
+    }
   }
 
 }

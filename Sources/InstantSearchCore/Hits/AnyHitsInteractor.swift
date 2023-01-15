@@ -48,4 +48,5 @@ public protocol AnyHitsInteractor: AnyObject {
   func notifyQueryChanged()
   func process(_ error: Swift.Error, for query: Query)
 
+  func clear()
 }
