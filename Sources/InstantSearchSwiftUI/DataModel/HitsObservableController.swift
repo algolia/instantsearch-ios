@@ -16,15 +16,8 @@ import SwiftUI
 /// HitsController implementation adapted for usage with SwiftUI views
 @available(iOS 13.0, OSX 10.15, tvOS 13.0, watchOS 6.0, *)
 public class HitsObservableController<Hit: Codable>: ObservableObject, HitsController {
-  
   /// List of hits itemsto present
   @Published public var hits: [Hit?] {
-    didSet {
-      if hits.isEmpty {
-        hitsSource?.clear()
-      }
-    }
-  }
 
   /// The state ID to assign to the scrollview presenting the hits
   @Published public var scrollID: UUID
