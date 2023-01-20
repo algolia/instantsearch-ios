@@ -21,25 +21,22 @@ class DynamicFacetListDemoController {
 
   init<SBC: SearchBoxController, DFC: DynamicFacetListController>(searchBoxController: SBC,
                                                                   dynamicFacetListController: DFC) {
-    searcher = .init(client: .init(appID: "RVURKQXRHU",
-                                   apiKey: "937e4e6ec422ff69fe89b569dba30180"),
-                     indexName: "test_facet_ordering")
+    Logger.minSeverityLevel = .trace
+    searcher = .init(client: .init(appID: "",
+                                   apiKey: ""),
+                     indexName: "")
     filterState = .init()
+    
     searchBoxConnector = .init(searcher: searcher, controller: searchBoxController)
     dynamicFacetListConnector = .init(searcher: searcher,
                                       filterState: filterState,
-                                      selectionModeForAttribute: [
-                                        "color": .multiple,
-                                        "country": .multiple
-                                      ],
-                                      filterGroupForAttribute: [
-                                        "brand": ("brand", .or),
-                                        "color": ("color", .or),
-                                        "size": ("size", .or),
-                                        "country": ("country", .or)
-                                      ],
+                                      selectionModeForAttribute: [:],
+                                      defaultSelectionMode: .multiple,
+                                      filterGroupForAttribute: [:],
+                                      defaultFilterGroupType: .or,
                                       controller: dynamicFacetListController)
-    searcher.request.query.facets = ["brand", "color", "size", "country"]
+    
+    searcher.request.query.facets = ["*"]
     searcher.connectFilterState(filterState)
     searcher.search()
   }

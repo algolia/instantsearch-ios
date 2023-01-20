@@ -18,7 +18,7 @@ import Foundation
 public class DynamicFacetListInteractor {
 
   public typealias SelectionsPerAttribute = [Attribute: Set<String>]
-
+  
   /// Ordered list of attributed facets
   public var orderedFacets: [AttributedFacets] = .init() {
     didSet {
@@ -44,8 +44,11 @@ public class DynamicFacetListInteractor {
   /// Event triggered when the facets values selection changed by the business logic
   public let onSelectionsComputed: Observer<SelectionsPerAttribute>
 
+  /// Selection mode to apply for a facet list. Default value is `single`.
+  public var defaultSelectionMode: SelectionMode
+  
   /// Mapping between a facet attribute and a facet values selection mode
-  /// If not provided, the default selection mode is `.single`
+  /// If not provided, the default selection mode is `defaultSelectionMode`
   public let selectionModeForAttribute: [Attribute: SelectionMode]
 
   /// Storage for selectable facet list logic per attribute
@@ -55,11 +58,14 @@ public class DynamicFacetListInteractor {
    - Parameters:
      - orderedFacets: Ordered list of attributed facets
      - selections: Mapping between a facet attribute and a set of selected  facet values
-     - selectionModeForAttribute: Mapping between a facet attribute and a facet values selection mode. If not provided, the default selection mode is .single.
+     - selectionModeForAttribute: Mapping between a facet attribute and a facet values selection mode. If not provided, the default selection mode is `defaultSelectionMode`.
+     - defaultSelectionMode: Selection mode to apply for a facet list. Default value is `single`.
+   
   */
   public init(orderedFacets: [AttributedFacets] = [],
               selections: [Attribute: Set<String>] = [:],
-              selectionModeForAttribute: [Attribute: SelectionMode] = [:]) {
+              selectionModeForAttribute: [Attribute: SelectionMode] = [:],
+              defaultSelectionMode: SelectionMode = .single) {
     self.orderedFacets = orderedFacets
     self.selections = selections
     self.onFacetOrderChanged = .init()
@@ -67,6 +73,7 @@ public class DynamicFacetListInteractor {
     self.onSelectionsComputed = .init()
     self.selectionModeForAttribute = selectionModeForAttribute
     self.facetListPerAttribute = [:]
+    self.defaultSelectionMode = defaultSelectionMode
     onFacetOrderChanged.fire(orderedFacets)
     onSelectionsChanged.fire(selections)
     updateInteractors()
@@ -123,7 +130,7 @@ public class DynamicFacetListInteractor {
 
   private func createFacetList(for attribute: Attribute) -> SelectableListInteractor<String, Facet> {
 
-    let selectionMode = selectionModeForAttribute[attribute] ?? .single
+    let selectionMode = selectionModeForAttribute[attribute] ?? defaultSelectionMode
     let facetList = SelectableListInteractor<String, Facet>(selectionMode: selectionMode)
 
     facetList.onSelectionsComputed.subscribe(with: self) { interactor, selections in
