@@ -127,12 +127,12 @@ struct HitsView_Previews: PreviewProvider {
       .onAppear {
         hitsController.hitsSource = interactor
           
-          let results = try! JSONDecoder().decode(SearchResponse.self, from: rawHits)
-        
-          interactor.onResultsUpdated.subscribe(with: hitsController) { (reb, hit) in
-              reb.reload()
-          }
-          interactor.update(results)
+        let results = try! JSONDecoder().decode(SearchResponse.self, from: rawHits)
+      
+        interactor.onResultsUpdated.subscribe(with: hitsController) { (reb, hit) in
+            reb.reload()
+        }
+        interactor.update(results)
       }.navigationBarTitle("Hits")
     }
     
