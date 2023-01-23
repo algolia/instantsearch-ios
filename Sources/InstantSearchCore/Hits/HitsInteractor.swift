@@ -104,6 +104,7 @@ public class HitsInteractor<Record: Codable>: AnyHitsInteractor {
     guard let hitsPageMap = paginator.pageMap, !paginator.isInvalidated else { return 0 }
 
     if isLastQueryEmpty && !settings.showItemsOnEmptyQuery {
+      clear()
       return 0
     } else {
       return hitsPageMap.count
