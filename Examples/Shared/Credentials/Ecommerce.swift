@@ -5,8 +5,8 @@
 //  Created by Vladislav Fitc on 08/05/2022.
 //
 
-import Foundation
 import AlgoliaSearchClient
+import Foundation
 
 extension SearchClient {
   static let ecommerce = Self(appID: "latency", apiKey: "927c3fe76d4b52c5a2912973f35a3077")

@@ -10,7 +10,7 @@ import Foundation
 
 /**
  Connector encapsulating basic search experience within single index
- 
+
  Managed connections:
  - hits interactor <-> searcher
  - hits interactor <-> hits controller
@@ -18,11 +18,10 @@ import Foundation
  - query input interactor <-> searcher
  - query input interactor <-> query input controller
  - searcher <-> filter state (if provided)
- 
+
  Most of the components associated by this connector are created and connected automatically, it's only required to provide a proper `Controller` implementations.
  */
 public struct SearchConnector<Record: Codable>: Connection {
-
   /// Connector establishing the linkage between searcher, hits interactor and optionally filter state
   public let hitsConnector: HitsConnector<Record>
 
@@ -94,7 +93,7 @@ public struct SearchConnector<Record: Codable>: Connection {
                                                             searchBoxController: SBC,
                                                             hitsInteractor: HitsInteractor<Record>,
                                                             hitsController: HC,
-                                                            filterState: FilterState? = nil)  where HC.DataSource == HitsInteractor<Record> {
+                                                            filterState: FilterState? = nil) where HC.DataSource == HitsInteractor<Record> {
     let searcher = HitsSearcher(appID: appID,
                                 apiKey: apiKey,
                                 indexName: indexName)
@@ -132,14 +131,12 @@ public struct SearchConnector<Record: Codable>: Connection {
     filterStateSearcherConnection?.disconnect()
     filterStateHitsInteractorConnection?.disconnect()
   }
-
 }
 
 @available(*, deprecated, renamed: "SearchConnector")
 public typealias SingleIndexSearchConnector = SearchConnector
 
 public extension SearchConnector {
-
   /// Connector establishing the linkage between searcher and query input interactor
   @available(*, deprecated, renamed: "searchBoxConnector")
   var queryInputConnector: QueryInputConnector {
@@ -195,7 +192,7 @@ public extension SearchConnector {
                                                      queryInputController: SBC,
                                                      hitsInteractor: HitsInteractor<Record>,
                                                      hitsController: HC,
-                                                     filterState: FilterState? = nil)  where HC.DataSource == HitsInteractor<Record> {
+                                                     filterState: FilterState? = nil) where HC.DataSource == HitsInteractor<Record> {
     self.init(appID: appID,
               apiKey: apiKey,
               indexName: indexName,
@@ -205,5 +202,4 @@ public extension SearchConnector {
               hitsController: hitsController,
               filterState: filterState)
   }
-
 }

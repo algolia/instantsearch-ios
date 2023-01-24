@@ -9,11 +9,9 @@
 import Foundation
 
 public class FilterStateDSL {
-
   var filters: FiltersReadable & FiltersWritable & FilterGroupsConvertible
 
   public init() {
-    self.filters = GroupsStorage()
+    filters = GroupsStorage()
   }
-
 }

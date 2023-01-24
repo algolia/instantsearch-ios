@@ -6,17 +6,14 @@
 //  Copyright © 2019 Algolia. All rights reserved.
 //
 
-import Foundation
 import AlgoliaSearchClient
+import Foundation
 public typealias IndexPresenter = (Index) -> String
 
 public extension DefaultPresenter {
-
   enum Index {
-
     public static let present: IndexPresenter = { index in
       return index.name.rawValue
     }
-
   }
 }

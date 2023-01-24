@@ -6,12 +6,11 @@
 //  Copyright © 2019 Algolia. All rights reserved.
 //
 
-import Foundation
 @_exported import AlgoliaSearchClient
+import Foundation
 /// Structure containing all necessary components to perform a search
 
 public struct IndexQueryState {
-
   /// Index in which search will be performed
   public var indexName: IndexName
 
@@ -22,15 +21,12 @@ public struct IndexQueryState {
     self.indexName = indexName
     self.query = query
   }
-
 }
 
 extension IndexQueryState: Builder {}
 
 extension Array where Element == IndexQueryState {
-
   init(indices: [AlgoliaSearchClient.Index], query: Query = .init()) {
     self = indices.map { IndexQueryState(indexName: $0.name, query: query) }
   }
-
 }

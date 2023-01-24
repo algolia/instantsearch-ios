@@ -6,25 +6,23 @@
 //
 
 #if !InstantSearchCocoaPods
-@_exported import InstantSearchCore
+  @_exported import InstantSearchCore
 #endif
 #if canImport(UIKit) && (os(iOS) || os(tvOS) || os(macOS))
-import UIKit
+  import UIKit
 
-public class FilterClearButtonController: FilterClearController {
+  public class FilterClearButtonController: FilterClearController {
+    public let button: UIButton
 
-  public let button: UIButton
+    public var onClick: (() -> Void)?
 
-  public var onClick: (() -> Void)?
+    public init(button: UIButton) {
+      self.button = button
+      button.addTarget(self, action: #selector(didTapButton), for: .touchUpInside)
+    }
 
-  public init(button: UIButton) {
-    self.button = button
-    button.addTarget(self, action: #selector(didTapButton), for: .touchUpInside)
+    @objc private func didTapButton() {
+      onClick?()
+    }
   }
-
-  @objc private func didTapButton() {
-    onClick?()
-  }
-
-}
 #endif

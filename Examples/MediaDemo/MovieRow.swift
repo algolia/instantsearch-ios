@@ -10,7 +10,6 @@ import InstantSearchCore
 import SwiftUI
 
 struct MovieRow: View {
-
   let movieHit: Hit<Movie>
 
   var body: some View {
@@ -18,17 +17,16 @@ struct MovieRow: View {
       HStack {
         AsyncImage(url: movieHit.object.imageURL,
                    content: { image in
-          image
-            .resizable()
-            .aspectRatio(contentMode: .fit)
-        },
+                     image
+                       .resizable()
+                       .aspectRatio(contentMode: .fit)
+                   },
                    placeholder: {
-          Image(systemName: "photo")
-        }
-        )
-        .cornerRadius(10)
-        .scaledToFit()
-        .frame(maxWidth: 80)
+                     Image(systemName: "photo")
+                   })
+                   .cornerRadius(10)
+                   .scaledToFit()
+                   .frame(maxWidth: 80)
         VStack(alignment: .leading, spacing: 3) {
           movieHit.titleText
             .font(.title3)
@@ -46,7 +44,5 @@ struct MovieRow: View {
         Spacer()
       }
     }
-
   }
-
 }

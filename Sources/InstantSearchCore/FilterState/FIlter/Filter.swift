@@ -9,18 +9,17 @@
 import Foundation
 
 public enum Filter: Hashable {
-
   case facet(Facet)
   case numeric(Numeric)
   case tag(Tag)
 
   public var attribute: Attribute {
     switch self {
-    case .facet(let filter):
+    case let .facet(filter):
       return filter.attribute
-    case .numeric(let filter):
+    case let .numeric(filter):
       return filter.attribute
-    case .tag(let filter):
+    case let .tag(filter):
       return filter.attribute
     }
   }
@@ -53,37 +52,33 @@ public enum Filter: Hashable {
 
   public var filter: FilterType {
     switch self {
-    case .facet(let facetFilter):
+    case let .facet(facetFilter):
       return facetFilter
 
-    case .numeric(let numericFilter):
+    case let .numeric(numericFilter):
       return numericFilter
 
-    case .tag(let tagFilter):
+    case let .tag(tagFilter):
       return tagFilter
     }
   }
-
 }
 
 extension Filter: CustomStringConvertible {
-
   public var description: String {
     switch self {
-    case .facet(let facetFilter):
+    case let .facet(facetFilter):
       return facetFilter.description
-    case .numeric(let numericFilter):
+    case let .numeric(numericFilter):
       return numericFilter.description
-    case .tag(let tagFilter):
+    case let .tag(tagFilter):
       return tagFilter.description
     }
   }
-
 }
 
 /// Abstract filter protocol
 public protocol FilterType {
-
   /// Identifier of field affected by filter
   var attribute: Attribute { get }
 
@@ -93,15 +88,12 @@ public protocol FilterType {
   /// Replaces isNegated property by a new value
   /// parameter value: new value of isNegated
   mutating func not(value: Bool)
-
 }
 
 public extension FilterType {
-
   mutating func not(value: Bool = true) {
     isNegated = value
   }
-
 }
 
 @discardableResult public prefix func ! <T: FilterType>(filter: T) -> T {

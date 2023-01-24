@@ -6,12 +6,11 @@
 //
 
 import Foundation
-import UIKit
 import InstantSearch
 import InstantSearchVoiceOverlay
+import UIKit
 
 class VoiceSearchViewController: UIViewController {
-
   let searchController: UISearchController
   let searcher: HitsSearcher
 
@@ -37,7 +36,8 @@ class VoiceSearchViewController: UIViewController {
     super.init(nibName: nibNameOrNil, bundle: nibBundleOrNil)
   }
 
-  required init?(coder: NSCoder) {
+  @available(*, unavailable)
+  required init?(coder _: NSCoder) {
     fatalError("init(coder:) has not been implemented")
   }
 
@@ -75,13 +75,11 @@ class VoiceSearchViewController: UIViewController {
                                   animated: true,
                                   completion: nil)
   }
-
 }
 
 extension VoiceSearchViewController: UISearchBarDelegate {
-
-  func searchBarBookmarkButtonClicked(_ searchBar: UISearchBar) {
-    voiceOverlayController.start(on: self.navigationController!) { [weak self] (text, _, _) in
+  func searchBarBookmarkButtonClicked(_: UISearchBar) {
+    voiceOverlayController.start(on: navigationController!) { [weak self] text, _, _ in
       self?.searchBoxConnector.interactor.query = text
     } errorHandler: { error in
       guard let error = error else { return }
@@ -90,5 +88,4 @@ extension VoiceSearchViewController: UISearchBarDelegate {
       }
     }
   }
-
 }

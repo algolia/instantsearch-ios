@@ -9,9 +9,7 @@
 import Foundation
 
 public extension FilterClearInteractor {
-
   struct ControllerConnection: Connection {
-
     public let interactor: FilterClearInteractor
     public let controller: FilterClearController
 
@@ -25,15 +23,12 @@ public extension FilterClearInteractor {
       controller.onClick = .none
     }
   }
-
 }
 
 public extension FilterClearInteractor {
-
   @discardableResult func connectController(_ controller: FilterClearController) -> ControllerConnection {
     let connection = ControllerConnection(interactor: self, controller: controller)
     connection.connect()
     return connection
   }
-
 }

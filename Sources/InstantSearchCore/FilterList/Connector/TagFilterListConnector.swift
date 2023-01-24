@@ -14,7 +14,6 @@ import Foundation
 public typealias TagFilterListConnector = FilterListConnector<Filter.Tag>
 
 public extension TagFilterListConnector {
-
   /**
    - Parameters:
      - tagFilters: Tag filters to display
@@ -26,7 +25,7 @@ public extension TagFilterListConnector {
   convenience init(tagFilters: [TagFilter] = [],
                    selectionMode: SelectionMode = .multiple,
                    filterState: FilterState,
-                   `operator`: RefinementOperator,
+                   operator: RefinementOperator,
                    groupName: String) {
     let interactor = TagFilterListInteractor(items: tagFilters,
                                              selectionMode: selectionMode)
@@ -48,7 +47,7 @@ public extension TagFilterListConnector {
   convenience init<Controller: SelectableListController>(tagFilters: [TagFilter] = [],
                                                          selectionMode: SelectionMode = .multiple,
                                                          filterState: FilterState,
-                                                         `operator`: RefinementOperator,
+                                                         operator: RefinementOperator,
                                                          groupName: String,
                                                          controller: Controller) where Controller.Item == TagFilter {
     let interactor = TagFilterListInteractor(items: tagFilters,
@@ -59,5 +58,4 @@ public extension TagFilterListConnector {
               groupName: groupName,
               controller: controller)
   }
-
 }

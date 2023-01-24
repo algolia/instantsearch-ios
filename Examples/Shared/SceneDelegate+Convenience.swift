@@ -9,7 +9,6 @@ import Foundation
 import UIKit
 
 extension SceneDelegate {
-
   func setMain(_ mainViewController: UIViewController, for scene: UIScene) {
     guard let windowScene = (scene as? UIWindowScene) else { return }
     let window = UIWindow(windowScene: windowScene)
@@ -19,5 +18,4 @@ extension SceneDelegate {
     self.window = window
     window.makeKeyAndVisible()
   }
-
 }

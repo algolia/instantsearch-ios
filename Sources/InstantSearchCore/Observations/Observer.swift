@@ -13,14 +13,13 @@ import Foundation
 /// and then swap it here. Note that you will also have to implement a Subscription logic
 /// that will conform to the Observation protocol (See Signals+Observable for more info)
 public class Observer<P>: Observable {
-
   public typealias ParameterType = P
   public typealias Obs = Subscription<P>
 
   private let signal: Signal<P>
 
   public init(retainLastData: Bool = true) {
-    self.signal = Signal<P>()
+    signal = Signal<P>()
     self.retainLastData = retainLastData
   }
 
@@ -92,11 +91,9 @@ public class Observer<P>: Observable {
   public func cancelAllSubscriptions() {
     signal.cancelAllSubscriptions()
   }
-
 }
 
 public extension Observer {
-
   func fire(_ data: P) {
     signal.fire(data)
   }
@@ -108,5 +105,4 @@ public extension Observer {
   var observers: [AnyObject] {
     return signal.observers
   }
-
 }

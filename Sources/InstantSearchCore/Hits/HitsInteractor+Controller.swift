@@ -9,9 +9,7 @@
 import Foundation
 
 public extension HitsInteractor {
-
   struct ControllerConnection<Controller: HitsController>: Connection where Controller.DataSource == HitsInteractor<Record> {
-
     public let interactor: HitsInteractor
     public let controller: Controller
     public let externalReload: Bool
@@ -47,13 +45,10 @@ public extension HitsInteractor {
         interactor.onResultsUpdated.cancelSubscription(for: controller)
       }
     }
-
   }
-
 }
 
 public extension HitsInteractor {
-
   @discardableResult func connectController<Controller: HitsController>(_ controller: Controller,
                                                                         externalReload: Bool = false) -> ControllerConnection<Controller> where Controller.DataSource == HitsInteractor<Record> {
     let connection = ControllerConnection(interactor: self,
@@ -62,5 +57,4 @@ public extension HitsInteractor {
     connection.connect()
     return connection
   }
-
 }

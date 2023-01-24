@@ -7,56 +7,54 @@
 //
 
 #if !InstantSearchCocoaPods
-import InstantSearchCore
+  import InstantSearchCore
 #endif
 #if canImport(UIKit) && (os(iOS) || os(tvOS) || os(macOS))
-import UIKit
+  import UIKit
 
-open class CurrentFilterListTableController: NSObject, CurrentFiltersController, UITableViewDataSource, UITableViewDelegate {
+  open class CurrentFilterListTableController: NSObject, CurrentFiltersController, UITableViewDataSource, UITableViewDelegate {
+    open var onRemoveItem: ((FilterAndID) -> Void)?
 
-  open var onRemoveItem: ((FilterAndID) -> Void)?
+    public let tableView: UITableView
 
-  public let tableView: UITableView
+    public var items: [FilterAndID] = []
 
-  public var items: [FilterAndID] = []
+    private let cellIdentifier = "CurrentFilterListTableControllerCellID"
 
-  private let cellIdentifier = "CurrentFilterListTableControllerCellID"
+    public init(tableView: UITableView) {
+      self.tableView = tableView
+      super.init()
+      tableView.dataSource = self
+      tableView.delegate = self
+      tableView.register(UITableViewCell.self, forCellReuseIdentifier: cellIdentifier)
+    }
 
-  public init(tableView: UITableView) {
-    self.tableView = tableView
-    super.init()
-    tableView.dataSource = self
-    tableView.delegate = self
-    tableView.register(UITableViewCell.self, forCellReuseIdentifier: cellIdentifier)
+    open func setItems(_ item: [FilterAndID]) {
+      items = item
+    }
+
+    open func reload() {
+      tableView.reloadData()
+    }
+
+    // MARK: - UITableViewDataSource
+
+    open func tableView(_: UITableView, numberOfRowsInSection _: Int) -> Int {
+      return items.count
+    }
+
+    open func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+      let cell = tableView.dequeueReusableCell(withIdentifier: cellIdentifier, for: indexPath)
+      let filterAndID = items[indexPath.row]
+      cell.textLabel?.text = filterAndID.text
+
+      return cell
+    }
+
+    // MARK: - UITableViewDelegate
+
+    open func tableView(_: UITableView, didSelectRowAt indexPath: IndexPath) {
+      onRemoveItem?(items[indexPath.row])
+    }
   }
-
-  open func setItems(_ item: [FilterAndID]) {
-    items = item
-  }
-
-  open func reload() {
-    tableView.reloadData()
-  }
-
-  // MARK: - UITableViewDataSource
-
-  open func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-    return items.count
-  }
-
-  open func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-    let cell = tableView.dequeueReusableCell(withIdentifier: cellIdentifier, for: indexPath)
-    let filterAndID = items[indexPath.row]
-    cell.textLabel?.text = filterAndID.text
-
-    return cell
-  }
-
-  // MARK: - UITableViewDelegate
-
-  open func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-    onRemoveItem?(items[indexPath.row])
-  }
-
-}
 #endif

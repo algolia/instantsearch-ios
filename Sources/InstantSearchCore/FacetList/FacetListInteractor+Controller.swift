@@ -8,10 +8,8 @@
 
 import Foundation
 
-extension FacetListConnector {
-
-  public struct ControllerConnection<Controller: FacetListController>: Connection {
-
+public extension FacetListConnector {
+  struct ControllerConnection<Controller: FacetListController>: Connection {
     public let facetListInteractor: FacetListInteractor
     public let controller: Controller
     public let presenter: SelectableListPresentable?
@@ -28,7 +26,6 @@ extension FacetListConnector {
     }
 
     public func connect() {
-
       ControllerConnection.setControllerItemsWith(facets: facetListInteractor.items, selections: facetListInteractor.selections, controller: controller, presenter: presenter)
 
       controller.onClick = { [weak facetListInteractor] facet in
@@ -44,7 +41,6 @@ extension FacetListConnector {
         guard let interactor = interactor else { return }
         ControllerConnection.setControllerItemsWith(facets: interactor.items, selections: selections, controller: controller, presenter: presenter)
       }.onQueue(.main)
-
     }
 
     public func disconnect() {
@@ -66,23 +62,18 @@ extension FacetListConnector {
       controller.setSelectableItems(selectableItems: sortedFacetValues)
       controller.reload()
     }
-
   }
-
 }
 
 public extension FacetListInteractor {
-
   @discardableResult func connectController<C: FacetListController>(_ controller: C,
                                                                     with presenter: SelectableListPresentable? = nil,
                                                                     externalReload: Bool = false) -> FacetListConnector.ControllerConnection<C> {
-
     let connection = FacetListConnector.ControllerConnection(facetListInteractor: self,
-                                                    controller: controller,
-                                                    presenter: presenter,
-                                                    externalReload: externalReload)
+                                                             controller: controller,
+                                                             presenter: presenter,
+                                                             externalReload: externalReload)
     connection.connect()
     return connection
   }
-
 }

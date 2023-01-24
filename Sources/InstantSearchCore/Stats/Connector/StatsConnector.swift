@@ -12,7 +12,6 @@ import Foundation
 ///
 /// [Documentation](https://www.algolia.com/doc/api-reference/widgets/stats/ios/)
 public class StatsConnector {
-
   /// Searcher that handles your searches
   public let searcher: HitsSearcher
 
@@ -38,11 +37,9 @@ public class StatsConnector {
     controllerConnections = []
     Telemetry.shared.traceConnector(type: .stats)
   }
-
 }
 
 extension StatsConnector: Connection {
-
   public func connect() {
     searcherConnection.connect()
     controllerConnections.forEach { $0.connect() }
@@ -52,5 +49,4 @@ extension StatsConnector: Connection {
     searcherConnection.disconnect()
     controllerConnections.forEach { $0.disconnect() }
   }
-
 }

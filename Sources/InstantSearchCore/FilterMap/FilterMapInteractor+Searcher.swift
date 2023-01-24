@@ -7,11 +7,10 @@
 //
 // swiftlint:disable type_name
 
-import Foundation
 import AlgoliaSearchClient
+import Foundation
 
 public struct FilterMapInteractorSearcherConnection<Filter: FilterType>: Connection {
-
   public let interactor: SelectableSegmentInteractor<Int, Filter>
   public let searcher: HitsSearcher
   public let attribute: Attribute
@@ -20,20 +19,15 @@ public struct FilterMapInteractorSearcherConnection<Filter: FilterType>: Connect
     searcher.request.query.updateQueryFacets(with: attribute)
   }
 
-  public func disconnect() {
-
-  }
-
+  public func disconnect() {}
 }
 
 public extension FilterMapInteractor {
-
   @discardableResult func connectSearcher(_ searcher: HitsSearcher, attribute: Attribute) -> FilterMapInteractorSearcherConnection<Filter> {
     let connection = FilterMapInteractorSearcherConnection(interactor: self, searcher: searcher, attribute: attribute)
     connection.connect()
     return connection
   }
-
 }
 
 @available(*, deprecated, renamed: "FilterMapInteractorSearcherConnection")

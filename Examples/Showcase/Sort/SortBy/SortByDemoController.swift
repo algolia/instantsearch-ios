@@ -10,7 +10,6 @@ import Foundation
 import InstantSearch
 
 class SortByDemoController {
-
   let searcher: HitsSearcher
   let searchBoxConnector: SearchBoxConnector
   let statsConnector: StatsConnector
@@ -18,11 +17,11 @@ class SortByDemoController {
   let sortByConnector: SortByConnector
 
   init() {
-    self.searcher = HitsSearcher(client: .ecommerce,
-                                 indexName: .ecommerceProducts)
-    self.searchBoxConnector = .init(searcher: searcher)
-    self.hitsConnector = .init(searcher: searcher)
-    self.statsConnector = .init(searcher: searcher)
+    searcher = HitsSearcher(client: .ecommerce,
+                            indexName: .ecommerceProducts)
+    searchBoxConnector = .init(searcher: searcher)
+    hitsConnector = .init(searcher: searcher)
+    statsConnector = .init(searcher: searcher)
     sortByConnector = .init(searcher: searcher,
                             indicesNames: [.ecommerceProducts,
                                            .ecommerceProductsAsc,
@@ -44,5 +43,4 @@ class SortByDemoController {
       return indexName.rawValue
     }
   }
-
 }

@@ -7,11 +7,10 @@
 //
 
 import Foundation
-import UIKit
 import InstantSearch
+import UIKit
 
 class StatsDemoViewController: UIViewController {
-
   let searchController: UISearchController
   let controller: StatsDemoController
 
@@ -19,14 +18,15 @@ class StatsDemoViewController: UIViewController {
   let resultsViewController: ResultsViewController
 
   init() {
-    self.resultsViewController = ResultsViewController()
-    self.searchController = .init(searchResultsController: resultsViewController)
-    self.textFieldController = .init(searchBar: searchController.searchBar)
-    self.controller = .init()
+    resultsViewController = ResultsViewController()
+    searchController = .init(searchResultsController: resultsViewController)
+    textFieldController = .init(searchBar: searchController.searchBar)
+    controller = .init()
     super.init(nibName: .none, bundle: .none)
   }
 
-  required init?(coder aDecoder: NSCoder) {
+  @available(*, unavailable)
+  required init?(coder _: NSCoder) {
     fatalError("init(coder:) has not been implemented")
   }
 
@@ -67,7 +67,6 @@ class StatsDemoViewController: UIViewController {
   }
 
   class ResultsViewController: UIViewController {
-
     let stackView: UIStackView
     let labelStatsController: LabelStatsController
     let attributedLabelStatsController: AttributedLabelStatsController
@@ -79,7 +78,8 @@ class StatsDemoViewController: UIViewController {
       super.init(nibName: nil, bundle: nil)
     }
 
-    required init?(coder: NSCoder) {
+    @available(*, unavailable)
+    required init?(coder _: NSCoder) {
       fatalError("init(coder:) has not been implemented")
     }
 
@@ -105,7 +105,5 @@ class StatsDemoViewController: UIViewController {
       view.addSubview(stackView)
       stackView.pin(to: view.safeAreaLayoutGuide)
     }
-
   }
-
 }

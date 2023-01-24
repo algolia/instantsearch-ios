@@ -8,11 +8,10 @@
 
 import Foundation
 #if !InstantSearchCocoaPods
-import InstantSearchInsights
+  import InstantSearchInsights
 #endif
 
 public class HitsTracker: InsightsTracker {
-
   public let eventName: EventName
   internal let searcher: TrackableSearcher
   internal let tracker: HitsAfterSearchTrackable
@@ -39,24 +38,22 @@ public class HitsTracker: InsightsTracker {
 
   deinit {
     switch searcher {
-    case .singleIndex(let searcher):
+    case let .singleIndex(searcher):
       searcher.onResults.cancelSubscription(for: self)
-    case .multiIndex(let searcher, _):
+    case let .multiIndex(searcher, _):
       searcher.onResults.cancelSubscription(for: self)
     }
   }
-
 }
 
 // MARK: - Hits tracking methods
 
 public extension HitsTracker {
-
   func trackClick<Record: Codable>(for hit: Hit<Record>,
                                    position: Int,
                                    eventName customEventName: EventName? = nil) {
     guard let queryID = queryID else { return }
-    tracker.clickedAfterSearch(eventName: customEventName ?? self.eventName,
+    tracker.clickedAfterSearch(eventName: customEventName ?? eventName,
                                indexName: searcher.indexName,
                                objectIDsWithPositions: [(hit.objectID, position)],
                                queryID: queryID,
@@ -67,7 +64,7 @@ public extension HitsTracker {
   func trackConvert<Record: Codable>(for hit: Hit<Record>,
                                      eventName customEventName: EventName? = nil) {
     guard let queryID = queryID else { return }
-    tracker.convertedAfterSearch(eventName: customEventName ?? self.eventName,
+    tracker.convertedAfterSearch(eventName: customEventName ?? eventName,
                                  indexName: searcher.indexName,
                                  objectIDs: [hit.objectID],
                                  queryID: queryID,
@@ -77,11 +74,10 @@ public extension HitsTracker {
 
   func trackView<Record: Codable>(for hit: Hit<Record>,
                                   eventName customEventName: EventName? = nil) {
-    tracker.viewed(eventName: customEventName ?? self.eventName,
+    tracker.viewed(eventName: customEventName ?? eventName,
                    indexName: searcher.indexName,
                    objectIDs: [hit.objectID],
                    timestamp: .none,
                    userToken: .none)
   }
-
 }

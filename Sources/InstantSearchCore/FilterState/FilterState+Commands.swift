@@ -9,15 +9,11 @@
 import Foundation
 
 private protocol FilterStateCommand {
-
   func execute(on filterState: FilterState)
-
 }
 
 private extension FilterState {
-
   struct Add<T: FilterType>: FilterStateCommand {
-
     public let groupID: FilterGroup.ID
     public let filters: [T]
 
@@ -33,11 +29,9 @@ private extension FilterState {
     public func execute(on filterState: FilterState) {
       filterState.addAll(filters: filters, toGroupWithID: groupID)
     }
-
   }
 
   struct Remove<T: FilterType>: FilterStateCommand {
-
     public let filters: [T]
     public let groupID: FilterGroup.ID?
 
@@ -51,42 +45,35 @@ private extension FilterState {
     }
 
     public func execute(on filterState: FilterState) {
-
       if let groupID = groupID {
         filterState.removeAll(filters, fromGroupWithID: groupID)
       } else {
         _ = filterState.removeAll(filters)
       }
     }
-
   }
 
   enum Clear: FilterStateCommand {
-
     case all
     case group(FilterGroup.ID)
     case attribute(Attribute)
     case attributeInGroup(Attribute, FilterGroup.ID)
 
     public func execute(on filterState: FilterState) {
-
       switch self {
       case .all:
         filterState.removeAll()
-      case .attribute(let attribute):
+      case let .attribute(attribute):
         filterState.removeAll(for: attribute)
-      case .attributeInGroup(let attribute, let groupID):
+      case let .attributeInGroup(attribute, groupID):
         filterState.removeAll(for: attribute, fromGroupWithID: groupID)
-      case .group(let groupID):
+      case let .group(groupID):
         filterState.removeAll(fromGroupWithID: groupID)
       }
-
     }
-
   }
 
   struct Toggle<T: FilterType>: FilterStateCommand {
-
     public let groupID: FilterGroup.ID
     public let filters: [T]
 
@@ -102,15 +89,11 @@ private extension FilterState {
     public func execute(on filterState: FilterState) {
       filterState.toggle(filters, inGroupWithID: groupID)
     }
-
   }
-
 }
 
 public extension FilterState {
-
   struct Command {
-
     fileprivate let command: FilterStateCommand
 
     public static func add<T: FilterType>(filter: T, toGroupWithID groupID: FilterGroup.ID) -> Command {
@@ -135,7 +118,7 @@ public extension FilterState {
       return .init(command: FilterState.Clear.group(groupID))
     }
 
-    public static func removeAll(for attribute: Attribute, fromGroupWithID groupID: FilterGroup.ID? = nil) -> Command {
+    public static func removeAll(for attribute: Attribute, fromGroupWithID _: FilterGroup.ID? = nil) -> Command {
       return .init(command: FilterState.Clear.attribute(attribute))
     }
 
@@ -146,12 +129,10 @@ public extension FilterState {
     public static func toggle<T: FilterType>(filters: [T], toGroupWithID groupID: FilterGroup.ID) -> Command {
       return .init(command: FilterState.Toggle(filters: filters, groupID: groupID))
     }
-
   }
 
   func notify(_ commands: Command...) {
     commands.forEach { $0.command.execute(on: self) }
     onChange.fire(ReadOnlyFiltersContainer(filterState: self))
   }
-
 }

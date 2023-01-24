@@ -11,20 +11,16 @@ import Foundation
 import XCTest
 
 class SelectableSegmentInteractorTests: XCTestCase {
-
   typealias VM = SelectableSegmentInteractor<String, String>
 
   func testConstruction() {
-
     let interactor = VM(items: ["k1": "i1", "k2": "i2", "k3": "i3"])
 
     XCTAssertEqual(interactor.items, ["k1": "i1", "k2": "i2", "k3": "i3"])
     XCTAssertNil(interactor.selected)
-
   }
 
   func testSwitchItems() {
-
     let interactor = VM(items: ["k1": "i1", "k2": "i2", "k3": "i3"])
 
     let switchItemsExpectation = expectation(description: "switch items")
@@ -37,11 +33,9 @@ class SelectableSegmentInteractorTests: XCTestCase {
     interactor.items = ["k4": "i4"]
 
     waitForExpectations(timeout: 2, handler: nil)
-
   }
 
   func testSelection() {
-
     let interactor = VM(items: ["k1": "i1", "k2": "i2", "k3": "i3"])
 
     let selectionExpectation = expectation(description: "selection")
@@ -56,11 +50,9 @@ class SelectableSegmentInteractorTests: XCTestCase {
     XCTAssertEqual(interactor.selected, "k3")
 
     waitForExpectations(timeout: 2, handler: nil)
-
   }
 
   func testSelectionComputed() {
-
     let interactor = VM(items: ["k1": "i1", "k2": "i2", "k3": "i3"])
 
     let selectionComputedExpectation = expectation(description: "selection computed")
@@ -73,7 +65,6 @@ class SelectableSegmentInteractorTests: XCTestCase {
     interactor.computeSelected(selecting: "k3")
 
     waitForExpectations(timeout: 2, handler: .none)
-
   }
 
   func nilSelectedComputedTest() {
@@ -90,5 +81,4 @@ class SelectableSegmentInteractorTests: XCTestCase {
 
     waitForExpectations(timeout: 2, handler: .none)
   }
-
 }

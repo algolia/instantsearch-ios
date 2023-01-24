@@ -11,7 +11,6 @@ import InstantSearch
 import UIKit
 
 class FacetSearchDemoViewController: UIViewController {
-
   let demoController: FacetSearchDemoController
   let searchBar: UISearchBar
   let textFieldController: TextFieldController
@@ -27,7 +26,8 @@ class FacetSearchDemoViewController: UIViewController {
     super.init(nibName: nibNameOrNil, bundle: nibBundleOrNil)
   }
 
-  required init?(coder aDecoder: NSCoder) {
+  @available(*, unavailable)
+  required init?(coder _: NSCoder) {
     fatalError("init(coder:) has not been implemented")
   }
 
@@ -36,11 +36,9 @@ class FacetSearchDemoViewController: UIViewController {
     setup()
     setupUI()
   }
-
 }
 
 private extension FacetSearchDemoViewController {
-
   func setup() {
     addChild(filterDebugViewController)
     filterDebugViewController.didMove(toParent: self)
@@ -73,5 +71,4 @@ private extension FacetSearchDemoViewController {
     stackView.addArrangedSubview(filterDebugViewContainer)
     stackView.addArrangedSubview(tableView)
   }
-
 }

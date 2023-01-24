@@ -7,13 +7,11 @@
 //
 
 import Foundation
-import XCTest
 @testable import InstantSearchCore
+import XCTest
 
 class FilterGroupCollectionsTests: XCTestCase {
-
   func testConversion() {
-
     let andGroup = FilterGroup.And(filters: [
       Filter.Tag(value: "tag"),
       Filter.Numeric(attribute: "size", operator: .equals, value: 40),
@@ -30,7 +28,5 @@ class FilterGroupCollectionsTests: XCTestCase {
     let groups: [FilterGroupType] = [andGroup, orGroup]
 
     XCTAssertEqual(converter.sql(groups), "( \"_tags\":\"tag\" AND \"size\" = 40.0 AND \"brand\":\"sony\" ) AND ( \"brand\":\"philips\" OR \"diagonal\":\"42.0\" OR \"featured\":\"true\" )")
-
   }
-
 }

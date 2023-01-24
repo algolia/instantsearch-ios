@@ -1,6 +1,6 @@
 //
 //  AbstractMultiSearcher.swift
-//  
+//
 //
 //  Created by Vladislav Fitc on 11/08/2021.
 //
@@ -9,7 +9,6 @@ import Foundation
 
 /// Extracts queries from queries sources, performs search request and dispatches the results to the corresponding receivers
 public class AbstractMultiSearcher<Service: MultiSearchService>: AbstractSearcher<Service> where Service.Process == Operation {
-
   public typealias SubRequest = Service.Request.SubRequest
   public typealias SubResult = Service.Result.SubResult
 
@@ -23,7 +22,7 @@ public class AbstractMultiSearcher<Service: MultiSearchService>: AbstractSearche
     return component
   }
 
-  public override func search() {
+  override public func search() {
     let (requests, completion) = collect()
     request.subRequests = requests
     onResults.subscribeOnce(with: self) { _, result in
@@ -34,11 +33,9 @@ public class AbstractMultiSearcher<Service: MultiSearchService>: AbstractSearche
     }
     super.search()
   }
-
 }
 
 extension AbstractMultiSearcher: MultiSearchComponent {
-
   public func collect() -> (requests: [SubRequest], completion: (Swift.Result<[SubResult], Error>) -> Void) {
     let requestsAndCompletions = components.map { $0.collect() }
 
@@ -49,25 +46,23 @@ extension AbstractMultiSearcher: MultiSearchComponent {
     return (requests.flatMap { $0 }, { result in
       for (completion, range) in rangePerCompletion {
         switch result {
-        case .success(let subresults):
+        case let .success(subresults):
           guard
             range.lowerBound <= subresults.endIndex,
             range.upperBound <= subresults.endIndex else {
-            completion(.failure(MultiSearchError.resultsRangeMismatch(range, subresults.startIndex..<subresults.endIndex) ))
+            completion(.failure(MultiSearchError.resultsRangeMismatch(range, subresults.startIndex..<subresults.endIndex)))
             return
           }
           completion(.success(Array(subresults[range])))
-        case .failure(let error):
+        case let .failure(error):
           completion(.failure(MultiSearchError.serviceError(error)))
         }
       }
     })
   }
-
 }
 
 extension AbstractMultiSearcher: QuerySettable {
-
   public func setQuery(_ query: String?) {
     components
       .compactMap { $0.wrapped as? QuerySettable }
@@ -75,11 +70,9 @@ extension AbstractMultiSearcher: QuerySettable {
         $0.setQuery(query)
       }
   }
-
 }
 
 extension AbstractMultiSearcher: IndexNameSettable {
-
   public func setIndexName(_ indexName: IndexName) {
     components
       .compactMap { $0.wrapped as? IndexNameSettable }
@@ -87,11 +80,9 @@ extension AbstractMultiSearcher: IndexNameSettable {
         $0.setIndexName(indexName)
       }
   }
-
 }
 
 extension AbstractMultiSearcher: FiltersSettable {
-
   public func setFilters(_ filters: String?) {
     components
       .compactMap { $0.wrapped as? FiltersSettable }
@@ -99,5 +90,4 @@ extension AbstractMultiSearcher: FiltersSettable {
         $0.setFilters(filters)
       }
   }
-
 }

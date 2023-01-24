@@ -7,11 +7,10 @@
 //
 
 import Foundation
-import UIKit
 import InstantSearch
+import UIKit
 
 class SortByController: NSObject, SelectableSegmentController {
-
   let searchBar: UISearchBar
 
   var onClick: ((Int) -> Void)?
@@ -29,13 +28,10 @@ class SortByController: NSObject, SelectableSegmentController {
   func setItems(items: [Int: String]) {
     searchBar.scopeButtonTitles = items.sorted(by: \.key).map(\.value)
   }
-
 }
 
 extension SortByController: UISearchBarDelegate {
-
-  func searchBar(_ searchBar: UISearchBar, selectedScopeButtonIndexDidChange selectedScope: Int) {
+  func searchBar(_: UISearchBar, selectedScopeButtonIndexDidChange selectedScope: Int) {
     onClick?(selectedScope)
   }
-
 }

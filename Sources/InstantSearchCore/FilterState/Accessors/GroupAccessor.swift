@@ -13,12 +13,11 @@ protocol FiltersContainer: AnyObject {
 }
 
 extension FiltersContainer {
-
   public subscript(and groupName: String) -> AndGroupAccessor {
     return .init(filtersContainer: self, groupName: groupName)
   }
 
-  public subscript<F: FilterType>(or groupName: String, type: F.Type) -> OrGroupAccessor<F> {
+  public subscript<F: FilterType>(or groupName: String, _: F.Type) -> OrGroupAccessor<F> {
     return .init(filtersContainer: self, groupName: groupName)
   }
 
@@ -29,22 +28,20 @@ extension FiltersContainer {
   public subscript(hierarchical groupName: String) -> HierarchicalGroupAccessor {
     return .init(filtersContainer: self, groupName: groupName)
   }
-
 }
 
 public class ReadOnlyFiltersContainer {
-
   class StorageContainer: FiltersContainer {
     var filters: FilterState.Storage
     init(filterState: FilterState) {
-      self.filters = filterState.filters
+      filters = filterState.filters
     }
   }
 
   let filtersContainer: FiltersContainer
 
   init(filterState: FilterState) {
-    self.filtersContainer = StorageContainer(filterState: filterState)
+    filtersContainer = StorageContainer(filterState: filterState)
   }
 
   public subscript<F: FilterType>(and groupName: String) -> ReadOnlyGroupAccessor<F> {
@@ -58,29 +55,24 @@ public class ReadOnlyFiltersContainer {
   public subscript(hierarchical groupName: String) -> ReadOnlyGroupAccessor<Filter.Facet> {
     return ReadOnlyGroupAccessor(filtersContainer[hierarchical: groupName])
   }
-
 }
 
 extension ReadOnlyFiltersContainer: FilterGroupsConvertible {
   public func toFilterGroups() -> [FilterGroupType] {
     return filtersContainer.filters.toFilterGroups()
   }
-
 }
 
 /// Provides a convenient interface to a concrete group contained by FilterState
 public protocol GroupAccessor {
-
   var isEmpty: Bool { get }
 
   func removeAll(for attribute: Attribute)
   func removeAll()
   func removeAllOthers()
-
 }
 
 public class ReadOnlyGroupAccessor<Filter: FilterType> {
-
   var storedIsEmpty: () -> Bool
   var storedGetFilters: () -> [Filter]
   var storedGetFiltersForAttribute: (Attribute) -> [Filter]
@@ -108,11 +100,9 @@ public class ReadOnlyGroupAccessor<Filter: FilterType> {
   func contains(_ filter: Filter) -> Bool {
     return storedContains(filter)
   }
-
 }
 
 public protocol SpecializedGroupAccessor: GroupAccessor {
-
   associatedtype Filter: FilterType
 
   func filters() -> [Filter]
@@ -124,5 +114,4 @@ public protocol SpecializedGroupAccessor: GroupAccessor {
   func remove(_ filter: Filter)
   @discardableResult func removeAll<S: Sequence>(_ filters: S) -> Bool where S.Element == Filter
   func toggle(_ filter: Filter)
-
 }

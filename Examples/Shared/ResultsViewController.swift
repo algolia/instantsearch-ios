@@ -6,12 +6,11 @@
 //
 
 import Foundation
-import UIKit
 import InstantSearch
 import SDWebImage
+import UIKit
 
 class ResultsViewController: UIViewController {
-
   let stackView: UIStackView
   let hitsViewController: StoreItemsTableViewController
 
@@ -33,7 +32,8 @@ class ResultsViewController: UIViewController {
     hitsViewController.didMove(toParent: self)
   }
 
-  required init?(coder: NSCoder) {
+  @available(*, unavailable)
+  required init?(coder _: NSCoder) {
     fatalError("init(coder:) has not been implemented")
   }
 
@@ -63,5 +63,4 @@ class ResultsViewController: UIViewController {
     stackView.addArrangedSubview(detailsStackView)
     stackView.addArrangedSubview(hitsViewController.view)
   }
-
 }

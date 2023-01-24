@@ -6,12 +6,11 @@
 //  Copyright © 2019 Algolia. All rights reserved.
 //
 
-import Foundation
-import XCTest
-@testable import InstantSearchCore
 import AlgoliaSearchClient
+import Foundation
+@testable import InstantSearchCore
+import XCTest
 class DisjunctiveFacetingIntegrationTests: OnlineTestCase {
-
   struct Item: Codable {
     let category: String
     let color: String?
@@ -32,12 +31,11 @@ class DisjunctiveFacetingIntegrationTests: OnlineTestCase {
   }
 
   func testDisjunctive() {
-
     let expectedFacets: [(Attribute, [Facet])] = [
       ("category", [
         .init(value: "shirt", count: 2, highlighted: nil),
         .init(value: "hat", count: 1, highlighted: nil)
-        ]),
+      ]),
       ("promotions", [
         .init(value: "free return", count: 2, highlighted: nil),
         .init(value: "coupon", count: 1, highlighted: nil),
@@ -71,38 +69,36 @@ class DisjunctiveFacetingIntegrationTests: OnlineTestCase {
       do {
         let searchesResponse = try result.get()
         let finalResult = try! queryBuilder.aggregate(searchesResponse.results)
-        expectedFacets.forEach { (attribute, facets) in
+        expectedFacets.forEach { attribute, facets in
           XCTAssertTrue(finalResult.facets?[attribute]?.equalContents(to: facets) == true)
         }
-        expectedDisjucntiveFacets.forEach { (attribute, facets) in
+        expectedDisjucntiveFacets.forEach { attribute, facets in
           XCTAssertTrue(finalResult.disjunctiveFacets?[attribute]?.equalContents(to: facets) == true)
         }
         exp.fulfill()
 
-      } catch let error {
+      } catch {
         XCTFail("\(error)")
       }
     }
 
     waitForExpectations(timeout: 15, handler: .none)
-
   }
 
   func testMultiDisjunctive() {
-
     let expectedFacets: [(Attribute, [Facet])] = [
       ("category", [
         .init(value: "shirt", count: 1, highlighted: nil)
-        ]),
+      ]),
       ("promotions", [
         .init(value: "coupon", count: 1, highlighted: nil)
-        ])
+      ])
     ]
 
     let expectedDisjucntiveFacets: [(Attribute, [Facet])] = [
       ("color", [
         .init(value: "blue", count: 1, highlighted: nil)
-        ])
+      ])
     ]
 
     let query = Query().set(\.facets, to: Set(disjunctiveAttributes))
@@ -123,20 +119,18 @@ class DisjunctiveFacetingIntegrationTests: OnlineTestCase {
       do {
         let searchesResponse = try result.get()
         let finalResult = try queryBuilder.aggregate(searchesResponse.results)
-        expectedFacets.forEach { (attribute, facets) in
+        expectedFacets.forEach { attribute, facets in
           XCTAssertTrue(finalResult.facets?[attribute]?.equalContents(to: facets) == true)
         }
-        expectedDisjucntiveFacets.forEach { (attribute, facets) in
+        expectedDisjucntiveFacets.forEach { attribute, facets in
           XCTAssertTrue(finalResult.disjunctiveFacets?[attribute]?.equalContents(to: facets) == true)
         }
         exp.fulfill()
-      } catch let error {
+      } catch {
         XCTFail("\(error)")
       }
     }
 
     waitForExpectations(timeout: 15, handler: .none)
-
   }
-
 }

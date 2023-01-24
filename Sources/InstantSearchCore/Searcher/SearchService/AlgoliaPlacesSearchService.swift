@@ -1,6 +1,6 @@
 //
 //  AlgoliaPlacesSearchService.swift
-//  
+//
 //
 //  Created by Vladislav Fitc on 27/11/2020.
 //
@@ -8,7 +8,6 @@
 import Foundation
 
 public class AlgoliaPlacesSearchService: SearchService {
-
   let client: PlacesClient
 
   init(client: PlacesClient) {
@@ -18,13 +17,10 @@ public class AlgoliaPlacesSearchService: SearchService {
   public func search(_ request: Request, completion: @escaping (Result<PlacesClient.SingleLanguageResponse, Error>) -> Void) -> Operation {
     return client.search(query: request.query, language: request.language, requestOptions: request.requestOptions, completion: completion)
   }
-
 }
 
-extension AlgoliaPlacesSearchService {
-
-  public struct Request: TextualQueryProvider, AlgoliaRequest {
-
+public extension AlgoliaPlacesSearchService {
+  struct Request: TextualQueryProvider, AlgoliaRequest {
     public var query: PlacesQuery
     public var language: Language
     public var requestOptions: RequestOptions?
@@ -42,7 +38,5 @@ extension AlgoliaPlacesSearchService {
       self.query = query
       self.language = language
     }
-
   }
-
 }

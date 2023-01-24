@@ -11,34 +11,32 @@ import Foundation
 import XCTest
 
 class HitsInteractorControllerConnectionTests: XCTestCase {
-
   var interactor: HitsInteractor<JSON> {
     return HitsInteractor<JSON>(settings: .init(infiniteScrolling: .on(withOffset: 10), showItemsOnEmptyQuery: true),
-          paginationController: .init(),
-    infiniteScrollingController: TestInfiniteScrollingController(), jsonDecoder: JSONDecoder())
+                                paginationController: .init(),
+                                infiniteScrollingController: TestInfiniteScrollingController(), jsonDecoder: JSONDecoder())
   }
-  
+
   weak var disposableController: TestHitsController<JSON>?
   weak var disposableInteractor: HitsInteractor<JSON>?
-  
+
   func testLeak() {
     let interactor = self.interactor
     let controller = TestHitsController<JSON>()
 
     disposableController = controller
     disposableInteractor = interactor
-    
+
     let connection = HitsInteractor.ControllerConnection(interactor: interactor, controller: controller)
     connection.connect()
   }
-  
+
   override func tearDown() {
     XCTAssertNil(disposableInteractor, "Leaked interactor")
     XCTAssertNil(disposableController, "Leaked controller")
   }
 
   func testConnect() {
-
     let controller = TestHitsController<JSON>()
     let interactor = self.interactor
 
@@ -48,11 +46,9 @@ class HitsInteractorControllerConnectionTests: XCTestCase {
 
     let tester = HitsInteractorControllerConnectionTester(interactor: interactor, controller: controller, source: self)
     tester.check(isConnected: true)
-
   }
 
   func testConnectMethod() {
-
     let controller = TestHitsController<JSON>()
     let interactor = self.interactor
 
@@ -60,11 +56,9 @@ class HitsInteractorControllerConnectionTests: XCTestCase {
 
     let tester = HitsInteractorControllerConnectionTester(interactor: interactor, controller: controller, source: self)
     tester.check(isConnected: true)
-
   }
 
   func testDisconnect() {
-
     let controller = TestHitsController<JSON>()
     let interactor = self.interactor
 
@@ -74,17 +68,14 @@ class HitsInteractorControllerConnectionTests: XCTestCase {
 
     let tester = HitsInteractorControllerConnectionTester(interactor: interactor, controller: controller, source: self)
     tester.check(isConnected: false)
-
   }
-
 }
 
 class HitsInteractorControllerConnectionTester {
-  
   let interactor: HitsInteractor<JSON>
   let controller: TestHitsController<JSON>
   let source: XCTestCase
-  
+
   init(interactor: HitsInteractor<JSON>,
        controller: TestHitsController<JSON>,
        source: XCTestCase) {
@@ -92,9 +83,8 @@ class HitsInteractorControllerConnectionTester {
     self.controller = controller
     self.source = source
   }
-  
-  func check(isConnected: Bool, file: StaticString = #file, line: UInt = #line) {
 
+  func check(isConnected: Bool, file _: StaticString = #file, line _: UInt = #line) {
     if isConnected {
       XCTAssertTrue(controller.hitsSource === interactor)
     } else {
@@ -118,9 +108,7 @@ class HitsInteractorControllerConnectionTester {
     }
 
     interactor.onResultsUpdated.fire(SearchResponse(hits: [TestRecord<Int>]()))
-    
+
     source.waitForExpectations(timeout: 2, handler: .none)
-    
   }
-  
 }

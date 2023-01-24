@@ -1,6 +1,6 @@
 //
 //  LogCollectable.swift
-//  
+//
 //
 //  Created by Vladislav Fitc on 23/08/2022.
 //
@@ -13,7 +13,6 @@ public protocol LogCollectable {
 }
 
 public extension LogCollectable {
-
   static func trace(_ message: String) {
     logger.log(level: .trace, "\(message)")
   }
@@ -41,5 +40,4 @@ public extension LogCollectable {
   static func critical(_ message: String) {
     logger.log(level: .critical, "\(message)")
   }
-
 }

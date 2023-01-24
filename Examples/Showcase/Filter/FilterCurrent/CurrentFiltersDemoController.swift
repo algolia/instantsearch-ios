@@ -9,7 +9,6 @@ import Foundation
 import InstantSearchCore
 
 class CurrentFiltersDemoController {
-
   let filterState: FilterState
   let clearFiltersConnector: FilterClearConnector
   let currentFiltersListConnector: CurrentFiltersConnector
@@ -22,7 +21,6 @@ class CurrentFiltersDemoController {
   }
 
   func setup() {
-
     let filterFacet1 = Filter.Facet(attribute: "category", value: "table")
     let filterFacet2 = Filter.Facet(attribute: "category", value: "chair")
     let filterFacet3 = Filter.Facet(attribute: "category", value: "clothes")
@@ -41,5 +39,4 @@ class CurrentFiltersDemoController {
 
     filterState.notifyChange()
   }
-
 }

@@ -1,6 +1,6 @@
 //
 //  AlgoliaAnswersSearchService.swift
-//  
+//
 //
 //  Created by Vladislav Fitc on 27/11/2020.
 //
@@ -9,7 +9,6 @@ import Foundation
 
 @available(*, deprecated, message: "Answers feature is deprecated")
 public final class AlgoliaAnswersSearchService: SearchService {
-
   public let client: SearchClient
 
   public init(client: SearchClient) {
@@ -19,14 +18,11 @@ public final class AlgoliaAnswersSearchService: SearchService {
   public func search(_ request: Request, completion: @escaping (Result<SearchResponse, Error>) -> Void) -> Operation {
     return client.index(withName: request.indexName).findAnswers(for: request.query, requestOptions: request.requestOptions, completion: completion)
   }
-
 }
 
 @available(*, deprecated, message: "Answers feature is deprecated")
 extension AlgoliaAnswersSearchService {
-
   public struct Request: IndexNameProvider, TextualQueryProvider, AlgoliaRequest {
-
     public var indexName: IndexName
     public var query: AnswersQuery
     public var requestOptions: RequestOptions?
@@ -49,5 +45,4 @@ extension AlgoliaAnswersSearchService {
       self.requestOptions = requestOptions
     }
   }
-
 }

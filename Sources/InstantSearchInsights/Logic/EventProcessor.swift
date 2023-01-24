@@ -6,15 +6,14 @@
 //  Copyright © 2018 Algolia. All rights reserved.
 //
 
-import Foundation
 import AlgoliaSearchClient
+import Foundation
 
 /// EventProcessor
 /// - Storing of the events in the persistent storage (if provided)
 /// - Forming the bounded packages of the events
 /// – Synchronizing the events with a provided Service
 class EventProcessor<Service: EventsService, PackageStorage: Storage>: Flushable, PackageManageable where PackageStorage.Item == [Package<Service.Event>] {
-
   public typealias Event = Service.Event
 
   /// The service to sync the events with
@@ -82,25 +81,24 @@ class EventProcessor<Service: EventsService, PackageStorage: Storage>: Flushable
        acceptEvent: @escaping (Event) -> Bool = { _ in true },
        logger: Logger,
        dispatchQueue: DispatchQueue = .init(label: "insights.events", qos: .background)) {
-
-    self.packager = .init(packageCapacity: packageCapacity)
+    packager = .init(packageCapacity: packageCapacity)
     self.storage = storage
     self.logger = logger
     let initialPackages: [Package<Event>]
     if let storage = storage {
       do {
         initialPackages = try storage.load()
-      } catch let error {
+      } catch {
         logger.debug("\(error)")
         initialPackages = []
       }
     } else {
       initialPackages = []
     }
-    self.packager.set(initialPackages)
+    packager.set(initialPackages)
     self.service = service
     self.dispatchQueue = dispatchQueue
-    self.timerController = TimerController(delay: flushDelay)
+    timerController = TimerController(delay: flushDelay)
     self.acceptEvent = acceptEvent
     timerController.action = flush
     timerController.setup()
@@ -113,8 +111,8 @@ class EventProcessor<Service: EventsService, PackageStorage: Storage>: Flushable
   }
 
   func setPackageCapacity(_ capacity: Int) {
-    self.packager = Packager(packages: packager.packages,
-                             packageCapacity: capacity)
+    packager = Packager(packages: packager.packages,
+                        packageCapacity: capacity)
   }
 
   /// Process a new event
@@ -131,7 +129,7 @@ class EventProcessor<Service: EventsService, PackageStorage: Storage>: Flushable
       let updatedPackages = processor.packager.packages
       do {
         try processor.storage?.store(updatedPackages)
-      } catch let error {
+      } catch {
         processor.logger.error("\(error.localizedDescription)")
       }
       if let lastPackage = processor.packager.packages.last, lastPackage.isFull {
@@ -153,17 +151,15 @@ class EventProcessor<Service: EventsService, PackageStorage: Storage>: Flushable
       }
     }
   }
-
 }
 
 private extension EventProcessor {
-
   func sync(_ eventsPackage: Package<Event>) {
     logger.info("sending events package: \(eventsPackage.items)")
 
     let eligibleEvents = eventsPackage.items.filter(acceptEvent)
 
-    service.sendEvents(eligibleEvents) { [weak self]  result in
+    service.sendEvents(eligibleEvents) { [weak self] result in
 
       guard let processor = self else { return }
 
@@ -173,7 +169,7 @@ private extension EventProcessor {
       case .success:
         processor.logger.info("package succesfully sent")
         shouldRemovePackage = true
-      case .failure(let error):
+      case let .failure(error):
         processor.logger.error("package sending failed: \(error.localizedDescription)")
         shouldRemovePackage = !Service.isRetryable(error)
       }
@@ -185,12 +181,10 @@ private extension EventProcessor {
         let updatedPackages = processor.packager.packages
         do {
           try processor.storage?.store(updatedPackages)
-        } catch let error {
+        } catch {
           processor.logger.error("\(error.localizedDescription)")
         }
       }
-
     }
   }
-
 }

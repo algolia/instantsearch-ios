@@ -9,7 +9,6 @@
 import Foundation
 
 struct PageMap<Item> {
-
   typealias PageIndex = Int
 
   private var storage: [PageIndex: [Item]]
@@ -69,7 +68,6 @@ struct PageMap<Item> {
   }
 
   func item(atIndex index: Index) -> Item? {
-
     let pageIndex = self.pageIndex(for: index)
     let offset = index % pageSize
 
@@ -79,21 +77,19 @@ struct PageMap<Item> {
 
     return page[offset]
   }
-
 }
 
 // MARK: SequenceType
-extension PageMap: Sequence {
 
+extension PageMap: Sequence {
   public func makeIterator() -> IndexingIterator<PageMap> {
     return IndexingIterator(_elements: self)
   }
-
 }
 
 // MARK: CollectionType
-extension PageMap: BidirectionalCollection {
 
+extension PageMap: BidirectionalCollection {
   public typealias Index = Int
 
   public var startIndex: Index { return 0 }
@@ -108,16 +104,16 @@ extension PageMap: BidirectionalCollection {
   }
 
   public func index(after index: Index) -> Index {
-    return index+1
+    return index + 1
   }
 
   public func index(before index: Index) -> Index {
-    return index-1
+    return index - 1
   }
 
   /// Accesses and sets elements for a given flat index position.
   /// Currently, setter can only be used to replace non-optional values.
-  public subscript (position: Index) -> Item? {
+  public subscript(position: Index) -> Item? {
     get {
       let pageIndex = self.pageIndex(for: position)
       let inPageIndex = position % pageSize
@@ -141,35 +137,28 @@ extension PageMap: BidirectionalCollection {
 }
 
 protocol Pageable {
-
   associatedtype Item
 
   var index: Int { get }
   var items: [Item] { get }
-
 }
 
 extension PageMap {
-
   struct Page {
-
     let index: Int
-  	let items: [Item]
+    let items: [Item]
 
     init(index: Int, items: [Item]) {
       self.index = index
       self.items = items
     }
-
   }
-
 }
 
 extension PageMap.Page: Equatable where Item: Hashable {}
 extension PageMap.Page: Hashable where Item: Hashable {}
 
 extension PageMap {
-
   init?<T: Pageable>(_ source: T) where T.Item == Item {
     guard !source.items.isEmpty else {
       return nil
@@ -184,7 +173,7 @@ extension PageMap {
       return nil
     }
     let itemsArray = Array(items)
-    self.storage = [0: itemsArray]
+    storage = [0: itemsArray]
     loadedPageIndexes = [0]
     pageSize = itemsArray.count
   }
@@ -198,13 +187,10 @@ extension PageMap {
     loadedPageIndexes = Set(dictionary.keys)
     pageSize = dictionary.sorted(by: { $0.key < $1.key }).first?.value.count ?? 0
   }
-
 }
 
 extension PageMap {
-
   mutating func cleanUp(basePageIndex pageIndex: Int, keepingPagesOffset: Int) {
-
     let leastPageIndex = pageIndex - keepingPagesOffset
     let lastPageIndex = pageIndex + keepingPagesOffset
 
@@ -216,7 +202,5 @@ extension PageMap {
     for pageIndex in pagesToRemove {
       storage.removeValue(forKey: pageIndex)
     }
-
   }
-
 }

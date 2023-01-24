@@ -10,7 +10,6 @@ import Foundation
 
 /// Search query suggestion item
 public struct QuerySuggestion {
-
   /// The suggested search term
   public let query: String
 
@@ -19,11 +18,9 @@ public struct QuerySuggestion {
 
   /// The popularity score of the search term
   public let popularity: Int
-
 }
 
 extension QuerySuggestion: Codable {
-
   enum CodingKeys: String, CodingKey {
     case query
     case popularity
@@ -37,8 +34,8 @@ extension QuerySuggestion: Codable {
     } else {
       highlighted = nil
     }
-    self.query = try container.decode(String.self, forKey: .query)
-    self.popularity = try container.decode(Int.self, forKey: .popularity)
+    query = try container.decode(String.self, forKey: .query)
+    popularity = try container.decode(Int.self, forKey: .popularity)
   }
 
   public func encode(to encoder: Encoder) throws {
@@ -46,5 +43,4 @@ extension QuerySuggestion: Codable {
     try container.encode(query, forKey: .query)
     try container.encode(popularity, forKey: .popularity)
   }
-
 }

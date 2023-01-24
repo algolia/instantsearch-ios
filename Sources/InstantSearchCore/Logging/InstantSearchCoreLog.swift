@@ -1,6 +1,6 @@
 //
 //  InstantSearchCoreLog.swift
-//  
+//
 //
 //  Created by Vladislav Fitc on 11/06/2020.
 //
@@ -8,12 +8,11 @@
 import Foundation
 import Logging
 #if !InstantSearchCocoaPods
-import struct InstantSearchInsights.Logs
-import protocol InstantSearchInsights.LogCollectable
+  import protocol InstantSearchInsights.LogCollectable
+  import struct InstantSearchInsights.Logs
 #endif
 
 struct InstantSearchCoreLog: LogCollectable {
-
   static var logger: Logging.Logger = {
     NotificationCenter.default.addObserver(forName: Logs.logLevelChangeNotficationName, object: nil, queue: .main) { notification in
       if let logLevel = notification.userInfo?["logLevel"] as? LogLevel {
@@ -24,11 +23,9 @@ struct InstantSearchCoreLog: LogCollectable {
     logger.logLevel = Logs.logSeverityLevel.swiftLogLevel
     return logger
   }()
-
 }
 
 extension InstantSearchCoreLog {
-
   static func error(prefix: String = "", _ error: Error) {
     let errorMessage: String
     if let decodingError = error as? DecodingError {
@@ -38,25 +35,18 @@ extension InstantSearchCoreLog {
     }
     logger.error("\(prefix) \(errorMessage)")
   }
-
 }
 
 extension InstantSearchCoreLog {
-
   enum HitsDecoding {
-
     static func failure(hitsInteractor: AnyHitsInteractor, error: Error) {
       logger.error("\(hitsInteractor): \(error)")
     }
-
   }
-
 }
 
 extension InstantSearchCoreLog {
-
   enum Results {
-
     static func failure(searcher: Searcher, indexName: IndexName, _ error: Error) {
       logger.error("\(searcher): error - index: \(indexName.rawValue): \(error)")
     }
@@ -67,7 +57,5 @@ extension InstantSearchCoreLog {
       let message = "\(searcher): received results - index: \(indexName.rawValue) query: \"\(query)\" hits count: \(stats.totalHitsCount) in \(stats.processingTimeMS)ms"
       logger.info("\(message)")
     }
-
   }
-
 }

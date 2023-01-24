@@ -1,6 +1,6 @@
 //
 //  RelevantSortConnector.swift
-//  
+//
 //
 //  Created by Vladislav Fitc on 17/02/2021.
 //
@@ -8,7 +8,6 @@
 import Foundation
 
 public class RelevantSortConnector {
-
   /// Searcher that handles your searches
   public let searcher: Searcher
 
@@ -27,7 +26,7 @@ public class RelevantSortConnector {
     self.searcher = searcher
     self.interactor = interactor
     self.searcherConnection = searcherConnection
-    self.controllerConnections = []
+    controllerConnections = []
     Telemetry.shared.traceConnector(type: .relevantSort)
   }
 
@@ -57,11 +56,9 @@ public class RelevantSortConnector {
               searcherConnection: interactor.connectSearcher(searcher, queryIndex: queryIndex),
               interactor: interactor)
   }
-
 }
 
 extension RelevantSortConnector: Connection {
-
   public func connect() {
     searcherConnection.connect()
     controllerConnections.forEach { $0.connect() }
@@ -71,5 +68,4 @@ extension RelevantSortConnector: Connection {
     searcherConnection.disconnect()
     controllerConnections.forEach { $0.disconnect() }
   }
-
 }

@@ -8,9 +8,8 @@
 
 import Foundation
 
-public struct Constants {
-  public struct Defaults {
-
+public enum Constants {
+  public enum Defaults {
     // Hits
     public static let hitsPerPage: UInt = 20
     public static let infiniteScrolling: InfiniteScrolling = .on(withOffset: 5)

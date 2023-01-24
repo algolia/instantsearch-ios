@@ -10,7 +10,6 @@ import Foundation
 import InstantSearchCore
 
 class TestSearchBoxController: SearchBoxController {
-
   var query: String? {
     didSet {
       guard oldValue != query else { return }
@@ -28,5 +27,4 @@ class TestSearchBoxController: SearchBoxController {
   func submitQuery() {
     onQuerySubmitted?(query)
   }
-
 }

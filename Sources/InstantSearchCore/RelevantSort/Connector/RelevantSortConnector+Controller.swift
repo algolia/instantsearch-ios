@@ -8,7 +8,6 @@
 import Foundation
 
 public extension RelevantSortConnector {
-
   typealias ControllerConnection = RelevantSortInteractor.ControllerConnection
   typealias Presenter<Output> = RelevantSortPresenter<Output>
 
@@ -50,23 +49,21 @@ public extension RelevantSortConnector {
   }
 
   /**
-   Establishes a connection with the controller
-   - Parameters:
-     - controller: Controller presenting the relevant sort priority state and capable to toggle it
-     - presenter: Generic presenter transforming the relevant sort priority state to its representation for a controller
-  - Returns: Established connection
-   */
+    Establishes a connection with the controller
+    - Parameters:
+      - controller: Controller presenting the relevant sort priority state and capable to toggle it
+      - presenter: Generic presenter transforming the relevant sort priority state to its representation for a controller
+   - Returns: Established connection
+    */
   @discardableResult func connectController<Controller: RelevantSortController, Output>(_ controller: Controller,
                                                                                         presenter: @escaping Presenter<Output>) -> ControllerConnection<Controller, Output> where Controller.Item == Output {
     let connection = interactor.connectController(controller, presenter: presenter)
     controllerConnections.append(connection)
     return connection
   }
-
 }
 
 public extension RelevantSortConnector {
-
   typealias TextualPresenter = RelevantSortTextualPresenter
   typealias TextualRepresentation = RelevantSortTextualRepresentation
 
@@ -121,5 +118,4 @@ public extension RelevantSortConnector {
     controllerConnections.append(connection)
     return connection
   }
-
 }

@@ -11,9 +11,7 @@ import Foundation
 public enum FilterToggle {}
 
 public extension FilterToggle {
-
   struct FilterStateConnection<Filter: FilterType>: Connection {
-
     public let interactor: SelectableInteractor<Filter>
     public let filterState: FilterState
     public let `operator`: RefinementOperator
@@ -49,8 +47,7 @@ public extension FilterToggle {
     }
 
     func whenFilterStateChangedThenUpdateSelections<GroupAccessor: SpecializedGroupAccessor>(via accessor: GroupAccessor) where GroupAccessor.Filter == Filter {
-
-      let onChange: (SelectableInteractor, ReadOnlyFiltersContainer) -> Void = {  interactor, _ in
+      let onChange: (SelectableInteractor, ReadOnlyFiltersContainer) -> Void = { interactor, _ in
         interactor.isSelected = accessor.contains(interactor.item)
       }
 
@@ -59,14 +56,13 @@ public extension FilterToggle {
       filterState.onChange.subscribePast(with: interactor, callback: onChange)
     }
 
-    func whenSelectionsComputedThenUpdateFilterState<GroupAccessor: SpecializedGroupAccessor>(attribute: Attribute,
+    func whenSelectionsComputedThenUpdateFilterState<GroupAccessor: SpecializedGroupAccessor>(attribute _: Attribute,
                                                                                               via accessor: GroupAccessor) where GroupAccessor.Filter == Filter {
-
       interactor.onSelectedComputed.subscribePast(with: filterState) { [weak interactor] filterState, computedSelected in
 
         guard
           let interactor = interactor
-          else { return }
+        else { return }
 
         if computedSelected {
           accessor.add(interactor.item)
@@ -75,15 +71,12 @@ public extension FilterToggle {
         }
 
         filterState.notifyChange()
-
       }
-
     }
 
-    func whenSelectionsComputedThenUpdateFilterState<F: FilterType>(attribute: Attribute,
+    func whenSelectionsComputedThenUpdateFilterState<F: FilterType>(attribute _: Attribute,
                                                                     groupID: FilterGroup.ID,
                                                                     default: F) {
-
       interactor.onSelectedComputed.subscribePast(with: filterState) { [weak interactor] filterState, computedSelected in
 
         guard let interactor = interactor else { return }
@@ -97,17 +90,12 @@ public extension FilterToggle {
         }
 
         filterState.notifyChange()
-
       }
-
     }
-
   }
-
 }
 
 public extension SelectableInteractor where Item: FilterType {
-
   @discardableResult func connectFilterState(_ filterState: FilterState,
 
                                              operator: RefinementOperator = .or,
@@ -117,5 +105,4 @@ public extension SelectableInteractor where Item: FilterType {
     connection.connect()
     return connection
   }
-
 }

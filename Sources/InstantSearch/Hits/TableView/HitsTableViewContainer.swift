@@ -6,43 +6,37 @@
 //
 
 #if !InstantSearchCocoaPods
-import InstantSearchCore
+  import InstantSearchCore
 #endif
 #if canImport(UIKit) && (os(iOS) || os(tvOS) || os(macOS))
-import UIKit
+  import UIKit
 
-public protocol HitsTableViewContainer {
-
-  var hitsTableView: UITableView { get }
-
-}
-
-public extension HitsController where Self: HitsTableViewContainer {
-
-  func reload() {
-    hitsTableView.reloadData()
+  public protocol HitsTableViewContainer {
+    var hitsTableView: UITableView { get }
   }
 
-  func scrollToTop() {
-    guard hitsTableView.numberOfRows(inSection: 0) != 0 else { return }
-    let indexPath = IndexPath(row: 0, section: 0)
-    self.hitsTableView.scrollToRow(at: indexPath, at: .top, animated: false)
+  public extension HitsController where Self: HitsTableViewContainer {
+    func reload() {
+      hitsTableView.reloadData()
+    }
+
+    func scrollToTop() {
+      guard hitsTableView.numberOfRows(inSection: 0) != 0 else { return }
+      let indexPath = IndexPath(row: 0, section: 0)
+      hitsTableView.scrollToRow(at: indexPath, at: .top, animated: false)
+    }
   }
 
-}
+  @available(*, deprecated, message: "Use multiple HitsSearcher aggregated with MultiSearcher instead of MultiIndexSearcher")
+  public extension MultiIndexHitsController where Self: HitsTableViewContainer {
+    func reload() {
+      hitsTableView.reloadData()
+    }
 
-@available(*, deprecated, message: "Use multiple HitsSearcher aggregated with MultiSearcher instead of MultiIndexSearcher")
-public extension MultiIndexHitsController where Self: HitsTableViewContainer {
-
-  func reload() {
-    hitsTableView.reloadData()
+    func scrollToTop() {
+      guard hitsTableView.numberOfRows(inSection: 0) != 0 else { return }
+      let indexPath = IndexPath(item: 0, section: 0)
+      hitsTableView.scrollToRow(at: indexPath, at: .top, animated: false)
+    }
   }
-
-  func scrollToTop() {
-    guard hitsTableView.numberOfRows(inSection: 0) != 0 else { return }
-    let indexPath = IndexPath(item: 0, section: 0)
-    hitsTableView.scrollToRow(at: indexPath, at: .top, animated: false)
-  }
-
-}
 #endif

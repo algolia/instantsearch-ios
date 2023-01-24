@@ -6,16 +6,14 @@
 //  Copyright © 2019 Algolia. All rights reserved.
 //
 
-import Foundation
 import AlgoliaSearchClient
+import Foundation
 
 extension QueryBuilder {
-
   func buildHierarchicalQueries(with query: Query,
                                 filterGroups: [FilterGroupType],
                                 hierarchicalAttributes: [Attribute],
                                 hierachicalFilters: [Filter.Facet]) -> [Query] {
-
     // An empty hierarchical offset in the beggining is added to create
     // The first request in the list returning search results
 
@@ -50,11 +48,8 @@ extension QueryBuilder {
         query.facets = [attribute]
         query.filters = FilterGroupConverter().sql(outputFilterGroups)
         return query
-
-    }
+      }
 
     return queriesForHierarchicalFacets
-
   }
-
 }

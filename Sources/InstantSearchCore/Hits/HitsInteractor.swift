@@ -5,12 +5,11 @@
 //  Created by Guy Daher on 15/02/2019.
 //
 
-import Foundation
 import AlgoliaSearchClient
+import Foundation
 
 /// Component that manages and displays a list of search results
 public class HitsInteractor<Record: Codable>: AnyHitsInteractor {
-
   public typealias Result = HitsExtractable & SearchStatsConvertible
 
   /// Hits settings
@@ -32,7 +31,6 @@ public class HitsInteractor<Record: Codable>: AnyHitsInteractor {
 
   /// Results page loading logic
   public var pageLoader: PageLoadable? {
-
     get {
       infiniteScrollingController.pageLoader
     }
@@ -40,7 +38,6 @@ public class HitsInteractor<Record: Codable>: AnyHitsInteractor {
     set {
       infiniteScrollingController.pageLoader = newValue
     }
-
   }
 
   /// Value defines how many pages of hits might be kept in memory
@@ -77,11 +74,10 @@ public class HitsInteractor<Record: Codable>: AnyHitsInteractor {
     Telemetry.shared.trace(type: .hits,
                            parameters: settings.flatMap { settings in
                              [
-                              settings.infiniteScrolling == Constants.Defaults.infiniteScrolling ? .none : .infiniteScrolling,
-                              settings.showItemsOnEmptyQuery == Constants.Defaults.showItemsOnEmptyQuery ? .none : .showItemsOnEmptyQuery
+                               settings.infiniteScrolling == Constants.Defaults.infiniteScrolling ? .none : .infiniteScrolling,
+                               settings.showItemsOnEmptyQuery == Constants.Defaults.showItemsOnEmptyQuery ? .none : .showItemsOnEmptyQuery
                              ]
-                           } ?? []
-                           )
+                           } ?? [])
   }
 
   internal init(settings: Settings? = nil,
@@ -89,14 +85,14 @@ public class HitsInteractor<Record: Codable>: AnyHitsInteractor {
                 infiniteScrollingController: InfiniteScrollable,
                 jsonDecoder: JSONDecoder = JSONDecoder()) {
     self.settings = settings ?? Settings()
-    self.paginator = paginationController
+    paginator = paginationController
     self.infiniteScrollingController = infiniteScrollingController
-    self.onRequestChanged = .init()
-    self.onResultsUpdated = .init()
-    self.onError = .init()
-    self.mutationQueue = .init()
-    self.mutationQueue.maxConcurrentOperationCount = 1
-    self.mutationQueue.qualityOfService = .userInitiated
+    onRequestChanged = .init()
+    onResultsUpdated = .init()
+    onError = .init()
+    mutationQueue = .init()
+    mutationQueue.maxConcurrentOperationCount = 1
+    mutationQueue.qualityOfService = .userInitiated
     self.jsonDecoder = jsonDecoder
   }
 
@@ -149,29 +145,24 @@ public class HitsInteractor<Record: Codable>: AnyHitsInteractor {
 
   public func notifyDidPresentRow(atIndex rowIndex: Int) {
     guard
-      case .on(let pageLoadOffset) = settings.infiniteScrolling,
+      case let .on(pageLoadOffset) = settings.infiniteScrolling,
       let hitsPageMap = paginator.pageMap else { return }
 
     infiniteScrollingController.calculatePagesAndLoad(currentRow: rowIndex, offset: pageLoadOffset, pageMap: hitsPageMap)
   }
-
 }
 
-extension HitsInteractor {
-
-  public enum Error: Swift.Error, LocalizedError {
+public extension HitsInteractor {
+  enum Error: Swift.Error, LocalizedError {
     case incompatibleRecordType
 
     var localizedDescription: String {
       return "Unexpected record type: \(String(describing: Record.self))"
     }
-
   }
-
 }
 
 private extension HitsInteractor {
-
   func toRaw(_ hit: Record) -> [String: Any]? {
     guard let json = try? JSON(hit) else { return nil }
     return [String: Any](json)
@@ -184,21 +175,16 @@ private extension HitsInteractor {
       throw Error.incompatibleRecordType
     }
   }
-
 }
 
 public extension HitsInteractor where Record == JSON {
-
   func rawHitForRow(_ row: Int) -> [String: Any]? {
     return hit(atIndex: row).flatMap([String: Any].init)
   }
-
 }
 
-extension HitsInteractor {
-
-  public struct Settings {
-
+public extension HitsInteractor {
+  struct Settings {
     public var infiniteScrolling: InfiniteScrolling
     public var showItemsOnEmptyQuery: Bool
 
@@ -207,9 +193,7 @@ extension HitsInteractor {
       self.infiniteScrolling = infiniteScrolling
       self.showItemsOnEmptyQuery = showItemsOnEmptyQuery
     }
-
   }
-
 }
 
 public enum InfiniteScrolling: Equatable {
@@ -218,7 +202,6 @@ public enum InfiniteScrolling: Equatable {
 }
 
 extension HitsInteractor: ResultUpdatable {
-
   @discardableResult public func update(_ searchResults: Result) -> Operation {
     let stats = searchResults.searchStats
     let updateOperation = BlockOperation { [weak self] in
@@ -233,7 +216,7 @@ extension HitsInteractor: ResultUpdatable {
         let page: HitsPage<Record> = try HitsPage(searchResults: searchResults, jsonDecoder: hitsInteractor.jsonDecoder)
         hitsInteractor.paginator.process(page)
         hitsInteractor.onResultsUpdated.fire(searchResults)
-      } catch let error {
+      } catch {
         InstantSearchCoreLog.HitsDecoding.failure(hitsInteractor: hitsInteractor, error: error)
         hitsInteractor.onError.fire(error)
       }
@@ -242,11 +225,9 @@ extension HitsInteractor: ResultUpdatable {
     mutationQueue.addOperation(updateOperation)
 
     return updateOperation
-
   }
 
   public func notifyQueryChanged() {
-
     mutationQueue.cancelAllOperations()
 
     let queryChangedCompletion = { [weak self] in
@@ -260,13 +241,11 @@ extension HitsInteractor: ResultUpdatable {
     }
 
     mutationQueue.addOperation(queryChangedCompletion)
-
   }
 
-  public func process(_ error: Swift.Error, for query: Query) {
+  public func process(_: Swift.Error, for query: Query) {
     if let pendingPage = query.page {
       infiniteScrollingController.notifyPending(pageIndex: Int(pendingPage))
     }
   }
-
 }

@@ -6,11 +6,10 @@
 //
 
 import Foundation
-import UIKit
 import InstantSearchCore
+import UIKit
 
 extension ProductCollectionViewCell {
-
   func setup(with productHit: Hit<StoreItem>) {
     let product = productHit.object
     itemImageView.sd_setImage(with: product.images.first)
@@ -18,7 +17,8 @@ extension ProductCollectionViewCell {
     if let highlightedName = productHit.hightlightedString(forKey: "name") {
       titleLabel.attributedText = NSAttributedString(highlightedString: highlightedName,
                                                      attributes: [
-                                                      .foregroundColor: UIColor.tintColor])
+                                                       .foregroundColor: UIColor.tintColor
+                                                     ])
     } else {
       titleLabel.text = product.name
     }
@@ -36,5 +36,4 @@ extension ProductCollectionViewCell {
       priceLabel.text = "\(price) €"
     }
   }
-
 }

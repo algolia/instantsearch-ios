@@ -11,14 +11,13 @@ import Foundation
 import XCTest
 
 class TestResultUpdatable: ResultUpdatable {
-
   var results: [Int]
 
   var onResultsUpdated: Observer<[Int]>
 
   init() {
-    self.results = []
-    self.onResultsUpdated = .init()
+    results = []
+    onResultsUpdated = .init()
   }
 
   @discardableResult func update(_ results: [Int]) -> Operation {
@@ -26,13 +25,10 @@ class TestResultUpdatable: ResultUpdatable {
     onResultsUpdated.fire(results)
     return .init()
   }
-
 }
 
 class MultiSourceHitsReloaderTests: XCTestCase {
-
   func testUpdate() {
-
     let interactor1 = TestResultUpdatable()
     let results1 = [1, 2, 3]
 
@@ -63,12 +59,10 @@ class MultiSourceHitsReloaderTests: XCTestCase {
 
     let operationQueue = OperationQueue()
 
-    let operations = zip([interactor1, interactor2, interactor3], [results1, results2, results3]).map { (i, r) in BlockOperation { i.update(r) } }
+    let operations = zip([interactor1, interactor2, interactor3], [results1, results2, results3]).map { i, r in BlockOperation { i.update(r) } }
 
     operationQueue.addOperations(operations, waitUntilFinished: false)
 
     waitForExpectations(timeout: 10, handler: .none)
-
   }
-
 }

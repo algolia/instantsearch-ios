@@ -5,12 +5,11 @@
 //  Created by Vladislav Fitc on 13/12/2021.
 //
 
+import AlgoliaSearchClient
 import Foundation
 import UIKit
-import AlgoliaSearchClient
 
 extension CategoryTableViewCell {
-
   func setup(with facet: Facet) {
     guard let textLabel = textLabel else { return }
     if let rawHighlighted = facet.highlighted {
@@ -23,5 +22,4 @@ extension CategoryTableViewCell {
       textLabel.text = facet.value
     }
   }
-
 }

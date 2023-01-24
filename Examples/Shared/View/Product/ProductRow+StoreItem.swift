@@ -6,20 +6,18 @@
 //
 
 import Foundation
-import UIKit
 import InstantSearchCore
 import InstantSearchSwiftUI
+import UIKit
 
 extension ProductRow {
-
   init(storeItemHit: Hit<StoreItem>, configuration: Configuration = .phone) {
     let item = storeItemHit.object
-    self.title = storeItemHit.hightlightedString(forKey: "name") ?? HighlightedString(string: item.name)
-    self.subtitle = storeItemHit.hightlightedString(forKey: "brand") ?? HighlightedString(string: item.brand ?? "")
-    self.details = HighlightedString(string: "")
-    self.imageURL = item.images.first
-    self.price = item.price
+    title = storeItemHit.hightlightedString(forKey: "name") ?? HighlightedString(string: item.name)
+    subtitle = storeItemHit.hightlightedString(forKey: "brand") ?? HighlightedString(string: item.brand ?? "")
+    details = HighlightedString(string: "")
+    imageURL = item.images.first
+    price = item.price
     self.configuration = configuration
   }
-
 }

@@ -1,6 +1,6 @@
 //
 //  RelevantSortPresenter.swift
-//  
+//
 //
 //  Created by Vladislav Fitc on 08/02/2021.
 //
@@ -8,9 +8,7 @@
 import Foundation
 
 public extension DefaultPresenter {
-
   enum RelevantSort {
-
     public static func present(_ priority: RelevantSortPriority?) -> RelevantSortTextualRepresentation? {
       switch priority {
       case .some(.hitsCount):
@@ -21,7 +19,5 @@ public extension DefaultPresenter {
         return nil
       }
     }
-
   }
-
 }

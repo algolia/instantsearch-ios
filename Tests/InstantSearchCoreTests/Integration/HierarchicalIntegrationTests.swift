@@ -6,12 +6,11 @@
 //  Copyright © 2019 Algolia. All rights reserved.
 //
 
-import Foundation
-import XCTest
-@testable import InstantSearchCore
 import AlgoliaSearchClient
+import Foundation
+@testable import InstantSearchCore
+import XCTest
 class HierarchicalTests: OnlineTestCase {
-
   struct Item: Codable {
     let name: String
     let hierarchicalCategories: [String: String]
@@ -21,9 +20,9 @@ class HierarchicalTests: OnlineTestCase {
     return .init(rawValue: "hierarchicalCategories.lvl\(level)")
   }
 
-  let lvl0 = { attribute(for: 0) }()
-  let lvl1 = { attribute(for: 1) }()
-  let lvl2 = { attribute(for: 2) }()
+  let lvl0 = attribute(for: 0)
+  let lvl1 = attribute(for: 1)
+  let lvl2 = attribute(for: 2)
   var hierarchicalAttributes: [Attribute] {
     return [lvl0, lvl1, lvl2]
   }
@@ -46,7 +45,6 @@ class HierarchicalTests: OnlineTestCase {
   }
 
   func testHierachical() {
-
     let filter = Filter.Facet(attribute: lvl1, stringValue: clothing_men)
 
     let filterGroups = [FilterGroup.And(filters: [filter], name: "_hierarchical")]
@@ -61,15 +59,15 @@ class HierarchicalTests: OnlineTestCase {
         .init(value: clothing, count: 4, highlighted: nil),
         .init(value: book, count: 2, highlighted: nil),
         .init(value: furniture, count: 1, highlighted: nil)
-        ]),
+      ]),
       (lvl1, [
         .init(value: clothing_men, count: 2, highlighted: nil),
         .init(value: clothing_women, count: 2, highlighted: nil)
-        ]),
+      ]),
       (lvl2, [
         .init(value: clothing_men_hats, count: 1, highlighted: nil),
         .init(value: clothing_men_shirt, count: 1, highlighted: nil)
-        ])
+      ])
     ]
 
     let query = Query("").set(\.facets, to: Set(hierarchicalAttributes))
@@ -89,21 +87,19 @@ class HierarchicalTests: OnlineTestCase {
       do {
         let searchesResponse = try result.get()
         let finalResult = try queryBuilder.aggregate(searchesResponse.results)
-        expectedHierarchicalFacets.forEach { (attribute, facets) in
+        expectedHierarchicalFacets.forEach { attribute, facets in
           XCTAssertTrue(finalResult.hierarchicalFacets?[attribute]?.equalContents(to: facets) == true)
         }
         exp.fulfill()
-      } catch let error {
+      } catch {
         XCTFail("\(error)")
       }
     }
 
     waitForExpectations(timeout: 15, handler: .none)
-
   }
 
   func testHierachicalEmpty() throws {
-
     let filterGroups: [FilterGroupType] = []
 
     let hierarchicalFilters: [Filter.Facet] = []
@@ -127,18 +123,15 @@ class HierarchicalTests: OnlineTestCase {
         let finalResult = try queryBuilder.aggregate(searchesResponse.results)
         XCTAssertNil(finalResult.hierarchicalFacets)
         exp.fulfill()
-      } catch let error {
+      } catch {
         XCTFail("\(error)")
       }
-
     }
 
     waitForExpectations(timeout: 15, handler: .none)
-
   }
 
   func testHierarchicalLastLevel() {
-
     let filter = Filter.Facet(attribute: lvl2, stringValue: clothing_men_hats)
 
     let filterGroups = [FilterGroup.And(filters: [filter], name: "_hierarchical")]
@@ -154,15 +147,15 @@ class HierarchicalTests: OnlineTestCase {
         .init(value: clothing, count: 4, highlighted: nil),
         .init(value: book, count: 2, highlighted: nil),
         .init(value: furniture, count: 1, highlighted: nil)
-        ]),
+      ]),
       (lvl1, [
         .init(value: clothing_men, count: 2, highlighted: nil),
         .init(value: clothing_women, count: 2, highlighted: nil)
-        ]),
+      ]),
       (lvl2, [
         .init(value: clothing_men_hats, count: 1, highlighted: nil),
         .init(value: clothing_men_shirt, count: 1, highlighted: nil)
-        ])
+      ])
     ]
 
     let query = Query("").set(\.facets, to: Set(hierarchicalAttributes))
@@ -182,24 +175,22 @@ class HierarchicalTests: OnlineTestCase {
       do {
         let searchesResponse = try result.get()
         let finalResult = try queryBuilder.aggregate(searchesResponse.results)
-        expectedHierarchicalFacets.forEach { (attribute, facets) in
+        expectedHierarchicalFacets.forEach { attribute, facets in
           XCTAssertTrue(finalResult.hierarchicalFacets?[attribute]?.equalContents(to: facets) == true)
         }
         exp.fulfill()
-      } catch let error {
+      } catch {
         XCTFail("\(error)")
       }
     }
 
     waitForExpectations(timeout: 15, handler: .none)
-
   }
-
 }
 
 extension Array where Element: Equatable {
   func equalContents(to other: [Element]) -> Bool {
-    guard self.count == other.count else { return false }
+    guard count == other.count else { return false }
     for e in self {
       let currentECount = filter { $0 == e }.count
       let otherECount = other.filter { $0 == e }.count

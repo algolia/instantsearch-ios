@@ -1,6 +1,6 @@
 //
 //  DynamicFacetListInteractor+Controller.swift
-//  
+//
 //
 //  Created by Vladislav Fitc on 16/03/2021.
 //
@@ -8,10 +8,8 @@
 import Foundation
 
 public extension DynamicFacetListInteractor {
-
   /// Connection between a dynamic facet list business logic and a controller
   struct ControllerConnection<Controller: DynamicFacetListController>: Connection {
-
     /// Dynamic facet list business logic
     public let interactor: DynamicFacetListInteractor
 
@@ -34,7 +32,7 @@ public extension DynamicFacetListInteractor {
         guard let interactor = interactor else { return }
         interactor.toggleSelection(ofFacetValue: facet.value, for: attribute)
       }
-      interactor.onSelectionsChanged.subscribePast(with: controller) { (controller, selections) in
+      interactor.onSelectionsChanged.subscribePast(with: controller) { controller, selections in
         controller.setSelections(selections)
       }.onQueue(.main)
 
@@ -48,7 +46,6 @@ public extension DynamicFacetListInteractor {
       interactor.onSelectionsChanged.cancelSubscription(for: controller)
       interactor.onFacetOrderChanged.cancelSubscription(for: controller)
     }
-
   }
 
   /**
@@ -60,5 +57,4 @@ public extension DynamicFacetListInteractor {
     connection.connect()
     return connection
   }
-
 }

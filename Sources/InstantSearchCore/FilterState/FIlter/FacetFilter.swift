@@ -15,9 +15,7 @@ import Foundation
  */
 
 public extension Filter {
-
   struct Facet: FilterType, Equatable {
-
     public let attribute: Attribute
     public let value: ValueType
     public var isNegated: Bool
@@ -41,15 +39,12 @@ public extension Filter {
     public init(attribute: Attribute, boolValue: Bool, isNegated: Bool = false) {
       self.init(attribute: attribute, value: .bool(boolValue), isNegated: isNegated)
     }
-
   }
-
 }
 
 extension Filter.Facet: Hashable {}
 
 extension Filter.Facet: RawRepresentable {
-
   public typealias RawValue = (Attribute, ValueType)
 
   public init?(rawValue: (Attribute, Filter.Facet.ValueType)) {
@@ -59,76 +54,61 @@ extension Filter.Facet: RawRepresentable {
   public var rawValue: (Attribute, Filter.Facet.ValueType) {
     return (attribute, value)
   }
-
 }
 
 extension Filter.Facet: CustomStringConvertible {
-
   public var description: String {
     return "\(attribute): \(value.description)"
   }
-
 }
 
-extension Filter.Facet {
-
-  public enum ValueType: CustomStringConvertible, Hashable {
-
+public extension Filter.Facet {
+  enum ValueType: CustomStringConvertible, Hashable {
     case string(String)
     case float(Float)
     case bool(Bool)
 
     public var description: String {
       switch self {
-      case .string(let value):
+      case let .string(value):
         return value
-      case .bool(let value):
+      case let .bool(value):
         return "\(value)"
-      case .float(let value):
+      case let .float(value):
         return "\(value)"
       }
     }
-
   }
-
 }
 
 extension Filter.Facet.ValueType: ExpressibleByBooleanLiteral {
-
   public typealias BooleanLiteralType = Bool
 
   public init(booleanLiteral value: BooleanLiteralType) {
     self = .bool(value)
   }
-
 }
 
 extension Filter.Facet.ValueType: ExpressibleByFloatLiteral {
-
   public typealias FloatLiteralType = Float
 
   public init(floatLiteral value: FloatLiteralType) {
     self = .float(value)
   }
-
 }
 
 extension Filter.Facet.ValueType: ExpressibleByStringLiteral {
-
   public typealias StringLiterlalType = String
 
   public init(stringLiteral value: StringLiteralType) {
     self = .string(value)
   }
-
 }
 
 extension Filter.Facet.ValueType: ExpressibleByIntegerLiteral {
-
   public typealias IntegerLiteralType = Int
 
   public init(integerLiteral value: IntegerLiteralType) {
     self = .float(Float(value))
   }
-
 }

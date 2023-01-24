@@ -10,9 +10,7 @@ import InstantSearch
 import UIKit
 
 enum QuerySuggestionsAndRecentSearches {
-
   class SearchViewController: UIViewController {
-
     let searchController: UISearchController
 
     let searchBoxConnector: SearchBoxConnector
@@ -41,7 +39,8 @@ enum QuerySuggestionsAndRecentSearches {
       searchController.searchBar.searchTextField.addTarget(self, action: #selector(textFieldSubmitted), for: .editingDidEndOnExit)
     }
 
-    required init?(coder: NSCoder) {
+    @available(*, unavailable)
+    required init?(coder _: NSCoder) {
       fatalError("init(coder:) has not been implemented")
     }
 
@@ -73,7 +72,5 @@ enum QuerySuggestionsAndRecentSearches {
       searchResultsController.recentSearches.insert(text, at: searchResultsController.recentSearches.startIndex)
       searchResultsController.tableView.reloadData()
     }
-
   }
-
 }

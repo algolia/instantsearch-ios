@@ -9,7 +9,5 @@
 import Foundation
 
 public protocol FilterClearController: AnyObject {
-
   var onClick: (() -> Void)? { get set }
-
 }

@@ -1,15 +1,14 @@
 //
 //  TestCredentials.swift
-//  
+//
 //
 //  Created by Vladislav Fitc on 05/06/2020.
 //
 
-import Foundation
 import AlgoliaSearchClient
+import Foundation
 
 struct TestCredentials: Credentials {
-
   let applicationID: ApplicationID
   let apiKey: APIKey
 
@@ -32,11 +31,9 @@ struct TestCredentials: Credentials {
       return nil
     }
   }()
-
 }
 
 extension String {
-
   init?(environmentVariable: String) {
     if
       let rawValue = getenv(environmentVariable),
@@ -46,5 +43,4 @@ extension String {
       return nil
     }
   }
-
 }

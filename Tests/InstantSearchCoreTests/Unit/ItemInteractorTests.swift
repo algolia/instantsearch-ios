@@ -7,23 +7,19 @@
 //
 
 import Foundation
-import XCTest
 @testable import InstantSearchCore
+import XCTest
 
 class ItemInteractorTests: XCTestCase {
-
   typealias VM = ItemInteractor<String>
 
   func testConstruction() {
-
     let interactor = VM(item: "i")
 
     XCTAssertEqual(interactor.item, "i")
-
   }
 
   func testSwitchItem() {
-
     let interactor = VM(item: "i")
 
     let switchItemExpectation = expectation(description: "item changed")
@@ -37,5 +33,4 @@ class ItemInteractorTests: XCTestCase {
 
     waitForExpectations(timeout: 2, handler: nil)
   }
-
 }

@@ -12,7 +12,6 @@ import Foundation
 ///
 /// [Documentation](https://www.algolia.com/doc/api-reference/widgets/hits/ios/)
 public class HitsConnector<Hit: Codable> {
-
   /// Searcher that handles your searches
   public let searcher: Searcher
 
@@ -38,9 +37,9 @@ public class HitsConnector<Hit: Codable> {
     self.searcher = searcher
     self.filterState = filterState
     self.interactor = interactor
-    self.filterStateConnection = filterState.flatMap(interactor.connectFilterState)
-    self.searcherConnection = connectSearcher(searcher)
-    self.controllerConnections = []
+    filterStateConnection = filterState.flatMap(interactor.connectFilterState)
+    searcherConnection = connectSearcher(searcher)
+    controllerConnections = []
   }
 
   internal convenience init<S: Searcher, Controller: HitsController>(searcher: S,
@@ -55,11 +54,9 @@ public class HitsConnector<Hit: Codable> {
               connectSearcher: connectSearcher)
     connectController(controller, externalReload: externalReload)
   }
-
 }
 
 extension HitsConnector: Connection {
-
   public func connect() {
     filterStateConnection?.connect()
     searcherConnection.connect()
@@ -71,19 +68,17 @@ extension HitsConnector: Connection {
     searcherConnection.disconnect()
     controllerConnections.forEach { $0.disconnect() }
   }
-
 }
 
 // MARK: - Convenient initializers
 
 public extension HitsConnector {
-
   /**
-   - Parameters:
-     - searcher: Searcher that handles your searches.
-     - interactor: External hits interactor
-     - filterState: FilterState that holds your filters
-  */
+    - Parameters:
+      - searcher: Searcher that handles your searches.
+      - interactor: External hits interactor
+      - filterState: FilterState that holds your filters
+   */
   convenience init(searcher: HitsSearcher,
                    interactor: HitsInteractor<Hit> = .init(),
                    filterState: FilterState? = .none) {
@@ -98,14 +93,14 @@ public extension HitsConnector {
   }
 
   /**
-   - Parameters:
-     - appID: ID of your application.
-     - apiKey: Your application API Key. Be sure to use your Search-only API key.
-     - indexName: Name of the index to search
-     - infiniteScrolling: Whether or not infinite scrolling is enabled.
-     - showItemsOnEmptyQuery: If false, no results are displayed when the user hasn’t entered any query text.
-     - filterState: FilterState that holds your filters
-  */
+    - Parameters:
+      - appID: ID of your application.
+      - apiKey: Your application API Key. Be sure to use your Search-only API key.
+      - indexName: Name of the index to search
+      - infiniteScrolling: Whether or not infinite scrolling is enabled.
+      - showItemsOnEmptyQuery: If false, no results are displayed when the user hasn’t entered any query text.
+      - filterState: FilterState that holds your filters
+   */
   convenience init(appID: ApplicationID,
                    apiKey: APIKey,
                    indexName: IndexName,
@@ -113,8 +108,8 @@ public extension HitsConnector {
                    showItemsOnEmptyQuery: Bool = Constants.Defaults.showItemsOnEmptyQuery,
                    filterState: FilterState? = .none) {
     let searcher = HitsSearcher(appID: appID,
-                                       apiKey: apiKey,
-                                       indexName: indexName)
+                                apiKey: apiKey,
+                                indexName: indexName)
     let interactor = HitsInteractor<Hit>(infiniteScrolling: infiniteScrolling, showItemsOnEmptyQuery: showItemsOnEmptyQuery)
     self.init(searcher: searcher,
               interactor: interactor,
@@ -130,5 +125,4 @@ public extension HitsConnector {
                                       filterState == nil ? .none : .filterStateParameter
                                     ])
   }
-
 }

@@ -6,11 +6,10 @@
 //
 
 import Foundation
-import UIKit
 import InstantSearch
+import UIKit
 
 public class QuerySuggestionsDemoViewController: UIViewController {
-
   let searchController: UISearchController
   let searcher: MultiSearcher
 
@@ -24,7 +23,6 @@ public class QuerySuggestionsDemoViewController: UIViewController {
   let resultsViewController: StoreItemsTableViewController
 
   override init(nibName nibNameOrNil: String?, bundle nibBundleOrNil: Bundle?) {
-
     searcher = .init(client: .ecommerce)
 
     let suggestionsSearcher = searcher.addHitsSearcher(indexName: .ecommerceSuggestions)
@@ -50,7 +48,8 @@ public class QuerySuggestionsDemoViewController: UIViewController {
     setup()
   }
 
-  required init?(coder: NSCoder) {
+  @available(*, unavailable)
+  required init?(coder _: NSCoder) {
     fatalError("init(coder:) has not been implemented")
   }
 
@@ -69,7 +68,7 @@ public class QuerySuggestionsDemoViewController: UIViewController {
     resultsViewController.didMove(toParent: self)
 
     searchBoxConnector.connectController(suggestionsViewController)
-    searchBoxConnector.interactor.onQuerySubmitted.subscribe(with: searchController) { (searchController, _) in
+    searchBoxConnector.interactor.onQuerySubmitted.subscribe(with: searchController) { searchController, _ in
       searchController.dismiss(animated: true, completion: .none)
     }
 
@@ -89,5 +88,4 @@ public class QuerySuggestionsDemoViewController: UIViewController {
       resultsView.bottomAnchor.constraint(equalTo: view.bottomAnchor)
     ])
   }
-
 }

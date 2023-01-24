@@ -6,15 +6,13 @@
 //  Copyright © 2019 Algolia. All rights reserved.
 //
 
+import AlgoliaSearchClient
 import Foundation
 @testable import InstantSearchCore
-import AlgoliaSearchClient
 import XCTest
 
 class SelectableSegmentInteractorConnectorsTests: XCTestCase {
-
   func testConnectSearcher() {
-
     let filterState = FilterState()
     let searcher = HitsSearcher(appID: "", apiKey: "", indexName: "")
 
@@ -23,11 +21,9 @@ class SelectableSegmentInteractorConnectorsTests: XCTestCase {
     interactor.connectFilterState(filterState, attribute: "tags", operator: .or)
 
     XCTAssertTrue((searcher.request.query.facets ?? []).contains("tags"))
-
   }
 
   func testConnectFilterState() {
-
     let filterState = FilterState()
     let interactor = FilterMapInteractor<Filter.Tag>(items: [0: "t1", 1: "t2", 2: "t3"])
 
@@ -47,11 +43,9 @@ class SelectableSegmentInteractorConnectorsTests: XCTestCase {
     filterState.notify(.add(filter: Filter.Tag(value: "t3"), toGroupWithID: .or(name: "tags", filterType: .tag)))
 
     XCTAssertEqual(interactor.selected, 2)
-
   }
 
   func testConnectController() {
-
     let interactor = FilterMapInteractor<Filter.Tag>(items: [0: "t1", 1: "t2", 2: "t3"])
     let controller = TestSelectableSegmentController()
 
@@ -102,7 +96,5 @@ class SelectableSegmentInteractorConnectorsTests: XCTestCase {
     controller.clickItem(withKey: 0)
 
     waitForExpectations(timeout: 5, handler: nil)
-
   }
-
 }

@@ -12,7 +12,6 @@ import InstantSearchSwiftUI
 import SwiftUI
 
 struct ContentView: View {
-
   @ObservedObject var searchBoxController: SearchBoxObservableController
   @ObservedObject var hitsController: HitsObservableController<Item>
   @ObservedObject var statsController: StatsTextObservableController
@@ -28,7 +27,7 @@ struct ContentView: View {
                 onSubmit: searchBoxController.submit)
       Text(statsController.stats)
         .fontWeight(.medium)
-      HitsList(hitsController) { (hit, _) in
+      HitsList(hitsController) { hit, _ in
         VStack(alignment: .leading, spacing: 10) {
           Text(hit?.name ?? "")
             .padding(.all, 10)
@@ -67,12 +66,11 @@ struct ContentView: View {
 
   private func facetsButton() -> some View {
     Button(action: {
-      isPresentingFacets.toggle()
-    },
-    label: {
-      Image(systemName: "line.horizontal.3.decrease.circle")
-        .font(.title)
-    })
+             isPresentingFacets.toggle()
+           },
+           label: {
+             Image(systemName: "line.horizontal.3.decrease.circle")
+               .font(.title)
+           })
   }
-
 }

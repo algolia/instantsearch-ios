@@ -6,15 +6,13 @@
 //  Copyright © 2019 Algolia. All rights reserved.
 //
 
-import Foundation
 import AlgoliaSearchClient
+import Foundation
 public extension FacetListInteractor {
-
   @available(*, deprecated, renamed: "HitsSearcherConnection")
   typealias SingleIndexSearcherConnection = HitsSearcherConnection
 
   struct HitsSearcherConnection: Connection {
-
     /// Logic applied to the facets
     public let facetListInteractor: FacetListInteractor
 
@@ -39,7 +37,6 @@ public extension FacetListInteractor {
     }
 
     public func connect() {
-
       // When new search results then update items
 
       searcher.onResults.subscribePast(with: facetListInteractor) { [attribute] interactor, searchResults in
@@ -47,19 +44,15 @@ public extension FacetListInteractor {
       }
 
       searcher.request.query.updateQueryFacets(with: attribute)
-
     }
 
     public func disconnect() {
       searcher.onResults.cancelSubscription(for: facetListInteractor)
     }
-
   }
-
 }
 
 public extension FacetListInteractor {
-
   /**
    - Parameters:
      - searcher: Searcher that handles your searches
@@ -73,5 +66,4 @@ public extension FacetListInteractor {
     connection.connect()
     return connection
   }
-
 }

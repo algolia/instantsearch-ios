@@ -1,6 +1,6 @@
 //
 //  QueryRuleCustomDataConnector.swift
-//  
+//
 //
 //  Created by Vladislav Fitc on 09/10/2020.
 //
@@ -11,7 +11,6 @@ import Foundation
 ///
 /// [Documentation](https://www.algolia.com/doc/api-reference/widgets/query-rule-custom-data/ios/)
 public class QueryRuleCustomDataConnector<Model: Decodable> {
-
   public typealias Interactor = QueryRuleCustomDataInteractor<Model>
 
   /// Logic applied to the custom model
@@ -30,16 +29,14 @@ public class QueryRuleCustomDataConnector<Model: Decodable> {
     controllerConnections = []
     searcherConnection.connect()
   }
-
 }
 
 public extension QueryRuleCustomDataConnector {
-
   /**
-   - Parameters:
-     - searcher: Searcher that handles your searches
-     - interactor: External custom data interactor
-  */
+    - Parameters:
+      - searcher: Searcher that handles your searches
+      - interactor: External custom data interactor
+   */
   convenience init(searcher: HitsSearcher,
                    interactor: Interactor = .init()) {
     self.init(interactor: interactor) {
@@ -49,11 +46,11 @@ public extension QueryRuleCustomDataConnector {
   }
 
   /**
-   - Parameters:
-     - searcher: Searcher that handles your searches
-     - queryIndex: Index of query from response of which the user data will be extracted
-     - interactor: External custom data interactor
-  */
+    - Parameters:
+      - searcher: Searcher that handles your searches
+      - queryIndex: Index of query from response of which the user data will be extracted
+      - interactor: External custom data interactor
+   */
   @available(*, deprecated, message: "Use multiple HitsSearcher aggregated with MultiSearcher instead of MultiIndexSearcher")
   convenience init(searcher: MultiIndexSearcher,
                    queryIndex: Int,
@@ -63,11 +60,9 @@ public extension QueryRuleCustomDataConnector {
     }
     Telemetry.shared.traceConnector(type: .queryRuleCustomData)
   }
-
 }
 
 extension QueryRuleCustomDataConnector: Connection {
-
   public func connect() {
     searcherConnection.connect()
     controllerConnections.forEach { $0.connect() }
@@ -77,5 +72,4 @@ extension QueryRuleCustomDataConnector: Connection {
     searcherConnection.disconnect()
     controllerConnections.forEach { $0.disconnect() }
   }
-
 }

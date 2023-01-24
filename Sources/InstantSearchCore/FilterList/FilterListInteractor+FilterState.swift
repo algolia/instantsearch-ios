@@ -9,7 +9,6 @@
 import Foundation
 
 public struct FilterListFilterStateConnection<Filter: FilterType & Hashable>: Connection {
-
   public let interactor: SelectableListInteractor<Filter, Filter>
   public let filterState: FilterState
   public let `operator`: RefinementOperator
@@ -17,7 +16,7 @@ public struct FilterListFilterStateConnection<Filter: FilterType & Hashable>: Co
 
   public init(interactor: SelectableListInteractor<Filter, Filter>,
               filterState: FilterState,
-              `operator`: RefinementOperator,
+              operator: RefinementOperator,
               groupName: String = "") {
     self.interactor = interactor
     self.filterState = filterState
@@ -49,36 +48,32 @@ public struct FilterListFilterStateConnection<Filter: FilterType & Hashable>: Co
                                                                                                                                                      filterState: FilterState,
 
                                                                                                                                                      via accessor: Accessor) where Accessor.Filter == Filter {
-
     interactor.onSelectionsComputed.subscribePast(with: filterState) { [weak interactor] filterState, filters in
 
       guard let strongInteractor = interactor else { return }
-       switch strongInteractor.selectionMode {
-       case .multiple:
-         accessor.removeAll()
+      switch strongInteractor.selectionMode {
+      case .multiple:
+        accessor.removeAll()
 
-       case .single:
-         accessor.removeAll(strongInteractor.items)
-       }
+      case .single:
+        accessor.removeAll(strongInteractor.items)
+      }
 
-       accessor.addAll(filters)
+      accessor.addAll(filters)
 
-       filterState.notifyChange()
-     }
-
-   }
+      filterState.notifyChange()
+    }
+  }
 
   private func whenFilterStateChangedThenUpdateSelections<Interactor: SelectableListInteractor<Filter, Filter>, Accessor: SpecializedGroupAccessor>(interactor: Interactor, filterState: FilterState,
                                                                                                                                                     via accessor: Accessor) where Accessor.Filter == Filter {
-     filterState.onChange.subscribePast(with: interactor) { interactor, _ in
-       interactor.selections = Set(accessor.filters())
-     }
-   }
-
+    filterState.onChange.subscribePast(with: interactor) { interactor, _ in
+      interactor.selections = Set(accessor.filters())
+    }
+  }
 }
 
 public extension SelectableListInteractor where Key == Item, Item: FilterType {
-
   @discardableResult func connectFilterState(_ filterState: FilterState,
                                              operator: RefinementOperator,
                                              groupName: String = "") -> FilterListFilterStateConnection<Key> {
@@ -86,5 +81,4 @@ public extension SelectableListInteractor where Key == Item, Item: FilterType {
     connection.connect()
     return connection
   }
-
 }

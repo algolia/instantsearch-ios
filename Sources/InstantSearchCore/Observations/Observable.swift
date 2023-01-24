@@ -9,7 +9,6 @@
 import Foundation
 
 public protocol Observable {
-
   associatedtype ParameterType
   associatedtype Obs: Observation
 
@@ -62,5 +61,4 @@ public protocol Observable {
 
   /// Cancels all subscriptions for the `Signal`.
   func cancelAllSubscriptions()
-
 }

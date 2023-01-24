@@ -9,7 +9,6 @@
 import Foundation
 
 class SynchronizedSet<T: Hashable> {
-
   private let queue = DispatchQueue(label: "thread_safe_access_queue", attributes: .concurrent)
   private var storage: Set<T> = []
 
@@ -38,5 +37,4 @@ class SynchronizedSet<T: Hashable> {
       self.storage.removeAll()
     }
   }
-
 }

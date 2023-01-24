@@ -9,17 +9,12 @@
 import Foundation
 
 public protocol ItemController: AnyObject {
-
   associatedtype Item
 
   func setItem(_ item: Item)
   func invalidate()
-
 }
 
 public extension ItemController {
-
-  func invalidate() {
-  }
-
+  func invalidate() {}
 }

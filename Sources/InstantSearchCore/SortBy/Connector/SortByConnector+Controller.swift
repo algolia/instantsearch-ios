@@ -1,6 +1,6 @@
 //
 //  SortByConnector+Controller.swift
-//  
+//
 //
 //  Created by Vladislav Fitc on 17/09/2020.
 //
@@ -8,7 +8,6 @@
 import Foundation
 
 public extension SortByConnector {
-
   /**
    - Parameters:
    - searcher: Searcher that handles your searches
@@ -45,5 +44,4 @@ public extension SortByConnector {
     controllerConnections.append(connection)
     return connection
   }
-
 }

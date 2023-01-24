@@ -12,7 +12,6 @@ public typealias HierarchicalPath = [Filter.Facet]
 
 /// Component containing the business logic of the hierarchical menu
 public class HierarchicalInteractor: ItemInteractor<[[Facet]]> {
-
   /// The names of the hierarchical attributes that we need to target, in ascending order.
   let hierarchicalAttributes: [Attribute]
 
@@ -34,16 +33,16 @@ public class HierarchicalInteractor: ItemInteractor<[[Facet]]> {
   public let onSelectionsComputed: Observer<HierarchicalPath>
 
   /**
-   - Parameters:
-     - hierarchicalAttributes: The names of the hierarchical attributes that we need to target, in ascending order.
-     - separator: The string separating the facets in the hierarchical facets. Usually something like " > ".
-  */
+    - Parameters:
+      - hierarchicalAttributes: The names of the hierarchical attributes that we need to target, in ascending order.
+      - separator: The string separating the facets in the hierarchical facets. Usually something like " > ".
+   */
   public init(hierarchicalAttributes: [Attribute], separator: String) {
     self.hierarchicalAttributes = hierarchicalAttributes
     self.separator = separator
-    self.onSelectionsChanged = .init()
-    self.onSelectionsComputed = .init()
-    self.selections = []
+    onSelectionsChanged = .init()
+    onSelectionsComputed = .init()
+    selections = []
     super.init(item: [])
     Telemetry.shared.trace(type: .hierarchicalFacets)
   }
@@ -61,17 +60,15 @@ public class HierarchicalInteractor: ItemInteractor<[[Facet]]> {
 public enum Hierarchical {}
 
 extension String {
-
   /** Build a list of all subpaths for a path with a provided separator
-      Example:
-        - input: Clothing > Women > Bags
-        - output: ["Clothing", "Clothing > Women". "Clothing > Women > Bags"]
-  */
+       Example:
+         - input: Clothing > Women > Bags
+         - output: ["Clothing", "Clothing > Women". "Clothing > Women > Bags"]
+   */
   func subpaths(withSeparator separator: String) -> [String] {
-    return components(separatedBy: separator).reduce([]) { (paths, component) in
+    return components(separatedBy: separator).reduce([]) { paths, component in
       let newPath = paths.last.flatMap { $0 + separator + component } ?? component
       return paths + [newPath]
     }
   }
-
 }

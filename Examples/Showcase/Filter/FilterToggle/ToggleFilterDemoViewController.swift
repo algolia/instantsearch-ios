@@ -7,11 +7,10 @@
 //
 
 import Foundation
-import UIKit
 import InstantSearch
+import UIKit
 
 class ToggleFilterDemoViewController: UIViewController {
-
   let demoController: ToggleFilterDemoController
 
   let mainStackView = UIStackView()
@@ -36,7 +35,8 @@ class ToggleFilterDemoViewController: UIViewController {
     setup()
   }
 
-  required init?(coder aDecoder: NSCoder) {
+  @available(*, unavailable)
+  required init?(coder _: NSCoder) {
     fatalError("init(coder:) has not been implemented")
   }
 
@@ -44,11 +44,9 @@ class ToggleFilterDemoViewController: UIViewController {
     super.viewDidLoad()
     setupUI()
   }
-
 }
 
 private extension ToggleFilterDemoViewController {
-
   func setup() {
     demoController.clearFilterConnector.connectController(filterDebugViewController.clearFilterController)
     demoController.sizeConstraintConnector.connectController(sizeConstraintButtonController)
@@ -69,7 +67,6 @@ private extension ToggleFilterDemoViewController {
   }
 
   func configureLayout() {
-
     view.addSubview(mainStackView)
 
     mainStackView.pin(to: view)
@@ -135,7 +132,7 @@ private extension ToggleFilterDemoViewController {
   }
 
   @objc func didTapSizeButton(_ button: UIButton) {
-    let borderColor: UIColor =  button.isSelected ? .systemGray : UIColor.tintColor
+    let borderColor: UIColor = button.isSelected ? .systemGray : UIColor.tintColor
     button.layer.borderColor = borderColor.cgColor
   }
 
@@ -157,5 +154,4 @@ private extension ToggleFilterDemoViewController {
     couponLabel.text = "Coupon"
     couponLabel.translatesAutoresizingMaskIntoConstraints = false
   }
-
 }

@@ -7,11 +7,10 @@
 //
 
 import Foundation
-import UIKit
 import InstantSearchCore
+import UIKit
 
 class BannerViewController: UIViewController, ItemController {
-
   var banner: Banner? {
     didSet {
       guard let banner = banner else { return }
@@ -19,7 +18,7 @@ class BannerViewController: UIViewController, ItemController {
         imageView.sd_setImage(with: imageURL)
       } else if let text = banner.title {
         label.text = text
-        view.backgroundColor = UIColor(red: 84/255, green: 104/255, blue: 1, alpha: 1)
+        view.backgroundColor = UIColor(red: 84 / 255, green: 104 / 255, blue: 1, alpha: 1)
       }
     }
   }
@@ -28,7 +27,7 @@ class BannerViewController: UIViewController, ItemController {
   let label: UILabel
   var didTapBanner: (() -> Void)?
 
-  override init(nibName nibNameOrNil: String?, bundle nibBundleOrNil: Bundle?) {
+  override init(nibName _: String?, bundle _: Bundle?) {
     imageView = .init()
     label = .init()
     super.init(nibName: nil, bundle: nil)
@@ -39,7 +38,8 @@ class BannerViewController: UIViewController, ItemController {
     view.addGestureRecognizer(tapGestureRecognizer)
   }
 
-  required init?(coder: NSCoder) {
+  @available(*, unavailable)
+  required init?(coder _: NSCoder) {
     fatalError("init(coder:) has not been implemented")
   }
 
@@ -54,7 +54,7 @@ class BannerViewController: UIViewController, ItemController {
     label.pin(to: view, insets: .init(top: 10, left: 10, bottom: -10, right: -10))
   }
 
-  @objc func didTapBanner(_ tapGestureRecognizer: UITapGestureRecognizer) {
+  @objc func didTapBanner(_: UITapGestureRecognizer) {
     didTapBanner?()
   }
 
@@ -69,5 +69,4 @@ class BannerViewController: UIViewController, ItemController {
       view.isHidden = false
     }
   }
-
 }

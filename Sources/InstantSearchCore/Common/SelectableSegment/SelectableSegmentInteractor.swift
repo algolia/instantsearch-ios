@@ -9,7 +9,6 @@
 import Foundation
 
 public class SelectableSegmentInteractor<SegmentKey: Hashable, Segment> {
-
   public var items: [SegmentKey: Segment] {
     didSet {
       onItemsChanged.fire(items)
@@ -29,14 +28,13 @@ public class SelectableSegmentInteractor<SegmentKey: Hashable, Segment> {
   public init(items: [SegmentKey: Segment], selected: SegmentKey? = .none) {
     self.items = items
     self.selected = selected
-    self.onItemsChanged = .init()
-    self.onSelectedChanged = .init()
-    self.onSelectedComputed = .init()
+    onItemsChanged = .init()
+    onSelectedChanged = .init()
+    onSelectedComputed = .init()
     onItemsChanged.fire(items)
   }
 
   public func computeSelected(selecting keyToSelect: SegmentKey?) {
     onSelectedComputed.fire(keyToSelect)
   }
-
 }

@@ -8,11 +8,10 @@
 
 import Foundation
 #if !InstantSearchCocoaPods
-import InstantSearchInsights
+  import InstantSearchInsights
 #endif
 
 public class FilterTracker: InsightsTracker {
-
   public let eventName: EventName
   internal let searcher: TrackableSearcher
   internal let tracker: FilterTrackable
@@ -32,13 +31,11 @@ public class FilterTracker: InsightsTracker {
     self.searcher = searcher
     self.tracker = tracker
   }
-
 }
 
 // MARK: - Filter tracking methods
 
 public extension FilterTracker {
-
   func trackClick<F: FilterType>(for filter: F,
                                  eventName customEventName: EventName? = nil) {
     guard let sqlForm = (filter as? SQLSyntaxConvertible)?.sqlForm else { return }
@@ -68,13 +65,11 @@ public extension FilterTracker {
                       timestamp: .none,
                       userToken: .none)
   }
-
 }
 
 // MARK: - Facet tracking methods
 
 public extension FilterTracker {
-
   private func filter(for facet: Facet, with attribute: Attribute) -> Filter.Facet {
     return Filter.Facet(attribute: attribute, stringValue: facet.value)
   }
@@ -96,5 +91,4 @@ public extension FilterTracker {
                        eventName customEventName: EventName? = nil) {
     trackConversion(for: filter(for: facet, with: attribute), eventName: customEventName ?? eventName)
   }
-
 }

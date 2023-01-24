@@ -12,9 +12,7 @@ import InstantSearchSwiftUI
 import SwiftUI
 
 struct DynamicFacetDemoSwiftUI: SwiftUIDemo, PreviewProvider {
-
   class Controller {
-
     let searchBoxController: SearchBoxObservableController
     let filterStateController: FilterStateObservableController
     let facetsController: DynamicFacetListObservableController
@@ -27,7 +25,6 @@ struct DynamicFacetDemoSwiftUI: SwiftUIDemo, PreviewProvider {
                                                       dynamicFacetListController: facetsController)
       filterStateController = FilterStateObservableController(filterState: demoController.filterState)
     }
-
   }
 
   static func contentView(with controller: Controller) -> ContentView {
@@ -36,7 +33,6 @@ struct DynamicFacetDemoSwiftUI: SwiftUIDemo, PreviewProvider {
   }
 
   struct ContentView: View {
-
     @ObservedObject var searchBoxController: SearchBoxObservableController
     let facetsController: DynamicFacetListObservableController
 
@@ -57,7 +53,6 @@ struct DynamicFacetDemoSwiftUI: SwiftUIDemo, PreviewProvider {
         }
         .searchable(text: $searchBoxController.query)
     }
-
   }
 
   static let controller = Controller()
@@ -66,9 +61,8 @@ struct DynamicFacetDemoSwiftUI: SwiftUIDemo, PreviewProvider {
       NavigationView {
         ContentView(searchBoxController: controller.searchBoxController,
                     facetsController: controller.facetsController)
-        .navigationBarTitle("Dynamic facets")
+          .navigationBarTitle("Dynamic facets")
       }
     }
   }
-
 }

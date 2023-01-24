@@ -6,14 +6,13 @@
 //  Copyright © 2019 Algolia. All rights reserved.
 //
 
-import Foundation
 import AlgoliaSearchClient
+import Foundation
 
 /// Component that displays a list of indices, allowing a user to change the way hits are sorted
 ///
 /// [Documentation](https://www.algolia.com/doc/api-reference/widgets/sort-by/ios/)
 public class SortByConnector {
-
   /// Searcher that handles your searches
   public let searcher: AnyObject & Searchable & IndexNameSettable
 
@@ -28,7 +27,6 @@ public class SortByConnector {
 
   /// List of selectable indices names
   public var indicesNames: [IndexName] {
-
     get {
       return interactor.items.sorted { item1, item2 in item1.key < item2.key }.map(\.value)
     }
@@ -39,12 +37,10 @@ public class SortByConnector {
         .map { $0 }
       interactor.items = [Int: IndexName](uniqueKeysWithValues: enumeratedIndices)
     }
-
   }
 
   /// Name of currently selected index
   public var selectedIndexName: IndexName? {
-
     get {
       return interactor.selected.flatMap { interactor.items[$0] }
     }
@@ -54,7 +50,6 @@ public class SortByConnector {
         .first(where: { $0.value == newValue })
         .flatMap { interactor.selected = $0.key }
     }
-
   }
 
   /**
@@ -66,8 +61,8 @@ public class SortByConnector {
                                                                     interactor: SortByInteractor) {
     self.searcher = searcher
     self.interactor = interactor
-    self.searcherConnection = interactor.connectSearcher(searcher)
-    self.controllerConnections = []
+    searcherConnection = interactor.connectSearcher(searcher)
+    controllerConnections = []
     Telemetry.shared.traceConnector(type: .sortBy)
   }
 
@@ -93,11 +88,9 @@ public class SortByConnector {
                                       selected == nil ? .none : .selected
                                     ])
   }
-
 }
 
 extension SortByConnector: Connection {
-
   public func connect() {
     searcherConnection.connect()
     controllerConnections.forEach { $0.connect() }
@@ -107,5 +100,4 @@ extension SortByConnector: Connection {
     searcherConnection.disconnect()
     controllerConnections.forEach { $0.disconnect() }
   }
-
 }

@@ -9,13 +9,11 @@
 import Foundation
 
 class Paginator<Item> {
-
   var pageMap: PageMap<Item>?
   var pageCleanUpOffset: Int? = 3
   var isInvalidated: Bool = false
 
   func process<IP: Pageable>(_ page: IP) where IP.Item == Item {
-
     InstantSearchCoreLog.trace("InfiniteScrolling: insert page \(page.index)")
 
     let updatedPageMap: PageMap<Item>?
@@ -32,11 +30,9 @@ class Paginator<Item> {
     if let pageCleanUpOffset = pageCleanUpOffset {
       pageMap?.cleanUp(basePageIndex: page.index, keepingPagesOffset: pageCleanUpOffset)
     }
-
   }
 
   public func invalidate() {
     isInvalidated = true
   }
-
 }

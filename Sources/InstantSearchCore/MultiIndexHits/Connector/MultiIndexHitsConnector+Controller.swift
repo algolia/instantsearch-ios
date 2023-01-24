@@ -1,6 +1,6 @@
 //
 //  MultiIndexHitsConnector+Controller.swift
-//  
+//
 //
 //  Created by Vladislav Fitc on 17/09/2020.
 //
@@ -9,14 +9,13 @@ import Foundation
 
 @available(*, deprecated, message: "Use multiple HitsSearcher aggregated with MultiSearcher instead of MultiIndexSearcher")
 public extension MultiIndexHitsConnector {
-
   /**
-   - Parameters:
-     - appID: ID of your application
-     - apiKey: Your application API Key
-     - indexModules: List of components representing the single index, containing its name, hits interactor and an optional filter state
-     - controller: Controller interfacing with a concrete multi-index hits view
-  */
+    - Parameters:
+      - appID: ID of your application
+      - apiKey: Your application API Key
+      - indexModules: List of components representing the single index, containing its name, hits interactor and an optional filter state
+      - controller: Controller interfacing with a concrete multi-index hits view
+   */
   @available(*, deprecated, message: "Use multiple HitsSearcher aggregated with MultiSearcher instead of MultiIndexSearcher")
   convenience init<Controller: MultiIndexHitsController>(appID: ApplicationID,
                                                          apiKey: APIKey,
@@ -33,16 +32,15 @@ public extension MultiIndexHitsConnector {
   }
 
   /**
-   Establishes a connection with the controller
-   - Parameters:
-     - controller: Controller interfacing with a concrete multi-index hits view
-   - Returns: Established connection
-  */
+    Establishes a connection with the controller
+    - Parameters:
+      - controller: Controller interfacing with a concrete multi-index hits view
+    - Returns: Established connection
+   */
   @available(*, deprecated, message: "Use multiple HitsSearcher aggregated with MultiSearcher instead of MultiIndexSearcher")
   @discardableResult func connectController<Controller: MultiIndexHitsController>(_ controller: Controller) -> MultiIndexHitsInteractor.ControllerConnection<Controller> {
     let connection = interactor.connectController(controller)
     connection.connect()
     return connection
   }
-
 }

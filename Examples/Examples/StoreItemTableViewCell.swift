@@ -5,12 +5,11 @@
 //  Created by Vladislav Fitc on 04/11/2021.
 //
 
-import Foundation
 import AlgoliaSearchClient
+import Foundation
 import UIKit
 
 class StoreItemTableViewCell: UITableViewCell {
-
   let storeItemView: StoreItemView
 
   override init(style: UITableViewCell.CellStyle, reuseIdentifier: String?) {
@@ -21,8 +20,8 @@ class StoreItemTableViewCell: UITableViewCell {
     storeItemView.pin(to: contentView)
   }
 
-  required init?(coder: NSCoder) {
+  @available(*, unavailable)
+  required init?(coder _: NSCoder) {
     fatalError("init(coder:) has not been implemented")
   }
-
 }

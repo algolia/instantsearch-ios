@@ -6,10 +6,9 @@
 //  Copyright © 2019 Algolia. All rights reserved.
 //
 
-import Foundation
 import AlgoliaSearchClient
+import Foundation
 public struct QueryBuilder {
-
   public let query: Query
   public let filterGroups: [FilterGroupType]
 
@@ -48,7 +47,7 @@ public struct QueryBuilder {
       .flatMap { $0 }
       .map { $0.attribute }
     self.query = query
-    self.keepSelectedEmptyFacets = false
+    keepSelectedEmptyFacets = false
     self.filterGroups = filterGroups
     self.disjunctiveFacets = disjunctiveFacets.union(disjunctiveFacetsFromFilters)
     self.hierarchicalAttributes = hierarchicalAttributes
@@ -56,7 +55,6 @@ public struct QueryBuilder {
   }
 
   public func build() -> [Query] {
-
     var queryForResults = query
     queryForResults.filters = FilterGroupConverter().sql(filterGroups)
 
@@ -73,7 +71,6 @@ public struct QueryBuilder {
   }
 
   public func aggregate(_ results: [SearchResponse]) throws -> SearchResponse {
-
     guard var aggregatedResult = results.first else {
       throw Error.emptyResults
     }
@@ -92,11 +89,10 @@ public struct QueryBuilder {
 
     if keepSelectedEmptyFacets {
       let filters = filterGroups.flatMap { $0.filters }
-      aggregatedResult = completeMissingFacets(in: aggregatedResult, disjunctiveFacets: disjunctiveFacets, filters: filters )
+      aggregatedResult = completeMissingFacets(in: aggregatedResult, disjunctiveFacets: disjunctiveFacets, filters: filters)
     }
 
     return aggregatedResult
-
   }
 
   func update<C: Collection>(_ result: inout SearchResponse, withResults results: C) where C.Element == SearchResponse {
@@ -118,5 +114,4 @@ public struct QueryBuilder {
     case emptyResults
     case queriesResultsCountMismatch(Int, Int)
   }
-
 }

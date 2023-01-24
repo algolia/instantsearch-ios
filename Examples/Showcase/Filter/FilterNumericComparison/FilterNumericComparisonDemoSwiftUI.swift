@@ -6,14 +6,12 @@
 //
 
 import Foundation
-import SwiftUI
 import InstantSearchCore
 import InstantSearchSwiftUI
+import SwiftUI
 
 struct FilterNumericComparisonDemoSwiftUI: SwiftUIDemo, PreviewProvider {
-
   class Controller {
-
     let demoController: FilterNumericComparisonDemoController
     let clearFilterController: FilterClearObservableController
     let yearController: NumberObservableController<Int>
@@ -30,11 +28,9 @@ struct FilterNumericComparisonDemoSwiftUI: SwiftUIDemo, PreviewProvider {
       demoController.clearFilterConnector.connectController(clearFilterController)
       filterStateController = .init(filterState: demoController.filterState)
     }
-
   }
 
   struct ContentView: View {
-
     @ObservedObject var filterStateController: FilterStateObservableController
     @ObservedObject var clearFilterController: FilterClearObservableController
 
@@ -78,7 +74,6 @@ struct FilterNumericComparisonDemoSwiftUI: SwiftUIDemo, PreviewProvider {
         yearValue = "\(yearController.value)"
       }
     }
-
   }
 
   static func contentView(with controller: Controller) -> ContentView {
@@ -95,5 +90,4 @@ struct FilterNumericComparisonDemoSwiftUI: SwiftUIDemo, PreviewProvider {
         .navigationBarTitle("Filter Numeric Comparison")
     }
   }
-
 }

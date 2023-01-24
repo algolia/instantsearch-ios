@@ -9,7 +9,6 @@ import Foundation
 import UIKit
 
 class ShowcaseDemoViewControllerFactory: ViewControllerFactory {
-
   enum Framework {
     case uikit
     case swiftui
@@ -22,7 +21,6 @@ class ShowcaseDemoViewControllerFactory: ViewControllerFactory {
   }
 
   func viewController(for demo: ShowcaseDemo) -> UIViewController? {
-
     guard let demoID = ShowcaseDemo.ID(rawValue: demo.objectID.rawValue) else {
       return nil
     }
@@ -214,5 +212,4 @@ class ShowcaseDemoViewControllerFactory: ViewControllerFactory {
 
     return viewController
   }
-
 }

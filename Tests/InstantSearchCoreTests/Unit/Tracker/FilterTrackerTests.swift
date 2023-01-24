@@ -7,12 +7,11 @@
 //
 
 import Foundation
-import XCTest
 @testable import InstantSearchCore
+import XCTest
 
 class FilterTrackerTests: XCTestCase {
-
-  struct Constants {
+  enum Constants {
     static let appID: ApplicationID = "test_app_id"
     static let apiKey: APIKey = "test_api_key"
     static let indexName: IndexName = "test index name"
@@ -20,7 +19,7 @@ class FilterTrackerTests: XCTestCase {
     static let customEventName: EventName = "custom event name"
     static let queryID: QueryID = "test query id"
 
-    struct Filter {
+    enum Filter {
       static let facet = Facet(value: "test filter value", count: 10)
       static let attribute: Attribute = "test attribute"
       static let value = "test filter value"
@@ -34,9 +33,7 @@ class FilterTrackerTests: XCTestCase {
 
   let testFilter = Filter.Facet(attribute: Constants.Filter.attribute, stringValue: Constants.Filter.value)
 
-  lazy var tracker: FilterTracker = {
-    return FilterTracker(eventName: Constants.eventName, searcher: .singleIndex(searcher), tracker: testTracker)
-  }()
+  lazy var tracker: FilterTracker = .init(eventName: Constants.eventName, searcher: .singleIndex(searcher), tracker: testTracker)
 
   func testClick() {
     let clickExpectation = expectation(description: #function)
@@ -144,5 +141,4 @@ class FilterTrackerTests: XCTestCase {
     tracker.trackConversion(for: Constants.Filter.facet, attribute: Constants.Filter.attribute, eventName: Constants.customEventName)
     waitForExpectations(timeout: 5, handler: .none)
   }
-
 }
