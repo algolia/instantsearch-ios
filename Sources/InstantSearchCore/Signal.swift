@@ -288,7 +288,7 @@ final public class SignalSubscription<T> {
 infix operator => : AssignmentPrecedence
 
 /// Helper operator to fire signal data.
-public func =><T> (signal: Signal<T>, data: T) {
+public func => <T> (signal: Signal<T>, data: T) {
     signal.fire(data)
 }
 
@@ -303,7 +303,7 @@ private func signalsAssert(_ condition: Bool, _ message: String) {
 }
 
 #if DEBUG
-var assertionHandlerOverride:((_ condition: Bool, _ message: String) -> Void)?
+var assertionHandlerOverride: ((_ condition: Bool, _ message: String) -> Void)?
 #endif
 
 extension Optional where Wrapped == Bool {

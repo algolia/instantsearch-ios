@@ -7,7 +7,7 @@
 
 import Foundation
 import UIKit
-// swiftlint:disable cyclomatic_complexity function_body_length
+// swiftlint:disable cyclomatic_complexity
 class DemoViewControllerFactory: ViewControllerFactory {
 
   func viewController(for demo: Demo) -> UIViewController? {

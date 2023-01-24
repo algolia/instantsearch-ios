@@ -27,8 +27,12 @@ public class ActivityIndicatorController: LoadingController {
     activityIndicator.stopAnimating()
   }
 
-  public func setItem(_ item: Bool) {
-    item ? activityIndicator.startAnimating() : activityIndicator.stopAnimating()
+  public func setItem(_ isActive: Bool) {
+    if isActive {
+      startLoading()
+    } else {
+      stopLoading()
+    }
   }
 
 }

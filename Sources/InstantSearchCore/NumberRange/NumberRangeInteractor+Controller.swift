@@ -44,7 +44,7 @@ public extension NumberRange {
 
 public extension NumberRangeInteractor {
 
-  @discardableResult func connectController<Controller: NumberRangeController>(_ controller: Controller) ->  NumberRange.ControllerConnection<Number, Controller> {
+  @discardableResult func connectController<Controller: NumberRangeController>(_ controller: Controller) -> NumberRange.ControllerConnection<Number, Controller> {
     let connection = NumberRange.ControllerConnection(interactor: self, controller: controller)
     connection.connect()
     return connection

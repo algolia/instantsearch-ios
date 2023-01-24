@@ -7,7 +7,7 @@
 //
 
 import Foundation
-
+// swiftlint:disable large_tuple
 public typealias HierarchicalFacet = (facet: Facet, level: Int, isSelected: Bool)
 
 public extension Hierarchical {
