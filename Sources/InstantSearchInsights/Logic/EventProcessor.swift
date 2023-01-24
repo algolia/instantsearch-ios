@@ -158,6 +158,11 @@ private extension EventProcessor {
     logger.info("sending events package: \(eventsPackage.items)")
 
     let eligibleEvents = eventsPackage.items.filter(acceptEvent)
+    
+    guard !eligibleEvents.isEmpty else {
+      logger.info("all events in package were filtered out by the acceptance condition, no event will be sent")
+      return
+    }
 
     service.sendEvents(eligibleEvents) { [weak self] result in
 
