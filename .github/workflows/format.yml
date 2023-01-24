@@ -1,4 +1,4 @@
-name: format
+name: Format
 on:
   push:
     branches: [master]
@@ -7,7 +7,7 @@ on:
 
 jobs:
   lint:
-    name: Format
+    name: format
     runs-on: ubuntu-latest
     steps:
       - name: Checkout Code
