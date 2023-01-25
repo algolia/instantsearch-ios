@@ -6,11 +6,10 @@
 //
 
 import Foundation
-import SwiftUI
 import InstantSearch
+import SwiftUI
 
 struct RatingView: UIViewRepresentable {
-
   @Binding var value: Double
 
   func makeUIView(context: Context) -> RatingControl {
@@ -19,13 +18,12 @@ struct RatingView: UIViewRepresentable {
     return ratingControl
   }
 
-  func updateUIView(_ uiView: RatingControl, context: Context) {
+  func updateUIView(_ uiView: RatingControl, context _: Context) {
     guard uiView.value != value else { return }
     uiView.value = value
   }
 
   class Coordinator: NSObject {
-
     var onValueChange: (Double) -> Void
 
     init(onValueChange: @escaping (Double) -> Void) {
@@ -35,7 +33,6 @@ struct RatingView: UIViewRepresentable {
     @objc func valueChanged(_ sender: RatingControl) {
       onValueChange(sender.value)
     }
-
   }
 
   func makeCoordinator() -> Coordinator {
@@ -43,5 +40,4 @@ struct RatingView: UIViewRepresentable {
       self.value = value
     }
   }
-
 }

@@ -1,18 +1,17 @@
 //
 //  SwiftLog+LogService.swift
-//  
+//
 //
 //  Created by Vladislav Fitc on 23/10/2020.
 //
 
-import Foundation
 import AlgoliaSearchClient
+import Foundation
 import Logging
 
 public typealias LogLevel = AlgoliaSearchClient.LogLevel
 
 public extension LogLevel {
-
   init(swiftLogLevel: Logging.Logger.Level) {
     switch swiftLogLevel {
     case .trace: self = .trace
@@ -36,5 +35,4 @@ public extension LogLevel {
     case .critical: return .critical
     }
   }
-
 }

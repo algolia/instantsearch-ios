@@ -11,11 +11,9 @@ import Foundation
 import XCTest
 
 class SelectableListInteractorTests: XCTestCase {
-
   typealias VM = SelectableListInteractor<String, String>
 
   func testConstruction() {
-
     let interactor = VM(items: [], selectionMode: .single)
 
     XCTAssert(interactor.items.isEmpty)
@@ -25,11 +23,9 @@ class SelectableListInteractorTests: XCTestCase {
 
     XCTAssertEqual(anotherInteractor.items, ["s1", "s2"])
     XCTAssertEqual(anotherInteractor.selectionMode, .multiple)
-
   }
 
   func testSwitchItems() {
-
     let interactor = VM(items: [], selectionMode: .single)
 
     let items = ["s1", "s2", "s3"]
@@ -62,7 +58,6 @@ class SelectableListInteractorTests: XCTestCase {
   }
 
   func testOnSelectionsComputedSingle() {
-
     let interactor = VM(items: ["s1", "s2", "s3"], selectionMode: .single)
     interactor.selections = ["s2"]
     let deselectionExpectation = expectation(description: "deselection")
@@ -78,7 +73,7 @@ class SelectableListInteractorTests: XCTestCase {
 
     interactor.onSelectionsComputed.cancelAllSubscriptions()
 
-    let selectionExpectation  = expectation(description: "selection expectation")
+    let selectionExpectation = expectation(description: "selection expectation")
 
     interactor.onSelectionsComputed.subscribe(with: self) { _, dispatchedSelections in
       XCTAssertEqual(dispatchedSelections, ["s1"])
@@ -91,7 +86,7 @@ class SelectableListInteractorTests: XCTestCase {
 
     interactor.onSelectionsComputed.cancelAllSubscriptions()
 
-    let replacementExpectation  = expectation(description: "replacement expectation")
+    let replacementExpectation = expectation(description: "replacement expectation")
 
     interactor.onSelectionsComputed.subscribe(with: self) { _, dispatchedSelections in
       XCTAssertEqual(dispatchedSelections, ["s3"])
@@ -101,11 +96,9 @@ class SelectableListInteractorTests: XCTestCase {
     interactor.computeSelections(selectingItemForKey: "s3")
 
     waitForExpectations(timeout: 2, handler: .none)
-
   }
 
   func testOnSelectionsComputedMultiple() {
-
     let interactor = VM(items: ["s1", "s2", "s3"], selectionMode: .multiple)
     interactor.selections = ["s2"]
     let deselectionExpectation = expectation(description: "deselection expectation")
@@ -144,7 +137,5 @@ class SelectableListInteractorTests: XCTestCase {
     interactor.computeSelections(selectingItemForKey: "s3")
 
     waitForExpectations(timeout: 2, handler: .none)
-
   }
-
 }

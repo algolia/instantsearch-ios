@@ -7,26 +7,26 @@
 //
 
 import Foundation
-import UIKit
 import InstantSearch
 import InstantSearchCore
+import UIKit
 
 class FilterDebugViewController: UIViewController {
-
   let titleLabel: UILabel
   let filterStateViewController: FilterDebugController
   let clearFilterController: FilterClearButtonController
 
   init(filterState: FilterState) {
-    self.titleLabel = UILabel()
-    self.filterStateViewController = FilterDebugController()
-    self.clearFilterController = .init(button: .init())
+    titleLabel = UILabel()
+    filterStateViewController = FilterDebugController()
+    clearFilterController = .init(button: .init())
     super.init(nibName: nil, bundle: nil)
     configureFilterStateViewController()
     filterStateViewController.connectTo(filterState)
   }
 
-  required init?(coder: NSCoder) {
+  @available(*, unavailable)
+  required init?(coder _: NSCoder) {
     fatalError("init(coder:) has not been implemented")
   }
 
@@ -90,5 +90,4 @@ class FilterDebugViewController: UIViewController {
     mainStackView.pin(to: containerView, insets: .init(top: 10, left: 10, bottom: -10, right: -10))
     containerView.pin(to: view)
   }
-
 }

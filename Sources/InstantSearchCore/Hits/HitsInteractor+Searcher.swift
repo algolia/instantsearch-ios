@@ -1,6 +1,6 @@
 //
 //  HitsInteractor+Searcher.swift
-//  
+//
 //
 //  Created by Vladislav Fitc on 02/12/2020.
 //
@@ -8,14 +8,11 @@
 import Foundation
 
 public extension HitsInteractor {
-
   struct SearcherConnection<Service: SearchService>: Connection where Service.Process == Operation, Service.Result == SearchResponse {
-
     public let interactor: HitsInteractor
     public let searcher: AbstractSearcher<Service>
 
     public func connect() {
-
       if let pageLoader = searcher as? PageLoadable {
         interactor.pageLoader = pageLoader
       }
@@ -33,7 +30,6 @@ public extension HitsInteractor {
       searcher.onRequestChanged.subscribePast(with: interactor) { interactor, _ in
         interactor.notifyQueryChanged()
       }
-
     }
 
     public func disconnect() {
@@ -44,17 +40,13 @@ public extension HitsInteractor {
       searcher.onError.cancelSubscription(for: interactor)
       searcher.onRequestChanged.cancelSubscription(for: interactor)
     }
-
   }
-
 }
 
 public extension HitsInteractor {
-
   @discardableResult func connectSearcher<Service: SearchService>(_ searcher: AbstractSearcher<Service>) -> SearcherConnection<Service> {
     let connection = SearcherConnection(interactor: self, searcher: searcher)
     connection.connect()
     return connection
   }
-
 }

@@ -7,11 +7,10 @@
 //
 
 import Foundation
-import UIKit
 import InstantSearch
+import UIKit
 
 final class DemoListViewController<Demo: DemoProtocol & Codable>: UITableViewController {
-
   let searcher: HitsSearcher
   let filterState: FilterState
   let hitsInteractor: HitsInteractor<Demo>
@@ -50,7 +49,8 @@ final class DemoListViewController<Demo: DemoProtocol & Codable>: UITableViewCon
     }
   }
 
-  required init?(coder aDecoder: NSCoder) {
+  @available(*, unavailable)
+  required init?(coder _: NSCoder) {
     fatalError("init(coder:) has not been implemented")
   }
 
@@ -62,7 +62,7 @@ final class DemoListViewController<Demo: DemoProtocol & Codable>: UITableViewCon
 
   func updateDemos(_ demos: [Demo]) {
     let demosPerType = Dictionary(grouping: demos, by: { $0.type })
-    self.groupedDemos = demosPerType
+    groupedDemos = demosPerType
       .sorted { $0.key < $1.key }
       .map { ($0.key, $0.value.sorted { $0.name < $1.name }) }
     DispatchQueue.main.async {
@@ -72,11 +72,11 @@ final class DemoListViewController<Demo: DemoProtocol & Codable>: UITableViewCon
 
   // MARK: UITableViewDataSource
 
-  override func numberOfSections(in tableView: UITableView) -> Int {
+  override func numberOfSections(in _: UITableView) -> Int {
     return groupedDemos.count
   }
 
-  override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+  override func tableView(_: UITableView, numberOfRowsInSection section: Int) -> Int {
     return groupedDemos[section].demos.count
   }
 
@@ -87,15 +87,14 @@ final class DemoListViewController<Demo: DemoProtocol & Codable>: UITableViewCon
     return cell
   }
 
-  override func tableView(_ tableView: UITableView, titleForHeaderInSection section: Int) -> String? {
+  override func tableView(_: UITableView, titleForHeaderInSection section: Int) -> String? {
     return groupedDemos[section].groupName
   }
 
   // MARK: UITableViewDelegate
 
-  override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+  override func tableView(_: UITableView, didSelectRowAt indexPath: IndexPath) {
     let demo = groupedDemos[indexPath.section].demos[indexPath.row]
     didSelect?(demo)
   }
-
 }

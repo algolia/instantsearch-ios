@@ -11,31 +11,29 @@ import Foundation
 import XCTest
 
 class CurrentFiltersControllerConnectionTests: XCTestCase {
- 
   let attribute: Attribute = "Test Attribute"
   let groupName = "Test group"
-  
+
   weak var disposableInteractor: CurrentFiltersInteractor?
   weak var disposableController: TestCurrentFiltersController?
-  
+
   func testLeak() {
     let interactor = CurrentFiltersInteractor()
     let controller = TestCurrentFiltersController()
-    
+
     disposableInteractor = interactor
     disposableController = controller
 
     let connection = CurrentFiltersInteractor.ControllerConnection(interactor: interactor, controller: controller)
     connection.connect()
   }
-  
+
   override func tearDown() {
     XCTAssertNil(disposableInteractor, "Leaked interactor")
     XCTAssertNil(disposableController, "Leaked controller")
   }
 
   func testConnect() {
-
     let interactor = CurrentFiltersInteractor()
     let controller = TestCurrentFiltersController()
 
@@ -48,7 +46,6 @@ class CurrentFiltersControllerConnectionTests: XCTestCase {
   }
 
   func testConnectFunction() {
-
     let interactor = CurrentFiltersInteractor()
     let controller = TestCurrentFiltersController()
 
@@ -57,7 +54,6 @@ class CurrentFiltersControllerConnectionTests: XCTestCase {
     checkConnection(interactor: interactor,
                     controller: controller,
                     isConnected: true)
-
   }
 
   func testDisconnect() {
@@ -88,7 +84,6 @@ class CurrentFiltersControllerConnectionTests: XCTestCase {
   func checkItemsComputedOnRemove(interactor: CurrentFiltersInteractor,
                                   controller: TestCurrentFiltersController,
                                   isConnected: Bool) {
-
     let item = FilterAndID(filter: .tag("tag"), id: .and(name: groupName))
 
     interactor.items = Set([item])
@@ -96,7 +91,7 @@ class CurrentFiltersControllerConnectionTests: XCTestCase {
     let selectionsComputedExpectation = expectation(description: "selections computed")
     selectionsComputedExpectation.isInverted = !isConnected
 
-    interactor.onItemsComputed.subscribe(with: self) { (_, items) in
+    interactor.onItemsComputed.subscribe(with: self) { _, items in
       XCTAssertTrue(items.isEmpty)
       selectionsComputedExpectation.fulfill()
     }
@@ -109,7 +104,6 @@ class CurrentFiltersControllerConnectionTests: XCTestCase {
   func checkUpdateControllerWhenItemsChanged(interactor: CurrentFiltersInteractor,
                                              controller: TestCurrentFiltersController,
                                              isConnected: Bool) {
-
     let reloadExpectation = expectation(description: "reload expectation")
     reloadExpectation.isInverted = !isConnected
 
@@ -123,7 +117,5 @@ class CurrentFiltersControllerConnectionTests: XCTestCase {
     interactor.items = Set(expectedItems)
 
     waitForExpectations(timeout: 5, handler: nil)
-
   }
-
 }

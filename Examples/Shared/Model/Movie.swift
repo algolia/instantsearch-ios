@@ -8,7 +8,6 @@
 import Foundation
 
 struct Movie: Codable {
-
   let title: String
   let genres: [String]
   let posterPath: String
@@ -24,5 +23,4 @@ struct Movie: Codable {
     case posterPath = "poster_path"
     case note = "vote_average"
   }
-
 }

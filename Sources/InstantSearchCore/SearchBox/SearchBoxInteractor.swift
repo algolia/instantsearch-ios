@@ -10,7 +10,6 @@ import Foundation
 
 /// Business logic component that handles textual query input
 public class SearchBoxInteractor {
-
   /// Textual query
   public var query: String? {
     didSet {
@@ -36,7 +35,6 @@ public class SearchBoxInteractor {
   public func submitQuery() {
     onQuerySubmitted.fire(query)
   }
-
 }
 
 @available(*, deprecated, renamed: "SearchBoxInteractor")

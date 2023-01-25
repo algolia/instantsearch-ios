@@ -6,11 +6,10 @@
 //
 
 import Foundation
-import SwiftUI
 import InstantSearchSwiftUI
+import SwiftUI
 
 struct FilterStateDebugView: View {
-
   @ObservedObject var filterStateController: FilterStateObservableController
   @ObservedObject var clearFilterController: FilterClearObservableController
 
@@ -42,5 +41,4 @@ struct FilterStateDebugView: View {
         .stroke(Color.black, lineWidth: 1)
     )
   }
-
 }

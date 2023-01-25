@@ -6,20 +6,19 @@
 //  Copyright © 2019 Algolia. All rights reserved.
 //
 
-import Foundation
-import XCTest
-@testable import InstantSearchCore
 import AlgoliaSearchClient
+import Foundation
+@testable import InstantSearchCore
+import XCTest
 /// Abstract base class for online test cases.
 ///
 class OnlineTestCase: XCTestCase {
-
-    struct Task: Codable {
-        let id: Int
-        enum CodingKeys: String, CodingKey {
-            case id = "taskID"
-        }
+  struct Task: Codable {
+    let id: Int
+    enum CodingKeys: String, CodingKey {
+      case id = "taskID"
     }
+  }
 
   var expectationTimeout: TimeInterval = 10
 
@@ -33,7 +32,7 @@ class OnlineTestCase: XCTestCase {
     guard let credentials = TestCredentials.search else {
       throw Error.missingCredentials
     }
-    
+
     _ = UserAgentSetter.set
 
     client = SearchClient(appID: credentials.applicationID, apiKey: credentials.apiKey)
@@ -56,7 +55,7 @@ class OnlineTestCase: XCTestCase {
     let expectation = self.expectation(description: "Delete index")
     client.index(withName: index.name).delete { result in
       switch result {
-      case .failure(let error):
+      case let .failure(error):
         XCTFail("\(error)")
       case .success:
         break
@@ -66,11 +65,10 @@ class OnlineTestCase: XCTestCase {
     waitForExpectations(timeout: expectationTimeout, handler: nil)
   }
 
-    func fillIndex<O: Encodable>(withItems items: [O], autoGeneratingObjectID: Bool, settings: Settings) throws {
-      try index.saveObjects(items, autoGeneratingObjectID: autoGeneratingObjectID).wait()
-      try index.setSettings(settings).wait()
-    }
-
+  func fillIndex<O: Encodable>(withItems items: [O], autoGeneratingObjectID: Bool, settings: Settings) throws {
+    try index.saveObjects(items, autoGeneratingObjectID: autoGeneratingObjectID).wait()
+    try index.setSettings(settings).wait()
+  }
 }
 
 extension OnlineTestCase {

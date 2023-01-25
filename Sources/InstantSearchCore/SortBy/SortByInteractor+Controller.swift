@@ -1,6 +1,6 @@
 //
 //  SortByInteractor+Controller.swift
-//  
+//
 //
 //  Created by Vladislav Fitc on 27/09/2021.
 //
@@ -8,9 +8,7 @@
 import Foundation
 
 public extension SortByInteractor {
-
   struct ControllerConnection<Controller: SelectableSegmentController>: Connection where Controller.SegmentKey == Int {
-
     public let interactor: SortByInteractor
     public let controller: Controller
     public let presenter: IndexNamePresenter
@@ -43,13 +41,10 @@ public extension SortByInteractor {
       interactor.onSelectedChanged.cancelSubscription(for: controller)
       interactor.onItemsChanged.cancelSubscription(for: controller)
     }
-
   }
-
 }
 
 public extension SortByInteractor {
-
   @discardableResult func connectController<Controller: SelectableSegmentController>(_ controller: Controller,
                                                                                      presenter: @escaping IndexNamePresenter = DefaultPresenter.IndexName.present) -> ControllerConnection<Controller> where Controller.SegmentKey == Int {
     let connection = ControllerConnection(interactor: self,
@@ -58,5 +53,4 @@ public extension SortByInteractor {
     connection.connect()
     return connection
   }
-
 }

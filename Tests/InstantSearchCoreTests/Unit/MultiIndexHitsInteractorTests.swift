@@ -6,23 +6,20 @@
 //  Copyright © 2019 Algolia. All rights reserved.
 //
 
+import AlgoliaSearchClient
 import Foundation
 @testable import InstantSearchCore
-import AlgoliaSearchClient
 import XCTest
 
 class TestPageLoader: PageLoadable {
-
   var didLoadPage: ((Int) -> Void)?
 
   func loadPage(atIndex pageIndex: Int) {
     didLoadPage?(pageIndex)
   }
-
 }
 
 struct TestRecord<Value: Codable>: Codable {
-
   let objectID: ObjectID
   let value: Value
 
@@ -34,12 +31,10 @@ struct TestRecord<Value: Codable>: Codable {
   static func withValue(_ value: Value) -> Self {
     .init(value)
   }
-
 }
 
 @available(*, deprecated, message: "Test to remove when MulstIndexSearcher obsoleted")
 class MultiIndexHitsInteractorTests: XCTestCase {
-
   func testConstruction() {
     let interactor = MultiIndexHitsInteractor(hitsInteractors: [])
     XCTAssertEqual(interactor.numberOfSections(), 0)
@@ -53,7 +48,6 @@ class MultiIndexHitsInteractorTests: XCTestCase {
     XCTAssertEqual(multiInteractor.numberOfSections(), 2)
     XCTAssertTrue(multiInteractor.contains(interactor1))
     XCTAssertTrue(multiInteractor.contains(interactor2))
-
   }
 
   func testAccessByIndex() {
@@ -66,11 +60,9 @@ class MultiIndexHitsInteractorTests: XCTestCase {
     XCTAssertTrue(multiInteractor.contains(interactor2))
     XCTAssertEqual(multiInteractor.section(of: interactor1), 0)
     XCTAssertEqual(multiInteractor.section(of: interactor2), 1)
-
   }
 
   func testSearchByIndexThrows() {
-
     let interactor1 = HitsInteractor<[String: Int]>()
     let interactor2 = HitsInteractor<[String: [String: Int]]>()
 
@@ -80,11 +72,9 @@ class MultiIndexHitsInteractorTests: XCTestCase {
     XCTAssertNoThrow(try multiInteractor.hitsInteractor(forSection: 1) as HitsInteractor<[String: [String: Int]]>)
     XCTAssertThrowsError(try multiInteractor.hitsInteractor(forSection: 0) as HitsInteractor<[String: [String: String]]>)
     XCTAssertThrowsError(try multiInteractor.hitsInteractor(forSection: 1) as HitsInteractor<String>)
-
   }
 
   func testUpdatePerInteractor() throws {
-
     let interactor1 = HitsInteractor<TestRecord<Int>>()
     let interactor2 = HitsInteractor<TestRecord<Bool>>()
     let multiInteractor = MultiIndexHitsInteractor(hitsInteractors: [interactor1, interactor2])
@@ -101,11 +91,11 @@ class MultiIndexHitsInteractorTests: XCTestCase {
     let resultsExpectation = expectation(description: "results")
     resultsExpectation.expectedFulfillmentCount = 2
 
-    multiInteractor.onError.subscribe(with: self) { (_, _) in
+    multiInteractor.onError.subscribe(with: self) { _, _ in
       noErrorExpectation.fulfill()
     }
 
-    multiInteractor.onResultsUpdated.subscribe(with: self) { (_, _) in
+    multiInteractor.onResultsUpdated.subscribe(with: self) { _, _ in
       resultsExpectation.fulfill()
     }
 
@@ -113,11 +103,9 @@ class MultiIndexHitsInteractorTests: XCTestCase {
     multiInteractor.update(results2, forInteractorInSection: 1)
 
     waitForExpectations(timeout: 3, handler: .none)
-
   }
 
   func testIncorrectUpdatePerInteractor() throws {
-
     let interactor1 = HitsInteractor<[String: Int]>()
     let interactor2 = HitsInteractor<[String: Bool]>()
     let multiInteractor = MultiIndexHitsInteractor(hitsInteractors: [interactor1, interactor2])
@@ -134,11 +122,11 @@ class MultiIndexHitsInteractorTests: XCTestCase {
     let resultsExpectation = expectation(description: "results")
     resultsExpectation.expectedFulfillmentCount = 2
 
-    multiInteractor.onError.subscribe(with: self) { (_, _) in
+    multiInteractor.onError.subscribe(with: self) { _, _ in
       errorExpectation.fulfill()
     }
 
-    multiInteractor.onResultsUpdated.subscribe(with: self) { (_, _) in
+    multiInteractor.onResultsUpdated.subscribe(with: self) { _, _ in
       resultsExpectation.fulfill()
     }
 
@@ -146,11 +134,9 @@ class MultiIndexHitsInteractorTests: XCTestCase {
     multiInteractor.update(results2, forInteractorInSection: 0)
 
     waitForExpectations(timeout: 3, handler: .none)
-
   }
 
   func testUpdateSimultaneously() throws {
-
     let pageLoader = TestPageLoader()
 
     let interactor1 = HitsInteractor<TestRecord<Int>>()
@@ -170,19 +156,19 @@ class MultiIndexHitsInteractorTests: XCTestCase {
     let interactor2Exp = expectation(description: "Interactor 2")
     let multiInteractorExp = expectation(description: "MultiInteractor expectation")
 
-    interactor1.onResultsUpdated.subscribe(with: self) { (_, _) in
+    interactor1.onResultsUpdated.subscribe(with: self) { _, _ in
       XCTAssertEqual(multiInteractor.numberOfSections(), 2)
       XCTAssertEqual(multiInteractor.numberOfHits(inSection: 0), hits1.count)
       interactor1Exp.fulfill()
     }
 
-    interactor2.onResultsUpdated.subscribe(with: self) { (_, _) in
+    interactor2.onResultsUpdated.subscribe(with: self) { _, _ in
       XCTAssertEqual(multiInteractor.numberOfSections(), 2)
       XCTAssertEqual(multiInteractor.numberOfHits(inSection: 1), hits2.count)
       interactor2Exp.fulfill()
     }
 
-    multiInteractor.onResultsUpdated.subscribe(with: self) { (_, _) in
+    multiInteractor.onResultsUpdated.subscribe(with: self) { _, _ in
       multiInteractorExp.fulfill()
     }
 
@@ -190,11 +176,9 @@ class MultiIndexHitsInteractorTests: XCTestCase {
     multiInteractor.update([results1, results2])
 
     waitForExpectations(timeout: 3, handler: .none)
-
   }
 
   func testIncorrectUpdateSimultaneously() throws {
-
     let pageLoader = TestPageLoader()
 
     let interactor1 = HitsInteractor<[String: Int]>()
@@ -215,31 +199,29 @@ class MultiIndexHitsInteractorTests: XCTestCase {
     let multiInteractorExp = expectation(description: "MultiInteractor expectation")
     multiInteractorExp.expectedFulfillmentCount = 2
 
-    interactor1.onError.subscribe(with: self) { (_, _) in
+    interactor1.onError.subscribe(with: self) { _, _ in
       XCTAssertEqual(multiInteractor.numberOfSections(), 2)
       XCTAssertEqual(multiInteractor.numberOfHits(inSection: 0), 0)
       interactor1Exp.fulfill()
     }
 
-    interactor2.onError.subscribe(with: self) { (_, _) in
-       XCTAssertEqual(multiInteractor.numberOfSections(), 2)
-       XCTAssertEqual(multiInteractor.numberOfHits(inSection: 1), 0)
-       interactor2Exp.fulfill()
+    interactor2.onError.subscribe(with: self) { _, _ in
+      XCTAssertEqual(multiInteractor.numberOfSections(), 2)
+      XCTAssertEqual(multiInteractor.numberOfHits(inSection: 1), 0)
+      interactor2Exp.fulfill()
     }
 
-    multiInteractor.onError.subscribe(with: self) { (_, _) in
-       multiInteractorExp.fulfill()
+    multiInteractor.onError.subscribe(with: self) { _, _ in
+      multiInteractorExp.fulfill()
     }
 
     // Update multihits Interactor with a correct list of results
     multiInteractor.update([results2, results1])
 
     waitForExpectations(timeout: 3, handler: .none)
-
   }
 
   func testPartiallyCorrectUpdateSimultaneously() throws {
-
     let pageLoader = TestPageLoader()
 
     let interactor1 = HitsInteractor<TestRecord<Int>>()
@@ -260,37 +242,35 @@ class MultiIndexHitsInteractorTests: XCTestCase {
     let multiInteractorResultsExp = expectation(description: "MultiInteractor results expectation")
     let multiInteractorErrorExp = expectation(description: "MultiInteractor error expectation")
 
-    interactor1.onResultsUpdated.subscribe(with: self) { (_, _) in
+    interactor1.onResultsUpdated.subscribe(with: self) { _, _ in
       XCTAssertEqual(multiInteractor.numberOfSections(), 2)
       XCTAssertEqual(multiInteractor.numberOfHits(inSection: 0), 3)
       interactor1Exp.fulfill()
     }
 
-    interactor2.onError.subscribe(with: self) { (_, _) in
-       XCTAssertEqual(multiInteractor.numberOfSections(), 2)
-       XCTAssertEqual(multiInteractor.numberOfHits(inSection: 1), 0)
-       interactor2Exp.fulfill()
+    interactor2.onError.subscribe(with: self) { _, _ in
+      XCTAssertEqual(multiInteractor.numberOfSections(), 2)
+      XCTAssertEqual(multiInteractor.numberOfHits(inSection: 1), 0)
+      interactor2Exp.fulfill()
     }
 
-    multiInteractor.onResultsUpdated.subscribe(with: self) { (_, _) in
+    multiInteractor.onResultsUpdated.subscribe(with: self) { _, _ in
 //      print("ok")
-       multiInteractorResultsExp.fulfill()
+      multiInteractorResultsExp.fulfill()
     }
 
-    multiInteractor.onError.subscribe(with: self) { (_, _) in
+    multiInteractor.onError.subscribe(with: self) { _, _ in
 //      print("\(error)")
-       multiInteractorErrorExp.fulfill()
+      multiInteractorErrorExp.fulfill()
     }
 
     // Update multihits Interactor with a correct list of results
     multiInteractor.update([results1, results2])
 
     waitForExpectations(timeout: 100, handler: .none)
-
   }
 
   func testHitForRow() throws {
-
     let pageLoader = TestPageLoader()
 
     let interactor1 = HitsInteractor<TestRecord<Int>>()
@@ -308,10 +288,9 @@ class MultiIndexHitsInteractorTests: XCTestCase {
 
     let resultsUpdatedExp = expectation(description: "Results updated")
 
-    multiInteractor.onResultsUpdated.subscribe(with: self) { (_, _) in
+    multiInteractor.onResultsUpdated.subscribe(with: self) { _, _ in
 
       do {
-
         XCTAssertNoThrow(try multiInteractor.hit(atIndex: 0, inSection: 0) as TestRecord<Int>?)
         XCTAssertNoThrow(try multiInteractor.hit(atIndex: 1, inSection: 1) as TestRecord<Bool>?)
         XCTAssertThrowsError(try multiInteractor.hit(atIndex: 0, inSection: 0) as TestRecord<Bool>?)
@@ -323,7 +302,7 @@ class MultiIndexHitsInteractorTests: XCTestCase {
         let hit2 = try multiInteractor.hit(atIndex: 1, inSection: 1) as TestRecord<Bool>?
         XCTAssertEqual(hit2?.value, false)
 
-      } catch let error {
+      } catch {
         XCTFail("Unexpected error \(error)")
       }
 
@@ -333,11 +312,9 @@ class MultiIndexHitsInteractorTests: XCTestCase {
     multiInteractor.update([results1, results2])
 
     waitForExpectations(timeout: 3, handler: .none)
-
   }
 
   class TestHitsInteractor: AnyHitsInteractor {
-
     func getCurrentGenericHits<R>() throws -> [R] where R: Decodable {
       return []
     }
@@ -356,19 +333,15 @@ class MultiIndexHitsInteractorTests: XCTestCase {
       self.didCallLoadMoreResults = didCallLoadMoreResults
     }
 
-    func update(_ searchResults: HitsExtractable & SearchStatsConvertible) -> Operation {
+    func update(_: HitsExtractable & SearchStatsConvertible) -> Operation {
       return Operation()
     }
 
-    func process(_ error: Error, for query: Query) {
+    func process(_: Error, for _: Query) {}
 
-    }
+    func notifyQueryChanged() {}
 
-    func notifyQueryChanged() {
-
-    }
-
-    func rawHitAtIndex(_ index: Int) -> [String: Any]? {
+    func rawHitAtIndex(_: Int) -> [String: Any]? {
       return .none
     }
 
@@ -376,7 +349,7 @@ class MultiIndexHitsInteractorTests: XCTestCase {
       return 0
     }
 
-    func genericHitAtIndex<R>(_ index: Int) throws -> R? where R: Decodable {
+    func genericHitAtIndex<R>(_: Int) throws -> R? where R: Decodable {
       return (0 as! R)
     }
 
@@ -384,5 +357,4 @@ class MultiIndexHitsInteractorTests: XCTestCase {
       didCallLoadMoreResults()
     }
   }
-
 }

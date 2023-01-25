@@ -9,7 +9,6 @@
 import Foundation
 
 public extension HitsSearcher {
-
   /**
    Establishes connection between searcher and filterState
    - Sets `FilterState` as a disjunctive and hierarchical faceting delegate
@@ -18,7 +17,6 @@ public extension HitsSearcher {
    */
 
   struct FilterStateConnection: Connection {
-
     @available(*, deprecated, renamed: "hitsSearcher")
     public var singleIndexSearcher: HitsSearcher {
       return hitsSearcher
@@ -43,17 +41,13 @@ public extension HitsSearcher {
       hitsSearcher.hierarchicalFacetingDelegate = nil
       filterState.onChange.cancelSubscription(for: hitsSearcher)
     }
-
   }
-
 }
 
 public extension HitsSearcher {
-
   @discardableResult func connectFilterState(_ filterState: FilterState) -> FilterStateConnection {
     let connection = FilterStateConnection(hitsSearcher: self, filterState: filterState)
     connection.connect()
     return connection
   }
-
 }

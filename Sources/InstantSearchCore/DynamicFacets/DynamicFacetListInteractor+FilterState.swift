@@ -1,6 +1,6 @@
 //
 //  DynamicFacetListInteractor+FilterState.swift
-//  
+//
 //
 //  Created by Vladislav Fitc on 16/03/2021.
 //
@@ -8,10 +8,8 @@
 import Foundation
 
 public extension DynamicFacetListInteractor {
-
   /// Connection between a dynamic facets business logic and a filter state
   struct FilterStateConnection: Connection {
-
     /// Dynamic facets business logic
     public let interactor: DynamicFacetListInteractor
 
@@ -28,7 +26,7 @@ public extension DynamicFacetListInteractor {
        - interactor: Dynamic facet list business logic
        - filterState: FilterState that holds your filters
        - filterGroupForAttribute: Mapping between a facet attribute and a descriptor of a filter group where the corresponding facet filters stored in the filter state.
-                                  
+
      If no filter group descriptor provided, the filters for attribute will be automatically stored in the conjunctive (`and`)  group with the facet attribute name`.
      */
     public init(interactor: DynamicFacetListInteractor,
@@ -87,14 +85,13 @@ public extension DynamicFacetListInteractor {
         interactor.selections = Dictionary(uniqueKeysWithValues: selectionsPerAttribute)
       }
     }
-
   }
 
   /**
    Establishes connection with a FilterState
    - parameter filterState: filter state to connect
    - parameter filterGroupForAttribute: Mapping between a facet attribute and a descriptor of a filter group where the corresponding facet filters stored in the filter state.
-   
+
    If no filter group descriptor provided, the filters for attribute will be automatically stored in the conjunctive (`and`)  group with the facet attribute name.
    */
   @discardableResult func connectFilterState(_ filterState: FilterState,
@@ -105,5 +102,4 @@ public extension DynamicFacetListInteractor {
     connection.connect()
     return connection
   }
-
 }

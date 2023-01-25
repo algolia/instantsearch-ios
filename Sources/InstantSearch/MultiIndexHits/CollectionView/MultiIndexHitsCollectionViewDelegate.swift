@@ -6,55 +6,52 @@
 //
 
 #if !InstantSearchCocoaPods
-import InstantSearchCore
+  import InstantSearchCore
 #endif
 #if canImport(UIKit) && (os(iOS) || os(tvOS) || os(macOS))
-import UIKit
+  import UIKit
 
-@available(*, unavailable, message: "Use your own UICollectionViewController conforming to HitsController protocol")
-@available(*, deprecated, message: "Use your own UICollectionViewController conforming to HitsController protocol")
-open class MultiIndexHitsCollectionViewDelegate: NSObject, UICollectionViewDelegate {
+  @available(*, unavailable, message: "Use your own UICollectionViewController conforming to HitsController protocol")
+  @available(*, deprecated, message: "Use your own UICollectionViewController conforming to HitsController protocol")
+  open class MultiIndexHitsCollectionViewDelegate: NSObject, UICollectionViewDelegate {
+    typealias ClickHandler = (UICollectionView, Int) throws -> Void
 
-  typealias ClickHandler = (UICollectionView, Int) throws -> Void
+    public weak var hitsSource: MultiIndexHitsSource?
 
-  public weak var hitsSource: MultiIndexHitsSource?
+    private var clickHandlers: [Int: ClickHandler]
 
-  private var clickHandlers: [Int: ClickHandler]
+    override public init() {
+      clickHandlers = [:]
+      super.init()
+    }
 
-  public override init() {
-    clickHandlers = [:]
-    super.init()
-  }
+    public func setClickHandler<Hit: Codable>(forSection section: Int, _ clickHandler: @escaping CollectionViewClickHandler<Hit>) {
+      clickHandlers[section] = { [weak self] collectionView, row in
+        guard let delegate = self else { return }
 
-  public func setClickHandler<Hit: Codable>(forSection section: Int, _ clickHandler: @escaping CollectionViewClickHandler<Hit>) {
-    clickHandlers[section] = { [weak self] (collectionView, row) in
-      guard let delegate = self else { return }
+        guard let hitsSource = delegate.hitsSource else {
+          InstantSearchLog.missingHitsSourceWarning()
+          return
+        }
 
-      guard let hitsSource = delegate.hitsSource else {
-        InstantSearchLog.missingHitsSourceWarning()
+        guard let hit: Hit = try hitsSource.hit(atIndex: row, inSection: section) else {
+          return
+        }
+
+        clickHandler(collectionView, hit, IndexPath(item: row, section: section))
+      }
+    }
+
+    open func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
+      guard let clickHandler = clickHandlers[indexPath.section] else {
+        InstantSearchLog.missingClickHandlerWarning(forSection: indexPath.section)
         return
       }
-
-      guard let hit: Hit = try hitsSource.hit(atIndex: row, inSection: section) else {
-        return
+      do {
+        try clickHandler(collectionView, indexPath.row)
+      } catch let underlyingError {
+        InstantSearchLog.error(underlyingError)
       }
-
-      clickHandler(collectionView, hit, IndexPath(item: row, section: section))
-
     }
   }
-
-  open func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
-    guard let clickHandler = clickHandlers[indexPath.section] else {
-      InstantSearchLog.missingClickHandlerWarning(forSection: indexPath.section)
-      return
-    }
-    do {
-      try clickHandler(collectionView, indexPath.row)
-    } catch let underlyingError {
-      InstantSearchLog.error(underlyingError)
-    }
-  }
-
-}
 #endif

@@ -10,7 +10,6 @@ import Foundation
 import InstantSearch
 
 class HierarchicalDemoController {
-
   let searcher: HitsSearcher
   let filterState: FilterState
   let clearFilterConnector: FilterClearConnector
@@ -36,5 +35,4 @@ class HierarchicalDemoController {
     searcher.connectFilterState(filterState)
     searcher.search()
   }
-
 }

@@ -5,11 +5,10 @@
 //  Created by Vladislav Fitc on 05.04.2022.
 //
 
-import Foundation
 import AlgoliaSearchClient
+import Foundation
 
 struct ShowcaseDemo: Codable, DemoProtocol {
-
   let objectID: ObjectID
   let name: String
   let type: String
@@ -43,5 +42,4 @@ struct ShowcaseDemo: Codable, DemoProtocol {
     case queryRuleCustomData = "query_rule_custom_data"
     case relevantSort = "dynamic_sort"
   }
-
 }

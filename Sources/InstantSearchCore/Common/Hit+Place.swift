@@ -9,9 +9,7 @@
 import Foundation
 
 public extension Hit {
-
   func getBestHighlightedForm(from highlightResults: [HighlightResult]) -> HighlightedString? {
-
     guard let defaultValue = highlightResults.first?.value.taggedString.input else { return nil }
 
     let bestAttributesOrder = highlightResults
@@ -30,28 +28,26 @@ public extension Hit {
     guard let theBestAttributeIndex = bestAttributesOrder else { return HighlightedString(string: defaultValue) }
 
     return highlightResults[theBestAttributeIndex].value
-
   }
 
   func getBestHighlightedForm(forKey key: String) -> HighlightedString? {
-
-    guard case .dictionary(let dictionary) = highlightResult  else {
+    guard case let .dictionary(dictionary) = highlightResult else {
       return nil
     }
 
     let highlightResults: [HighlightResult]
 
     switch dictionary[key] {
-    case .array(let highlightResultsList):
+    case let .array(highlightResultsList):
       highlightResults = highlightResultsList.compactMap {
-        if case .value(let val) = $0 {
+        if case let .value(val) = $0 {
           return val
         } else {
           return nil
         }
       }
 
-    case .value(let value):
+    case let .value(value):
       highlightResults = [value]
 
     default:
@@ -59,13 +55,10 @@ public extension Hit {
     }
 
     return getBestHighlightedForm(from: highlightResults)
-
   }
-
 }
 
 extension Hit: CustomStringConvertible where T == Place {
-
   public var description: String {
     let cityKey = object.isCity! ? "locale_names" : "city"
     let country = getBestHighlightedForm(forKey: "country")
@@ -81,7 +74,5 @@ extension Hit: CustomStringConvertible where T == Place {
         return taggedString.output
       }
       .joined(separator: ", ")
-
   }
-
 }

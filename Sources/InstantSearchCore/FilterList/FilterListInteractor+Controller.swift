@@ -9,7 +9,6 @@
 import Foundation
 
 public struct FilterListControllerConnection<Filter: FilterType & Hashable, Controller: SelectableListController>: Connection where Controller.Item == Filter {
-
   public let interactor: FilterListInteractor<Filter>
   public let controller: Controller
 
@@ -20,7 +19,6 @@ public struct FilterListControllerConnection<Filter: FilterType & Hashable, Cont
   }
 
   public func connect() {
-
     func setControllerItemsWith(items: [Filter], selections: Set<Filter>) {
       let selectableItems = items.map { ($0, selections.contains($0)) }
       controller.setSelectableItems(selectableItems: selectableItems)
@@ -38,22 +36,18 @@ public struct FilterListControllerConnection<Filter: FilterType & Hashable, Cont
     interactor.onSelectionsChanged.subscribePast(with: controller) { [weak interactor] _, selections in
       setControllerItemsWith(items: interactor!.items, selections: selections)
     }.onQueue(.main)
-
   }
 
   public func disconnect() {
     interactor.onItemsChanged.cancelSubscription(for: controller)
     interactor.onSelectionsChanged.cancelSubscription(for: controller)
   }
-
 }
 
 public extension FilterListInteractor {
-
   @discardableResult func connectController<Controller: SelectableListController>(_ controller: Controller) -> FilterListControllerConnection<F, Controller> {
     let connection = FilterListControllerConnection(interactor: self, controller: controller)
     connection.connect()
     return connection
   }
-
 }

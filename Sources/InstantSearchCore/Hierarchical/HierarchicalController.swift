@@ -9,7 +9,5 @@
 import Foundation
 
 public protocol HierarchicalController: ItemController {
-
   var onClick: ((String) -> Void)? { get set }
-
 }

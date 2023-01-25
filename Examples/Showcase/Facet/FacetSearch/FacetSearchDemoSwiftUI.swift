@@ -11,9 +11,7 @@ import InstantSearchSwiftUI
 import SwiftUI
 
 class FacetSearchDemoSwiftUI: SwiftUIDemo, PreviewProvider {
-
   class Controller {
-
     let demoController: FacetSearchDemoController
 
     let facetListController: FacetListObservableController
@@ -31,11 +29,9 @@ class FacetSearchDemoSwiftUI: SwiftUIDemo, PreviewProvider {
       demoController.searchBoxConnector.connectController(searchBoxController)
       demoController.clearFilterConnector.connectController(clearFilterController)
     }
-
   }
 
   struct ContentView: View {
-
     @ObservedObject var filterStateController: FilterStateObservableController
     @ObservedObject var clearFilterController: FilterClearObservableController
 
@@ -60,7 +56,6 @@ class FacetSearchDemoSwiftUI: SwiftUIDemo, PreviewProvider {
       }
       .searchable(text: $searchBoxController.query)
     }
-
   }
 
   static func contentView(with controller: Controller) -> ContentView {
@@ -77,5 +72,4 @@ class FacetSearchDemoSwiftUI: SwiftUIDemo, PreviewProvider {
         .navigationBarTitle("Facet Search")
     }
   }
-
 }

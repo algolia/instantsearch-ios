@@ -5,8 +5,8 @@
 //  Created by Vladislav Fitc on 13/04/2022.
 //
 
-import SwiftUI
 import Combine
+import SwiftUI
 
 // SliderValue to restrict double range: 0.0 to 1.0
 @propertyWrapper
@@ -14,7 +14,7 @@ struct SliderValue: Equatable {
   var value: Double
 
   init(wrappedValue: Double) {
-    self.value = wrappedValue
+    value = wrappedValue
   }
 
   var wrappedValue: Double {
@@ -24,15 +24,12 @@ struct SliderValue: Equatable {
 }
 
 extension SliderValue: ExpressibleByFloatLiteral {
-
   init(floatLiteral value: Double) {
     self.value = value
   }
-
 }
 
 class SliderHandle: ObservableObject {
-
   // Slider Size
   let sliderWidth: CGFloat
   let sliderHeight: CGFloat
@@ -60,17 +57,17 @@ class SliderHandle: ObservableObject {
     self.sliderHeight = sliderHeight
 
     self.sliderValueStart = sliderValueStart
-    self.sliderValueRange = sliderValueEnd - sliderValueStart
+    sliderValueRange = sliderValueEnd - sliderValueStart
 
-    let startLocation = CGPoint(x: (CGFloat(startPercentage.wrappedValue)/1.0)*sliderWidth, y: sliderHeight/2)
+    let startLocation = CGPoint(x: (CGFloat(startPercentage.wrappedValue) / 1.0) * sliderWidth, y: sliderHeight / 2)
 
     self.startLocation = startLocation
-    self.currentLocation = startLocation
-    self.currentPercentage = startPercentage
-    self.onDrag = false
+    currentLocation = startLocation
+    currentPercentage = startPercentage
+    onDrag = false
   }
 
-  lazy var sliderDragGesture: _EndedGesture<_ChangedGesture<DragGesture>>  = DragGesture()
+  lazy var sliderDragGesture: _EndedGesture<_ChangedGesture<DragGesture>> = DragGesture()
     .onChanged { value in
       self.onDrag = true
 
@@ -102,8 +99,8 @@ class SliderHandle: ObservableObject {
   }
 
   private func calcSliderBtnLocation(_ dragLocation: CGPoint) {
-    if dragLocation.y != sliderHeight/2 {
-      currentLocation = CGPoint(x: dragLocation.x, y: sliderHeight/2)
+    if dragLocation.y != sliderHeight / 2 {
+      currentLocation = CGPoint(x: dragLocation.x, y: sliderHeight / 2)
     } else {
       currentLocation = dragLocation
     }
@@ -125,7 +122,6 @@ class SliderHandle: ObservableObject {
 }
 
 class CustomSlider: ObservableObject {
-
   // Slider Size
   final let width: CGFloat = 300
   final let lineWidth: CGFloat = 8
@@ -152,15 +148,13 @@ class CustomSlider: ObservableObject {
                               sliderHeight: lineWidth,
                               sliderValueStart: valueStart,
                               sliderValueEnd: valueEnd,
-                              startPercentage: highStartPercentage
-    )
+                              startPercentage: highStartPercentage)
 
     lowHandle = SliderHandle(sliderWidth: width,
                              sliderHeight: lineWidth,
                              sliderValueStart: valueStart,
                              sliderValueEnd: valueEnd,
-                             startPercentage: lowStartPercentage
-    )
+                             startPercentage: lowStartPercentage)
 
     anyCancellableHigh = highHandle.objectWillChange.sink { _ in
       self.lowHandle.upperBoundPercentage = self.highHandle.currentPercentage.value
@@ -222,7 +216,6 @@ struct SliderView: View {
         }
       )
   }
-
 }
 
 struct SliderHandleView: View {

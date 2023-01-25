@@ -9,7 +9,6 @@
 import Foundation
 
 protocol FiltersReadable {
-
   /// A Boolean value indicating whether FilterState contains at least on filter
 
   var isEmpty: Bool { get }
@@ -40,11 +39,9 @@ protocol FiltersReadable {
 
   /// Returns a set of all the filters contained by all the groups
   func getFilters() -> Set<Filter>
-
 }
 
 extension FiltersReadable {
-
   func contains(_ filter: FilterType) -> Bool {
     return getGroupIDs().anySatisfy { contains(filter, inGroupWithID: $0) }
   }
@@ -52,16 +49,14 @@ extension FiltersReadable {
   func getFiltersAndID() -> Set<FilterAndID> {
     return Set(getGroupIDs()
       .map { groupID in
-      getFilters(forGroupWithID: groupID).map { (groupID, $0)  }
+        getFilters(forGroupWithID: groupID).map { (groupID, $0) }
       }
       .flatMap { $0 }
       .map { FilterAndID(filter: $0.1, id: $0.0) })
   }
-
 }
 
 extension FiltersReadable {
-
   var disjunctiveFacetsAttributes: Set<Attribute> {
     let attributes = getGroupIDs()
       .filter { groupID in
@@ -73,9 +68,8 @@ extension FiltersReadable {
         }
       }
       .map(getFilters(forGroupWithID:))
-      .flatMap({ $0 })
+      .flatMap { $0 }
       .map { $0.attribute }
     return Set(attributes)
   }
-
 }

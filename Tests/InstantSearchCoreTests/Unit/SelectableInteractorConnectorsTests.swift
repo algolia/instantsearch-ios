@@ -11,7 +11,6 @@ import Foundation
 import XCTest
 
 class TestSelectableController<Item>: SelectableController {
-
   var item: Item?
   var onClick: ((Bool) -> Void)?
 
@@ -34,13 +33,10 @@ class TestSelectableController<Item>: SelectableController {
     isSelected = !isSelected
     onClick?(isSelected)
   }
-
 }
 
 class SelectableInteractorConnectorsTests: XCTestCase {
-
   func testConnectFilterState() {
-
     let filterState = FilterState()
 
     let interactor = SelectableInteractor<Filter.Tag>(item: "tag")
@@ -66,11 +62,9 @@ class SelectableInteractorConnectorsTests: XCTestCase {
     filterState.notify(.add(filter: Filter.Tag("tag"), toGroupWithID: groupID))
 
     XCTAssertTrue(interactor.isSelected)
-
   }
 
   func testConnectController() {
-
     let interactor = SelectableInteractor<Filter.Tag>(item: "tag")
 
     interactor.isSelected = true
@@ -120,7 +114,5 @@ class SelectableInteractorConnectorsTests: XCTestCase {
     controller.toggle()
 
     waitForExpectations(timeout: 5, handler: nil)
-
   }
-
 }

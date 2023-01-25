@@ -7,11 +7,10 @@
 //
 
 import Foundation
-import UIKit
 import InstantSearch
+import UIKit
 
 class FilterNumericRangeDemoViewController: UIViewController {
-
   let searchController: UISearchController
   let demoController: FilterNumericRangeDemoController
   let statsController: LabelStatsController
@@ -29,7 +28,8 @@ class FilterNumericRangeDemoViewController: UIViewController {
     super.init(nibName: nibNameOrNil, bundle: nibBundleOrNil)
   }
 
-  required init?(coder aDecoder: NSCoder) {
+  @available(*, unavailable)
+  required init?(coder _: NSCoder) {
     fatalError("init(coder:) has not been implemented")
   }
 
@@ -38,11 +38,9 @@ class FilterNumericRangeDemoViewController: UIViewController {
     setup()
     setupUI()
   }
-
 }
 
 private extension FilterNumericRangeDemoViewController {
-
   func setup() {
     navigationItem.searchController = searchController
     addChild(filterDebugViewController)
@@ -73,5 +71,4 @@ private extension FilterNumericRangeDemoViewController {
     view.addSubview(mainStackView)
     mainStackView.pin(to: view.safeAreaLayoutGuide)
   }
-
 }

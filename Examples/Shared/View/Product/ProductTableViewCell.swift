@@ -6,11 +6,10 @@
 //
 
 import Foundation
-import UIKit
 import SDWebImage
+import UIKit
 
 class ProductTableViewCell: UITableViewCell {
-
   let itemImageView: UIImageView
   let titleLabel: UILabel
   let subtitleLabel: UILabel
@@ -31,7 +30,8 @@ class ProductTableViewCell: UITableViewCell {
     backgroundColor = .systemBackground
   }
 
-  required init?(coder: NSCoder) {
+  @available(*, unavailable)
+  required init?(coder _: NSCoder) {
     fatalError("init(coder:) has not been implemented")
   }
 
@@ -74,5 +74,4 @@ class ProductTableViewCell: UITableViewCell {
     mainStackView.pin(to: contentView.layoutMarginsGuide)
     itemImageView.widthAnchor.constraint(equalTo: itemImageView.heightAnchor).isActive = true
   }
-
 }

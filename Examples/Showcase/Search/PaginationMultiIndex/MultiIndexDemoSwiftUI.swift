@@ -6,14 +6,12 @@
 //
 
 import Foundation
-import SwiftUI
 import InstantSearchCore
 import InstantSearchSwiftUI
+import SwiftUI
 
 struct MultiIndexDemoSwiftUI: SwiftUIDemo, PreviewProvider {
-
   class Controller {
-
     let demoController: MultiIndexDemoController
     let searchBoxController: SearchBoxObservableController
     let suggestionsHitsController: HitsObservableController<QuerySuggestion>
@@ -28,11 +26,9 @@ struct MultiIndexDemoSwiftUI: SwiftUIDemo, PreviewProvider {
       demoController.suggestionsHitsConnector.connectController(suggestionsHitsController)
       demoController.productsHitsConnector.connectController(productsHitsController)
     }
-
   }
 
   struct ContentView: View {
-
     @ObservedObject var searchBoxController: SearchBoxObservableController
     @ObservedObject var suggestionsHitsController: HitsObservableController<QuerySuggestion>
     @ObservedObject var productsHitsController: HitsObservableController<Hit<StoreItem>>
@@ -96,21 +92,20 @@ struct MultiIndexDemoSwiftUI: SwiftUIDemo, PreviewProvider {
       return VStack {
         AsyncImage(url: product.object.images.first!,
                    content: { image in
-          image.resizable()
-            .aspectRatio(contentMode: .fit)
-        },
+                     image.resizable()
+                       .aspectRatio(contentMode: .fit)
+                   },
                    placeholder: {
-          ProgressView()
-        }
-        )
-        .scaledToFit()
-        .frame(width: 100,
-               height: 100,
-               alignment: .center)
+                     ProgressView()
+                   })
+                   .scaledToFit()
+                   .frame(width: 100,
+                          height: 100,
+                          alignment: .center)
         if let highlightedTitle = product.hightlightedString(forKey: "name") {
           Text(highlightedString: highlightedTitle,
                highlighted: { Text($0).foregroundColor(.blue) })
-          .font(.system(.subheadline))
+            .font(.system(.subheadline))
         } else {
           Text(product.object.name)
             .font(.system(.headline))
@@ -135,7 +130,6 @@ struct MultiIndexDemoSwiftUI: SwiftUIDemo, PreviewProvider {
         productsHitsController.notifyAppearanceOfHit(atIndex: index)
       }
     }
-
   }
 
   static func contentView(with controller: Controller) -> ContentView {
@@ -151,5 +145,4 @@ struct MultiIndexDemoSwiftUI: SwiftUIDemo, PreviewProvider {
         .navigationBarTitle("Paging Multiple Index")
     }
   }
-
 }

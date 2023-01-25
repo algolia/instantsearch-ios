@@ -14,7 +14,8 @@ public class Computation<N: Numeric> {
       onNumericUpdate(numeric)
     }
   }
-  var onNumericUpdate: ((N?) -> Void)
+
+  var onNumericUpdate: (N?) -> Void
 
   public init(numeric: N?, onNumericUpdate: @escaping ((N?) -> Void)) {
     self.numeric = numeric
@@ -22,18 +23,18 @@ public class Computation<N: Numeric> {
   }
 
   public func increment(step: N = 1, default: N = 0) {
-    self.numeric = (self.numeric != nil) ? self.numeric! + step : `default`
+    numeric = (numeric != nil) ? numeric! + step : `default`
   }
 
   public func decrement(step: N = 1, default: N = 0) {
-    self.numeric = (self.numeric != nil) ? self.numeric! - step : `default`
+    numeric = (numeric != nil) ? numeric! - step : `default`
   }
 
   public func multiply(step: N = 1, default: N = 0) {
-    self.numeric = (self.numeric != nil) ? self.numeric! * step : `default`
+    numeric = (numeric != nil) ? numeric! * step : `default`
   }
 
   public func just(value: N?) {
-    self.numeric = value
+    numeric = value
   }
 }

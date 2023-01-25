@@ -12,7 +12,6 @@ import Foundation
 ///
 /// [Documentation](https://www.algolia.com/doc/api-reference/widgets/toggle-refinement/ios/)
 public class FilterToggleConnector<Filter: FilterType> {
-
   /// FilterState that holds your filters
   public let filterState: FilterState
 
@@ -38,9 +37,9 @@ public class FilterToggleConnector<Filter: FilterType> {
               groupName: String? = nil) {
     self.filterState = filterState
     self.interactor = interactor
-    self.filterStateConnection = interactor.connectFilterState(filterState,
-                                                               operator: `operator`,
-                                                               groupName: groupName ?? interactor.item.attribute.rawValue)
+    filterStateConnection = interactor.connectFilterState(filterState,
+                                                          operator: `operator`,
+                                                          groupName: groupName ?? interactor.item.attribute.rawValue)
     controllerConnections = []
     Telemetry.shared.traceConnector(type: .filterToggle,
                                     parameters: [
@@ -75,11 +74,9 @@ public class FilterToggleConnector<Filter: FilterType> {
                                       groupName == nil ? .none : .groupName
                                     ])
   }
-
 }
 
 extension FilterToggleConnector: Connection {
-
   public func connect() {
     filterStateConnection.connect()
     controllerConnections.forEach { $0.connect() }
@@ -89,5 +86,4 @@ extension FilterToggleConnector: Connection {
     filterStateConnection.disconnect()
     controllerConnections.forEach { $0.disconnect() }
   }
-
 }

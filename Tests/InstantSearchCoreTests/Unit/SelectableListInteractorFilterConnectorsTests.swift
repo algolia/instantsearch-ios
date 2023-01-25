@@ -11,9 +11,7 @@ import Foundation
 import XCTest
 
 class SelectableListInteractorFilterConnectorsTests: XCTestCase {
-
   func testConstructors() {
-
     let facetFilterListInteractor = FilterListInteractor<Filter.Facet>()
     XCTAssertEqual(facetFilterListInteractor.selectionMode, .multiple)
 
@@ -22,11 +20,9 @@ class SelectableListInteractorFilterConnectorsTests: XCTestCase {
 
     let tagFilterListInteractor = FilterListInteractor<Filter.Tag>()
     XCTAssertEqual(tagFilterListInteractor.selectionMode, .multiple)
-
   }
 
   func testFilterStateConnector() {
-
     let interactor = FilterListInteractor<Filter.Tag>()
 
     interactor.items = [
@@ -54,11 +50,9 @@ class SelectableListInteractorFilterConnectorsTests: XCTestCase {
     interactor.computeSelections(selectingItemForKey: "tag2")
 
     XCTAssertTrue(filterState.contains(Filter.Tag(value: "tag2"), inGroupWithID: .or(name: "", filterType: .tag)))
-
   }
 
   class TestController<F: FilterType>: SelectableListController {
-
     typealias Item = F
 
     var onClick: ((F) -> Void)?
@@ -77,11 +71,9 @@ class SelectableListInteractorFilterConnectorsTests: XCTestCase {
     func clickOn(_ item: F) {
       onClick?(item)
     }
-
   }
 
   func testControllerConnector() {
-
     let interactor = FilterListInteractor<Filter.Tag>()
     let controller = TestController<Filter.Tag>()
 
@@ -109,7 +101,6 @@ class SelectableListInteractorFilterConnectorsTests: XCTestCase {
     let itemsChangedReloadExpectation = expectation(description: "items changed reload expectation")
 
     controller.didReload = {
-
       XCTAssertEqual(controller.selectableItems.map { $0.0 }, [
         Filter.Tag(value: "tag1"),
         Filter.Tag(value: "tag2"),
@@ -136,13 +127,12 @@ class SelectableListInteractorFilterConnectorsTests: XCTestCase {
     let selectionsChangedReloadExpectation = expectation(description: "selections changed reload expectation")
 
     controller.didReload = {
-
       XCTAssertEqual(controller.selectableItems.map { $0.0 }, [
         Filter.Tag(value: "tag1"),
         Filter.Tag(value: "tag2"),
         Filter.Tag(value: "tag3"),
         Filter.Tag(value: "tag4")
-        ])
+      ])
 
       XCTAssertEqual(controller.selectableItems.map { $0.1 }, [
         false,
@@ -170,7 +160,5 @@ class SelectableListInteractorFilterConnectorsTests: XCTestCase {
     controller.clickOn("tag1")
 
     waitForExpectations(timeout: 2, handler: nil)
-
   }
-
 }

@@ -6,11 +6,10 @@
 //
 
 import Foundation
-import UIKit
 import InstantSearchCore
+import UIKit
 
 class ProductsTableViewController: UITableViewController, HitsController {
-
   let cellIdentifier = "cellID"
 
   var hitsSource: HitsInteractor<Hit<Product>>?
@@ -22,7 +21,7 @@ class ProductsTableViewController: UITableViewController, HitsController {
     tableView.register(ProductTableViewCell.self, forCellReuseIdentifier: cellIdentifier)
   }
 
-  override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+  override func tableView(_ tableView: UITableView, numberOfRowsInSection _: Int) -> Int {
     let hitsCount = hitsSource?.numberOfHits() ?? 0
     if hitsCount == 0 {
       tableView.setEmptyMessage("No results")
@@ -43,14 +42,13 @@ class ProductsTableViewController: UITableViewController, HitsController {
     return cell
   }
 
-  override func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
+  override func tableView(_: UITableView, heightForRowAt _: IndexPath) -> CGFloat {
     return 80
   }
 
-  override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+  override func tableView(_: UITableView, didSelectRowAt indexPath: IndexPath) {
     if let hit = hitsSource?.hit(atIndex: indexPath.row) {
       didSelect?(hit)
     }
   }
-
 }

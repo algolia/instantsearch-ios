@@ -7,71 +7,70 @@
 //
 
 #if !InstantSearchCocoaPods
-import InstantSearchCore
+  import InstantSearchCore
 #endif
 #if canImport(UIKit) && (os(iOS) || os(macOS) || os(tvOS))
-import UIKit
+  import UIKit
 
-public class NumericTextFieldController: NSObject, NumberController {
+  public class NumericTextFieldController: NSObject, NumberController {
+    public typealias Item = Int
 
-  public typealias Item = Int
+    public func setItem(_ item: Int) {
+      textField.text = "\(item)"
+    }
 
-  public func setItem(_ item: Int) {
-    self.textField.text = "\(item)"
+    var computation: Computation<Int>?
+
+    public func setComputation(computation: Computation<Int>) {
+      self.computation = computation
+    }
+
+    public func setBounds(bounds: ClosedRange<Int>?) {
+      textField.placeholder = bounds.flatMap { "\($0.lowerBound) - \($0.upperBound)" }
+    }
+
+    public let textField: UITextField
+
+    public init(textField: UITextField = .init()) {
+      self.textField = textField
+      super.init()
+      #if os(iOS) || os(macOS)
+        textField.addDoneCancelToolbar(onDone: (target: self, action: #selector(doneButtonTappedForMyNumericTextField)))
+      #endif
+    }
+
+    @objc func doneButtonTappedForMyNumericTextField() {
+      guard let text = textField.text, let intText = Int(text) else { return }
+      computation?.just(value: intText)
+      textField.resignFirstResponder()
+    }
+
+    public func invalidate() {
+      textField.text = nil
+    }
   }
 
-  var computation: Computation<Int>?
+  #if os(iOS) || os(macOS)
+    extension UITextField {
+      func addDoneCancelToolbar(onDone: (target: Any, action: Selector)? = nil, onCancel: (target: Any, action: Selector)? = nil) {
+        let onCancel = onCancel ?? (target: self, action: #selector(cancelButtonTapped))
+        let onDone = onDone ?? (target: self, action: #selector(doneButtonTapped))
 
-  public func setComputation(computation: Computation<Int>) {
-    self.computation = computation
-  }
+        let toolbar = UIToolbar()
+        toolbar.barStyle = .default
+        toolbar.items = [
+          UIBarButtonItem(title: "Cancel", style: .plain, target: onCancel.target, action: onCancel.action),
+          UIBarButtonItem(barButtonSystemItem: .flexibleSpace, target: self, action: nil),
+          UIBarButtonItem(title: "Done", style: .done, target: onDone.target, action: onDone.action)
+        ]
+        toolbar.sizeToFit()
 
-  public func setBounds(bounds: ClosedRange<Int>?) {
-    textField.placeholder = bounds.flatMap { "\($0.lowerBound) - \($0.upperBound)" }
-  }
+        inputAccessoryView = toolbar
+      }
 
-  public let textField: UITextField
-
-  public init(textField: UITextField = .init()) {
-    self.textField = textField
-    super.init()
-    #if (os(iOS) || os(macOS))
-    textField.addDoneCancelToolbar(onDone: (target: self, action: #selector(doneButtonTappedForMyNumericTextField)))
-    #endif
-  }
-
-  @objc func doneButtonTappedForMyNumericTextField() {
-    guard let text = textField.text, let intText = Int(text) else { return }
-    self.computation?.just(value: intText)
-    textField.resignFirstResponder()
-  }
-
-  public func invalidate() {
-    textField.text = nil
-  }
-
-}
-#if (os(iOS) || os(macOS))
-extension UITextField {
-  func addDoneCancelToolbar(onDone: (target: Any, action: Selector)? = nil, onCancel: (target: Any, action: Selector)? = nil) {
-    let onCancel = onCancel ?? (target: self, action: #selector(cancelButtonTapped))
-    let onDone = onDone ?? (target: self, action: #selector(doneButtonTapped))
-
-    let toolbar: UIToolbar = UIToolbar()
-    toolbar.barStyle = .default
-    toolbar.items = [
-      UIBarButtonItem(title: "Cancel", style: .plain, target: onCancel.target, action: onCancel.action),
-      UIBarButtonItem(barButtonSystemItem: .flexibleSpace, target: self, action: nil),
-      UIBarButtonItem(title: "Done", style: .done, target: onDone.target, action: onDone.action)
-    ]
-    toolbar.sizeToFit()
-
-    self.inputAccessoryView = toolbar
-  }
-
-  // Default actions:
-  @objc func doneButtonTapped() { self.resignFirstResponder() }
-  @objc func cancelButtonTapped() { self.resignFirstResponder() }
-}
-#endif
+      // Default actions:
+      @objc func doneButtonTapped() { resignFirstResponder() }
+      @objc func cancelButtonTapped() { resignFirstResponder() }
+    }
+  #endif
 #endif

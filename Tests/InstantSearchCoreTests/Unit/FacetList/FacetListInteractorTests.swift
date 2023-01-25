@@ -6,15 +6,13 @@
 //  Copyright © 2019 Algolia. All rights reserved.
 //
 
+import AlgoliaSearchClient
 import Foundation
 @testable import InstantSearchCore
-import AlgoliaSearchClient
 import XCTest
 
 class FacetListInteractorTests: XCTestCase {
-
   class TestController: FacetListController {
-
     typealias Item = Facet
 
     var onClick: ((Facet) -> Void)?
@@ -28,7 +26,6 @@ class FacetListInteractorTests: XCTestCase {
     func reload() {
       didReload?()
     }
-
   }
 
   func testFacetListInteractorConstructor() {
@@ -43,7 +40,6 @@ class FacetListInteractorTests: XCTestCase {
   }
 
   func testConnectFilterState() {
-
     let interactor = FacetListInteractor(selectionMode: .single)
 
     interactor.items = [
@@ -68,7 +64,6 @@ class FacetListInteractorTests: XCTestCase {
     filterState.notify(.add(filter: Filter.Facet(attribute: "categories", stringValue: "cat2"), toGroupWithID: groupID))
 
     XCTAssertEqual(interactor.selections, ["cat1", "cat2"])
-
   }
 
   func testConnectSearcher() {
@@ -93,12 +88,11 @@ class FacetListInteractorTests: XCTestCase {
 
       XCTAssertEqual(Set(interactor.items), expectedFacets)
 
-    } catch let error {
+    } catch {
       XCTFail(error.localizedDescription)
     }
-
   }
-  
+
   @available(*, deprecated, message: "Test to remove when MulstIndexSearcher obsoleted")
   func testConnectMultiIndexSearcher() {
     let interactor = FacetListInteractor(selectionMode: .single)
@@ -112,7 +106,7 @@ class FacetListInteractorTests: XCTestCase {
       let results2: SearchResponse = try JSONDecoder().decode(fromResource: "SearchResultFacets2", withExtension: "json")
 
       let searchResponses = SearchesResponse(results: [results1, results2])
-      
+
       searcher.onResults.fire(searchResponses)
 
       let expectedFacets: Set<Facet> = [
@@ -124,10 +118,8 @@ class FacetListInteractorTests: XCTestCase {
 
       XCTAssertEqual(Set(interactor.items), expectedFacets)
 
-    } catch let error {
+    } catch {
       XCTFail(error.localizedDescription)
     }
-
   }
-
 }

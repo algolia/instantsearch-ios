@@ -19,23 +19,19 @@ struct TestPageable<Item>: Pageable {
 }
 
 class TestPageLoaderDelegate: PageLoadable {
-
   var requestedLoadPage: ((Int) -> Void)?
 
   func loadPage(atIndex pageIndex: Int) {
     requestedLoadPage?(pageIndex)
   }
-
 }
 
 class PaginatorTests: XCTestCase {
-
   func toPages<T>(_ tuples: [(index: Int, items: [T])]) -> [PageMap<T>.Page] {
     return tuples.map { PageMap.Page(index: $0.index, items: $0.items) }
   }
 
   func testProcessing() {
-
     let paginator = Paginator<String>()
 
     let p0 = ["i1", "i2", "i3"]
@@ -74,11 +70,9 @@ class PaginatorTests: XCTestCase {
     XCTAssertEqual(pageMap1.latestPageIndex, page1.index)
     XCTAssertEqual(pageMap1.loadedPagesCount, 2)
     XCTAssertEqual(pageMap1.count, 6)
-
   }
 
   func testInvalidation() {
-
     let paginator = Paginator<String>()
     let page0 = TestPageable(index: 0, items: ["i1", "i2", "i3"])
     let page1 = TestPageable(index: 0, items: ["i4", "i5", "i6"])
@@ -91,7 +85,5 @@ class PaginatorTests: XCTestCase {
     paginator.process(page1)
     XCTAssertNotNil(paginator.pageMap)
     XCTAssertEqual(paginator.pageMap?.count, 3)
-
   }
-
 }

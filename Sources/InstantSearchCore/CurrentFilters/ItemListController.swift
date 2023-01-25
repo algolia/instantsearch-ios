@@ -9,7 +9,6 @@
 import Foundation
 
 public protocol ItemListController: AnyObject {
-
   associatedtype Item: Hashable
 
   func setItems(_ items: [Item])

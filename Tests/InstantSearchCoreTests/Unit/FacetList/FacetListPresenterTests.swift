@@ -11,9 +11,7 @@ import Foundation
 import XCTest
 
 class FacetListPresenterTests: XCTestCase {
-
   func testCountDescSelectedOnTop() {
-
     let initial: [SelectableItem<Facet>] = [
       (.init(value: "red", count: 10, highlighted: nil), true),
       (.init(value: "orange", count: 20, highlighted: nil), true),
@@ -36,11 +34,9 @@ class FacetListPresenterTests: XCTestCase {
     let actual = refinementFacetsPresenter.transform(refinementFacets: initial)
 
     XCTAssertEqual(expected.map { $0.item }, actual.map { $0.item })
-
   }
 
   func testCountDescNotSelectedOnTop() {
-
     let initial: [SelectableItem<Facet>] = [
       (.init(value: "red", count: 10, highlighted: nil), true),
       (.init(value: "orange", count: 20, highlighted: nil), true),
@@ -59,16 +55,14 @@ class FacetListPresenterTests: XCTestCase {
       (.init(value: "green", count: 0, highlighted: nil), true)
     ]
 
-    let refinementFacetsPresenter = FacetListPresenter(sortBy: [ .count(order: .descending)])
+    let refinementFacetsPresenter = FacetListPresenter(sortBy: [.count(order: .descending)])
 
     let actual = refinementFacetsPresenter.transform(refinementFacets: initial)
 
     XCTAssertEqual(expected.map { $0.item }, actual.map { $0.item })
-
   }
 
   func testCountAscSelectedOnTop() {
-
     let initial: [SelectableItem<Facet>] = [
       (.init(value: "red", count: 10, highlighted: nil), true),
       (.init(value: "orange", count: 20, highlighted: nil), true),
@@ -91,11 +85,9 @@ class FacetListPresenterTests: XCTestCase {
     let actual = refinementFacetsPresenter.transform(refinementFacets: initial)
 
     XCTAssertEqual(expected.map { $0.item }, actual.map { $0.item })
-
   }
 
   func testCountAscNotSelectedOnTop() {
-
     let initial: [SelectableItem<Facet>] = [
       (.init(value: "red", count: 10, highlighted: nil), true),
       (.init(value: "orange", count: 20, highlighted: nil), true),
@@ -114,7 +106,7 @@ class FacetListPresenterTests: XCTestCase {
       (.init(value: "green", count: 0, highlighted: nil), true)
     ]
 
-    let refinementFacetsPresenter = FacetListPresenter(sortBy: [ .count(order: .descending)])
+    let refinementFacetsPresenter = FacetListPresenter(sortBy: [.count(order: .descending)])
 
     let actual = refinementFacetsPresenter.transform(refinementFacets: initial)
 
@@ -122,7 +114,6 @@ class FacetListPresenterTests: XCTestCase {
   }
 
   func testNameAscSelectedOnTop() {
-
     let initial: [SelectableItem<Facet>] = [
       (.init(value: "red", count: 10, highlighted: nil), true),
       (.init(value: "orange", count: 20, highlighted: nil), true),
@@ -148,7 +139,6 @@ class FacetListPresenterTests: XCTestCase {
   }
 
   func testNameAscNotSelectedOnTop() {
-
     let initial: [SelectableItem<Facet>] = [
       (.init(value: "red", count: 10, highlighted: nil), true),
       (.init(value: "orange", count: 20, highlighted: nil), true),
@@ -174,7 +164,6 @@ class FacetListPresenterTests: XCTestCase {
   }
 
   func testNameDescSelectedOnTop() {
-
     let initial: [SelectableItem<Facet>] = [
       (.init(value: "red", count: 10, highlighted: nil), true),
       (.init(value: "orange", count: 20, highlighted: nil), true),
@@ -242,7 +231,6 @@ class FacetListPresenterTests: XCTestCase {
 //  }
 
   func testSortWithEqualCounts() {
-
     let initial: [SelectableItem<Facet>] = [
       (.init(value: "blue", count: 10, highlighted: nil), false),
       (.init(value: "red", count: 10, highlighted: nil), true),
@@ -261,7 +249,6 @@ class FacetListPresenterTests: XCTestCase {
     let actual = refinementFacetsPresenter.transform(refinementFacets: initial)
 
     XCTAssertEqual(expected.map { $0.item }, actual.map { $0.item })
-
   }
 
 //  func testMergeWithFacetAndRefinementValues() {

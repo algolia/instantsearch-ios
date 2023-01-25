@@ -6,11 +6,10 @@
 //
 
 import Foundation
-import UIKit
 import InstantSearch
+import UIKit
 
 class StoreItemsTableViewController: UITableViewController, HitsController {
-
   var hitsSource: HitsInteractor<Hit<StoreItem>>?
 
   var didSelect: ((Int, Hit<StoreItem>) -> Void)?
@@ -22,7 +21,7 @@ class StoreItemsTableViewController: UITableViewController, HitsController {
     tableView.register(ProductTableViewCell.self, forCellReuseIdentifier: cellIdentifier)
   }
 
-  override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+  override func tableView(_: UITableView, numberOfRowsInSection _: Int) -> Int {
     setEmptyStateIfNeeded()
     return hitsSource?.numberOfHits() ?? 0
   }
@@ -38,11 +37,11 @@ class StoreItemsTableViewController: UITableViewController, HitsController {
     return cell
   }
 
-  override func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
+  override func tableView(_: UITableView, heightForRowAt _: IndexPath) -> CGFloat {
     return 80
   }
 
-  override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+  override func tableView(_: UITableView, didSelectRowAt indexPath: IndexPath) {
     if let hit = hitsSource?.hit(atIndex: indexPath.row) {
       didSelect?(indexPath.row, hit)
     }
@@ -55,5 +54,4 @@ class StoreItemsTableViewController: UITableViewController, HitsController {
       tableView.restore()
     }
   }
-
 }

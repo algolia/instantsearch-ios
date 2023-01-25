@@ -7,13 +7,11 @@
 //
 
 import Foundation
-import XCTest
 @testable import InstantSearchCore
+import XCTest
 
 class SearchBoxInteractorTests: XCTestCase {
-
   func testOnQueryChangedEvent() {
-
     let interactor = SearchBoxInteractor()
 
     let onQueryChangedExpectation = expectation(description: "on query changed")
@@ -28,11 +26,9 @@ class SearchBoxInteractorTests: XCTestCase {
     interactor.query = changedQuery
 
     waitForExpectations(timeout: 2, handler: nil)
-
   }
 
   func testOnQuerySubmittedEvent() {
-
     let interactor = SearchBoxInteractor()
     let onQuerySubmittedExpectation = expectation(description: "on query submitted")
     let submittedQuery = "q2"
@@ -46,7 +42,5 @@ class SearchBoxInteractorTests: XCTestCase {
     interactor.submitQuery()
 
     waitForExpectations(timeout: 2, handler: nil)
-
   }
-
 }

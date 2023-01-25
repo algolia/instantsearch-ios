@@ -1,6 +1,6 @@
 //
 //  AbstractSearcher+TextualQueryProvider.swift
-//  
+//
 //
 //  Created by Vladislav Fitc on 15/12/2020.
 //
@@ -8,9 +8,7 @@
 import Foundation
 
 public extension AbstractSearcher where Service.Request: TextualQueryProvider {
-
   var query: String? {
-
     get {
       request.textualQuery
     }
@@ -18,7 +16,5 @@ public extension AbstractSearcher where Service.Request: TextualQueryProvider {
     set {
       request.textualQuery = newValue
     }
-
   }
-
 }

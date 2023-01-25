@@ -10,7 +10,6 @@
 import Foundation
 
 public struct FilterMapInteractorFilterStateConnection<Filter: FilterType>: Connection {
-
   public let interactor: FilterMapInteractor<Filter>
   public let filterState: FilterState
   public let attribute: Attribute
@@ -20,7 +19,7 @@ public struct FilterMapInteractorFilterStateConnection<Filter: FilterType>: Conn
   public init(interactor: FilterMapInteractor<Filter>,
               filterState: FilterState,
               attribute: Attribute,
-              `operator`: RefinementOperator,
+              operator: RefinementOperator,
               groupName: String? = nil) {
     self.interactor = interactor
     self.filterState = filterState
@@ -55,7 +54,6 @@ public struct FilterMapInteractorFilterStateConnection<Filter: FilterType>: Conn
                                                                                              filterState: FilterState,
 
                                                                                              via accessor: Accessor) where Accessor.Filter == Filter {
-
     let removeSelectedItem = { [weak interactor] in
       interactor?.selected.flatMap { interactor?.items[$0] }.flatMap(accessor.remove)
     }
@@ -69,7 +67,6 @@ public struct FilterMapInteractorFilterStateConnection<Filter: FilterType>: Conn
       addItem(computedSelectionKey)
       filterState.notifyChange()
     }
-
   }
 
   private func whenFilterStateChangedThenUpdateSelected<Accessor: SpecializedGroupAccessor>(interactor: FilterMapInteractor<Filter>,
@@ -83,11 +80,9 @@ public struct FilterMapInteractorFilterStateConnection<Filter: FilterType>: Conn
 
     filterState.onChange.subscribePast(with: interactor, callback: onChange)
   }
-
 }
 
 public extension FilterMapInteractor {
-
   @discardableResult func connectFilterState(_ filterState: FilterState,
                                              attribute: Attribute,
                                              operator: RefinementOperator,
@@ -96,7 +91,6 @@ public extension FilterMapInteractor {
     connection.connect()
     return connection
   }
-
 }
 
 @available(*, deprecated, renamed: "FilterMapInteractorFilterStateConnection")

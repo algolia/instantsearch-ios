@@ -8,10 +8,9 @@
 import UIKit
 
 class SceneDelegate: UIResponder, UIWindowSceneDelegate {
-
   var window: UIWindow?
 
-  func scene(_ scene: UIScene, willConnectTo session: UISceneSession, options connectionOptions: UIScene.ConnectionOptions) {
+  func scene(_ scene: UIScene, willConnectTo _: UISceneSession, options _: UIScene.ConnectionOptions) {
     let controller = AlgoliaController()
     let rootView = ContentView(searchBoxController: controller.searchBoxController,
                                hitsController: controller.hitsController,
@@ -21,5 +20,4 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
                                                          rootView: rootView)
     setMain(viewController, for: scene)
   }
-
 }

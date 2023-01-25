@@ -9,10 +9,8 @@
 
 import Foundation
 
-extension FilterGroup {
-
-  public enum ID: Hashable {
-
+public extension FilterGroup {
+  enum ID: Hashable {
     public enum Filter {
       case facet, numeric, tag
 
@@ -28,7 +26,6 @@ extension FilterGroup {
           return nil
         }
       }
-
     }
 
     case or(name: String, filterType: Filter)
@@ -37,9 +34,9 @@ extension FilterGroup {
 
     var name: String {
       switch self {
-      case .or(name: let name, _),
-           .and(name: let name),
-           .hierarchical(name: let name):
+      case let .or(name: name, _),
+           let .and(name: name),
+           let .hierarchical(name: name):
         return name
       }
     }
@@ -75,22 +72,18 @@ extension FilterGroup {
         return nil
       }
     }
-
   }
-
 }
 
 extension FilterGroup.ID: CustomStringConvertible {
-
   public var description: String {
     switch self {
-    case .and(name: let name):
+    case let .and(name: name):
       return "and<\(name)>"
-    case .or(name: let name, _):
+    case let .or(name: name, _):
       return "or<\(name)>"
-    case .hierarchical(name: let name):
+    case let .hierarchical(name: name):
       return "hierarchical<\(name)>"
     }
   }
-
 }

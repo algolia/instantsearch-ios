@@ -5,12 +5,11 @@
 //  Created by Vladislav Fitc on 05/05/2022.
 //
 
-import UIKit
-import InstantSearchInsights
 import InstantSearch
+import InstantSearchInsights
+import UIKit
 
 class InsightsViewController: UIViewController {
-
   let searchController: UISearchController
   let searcher: HitsSearcher
 
@@ -39,7 +38,8 @@ class InsightsViewController: UIViewController {
     super.init(nibName: nibNameOrNil, bundle: nibBundleOrNil)
   }
 
-  required init?(coder: NSCoder) {
+  @available(*, unavailable)
+  required init?(coder _: NSCoder) {
     fatalError("init(coder:) has not been implemented")
   }
 
@@ -62,10 +62,8 @@ class InsightsViewController: UIViewController {
     searchController.automaticallyShowsCancelButton = false
     searcher.search()
 
-    searchResultsController.didSelect = { [weak self]  index, hit in
+    searchResultsController.didSelect = { [weak self] index, hit in
       self?.hitsTracker.trackClick(for: hit, position: index)
     }
-
   }
-
 }

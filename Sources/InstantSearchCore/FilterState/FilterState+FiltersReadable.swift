@@ -9,7 +9,6 @@
 import Foundation
 
 extension FilterState: FiltersReadable {
-
   func getGroupIDs() -> Set<FilterGroup.ID> {
     return filters.getGroupIDs()
   }
@@ -37,5 +36,4 @@ extension FilterState: FiltersReadable {
   public func getFiltersAndID() -> Set<FilterAndID> {
     return filters.getFiltersAndID()
   }
-
 }

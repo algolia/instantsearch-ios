@@ -7,11 +7,10 @@
 //
 
 import Foundation
-import UIKit
 import SDWebImage
+import UIKit
 
 class ProductCollectionViewCell: UICollectionViewCell {
-
   let itemImageView: UIImageView
   let titleLabel: UILabel
   let subtitleLabel: UILabel
@@ -31,7 +30,8 @@ class ProductCollectionViewCell: UICollectionViewCell {
     layout()
   }
 
-  required init?(coder: NSCoder) {
+  @available(*, unavailable)
+  required init?(coder _: NSCoder) {
     fatalError("init(coder:) has not been implemented")
   }
 
@@ -77,5 +77,4 @@ class ProductCollectionViewCell: UICollectionViewCell {
     itemImageView.widthAnchor.constraint(equalTo: itemImageView.heightAnchor).isActive = true
     mainStackView.pin(to: layoutMarginsGuide)
   }
-
 }

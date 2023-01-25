@@ -6,12 +6,11 @@
 //  Copyright © 2022 Algolia. All rights reserved.
 //
 
+import AlgoliaSearchClient
 import Foundation
 import UIKit
-import AlgoliaSearchClient
 
 class RecommendController {
-
   let recommendClient: RecommendClient
 
   init(recommendClient: RecommendClient) {
@@ -22,11 +21,11 @@ class RecommendController {
     recommendClient.getRelatedProducts(options: [.init(indexName: .ecommerceRecommend, objectID: objectID)]) { result in
       DispatchQueue.main.async {
         switch result {
-        case .failure(let error):
+        case let .failure(error):
           let alertController = UIAlertController(title: "Error", message: "\(error)", preferredStyle: .alert)
           alertController.addAction(UIAlertAction(title: "OK", style: .cancel))
           sourceViewController.present(alertController, animated: animated)
-        case .success(let response):
+        case let .success(response):
           let viewController = StoreItemsTableViewController.with(response.results.first!)
           viewController.title = "Related items"
           let navigationController = UINavigationController(rootViewController: viewController)
@@ -34,7 +33,5 @@ class RecommendController {
         }
       }
     }
-
   }
-
 }

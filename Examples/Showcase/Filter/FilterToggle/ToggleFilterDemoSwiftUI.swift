@@ -12,9 +12,7 @@ import InstantSearchSwiftUI
 import SwiftUI
 
 struct ToggleFilterDemoSwiftUI: SwiftUIDemo, PreviewProvider {
-
   class Controller {
-
     let demoController: ToggleFilterDemoController
 
     let filterStateController: FilterStateObservableController
@@ -25,22 +23,20 @@ struct ToggleFilterDemoSwiftUI: SwiftUIDemo, PreviewProvider {
     let numericFilterFilterObservableController: FilterToggleObservableController<Filter.Numeric>
 
     init() {
-      self.tagFilterFilterObservableController = .init()
-      self.facetFilterFilterObservableController = .init()
-      self.numericFilterFilterObservableController = .init()
-      self.demoController = .init()
-      self.filterStateController = .init(filterState: demoController.filterState)
-      self.clearFilterController = .init()
+      tagFilterFilterObservableController = .init()
+      facetFilterFilterObservableController = .init()
+      numericFilterFilterObservableController = .init()
+      demoController = .init()
+      filterStateController = .init(filterState: demoController.filterState)
+      clearFilterController = .init()
       demoController.clearFilterConnector.connectController(clearFilterController)
       demoController.sizeConstraintConnector.connectController(numericFilterFilterObservableController)
       demoController.couponConnector.connectController(facetFilterFilterObservableController)
       demoController.vintageConnector.connectController(tagFilterFilterObservableController)
     }
-
   }
 
   struct ContentView: View {
-
     @ObservedObject var filterStateController: FilterStateObservableController
     @ObservedObject var clearFilterController: FilterClearObservableController
 
@@ -68,7 +64,6 @@ struct ToggleFilterDemoSwiftUI: SwiftUIDemo, PreviewProvider {
         Spacer()
       }.padding()
     }
-
   }
 
   static func contentView(with controller: Controller) -> ContentView {
@@ -86,7 +81,6 @@ struct ToggleFilterDemoSwiftUI: SwiftUIDemo, PreviewProvider {
         .navigationBarTitle("Filter Toggle")
     }
   }
-
 }
 
 struct CheckboxToggleStyle: ToggleStyle {

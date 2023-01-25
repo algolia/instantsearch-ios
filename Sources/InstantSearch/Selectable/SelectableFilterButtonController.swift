@@ -7,36 +7,34 @@
 // b
 
 #if !InstantSearchCocoaPods
-import InstantSearchCore
+  import InstantSearchCore
 #endif
 #if canImport(UIKit) && (os(iOS) || os(tvOS) || os(macOS))
-import UIKit
+  import UIKit
 
-public class SelectableFilterButtonController<F: FilterType>: SelectableController {
+  public class SelectableFilterButtonController<F: FilterType>: SelectableController {
+    public typealias Item = F
 
-  public typealias Item = F
+    public let button: UIButton
 
-  public let button: UIButton
+    public var onClick: ((Bool) -> Void)?
 
-  public var onClick: ((Bool) -> Void)?
+    public init(button: UIButton) {
+      self.button = button
+      button.addTarget(self, action: #selector(didToggleButton), for: .touchUpInside)
+    }
 
-  public init(button: UIButton) {
-    self.button = button
-    button.addTarget(self, action: #selector(didToggleButton), for: .touchUpInside)
+    @objc func didToggleButton(_ button: UIButton) {
+      onClick?(!button.isSelected)
+    }
+
+    public func setSelected(_ isSelected: Bool) {
+      button.isSelected = isSelected
+    }
+
+    public func setItem(_ item: F) {
+      let title = DefaultPresenter.Filter.present(Filter(item))
+      button.setTitle(title, for: .normal)
+    }
   }
-
-  @objc func didToggleButton(_ button: UIButton) {
-    onClick?(!button.isSelected)
-  }
-
-  public func setSelected(_ isSelected: Bool) {
-    self.button.isSelected = isSelected
-  }
-
-  public func setItem(_ item: F) {
-    let title = DefaultPresenter.Filter.present(Filter(item))
-    button.setTitle(title, for: .normal)
-  }
-
-}
 #endif

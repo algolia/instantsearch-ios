@@ -9,9 +9,8 @@
 import Foundation
 
 struct Algolia {
-
-  struct SessionConfig {
-    static func `default`(appId: String, apiKey: String) -> URLSessionConfiguration {
+  enum SessionConfig {
+    static func `default`(appId _: String, apiKey _: String) -> URLSessionConfiguration {
       let config = URLSessionConfiguration.default
       config.requestCachePolicy = .reloadIgnoringLocalAndRemoteCacheData
       config.urlCache = nil
@@ -20,7 +19,7 @@ struct Algolia {
     }
   }
 
-  struct Insights {
+  enum Insights {
     // Default flush delay is 30 seconds
     static let flushDelay: TimeInterval = 30
 
@@ -30,5 +29,4 @@ struct Algolia {
     // Default events batch size
     static let minBatchSize = 10
   }
-
 }

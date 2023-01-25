@@ -9,9 +9,7 @@
 import Foundation
 
 public extension NumberRange {
-
   struct FilterStateConnection<Number: Comparable & DoubleRepresentable>: Connection {
-
     public let interactor: NumberRangeInteractor<Number>
     public let filterState: FilterState
     public let attribute: Attribute
@@ -21,7 +19,7 @@ public extension NumberRange {
     public init(interactor: NumberRangeInteractor<Number>,
                 filterState: FilterState,
                 attribute: Attribute,
-                `operator`: RefinementOperator = .and,
+                operator: RefinementOperator = .and,
                 groupName: String? = nil) {
       self.interactor = interactor
       self.filterState = filterState
@@ -31,7 +29,6 @@ public extension NumberRange {
     }
 
     public func connect() {
-
       let groupName = self.groupName ?? attribute.rawValue
 
       switch `operator` {
@@ -59,10 +56,9 @@ public extension NumberRange {
                                                                                        filterState: FilterState,
                                                                                        attribute: Attribute,
                                                                                        accessor: Accessor) where Accessor.Filter == Filter.Numeric {
-
       func extractRange(from numericFilter: Filter.Numeric) -> ClosedRange<Number>? {
         switch numericFilter.value {
-        case .range(let closedRange):
+        case let .range(closedRange):
           return Number(closedRange.lowerBound)...Number(closedRange.upperBound)
         case .comparison:
           return nil
@@ -72,14 +68,12 @@ public extension NumberRange {
       filterState.onChange.subscribePast(with: interactor) { interactor, _ in
         interactor.item = accessor.filters(for: attribute).compactMap(extractRange).first
       }
-
     }
 
     private func whenRangeComputedUpdateFilterState<Accessor: SpecializedGroupAccessor>(interactor: NumberRangeInteractor<Number>,
                                                                                         filterState: FilterState,
                                                                                         attribute: Attribute,
                                                                                         accessor: Accessor) where Accessor.Filter == Filter.Numeric {
-
       func numericFilter(with range: ClosedRange<Number>) -> Filter.Numeric {
         let castedRange: ClosedRange<Double> = range.lowerBound.toDouble()...range.upperBound.toDouble()
         return .init(attribute: attribute, range: castedRange)
@@ -100,15 +94,11 @@ public extension NumberRange {
         addItem(computedRange)
         filterState.notifyChange()
       }
-
     }
-
   }
-
 }
 
 public extension NumberRangeInteractor {
-
   @discardableResult func connectFilterState(_ filterState: FilterState,
                                              attribute: Attribute,
                                              operator: RefinementOperator = .and,
@@ -121,5 +111,4 @@ public extension NumberRangeInteractor {
     connection.connect()
     return connection
   }
-
 }

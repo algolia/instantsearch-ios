@@ -7,12 +7,11 @@
 //
 
 import Foundation
-import XCTest
 @testable import InstantSearchCore
+import XCTest
 
 class HitsTrackerTests: XCTestCase {
-
-  struct Constants {
+  enum Constants {
     static let appID: ApplicationID = "test_app_id"
     static let apiKey: APIKey = "test_api_key"
     static let indexName: IndexName = "test index name"
@@ -131,5 +130,4 @@ class HitsTrackerTests: XCTestCase {
     tracker.trackConvert(for: hit, eventName: Constants.customEventName)
     waitForExpectations(timeout: 5, handler: .none)
   }
-
 }

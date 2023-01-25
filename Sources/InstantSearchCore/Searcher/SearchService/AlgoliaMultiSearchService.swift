@@ -1,15 +1,14 @@
 //
 //  AlgoliaMultiSearchService.swift
-//  
+//
 //
 //  Created by Vladislav Fitc on 27/09/2021.
 //
 
-import Foundation
 import AlgoliaSearchClient
+import Foundation
 
 public class AlgoliaMultiSearchService: MultiSearchService {
-
   public let client: SearchClient
 
   public init(client: SearchClient) {
@@ -26,20 +25,17 @@ public class AlgoliaMultiSearchService: MultiSearchService {
                          requestOptions: request.requestOptions,
                          completion: completion)
   }
-
 }
 
-extension AlgoliaMultiSearchService {
-
-  public struct Request: AlgoliaRequest, MultiRequest {
-
+public extension AlgoliaMultiSearchService {
+  struct Request: AlgoliaRequest, MultiRequest {
     public var subRequests: [MultiSearchQuery] {
       get {
         return queries
       }
 
       set {
-        self.queries = newValue
+        queries = newValue
       }
     }
 
@@ -54,15 +50,11 @@ extension AlgoliaMultiSearchService {
       self.strategy = strategy
       self.requestOptions = requestOptions
     }
-
   }
-
 }
 
 extension MultiSearchResponse: MultiResult {
-
   public var subResults: [Response] {
     return results
   }
-
 }

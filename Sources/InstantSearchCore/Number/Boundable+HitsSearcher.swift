@@ -6,14 +6,13 @@
 //  Copyright © 2019 Algolia. All rights reserved.
 //
 
-import Foundation
 import AlgoliaSearchClient
+import Foundation
 
 @available(*, deprecated, renamed: "HitsSearcherConnection")
 public typealias BoundableSingleIndexSearcherConnection = BoundableHitsSearcherConnection
 
 public struct BoundableHitsSearcherConnection<B: Boundable>: Connection {
-
   public let boundable: B
   public let searcher: HitsSearcher
   public let attribute: Attribute
@@ -29,11 +28,9 @@ public struct BoundableHitsSearcherConnection<B: Boundable>: Connection {
   public func disconnect() {
     searcher.onResults.cancelSubscription(for: searcher)
   }
-
 }
 
 extension Boundable {
-
   @discardableResult public func connectSearcher(_ searcher: HitsSearcher, attribute: Attribute) -> BoundableHitsSearcherConnection<Self> {
     let connection = BoundableHitsSearcherConnection(boundable: self, searcher: searcher, attribute: attribute)
     connection.connect()

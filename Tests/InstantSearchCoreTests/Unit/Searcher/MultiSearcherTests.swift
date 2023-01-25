@@ -1,16 +1,15 @@
 //
 //  MultiSearcherTests.swift
-//  
+//
 //
 //  Created by Vladislav Fitc on 27/10/2022.
 //
 
 import Foundation
-import XCTest
 @testable import InstantSearchCore
+import XCTest
 
 class MultiSearcherTests: XCTestCase {
-  
   func testResultsDistribution() {
     let service = TestMultiSearchService()
     let searcher = AbstractMultiSearcher(service: service,
@@ -21,71 +20,62 @@ class MultiSearcherTests: XCTestCase {
     anotherSubSearcher.requests = ["req3", "req4", "req5"]
     searcher.addSearcher(subSearcher)
     searcher.addSearcher(anotherSubSearcher)
-    
-    
+
     subSearcher.completion = { result in
       switch result {
-      case .success(let results):
+      case let .success(results):
         XCTAssertEqual(results, ["res1", "res2"])
-      case .failure(let error):
+      case let .failure(error):
         XCTFail("Unexpected error: \(error)")
       }
     }
-    
+
     anotherSubSearcher.completion = { result in
       switch result {
       case .failure(MultiSearchError.resultsRangeMismatch(2..<5, 0..<4)):
         break
-      case .failure(let error):
+      case let .failure(error):
         XCTFail("Unexpected error: \(error)")
-      case .success(let results):
+      case let .success(results):
         XCTFail("Unexpected success \(results)")
       }
     }
-    
+
     let (_, completion) = searcher.collect()
-    
+
     completion(.success(["res1", "res2", "res3", "res4"]))
   }
-  
 }
 
 struct TestMultiRequest: MultiRequest {
-var subRequests: [String]
+  var subRequests: [String]
 
-init(subRequests: [String] = []) {
-  self.subRequests = subRequests
-}
+  init(subRequests: [String] = []) {
+    self.subRequests = subRequests
+  }
 }
 
 struct TestMultiResult: MultiResult {
-var subResults: [String]
+  var subResults: [String]
 
-init(subResults: [String] = []) {
-  self.subResults = subResults
-}
+  init(subResults: [String] = []) {
+    self.subResults = subResults
+  }
 }
 
 class TestMultiSearchComponent: MultiSearchComponent {
+  var requests: [String] = []
+  var completion: (Result<[String], Error>) -> Void = { _ in }
 
-var requests: [String] = []
-var completion: (Result<[String], Error>) -> Void = { _ in }
+  init() {}
 
-init() {
-}
-
-func collect() -> (requests: [String], completion: (Result<[String], Error>) -> Void) {
-  return (requests: requests, completion: completion)
-}
-
+  func collect() -> (requests: [String], completion: (Result<[String], Error>) -> Void) {
+    return (requests: requests, completion: completion)
+  }
 }
 
 class TestMultiSearchService: MultiSearchService {
-
-func search(_ request: TestMultiRequest, completion: @escaping (Swift.Result<TestMultiResult, Error>) -> Void) -> Operation {
-  return Operation()
+  func search(_: TestMultiRequest, completion _: @escaping (Swift.Result<TestMultiResult, Error>) -> Void) -> Operation {
+    return Operation()
+  }
 }
-
-}
-
-

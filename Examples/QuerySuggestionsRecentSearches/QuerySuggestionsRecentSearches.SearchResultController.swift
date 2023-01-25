@@ -10,9 +10,7 @@ import InstantSearch
 import UIKit
 
 extension QuerySuggestionsAndRecentSearches {
-
   class SearchResultsController: UITableViewController, HitsController {
-
     var hitsSource: HitsInteractor<QuerySuggestion>?
 
     var recentSearches: [String] = ["last search"]
@@ -43,7 +41,6 @@ extension QuerySuggestionsAndRecentSearches {
           return "recentSearch"
         }
       }
-
     }
 
     override func viewDidLoad() {
@@ -53,11 +50,11 @@ extension QuerySuggestionsAndRecentSearches {
       tableView.sectionHeaderTopPadding = 0
     }
 
-    override func numberOfSections(in tableView: UITableView) -> Int {
+    override func numberOfSections(in _: UITableView) -> Int {
       return Section.allCases.count
     }
 
-    override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+    override func tableView(_: UITableView, numberOfRowsInSection section: Int) -> Int {
       guard let section = Section(rawValue: section) else { return 0 }
       switch section {
       case .recentSearches:
@@ -81,13 +78,13 @@ extension QuerySuggestionsAndRecentSearches {
         if
           let suggestionCell = cell as? SearchSuggestionTableViewCell,
           let suggestion = hitsSource?.hit(atIndex: indexPath.row) {
-            suggestionCell.setup(with: suggestion)
+          suggestionCell.setup(with: suggestion)
         }
       }
       return cell
     }
 
-    override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+    override func tableView(_: UITableView, didSelectRowAt indexPath: IndexPath) {
       guard let section = Section(rawValue: indexPath.section) else { return }
       switch section {
       case .recentSearches:
@@ -100,7 +97,7 @@ extension QuerySuggestionsAndRecentSearches {
       }
     }
 
-    override func tableView(_ tableView: UITableView, titleForHeaderInSection section: Int) -> String? {
+    override func tableView(_: UITableView, titleForHeaderInSection section: Int) -> String? {
       guard let section = Section(rawValue: section) else { return nil }
       switch section {
       case .recentSearches:
@@ -112,7 +109,7 @@ extension QuerySuggestionsAndRecentSearches {
       }
     }
 
-    override func tableView(_ tableView: UITableView, editingStyleForRowAt indexPath: IndexPath) -> UITableViewCell.EditingStyle {
+    override func tableView(_: UITableView, editingStyleForRowAt indexPath: IndexPath) -> UITableViewCell.EditingStyle {
       guard let section = Section(rawValue: indexPath.section) else { return .none }
       switch section {
       case .recentSearches:
@@ -123,7 +120,7 @@ extension QuerySuggestionsAndRecentSearches {
       }
     }
 
-    override func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCell.EditingStyle, forRowAt indexPath: IndexPath) {
+    override func tableView(_: UITableView, commit _: UITableViewCell.EditingStyle, forRowAt indexPath: IndexPath) {
       guard let section = Section(rawValue: indexPath.section) else { return }
       switch section {
       case .recentSearches:
@@ -134,7 +131,7 @@ extension QuerySuggestionsAndRecentSearches {
       }
     }
 
-    override func tableView(_ tableView: UITableView, heightForHeaderInSection section: Int) -> CGFloat {
+    override func tableView(_: UITableView, heightForHeaderInSection section: Int) -> CGFloat {
       guard let section = Section(rawValue: section) else { return 0 }
       switch section {
       case .recentSearches:
@@ -145,9 +142,9 @@ extension QuerySuggestionsAndRecentSearches {
       }
     }
 
-    override func tableView(_ tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
+    override func tableView(_: UITableView, viewForHeaderInSection section: Int) -> UIView? {
       guard let section = Section(rawValue: section) else { return nil }
-      if case(.recentSearches) = section, !recentSearches.isEmpty {
+      if case .recentSearches = section, !recentSearches.isEmpty {
         let header = SectionHeader(frame: .zero)
         header.label.font = .systemFont(ofSize: headerTitleFontSize, weight: .semibold)
         header.label.text = Section.recentSearches.header
@@ -171,13 +168,10 @@ extension QuerySuggestionsAndRecentSearches {
       tableView.reloadSections([Section.recentSearches.rawValue], with: .automatic)
       tableView.endUpdates()
     }
-
   }
-
 }
 
 private class SectionHeader: UIView {
-
   let label = UILabel()
   let button = UIButton()
 
@@ -205,8 +199,8 @@ private class SectionHeader: UIView {
     stackView.pin(to: self)
   }
 
-  required init?(coder: NSCoder) {
+  @available(*, unavailable)
+  required init?(coder _: NSCoder) {
     fatalError("init(coder:) has not been implemented")
   }
-
 }

@@ -11,7 +11,6 @@ import InstantSearch
 import UIKit
 
 enum MultiIndexDemoSection: CaseIterable {
-
   case suggestions
   case products
 
@@ -46,11 +45,9 @@ enum MultiIndexDemoSection: CaseIterable {
       return "productCell"
     }
   }
-
 }
 
 class MultiIndexDemoViewController: UIViewController {
-
   let searchController: UISearchController
   let demoController: MultiIndexDemoController
   let textFieldController: TextFieldController
@@ -67,7 +64,8 @@ class MultiIndexDemoViewController: UIViewController {
     super.init(nibName: nil, bundle: nil)
   }
 
-  required init?(coder aDecoder: NSCoder) {
+  @available(*, unavailable)
+  required init?(coder _: NSCoder) {
     fatalError("init(coder:) has not been implemented")
   }
 
@@ -80,11 +78,9 @@ class MultiIndexDemoViewController: UIViewController {
     super.viewDidAppear(animated)
     searchController.isActive = true
   }
-
 }
 
 private extension MultiIndexDemoViewController {
-
   func setupUI() {
     view.backgroundColor = .systemBackground
     definesPresentationContext = true
@@ -94,11 +90,9 @@ private extension MultiIndexDemoViewController {
     searchController.showsSearchResultsController = true
     searchController.automaticallyShowsCancelButton = false
   }
-
 }
 
 class ProductsCollectionViewController: UICollectionViewController, UICollectionViewDelegateFlowLayout, HitsController {
-
   var hitsSource: HitsInteractor<Hit<StoreItem>>?
 
   override func viewDidLoad() {
@@ -107,23 +101,23 @@ class ProductsCollectionViewController: UICollectionViewController, UICollection
     collectionView.register(ProductCollectionViewCell.self, forCellWithReuseIdentifier: MultiIndexDemoSection.products.cellIdentifier)
   }
 
-  func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, insetForSectionAt section: Int) -> UIEdgeInsets {
+  func collectionView(_: UICollectionView, layout _: UICollectionViewLayout, insetForSectionAt _: Int) -> UIEdgeInsets {
     UIEdgeInsets(top: 5, left: 5, bottom: 5, right: 5)
   }
 
-  func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, minimumInteritemSpacingForSectionAt section: Int) -> CGFloat {
+  func collectionView(_: UICollectionView, layout _: UICollectionViewLayout, minimumInteritemSpacingForSectionAt _: Int) -> CGFloat {
     10
   }
 
-  func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, minimumLineSpacingForSectionAt section: Int) -> CGFloat {
+  func collectionView(_: UICollectionView, layout _: UICollectionViewLayout, minimumLineSpacingForSectionAt _: Int) -> CGFloat {
     10
   }
 
-  func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
+  func collectionView(_ collectionView: UICollectionView, layout _: UICollectionViewLayout, sizeForItemAt _: IndexPath) -> CGSize {
     CGSize(width: collectionView.bounds.width / 2 - 10, height: collectionView.bounds.height - 10)
   }
 
-  override func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
+  override func collectionView(_: UICollectionView, numberOfItemsInSection _: Int) -> Int {
     hitsSource?.numberOfHits() ?? 0
   }
 
@@ -134,11 +128,9 @@ class ProductsCollectionViewController: UICollectionViewController, UICollection
     }
     return cell
   }
-
 }
 
 class SuggestionsCollectionViewController: UICollectionViewController, UICollectionViewDelegateFlowLayout, HitsController {
-
   var hitsSource: HitsInteractor<QuerySuggestion>?
 
   override func viewDidLoad() {
@@ -147,23 +139,23 @@ class SuggestionsCollectionViewController: UICollectionViewController, UICollect
     collectionView.register(SuggestionCollectionViewCell.self, forCellWithReuseIdentifier: MultiIndexDemoSection.suggestions.cellIdentifier)
   }
 
-  func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, insetForSectionAt section: Int) -> UIEdgeInsets {
+  func collectionView(_: UICollectionView, layout _: UICollectionViewLayout, insetForSectionAt _: Int) -> UIEdgeInsets {
     UIEdgeInsets(top: 5, left: 5, bottom: 5, right: 5)
   }
 
-  func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, minimumInteritemSpacingForSectionAt section: Int) -> CGFloat {
+  func collectionView(_: UICollectionView, layout _: UICollectionViewLayout, minimumInteritemSpacingForSectionAt _: Int) -> CGFloat {
     10
   }
 
-  func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, minimumLineSpacingForSectionAt section: Int) -> CGFloat {
+  func collectionView(_: UICollectionView, layout _: UICollectionViewLayout, minimumLineSpacingForSectionAt _: Int) -> CGFloat {
     10
   }
 
-  func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
+  func collectionView(_ collectionView: UICollectionView, layout _: UICollectionViewLayout, sizeForItemAt _: IndexPath) -> CGSize {
     CGSize(width: collectionView.bounds.width / 3, height: 40)
   }
 
-  override func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
+  override func collectionView(_: UICollectionView, numberOfItemsInSection _: Int) -> Int {
     hitsSource?.numberOfHits() ?? 0
   }
 
@@ -174,11 +166,9 @@ class SuggestionsCollectionViewController: UICollectionViewController, UICollect
     }
     return cell
   }
-
 }
 
 class MultiIndexHitsViewController: UIViewController {
-
   let suggestionsCollectionViewController: SuggestionsCollectionViewController
   let productsCollectionViewController: ProductsCollectionViewController
 
@@ -194,7 +184,8 @@ class MultiIndexHitsViewController: UIViewController {
     super.init(nibName: nil, bundle: nil)
   }
 
-  required init?(coder: NSCoder) {
+  @available(*, unavailable)
+  required init?(coder _: NSCoder) {
     fatalError("init(coder:) has not been implemented")
   }
 
@@ -217,7 +208,7 @@ class MultiIndexHitsViewController: UIViewController {
     productsCollectionViewController.collectionView.heightAnchor.constraint(equalToConstant: 300).isActive = true
 
     let stackView = UIStackView()
-    stackView.translatesAutoresizingMaskIntoConstraints =  false
+    stackView.translatesAutoresizingMaskIntoConstraints = false
     stackView.axis = .vertical
     stackView.spacing = 16
 
@@ -250,5 +241,4 @@ class MultiIndexHitsViewController: UIViewController {
       controller.view?.backgroundColor = .clear
     }
   }
-
 }

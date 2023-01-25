@@ -6,15 +6,14 @@
 //  Copyright © 2019 Algolia. All rights reserved.
 //
 
-import Foundation
 import AlgoliaSearchClient
+import Foundation
 
 @available(*, deprecated, renamed: "HitsSearcher")
 public typealias SingleIndexSearcher = HitsSearcher
 
 /// An entity performing hits search
-final public class HitsSearcher: IndexSearcher<AlgoliaSearchService> {
-
+public final class HitsSearcher: IndexSearcher<AlgoliaSearchService> {
   /// Current index & query tuple
   @available(*, deprecated, message: "Use the `request` property instead")
   public var indexQueryState: IndexQueryState {
@@ -27,7 +26,7 @@ final public class HitsSearcher: IndexSearcher<AlgoliaSearchService> {
     }
   }
 
-  public override var request: Request {
+  override public var request: Request {
     didSet {
       guard request.query.query != oldValue.query.query || request.indexName != oldValue.indexName else { return }
       if request.query.page ?? 0 != 0 {
@@ -107,13 +106,13 @@ final public class HitsSearcher: IndexSearcher<AlgoliaSearchService> {
   }
 
   /**
-   - Parameters:
-      - appID: Application ID
-      - apiKey: API Key
-      - indexName: Name of the index in which search will be performed
-      - query: Instance of Query. By default a new empty instant of Query will be created.
-      - requestOptions: Custom request options. Default is `nil`.
-  */
+    - Parameters:
+       - appID: Application ID
+       - apiKey: API Key
+       - indexName: Name of the index in which search will be performed
+       - query: Instance of Query. By default a new empty instant of Query will be created.
+       - requestOptions: Custom request options. Default is `nil`.
+   */
   public convenience init(appID: ApplicationID,
                           apiKey: APIKey,
                           indexName: IndexName,
@@ -123,17 +122,17 @@ final public class HitsSearcher: IndexSearcher<AlgoliaSearchService> {
     self.init(client: client, indexName: indexName, query: query, requestOptions: requestOptions)
     Telemetry.shared.trace(type: .hitsSearcher,
                            parameters: [
-                            .appID,
-                            .apiKey
+                             .appID,
+                             .apiKey
                            ])
   }
 
   /**
-   - Parameters:
-      - index: Index value in which search will be performed
-      - query: Instance of Query. By default a new empty instant of Query will be created.
-      - requestOptions: Custom request options. Default is nil.
-  */
+    - Parameters:
+       - index: Index value in which search will be performed
+       - query: Instance of Query. By default a new empty instant of Query will be created.
+       - requestOptions: Custom request options. Default is nil.
+   */
   public init(client: SearchClient,
               indexName: IndexName,
               query: Query = .init(),
@@ -158,48 +157,39 @@ final public class HitsSearcher: IndexSearcher<AlgoliaSearchService> {
               query: indexQueryState.query,
               requestOptions: requestOptions)
   }
-
 }
 
 extension HitsSearcher: MultiSearchComponent {
-
   public func collect() -> (requests: [MultiSearchQuery], completion: (Swift.Result<[MultiSearchResponse.Response], Swift.Error>) -> Void) {
     return service.collect(for: request) { [weak self] result in
       guard let searcher = self else { return }
       switch result {
-      case .failure(let error):
+      case let .failure(error):
         searcher.onError.fire(error)
-      case .success(let response):
+      case let .success(response):
         searcher.onResults.fire(response)
       }
     }
   }
-
 }
 
 extension HitsSearcher: QuerySettable {
-
   public func setQuery(_ query: String?) {
     request.query.query = query
     request.query.page = 0
   }
-
 }
 
 extension HitsSearcher: IndexNameSettable {
-
   public func setIndexName(_ indexName: IndexName) {
     request.indexName = indexName
     request.query.page = 0
   }
-
 }
 
 extension HitsSearcher: FiltersSettable {
-
   public func setFilters(_ filters: String?) {
     request.query.filters = filters
     request.query.page = 0
   }
-
 }

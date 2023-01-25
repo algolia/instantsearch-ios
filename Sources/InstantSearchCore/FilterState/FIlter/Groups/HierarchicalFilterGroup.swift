@@ -8,10 +8,8 @@
 
 import Foundation
 
-extension FilterGroup {
-
-  public struct Hierarchical: FilterGroupType {
-
+public extension FilterGroup {
+  struct Hierarchical: FilterGroupType {
     public var filters: [FilterType] {
       return typedFilters
     }
@@ -28,7 +26,7 @@ extension FilterGroup {
     internal var typedFilters: [Filter.Facet]
 
     public init<S: Sequence>(filters: S, name: String? = nil) where S.Element == Filter.Facet {
-      self.typedFilters = Array(filters)
+      typedFilters = Array(filters)
       self.name = name
     }
 
@@ -42,7 +40,5 @@ extension FilterGroup {
       updatedGroup.hierarchicalFilters = hierarchicalFilters
       return updatedGroup
     }
-
   }
-
 }

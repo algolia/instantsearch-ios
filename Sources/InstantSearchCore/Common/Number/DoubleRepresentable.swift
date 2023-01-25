@@ -9,7 +9,6 @@
 import Foundation
 
 public protocol DoubleRepresentable {
-
   init(_ double: Double)
   func toDouble() -> Double
 }

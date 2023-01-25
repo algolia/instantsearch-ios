@@ -10,7 +10,6 @@ import Foundation
 @testable import InstantSearchCore
 
 class TestFiltersTracker: FilterTrackable {
-
   enum EventType { case view, click, convert }
 
   var did: (((EventType, eventName: EventName, indexName: IndexName, filters: [String], timestamp: Date?, userToken: UserToken?)) -> Void)?
@@ -38,5 +37,4 @@ class TestFiltersTracker: FilterTrackable {
                  userToken: UserToken?) {
     did?((.convert, eventName, indexName, filters, timestamp, userToken))
   }
-
 }

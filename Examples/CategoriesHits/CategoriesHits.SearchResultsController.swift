@@ -10,9 +10,7 @@ import InstantSearch
 import UIKit
 
 extension CategoriesHits {
-
   class SearchResultsController: UITableViewController {
-
     var didSelectSuggestion: ((String) -> Void)?
 
     enum Section: Int, CaseIterable {
@@ -44,7 +42,6 @@ extension CategoriesHits {
       init?(indexPath: IndexPath) {
         self.init(section: indexPath.section)
       }
-
     }
 
     weak var categoriesInteractor: FacetListInteractor? {
@@ -73,11 +70,11 @@ extension CategoriesHits {
       tableView.register(ProductTableViewCell.self, forCellReuseIdentifier: Section.hits.cellReuseIdentifier)
     }
 
-    override func numberOfSections(in tableView: UITableView) -> Int {
+    override func numberOfSections(in _: UITableView) -> Int {
       return Section.allCases.count
     }
 
-    override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+    override func tableView(_: UITableView, numberOfRowsInSection section: Int) -> Int {
       guard let section = Section(rawValue: section) else { return 0 }
       switch section {
       case .categories:
@@ -112,7 +109,7 @@ extension CategoriesHits {
       return cell
     }
 
-    override func tableView(_ tableView: UITableView, titleForHeaderInSection section: Int) -> String? {
+    override func tableView(_: UITableView, titleForHeaderInSection section: Int) -> String? {
       guard let section = Section(rawValue: section) else { return nil }
       switch section {
       case .categories where categoriesInteractor?.items.count ?? 0 == 0:
@@ -124,7 +121,7 @@ extension CategoriesHits {
       }
     }
 
-    override func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
+    override func tableView(_: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
       guard let section = Section(indexPath: indexPath) else { return 0 }
       switch section {
       case .categories:
@@ -134,7 +131,7 @@ extension CategoriesHits {
       }
     }
 
-    override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+    override func tableView(_: UITableView, didSelectRowAt indexPath: IndexPath) {
       guard let section = Section(rawValue: indexPath.section) else { return }
       switch section {
       case .hits:
@@ -146,7 +143,5 @@ extension CategoriesHits {
         break
       }
     }
-
   }
-
 }

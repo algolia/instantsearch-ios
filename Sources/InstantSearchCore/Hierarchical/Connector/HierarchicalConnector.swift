@@ -12,7 +12,6 @@ import Foundation
 ///
 /// [Documentation](https://www.algolia.com/doc/api-reference/widgets/hierarchical-menu/ios/)
 public class HierarchicalConnector {
-
   /// Searcher that handles your searches
   public let searcher: HitsSearcher
 
@@ -32,29 +31,27 @@ public class HierarchicalConnector {
   public var controllerConnections: [Connection]
 
   /**
-   - Parameters:
-     - searcher: Searcher that handles your searches.
-     - filterState: FilterState that holds your filters
-     - hierarchicalAttributes: Names of the hierarchical attributes that we need to target, in ascending order.
-     - separator: String separating the facets in the hierarchical facets.
-  */
+    - Parameters:
+      - searcher: Searcher that handles your searches.
+      - filterState: FilterState that holds your filters
+      - hierarchicalAttributes: Names of the hierarchical attributes that we need to target, in ascending order.
+      - separator: String separating the facets in the hierarchical facets.
+   */
   public init(searcher: HitsSearcher,
               filterState: FilterState,
               hierarchicalAttributes: [Attribute],
               separator: String) {
     self.searcher = searcher
     self.filterState = filterState
-    self.interactor = HierarchicalInteractor(hierarchicalAttributes: hierarchicalAttributes, separator: separator)
-    self.searcherConnection = interactor.connectSearcher(searcher: searcher)
-    self.filterStateConnection = interactor.connectFilterState(filterState)
-    self.controllerConnections = []
+    interactor = HierarchicalInteractor(hierarchicalAttributes: hierarchicalAttributes, separator: separator)
+    searcherConnection = interactor.connectSearcher(searcher: searcher)
+    filterStateConnection = interactor.connectFilterState(filterState)
+    controllerConnections = []
     Telemetry.shared.traceConnector(type: .hierarchicalFacets)
   }
-
 }
 
 extension HierarchicalConnector: Connection {
-
   public func connect() {
     searcherConnection.connect()
     filterStateConnection.connect()
@@ -66,5 +63,4 @@ extension HierarchicalConnector: Connection {
     filterStateConnection.disconnect()
     controllerConnections.forEach { $0.disconnect() }
   }
-
 }

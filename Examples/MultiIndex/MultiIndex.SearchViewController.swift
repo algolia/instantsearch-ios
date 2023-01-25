@@ -11,7 +11,6 @@ import InstantSearch
 import UIKit
 
 enum MultiIndex {
-
   struct Movie: Codable {
     let title: String
   }
@@ -21,7 +20,6 @@ enum MultiIndex {
   }
 
   class SearchViewController: UIViewController {
-
     let searchController: UISearchController
 
     let searchBoxConnector: SearchBoxConnector
@@ -45,7 +43,8 @@ enum MultiIndex {
       super.init(nibName: nibNameOrNil, bundle: nibBundleOrNil)
     }
 
-    required init?(coder: NSCoder) {
+    @available(*, unavailable)
+    required init?(coder _: NSCoder) {
       fatalError("init(coder:) has not been implemented")
     }
 
@@ -79,7 +78,5 @@ enum MultiIndex {
       searchController.automaticallyShowsCancelButton = false
       navigationItem.searchController = searchController
     }
-
   }
-
 }

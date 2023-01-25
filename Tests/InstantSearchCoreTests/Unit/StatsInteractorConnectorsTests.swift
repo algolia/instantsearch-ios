@@ -6,14 +6,12 @@
 //  Copyright © 2019 Algolia. All rights reserved.
 //
 
-import Foundation
-import XCTest
-@testable import InstantSearchCore
 import AlgoliaSearchClient
+import Foundation
+@testable import InstantSearchCore
+import XCTest
 class StatsInteractorConnectorsTests: XCTestCase {
-
   class TestStatsController: ItemController {
-
     var didSetItem: ((Item) -> Void)?
 
     typealias Item = String
@@ -24,7 +22,6 @@ class StatsInteractorConnectorsTests: XCTestCase {
   }
 
   func testConnectSearcher() {
-
     let vm = StatsInteractor()
     let results = SearchResponse(hits: [TestRecord<Int>]())
     let query = Query()
@@ -41,11 +38,9 @@ class StatsInteractorConnectorsTests: XCTestCase {
     searcher.onResults.fire(results)
 
     waitForExpectations(timeout: 2, handler: .none)
-
   }
 
   func testConnectController() {
-
     let vm = StatsInteractor()
 
     let controller = TestStatsController()
@@ -62,7 +57,5 @@ class StatsInteractorConnectorsTests: XCTestCase {
     vm.item = SearchStats(totalHitsCount: 100, hitsPerPage: 10, pagesCount: 10, page: 0, processingTimeMS: 1, query: "q1")
 
     waitForExpectations(timeout: 2, handler: nil)
-
   }
-
 }

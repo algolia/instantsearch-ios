@@ -7,9 +7,8 @@
 
 import Foundation
 import UIKit
-// swiftlint:disable cyclomatic_complexity function_body_length
+// swiftlint:disable cyclomatic_complexity
 class DemoViewControllerFactory: ViewControllerFactory {
-
   func viewController(for demo: Demo) -> UIViewController? {
     guard let id = Demo.ID(rawValue: demo.objectID.rawValue) else {
       return .none
@@ -71,5 +70,4 @@ class DemoViewControllerFactory: ViewControllerFactory {
       return viewController
     }
   }
-
 }

@@ -9,7 +9,6 @@
 import Foundation
 
 struct Package<Item: Codable> {
-
   let id: String
   let items: [Item]
   let capacity: Int
@@ -19,14 +18,14 @@ struct Package<Item: Codable> {
   }
 
   init(capacity: Int) {
-    self.id = UUID().uuidString
-    self.items = []
+    id = UUID().uuidString
+    items = []
     self.capacity = capacity
   }
 
   init(item: Item, capacity: Int) {
-    self.id = UUID().uuidString
-    self.items = [item]
+    id = UUID().uuidString
+    items = [item]
     self.capacity = capacity
   }
 
@@ -34,7 +33,7 @@ struct Package<Item: Codable> {
     guard items.count <= capacity else {
       throw Error.packageOverflow(capacity: capacity)
     }
-    self.id = UUID().uuidString
+    id = UUID().uuidString
     self.items = items
     self.capacity = capacity
   }
@@ -49,11 +48,9 @@ struct Package<Item: Codable> {
     }
     return try Package(items: self.items + items, capacity: capacity)
   }
-
 }
 
 extension Package: Collection {
-
   typealias Index = Array<Item>.Index
   typealias Element = Array<Item>.Element
 
@@ -69,33 +66,25 @@ extension Package: Collection {
     return items.index(after: index)
   }
 
-  subscript(index: Index) -> Element {
-    get { return items[index] }
-  }
-
+  subscript(index: Index) -> Element { return items[index] }
 }
 
 extension Package {
-
   enum Error: Swift.Error, Equatable {
     case packageOverflow(capacity: Int)
   }
-
 }
 
 extension Package.Error: LocalizedError {
-
   var errorDescription: String? {
     switch self {
-    case .packageOverflow(let capacity):
+    case let .packageOverflow(capacity):
       return "Max items count in package is \(capacity)"
     }
   }
-
 }
 
 extension Package: Codable {
-
   enum CodingKeys: String, CodingKey {
     case id
     case items
@@ -104,9 +93,9 @@ extension Package: Codable {
 
   init(from decoder: Decoder) throws {
     let container = try decoder.container(keyedBy: CodingKeys.self)
-    self.id = try container.decode(String.self, forKey: .id)
-    self.items = try container.decode([Item].self, forKey: .items)
-    self.capacity = try container.decode(Int.self, forKey: .capacity)
+    id = try container.decode(String.self, forKey: .id)
+    items = try container.decode([Item].self, forKey: .items)
+    capacity = try container.decode(Int.self, forKey: .capacity)
   }
 
   func encode(to encoder: Encoder) throws {
@@ -115,11 +104,9 @@ extension Package: Codable {
     try container.encode(items, forKey: .items)
     try container.encode(capacity, forKey: .capacity)
   }
-
 }
 
 extension Package: Hashable {
-
   static func == (lhs: Package, rhs: Package) -> Bool {
     return lhs.id == rhs.id
   }

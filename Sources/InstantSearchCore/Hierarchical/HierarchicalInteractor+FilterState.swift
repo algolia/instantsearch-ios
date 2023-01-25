@@ -9,14 +9,11 @@
 import Foundation
 
 public extension HierarchicalInteractor {
-
   struct FilterStateConnection: Connection {
-
     public let interactor: HierarchicalInteractor
     public let filterState: FilterState
 
     public func connect() {
-
       let groupName = "_hierarchical"
 
       filterState[hierarchical: groupName].set(interactor.hierarchicalAttributes)
@@ -36,7 +33,6 @@ public extension HierarchicalInteractor {
         }
 
         filterState.notifyChange()
-
       }
 
       filterState.onChange.subscribePast(with: interactor) { interactor, filterState in
@@ -44,24 +40,19 @@ public extension HierarchicalInteractor {
           interactor.selections = []
         }
       }
-
     }
 
     public func disconnect() {
       interactor.onSelectionsChanged.cancelSubscription(for: filterState)
       filterState.onChange.cancelSubscription(for: interactor)
     }
-
   }
-
 }
 
 public extension HierarchicalInteractor {
-
   @discardableResult func connectFilterState(_ filterState: FilterState) -> FilterStateConnection {
     let connection = FilterStateConnection(interactor: self, filterState: filterState)
     connection.connect()
     return connection
   }
-
 }

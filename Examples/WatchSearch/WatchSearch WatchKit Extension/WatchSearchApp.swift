@@ -9,7 +9,6 @@ import SwiftUI
 
 @main
 struct WatchSearchApp: App {
-
   let controller = Controller()
 
   @SceneBuilder var body: some Scene {

@@ -9,9 +9,7 @@
 import Foundation
 
 public protocol GeoHitsController: AnyObject, Reloadable {
-
   associatedtype DataSource: HitsSource where DataSource.Record: Geolocated
 
   var hitsSource: DataSource? { get set }
-
 }

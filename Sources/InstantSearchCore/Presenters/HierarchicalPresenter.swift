@@ -11,9 +11,7 @@ import Foundation
 public typealias HierarchicalPresenter = ([HierarchicalFacet]) -> [HierarchicalFacet]
 
 public extension DefaultPresenter {
-
   enum Hierarchical {
-
     public static let present: HierarchicalPresenter = { facets in
       let levels = Set(facets.map { $0.level }).sorted()
 
@@ -35,6 +33,5 @@ public extension DefaultPresenter {
 
       return output
     }
-
   }
 }

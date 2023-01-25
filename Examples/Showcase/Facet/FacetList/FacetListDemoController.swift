@@ -10,7 +10,6 @@ import Foundation
 import InstantSearch
 
 class FacetListDemoController {
-
   let searcher: HitsSearcher
   let filterState: FilterState
 
@@ -71,5 +70,4 @@ class FacetListDemoController {
     searcher.connectFilterState(filterState)
     searcher.search()
   }
-
 }

@@ -7,11 +7,10 @@
 //
 
 import Foundation
-import UIKit
 import InstantSearch
+import UIKit
 
 class RatingFilterDemoViewController: UIViewController {
-
   let demoController: RatingFilterDemoController
   let valueLabel: UILabel
   let stepper: UIStepper
@@ -31,7 +30,8 @@ class RatingFilterDemoViewController: UIViewController {
     super.init(nibName: nibNameOrNil, bundle: nibBundleOrNil)
   }
 
-  required init?(coder: NSCoder) {
+  @available(*, unavailable)
+  required init?(coder _: NSCoder) {
     fatalError("init(coder:) has not been implemented")
   }
 
@@ -116,5 +116,4 @@ class RatingFilterDemoViewController: UIViewController {
     formatter.maximumFractionDigits = fractionDigits
     return formatter.string(from: value as NSNumber) ?? "\(self)"
   }
-
 }

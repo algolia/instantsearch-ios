@@ -9,7 +9,6 @@ import Foundation
 import InstantSearchCore
 
 class RatingFilterDemoController {
-
   let filterState: FilterState
   let numberInteractor: NumberInteractor<Double>
   let clearFilterConnector: FilterClearConnector
@@ -23,5 +22,4 @@ class RatingFilterDemoController {
                                         numericOperator: .greaterThanOrEqual)
     filterState.notify(.add(filter: Filter.Numeric(attribute: "rating", operator: .greaterThanOrEqual, value: 3.5), toGroupWithID: .and(name: "rating")))
   }
-
 }

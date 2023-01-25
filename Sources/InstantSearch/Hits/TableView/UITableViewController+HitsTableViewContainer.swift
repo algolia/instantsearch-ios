@@ -8,13 +8,11 @@
 import Foundation
 
 #if canImport(UIKit) && (os(iOS) || os(tvOS) || os(macOS))
-import UIKit
+  import UIKit
 
-extension UITableViewController: HitsTableViewContainer {
-
-  public var hitsTableView: UITableView {
-    return tableView
+  extension UITableViewController: HitsTableViewContainer {
+    public var hitsTableView: UITableView {
+      return tableView
+    }
   }
-
-}
 #endif

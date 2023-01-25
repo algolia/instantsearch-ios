@@ -9,7 +9,6 @@ import SwiftUI
 
 @main
 struct TVSearchApp: App {
-
   let controller = Controller()
   var body: some Scene {
     WindowGroup {
@@ -17,5 +16,4 @@ struct TVSearchApp: App {
                   hitsController: controller.hitsController)
     }
   }
-
 }

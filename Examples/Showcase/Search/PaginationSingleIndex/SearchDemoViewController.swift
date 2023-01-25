@@ -7,11 +7,10 @@
 //
 
 import Foundation
-import UIKit
 import InstantSearch
+import UIKit
 
 class SearchDemoViewController: UIViewController {
-
   let demoController: EcommerceDemoController
   let searchController: UISearchController
   let textFieldController: TextFieldController
@@ -25,7 +24,8 @@ class SearchDemoViewController: UIViewController {
     super.init(nibName: .none, bundle: .none)
   }
 
-  required init?(coder aDecoder: NSCoder) {
+  @available(*, unavailable)
+  required init?(coder _: NSCoder) {
     fatalError("init(coder:) has not been implemented")
   }
 
@@ -51,5 +51,4 @@ class SearchDemoViewController: UIViewController {
     searchController.showsSearchResultsController = true
     searchController.automaticallyShowsCancelButton = false
   }
-
 }

@@ -10,11 +10,9 @@ import Foundation
 
 @available(*, deprecated, message: "Use multiple HitsSearcher aggregated with MultiSearcher instead of MultiIndexSearcher")
 public protocol MultiIndexHitsController: AnyObject, Reloadable {
-
   var hitsSource: MultiIndexHitsSource? { get set }
 
   func scrollToTop()
-
 }
 
 @available(*, deprecated, message: "Use multiple HitsSearcher aggregated with MultiSearcher instead of MultiIndexSearcher")

@@ -1,17 +1,15 @@
 //
 //  FacetListInteractor+MultiIndexSearcher.swift
-//  
+//
 //
 //  Created by Vladislav Fitc on 30/03/2021.
 //
 
-import Foundation
 import AlgoliaSearchClient
+import Foundation
 public extension FacetListInteractor {
-
   @available(*, deprecated, message: "Use multiple HitsSearcher aggregated with MultiSearcher instead of MultiIndexSearcher")
   struct MultiIndexSearcherConnection: Connection {
-
     /// Logic applied to the facets
     public let facetListInteractor: FacetListInteractor
 
@@ -42,7 +40,6 @@ public extension FacetListInteractor {
     }
 
     public func connect() {
-
       // When new search results then update items
 
       searcher.onResults.subscribePast(with: facetListInteractor) { [attribute] interactor, response in
@@ -50,19 +47,15 @@ public extension FacetListInteractor {
       }
 
       searcher.indexQueryStates[queryIndex].query.updateQueryFacets(with: attribute)
-
     }
 
     public func disconnect() {
       searcher.onResults.cancelSubscription(for: facetListInteractor)
     }
-
   }
-
 }
 
 public extension FacetListInteractor {
-
   /**
    - Parameters:
      - searcher: Searcher that handles your searches
@@ -80,5 +73,4 @@ public extension FacetListInteractor {
     connection.connect()
     return connection
   }
-
 }

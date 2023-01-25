@@ -9,8 +9,7 @@
 import Foundation
 
 /// A SignalLister represenents an instance and its association with a `Signal`.
-final public class Subscription<T>: Observation {
-
+public final class Subscription<T>: Observation {
   public typealias ParameterType = T
 
   public typealias SignalCallback = (T) -> Void
@@ -23,7 +22,7 @@ final public class Subscription<T>: Observation {
     self.signalSubscription = signalSubscription
   }
 
-  weak public var observer: AnyObject? {
+  public weak var observer: AnyObject? {
     return signalSubscription.observer
   }
 

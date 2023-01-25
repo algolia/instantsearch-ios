@@ -9,7 +9,6 @@
 import Foundation
 
 protocol FiltersWritable {
-
   /// Adds filter to a specified group
   /// - parameter filter: filter to add
   /// - parameter groupID: target group ID
@@ -80,11 +79,9 @@ protocol FiltersWritable {
   /// - parameter groupID: target group ID
 
   mutating func toggle<S: Sequence>(_ filters: S, inGroupWithID groupID: FilterGroup.ID) where S.Element == FilterType
-
 }
 
 extension FiltersWritable {
-
   mutating func add(_ filter: FilterType, toGroupWithID groupID: FilterGroup.ID) {
     addAll(filters: [filter], toGroupWithID: groupID)
   }
@@ -104,11 +101,9 @@ extension FiltersWritable {
   mutating func toggle(_ filter: FilterType, inGroupWithID groupID: FilterGroup.ID) {
     toggle([filter], inGroupWithID: groupID)
   }
-
 }
 
 extension FiltersWritable where Self: FiltersReadable {
-
   mutating func toggle<S: Sequence>(_ filters: S, inGroupWithID groupID: FilterGroup.ID) where S.Element == FilterType {
     for filter in filters {
       if contains(filter, inGroupWithID: groupID) {
@@ -123,5 +118,4 @@ extension FiltersWritable where Self: FiltersReadable {
     let groupIDsToRemove = getGroupIDs().filter { !groupIDsToKeep.contains($0) }
     removeAll(fromGroupWithIDs: Array(groupIDsToRemove))
   }
-
 }

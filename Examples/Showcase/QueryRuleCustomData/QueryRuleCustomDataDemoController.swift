@@ -9,7 +9,6 @@ import Foundation
 import InstantSearchCore
 
 class QueryRuleCustomDataDemoController {
-
   let searcher: HitsSearcher
   let searchBoxConnector: SearchBoxConnector
   let hitsConnector: HitsConnector<Hit<Product>>
@@ -29,5 +28,4 @@ class QueryRuleCustomDataDemoController {
     queryRuleCustomDataConnector = .init(searcher: searcher)
     searcher.search()
   }
-
 }

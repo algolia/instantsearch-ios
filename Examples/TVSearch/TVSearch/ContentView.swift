@@ -5,12 +5,11 @@
 //  Created by Vladislav Fitc on 20/05/2022.
 //
 
-import SwiftUI
 import InstantSearchCore
 import InstantSearchSwiftUI
+import SwiftUI
 
 struct ContentView: View {
-
   @ObservedObject var searchBoxController: SearchBoxObservableController
   @ObservedObject var hitsController: HitsObservableController<Hit<Movie>>
 
@@ -25,11 +24,9 @@ struct ContentView: View {
     }
     .searchable(text: $searchBoxController.query)
   }
-
 }
 
 struct ContentView_Previews: PreviewProvider {
-
   static let controller = Controller()
   static var previews: some View {
     ContentView(searchBoxController: controller.searchBoxController,

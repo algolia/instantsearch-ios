@@ -14,7 +14,6 @@ public enum SelectionMode {
 }
 
 public class SelectableListInteractor<Key: Hashable, Item: Equatable> {
-
   public var items: [Item] {
     didSet {
       if oldValue != items {
@@ -39,15 +38,14 @@ public class SelectableListInteractor<Key: Hashable, Item: Equatable> {
 
   public init(items: [Item] = [], selectionMode: SelectionMode) {
     self.items = items
-    self.selections = []
-    self.onItemsChanged = .init()
-    self.onSelectionsChanged = .init()
-    self.onSelectionsComputed = .init()
+    selections = []
+    onItemsChanged = .init()
+    onSelectionsChanged = .init()
+    onSelectionsComputed = .init()
     self.selectionMode = selectionMode
   }
 
   public func computeSelections(selectingItemForKey key: Key) {
-
     let computedSelections: Set<Key>
 
     switch (selectionMode, selections.contains(key)) {
@@ -65,7 +63,5 @@ public class SelectableListInteractor<Key: Hashable, Item: Equatable> {
     }
 
     onSelectionsComputed.fire(computedSelections)
-
   }
-
 }

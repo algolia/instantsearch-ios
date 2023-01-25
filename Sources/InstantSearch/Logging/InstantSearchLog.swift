@@ -8,12 +8,11 @@
 import Foundation
 import Logging
 #if !InstantSearchCocoaPods
-import struct InstantSearchInsights.Logs
-import protocol InstantSearchInsights.LogCollectable
+  import protocol InstantSearchInsights.LogCollectable
+  import struct InstantSearchInsights.Logs
 #endif
 
 struct InstantSearchLog: LogCollectable {
-
   static var logger: Logging.Logger = {
     NotificationCenter.default.addObserver(forName: Logs.logLevelChangeNotficationName, object: nil, queue: .main) { notification in
       if let logLevel = notification.userInfo?["logLevel"] as? LogLevel {
@@ -40,5 +39,4 @@ struct InstantSearchLog: LogCollectable {
   static func error(_ error: Error) {
     logger.error("\(error)")
   }
-
 }

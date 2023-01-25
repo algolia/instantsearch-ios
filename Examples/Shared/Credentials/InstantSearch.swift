@@ -4,8 +4,8 @@
 //  Created by Vladislav Fitc on 08/05/2022.
 //
 
-import Foundation
 import AlgoliaSearchClient
+import Foundation
 
 extension SearchClient {
   static let instantSearch = Self(appID: "latency", apiKey: "1f6fd3a6fb973cb08419fe7d288fa4db")
@@ -24,5 +24,4 @@ extension IndexName {
   static let filterNumericComparison: IndexName = "mobile_demo_filter_numeric_comparison"
   static let filterSegment: IndexName = "mobile_demo_filter_segment"
   static let filterToggle: IndexName = "mobile_demo_filter_toggle"
-
 }

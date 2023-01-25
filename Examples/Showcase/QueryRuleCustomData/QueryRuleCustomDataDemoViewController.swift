@@ -11,7 +11,6 @@ import InstantSearch
 import SDWebImage
 
 class QueryRuleCustomDataDemoViewController: UIViewController {
-
   let searchBar = UISearchBar()
 
   let demoController: QueryRuleCustomDataDemoController
@@ -28,7 +27,8 @@ class QueryRuleCustomDataDemoViewController: UIViewController {
     setup()
   }
 
-  required init?(coder aDecoder: NSCoder) {
+  @available(*, unavailable)
+  required init?(coder _: NSCoder) {
     fatalError("init(coder:) has not been implemented")
   }
 
@@ -38,7 +38,6 @@ class QueryRuleCustomDataDemoViewController: UIViewController {
   }
 
   private func setup() {
-
     demoController.searchBoxConnector.connectController(textFieldController)
     demoController.hitsConnector.connectController(hitsTableViewController)
     demoController.queryRuleCustomDataConnector.connectController(bannerViewController)
@@ -64,7 +63,7 @@ class QueryRuleCustomDataDemoViewController: UIViewController {
       }
     }
 
-    demoController.searchBoxConnector.interactor.onQuerySubmitted.subscribe(with: self) { (viewController, _) in
+    demoController.searchBoxConnector.interactor.onQuerySubmitted.subscribe(with: self) { viewController, _ in
       guard let link = viewController.demoController.queryRuleCustomDataConnector.interactor.item?.link else { return }
       if link.absoluteString == "algoliademo://help" {
         UIApplication.shared.open(link)
@@ -86,11 +85,9 @@ class QueryRuleCustomDataDemoViewController: UIViewController {
     alertController.addAction(.init(title: "OK", style: .cancel, handler: nil))
     present(alertController, animated: true, completion: nil)
   }
-
 }
 
 private extension QueryRuleCustomDataDemoViewController {
-
   func configureUI() {
     title = "Query Rule Custom Data"
     view.backgroundColor = .systemBackground
@@ -119,5 +116,4 @@ private extension QueryRuleCustomDataDemoViewController {
       stackView.bottomAnchor.constraint(equalTo: view.bottomAnchor)
     ])
   }
-
 }

@@ -9,6 +9,6 @@
 import Foundation
 
 protocol Flushable {
-    var flushDelay: TimeInterval { get set }
-    func flush()
+  var flushDelay: TimeInterval { get set }
+  func flush()
 }

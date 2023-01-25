@@ -11,7 +11,6 @@ import InstantSearch
 import UIKit
 
 class DynamicFacetListDemoViewController: UIViewController {
-
   let searchController: UISearchController
   let demoController: DynamicFacetListDemoController
 
@@ -27,7 +26,8 @@ class DynamicFacetListDemoViewController: UIViewController {
     super.init(nibName: nibNameOrNil, bundle: nibBundleOrNil)
   }
 
-  required init?(coder: NSCoder) {
+  @available(*, unavailable)
+  required init?(coder _: NSCoder) {
     fatalError("init(coder:) has not been implemented")
   }
 
@@ -59,5 +59,4 @@ class DynamicFacetListDemoViewController: UIViewController {
     hintController.addAction(UIAlertAction(title: "OK", style: .cancel))
     present(hintController, animated: true)
   }
-
 }

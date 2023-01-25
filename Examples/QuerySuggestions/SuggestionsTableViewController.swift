@@ -6,11 +6,10 @@
 //
 
 import Foundation
-import UIKit
 import InstantSearch
+import UIKit
 
 class SuggestionsTableViewController: UITableViewController, HitsController, SearchBoxController {
-
   var onQueryChanged: ((String?) -> Void)?
   var onQuerySubmitted: ((String?) -> Void)?
 
@@ -18,24 +17,25 @@ class SuggestionsTableViewController: UITableViewController, HitsController, Sea
 
   let cellID = "сellID"
 
-  public override init(style: UITableView.Style) {
+  override public init(style: UITableView.Style) {
     super.init(style: style)
     tableView.register(SearchSuggestionTableViewCell.self, forCellReuseIdentifier: cellID)
   }
 
-  required init?(coder: NSCoder) {
+  @available(*, unavailable)
+  required init?(coder _: NSCoder) {
     fatalError("init(coder:) has not been implemented")
   }
 
-  func setQuery(_ query: String?) {
+  func setQuery(_: String?) {
     // not applicable
   }
 
-  public override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+  override public func tableView(_: UITableView, numberOfRowsInSection _: Int) -> Int {
     return hitsSource?.numberOfHits() ?? 0
   }
 
-  public override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+  override public func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
     guard let cell = tableView.dequeueReusableCell(withIdentifier: cellID) as? SearchSuggestionTableViewCell else { return .init() }
 
     if let suggestion = hitsSource?.hit(atIndex: indexPath.row) {
@@ -48,9 +48,8 @@ class SuggestionsTableViewController: UITableViewController, HitsController, Sea
     return cell
   }
 
-  public override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+  override public func tableView(_: UITableView, didSelectRowAt indexPath: IndexPath) {
     guard let suggestion = hitsSource?.hit(atIndex: indexPath.row) else { return }
     onQuerySubmitted?(suggestion.query)
   }
-
 }

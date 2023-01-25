@@ -9,14 +9,13 @@
 import Foundation
 
 public class MultiSourceReloadNotifier {
-
   public let target: Reloadable
 
   private var resultsUpdatableWrappers: [ResultsUpdatableNotificationWrapper] = []
 
   public init(target: Reloadable) {
     self.target = target
-    self.resultsUpdatableWrappers = []
+    resultsUpdatableWrappers = []
   }
 
   public func register<Updatable: ResultUpdatable>(_ updatable: Updatable) {
@@ -29,7 +28,7 @@ public class MultiSourceReloadNotifier {
     let group = DispatchGroup()
     for updatable in resultsUpdatableWrappers {
       group.enter()
-      updatable.onResultsUpdated.subscribeOnce(with: self) { (_, _) in
+      updatable.onResultsUpdated.subscribeOnce(with: self) { _, _ in
         group.leave()
       }
     }
@@ -37,11 +36,9 @@ public class MultiSourceReloadNotifier {
       self?.target.reload()
     }
   }
-
 }
 
 private class ResultsUpdatableNotificationWrapper: Connection {
-
   public var onResultsUpdated: Observer<Void>
 
   private var subscribe: () -> Void
@@ -53,7 +50,7 @@ private class ResultsUpdatableNotificationWrapper: Connection {
     unsubscribe = {}
     subscribe = { [weak self] in
       guard let wrapper = self else { return }
-      updatable.onResultsUpdated.subscribe(with: wrapper) { (wrapper, _) in
+      updatable.onResultsUpdated.subscribe(with: wrapper) { wrapper, _ in
         wrapper.onResultsUpdated.fire(())
       }
     }
@@ -70,5 +67,4 @@ private class ResultsUpdatableNotificationWrapper: Connection {
   public func disconnect() {
     unsubscribe()
   }
-
 }

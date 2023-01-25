@@ -8,7 +8,6 @@
 import UIKit
 
 class MainViewController: UIViewController {
-
   let segmentedControl: UISegmentedControl
   let viewStack: UIStackView
 
@@ -18,7 +17,8 @@ class MainViewController: UIViewController {
     super.init(nibName: nil, bundle: nil)
   }
 
-  required init?(coder: NSCoder) {
+  @available(*, unavailable)
+  required init?(coder _: NSCoder) {
     fatalError("init(coder:) has not been implemented")
   }
 
@@ -34,10 +34,10 @@ class MainViewController: UIViewController {
       "Numeric",
       "Tag"
     ]
-      .enumerated()
-      .forEach { index, title in
-        segmentedControl.insertSegment(withTitle: title, at: index, animated: false)
-      }
+    .enumerated()
+    .forEach { index, title in
+      segmentedControl.insertSegment(withTitle: title, at: index, animated: false)
+    }
     segmentedControl.addTarget(self, action: #selector(didSelectSegment), for: .valueChanged)
     segmentedControl.selectedSegmentIndex = 0
     segmentedControl.sendActions(for: .valueChanged)
@@ -84,5 +84,4 @@ class MainViewController: UIViewController {
     view.addSubview(mainStackView)
     mainStackView.pin(to: view.safeAreaLayoutGuide)
   }
-
 }

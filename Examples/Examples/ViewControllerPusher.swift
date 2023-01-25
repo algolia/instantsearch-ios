@@ -9,7 +9,6 @@ import Foundation
 import UIKit
 
 final class ViewControllerPusher<Factory: ViewControllerFactory> {
-
   let factory: Factory
   let sourceViewController: UIViewController
   var isTransitionAnimated: Bool
@@ -19,7 +18,7 @@ final class ViewControllerPusher<Factory: ViewControllerFactory> {
   init(factory: Factory, sourceViewController: UIViewController) {
     self.factory = factory
     self.sourceViewController = sourceViewController
-    self.isTransitionAnimated = true
+    isTransitionAnimated = true
   }
 
   func callAsFunction(_ model: Factory.Model) {
@@ -38,5 +37,4 @@ final class ViewControllerPusher<Factory: ViewControllerFactory> {
     }
     navigationController.pushViewController(destinationViewController, animated: isTransitionAnimated)
   }
-
 }

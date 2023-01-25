@@ -1,6 +1,6 @@
 //
 //  MultiIndexSearchConnectorTests.swift
-//  
+//
 //
 //  Created by Vladislav Fitc on 07/08/2020.
 //
@@ -11,9 +11,7 @@ import XCTest
 
 @available(*, deprecated, message: "Test to remove when MulstIndexSearcher obsoleted")
 class MultiIndexSearchConnectorTests: XCTestCase {
-  
   struct ConnectorContainer {
-    
     let searcher = MultiIndexSearcher(appID: "", apiKey: "", indexNames: ["i1", "i2"])
     let indexModules: [MultiIndexHitsConnector.IndexModule] = [
       .init(indexName: "i1", hitsInteractor: HitsInteractor<JSON>()),
@@ -22,14 +20,14 @@ class MultiIndexSearchConnectorTests: XCTestCase {
     let controller = TestMultiIndexHitsController()
     let queryInputInteractor = QueryInputInteractor()
     let queryInputController = TestSearchBoxController()
-    
+
     lazy var connector = MultiIndexSearchConnector(searcher: searcher,
                                                    indexModules: indexModules,
                                                    hitsController: controller,
                                                    queryInputInteractor: queryInputInteractor,
                                                    queryInputController: queryInputController)
   }
-  
+
   func testHitsInteractorSearcherConnect() {
     var module = ConnectorContainer()
     module.connector.connect()
@@ -38,7 +36,7 @@ class MultiIndexSearchConnectorTests: XCTestCase {
                                                                                   source: self)
     tester.check(isConnected: true)
   }
-  
+
   func testHitsInteractorControllerConnect() {
     var module = ConnectorContainer()
     module.connector.connect()
@@ -47,11 +45,11 @@ class MultiIndexSearchConnectorTests: XCTestCase {
                                                                                     source: self)
     tester.check(isConnected: true)
   }
-  
+
   func testQueryInputSearcherConnect() {
     // to complete when SingleIndexSearcher become abstract enough
   }
-  
+
   func testQueryInputControllerConnect() {
     var module = ConnectorContainer()
     module.connector.connect()
@@ -61,7 +59,7 @@ class MultiIndexSearchConnectorTests: XCTestCase {
                                                      source: self)
     tester.check(isConnected: true)
   }
-  
+
   func testDisconnect() {
     var module = ConnectorContainer()
     module.connector.connect()
@@ -77,5 +75,4 @@ class MultiIndexSearchConnectorTests: XCTestCase {
                                         presetQuery: nil,
                                         source: self).check(isConnected: false)
   }
-  
 }

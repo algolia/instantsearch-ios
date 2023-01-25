@@ -11,20 +11,16 @@ import Foundation
 import XCTest
 
 class SelectableInteractorTests: XCTestCase {
-
   typealias VM = SelectableInteractor<String>
 
   func testConstruction() {
-
     let interactor = SelectableInteractor(item: "i")
 
     XCTAssertFalse(interactor.isSelected)
     XCTAssertEqual(interactor.item, "i")
-
   }
 
   func testSwitchItem() {
-
     let interactor = SelectableInteractor(item: "i")
 
     let switchItemExpectation = expectation(description: "item changed")
@@ -40,7 +36,6 @@ class SelectableInteractorTests: XCTestCase {
   }
 
   func testSelection() {
-
     let interactor = SelectableInteractor(item: "i")
 
     let selectionExpectation = expectation(description: "item selected")
@@ -58,11 +53,9 @@ class SelectableInteractorTests: XCTestCase {
     interactor.isSelected = false
 
     waitForExpectations(timeout: 2, handler: nil)
-
   }
 
   func testSelectedComputed() {
-
     let interactor = SelectableInteractor(item: "i")
 
     let selectedComputedExpectation = expectation(description: "computed selected")
@@ -75,7 +68,5 @@ class SelectableInteractorTests: XCTestCase {
     interactor.computeIsSelected(selecting: false)
 
     waitForExpectations(timeout: 2, handler: nil)
-
   }
-
 }

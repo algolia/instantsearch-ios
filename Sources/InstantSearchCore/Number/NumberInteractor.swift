@@ -9,7 +9,6 @@
 import Foundation
 
 public class NumberInteractor<Number: Comparable & DoubleRepresentable>: ItemInteractor<Number?>, Boundable {
-
   public let onNumberComputed: Observer<Number?>
   public let onBoundsComputed: Observer<ClosedRange<Number>?>
 
@@ -20,13 +19,13 @@ public class NumberInteractor<Number: Comparable & DoubleRepresentable>: ItemInt
     Telemetry.shared.trace(type: .numberFilter)
   }
 
-  public override init(item: Number?) {
-    self.onNumberComputed = .init()
-    self.onBoundsComputed = .init()
+  override public init(item: Number?) {
+    onNumberComputed = .init()
+    onBoundsComputed = .init()
     super.init(item: item)
     Telemetry.shared.trace(type: .numberFilter,
                            parameters: [
-                            item == nil ? .none : .number
+                             item == nil ? .none : .number
                            ])
   }
 

@@ -11,17 +11,15 @@ import InstantSearch
 import UIKit
 
 class StatsDemoController {
-
   let searcher: HitsSearcher
   let statsConnector: StatsConnector
   let searchBoxConnector: SearchBoxConnector
 
   init() {
-    self.searcher = HitsSearcher(client: .instantSearch,
-                                 indexName: .movies)
-    self.searchBoxConnector = .init(searcher: searcher)
-    self.statsConnector = .init(searcher: searcher)
+    searcher = HitsSearcher(client: .instantSearch,
+                            indexName: .movies)
+    searchBoxConnector = .init(searcher: searcher)
+    statsConnector = .init(searcher: searcher)
     searcher.search()
   }
-
 }

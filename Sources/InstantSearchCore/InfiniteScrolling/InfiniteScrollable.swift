@@ -9,12 +9,10 @@
 import Foundation
 
 protocol InfiniteScrollable: AnyObject {
-
   var lastPageIndex: Int? { get set }
   var pageLoader: PageLoadable? { get set }
 
   func calculatePagesAndLoad<T>(currentRow: Int, offset: Int, pageMap: PageMap<T>)
   func notifyPending(pageIndex: Int)
   func notifyPendingAll()
-
 }

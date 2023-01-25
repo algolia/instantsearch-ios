@@ -1,18 +1,16 @@
 //
 //  RelevantSortInteractor+MultiIndexSearcher.swift
-//  
+//
 //
 //  Created by Vladislav Fitc on 10/02/2021.
 //
 
 import Foundation
 
-extension RelevantSortInteractor {
-
+public extension RelevantSortInteractor {
   /// Connection between relevant sort interactor and a searcher handling the search
   @available(*, deprecated, message: "Use multiple HitsSearcher aggregated with MultiSearcher instead of MultiIndexSearcher")
-  public struct MultiIndexSearcherConnection: Connection {
-
+  struct MultiIndexSearcherConnection: Connection {
     /// Relevant sort priority toggling logic
     public let interactor: RelevantSortInteractor
 
@@ -38,13 +36,13 @@ extension RelevantSortInteractor {
 
     public func connect() {
       let queryIndex = self.queryIndex
-      interactor.onItemChanged.subscribe(with: searcher) { (searcher, priority) in
+      interactor.onItemChanged.subscribe(with: searcher) { searcher, priority in
         guard let priority = priority else { return }
         searcher.indexQueryStates[queryIndex].query.relevancyStrictness = priority.relevancyStrictness
         searcher.onQueryChanged.fire(searcher.query)
         searcher.search()
       }
-      searcher.onResults.subscribePast(with: interactor) { (interactor, searchesResponse) in
+      searcher.onResults.subscribePast(with: interactor) { interactor, searchesResponse in
         if let receivedRelevancyStrictness = searchesResponse.results[queryIndex].appliedRelevancyStrictness {
           let relevantSortPriority = RelevantSortPriority(relevancyStrictness: receivedRelevancyStrictness)
           if relevantSortPriority != interactor.item {
@@ -60,7 +58,6 @@ extension RelevantSortInteractor {
       interactor.onItemChanged.cancelSubscription(for: searcher)
       searcher.onResults.cancelSubscription(for: interactor)
     }
-
   }
 
   /**
@@ -71,11 +68,10 @@ extension RelevantSortInteractor {
    - Returns: Established connection
    */
   @available(*, deprecated, message: "Use multiple HitsSearcher aggregated with MultiSearcher instead of MultiIndexSearcher")
-  @discardableResult public func connectSearcher(_ searcher: MultiIndexSearcher,
-                                                 queryIndex: Int) -> MultiIndexSearcherConnection {
+  @discardableResult func connectSearcher(_ searcher: MultiIndexSearcher,
+                                          queryIndex: Int) -> MultiIndexSearcherConnection {
     let connection = MultiIndexSearcherConnection(interactor: self, searcher: searcher, queryIndex: queryIndex)
     connection.connect()
     return connection
   }
-
 }

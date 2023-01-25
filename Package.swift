@@ -14,16 +14,20 @@ let package = Package(
   products: [
     .library(
       name: "InstantSearch",
-      targets: ["InstantSearch", "InstantSearchCore"]),
+      targets: ["InstantSearch", "InstantSearchCore"]
+    ),
     .library(
       name: "InstantSearchCore",
-      targets: ["InstantSearchCore"]),
+      targets: ["InstantSearchCore"]
+    ),
     .library(
       name: "InstantSearchInsights",
-      targets: ["InstantSearchInsights"]),
+      targets: ["InstantSearchInsights"]
+    ),
     .library(
       name: "InstantSearchSwiftUI",
-      targets: ["InstantSearchSwiftUI"])
+      targets: ["InstantSearchSwiftUI"]
+    )
   ],
   dependencies: [
     .package(name: "AlgoliaSearchClient",
@@ -37,13 +41,16 @@ let package = Package(
     .target(
       name: "InstantSearchInsights",
       dependencies: ["AlgoliaSearchClient"],
-      exclude: ["Readme.md"]),
+      exclude: ["Readme.md"]
+    ),
     .testTarget(
       name: "InstantSearchInsightsTests",
-      dependencies: ["InstantSearchInsights", "AlgoliaSearchClient"]),
+      dependencies: ["InstantSearchInsights", "AlgoliaSearchClient"]
+    ),
     .target(
       name: "InstantSearchCore",
-      dependencies: ["AlgoliaSearchClient", "InstantSearchInsights", .product(name: "InstantSearchTelemetry", package: "InstantSearchTelemetry")]),
+      dependencies: ["AlgoliaSearchClient", "InstantSearchInsights", .product(name: "InstantSearchTelemetry", package: "InstantSearchTelemetry")]
+    ),
     .testTarget(
       name: "InstantSearchCoreTests",
       dependencies: ["InstantSearchCore", "AlgoliaSearchClient", "InstantSearchInsights"],
@@ -56,19 +63,23 @@ let package = Package(
         .copy("Misc/hierarchical.json"),
         .copy("Misc/SearchResultFacets.json"),
         .copy("Misc/SearchResultFacets2.json")
-      ]),
+      ]
+    ),
     .target(
       name: "InstantSearch",
-      dependencies: ["InstantSearchCore"]),
+      dependencies: ["InstantSearchCore"]
+    ),
     .testTarget(
       name: "InstantSearchTests",
-      dependencies: ["InstantSearch"]),
+      dependencies: ["InstantSearch"]
+    ),
     .target(
       name: "InstantSearchSwiftUI",
-      dependencies: ["InstantSearchCore", .product(name: "InstantSearchTelemetry", package: "InstantSearchTelemetry")]),
+      dependencies: ["InstantSearchCore", .product(name: "InstantSearchTelemetry", package: "InstantSearchTelemetry")]
+    ),
     .testTarget(
       name: "InstantSearchSwiftUITests",
-      dependencies: ["InstantSearchSwiftUI"])
-
+      dependencies: ["InstantSearchSwiftUI"]
+    )
   ]
 )

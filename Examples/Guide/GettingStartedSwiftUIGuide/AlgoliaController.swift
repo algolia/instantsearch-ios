@@ -11,7 +11,6 @@ import InstantSearchCore
 import InstantSearchSwiftUI
 
 class AlgoliaController {
-
   let searcher: HitsSearcher
 
   let searchBoxInteractor: SearchBoxInteractor
@@ -29,18 +28,18 @@ class AlgoliaController {
   let facetListController: FacetListObservableController
 
   init() {
-    self.searcher = HitsSearcher(appID: "latency",
-                                 apiKey: "1f6fd3a6fb973cb08419fe7d288fa4db",
-                                 indexName: "bestbuy")
-    self.searchBoxInteractor = .init()
-    self.searchBoxController = .init()
-    self.hitsInteractor = .init()
-    self.hitsController = .init()
-    self.statsInteractor = .init()
-    self.statsController = .init()
-    self.filterState = .init()
-    self.facetListInteractor = .init()
-    self.facetListController = .init()
+    searcher = HitsSearcher(appID: "latency",
+                            apiKey: "1f6fd3a6fb973cb08419fe7d288fa4db",
+                            indexName: "bestbuy")
+    searchBoxInteractor = .init()
+    searchBoxController = .init()
+    hitsInteractor = .init()
+    hitsController = .init()
+    statsInteractor = .init()
+    statsController = .init()
+    filterState = .init()
+    facetListInteractor = .init()
+    facetListController = .init()
     setupConnections()
     searcher.search()
   }
@@ -57,5 +56,4 @@ class AlgoliaController {
     facetListInteractor.connectFilterState(filterState, with: "manufacturer", operator: .or)
     facetListInteractor.connectController(facetListController, with: FacetListPresenter(sortBy: [.isRefined, .count(order: .descending)]))
   }
-
 }

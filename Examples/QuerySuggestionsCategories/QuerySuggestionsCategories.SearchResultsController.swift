@@ -10,9 +10,7 @@ import InstantSearch
 import UIKit
 
 extension QuerySuggestionsCategories {
-
   class SearchResultsController: UITableViewController {
-
     var didSelectSuggestion: ((String) -> Void)?
 
     enum Section: Int, CaseIterable {
@@ -36,7 +34,6 @@ extension QuerySuggestionsCategories {
           return "suggestions"
         }
       }
-
     }
 
     weak var categoriesInteractor: FacetListInteractor? {
@@ -65,11 +62,11 @@ extension QuerySuggestionsCategories {
       tableView.register(CategoryTableViewCell.self, forCellReuseIdentifier: Section.categories.cellReuseIdentifier)
     }
 
-    override func numberOfSections(in tableView: UITableView) -> Int {
+    override func numberOfSections(in _: UITableView) -> Int {
       return Section.allCases.count
     }
 
-    override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+    override func tableView(_: UITableView, numberOfRowsInSection section: Int) -> Int {
       guard let section = Section(rawValue: section) else { return 0 }
       switch section {
       case .categories:
@@ -90,21 +87,21 @@ extension QuerySuggestionsCategories {
         if
           let category = categoriesInteractor?.items[indexPath.row],
           let categoryCell = cell as? CategoryTableViewCell {
-            categoryCell.setup(with: category)
+          categoryCell.setup(with: category)
         }
       case .suggestions:
         cell = tableView.dequeueReusableCell(withIdentifier: Section.suggestions.cellReuseIdentifier, for: indexPath)
         if
           let suggestion = suggestionsInteractor?.hit(atIndex: indexPath.row),
           let suggestionCell = cell as? SearchSuggestionTableViewCell {
-            suggestionCell.setup(with: suggestion)
+          suggestionCell.setup(with: suggestion)
         }
       }
 
       return cell
     }
 
-    override func tableView(_ tableView: UITableView, titleForHeaderInSection section: Int) -> String? {
+    override func tableView(_: UITableView, titleForHeaderInSection section: Int) -> String? {
       guard let section = Section(rawValue: section) else { return nil }
       switch section {
       case .categories where categoriesInteractor?.items.count ?? 0 == 0:
@@ -116,7 +113,7 @@ extension QuerySuggestionsCategories {
       }
     }
 
-    override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+    override func tableView(_: UITableView, didSelectRowAt indexPath: IndexPath) {
       guard let section = Section(rawValue: indexPath.section) else { return }
       switch section {
       case .suggestions:
@@ -127,7 +124,5 @@ extension QuerySuggestionsCategories {
         break
       }
     }
-
   }
-
 }
