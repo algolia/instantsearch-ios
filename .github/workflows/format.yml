@@ -1,4 +1,4 @@
-name: Format
+name: SwiftFormat
 on:
   push:
     branches: [master]
