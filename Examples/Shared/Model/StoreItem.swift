@@ -8,7 +8,6 @@
 import Foundation
 
 struct StoreItem: Codable {
-
   let name: String
   let brand: String?
   let description: String?
@@ -29,20 +28,20 @@ struct StoreItem: Codable {
 
   init(from decoder: Decoder) throws {
     let container = try decoder.container(keyedBy: CodingKeys.self)
-    self.name = try container.decode(String.self, forKey: .name)
-    self.brand = try? container.decode(String.self, forKey: .brand)
-    self.description = try? container.decode(String.self, forKey: .description)
+    name = try container.decode(String.self, forKey: .name)
+    brand = try? container.decode(String.self, forKey: .brand)
+    description = try? container.decode(String.self, forKey: .description)
     if let rawImages = try? container.decode([String].self, forKey: .images) {
-      self.images = rawImages.compactMap(URL.init)
+      images = rawImages.compactMap(URL.init)
     } else {
-      self.images = []
+      images = []
     }
     if
       let priceContainer = try? container.nestedContainer(keyedBy: PriceCodingKeys.self, forKey: .price),
       let price = try? priceContainer.decode(Double.self, forKey: .value) {
-        self.price = price
+      self.price = price
     } else {
-      self.price = .none
+      price = .none
     }
   }
 
@@ -54,5 +53,4 @@ struct StoreItem: Codable {
     try container.encode(images, forKey: .images)
     try container.encode(price, forKey: .price)
   }
-
 }

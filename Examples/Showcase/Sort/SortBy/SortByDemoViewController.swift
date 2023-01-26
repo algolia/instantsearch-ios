@@ -6,11 +6,10 @@
 //  Copyright © 2019 Algolia. All rights reserved.
 //
 
-import UIKit
 import InstantSearch
+import UIKit
 
 class SortByDemoViewController: UIViewController {
-
   let demoController: SortByDemoController
 
   let searchController: UISearchController
@@ -20,15 +19,16 @@ class SortByDemoViewController: UIViewController {
   var onClick: ((Int) -> Void)?
 
   override init(nibName nibNameOrNil: String?, bundle nibBundleOrNil: Bundle?) {
-    self.demoController = .init()
-    self.resultsViewController = .init(searcher: demoController.searcher)
-    self.searchController = .init(searchResultsController: resultsViewController)
-    self.textFieldController = TextFieldController(searchBar: searchController.searchBar)
+    demoController = .init()
+    resultsViewController = .init(searcher: demoController.searcher)
+    searchController = .init(searchResultsController: resultsViewController)
+    textFieldController = TextFieldController(searchBar: searchController.searchBar)
     super.init(nibName: nibNameOrNil, bundle: nibBundleOrNil)
     setup()
   }
 
-  required init?(coder aDecoder: NSCoder) {
+  @available(*, unavailable)
+  required init?(coder _: NSCoder) {
     fatalError("init(coder:) has not been implemented")
   }
 
@@ -59,19 +59,15 @@ class SortByDemoViewController: UIViewController {
     searchController.showsSearchResultsController = true
     searchController.automaticallyShowsCancelButton = false
   }
-
 }
 
 extension SortByDemoViewController: UISearchBarDelegate {
-
-  func searchBar(_ searchBar: UISearchBar, selectedScopeButtonIndexDidChange selectedScope: Int) {
+  func searchBar(_: UISearchBar, selectedScopeButtonIndexDidChange selectedScope: Int) {
     onClick?(selectedScope)
   }
-
 }
 
 extension SortByDemoViewController: SelectableSegmentController {
-
   func setItems(items: [Int: String]) {
     searchController.searchBar.scopeButtonTitles = items.sorted(by: \.key).map(\.value)
   }
@@ -81,5 +77,4 @@ extension SortByDemoViewController: SelectableSegmentController {
       searchController.searchBar.selectedScopeButtonIndex = index
     }
   }
-
 }

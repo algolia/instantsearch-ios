@@ -9,9 +9,7 @@
 import Foundation
 
 public protocol SelectableController: ItemController {
-
   var onClick: ((Bool) -> Void)? { get set }
 
   func setSelected(_ isSelected: Bool)
-
 }

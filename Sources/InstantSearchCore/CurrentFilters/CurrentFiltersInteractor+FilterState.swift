@@ -9,9 +9,7 @@
 import Foundation
 
 public extension CurrentFiltersInteractor {
-
   struct FilterStateConnection: Connection {
-
     public let interactor: CurrentFiltersInteractor
     public let filterState: FilterState
     public let filterGroupIDs: Set<FilterGroup.ID>?
@@ -25,7 +23,6 @@ public extension CurrentFiltersInteractor {
     }
 
     public func connect() {
-
       let filterGroupIDs = self.filterGroupIDs
 
       filterState.onChange.subscribePast(with: interactor) { [weak filterState] interactor, _ in
@@ -41,32 +38,28 @@ public extension CurrentFiltersInteractor {
 
         if let filterGroupIDs = filterGroupIDs {
           filterState.filters.removeAll(fromGroupWithIDs: Array(filterGroupIDs))
-          items.forEach({ (filterAndID) in
+          items.forEach { filterAndID in
             filterState.filters.add(filterAndID.filter.filter, toGroupWithID: filterAndID.id)
-          })
+          }
         } else {
           filterState.filters.removeAll()
-          items.forEach({ (filterAndID) in
+          items.forEach { filterAndID in
             filterState.filters.add(filterAndID.filter.filter, toGroupWithID: filterAndID.id)
-          })
+          }
         }
 
         filterState.notifyChange()
       }
-
     }
 
     public func disconnect() {
       filterState.onChange.cancelSubscription(for: interactor)
       interactor.onItemsComputed.cancelSubscription(for: filterState)
     }
-
   }
-
 }
 
 public extension CurrentFiltersInteractor {
-
   @discardableResult func connectFilterState(_ filterState: FilterState,
                                              filterGroupIDs: Set<FilterGroup.ID>? = nil) -> FilterStateConnection {
     let connection = FilterStateConnection(interactor: self, filterState: filterState, filterGroupIDs: filterGroupIDs)
@@ -87,5 +80,4 @@ public extension CurrentFiltersInteractor {
                                              filterGroupID: FilterGroup.ID) -> FilterStateConnection {
     return connectFilterState(filterState, filterGroupIDs: Set([filterGroupID]))
   }
-
 }

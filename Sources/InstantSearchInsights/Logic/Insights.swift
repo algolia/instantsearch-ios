@@ -5,13 +5,13 @@
 //  Copyright © 2018 Algolia. All rights reserved.
 //
 
-import Foundation
 import AlgoliaSearchClient
+import Foundation
 #if os(iOS)
-import UIKit
+  import UIKit
 #endif
 #if canImport(AppKit)
-import AppKit
+  import AppKit
 #endif
 
 /// Main class used for interacting with the InstantSearch Insights library.
@@ -31,7 +31,6 @@ import AppKit
 /// ````
 
 public class Insights {
-
   /// Specify the desired API endpoint region
   /// By default API endpoint is routed automatically
 
@@ -43,7 +42,6 @@ public class Insights {
   /// - Note: This value is ignored if a custom per-app or per-event user token is provided
 
   public static var userToken: UserToken {
-
     let key = "com.algolia.InstantSearch.Insights.UserToken"
 
     if let existingToken = UserDefaults.standard.string(forKey: key) {
@@ -53,7 +51,6 @@ public class Insights {
       UserDefaults.standard.set(generatedToken, forKey: key)
       return UserToken(rawValue: generatedToken)
     }
-
   }
 
   /// Application-specific user token
@@ -61,7 +58,6 @@ public class Insights {
   /// - Note: This value is ignored if a custom per-event user token provided
 
   public var userToken: UserToken? {
-
     get {
       return (eventTracker as? EventTracker)?.userToken
     }
@@ -69,7 +65,6 @@ public class Insights {
     set {
       (eventTracker as? EventTracker)?.userToken = newValue
     }
-
   }
 
   /// Synchronization delay of tracked events with server. Default value is 30 seconds.
@@ -100,7 +95,6 @@ public class Insights {
   /// In case of set to false, all the events for current application will be ignored.
 
   public var isActive: Bool {
-
     get {
       return eventProcessor.isActive
     }
@@ -108,7 +102,6 @@ public class Insights {
     set {
       eventProcessor.isActive = newValue
     }
-
   }
 
   /// Defines if console debug logging enabled. Default value is `false`.
@@ -126,7 +119,6 @@ public class Insights {
   /// If none or more than one application has been registered, the nil value will be returned.
 
   public static var shared: Insights? {
-
     switch insightsMap.count {
     case 0:
       InstantSearchInsightsLog.debug("none registered application found. Please use `register(appId:, apiKey:)` method to register your application.")
@@ -139,7 +131,6 @@ public class Insights {
       InstantSearchInsightsLog.debug("multiple applications registered. Please use `shared(appId:)` function to specify the applicaton.")
       return nil
     }
-
   }
 
   /// Access an already registered `Insights` via its `appId`.
@@ -185,7 +176,7 @@ public class Insights {
 
   init(eventProcessor: EventProcessable,
        eventTracker: EventTrackable,
-       logger: Logger) {
+       logger _: Logger) {
     self.eventProcessor = eventProcessor
     self.eventTracker = eventTracker
   }
@@ -197,14 +188,13 @@ public class Insights {
                    userToken: UserToken?,
                    generateTimestamps: Bool,
                    logger: Logger) {
-
     typealias PackageStorage = JSONFilePackageStorage<[Package<InsightsEvent>]>
 
     let storage: PackageStorage?
 
     do {
       storage = try PackageStorage(filename: "\(applicationID.rawValue).storage.events")
-    } catch let error {
+    } catch {
       storage = nil
       logger.error("\(error.localizedDescription)")
     }
@@ -222,11 +212,11 @@ public class Insights {
     let notificationName: Notification.Name?
 
     #if os(iOS)
-    notificationName = UIApplication.willResignActiveNotification
+      notificationName = UIApplication.willResignActiveNotification
     #elseif canImport(AppKit)
-    notificationName = NSApplication.willResignActiveNotification
+      notificationName = NSApplication.willResignActiveNotification
     #else
-    notificationName = nil
+      notificationName = nil
     #endif
 
     let queue: DispatchQueue = .init(label: "insights.events", qos: .background)
@@ -248,5 +238,4 @@ public class Insights {
               eventTracker: eventTracker,
               logger: logger)
   }
-
 }

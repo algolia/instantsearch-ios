@@ -10,21 +10,18 @@ import Foundation
 @testable import InstantSearchInsights
 
 class MockEventService<Event>: EventsService {
-    
-  
   var didSendEvents: ([Event]) -> Void
-  
+
   public init(didSendEvents: @escaping ([Event]) -> Void = { _ in }) {
     self.didSendEvents = didSendEvents
   }
-  
+
   func sendEvents(_ events: [Event], completion: @escaping (Result<Void, Error>) -> Void) {
     didSendEvents(events)
     completion(.success(()))
   }
-  
-  static func isRetryable(_ error: Error) -> Bool {
+
+  static func isRetryable(_: Error) -> Bool {
     return true
   }
-
 }

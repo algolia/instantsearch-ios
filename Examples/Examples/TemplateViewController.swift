@@ -10,7 +10,6 @@ import Foundation
 import UIKit
 
 class TemplateViewController: UIViewController {
-
   let label = UILabel()
 
   override func viewDidLoad() {
@@ -20,5 +19,4 @@ class TemplateViewController: UIViewController {
     view.addSubview(label)
     label.pin(to: view.safeAreaLayoutGuide)
   }
-
 }

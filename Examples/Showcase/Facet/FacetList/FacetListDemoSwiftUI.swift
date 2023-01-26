@@ -12,9 +12,7 @@ import InstantSearchSwiftUI
 import SwiftUI
 
 class FacetListDemoSwiftUI: SwiftUIDemo, PreviewProvider {
-
   class Controller {
-
     let demoController: FacetListDemoController
     let filterStateController: FilterStateObservableController
     let clearFilterController: FilterClearObservableController
@@ -33,11 +31,9 @@ class FacetListDemoSwiftUI: SwiftUIDemo, PreviewProvider {
       filterStateController = FilterStateObservableController(filterState: demoController.filterState)
       demoController.clearConnector.connectController(clearFilterController)
     }
-
   }
 
   struct ContentView: View {
-
     @ObservedObject var filterStateController: FilterStateObservableController
     @ObservedObject var clearFilterController: FilterClearObservableController
 
@@ -78,7 +74,6 @@ class FacetListDemoSwiftUI: SwiftUIDemo, PreviewProvider {
         .padding()
       }
     }
-
   }
 
   static func contentView(with controller: Controller) -> ContentView {
@@ -95,7 +90,5 @@ class FacetListDemoSwiftUI: SwiftUIDemo, PreviewProvider {
       contentView(with: controller)
         .navigationBarTitle("Refinement List")
     }
-
   }
-
 }

@@ -14,9 +14,7 @@ import Foundation
  */
 
 public extension Filter {
-
   struct Numeric: FilterType, Equatable {
-
     public enum ValueType: Hashable {
       case range(ClosedRange<Double>)
       case comparison(Operator, Double)
@@ -50,7 +48,6 @@ public extension Filter {
       public var description: String {
         return rawValue
       }
-
     }
 
     public let attribute: Attribute
@@ -67,29 +64,24 @@ public extension Filter {
       self.init(attribute: attribute, value: .range(range), isNegated: isNegated)
     }
 
-    public init(attribute: Attribute, `operator`: Operator, value: Double, isNegated: Bool = false) {
+    public init(attribute: Attribute, operator: Operator, value: Double, isNegated: Bool = false) {
       self.init(attribute: attribute, value: .comparison(`operator`, value), isNegated: isNegated)
     }
-
   }
-
 }
 
 extension Filter.Numeric.ValueType: CustomStringConvertible {
-
   public var description: String {
     switch self {
-    case .range(let range):
+    case let .range(range):
       return "\(range.lowerBound) – \(range.upperBound)"
-    case .comparison(let compOperator, let value):
+    case let .comparison(compOperator, value):
       return "\(compOperator.description) \(value)"
     }
   }
-
 }
 
 extension Filter.Numeric: CustomStringConvertible {
-
   public var description: String {
     let separator: String
     switch value {
@@ -100,7 +92,6 @@ extension Filter.Numeric: CustomStringConvertible {
     }
     return "\(attribute)\(separator) \(value.description)"
   }
-
 }
 
 extension Filter.Numeric: Hashable {}

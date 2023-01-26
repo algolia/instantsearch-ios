@@ -9,7 +9,6 @@
 import Foundation
 
 extension HitsInteractor {
-
   @discardableResult public func connectSearcher<T>(_ searcher: HitsSearcher, withRelatedItemsTo hit: ObjectWrapper<T>, with matchingPatterns: [MatchingPattern<T>]) -> HitsSearcherConnection {
     let connection = HitsSearcherConnection(interactor: self, searcher: searcher)
     connection.connect()
@@ -29,17 +28,16 @@ extension HitsInteractor {
 
     for matchingPattern in matchingPatterns {
       switch matchingPattern.oneOrManyElementsInKeyPath {
-      case .one(let keyPath): // // in the case of a single facet associated to a filter -> AND Behaviours
+      case let .one(keyPath): // // in the case of a single facet associated to a filter -> AND Behaviours
         let facetValue = hit.object[keyPath: keyPath]
-        let facetFilter = Filter.Facet.init(attribute: matchingPattern.attribute, value: .string(facetValue), score: matchingPattern.score)
+        let facetFilter = Filter.Facet(attribute: matchingPattern.attribute, value: .string(facetValue), score: matchingPattern.score)
         filterState[and: matchingPattern.attribute.rawValue].add(facetFilter)
-      case .many(let keyPath): // in the case of multiple facets associated to a filter -> OR Behaviours
-        let facetFilters = hit.object[keyPath: keyPath].map { Filter.Facet.init(attribute: matchingPattern.attribute, value: .string($0), score: matchingPattern.score) }
+      case let .many(keyPath): // in the case of multiple facets associated to a filter -> OR Behaviours
+        let facetFilters = hit.object[keyPath: keyPath].map { Filter.Facet(attribute: matchingPattern.attribute, value: .string($0), score: matchingPattern.score) }
         filterState[or: matchingPattern.attribute.rawValue].addAll(facetFilters)
       }
     }
 
     return FilterGroupConverter().legacy(filterState.toFilterGroups())
   }
-
 }

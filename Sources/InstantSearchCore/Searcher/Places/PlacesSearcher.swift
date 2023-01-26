@@ -6,12 +6,11 @@
 //  Copyright © 2019 Algolia. All rights reserved.
 //
 
-import Foundation
 import AlgoliaSearchClient
+import Foundation
 
 @available(*, deprecated, message: "Places feature is deprecated")
-final public class PlacesSearcher: AbstractSearcher<AlgoliaPlacesSearchService> {
-
+public final class PlacesSearcher: AbstractSearcher<AlgoliaPlacesSearchService> {
   public var placesQuery: PlacesQuery {
     get {
       request.query
@@ -33,5 +32,4 @@ final public class PlacesSearcher: AbstractSearcher<AlgoliaPlacesSearchService> 
     let client = PlacesClient(appID: appID, apiKey: apiKey)
     self.init(client: client, query: query)
   }
-
 }

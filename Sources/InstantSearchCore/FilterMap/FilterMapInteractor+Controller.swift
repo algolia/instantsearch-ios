@@ -10,7 +10,6 @@
 import Foundation
 
 public struct FilterMapInteractorControllerConnection<Filter: FilterType, Controller: SelectableSegmentController>: Connection where Controller.SegmentKey == Int {
-
   public typealias Interactor = SelectableSegmentInteractor<Int, Filter>
 
   public let interactor: Interactor
@@ -39,7 +38,6 @@ public struct FilterMapInteractorControllerConnection<Filter: FilterType, Contro
       controller.setSelected(selectedItem)
     }.onQueue(.main)
     interactor.onItemsChanged.subscribePast(with: controller, callback: setControllerItems).onQueue(.main)
-
   }
 
   public func disconnect() {
@@ -47,18 +45,15 @@ public struct FilterMapInteractorControllerConnection<Filter: FilterType, Contro
     interactor.onSelectedChanged.cancelSubscription(for: controller)
     interactor.onItemsChanged.cancelSubscription(for: controller)
   }
-
 }
 
 public extension FilterMapInteractor {
-
   @discardableResult func connectController<Controller: SelectableSegmentController>(_ controller: Controller,
                                                                                      presenter: @escaping FilterPresenter = DefaultPresenter.Filter.present) -> FilterMapInteractorControllerConnection<Filter, Controller> where Controller.SegmentKey == Int {
     let connection = FilterMapInteractorControllerConnection(interactor: self, controller: controller, presenter: presenter)
     connection.connect()
     return connection
   }
-
 }
 
 @available(*, deprecated, renamed: "FilterMapInteractorControllerConnection")

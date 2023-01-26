@@ -1,6 +1,6 @@
 //
 //  SearchBoxConnector+Controller.swift
-//  
+//
 //
 //  Created by Vladislav Fitc on 17/09/2020.
 //
@@ -8,7 +8,6 @@
 import Foundation
 
 public extension SearchBoxConnector {
-
   /**
    - Parameters:
    - searcher: Searcher that handles your searches
@@ -37,5 +36,4 @@ public extension SearchBoxConnector {
     controllerConnections.append(connection)
     return connection
   }
-
 }

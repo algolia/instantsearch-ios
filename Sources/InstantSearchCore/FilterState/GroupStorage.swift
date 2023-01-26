@@ -9,19 +9,15 @@
 import Foundation
 
 struct GroupsStorage {
-
   var filterGroups: [FilterGroup.ID: FilterGroupType]
 
   init() {
     filterGroups = [:]
   }
-
 }
 
 extension GroupsStorage: FilterGroupsConvertible {
-
   func toFilterGroups() -> [FilterGroupType] {
-
     let filterComparator: (FilterType, FilterType) -> Bool = {
       let converter = FilterConverter()
       let lhsString = converter.sql($0)!
@@ -41,7 +37,7 @@ extension GroupsStorage: FilterGroupsConvertible {
       return $0.name < $1.name
     }
 
-    let transform: (FilterGroup.ID, FilterGroupType) -> FilterGroupType = { (groupID, filterGroup) in
+    let transform: (FilterGroup.ID, FilterGroupType) -> FilterGroupType = { groupID, filterGroup in
 
       let sortedFilters = filterGroup.filters.sorted(by: filterComparator)
 
@@ -57,20 +53,16 @@ extension GroupsStorage: FilterGroupsConvertible {
       case .or(_, .numeric):
         return FilterGroup.Or(filters: sortedFilters.compactMap { $0 as? Filter.Numeric }, name: groupID.name)
       }
-
     }
 
     return filterGroups
       .sorted(by: { groupIDComparator($0.key, $1.key) })
       .compactMap(transform)
       .filter { !$0.filters.isEmpty }
-
   }
-
 }
 
 extension GroupsStorage: FiltersReadable {
-
   func getFilters(forGroupWithID groupID: FilterGroup.ID) -> Set<Filter> {
     return Set(filterGroups[groupID]?.filters.map(Filter.init) ?? [])
   }
@@ -81,7 +73,7 @@ extension GroupsStorage: FiltersReadable {
 
   func getFiltersAndID() -> Set<FilterAndID> {
     return Set(filterGroups
-      .map { (id, group) in group.filters.map { (id, $0)  } }
+      .map { id, group in group.filters.map { (id, $0) } }
       .flatMap { $0 }
       .map { FilterAndID(filter: Filter($0.1), id: $0.0) })
   }
@@ -101,16 +93,14 @@ extension GroupsStorage: FiltersReadable {
   func getGroupIDs() -> Set<FilterGroup.ID> {
     return Set(filterGroups.keys)
   }
-
 }
 
 extension GroupsStorage: FiltersWritable {
-
   private func emptyGroup(with filterGroupID: FilterGroup.ID) -> FilterGroupType {
     switch filterGroupID {
-    case .and(name: let name):
+    case let .and(name: name):
       return FilterGroup.And(filters: [], name: name)
-    case .hierarchical(name: let name):
+    case let .hierarchical(name: name):
       return FilterGroup.Hierarchical(filters: [], name: name)
     case .or(name: let name, filterType: .facet):
       return FilterGroup.Or<Filter.Facet>(filters: [], name: name)
@@ -133,7 +123,7 @@ extension GroupsStorage: FiltersWritable {
     }
 
     let filtersToRemove = filters.map(Filter.init)
-    let updatedFilters = existingGroup.filters.filter { !filtersToRemove.contains(Filter($0))  }
+    let updatedFilters = existingGroup.filters.filter { !filtersToRemove.contains(Filter($0)) }
     let updatedGroup = existingGroup.withFilters(updatedFilters)
     if updatedGroup.isEmpty {
       filterGroups.removeValue(forKey: groupID)
@@ -187,11 +177,9 @@ extension GroupsStorage: FiltersWritable {
   mutating func removeAll() {
     removeAll(fromGroupWithIDs: Array(getGroupIDs()))
   }
-
 }
 
 extension GroupsStorage: HierarchicalManageable {
-
   func hierarchicalGroup(withName groupName: String) -> FilterGroup.Hierarchical? {
     return filterGroups[.hierarchical(name: groupName)].flatMap { $0 as? FilterGroup.Hierarchical }
   }
@@ -202,7 +190,6 @@ extension GroupsStorage: HierarchicalManageable {
 
   func hierarchicalFilters(forGroupWithName groupName: String) -> [Filter.Facet] {
     return hierarchicalGroup(withName: groupName)?.hierarchicalFilters ?? []
-
   }
 
   mutating func set(_ hierarchicalAttributes: [Attribute], forGroupWithName groupName: String) {
@@ -218,11 +205,9 @@ extension GroupsStorage: HierarchicalManageable {
     updatedGroup.hierarchicalFilters = hierarchicalFilters
     filterGroups[groupID] = updatedGroup
   }
-
 }
 
 extension GroupsStorage {
-
   /// Returns a set of attributes suitable for disjunctive faceting
   func getDisjunctiveFacetsAttributes() -> Set<Attribute> {
     let attributes = filterGroups
@@ -232,7 +217,6 @@ extension GroupsStorage {
       .flatMap { $0 }
       .map { $0.attribute }
     return Set(attributes)
-
   }
 
   /// Returns a dictionary of all facet filters with their associated values
@@ -252,12 +236,11 @@ extension GroupsStorage {
   func getRawFacetFilters() -> [String: [String]] {
     return getFacetFilters()
       .map { ($0.key.rawValue, $0.value.map { $0.description }) }
-      .reduce([String: [String]]()) { (refinements, arg1) in
+      .reduce([String: [String]]()) { refinements, arg1 in
         let (attribute, values) = arg1
-        return refinements.merging([attribute: values], uniquingKeysWith: { (_, new) -> [String] in
+        return refinements.merging([attribute: values], uniquingKeysWith: { _, new -> [String] in
           new
         })
-    }
+      }
   }
-
 }

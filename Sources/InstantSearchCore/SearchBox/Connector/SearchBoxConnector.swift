@@ -12,7 +12,6 @@ import Foundation
 ///
 /// [Documentation](https://www.algolia.com/doc/api-reference/widgets/search-box/ios/)
 public class SearchBoxConnector {
-
   /// Searcher that handles your searches
   public let searcher: QuerySettable & Searchable
 
@@ -36,19 +35,17 @@ public class SearchBoxConnector {
                                                                 searchTriggeringMode: SearchTriggeringMode = .searchAsYouType) {
     self.searcher = searcher
     self.interactor = interactor
-    self.searcherConnection = interactor.connectSearcher(searcher,
-                                                         searchTriggeringMode: searchTriggeringMode)
-    self.controllerConnections = []
+    searcherConnection = interactor.connectSearcher(searcher,
+                                                    searchTriggeringMode: searchTriggeringMode)
+    controllerConnections = []
     Telemetry.shared.traceConnector(type: .searchBox,
                                     parameters: [
                                       searchTriggeringMode == .searchAsYouType ? .none : .searchTriggeringMode
                                     ])
   }
-
 }
 
 extension SearchBoxConnector: Connection {
-
   public func connect() {
     searcherConnection.connect()
     controllerConnections.forEach { $0.connect() }
@@ -58,7 +55,6 @@ extension SearchBoxConnector: Connection {
     searcherConnection.disconnect()
     controllerConnections.forEach { $0.disconnect() }
   }
-
 }
 
 @available(*, deprecated, renamed: "SearchBoxConnector")

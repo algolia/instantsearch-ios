@@ -9,7 +9,6 @@
 import Foundation
 
 extension FilterState: HierarchicalFacetingDelegate {
-
   private var hierarchicalGroupName: String {
     return "_hierarchical"
   }
@@ -21,7 +20,6 @@ extension FilterState: HierarchicalFacetingDelegate {
 
     set {
       self[hierarchical: hierarchicalGroupName].set(newValue)
-
     }
   }
 
@@ -34,5 +32,4 @@ extension FilterState: HierarchicalFacetingDelegate {
       self[hierarchical: hierarchicalGroupName].set(newValue)
     }
   }
-
 }

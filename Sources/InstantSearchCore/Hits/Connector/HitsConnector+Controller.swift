@@ -1,6 +1,6 @@
 //
 //  HitsConnector+Controller.swift
-//  
+//
 //
 //  Created by Vladislav Fitc on 17/09/2020.
 //
@@ -8,15 +8,14 @@
 import Foundation
 
 public extension HitsConnector {
-
   /**
-   - Parameters:
-     - searcher: Searcher that handles your searches.
-     - interactor: External hits interactor
-     - filterState: FilterState that holds your filters
-     - controller: Controller interfacing with a concrete hits view
-     - externalReload: Defines if controller will be updated automatically by the events or manually
-  */
+    - Parameters:
+      - searcher: Searcher that handles your searches.
+      - interactor: External hits interactor
+      - filterState: FilterState that holds your filters
+      - controller: Controller interfacing with a concrete hits view
+      - externalReload: Defines if controller will be updated automatically by the events or manually
+   */
   convenience init<Controller: HitsController>(searcher: HitsSearcher,
                                                interactor: HitsInteractor<Hit>,
                                                filterState: FilterState? = .none,
@@ -31,12 +30,12 @@ public extension HitsConnector {
   }
 
   /**
-   - Parameters:
-     - searcher: Searcher that handles your searches.
-     - filterState: FilterState that holds your filters
-     - controller: Controller interfacing with a concrete hits view
-     - externalReload: Defines if controller will be updated automatically by the events or manually
-  */
+    - Parameters:
+      - searcher: Searcher that handles your searches.
+      - filterState: FilterState that holds your filters
+      - controller: Controller interfacing with a concrete hits view
+      - externalReload: Defines if controller will be updated automatically by the events or manually
+   */
   convenience init<Controller: HitsController>(searcher: HitsSearcher,
                                                filterState: FilterState? = .none,
                                                controller: Controller,
@@ -51,16 +50,16 @@ public extension HitsConnector {
   }
 
   /**
-   - Parameters:
-     - appID: ID of your application
-     - apiKey: Your application API Key. Be sure to use your Search-only API key.
-     - indexName: Name of the index to search
-     - infiniteScrolling: Whether or not infinite scrolling is enabled
-     - showItemsOnEmptyQuery: If false, no results are displayed when the user hasn’t entered any query text
-     - filterState: FilterState that holds your filters
-     - controller: Controller interfacing with a concrete hits view
-     - externalReload: Defines if controller will be updated automatically by the events or manually
-  */
+    - Parameters:
+      - appID: ID of your application
+      - apiKey: Your application API Key. Be sure to use your Search-only API key.
+      - indexName: Name of the index to search
+      - infiniteScrolling: Whether or not infinite scrolling is enabled
+      - showItemsOnEmptyQuery: If false, no results are displayed when the user hasn’t entered any query text
+      - filterState: FilterState that holds your filters
+      - controller: Controller interfacing with a concrete hits view
+      - externalReload: Defines if controller will be updated automatically by the events or manually
+   */
   convenience init<Controller: HitsController>(appID: ApplicationID,
                                                apiKey: APIKey,
                                                indexName: IndexName,
@@ -70,8 +69,8 @@ public extension HitsConnector {
                                                controller: Controller,
                                                externalReload: Bool = false) where Controller.DataSource == HitsInteractor<Hit> {
     let searcher = HitsSearcher(appID: appID,
-                                       apiKey: apiKey,
-                                       indexName: indexName)
+                                apiKey: apiKey,
+                                indexName: indexName)
     let interactor = HitsInteractor<Hit>(infiniteScrolling: infiniteScrolling,
                                          showItemsOnEmptyQuery: showItemsOnEmptyQuery)
     self.init(searcher: searcher,
@@ -83,17 +82,16 @@ public extension HitsConnector {
   }
 
   /**
-   Establishes a connection with the controller
-   - Parameters:
-     - controller: Controller interfacing with a concrete hits view
-     - externalReload: Defines if controller will be updated automatically by the events or manually
-   - Returns: Established connection
-  */
+    Establishes a connection with the controller
+    - Parameters:
+      - controller: Controller interfacing with a concrete hits view
+      - externalReload: Defines if controller will be updated automatically by the events or manually
+    - Returns: Established connection
+   */
   @discardableResult func connectController<Controller: HitsController>(_ controller: Controller,
                                                                         externalReload: Bool = false) -> HitsInteractor<Hit>.ControllerConnection<Controller> where Controller.DataSource == HitsInteractor<Hit> {
     let connection = interactor.connectController(controller, externalReload: externalReload)
     controllerConnections.append(connection)
     return connection
   }
-
 }

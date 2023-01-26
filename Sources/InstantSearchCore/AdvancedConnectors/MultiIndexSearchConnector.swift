@@ -9,20 +9,19 @@
 import Foundation
 
 /**
-Connector encapsulating basic search experience within multiple indices
- 
- Managed connections:
- - hits interactor <-> searcher
- - hits interactor <-> hits controller
- - hits interactor <-> filter states (if provided)
- - query input interactor <-> searcher
- - query input interactor <-> query input controller
- - searcher <-> filter states (if provided)
-Most of the components associated by this connector are created and connected automatically, it's only required to provide a proper `Controller` implementations.
-*/
+ Connector encapsulating basic search experience within multiple indices
+
+  Managed connections:
+  - hits interactor <-> searcher
+  - hits interactor <-> hits controller
+  - hits interactor <-> filter states (if provided)
+  - query input interactor <-> searcher
+  - query input interactor <-> query input controller
+  - searcher <-> filter states (if provided)
+ Most of the components associated by this connector are created and connected automatically, it's only required to provide a proper `Controller` implementations.
+ */
 @available(*, deprecated, message: "Use multiple HitsSearcher aggregated with MultiSearcher instead of MultiIndexSearcher")
 public struct MultiIndexSearchConnector: Connection {
-
   /// Connector establishing the linkage between searcher, hits interactor and optionally filter state
   public let hitsConnector: MultiIndexHitsConnector
 
@@ -50,9 +49,9 @@ public struct MultiIndexSearchConnector: Connection {
                                                                       queryInputController: QI) {
     let hitsInteractor = MultiIndexHitsInteractor(hitsInteractors: indexModules.map(\.hitsInteractor))
     let filterStates = indexModules.map(\.filterState)
-    self.hitsConnector = .init(searcher: searcher, interactor: hitsInteractor, filterStates: filterStates)
-    hitsControllerConnection = self.hitsConnector.interactor.connectController(hitsController)
-    self.queryInputConnector = .init(searcher: searcher, interactor: queryInputInteractor)
+    hitsConnector = .init(searcher: searcher, interactor: hitsInteractor, filterStates: filterStates)
+    hitsControllerConnection = hitsConnector.interactor.connectController(hitsController)
+    queryInputConnector = .init(searcher: searcher, interactor: queryInputInteractor)
     queryInputControllerConnection = queryInputInteractor.connectController(queryInputController)
     searcher.search()
   }
@@ -96,5 +95,4 @@ public struct MultiIndexSearchConnector: Connection {
     queryInputConnector.disconnect()
     queryInputControllerConnection.disconnect()
   }
-
 }

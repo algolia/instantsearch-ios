@@ -11,7 +11,6 @@ import InstantSearch
 import UIKit
 
 class ClearFiltersDemoViewController: UIViewController {
-
   let demoController: ClearFiltersDemoController
 
   let filterDebugViewController: FilterDebugViewController
@@ -28,7 +27,8 @@ class ClearFiltersDemoViewController: UIViewController {
     setup()
   }
 
-  required init?(coder aDecoder: NSCoder) {
+  @available(*, unavailable)
+  required init?(coder _: NSCoder) {
     fatalError("init(coder:) has not been implemented")
   }
 
@@ -63,7 +63,6 @@ class ClearFiltersDemoViewController: UIViewController {
   }
 
   func configureLayout() {
-
     let mainStackView = UIStackView()
     mainStackView.axis = .vertical
     mainStackView.isLayoutMarginsRelativeArrangement = true
@@ -87,7 +86,5 @@ class ClearFiltersDemoViewController: UIViewController {
 
     view.addSubview(mainStackView)
     mainStackView.pin(to: view.safeAreaLayoutGuide)
-
   }
-
 }

@@ -9,14 +9,12 @@
 import Foundation
 
 extension Optional where Wrapped == String {
-
   var isNilOrEmpty: Bool {
     switch self {
-    case .some(let string):
+    case let .some(string):
       return string.isEmpty
     case .none:
       return true
     }
   }
-
 }

@@ -5,13 +5,12 @@
 //  Created by Vladislav Fitc on 13/12/2021.
 //
 
-import Foundation
-import UIKit
 import AlgoliaSearchClient
+import Foundation
 import InstantSearchCore
+import UIKit
 
 extension StoreItemView {
-
   func setup(with productHit: Hit<StoreItem>) {
     let product = productHit.object
     itemImageView.sd_setImage(with: product.images.first)
@@ -19,7 +18,8 @@ extension StoreItemView {
     if let highlightedName = productHit.hightlightedString(forKey: "name") {
       titleLabel.attributedText = NSAttributedString(highlightedString: highlightedName,
                                                      attributes: [
-                                                      .foregroundColor: UIColor.tintColor])
+                                                       .foregroundColor: UIColor.tintColor
+                                                     ])
     } else {
       titleLabel.text = product.name
     }
@@ -36,23 +36,17 @@ extension StoreItemView {
     if let price = product.price {
       priceLabel.text = "\(price.value) €"
     }
-
   }
-
 }
 
 extension StoreItemCollectionViewCell {
-
   func setup(with productHit: Hit<StoreItem>) {
     storeItemView.setup(with: productHit)
   }
-
 }
 
 extension StoreItemTableViewCell {
-
   func setup(with productHit: Hit<StoreItem>) {
     storeItemView.setup(with: productHit)
   }
-
 }

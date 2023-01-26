@@ -6,33 +6,29 @@
 //  Copyright © 2019 Algolia. All rights reserved.
 //
 
-import Foundation
 import AlgoliaSearchClient
+import Foundation
 
 public class FacetListInteractor: SelectableListInteractor<String, Facet> {
-
   public let onResultsUpdated: Observer<FacetSearchResponse>
   private let mutationQueue: OperationQueue
 
   public init(facets: [Facet] = [], selectionMode: SelectionMode = .multiple) {
-    self.onResultsUpdated = .init()
-    self.mutationQueue = .init()
+    onResultsUpdated = .init()
+    mutationQueue = .init()
     super.init(items: facets, selectionMode: selectionMode)
-    self.mutationQueue.maxConcurrentOperationCount = 1
-    self.mutationQueue.qualityOfService = .userInitiated
+    mutationQueue.maxConcurrentOperationCount = 1
+    mutationQueue.qualityOfService = .userInitiated
     Telemetry.shared.trace(type: .facetList,
                            parameters: [
-                            facets.isEmpty ? .none : .facets,
-                            selectionMode == .multiple ? .none : .selectionMode
+                             facets.isEmpty ? .none : .facets,
+                             selectionMode == .multiple ? .none : .selectionMode
                            ].compactMap { $0 })
   }
-
 }
 
 extension FacetListInteractor: ResultUpdatable {
-
   @discardableResult public func update(_ facetResults: FacetSearchResponse) -> Operation {
-
     let updateOperation = BlockOperation { [weak self] in
       self?.items = facetResults.facetHits
       self?.onResultsUpdated.fire(facetResults)
@@ -41,13 +37,10 @@ extension FacetListInteractor: ResultUpdatable {
     mutationQueue.addOperation(updateOperation)
 
     return updateOperation
-
   }
-
 }
 
 public enum FacetSortCriterion {
-
   case count(order: Order)
   case alphabetical(order: Order)
   case isRefined
@@ -66,5 +59,4 @@ public enum RefinementOperator {
   // and only the remaining possible facets will appear.
   case and
   case or
-
 }

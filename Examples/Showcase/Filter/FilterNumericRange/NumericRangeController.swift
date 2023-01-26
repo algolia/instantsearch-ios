@@ -11,7 +11,6 @@ import InstantSearch
 import UIKit
 
 public class NumericRangeController: UIViewController, NumberRangeController {
-
   public typealias Number = Double
 
   public let lowerBoundLabel: UILabel
@@ -39,13 +38,13 @@ public class NumericRangeController: UIViewController, NumberRangeController {
 
   public init(rangeSlider: RangeSlider) {
     self.rangeSlider = rangeSlider
-    self.lowerBoundLabel = .init()
-    self.upperBoundLabel = .init()
+    lowerBoundLabel = .init()
+    upperBoundLabel = .init()
     super.init(nibName: nil, bundle: nil)
     rangeSlider.addTarget(self, action: #selector(onValueChanged(sender:)), for: [.touchUpInside, .touchUpOutside])
   }
 
-  public override func viewDidLoad() {
+  override public func viewDidLoad() {
     super.viewDidLoad()
 
     lowerBoundLabel.translatesAutoresizingMaskIntoConstraints = false
@@ -71,8 +70,8 @@ public class NumericRangeController: UIViewController, NumberRangeController {
     stackView.pin(to: view)
   }
 
-  required init?(coder: NSCoder) {
+  @available(*, unavailable)
+  required init?(coder _: NSCoder) {
     fatalError("init(coder:) has not been implemented")
   }
-
 }

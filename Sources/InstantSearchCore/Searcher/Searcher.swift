@@ -6,12 +6,11 @@
 //  Copyright © 2019 Algolia. All rights reserved.
 //
 
-import Foundation
 import AlgoliaSearchClient
+import Foundation
 
 /// Protocol describing an entity capable to perform search requests
 public protocol Searcher: AnyObject, Searchable {
-
   /// Current query string
   var query: String? { get set }
 
@@ -31,15 +30,12 @@ public protocol Searcher: AnyObject, Searchable {
 
   /// Stops search query execution
   func cancel()
-
 }
 
-extension Searcher {
-
-  public func setQuery(_ query: String?) {
+public extension Searcher {
+  func setQuery(_ query: String?) {
     self.query = query
   }
-
 }
 
 public protocol Searchable {
@@ -48,36 +44,28 @@ public protocol Searchable {
 
 /// Protocol describing an entity capable to receive search result
 public protocol SearchResultObservable {
-
   /// Search result type
   associatedtype SearchResult
 
   /// Triggered when a new search result received
   var onResults: Observer<SearchResult> { get }
-
 }
 
 /// Protocol describing an entity capable to provide an error
 public protocol ErrorObservable {
-
   /// Triggered when an error occured
   var onError: Observer<Error> { get }
-
 }
 
 extension Searcher {
-
   /// Add the library's version to the client's user agents, if not already present.
   func updateClientUserAgents() {
     _ = UserAgentSetter.set
   }
-
 }
 
 extension Searcher where Self: SequencerDelegate {
-
   func didChangeOperationsState(hasPendingOperations: Bool) {
     isLoading.fire(hasPendingOperations)
   }
-
 }

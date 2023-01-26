@@ -7,15 +7,14 @@
 //
 
 import Foundation
-import XCTest
 @testable import InstantSearchCore
+import XCTest
 
 class AttributedStringWithTaggedStringTests: XCTestCase {
-
   #if os(iOS) || os(watchOS) || os(tvOS)
-  let color = UIColor.red
+    let color = UIColor.red
   #elseif os(OSX)
-  let color = NSColor.red
+    let color = NSColor.red
   #endif
 
   private func checkRanges(string: NSAttributedString, ranges: [NSRange: [NSAttributedString.Key: Any]]) {
@@ -42,7 +41,7 @@ class AttributedStringWithTaggedStringTests: XCTestCase {
       NSRange(location: 0, length: 13): [:],
       NSRange(location: 13, length: 6): attributes,
       NSRange(location: 19, length: 9): [:]
-      ])
+    ])
   }
 
   func testInvertedAttributedString() {
@@ -73,5 +72,4 @@ class AttributedStringWithTaggedStringTests: XCTestCase {
       NSRange(location: 17, length: 3): [:]
     ])
   }
-
 }

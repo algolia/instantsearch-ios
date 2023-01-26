@@ -7,35 +7,31 @@
 //
 
 #if !InstantSearchCocoaPods
-import InstantSearchCore
+  import InstantSearchCore
 #endif
 #if canImport(UIKit) && (os(iOS) || os(macOS))
-import UIKit
+  import UIKit
 
-public class FilterSwitchController<F: FilterType>: SelectableController {
+  public class FilterSwitchController<F: FilterType>: SelectableController {
+    public typealias Item = F
 
-  public typealias Item = F
+    public let `switch`: UISwitch
 
-  public let `switch`: UISwitch
+    public var onClick: ((Bool) -> Void)?
 
-  public var onClick: ((Bool) -> Void)?
+    public init(switch: UISwitch) {
+      self.switch = `switch`
+      `switch`.addTarget(self, action: #selector(didToggleSwitch), for: .valueChanged)
+    }
 
-  public init(`switch`: UISwitch) {
-    self.switch = `switch`
-    `switch`.addTarget(self, action: #selector(didToggleSwitch), for: .valueChanged)
+    @objc func didToggleSwitch(_ switch: UISwitch) {
+      onClick?(`switch`.isOn)
+    }
+
+    public func setSelected(_ isSelected: Bool) {
+      self.switch.isOn = isSelected
+    }
+
+    public func setItem(_: F) {}
   }
-
-  @objc func didToggleSwitch(_ switch: UISwitch) {
-    onClick?(`switch`.isOn)
-  }
-
-  public func setSelected(_ isSelected: Bool) {
-    self.switch.isOn = isSelected
-  }
-
-  public func setItem(_ item: F) {
-
-  }
-
-}
 #endif

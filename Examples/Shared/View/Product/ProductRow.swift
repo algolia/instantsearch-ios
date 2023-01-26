@@ -7,12 +7,11 @@
 //
 
 import Foundation
-import SwiftUI
 import InstantSearchCore
 import InstantSearchSwiftUI
+import SwiftUI
 
 struct ProductRow: View {
-
   let title: HighlightedString
   let subtitle: HighlightedString
   let details: HighlightedString
@@ -21,7 +20,6 @@ struct ProductRow: View {
   let configuration: Configuration
 
   struct Configuration {
-
     let showDescription: Bool
     let imageWidth: CGFloat
     let horizontalSpacing: CGFloat
@@ -31,7 +29,6 @@ struct ProductRow: View {
     static let watch = Self(showDescription: false, imageWidth: 60, horizontalSpacing: 7, verticalSpacing: 5)
     // swiftlint:disable identifier_name
     static let tv = Self(showDescription: true, imageWidth: 200, horizontalSpacing: 30, verticalSpacing: 10)
-
   }
 
   var body: some View {
@@ -39,35 +36,34 @@ struct ProductRow: View {
       HStack(alignment: .top, spacing: configuration.horizontalSpacing) {
         AsyncImage(url: imageURL,
                    content: { image in
-          image
-            .resizable()
-            .aspectRatio(contentMode: .fit)
-        },
+                     image
+                       .resizable()
+                       .aspectRatio(contentMode: .fit)
+                   },
                    placeholder: {
-          if imageURL != nil {
-            ProgressView()
-          } else {
-            Image(systemName: "photo")
-          }
-        }
-        )
-        .cornerRadius(10)
-        .scaledToFit()
-        .frame(maxWidth: configuration.imageWidth,
-               alignment: .center)
+                     if imageURL != nil {
+                       ProgressView()
+                     } else {
+                       Image(systemName: "photo")
+                     }
+                   })
+                   .cornerRadius(10)
+                   .scaledToFit()
+                   .frame(maxWidth: configuration.imageWidth,
+                          alignment: .center)
         VStack(alignment: .leading, spacing: configuration.verticalSpacing) {
           Text(highlightedString: title,
                highlighted: { Text($0).foregroundColor(Color(.algoliaCyan)) })
-          .font(.system(.headline))
+            .font(.system(.headline))
           if !subtitle.taggedString.input.isEmpty {
             Text(highlightedString: subtitle,
                  highlighted: { Text($0).foregroundColor(Color(.algoliaCyan)) })
-            .font(.system(.subheadline))
+              .font(.system(.subheadline))
           }
           if !details.taggedString.input.isEmpty, configuration.showDescription {
             Text(highlightedString: details,
                  highlighted: { Text($0).foregroundColor(Color(.algoliaCyan)) })
-            .font(.system(.caption))
+              .font(.system(.caption))
           }
           if let price = price {
             Text(String(format: "%.2f €", price))
@@ -93,12 +89,10 @@ struct ProductRow: View {
     self.price = price
     self.configuration = configuration
   }
-
 }
 
 // swiftlint:disable line_length
 struct ProductRow_Previews: PreviewProvider {
-
   static var previews: some View {
     ProductRow(
       title: HighlightedString(string: "Samsung - <em>Galaxy</em> S7 32GB - Black Onyx (AT&T)"),
@@ -114,7 +108,5 @@ struct ProductRow_Previews: PreviewProvider {
       imageURL: .none,
       price: 694.99
     )
-
   }
-
 }

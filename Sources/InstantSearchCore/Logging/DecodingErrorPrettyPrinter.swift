@@ -9,7 +9,6 @@
 import Foundation
 
 struct DecodingErrorPrettyPrinter: CustomStringConvertible, CustomDebugStringConvertible {
-
   let decodingError: DecodingError
 
   init(decodingError: DecodingError) {
@@ -30,24 +29,23 @@ struct DecodingErrorPrettyPrinter: CustomStringConvertible, CustomDebugStringCon
     return path.map(codingKeyDescription).joined(separator: " -> ")
   }
 
-  private func additionalComponents(for error: DecodingError) -> [String] {
+  private func additionalComponents(for _: DecodingError) -> [String] {
     switch decodingError {
-    case .valueNotFound(_, let context):
+    case let .valueNotFound(_, context):
       return [codingPathDescription(context.codingPath), context.debugDescription]
 
-    case .keyNotFound(let key, let context):
+    case let .keyNotFound(key, context):
       return [codingPathDescription(context.codingPath), "Key not found: \(codingKeyDescription(key))"]
 
-    case .typeMismatch(let type, let context):
+    case let .typeMismatch(type, context):
       return [codingPathDescription(context.codingPath), "Type mismatch. Expected: \(type)"]
 
-    case .dataCorrupted(let context):
+    case let .dataCorrupted(context):
       return [codingPathDescription(context.codingPath), context.debugDescription]
 
     @unknown default:
       return [decodingError.localizedDescription]
     }
-
   }
 
   var description: String {
@@ -57,13 +55,10 @@ struct DecodingErrorPrettyPrinter: CustomStringConvertible, CustomDebugStringCon
   var debugDescription: String {
     return description
   }
-
 }
 
 public extension DecodingError {
-
   var prettyDescription: String {
     return DecodingErrorPrettyPrinter(decodingError: self).description
   }
-
 }

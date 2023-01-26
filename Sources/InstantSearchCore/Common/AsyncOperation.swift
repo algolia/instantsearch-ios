@@ -9,7 +9,6 @@
 import Foundation
 
 open class AsyncOperation: Operation {
-
   public enum State: String {
     case ready, executing, finished
 
@@ -28,7 +27,6 @@ open class AsyncOperation: Operation {
       didChangeValue(forKey: state.keyPath)
     }
   }
-
 }
 
 extension AsyncOperation {
@@ -59,8 +57,7 @@ extension AsyncOperation {
     state = .executing
   }
 
-  open override func cancel() {
+  override open func cancel() {
     state = .finished
   }
-
 }

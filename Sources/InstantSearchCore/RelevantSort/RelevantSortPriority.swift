@@ -1,6 +1,6 @@
 //
 //  RelevantSortPriority.swift
-//  
+//
 //
 //  Created by Vladislav Fitc on 10/02/2021.
 //
@@ -19,10 +19,9 @@ public enum RelevantSortPriority {
   case hitsCount
 }
 
-extension RelevantSortPriority {
-
+public extension RelevantSortPriority {
   /// Relevancy strictness value to apply to the search
-  public var relevancyStrictness: Int {
+  var relevancyStrictness: Int {
     switch self {
     case .hitsCount:
       return 0
@@ -31,12 +30,11 @@ extension RelevantSortPriority {
     }
   }
 
-  public init(relevancyStrictness: Int) {
+  init(relevancyStrictness: Int) {
     if relevancyStrictness > 0 {
       self = .relevancy
     } else {
       self = .hitsCount
     }
   }
-
 }

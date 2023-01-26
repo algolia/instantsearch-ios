@@ -6,13 +6,11 @@
 //
 
 import Foundation
-import SwiftUI
 import InstantSearchSwiftUI
+import SwiftUI
 
 struct FacetListPersistentDemoSwiftUI: SwiftUIDemo, PreviewProvider {
-
   class Controller {
-
     let demoController: FacetListPersistentSelectionDemoController
     let clearFilterController: FilterClearObservableController
     let filterStateController: FilterStateObservableController
@@ -29,11 +27,9 @@ struct FacetListPersistentDemoSwiftUI: SwiftUIDemo, PreviewProvider {
       demoController.categoryConnector.connectController(categoryController)
       demoController.colorConnector.connectController(colorController)
     }
-
   }
 
   struct ContentView: View {
-
     @ObservedObject var filterStateController: FilterStateObservableController
     @ObservedObject var clearFilterController: FilterClearObservableController
 
@@ -82,7 +78,6 @@ struct FacetListPersistentDemoSwiftUI: SwiftUIDemo, PreviewProvider {
         .frame(maxWidth: .infinity)
         .background(Color(UIColor.systemGray5))
     }
-
   }
 
   static func contentView(with controller: Controller) -> ContentView {
@@ -99,5 +94,4 @@ struct FacetListPersistentDemoSwiftUI: SwiftUIDemo, PreviewProvider {
         .navigationBarTitle("Facet List Persistent Selection")
     }
   }
-
 }

@@ -1,16 +1,15 @@
 //
 //  SearchService.swift
-//  
+//
 //
 //  Created by Vladislav Fitc on 25/11/2020.
 //
 
-import Foundation
 import AlgoliaSearchClient
+import Foundation
 
 /// Abstract search service
 public protocol SearchService {
-
   /// Encapsulates all the parameters
   associatedtype Request
 
@@ -22,5 +21,4 @@ public protocol SearchService {
 
   /// Launch search
   func search(_ request: Request, completion: @escaping (Swift.Result<Result, Error>) -> Void) -> Process
-
 }

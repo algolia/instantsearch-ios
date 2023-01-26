@@ -10,7 +10,6 @@ import Foundation
 
 /// Business logic for a list of items
 public class ItemsListInteractor<Item: Hashable> {
-
   /// Items contained in the list
   public var items: Set<Item> {
     didSet {
@@ -28,9 +27,10 @@ public class ItemsListInteractor<Item: Hashable> {
 
   public init(items: Set<Item> = []) {
     self.items = items
-    self.onItemsChanged = .init()
-    self.onItemsComputed = .init()
+    onItemsChanged = .init()
+    onItemsComputed = .init()
   }
+
   /// Remove an item from list
   /// - Parameter item: item to remove
   public func remove(item: Item) {
@@ -42,5 +42,4 @@ public class ItemsListInteractor<Item: Hashable> {
   public func add(item: Item) {
     onItemsComputed.fire(items.union([item]))
   }
-
 }

@@ -12,9 +12,7 @@ import InstantSearchSwiftUI
 import SwiftUI
 
 struct SortByDemoSwiftUI: SwiftUIDemo, PreviewProvider {
-
   class Controller {
-
     let demoController: SortByDemoController
     let searchBoxController: SearchBoxObservableController
     let selectableSegmentObservableController: SelectableSegmentObservableController
@@ -31,11 +29,9 @@ struct SortByDemoSwiftUI: SwiftUIDemo, PreviewProvider {
       demoController.sortByConnector.connectController(selectableSegmentObservableController,
                                                        presenter: demoController.title(for:))
     }
-
   }
 
   struct ContentView: View {
-
     @ObservedObject var searchBoxController: SearchBoxObservableController
     @ObservedObject var selectableSegmentObservableController: SelectableSegmentObservableController
     @ObservedObject var hitsController: HitsObservableController<Hit<StoreItem>>
@@ -47,7 +43,7 @@ struct SortByDemoSwiftUI: SwiftUIDemo, PreviewProvider {
       )
       VStack {
         Picker("Filter Segment", selection: selectedBinding) {
-          ForEach(0 ..< selectableSegmentObservableController.segmentsTitles.count, id: \.self) { index in
+          ForEach(0..<selectableSegmentObservableController.segmentsTitles.count, id: \.self) { index in
             let title = selectableSegmentObservableController.segmentsTitles[index]
             Button(title) {
               selectableSegmentObservableController.select(index)
@@ -65,7 +61,6 @@ struct SortByDemoSwiftUI: SwiftUIDemo, PreviewProvider {
       .padding(.horizontal, 16)
       .searchable(text: $searchBoxController.query)
     }
-
   }
 
   static func contentView(with controller: Controller) -> ContentView {
@@ -80,7 +75,5 @@ struct SortByDemoSwiftUI: SwiftUIDemo, PreviewProvider {
       contentView(with: controller)
         .navigationBarTitle("Sort By")
     }
-
   }
-
 }

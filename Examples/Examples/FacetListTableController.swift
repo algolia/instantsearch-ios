@@ -16,7 +16,6 @@ struct TitleDescriptor {
 }
 
 class FacetListTableController: NSObject, FacetListController {
-
   var onClick: ((Facet) -> Void)?
 
   var tableView: UITableView
@@ -43,12 +42,10 @@ class FacetListTableController: NSObject, FacetListController {
   func reload() {
     tableView.reloadData()
   }
-
 }
 
 extension FacetListTableController: UITableViewDataSource {
-
-  func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+  func tableView(_: UITableView, numberOfRowsInSection _: Int) -> Int {
     return selectableItems.count
   }
 
@@ -67,19 +64,16 @@ extension FacetListTableController: UITableViewDataSource {
 
     return cell
   }
-
 }
 
 extension FacetListTableController: UITableViewDelegate {
-
-  func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+  func tableView(_: UITableView, didSelectRowAt indexPath: IndexPath) {
     let selectableItem = selectableItems[indexPath.row]
 
-    self.onClick?(selectableItem.item)
+    onClick?(selectableItem.item)
   }
 
-  func tableView(_ tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
-
+  func tableView(_ tableView: UITableView, viewForHeaderInSection _: Int) -> UIView? {
     guard let titleDescriptor = titleDescriptor else { return nil }
 
     let view = UIView(frame: CGRect(x: 0, y: 0, width: tableView.frame.width, height: 3 * 16))
@@ -97,9 +91,8 @@ extension FacetListTableController: UITableViewDelegate {
     return view
   }
 
-  func tableView(_ tableView: UITableView, heightForHeaderInSection section: Int) -> CGFloat {
+  func tableView(_: UITableView, heightForHeaderInSection _: Int) -> CGFloat {
     guard titleDescriptor != nil else { return 0 }
     return 3 * 16
   }
-
 }

@@ -7,24 +7,22 @@
 //
 
 import Foundation
-import SwiftUI
 import InstantSearchCore
 import InstantSearchSwiftUI
+import SwiftUI
 
 struct QueryRuleCustomDataSwiftUI: SwiftUIDemo, PreviewProvider {
-
   class Controller {
-
     let demoController: QueryRuleCustomDataDemoController
     let searchBoxController: SearchBoxObservableController
     let bannerController: BannerObservableController
     let hitsController: HitsObservableController<Hit<Product>>
 
     init() {
-      self.demoController = .init()
-      self.searchBoxController = .init()
-      self.bannerController = .init()
-      self.hitsController = .init()
+      demoController = .init()
+      searchBoxController = .init()
+      bannerController = .init()
+      hitsController = .init()
       demoController.hitsConnector.connectController(hitsController)
       demoController.searchBoxConnector.connectController(searchBoxController)
       demoController.queryRuleCustomDataConnector.connectController(bannerController)
@@ -33,7 +31,6 @@ struct QueryRuleCustomDataSwiftUI: SwiftUIDemo, PreviewProvider {
   }
 
   struct ContentView: View {
-
     struct Redirect: Identifiable {
       var id: String { url }
       let url: String
@@ -50,17 +47,16 @@ struct QueryRuleCustomDataSwiftUI: SwiftUIDemo, PreviewProvider {
         if let imageURL = bannerController.banner?.banner {
           AsyncImage(url: imageURL,
                      content: { image in
-            image
-              .resizable()
-              .aspectRatio(contentMode: .fit)
-              .onTapGesture {
-                handleBannerTap()
-              }
-          },
+                       image
+                         .resizable()
+                         .aspectRatio(contentMode: .fit)
+                         .onTapGesture {
+                           handleBannerTap()
+                         }
+                     },
                      placeholder: {
-            ProgressView()
-          }
-          )
+                       ProgressView()
+                     })
         } else if let title = bannerController.banner?.title {
           Text(title)
             .font(.headline)
@@ -73,7 +69,7 @@ struct QueryRuleCustomDataSwiftUI: SwiftUIDemo, PreviewProvider {
               handleBannerTap()
             }
         }
-        HitsList(hitsController) { (hit, _) in
+        HitsList(hitsController) { hit, _ in
           VStack {
             ProductRow(productHit: hit!)
               .padding()
@@ -89,7 +85,6 @@ struct QueryRuleCustomDataSwiftUI: SwiftUIDemo, PreviewProvider {
         Alert(title: Text("Redirect"),
               message: Text(redirect.id),
               dismissButton: .cancel())
-
       }
       .safeAreaInset(edge: .top, alignment: .center, spacing: 0) {
         Color.clear
@@ -122,7 +117,6 @@ struct QueryRuleCustomDataSwiftUI: SwiftUIDemo, PreviewProvider {
         UIApplication.shared.open(link)
       }
     }
-
   }
 
   static func contentView(with controller: Controller) -> ContentView {
@@ -138,15 +132,12 @@ struct QueryRuleCustomDataSwiftUI: SwiftUIDemo, PreviewProvider {
         .navigationBarTitle("Query Rule Custom Data")
     }
   }
-
 }
 
 class BannerObservableController: ObservableObject, ItemController {
-
   @Published var banner: Banner?
 
   func setItem(_ item: Banner?) {
-    self.banner = item
+    banner = item
   }
-
 }

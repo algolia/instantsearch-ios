@@ -11,24 +11,23 @@ import Foundation
 import XCTest
 
 class FacetListHitsSearcherConnectionTests: XCTestCase {
-
   let attribute: Attribute = "Test Attribute"
   let facets: [Facet] = .init(prefix: "v", count: 3)
-  
+
   weak var disposableSearcher: HitsSearcher?
   weak var disposableInteractor: FacetListInteractor?
-  
+
   func testLeak() {
     let searcher = HitsSearcher(appID: "", apiKey: "", indexName: "")
     let interactor = FacetListInteractor()
-    
+
     disposableSearcher = searcher
     disposableInteractor = interactor
 
     let connection = FacetListInteractor.HitsSearcherConnection(facetListInteractor: interactor, searcher: searcher, attribute: attribute)
     connection.connect()
   }
-  
+
   override func tearDown() {
     XCTAssertNil(disposableSearcher, "Leaked searcher")
     XCTAssertNil(disposableInteractor, "Leaked interactor")
@@ -79,7 +78,7 @@ class FacetListHitsSearcherConnectionTests: XCTestCase {
     let onItemsChangedExpectation = expectation(description: "on items changed")
     onItemsChangedExpectation.isInverted = !isConnected
 
-    interactor.onItemsChanged.subscribe(with: self) { (test, facets) in
+    interactor.onItemsChanged.subscribe(with: self) { test, facets in
       XCTAssertEqual(test.facets, facets)
       onItemsChangedExpectation.fulfill()
     }
@@ -88,20 +87,16 @@ class FacetListHitsSearcherConnectionTests: XCTestCase {
 
     waitForExpectations(timeout: 5, handler: .none)
   }
-
 }
 
 extension SearchResponse {
-
   init<E: Encodable>(hits: [E]) {
     let hitsJSON: JSON = try! .array(hits.map(JSON.init))
     try! self.init(json: ["hits": hitsJSON])
   }
-
 }
 
 extension Hit where T == [String: JSON] {
-
   init(object: [String: JSON], objectID: ObjectID? = nil) {
     var mutableCopy = object
     let objectID = objectID ?? ObjectID(rawValue: UUID().uuidString)
@@ -112,5 +107,4 @@ extension Hit where T == [String: JSON] {
   static func withJSON(_ json: [String: JSON]) -> Self {
     .init(object: json)
   }
-
 }

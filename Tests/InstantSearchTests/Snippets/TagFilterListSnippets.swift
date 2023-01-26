@@ -1,6 +1,6 @@
 //
 //  TagFilterListSnippets.swift
-//  
+//
 //
 //  Created by Vladislav Fitc on 07/09/2020.
 //
@@ -8,66 +8,64 @@
 import Foundation
 import InstantSearch
 #if canImport(UIKit) && !os(watchOS)
-import UIKit
+  import UIKit
 
-class TagFilterListSnippets {
-    
-  func widgetExample() {
-    let searcher: HitsSearcher = HitsSearcher(appID: "YourApplicationID",
-                                                            apiKey: "YourSearchOnlyAPIKey",
-                                                            indexName: "YourIndexName")
+  class TagFilterListSnippets {
+    func widgetExample() {
+      let searcher = HitsSearcher(appID: "YourApplicationID",
+                                  apiKey: "YourSearchOnlyAPIKey",
+                                  indexName: "YourIndexName")
 
-    let filterState = FilterState()
-    
-    let filters: [Filter.Tag] = [
-      "coupon",
-      "free shipping",
-      "free return",
-      "on sale",
-      "no exchange"
-    ]
-    let filterListTableView: UITableView = .init()
-    let filterListController: FilterListTableController<Filter.Tag> = .init(tableView: filterListTableView)
+      let filterState = FilterState()
 
-    let filterListConnector = TagFilterListConnector(tagFilters: filters,
-                                                     selectionMode: .multiple,
-                                                     filterState: filterState,
-                                                     operator: .and,
-                                                     groupName: "Tag Filters",
-                                                     controller: filterListController)
-    
-    searcher.connectFilterState(filterState)
-    searcher.search()
+      let filters: [Filter.Tag] = [
+        "coupon",
+        "free shipping",
+        "free return",
+        "on sale",
+        "no exchange"
+      ]
+      let filterListTableView: UITableView = .init()
+      let filterListController: FilterListTableController<Filter.Tag> = .init(tableView: filterListTableView)
 
-    _ = filterListConnector
+      let filterListConnector = TagFilterListConnector(tagFilters: filters,
+                                                       selectionMode: .multiple,
+                                                       filterState: filterState,
+                                                       operator: .and,
+                                                       groupName: "Tag Filters",
+                                                       controller: filterListController)
+
+      searcher.connectFilterState(filterState)
+      searcher.search()
+
+      _ = filterListConnector
+    }
+
+    func advancedExample() {
+      let searcher = HitsSearcher(appID: "YourApplicationID",
+                                  apiKey: "YourSearchOnlyAPIKey",
+                                  indexName: "YourIndexName")
+
+      let filterState = FilterState()
+
+      let filters: [Filter.Tag] = [
+        "coupon",
+        "free shipping",
+        "free return",
+        "on sale",
+        "no exchange"
+      ]
+      let filterListTableView: UITableView = .init()
+      let filterListController: FilterListTableController<Filter.Tag> = .init(tableView: filterListTableView)
+
+      let filterListInteractor = TagFilterListInteractor(items: filters,
+                                                         selectionMode: .multiple)
+
+      filterListInteractor.connectFilterState(filterState, operator: .and, groupName: "Tag Filters")
+      filterListInteractor.connectController(filterListController)
+
+      searcher.connectFilterState(filterState)
+      searcher.search()
+    }
   }
-  
-  func advancedExample() {
-    let searcher: HitsSearcher = HitsSearcher(appID: "YourApplicationID",
-                                                            apiKey: "YourSearchOnlyAPIKey",
-                                                            indexName: "YourIndexName")
-
-    let filterState = FilterState()
-    
-    let filters: [Filter.Tag] = [
-      "coupon",
-      "free shipping",
-      "free return",
-      "on sale",
-      "no exchange"
-    ]
-    let filterListTableView: UITableView = .init()
-    let filterListController: FilterListTableController<Filter.Tag> = .init(tableView: filterListTableView)
-
-    let filterListInteractor = TagFilterListInteractor(items: filters,
-                                                      selectionMode: .multiple)
-    
-    filterListInteractor.connectFilterState(filterState, operator: .and, groupName: "Tag Filters")
-    filterListInteractor.connectController(filterListController)
-
-    searcher.connectFilterState(filterState)
-    searcher.search()
-  }
-  
-}
 #endif

@@ -9,9 +9,7 @@
 import Foundation
 
 public extension FilterClearInteractor {
-
   struct FilterStateConnection: Connection {
-
     public let filterClearInteractor: FilterClearInteractor
     public let filterState: FilterState
     public let filterGroupIDs: [FilterGroup.ID]?
@@ -47,21 +45,16 @@ public extension FilterClearInteractor {
         case .except:
           filterState.filters.removeAllExcept(filterGroupIDs)
         }
-
       }
-
     }
 
     public func disconnect() {
       filterClearInteractor.onTriggered.cancelSubscription(for: filterState)
     }
-
   }
-
 }
 
 public extension FilterClearInteractor {
-
   @discardableResult func connectFilterState(_ filterState: FilterState,
                                              filterGroupIDs: [FilterGroup.ID]? = nil,
                                              clearMode: ClearMode = .specified) -> FilterStateConnection {
@@ -69,7 +62,6 @@ public extension FilterClearInteractor {
     connection.connect()
     return connection
   }
-
 }
 
 public enum ClearMode {

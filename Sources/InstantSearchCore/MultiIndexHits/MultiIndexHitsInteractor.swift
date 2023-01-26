@@ -6,15 +6,14 @@
 //  Copyright © 2019 Algolia. All rights reserved.
 //
 
-import Foundation
 import AlgoliaSearchClient
+import Foundation
 /**
  Interactor which constitutes the aggregation of nested hits interactors providing a convenient functions for managing them.
  Designed for a joint usage with multi index searcher, but can be used with multiple separate single index searchers as well.
  */
 @available(*, deprecated, message: "Use multiple HitsSearcher aggregated with MultiSearcher instead of MultiIndexSearcher")
 public class MultiIndexHitsInteractor {
-
   public let onRequestChanged: Observer<Void>
   public let onResultsUpdated: Observer<[SearchResponse]>
   public let onError: Observer<Swift.Error>
@@ -29,12 +28,12 @@ public class MultiIndexHitsInteractor {
 
   public init(hitsInteractors: [AnyHitsInteractor]) {
     self.hitsInteractors = hitsInteractors
-    self.onRequestChanged = .init()
-    self.onResultsUpdated = .init()
-    self.onError = .init()
-    self.mutationQueue = .init()
-    self.mutationQueue.maxConcurrentOperationCount = 1
-    self.mutationQueue.qualityOfService = .userInitiated
+    onRequestChanged = .init()
+    onResultsUpdated = .init()
+    onError = .init()
+    mutationQueue = .init()
+    mutationQueue.maxConcurrentOperationCount = 1
+    mutationQueue.qualityOfService = .userInitiated
     for interactor in hitsInteractors {
       interactor.onError.subscribe(with: self) { multIndexInteractor, error in
         InstantSearchCoreLog.HitsDecoding.failure(hitsInteractor: interactor, error: error)
@@ -101,19 +100,16 @@ public class MultiIndexHitsInteractor {
   public func numberOfHits(inSection section: Int) -> Int {
     return hitsInteractors[section].numberOfHits()
   }
-
 }
 
 @available(*, deprecated, message: "Use multiple HitsSearcher aggregated with MultiSearcher instead of MultiIndexSearcher")
 extension MultiIndexHitsInteractor {
-
   /// Updates the results of a nested hits Interactor at specified index
   /// - Parameter results: list of typed search results.
   /// - Parameter section: the section index of nested hits Interactor
   /// - Throws: HitsInteractor.Error.incompatibleRecordType if the record type of results mismatches the record type of corresponding hits Interactor
 
   public func update(_ results: SearchResponse, forInteractorInSection section: Int) {
-
     let completion = BlockOperation { [weak self] in
       self?.onResultsUpdated.fire([results])
     }
@@ -121,7 +117,6 @@ extension MultiIndexHitsInteractor {
     completion.addDependency(hitsInteractors[section].update(results))
 
     mutationQueue.addOperation(completion)
-
   }
 
   /// Updates the results of all nested hits Interactors.
@@ -131,7 +126,6 @@ extension MultiIndexHitsInteractor {
   /// - Throws: HitsInteractor.Error.incompatibleRecordType if the conversion of search results for one of a nested hits Interactors is impossible due to a record type mismatch
 
   public func update(_ results: [SearchResponse]) {
-
     let completion = BlockOperation { [weak self] in
       self?.onResultsUpdated.fire(results)
     }
@@ -142,11 +136,10 @@ extension MultiIndexHitsInteractor {
     }.forEach(completion.addDependency)
 
     mutationQueue.addOperation(completion)
-
   }
 
   public func process(_ error: Error, for queries: [Query]) {
-    zip(hitsInteractors, queries).forEach { (hitsInteractor, query) in
+    zip(hitsInteractors, queries).forEach { hitsInteractor, query in
       hitsInteractor.process(error, for: query)
     }
   }
@@ -157,31 +150,28 @@ extension MultiIndexHitsInteractor {
     }
     onRequestChanged.fire(())
   }
-
 }
 
 #if os(iOS) || os(tvOS)
-import UIKit
+  import UIKit
 
-@available(*, deprecated, message: "Use multiple HitsSearcher aggregated with MultiSearcher instead of MultiIndexSearcher")
-public extension MultiIndexHitsInteractor {
+  @available(*, deprecated, message: "Use multiple HitsSearcher aggregated with MultiSearcher instead of MultiIndexSearcher")
+  public extension MultiIndexHitsInteractor {
+    /// Returns the hit of a desired type
+    /// - Parameter indexPath: the pointer to a hit, where section points to a nested hits Interactor, and item defines the index of a hit in a Interactor
+    /// - Throws: HitsInteractor.Error.incompatibleRecordType if desired type of record doesn't match with record type of corresponding hits Interactor
+    /// - Returns: The hit at row for index path or `nil` if there is no element at index in a specified section
 
-  /// Returns the hit of a desired type
-  /// - Parameter indexPath: the pointer to a hit, where section points to a nested hits Interactor, and item defines the index of a hit in a Interactor
-  /// - Throws: HitsInteractor.Error.incompatibleRecordType if desired type of record doesn't match with record type of corresponding hits Interactor
-  /// - Returns: The hit at row for index path or `nil` if there is no element at index in a specified section
+    func hit<R: Codable>(at indexPath: IndexPath) throws -> R? {
+      return try hit(atIndex: indexPath.item, inSection: indexPath.section)
+    }
 
-  func hit<R: Codable>(at indexPath: IndexPath) throws -> R? {
-    return try hit(atIndex: indexPath.item, inSection: indexPath.section)
+    /// Returns the hit in raw dictionary form
+    /// - Parameter indexPath: the pointer to a hit, where section points to a nested hits Interactor, and item defines the index of a hit in a Interactor
+    /// - Returns: The hit in raw dictionary form or `nil` if there is no element at index in a specified section
+
+    func rawHit(at indexPath: IndexPath) -> [String: Any]? {
+      return rawHit(atIndex: indexPath.item, inSection: indexPath.section)
+    }
   }
-
-  /// Returns the hit in raw dictionary form
-  /// - Parameter indexPath: the pointer to a hit, where section points to a nested hits Interactor, and item defines the index of a hit in a Interactor
-  /// - Returns: The hit in raw dictionary form or `nil` if there is no element at index in a specified section
-
-  func rawHit(at indexPath: IndexPath) -> [String: Any]? {
-    return rawHit(atIndex: indexPath.item, inSection: indexPath.section)
-  }
-
-}
 #endif

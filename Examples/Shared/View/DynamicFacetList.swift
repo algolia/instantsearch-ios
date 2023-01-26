@@ -10,7 +10,6 @@ import InstantSearchSwiftUI
 import SwiftUI
 
 struct DynamicFacetList: View {
-
   @ObservedObject var dynamicFacetListController: DynamicFacetListObservableController
 
   var body: some View {
@@ -21,10 +20,10 @@ struct DynamicFacetList: View {
             VStack {
               FacetRow(facet: facet,
                        isSelected: dynamicFacetListController.isSelected(facet, for: orderedFacet.attribute))
-              .onTapGesture {
-                dynamicFacetListController.toggle(facet, for: orderedFacet.attribute)
-              }
-              .frame(minHeight: 40, idealHeight: 40, maxHeight: .infinity, alignment: .center)
+                .onTapGesture {
+                  dynamicFacetListController.toggle(facet, for: orderedFacet.attribute)
+                }
+                .frame(minHeight: 40, idealHeight: 40, maxHeight: .infinity, alignment: .center)
               Divider()
             }
             .padding(.horizontal, 20)
@@ -44,5 +43,4 @@ struct DynamicFacetList: View {
     }
     .padding(.horizontal, 20)
   }
-
 }

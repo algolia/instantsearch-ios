@@ -16,13 +16,13 @@ public struct MatchingPattern<Model> {
   public init(attribute: Attribute, score: Int, filterPath: KeyPath<Model, String>) {
     self.attribute = attribute
     self.score = score
-    self.oneOrManyElementsInKeyPath = .one(filterPath)
+    oneOrManyElementsInKeyPath = .one(filterPath)
   }
 
   public init(attribute: Attribute, score: Int, filterPath: KeyPath<Model, [String]>) {
     self.attribute = attribute
     self.score = score
-    self.oneOrManyElementsInKeyPath = .many(filterPath)
+    oneOrManyElementsInKeyPath = .many(filterPath)
   }
 
   enum OneOrManyElementsInKeyPath<T, V> {

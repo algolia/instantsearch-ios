@@ -1,6 +1,6 @@
 //
 //  FilterTypeAliases.swift
-//  
+//
 //
 //  Created by Vladislav Fitc on 07/10/2020.
 //

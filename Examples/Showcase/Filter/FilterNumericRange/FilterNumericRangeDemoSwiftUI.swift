@@ -12,7 +12,6 @@ import InstantSearchSwiftUI
 import SwiftUI
 
 struct FilterNumericRangeDemoSwiftUI: SwiftUIDemo, PreviewProvider {
-
   class Controller {
     let demoController = FilterNumericRangeDemoController()
     let numberRangeController = NumberRangeObservableController<Double>(range: 0...5,
@@ -29,7 +28,6 @@ struct FilterNumericRangeDemoSwiftUI: SwiftUIDemo, PreviewProvider {
   }
 
   struct ContentView: View {
-
     @ObservedObject var slider = CustomSlider(bounds: 0.0...5, values: 0...5)
     @ObservedObject var numberRangeController: NumberRangeObservableController<Double>
     @ObservedObject var filterStateController: FilterStateObservableController
@@ -62,14 +60,13 @@ struct FilterNumericRangeDemoSwiftUI: SwiftUIDemo, PreviewProvider {
 
     func makeRange(_ lowerBound: Double, _ upperBound: Double) -> ClosedRange<Double>? {
       if lowerBound < upperBound &&
-          numberRangeController.bounds.contains(lowerBound) &&
-          numberRangeController.bounds.contains(upperBound) {
+        numberRangeController.bounds.contains(lowerBound) &&
+        numberRangeController.bounds.contains(upperBound) {
         return lowerBound...upperBound
       } else {
         return nil
       }
     }
-
   }
 
   static func contentView(with controller: Controller) -> ContentView {
@@ -85,5 +82,4 @@ struct FilterNumericRangeDemoSwiftUI: SwiftUIDemo, PreviewProvider {
         .navigationBarTitle("Number Range Filter")
     }
   }
-
 }

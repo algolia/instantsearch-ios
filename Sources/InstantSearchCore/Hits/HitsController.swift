@@ -9,18 +9,14 @@
 import Foundation
 
 public protocol HitsController: AnyObject, Reloadable {
-
   associatedtype DataSource: HitsSource
 
   var hitsSource: DataSource? { get set }
 
   func scrollToTop()
-
 }
 
 public extension HitsController {
-
   func scrollToTop() {}
   func reload() {}
-
 }

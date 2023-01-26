@@ -11,7 +11,6 @@ import InstantSearch
 import UIKit
 
 class HierarchicalDemoViewController: UIViewController {
-
   let demoController: HierarchicalDemoController
 
   let hierarchicalTableViewController: HierarchicalTableViewController
@@ -27,7 +26,8 @@ class HierarchicalDemoViewController: UIViewController {
     super.init(nibName: nibNameOrNil, bundle: nibBundleOrNil)
   }
 
-  required init?(coder aDecoder: NSCoder) {
+  @available(*, unavailable)
+  required init?(coder _: NSCoder) {
     fatalError("init(coder:) has not been implemented")
   }
 
@@ -49,7 +49,7 @@ class HierarchicalDemoViewController: UIViewController {
 
   private func setupUI() {
     title = "Hierarchical Facets"
-    view.backgroundColor = . white
+    view.backgroundColor = .white
 
     let mainStackView = UIStackView()
     mainStackView.translatesAutoresizingMaskIntoConstraints = false
@@ -70,5 +70,4 @@ class HierarchicalDemoViewController: UIViewController {
     view.addSubview(mainStackView)
     mainStackView.pin(to: view)
   }
-
 }

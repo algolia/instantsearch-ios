@@ -9,7 +9,6 @@ import Foundation
 import InstantSearchCore
 
 class MultiIndexDemoController {
-
   let multiSearcher: MultiSearcher
   let suggestionsHitsConnector: HitsConnector<QuerySuggestion>
   let productsHitsConnector: HitsConnector<Hit<StoreItem>>
@@ -24,5 +23,4 @@ class MultiIndexDemoController {
     suggestionsHitsConnector = .init(searcher: suggestionsSearcher)
     multiSearcher.search()
   }
-
 }

@@ -30,11 +30,10 @@ import Foundation
 ///
 
 protocol Sequencable {
+  typealias OperationLauncher = () -> Operation
 
-    typealias OperationLauncher = () -> Operation
-
-    func orderOperation(operationLauncher: @escaping OperationLauncher)
-    func cancelPendingOperations()
+  func orderOperation(operationLauncher: @escaping OperationLauncher)
+  func cancelPendingOperations()
 }
 
 protocol SequencerDelegate: AnyObject {
@@ -42,7 +41,6 @@ protocol SequencerDelegate: AnyObject {
 }
 
 class Sequencer: Sequencable {
-
   // MARK: Properties
 
   /// Sequence number for the next operation.
@@ -88,8 +86,8 @@ class Sequencer: Sequencable {
   private let sequencerQueue: OperationQueue
 
   init() {
-    self.sequencerQueue = OperationQueue()
-    self.sequencerQueue.maxConcurrentOperationCount = maxConcurrentCompletionOperationsCount
+    sequencerQueue = OperationQueue()
+    sequencerQueue.maxConcurrentOperationCount = maxConcurrentCompletionOperationsCount
   }
 
   // MARK: - Sequencing logic
@@ -114,7 +112,7 @@ class Sequencer: Sequencable {
 
       // Cancel obsolete operations
       let obsoleteOperations = sequencer.pendingOperations.filter { $0.0 <= currentSeqNo - sequencer.maxPendingOperationsCount }
-      for (operationNo, operation) in  obsoleteOperations {
+      for (operationNo, operation) in obsoleteOperations {
         InstantSearchCoreLog.trace("Sequencer: cancel \(String(describing: operation.name)) as it seqNo \(operationNo) precedes min allowed \(currentSeqNo - sequencer.maxPendingOperationsCount)")
         operation.cancel()
         sequencer.pendingOperations.removeValue(forKey: operationNo)
@@ -160,32 +158,26 @@ class Sequencer: Sequencable {
       // Update last received response.
       sequencer.lastReceivedSeqNo = seqNo
     }
-
   }
-
 }
 
 private extension Sequencer {
+  class SequencerCompletionOperation: Operation {
+    let sequenceNo: Int
+    weak var sequencer: Sequencer?
+    var correspondingOperation: Operation
 
-    class SequencerCompletionOperation: Operation {
-
-        let sequenceNo: Int
-        weak var sequencer: Sequencer?
-        var correspondingOperation: Operation
-
-        init(sequenceNo: Int, sequencer: Sequencer, correspondingOperation: Operation) {
-            self.sequenceNo = sequenceNo
-            self.sequencer = sequencer
-            self.correspondingOperation = correspondingOperation
-        }
-
-        override func main() {
-            guard
-                let sequencer = sequencer,
-                !correspondingOperation.isCancelled else { return }
-            sequencer.dismissOperation(forSeqNo: sequenceNo)
-        }
-
+    init(sequenceNo: Int, sequencer: Sequencer, correspondingOperation: Operation) {
+      self.sequenceNo = sequenceNo
+      self.sequencer = sequencer
+      self.correspondingOperation = correspondingOperation
     }
 
+    override func main() {
+      guard
+        let sequencer = sequencer,
+        !correspondingOperation.isCancelled else { return }
+      sequencer.dismissOperation(forSeqNo: sequenceNo)
+    }
+  }
 }

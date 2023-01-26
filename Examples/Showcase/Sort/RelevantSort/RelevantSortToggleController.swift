@@ -7,23 +7,23 @@
 //
 
 import Foundation
-import UIKit
 import InstantSearch
+import UIKit
 
 class RelevantSortToggleController: UIViewController, RelevantSortController {
-
   var didToggle: (() -> Void)?
 
   let label: UILabel
   let button: UIButton
 
   init() {
-    self.label = .init()
-    self.button = .init()
+    label = .init()
+    button = .init()
     super.init(nibName: nil, bundle: nil)
   }
 
-  required init?(coder: NSCoder) {
+  @available(*, unavailable)
+  required init?(coder _: NSCoder) {
     fatalError("init(coder:) has not been implemented")
   }
 
@@ -67,5 +67,4 @@ class RelevantSortToggleController: UIViewController, RelevantSortController {
   @objc func didTapButton() {
     didToggle?()
   }
-
 }

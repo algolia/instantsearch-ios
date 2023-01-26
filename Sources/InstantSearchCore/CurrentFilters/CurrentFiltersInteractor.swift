@@ -10,20 +10,17 @@ import Foundation
 
 /// Business logic for Current Refinements component
 public class CurrentFiltersInteractor: ItemsListInteractor<FilterAndID> {
-
-  public override init(items: Set<FilterAndID> = []) {
+  override public init(items: Set<FilterAndID> = []) {
     Telemetry.shared.trace(type: .currentFilters,
                            parameters: [
-                            items.isEmpty ? .none : .items
+                             items.isEmpty ? .none : .items
                            ])
     super.init(items: items)
   }
-
 }
 
 /// Union of a filter and its group in a filter state
 public struct FilterAndID: Hashable {
-
   /// Stored filter
   public let filter: Filter
 

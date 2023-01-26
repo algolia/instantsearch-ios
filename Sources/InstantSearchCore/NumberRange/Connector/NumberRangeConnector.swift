@@ -12,7 +12,6 @@ import Foundation
 ///
 /// [Documentation](https://www.algolia.com/doc/api-reference/widgets/filter-list-numeric/ios/)
 public class NumberRangeConnector<Number: Comparable & DoubleRepresentable> {
-
   /// Searcher that handles your searches.
   public let searcher: HitsSearcher
 
@@ -35,14 +34,14 @@ public class NumberRangeConnector<Number: Comparable & DoubleRepresentable> {
   public var controllerConnections: [Connection]
 
   /**
-   - Parameters:
-     - searcher: Searcher that handles your searches.
-     - filterState: FilterState that holds your filters
-     - attribute: Attribute to filter
-     - interactor: Logic applied to the numeric range
-     - operator: Whether the filter is added to a conjuncitve(and) or a disjuncitve (or) group in the filter state. Default value: .and
-     - groupName: Filter group name in the filter state. Default value: The value of the `attribute` parameter
-  */
+    - Parameters:
+      - searcher: Searcher that handles your searches.
+      - filterState: FilterState that holds your filters
+      - attribute: Attribute to filter
+      - interactor: Logic applied to the numeric range
+      - operator: Whether the filter is added to a conjuncitve(and) or a disjuncitve (or) group in the filter state. Default value: .and
+      - groupName: Filter group name in the filter state. Default value: The value of the `attribute` parameter
+   */
 
   public init(searcher: HitsSearcher,
               filterState: FilterState,
@@ -54,41 +53,39 @@ public class NumberRangeConnector<Number: Comparable & DoubleRepresentable> {
     self.filterState = filterState
     self.attribute = attribute
     self.interactor = interactor
-    self.searcherConnection = interactor.connectSearcher(searcher, attribute: attribute)
-    self.filterStateConnection = interactor.connectFilterState(filterState,
-                                                               attribute: attribute,
-                                                               operator: `operator`,
-                                                               groupName: groupName)
-    self.controllerConnections = []
+    searcherConnection = interactor.connectSearcher(searcher, attribute: attribute)
+    filterStateConnection = interactor.connectFilterState(filterState,
+                                                          attribute: attribute,
+                                                          operator: `operator`,
+                                                          groupName: groupName)
+    controllerConnections = []
     Telemetry.shared.traceConnector(type: .numberRangeFilter,
                                     parameters: [
                                       `operator` == .and ? .none : .operator,
                                       groupName == nil ? .none : .groupName
                                     ])
   }
-
 }
 
 // MARK: - Convenient initializers
 
 public extension NumberRangeConnector {
-
   /**
-   - Parameters:
-     - searcher: Searcher that handles your searches.
-     - filterState: FilterState that holds your filters
-     - attribute: Attribute to filter
-     - bounds: Bounds limiting the max and the min value of the range
-     - range: Initial range value
-     - operator: Whether the filter is added to a conjuncitve(`and`) or  a disjuncitve (`or`) group in the filter state. Default value: .and
-     - groupName: Filter group name in the filter state. Default value: The value of the `attribute` parameter
-  */
+    - Parameters:
+      - searcher: Searcher that handles your searches.
+      - filterState: FilterState that holds your filters
+      - attribute: Attribute to filter
+      - bounds: Bounds limiting the max and the min value of the range
+      - range: Initial range value
+      - operator: Whether the filter is added to a conjuncitve(`and`) or  a disjuncitve (`or`) group in the filter state. Default value: .and
+      - groupName: Filter group name in the filter state. Default value: The value of the `attribute` parameter
+   */
   convenience init(searcher: HitsSearcher,
                    filterState: FilterState,
                    attribute: Attribute,
                    bounds: ClosedRange<Number>? = nil,
                    range: ClosedRange<Number>? = nil,
-                   `operator`: RefinementOperator = .and,
+                   operator: RefinementOperator = .and,
                    groupName: String? = nil) {
     let interactor = NumberRangeInteractor(item: range)
     interactor.applyBounds(bounds: bounds)
@@ -99,11 +96,9 @@ public extension NumberRangeConnector {
               operator: `operator`,
               groupName: groupName)
   }
-
 }
 
 extension NumberRangeConnector: Connection {
-
   public func connect() {
     filterStateConnection.connect()
     controllerConnections.forEach { $0.connect() }
@@ -113,5 +108,4 @@ extension NumberRangeConnector: Connection {
     filterStateConnection.disconnect()
     controllerConnections.forEach { $0.disconnect() }
   }
-
 }

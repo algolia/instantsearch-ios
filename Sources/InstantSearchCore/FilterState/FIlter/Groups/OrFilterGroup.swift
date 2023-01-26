@@ -11,10 +11,8 @@ import Foundation
 
 /// Representation of disjunctive group of filters
 
-extension FilterGroup {
-
-  public struct Or<T: FilterType>: FilterGroupType {
-
+public extension FilterGroup {
+  struct Or<T: FilterType>: FilterGroupType {
     public var filters: [FilterType] {
       return typedFilters
     }
@@ -28,7 +26,7 @@ extension FilterGroup {
     internal var typedFilters: [T]
 
     public init(filters: [T] = [], name: String? = nil) {
-      self.typedFilters = filters
+      typedFilters = filters
       self.name = name
     }
 
@@ -39,15 +37,11 @@ extension FilterGroup {
     public func withFilters<S: Sequence>(_ filters: S) -> Or where S.Element == FilterType {
       return .init(filters: filters.compactMap { $0 as? T }, name: name)
     }
-
   }
-
 }
 
 extension FilterGroup.Or: CustomStringConvertible {
-
   public var description: String {
     return "{ \(name ?? "_"): \(filters) }"
   }
-
 }

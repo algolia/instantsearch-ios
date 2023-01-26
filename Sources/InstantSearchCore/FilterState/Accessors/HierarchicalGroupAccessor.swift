@@ -10,7 +10,6 @@ import Foundation
 
 /// Provides a convenient interface to a hierarchical group contained by FilterState
 public struct HierarchicalGroupAccessor: SpecializedGroupAccessor {
-
   public typealias Filter = FacetFilter
 
   let groupID: FilterGroup.ID
@@ -38,7 +37,7 @@ public struct HierarchicalGroupAccessor: SpecializedGroupAccessor {
 
   init(filtersContainer: FiltersContainer, groupName: String) {
     self.filtersContainer = filtersContainer
-    self.groupID = .hierarchical(name: groupName)
+    groupID = .hierarchical(name: groupName)
   }
 
   /// Adds filter to group
@@ -73,7 +72,7 @@ public struct HierarchicalGroupAccessor: SpecializedGroupAccessor {
 
   /// Removes a sequence of filters from group
   /// - parameter filters: sequence of filters to remove
-  @discardableResult public func removeAll<S: Sequence>(_ filters: S) -> Bool where S.Element == Filter {
+  @discardableResult public func removeAll<S: Sequence>(_: S) -> Bool where S.Element == Filter {
     filtersContainer.filters.removeAll(fromGroupWithID: groupID)
     return false
   }
@@ -101,5 +100,4 @@ public struct HierarchicalGroupAccessor: SpecializedGroupAccessor {
   public func filters() -> [Filter] {
     return filtersContainer.filters.getFilters().compactMap { $0.filter as? Filter }
   }
-
 }

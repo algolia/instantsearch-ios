@@ -10,9 +10,7 @@ import Foundation
 
 @available(*, deprecated, message: "Use SortByInteractor")
 public extension IndexSegment {
-
   struct ControllerConnection<Controller: SelectableSegmentController>: Connection where Controller.SegmentKey == Int {
-
     public let interactor: IndexSegmentInteractor
     public let controller: Controller
     public let presenter: IndexPresenter
@@ -45,19 +43,15 @@ public extension IndexSegment {
       interactor.onSelectedChanged.cancelSubscription(for: controller)
       interactor.onItemsChanged.cancelSubscription(for: controller)
     }
-
   }
-
 }
 
 @available(*, deprecated, message: "Use SortByInteractor")
 public extension IndexSegmentInteractor {
-
   @discardableResult func connectController<Controller: SelectableSegmentController>(_ controller: Controller,
                                                                                      presenter: @escaping IndexPresenter = DefaultPresenter.Index.present) -> IndexSegment.ControllerConnection<Controller> where Controller.SegmentKey == SegmentKey {
     let connection = IndexSegment.ControllerConnection(interactor: self, controller: controller, presenter: presenter)
     connection.connect()
     return connection
   }
-
 }

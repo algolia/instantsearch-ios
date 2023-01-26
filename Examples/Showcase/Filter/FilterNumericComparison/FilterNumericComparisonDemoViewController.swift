@@ -8,11 +8,10 @@
 // swiftlint:disable type_name
 
 import Foundation
-import UIKit
 import InstantSearch
+import UIKit
 
 class FilterNumericComparisonDemoViewController: UIViewController {
-
   let demoController: FilterNumericComparisonDemoController
   let yearTextFieldController: NumericTextFieldController
   let numericStepperController: NumericStepperController
@@ -28,7 +27,8 @@ class FilterNumericComparisonDemoViewController: UIViewController {
     setup()
   }
 
-  required init?(coder aDecoder: NSCoder) {
+  @available(*, unavailable)
+  required init?(coder _: NSCoder) {
     fatalError("init(coder:) has not been implemented")
   }
 
@@ -36,11 +36,9 @@ class FilterNumericComparisonDemoViewController: UIViewController {
     super.viewDidLoad()
     setupUI()
   }
-
 }
 
 private extension FilterNumericComparisonDemoViewController {
-
   func setup() {
     demoController.priceConnector.connectNumberController(numericStepperController)
     demoController.yearConnector.connectNumberController(yearTextFieldController)
@@ -49,7 +47,6 @@ private extension FilterNumericComparisonDemoViewController {
   }
 
   func setupUI() {
-
     view.backgroundColor = .systemBackground
 
     addChild(filterDebugViewController)
@@ -117,8 +114,7 @@ private extension FilterNumericComparisonDemoViewController {
     return priceStepperStackView
   }
 
-  @objc func onStepperValueChanged(sender: UIStepper) {
+  @objc func onStepperValueChanged(sender _: UIStepper) {
     priceStepperValueLabel.text = demoController.priceConnector.interactor.item.flatMap { "\($0)" }
   }
-
 }

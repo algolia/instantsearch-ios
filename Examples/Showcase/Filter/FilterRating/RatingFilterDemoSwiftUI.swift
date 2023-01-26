@@ -6,13 +6,11 @@
 //
 
 import Foundation
-import SwiftUI
 import InstantSearchSwiftUI
+import SwiftUI
 
 struct RatingFilterDemoSwiftUI: SwiftUIDemo, PreviewProvider {
-
   class Controller {
-
     let demoController: RatingFilterDemoController
     let ratingController: NumberObservableController<Double>
     let filterStateController: FilterStateObservableController
@@ -26,11 +24,9 @@ struct RatingFilterDemoSwiftUI: SwiftUIDemo, PreviewProvider {
       demoController.clearFilterConnector.connectController(clearFilterController)
       demoController.numberInteractor.connectNumberController(ratingController)
     }
-
   }
 
   struct ContentView: View {
-
     @State var value: Double = 3.5
     @ObservedObject var ratingController: NumberObservableController<Double>
     @ObservedObject var filterStateController: FilterStateObservableController
@@ -52,7 +48,6 @@ struct RatingFilterDemoSwiftUI: SwiftUIDemo, PreviewProvider {
       }
       .padding()
     }
-
   }
 
   static func contentView(with controller: Controller) -> ContentView {
@@ -68,5 +63,4 @@ struct RatingFilterDemoSwiftUI: SwiftUIDemo, PreviewProvider {
         .navigationBarTitle("Filter Rating")
     }
   }
-
 }

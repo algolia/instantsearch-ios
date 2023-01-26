@@ -6,30 +6,32 @@
 //
 
 #if !InstantSearchCocoaPods
-import InstantSearchCore
+  import InstantSearchCore
 #endif
 #if canImport(UIKit) && (os(iOS) || os(tvOS) || os(macOS))
-import UIKit
+  import UIKit
 
-public class ActivityIndicatorController: LoadingController {
+  public class ActivityIndicatorController: LoadingController {
+    public let activityIndicator: UIActivityIndicatorView
 
-  public let activityIndicator: UIActivityIndicatorView
+    public init(activityIndicator: UIActivityIndicatorView) {
+      self.activityIndicator = activityIndicator
+    }
 
-  public init (activityIndicator: UIActivityIndicatorView) {
-    self.activityIndicator = activityIndicator
+    public func startLoading() {
+      activityIndicator.startAnimating()
+    }
+
+    public func stopLoading() {
+      activityIndicator.stopAnimating()
+    }
+
+    public func setItem(_ isActive: Bool) {
+      if isActive {
+        startLoading()
+      } else {
+        stopLoading()
+      }
+    }
   }
-
-  public func startLoading() {
-    activityIndicator.startAnimating()
-  }
-
-  public func stopLoading() {
-    activityIndicator.stopAnimating()
-  }
-
-  public func setItem(_ item: Bool) {
-    item ? activityIndicator.startAnimating() : activityIndicator.stopAnimating()
-  }
-
-}
 #endif

@@ -5,12 +5,11 @@
 //  Created by Vladislav Fitc on 20/04/2022.
 //
 
+import AlgoliaSearchClient
 import Foundation
 import UIKit
-import AlgoliaSearchClient
 
 extension ProductTableViewCell {
-
   func setup(with productHit: Hit<StoreItem>) {
     let product = productHit.object
     itemImageView.sd_setImage(with: product.images.first)
@@ -18,7 +17,8 @@ extension ProductTableViewCell {
     if let highlightedName = productHit.hightlightedString(forKey: "name") {
       titleLabel.attributedText = NSAttributedString(highlightedString: highlightedName,
                                                      attributes: [
-                                                      .foregroundColor: UIColor.tintColor])
+                                                       .foregroundColor: UIColor.tintColor
+                                                     ])
     } else {
       titleLabel.text = product.name
     }
@@ -35,7 +35,5 @@ extension ProductTableViewCell {
     if let price = product.price {
       priceLabel.text = "\(price) €"
     }
-
   }
-
 }

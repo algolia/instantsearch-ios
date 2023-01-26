@@ -9,12 +9,10 @@
 import Foundation
 
 public protocol HitsSource: AnyObject {
-
   associatedtype Record: Codable
 
   func numberOfHits() -> Int
   func hit(atIndex index: Int) -> Record?
-
 }
 
 extension HitsInteractor: HitsSource {}

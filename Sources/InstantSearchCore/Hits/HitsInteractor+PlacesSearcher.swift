@@ -10,14 +10,11 @@ import Foundation
 
 @available(*, deprecated, message: "Places feature is deprecated")
 public extension HitsInteractor where Record == Hit<Place> {
-
   struct PlacesSearcherConnection: Connection {
-
     public let interactor: HitsInteractor<Record>
     public let searcher: PlacesSearcher
 
     public func connect() {
-
       interactor.pageLoader = searcher
 
       searcher.onResults.subscribePast(with: interactor) { interactor, searchResults in
@@ -28,10 +25,9 @@ public extension HitsInteractor where Record == Hit<Place> {
         // TODO: when pagination added, notify pending query in infinite scrolling controller
       }
 
-      searcher.onQueryChanged.subscribe(with: interactor) { (interactor, _) in
+      searcher.onQueryChanged.subscribe(with: interactor) { interactor, _ in
         interactor.notifyQueryChanged()
       }
-
     }
 
     public func disconnect() {
@@ -42,18 +38,14 @@ public extension HitsInteractor where Record == Hit<Place> {
       searcher.onError.cancelSubscription(for: interactor)
       searcher.onQueryChanged.cancelSubscription(for: interactor)
     }
-
   }
-
 }
 
 public extension HitsInteractor where Record == Hit<Place> {
-
   @available(*, deprecated, message: "Places feature is deprecated")
   @discardableResult func connectPlacesSearcher(_ searcher: PlacesSearcher) -> PlacesSearcherConnection {
     let connection = PlacesSearcherConnection(interactor: self, searcher: searcher)
     connection.connect()
     return connection
   }
-
 }

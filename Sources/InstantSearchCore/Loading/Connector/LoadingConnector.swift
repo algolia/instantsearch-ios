@@ -12,7 +12,6 @@ import Foundation
 ///
 /// [Documentation](https://www.algolia.com/doc/api-reference/widgets/loading/ios/)
 public class LoadingConnector {
-
   /// Searcher that handles your searches
   public let searcher: Searcher
 
@@ -34,15 +33,13 @@ public class LoadingConnector {
               interactor: LoadingInteractor = .init()) {
     self.searcher = searcher
     self.interactor = interactor
-    self.searcherConnection = interactor.connectSearcher(searcher)
-    self.controllerConnections = []
+    searcherConnection = interactor.connectSearcher(searcher)
+    controllerConnections = []
     Telemetry.shared.traceConnector(type: .loading)
   }
-
 }
 
 extension LoadingConnector: Connection {
-
   public func connect() {
     searcherConnection.connect()
     controllerConnections.forEach { $0.connect() }
@@ -52,5 +49,4 @@ extension LoadingConnector: Connection {
     searcherConnection.disconnect()
     controllerConnections.forEach { $0.disconnect() }
   }
-
 }

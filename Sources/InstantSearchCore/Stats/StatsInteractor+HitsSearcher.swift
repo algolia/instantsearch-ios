@@ -9,10 +9,8 @@
 import Foundation
 
 public extension StatsInteractor {
-
   @available(*, deprecated, message: "Use StatsInteractor.SearcherConnection")
   struct SingleIndexSearcherConnection: Connection {
-
     let interactor: StatsInteractor
     let searcher: HitsSearcher
 
@@ -29,17 +27,13 @@ public extension StatsInteractor {
       searcher.onResults.cancelSubscription(for: interactor)
       searcher.onError.cancelSubscription(for: interactor)
     }
-
   }
-
 }
 
 public extension StatsInteractor {
-
   @discardableResult func connectSearcher<Searcher: SearchResultObservable>(_ searcher: Searcher) -> SearcherConnection<Searcher> {
     let connection = SearcherConnection(interactor: self, searcher: searcher)
     connection.connect()
     return connection
   }
-
 }

@@ -9,7 +9,6 @@ import Foundation
 import InstantSearchCore
 
 class FilterNumericComparisonDemoController {
-
   let searcher: HitsSearcher
   let filterState: FilterState
   let clearFilterConnector: FilterClearConnector
@@ -44,5 +43,4 @@ class FilterNumericComparisonDemoController {
     searcher.connectFilterState(filterState)
     searcher.search()
   }
-
 }

@@ -6,34 +6,30 @@
 //
 
 #if !InstantSearchCocoaPods
-import InstantSearchCore
+  import InstantSearchCore
 #endif
 #if canImport(UIKit) && (os(iOS) || os(tvOS) || os(macOS))
-import UIKit
+  import UIKit
 
-@available(*, unavailable, message: "Use your own UICollectionViewController conforming to HitsController protocol")
-open class HitsCollectionViewDelegate<DataSource: HitsSource>: NSObject, UICollectionViewDelegate {
+  @available(*, unavailable, message: "Use your own UICollectionViewController conforming to HitsController protocol")
+  open class HitsCollectionViewDelegate<DataSource: HitsSource>: NSObject, UICollectionViewDelegate {
+    public var clickHandler: CollectionViewClickHandler<DataSource.Record>
+    public weak var hitsSource: DataSource?
 
-  public var clickHandler: CollectionViewClickHandler<DataSource.Record>
-  public weak var hitsSource: DataSource?
-
-  public init(clickHandler: @escaping CollectionViewClickHandler<DataSource.Record>) {
-    self.clickHandler = clickHandler
-  }
-
-  open func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
-
-    guard let hitsSource = hitsSource else {
-      InstantSearchLog.missingHitsSourceWarning()
-      return
+    public init(clickHandler: @escaping CollectionViewClickHandler<DataSource.Record>) {
+      self.clickHandler = clickHandler
     }
 
-    guard let hit = hitsSource.hit(atIndex: indexPath.row) else {
-      return
+    open func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
+      guard let hitsSource = hitsSource else {
+        InstantSearchLog.missingHitsSourceWarning()
+        return
+      }
+
+      guard let hit = hitsSource.hit(atIndex: indexPath.row) else {
+        return
+      }
+      clickHandler(collectionView, hit, indexPath)
     }
-    clickHandler(collectionView, hit, indexPath)
-
   }
-
-}
 #endif

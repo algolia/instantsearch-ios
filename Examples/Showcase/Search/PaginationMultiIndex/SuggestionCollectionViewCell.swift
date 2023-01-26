@@ -7,20 +7,20 @@
 //
 
 import Foundation
-import UIKit
 import InstantSearchCore
+import UIKit
 
 class SuggestionCollectionViewCell: UICollectionViewCell {
-
   let label: UILabel
 
   override init(frame: CGRect) {
-    self.label = UILabel(frame: .zero)
+    label = UILabel(frame: .zero)
     super.init(frame: frame)
     layout()
   }
 
-  required init?(coder aDecoder: NSCoder) {
+  @available(*, unavailable)
+  required init?(coder _: NSCoder) {
     fatalError("init(coder:) has not been implemented")
   }
 
@@ -33,11 +33,9 @@ class SuggestionCollectionViewCell: UICollectionViewCell {
     contentView.addSubview(label)
     label.pin(to: contentView.layoutMarginsGuide)
   }
-
 }
 
 extension SuggestionCollectionViewCell {
-
   func setup(with querySuggestion: QuerySuggestion) {
     label.attributedText = querySuggestion
       .highlighted
@@ -45,7 +43,6 @@ extension SuggestionCollectionViewCell {
       .flatMap { NSAttributedString(highlightedString: $0,
                                     inverted: false,
                                     attributes: [.foregroundColor: UIColor.tintColor])
-    }
+      }
   }
-
 }

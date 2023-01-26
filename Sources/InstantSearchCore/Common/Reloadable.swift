@@ -9,7 +9,5 @@
 import Foundation
 
 public protocol Reloadable {
-
   func reload()
-
 }

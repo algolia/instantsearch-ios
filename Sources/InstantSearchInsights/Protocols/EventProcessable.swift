@@ -6,12 +6,10 @@
 //  Copyright © 2018 Algolia. All rights reserved.
 //
 
-import Foundation
 import AlgoliaSearchClient
+import Foundation
 
 protocol EventProcessable: AnyObject {
-
-    var isActive: Bool { get set }
-    func process(_ event: InsightsEvent)
-
+  var isActive: Bool { get set }
+  func process(_ event: InsightsEvent)
 }

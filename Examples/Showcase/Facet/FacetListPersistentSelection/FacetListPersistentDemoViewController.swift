@@ -7,11 +7,10 @@
 //
 
 import Foundation
-import UIKit
 import InstantSearch
+import UIKit
 
 class FacetListPersistentDemoViewController: UIViewController {
-
   let demoController: FacetListPersistentSelectionDemoController
   let colorListController: FacetListTableController
   let categoryListController: FacetListTableController
@@ -28,7 +27,8 @@ class FacetListPersistentDemoViewController: UIViewController {
     setup()
   }
 
-  required init?(coder aDecoder: NSCoder) {
+  @available(*, unavailable)
+  required init?(coder _: NSCoder) {
     fatalError("init(coder:) has not been implemented")
   }
 
@@ -36,11 +36,9 @@ class FacetListPersistentDemoViewController: UIViewController {
     super.viewDidLoad()
     setupLayout()
   }
-
 }
 
 private extension FacetListPersistentDemoViewController {
-
   func setup() {
     demoController.colorConnector.interactor.connectController(colorListController)
     demoController.categoryConnector.interactor.connectController(categoryListController)
@@ -80,14 +78,12 @@ private extension FacetListPersistentDemoViewController {
       colorListController,
       categoryListController
     ]
-      .map { $0.tableView }
-      .forEach {
+    .map { $0.tableView }
+    .forEach {
       $0.translatesAutoresizingMaskIntoConstraints = false
       $0.register(UITableViewCell.self, forCellReuseIdentifier: "CellId")
       $0.alwaysBounceVertical = false
       $0.tableFooterView = UIView(frame: .zero)
     }
-
   }
-
 }

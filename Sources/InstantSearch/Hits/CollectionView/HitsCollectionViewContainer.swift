@@ -6,43 +6,37 @@
 //
 
 #if !InstantSearchCocoaPods
-import InstantSearchCore
+  import InstantSearchCore
 #endif
 #if canImport(UIKit) && (os(iOS) || os(tvOS) || os(macOS))
-import UIKit
+  import UIKit
 
-public protocol HitsCollectionViewContainer {
-
-  var hitsCollectionView: UICollectionView { get }
-
-}
-
-public extension HitsController where Self: HitsCollectionViewContainer {
-
-  func reload() {
-    hitsCollectionView.reloadData()
+  public protocol HitsCollectionViewContainer {
+    var hitsCollectionView: UICollectionView { get }
   }
 
-  func scrollToTop() {
-    guard hitsCollectionView.numberOfItems(inSection: 0) != 0 else { return }
-    let indexPath = IndexPath(row: 0, section: 0)
-    self.hitsCollectionView.scrollToItem(at: indexPath, at: .top, animated: false)
+  public extension HitsController where Self: HitsCollectionViewContainer {
+    func reload() {
+      hitsCollectionView.reloadData()
+    }
+
+    func scrollToTop() {
+      guard hitsCollectionView.numberOfItems(inSection: 0) != 0 else { return }
+      let indexPath = IndexPath(row: 0, section: 0)
+      hitsCollectionView.scrollToItem(at: indexPath, at: .top, animated: false)
+    }
   }
 
-}
+  @available(*, deprecated, message: "Use multiple HitsSearcher aggregated with MultiSearcher instead of MultiIndexSearcher")
+  public extension MultiIndexHitsController where Self: HitsCollectionViewContainer {
+    func reload() {
+      hitsCollectionView.reloadData()
+    }
 
-@available(*, deprecated, message: "Use multiple HitsSearcher aggregated with MultiSearcher instead of MultiIndexSearcher")
-public extension MultiIndexHitsController where Self: HitsCollectionViewContainer {
-
-  func reload() {
-    hitsCollectionView.reloadData()
+    func scrollToTop() {
+      guard hitsCollectionView.numberOfItems(inSection: 0) != 0 else { return }
+      let indexPath = IndexPath(item: 0, section: 0)
+      hitsCollectionView.scrollToItem(at: indexPath, at: .top, animated: false)
+    }
   }
-
-  func scrollToTop() {
-    guard hitsCollectionView.numberOfItems(inSection: 0) != 0 else { return }
-    let indexPath = IndexPath(item: 0, section: 0)
-    hitsCollectionView.scrollToItem(at: indexPath, at: .top, animated: false)
-  }
-
-}
 #endif

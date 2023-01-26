@@ -12,7 +12,6 @@ public enum NumberRange {}
 
 /// Numeric range filter business logic
 public class NumberRangeInteractor<Number: Comparable & DoubleRepresentable>: ItemInteractor<ClosedRange<Number>?>, Boundable {
-
   /// Event triggered when range value has been changed by the business logic
   public let onNumberRangeComputed: Observer<ClosedRange<Number>?>
 
@@ -28,16 +27,16 @@ public class NumberRangeInteractor<Number: Comparable & DoubleRepresentable>: It
   }
 
   /**
-   - Parameters:
-     - item: Initial range value
-  */
-  public override init(item: ClosedRange<Number>?) {
-    self.onNumberRangeComputed = .init()
-    self.onBoundsComputed = .init()
+    - Parameters:
+      - item: Initial range value
+   */
+  override public init(item: ClosedRange<Number>?) {
+    onNumberRangeComputed = .init()
+    onBoundsComputed = .init()
     super.init(item: item)
     Telemetry.shared.trace(type: .numberRangeFilter,
                            parameters: [
-                            item == nil ? .none : .range
+                             item == nil ? .none : .range
                            ])
   }
 
@@ -60,5 +59,4 @@ public class NumberRangeInteractor<Number: Comparable & DoubleRepresentable>: It
     }
     return range?.clamped(to: bounds)
   }
-
 }

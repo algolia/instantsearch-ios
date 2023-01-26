@@ -6,19 +6,18 @@
 //
 
 import Foundation
-import UIKit
 import InstantSearch
+import UIKit
 
 class CategoryTableViewCell: UITableViewCell {
-
   override init(style: UITableViewCell.CellStyle, reuseIdentifier: String?) {
     super.init(style: style, reuseIdentifier: reuseIdentifier)
     imageView?.image = UIImage(systemName: "square.grid.2x2")
     tintColor = .lightGray
   }
 
-  required init?(coder: NSCoder) {
+  @available(*, unavailable)
+  required init?(coder _: NSCoder) {
     fatalError("init(coder:) has not been implemented")
   }
-
 }

@@ -1,15 +1,14 @@
 //
 //  Logs.swift
-//  
+//
 //
 //  Created by Vladislav Fitc on 19/10/2020.
 //
 
-import Foundation
 import AlgoliaSearchClient
+import Foundation
 
 public struct Logs {
-
   public static let logLevelChangeNotficationName = Notification.Name("com.algolia.logLevelChange")
 
   public static var logSeverityLevel: LogLevel = .info {
@@ -20,5 +19,4 @@ public struct Logs {
   }
 
   private init() {}
-
 }

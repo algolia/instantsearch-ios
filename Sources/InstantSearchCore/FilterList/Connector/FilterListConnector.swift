@@ -10,7 +10,6 @@ import Foundation
 
 /// Components that display a list of filters.
 public class FilterListConnector<Filter: FilterType & Hashable> {
-
   /// FilterState that holds your filters
   public let filterState: FilterState
 
@@ -24,23 +23,23 @@ public class FilterListConnector<Filter: FilterType & Hashable> {
   public var controllerConnections: [Connection]
 
   /**
-  Init with explicit interactor
-  - Parameters:
-    - filterState: FilterState that holds your filters
-    - interactor: External filter list interactor
-    - operator: Whether we apply an `and` or `or` behavior to the filters in the filter state
-    - groupName: Filter group name
-  */
+   Init with explicit interactor
+   - Parameters:
+     - filterState: FilterState that holds your filters
+     - interactor: External filter list interactor
+     - operator: Whether we apply an `and` or `or` behavior to the filters in the filter state
+     - groupName: Filter group name
+   */
   public init(filterState: FilterState,
               interactor: FilterListInteractor<Filter>,
-              `operator`: RefinementOperator,
+              operator: RefinementOperator,
               groupName: String) {
     self.filterState = filterState
     self.interactor = interactor
-    self.connectionFilterState = interactor.connectFilterState(filterState,
-                                                               operator: `operator`,
-                                                               groupName: groupName)
-    self.controllerConnections = []
+    connectionFilterState = interactor.connectFilterState(filterState,
+                                                          operator: `operator`,
+                                                          groupName: groupName)
+    controllerConnections = []
     switch Filter.self {
     case is FacetFilter.Type:
       Telemetry.shared.traceConnector(type: .facetFilterList)
@@ -57,18 +56,18 @@ public class FilterListConnector<Filter: FilterType & Hashable> {
   }
 
   /**
-  Init with implicit interactor
-  - Parameters:
-    - filterState: FilterState that holds your filters
-    - filters: List of filters to display
-    - selectionMode: Whether the list can have single or multiple selections
-    - operator: Whether we apply an `and` or `or` behavior to the filters in the filter state
-    - groupName: Filter group name
-  */
+   Init with implicit interactor
+   - Parameters:
+     - filterState: FilterState that holds your filters
+     - filters: List of filters to display
+     - selectionMode: Whether the list can have single or multiple selections
+     - operator: Whether we apply an `and` or `or` behavior to the filters in the filter state
+     - groupName: Filter group name
+   */
   public convenience init(filterState: FilterState,
                           filters: [Filter],
                           selectionMode: SelectionMode,
-                          `operator`: RefinementOperator,
+                          operator: RefinementOperator,
                           groupName: String) {
     let interactor = FilterListInteractor<Filter>(items: filters,
                                                   selectionMode: selectionMode)
@@ -93,11 +92,9 @@ public class FilterListConnector<Filter: FilterType & Hashable> {
       break
     }
   }
-
 }
 
 extension FilterListConnector: Connection {
-
   public func connect() {
     connectionFilterState.connect()
     controllerConnections.forEach { $0.connect() }
@@ -107,5 +104,4 @@ extension FilterListConnector: Connection {
     connectionFilterState.disconnect()
     controllerConnections.forEach { $0.disconnect() }
   }
-
 }

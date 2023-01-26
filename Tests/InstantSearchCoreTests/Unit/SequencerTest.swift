@@ -25,7 +25,6 @@
 import XCTest
 
 class AsyncOperation: Operation {
-
   public enum State: String {
     case ready, executing, finished
 
@@ -75,11 +74,9 @@ class AsyncOperation: Operation {
     super.cancel()
     state = .finished
   }
-
 }
 
 class DelayedOperation: AsyncOperation {
-
   let delay: Int
   let completionHandler: (() -> Void)?
 
@@ -105,19 +102,15 @@ class DelayedOperation: AsyncOperation {
       }
       operation.completionHandler?()
     }
-
   }
 
   override func cancel() {
     super.cancel()
   }
-
 }
 
 class SequencerTest: XCTestCase {
-
   func testObsoleteOperationsCancellation() {
-
     let sequencer = Sequencer()
     sequencer.maxPendingOperationsCount = 10
 
@@ -128,7 +121,7 @@ class SequencerTest: XCTestCase {
 
     let operations: [Operation] = (0..<operationsCount).map { number in
       let op = DelayedOperation(delay: 10, completionHandler: { exp.fulfill() })
-      op.name = "\(number+1)"
+      op.name = "\(number + 1)"
       return op
     }
 
@@ -146,14 +139,12 @@ class SequencerTest: XCTestCase {
 
     // Sequencer must cancel first 90 ordered operations
     XCTAssertEqual(operations.filter { $0.isCancelled }.count, operationsCount - sequencer.maxPendingOperationsCount)
-    
+
     // Last 10 operations still in progress as they last longer than 5 seconds
     XCTAssertEqual(operations.filter { !$0.isCancelled }.count, sequencer.maxPendingOperationsCount)
-
   }
 
   func testPreviousOperationsCancellation() {
-
     let sequencer = Sequencer()
 
     let slowOperationsCount = 100
@@ -162,7 +153,7 @@ class SequencerTest: XCTestCase {
 
     let slowOperations: [Operation] = (0..<slowOperationsCount).map { number in
       let op = DelayedOperation(delay: .random(in: 100...300), completionHandler: .none)
-      op.name = "\(number+1)"
+      op.name = "\(number + 1)"
       let exp = expectation(description: "\(number)")
       op.completionBlock = {
         exp.fulfill()
@@ -190,14 +181,12 @@ class SequencerTest: XCTestCase {
 
     // All slow operations must be cancelled as the seqNo of the fast operation is bigger than the seqNo of the slow operations
     XCTAssertEqual(slowOperations.filter { $0.isCancelled }.count, slowOperationsCount)
-    
+
     // Fast operation shouldn't be cancelled
     XCTAssertFalse(fastOperation.isCancelled)
-
   }
-  
-  func testPendingOperations() {
 
+  func testPendingOperations() {
     let sequencer = Sequencer()
 
     sequencer.maxPendingOperationsCount = 3
@@ -214,27 +203,25 @@ class SequencerTest: XCTestCase {
     XCTAssertTrue(sequencer.hasPendingOperations)
 
     waitForExpectations(timeout: 5, handler: .none)
-
   }
-  
+
   func testLoad() {
-        
     let sequencer = Sequencer()
 
     sequencer.maxPendingOperationsCount = 100
-    
+
     let queueCount = 30
     // Generate `queueCount` queues with associated count of operation for each
     let queuesWithOpCount = (1...queueCount)
       .map { (queue: DispatchQueue(label: "queue\($0)"), operationCount: Int.random(in: 100...1000)) }
-    
+
     let operationQueue = OperationQueue()
     operationQueue.maxConcurrentOperationCount = 50
-    
+
     // Expectation of completion of all the operations from all the queues
     let allOperationsFinishedExpectation = expectation(description: "All operations finished")
     allOperationsFinishedExpectation.expectedFulfillmentCount = queuesWithOpCount.map(\.operationCount).reduce(0, +)
-    
+
     // Launch `operationCount` operation from each queue with randomized launch delay and randomized operation execution delay
     for (queue, operationCount) in queuesWithOpCount {
       for count in 1...operationCount {
@@ -253,9 +240,5 @@ class SequencerTest: XCTestCase {
     }
 
     waitForExpectations(timeout: 10, handler: nil)
-    
   }
-
-  
-  
 }

@@ -1,6 +1,6 @@
 //
 //  RelevantSortInteractorTests.swift
-//  
+//
 //
 //  Created by Vladislav Fitc on 10/02/2021.
 //
@@ -10,7 +10,6 @@ import Foundation
 import XCTest
 
 class RelevantSortInteractorTests: XCTestCase {
-  
   func testToggle() {
     let interactor = RelevantSortInteractor()
     XCTAssertNil(interactor.item)
@@ -22,5 +21,4 @@ class RelevantSortInteractorTests: XCTestCase {
     interactor.toggle()
     XCTAssertEqual(interactor.item, .hitsCount)
   }
-  
 }

@@ -9,9 +9,7 @@
 import Foundation
 
 public extension SearchBoxInteractor {
-
   struct ControllerConnection<Controller: SearchBoxController>: Connection {
-
     /// Business logic component that handles textual query input
     public let interactor: SearchBoxInteractor
 
@@ -30,7 +28,6 @@ public extension SearchBoxInteractor {
     }
 
     public func connect() {
-
       interactor.onQueryChanged.subscribePast(with: controller) { controller, query in
         controller.setQuery(query)
       }.onQueue(.main)
@@ -43,7 +40,6 @@ public extension SearchBoxInteractor {
         interactor?.query = $0
         interactor?.submitQuery()
       }
-
     }
 
     public func disconnect() {
@@ -51,24 +47,20 @@ public extension SearchBoxInteractor {
       controller.onQueryChanged = nil
       controller.onQuerySubmitted = nil
     }
-
   }
-
 }
 
 public extension SearchBoxInteractor {
-
   /**
-   Establishes a connection with a controller
-   - Parameters:
-     - controller: Controller interfacing with a concrete query input view
-   - Returns: Established connection
-  */
+    Establishes a connection with a controller
+    - Parameters:
+      - controller: Controller interfacing with a concrete query input view
+    - Returns: Established connection
+   */
   @discardableResult func connectController<Controller: SearchBoxController>(_ controller: Controller) -> ControllerConnection<Controller> {
     let connection = ControllerConnection(interactor: self,
                                           controller: controller)
     connection.connect()
     return connection
   }
-
 }

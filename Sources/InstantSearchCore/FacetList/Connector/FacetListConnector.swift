@@ -12,7 +12,6 @@ import Foundation
 ///
 /// [Documentation](https://www.algolia.com/doc/api-reference/widgets/refinement-list/ios/)
 public class FacetListConnector {
-
   /// Searcher that handles your searches.
   public let searcher: Searcher
 
@@ -45,26 +44,24 @@ public class FacetListConnector {
     self.interactor = interactor
     self.attribute = attribute
 
-    self.filterStateConnection = interactor.connectFilterState(filterState,
-                                                               with: attribute,
-                                                               operator: `operator`,
-                                                               groupName: groupName)
+    filterStateConnection = interactor.connectFilterState(filterState,
+                                                          with: attribute,
+                                                          operator: `operator`,
+                                                          groupName: groupName)
 
-    self.controllerConnections = []
+    controllerConnections = []
 
     switch searcher {
-    case .facet(let facetSearcher):
+    case let .facet(facetSearcher):
       searcherConnection = interactor.connectFacetSearcher(facetSearcher)
 
-    case .hits(let hitsSearcher):
+    case let .hits(hitsSearcher):
       searcherConnection = interactor.connectSearcher(hitsSearcher, with: attribute)
     }
   }
-
 }
 
 extension FacetListConnector: Connection {
-
   public func connect() {
     filterStateConnection.connect()
     searcherConnection.connect()
@@ -76,14 +73,11 @@ extension FacetListConnector: Connection {
     searcherConnection.disconnect()
     controllerConnections.forEach { $0.disconnect() }
   }
-
 }
 
-extension FacetListConnector {
-
-  public enum Searcher {
+public extension FacetListConnector {
+  enum Searcher {
     case hits(HitsSearcher)
     case facet(FacetSearcher)
   }
-
 }

@@ -9,7 +9,6 @@
 import Foundation
 
 public class ItemInteractor<Item> {
-
   public var item: Item {
     didSet {
       onItemChanged.fire(item)
@@ -20,7 +19,6 @@ public class ItemInteractor<Item> {
 
   init(item: Item) {
     self.item = item
-    self.onItemChanged = .init()
+    onItemChanged = .init()
   }
-
 }

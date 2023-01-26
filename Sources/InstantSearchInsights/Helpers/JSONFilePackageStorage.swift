@@ -1,6 +1,6 @@
 //
 //  JSONFilePackageStorage.swift
-//  
+//
 //
 //  Created by Vladislav Fitc on 19/10/2020.
 //
@@ -8,20 +8,18 @@
 import Foundation
 
 class JSONFilePackageStorage<Item: Codable>: Storage {
-
   let fileURL: URL
   let fileManager: FileManager
   let encoder: JSONEncoder
   let decoder: JSONDecoder
 
   init(filename: String) throws {
-
     fileManager = .default
 
     #if os(iOS)
-    let url = fileManager.urls(for: .libraryDirectory, in: .userDomainMask).last
+      let url = fileManager.urls(for: .libraryDirectory, in: .userDomainMask).last
     #else
-    let url = fileManager.urls(for: .cachesDirectory, in: .userDomainMask).last
+      let url = fileManager.urls(for: .cachesDirectory, in: .userDomainMask).last
     #endif
 
     guard let unwrappedURL = url else {
@@ -50,5 +48,4 @@ class JSONFilePackageStorage<Item: Codable>: Storage {
     case storeFail(Swift.Error)
     case loadFail(Swift.Error)
   }
-
 }

@@ -12,7 +12,6 @@ import Foundation
  Encapsulates search filters providing a convenient interface to manage them
  */
 public class FilterState {
-
   typealias Storage = FiltersReadable & FiltersWritable & FilterGroupsConvertible & HierarchicalManageable
 
   /// Filters container
@@ -24,22 +23,22 @@ public class FilterState {
 
   /// Default constructor
   public init() {
-    self.filters = GroupsStorage()
-    self.onChange = .init()
+    filters = GroupsStorage()
+    onChange = .init()
     Telemetry.shared.trace(type: .filterState)
   }
 
   /// Copy constructor
   public init(_ filterState: FilterState) {
-    self.filters = filterState.filters
-    self.onChange = .init()
+    filters = filterState.filters
+    onChange = .init()
     Telemetry.shared.trace(type: .filterState, parameters: .filterState)
   }
 
   /// Replace the groups of filter state by the groups of the filter state passed as parameter
   /// - Parameter filterState: source filter state
   public func setWithContent(of filterState: FilterState) {
-    self.filters = filterState.filters
+    filters = filterState.filters
   }
 
   /// Force trigger onChange event
@@ -58,7 +57,7 @@ public class FilterState {
   /// To use if filter type cannot be inferred
   /// - Parameter groupName: required group name
   /// - Returns: required group accessor
-  public subscript<F: FilterType>(or groupName: String, type: F.Type) -> OrGroupAccessor<F> {
+  public subscript<F: FilterType>(or groupName: String, _: F.Type) -> OrGroupAccessor<F> {
     return .init(filtersContainer: self, groupName: groupName)
   }
 
@@ -75,29 +74,23 @@ public class FilterState {
   public subscript(hierarchical groupName: String) -> HierarchicalGroupAccessor {
     return .init(filtersContainer: self, groupName: groupName)
   }
-
 }
 
 extension FilterState: FiltersContainer {}
 
 extension FilterState: FilterGroupsConvertible {
-
   public func toFilterGroups() -> [FilterGroupType] {
     return filters.toFilterGroups()
   }
-
 }
 
 extension FilterState: CustomStringConvertible {
-
   public var description: String {
     return FilterGroupConverter().sql(toFilterGroups()) ?? ""
   }
-
 }
 
 extension FilterState: CustomDebugStringConvertible {
-
   public var debugDescription: String {
     let filterGroups = toFilterGroups()
     guard !filterGroups.isEmpty else {
@@ -110,5 +103,4 @@ extension FilterState: CustomDebugStringConvertible {
     }.joined(separator: "\n")
     return "FilterState {\n\(body)\n}"
   }
-
 }

@@ -9,7 +9,6 @@ import Foundation
 import UIKit
 
 class SearchSuggestionTableViewCell: UITableViewCell {
-
   var didTapTypeAheadButton: (() -> Void)?
 
   private func typeAheadButton() -> UIButton {
@@ -27,12 +26,12 @@ class SearchSuggestionTableViewCell: UITableViewCell {
     tintColor = .lightGray
   }
 
-  required init?(coder: NSCoder) {
+  @available(*, unavailable)
+  required init?(coder _: NSCoder) {
     fatalError("init(coder:) has not been implemented")
   }
 
-  @objc func typeAheadButtonTap(_ sender: UIButton) {
+  @objc func typeAheadButtonTap(_: UIButton) {
     didTapTypeAheadButton?()
   }
-
 }

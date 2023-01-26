@@ -6,11 +6,10 @@
 //
 
 import Foundation
-import UIKit
 import InstantSearch
+import UIKit
 
 class FilterStateObservableController: ObservableObject {
-
   @Published public var filtersString: String
   private let emptyMessage = "No filters applied"
 
@@ -21,5 +20,4 @@ class FilterStateObservableController: ObservableObject {
       viewController.filtersString = sqlString.isEmpty ? viewController.emptyMessage : sqlString
     }
   }
-
 }

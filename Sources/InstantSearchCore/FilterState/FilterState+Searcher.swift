@@ -1,6 +1,6 @@
 //
 //  FilterState+Searcher.swift
-//  
+//
 //
 //  Created by Vladislav Fitc on 13/08/2021.
 //
@@ -8,9 +8,7 @@
 import Foundation
 
 public extension FilterState {
-
   struct SearcherConnection<Searcher: AnyObject & Searchable & FiltersSettable>: Connection {
-
     /// FilterState that holds search filters
     public let filterState: FilterState
 
@@ -39,12 +37,11 @@ public extension FilterState {
     public func disconnect() {
       filterState.onChange.cancelSubscription(for: searcher)
     }
-
   }
 
   /**
    Connects a searcher
-   
+
    - Parameters:
      - filterState: FilterState that holds search filters
      - searcher: Searcher that handles search requests
@@ -55,5 +52,4 @@ public extension FilterState {
     connection.connect()
     return connection
   }
-
 }

@@ -11,7 +11,6 @@ import Foundation
 public typealias SelectableItem<T> = (item: T, isSelected: Bool)
 
 public protocol SelectableListPresentable {
-
   func transform(refinementFacets: [SelectableItem<Facet>]) -> [SelectableItem<Facet>]
 }
 
@@ -20,7 +19,6 @@ public protocol SelectableListPresentable {
 /// - The list of Facets that have been refined
 /// - Layout settings such as sortBy
 public class FacetListPresenter: SelectableListPresentable {
-
   let sortBy: [FacetSortCriterion]
   let limit: Int
   let showEmptyFacets: Bool
@@ -43,7 +41,7 @@ public class FacetListPresenter: SelectableListPresentable {
   }
 
   private func sorter(using sortCriterions: [FacetSortCriterion]) -> (SelectableItem<Facet>, SelectableItem<Facet>) -> (Bool) {
-    return { (lhs, rhs) in
+    return { lhs, rhs in
 
       let lhsChecked: Bool = lhs.isSelected
       let rhsChecked: Bool = rhs.isSelected
@@ -55,7 +53,6 @@ public class FacetListPresenter: SelectableListPresentable {
 
       // tiebreaking algorithm to do determine the sorting.
       for sortCriterion in sortCriterions {
-
         switch sortCriterion {
         case .isRefined where lhsChecked != rhsChecked:
           return lhsChecked
@@ -76,12 +73,9 @@ public class FacetListPresenter: SelectableListPresentable {
         default:
           break
         }
-
       }
 
       return leftValueLowercased < rightValueLowercased
-
     }
   }
-
 }

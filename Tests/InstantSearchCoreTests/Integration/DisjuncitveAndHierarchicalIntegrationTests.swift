@@ -6,12 +6,11 @@
 //  Copyright © 2019 Algolia. All rights reserved.
 //
 
-import Foundation
-import XCTest
-@testable import InstantSearchCore
 import AlgoliaSearchClient
+import Foundation
+@testable import InstantSearchCore
+import XCTest
 class DisjuncitveAndHierarchicalIntegrationTests: OnlineTestCase {
-
   struct Item: Codable {
     let name: String
     let color: String?
@@ -22,9 +21,9 @@ class DisjuncitveAndHierarchicalIntegrationTests: OnlineTestCase {
     return .init(rawValue: "hierarchicalCategories.lvl\(level)")
   }
 
-  let lvl0 = { attribute(for: 0) }()
-  let lvl1 = { attribute(for: 1) }()
-  let lvl2 = { attribute(for: 2) }()
+  let lvl0 = attribute(for: 0)
+  let lvl1 = attribute(for: 1)
+  let lvl2 = attribute(for: 2)
 
   var hierarchicalAttributes: [Attribute] {
     return [lvl0, lvl1, lvl2]
@@ -58,7 +57,6 @@ class DisjuncitveAndHierarchicalIntegrationTests: OnlineTestCase {
   }
 
   func testDisjuncitiveHierarchical() {
-
     let expectedHierarchicalFacets: [(Attribute, [Facet])] = [
       (lvl0, [
         .init(value: cat3, count: 2, highlighted: nil),
@@ -66,7 +64,7 @@ class DisjuncitveAndHierarchicalIntegrationTests: OnlineTestCase {
       ]),
       (lvl1, [
         .init(value: cat3_2, count: 2, highlighted: nil)
-        ]),
+      ]),
       (lvl2, [
         .init(value: cat3_2_1, count: 1, highlighted: nil),
         .init(value: cat3_2_2, count: 1, highlighted: nil)
@@ -113,23 +111,20 @@ class DisjuncitveAndHierarchicalIntegrationTests: OnlineTestCase {
 
     client!.multipleQueries(queries: indexQueries) { result in
       switch result {
-      case .failure(let error):
+      case let .failure(error):
         XCTFail("\(error)")
-      case .success(let response):
+      case let .success(response):
         let finalResult = try! queryBuilder.aggregate(response.results)
-        expectedDisjunctiveFacets.forEach { (attribute, facets) in
+        expectedDisjunctiveFacets.forEach { attribute, facets in
           XCTAssertTrue(finalResult.disjunctiveFacets?[attribute]?.equalContents(to: facets) == true)
         }
-        expectedHierarchicalFacets.forEach { (attribute, facets) in
+        expectedHierarchicalFacets.forEach { attribute, facets in
           XCTAssertTrue(finalResult.hierarchicalFacets?[attribute]?.equalContents(to: facets) == true)
         }
-
       }
       exp.fulfill()
     }
 
     waitForExpectations(timeout: 15, handler: .none)
-
   }
-
 }

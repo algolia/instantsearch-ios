@@ -12,9 +12,7 @@ import InstantSearchSwiftUI
 import SwiftUI
 
 struct RelevantSortDemoSwiftUI: SwiftUIDemo, PreviewProvider {
-
   class Controller {
-
     let relevantSortController: RelevantSortObservableController
     let sortByController: SelectableSegmentObservableController
     let hitsController: HitsObservableController<Hit<Product>>
@@ -36,11 +34,9 @@ struct RelevantSortDemoSwiftUI: SwiftUIDemo, PreviewProvider {
       demoController.searchBoxConnector.connectController(searchBoxController)
       demoController.statsConnector.connectController(statsController)
     }
-
   }
 
   struct ContentView: View {
-
     @ObservedObject var searchBoxController: SearchBoxObservableController
     @ObservedObject var sortByController: SelectableSegmentObservableController
     @ObservedObject var relevantSortController: RelevantSortObservableController
@@ -55,7 +51,7 @@ struct RelevantSortDemoSwiftUI: SwiftUIDemo, PreviewProvider {
           Text(statsController.stats)
           Spacer()
           Menu {
-            ForEach(0 ..< sortByController.segmentsTitles.count, id: \.self) { index in
+            ForEach(0..<sortByController.segmentsTitles.count, id: \.self) { index in
               let indexName = sortByController.segmentsTitles[index]
               Button(indexName) {
                 sortByController.select(index)
@@ -89,7 +85,6 @@ struct RelevantSortDemoSwiftUI: SwiftUIDemo, PreviewProvider {
       .padding()
       .searchable(text: $searchBoxController.query)
     }
-
   }
 
   static func contentView(with controller: Controller) -> ContentView {
@@ -98,7 +93,6 @@ struct RelevantSortDemoSwiftUI: SwiftUIDemo, PreviewProvider {
                 relevantSortController: controller.relevantSortController,
                 hitsController: controller.hitsController,
                 statsController: controller.statsController)
-
   }
 
   static let controller = Controller()
@@ -108,5 +102,4 @@ struct RelevantSortDemoSwiftUI: SwiftUIDemo, PreviewProvider {
         .navigationBarTitle("Relevant Sort")
     }
   }
-
 }

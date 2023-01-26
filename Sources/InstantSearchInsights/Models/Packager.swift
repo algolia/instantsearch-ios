@@ -1,6 +1,6 @@
 //
 //  Packager.swift
-//  
+//
 //
 //  Created by Vladislav Fitc on 17/10/2020.
 //
@@ -8,7 +8,6 @@
 import Foundation
 
 struct Packager<Item: Codable>: Packaging {
-
   private(set) var packages: [Package<Item>]
 
   let packageCapacity: Int
@@ -37,5 +36,4 @@ struct Packager<Item: Codable>: Packaging {
   mutating func remove(_ package: Package<Item>) {
     packages.removeAll(where: { package.id == $0.id })
   }
-
 }

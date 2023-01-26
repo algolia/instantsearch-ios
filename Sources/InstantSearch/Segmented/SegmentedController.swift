@@ -7,42 +7,40 @@
 //
 
 #if !InstantSearchCocoaPods
-import InstantSearchCore
+  import InstantSearchCore
 #endif
 #if canImport(UIKit) && (os(iOS) || os(tvOS) || os(macOS))
-import UIKit
+  import UIKit
 
-public class SegmentedController<Value: FilterType>: NSObject, SelectableSegmentController {
+  public class SegmentedController<Value: FilterType>: NSObject, SelectableSegmentController {
+    public typealias Key = Int
 
-  public typealias Key = Int
+    public let segmentedControl: UISegmentedControl
 
-  public let segmentedControl: UISegmentedControl
+    public var onClick: ((Int) -> Void)?
 
-  public var onClick: ((Int) -> Void)?
+    public init(segmentedControl: UISegmentedControl) {
+      self.segmentedControl = segmentedControl
+      super.init()
+      segmentedControl.addTarget(self, action: #selector(didSelectSegment(_:)), for: .valueChanged)
+    }
 
-  public init(segmentedControl: UISegmentedControl) {
-    self.segmentedControl = segmentedControl
-    super.init()
-    segmentedControl.addTarget(self, action: #selector(didSelectSegment(_:)), for: .valueChanged)
-  }
+    public func setSelected(_ selected: Int?) {
+      segmentedControl.selectedSegmentIndex = selected ?? UISegmentedControl.noSegment
+    }
 
-  public func setSelected(_ selected: Int?) {
-    segmentedControl.selectedSegmentIndex = selected ?? UISegmentedControl.noSegment
-  }
+    public func setItems(items: [Int: String]) {
+      segmentedControl.removeAllSegments()
 
-  public func setItems(items: [Int: String]) {
-    segmentedControl.removeAllSegments()
+      for item in items {
+        segmentedControl.insertSegment(withTitle: item.value, at: item.key, animated: false)
+      }
+    }
 
-    for item in items {
-      segmentedControl.insertSegment(withTitle: item.value, at: item.key, animated: false)
+    @objc private func didSelectSegment(_ segmentedControl: UISegmentedControl) {
+      if segmentedControl.selectedSegmentIndex != UISegmentedControl.noSegment {
+        onClick?(segmentedControl.selectedSegmentIndex)
+      }
     }
   }
-
-  @objc private func didSelectSegment(_ segmentedControl: UISegmentedControl) {
-    if segmentedControl.selectedSegmentIndex != UISegmentedControl.noSegment {
-      onClick?(segmentedControl.selectedSegmentIndex)
-    }
-  }
-
-}
 #endif

@@ -8,20 +8,17 @@
 
 import Foundation
 #if !InstantSearchCocoaPods
-import InstantSearchInsights
+  import InstantSearchInsights
 #endif
 
 public protocol InsightsTracker: AnyObject {
-
   init(eventName: EventName, searcher: TrackableSearcher, insights: Insights)
-
 }
 
-extension InsightsTracker {
-
-  public init(eventName: EventName,
-              searcher: HitsSearcher,
-              userToken: UserToken? = .none) {
+public extension InsightsTracker {
+  init(eventName: EventName,
+       searcher: HitsSearcher,
+       userToken: UserToken? = .none) {
     let credentials: AlgoliaSearchClient.Credentials = searcher.service.client
     let insights = Insights.register(appId: credentials.applicationID, apiKey: credentials.apiKey, userToken: userToken)
     self.init(eventName: eventName,
@@ -29,19 +26,19 @@ extension InsightsTracker {
               insights: insights)
   }
 
-  public init(eventName: EventName,
-              searcher: HitsSearcher,
-              insights: Insights) {
+  init(eventName: EventName,
+       searcher: HitsSearcher,
+       insights: Insights) {
     self.init(eventName: eventName,
               searcher: .singleIndex(searcher),
               insights: insights)
   }
 
   @available(*, deprecated, message: "Use multiple HitsSearcher aggregated with MultiSearcher instead of MultiIndexSearcher")
-  public init(eventName: EventName,
-              searcher: MultiIndexSearcher,
-              pointer: Int,
-              userToken: UserToken? = .none) {
+  init(eventName: EventName,
+       searcher: MultiIndexSearcher,
+       pointer: Int,
+       userToken: UserToken? = .none) {
     let credentials: AlgoliaSearchClient.Credentials = searcher.client
     let insights = Insights.register(appId: credentials.applicationID, apiKey: credentials.apiKey, userToken: userToken)
     self.init(eventName: eventName,
@@ -50,13 +47,12 @@ extension InsightsTracker {
   }
 
   @available(*, deprecated, message: "Use multiple HitsSearcher aggregated with MultiSearcher instead of MultiIndexSearcher")
-  public init(eventName: EventName,
-              searcher: MultiIndexSearcher,
-              pointer: Int,
-              insights: Insights) {
+  init(eventName: EventName,
+       searcher: MultiIndexSearcher,
+       pointer: Int,
+       insights: Insights) {
     self.init(eventName: eventName,
               searcher: .multiIndex(searcher, pointer: pointer),
               insights: insights)
   }
-
 }

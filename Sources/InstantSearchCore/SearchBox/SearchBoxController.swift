@@ -10,7 +10,6 @@ import Foundation
 
 /// Controller interfacing with a concrete query input view
 public protocol SearchBoxController: AnyObject {
-
   /// Closure to trigger when query changed
   var onQueryChanged: ((String?) -> Void)? { get set }
 
@@ -19,7 +18,6 @@ public protocol SearchBoxController: AnyObject {
 
   /// Update query value
   func setQuery(_ query: String?)
-
 }
 
 @available(*, deprecated, renamed: "SearchBoxController")

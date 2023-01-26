@@ -1,6 +1,6 @@
 //
 //  FacetSearchService.swift
-//  
+//
 //
 //  Created by Vladislav Fitc on 27/11/2020.
 //
@@ -8,7 +8,6 @@
 import Foundation
 
 public class FacetSearchService: SearchService {
-
   let client: SearchClient
 
   public init(client: SearchClient) {
@@ -24,13 +23,10 @@ public class FacetSearchService: SearchService {
                             requestOptions: request.requestOptions,
                             completion: completion)
   }
-
 }
 
-extension FacetSearchService {
-
-  public struct Request: IndexNameProvider, TextualQueryProvider, AlgoliaRequest {
-
+public extension FacetSearchService {
+  struct Request: IndexNameProvider, TextualQueryProvider, AlgoliaRequest {
     public var query: String
     public var indexName: IndexName
     public var attribute: Attribute
@@ -53,7 +49,5 @@ extension FacetSearchService {
       self.context = context
       self.requestOptions = requestOptions
     }
-
   }
-
 }

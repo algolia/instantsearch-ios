@@ -11,9 +11,7 @@ import Foundation
 public typealias FacetFilterListInteractor = FilterListInteractor<Filter.Facet>
 
 public extension FacetFilterListInteractor {
-
   convenience init(facetFilters: [Filter.Facet] = []) {
     self.init(items: facetFilters, selectionMode: .multiple)
   }
-
 }

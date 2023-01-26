@@ -10,7 +10,6 @@ import Foundation
 import InstantSearch
 
 class FilterListDemoController<Filter: FilterType & Hashable> {
-
   let searcher: HitsSearcher
   let filterState: FilterState
   let clearFilterConnector: FilterClearConnector
@@ -33,5 +32,4 @@ class FilterListDemoController<Filter: FilterType & Hashable> {
     searcher.search()
     searcher.connectFilterState(filterState)
   }
-
 }
