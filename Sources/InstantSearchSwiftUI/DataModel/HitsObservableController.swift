@@ -29,7 +29,11 @@ import InstantSearchTelemetry
     }
 
     public func reload() {
-      hits = hitsSource?.hits ?? []
+      if let hitsSource = hitsSource, hitsSource.numberOfHits() > 0 {
+          self.hits = hitsSource.hits
+      } else {
+          self.hits = []
+      }
     }
 
     /// Function to call on hit appearance  to ensure the infinite scrolling functionality
