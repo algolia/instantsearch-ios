@@ -6,56 +6,53 @@
 //
 
 #if !InstantSearchCocoaPods
-import InstantSearchCore
+  import InstantSearchCore
 #endif
 #if canImport(UIKit) && (os(iOS) || os(tvOS) || os(macOS))
-import UIKit
+  import UIKit
 
-@available(*, unavailable, message: "Use your own UITableViewController conforming to MultiIndexHitsController protocol")
-@available(*, deprecated, message: "Use your own UITableViewController conforming to MultiIndexHitsController protocol")
-open class MultiIndexHitsTableViewDelegate: NSObject, UITableViewDelegate {
+  @available(*, unavailable, message: "Use your own UITableViewController conforming to MultiIndexHitsController protocol")
+  @available(*, deprecated, message: "Use your own UITableViewController conforming to MultiIndexHitsController protocol")
+  open class MultiIndexHitsTableViewDelegate: NSObject, UITableViewDelegate {
+    typealias ClickHandler = (UITableView, Int) throws -> Void
 
-  typealias ClickHandler = (UITableView, Int) throws -> Void
+    public weak var hitsSource: MultiIndexHitsSource?
 
-  public weak var hitsSource: MultiIndexHitsSource?
+    private var clickHandlers: [Int: ClickHandler]
 
-  private var clickHandlers: [Int: ClickHandler]
+    override public init() {
+      clickHandlers = [:]
+      super.init()
+    }
 
-  public override init() {
-    clickHandlers = [:]
-    super.init()
-  }
+    public func setClickHandler<Hit: Codable>(forSection section: Int, _ clickHandler: @escaping TableViewClickHandler<Hit>) {
+      clickHandlers[section] = { [weak self] tableView, row in
+        guard let delegate = self else { return }
 
-  public func setClickHandler<Hit: Codable>(forSection section: Int, _ clickHandler: @escaping TableViewClickHandler<Hit>) {
-    clickHandlers[section] = { [weak self] (tableView, row) in
-      guard let delegate = self else { return }
+        guard let hitsSource = delegate.hitsSource else {
+          InstantSearchLog.missingHitsSourceWarning()
+          return
+        }
 
-      guard let hitsSource = delegate.hitsSource else {
-        InstantSearchLog.missingHitsSourceWarning()
+        guard let hit: Hit = try hitsSource.hit(atIndex: row, inSection: section) else {
+          return
+        }
+
+        clickHandler(tableView, hit, IndexPath(item: row, section: section))
+      }
+    }
+
+    open func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+      guard let clickHandler = clickHandlers[indexPath.section] else {
+        InstantSearchLog.missingClickHandlerWarning(forSection: indexPath.section)
         return
       }
-
-      guard let hit: Hit = try hitsSource.hit(atIndex: row, inSection: section) else {
+      do {
+        try clickHandler(tableView, indexPath.row)
+      } catch let underlyingError {
+        InstantSearchLog.error(underlyingError)
         return
       }
-
-      clickHandler(tableView, hit, IndexPath(item: row, section: section))
-
     }
   }
-
-  open func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-    guard let clickHandler = clickHandlers[indexPath.section] else {
-      InstantSearchLog.missingClickHandlerWarning(forSection: indexPath.section)
-      return
-    }
-    do {
-      try clickHandler(tableView, indexPath.row)
-    } catch let underlyingError {
-      InstantSearchLog.error(underlyingError)
-      return
-    }
-  }
-
-}
 #endif

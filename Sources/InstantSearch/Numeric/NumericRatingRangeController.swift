@@ -6,38 +6,34 @@
 //
 
 #if !InstantSearchCocoaPods
-import InstantSearchCore
+  import InstantSearchCore
 #endif
 #if canImport(UIKit) && (os(iOS) || os(macOS))
-import UIKit
+  import UIKit
 
-public class NumericRatingRangeController {
+  public class NumericRatingRangeController {
+    public let ratingControl: RatingControl
 
-  public let ratingControl: RatingControl
+    public var onRangeChanged: ((ClosedRange<Double>) -> Void)?
 
-  public var onRangeChanged: ((ClosedRange<Double>) -> Void)?
+    public init(ratingControl: RatingControl = .init()) {
+      self.ratingControl = ratingControl
+      ratingControl.addTarget(self, action: #selector(ratingValueChanged), for: .valueChanged)
+    }
 
-  public init(ratingControl: RatingControl = .init()) {
-    self.ratingControl = ratingControl
-    ratingControl.addTarget(self, action: #selector(ratingValueChanged), for: .valueChanged)
+    @objc private func ratingValueChanged(_ ratingControl: RatingControl) {
+      onRangeChanged?(ratingControl.value...Double(ratingControl.maximumValue))
+    }
   }
 
-  @objc private func ratingValueChanged(_ ratingControl: RatingControl) {
-    onRangeChanged?(ratingControl.value...Double(ratingControl.maximumValue))
+  extension NumericRatingRangeController: NumberRangeController {
+    public func setBounds(_ bounds: ClosedRange<Double>) {
+      ratingControl.maximumValue = Int(bounds.upperBound)
+    }
+
+    public func setItem(_ item: ClosedRange<Double>) {
+      ratingControl.value = item.lowerBound
+    }
   }
-
-}
-
-extension NumericRatingRangeController: NumberRangeController {
-
-  public func setBounds(_ bounds: ClosedRange<Double>) {
-    ratingControl.maximumValue = Int(bounds.upperBound)
-  }
-
-  public func setItem(_ item: ClosedRange<Double>) {
-    ratingControl.value = item.lowerBound
-  }
-
-}
 
 #endif

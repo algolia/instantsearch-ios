@@ -10,7 +10,6 @@ import Foundation
 import InstantSearchCore
 
 class TestSearcher: Searcher, QuerySettable {
-
   var query: String? {
     didSet {
       guard oldValue != query else { return }
@@ -21,14 +20,12 @@ class TestSearcher: Searcher, QuerySettable {
   var isLoading: Observer<Bool> = .init()
 
   var onQueryChanged: Observer<String?> = .init()
-  
+
   var onSearch: Observer<Void> = .init()
 
   func search() {
     onSearch.fire(())
   }
 
-  func cancel() {
-  }
-
+  func cancel() {}
 }

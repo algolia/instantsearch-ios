@@ -6,72 +6,70 @@
 //
 
 #if !InstantSearchCocoaPods
-import InstantSearchCore
+  import InstantSearchCore
 #endif
 #if canImport(UIKit) && (os(iOS) || os(tvOS) || os(macOS))
-import UIKit
+  import UIKit
 
-@available(*, unavailable, message: "Use your own UICollectionViewController conforming to HitsController protocol")
-@available(*, deprecated, message: "Use your own UICollectionViewController conforming to HitsController protocol")
-open class MultiIndexHitsCollectionViewDataSource: NSObject, UICollectionViewDataSource {
+  @available(*, unavailable, message: "Use your own UICollectionViewController conforming to HitsController protocol")
+  @available(*, deprecated, message: "Use your own UICollectionViewController conforming to HitsController protocol")
+  open class MultiIndexHitsCollectionViewDataSource: NSObject, UICollectionViewDataSource {
+    private typealias CellConfigurator = (UICollectionView, Int) throws -> UICollectionViewCell
 
-  private typealias CellConfigurator = (UICollectionView, Int) throws -> UICollectionViewCell
+    public weak var hitsSource: MultiIndexHitsSource?
 
-  public weak var hitsSource: MultiIndexHitsSource?
+    private var cellConfigurators: [Int: CellConfigurator]
 
-  private var cellConfigurators: [Int: CellConfigurator]
+    override init() {
+      cellConfigurators = [:]
+      super.init()
+    }
 
-  override init() {
-    cellConfigurators = [:]
-    super.init()
-  }
+    public func setCellConfigurator<Hit: Codable>(forSection section: Int,
+                                                  templateCellProvider: @escaping () -> UICollectionViewCell = { return .init() },
+                                                  _ cellConfigurator: @escaping CollectionViewCellConfigurator<Hit>) {
+      cellConfigurators[section] = { [weak self] collectionView, row in
 
-  public func setCellConfigurator<Hit: Codable>(forSection section: Int,
-                                                templateCellProvider: @escaping () -> UICollectionViewCell = { return .init() },
-                                                _ cellConfigurator: @escaping CollectionViewCellConfigurator<Hit>) {
-    cellConfigurators[section] = { [weak self] (collectionView, row) in
+        guard let hitsSource = self?.hitsSource else {
+          InstantSearchLog.missingHitsSourceWarning()
+          return .init()
+        }
 
-      guard let hitsSource = self?.hitsSource else {
+        guard let hit: Hit = try hitsSource.hit(atIndex: row, inSection: section) else {
+          return templateCellProvider()
+        }
+
+        return cellConfigurator(collectionView, hit, IndexPath(row: row, section: section))
+      }
+    }
+
+    open func numberOfSections(in _: UICollectionView) -> Int {
+      guard let hitsSource = hitsSource else {
         InstantSearchLog.missingHitsSourceWarning()
+        return 0
+      }
+      return hitsSource.numberOfSections()
+    }
+
+    open func collectionView(_: UICollectionView, numberOfItemsInSection section: Int) -> Int {
+      guard let hitsSource = hitsSource else {
+        InstantSearchLog.missingHitsSourceWarning()
+        return 0
+      }
+      return hitsSource.numberOfHits(inSection: section)
+    }
+
+    open func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
+      guard let cellConfigurator = cellConfigurators[indexPath.section] else {
+        InstantSearchLog.missingCellConfiguratorWarning(forSection: indexPath.section)
         return .init()
       }
-
-      guard let hit: Hit = try hitsSource.hit(atIndex: row, inSection: section) else {
-        return templateCellProvider()
+      do {
+        return try cellConfigurator(collectionView, indexPath.row)
+      } catch let underlyingError {
+        InstantSearchLog.error(underlyingError)
+        return .init()
       }
-
-      return cellConfigurator(collectionView, hit, IndexPath(row: row, section: section))
     }
   }
-
-  open func numberOfSections(in collectionView: UICollectionView) -> Int {
-    guard let hitsSource = hitsSource else {
-      InstantSearchLog.missingHitsSourceWarning()
-      return 0
-    }
-    return hitsSource.numberOfSections()
-  }
-
-  open func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-    guard let hitsSource = hitsSource else {
-      InstantSearchLog.missingHitsSourceWarning()
-      return 0
-    }
-    return hitsSource.numberOfHits(inSection: section)
-  }
-
-  open func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
-    guard let cellConfigurator = cellConfigurators[indexPath.section] else {
-      InstantSearchLog.missingCellConfiguratorWarning(forSection: indexPath.section)
-      return .init()
-    }
-    do {
-      return try cellConfigurator(collectionView, indexPath.row)
-    } catch let underlyingError {
-      InstantSearchLog.error(underlyingError)
-      return .init()
-    }
-  }
-
-}
 #endif

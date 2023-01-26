@@ -6,15 +6,14 @@
 //  Copyright © 2018 Algolia. All rights reserved.
 //
 
-import Foundation
 import AlgoliaSearchClient
+import Foundation
 // swiftlint:disable function_parameter_count
 
 /// Provides convenient functions for tracking events which can be used for search personalization.
 ///
 
 class EventTracker: EventTrackable {
-
   var eventProcessor: EventProcessable
   var logger: Logger
   var userToken: UserToken?
@@ -41,7 +40,7 @@ class EventTracker: EventTrackable {
   /// The propagation starts from the deepest level and switches to the previous one in case of nil value on the current level.
 
   func effectiveUserToken(withEventUserToken eventUserToken: UserToken?) -> UserToken {
-    return eventUserToken ?? self.userToken ?? Insights.userToken
+    return eventUserToken ?? userToken ?? Insights.userToken
   }
 
   func effectiveTimestamp(for timestamp: Date?) -> Date? {
@@ -59,7 +58,7 @@ class EventTracker: EventTrackable {
                                        userToken: effectiveUserToken(withEventUserToken: userToken),
                                        timestamp: effectiveTimestamp(for: timestamp),
                                        objectIDs: objectIDs))
-    } catch let error {
+    } catch {
       log(error)
     }
   }
@@ -75,7 +74,7 @@ class EventTracker: EventTrackable {
                                        userToken: effectiveUserToken(withEventUserToken: userToken),
                                        timestamp: effectiveTimestamp(for: timestamp),
                                        filters: filters))
-    } catch let error {
+    } catch {
       log(error)
     }
   }
@@ -95,7 +94,7 @@ class EventTracker: EventTrackable {
                                         timestamp: effectiveTimestamp(for: timestamp),
                                         queryID: queryID,
                                         objectIDsWithPositions: objectIDsWithPositions))
-    } catch let error {
+    } catch {
       log(error)
     }
   }
@@ -111,10 +110,9 @@ class EventTracker: EventTrackable {
                                         userToken: effectiveUserToken(withEventUserToken: userToken),
                                         timestamp: effectiveTimestamp(for: timestamp),
                                         objectIDs: objectIDs))
-    } catch let error {
+    } catch {
       log(error)
     }
-
   }
 
   func click(eventName: EventName,
@@ -128,10 +126,9 @@ class EventTracker: EventTrackable {
                                         userToken: effectiveUserToken(withEventUserToken: userToken),
                                         timestamp: effectiveTimestamp(for: timestamp),
                                         filters: filters))
-    } catch let error {
+    } catch {
       log(error)
     }
-
   }
 
   func conversion(eventName: EventName,
@@ -146,7 +143,7 @@ class EventTracker: EventTrackable {
                                              timestamp: effectiveTimestamp(for: timestamp),
                                              queryID: nil,
                                              objectIDs: objectIDs))
-    } catch let error {
+    } catch {
       log(error)
     }
   }
@@ -163,7 +160,7 @@ class EventTracker: EventTrackable {
                                              timestamp: effectiveTimestamp(for: timestamp),
                                              queryID: nil,
                                              filters: filters))
-    } catch let error {
+    } catch {
       log(error)
     }
   }
@@ -174,7 +171,6 @@ class EventTracker: EventTrackable {
                   timestamp: Date?,
                   objectIDs: [ObjectID],
                   queryID: QueryID) {
-
     do {
       eventProcessor.process(try .conversion(name: eventName,
                                              indexName: indexName,
@@ -182,14 +178,12 @@ class EventTracker: EventTrackable {
                                              timestamp: effectiveTimestamp(for: timestamp),
                                              queryID: queryID,
                                              objectIDs: objectIDs))
-    } catch let error {
+    } catch {
       log(error)
     }
-
   }
 
   private func log(_ error: Error) {
     logger.error("\(error.localizedDescription)")
   }
-
 }

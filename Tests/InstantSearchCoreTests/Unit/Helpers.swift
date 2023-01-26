@@ -1,5 +1,5 @@
-import Foundation
 import AlgoliaSearchClient
+import Foundation
 
 func safeIndexName(_ name: String) -> IndexName {
   var targetName = Bundle.main.object(forInfoDictionaryKey: "BUILD_TARGET_NAME") as? String ?? ""

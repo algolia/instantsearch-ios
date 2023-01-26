@@ -11,12 +11,10 @@ import Foundation
 import XCTest
 
 class NumberInteractorTestsTests: XCTestCase {
-
   func testInit() {
     _ = NumberInteractor(item: Int(1))
     _ = NumberInteractor(item: UInt(1))
     _ = NumberInteractor(item: Float(1))
     _ = NumberInteractor(item: Double(1))
   }
-
 }

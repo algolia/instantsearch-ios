@@ -12,5 +12,4 @@ public protocol EventInteractor {
   associatedtype Arg
 
   var onTriggered: Observer<Arg> { get }
-
 }

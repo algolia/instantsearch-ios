@@ -1,6 +1,6 @@
 //
 //  LoadingSnippets.swift
-//  
+//
 //
 //  Created by Vladislav Fitc on 06/09/2020.
 //
@@ -8,39 +8,37 @@
 import Foundation
 import InstantSearch
 #if canImport(UIKit) && !os(watchOS)
-import UIKit
+  import UIKit
 
-class LoadingSnippets {
-  
-  func widgetSnippet() {
-    let searcher: HitsSearcher = HitsSearcher(appID: "YourApplicationID",
-                                                            apiKey: "YourSearchOnlyAPIKey",
-                                                            indexName: "YourIndexName")
-    let activityIndicatorController: ActivityIndicatorController = .init(activityIndicator: UIActivityIndicatorView())
-    let loadingConnector: LoadingConnector = .init(searcher: searcher,
-                                                   controller: activityIndicatorController)
-  
-    // Execute a search which will spin the loading indicator until the results arrive
-    searcher.search()
-    
-    _ = loadingConnector
+  class LoadingSnippets {
+    func widgetSnippet() {
+      let searcher = HitsSearcher(appID: "YourApplicationID",
+                                  apiKey: "YourSearchOnlyAPIKey",
+                                  indexName: "YourIndexName")
+      let activityIndicatorController: ActivityIndicatorController = .init(activityIndicator: UIActivityIndicatorView())
+      let loadingConnector: LoadingConnector = .init(searcher: searcher,
+                                                     controller: activityIndicatorController)
+
+      // Execute a search which will spin the loading indicator until the results arrive
+      searcher.search()
+
+      _ = loadingConnector
+    }
+
+    func advancedSnippet() {
+      let searcher = HitsSearcher(appID: "YourApplicationID",
+                                  apiKey: "YourSearchOnlyAPIKey",
+                                  indexName: "YourIndexName")
+      let loadingInteractor: LoadingInteractor = .init()
+      let activityIndicatorController: ActivityIndicatorController = .init(activityIndicator: UIActivityIndicatorView())
+
+      loadingInteractor.connectSearcher(searcher)
+      loadingInteractor.connectController(activityIndicatorController)
+
+      // Execute a search which will spin the loading indicator until the results arrive
+      searcher.search()
+
+      _ = loadingInteractor
+    }
   }
-  
-  func advancedSnippet() {
-    let searcher: HitsSearcher = HitsSearcher(appID: "YourApplicationID",
-                                                            apiKey: "YourSearchOnlyAPIKey",
-                                                            indexName: "YourIndexName")
-    let loadingInteractor: LoadingInteractor = .init()
-    let activityIndicatorController: ActivityIndicatorController = .init(activityIndicator: UIActivityIndicatorView())
-
-    loadingInteractor.connectSearcher(searcher)
-    loadingInteractor.connectController(activityIndicatorController)
-
-    // Execute a search which will spin the loading indicator until the results arrive
-    searcher.search()
-    
-    _ = loadingInteractor
-  }
-
-}
 #endif

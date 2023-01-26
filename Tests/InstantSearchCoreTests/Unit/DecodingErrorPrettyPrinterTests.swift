@@ -11,14 +11,12 @@ import Foundation
 import XCTest
 
 class DecodingErrorPrettyPrinterTests: XCTestCase {
-
   struct Person: Codable {
     let name: String
     let age: Int
   }
-  
-  func testValueNotFound() {
 
+  func testValueNotFound() {
     let data = """
     {
       "name": "Alex Smith",
@@ -30,7 +28,7 @@ class DecodingErrorPrettyPrinterTests: XCTestCase {
 
     do {
       _ = try decoder.decode(Person.self, from: data)
-    } catch let error {
+    } catch {
       guard let decodingError = error as? DecodingError else {
         XCTFail("Unexpected error: \(error)")
         return
@@ -38,11 +36,9 @@ class DecodingErrorPrettyPrinterTests: XCTestCase {
       let prettyPrinter = DecodingErrorPrettyPrinter(decodingError: decodingError)
       XCTAssertEqual(prettyPrinter.description, "Decoding error: 'age': Expected Int value but found null instead.")
     }
-
   }
 
   func testKeyNotFound() {
-
     let data = """
     {
       "name": "Alex Smith",
@@ -53,7 +49,7 @@ class DecodingErrorPrettyPrinterTests: XCTestCase {
 
     do {
       _ = try decoder.decode(Person.self, from: data)
-    } catch let error {
+    } catch {
       guard let decodingError = error as? DecodingError else {
         XCTFail("Unexpected error: \(error)")
         return
@@ -61,11 +57,9 @@ class DecodingErrorPrettyPrinterTests: XCTestCase {
       let prettyPrinter = DecodingErrorPrettyPrinter(decodingError: decodingError)
       XCTAssertEqual(prettyPrinter.description, "Decoding error: : Key not found: 'age'")
     }
-
   }
 
   func testTypeMismatch() {
-
     let data = """
     {
       "name": "Alex Smith",
@@ -77,7 +71,7 @@ class DecodingErrorPrettyPrinterTests: XCTestCase {
 
     do {
       _ = try decoder.decode(Person.self, from: data)
-    } catch let error {
+    } catch {
       guard let decodingError = error as? DecodingError else {
         XCTFail("Unexpected error: \(error)")
         return
@@ -85,13 +79,10 @@ class DecodingErrorPrettyPrinterTests: XCTestCase {
       let prettyPrinter = DecodingErrorPrettyPrinter(decodingError: decodingError)
 
       XCTAssertEqual(prettyPrinter.description, "Decoding error: 'age': Type mismatch. Expected: Int")
-
     }
-
   }
 
   func testDataCorrupted() {
-
     let data = """
     {
       ___
@@ -102,7 +93,7 @@ class DecodingErrorPrettyPrinterTests: XCTestCase {
 
     do {
       _ = try decoder.decode(Person.self, from: data)
-    } catch let error {
+    } catch {
       guard let decodingError = error as? DecodingError else {
         XCTFail("Unexpected error: \(error)")
         return
@@ -110,7 +101,5 @@ class DecodingErrorPrettyPrinterTests: XCTestCase {
       let prettyPrinter = DecodingErrorPrettyPrinter(decodingError: decodingError)
       XCTAssertEqual(prettyPrinter.description, "Decoding error: : The given data was not valid JSON.")
     }
-
   }
-
 }

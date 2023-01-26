@@ -10,7 +10,6 @@ import Foundation
 @testable import InstantSearchCore
 
 class TestInfiniteScrollingController: InfiniteScrollable {
-
   var lastPageIndex: Int?
 
   var pageLoader: PageLoadable?
@@ -19,7 +18,7 @@ class TestInfiniteScrollingController: InfiniteScrollable {
 
   var didCalculatePages: ((Int, Int) -> Void)?
 
-  func calculatePagesAndLoad<T>(currentRow: Int, offset: Int, pageMap: PageMap<T>) {
+  func calculatePagesAndLoad<T>(currentRow: Int, offset: Int, pageMap _: PageMap<T>) {
     didCalculatePages?(currentRow, offset)
   }
 
@@ -30,5 +29,4 @@ class TestInfiniteScrollingController: InfiniteScrollable {
   func notifyPendingAll() {
     pendingPages.removeAll()
   }
-
 }

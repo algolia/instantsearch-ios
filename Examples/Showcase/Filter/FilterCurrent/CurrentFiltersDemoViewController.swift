@@ -11,7 +11,6 @@ import InstantSearch
 import UIKit
 
 class CurrentFiltersDemoViewController: UIViewController {
-
   let demoController: CurrentFiltersDemoController
   let currentFiltersController: CurrentFilterListTableController
   let currentFiltersController2: SearchTextFieldCurrentFiltersController
@@ -30,7 +29,8 @@ class CurrentFiltersDemoViewController: UIViewController {
     super.init(nibName: nibNameOrNil, bundle: nibBundleOrNil)
   }
 
-  required init?(coder aDecoder: NSCoder) {
+  @available(*, unavailable)
+  required init?(coder _: NSCoder) {
     fatalError("init(coder:) has not been implemented")
   }
 
@@ -39,11 +39,9 @@ class CurrentFiltersDemoViewController: UIViewController {
     setup()
     setupUI()
   }
-
 }
 
 private extension CurrentFiltersDemoViewController {
-
   func setup() {
     demoController.currentFiltersListConnector.connectController(currentFiltersController)
     demoController.currentFiltersListConnector.connectController(currentFiltersController2)
@@ -51,7 +49,6 @@ private extension CurrentFiltersDemoViewController {
   }
 
   func setupUI() {
-
     view.backgroundColor = .systemBackground
 
     let mainStackView = UIStackView()
@@ -77,7 +74,5 @@ private extension CurrentFiltersDemoViewController {
     mainStackView.addArrangedSubview(filterDebugViewController.view)
     mainStackView.addArrangedSubview(searchTextFieldContainer)
     mainStackView.addArrangedSubview(tableView)
-
   }
-
 }

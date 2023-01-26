@@ -6,15 +6,13 @@
 //  Copyright © 2019 Algolia. All rights reserved.
 //
 
-import Foundation
 import AlgoliaSearchClient
+import Foundation
 
 /// An entity performing search queries targeting multiple indices.
 @available(*, deprecated, message: "Use multiple HitsSearcher aggregated with MultiSearcher instead of MultiIndexSearcher")
 public class MultiIndexSearcher: Searcher, SequencerDelegate, SearchResultObservable {
-
   public var query: String? {
-
     get {
       return indexQueryStates.first?.query.query
     }
@@ -22,13 +20,12 @@ public class MultiIndexSearcher: Searcher, SequencerDelegate, SearchResultObserv
     set {
       let oldValue = indexQueryStates.first?.query.query
       guard oldValue != newValue else { return }
-      self.indexQueryStates = indexQueryStates.map { indexQueryState in
+      indexQueryStates = indexQueryStates.map { indexQueryState in
         let query = indexQueryState.query.set(\.query, to: newValue).set(\.page, to: 0)
         return indexQueryState.set(\.query, to: query)
       }
       onQueryChanged.fire(newValue)
     }
-
   }
 
   /// `Client` instance containing indices in which search will be performed
@@ -128,11 +125,10 @@ public class MultiIndexSearcher: Searcher, SequencerDelegate, SearchResultObserv
   public init(client: SearchClient,
               indexQueryStates: [IndexQueryState],
               requestOptions: RequestOptions? = nil) {
-
     self.client = client
     self.indexQueryStates = indexQueryStates
     self.requestOptions = requestOptions
-    self.pageLoaders = []
+    pageLoaders = []
 
     processingQueue = .init()
     sequencer = .init()
@@ -150,14 +146,12 @@ public class MultiIndexSearcher: Searcher, SequencerDelegate, SearchResultObserv
     processingQueue.maxConcurrentOperationCount = 1
     processingQueue.qualityOfService = .userInitiated
 
-    self.pageLoaders = indexQueryStates.enumerated().map { [weak self] (index, _) in
+    pageLoaders = indexQueryStates.enumerated().map { [weak self] index, _ in
       return PageLoaderProxy(setPage: { self?.indexQueryStates[index].query.page = $0 }, launchSearch: { self?.search() })
     }
-
   }
 
   public func search() {
-
     if let shouldTriggerSearch = shouldTriggerSearchForQueries, !shouldTriggerSearch(indexQueryStates.map(\.query)) {
       return
     }
@@ -170,14 +164,14 @@ public class MultiIndexSearcher: Searcher, SequencerDelegate, SearchResultObserv
       guard let searcher = self else { return }
       searcher.processingQueue.addOperation {
         switch result {
-        case .success(let response):
+        case let .success(response):
           zip(queries, response.results)
-            .forEach { (query, searchResults) in
+            .forEach { query, searchResults in
               InstantSearchCoreLog.Results.success(searcher: searcher, indexName: query.indexName, results: searchResults)
             }
           searcher.onResults.fire(response)
 
-        case .failure(let error):
+        case let .failure(error):
           let indicesDescriptor = "[\(queries.map { $0.indexName.rawValue }.joined(separator: ", "))]"
           InstantSearchCoreLog.Results.failure(searcher: searcher, indexName: IndexName(rawValue: indicesDescriptor), error)
           searcher.onError.fire((queries.map { $0.query }, error))
@@ -191,23 +185,18 @@ public class MultiIndexSearcher: Searcher, SequencerDelegate, SearchResultObserv
   public func cancel() {
     sequencer.cancelPendingOperations()
   }
-
 }
 
 @available(*, deprecated, message: "Use multiple HitsSearcher aggregated with MultiSearcher instead of MultiIndexSearcher")
 extension MultiIndexSearcher: QuerySettable {
-
   public func setQuery(_ query: String?) {
     self.query = query
   }
-
 }
 
 @available(*, deprecated, message: "Use multiple HitsSearcher aggregated with MultiSearcher instead of MultiIndexSearcher")
 internal extension MultiIndexSearcher {
-
   class PageLoaderProxy: PageLoadable {
-
     let setPage: (Int) -> Void
     let launchSearch: () -> Void
 
@@ -220,7 +209,5 @@ internal extension MultiIndexSearcher {
       setPage(pageIndex)
       launchSearch()
     }
-
   }
-
 }

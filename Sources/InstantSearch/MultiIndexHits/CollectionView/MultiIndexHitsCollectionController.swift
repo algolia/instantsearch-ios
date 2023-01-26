@@ -8,30 +8,28 @@
 // swiftlint:disable weak_delegate
 
 #if !InstantSearchCocoaPods
-import InstantSearchCore
+  import InstantSearchCore
 #endif
 #if canImport(UIKit) && (os(iOS) || os(tvOS) || os(macOS))
-import UIKit
+  import UIKit
 
-@available(*, unavailable, message: "Use your own UICollectionViewController conforming to MultiIndexHitsController protocol")
-@available(*, deprecated, message: "Use your own UICollectionViewController conforming to MultiIndexHitsController protocol")
-public class MultiIndexHitsCollectionController: NSObject, MultiIndexHitsController, HitsCollectionViewContainer {
+  @available(*, unavailable, message: "Use your own UICollectionViewController conforming to MultiIndexHitsController protocol")
+  @available(*, deprecated, message: "Use your own UICollectionViewController conforming to MultiIndexHitsController protocol")
+  public class MultiIndexHitsCollectionController: NSObject, MultiIndexHitsController, HitsCollectionViewContainer {
+    public let collectionView: UICollectionView
 
-  public let collectionView: UICollectionView
+    public var hitsCollectionView: UICollectionView {
+      return collectionView
+    }
 
-  public var hitsCollectionView: UICollectionView {
-    return collectionView
+    public weak var hitsSource: MultiIndexHitsSource?
+
+    public var dataSource: MultiIndexHitsCollectionViewDataSource?
+
+    public var delegate: MultiIndexHitsCollectionViewDelegate?
+
+    public init(collectionView: UICollectionView) {
+      self.collectionView = collectionView
+    }
   }
-
-  public weak var hitsSource: MultiIndexHitsSource?
-
-  public var dataSource: MultiIndexHitsCollectionViewDataSource?
-
-  public var delegate: MultiIndexHitsCollectionViewDelegate?
-
-  public init(collectionView: UICollectionView) {
-    self.collectionView = collectionView
-  }
-
-}
 #endif

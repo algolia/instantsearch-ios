@@ -11,7 +11,6 @@ import InstantSearch
 import UIKit
 
 class FilterListDemoViewController<F: FilterType & Hashable>: UIViewController {
-
   let demoController: FilterListDemoController<F>
 
   let filterListController: FilterListTableController<F>
@@ -27,7 +26,8 @@ class FilterListDemoViewController<F: FilterType & Hashable>: UIViewController {
     demoController.clearFilterConnector.connectController(filterDebugViewController.clearFilterController)
   }
 
-  required init?(coder aDecoder: NSCoder) {
+  @available(*, unavailable)
+  required init?(coder _: NSCoder) {
     fatalError("init(coder:) has not been implemented")
   }
 
@@ -35,13 +35,10 @@ class FilterListDemoViewController<F: FilterType & Hashable>: UIViewController {
     super.viewDidLoad()
     setupUI()
   }
-
 }
 
 private extension FilterListDemoViewController {
-
   func setupUI() {
-
     view.backgroundColor = .systemBackground
 
     let mainStackView = UIStackView()
@@ -62,5 +59,4 @@ private extension FilterListDemoViewController {
     mainStackView.addArrangedSubview(filterDebugViewController.view)
     mainStackView.addArrangedSubview(filterListController.tableView)
   }
-
 }

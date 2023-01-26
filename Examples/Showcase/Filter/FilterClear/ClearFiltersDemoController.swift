@@ -10,7 +10,6 @@ import Foundation
 import InstantSearch
 
 class ClearFiltersDemoController {
-
   let filterState: FilterState
 
   let clearConnector: FilterClearConnector
@@ -36,5 +35,4 @@ class ClearFiltersDemoController {
     filterState[or: "color"].add(redFacet, greenFacet)
     filterState.notifyChange()
   }
-
 }

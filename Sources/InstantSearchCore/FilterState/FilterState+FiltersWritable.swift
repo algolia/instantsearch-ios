@@ -9,7 +9,6 @@
 import Foundation
 
 extension FilterState: FiltersWritable {
-
   func add(_ filter: FilterType, toGroupWithID groupID: FilterGroup.ID) {
     filters.add(filter, toGroupWithID: groupID)
   }
@@ -65,5 +64,4 @@ extension FilterState: FiltersWritable {
   func toggle<S: Sequence>(_ filters: S, inGroupWithID groupID: FilterGroup.ID) where S.Element == FilterType {
     self.filters.toggle(filters, inGroupWithID: groupID)
   }
-
 }

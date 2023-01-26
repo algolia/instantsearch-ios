@@ -1,11 +1,10 @@
-import XCTest
 @testable import InstantSearch
+import XCTest
 
 final class InstantSearchTests: XCTestCase {
-    func testExample() {
-    }
+  func testExample() {}
 
-    static var allTests = [
-        ("testExample", testExample),
-    ]
+  static var allTests = [
+    ("testExample", testExample)
+  ]
 }

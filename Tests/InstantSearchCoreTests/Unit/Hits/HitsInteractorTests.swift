@@ -6,20 +6,16 @@
 //  Copyright © 2019 Algolia. All rights reserved.
 //
 
+import AlgoliaSearchClient
 import Foundation
 @testable import InstantSearchCore
 import XCTest
-import AlgoliaSearchClient
 extension Index {
-
   static var test: Index = SearchClient(appID: "", apiKey: "").index(withName: "")
-
 }
 
 class HitsInteractorTests: XCTestCase {
-
   func testConstructionWithExplicitSettings() {
-
     let vm = HitsInteractor<String>(infiniteScrolling: .off, showItemsOnEmptyQuery: false)
 
     if case .off = vm.settings.infiniteScrolling {
@@ -28,15 +24,13 @@ class HitsInteractorTests: XCTestCase {
 
     let vm1 = HitsInteractor<String>(infiniteScrolling: .on(withOffset: 1000), showItemsOnEmptyQuery: true)
 
-    if case .on(let offset) = vm1.settings.infiniteScrolling {
+    if case let .on(offset) = vm1.settings.infiniteScrolling {
       XCTAssertEqual(offset, 1000)
     } else { XCTFail() }
     XCTAssertTrue(vm1.settings.showItemsOnEmptyQuery)
-
   }
 
   func testUpdateAndContent() throws {
-
     let vm = HitsInteractor<TestRecord<String>>(infiniteScrolling: .off, showItemsOnEmptyQuery: true)
 
     let hits = ["h1", "h2", "h3"].map(TestRecord.withValue)
@@ -47,7 +41,7 @@ class HitsInteractorTests: XCTestCase {
 
     let exp = expectation(description: "on results updated")
 
-    vm.onResultsUpdated.subscribe(with: self) { (_, _) in
+    vm.onResultsUpdated.subscribe(with: self) { _, _ in
       XCTAssertEqual(vm.numberOfHits(), 3)
       XCTAssertEqual(vm.hit(atIndex: 0)?.value, "h1")
       XCTAssertEqual(vm.hit(atIndex: 1)?.value, "h2")
@@ -58,11 +52,9 @@ class HitsInteractorTests: XCTestCase {
     vm.update(results)
 
     waitForExpectations(timeout: 3, handler: .none)
-
   }
 
   func testHitsAppearanceOnEmptyQueryIfDesactivated() {
-
     let paginator = Paginator<TestRecord<Int>>()
 
     let hits = (0..<20).map(TestRecord.withValue)
@@ -71,11 +63,12 @@ class HitsInteractorTests: XCTestCase {
     let vm = HitsInteractor(
       settings: .init(showItemsOnEmptyQuery: false),
       paginationController: paginator,
-      infiniteScrollingController: TestInfiniteScrollingController())
+      infiniteScrollingController: TestInfiniteScrollingController()
+    )
 
     let exp = expectation(description: "on results updated")
 
-    vm.onResultsUpdated.subscribe(with: self) { (_, _) in
+    vm.onResultsUpdated.subscribe(with: self) { _, _ in
       XCTAssertEqual(vm.numberOfHits(), 0)
       exp.fulfill()
     }
@@ -86,7 +79,6 @@ class HitsInteractorTests: XCTestCase {
   }
 
   func testHitsAppearanceOnEmptyQueryIfActivated() {
-
     let paginationController = Paginator<TestRecord<Int>>()
     let infiniteScrollingController = TestInfiniteScrollingController()
 
@@ -101,7 +93,7 @@ class HitsInteractorTests: XCTestCase {
 
     let exp = expectation(description: "on results updated")
 
-    vm.onResultsUpdated.subscribe(with: self) { (_, _) in
+    vm.onResultsUpdated.subscribe(with: self) { _, _ in
       XCTAssertEqual(vm.numberOfHits(), hits.count)
       exp.fulfill()
     }
@@ -112,7 +104,6 @@ class HitsInteractorTests: XCTestCase {
   }
 
   func testRawHitAtIndex() throws {
-
     let paginationController = Paginator<TestRecord<Int>>()
     let infiniteScrollingController = TestInfiniteScrollingController()
 
@@ -127,11 +118,11 @@ class HitsInteractorTests: XCTestCase {
 
     let exp = expectation(description: "on results updated")
 
-    vm.onResultsUpdated.subscribe(with: self) { (_, _) in
+    vm.onResultsUpdated.subscribe(with: self) { _, _ in
       do {
         let rawHit = try XCTUnwrap(vm.rawHitAtIndex(5))
         XCTAssertEqual(rawHit["value"] as? NSNumber, 5)
-      } catch let error {
+      } catch {
         XCTFail("\(error)")
       }
       exp.fulfill()
@@ -143,7 +134,6 @@ class HitsInteractorTests: XCTestCase {
   }
 
   func testInfiniteScrollingTriggering() {
-
     let pc = Paginator<JSON>()
 
     let page1 = ["i1", "i2", "i3"].map { JSON.string($0) }
@@ -156,7 +146,8 @@ class HitsInteractorTests: XCTestCase {
     let vm = HitsInteractor(
       settings: .init(infiniteScrolling: .on(withOffset: 10), showItemsOnEmptyQuery: true),
       paginationController: pc,
-      infiniteScrollingController: isc)
+      infiniteScrollingController: isc
+    )
 
     isc.didCalculatePages = { _, _ in
       loadPagesTriggered.fulfill()
@@ -165,11 +156,9 @@ class HitsInteractorTests: XCTestCase {
     _ = vm.hit(atIndex: 4)
 
     waitForExpectations(timeout: 2, handler: nil)
-
   }
 
   func testChangeQuery() {
-
     let pc = Paginator<JSON>()
 
     let page1 = ["i1", "i2", "i3"].map { JSON.string($0) }
@@ -181,7 +170,8 @@ class HitsInteractorTests: XCTestCase {
     let vm = HitsInteractor(
       settings: .init(infiniteScrolling: .on(withOffset: 10), showItemsOnEmptyQuery: true),
       paginationController: pc,
-      infiniteScrollingController: isc)
+      infiniteScrollingController: isc
+    )
 
     let onRequestChangedExpectation = expectation(description: "on request changed")
 
@@ -196,36 +186,35 @@ class HitsInteractorTests: XCTestCase {
     vm.notifyQueryChanged()
 
     waitForExpectations(timeout: 3, handler: nil)
-
   }
-  
+
   struct Person: Codable, Equatable {
     let firstName: String
     let lastName: String
   }
-  
+
   func testCustomJSONDecoder() throws {
-        
     let snakeCaseDecoder = JSONDecoder()
     snakeCaseDecoder.keyDecodingStrategy = .convertFromSnakeCase
-    
+
     let hitsInteractor = HitsInteractor<Person>(
       settings: .init(infiniteScrolling: .on(withOffset: 10), showItemsOnEmptyQuery: true),
       paginationController: Paginator(),
       infiniteScrollingController: TestInfiniteScrollingController(),
-      jsonDecoder: snakeCaseDecoder)
-    
+      jsonDecoder: snakeCaseDecoder
+    )
+
     var response = SearchResponse(hits: [
       try Hit(json: ["objectID": "1", "first_name": "Jack", "last_name": "Johnson"]),
-      try Hit(json: ["objectID": "2", "first_name": "Helen", "last_name": "Smith"]),
+      try Hit(json: ["objectID": "2", "first_name": "Helen", "last_name": "Smith"])
     ])
     response.page = 0
-    
+
     hitsInteractor.update(response)
-    
+
     let exp = expectation(description: "on results updated")
-    
-    hitsInteractor.onResultsUpdated.subscribe(with: self) { _, results in
+
+    hitsInteractor.onResultsUpdated.subscribe(with: self) { _, _ in
       XCTAssertEqual(hitsInteractor.hits.count, 2)
       XCTAssertEqual(hitsInteractor.hit(atIndex: 0), Person(firstName: "Jack", lastName: "Johnson"))
       XCTAssertEqual(hitsInteractor.hit(atIndex: 1), Person(firstName: "Helen", lastName: "Smith"))

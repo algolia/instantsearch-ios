@@ -11,7 +11,6 @@ import Foundation
 import InstantSearch
 
 class DynamicFacetListDemoController {
-
   let searcher: HitsSearcher
   let searchBoxConnector: SearchBoxConnector
   let dynamicFacetListConnector: DynamicFacetListConnector<HitsSearcher>
@@ -43,5 +42,4 @@ class DynamicFacetListDemoController {
     searcher.connectFilterState(filterState)
     searcher.search()
   }
-
 }

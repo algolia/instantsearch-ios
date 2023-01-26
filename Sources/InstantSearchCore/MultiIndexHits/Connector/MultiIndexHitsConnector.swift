@@ -13,7 +13,6 @@ import Foundation
 /// [Documentation](https://www.algolia.com/doc/api-reference/widgets/multi-hits/ios/)
 @available(*, deprecated, message: "Use multiple HitsSearcher aggregated with MultiSearcher instead of MultiIndexSearcher")
 public class MultiIndexHitsConnector {
-
   /// Searcher that handles your searches
   public let searcher: MultiIndexSearcher
 
@@ -33,30 +32,28 @@ public class MultiIndexHitsConnector {
   public var controllerConnections: [Connection]
 
   /**
-   - Parameters:
-     - searcher: Searcher that handles your searches
-     - interactor: External hits interactor
-     - filterState: List of FilterStates that will hold your filters separately for each index
-  */
+    - Parameters:
+      - searcher: Searcher that handles your searches
+      - interactor: External hits interactor
+      - filterState: List of FilterStates that will hold your filters separately for each index
+   */
   public init(searcher: MultiIndexSearcher,
               interactor: MultiIndexHitsInteractor,
               filterStates: [FilterState?] = []) {
     self.searcher = searcher
     self.interactor = interactor
     self.filterStates = filterStates
-    self.searcherConnection = interactor.connectSearcher(searcher)
-    self.filterStatesConnections = zip(interactor.hitsInteractors, filterStates).compactMap { arg in
+    searcherConnection = interactor.connectSearcher(searcher)
+    filterStatesConnections = zip(interactor.hitsInteractors, filterStates).compactMap { arg in
       let (interactor, filterState) = arg
       return filterState.flatMap(interactor.connectFilterState)
     }
-    self.controllerConnections = []
+    controllerConnections = []
   }
-
 }
 
 @available(*, deprecated, message: "Use multiple HitsSearcher aggregated with MultiSearcher instead of MultiIndexSearcher")
 extension MultiIndexHitsConnector: Connection {
-
   public func connect() {
     searcherConnection.connect()
     filterStatesConnections.forEach { $0.connect() }
@@ -68,19 +65,18 @@ extension MultiIndexHitsConnector: Connection {
     filterStatesConnections.forEach { $0.disconnect() }
     controllerConnections.forEach { $0.disconnect() }
   }
-
 }
 
 // MARK: - Convenient initializers
+
 @available(*, deprecated, message: "Use multiple HitsSearcher aggregated with MultiSearcher instead of MultiIndexSearcher")
 public extension MultiIndexHitsConnector {
-
   /**
-   - Parameters:
-     - appID: ID of your application
-     - apiKey: Your application API Key
-     - indexModules: List of index modules representing the aggregaged indices
-  */
+    - Parameters:
+      - appID: ID of your application
+      - apiKey: Your application API Key
+      - indexModules: List of index modules representing the aggregaged indices
+   */
   convenience init(appID: ApplicationID,
                    apiKey: APIKey,
                    indexModules: [IndexModule]) {
@@ -92,5 +88,4 @@ public extension MultiIndexHitsConnector {
               interactor: interactor,
               filterStates: indexModules.map { $0.filterState })
   }
-
 }

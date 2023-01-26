@@ -9,7 +9,6 @@
 import Foundation
 
 public struct SearchStats: Codable {
-
   enum CodingKeys: String, CodingKey {
     case totalHitsCount = "nbHits"
     case nbSortedHits
@@ -49,14 +48,14 @@ public struct SearchStats: Codable {
   public let queryID: QueryID?
 
   public init() {
-    self.hitsPerPage = 0
-    self.nbSortedHits = nil
-    self.totalHitsCount = 0
-    self.pagesCount = 0
-    self.page = 0
-    self.processingTimeMS = 0
-    self.query = nil
-    self.queryID = nil
+    hitsPerPage = 0
+    nbSortedHits = nil
+    totalHitsCount = 0
+    pagesCount = 0
+    page = 0
+    processingTimeMS = 0
+    query = nil
+    queryID = nil
   }
 
   public init(totalHitsCount: Int,
@@ -78,17 +77,16 @@ public struct SearchStats: Codable {
   }
 
   public init(from decoder: Decoder) throws {
-
     let container = try decoder.container(keyedBy: CodingKeys.self)
 
-    self.totalHitsCount = try container.decode(Int.self, forKey: .totalHitsCount)
-    self.nbSortedHits = try container.decodeIfPresent(Int.self, forKey: .nbSortedHits)
-    self.page = try container.decodeIfPresent(Int.self, forKey: .page) ?? 0
-    self.pagesCount = try container.decodeIfPresent(Int.self, forKey: .pagesCount) ?? 1
-    self.hitsPerPage = try container.decodeIfPresent(Int.self, forKey: .hitsPerPage) ?? 20
-    self.processingTimeMS = try container.decode(Int.self, forKey: .processingTimeMS)
-    self.query = try container.decodeIfPresent(String.self, forKey: .query)
-    self.queryID = try container.decodeIfPresent(QueryID.self, forKey: .queryID)
+    totalHitsCount = try container.decode(Int.self, forKey: .totalHitsCount)
+    nbSortedHits = try container.decodeIfPresent(Int.self, forKey: .nbSortedHits)
+    page = try container.decodeIfPresent(Int.self, forKey: .page) ?? 0
+    pagesCount = try container.decodeIfPresent(Int.self, forKey: .pagesCount) ?? 1
+    hitsPerPage = try container.decodeIfPresent(Int.self, forKey: .hitsPerPage) ?? 20
+    processingTimeMS = try container.decode(Int.self, forKey: .processingTimeMS)
+    query = try container.decodeIfPresent(String.self, forKey: .query)
+    queryID = try container.decodeIfPresent(QueryID.self, forKey: .queryID)
   }
 
   public func encode(to encoder: Encoder) throws {
@@ -102,7 +100,5 @@ public struct SearchStats: Codable {
     try container.encode(processingTimeMS, forKey: .processingTimeMS)
     try container.encodeIfPresent(query, forKey: .query)
     try container.encodeIfPresent(queryID, forKey: .queryID)
-
   }
-
 }

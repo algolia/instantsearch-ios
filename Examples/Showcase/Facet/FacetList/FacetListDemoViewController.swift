@@ -7,8 +7,8 @@
 //
 
 import Foundation
-import UIKit
 import InstantSearch
+import UIKit
 
 extension UIColor {
   static let swBackground = UIColor(hexString: "#f7f8fa")
@@ -19,7 +19,6 @@ extension CGFloat {
 }
 
 class FacetListDemoViewController: UIViewController {
-
   let demoController: FacetListDemoController
 
   let colorController: FacetListTableController
@@ -48,7 +47,8 @@ class FacetListDemoViewController: UIViewController {
     demoController.clearConnector.connectController(filterDebugViewController.clearFilterController)
   }
 
-  required init?(coder aDecoder: NSCoder) {
+  @available(*, unavailable)
+  required init?(coder _: NSCoder) {
     fatalError("init(coder:) has not been implemented")
   }
 
@@ -56,13 +56,10 @@ class FacetListDemoViewController: UIViewController {
     super.viewDidLoad()
     setupUI()
   }
-
 }
 
 extension FacetListDemoViewController {
-
   func setupUI() {
-
     title = "Facet List"
     view.backgroundColor = .swBackground
 
@@ -107,13 +104,12 @@ extension FacetListDemoViewController {
       promotionController,
       categoryController
     ]
-      .map { $0.tableView }
-      .forEach {
-        $0.register(UITableViewCell.self, forCellReuseIdentifier: "CellId")
-        $0.alwaysBounceVertical = false
-        $0.tableFooterView = UIView(frame: .zero)
-        $0.backgroundColor = .swBackground
-      }
+    .map { $0.tableView }
+    .forEach {
+      $0.register(UITableViewCell.self, forCellReuseIdentifier: "CellId")
+      $0.alwaysBounceVertical = false
+      $0.tableFooterView = UIView(frame: .zero)
+      $0.backgroundColor = .swBackground
+    }
   }
-
 }

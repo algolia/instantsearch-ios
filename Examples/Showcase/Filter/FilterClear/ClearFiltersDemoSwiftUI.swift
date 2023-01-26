@@ -12,9 +12,7 @@ import InstantSearchSwiftUI
 import SwiftUI
 
 struct ClearFiltersDemoSwiftUI: SwiftUIDemo, PreviewProvider {
-
   class Controller {
-
     let demoController: ClearFiltersDemoController
     let filterStateController: FilterStateObservableController
     let clearFilterController: FilterClearObservableController
@@ -31,11 +29,9 @@ struct ClearFiltersDemoSwiftUI: SwiftUIDemo, PreviewProvider {
       demoController.clearGroupConnector.connectController(clearFilterGroupController)
       demoController.clearExceptGroupConnector.connectController(clearExceptFilterGroupController)
     }
-
   }
 
   struct ContentView: View {
-
     @ObservedObject var filterStateController: FilterStateObservableController
     @ObservedObject var clearFilterController: FilterClearObservableController
 
@@ -59,9 +55,7 @@ struct ClearFiltersDemoSwiftUI: SwiftUIDemo, PreviewProvider {
         }
         Spacer()
       }.padding()
-
     }
-
   }
 
   static func contentView(with controller: Controller) -> ContentView {
@@ -78,5 +72,4 @@ struct ClearFiltersDemoSwiftUI: SwiftUIDemo, PreviewProvider {
         .navigationBarTitle("Filter Clear")
     }
   }
-
 }

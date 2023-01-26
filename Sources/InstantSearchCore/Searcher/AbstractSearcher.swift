@@ -1,6 +1,6 @@
 //
 //  AbstractSearcher.swift
-//  
+//
 //
 //  Created by Vladislav Fitc on 25/11/2020.
 //
@@ -9,7 +9,6 @@ import Foundation
 
 /// Abstract search business logic
 open class AbstractSearcher<Service: SearchService>: Searcher, SequencerDelegate, SearchResultObservable, ErrorObservable where Service.Process == Operation {
-
   public typealias Request = Service.Request
   public typealias Result = Service.Result
 
@@ -26,7 +25,7 @@ open class AbstractSearcher<Service: SearchService>: Searcher, SequencerDelegate
       guard let initialRequest = textualQueryRequest as? Request else {
         return
       }
-      self.request = initialRequest
+      request = initialRequest
     }
   }
 
@@ -72,11 +71,11 @@ open class AbstractSearcher<Service: SearchService>: Searcher, SequencerDelegate
   internal let sequencer: Sequencer
 
   /**
-   - Parameters:
-      - index: Index value in which search will be performed
-      - query: Instance of Query. By default a new empty instant of Query will be created.
-      - requestOptions: Custom request options. Default is nil.
-  */
+    - Parameters:
+       - index: Index value in which search will be performed
+       - query: Instance of Query. By default a new empty instant of Query will be created.
+       - requestOptions: Custom request options. Default is nil.
+   */
   public init(service: Service, initialRequest: Request) {
     self.service = service
     request = initialRequest
@@ -95,7 +94,6 @@ open class AbstractSearcher<Service: SearchService>: Searcher, SequencerDelegate
   }
 
   public func search() {
-
     if let shouldTriggerSearch = shouldTriggerSearchForQuery, !shouldTriggerSearch(request) {
       return
     }
@@ -106,9 +104,9 @@ open class AbstractSearcher<Service: SearchService>: Searcher, SequencerDelegate
       guard let searcher = self else { return }
       let result = result.mapError { RequestError(request: request, error: $0) }
       switch result {
-      case .failure(let error):
+      case let .failure(error):
         searcher.onError.fire(error)
-      case .success(let searchResult):
+      case let .success(searchResult):
         searcher.onResults.fire(searchResult)
       }
     }
@@ -119,14 +117,11 @@ open class AbstractSearcher<Service: SearchService>: Searcher, SequencerDelegate
   public func cancel() {
     sequencer.cancelPendingOperations()
   }
-
 }
 
 public extension AbstractSearcher {
-
   /// Search error composition encapsulating the error returned by the search service and the request for which this error occured
   struct RequestError: Error {
-
     /// Request for which an error occured
     public let request: Request
 
@@ -135,9 +130,7 @@ public extension AbstractSearcher {
 
     public init(request: Request, error: Error) {
       self.request = request
-      self.underlyingError = error
+      underlyingError = error
     }
-
   }
-
 }

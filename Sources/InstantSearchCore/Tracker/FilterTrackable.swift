@@ -8,11 +8,10 @@
 
 import Foundation
 #if !InstantSearchCocoaPods
-import InstantSearchInsights
+  import InstantSearchInsights
 #endif
 
 protocol FilterTrackable {
-
   func viewed(eventName: EventName,
               indexName: IndexName,
               filters: [String],
@@ -30,7 +29,6 @@ protocol FilterTrackable {
                  filters: [String],
                  timestamp: Date?,
                  userToken: UserToken?)
-
 }
 
 extension Insights: FilterTrackable {}

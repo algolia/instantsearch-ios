@@ -11,25 +11,24 @@ import Foundation
 import XCTest
 
 class CurrentFiltersFilterStateConnectionTests: XCTestCase {
-
   let groupName = "Test group"
   let filter = Filter.Facet(attribute: "Test Attribute", stringValue: "facet")
-  
+
   weak var disposableInteractor: CurrentFiltersInteractor?
   weak var disposableFilterState: FilterState?
-  
+
   func testLeak() {
     let interactor = CurrentFiltersInteractor()
     let filterState = FilterState()
-    
+
     disposableInteractor = interactor
     disposableFilterState = filterState
 
     let connection = CurrentFiltersInteractor.FilterStateConnection(interactor: interactor,
-                                                     filterState: filterState)
+                                                                    filterState: filterState)
     connection.connect()
   }
-  
+
   override func tearDown() {
     XCTAssertNil(disposableInteractor, "Leaked interactor")
     XCTAssertNil(disposableFilterState, "Leaked filterState")
@@ -40,7 +39,7 @@ class CurrentFiltersFilterStateConnectionTests: XCTestCase {
     let filterState = FilterState()
 
     let connection = CurrentFiltersInteractor.FilterStateConnection(interactor: interactor,
-                                                     filterState: filterState)
+                                                                    filterState: filterState)
     connection.connect()
 
     checkConnection(interactor: interactor,
@@ -52,7 +51,6 @@ class CurrentFiltersFilterStateConnectionTests: XCTestCase {
   }
 
   func testConnectFunction() {
-
     let interactor = CurrentFiltersInteractor()
     let filterState = FilterState()
 
@@ -67,7 +65,6 @@ class CurrentFiltersFilterStateConnectionTests: XCTestCase {
   }
 
   func testDisconnect() {
-
     let interactor = CurrentFiltersInteractor()
     let filterState = FilterState()
 
@@ -87,11 +84,10 @@ class CurrentFiltersFilterStateConnectionTests: XCTestCase {
   func checkConnection(interactor: CurrentFiltersInteractor,
                        filterState: FilterState,
                        isConnected: Bool) {
-
     let itemsChangedExpectation = expectation(description: "items changed expectation")
     itemsChangedExpectation.isInverted = !isConnected
 
-    interactor.onItemsChanged.subscribe(with: self) { (test, filtersAndIDs) in
+    interactor.onItemsChanged.subscribe(with: self) { test, filtersAndIDs in
       XCTAssertEqual(filtersAndIDs, [FilterAndID(filter: Filter(test.filter), id: .and(name: test.groupName))])
       itemsChangedExpectation.fulfill()
     }
@@ -103,17 +99,15 @@ class CurrentFiltersFilterStateConnectionTests: XCTestCase {
     waitForExpectations(timeout: 5) { _ in
       interactor.onItemsChanged.cancelSubscription(for: self)
     }
-
   }
 
   func checkBackConnection(interactor: CurrentFiltersInteractor,
                            filterState: FilterState,
                            isConnected: Bool) {
-
     let filterStateChangeExpectation = expectation(description: "filter state change")
     filterStateChangeExpectation.isInverted = !isConnected
 
-    filterState.onChange.subscribe(with: self) { (test, filterContainer) in
+    filterState.onChange.subscribe(with: self) { test, filterContainer in
       XCTAssertTrue(filterContainer[and: test.groupName].contains(test.filter))
       filterStateChangeExpectation.fulfill()
     }
@@ -123,7 +117,5 @@ class CurrentFiltersFilterStateConnectionTests: XCTestCase {
     waitForExpectations(timeout: 5) { _ in
       filterState.onChange.cancelSubscription(for: self)
     }
-
   }
-
 }

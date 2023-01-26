@@ -9,9 +9,7 @@
 import Foundation
 
 public extension FacetListConnector {
-
   struct FilterStateConnection: Connection {
-
     public let interactor: FacetListInteractor
     public let filterState: FilterState
     public let attribute: Attribute
@@ -53,15 +51,13 @@ public extension FacetListConnector {
         filterState.addAll(filters: filters, toGroupWithID: groupID)
         filterState.notifyChange()
       }
-
     }
 
     private func whenFilterStateChangedThenUpdateSelections(interactor: FacetListInteractor,
                                                             filterState: FilterState,
                                                             via groupID: FilterGroup.ID) {
-
       func extractString(from filter: Filter.Facet) -> String? {
-        if case .string(let stringValue) = filter.value {
+        if case let .string(stringValue) = filter.value {
           return stringValue
         } else {
           return nil
@@ -71,9 +67,9 @@ public extension FacetListConnector {
       filterState.onChange.subscribePast(with: interactor) { interactor, filterState in
         let filters: [Filter.Facet]
         switch groupID {
-        case .and(name: let groupName):
+        case let .and(name: groupName):
           filters = filterState[and: groupName].filters()
-        case .or(name: let groupName, _):
+        case let .or(name: groupName, _):
           filters = filterState[or: groupName].filters()
         case .hierarchical:
           return
@@ -81,13 +77,10 @@ public extension FacetListConnector {
         interactor.selections = Set(filters.compactMap(extractString))
       }
     }
-
   }
-
 }
 
 public extension FacetListInteractor {
-
   @discardableResult func connectFilterState(_ filterState: FilterState,
                                              with attribute: Attribute,
                                              operator: RefinementOperator,
@@ -96,5 +89,4 @@ public extension FacetListInteractor {
     connection.connect()
     return connection
   }
-
 }

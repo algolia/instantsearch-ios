@@ -10,7 +10,6 @@ import Foundation
 import InstantSearch
 
 class ToggleFilterDemoController {
-
   let searcher: HitsSearcher
   let filterState: FilterState
   let clearFilterConnector: FilterClearConnector
@@ -43,5 +42,4 @@ class ToggleFilterDemoController {
     searcher.connectFilterState(filterState)
     searcher.search()
   }
-
 }

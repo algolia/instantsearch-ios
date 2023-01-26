@@ -10,11 +10,8 @@ import InstantSearch
 import UIKit
 
 extension MultiIndex {
-
   class SearchResultsController: UITableViewController {
-
     enum Section: Int, CaseIterable {
-
       case actors
       case movies
 
@@ -43,7 +40,6 @@ extension MultiIndex {
       init?(indexPath: IndexPath) {
         self.init(section: indexPath.section)
       }
-
     }
 
     let cellReuseIdentifier = "cellID"
@@ -95,11 +91,11 @@ extension MultiIndex {
       tableView.register(UITableViewCell.self, forCellReuseIdentifier: cellReuseIdentifier)
     }
 
-    override func numberOfSections(in tableView: UITableView) -> Int {
+    override func numberOfSections(in _: UITableView) -> Int {
       return Section.allCases.count
     }
 
-    override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+    override func tableView(_: UITableView, numberOfRowsInSection section: Int) -> Int {
       guard let section = Section(section: section) else { return 0 }
       return numberOfHits(in: section)
     }
@@ -113,13 +109,13 @@ extension MultiIndex {
       return cell
     }
 
-    override func tableView(_ tableView: UITableView, titleForHeaderInSection section: Int) -> String? {
+    override func tableView(_: UITableView, titleForHeaderInSection section: Int) -> String? {
       guard let section = Section(section: section), numberOfHits(in: section) != 0 else { return nil }
       return section.title
     }
 
     // swiftlint:disable unused_optional_binding
-    override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+    override func tableView(_: UITableView, didSelectRowAt indexPath: IndexPath) {
       guard let section = Section(indexPath: indexPath) else { return }
       switch section {
       case .actors:
@@ -132,7 +128,5 @@ extension MultiIndex {
         }
       }
     }
-
   }
-
 }

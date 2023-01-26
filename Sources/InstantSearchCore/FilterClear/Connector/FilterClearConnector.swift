@@ -12,7 +12,6 @@ import Foundation
 ///
 /// [Documentation](https://www.algolia.com/doc/api-reference/widgets/clear-refinements/ios/)
 public class FilterClearConnector {
-
   /// FilterState that holds your filters
   public let filterState: FilterState
 
@@ -38,21 +37,19 @@ public class FilterClearConnector {
               filterGroupIDs: [FilterGroup.ID]? = nil) {
     self.filterState = filterState
     self.interactor = interactor
-    self.filterStateConnection = interactor.connectFilterState(filterState,
-                                                               filterGroupIDs: filterGroupIDs,
-                                                               clearMode: clearMode)
-    self.controllerConnections = []
+    filterStateConnection = interactor.connectFilterState(filterState,
+                                                          filterGroupIDs: filterGroupIDs,
+                                                          clearMode: clearMode)
+    controllerConnections = []
     Telemetry.shared.traceConnector(type: .filterClear,
                                     parameters: [
                                       clearMode == .specified ? .none : .clearMode,
                                       filterGroupIDs == nil ? .none : .filterGroupIds
                                     ])
   }
-
 }
 
 extension FilterClearConnector: Connection {
-
   public func connect() {
     filterStateConnection.connect()
     controllerConnections.forEach { $0.connect() }
@@ -62,5 +59,4 @@ extension FilterClearConnector: Connection {
     filterStateConnection.disconnect()
     controllerConnections.forEach { $0.disconnect() }
   }
-
 }

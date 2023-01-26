@@ -10,7 +10,6 @@ import Foundation
 
 /// A SignalLister represenents an instance and its association with a `Signal`.
 public protocol Observation {
-
   associatedtype ParameterType
 
   typealias ObserverFilter = (ParameterType) -> Bool

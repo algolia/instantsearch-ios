@@ -1,6 +1,6 @@
 //
 //  TestSelectableSegmentController.swift
-//  
+//
 //
 //  Created by Vladislav Fitc on 14/12/2020.
 //
@@ -9,7 +9,6 @@ import Foundation
 @testable import InstantSearchCore
 
 class TestSelectableSegmentController: SelectableSegmentController {
-
   typealias SegmentKey = Int
 
   var selected: Int?
@@ -32,5 +31,4 @@ class TestSelectableSegmentController: SelectableSegmentController {
   func clickItem(withKey key: Int) {
     onClick?(key)
   }
-
 }

@@ -9,7 +9,6 @@
 import Foundation
 
 class InfiniteScrollingController: InfiniteScrollable {
-
   /// Index of the last page. If equals to `nil`, this index is unknown
   public var lastPageIndex: Int?
 
@@ -51,7 +50,6 @@ class InfiniteScrollingController: InfiniteScrollable {
 
   /// Calculates and triggers loading of pages (if necessary) containing all the items in the range (currentRow - offset ... currentRow + offset)
   func calculatePagesAndLoad<T>(currentRow: Int, offset: Int, pageMap: PageMap<T>) {
-
     guard let pageLoader = pageLoader else {
       assertionFailure("Missing Page Loader")
       return
@@ -68,12 +66,10 @@ class InfiniteScrollingController: InfiniteScrollable {
       pendingPageIndexes.insert(pageIndex)
       pageLoader.loadPage(atIndex: pageIndex)
     }
-
   }
 
   /// Calculates the pages indices containing all the items in the range (currentRow - offset ... currentRow)
   func computePreviousPagesToLoad<T>(currentRow: Int, offset: Int, pageMap: PageMap<T>) -> Set<PageMap<T>.PageIndex> {
-
     let computedLowerBoundRow = currentRow - offset
     let lowerBoundRow: Int
 
@@ -85,12 +81,10 @@ class InfiniteScrollingController: InfiniteScrollable {
 
     let requiredRows = Array(lowerBoundRow..<currentRow)
     return pagesToLoad(in: requiredRows, from: pageMap)
-
   }
 
   /// Calculates the pages indices containing all the items in the range (currentRow ... currentRow + offset)
   func computeNextPagesToLoad<T>(currentRow: Int, offset: Int, pageMap: PageMap<T>) -> Set<PageMap<T>.PageIndex> {
-
     let computedUpperBoundRow = currentRow + offset
 
     let upperBoundRow: Int
@@ -112,7 +106,5 @@ class InfiniteScrollingController: InfiniteScrollable {
 
     let requiredRows = Array(nextRow...upperBoundRow)
     return pagesToLoad(in: requiredRows, from: pageMap)
-
   }
-
 }

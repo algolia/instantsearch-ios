@@ -11,7 +11,6 @@ import InstantSearch
 import UIKit
 
 class RelevantSortDemoViewController: UIViewController {
-
   let demoController: RelevantSortDemoController
 
   let searchController: UISearchController
@@ -22,15 +21,16 @@ class RelevantSortDemoViewController: UIViewController {
 
   init() {
     resultsViewController = .init()
-    self.searchController = .init(searchResultsController: resultsViewController)
-    self.textFieldController = .init(searchBar: searchController.searchBar)
-    self.demoController = .init()
+    searchController = .init(searchResultsController: resultsViewController)
+    textFieldController = .init(searchBar: searchController.searchBar)
+    demoController = .init()
     super.init(nibName: nil, bundle: nil)
     demoController.sortByConnector.connectController(self, presenter: demoController.title(for:))
     setup()
   }
 
-  required init?(coder: NSCoder) {
+  @available(*, unavailable)
+  required init?(coder _: NSCoder) {
     fatalError("init(coder:) has not been implemented")
   }
 
@@ -60,19 +60,15 @@ class RelevantSortDemoViewController: UIViewController {
     searchController.showsSearchResultsController = true
     searchController.automaticallyShowsCancelButton = false
   }
-
 }
 
 extension RelevantSortDemoViewController: UISearchBarDelegate {
-
-  func searchBar(_ searchBar: UISearchBar, selectedScopeButtonIndexDidChange selectedScope: Int) {
+  func searchBar(_: UISearchBar, selectedScopeButtonIndexDidChange selectedScope: Int) {
     onClick?(selectedScope)
   }
-
 }
 
 extension RelevantSortDemoViewController: SelectableSegmentController {
-
   func setSelected(_ selected: Int?) {
     if let index = selected {
       searchController.searchBar.selectedScopeButtonIndex = index
@@ -82,5 +78,4 @@ extension RelevantSortDemoViewController: SelectableSegmentController {
   func setItems(items: [Int: String]) {
     searchController.searchBar.scopeButtonTitles = items.sorted(by: \.key).map(\.value)
   }
-
 }

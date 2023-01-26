@@ -6,13 +6,11 @@
 //
 
 import Foundation
-import UIKit
 import InstantSearch
+import UIKit
 
 enum CategoriesHits {
-
   class SearchViewController: UIViewController {
-
     let searchController: UISearchController
 
     let searchBoxConnector: SearchBoxConnector
@@ -36,7 +34,8 @@ enum CategoriesHits {
       super.init(nibName: nibNameOrNil, bundle: nibBundleOrNil)
     }
 
-    required init?(coder: NSCoder) {
+    @available(*, unavailable)
+    required init?(coder _: NSCoder) {
       fatalError("init(coder:) has not been implemented")
     }
 
@@ -71,7 +70,5 @@ enum CategoriesHits {
       searchController.automaticallyShowsCancelButton = false
       navigationItem.searchController = searchController
     }
-
   }
-
 }

@@ -1,20 +1,19 @@
 //
 //  MultiSearcher.swift
-//  
+//
 //
 //  Created by Vladislav Fitc on 29/09/2021.
 //
 
-import Foundation
 import AlgoliaSearchClient
+import Foundation
 
 /// Searcher performing search for hits or facets in multiple indices simultaneously
 public class MultiSearcher: AbstractMultiSearcher<AlgoliaMultiSearchService> {
-
   /**
-   - Parameters:
-      - client: Algolia search client
-  */
+    - Parameters:
+       - client: Algolia search client
+   */
   public convenience init(client: SearchClient) {
     let service = AlgoliaMultiSearchService(client: client)
     let initialRequest = Request(queries: [],
@@ -26,10 +25,10 @@ public class MultiSearcher: AbstractMultiSearcher<AlgoliaMultiSearchService> {
   }
 
   /**
-   - Parameters:
-      - appID: Application ID
-      - apiKey: API Key
-  */
+    - Parameters:
+       - appID: Application ID
+       - apiKey: API Key
+   */
   public convenience init(appID: ApplicationID,
                           apiKey: APIKey) {
     let client = SearchClient(appID: appID, apiKey: apiKey)
@@ -37,11 +36,11 @@ public class MultiSearcher: AbstractMultiSearcher<AlgoliaMultiSearchService> {
   }
 
   /**
-   - Parameters:
-       - indexName: Name of the index in which search will be performed
-       - query: Instance of Query. By default a new empty instant of Query will be created.
-       - requestOptions: Custom request options. Default is `nil`.
-  */
+    - Parameters:
+        - indexName: Name of the index in which search will be performed
+        - query: Instance of Query. By default a new empty instant of Query will be created.
+        - requestOptions: Custom request options. Default is `nil`.
+   */
   @discardableResult public func addHitsSearcher(indexName: IndexName,
                                                  query: Query = .init(),
                                                  requestOptions: RequestOptions? = nil) -> HitsSearcher {
@@ -63,7 +62,7 @@ public class MultiSearcher: AbstractMultiSearcher<AlgoliaMultiSearchService> {
   @discardableResult public func addFacetsSearcher(indexName: IndexName,
                                                    query: Query = .init(),
                                                    attribute: Attribute,
-                                                   facetQuery: String = "",
+                                                   facetQuery _: String = "",
                                                    requestOptions: RequestOptions? = nil) -> FacetSearcher {
     let searcher = FacetSearcher(client: service.client,
                                  indexName: indexName,
@@ -72,5 +71,4 @@ public class MultiSearcher: AbstractMultiSearcher<AlgoliaMultiSearchService> {
                                  requestOptions: requestOptions)
     return addSearcher(searcher)
   }
-
 }

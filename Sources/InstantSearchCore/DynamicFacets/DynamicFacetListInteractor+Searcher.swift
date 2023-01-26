@@ -1,6 +1,6 @@
 //
 //  DynamicFacetListInteractor+Searcher.swift
-//  
+//
 //
 //  Created by Vladislav Fitc on 16/03/2021.
 //
@@ -8,10 +8,8 @@
 import Foundation
 
 public extension DynamicFacetListInteractor {
-
   /// Connection between a dynamic facets business logic and a searcher
   struct SearcherConnection<Searcher: SearchResultObservable>: Connection where Searcher.SearchResult == SearchResponse {
-
     /// Dynamic facet list business logic
     public let interactor: DynamicFacetListInteractor
 
@@ -19,10 +17,10 @@ public extension DynamicFacetListInteractor {
     public let searcher: Searcher
 
     /**
-     - parameters:
-       - interactor: Dynamic facet list business logic
-       - searcher: Searcher to connect
-    */
+      - parameters:
+        - interactor: Dynamic facet list business logic
+        - searcher: Searcher to connect
+     */
     public init(interactor: DynamicFacetListInteractor,
                 searcher: Searcher) {
       self.searcher = searcher
@@ -30,7 +28,7 @@ public extension DynamicFacetListInteractor {
     }
 
     public func connect() {
-      searcher.onResults.subscribe(with: interactor) { (interactor, searchResponse) in
+      searcher.onResults.subscribe(with: interactor) { interactor, searchResponse in
         interactor.update(with: searchResponse)
       }
       (searcher as? ErrorObservable)?.onError.subscribe(with: interactor) { interactor, _ in
@@ -42,7 +40,6 @@ public extension DynamicFacetListInteractor {
       searcher.onResults.cancelSubscription(for: interactor)
       (searcher as? ErrorObservable)?.onError.cancelSubscription(for: interactor)
     }
-
   }
 
   /**
@@ -54,14 +51,12 @@ public extension DynamicFacetListInteractor {
     connection.connect()
     return connection
   }
-
 }
 
-extension DynamicFacetListInteractor {
-
+public extension DynamicFacetListInteractor {
   /// Update `orderedFacets` property with `renderingContent` and
   /// `facets`/`disjunctiveFacets` received of the `SearchResponse` instance
-  public func update(with searchResponse: SearchResponse) {
+  func update(with searchResponse: SearchResponse) {
     guard let facetOrdering = searchResponse.renderingContent?.facetOrdering else {
       orderedFacets = []
       return
@@ -71,5 +66,4 @@ extension DynamicFacetListInteractor {
     let facets = disjunctiveFacets.merging(commonFacets, uniquingKeysWith: { disjunctiveFacets, _ in disjunctiveFacets })
     orderedFacets = FacetsOrderer(facetOrder: facetOrdering, facets: facets)()
   }
-
 }

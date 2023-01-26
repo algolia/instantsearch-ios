@@ -9,12 +9,10 @@
 import Foundation
 
 public protocol SelectableSegmentController: AnyObject {
-
   associatedtype SegmentKey: Hashable
 
   var onClick: ((SegmentKey) -> Void)? { get set }
 
   func setSelected(_ selected: SegmentKey?)
   func setItems(items: [SegmentKey: String])
-
 }

@@ -9,7 +9,6 @@
 import Foundation
 
 public extension NumberRange {
-
   struct ControllerConnection<Number: DoubleRepresentable, Controller: NumberRangeController>: Connection where Controller.Number == Number {
     public let interactor: NumberRangeInteractor<Number>
     public let controller: Controller
@@ -37,17 +36,13 @@ public extension NumberRange {
       controller.onRangeChanged = nil
       interactor.onBoundsComputed.cancelSubscription(for: controller)
     }
-
   }
-
 }
 
 public extension NumberRangeInteractor {
-
-  @discardableResult func connectController<Controller: NumberRangeController>(_ controller: Controller) ->  NumberRange.ControllerConnection<Number, Controller> {
+  @discardableResult func connectController<Controller: NumberRangeController>(_ controller: Controller) -> NumberRange.ControllerConnection<Number, Controller> {
     let connection = NumberRange.ControllerConnection(interactor: self, controller: controller)
     connection.connect()
     return connection
   }
-
 }

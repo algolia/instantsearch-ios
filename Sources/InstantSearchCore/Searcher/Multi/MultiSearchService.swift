@@ -1,6 +1,6 @@
 //
 //  MultiSearchService.swift
-//  
+//
 //
 //  Created by Vladislav Fitc on 08/09/2021.
 //

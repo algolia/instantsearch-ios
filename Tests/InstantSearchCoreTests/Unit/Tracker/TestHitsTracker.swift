@@ -10,7 +10,6 @@ import Foundation
 @testable import InstantSearchCore
 
 class TestHitsTracker: HitsAfterSearchTrackable {
-
   var didClick: (((eventName: EventName, indexName: IndexName, objectIDsWithPositions: [(ObjectID, Int)], queryID: QueryID, timestamp: Date?, userToken: UserToken?)) -> Void)?
   var didConvert: (((eventName: EventName, indexName: IndexName, objectIDs: [ObjectID], queryID: QueryID, timestamp: Date?, userToken: UserToken?)) -> Void)?
   var didView: (((eventName: EventName, indexName: IndexName, objectIDs: [ObjectID], timestamp: Date?, userToken: UserToken?)) -> Void)?
@@ -26,5 +25,4 @@ class TestHitsTracker: HitsAfterSearchTrackable {
   func viewed(eventName: EventName, indexName: IndexName, objectIDs: [ObjectID], timestamp: Date?, userToken: UserToken?) {
     didView?((eventName, indexName, objectIDs, timestamp, userToken))
   }
-
 }

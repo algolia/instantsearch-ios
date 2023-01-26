@@ -6,12 +6,11 @@
 //  Copyright © 2019 Algolia. All rights reserved.
 //
 
-import Foundation
 import AlgoliaSearchClient
+import Foundation
 
-/// An entity performing facet values search 
-final public class FacetSearcher: IndexSearcher<FacetSearchService> {
-
+/// An entity performing facet values search
+public final class FacetSearcher: IndexSearcher<FacetSearchService> {
   public var client: SearchClient {
     return service.client
   }
@@ -71,8 +70,8 @@ final public class FacetSearcher: IndexSearcher<FacetSearchService> {
     self.init(service: service, initialRequest: request)
     Telemetry.shared.trace(type: .facetSearcher,
                            parameters: [
-                            .appID,
-                            .apiKey
+                             .appID,
+                             .apiKey
                            ])
   }
 
@@ -86,14 +85,12 @@ final public class FacetSearcher: IndexSearcher<FacetSearchService> {
     self.init(service: service, initialRequest: request)
     Telemetry.shared.trace(type: .facetSearcher,
                            parameters: [
-                            .client
+                             .client
                            ])
   }
-
 }
 
 extension FacetSearcher: MultiSearchComponent {
-
   public func collect() -> (requests: [MultiSearchQuery], completion: (Swift.Result<[MultiSearchResponse.Response], Swift.Error>) -> Void) {
     let query = IndexedFacetQuery(indexName: request.indexName,
                                   attribute: request.attribute,
@@ -102,38 +99,31 @@ extension FacetSearcher: MultiSearchComponent {
     return ([MultiSearchQuery(query)], { [weak self] result in
       guard let searcher = self else { return }
       switch result {
-      case .failure(let error):
+      case let .failure(error):
         searcher.onError.fire(error)
-      case .success(let responses):
+      case let .success(responses):
         if let response = responses.first?.facetsResponse {
           searcher.onResults.fire(response)
         }
       }
     })
   }
-
 }
 
 extension FacetSearcher: QuerySettable {
-
   public func setQuery(_ query: String?) {
     request.query = query ?? ""
   }
-
 }
 
 extension FacetSearcher: IndexNameSettable {
-
   public func setIndexName(_ indexName: IndexName) {
     request.indexName = indexName
   }
-
 }
 
 extension FacetSearcher: FiltersSettable {
-
   public func setFilters(_ filters: String?) {
     request.context.filters = filters
   }
-
 }

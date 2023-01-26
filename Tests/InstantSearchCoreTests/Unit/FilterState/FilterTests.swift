@@ -7,11 +7,10 @@
 //
 
 import Foundation
-import XCTest
 @testable import InstantSearchCore
+import XCTest
 
 class FilterTests: XCTestCase {
-
   func testFilterFacetVariants() {
     testFilterFacet(with: "value")
     testFilterFacet(with: 10)
@@ -75,7 +74,7 @@ class FilterTests: XCTestCase {
   func testFilterTagConstruction() {
     let value = "a"
     let attribute: Attribute = .tags
-    let expectedExpression =  """
+    let expectedExpression = """
     "\(attribute)":"\(value)"
     """
     var tagFilter = Filter.Tag(value: value)
@@ -89,7 +88,6 @@ class FilterTests: XCTestCase {
   }
 
   func testInversion() {
-
     let boolFacetFilter = Filter.Facet(attribute: "a", value: true)
     XCTAssertFalse(boolFacetFilter.isNegated)
     XCTAssertTrue((!boolFacetFilter).isNegated)
@@ -119,7 +117,5 @@ class FilterTests: XCTestCase {
     XCTAssertFalse(rangeNumericFilter.isNegated)
     XCTAssertTrue((!rangeNumericFilter).isNegated)
     XCTAssertEqual(!rangeNumericFilter, Filter.Numeric(attribute: "a", range: 0...10, isNegated: true))
-
   }
-
 }

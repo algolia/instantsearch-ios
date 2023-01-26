@@ -11,24 +11,23 @@ import Foundation
 import XCTest
 
 class HitsInteractorFilterStateConnectionTests: XCTestCase {
-
   var interactor: HitsInteractor<JSON> {
     return HitsInteractor<JSON>(settings: .init(infiniteScrolling: .on(withOffset: 10), showItemsOnEmptyQuery: true),
-          paginationController: .init(),
-    infiniteScrollingController: TestInfiniteScrollingController())
+                                paginationController: .init(),
+                                infiniteScrollingController: TestInfiniteScrollingController())
   }
 
   var filterState: FilterState {
     return .init()
   }
-  
+
   weak var disposableInteractor: HitsInteractor<JSON>?
   weak var disposableFilterState: FilterState?
-  
+
   func testLeak() {
     let interactor = self.interactor
     let filterState = self.filterState
-    
+
     disposableInteractor = interactor
     disposableFilterState = filterState
 
@@ -37,7 +36,7 @@ class HitsInteractorFilterStateConnectionTests: XCTestCase {
 
     connection.connect()
   }
-  
+
   override func tearDown() {
     XCTAssertNil(disposableInteractor, "Leaked interactor")
     XCTAssertNil(disposableFilterState, "Leaked filterState")
@@ -80,17 +79,14 @@ class HitsInteractorFilterStateConnectionTests: XCTestCase {
                                               filterState: filterState,
                                               source: self).check(isConnected: false)
   }
-
-
 }
 
 class HitsInteractorFilterStateConnectionTester {
-  
   let interactor: HitsInteractor<JSON>
   let filterState: FilterState
   let source: XCTestCase
   var requestChangedExpectedFulfillmentCount: Int = 1
-  
+
   init(interactor: HitsInteractor<JSON>,
        filterState: FilterState,
        source: XCTestCase) {
@@ -98,9 +94,8 @@ class HitsInteractorFilterStateConnectionTester {
     self.filterState = filterState
     self.source = source
   }
-  
-  func check(isConnected: Bool, file: StaticString = #file, line: UInt = #line) {
 
+  func check(isConnected: Bool, file _: StaticString = #file, line _: UInt = #line) {
     let requestChangedExpectation = source.expectation(description: "change query when filter state changed")
     requestChangedExpectation.expectedFulfillmentCount = requestChangedExpectedFulfillmentCount
     requestChangedExpectation.isInverted = !isConnected
@@ -113,7 +108,5 @@ class HitsInteractorFilterStateConnectionTester {
     filterState.notifyChange()
 
     source.waitForExpectations(timeout: 2, handler: nil)
-
   }
-  
 }

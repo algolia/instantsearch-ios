@@ -10,10 +10,8 @@ import Foundation
 
 @available(*, deprecated, message: "Use multiple HitsSearcher aggregated with MultiSearcher instead of MultiIndexSearcher")
 public extension MultiIndexHitsInteractor {
-
   @available(*, deprecated, message: "Use multiple HitsSearcher aggregated with MultiSearcher instead of MultiIndexSearcher")
   struct ControllerConnection<Controller: MultiIndexHitsController>: Connection {
-
     public let interactor: MultiIndexHitsInteractor
     public let controller: Controller
 
@@ -38,18 +36,14 @@ public extension MultiIndexHitsInteractor {
       interactor.onRequestChanged.cancelSubscription(for: controller)
       interactor.onResultsUpdated.cancelSubscription(for: controller)
     }
-
   }
-
 }
 
 @available(*, deprecated, message: "Use multiple HitsSearcher aggregated with MultiSearcher instead of MultiIndexSearcher")
 public extension MultiIndexHitsInteractor {
-
   @discardableResult func connectController<Controller: MultiIndexHitsController>(_ controller: Controller) -> ControllerConnection<Controller> {
     let connection = ControllerConnection(interactor: self, controller: controller)
     connection.connect()
     return connection
   }
-
 }

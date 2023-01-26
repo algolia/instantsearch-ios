@@ -1,15 +1,14 @@
 //
 //  AlgoliaSearchService.swift
-//  
+//
 //
 //  Created by Vladislav Fitc on 27/11/2020.
 //
 
-import Foundation
 import AlgoliaSearchClient
+import Foundation
 
 public class AlgoliaSearchService: SearchService {
-
   public let client: SearchClient
 
   /// Flag defining if disjunctive faceting is enabled
@@ -33,18 +32,16 @@ public class AlgoliaSearchService: SearchService {
 
   public init(client: SearchClient) {
     self.client = client
-    self.disjunctiveFacetsAttributes = []
+    disjunctiveFacetsAttributes = []
   }
 
   public func search(_ request: Request, completion: @escaping (Result<SearchResponse, Error>) -> Void) -> Operation {
     let (queries, completion) = collect(for: request, completion: completion)
     return client.search(queries: queries, requestOptions: request.requestOptions) { completion($0.map(\.results)) }
   }
-
 }
 
 extension AlgoliaSearchService {
-
   func collect(for request: Request, completion: @escaping (Swift.Result<SearchResponse, Error>) -> Void) -> (requests: [MultiSearchQuery], completion: (Swift.Result<[MultiSearchResponse.Response], Error>) -> Void) {
     let queries: [IndexedQuery]
     let transform: ([MultiSearchResponse.Response]) -> SearchResponse
@@ -68,13 +65,10 @@ extension AlgoliaSearchService {
 
     return (queries.map(MultiSearchQuery.init), { completion($0.map(transform)) })
   }
-
 }
 
-extension AlgoliaSearchService {
-
-  public struct Request: IndexNameProvider, TextualQueryProvider, AlgoliaRequest {
-
+public extension AlgoliaSearchService {
+  struct Request: IndexNameProvider, TextualQueryProvider, AlgoliaRequest {
     public var indexName: IndexName
     public var query: Query
     public var requestOptions: RequestOptions?
@@ -93,7 +87,5 @@ extension AlgoliaSearchService {
       self.query = query
       self.requestOptions = requestOptions
     }
-
   }
-
 }

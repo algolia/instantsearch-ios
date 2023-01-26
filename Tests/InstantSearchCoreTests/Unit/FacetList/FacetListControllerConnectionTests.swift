@@ -11,34 +11,32 @@ import Foundation
 import XCTest
 
 class FacetListControllerConnectionTests: XCTestCase {
-
   let attribute: Attribute = "Test Attribute"
   let groupName = "Test group"
 
   let facets: [Facet] = .init(prefix: "f", count: 3)
   let facetsWithAddition: [Facet] = .init(prefix: "f", count: 4)
-  
+
   weak var disposableInteractor: FacetListInteractor?
   weak var disposableController: TestFacetListController?
-  
+
   func testLeak() {
     let interactor = FacetListInteractor(facets: facets, selectionMode: .single)
     let controller = TestFacetListController()
-    
+
     disposableInteractor = interactor
     disposableController = controller
-    
+
     let connection = FacetListConnector.ControllerConnection(facetListInteractor: interactor, controller: controller, presenter: FacetListPresenter())
     connection.connect()
   }
-  
+
   override func tearDown() {
     XCTAssertNil(disposableInteractor)
     XCTAssertNil(disposableController)
   }
-  
-  func testConnect() {
 
+  func testConnect() {
     let interactor = FacetListInteractor(facets: facets, selectionMode: .single)
     let controller = TestFacetListController()
 
@@ -51,7 +49,6 @@ class FacetListControllerConnectionTests: XCTestCase {
   }
 
   func testConnectFunction() {
-
     let interactor = FacetListInteractor(facets: facets, selectionMode: .single)
     let controller = TestFacetListController()
 
@@ -60,7 +57,6 @@ class FacetListControllerConnectionTests: XCTestCase {
     checkConnection(interactor: interactor,
                     controller: controller,
                     isConnected: true)
-
   }
 
   func testDisconnect() {
@@ -86,14 +82,13 @@ class FacetListControllerConnectionTests: XCTestCase {
                                           controller: controller,
                                           isConnected: isConnected)
     checkUpdateControllerWhenSelectionsChanged(interactor: interactor,
-                                             controller: controller,
-                                             isConnected: isConnected)
+                                               controller: controller,
+                                               isConnected: isConnected)
   }
 
   func checkSelectionsComputedOnClick(interactor: FacetListInteractor,
                                       controller: TestFacetListController,
                                       isConnected: Bool) {
-
     let selectionsComputedExpectation = expectation(description: "selections computed")
     selectionsComputedExpectation.isInverted = !isConnected
 
@@ -105,13 +100,11 @@ class FacetListControllerConnectionTests: XCTestCase {
     controller.onClick?(facets[2])
 
     waitForExpectations(timeout: 5, handler: .none)
-
   }
 
   func checkUpdateControllerWhenItemsChanged(interactor: FacetListInteractor,
                                              controller: TestFacetListController,
                                              isConnected: Bool) {
-
     let reloadExpectation = expectation(description: "reload expectation")
     reloadExpectation.isInverted = !isConnected
     reloadExpectation.expectedFulfillmentCount = 1
@@ -125,13 +118,11 @@ class FacetListControllerConnectionTests: XCTestCase {
     interactor.items = facetsWithAddition
 
     waitForExpectations(timeout: 5, handler: .none)
-
   }
 
   func checkUpdateControllerWhenSelectionsChanged(interactor: FacetListInteractor,
-                                                controller: TestFacetListController,
-                                                isConnected: Bool) {
-
+                                                  controller: TestFacetListController,
+                                                  isConnected: Bool) {
     let selectedIndex = 2
 
     let reloadExpectation = expectation(description: "reload expectation")
@@ -150,7 +141,5 @@ class FacetListControllerConnectionTests: XCTestCase {
     interactor.selections = [facets[selectedIndex].value]
 
     waitForExpectations(timeout: 5, handler: .none)
-
   }
-
 }

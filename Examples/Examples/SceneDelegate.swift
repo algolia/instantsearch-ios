@@ -8,10 +8,9 @@
 import UIKit
 
 class SceneDelegate: UIResponder, UIWindowSceneDelegate {
-
   var window: UIWindow?
 
-  func scene(_ scene: UIScene, willConnectTo session: UISceneSession, options connectionOptions: UIScene.ConnectionOptions) {
+  func scene(_ scene: UIScene, willConnectTo _: UISceneSession, options _: UIScene.ConnectionOptions) {
     let demoListViewController = DemoListViewController<Demo>(indexName: "mobile_demos")
     demoListViewController.title = "Examples"
     let pusher = ViewControllerPusher(factory: DemoViewControllerFactory(),
@@ -19,5 +18,4 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
     demoListViewController.didSelect = pusher.callAsFunction
     setMain(demoListViewController, for: scene)
   }
-
 }

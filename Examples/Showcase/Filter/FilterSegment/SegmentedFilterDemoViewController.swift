@@ -7,11 +7,10 @@
 //
 
 import Foundation
-import UIKit
 import InstantSearch
+import UIKit
 
 class SegmentedFilterDemoViewController: UIViewController {
-
   let demoController: SegmentedFilterDemoController
   let segmentedController: SegmentedController<Filter.Facet>
   let filterDebugViewController: FilterDebugViewController
@@ -23,7 +22,8 @@ class SegmentedFilterDemoViewController: UIViewController {
     super.init(nibName: nibNameOrNil, bundle: nibBundleOrNil)
   }
 
-  required init?(coder aDecoder: NSCoder) {
+  @available(*, unavailable)
+  required init?(coder _: NSCoder) {
     fatalError("init(coder:) has not been implemented")
   }
 
@@ -32,11 +32,9 @@ class SegmentedFilterDemoViewController: UIViewController {
     setup()
     setupUI()
   }
-
 }
 
 private extension SegmentedFilterDemoViewController {
-
   func setup() {
     demoController.filterMapConnector.connectController(segmentedController)
     demoController.clearFilterConnector.connectController(filterDebugViewController.clearFilterController)
@@ -64,5 +62,4 @@ private extension SegmentedFilterDemoViewController {
     view.addSubview(mainStackView)
     mainStackView.pin(to: view)
   }
-
 }

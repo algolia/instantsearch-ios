@@ -1,6 +1,6 @@
 //
 //  StatsInteractor+Searcher.swift
-//  
+//
 //
 //  Created by Vladislav Fitc on 07/12/2020.
 //
@@ -8,9 +8,7 @@
 import Foundation
 
 public extension StatsInteractor {
-
   struct SearcherConnection<Searcher: SearchResultObservable>: Connection where Searcher.SearchResult == SearchResponse {
-
     public let interactor: StatsInteractor
     public let searcher: Searcher
 
@@ -32,7 +30,5 @@ public extension StatsInteractor {
       searcher.onResults.cancelSubscription(for: interactor)
       (searcher as? ErrorObservable)?.onError.cancelSubscription(for: interactor)
     }
-
   }
-
 }

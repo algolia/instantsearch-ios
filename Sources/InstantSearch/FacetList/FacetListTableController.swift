@@ -6,67 +6,61 @@
 //
 
 #if !InstantSearchCocoaPods
-import InstantSearchCore
+  import InstantSearchCore
 #endif
 #if canImport(UIKit) && (os(iOS) || os(tvOS) || os(macOS))
-import UIKit
+  import UIKit
 
-open class FacetListTableController: NSObject, FacetListController {
+  open class FacetListTableController: NSObject, FacetListController {
+    open var onClick: ((Facet) -> Void)?
 
-  open var onClick: ((Facet) -> Void)?
+    public let tableView: UITableView
 
-  public let tableView: UITableView
+    public var selectableItems: [SelectableItem<Facet>] = []
+    public var facetPresenter: FacetPresenter?
 
-  public var selectableItems: [SelectableItem<Facet>] = []
-  public var facetPresenter: FacetPresenter?
+    let cellID: String
 
-  let cellID: String
+    public init(tableView: UITableView, cellID: String = "FacetList") {
+      self.tableView = tableView
+      self.cellID = cellID
+      super.init()
+      tableView.dataSource = self
+      tableView.delegate = self
+      tableView.register(UITableViewCell.self, forCellReuseIdentifier: cellID)
+    }
 
-  public init(tableView: UITableView, cellID: String = "FacetList") {
-    self.tableView = tableView
-    self.cellID = cellID
-    super.init()
-    tableView.dataSource = self
-    tableView.delegate = self
-    tableView.register(UITableViewCell.self, forCellReuseIdentifier: cellID)
+    // MARK: - RefinementFacetsViewController
+
+    public func setSelectableItems(selectableItems: [SelectableItem<Facet>]) {
+      self.selectableItems = selectableItems
+    }
+
+    public func reload() {
+      tableView.reloadData()
+    }
   }
 
-  // MARK: - RefinementFacetsViewController
+  extension FacetListTableController: UITableViewDataSource {
+    open func tableView(_: UITableView, numberOfRowsInSection _: Int) -> Int {
+      return selectableItems.count
+    }
 
-  public func setSelectableItems(selectableItems: [SelectableItem<Facet>]) {
-    self.selectableItems = selectableItems
+    open func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+      let cell = tableView.dequeueReusableCell(withIdentifier: cellID, for: indexPath)
+      let selectableRefinement = selectableItems[indexPath.row]
+      let facetPresenter = self.facetPresenter ?? DefaultPresenter.Facet.present
+      cell.textLabel?.text = facetPresenter(selectableRefinement.item)
+      cell.accessoryType = selectableRefinement.isSelected ? .checkmark : .none
+
+      return cell
+    }
   }
 
-  public func reload() {
-    tableView.reloadData()
+  extension FacetListTableController: UITableViewDelegate {
+    open func tableView(_: UITableView, didSelectRowAt indexPath: IndexPath) {
+      let selectableItem = selectableItems[indexPath.row]
+      onClick?(selectableItem.item)
+    }
   }
-
-}
-
-extension FacetListTableController: UITableViewDataSource {
-
-  open func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-    return selectableItems.count
-  }
-
-  open func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-    let cell = tableView.dequeueReusableCell(withIdentifier: cellID, for: indexPath)
-    let selectableRefinement = selectableItems[indexPath.row]
-    let facetPresenter = self.facetPresenter ?? DefaultPresenter.Facet.present
-    cell.textLabel?.text = facetPresenter(selectableRefinement.item)
-    cell.accessoryType = selectableRefinement.isSelected ? .checkmark : .none
-
-    return cell
-  }
-
-}
-
-extension FacetListTableController: UITableViewDelegate {
-
-  open func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-    let selectableItem = selectableItems[indexPath.row]
-    self.onClick?(selectableItem.item)
-  }
-
-}
 #endif

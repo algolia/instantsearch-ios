@@ -11,7 +11,6 @@ import Foundation
 import XCTest
 
 class TestCurrentFiltersController: CurrentFiltersController {
-
   var items: [FilterAndID] = []
 
   var didReload: (() -> Void)?
@@ -22,7 +21,6 @@ class TestCurrentFiltersController: CurrentFiltersController {
   }
 
   func reload() {
-    self.didReload?()
+    didReload?()
   }
-
 }

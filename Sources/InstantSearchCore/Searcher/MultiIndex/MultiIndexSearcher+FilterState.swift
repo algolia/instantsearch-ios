@@ -10,7 +10,6 @@ import Foundation
 
 @available(*, deprecated, message: "Use multiple HitsSearcher aggregated with MultiSearcher instead of MultiIndexSearcher")
 public extension MultiIndexSearcher {
-
   /**
    Establishes connection between searcher and filterState
    - Updates filters parameter of Searcher's `Query` at specified index according to a new `FilterState` content and relaunches search once `FilterState` changed
@@ -20,7 +19,6 @@ public extension MultiIndexSearcher {
 
   @available(*, deprecated, message: "Use multiple HitsSearcher aggregated with MultiSearcher instead of MultiIndexSearcher")
   struct FilterStateConnection: Connection {
-
     public let multiIndexSearcher: MultiIndexSearcher
     public let filterState: FilterState
     public let queryIndex: Int
@@ -37,18 +35,14 @@ public extension MultiIndexSearcher {
     public func disconnect() {
       filterState.onChange.cancelSubscription(for: multiIndexSearcher)
     }
-
   }
-
 }
 
 @available(*, deprecated, message: "Use multiple HitsSearcher aggregated with MultiSearcher instead of MultiIndexSearcher")
 public extension MultiIndexSearcher {
-
   @discardableResult func connectFilterState(_ filterState: FilterState, withQueryAtIndex index: Int) -> FilterStateConnection {
     let connection = FilterStateConnection(multiIndexSearcher: self, filterState: filterState, queryIndex: index)
     connection.connect()
     return connection
   }
-
 }

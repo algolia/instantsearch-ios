@@ -7,13 +7,11 @@
 //
 
 import Foundation
-
+// swiftlint:disable large_tuple
 public typealias HierarchicalFacet = (facet: Facet, level: Int, isSelected: Bool)
 
 public extension Hierarchical {
-
   struct ControllerConnection<Controller: HierarchicalController, Output>: Connection where Output == Controller.Item {
-
     public let interactor: HierarchicalInteractor
     public let controller: Controller
     public let presenter: ([HierarchicalFacet]) -> Output
@@ -40,29 +38,23 @@ public extension Hierarchical {
       interactor.onItemChanged.cancelSubscription(for: controller)
       controller.onClick = nil
     }
-
   }
-
 }
 
 public extension HierarchicalInteractor {
-
   @discardableResult func connectController<Controller: HierarchicalController, Output>(_ controller: Controller,
                                                                                         presenter: @escaping ([HierarchicalFacet]) -> Output) -> Hierarchical.ControllerConnection<Controller, Output> {
     let connection = Hierarchical.ControllerConnection(interactor: self, controller: controller, presenter: presenter)
     connection.connect()
     return connection
   }
-
 }
 
 public extension HierarchicalInteractor {
-
   @discardableResult func connectController<Controller: HierarchicalController>(_ controller: Controller,
                                                                                 presenter: @escaping HierarchicalPresenter = DefaultPresenter.Hierarchical.present) -> Hierarchical.ControllerConnection<Controller, [HierarchicalFacet]> {
     let connection = Hierarchical.ControllerConnection(interactor: self, controller: controller, presenter: presenter)
     connection.connect()
     return connection
   }
-
 }

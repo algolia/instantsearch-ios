@@ -9,7 +9,6 @@
 import Foundation
 
 public protocol ResultUpdatable {
-
   /// Result type
   associatedtype Result
 
@@ -19,5 +18,4 @@ public protocol ResultUpdatable {
   /// Updates result
   /// - returns: Operation encapsulating result update
   func update(_ result: Result) -> Operation
-
 }

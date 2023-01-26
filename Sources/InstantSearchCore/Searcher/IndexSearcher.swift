@@ -1,6 +1,6 @@
 //
 //  IndexSearcher.swift
-//  
+//
 //
 //  Created by Vladislav Fitc on 15/12/2020.
 //
@@ -9,8 +9,7 @@ import Foundation
 
 /// Abstract search service the request of which includes IndexName
 open class IndexSearcher<Service: SearchService>: AbstractSearcher<Service> where Service.Process == Operation, Service.Request: IndexNameProvider {
-
-  public override var request: Request {
+  override public var request: Request {
     didSet {
       if request.indexName != oldValue.indexName {
         cancel()
@@ -23,9 +22,8 @@ open class IndexSearcher<Service: SearchService>: AbstractSearcher<Service> wher
   /// - Parameter: equals to a new index value
   public let onIndexChanged: Observer<IndexName>
 
-  public override init(service: Service, initialRequest: Request) {
+  override public init(service: Service, initialRequest: Request) {
     onIndexChanged = .init()
     super.init(service: service, initialRequest: initialRequest)
   }
-
 }

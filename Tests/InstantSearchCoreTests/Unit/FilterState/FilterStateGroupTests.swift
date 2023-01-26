@@ -11,7 +11,6 @@ import Foundation
 import XCTest
 
 class FilterStateGroupTests: XCTestCase {
-
   func testOrGroupAddAll() {
     var filterState = GroupsStorage()
     let group = FilterGroup.ID.or(name: "group", filterType: .facet)
@@ -22,9 +21,9 @@ class FilterStateGroupTests: XCTestCase {
     XCTAssertTrue(filterState.contains(filter2))
 
     XCTAssertEqual(filterState.buildSQL(), """
-        ( "category":"chair" OR "category":"table" )
-        """)
-    
+    ( "category":"chair" OR "category":"table" )
+    """)
+
     let fs = FilterState()
     fs[or: "disjusnctiveGroup"].add(Filter.Facet(attribute: "brand", value: "samsung"))
   }
@@ -39,8 +38,7 @@ class FilterStateGroupTests: XCTestCase {
     XCTAssertTrue(filterState.contains(filterSize))
 
     XCTAssertEqual(filterState.buildSQL(), """
-        ( "price" > 10.0 AND "size" > 20.0 )
-        """)
+    ( "price" > 10.0 AND "size" > 20.0 )
+    """)
   }
-
 }

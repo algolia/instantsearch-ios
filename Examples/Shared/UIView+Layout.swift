@@ -9,7 +9,6 @@ import Foundation
 import UIKit
 
 extension UIView {
-
   func pin(to view: UIView, insets: UIEdgeInsets = .init()) {
     NSLayoutConstraint.activate([
       topAnchor.constraint(equalTo: view.topAnchor, constant: insets.top),
@@ -33,5 +32,4 @@ extension UIView {
     view.translatesAutoresizingMaskIntoConstraints = false
     return view
   }
-
 }

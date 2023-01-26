@@ -10,7 +10,6 @@ import Foundation
 import InstantSearchCore
 
 class FilterNumericRangeDemoController {
-
   let searcher: HitsSearcher
   let filterState: FilterState
   let filterClearConnector: FilterClearConnector
@@ -20,10 +19,10 @@ class FilterNumericRangeDemoController {
   let statsConnector: StatsConnector
 
   init() {
-    self.searcher = HitsSearcher(client: .instantSearch,
-                                 indexName: .filterNumericComparison)
-    self.filterState = .init()
-    self.filterClearConnector = .init(filterState: filterState)
+    searcher = HitsSearcher(client: .instantSearch,
+                            indexName: .filterNumericComparison)
+    filterState = .init()
+    filterClearConnector = .init(filterState: filterState)
     rangeConnector = .init(searcher: searcher,
                            filterState: filterState,
                            attribute: "price")
@@ -32,5 +31,4 @@ class FilterNumericRangeDemoController {
     searcher.connectFilterState(filterState)
     searcher.search()
   }
-
 }

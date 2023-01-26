@@ -8,7 +8,6 @@ import Foundation
 
 @available(*, deprecated, message: "Use SortByInteractor instead")
 public class SwitchIndexInteractor {
-
   public var indexNames: [IndexName]
 
   public var selectedIndexName: IndexName {
@@ -24,7 +23,6 @@ public class SwitchIndexInteractor {
     assert(indexNames.contains(selectedIndexName))
     self.indexNames = indexNames
     self.selectedIndexName = selectedIndexName
-    self.onSelectionChange = .init()
+    onSelectionChange = .init()
   }
-
 }

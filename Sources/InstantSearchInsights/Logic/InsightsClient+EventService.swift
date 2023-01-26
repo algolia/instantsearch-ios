@@ -1,21 +1,20 @@
 //
 //  InsightsClient+EventService.swift
-//  
+//
 //
 //  Created by Vladislav Fitc on 20/10/2020.
 //
 
-import Foundation
 import AlgoliaSearchClient
+import Foundation
 
 extension InsightsClient: EventsService {
-
   public func sendEvents(_ events: [InsightsEvent], completion: @escaping (Result<Void, Error>) -> Void) {
     sendEvents(events, requestOptions: nil) { result in
       switch result {
       case .success:
         completion(.success(()))
-      case .failure(let error):
+      case let .failure(error):
         completion(.failure(error))
       }
     }
@@ -29,5 +28,4 @@ extension InsightsClient: EventsService {
     // In case of a WebserviceError the package was wronlgy constructed, no need to retry
     return !(400..<500).contains(httpError.statusCode)
   }
-
 }

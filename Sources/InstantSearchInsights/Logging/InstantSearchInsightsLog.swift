@@ -1,6 +1,6 @@
 //
 //  InstantSearchInsightsLog.swift
-//  
+//
 //
 //  Created by Vladislav Fitc on 18/08/2022.
 //
@@ -11,7 +11,6 @@ import Logging
 typealias Logger = Logging.Logger
 
 class InstantSearchInsightsLog: LogCollectable {
-
   static var logger: Logging.Logger = {
     subscribeForLogLevelChange { logLevel in
       InstantSearchInsightsLog.logger.logLevel = logLevel
@@ -30,5 +29,4 @@ class InstantSearchInsightsLog: LogCollectable {
   }
 
   private init() {}
-
 }

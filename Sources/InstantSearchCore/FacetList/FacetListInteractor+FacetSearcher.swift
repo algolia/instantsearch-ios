@@ -9,14 +9,11 @@
 import Foundation
 
 public extension FacetListInteractor {
-
   struct FacetSearcherConnection: Connection {
-
     public let interactor: FacetListInteractor
     public let searcher: FacetSearcher
 
     public func connect() {
-
       // When new facet search results then update items
 
       searcher.onResults.subscribePast(with: interactor) { interactor, facetResults in
@@ -32,24 +29,19 @@ public extension FacetListInteractor {
           assertionFailure(error.message?.description ?? "")
         }
       }
-
     }
 
     public func disconnect() {
       searcher.onResults.cancelSubscription(for: interactor)
       searcher.onError.cancelSubscription(for: interactor)
     }
-
   }
-
 }
 
 public extension FacetListInteractor {
-
   @discardableResult func connectFacetSearcher(_ facetSearcher: FacetSearcher) -> FacetSearcherConnection {
     let connection = FacetSearcherConnection(interactor: self, searcher: facetSearcher)
     connection.connect()
     return connection
   }
-
 }

@@ -6,14 +6,12 @@
 //
 
 import Foundation
-import SwiftUI
 import InstantSearchCore
 import InstantSearchSwiftUI
+import SwiftUI
 
 struct SearchDemoSwiftUI: SwiftUIDemo, PreviewProvider {
-
   class Controller {
-
     let demoController: EcommerceDemoController
     let hitsController: HitsObservableController<Hit<StoreItem>>
     let searchBoxController: SearchBoxObservableController
@@ -32,11 +30,9 @@ struct SearchDemoSwiftUI: SwiftUIDemo, PreviewProvider {
       demoController.loadingConnector.connectController(loadingController)
       demoController.searcher.search()
     }
-
   }
 
   struct ContentView: View {
-
     @ObservedObject var searchBoxController: SearchBoxObservableController
     @ObservedObject var hitsController: HitsObservableController<Hit<StoreItem>>
     @ObservedObject var statsController: StatsTextObservableController
@@ -52,7 +48,7 @@ struct SearchDemoSwiftUI: SwiftUIDemo, PreviewProvider {
           }
         }
         .padding(.horizontal, 20)
-        HitsList(hitsController) { (hit, _) in
+        HitsList(hitsController) { hit, _ in
           ProductRow(storeItemHit: hit!)
             .padding()
             .frame(height: 100)
@@ -68,7 +64,6 @@ struct SearchDemoSwiftUI: SwiftUIDemo, PreviewProvider {
       }
       .padding(.horizontal, 15)
     }
-
   }
 
   static func contentView(with controller: Controller) -> ContentView {
@@ -91,5 +86,4 @@ struct SearchDemoSwiftUI: SwiftUIDemo, PreviewProvider {
       contentView(with: controller)
     }
   }
-
 }

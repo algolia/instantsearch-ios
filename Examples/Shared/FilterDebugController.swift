@@ -7,11 +7,10 @@
 //
 
 import Foundation
-import UIKit
 import InstantSearchCore
+import UIKit
 
 class FilterDebugController {
-
   let stateLabel: UILabel
   let emptyMessage = NSAttributedString(string: "No filters applied")
   var colorMap: [String: UIColor]
@@ -27,15 +26,13 @@ class FilterDebugController {
   func connectTo(_ filterState: FilterState) {
     filterState.onChange.subscribePast(with: self) { viewController, filterState in
       let filtersText = filterState.toFilterGroups().sqlFormWithSyntaxHighlighting(colorMap: viewController.colorMap)
-      viewController.stateLabel.attributedText = filtersText.string.isEmpty ?  viewController.emptyMessage : filtersText
+      viewController.stateLabel.attributedText = filtersText.string.isEmpty ? viewController.emptyMessage : filtersText
     }.onQueue(.main)
   }
-
 }
 
-extension Collection where Element == FilterGroupType {
-
-  public func sqlFormWithSyntaxHighlighting(colorMap: [String: UIColor]) -> NSAttributedString {
+public extension Collection where Element == FilterGroupType {
+  func sqlFormWithSyntaxHighlighting(colorMap: [String: UIColor]) -> NSAttributedString {
     let converter = FilterGroupConverter()
     let groupsSeparator = " AND "
     return compactMap { element -> NSAttributedString? in
@@ -53,27 +50,23 @@ extension Collection where Element == FilterGroupType {
         .flatMap { sqlString in
           return NSMutableAttributedString()
             .appendWith(color: color, weight: .regular, ofSize: 18.0, sqlString)
-      }
-
-      }
-      .joined(separator: NSMutableAttributedString()
-        .appendWith(weight: .semibold, ofSize: 18.0, groupsSeparator))
+        }
+    }
+    .joined(separator: NSMutableAttributedString()
+      .appendWith(weight: .semibold, ofSize: 18.0, groupsSeparator))
   }
-
 }
 
 extension NSMutableAttributedString {
-
   @discardableResult func appendWith(color: UIColor = UIColor.darkText, weight: UIFont.Weight = .regular, ofSize: CGFloat = 12.0, _ text: String) -> NSMutableAttributedString {
     let attrText = NSAttributedString.makeWith(color: color, weight: weight, ofSize: ofSize, text)
-    self.append(attrText)
+    append(attrText)
     return self
   }
-
 }
-extension NSAttributedString {
 
-  public static func makeWith(color: UIColor = UIColor.darkText, weight: UIFont.Weight = .regular, ofSize: CGFloat = 12.0, _ text: String) -> NSMutableAttributedString {
+public extension NSAttributedString {
+  static func makeWith(color: UIColor = UIColor.darkText, weight: UIFont.Weight = .regular, ofSize: CGFloat = 12.0, _ text: String) -> NSMutableAttributedString {
     let attrs = [NSAttributedString.Key.font: UIFont.systemFont(ofSize: ofSize, weight: weight), NSAttributedString.Key.foregroundColor: color]
     return NSMutableAttributedString(string: text, attributes: attrs)
   }
@@ -85,7 +78,7 @@ extension Sequence where Iterator.Element: NSAttributedString {
   ///     - separator: A string to insert between each of the elements in this sequence. The default separator is an empty string.
   func joined(separator: NSAttributedString = NSAttributedString(string: "")) -> NSAttributedString {
     var isFirst = true
-    return self.reduce(NSMutableAttributedString()) { (source, string) in
+    return reduce(NSMutableAttributedString()) { source, string in
       if isFirst {
         isFirst = false
       } else {
@@ -102,5 +95,4 @@ extension Sequence where Iterator.Element: NSAttributedString {
   func joined(separator: String = "") -> NSAttributedString {
     return joined(separator: NSAttributedString(string: separator))
   }
-
 }

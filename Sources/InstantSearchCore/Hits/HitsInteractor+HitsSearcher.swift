@@ -9,17 +9,14 @@
 import Foundation
 
 public extension HitsInteractor {
-
   @available(*, deprecated, renamed: "HitsSearcherConnection")
   typealias SingleIndexSearcherConnection = HitsSearcherConnection
 
   struct HitsSearcherConnection: Connection {
-
     public let interactor: HitsInteractor
     public let searcher: HitsSearcher
 
     public func connect() {
-
       interactor.pageLoader = searcher
 
       searcher.onResults.subscribePast(with: interactor) { interactor, searchResults in
@@ -39,7 +36,6 @@ public extension HitsInteractor {
       searcher.onQueryChanged.subscribePast(with: interactor) { interactor, _ in
         interactor.notifyQueryChanged()
       }
-
     }
 
     public func disconnect() {
@@ -51,17 +47,13 @@ public extension HitsInteractor {
       searcher.onIndexChanged.cancelSubscription(for: interactor)
       searcher.onQueryChanged.cancelSubscription(for: interactor)
     }
-
   }
-
 }
 
 public extension HitsInteractor {
-
   @discardableResult func connectSearcher(_ searcher: HitsSearcher) -> HitsSearcherConnection {
     let connection = HitsSearcherConnection(interactor: self, searcher: searcher)
     connection.connect()
     return connection
   }
-
 }

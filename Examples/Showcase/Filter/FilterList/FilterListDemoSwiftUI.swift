@@ -12,9 +12,7 @@ import InstantSearchSwiftUI
 import SwiftUI
 
 struct FilterListDemoSwiftUI: PreviewProvider {
-
   class Controller<F: FilterType & Hashable> {
-
     let title: String
     let observableController: FilterListObservableController<F>
     let demoController: FilterListDemoController<F>
@@ -27,20 +25,18 @@ struct FilterListDemoSwiftUI: PreviewProvider {
          selectionMode: SelectionMode,
          description: @escaping (F) -> String) {
       self.title = title
-      self.observableController = .init()
-      self.demoController = .init(filters: filters,
-                                  controller: observableController,
-                                  selectionMode: selectionMode)
-      self.clearFilterController = .init()
+      observableController = .init()
+      demoController = .init(filters: filters,
+                             controller: observableController,
+                             selectionMode: selectionMode)
+      clearFilterController = .init()
       self.filters = filters
       self.description = description
       demoController.clearFilterConnector.connectController(clearFilterController)
     }
-
   }
 
   struct ContentView<Filter: FilterType & Hashable>: View {
-
     let title: String
     let description: (Filter) -> String
     let controller: FilterListObservableController<Filter>
@@ -85,11 +81,9 @@ struct FilterListDemoSwiftUI: PreviewProvider {
       }
       .contentShape(Rectangle())
     }
-
   }
 
   class ViewController<F: FilterType & Hashable>: UIHostingController<ContentView<F>> {
-
     let controller: Controller<F>
     let filterStateObservableController: FilterStateObservableController
 
@@ -103,13 +97,12 @@ struct FilterListDemoSwiftUI: PreviewProvider {
                                     title: controller.title)
       super.init(rootView: contentView)
       UIScrollView.appearance().keyboardDismissMode = .interactive
-
     }
 
-    @objc required dynamic init?(coder aDecoder: NSCoder) {
+    @available(*, unavailable)
+    @objc dynamic required init?(coder _: NSCoder) {
       fatalError("init(coder:) has not been implemented")
     }
-
   }
 
   static func facetViewController() -> ViewController<FacetFilter> {
@@ -130,8 +123,8 @@ struct FilterListDemoSwiftUI: PreviewProvider {
                                                     "green",
                                                     "yellow",
                                                     "black"].map {
-    FacetFilter(attribute: "color", stringValue: $0)
-  },
+                                            FacetFilter(attribute: "color", stringValue: $0)
+                                          },
                                           selectionMode: .multiple,
                                           description: \.value.description)
 
@@ -142,7 +135,7 @@ struct FilterListDemoSwiftUI: PreviewProvider {
     NumericFilter(attribute: "price", range: 25...100),
     NumericFilter(attribute: "price", operator: .greaterThan, value: 100)
   ], selectionMode: .single,
-                                            description: \.value.description)
+  description: \.value.description)
 
   static let tagController = Controller(title: "Promotion",
                                         filters: [Filter.Tag]([
@@ -178,5 +171,4 @@ struct FilterListDemoSwiftUI: PreviewProvider {
                   title: tagController.title)
     }
   }
-
 }
