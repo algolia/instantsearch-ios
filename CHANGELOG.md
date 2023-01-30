@@ -1,5 +1,18 @@
 # ChangeLog
 
+## [7.22.0](https://github.com/algolia/instantsearch-ios/compare/7.21.2...7.22.0) (2023-01-30)
+
+### Feat
+
+- **dynamicFacetList**: add default selection & faceting parameters (#272) ([1c311b5](https://github.com/algolia/instantsearch-ios/commit/1c311b5))
+
+### Fix
+
+- **HitsObservableController**: empty queries conditional display not working (#267) ([d67b03a](https://github.com/algolia/instantsearch-ios/commit/d67b03a))
+- send empty events packages if all non statisfying condition (#268) ([0dcd985](https://github.com/algolia/instantsearch-ios/commit/0dcd985))
+
+
+
 ## [7.21.2](https://github.com/algolia/instantsearch-ios/compare/7.21.1...7.21.2) (2022-11-02)
 
 ### Fix
