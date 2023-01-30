@@ -1,11 +1,19 @@
 name: SwiftLint
-on: [push]
+on: 
+  push: 
+    branches: [master]
+  pull_request:
+    branches: [master]
 jobs:
   lint:
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@v1
-      - name: GitHub Action for SwiftLint with --strict
+      - name: Checkout Code
+        uses: actions/checkout@v2
+        with:
+          # Full git history is needed to get a proper list of changed files
+          fetch-depth: 0
+      - name: Lint
         uses: norio-nomura/action-swiftlint@3.2.1
         with:
           args: --strict
