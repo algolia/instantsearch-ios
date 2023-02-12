@@ -1,5 +1,5 @@
 //
-//  UserAgentSetter.swift
+//  InsightsUserAgentSetter.swift
 //
 //
 //  Created by Vladislav Fitc on 03/02/2023.
@@ -8,7 +8,7 @@
 import AlgoliaSearchClient
 import Foundation
 
-struct UserAgentSetter {
+struct InsightsUserAgentSetter {
   /// Add the library's version to the client's user agents, if not already present.
   static let set = Self()
 

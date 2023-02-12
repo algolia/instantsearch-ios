@@ -60,7 +60,7 @@ public protocol ErrorObservable {
 extension Searcher {
   /// Add the library's version to the client's user agents, if not already present.
   func updateClientUserAgents() {
-    _ = UserAgentSetter.set
+    _ = CoreUserAgentSetter.set
   }
 }
 

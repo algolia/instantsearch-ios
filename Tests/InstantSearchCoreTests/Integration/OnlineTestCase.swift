@@ -33,7 +33,7 @@ class OnlineTestCase: XCTestCase {
       throw Error.missingCredentials
     }
 
-    _ = UserAgentSetter.set
+    _ = CoreUserAgentSetter.set
 
     client = SearchClient(appID: credentials.applicationID, apiKey: credentials.apiKey)
 
