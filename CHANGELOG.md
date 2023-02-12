@@ -1,5 +1,13 @@
 # ChangeLog
 
+## [7.23.0](https://github.com/algolia/instantsearch-ios/compare/7.22.0...7.23.0) (2023-02-12)
+
+### Feat
+
+- **Insights**: add user-agent extension (#274) ([42b5d08](https://github.com/algolia/instantsearch-ios/commit/42b5d08))
+
+
+
 ## [7.22.0](https://github.com/algolia/instantsearch-ios/compare/7.21.2...7.22.0) (2023-01-30)
 
 ### Feat
