@@ -30,9 +30,9 @@ import InstantSearchTelemetry
 
     public func reload() {
       if let hitsSource = hitsSource, hitsSource.numberOfHits() > 0 {
-          self.hits = hitsSource.hits
+        hits = hitsSource.hits
       } else {
-          self.hits = []
+        hits = []
       }
     }
 

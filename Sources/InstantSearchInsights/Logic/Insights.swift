@@ -161,6 +161,7 @@ public class Insights {
                                                  userToken: UserToken? = .none,
                                                  generateTimestamps: Bool = true,
                                                  region: Region? = region) -> Insights {
+    _ = InsightsUserAgentSetter.set
     let logger = Logger(label: "Insights (\(appId.rawValue))")
     logger.info("application registered")
     let insights = Insights(applicationID: appId,

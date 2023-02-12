@@ -1,5 +1,5 @@
 //
-//  UserAgentSetter.swift
+//  CoreUserAgentSetter.swift
 //
 //
 //  Created by Vladislav Fitc on 16/06/2020.
@@ -7,7 +7,7 @@
 
 import Foundation
 
-struct UserAgentSetter {
+struct CoreUserAgentSetter {
   /// Add the library's version to the client's user agents, if not already present.
   static let set = Self()
 
