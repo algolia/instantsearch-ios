@@ -30,9 +30,9 @@ class PetSmartDemoController {
 
   init() {
     searcher = .init(client: SearchClient(appID: "YOUR_APP_ID",
-                                          apiKey: "YOUR_API_KEY"),
+                                          apiKey: "YOUD_API_KEYfix"),
                      indexName: "p-staging-US__products___")
-    hitsInteractor = .init()
+    hitsInteractor = .init(infiniteScrolling: .on(withOffset: 5))
     searchBoxConnector = .init(searcher: searcher, searchTriggeringMode: .searchAsYouType)
     statsConnector = .init(searcher: searcher)
     hitsInteractor.connectSearcher(searcher)
