@@ -11,6 +11,10 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
   var window: UIWindow?
 
   func scene(_ scene: UIScene, willConnectTo _: UISceneSession, options _: UIScene.ConnectionOptions) {
-    setMain(SearchDemoViewController(searchTriggeringMode: .searchAsYouType), for: scene)
+    let controller = PetSmartDemoSwiftUI.Controller()
+    let view = PetSmartDemoSwiftUI.contentView(with: controller)
+    let viewController = CommonSwiftUIDemoViewController(controller: controller, rootView: view)
+    setMain(viewController, for: scene)
+//    setMain(SearchDemoViewController(searchTriggeringMode: .searchAsYouType), for: scene)
   }
 }

@@ -245,6 +245,7 @@
 		40718B62282924640061DC87 /* UIColor+Convenience.swift in Sources */ = {isa = PBXBuildFile; fileRef = AF50CC3327F72FF80036F549 /* UIColor+Convenience.swift */; };
 		40718B632829246F0061DC87 /* MovieDemoController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 405FAB6928246046002E3E4B /* MovieDemoController.swift */; };
 		40718B64282924770061DC87 /* TMDB.swift in Sources */ = {isa = PBXBuildFile; fileRef = 40F61F1B282801840040ECD2 /* TMDB.swift */; };
+		4071A96E29DB30CD009DD664 /* PetSmart.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4071A96D29DB30CD009DD664 /* PetSmart.swift */; };
 		4073B5952806CAE200E05EF6 /* SliderView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4073B5942806CAE200E05EF6 /* SliderView.swift */; };
 		4073B5962806CAE200E05EF6 /* SliderView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4073B5942806CAE200E05EF6 /* SliderView.swift */; };
 		4073B59E28076B6F00E05EF6 /* Double+Range.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4073B59D28076B6F00E05EF6 /* Double+Range.swift */; };
@@ -887,6 +888,7 @@
 		40718B55282923E90061DC87 /* Preview Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = "Preview Assets.xcassets"; sourceTree = "<group>"; };
 		40718B5A2829240C0061DC87 /* Controller.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Controller.swift; sourceTree = "<group>"; };
 		40718B5E282924310061DC87 /* MovieRow.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MovieRow.swift; sourceTree = "<group>"; };
+		4071A96D29DB30CD009DD664 /* PetSmart.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PetSmart.swift; sourceTree = "<group>"; };
 		4073B5942806CAE200E05EF6 /* SliderView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SliderView.swift; sourceTree = "<group>"; };
 		4073B59D28076B6F00E05EF6 /* Double+Range.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Double+Range.swift"; sourceTree = "<group>"; };
 		4073B5A028076E9600E05EF6 /* RatingFilterDemoController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RatingFilterDemoController.swift; sourceTree = "<group>"; };
@@ -1881,6 +1883,7 @@
 				AF50CBFD27F72CA80036F549 /* SceneDelegate.swift */,
 				404C4133280C9E8300EC9FEB /* SearchDemoViewController.swift */,
 				40E1B073280811840092B424 /* SearchDemoSwiftUI.swift */,
+				4071A96D29DB30CD009DD664 /* PetSmart.swift */,
 				AF50CC0427F72CA90036F549 /* Assets.xcassets */,
 				AF50CC0627F72CA90036F549 /* LaunchScreen.storyboard */,
 				AF50CC0927F72CA90036F549 /* Info.plist */,
@@ -3914,6 +3917,7 @@
 				404C413E280C9F7C00EC9FEB /* ProductRow.swift in Sources */,
 				AF50CDA927FB29A10036F549 /* SceneDelegate+Convenience.swift in Sources */,
 				AF50CBFE27F72CA80036F549 /* SceneDelegate.swift in Sources */,
+				4071A96E29DB30CD009DD664 /* PetSmart.swift in Sources */,
 				AF50CCD827FAE6AA0036F549 /* UIView+Layout.swift in Sources */,
 				404C4135280C9E8300EC9FEB /* SearchDemoViewController.swift in Sources */,
 				4034B6E3280F8A2600F4A303 /* ProductTableViewCell.swift in Sources */,
