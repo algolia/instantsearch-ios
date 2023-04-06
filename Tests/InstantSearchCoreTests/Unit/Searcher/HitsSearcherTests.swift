@@ -131,4 +131,25 @@ class HitsSearcherTests: XCTestCase {
     searcher.onResults.fire(SearchResponse(hits: hits))
   }
   
+  func testAutomaticHitsViewTrackingOptOut() {
+    let searcher = HitsSearcher(appID: "test_app_id",
+                                apiKey: "test_api_key",
+                                indexName: "test_index_name")
+
+    let testHitsTracker = TestHitsTracker()
+    
+    let exp = expectation(description: "shouldn't trigger")
+    exp.isInverted = true
+    testHitsTracker.didView = { arg in
+      exp.fulfill()
+    }
+    searcher.hitsTracker = HitsTracker(eventName: "test event name",
+                                       searcher: .singleIndex(searcher),
+                                       tracker: testHitsTracker)
+    searcher.hitsTracker.isEnabled = false
+    
+    searcher.onResults.fire(SearchResponse(hits: []))
+    wait(for: [exp], timeout: 3)
+  }
+  
 }

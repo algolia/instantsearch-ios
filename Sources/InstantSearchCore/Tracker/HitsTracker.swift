@@ -18,6 +18,8 @@ public class HitsTracker: InsightsTracker {
   /// The name of the event to track.
   public let eventName: EventName
   
+  public var isEnabled: Bool
+  
   /// A `TrackableSearcher` object that provides search results to be tracked.
   internal let searcher: TrackableSearcher
   
@@ -53,7 +55,7 @@ public class HitsTracker: InsightsTracker {
     self.eventName = eventName
     self.searcher = searcher
     self.tracker = tracker
-    
+    self.isEnabled = true
     searcher.setClickAnalyticsOn(true)
     searcher.subscribeForQueryIDChange(self)
   }
@@ -95,6 +97,7 @@ public extension HitsTracker {
   func trackClick<Record: Codable>(for hits: [Hit<Record>],
                                    positions: [Int],
                                    eventName: EventName? = nil) {
+    guard isEnabled else { return }
     guard let queryID = queryID else { return }
     tracker.clickedAfterSearch(eventName: eventName ?? self.eventName,
                                indexName: searcher.indexName,
@@ -122,6 +125,7 @@ public extension HitsTracker {
   ///   - eventName: An optional custom event name.
   func trackConvert<Record: Codable>(for hits: [Hit<Record>],
                                      eventName: EventName? = nil) {
+    guard isEnabled else { return }
     guard let queryID = queryID else { return }
     tracker.convertedAfterSearch(eventName: eventName ?? self.eventName,
                                  indexName: searcher.indexName,
@@ -149,6 +153,7 @@ public extension HitsTracker {
   ///   - eventName: An optional custom event name.
   func trackView<Record: Codable>(for hits: [Hit<Record>],
                                   eventName: EventName? = nil) {
+    guard isEnabled else { return }
     tracker.viewed(eventName: eventName ?? self.eventName,
                    indexName: searcher.indexName,
                    objectIDs: hits.map(\.objectID),
