@@ -96,4 +96,39 @@ class HitsSearcherTests: XCTestCase {
 
     waitForExpectations(timeout: 2, handler: .none)
   }
+  
+  func testAutomaticHitsViewTracking() {
+    let searcher = HitsSearcher(appID: "test_app_id",
+                                apiKey: "test_api_key",
+                                indexName: "test_index_name")
+
+    let testHitsTracker = TestHitsTracker()
+    
+    testHitsTracker.didView = { arg in
+      XCTAssertEqual(arg.eventName, "Hits Viewed")
+      XCTAssertEqual(arg.indexName, "test_index_name")
+      XCTAssertEqual(arg.objectIDs, ["id1", "id2", "id3"])
+    }
+    searcher.hitsTracker = HitsTracker(eventName: "test event name",
+                                       searcher: .singleIndex(searcher),
+                                       tracker: testHitsTracker)
+    let rawHits: [JSON] = [
+      [
+        "objectID": "id1",
+        "title": "object1"
+      ],
+      [
+        "objectID": "id2",
+        "title": "object2"
+      ],
+      [
+        "objectID": "id3",
+        "title": "object3"
+      ]
+    ]
+    
+    let hits = try! rawHits.map(Hit<JSON>.init)
+    searcher.onResults.fire(SearchResponse(hits: hits))
+  }
+  
 }
