@@ -109,7 +109,7 @@ class HitsSearcherTests: XCTestCase {
       XCTAssertEqual(arg.indexName, "test_index_name")
       XCTAssertEqual(arg.objectIDs, ["id1", "id2", "id3"])
     }
-    searcher.hitsTracker = HitsTracker(eventName: "test event name",
+    searcher.eventTracker = HitsTracker(eventName: "test event name",
                                        searcher: .singleIndex(searcher),
                                        tracker: testHitsTracker)
     let rawHits: [JSON] = [
@@ -143,10 +143,10 @@ class HitsSearcherTests: XCTestCase {
     testHitsTracker.didView = { arg in
       exp.fulfill()
     }
-    searcher.hitsTracker = HitsTracker(eventName: "test event name",
+    searcher.eventTracker = HitsTracker(eventName: "test event name",
                                        searcher: .singleIndex(searcher),
                                        tracker: testHitsTracker)
-    searcher.hitsTracker.isEnabled = false
+    searcher.eventTracker.isEnabled = false
     
     searcher.onResults.fire(SearchResponse(hits: []))
     wait(for: [exp], timeout: 3)
