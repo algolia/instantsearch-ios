@@ -8,6 +8,7 @@
 import Foundation
 import InstantSearchCore
 import InstantSearchSwiftUI
+import InstantSearch
 import SwiftUI
 
 struct PetSmartItem: Codable {
@@ -30,9 +31,10 @@ class PetSmartDemoController {
 
   init() {
     searcher = .init(client: SearchClient(appID: "YOUR_APP_ID",
-                                          apiKey: "YOUD_API_KEYfix"),
+                                          apiKey: "YOUR_API_KEY"),
                      indexName: "p-staging-US__products___")
-    hitsInteractor = .init(infiniteScrolling: .on(withOffset: 5))
+    hitsInteractor = .init(infiniteScrolling: .on(withOffset: 10))
+    hitsInteractor.pageCleanUpOffset = 2
     searchBoxConnector = .init(searcher: searcher, searchTriggeringMode: .searchAsYouType)
     statsConnector = .init(searcher: searcher)
     hitsInteractor.connectSearcher(searcher)
@@ -119,9 +121,11 @@ struct PetSmartDemoSwiftUI: SwiftUIDemo, PreviewProvider {
           if let hit {
             HitRow(title: hit.object.name,
                         imageURL: URL(string: hit.object.images.large)!)
+            .frame(height: 80)
           } else {
             ProgressView()
               .padding()
+              .frame(height: 80)
           }
           Divider()
         } noResults: {

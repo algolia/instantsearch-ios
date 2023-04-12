@@ -198,9 +198,10 @@ extension PageMap {
 
     guard !pagesToRemove.isEmpty else { return }
     InstantSearchCoreLog.trace("InfiniteScrolling: clean pages: \(pagesToRemove.map(String.init).joined(separator: ", "))")
-
+    print("remove page \(pagesToRemove), while page index \(pageIndex)")
     for pageIndex in pagesToRemove {
       storage.removeValue(forKey: pageIndex)
+      loadedPageIndexes.remove(pageIndex)
     }
   }
 }

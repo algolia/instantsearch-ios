@@ -114,7 +114,7 @@ public class HitsInteractor<Record: Codable>: AnyHitsInteractor {
 
   public func hit(atIndex index: Int) -> Record? {
     guard let hitsPageMap = paginator.pageMap else { return nil }
-    notifyDidPresentRow(atIndex: index)
+//    notifyDidPresentRow(atIndex: index)
     return hitsPageMap[index]
   }
 

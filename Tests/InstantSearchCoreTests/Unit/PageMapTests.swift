@@ -155,28 +155,30 @@ class PageMapTests: XCTestCase {
   }
 
   func testCleanUp2() {
-    let page0 = (0...10).map { "a\($0)" }
-    let page1 = (0...10).map { "b\($0)" }
-    let page2 = (0...10).map { "c\($0)" }
-    let page3 = (0...10).map { "d\($0)" }
+    let page0 = (0..<10).map { "a\($0)" }
+    let page1 = (0..<10).map { "b\($0)" }
+    let page2 = (0..<10).map { "c\($0)" }
+    let page3 = (0..<10).map { "d\($0)" }
 
     var pageMap = PageMap([0: page0, 1: page1, 2: page2, 3: page3])
 
     pageMap?.cleanUp(basePageIndex: 2, keepingPagesOffset: 1)
 
     XCTAssertEqual(pageMap?.loadedPages, toPages([(1, page1), (2, page2), (3, page3)]))
+    XCTAssertEqual(pageMap?.endIndex, 40)
   }
 
   func testCleanUp3() {
-    let page0 = (0...10).map { "a\($0)" }
-    let page1 = (0...10).map { "b\($0)" }
-    let page2 = (0...10).map { "c\($0)" }
-    let page3 = (0...10).map { "d\($0)" }
+    let page0 = (0..<10).map { "a\($0)" }
+    let page1 = (0..<10).map { "b\($0)" }
+    let page2 = (0..<10).map { "c\($0)" }
+    let page3 = (0..<10).map { "d\($0)" }
 
     var pageMap = PageMap([0: page0, 1: page1, 2: page2, 3: page3])
     pageMap?.cleanUp(basePageIndex: 2, keepingPagesOffset: 0)
 
     XCTAssertEqual(pageMap?.loadedPages, toPages([(2, page2)]))
+    XCTAssertEqual(pageMap?.endIndex, 30)
   }
 
   func testCleanUp4() {

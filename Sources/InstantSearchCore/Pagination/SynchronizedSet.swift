@@ -13,11 +13,15 @@ class SynchronizedSet<T: Hashable> {
   private var storage: Set<T> = []
 
   func contains(_ item: T) -> Bool {
-    var containsItem: Bool!
     queue.sync {
-      containsItem = self.storage.contains(item)
+      self.storage.contains(item)
     }
-    return containsItem
+  }
+  
+  func currentState() -> Set<T> {
+    queue.sync {
+      self.storage
+    }
   }
 
   func insert(_ item: T) {
@@ -27,13 +31,13 @@ class SynchronizedSet<T: Hashable> {
   }
 
   func remove(_ item: T) {
-    queue.async(flags: .barrier) {
+    _ = queue.sync(flags: .barrier) {
       self.storage.remove(item)
     }
   }
 
   func removeAll() {
-    queue.async(flags: .barrier) {
+    queue.sync(flags: .barrier) {
       self.storage.removeAll()
     }
   }

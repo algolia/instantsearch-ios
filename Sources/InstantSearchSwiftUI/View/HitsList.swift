@@ -36,7 +36,7 @@
         noResults
       } else {
         if #available(iOS 14.0, OSX 11.0, tvOS 14.0, *) {
-          ScrollView(showsIndicators: false) {
+          ScrollView(showsIndicators: true) {
             LazyVStack {
               ForEach(0..<hitsObservable.hits.count, id: \.self) { index in
                 row(atIndex: index)
@@ -52,7 +52,7 @@
     }
 
     private func row(atIndex index: Int) -> some View {
-      row(hitsObservable.hits[index], index).onAppear {
+      return row(hitsObservable.hitsSource?.hit(atIndex: index), index).onAppear {
         hitsObservable.notifyAppearanceOfHit(atIndex: index)
       }
     }

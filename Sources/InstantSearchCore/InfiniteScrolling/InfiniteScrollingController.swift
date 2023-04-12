@@ -58,10 +58,15 @@ class InfiniteScrollingController: InfiniteScrollable {
     let previousPagesToLoad = computePreviousPagesToLoad(currentRow: currentRow, offset: offset, pageMap: pageMap)
     let nextPagesToLoad = computeNextPagesToLoad(currentRow: currentRow, offset: offset, pageMap: pageMap)
 
-    let pagesToLoad = previousPagesToLoad.union(nextPagesToLoad)
+    let pagesToLoad = previousPagesToLoad.union(nextPagesToLoad).filter { !pageMap.loadedPageIndexes.contains($0) }
+    
+//    logger.trace("InfiniteScrolling: required rows: \(currentRow)±\(offset), pages to load: \(pagesToLoad.sorted())")
+    guard !pagesToLoad.isEmpty else { return }
+    pendingPageIndexes.currentState().filter { $0 < pagesToLoad.min()! - 2 || $0 > pagesToLoad.max()! + 2 }.forEach {
+      pendingPageIndexes.remove($0)
+    }
 
-    InstantSearchCoreLog.trace("InfiniteScrolling: required rows: \(currentRow)±\(offset), pages to load: \(pagesToLoad.sorted())")
-
+    print("request pages \(pagesToLoad) from row \(currentRow), pending \(pendingPageIndexes.currentState().sorted()), loaded \(pageMap.loadedPageIndexes.sorted())")
     for pageIndex in pagesToLoad {
       pendingPageIndexes.insert(pageIndex)
       pageLoader.loadPage(atIndex: pageIndex)
