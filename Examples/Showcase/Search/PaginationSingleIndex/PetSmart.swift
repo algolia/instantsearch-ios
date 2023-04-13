@@ -30,11 +30,11 @@ class PetSmartDemoController {
   let statsConnector: StatsConnector
 
   init() {
-    searcher = .init(client: SearchClient(appID: "YOUR_APP_ID",
-                                          apiKey: "YOUR_API_KEY"),
-                     indexName: "p-staging-US__products___")
-    hitsInteractor = .init(infiniteScrolling: .on(withOffset: 10))
-    hitsInteractor.pageCleanUpOffset = 2
+    searcher = .init(client: SearchClient(appID: "",
+                                          apiKey: ""),
+                     indexName: "p-development-US__products___")
+    hitsInteractor = .init(infiniteScrolling: .on(withOffset: 48))
+    hitsInteractor.pageCleanUpOffset = 4
     searchBoxConnector = .init(searcher: searcher, searchTriggeringMode: .searchAsYouType)
     statsConnector = .init(searcher: searcher)
     hitsInteractor.connectSearcher(searcher)

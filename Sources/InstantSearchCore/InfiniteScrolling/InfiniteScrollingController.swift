@@ -62,9 +62,9 @@ class InfiniteScrollingController: InfiniteScrollable {
     
 //    logger.trace("InfiniteScrolling: required rows: \(currentRow)±\(offset), pages to load: \(pagesToLoad.sorted())")
     guard !pagesToLoad.isEmpty else { return }
-    pendingPageIndexes.currentState().filter { $0 < pagesToLoad.min()! - 2 || $0 > pagesToLoad.max()! + 2 }.forEach {
-      pendingPageIndexes.remove($0)
-    }
+//    pendingPageIndexes.currentState().filter { $0 < pagesToLoad.min()! - 2 || $0 > pagesToLoad.max()! + 2 }.forEach {
+//      pendingPageIndexes.remove($0)
+//    }
 
     print("request pages \(pagesToLoad) from row \(currentRow), pending \(pendingPageIndexes.currentState().sorted()), loaded \(pageMap.loadedPageIndexes.sorted())")
     for pageIndex in pagesToLoad {

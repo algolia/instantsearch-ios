@@ -74,7 +74,7 @@ class Sequencer: Sequencable {
   /// If many operations are made in a short time, this will keep only the N most recent and cancel the older ones.
   /// This helps to avoid filling up the operation queue when the network is slow.
   /// Default value: 3
-  var maxPendingOperationsCount: Int = 3
+  var maxPendingOperationsCount: Int = 30
 
   /// Maximum number of concurrent sequencer completion operations allowed
   /// Default value: 5
