@@ -244,7 +244,7 @@ extension HitsInteractor: ResultUpdatable {
   }
 
   public func process(_ error: Swift.Error, for query: Query) {
-    print("page load error \(error) page: \(query.page ?? -1)")
+    print("page load error [\(query.page ?? -1)]: \(error) ")
     if let pendingPage = query.page {
       infiniteScrollingController.notifyPending(pageIndex: Int(pendingPage))
     }

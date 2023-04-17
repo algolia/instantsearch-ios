@@ -10,9 +10,9 @@ import InstantSearch
 import UIKit
 
 class StoreItemsTableViewController: UITableViewController, HitsController {
-  var hitsSource: HitsInteractor<Hit<StoreItem>>?
+  var hitsSource: HitsInteractor<Hit<Product>>?
 
-  var didSelect: ((Int, Hit<StoreItem>) -> Void)?
+  var didSelect: ((Int, Hit<Product>) -> Void)?
 
   let cellIdentifier = "cellID"
 

@@ -10,14 +10,14 @@ import InstantSearchCore
 
 class EcommerceDemoController {
   let searcher: HitsSearcher
-  let hitsInteractor: HitsInteractor<Hit<StoreItem>>
+  let hitsInteractor: HitsInteractor<Hit<Product>>
   let searchBoxConnector: SearchBoxConnector
   let statsConnector: StatsConnector
   let loadingConnector: LoadingConnector
 
   init(searchTriggeringMode: SearchTriggeringMode = .searchAsYouType) {
     searcher = .init(client: .ecommerce,
-                     indexName: .ecommerceProducts)
+                     indexName: .instantSearch)
     hitsInteractor = .init()
     searchBoxConnector = .init(searcher: searcher, searchTriggeringMode: searchTriggeringMode)
     statsConnector = .init(searcher: searcher)

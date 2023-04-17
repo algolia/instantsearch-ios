@@ -13,7 +13,7 @@ import SwiftUI
 struct SearchDemoSwiftUI: SwiftUIDemo, PreviewProvider {
   class Controller {
     let demoController: EcommerceDemoController
-    let hitsController: HitsObservableController<Hit<StoreItem>>
+    let hitsController: HitsObservableController<Hit<Product>>
     let searchBoxController: SearchBoxObservableController
     let statsController: StatsTextObservableController
     let loadingController: LoadingObservableController
@@ -34,7 +34,7 @@ struct SearchDemoSwiftUI: SwiftUIDemo, PreviewProvider {
 
   struct ContentView: View {
     @ObservedObject var searchBoxController: SearchBoxObservableController
-    @ObservedObject var hitsController: HitsObservableController<Hit<StoreItem>>
+    @ObservedObject var hitsController: HitsObservableController<Hit<Product>>
     @ObservedObject var statsController: StatsTextObservableController
     @ObservedObject var loadingController: LoadingObservableController
 
@@ -49,10 +49,17 @@ struct SearchDemoSwiftUI: SwiftUIDemo, PreviewProvider {
         }
         .padding(.horizontal, 20)
         HitsList(hitsController) { hit, _ in
-          ProductRow(storeItemHit: hit!)
-            .padding()
-            .frame(height: 100)
-          Divider()
+          VStack {
+            if let hit {
+              ProductRow(productHit: hit)
+                .padding()
+                .frame(height: 100)
+            } else {
+              ProgressView()
+                .frame(height: 100)
+            }
+            Divider()
+          }
         } noResults: {
           Text("No Results")
             .frame(maxWidth: .infinity, maxHeight: .infinity)
@@ -62,7 +69,7 @@ struct SearchDemoSwiftUI: SwiftUIDemo, PreviewProvider {
       .onSubmit(of: .search) {
         searchBoxController.submit()
       }
-      .padding(.horizontal, 15)
+//      .padding(.leading, 15)
     }
   }
 

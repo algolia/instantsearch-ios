@@ -99,14 +99,22 @@ open class AbstractSearcher<Service: SearchService>: Searcher, SequencerDelegate
     }
 
     onSearch.fire(())
+    
+    var pageNumber = 0
+    if let req = request as? HitsSearcher.Request {
+      pageNumber = req.query.page ?? 0
+    }
 
+    print(">>> load page \(pageNumber)")
     let operation = service.search(request) { [weak self, request] result in
       guard let searcher = self else { return }
       let result = result.mapError { RequestError(request: request, error: $0) }
       switch result {
       case let .failure(error):
+        print(">>> fail load page: \(pageNumber)")
         searcher.onError.fire(error)
       case let .success(searchResult):
+        print(">>> success load page: \(pageNumber)")
         searcher.onResults.fire(searchResult)
       }
     }

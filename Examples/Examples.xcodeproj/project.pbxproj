@@ -758,6 +758,11 @@
 		AFB181CD27FE1150000AA57B /* FilterStateDebugView.swift in Sources */ = {isa = PBXBuildFile; fileRef = AFB181CA27FE1150000AA57B /* FilterStateDebugView.swift */; };
 		AFB181CF27FEE8EF000AA57B /* FacetSearchDemoController.swift in Sources */ = {isa = PBXBuildFile; fileRef = AFB181CE27FEE8EF000AA57B /* FacetSearchDemoController.swift */; };
 		AFB181D027FEE8EF000AA57B /* FacetSearchDemoController.swift in Sources */ = {isa = PBXBuildFile; fileRef = AFB181CE27FEE8EF000AA57B /* FacetSearchDemoController.swift */; };
+		AFDF114029ED42D000DC8A68 /* Product.swift in Sources */ = {isa = PBXBuildFile; fileRef = AFAE55B22734380200B52A43 /* Product.swift */; };
+		AFDF114129ED42E900DC8A68 /* Product.swift in Sources */ = {isa = PBXBuildFile; fileRef = AFAE55B22734380200B52A43 /* Product.swift */; };
+		AFDF114229ED433200DC8A68 /* ProductTableViewCell+ProductHit.swift in Sources */ = {isa = PBXBuildFile; fileRef = AFEFEF8B27F47F8300B47F7F /* ProductTableViewCell+ProductHit.swift */; };
+		AFDF114329ED433200DC8A68 /* ProductTableViewCell+ProductHit.swift in Sources */ = {isa = PBXBuildFile; fileRef = AFEFEF8B27F47F8300B47F7F /* ProductTableViewCell+ProductHit.swift */; };
+		AFDF114429ED438800DC8A68 /* ProductRow+ProductHit.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4034B6F02810078100F4A303 /* ProductRow+ProductHit.swift */; };
 		AFE7BE1627FEFB83003CAC71 /* FacetSearchDemoSwiftUI.swift in Sources */ = {isa = PBXBuildFile; fileRef = AFE7BE1527FEFB83003CAC71 /* FacetSearchDemoSwiftUI.swift */; };
 		AFE7BE1727FEFB83003CAC71 /* FacetSearchDemoSwiftUI.swift in Sources */ = {isa = PBXBuildFile; fileRef = AFE7BE1527FEFB83003CAC71 /* FacetSearchDemoSwiftUI.swift */; };
 		AFE7BE1D27FF07C8003CAC71 /* DynamicFacetList.swift in Sources */ = {isa = PBXBuildFile; fileRef = AFE7BE1C27FF07C8003CAC71 /* DynamicFacetList.swift */; };
@@ -3903,17 +3908,20 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				AFDF114429ED438800DC8A68 /* ProductRow+ProductHit.swift in Sources */,
 				404C4039280A27EE00EC9FEB /* CommonSwiftUIDemoViewController.swift in Sources */,
 				AF50CE6927FB34970036F549 /* StoreItemsTableViewController+SearchResponse.swift in Sources */,
 				4034B6FD2810327400F4A303 /* UIColor+Convenience.swift in Sources */,
 				40E1B071280810440092B424 /* EcommerceDemoController.swift in Sources */,
 				AF50CD7E27FAFB6C0036F549 /* StoreItem.swift in Sources */,
+				AFDF114029ED42D000DC8A68 /* Product.swift in Sources */,
 				40E003D2280F85B200544E9F /* StoreItemsTableViewController.swift in Sources */,
 				AF50CD8627FAFBBB0036F549 /* UITableView+EmptyResult.swift in Sources */,
 				404C404F280A281800EC9FEB /* SwiftUIDemo.swift in Sources */,
 				AF50CBFC27F72CA80036F549 /* AppDelegate.swift in Sources */,
 				404C4136280C9EFB00EC9FEB /* SearchDemoSwiftUI.swift in Sources */,
 				40F61F1D282802A30040ECD2 /* Ecommerce.swift in Sources */,
+				AFDF114229ED433200DC8A68 /* ProductTableViewCell+ProductHit.swift in Sources */,
 				404C413E280C9F7C00EC9FEB /* ProductRow.swift in Sources */,
 				AF50CDA927FB29A10036F549 /* SceneDelegate+Convenience.swift in Sources */,
 				AF50CBFE27F72CA80036F549 /* SceneDelegate.swift in Sources */,
@@ -3931,6 +3939,8 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				AFDF114129ED42E900DC8A68 /* Product.swift in Sources */,
+				AFDF114329ED433200DC8A68 /* ProductTableViewCell+ProductHit.swift in Sources */,
 				40E1B072280810440092B424 /* EcommerceDemoController.swift in Sources */,
 				AF50CC1427F72CB60036F549 /* AppDelegate.swift in Sources */,
 				404C413C280C9F5400EC9FEB /* MultiIndexDemoViewController.swift in Sources */,

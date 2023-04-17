@@ -111,12 +111,12 @@ class Sequencer: Sequencable {
       sequencer.sequencerQueue.addOperation(sequencingOperation)
 
       // Cancel obsolete operations
-      let obsoleteOperations = sequencer.pendingOperations.filter { $0.0 <= currentSeqNo - sequencer.maxPendingOperationsCount }
-      for (operationNo, operation) in obsoleteOperations {
-        InstantSearchCoreLog.trace("Sequencer: cancel \(String(describing: operation.name)) as it seqNo \(operationNo) precedes min allowed \(currentSeqNo - sequencer.maxPendingOperationsCount)")
-        operation.cancel()
-        sequencer.pendingOperations.removeValue(forKey: operationNo)
-      }
+//      let obsoleteOperations = sequencer.pendingOperations.filter { $0.0 <= currentSeqNo - sequencer.maxPendingOperationsCount }
+//      for (operationNo, operation) in obsoleteOperations {
+//        InstantSearchCoreLog.trace("Sequencer: cancel \(String(describing: operation.name)) as it seqNo \(operationNo) precedes min allowed \(currentSeqNo - sequencer.maxPendingOperationsCount)")
+//        operation.cancel()
+//        sequencer.pendingOperations.removeValue(forKey: operationNo)
+//      }
       InstantSearchCoreLog.trace("Sequencer: sequenced \(String(describing: operation.name)) as \(currentSeqNo)")
     }
   }

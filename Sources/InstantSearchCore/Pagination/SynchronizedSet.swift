@@ -9,7 +9,7 @@
 import Foundation
 
 class SynchronizedSet<T: Hashable> {
-  private let queue = DispatchQueue(label: "thread_safe_access_queue", attributes: .concurrent)
+  private let queue = DispatchQueue(label: "thread_safe_access_queue")
   private var storage: Set<T> = []
 
   func contains(_ item: T) -> Bool {
