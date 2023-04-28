@@ -10,19 +10,19 @@ import Foundation
 /// `AlgoliaHitsPage` is a generic struct that represents a paginated page of search results from
 /// the Algolia search engine, conforming to the `Page` protocol.
 ///
-/// This struct requires the `Item` type to conform to the `Decodable` protocol. It contains
-/// information about the current page, items, and navigation (previous and next pages) in the search results.
+/// This struct requires the `Item` type and contains information about
+/// the current page, items, and navigation (previous and next pages) in the search results.
 ///
 /// Usage:
 /// ```
 /// let algoliaHitsPage = AlgoliaHitsPage(page: 0,
-///                                       hits: [CustomDecodableItem(...)],
+///                                       hits: [CustomItem(...)],
 ///                                       hasPrevious: false,
 ///                                       hasNext: true)
 /// ```
 ///
 /// - Note: The `Item` type parameter represents the type of the items in the page and should conform to the `Decodable` protocol.
-public struct AlgoliaHitsPage<Item: Decodable>: Page {
+public struct AlgoliaHitsPage<Item>: Page {
 
   /// The current page number (zero-based).
   public let page: Int
