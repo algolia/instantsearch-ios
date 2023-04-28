@@ -33,6 +33,7 @@ struct SearchDemoSwiftUI: SwiftUIDemo, PreviewProvider {
   }
 
   struct ContentView: View {
+    @StateObject var hits: Hits<HitsSearcherPageSource<Hit<StoreItem>>>
     @ObservedObject var searchBoxController: SearchBoxObservableController
     @ObservedObject var hitsController: HitsObservableController<Hit<StoreItem>>
     @ObservedObject var statsController: StatsTextObservableController
@@ -48,15 +49,22 @@ struct SearchDemoSwiftUI: SwiftUIDemo, PreviewProvider {
           }
         }
         .padding(.horizontal, 20)
-        HitsList(hitsController) { hit, _ in
-          ProductRow(storeItemHit: hit!)
+        HitsList(hits) { hit in
+          ProductRow(storeItemHit: hit)
             .padding()
             .frame(height: 100)
-          Divider()
         } noResults: {
-          Text("No Results")
-            .frame(maxWidth: .infinity, maxHeight: .infinity)
+          
         }
+//        HitsList(hitsController) { hit, _ in
+//          ProductRow(storeItemHit: hit!)
+//            .padding()
+//            .frame(height: 100)
+//          Divider()
+//        } noResults: {
+//          Text("No Results")
+//            .frame(maxWidth: .infinity, maxHeight: .infinity)
+//        }
       }
       .searchable(text: $searchBoxController.query)
       .onSubmit(of: .search) {
@@ -67,7 +75,16 @@ struct SearchDemoSwiftUI: SwiftUIDemo, PreviewProvider {
   }
 
   static func contentView(with controller: Controller) -> ContentView {
-    ContentView(searchBoxController: controller.searchBoxController,
+    let source = HitsSearcherPageSource<Hit<StoreItem>>(hitsSearcher: controller.demoController.searcher)
+//    let hits: Hits<HitsSearcherPageSource<Hit<StoreItem>>> = Hits<<#Source: PageSource#>>.withSearcher(searcher: controller.demoController.searcher)
+    let hits = Hits(source: source)
+    controller.demoController.searcher.onQueryChanged.subscribe(with: hits) { hits, _ in
+      Task {
+        await hits.reset()
+      }
+    }
+    return ContentView(hits: hits,
+                searchBoxController: controller.searchBoxController,
                 hitsController: controller.hitsController,
                 statsController: controller.statsController,
                 loadingController: controller.loadingController)
@@ -87,3 +104,22 @@ struct SearchDemoSwiftUI: SwiftUIDemo, PreviewProvider {
     }
   }
 }
+
+extension Hits {
+  
+  func withSearcher<T: Decodable>(searcher: HitsSearcher) -> Hits<HitsSearcherPageSource<T>> {
+    let source = HitsSearcherPageSource<T>(hitsSearcher: searcher)
+    return Hits<HitsSearcherPageSource<T>>(source: source)
+  }
+  
+}
+
+
+//extension Hits<T> where Source == HitsSearcherPageSource<T> {
+//  
+//  convenience init<T: Decodable>(searcher: HitsSearcher, hitType: T) {
+//    let source = HitsSearcherPageSource<T>(hitsSearcher: searcher)
+//    self.init(source: source)
+//  }
+  
+//}
