@@ -17,7 +17,7 @@ struct SearchDemoSwiftUI: SwiftUIDemo, PreviewProvider {
     let searchBoxController: SearchBoxObservableController
     let statsController: StatsTextObservableController
     let loadingController: LoadingObservableController
-
+    
     init(searchTriggeringMode: SearchTriggeringMode) {
       demoController = EcommerceDemoController(searchTriggeringMode: searchTriggeringMode)
       hitsController = HitsObservableController()
@@ -31,14 +31,14 @@ struct SearchDemoSwiftUI: SwiftUIDemo, PreviewProvider {
       demoController.searcher.search()
     }
   }
-
+  
   struct ContentView: View {
-    @StateObject var hits: Hits<HitsSearcherPageSource<Hit<StoreItem>>>
+    @StateObject var hitsViewModel: InfiniteScrollViewModel<AlgoliaHitsPage<Hit<StoreItem>>>
     @ObservedObject var searchBoxController: SearchBoxObservableController
     @ObservedObject var hitsController: HitsObservableController<Hit<StoreItem>>
     @ObservedObject var statsController: StatsTextObservableController
     @ObservedObject var loadingController: LoadingObservableController
-
+    
     var body: some View {
       VStack {
         HStack {
@@ -48,23 +48,14 @@ struct SearchDemoSwiftUI: SwiftUIDemo, PreviewProvider {
             ProgressView()
           }
         }
-        .padding(.horizontal, 20)
-        HitsList(hits) { hit in
+        .padding(.trailing, 20)
+        HitsList(hitsViewModel) { hit in
           ProductRow(storeItemHit: hit)
             .padding()
             .frame(height: 100)
         } noResults: {
-          
+          Text("No Results")
         }
-//        HitsList(hitsController) { hit, _ in
-//          ProductRow(storeItemHit: hit!)
-//            .padding()
-//            .frame(height: 100)
-//          Divider()
-//        } noResults: {
-//          Text("No Results")
-//            .frame(maxWidth: .infinity, maxHeight: .infinity)
-//        }
       }
       .searchable(text: $searchBoxController.query)
       .onSubmit(of: .search) {
@@ -73,30 +64,23 @@ struct SearchDemoSwiftUI: SwiftUIDemo, PreviewProvider {
       .padding(.horizontal, 15)
     }
   }
-
+  
   static func contentView(with controller: Controller) -> ContentView {
-    let source = HitsSearcherPageSource<Hit<StoreItem>>(hitsSearcher: controller.demoController.searcher)
-//    let hits: Hits<HitsSearcherPageSource<Hit<StoreItem>>> = Hits<<#Source: PageSource#>>.withSearcher(searcher: controller.demoController.searcher)
-    let hits = Hits(source: source)
-    controller.demoController.searcher.onQueryChanged.subscribe(with: hits) { hits, _ in
-      Task {
-        await hits.reset()
-      }
-    }
-    return ContentView(hits: hits,
-                searchBoxController: controller.searchBoxController,
-                hitsController: controller.hitsController,
-                statsController: controller.statsController,
-                loadingController: controller.loadingController)
+    let hitsViewModel = controller.demoController.searcher.hitsViewModel(of: Hit<StoreItem>.self)
+    return ContentView(hitsViewModel: hitsViewModel,
+                       searchBoxController: controller.searchBoxController,
+                       hitsController: controller.hitsController,
+                       statsController: controller.statsController,
+                       loadingController: controller.loadingController)
   }
-
+  
   static func viewController(searchTriggeringMode: SearchTriggeringMode) -> UIViewController {
     let controller = Controller(searchTriggeringMode: searchTriggeringMode)
     let contentView = contentView(with: controller)
     return CommonSwiftUIDemoViewController(controller: controller,
                                            rootView: contentView)
   }
-
+  
   static let controller = Controller(searchTriggeringMode: .searchAsYouType)
   static var previews: some View {
     NavigationView {
@@ -104,22 +88,3 @@ struct SearchDemoSwiftUI: SwiftUIDemo, PreviewProvider {
     }
   }
 }
-
-extension Hits {
-  
-  func withSearcher<T: Decodable>(searcher: HitsSearcher) -> Hits<HitsSearcherPageSource<T>> {
-    let source = HitsSearcherPageSource<T>(hitsSearcher: searcher)
-    return Hits<HitsSearcherPageSource<T>>(source: source)
-  }
-  
-}
-
-
-//extension Hits<T> where Source == HitsSearcherPageSource<T> {
-//  
-//  convenience init<T: Decodable>(searcher: HitsSearcher, hitType: T) {
-//    let source = HitsSearcherPageSource<T>(hitsSearcher: searcher)
-//    self.init(source: source)
-//  }
-  
-//}

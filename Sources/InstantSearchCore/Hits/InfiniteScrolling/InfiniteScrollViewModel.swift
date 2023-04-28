@@ -1,5 +1,5 @@
 //
-//  Hits.swift
+//  InfiniteScrollViewModel.swift
 //  
 //
 //  Created by Vladislav Fitc on 27/04/2023.
@@ -8,21 +8,21 @@
 import Foundation
 import Combine
 
-/// `Hits` is a generic class responsible for handling paginated data from a `PageSource`.
+/// `InfiniteScrollViewModel` is a generic class responsible for handling paginated data from a `PageSource`.
 /// It is designed to be used with SwiftUI and is an `ObservableObject` that can be bound to UI elements.
 ///
 /// Usage:
 /// ```
 /// let source = CustomPageSource()
-/// let hits = Hits(source: source)
+/// let hits = InfiniteScrollViewModel(source: source)
 /// ```
 ///
-/// - Note: `Source` must conform to the `PageSource` protocol.
+/// - Note: `ItemsPage` must conform to the `Page` protocol.
 @available(iOS 13.0, macOS 10.15, *)
-public final class Hits<Source: PageSource>: ObservableObject {
+public final class InfiniteScrollViewModel<ItemsPage: Page>: ObservableObject {
   
   /// An array of fetched items.
-  @Published public var hits: [Source.Item]
+  @Published public var items: [ItemsPage.Item]
   
   /// Indicates whether the data is being loaded.
   @Published public var isLoading: Bool
@@ -34,60 +34,70 @@ public final class Hits<Source: PageSource>: ObservableObject {
   @Published public var hasNext: Bool
   
   /// The source object that conforms to the `PageSource` protocol.
-  let source: Source
+  let source: any PageSource<ItemsPage>
   
   /// A `PageStorage` object that stores the fetched pages.
-  private let pageStorage: PageStorage<Source.ItemsPage>
+  private let storage: ConcurrentList<ItemsPage>
   
-  /// Initializes a new instance of `Hits` with a given `source` object.
+  /// Initializes a new instance of `InfiniteScrollViewModel` with a given `source` object.
   ///
   /// - Parameter source: The source object that conforms to the `PageSource` protocol.
-  public init(source: Source) {
+  public init<PS: PageSource<ItemsPage>>(source: PS) {
     self.source = source
-    self.pageStorage = PageStorage()
+    self.storage = ConcurrentList()
     self.isLoading = false
-    self.hits = []
+    self.items = []
     self.hasPrevious = false
     self.hasNext = true
   }
   
   /// Loads the next page of data.
   public func loadNext() {
-    Task { @MainActor in
-      let page: Source.ItemsPage
-      if let maxPage = await pageStorage.pages.last, maxPage.hasNext {
+    Task {
+      let page: ItemsPage
+      if let maxPage = await storage.items.last, maxPage.hasNext {
         page = try await source.fetchPage(after: maxPage)
       } else {
         page = try await source.fetchInitialPage()
       }
-      await pageStorage.append(page)
-      hits = await pageStorage.pages.flatMap(\.items)
-      hasNext = page.hasNext
+      await append(page)
     }
   }
   
   /// Loads the previous page of data.
   public func loadPrevious() {
-    Task { @MainActor in
-      if let minPage = await pageStorage.pages.first, minPage.hasPrevious {
+    Task {
+      if let minPage = await storage.items.first, minPage.hasPrevious {
         let page = try await source.fetchPage(before: minPage)
-        await pageStorage.prepend(page)
-        hits = await pageStorage.pages.flatMap(\.items)
-        hasPrevious = page.hasPrevious
+        await prepend(page)
       }
     }
+  }
+  
+  @MainActor
+  private func append(_ page: ItemsPage) async {
+    await storage.append(page)
+    items = await storage.items.flatMap(\.items)
+    hasNext = page.hasNext
+  }
+  
+  @MainActor
+  private func prepend(_ page: ItemsPage) async {
+    await storage.prepend(page)
+    items = await storage.items.flatMap(\.items)
+    hasPrevious = page.hasPrevious
   }
   
   /// Resets the stored data and pagination states.
   @MainActor
   public func reset() async {
-    await pageStorage.clear()
-    hits = []
+    await storage.clear()
+    items = []
     hasPrevious = false
     hasNext = true
   }
 
-  /// An enumeration of possible errors that can occur while working with `Hits`.
+  /// An enumeration of possible errors that can occur while working with `InfiniteScrollViewModel`.
   public enum Error: LocalizedError {
     /// Indicates an attempt to access a hit on an unaccessible page.
     case indexOutOfRange
@@ -101,7 +111,7 @@ public final class Hits<Source: PageSource>: ObservableObject {
       case .requestError(let error):
         return "Error occured during search request: \(error)"
       case .indexOutOfRange:
-        return "Attempt to access the hit on unaccessible page"
+        return "Attempt to access the item on unaccessible page"
       }
     }
   }
