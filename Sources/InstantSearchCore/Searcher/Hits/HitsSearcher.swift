@@ -7,6 +7,9 @@
 //
 
 import AlgoliaSearchClient
+#if !InstantSearchCocoaPods
+import InstantSearchInsights
+#endif
 import Foundation
 
 @available(*, deprecated, renamed: "HitsSearcher")
@@ -105,6 +108,19 @@ public final class HitsSearcher: IndexSearcher<AlgoliaSearchService> {
     }
   }
 
+  /// The hitsTracker property in the HitsSearcher class simplifies the tracking of Insights events for the search performed by the searcher.
+  ///
+  /// It is an instance of the HitsTracker class that provides methods for tracking clicks, conversions, and views for search results.
+  /// By default, it uses the eventName property of the HitsSearcher instance as the event name to track, but custom event names can also be provided by passing them as parameters to the tracking methods.
+  public lazy var eventTracker: HitsTracker = {
+    let client = service.client
+    let insights = Insights.register(appId: client.applicationID,
+                                     apiKey: client.apiKey)
+    return HitsTracker(eventName: "hits event",
+                       searcher: self,
+                       insights: insights)
+  }()
+
   /**
     - Parameters:
        - appID: Application ID
@@ -142,6 +158,10 @@ public final class HitsSearcher: IndexSearcher<AlgoliaSearchService> {
     super.init(service: service, initialRequest: request)
     Telemetry.shared.trace(type: .hitsSearcher,
                            parameters: .client)
+    onResults.subscribe(with: self) { searcher, response in
+      searcher.eventTracker.trackView(for: response.hits,
+                                     eventName: "Hits Viewed")
+    }
   }
 
   /**
@@ -156,6 +176,10 @@ public final class HitsSearcher: IndexSearcher<AlgoliaSearchService> {
               indexName: indexQueryState.indexName,
               query: indexQueryState.query,
               requestOptions: requestOptions)
+  }
+
+  deinit {
+    onResults.cancelSubscription(for: self)
   }
 }
 

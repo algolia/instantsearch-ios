@@ -71,3 +71,4 @@ class DemoViewControllerFactory: ViewControllerFactory {
     }
   }
 }
+// swiftlint:enable cyclomatic_complexity

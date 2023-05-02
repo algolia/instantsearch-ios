@@ -35,3 +35,4 @@ protocol HitsAfterSearchTrackable {
 }
 
 extension Insights: HitsAfterSearchTrackable {}
+// swiftlint:enable function_parameter_count

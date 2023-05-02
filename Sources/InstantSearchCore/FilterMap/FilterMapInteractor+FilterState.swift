@@ -95,3 +95,4 @@ public extension FilterMapInteractor {
 
 @available(*, deprecated, renamed: "FilterMapInteractorFilterStateConnection")
 public typealias SelectableFilterInteractorFilterStateConnection = FilterMapInteractorFilterStateConnection
+// swiftlint:enable type_name

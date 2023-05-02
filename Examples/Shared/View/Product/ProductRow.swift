@@ -29,6 +29,7 @@ struct ProductRow: View {
     static let watch = Self(showDescription: false, imageWidth: 60, horizontalSpacing: 7, verticalSpacing: 5)
     // swiftlint:disable identifier_name
     static let tv = Self(showDescription: true, imageWidth: 200, horizontalSpacing: 30, verticalSpacing: 10)
+    // swiftlint:enable identifier_name
   }
 
   var body: some View {
@@ -110,3 +111,4 @@ struct ProductRow_Previews: PreviewProvider {
     )
   }
 }
+// swiftlint:enable line_length

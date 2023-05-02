@@ -87,3 +87,4 @@ extension FilterGroup.ID: CustomStringConvertible {
     }
   }
 }
+// swiftlint:enable type_name
