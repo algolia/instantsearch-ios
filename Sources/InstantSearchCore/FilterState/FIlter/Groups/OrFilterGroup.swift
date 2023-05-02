@@ -45,3 +45,4 @@ extension FilterGroup.Or: CustomStringConvertible {
     return "{ \(name ?? "_"): \(filters) }"
   }
 }
+// swiftlint:enable type_name

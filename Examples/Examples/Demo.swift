@@ -35,4 +35,5 @@ struct Demo: Codable, DemoProtocol {
     case codexMultipleIndex = "codex_multiple_index"
     case codexCategoriesHits = "codex_categories_hits"
   }
+  // swiftlint:enable type_name
 }

@@ -34,6 +34,7 @@ extension UIColor {
               blue: CGFloat(b) / 255,
               alpha: CGFloat(a) / 255)
   }
+  // swiftlint:enable identifier_name
 
   static let algoliaCyan = UIColor(hexString: "5468FF")
 }

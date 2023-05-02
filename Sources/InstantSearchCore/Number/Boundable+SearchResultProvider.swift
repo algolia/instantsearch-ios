@@ -41,3 +41,4 @@ public extension Boundable {
     return connection
   }
 }
+// swiftlint:enable generic_type_name

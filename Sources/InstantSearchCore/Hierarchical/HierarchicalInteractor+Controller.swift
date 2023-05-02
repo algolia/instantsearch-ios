@@ -58,3 +58,4 @@ public extension HierarchicalInteractor {
     return connection
   }
 }
+// swiftlint:enable large_tuple

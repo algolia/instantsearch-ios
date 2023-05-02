@@ -128,5 +128,6 @@ extension MultiIndex {
         }
       }
     }
+    // swiftlint:enable unused_optional_binding
   }
 }
