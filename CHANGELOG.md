@@ -1,5 +1,13 @@
 # ChangeLog
 
+## [7.24.0](https://github.com/algolia/instantsearch-ios/compare/7.23.0...7.24.0) (2023-05-02)
+
+### Feat
+
+- **insights**: automatic hits view events tracking (#276) ([501bb00](https://github.com/algolia/instantsearch-ios/commit/501bb00))
+
+
+
 ## [7.23.0](https://github.com/algolia/instantsearch-ios/compare/7.22.0...7.23.0) (2023-02-12)
 
 ### Feat
