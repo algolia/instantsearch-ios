@@ -7,7 +7,9 @@
 //
 
 import AlgoliaSearchClient
+#if !InstantSearchCocoaPods
 import InstantSearchInsights
+#endif
 import Foundation
 
 @available(*, deprecated, renamed: "HitsSearcher")
