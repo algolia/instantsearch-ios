@@ -14,21 +14,21 @@ import InstantSearchInsights
 /// The HitsTracker class allows to track user interactions with search results using Algolia Insights.
 /// It implements the InsightsTracker protocol and provides methods for tracking clicks, conversions, and views for search results.
 public class HitsTracker: InsightsTracker {
-  
+
   /// The name of the event to track.
   public let eventName: EventName
-  
+
   public var isEnabled: Bool
-  
+
   /// A `TrackableSearcher` object that provides search results to be tracked.
   internal let searcher: TrackableSearcher
-  
+
   /// A `HitsAfterSearchTrackable` object that tracks search result interactions.
   internal let tracker: HitsAfterSearchTrackable
-  
+
   /// An optional identifier for the search query.
   internal var queryID: QueryID?
-  
+
   /// Initializes a new instance of the `HitsTracker` class with the specified event name, `TrackableSearcher`, and `Insights` object.
   ///
   /// - Parameters:
@@ -42,7 +42,7 @@ public class HitsTracker: InsightsTracker {
               searcher: searcher,
               tracker: insights)
   }
-  
+
   /// Initializes a new instance of the `HitsTracker` class with the specified event name, `TrackableSearcher`, and `HitsAfterSearchTrackable` object.
   ///
   /// - Parameters:
@@ -59,7 +59,7 @@ public class HitsTracker: InsightsTracker {
     searcher.setClickAnalyticsOn(true)
     searcher.subscribeForQueryIDChange(self)
   }
-  
+
   deinit {
     switch searcher {
     case let .singleIndex(searcher):
@@ -73,7 +73,7 @@ public class HitsTracker: InsightsTracker {
 // MARK: - Hits tracking methods
 
 public extension HitsTracker {
-  
+
   /// Tracks a click event for the specified search result at the specified position.
   ///
   /// - Parameters:
@@ -87,7 +87,7 @@ public extension HitsTracker {
                positions: [position],
                eventName: eventName)
   }
-  
+
   /// Tracks a click event for the specified search results at the specified positions.
   ///
   /// - Parameters:
@@ -106,7 +106,7 @@ public extension HitsTracker {
                                timestamp: .none,
                                userToken: .none)
   }
-  
+
   /// Tracks a conversion event for the specified search result.
   ///
   /// - Parameters:
@@ -117,7 +117,7 @@ public extension HitsTracker {
     trackConvert(for: [hit],
                  eventName: eventName)
   }
-  
+
   /// Tracks a conversion event for the specified search results.
   ///
   /// - Parameters:
@@ -134,7 +134,7 @@ public extension HitsTracker {
                                  timestamp: .none,
                                  userToken: .none)
   }
-  
+
   /// Tracks a view event for the specified search result.
   ///
   /// - Parameters:
@@ -145,7 +145,7 @@ public extension HitsTracker {
     trackView(for: [hit],
               eventName: eventName)
   }
-  
+
   /// Tracks a view event for the specified search results.
   ///
   /// - Parameters:

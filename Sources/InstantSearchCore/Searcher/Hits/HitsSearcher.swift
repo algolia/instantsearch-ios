@@ -105,7 +105,7 @@ public final class HitsSearcher: IndexSearcher<AlgoliaSearchService> {
       service.keepSelectedEmptyFacets = newValue
     }
   }
-  
+
   /// The hitsTracker property in the HitsSearcher class simplifies the tracking of Insights events for the search performed by the searcher.
   ///
   /// It is an instance of the HitsTracker class that provides methods for tracking clicks, conversions, and views for search results.
@@ -175,7 +175,7 @@ public final class HitsSearcher: IndexSearcher<AlgoliaSearchService> {
               query: indexQueryState.query,
               requestOptions: requestOptions)
   }
-  
+
   deinit {
     onResults.cancelSubscription(for: self)
   }
