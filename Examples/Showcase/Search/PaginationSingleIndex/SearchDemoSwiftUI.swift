@@ -65,7 +65,7 @@ struct SearchDemoSwiftUI: SwiftUIDemo, PreviewProvider {
   }
   
   static func contentView(with controller: Controller) -> ContentView {
-    let hitsViewModel = controller.demoController.searcher.hitsViewModel(of: Hit<StoreItem>.self)
+    let hitsViewModel = controller.demoController.searcher.infiniteScrollViewModel(of: Hit<StoreItem>.self)
     return ContentView(hitsViewModel: hitsViewModel,
                        searchBoxController: controller.searchBoxController,
                        statsController: controller.statsController,
