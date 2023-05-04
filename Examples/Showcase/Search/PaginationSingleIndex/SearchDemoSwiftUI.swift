@@ -17,7 +17,7 @@ struct SearchDemoSwiftUI: SwiftUIDemo, PreviewProvider {
     let searchBoxController: SearchBoxObservableController
     let statsController: StatsTextObservableController
     let loadingController: LoadingObservableController
-    
+
     init(searchTriggeringMode: SearchTriggeringMode) {
       demoController = EcommerceDemoController(searchTriggeringMode: searchTriggeringMode)
       hitsController = HitsObservableController()
@@ -31,13 +31,13 @@ struct SearchDemoSwiftUI: SwiftUIDemo, PreviewProvider {
       demoController.searcher.search()
     }
   }
-  
+
   struct ContentView: View {
     @StateObject var hitsViewModel: InfiniteScrollViewModel<AlgoliaHitsPage<Hit<StoreItem>>>
     @ObservedObject var searchBoxController: SearchBoxObservableController
     @ObservedObject var statsController: StatsTextObservableController
     @ObservedObject var loadingController: LoadingObservableController
-    
+
     var body: some View {
       VStack {
         HStack {
@@ -63,7 +63,7 @@ struct SearchDemoSwiftUI: SwiftUIDemo, PreviewProvider {
       .padding(.horizontal, 15)
     }
   }
-  
+
   static func contentView(with controller: Controller) -> ContentView {
     let hitsViewModel = controller.demoController.searcher.infiniteScrollViewModel(of: Hit<StoreItem>.self)
     return ContentView(hitsViewModel: hitsViewModel,
@@ -71,14 +71,14 @@ struct SearchDemoSwiftUI: SwiftUIDemo, PreviewProvider {
                        statsController: controller.statsController,
                        loadingController: controller.loadingController)
   }
-  
+
   static func viewController(searchTriggeringMode: SearchTriggeringMode) -> UIViewController {
     let controller = Controller(searchTriggeringMode: searchTriggeringMode)
     let contentView = contentView(with: controller)
     return CommonSwiftUIDemoViewController(controller: controller,
                                            rootView: contentView)
   }
-  
+
   static let controller = Controller(searchTriggeringMode: .searchAsYouType)
   static var previews: some View {
     NavigationView {

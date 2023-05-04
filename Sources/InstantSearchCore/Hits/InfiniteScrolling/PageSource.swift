@@ -25,28 +25,28 @@ import Foundation
 /// - Note: The `Page` associated type represent the page of data provided by this source.
 @available(iOS 13.0.0, macOS 10.15, tvOS 13.0, watchOS 6.0, *)
 public protocol PageSource<Page> {
-    
+
   /// The associated data type for the items in the pages.
   associatedtype Page
-    
+
   /// Fetches the initial page of data.
   ///
   /// - Returns: The initial `ItemsPage` containing the data.
   /// - Throws: An error if the fetch operation fails.
   func fetchInitialPage() async throws -> Page
-    
+
   /// Fetches the page before a given page.
   ///
   /// - Parameter page: The `ItemsPage` before which to fetch the data.
   /// - Returns: The previous `ItemsPage` containing the data.
   /// - Throws: An error if the fetch operation fails.
   func fetchPage(before page: Page) async throws -> Page
-  
+
   /// Fetches the page after a given page.
   ///
   /// - Parameter page: The `ItemsPage` after which to fetch the data.
   /// - Returns: The next `ItemsPage` containing the data.
   /// - Throws: An error if the fetch operation fails.
   func fetchPage(after page: Page) async throws -> Page
-  
+
 }
