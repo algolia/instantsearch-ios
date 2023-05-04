@@ -29,7 +29,6 @@
 		4011DC3728233A6000336C42 /* ProductTableViewCell+StoreItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = 40E003BD280F833000544E9F /* ProductTableViewCell+StoreItem.swift */; };
 		4011DC3828233A6F00336C42 /* UIView+Layout.swift in Sources */ = {isa = PBXBuildFile; fileRef = AF50CCBE27FAE6AA0036F549 /* UIView+Layout.swift */; };
 		4011DC3928233D1A00336C42 /* InsightsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4011DC1D2823314900336C42 /* InsightsViewController.swift */; };
-		401B28FC29FC188700D681EC /* PetSmartDemoController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 401B28FB29FC188700D681EC /* PetSmartDemoController.swift */; };
 		4022E85A280E334800D71D66 /* ProductsTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4022E859280E334800D71D66 /* ProductsTableViewController.swift */; };
 		4022E85B280E334800D71D66 /* ProductsTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4022E859280E334800D71D66 /* ProductsTableViewController.swift */; };
 		4022E85D280EB94200D71D66 /* CommonSwiftUIDemoViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 404C4027280A27EE00EC9FEB /* CommonSwiftUIDemoViewController.swift */; };
@@ -817,7 +816,6 @@
 		4011DC222823314A00336C42 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		4011DC252823314A00336C42 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		4011DC272823314A00336C42 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		401B28FB29FC188700D681EC /* PetSmartDemoController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PetSmartDemoController.swift; sourceTree = "<group>"; };
 		4022E859280E334800D71D66 /* ProductsTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProductsTableViewController.swift; sourceTree = "<group>"; };
 		4022E85C280EA5EC00D71D66 /* README.md */ = {isa = PBXFileReference; lastKnownFileType = net.daringfireball.markdown; path = README.md; sourceTree = "<group>"; };
 		4022E85E280EBB0E00D71D66 /* Item.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Item.swift; sourceTree = "<group>"; };
@@ -1882,7 +1880,6 @@
 				AF50CBFB27F72CA80036F549 /* AppDelegate.swift */,
 				AF50CBFD27F72CA80036F549 /* SceneDelegate.swift */,
 				404C4133280C9E8300EC9FEB /* SearchDemoViewController.swift */,
-				401B28FB29FC188700D681EC /* PetSmartDemoController.swift */,
 				40E1B073280811840092B424 /* SearchDemoSwiftUI.swift */,
 				AF50CC0427F72CA90036F549 /* Assets.xcassets */,
 				AF50CC0627F72CA90036F549 /* LaunchScreen.storyboard */,
@@ -3905,7 +3902,6 @@
 			files = (
 				404C4039280A27EE00EC9FEB /* CommonSwiftUIDemoViewController.swift in Sources */,
 				AF50CE6927FB34970036F549 /* StoreItemsTableViewController+SearchResponse.swift in Sources */,
-				401B28FC29FC188700D681EC /* PetSmartDemoController.swift in Sources */,
 				4034B6FD2810327400F4A303 /* UIColor+Convenience.swift in Sources */,
 				40E1B071280810440092B424 /* EcommerceDemoController.swift in Sources */,
 				AF50CD7E27FAFB6C0036F549 /* StoreItem.swift in Sources */,
