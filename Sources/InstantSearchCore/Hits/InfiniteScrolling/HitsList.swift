@@ -24,16 +24,16 @@ import SwiftUI
 /// - Note: This view is available from iOS 15.0 onwards.
 @available(iOS 15.0, macOS 12.0, tvOS 15.0, watchOS 8.0, *)
 public struct HitsList<HitView: View, NoResults: View, Item, P: Page<Item>>: View {
-  
+
   /// An instance of `InfiniteScrollViewModel` object.
   @StateObject public var hits: InfiniteScrollViewModel<P>
-  
+
   /// A closure that returns a `HitView` for a given `Source.Item`.
   let hit: (Item) -> HitView
-  
+
   /// A closure that returns a `NoResults` view to display when there are no hits.
   let noResults: () -> NoResults
-  
+
   /// Initializes a new instance of `HitsList` with the provided `hits`, `hitView` and `noResults` closures.
   ///
   /// - Parameters:
@@ -47,7 +47,7 @@ public struct HitsList<HitView: View, NoResults: View, Item, P: Page<Item>>: Vie
     hit = hitView
     self.noResults = noResults
   }
-  
+
   public var body: some View {
     if hits.items.isEmpty && !hits.hasNext {
       noResults()
@@ -74,5 +74,5 @@ public struct HitsList<HitView: View, NoResults: View, Item, P: Page<Item>>: Vie
       }
     }
   }
-  
+
 }
