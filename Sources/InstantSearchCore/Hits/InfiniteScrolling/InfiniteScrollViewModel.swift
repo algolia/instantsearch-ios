@@ -6,7 +6,6 @@
 //
 
 import Foundation
-import Combine
 
 /// `InfiniteScrollViewModel` is a generic class responsible for handling paginated data from a `PageSource`.
 /// It is designed to be used with SwiftUI and is an `ObservableObject` that can be bound to UI elements.
@@ -18,7 +17,7 @@ import Combine
 /// ```
 ///
 /// - Note: `ItemsPage` must conform to the `Page` protocol.
-@available(iOS 13.0, macOS 10.15, *)
+@available(iOS 13.0, macOS 10.15, tvOS 13.0, watchOS 6.0, *)
 public final class InfiniteScrollViewModel<ItemsPage: Page>: ObservableObject {
   
   /// An array of fetched items.
@@ -95,25 +94,6 @@ public final class InfiniteScrollViewModel<ItemsPage: Page>: ObservableObject {
     items = []
     hasPrevious = false
     hasNext = true
-  }
-
-  /// An enumeration of possible errors that can occur while working with `InfiniteScrollViewModel`.
-  public enum Error: LocalizedError {
-    /// Indicates an attempt to access a hit on an unaccessible page.
-    case indexOutOfRange
-    
-    /// Indicates an error occurred during a search request.
-    case requestError(Swift.Error)
-    
-    /// A localized description of the error.
-    public var errorDescription: String? {
-      switch self {
-      case .requestError(let error):
-        return "Error occured during search request: \(error)"
-      case .indexOutOfRange:
-        return "Attempt to access the item on unaccessible page"
-      }
-    }
   }
   
 }

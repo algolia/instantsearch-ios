@@ -22,7 +22,7 @@ import SwiftUI
 /// ```
 ///
 /// - Note: This view is available from iOS 15.0 onwards.
-@available(iOS 15.0, macOS 12.0, *)
+@available(iOS 15.0, macOS 12.0, tvOS 15.0, watchOS 8.0, *)
 public struct HitsList<HitView: View, NoResults: View, Item, P: Page<Item>>: View {
   
   /// An instance of `InfiniteScrollViewModel` object.
