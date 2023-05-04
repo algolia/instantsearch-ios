@@ -13,11 +13,11 @@ import Foundation
 /// Usage:
 /// ```
 /// struct CustomPage: Page {
-///   typealias Item = CustomData
+///   typealias Item = CustomItem
 ///
 ///   var hasPrevious: Bool
 ///   var hasNext: Bool
-///   var items: [CustomData]
+///   var items: [CustomItem]
 /// }
 /// ```
 ///

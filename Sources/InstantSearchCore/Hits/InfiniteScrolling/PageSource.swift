@@ -14,8 +14,7 @@ import Foundation
 /// Usage:
 /// ```
 /// struct CustomPageSource: PageSource {
-///   typealias Item = CustomData
-///   typealias ItemsPage = CustomPage
+///   typealias Page = CustomPage
 ///
 ///   func fetchInitialPage() async throws -> CustomPage { ... }
 ///   func fetchPage(before page: CustomPage) async throws -> CustomPage { ... }
@@ -23,9 +22,8 @@ import Foundation
 /// }
 /// ```
 ///
-/// - Note: The `Item` and `ItemsPage` associated types represent the type of data contained in the pages
-///         and the page type itself, respectively.
-@available(iOS 13.0.0, *)
+/// - Note: The `Page` associated type represent the page of data provided by this source.
+@available(iOS 13.0.0, macOS 10.15, tvOS 13.0, watchOS 6.0, *)
 public protocol PageSource<Page> {
     
   /// The associated data type for the items in the pages.

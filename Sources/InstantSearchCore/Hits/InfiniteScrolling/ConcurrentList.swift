@@ -19,7 +19,7 @@ import Foundation
 /// ```
 ///
 /// - Note: The `Page` type parameter represents the type of the pages to be stored.
-@available(iOS 13.0.0, *)
+@available(iOS 13.0.0, macOS 10.15, tvOS 13.0, watchOS 6.0, *)
 actor ConcurrentList<Item> {
   
   /// An array containing the stored items.

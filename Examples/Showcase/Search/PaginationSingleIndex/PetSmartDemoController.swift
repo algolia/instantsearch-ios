@@ -30,9 +30,11 @@ class PetSmartDemoController {
   let statsConnector: StatsConnector
 
   init() {
-    searcher = .init(client: SearchClient(appID: "APP_ID",
-                                          apiKey: "API_KEY"),
+    searcher = .init(client: SearchClient(appID: "app_id",
+                                          apiKey: "api_key"),
                      indexName: "p-staging-US__products___")
+    searcher.request.query.attributesToHighlight = []
+    searcher.request.query.attributesToRetrieve = ["images", "name"]
     hitsInteractor = .init(infiniteScrolling: .on(withOffset: 10))
     hitsInteractor.pageCleanUpOffset = 2
     searchBoxConnector = .init(searcher: searcher, searchTriggeringMode: .searchAsYouType)
@@ -137,7 +139,7 @@ struct PetSmartDemoSwiftUI: SwiftUIDemo, PreviewProvider {
 
   static func contentView(with controller: Controller) -> ContentView {
     ContentView(searchBoxController: controller.searchBoxController,
-                hitsViewModel: controller.demoController.searcher.hitsViewModel(of: Hit<PetSmartItem>.self),
+                hitsViewModel: controller.demoController.searcher.infiniteScrollViewModel(of: Hit<PetSmartItem>.self),
                 statsController: controller.statsController)
   }
 
