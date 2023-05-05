@@ -28,6 +28,9 @@ public class HitsTracker: InsightsTracker {
 
   /// An optional identifier for the search query.
   internal var queryID: QueryID?
+  
+  /// Max object IDs per event
+  private let maxObjectIDsCount = 20
 
   /// Initializes a new instance of the `HitsTracker` class with the specified event name, `TrackableSearcher`, and `Insights` object.
   ///
@@ -99,12 +102,14 @@ public extension HitsTracker {
                                    eventName: EventName? = nil) {
     guard isEnabled else { return }
     guard let queryID = queryID else { return }
-    tracker.clickedAfterSearch(eventName: eventName ?? self.eventName,
-                               indexName: searcher.indexName,
-                               objectIDsWithPositions: Array(zip(hits.map(\.objectID), positions)),
-                               queryID: queryID,
-                               timestamp: .none,
-                               userToken: .none)
+    for objectIDsWithPositions in Array(zip(hits.map(\.objectID), positions)).chunk(into: maxObjectIDsCount) {
+      tracker.clickedAfterSearch(eventName: eventName ?? self.eventName,
+                                 indexName: searcher.indexName,
+                                 objectIDsWithPositions: objectIDsWithPositions,
+                                 queryID: queryID,
+                                 timestamp: .none,
+                                 userToken: .none)
+    }
   }
 
   /// Tracks a conversion event for the specified search result.
@@ -127,12 +132,14 @@ public extension HitsTracker {
                                      eventName: EventName? = nil) {
     guard isEnabled else { return }
     guard let queryID = queryID else { return }
-    tracker.convertedAfterSearch(eventName: eventName ?? self.eventName,
-                                 indexName: searcher.indexName,
-                                 objectIDs: hits.map(\.objectID),
-                                 queryID: queryID,
-                                 timestamp: .none,
-                                 userToken: .none)
+    for objectIDs in hits.map(\.objectID).chunk(into: maxObjectIDsCount) {
+      tracker.convertedAfterSearch(eventName: eventName ?? self.eventName,
+                                   indexName: searcher.indexName,
+                                   objectIDs: objectIDs,
+                                   queryID: queryID,
+                                   timestamp: .none,
+                                   userToken: .none)
+    }
   }
 
   /// Tracks a view event for the specified search result.
@@ -154,10 +161,20 @@ public extension HitsTracker {
   func trackView<Record: Codable>(for hits: [Hit<Record>],
                                   eventName: EventName? = nil) {
     guard isEnabled else { return }
-    tracker.viewed(eventName: eventName ?? self.eventName,
-                   indexName: searcher.indexName,
-                   objectIDs: hits.map(\.objectID),
-                   timestamp: .none,
-                   userToken: .none)
+    for objectIDs in hits.map(\.objectID).chunk(into: maxObjectIDsCount) {
+      tracker.viewed(eventName: eventName ?? self.eventName,
+                     indexName: searcher.indexName,
+                     objectIDs: objectIDs,
+                     timestamp: .none,
+                     userToken: .none)
+    }
   }
+}
+
+fileprivate extension Array {
+    func chunk(into size: Int) -> [[Element]] {
+        return stride(from: 0, to: count, by: size).map {
+            Array(self[$0 ..< Swift.min($0 + size, count)])
+        }
+    }
 }
