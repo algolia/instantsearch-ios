@@ -118,3 +118,4 @@ private extension FilterNumericComparisonDemoViewController {
     priceStepperValueLabel.text = demoController.priceConnector.interactor.item.flatMap { "\($0)" }
   }
 }
+// swiftlint:enable type_name

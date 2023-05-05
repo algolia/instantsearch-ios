@@ -33,3 +33,4 @@
     }
   }
 #endif
+// swiftlint:enable weak_delegate

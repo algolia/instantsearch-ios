@@ -61,3 +61,4 @@ protocol EventTrackable {
                   timestamp: Date?,
                   filters: [String])
 }
+// swiftlint:enable function_parameter_count

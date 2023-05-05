@@ -42,4 +42,5 @@ struct ShowcaseDemo: Codable, DemoProtocol {
     case queryRuleCustomData = "query_rule_custom_data"
     case relevantSort = "dynamic_sort"
   }
+  // swiftlint:enable type_name
 }

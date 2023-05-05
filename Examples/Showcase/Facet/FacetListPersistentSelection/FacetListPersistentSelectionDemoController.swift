@@ -39,3 +39,4 @@ class FacetListPersistentSelectionDemoController {
     searcher.search()
   }
 }
+// swiftlint:enable type_name

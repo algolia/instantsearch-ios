@@ -1,6 +1,6 @@
 Pod::Spec.new do |s|
   s.name = 'InstantSearch'
-  s.version = '7.23.0'
+  s.version = '7.24.0'
   s.platforms = { :ios => "9.0", :osx => "10.11", :watchos => "2.0", :tvos => "9.0" }
 
   s.license = { type: 'Apache 2.0', file: 'LICENSE.md' }
@@ -9,7 +9,7 @@ Pod::Spec.new do |s|
   s.author = { "Algolia" => "contact@algolia.com" }
   s.source = { :git => 'https://github.com/algolia/instantsearch-ios.git', :tag => s.version }
 
-  s.swift_version = "5.2"
+  s.swift_version = "5.8"
   
   s.default_subspec = 'UI'
   

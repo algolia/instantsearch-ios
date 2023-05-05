@@ -8,7 +8,6 @@
 import Foundation
 
 extension AlgoliaHitsPage where Item: Decodable {
-  
   /// Initializes a new instance of `AlgoliaHitsPage` with the provided `SearchRespons`
   ///
   /// - Parameters:
@@ -33,16 +32,15 @@ extension AlgoliaHitsPage where Item: Decodable {
               hasPrevious: page > 0,
               hasNext: page < nbPages-1)
   }
-  
 }
 
 /// Errors which may happen during construction of AlgoliaHitsPage with SearchResponse
 public enum AlgoliaHitsPageSearchReponseError: LocalizedError {
-  
+
   case missingPage
   case missingNbPages
   case hitsExtractionError(Error)
-  
+
   public var errorDescription: String? {
     switch self {
     case .missingPage:
@@ -53,5 +51,4 @@ public enum AlgoliaHitsPageSearchReponseError: LocalizedError {
       return "hits decoding error from the search response: \(error.localizedDescription)"
     }
   }
-  
 }

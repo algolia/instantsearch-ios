@@ -5,7 +5,7 @@
 //  Created by Vladislav Fitc on 29/07/2020.
 //  Copyright © 2020 Algolia. All rights reserved.
 //
-// swiftlint:disable file_length line_length unused_optional_binding
+// swiftlint:disable file_length line_length unused_optional_binding orphaned_doc_comment
 
 import Foundation
 import InstantSearch
@@ -435,3 +435,4 @@ extension GettingStartedGuide.StepSeven.ViewController: StatsTextController {
  You can have a look at our examples to see more complex examples of applications built with `InstantSearch`.
  You can head to our components page to see other components that you could use.
  */
+// swiftlint:enable file_length line_length unused_optional_binding orphaned_doc_comment

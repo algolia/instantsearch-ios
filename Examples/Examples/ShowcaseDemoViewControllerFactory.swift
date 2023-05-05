@@ -126,7 +126,6 @@ class ShowcaseDemoViewControllerFactory: ViewControllerFactory {
     return viewController
   }
 
-  // swiftlint:disable function_body_length cyclomatic_complexity
   func swiftuiShowcaseViewController(for demoID: ShowcaseDemo.ID) -> UIViewController? {
     let viewController: UIViewController
 
@@ -212,4 +211,5 @@ class ShowcaseDemoViewControllerFactory: ViewControllerFactory {
 
     return viewController
   }
+  // swiftlint:enable function_body_length cyclomatic_complexity
 }
