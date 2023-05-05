@@ -9,7 +9,7 @@ Pod::Spec.new do |s|
   s.author = { "Algolia" => "contact@algolia.com" }
   s.source = { :git => 'https://github.com/algolia/instantsearch-ios.git', :tag => s.version }
 
-  s.swift_version = "5.7"
+  s.swift_version = "5.8"
   
   s.default_subspec = 'UI'
   
