@@ -28,7 +28,7 @@ public class HitsTracker: InsightsTracker {
 
   /// An optional identifier for the search query.
   internal var queryID: QueryID?
-  
+
   /// Max object IDs per event
   private let maxObjectIDsCount = 20
 
