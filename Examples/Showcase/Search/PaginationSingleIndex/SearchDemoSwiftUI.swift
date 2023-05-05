@@ -33,8 +33,8 @@ struct SearchDemoSwiftUI: SwiftUIDemo, PreviewProvider {
   }
 
   struct ContentView: View {
+    @StateObject var hitsViewModel: InfiniteScrollViewModel<AlgoliaHitsPage<Hit<StoreItem>>>
     @ObservedObject var searchBoxController: SearchBoxObservableController
-    @ObservedObject var hitsController: HitsObservableController<Hit<StoreItem>>
     @ObservedObject var statsController: StatsTextObservableController
     @ObservedObject var loadingController: LoadingObservableController
 
@@ -47,15 +47,13 @@ struct SearchDemoSwiftUI: SwiftUIDemo, PreviewProvider {
             ProgressView()
           }
         }
-        .padding(.horizontal, 20)
-        HitsList(hitsController) { hit, _ in
-          ProductRow(storeItemHit: hit!)
+        .padding(.trailing, 20)
+        HitsList(hitsViewModel) { hit in
+          ProductRow(storeItemHit: hit)
             .padding()
             .frame(height: 100)
-          Divider()
         } noResults: {
           Text("No Results")
-            .frame(maxWidth: .infinity, maxHeight: .infinity)
         }
       }
       .searchable(text: $searchBoxController.query)
@@ -67,10 +65,11 @@ struct SearchDemoSwiftUI: SwiftUIDemo, PreviewProvider {
   }
 
   static func contentView(with controller: Controller) -> ContentView {
-    ContentView(searchBoxController: controller.searchBoxController,
-                hitsController: controller.hitsController,
-                statsController: controller.statsController,
-                loadingController: controller.loadingController)
+    let hitsViewModel = controller.demoController.searcher.infiniteScrollViewModel(of: Hit<StoreItem>.self)
+    return ContentView(hitsViewModel: hitsViewModel,
+                       searchBoxController: controller.searchBoxController,
+                       statsController: controller.statsController,
+                       loadingController: controller.loadingController)
   }
 
   static func viewController(searchTriggeringMode: SearchTriggeringMode) -> UIViewController {
