@@ -42,10 +42,11 @@ public class NumberRangeInteractor<Number: Comparable & DoubleRepresentable>: It
 
   /// Set the bounds value and clamps the current range value to it
   public func applyBounds(bounds: ClosedRange<Number>?) {
-    let limitedRange = limitRange(item, limitedBy: bounds)
     self.bounds = bounds
     onBoundsComputed.fire(bounds)
-    onNumberRangeComputed.fire(limitedRange)
+    if let limitedRange = limitRange(item, limitedBy: bounds), limitedRange != item {
+      onNumberRangeComputed.fire(limitedRange)
+    }
   }
 
   public func computeNumberRange(numberRange: ClosedRange<Number>?) {
