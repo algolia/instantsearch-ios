@@ -5,7 +5,7 @@
 //  Created by Vladislav Fitc on 27/04/2023.
 //
 
-import Foundation
+#if canImport(Combine) && canImport(SwiftUI) && (arch(arm64) || arch(x86_64))
 import SwiftUI
 
 /// `HitsList` is a SwiftUI generic view responsible for displaying a list of paginated data provided by the `InfiniteScrollViewModel` class.
@@ -76,3 +76,4 @@ public struct HitsList<HitView: View, NoResults: View, Item, P: Page<Item>>: Vie
   }
 
 }
+#endif
