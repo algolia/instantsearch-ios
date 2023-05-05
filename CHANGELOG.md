@@ -1,5 +1,18 @@
 # ChangeLog
 
+## [7.25.0](https://github.com/algolia/instantsearch-ios/compare/7.24.0...7.25.0) (2023-05-05)
+
+### Fix
+
+- redundant search request sent by NumberRangeConnector (#283) ([7c68b57](https://github.com/algolia/instantsearch-ios/commit/7c68b57))
+
+### Feat
+
+- **HitsTracker**: add automatic object ids chunking (#284) ([5c1a04a](https://github.com/algolia/instantsearch-ios/commit/5c1a04a))
+- **hits**: Inifinite Scroll components (#282) ([2b8eced](https://github.com/algolia/instantsearch-ios/commit/2b8eced))
+
+
+
 ## [7.24.0](https://github.com/algolia/instantsearch-ios/compare/7.23.0...7.24.0) (2023-05-02)
 
 ### Feat
