@@ -48,7 +48,7 @@ struct SearchDemoSwiftUI: SwiftUIDemo, PreviewProvider {
           }
         }
         .padding(.trailing, 20)
-        HitsList(hitsViewModel) { hit in
+        InfiniteList(hitsViewModel) { hit in
           ProductRow(storeItemHit: hit)
             .padding()
             .frame(height: 100)
