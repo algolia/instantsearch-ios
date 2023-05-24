@@ -10,13 +10,15 @@ import Foundation
 import InstantSearch
 import UIKit
 
-class FilterNumericRangeDemoViewController: UIViewController {
+class FilterNumericRangeDemoViewController: UIViewController, FilterClearController {
   let searchController: UISearchController
   let demoController: FilterNumericRangeDemoController
   let statsController: LabelStatsController
   let numericRangeController: NumericRangeController
   let filterDebugViewController: FilterDebugViewController
   let searchBoxController: TextFieldController
+  
+  var onClick: (() -> Void)?
 
   override init(nibName nibNameOrNil: String?, bundle nibBundleOrNil: Bundle?) {
     searchController = UISearchController()
@@ -50,6 +52,7 @@ private extension FilterNumericRangeDemoViewController {
     demoController.rangeConnector.connectController(numericRangeController)
     demoController.rangeConnector.interactor.connectSearcher(demoController.searcher, attribute: "price")
     demoController.filterClearConnector.connectController(filterDebugViewController.clearFilterController)
+    demoController.filterClearConnector.connectController(self)
   }
 
   func setupUI() {
@@ -67,8 +70,19 @@ private extension FilterNumericRangeDemoViewController {
     mainStackView.addArrangedSubview(searchDebugView)
     mainStackView.addArrangedSubview(statsController.label)
     mainStackView.addArrangedSubview(numericRangeController.view)
+    let clearButton = UIButton()
+    clearButton.translatesAutoresizingMaskIntoConstraints = false
+    clearButton.setTitle("Reset", for: .normal)
+    clearButton.setTitleColor(.systemRed, for: .normal)
+    clearButton.addTarget(self, action: #selector(didTapClearButton), for: .touchUpInside)
+    mainStackView.addArrangedSubview(clearButton)
     mainStackView.addArrangedSubview(.spacer)
     view.addSubview(mainStackView)
     mainStackView.pin(to: view.safeAreaLayoutGuide)
   }
+  
+  @objc func didTapClearButton() {
+    onClick?()
+  }
+  
 }

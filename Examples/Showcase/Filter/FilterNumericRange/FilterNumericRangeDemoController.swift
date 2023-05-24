@@ -17,6 +17,7 @@ class FilterNumericRangeDemoController {
   let searchBoxConnector: SearchBoxConnector
   let rangeConnector: NumberRangeConnector<Double>
   let statsConnector: StatsConnector
+  let clearConnector: FilterClearConnector
 
   init() {
     searcher = HitsSearcher(client: .instantSearch,
@@ -28,6 +29,7 @@ class FilterNumericRangeDemoController {
                            attribute: "price")
     statsConnector = .init(searcher: searcher)
     searchBoxConnector = .init(searcher: searcher)
+    clearConnector = .init(filterState: filterState)
     searcher.connectFilterState(filterState)
     searcher.search()
   }
