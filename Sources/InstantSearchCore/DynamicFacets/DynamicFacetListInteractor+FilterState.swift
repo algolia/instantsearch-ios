@@ -46,7 +46,7 @@ public extension DynamicFacetListInteractor {
     public func connect() {
       whenSelectionsComputedThenUpdateFilterState()
       whenFilterStateChangedThenUpdateSelections()
-      whenFacetOrderChangedThenUpdateSelections
+      whenFacetOrderChangedThenUpdateSelections()
     }
 
     public func disconnect() {
@@ -64,7 +64,7 @@ public extension DynamicFacetListInteractor {
         return .and(name: groupName)
       }
     }
-    
+
     private func calculateSelections(facets: [AttributedFacets], filterState: FilterState) -> [Attribute: Set<String>] {
       let selectionsPerAttribute: [(attribute: Attribute, values: Set<String>)] =
         facets
@@ -91,7 +91,7 @@ public extension DynamicFacetListInteractor {
         filterState.notifyChange()
       }
     }
-    
+
     private func whenFacetOrderChangedThenUpdateSelections() {
       interactor.onFacetOrderChanged.subscribePast(with: filterState) { filterState, orderedFacets in
         interactor.selections = calculateSelections(facets: orderedFacets,
