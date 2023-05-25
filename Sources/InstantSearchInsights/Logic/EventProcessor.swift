@@ -155,7 +155,7 @@ class EventProcessor<Service: EventsService, PackageStorage: Storage>: Flushable
 
 private extension EventProcessor {
   func sync(_ eventsPackage: Package<Event>) {
-    logger.info("sending events package: \(eventsPackage.items)")
+//    logger.trace("sending events package: \(eventsPackage.items)")
 
     let eligibleEvents = eventsPackage.items.filter(acceptEvent)
 

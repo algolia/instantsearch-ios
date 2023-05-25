@@ -31,6 +31,7 @@ public extension HitsSearcher {
 
       filterState.onChange.subscribePast(with: hitsSearcher) { searcher, filterState in
         searcher.request.query.filters = FilterGroupConverter().sql(filterState.toFilterGroups())
+        print(searcher.request.query.filters)
         searcher.request.query.page = 0
         searcher.search()
       }

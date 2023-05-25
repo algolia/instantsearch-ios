@@ -62,8 +62,27 @@ public extension DynamicFacetListInteractor {
         return .and(name: groupName)
       }
     }
+    
+    private func calculateSelections(facets: [AttributedFacets], filterState: FilterState) -> [Attribute: Set<String>] {
+      let selectionsPerAttribute: [(attribute: Attribute, values: Set<String>)] =
+        facets
+        .map(\.attribute)
+        .map { attribute in
+          let values = filterState
+            .getFilters(forGroupWithID: groupID(for: attribute))
+            .compactMap { $0.filter as? FacetFilter }
+            .filter { $0.attribute == attribute && !$0.isNegated }
+            .map(\.value.description)
+          return (attribute, Set(values))
+        }
+      return Dictionary(uniqueKeysWithValues: selectionsPerAttribute)
+    }
 
     private func whenSelectionsComputedThenUpdateFilterState() {
+      interactor.onFacetOrderChanged.subscribePast(with: filterState) { filterState, orderedFacets in
+        interactor.selections = calculateSelections(facets: orderedFacets,
+                                                    filterState: filterState)
+      }
       interactor.onSelectionsComputed.subscribePast(with: filterState) { filterState, selectionsPerAttribute in
         selectionsPerAttribute.forEach { attribute, selections in
           let groupID = self.groupID(for: attribute)
@@ -76,19 +95,10 @@ public extension DynamicFacetListInteractor {
     }
 
     private func whenFilterStateChangedThenUpdateSelections() {
-      filterState.onChange.subscribePast(with: interactor) { interactor, _ in
-        let selectionsPerAttribute: [(attribute: Attribute, values: Set<String>)] = interactor
-          .orderedFacets
-          .map(\.attribute)
-          .map { attribute in
-            let values = filterState
-              .getFilters(forGroupWithID: groupID(for: attribute))
-              .compactMap { $0.filter as? FacetFilter }
-              .filter { $0.attribute == attribute && !$0.isNegated }
-              .map(\.value.description)
-            return (attribute, Set(values))
-          }
-        interactor.selections = Dictionary(uniqueKeysWithValues: selectionsPerAttribute)
+      filterState.onChange.subscribePast(with: interactor) { [weak filterState] interactor, _ in
+        guard let filterState else { return }
+        interactor.selections = calculateSelections(facets: interactor.orderedFacets,
+                                                    filterState: filterState)
       }
     }
   }
