@@ -1,5 +1,13 @@
 # ChangeLog
 
+## [7.25.1](https://github.com/algolia/instantsearch-ios/compare/7.25.0...7.25.1) (2023-05-30)
+
+### Misc
+
+- fix(dynamic facets): recalculate selections on facets order change (#289) ([168505a](https://github.com/algolia/instantsearch-ios/commit/168505a))
+
+
+
 ## [7.25.0](https://github.com/algolia/instantsearch-ios/compare/7.24.0...7.25.0) (2023-05-05)
 
 ### Fix
