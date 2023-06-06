@@ -29,6 +29,11 @@
 		4011DC3728233A6000336C42 /* ProductTableViewCell+StoreItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = 40E003BD280F833000544E9F /* ProductTableViewCell+StoreItem.swift */; };
 		4011DC3828233A6F00336C42 /* UIView+Layout.swift in Sources */ = {isa = PBXBuildFile; fileRef = AF50CCBE27FAE6AA0036F549 /* UIView+Layout.swift */; };
 		4011DC3928233D1A00336C42 /* InsightsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4011DC1D2823314900336C42 /* InsightsViewController.swift */; };
+		401883252A2A1621004A7CE9 /* QuerySuggestionsDemoView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 401883242A2A1621004A7CE9 /* QuerySuggestionsDemoView.swift */; };
+		401883262A2A1B32004A7CE9 /* ProductRow.swift in Sources */ = {isa = PBXBuildFile; fileRef = AF50CA0527F6EE0C0036F549 /* ProductRow.swift */; };
+		401883272A2A1B43004A7CE9 /* ProductRow+StoreItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4034B6F22810078B00F4A303 /* ProductRow+StoreItem.swift */; };
+		401883282A2A1BD4004A7CE9 /* UIColor+Convenience.swift in Sources */ = {isa = PBXBuildFile; fileRef = AF50CC3327F72FF80036F549 /* UIColor+Convenience.swift */; };
+		4018832A2A2A1C17004A7CE9 /* InstantSearchSwiftUI in Frameworks */ = {isa = PBXBuildFile; productRef = 401883292A2A1C17004A7CE9 /* InstantSearchSwiftUI */; };
 		4022E85A280E334800D71D66 /* ProductsTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4022E859280E334800D71D66 /* ProductsTableViewController.swift */; };
 		4022E85B280E334800D71D66 /* ProductsTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4022E859280E334800D71D66 /* ProductsTableViewController.swift */; };
 		4022E85D280EB94200D71D66 /* CommonSwiftUIDemoViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 404C4027280A27EE00EC9FEB /* CommonSwiftUIDemoViewController.swift */; };
@@ -816,6 +821,7 @@
 		4011DC222823314A00336C42 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		4011DC252823314A00336C42 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		4011DC272823314A00336C42 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		401883242A2A1621004A7CE9 /* QuerySuggestionsDemoView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = QuerySuggestionsDemoView.swift; sourceTree = "<group>"; };
 		4022E859280E334800D71D66 /* ProductsTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProductsTableViewController.swift; sourceTree = "<group>"; };
 		4022E85C280EA5EC00D71D66 /* README.md */ = {isa = PBXFileReference; lastKnownFileType = net.daringfireball.markdown; path = README.md; sourceTree = "<group>"; };
 		4022E85E280EBB0E00D71D66 /* Item.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Item.swift; sourceTree = "<group>"; };
@@ -1182,6 +1188,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				4018832A2A2A1C17004A7CE9 /* InstantSearchSwiftUI in Frameworks */,
 				AF50C95C27F620E00036F549 /* SDWebImage in Frameworks */,
 				AF50C95A27F620D80036F549 /* InstantSearch in Frameworks */,
 			);
@@ -1604,6 +1611,7 @@
 				AF50C94327F620740036F549 /* AppDelegate.swift */,
 				AF50C94527F620740036F549 /* SceneDelegate.swift */,
 				AF50C95727F620C50036F549 /* QuerySuggestionsDemoViewController.swift */,
+				401883242A2A1621004A7CE9 /* QuerySuggestionsDemoView.swift */,
 				AF50C95527F620B30036F549 /* SuggestionsTableViewController.swift */,
 				AF50C94C27F620740036F549 /* Assets.xcassets */,
 				AF50C94E27F620740036F549 /* LaunchScreen.storyboard */,
@@ -2259,6 +2267,7 @@
 			packageProductDependencies = (
 				AF50C95927F620D80036F549 /* InstantSearch */,
 				AF50C95B27F620E00036F549 /* SDWebImage */,
+				401883292A2A1C17004A7CE9 /* InstantSearchSwiftUI */,
 			);
 			productName = QuerySuggestionsGuide;
 			productReference = AF50C94127F620740036F549 /* QuerySuggestions.app */;
@@ -3442,7 +3451,11 @@
 				4034B6EC280F8BAA00F4A303 /* ProductTableViewCell.swift in Sources */,
 				AF50CE5227FB34970036F549 /* StoreItemsTableViewController+SearchResponse.swift in Sources */,
 				AF50C95F27F622C70036F549 /* StoreItem.swift in Sources */,
+				401883282A2A1BD4004A7CE9 /* UIColor+Convenience.swift in Sources */,
+				401883272A2A1B43004A7CE9 /* ProductRow+StoreItem.swift in Sources */,
 				AF50C95627F620B30036F549 /* SuggestionsTableViewController.swift in Sources */,
+				401883262A2A1B32004A7CE9 /* ProductRow.swift in Sources */,
+				401883252A2A1621004A7CE9 /* QuerySuggestionsDemoView.swift in Sources */,
 				AF50C96927F622FB0036F549 /* UITableView+EmptyResult.swift in Sources */,
 				AF50C94427F620740036F549 /* AppDelegate.swift in Sources */,
 				AF50C94627F620740036F549 /* SceneDelegate.swift in Sources */,
@@ -6770,6 +6783,10 @@
 			isa = XCSwiftPackageProductDependency;
 			package = AFAE55AA27342C5900B52A43 /* XCRemoteSwiftPackageReference "SDWebImage" */;
 			productName = SDWebImage;
+		};
+		401883292A2A1C17004A7CE9 /* InstantSearchSwiftUI */ = {
+			isa = XCSwiftPackageProductDependency;
+			productName = InstantSearchSwiftUI;
 		};
 		404C412A280C9D1C00EC9FEB /* SDWebImage */ = {
 			isa = XCSwiftPackageProductDependency;

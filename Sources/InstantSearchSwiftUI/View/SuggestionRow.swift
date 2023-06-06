@@ -19,10 +19,10 @@
     public let suggestion: QuerySuggestion
 
     /// An action triggered when typeahead button (arrow) tapped
-    public var onTypeAhead: (String) -> Void
+    public var onTypeAhead: ((String) -> Void)?
 
     /// An action triggered when suggestion selected
-    public var onSelection: (String) -> Void
+    public var onSelection: ((String) -> Void)?
 
     private func valueText(for suggestion: QuerySuggestion) -> Text {
       if let highlightedValue = suggestion.highlighted {
@@ -34,8 +34,8 @@
     }
 
     public init(suggestion: QuerySuggestion,
-                onSelection: @escaping (String) -> Void,
-                onTypeAhead: @escaping (String) -> Void) {
+                onSelection: ((String) -> Void)? = nil,
+                onTypeAhead: ((String) -> Void)? = nil) {
       self.suggestion = suggestion
       self.onSelection = onSelection
       self.onTypeAhead = onTypeAhead
@@ -44,26 +44,26 @@
     public var body: some View {
       let stack =
         HStack {
+          Image(systemName: "magnifyingglass")
           valueText(for: suggestion)
             .padding(.vertical, 3)
           Spacer()
           Button(action: {
-                   onTypeAhead(suggestion.query)
+                   onTypeAhead?(suggestion.query)
                  },
                  label: {
                    Image(systemName: "arrow.up.backward")
                      .foregroundColor(.gray)
                  })
+          .buttonStyle(.borderless)
         }
-        .padding(.vertical, 4)
-        .padding(.horizontal, 20)
         .contentShape(Rectangle())
       #if os(tvOS)
         return stack
       #else
         return stack
           .onTapGesture {
-            onSelection(suggestion.query)
+            onSelection?(suggestion.query)
           }
       #endif
     }
