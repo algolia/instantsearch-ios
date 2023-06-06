@@ -118,4 +118,13 @@ class FilterTests: XCTestCase {
     XCTAssertTrue((!rangeNumericFilter).isNegated)
     XCTAssertEqual(!rangeNumericFilter, Filter.Numeric(attribute: "a", range: 0...10, isNegated: true))
   }
+  
+  func testEscapingDoubleQuotes() {
+    let facetFilter = Filter.Facet(attribute: "type", value: "45\"-50\"  tv\'s")
+    XCTAssertEqual(facetFilter.sqlForm, "\"type\":\"45\\\"-50\\\"  tv\'s\"")
+    
+    let tagFilter = Filter.Tag(stringLiteral: "45\"-50\"  tv\'s")
+    XCTAssertEqual(tagFilter.sqlForm, "\"_tags\":\"45\\\"-50\\\"  tv\'s\"")
+  }
+  
 }

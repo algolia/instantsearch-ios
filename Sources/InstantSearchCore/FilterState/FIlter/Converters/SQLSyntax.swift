@@ -55,7 +55,7 @@ extension Filter.Facet: SQLSyntaxConvertible {
   public var sqlForm: String {
     let scoreExpression = score.flatMap { "<score=\(String($0))>" } ?? ""
     let expression = """
-    "\(attribute)":"\(value)\(scoreExpression)"
+    "\(attribute)":"\(value.description.escapingQuotes)\(scoreExpression)"
     """
     let prefix = isNegated ? "NOT " : ""
     return prefix + expression
@@ -65,11 +65,19 @@ extension Filter.Facet: SQLSyntaxConvertible {
 extension Filter.Tag: SQLSyntaxConvertible {
   public var sqlForm: String {
     let expression = """
-    "\(attribute)":"\(value)"
+    "\(attribute)":"\(value.escapingQuotes)"
     """
     let prefix = isNegated ? "NOT " : ""
     return prefix + expression
   }
+}
+
+fileprivate extension String {
+  
+  var escapingQuotes: String {
+    replacingOccurrences(of: "\"", with: "\\\"")
+  }
+  
 }
 
 extension SQLSyntaxConvertible where Self: FilterGroupType {
