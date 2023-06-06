@@ -36,6 +36,11 @@ public class NumericRangeController: UIViewController, NumberRangeController {
     upperBoundLabel.text = "\(bounds.upperBound.rounded(toPlaces: 2))"
   }
 
+  public func invalidate() {
+    rangeSlider.lowerValue = rangeSlider.minimumValue
+    rangeSlider.upperValue = rangeSlider.maximumValue
+  }
+
   public init(rangeSlider: RangeSlider) {
     self.rangeSlider = rangeSlider
     lowerBoundLabel = .init()
