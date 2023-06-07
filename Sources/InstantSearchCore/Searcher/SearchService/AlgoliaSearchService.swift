@@ -56,7 +56,6 @@ extension AlgoliaSearchService {
                                         hierachicalFilters: hierarchicalFilters)
       queriesBuilder.keepSelectedEmptyFacets = keepSelectedEmptyFacets
       queries = queriesBuilder.build().map { IndexedQuery(indexName: request.indexName, query: $0) }
-      print(">>>", queries.first!.query.filters)
       // swiftlint:disable:next force_try
       transform = { try! queriesBuilder.aggregate($0.compactMap(\.hitsResponse)) }
     } else {

@@ -27,7 +27,9 @@
     private func valueText(for suggestion: QuerySuggestion) -> Text {
       if let highlightedValue = suggestion.highlighted {
         let highlightedValueString = HighlightedString(string: highlightedValue)
-        return Text(highlightedString: highlightedValueString) { Text($0).bold() }
+        return Text(highlightedString: highlightedValueString,
+                    regular: { Text($0).bold() },
+                    highlighted: { Text($0) })
       } else {
         return Text(suggestion.query)
       }

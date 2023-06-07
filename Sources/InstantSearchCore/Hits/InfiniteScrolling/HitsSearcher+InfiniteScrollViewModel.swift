@@ -10,10 +10,10 @@ import Foundation
 @available(iOS 13.0, macOS 10.15, tvOS 13.0, watchOS 6.0, *)
 public extension HitsSearcher {
 
-  /// Build `InfiniteScrollViewModel` with the current `HitsSearcher` instance as `PageSource`
-  func infiniteScrollViewModel<Item: Decodable>(of item: Item.Type) -> InfiniteScrollViewModel<AlgoliaHitsPage<Item>> {
+  /// Build `PaginatedDataViewModel` with the current `HitsSearcher` instance as `PageSource`
+  func paginatedData<Item: Decodable>(of item: Item.Type) -> PaginatedDataViewModel<AlgoliaHitsPage<Item>> {
     let source = HitsSearcherPageSource<Item>(hitsSearcher: self)
-    let viewModel = InfiniteScrollViewModel(source: source)
+    let viewModel = PaginatedDataViewModel(source: source)
     onQueryChanged.subscribe(with: viewModel) { viewModel, _ in
       Task {
         await viewModel.reset()

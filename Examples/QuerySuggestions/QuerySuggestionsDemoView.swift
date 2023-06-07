@@ -55,7 +55,7 @@ final class SearchViewModel: ObservableObject {
     
   @Published var suggestions: [QuerySuggestion]
   
-  var hits: InfiniteScrollViewModel<AlgoliaHitsPage<Hit<Item>>>
+  var hits: PaginatedDataViewModel<AlgoliaHitsPage<Hit<Item>>>
   
   private var itemsSearcher: HitsSearcher
     
@@ -73,7 +73,7 @@ final class SearchViewModel: ObservableObject {
     self.suggestionsSearcher = HitsSearcher(appID: appID,
                                             apiKey: apiKey,
                                             indexName: "query_suggestions")
-    self.hits = itemsSearcher.infiniteScrollViewModel(of: Hit<Item>.self)
+    self.hits = itemsSearcher.paginatedData(of: Hit<Item>.self)
     searchQuery = ""
     suggestions = []
     didSubmitSuggestion = false
@@ -108,8 +108,8 @@ final class SearchViewModel: ObservableObject {
       submitSearch()
     } else {
       suggestionsSearcher.request.query.query = searchQuery
-      itemsSearcher.request.query.query = searchQuery
       suggestionsSearcher.search()
+      itemsSearcher.request.query.query = searchQuery
       itemsSearcher.search()
     }
   }
