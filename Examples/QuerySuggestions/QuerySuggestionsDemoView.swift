@@ -16,13 +16,13 @@ struct Item: Codable {
 }
 
 struct ItemHitRow: View {
-  
+
   let itemHit: Hit<Item>
-  
+
   init(_ itemHit: Hit<Item>) {
     self.itemHit = itemHit
   }
-  
+
   var body: some View {
     HStack(spacing: 14) {
       AsyncImage(url: itemHit.object.image, content: { image in
@@ -42,27 +42,27 @@ struct ItemHitRow: View {
       Spacer()
     }
   }
-  
+
 }
 
 final class SearchViewModel: ObservableObject {
-  
+
   @Published var searchQuery: String {
     didSet {
       notifyQueryChanged()
     }
   }
-    
+
   @Published var suggestions: [QuerySuggestion]
-  
+
   var hits: PaginatedDataViewModel<AlgoliaHitsPage<Hit<Item>>>
-  
+
   private var itemsSearcher: HitsSearcher
-    
+
   private var suggestionsSearcher: HitsSearcher
-        
+
   private var didSubmitSuggestion: Bool
-    
+
   init() {
     let appID: ApplicationID = "latency"
     let apiKey: APIKey = "af044fb0788d6bb15f807e4420592bc5"
@@ -86,22 +86,22 @@ final class SearchViewModel: ObservableObject {
     }.onQueue(.main)
     suggestionsSearcher.search()
   }
-  
+
   func completeSuggestion(_ suggestion: String) {
     searchQuery = suggestion
   }
-    
+
   func submitSuggestion(_ suggestion: String) {
     didSubmitSuggestion = true
     searchQuery = suggestion
   }
-    
+
   func submitSearch() {
     suggestions = []
     itemsSearcher.request.query.query = searchQuery
     itemsSearcher.search()
   }
-  
+
   private func notifyQueryChanged() {
     if didSubmitSuggestion {
       didSubmitSuggestion = false
@@ -113,17 +113,17 @@ final class SearchViewModel: ObservableObject {
       itemsSearcher.search()
     }
   }
-  
+
   deinit {
     suggestionsSearcher.onResults.cancelSubscription(for: self)
   }
-  
+
 }
 
 public struct SearchView: View {
-  
+
   @StateObject var viewModel = SearchViewModel()
-    
+
   public var body: some View {
     InfiniteList(viewModel.hits, itemView: { hit in
       ItemHitRow(hit)
@@ -144,16 +144,16 @@ public struct SearchView: View {
     })
     .onSubmit(of: .search, viewModel.submitSearch)
   }
-  
+
 }
 
 @available(iOS 15.0, *)
 class SearchPreview: PreviewProvider {
-  
+
   static var previews: some View {
     NavigationView {
       SearchView()
     }
   }
-  
+
 }
