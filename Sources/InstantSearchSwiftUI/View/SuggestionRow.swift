@@ -13,7 +13,7 @@
   import SwiftUI
 
   /// A view presenting a search query suggestion
-  @available(iOS 13.0, OSX 11.0, tvOS 13.0, watchOS 6.0, *)
+  @available(iOS 13.0, OSX 11.0, tvOS 13.0, watchOS 8.0, *)
   public struct SuggestionRow: View {
     /// Suggestion
     public let suggestion: QuerySuggestion
