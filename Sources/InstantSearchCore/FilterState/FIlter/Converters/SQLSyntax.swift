@@ -73,11 +73,11 @@ extension Filter.Tag: SQLSyntaxConvertible {
 }
 
 fileprivate extension String {
-  
+
   var escapingQuotes: String {
     replacingOccurrences(of: "\"", with: "\\\"")
   }
-  
+
 }
 
 extension SQLSyntaxConvertible where Self: FilterGroupType {
