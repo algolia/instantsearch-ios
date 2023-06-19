@@ -1,5 +1,14 @@
 # ChangeLog
 
+## [7.25.2](https://github.com/algolia/instantsearch-ios/compare/7.25.1...7.25.2) (2023-06-11)
+
+### Fix
+
+- **filters**: issue with textual value escaping (#293) ([a2a7b73](https://github.com/algolia/instantsearch-ios/commit/a2a7b73))
+- Examples app (#288) ([cfd7b9b](https://github.com/algolia/instantsearch-ios/commit/cfd7b9b))
+
+
+
 ## [7.25.1](https://github.com/algolia/instantsearch-ios/compare/7.25.0...7.25.1) (2023-05-30)
 
 ### Misc
