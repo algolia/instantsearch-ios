@@ -45,13 +45,18 @@ class DynamicFacetListDemoViewController: UIViewController {
     title = "Dynamic Facets"
     view.backgroundColor = .systemBackground
     navigationItem.searchController = searchController
-    navigationItem.rightBarButtonItem = UIBarButtonItem(image: UIImage(systemName: "info.circle.fill"),
+    navigationItem.rightBarButtonItem = UIBarButtonItem(image: UIImage(systemName: "line.3.horizontal.decrease.circle"),
                                                         style: .plain,
                                                         target: self,
-                                                        action: #selector(presentHint))
+                                                        action: #selector(applyFilter))
     searchController.hidesNavigationBarDuringPresentation = false
     searchController.showsSearchResultsController = true
     searchController.automaticallyShowsCancelButton = false
+  }
+  
+  @objc private func applyFilter() {
+    demoController.filterState[and: "categoryHierarchy.lvl1"].toggle(FacetFilter(attribute: "categoryHierarchy.lvl1", value: "Sale > Clothing"))
+    demoController.filterState.notifyChange()
   }
 
   @objc private func presentHint() {
