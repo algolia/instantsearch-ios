@@ -44,7 +44,7 @@ final class DemoListViewController<Demo: DemoProtocol & Codable>: UITableViewCon
     navigationItem.searchController = searchController
     tableView.register(UITableViewCell.self, forCellReuseIdentifier: cellIdentifier)
     hitsInteractor.onResultsUpdated.subscribe(with: self) { viewController, results in
-      let demos = (try? results.extractHits() as [Demo]) ?? []
+      let demos = (try? results.extractHits(jsonDecoder: JSONDecoder()) as [Demo]) ?? []
       viewController.updateDemos(demos)
     }
   }
