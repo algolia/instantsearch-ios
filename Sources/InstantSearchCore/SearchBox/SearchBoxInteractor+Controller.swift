@@ -38,8 +38,8 @@ public extension SearchBoxInteractor {
         controller.setQuery(query)
       }.onQueue(.main)
 
-      controller.onQueryChanged = { [weak interactor, weak queryDebouncer] query in
-        queryDebouncer?.debounce(value: query) { query in
+      controller.onQueryChanged = { [weak interactor, queryDebouncer] query in
+        queryDebouncer.debounce(value: query) { query in
           interactor?.query = query
         }
       }

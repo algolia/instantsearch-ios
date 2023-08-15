@@ -58,7 +58,7 @@ class Debouncer<T: Equatable> {
         completion(value)
       }
 
-      queue.asyncAfter(deadline: .now() + delay, execute: workItem!)
+      DispatchQueue.main.asyncAfter(deadline: .now() + delay, execute: workItem!)
     }
   }
 }
