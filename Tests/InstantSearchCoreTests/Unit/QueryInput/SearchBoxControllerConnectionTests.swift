@@ -36,7 +36,9 @@ class SearchBoxControllerConnectionTests: XCTestCase {
     let presetQuery = "q1"
     interactor.query = presetQuery
 
-    let connection = SearchBoxInteractor.ControllerConnection(interactor: interactor, controller: controller)
+    let connection = SearchBoxInteractor.ControllerConnection(interactor: interactor,
+                                                              controller: controller,
+                                                              debounceInterval: 0)
 
     connection.connect()
 
@@ -99,23 +101,32 @@ class SearchBoxControllerConnectionTester {
     XCTAssertEqual(controller.query, presetQuery, file: file, line: line)
 
     controller.query = "q2"
-
-    if isConnected {
-      XCTAssertEqual(interactor.query, "q2", file: file, line: line)
-    } else {
-      XCTAssertNil(interactor.query, file: file, line: line)
+    
+    let queryChangedExpectation = source.expectation(description: "query changed")
+    queryChangedExpectation.isInverted = !isConnected
+    let subscription = interactor.onQueryChanged.subscribe(with: self) { _, query in
+      if isConnected {
+        XCTAssertEqual(query, "q2", file: file, line: line)
+      } else {
+        XCTAssertNil(query, file: file, line: line)
+      }
+      queryChangedExpectation.fulfill()
     }
-
+    source.waitForExpectations(timeout: 2)
+    subscription.cancel()
+    
     controller.query = "q3"
 
     let querySubmittedExpectation = source.expectation(description: "query submitted")
     querySubmittedExpectation.isInverted = !isConnected
-
     interactor.onQuerySubmitted.subscribe(with: self) { _, query in
-      XCTAssertEqual(query, "q3", file: file, line: line)
+      if isConnected {
+        XCTAssertEqual(query, "q3", file: file, line: line)
+      } else {
+        XCTAssertNil(query, file: file, line: line)
+      }
       querySubmittedExpectation.fulfill()
     }
-
     controller.submitQuery()
 
     source.waitForExpectations(timeout: 2, handler: nil)

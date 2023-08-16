@@ -32,7 +32,7 @@ let package = Package(
   dependencies: [
     .package(name: "AlgoliaSearchClient",
              url: "https://github.com/algolia/algoliasearch-client-swift",
-             from: "8.17.0"),
+             from: "8.18.2"),
     .package(name: "InstantSearchTelemetry",
              url: "https://github.com/algolia/instantsearch-telemetry-native",
              from: "0.1.3")

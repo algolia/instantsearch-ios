@@ -16,15 +16,21 @@ public extension SearchBoxInteractor {
     /// Controller interfacing with a concrete query input view
     public let controller: Controller
 
+    /// Debouncer that manages the debounce delay for successive query inputs to optimize performance.
+    private let queryDebouncer: Debouncer<String?>
+
     /**
      - Parameters:
-       - interactor: Business logic component that handles textual query input
-       - controller: Controller interfacing with a concrete query input view
+     - interactor: Business logic component that handles textual query input
+     - controller: Controller interfacing with a concrete query input view
+     - debounceInterval: The delay (in seconds) after which the query input is processed, allowing for debounced input. Default value is 100ms (0.1 seconds).
      */
     public init(interactor: SearchBoxInteractor,
-                controller: Controller) {
+                controller: Controller,
+                debounceInterval: TimeInterval = 0.1) {
       self.interactor = interactor
       self.controller = controller
+      self.queryDebouncer = Debouncer(delay: debounceInterval)
     }
 
     public func connect() {
@@ -32,8 +38,10 @@ public extension SearchBoxInteractor {
         controller.setQuery(query)
       }.onQueue(.main)
 
-      controller.onQueryChanged = { [weak interactor] in
-        interactor?.query = $0
+      controller.onQueryChanged = { [weak interactor, queryDebouncer] query in
+        queryDebouncer.debounce(value: query) { query in
+          interactor?.query = query
+        }
       }
 
       controller.onQuerySubmitted = { [weak interactor] in
@@ -52,10 +60,10 @@ public extension SearchBoxInteractor {
 
 public extension SearchBoxInteractor {
   /**
-    Establishes a connection with a controller
-    - Parameters:
-      - controller: Controller interfacing with a concrete query input view
-    - Returns: Established connection
+   Establishes a connection with a controller
+   - Parameters:
+   - controller: Controller interfacing with a concrete query input view
+   - Returns: Established connection
    */
   @discardableResult func connectController<Controller: SearchBoxController>(_ controller: Controller) -> ControllerConnection<Controller> {
     let connection = ControllerConnection(interactor: self,
