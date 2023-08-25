@@ -50,6 +50,7 @@
           valueText(for: suggestion)
             .padding(.vertical, 3)
           Spacer()
+          #if !os(tvOS)
           Button(action: {
                    onTypeAhead?(suggestion.query)
                  },
@@ -58,6 +59,7 @@
                      .foregroundColor(.gray)
                  })
           .buttonStyle(.borderless)
+          #endif
         }
         .contentShape(Rectangle())
       #if os(tvOS)
