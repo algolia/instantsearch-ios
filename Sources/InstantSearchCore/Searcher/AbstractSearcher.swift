@@ -102,6 +102,9 @@ open class AbstractSearcher<Service: SearchService>: Searcher, SequencerDelegate
 
     let operation = service.search(request) { [weak self, request] result in
       guard let searcher = self else { return }
+      if case .failure(AlgoliaSearchClient.SyncOperationError.cancelled) = result {
+        return
+      }
       let result = result.mapError { RequestError(request: request, error: $0) }
       switch result {
       case let .failure(error):
