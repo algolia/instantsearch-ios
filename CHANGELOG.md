@@ -1,5 +1,13 @@
 # ChangeLog
 
+## [7.26.0](https://github.com/algolia/instantsearch-ios/compare/7.25.2...7.26.0) (2023-08-16)
+
+### Feat
+
+- **searchbox**: query debouncing (#297) ([0c3a7fd](https://github.com/algolia/instantsearch-ios/commit/0c3a7fd))
+
+
+
 ## [7.25.2](https://github.com/algolia/instantsearch-ios/compare/7.25.1...7.25.2) (2023-06-11)
 
 ### Fix
