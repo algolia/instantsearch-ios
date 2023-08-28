@@ -19,6 +19,8 @@ class ResultsViewController: UIViewController {
 
   let loadingConnector: LoadingConnector
   let loadingController: ActivityIndicatorController
+  
+  var previousRequest: AlgoliaSearchService.Request?
 
   init(searcher: HitsSearcher) {
     stackView = .init(frame: .zero)
@@ -30,6 +32,27 @@ class ResultsViewController: UIViewController {
     super.init(nibName: nil, bundle: nil)
     addChild(hitsViewController)
     hitsViewController.didMove(toParent: self)
+    loadingConnector.disconnect()
+    
+    func areDifferent(_ lr: AlgoliaSearchService.Request?, _ rr: AlgoliaSearchService.Request?) -> Bool {
+      lr?.indexName != rr?.indexName || lr?.query.query != rr?.query.query || lr?.query.filters != rr?.query.filters
+    }
+    
+    searcher.onRequestChanged.subscribe(with: loadingController) { [weak self] controller, request in
+      if areDifferent(request, self?.previousRequest) {
+        controller.activityIndicator.startAnimating()
+        self?.previousRequest = request
+      }
+    }.onQueue(.main)
+    
+    searcher.onResults.subscribe(with: loadingController) { controller, _ in
+      controller.activityIndicator.stopAnimating()
+    }.onQueue(.main)
+    
+    searcher.onError.subscribe(with: loadingController) { controller, _ in
+      controller.activityIndicator.stopAnimating()
+    }.onQueue(.main)
+    
   }
 
   @available(*, unavailable)
