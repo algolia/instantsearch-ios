@@ -33,7 +33,7 @@ struct SearchDemoSwiftUI: SwiftUIDemo, PreviewProvider {
   }
 
   struct ContentView: View {
-    @StateObject var hitsViewModel: InfiniteScrollViewModel<AlgoliaHitsPage<Hit<StoreItem>>>
+    @StateObject var hitsViewModel: PaginatedDataViewModel<AlgoliaHitsPage<Hit<StoreItem>>>
     @ObservedObject var searchBoxController: SearchBoxObservableController
     @ObservedObject var statsController: StatsTextObservableController
     @ObservedObject var loadingController: LoadingObservableController
@@ -65,7 +65,7 @@ struct SearchDemoSwiftUI: SwiftUIDemo, PreviewProvider {
   }
 
   static func contentView(with controller: Controller) -> ContentView {
-    let hitsViewModel = controller.demoController.searcher.infiniteScrollViewModel(of: Hit<StoreItem>.self)
+    let hitsViewModel = controller.demoController.searcher.paginatedData(of: Hit<StoreItem>.self)
     return ContentView(hitsViewModel: hitsViewModel,
                        searchBoxController: controller.searchBoxController,
                        statsController: controller.statsController,

@@ -6,11 +6,15 @@
 //
 
 import UIKit
+import SwiftUI
+import InstantSearchCore
 
 class SceneDelegate: UIResponder, UIWindowSceneDelegate {
   var window: UIWindow?
 
   func scene(_ scene: UIScene, willConnectTo _: UISceneSession, options _: UIScene.ConnectionOptions) {
-    setMain(QuerySuggestionsDemoViewController(), for: scene)
+    let uikitViewController = QuerySuggestionsDemoViewController()
+    let swiftUIViewController = UIHostingController(rootView: SearchView())
+    setMain(swiftUIViewController, for: scene)
   }
 }

@@ -16,7 +16,7 @@ import SwiftUI
 ///
 /// Usage:
 /// ```
-/// let viewModel = InfiniteScrollViewModel(source: CustomPageSource())
+/// let viewModel = PaginatedDataViewModel(source: CustomPageSource())
 /// let itemsList = InfiniteList(viewModel, itemView: { item in
 ///   Text(item.title)
 /// }, noResults: {
@@ -28,8 +28,8 @@ import SwiftUI
 @available(iOS 15.0, macOS 12.0, tvOS 15.0, watchOS 8.0, *)
 public struct InfiniteList<ItemView: View, NoResults: View, Item, P: Page<Item>>: View {
 
-  /// An instance of `InfiniteScrollViewModel` object.
-  @StateObject public var viewModel: InfiniteScrollViewModel<P>
+  /// An instance of `PaginatedDataViewModel` object.
+  @StateObject public var viewModel: PaginatedDataViewModel<P>
 
   /// A closure that returns a `ItemView` for a given `Source.Item`.
   let itemView: (Item) -> ItemView
@@ -43,7 +43,7 @@ public struct InfiniteList<ItemView: View, NoResults: View, Item, P: Page<Item>>
   ///   - viewModel: An instance of `InfiniteScrollViewModel` object.
   ///   - itemView: A closure that returns a `ItemView` for a given `Source.Item`.
   ///   - noResults: A closure that returns a `NoResults` view to display when there are no items.
-  public init(_ viewModel: InfiniteScrollViewModel<P>,
+  public init(_ viewModel: PaginatedDataViewModel<P>,
               @ViewBuilder itemView: @escaping (Item) -> ItemView,
               @ViewBuilder noResults: @escaping () -> NoResults) {
     _viewModel = StateObject(wrappedValue: viewModel)
