@@ -2,7 +2,8 @@
 
 ## [7.26.1](https://github.com/algolia/instantsearch-ios/compare/7.26.0...7.26.1) (2023-08-28)
 
-
+### Misc
+- SwiftUI query suggestions example (#294) ([47d296a](https://github.com/algolia/instantsearch-ios/commit/47d296a))
 
 ## [7.26.0](https://github.com/algolia/instantsearch-ios/compare/7.25.2...7.26.0) (2023-08-16)
 
