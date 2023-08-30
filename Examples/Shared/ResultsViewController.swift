@@ -10,9 +10,9 @@ import InstantSearch
 import SDWebImage
 import UIKit
 
-class ResultsViewController: UIViewController {
+class ResultsViewController<Item: Codable>: UIViewController {
   let stackView: UIStackView
-  let hitsViewController: StoreItemsTableViewController
+  let hitsViewController: StoreItemsTableViewController<Item>
 
   let statsConnector: StatsConnector
   let statsController: LabelStatsController
@@ -52,7 +52,6 @@ class ResultsViewController: UIViewController {
     searcher.onError.subscribe(with: loadingController) { controller, _ in
       controller.activityIndicator.stopAnimating()
     }.onQueue(.main)
-    
   }
 
   @available(*, unavailable)

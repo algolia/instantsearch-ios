@@ -9,10 +9,11 @@ import Foundation
 import InstantSearch
 import UIKit
 
-class StoreItemsTableViewController: UITableViewController, HitsController {
-  var hitsSource: HitsInteractor<Hit<StoreItem>>?
+class StoreItemsTableViewController<Item: Codable>: UITableViewController, HitsController {
+  var hitsSource: HitsInteractor<Hit<Item>>?
 
-  var didSelect: ((Int, Hit<StoreItem>) -> Void)?
+  var setupCell: ((ProductTableViewCell, Hit<Item>) -> Void)?
+  var didSelect: ((Int, Hit<Item>) -> Void)?
 
   let cellIdentifier = "cellID"
 
@@ -33,7 +34,7 @@ class StoreItemsTableViewController: UITableViewController, HitsController {
     guard let hit = hitsSource?.hit(atIndex: indexPath.row) else {
       return cell
     }
-    cell.setup(with: hit)
+    setupCell?(cell, hit)
     return cell
   }
 

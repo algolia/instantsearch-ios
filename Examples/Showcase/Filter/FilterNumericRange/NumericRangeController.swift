@@ -53,11 +53,9 @@ public class NumericRangeController: UIViewController, NumberRangeController {
     super.viewDidLoad()
 
     lowerBoundLabel.translatesAutoresizingMaskIntoConstraints = false
-    lowerBoundLabel.widthAnchor.constraint(equalToConstant: 50).isActive = true
     lowerBoundLabel.textAlignment = .center
 
     upperBoundLabel.translatesAutoresizingMaskIntoConstraints = false
-    upperBoundLabel.widthAnchor.constraint(equalToConstant: 50).isActive = true
     upperBoundLabel.textAlignment = .center
 
     rangeSlider.translatesAutoresizingMaskIntoConstraints = false
@@ -65,7 +63,7 @@ public class NumericRangeController: UIViewController, NumberRangeController {
 
     let stackView = UIStackView()
     stackView.axis = .horizontal
-    stackView.spacing = 0
+    stackView.spacing = 5
     stackView.translatesAutoresizingMaskIntoConstraints = false
     stackView.alignment = .center
     stackView.addArrangedSubview(lowerBoundLabel)

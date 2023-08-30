@@ -237,6 +237,9 @@
 		404C414C280CA01000EC9FEB /* DynamicFacetsDemoViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 404C40A3280C942000EC9FEB /* DynamicFacetsDemoViewController.swift */; };
 		404C414E280CA43300EC9FEB /* InstantSearchSwiftUI in Frameworks */ = {isa = PBXBuildFile; productRef = 404C414D280CA43300EC9FEB /* InstantSearchSwiftUI */; };
 		405FAB6728245F49002E3E4B /* Movie.swift in Sources */ = {isa = PBXBuildFile; fileRef = 405FAB6628245F49002E3E4B /* Movie.swift */; };
+		406B108A2A9E46EE003E0947 /* NumericRangeController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 404C40E7280C969E00EC9FEB /* NumericRangeController.swift */; };
+		406B108B2A9E46FB003E0947 /* RangeSlider.swift in Sources */ = {isa = PBXBuildFile; fileRef = 404C40E8280C969E00EC9FEB /* RangeSlider.swift */; };
+		406B108C2A9E470A003E0947 /* Double+Range.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4073B59D28076B6F00E05EF6 /* Double+Range.swift */; };
 		40718B47282923920061DC87 /* Ecommerce.swift in Sources */ = {isa = PBXBuildFile; fileRef = 40F61F192828017B0040ECD2 /* Ecommerce.swift */; };
 		40718B4F282923E80061DC87 /* MediaDemoApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 40718B4E282923E80061DC87 /* MediaDemoApp.swift */; };
 		40718B51282923E80061DC87 /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 40718B50282923E80061DC87 /* ContentView.swift */; };
@@ -3915,6 +3918,7 @@
 			files = (
 				404C4039280A27EE00EC9FEB /* CommonSwiftUIDemoViewController.swift in Sources */,
 				AF50CE6927FB34970036F549 /* StoreItemsTableViewController+SearchResponse.swift in Sources */,
+				406B108C2A9E470A003E0947 /* Double+Range.swift in Sources */,
 				4034B6FD2810327400F4A303 /* UIColor+Convenience.swift in Sources */,
 				40E1B071280810440092B424 /* EcommerceDemoController.swift in Sources */,
 				AF50CD7E27FAFB6C0036F549 /* StoreItem.swift in Sources */,
@@ -3927,7 +3931,9 @@
 				404C413E280C9F7C00EC9FEB /* ProductRow.swift in Sources */,
 				AF50CDA927FB29A10036F549 /* SceneDelegate+Convenience.swift in Sources */,
 				AF50CBFE27F72CA80036F549 /* SceneDelegate.swift in Sources */,
+				406B108A2A9E46EE003E0947 /* NumericRangeController.swift in Sources */,
 				AF50CCD827FAE6AA0036F549 /* UIView+Layout.swift in Sources */,
+				406B108B2A9E46FB003E0947 /* RangeSlider.swift in Sources */,
 				404C4135280C9E8300EC9FEB /* SearchDemoViewController.swift in Sources */,
 				4034B6E3280F8A2600F4A303 /* ProductTableViewCell.swift in Sources */,
 				4034B6FA2810166700F4A303 /* ProductRow+StoreItem.swift in Sources */,
