@@ -17,16 +17,16 @@ import InstantSearchTelemetry
   @available(iOS 13.0, OSX 10.15, tvOS 13.0, watchOS 6.0, *)
   public class NumberRangeObservableController<Number: Comparable & DoubleRepresentable>: ObservableObject, NumberRangeController {
     /// The numeric range value
-    @Published public var range: ClosedRange<Number> = Number(0)...Number(1) {
+    @Published public var range: ClosedRange<Number> = Number(0)...Number(Double.greatestFiniteMagnitude) {
       didSet {
-        if oldValue != range {
+        if oldValue != range && !isInitialBoundsSet {
           onRangeChanged?(range)
         }
       }
     }
 
     /// The bounds limiting the numeric range value
-    @Published public var bounds: ClosedRange<Number> = Number(0)...Number(1)
+    @Published public var bounds: ClosedRange<Number> = Number(0)...Number(Double.greatestFiniteMagnitude)
 
     public var onRangeChanged: ((ClosedRange<Number>) -> Void)?
 
@@ -39,8 +39,8 @@ import InstantSearchTelemetry
     public func setBounds(_ bounds: ClosedRange<Number>) {
       self.bounds = bounds
       if isInitialBoundsSet {
-        isInitialBoundsSet = false
         range = bounds
+        isInitialBoundsSet = false
       }
     }
 

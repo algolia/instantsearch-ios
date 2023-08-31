@@ -8,6 +8,7 @@
 
 import Foundation
 import InstantSearch
+import InstantSearchSwiftUI
 import UIKit
 
 class PetSmartDemoController {
@@ -97,6 +98,7 @@ class PetSmartResultsViewController: UIViewController {
   
   // Price controller to be connected to the NumberRangeConnector
   let priceController = NumericRangeController(rangeSlider: .init(frame: .zero))
+  let priceObservableController = NumberRangeObservableController<Double>()
   let priceLabel = UILabel()
 
   // previous request stored here for comparison

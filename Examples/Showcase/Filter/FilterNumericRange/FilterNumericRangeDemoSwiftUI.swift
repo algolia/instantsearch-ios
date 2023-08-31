@@ -10,6 +10,7 @@ import Foundation
 import InstantSearchCore
 import InstantSearchSwiftUI
 import SwiftUI
+import Sliders
 
 struct FilterNumericRangeDemoSwiftUI: SwiftUIDemo, PreviewProvider {
   class Controller {
@@ -34,39 +35,19 @@ struct FilterNumericRangeDemoSwiftUI: SwiftUIDemo, PreviewProvider {
     @ObservedObject var clearFilterController: FilterClearObservableController
 
     var body: some View {
-      let range = numberRangeController.range
       VStack(spacing: 40) {
         FilterStateDebugView(filterStateController: filterStateController,
                              clearFilterController: clearFilterController)
+        .frame(height: 200)
         HStack(spacing: 20) {
           Text("\(Int(numberRangeController.bounds.lowerBound))")
-          SliderView(slider: slider)
+          Sliders.RangeSlider(range: $numberRangeController.range, in: numberRangeController.bounds, step: 1)
           Text("\(Int(numberRangeController.bounds.upperBound))")
         }
         Spacer()
-      }.onChange(of: slider.lowHandle.currentValue) { newValue in
-        if let range = makeRange(newValue, range.upperBound) {
-          numberRangeController.range = range
-        }
-      }.onChange(of: slider.highHandle.currentValue) { newValue in
-        if let range = makeRange(range.lowerBound, newValue) {
-          numberRangeController.range = range
-        }
-      }.onChange(of: numberRangeController.range) { newValue in
-        slider.lowHandle.currentValue = newValue.lowerBound
-        slider.highHandle.currentValue = newValue.upperBound
       }.padding()
     }
 
-    func makeRange(_ lowerBound: Double, _ upperBound: Double) -> ClosedRange<Double>? {
-      if lowerBound < upperBound &&
-        numberRangeController.bounds.contains(lowerBound) &&
-        numberRangeController.bounds.contains(upperBound) {
-        return lowerBound...upperBound
-      } else {
-        return nil
-      }
-    }
   }
 
   static func contentView(with controller: Controller) -> ContentView {

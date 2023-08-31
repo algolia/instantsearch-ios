@@ -279,6 +279,10 @@
 		40C7C24B280A202F005DEC68 /* FacetListPersistentDemoSwiftUI.swift in Sources */ = {isa = PBXBuildFile; fileRef = 40C7C249280A202F005DEC68 /* FacetListPersistentDemoSwiftUI.swift */; };
 		40D035DE28292143005EFFF2 /* Ecommerce.swift in Sources */ = {isa = PBXBuildFile; fileRef = 40F61F192828017B0040ECD2 /* Ecommerce.swift */; };
 		40D035DF28292156005EFFF2 /* Ecommerce.swift in Sources */ = {isa = PBXBuildFile; fileRef = 40F61F192828017B0040ECD2 /* Ecommerce.swift */; };
+		40D779932AA0ACC000A6303A /* Slider.swift in Sources */ = {isa = PBXBuildFile; fileRef = 40D779922AA0ACC000A6303A /* Slider.swift */; };
+		40D779942AA0ACC000A6303A /* Slider.swift in Sources */ = {isa = PBXBuildFile; fileRef = 40D779922AA0ACC000A6303A /* Slider.swift */; };
+		40D779972AA0ADCA00A6303A /* Sliders in Frameworks */ = {isa = PBXBuildFile; productRef = 40D779962AA0ADCA00A6303A /* Sliders */; };
+		40D779992AA0ADF100A6303A /* Sliders in Frameworks */ = {isa = PBXBuildFile; productRef = 40D779982AA0ADF100A6303A /* Sliders */; };
 		40E003B7280F28DD00544E9F /* ProductTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = AFEFEF8227F47F7700B47F7F /* ProductTableViewCell.swift */; };
 		40E003B8280F28E800544E9F /* ProductTableViewCell+ProductHit.swift in Sources */ = {isa = PBXBuildFile; fileRef = AFEFEF8B27F47F8300B47F7F /* ProductTableViewCell+ProductHit.swift */; };
 		40E003BA280F80F800544E9F /* RelevantSortResultsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 40E003B9280F80F700544E9F /* RelevantSortResultsViewController.swift */; };
@@ -903,6 +907,7 @@
 		40BF0BAD28255084007B3BBD /* MovieHit+Text.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "MovieHit+Text.swift"; sourceTree = "<group>"; };
 		40C7C246280A16B8005DEC68 /* FacetListPersistentSelectionDemoController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FacetListPersistentSelectionDemoController.swift; sourceTree = "<group>"; };
 		40C7C249280A202F005DEC68 /* FacetListPersistentDemoSwiftUI.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FacetListPersistentDemoSwiftUI.swift; sourceTree = "<group>"; };
+		40D779922AA0ACC000A6303A /* Slider.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Slider.swift; sourceTree = "<group>"; };
 		40E003B9280F80F700544E9F /* RelevantSortResultsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RelevantSortResultsViewController.swift; sourceTree = "<group>"; };
 		40E003BD280F833000544E9F /* ProductTableViewCell+StoreItem.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "ProductTableViewCell+StoreItem.swift"; sourceTree = "<group>"; };
 		40E1B06628078B0A0092B424 /* RatingView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RatingView.swift; sourceTree = "<group>"; };
@@ -1299,6 +1304,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				40D779992AA0ADF100A6303A /* Sliders in Frameworks */,
 				AF50CCE127FAEA0E0036F549 /* InstantSearchSwiftUI in Frameworks */,
 				AF50CC6527F745350036F549 /* InstantSearch in Frameworks */,
 			);
@@ -1403,6 +1409,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				40D779972AA0ADCA00A6303A /* Sliders in Frameworks */,
 				AF50CA2127F6FB220036F549 /* InstantSearchSwiftUI in Frameworks */,
 				AFEFEF9C27F48EC200B47F7F /* InstantSearch in Frameworks */,
 				AF508A042766D08200F30F18 /* SDWebImage in Frameworks */,
@@ -1784,6 +1791,7 @@
 				404C40E7280C969E00EC9FEB /* NumericRangeController.swift */,
 				404C40E8280C969E00EC9FEB /* RangeSlider.swift */,
 				4073B5942806CAE200E05EF6 /* SliderView.swift */,
+				40D779922AA0ACC000A6303A /* Slider.swift */,
 				AF50CAFC27F725000036F549 /* Assets.xcassets */,
 				AF50CAFE27F725000036F549 /* LaunchScreen.storyboard */,
 				AF50CB0127F725000036F549 /* Info.plist */,
@@ -2522,6 +2530,7 @@
 			packageProductDependencies = (
 				AF50CC6427F745350036F549 /* InstantSearch */,
 				AF50CCE027FAEA0E0036F549 /* InstantSearchSwiftUI */,
+				40D779982AA0ADF100A6303A /* Sliders */,
 			);
 			productName = FilterNumericRange;
 			productReference = AF50CAF127F724FF0036F549 /* FilterNumericRange.app */;
@@ -2761,6 +2770,7 @@
 				AFEFEF9B27F48EC200B47F7F /* InstantSearch */,
 				AFEFEFAA27F48F3300B47F7F /* InstantSearchVoiceOverlay */,
 				AF50CA2027F6FB220036F549 /* InstantSearchSwiftUI */,
+				40D779962AA0ADCA00A6303A /* Sliders */,
 			);
 			productName = DemoAutocomplete;
 			productReference = AF7FEB85272CAC5D0003BE62 /* Examples.app */;
@@ -3013,6 +3023,7 @@
 			packageReferences = (
 				AFAE55AA27342C5900B52A43 /* XCRemoteSwiftPackageReference "SDWebImage" */,
 				AFEFEFA927F48F3300B47F7F /* XCRemoteSwiftPackageReference "voice-overlay-ios" */,
+				40D779952AA0ADCA00A6303A /* XCRemoteSwiftPackageReference "swiftui-sliders" */,
 			);
 			productRefGroup = AF7FEB86272CAC5D0003BE62 /* Products */;
 			projectDirPath = "";
@@ -3723,6 +3734,7 @@
 				AF50CD9E27FB29A10036F549 /* SceneDelegate+Convenience.swift in Sources */,
 				404C40E2280C967F00EC9FEB /* FilterNumericRangeDemoSwiftUI.swift in Sources */,
 				404C40EA280C969E00EC9FEB /* NumericRangeController.swift in Sources */,
+				40D779942AA0ACC000A6303A /* Slider.swift in Sources */,
 				4073B5962806CAE200E05EF6 /* SliderView.swift in Sources */,
 				404C40EC280C969E00EC9FEB /* RangeSlider.swift in Sources */,
 				404C40EE280C96B600EC9FEB /* FilterDebugController.swift in Sources */,
@@ -3995,6 +4007,7 @@
 				40E1B074280811840092B424 /* SearchDemoSwiftUI.swift in Sources */,
 				AF83122027FC7FC200509DF5 /* FilterListDemoSwiftUI.swift in Sources */,
 				AFAE55962733E28200B52A43 /* MultiIndex.SearchViewController.swift in Sources */,
+				40D779932AA0ACC000A6303A /* Slider.swift in Sources */,
 				AF50CECB27FC4CCF0036F549 /* DemoViewControllerFactory.swift in Sources */,
 				AF83122127FC7FC200509DF5 /* FilterListDemoController.swift in Sources */,
 				AF50CA1627F6FA750036F549 /* GettingStartedSearchViewController.swift in Sources */,
@@ -6762,6 +6775,14 @@
 /* End XCConfigurationList section */
 
 /* Begin XCRemoteSwiftPackageReference section */
+		40D779952AA0ADCA00A6303A /* XCRemoteSwiftPackageReference "swiftui-sliders" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/spacenation/swiftui-sliders";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 2.0.0;
+			};
+		};
 		AFAE55AA27342C5900B52A43 /* XCRemoteSwiftPackageReference "SDWebImage" */ = {
 			isa = XCRemoteSwiftPackageReference;
 			repositoryURL = "https://github.com/SDWebImage/SDWebImage";
@@ -6810,6 +6831,16 @@
 		40C7C23E2809BC55005DEC68 /* InstantSearchSwiftUI */ = {
 			isa = XCSwiftPackageProductDependency;
 			productName = InstantSearchSwiftUI;
+		};
+		40D779962AA0ADCA00A6303A /* Sliders */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 40D779952AA0ADCA00A6303A /* XCRemoteSwiftPackageReference "swiftui-sliders" */;
+			productName = Sliders;
+		};
+		40D779982AA0ADF100A6303A /* Sliders */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 40D779952AA0ADCA00A6303A /* XCRemoteSwiftPackageReference "swiftui-sliders" */;
+			productName = Sliders;
 		};
 		40E1B06B28078BF80092B424 /* InstantSearchSwiftUI */ = {
 			isa = XCSwiftPackageProductDependency;

@@ -19,13 +19,14 @@ class FilterNumericRangeDemoController {
   let statsConnector: StatsConnector
 
   init() {
-    searcher = HitsSearcher(client: .instantSearch,
-                            indexName: .filterNumericComparison)
+    searcher = HitsSearcher(appID: "0ZV04HYYVJ",
+                            apiKey: "f220c49aa52fca828fe5265965a0cab3",
+                            indexName: "r-development-US__products___price-low-to-high")
     filterState = .init()
     filterClearConnector = .init(filterState: filterState)
     rangeConnector = .init(searcher: searcher,
                            filterState: filterState,
-                           attribute: "price")
+                           attribute: "price.number")
     statsConnector = .init(searcher: searcher)
     searchBoxConnector = .init(searcher: searcher)
     searcher.connectFilterState(filterState)
