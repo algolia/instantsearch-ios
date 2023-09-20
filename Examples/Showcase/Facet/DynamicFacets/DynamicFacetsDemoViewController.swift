@@ -49,6 +49,10 @@ class DynamicFacetListDemoViewController: UIViewController {
                                                         style: .plain,
                                                         target: self,
                                                         action: #selector(presentHint))
+    navigationItem.leftBarButtonItem = UIBarButtonItem(image: UIImage(systemName: "trash.fill"),
+                                                       style: .plain,
+                                                       target: self,
+                                                       action: #selector(clearFilters))
     searchController.hidesNavigationBarDuringPresentation = false
     searchController.showsSearchResultsController = true
     searchController.automaticallyShowsCancelButton = false
@@ -59,4 +63,9 @@ class DynamicFacetListDemoViewController: UIViewController {
     hintController.addAction(UIAlertAction(title: "OK", style: .cancel))
     present(hintController, animated: true)
   }
+  
+  @objc private func clearFilters() {
+    demoController.clearFilters()
+  }
+  
 }

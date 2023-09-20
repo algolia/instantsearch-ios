@@ -15,6 +15,7 @@ class DynamicFacetListDemoController {
   let searchBoxConnector: SearchBoxConnector
   let dynamicFacetListConnector: DynamicFacetListConnector<HitsSearcher>
   let filterState: FilterState
+  let searchFilterStateConnection: Connection!
 
   static let helpMessage = "Type \"6\", \"61\" or \"616\" to trigger a rule"
 
@@ -39,7 +40,25 @@ class DynamicFacetListDemoController {
                                       ],
                                       controller: dynamicFacetListController)
     searcher.request.query.facets = ["brand", "color", "size", "country"]
-    searcher.connectFilterState(filterState)
+    searchFilterStateConnection = searcher.connectFilterState(filterState)
+    // Filters preselection during the initialization of search controller
+    preselectFilters()
     searcher.search()
+  }
+  
+  func preselectFilters() {
+    /// Here the Sony brand and yellow color are pre-selected without manipulation with UI components.
+    filterState[or: "brand", FacetFilter.self].add(FacetFilter.init(attribute: "brand", stringValue: "Sony"))
+    filterState[or: "color", FacetFilter.self].add(FacetFilter.init(attribute: "color", stringValue: "yellow"))
+    filterState.notifyChange()
+    /// Launch the app to see the filters are applied
+  }
+  
+  func clearFilters() {
+    // Remove all filters without notify subscribers about changes
+    filterState.removeAll()
+    // Force update of the interactor state to appy the new FilterState value
+    let interactor = dynamicFacetListConnector.interactor
+    interactor.onFacetOrderChanged.fire(interactor.orderedFacets)
   }
 }
