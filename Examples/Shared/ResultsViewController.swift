@@ -10,9 +10,9 @@ import InstantSearch
 import SDWebImage
 import UIKit
 
-class ResultsViewController: UIViewController {
+class ResultsViewController<Item: Codable>: UIViewController {
   let stackView: UIStackView
-  let hitsViewController: StoreItemsTableViewController
+  let hitsViewController: StoreItemsTableViewController<Item>
 
   let statsConnector: StatsConnector
   let statsController: LabelStatsController

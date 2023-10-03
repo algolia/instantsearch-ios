@@ -11,7 +11,7 @@ import UIKit
 
 extension StoreItemsTableViewController {
   static func with(_ response: SearchResponse) -> Self {
-    let hitsInteractor = HitsInteractor<Hit<StoreItem>>(infiniteScrolling: .off)
+    let hitsInteractor = HitsInteractor<Hit<Item>>(infiniteScrolling: .off)
     hitsInteractor.update(response)
     let viewController = Self()
     hitsInteractor.connectController(viewController)
