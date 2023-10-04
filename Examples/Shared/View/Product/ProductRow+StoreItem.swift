@@ -20,4 +20,14 @@ extension ProductRow {
     price = item.price
     self.configuration = configuration
   }
+  
+  init(petSmartItem: Hit<PetSmartStoreItem>, configuration: Configuration = .phone) {
+    let item = petSmartItem.object
+    title = petSmartItem.hightlightedString(forKey: "name") ?? HighlightedString(string: item.name)
+    subtitle = petSmartItem.hightlightedString(forKey: "brand") ?? HighlightedString(string: item.brand ?? "")
+    details = HighlightedString(string: "")
+    imageURL = item.images.small
+    price = (item.price?.number).flatMap(Double.init)
+    self.configuration = configuration
+  }
 }

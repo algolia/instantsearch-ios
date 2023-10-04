@@ -27,7 +27,7 @@ public extension SearchBoxInteractor {
      */
     public init(interactor: SearchBoxInteractor,
                 controller: Controller,
-                debounceInterval: TimeInterval = 0.1) {
+                debounceInterval: TimeInterval = 0.0001) {
       self.interactor = interactor
       self.controller = controller
       self.queryDebouncer = Debouncer(delay: debounceInterval)

@@ -11,6 +11,7 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
   var window: UIWindow?
 
   func scene(_ scene: UIScene, willConnectTo _: UISceneSession, options _: UIScene.ConnectionOptions) {
-    setMain(SearchDemoViewController(searchTriggeringMode: .searchAsYouType), for: scene)
+    setMain(SearchDemoSwiftUI.viewController(), for: scene)
+//    setMain(SearchDemoViewController(searchTriggeringMode: .searchAsYouType), for: scene)
   }
 }

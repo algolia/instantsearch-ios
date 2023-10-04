@@ -29,10 +29,12 @@ class PetSmartDemoController {
                            filterState: filterState,
                            attribute: "brand",
                            operator: .or)
-    searchBoxConnector = .init(searcher: searcher, searchTriggeringMode: searchTriggeringMode)
+    searchBoxConnector = .init(searcher: searcher,
+                               searchTriggeringMode: searchTriggeringMode)
     statsConnector = .init(searcher: searcher)
     loadingConnector = .init(searcher: searcher)
     hitsInteractor.connectSearcher(searcher)
+    hitsInteractor.connectFilterState(filterState)
     searcher.connectFilterState(filterState)
   }
 }
