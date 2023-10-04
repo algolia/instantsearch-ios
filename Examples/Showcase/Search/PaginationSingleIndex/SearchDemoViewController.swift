@@ -20,8 +20,8 @@ class PetSmartDemoController {
   let brandFacetList: FacetListConnector
 
   init(searchTriggeringMode: SearchTriggeringMode = .searchAsYouType) {
-    searcher = .init(appID: "APP_ID",
-                     apiKey: "API_KEY",
+    searcher = .init(appID: "app_id",
+                     apiKey: "api_key",
                      indexName: "p-development-US__products___")
     hitsInteractor = .init()
     filterState = .init()
@@ -81,6 +81,7 @@ extension ProductTableViewCell {
     if let price = product.price?.number {
       priceLabel.text = "\(price) €"
     }
+    
   }
 
 }
@@ -177,7 +178,7 @@ class SearchDemoViewController: UIViewController {
   }
   
   @objc func tapClearFiltersButton(_ sender: UIButton) {
-    demoController.filterState.removeAll()
+    demoController.filterState.removeAll(for: "brand")
     demoController.filterState.notifyChange()
   }
 
