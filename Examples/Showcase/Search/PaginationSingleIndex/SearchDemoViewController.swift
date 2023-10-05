@@ -18,10 +18,11 @@ class PetSmartDemoController {
   let loadingConnector: LoadingConnector
   let filterState: FilterState
   let brandFacetList: FacetListConnector
+  let ratingFacetList: FacetListConnector
 
   init(searchTriggeringMode: SearchTriggeringMode = .searchAsYouType) {
-    searcher = .init(appID: "app_id",
-                     apiKey: "api_key",
+    searcher = .init(appID: "0ZV04HYYVJ",
+                     apiKey: "f220c49aa52fca828fe5265965a0cab3",
                      indexName: "p-development-US__products___")
     hitsInteractor = .init()
     filterState = .init()
@@ -29,6 +30,10 @@ class PetSmartDemoController {
                            filterState: filterState,
                            attribute: "brand",
                            operator: .or)
+    ratingFacetList = .init(searcher: searcher,
+                            filterState: filterState,
+                            attribute: "customBvAverageRating",
+                            operator: .or)
     searchBoxConnector = .init(searcher: searcher,
                                searchTriggeringMode: searchTriggeringMode)
     statsConnector = .init(searcher: searcher)
