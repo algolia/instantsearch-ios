@@ -1,44 +1,53 @@
 name: Deployment
-on: 
+on:
   push:
-    tags: 
-     - patch
-     - minor
-     - major
+    tags:
+      - patch
+      - minor
+      - major
+  workflow_dispatch:
+    inputs:
+      release:
+        type: choice
+        description: Deploy new package release
+        options:
+          - patch
+          - minor
+          - major
+
 jobs:
   deploy:
-    runs-on: macos-12
+    runs-on: macos-latest
     env:
       GITHUB_ACTION: ${{ github.action_path }}
       GITHUB_PERSONAL_ACCESS_TOKEN: ${{ secrets.GH_PERSONAL_ACCESS_TOKEN }}
       COCOAPODS_TRUNK_TOKEN: ${{ secrets.COCOAPODS_TRUNK_TOKEN }}
     steps:
-      - uses: actions/setup-go@v2
+      - uses: actions/setup-go@v5
         with:
-          go-version: '1.17'
+          go-version: "1.17"
       - name: Set release type environment
         run: |
           echo "RELEASE_TYPE=${GITHUB_REF#refs/*/}" >> $GITHUB_ENV
+
+          if [[ "$RELEASE_TYPE" != "patch" && "$RELEASE_TYPE" != "minor" && "$RELEASE_TYPE" != "major" ]]; then
+            echo "RELEASE_TYPE=${{ github.event.inputs.release }}" >> $GITHUB_ENV
+          fi
       - name: Check out polyglot
         uses: actions/checkout@v2
         with:
           repository: algolia/polyglot
           token: ${{ secrets.GH_PERSONAL_ACCESS_TOKEN }}
-      - name: Select Xcode version
-        run: sudo xcode-select -s '/Applications/Xcode_14.2.app/Contents/Developer'
       - name: Install polyglot
         run: |
           make install
           export PATH="$GOPATH/bin:$PATH"
-      - uses: ruby/setup-ruby@v1
-        with:
-          ruby-version: '2.7.2'
-          bundler-cache: true
-      - uses: actions/checkout@v3
+      - uses: actions/checkout@v4
         with:
           fetch-depth: 0
-      - uses: maierj/fastlane-action@v2.2.1
+      - uses: ruby/setup-ruby@v1
         with:
-          lane: 'deploy'
-          verbose: 'true'
-          options: '{ "type": "${{ env.RELEASE_TYPE }}" }'
+          ruby-version: "2.7.2"
+          bundler-cache: true
+      - name: Deploy library release
+        run: bundle exec fastlane deploy verbose:true type:${{ env.RELEASE_TYPE }} no_dry_run:true
