@@ -1,7 +1,7 @@
 Pod::Spec.new do |s|
   s.name = 'InstantSearch'
   s.version = '7.26.1'
-  s.platforms = { :ios => "9.0", :osx => "10.11", :watchos => "2.0", :tvos => "9.0" }
+  s.platforms = { :ios => "14.0", :osx => "11.0", :watchos => "7.0", :tvos => "14.0" }
 
   s.license = { type: 'Apache 2.0', file: 'LICENSE.md' }
   s.summary = 'A library of widgets and helpers to build instant-search applications on iOS.'
