@@ -13,7 +13,7 @@ Pod::Spec.new do |s|
   
   s.default_subspec = 'UI'
   
-  s.resource_bundles = { 'InstantSearchResources' => ['PrivacyInfo.xcprivacy'] }
+  s.resource_bundles = { 'InstantSearch' => ['PrivacyInfo.xcprivacy'] }
   
   s.subspec "Insights" do |ss|
       ss.source_files = 'Sources/InstantSearchInsights/**/*.{swift}'
