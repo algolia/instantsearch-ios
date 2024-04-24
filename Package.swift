@@ -79,6 +79,7 @@ let package = Package(
     .target(
       name: "InstantSearchSwiftUI",
       dependencies: ["InstantSearchCore", .product(name: "InstantSearchTelemetry", package: "InstantSearchTelemetry")],
+      resources: [.copy("PrivacyInfo.xcprivacy")]
     ),
     .testTarget(
       name: "InstantSearchSwiftUITests",
