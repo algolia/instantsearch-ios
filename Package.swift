@@ -42,7 +42,7 @@ let package = Package(
       name: "InstantSearchInsights",
       dependencies: ["AlgoliaSearchClient"],
       exclude: ["Readme.md"],
-      resources: [.copy("PrivacyInfo.xcprivacy")]
+      resources: [.copy("../PrivacyInfo.xcprivacy")]
     ),
     .testTarget(
       name: "InstantSearchInsightsTests",
@@ -51,7 +51,7 @@ let package = Package(
     .target(
       name: "InstantSearchCore",
       dependencies: ["AlgoliaSearchClient", "InstantSearchInsights", .product(name: "InstantSearchTelemetry", package: "InstantSearchTelemetry")],
-      resources: [.copy("PrivacyInfo.xcprivacy")]
+      resources: [.copy("../PrivacyInfo.xcprivacy")]
     ),
     .testTarget(
       name: "InstantSearchCoreTests",
@@ -70,7 +70,7 @@ let package = Package(
     .target(
       name: "InstantSearch",
       dependencies: ["InstantSearchCore"],
-      resources: [.copy("PrivacyInfo.xcprivacy")]
+      resources: [.copy("../PrivacyInfo.xcprivacy")]
     ),
     .testTarget(
       name: "InstantSearchTests",
@@ -79,7 +79,7 @@ let package = Package(
     .target(
       name: "InstantSearchSwiftUI",
       dependencies: ["InstantSearchCore", .product(name: "InstantSearchTelemetry", package: "InstantSearchTelemetry")],
-      resources: [.copy("PrivacyInfo.xcprivacy")]
+      resources: [.copy("../PrivacyInfo.xcprivacy")]
     ),
     .testTarget(
       name: "InstantSearchSwiftUITests",
