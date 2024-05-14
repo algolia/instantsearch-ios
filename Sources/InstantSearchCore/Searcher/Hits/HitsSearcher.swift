@@ -163,7 +163,7 @@ public final class HitsSearcher: IndexSearcher<AlgoliaSearchService> {
     Telemetry.shared.trace(type: .hitsSearcher,
                            parameters: .client)
     onResults.subscribe(with: self) { searcher, response in
-        if (isAutoSendingHitsViewEvents) {
+        if isAutoSendingHitsViewEvents {
             searcher.eventTracker.trackView(for: response.hits, eventName: "Hits Viewed")
         }
     }
