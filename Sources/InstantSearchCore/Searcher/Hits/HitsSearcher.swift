@@ -127,15 +127,17 @@ public final class HitsSearcher: IndexSearcher<AlgoliaSearchService> {
        - apiKey: API Key
        - indexName: Name of the index in which search will be performed
        - query: Instance of Query. By default a new empty instant of Query will be created.
+       - isAutoSendingHitsViewEvents: flag defining whether the automatic hits view Insights events sending is enabled
        - requestOptions: Custom request options. Default is `nil`.
    */
   public convenience init(appID: ApplicationID,
                           apiKey: APIKey,
                           indexName: IndexName,
                           query: Query = .init(),
+                          isAutoSendingHitsViewEvents: Bool = false,
                           requestOptions: RequestOptions? = nil) {
     let client = SearchClient(appID: appID, apiKey: apiKey)
-    self.init(client: client, indexName: indexName, query: query, requestOptions: requestOptions)
+      self.init(client: client, indexName: indexName, query: query, isAutoSendingHitsViewEvents: isAutoSendingHitsViewEvents, requestOptions: requestOptions)
     Telemetry.shared.trace(type: .hitsSearcher,
                            parameters: [
                              .appID,
@@ -147,11 +149,13 @@ public final class HitsSearcher: IndexSearcher<AlgoliaSearchService> {
     - Parameters:
        - index: Index value in which search will be performed
        - query: Instance of Query. By default a new empty instant of Query will be created.
+       - isAutoSendingHitsViewEvents: flag defining whether the automatic hits view Insights events sending is enabled
        - requestOptions: Custom request options. Default is nil.
    */
   public init(client: SearchClient,
               indexName: IndexName,
               query: Query = .init(),
+              isAutoSendingHitsViewEvents: Bool = false,
               requestOptions: RequestOptions? = nil) {
     let service = AlgoliaSearchService(client: client)
     let request = AlgoliaSearchService.Request(indexName: indexName, query: query, requestOptions: requestOptions)
@@ -159,22 +163,26 @@ public final class HitsSearcher: IndexSearcher<AlgoliaSearchService> {
     Telemetry.shared.trace(type: .hitsSearcher,
                            parameters: .client)
     onResults.subscribe(with: self) { searcher, response in
-      searcher.eventTracker.trackView(for: response.hits,
-                                     eventName: "Hits Viewed")
+        if (isAutoSendingHitsViewEvents) {
+            searcher.eventTracker.trackView(for: response.hits, eventName: "Hits Viewed")
+        }
     }
   }
 
   /**
    - Parameters:
       - indexQueryState: Instance of `IndexQueryState` encapsulating index value in which search will be performed and a `Query` instance.
+      - isAutoSendingHitsViewEvents: flag defining whether the automatic hits view Insights events sending is enabled
       - requestOptions: Custom request options. Default is nil.
    */
   public convenience init(client: SearchClient,
                           indexQueryState: IndexQueryState,
+                          isAutoSendingHitsViewEvents: Bool = false,
                           requestOptions: RequestOptions? = nil) {
     self.init(client: client,
               indexName: indexQueryState.indexName,
               query: indexQueryState.query,
+              isAutoSendingHitsViewEvents: isAutoSendingHitsViewEvents,
               requestOptions: requestOptions)
   }
 
