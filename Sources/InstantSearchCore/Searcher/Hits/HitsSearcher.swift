@@ -137,7 +137,7 @@ public final class HitsSearcher: IndexSearcher<AlgoliaSearchService> {
                           isAutoSendingHitsViewEvents: Bool = false,
                           requestOptions: RequestOptions? = nil) {
     let client = SearchClient(appID: appID, apiKey: apiKey)
-      self.init(client: client, indexName: indexName, query: query, isAutoSendingHitsViewEvents: isAutoSendingHitsViewEvents, requestOptions: requestOptions)
+    self.init(client: client, indexName: indexName, query: query, isAutoSendingHitsViewEvents: isAutoSendingHitsViewEvents, requestOptions: requestOptions)
     Telemetry.shared.trace(type: .hitsSearcher,
                            parameters: [
                              .appID,
