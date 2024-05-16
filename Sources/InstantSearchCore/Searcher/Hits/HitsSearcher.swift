@@ -134,10 +134,10 @@ public final class HitsSearcher: IndexSearcher<AlgoliaSearchService> {
                           apiKey: APIKey,
                           indexName: IndexName,
                           query: Query = .init(),
-                          isAutoSendingHitsViewEvents: Bool = false,
-                          requestOptions: RequestOptions? = nil) {
+                          requestOptions: RequestOptions? = nil,
+                          isAutoSendingHitsViewEvents: Bool = false) {
     let client = SearchClient(appID: appID, apiKey: apiKey)
-    self.init(client: client, indexName: indexName, query: query, isAutoSendingHitsViewEvents: isAutoSendingHitsViewEvents, requestOptions: requestOptions)
+    self.init(client: client, indexName: indexName, query: query, requestOptions: requestOptions, isAutoSendingHitsViewEvents: isAutoSendingHitsViewEvents)
     Telemetry.shared.trace(type: .hitsSearcher,
                            parameters: [
                              .appID,
@@ -155,8 +155,8 @@ public final class HitsSearcher: IndexSearcher<AlgoliaSearchService> {
   public init(client: SearchClient,
               indexName: IndexName,
               query: Query = .init(),
-              isAutoSendingHitsViewEvents: Bool = false,
-              requestOptions: RequestOptions? = nil) {
+              requestOptions: RequestOptions? = nil,
+              isAutoSendingHitsViewEvents: Bool = false) {
     let service = AlgoliaSearchService(client: client)
     let request = AlgoliaSearchService.Request(indexName: indexName, query: query, requestOptions: requestOptions)
     super.init(service: service, initialRequest: request)
@@ -177,13 +177,14 @@ public final class HitsSearcher: IndexSearcher<AlgoliaSearchService> {
    */
   public convenience init(client: SearchClient,
                           indexQueryState: IndexQueryState,
-                          isAutoSendingHitsViewEvents: Bool = false,
-                          requestOptions: RequestOptions? = nil) {
+                          requestOptions: RequestOptions? = nil,
+                          isAutoSendingHitsViewEvents: Bool = false) {
     self.init(client: client,
               indexName: indexQueryState.indexName,
               query: indexQueryState.query,
-              isAutoSendingHitsViewEvents: isAutoSendingHitsViewEvents,
-              requestOptions: requestOptions)
+              requestOptions: requestOptions,
+              isAutoSendingHitsViewEvents: isAutoSendingHitsViewEvents
+    )
   }
 
   deinit {
