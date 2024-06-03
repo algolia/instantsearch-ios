@@ -6,10 +6,10 @@ import PackageDescription
 let package = Package(
   name: "InstantSearch",
   platforms: [
-    .iOS(.v9),
-    .macOS(.v10_11),
-    .watchOS(.v2),
-    .tvOS(.v9)
+    .iOS(.v14),
+    .macOS(.v11),
+    .watchOS(.v7),
+    .tvOS(.v14)
   ],
   products: [
     .library(
@@ -33,6 +33,8 @@ let package = Package(
     .package(name: "AlgoliaSearchClient",
              url: "https://github.com/algolia/algoliasearch-client-swift",
              from: "8.18.2"),
+    .package(url: "https://github.com/apple/swift-log",
+             from: "1.5.4"),
     .package(name: "InstantSearchTelemetry",
              url: "https://github.com/algolia/instantsearch-telemetry-native",
              from: "0.1.3")
@@ -50,7 +52,7 @@ let package = Package(
     ),
     .target(
       name: "InstantSearchCore",
-      dependencies: ["AlgoliaSearchClient", "InstantSearchInsights", .product(name: "InstantSearchTelemetry", package: "InstantSearchTelemetry")],
+      dependencies: ["AlgoliaSearchClient", "InstantSearchInsights", .product(name: "InstantSearchTelemetry", package: "InstantSearchTelemetry"), .product(name: "Logging", package: "swift-log")],
       resources: [.copy("../PrivacyInfo.xcprivacy")]
     ),
     .testTarget(
