@@ -1,5 +1,14 @@
 # ChangeLog
 
+## [7.26.2](https://github.com/algolia/instantsearch-ios/compare/7.26.1...7.26.2) (2024-06-04)
+
+### Fix
+
+- align versions with api client (#315) ([27105ae](https://github.com/algolia/instantsearch-ios/commit/27105ae))
+- **insights**: control auto sending events w/ `isAutoSendingHitsViewEvents` (#314) ([8573411](https://github.com/algolia/instantsearch-ios/commit/8573411))
+
+
+
 ## [7.26.1](https://github.com/algolia/instantsearch-ios/compare/7.26.0...7.26.1) (2023-08-28)
 
 ### Misc
