@@ -86,4 +86,15 @@ class PaginatorTests: XCTestCase {
     XCTAssertNotNil(paginator.pageMap)
     XCTAssertEqual(paginator.pageMap?.count, 3)
   }
+  
+  func testClear() {
+    let paginator = Paginator<String>()
+    let page = TestPageable(index: 0, items: ["i1", "i2", "i3"])
+    paginator.process(page)
+    XCTAssertEqual(paginator.pageMap?.count, 3)
+    
+    paginator.clear()
+    XCTAssertNil(paginator.pageMap)
+  }
+
 }
