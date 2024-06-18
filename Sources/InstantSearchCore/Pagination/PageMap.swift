@@ -79,14 +79,6 @@ struct PageMap<Item> {
   }
 }
 
-// MARK: SequenceType
-
-extension PageMap: Sequence {
-  public func makeIterator() -> IndexingIterator<PageMap> {
-    return IndexingIterator(_elements: self)
-  }
-}
-
 // MARK: CollectionType
 
 extension PageMap: BidirectionalCollection {
