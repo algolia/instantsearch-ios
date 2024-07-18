@@ -81,11 +81,14 @@ struct PageMap<Item> {
 
 // MARK: SequenceType
 
-// extension PageMap: Sequence {
-//   public func makeIterator() -> IndexingIterator<PageMap> {
-//     return IndexingIterator(_elements: self)
-//   }
-// }
+extension PageMap: Sequence {
+  public func makeIterator() -> IndexingIterator<[Item?]> {
+    let startIndex = self.startIndex
+    let endIndex = self.endIndex
+    let elements = (startIndex..<endIndex).map { self[$0] }
+    return IndexingIterator(_elements: elements)
+  }
+}
 
 // MARK: CollectionType
 
