@@ -33,8 +33,8 @@ public class SortByConnector {
 
     set {
       let enumeratedIndices = newValue
-        .enumerated()
-        .map { $0 }
+        .indices
+        .map { ($0, newValue[$0]) }
       interactor.items = [Int: IndexName](uniqueKeysWithValues: enumeratedIndices)
     }
   }
@@ -76,8 +76,8 @@ public class SortByConnector {
                                                                                 indicesNames: [IndexName],
                                                                                 selected: Int? = nil) {
     let enumeratedIndices = indicesNames
-      .enumerated()
-      .map { $0 }
+      .indices
+      .map { ($0, indicesNames[0]) }
     let items = [Int: IndexName](uniqueKeysWithValues: enumeratedIndices)
     let interactor = SortByInteractor(items: items)
     interactor.selected = selected
