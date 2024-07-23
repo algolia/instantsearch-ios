@@ -1,6 +1,9 @@
 ## OS X Finder
 .DS_Store
 
+## Environment variables
+.env
+
 ## Build generated
 build/
 DerivedData
