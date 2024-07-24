@@ -8,12 +8,23 @@ jobs:
     env:
       ALGOLIA_APPLICATION_ID_1: ${{ secrets.ALGOLIA_APPLICATION_ID_1 }}
       ALGOLIA_ADMIN_KEY_1: ${{ secrets.ALGOLIA_ADMIN_KEY_1 }}
-      ALGOLIA_PLACES_APPLICATION_ID: ${{ secrets.ALGOLIA_PLACES_APPLICATION_ID }}
-      ALGOLIA_PLACES_API_KEY: ${{ secrets.ALGOLIA_PLACES_API_KEY }}
     steps:
-      - uses: actions/checkout@v2
+      - uses: actions/checkout@v4
       - name: Select Xcode version
         run: sudo xcode-select -s '/Applications/Xcode_14.2.app/Contents/Developer'
+      - name: Build project
+        run: swift build
+      - name: Run tests
+        run: swift test
+  test-xcode-16:
+    runs-on: macos-14
+    env:
+      ALGOLIA_APPLICATION_ID_1: ${{ secrets.ALGOLIA_APPLICATION_ID_1 }}
+      ALGOLIA_ADMIN_KEY_1: ${{ secrets.ALGOLIA_ADMIN_KEY_1 }}
+    steps:
+      - uses: actions/checkout@v4
+      - name: Select Xcode version
+        run: sudo xcode-select -s '/Applications/Xcode_16.0.app/Contents/Developer'
       - name: Build project
         run: swift build
       - name: Run tests
