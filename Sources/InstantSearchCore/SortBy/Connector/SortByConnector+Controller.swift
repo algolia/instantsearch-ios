@@ -22,8 +22,8 @@ public extension SortByConnector {
                                                                                                                   controller: Controller,
                                                                                                                   presenter: @escaping IndexNamePresenter = DefaultPresenter.IndexName.present) where Controller.SegmentKey == Int {
     let enumeratedIndices = indicesNames
-      .enumerated()
-      .map { $0 }
+      .indices
+      .map { ($0, indicesNames[$0]) }
     let items = [Int: IndexName](uniqueKeysWithValues: enumeratedIndices)
     let interactor = SortByInteractor(items: items)
     interactor.selected = selected

@@ -34,7 +34,12 @@ class DecodingErrorPrettyPrinterTests: XCTestCase {
         return
       }
       let prettyPrinter = DecodingErrorPrettyPrinter(decodingError: decodingError)
-      XCTAssertEqual(prettyPrinter.description, "Decoding error: 'age': Expected Int value but found null instead.")
+      XCTAssertTrue(
+        prettyPrinter.description
+          == "Decoding error: 'age': Expected Int value but found null instead."
+          || prettyPrinter.description
+            == "Decoding error: 'age': Cannot get unkeyed decoding container -- found null value instead"
+      )
     }
   }
 

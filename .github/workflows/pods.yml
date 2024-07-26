@@ -15,7 +15,7 @@ jobs:
      - uses: actions/checkout@v2
      - name: Select Xcode version
        run: sudo xcode-select -s '/Applications/Xcode_14.2.app/Contents/Developer'
-     - name: lint Insights
+     - name: lint Core
        run: pod lib lint --subspec="Core" --allow-warnings
   lint-UI:
     runs-on: macos-12
@@ -23,7 +23,7 @@ jobs:
      - uses: actions/checkout@v2
      - name: Select Xcode version
        run: sudo xcode-select -s '/Applications/Xcode_14.2.app/Contents/Developer'
-     - name: lint Insights
+     - name: lint UI
        run: pod lib lint --subspec="UI" --allow-warnings
   lint-SwiftUI:
     runs-on: macos-12
@@ -31,5 +31,5 @@ jobs:
      - uses: actions/checkout@v2
      - name: Select Xcode version
        run: sudo xcode-select -s '/Applications/Xcode_14.2.app/Contents/Developer'
-     - name: lint Insights
+     - name: lint SwiftUI
        run: pod lib lint --subspec="SwiftUI" --allow-warnings
