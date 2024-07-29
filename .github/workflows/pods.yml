@@ -4,7 +4,7 @@ jobs:
   lint-Insights:
     runs-on: macos-12
     steps:
-     - uses: actions/checkout@v2
+     - uses: actions/checkout@v4
      - name: Select Xcode version
        run: sudo xcode-select -s '/Applications/Xcode_14.2.app/Contents/Developer'
      - name: lint Insights
@@ -12,7 +12,7 @@ jobs:
   lint-Core:
     runs-on: macos-12
     steps:
-     - uses: actions/checkout@v2
+     - uses: actions/checkout@v4
      - name: Select Xcode version
        run: sudo xcode-select -s '/Applications/Xcode_14.2.app/Contents/Developer'
      - name: lint Core
@@ -20,7 +20,7 @@ jobs:
   lint-UI:
     runs-on: macos-12
     steps:
-     - uses: actions/checkout@v2
+     - uses: actions/checkout@v4
      - name: Select Xcode version
        run: sudo xcode-select -s '/Applications/Xcode_14.2.app/Contents/Developer'
      - name: lint UI
@@ -28,7 +28,7 @@ jobs:
   lint-SwiftUI:
     runs-on: macos-12
     steps:
-     - uses: actions/checkout@v2
+     - uses: actions/checkout@v4
      - name: Select Xcode version
        run: sudo xcode-select -s '/Applications/Xcode_14.2.app/Contents/Developer'
      - name: lint SwiftUI
