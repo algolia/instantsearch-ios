@@ -1,5 +1,13 @@
 # ChangeLog
 
+## [7.26.3](https://github.com/algolia/instantsearch-ios/compare/7.26.2...7.26.3) (2024-07-29)
+
+### Fix
+
+- conform pagemap extension to sequence protocol (#321) ([a921ecb](https://github.com/algolia/instantsearch-ios/commit/a921ecb))
+
+
+
 ## [7.26.2](https://github.com/algolia/instantsearch-ios/compare/7.26.1...7.26.2) (2024-06-04)
 
 ### Fix
