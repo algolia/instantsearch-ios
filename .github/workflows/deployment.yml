@@ -34,7 +34,7 @@ jobs:
             echo "RELEASE_TYPE=${{ github.event.inputs.release }}" >> $GITHUB_ENV
           fi
       - name: Check out polyglot
-        uses: actions/checkout@v2
+        uses: actions/checkout@v4
         with:
           repository: algolia/polyglot
           token: ${{ secrets.GH_PERSONAL_ACCESS_TOKEN }}
