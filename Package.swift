@@ -36,7 +36,7 @@ let package = Package(
     .package(url: "https://github.com/apple/swift-log",
              from: "1.5.4"),
     .package(url: "https://github.com/apple/swift-protobuf",
-             .exact("1.20.0")),
+             .exact("1.22.0")),
     .package(name: "InstantSearchTelemetry",
              url: "https://github.com/algolia/instantsearch-telemetry-native",
              .exact("0.1.3"))
