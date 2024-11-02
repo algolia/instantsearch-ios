@@ -82,15 +82,16 @@ struct PageMap<Item> {
 // MARK: SequenceType
 
 extension PageMap: Sequence {
-  public func makeIterator() -> IndexingIterator<[Item?]> {
-    let elements = (self.startIndex..<self.endIndex).map { self[$0] }
-    return IndexingIterator(_elements: elements)
+  public func makeIterator() -> IndexingIterator<Self> {
+    return IndexingIterator(_elements: self)
   }
 }
 
 // MARK: CollectionType
 
 extension PageMap: BidirectionalCollection {
+  public typealias Element = Item?
+
   public typealias Index = Int
 
   public var startIndex: Index { return 0 }
@@ -114,7 +115,7 @@ extension PageMap: BidirectionalCollection {
 
   /// Accesses and sets elements for a given flat index position.
   /// Currently, setter can only be used to replace non-optional values.
-  public subscript(position: Index) -> Item? {
+  public subscript(position: Index) -> Element {
     get {
       let pageIndex = self.pageIndex(for: position)
       let inPageIndex = position % pageSize
