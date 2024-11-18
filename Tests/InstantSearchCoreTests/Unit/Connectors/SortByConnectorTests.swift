@@ -24,6 +24,10 @@ class SortByConnectorTests: XCTestCase {
                                 controller: controller)
   }
 
+  func testInitialIndicesNames() {
+    XCTAssertEqual(connector.indicesNames, ["Index1", "Index2", "Index3"])
+  }
+
   func testSetItemsInteractorToController() {
     let itemsChangedExpectation = expectation(description: "Items changed")
     controller.onItemsChanged = {
