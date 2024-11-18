@@ -290,5 +290,8 @@ DEPENDENCIES
   fastlane (~> 2.213)
   xcov
 
+RUBY VERSION
+   ruby 2.7.8p225
+
 BUNDLED WITH
    2.3.23

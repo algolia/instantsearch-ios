@@ -64,6 +64,9 @@ Carthage/
 # AppCode from JetBrains
 .idea
 
+# VS Code
+.vscode
+
 # Example App
 Example/
 InstantSearchDemo/
