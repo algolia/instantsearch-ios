@@ -38,7 +38,7 @@ class DecodingErrorPrettyPrinterTests: XCTestCase {
         prettyPrinter.description
           == "Decoding error: 'age': Expected Int value but found null instead."
           || prettyPrinter.description
-            == "Decoding error: 'age': Cannot get unkeyed decoding container -- found null value instead"
+            == "Decoding error: 'age': Cannot get value of type Int -- found null value instead"
       )
     }
   }
