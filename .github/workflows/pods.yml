@@ -2,7 +2,7 @@ name: Cocoapods
 on: [pull_request]
 jobs:
   lint-Insights:
-    runs-on: macos-12
+    runs-on: macos-13
     steps:
      - uses: actions/checkout@v4
      - name: Select Xcode version
@@ -10,7 +10,7 @@ jobs:
      - name: lint Insights
        run: pod lib lint --subspec="Insights" --allow-warnings
   lint-Core:
-    runs-on: macos-12
+    runs-on: macos-13
     steps:
      - uses: actions/checkout@v4
      - name: Select Xcode version
@@ -18,7 +18,7 @@ jobs:
      - name: lint Core
        run: pod lib lint --subspec="Core" --allow-warnings
   lint-UI:
-    runs-on: macos-12
+    runs-on: macos-13
     steps:
      - uses: actions/checkout@v4
      - name: Select Xcode version
@@ -26,7 +26,7 @@ jobs:
      - name: lint UI
        run: pod lib lint --subspec="UI" --allow-warnings
   lint-SwiftUI:
-    runs-on: macos-12
+    runs-on: macos-13
     steps:
      - uses: actions/checkout@v4
      - name: Select Xcode version
