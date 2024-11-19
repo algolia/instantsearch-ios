@@ -77,7 +77,7 @@ public class SortByConnector {
                                                                                 selected: Int? = nil) {
     let enumeratedIndices = indicesNames
       .indices
-      .map { ($0, indicesNames[0]) }
+      .map { ($0, indicesNames[$0]) }
     let items = [Int: IndexName](uniqueKeysWithValues: enumeratedIndices)
     let interactor = SortByInteractor(items: items)
     interactor.selected = selected
