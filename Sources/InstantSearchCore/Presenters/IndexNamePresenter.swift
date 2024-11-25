@@ -5,7 +5,7 @@
 //  Created by Vladislav Fitc on 27/09/2021.
 //
 
-import AlgoliaSearchClient
+import Search
 import Foundation
 
 public typealias IndexNamePresenter = (IndexName) -> String

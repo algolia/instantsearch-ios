@@ -6,7 +6,7 @@
 //  Copyright © 2022 Algolia. All rights reserved.
 //
 
-import AlgoliaSearchClient
+import Search
 import Foundation
 import UIKit
 

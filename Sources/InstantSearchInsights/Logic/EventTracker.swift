@@ -6,8 +6,9 @@
 //  Copyright © 2018 Algolia. All rights reserved.
 //
 
-import AlgoliaSearchClient
 import Foundation
+import Insights
+
 // swiftlint:disable function_parameter_count
 
 /// Provides convenient functions for tracking events which can be used for search personalization.
@@ -39,12 +40,13 @@ class EventTracker: EventTrackable {
   /// 3) Per-event user token
   /// The propagation starts from the deepest level and switches to the previous one in case of nil value on the current level.
 
-  func effectiveUserToken(withEventUserToken eventUserToken: UserToken?) -> UserToken {
-    return eventUserToken ?? userToken ?? Insights.userToken
+  func effectiveUserToken(withEventUserToken eventUserToken: UserToken?) -> String {
+    return (eventUserToken ?? userToken ?? Insights.userToken).rawValue
   }
 
-  func effectiveTimestamp(for timestamp: Date?) -> Date? {
-    return timestamp ?? (generateTimestamps ? Date() : nil)
+  func effectiveTimestamp(for timestamp: Date?) -> Int64? {
+    let value = timestamp ?? (generateTimestamps ? Date() : nil)
+    return value.map { Int64($0.timeIntervalSince1970) }
   }
 
   func view(eventName: EventName,
@@ -53,11 +55,14 @@ class EventTracker: EventTrackable {
             timestamp: Date?,
             objectIDs: [ObjectID]) {
     do {
-      eventProcessor.process(try .view(name: eventName,
-                                       indexName: indexName,
-                                       userToken: effectiveUserToken(withEventUserToken: userToken),
-                                       timestamp: effectiveTimestamp(for: timestamp),
-                                       objectIDs: objectIDs))
+      eventProcessor.process(EventsItems.viewedObjectIDs(ViewedObjectIDs(
+        eventName: eventName.rawValue,
+        eventType: ViewEvent.view,
+        index: indexName.rawValue,
+        objectIDs: objectIDs.map { $0.rawValue },
+        userToken: effectiveUserToken(withEventUserToken: userToken),
+        timestamp: effectiveTimestamp(for: timestamp)
+      )))
     } catch {
       log(error)
     }
@@ -69,11 +74,14 @@ class EventTracker: EventTrackable {
             timestamp: Date?,
             filters: [String]) {
     do {
-      eventProcessor.process(try .view(name: eventName,
-                                       indexName: indexName,
-                                       userToken: effectiveUserToken(withEventUserToken: userToken),
-                                       timestamp: effectiveTimestamp(for: timestamp),
-                                       filters: filters))
+      eventProcessor.process(EventsItems.viewedFilters(ViewedFilters(
+        eventName: eventName.rawValue,
+        eventType: ViewEvent.view,
+        index: indexName.rawValue,
+        filters: filters,
+        userToken: effectiveUserToken(withEventUserToken: userToken),
+        timestamp: effectiveTimestamp(for: timestamp)
+      )))
     } catch {
       log(error)
     }
@@ -87,13 +95,16 @@ class EventTracker: EventTrackable {
              positions: [Int],
              queryID: QueryID) {
     do {
-      let objectIDsWithPositions = zip(objectIDs, positions).map { $0 }
-      eventProcessor.process(try .click(name: eventName,
-                                        indexName: indexName,
-                                        userToken: effectiveUserToken(withEventUserToken: userToken),
-                                        timestamp: effectiveTimestamp(for: timestamp),
-                                        queryID: queryID,
-                                        objectIDsWithPositions: objectIDsWithPositions))
+      eventProcessor.process(EventsItems.clickedObjectIDsAfterSearch(ClickedObjectIDsAfterSearch(
+        eventName: eventName.rawValue,
+        eventType: ClickEvent.click,
+        index: indexName.rawValue,
+        objectIDs: objectIDs.map { $0.rawValue },
+        positions: positions,
+        queryID: queryID.rawValue,
+        userToken: effectiveUserToken(withEventUserToken: userToken),
+        timestamp: effectiveTimestamp(for: timestamp)
+      )))
     } catch {
       log(error)
     }
@@ -105,11 +116,14 @@ class EventTracker: EventTrackable {
              timestamp: Date?,
              objectIDs: [ObjectID]) {
     do {
-      eventProcessor.process(try .click(name: eventName,
-                                        indexName: indexName,
-                                        userToken: effectiveUserToken(withEventUserToken: userToken),
-                                        timestamp: effectiveTimestamp(for: timestamp),
-                                        objectIDs: objectIDs))
+      eventProcessor.process(EventsItems.clickedObjectIDs(ClickedObjectIDs(
+        eventName: eventName.rawValue,
+        eventType: ClickEvent.click,
+        index: indexName.rawValue,
+        objectIDs: objectIDs.map { $0.rawValue },
+        userToken: effectiveUserToken(withEventUserToken: userToken),
+        timestamp: effectiveTimestamp(for: timestamp)
+      )))
     } catch {
       log(error)
     }
@@ -121,11 +135,14 @@ class EventTracker: EventTrackable {
              timestamp: Date?,
              filters: [String]) {
     do {
-      eventProcessor.process(try .click(name: eventName,
-                                        indexName: indexName,
-                                        userToken: effectiveUserToken(withEventUserToken: userToken),
-                                        timestamp: effectiveTimestamp(for: timestamp),
-                                        filters: filters))
+      eventProcessor.process(EventsItems.clickedFilters(ClickedFilters(
+        eventName: eventName.rawValue,
+        eventType: ClickEvent.click,
+        index: indexName.rawValue,
+        filters: filters,
+        userToken: effectiveUserToken(withEventUserToken: userToken),
+        timestamp: effectiveTimestamp(for: timestamp)
+      )))
     } catch {
       log(error)
     }
@@ -137,12 +154,14 @@ class EventTracker: EventTrackable {
                   timestamp: Date?,
                   objectIDs: [ObjectID]) {
     do {
-      eventProcessor.process(try .conversion(name: eventName,
-                                             indexName: indexName,
-                                             userToken: effectiveUserToken(withEventUserToken: userToken),
-                                             timestamp: effectiveTimestamp(for: timestamp),
-                                             queryID: nil,
-                                             objectIDs: objectIDs))
+      eventProcessor.process(EventsItems.convertedObjectIDs(ConvertedObjectIDs(
+        eventName: eventName.rawValue,
+        eventType: ConversionEvent.conversion,
+        index: indexName.rawValue,
+        objectIDs: objectIDs.map { $0.rawValue },
+        userToken: effectiveUserToken(withEventUserToken: userToken),
+        timestamp: effectiveTimestamp(for: timestamp)
+      )))
     } catch {
       log(error)
     }
@@ -154,12 +173,14 @@ class EventTracker: EventTrackable {
                   timestamp: Date?,
                   filters: [String]) {
     do {
-      eventProcessor.process(try .conversion(name: eventName,
-                                             indexName: indexName,
-                                             userToken: effectiveUserToken(withEventUserToken: userToken),
-                                             timestamp: effectiveTimestamp(for: timestamp),
-                                             queryID: nil,
-                                             filters: filters))
+      eventProcessor.process(EventsItems.convertedFilters(ConvertedFilters(
+        eventName: eventName.rawValue,
+        eventType: ConversionEvent.conversion,
+        index: indexName.rawValue,
+        filters: filters,
+        userToken: effectiveUserToken(withEventUserToken: userToken),
+        timestamp: effectiveTimestamp(for: timestamp)
+      )))
     } catch {
       log(error)
     }
@@ -172,12 +193,15 @@ class EventTracker: EventTrackable {
                   objectIDs: [ObjectID],
                   queryID: QueryID) {
     do {
-      eventProcessor.process(try .conversion(name: eventName,
-                                             indexName: indexName,
-                                             userToken: effectiveUserToken(withEventUserToken: userToken),
-                                             timestamp: effectiveTimestamp(for: timestamp),
-                                             queryID: queryID,
-                                             objectIDs: objectIDs))
+      eventProcessor.process(EventsItems.convertedObjectIDsAfterSearch(ConvertedObjectIDsAfterSearch(
+        eventName: eventName.rawValue,
+        eventType: ConversionEvent.conversion,
+        index: indexName.rawValue,
+        objectIDs: objectIDs.map { $0.rawValue },
+        queryID: queryID.rawValue,
+        userToken: effectiveUserToken(withEventUserToken: userToken),
+        timestamp: effectiveTimestamp(for: timestamp)
+      )))
     } catch {
       log(error)
     }

@@ -7,7 +7,7 @@
 //
 // swiftlint:disable type_name
 
-import AlgoliaSearchClient
+import Search
 import Foundation
 
 public struct FilterMapInteractorSearcherConnection<Filter: FilterType>: Connection {

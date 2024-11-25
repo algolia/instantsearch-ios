@@ -5,11 +5,11 @@
 //  Created by Vladislav Fitc on 23/10/2020.
 //
 
-import AlgoliaSearchClient
+import Core
 import Foundation
 import Logging
 
-public typealias LogLevel = AlgoliaSearchClient.LogLevel
+public typealias LogLevel = Core.LogLevel
 
 public extension LogLevel {
   init(swiftLogLevel: Logging.Logger.Level) {

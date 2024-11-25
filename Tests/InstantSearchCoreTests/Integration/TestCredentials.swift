@@ -5,7 +5,7 @@
 //  Created by Vladislav Fitc on 05/06/2020.
 //
 
-import AlgoliaSearchClient
+import Search
 import Foundation
 
 struct TestCredentials: Credentials {

@@ -1,4 +1,4 @@
 github "apple/swift-log" ~> 1.4
-github "algolia/algoliasearch-client-swift" ~> 8.18
+github "algolia/algoliasearch-client-swift" ~> 9.10.1
 github "apple/swift-protobuf" == 1.22.0
 github "algolia/instantsearch-telemetry-native" ~> 0.1.3

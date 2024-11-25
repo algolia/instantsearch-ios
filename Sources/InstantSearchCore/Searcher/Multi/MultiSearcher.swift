@@ -5,7 +5,7 @@
 //  Created by Vladislav Fitc on 29/09/2021.
 //
 
-import AlgoliaSearchClient
+import Search
 import Foundation
 
 /// Searcher performing search for hits or facets in multiple indices simultaneously

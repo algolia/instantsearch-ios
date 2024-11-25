@@ -5,7 +5,7 @@
 //  Created by Vladislav Fitc on 25/11/2020.
 //
 
-import AlgoliaSearchClient
+import Search
 import Foundation
 
 /// Abstract search service

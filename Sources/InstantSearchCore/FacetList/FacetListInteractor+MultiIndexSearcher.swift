@@ -5,7 +5,7 @@
 //  Created by Vladislav Fitc on 30/03/2021.
 //
 
-import AlgoliaSearchClient
+import Search
 import Foundation
 public extension FacetListInteractor {
   @available(*, deprecated, message: "Use multiple HitsSearcher aggregated with MultiSearcher instead of MultiIndexSearcher")

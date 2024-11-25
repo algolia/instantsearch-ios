@@ -5,7 +5,7 @@
 //  Created by Vladislav Fitc on 30.03.2022.
 //
 
-import AlgoliaSearchClient
+import Search
 import Foundation
 import UIKit
 

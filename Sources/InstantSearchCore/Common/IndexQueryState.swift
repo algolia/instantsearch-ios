@@ -6,8 +6,9 @@
 //  Copyright © 2019 Algolia. All rights reserved.
 //
 
-@_exported import AlgoliaSearchClient
+@_exported import Search
 import Foundation
+import InstantSearchInsights
 /// Structure containing all necessary components to perform a search
 
 public struct IndexQueryState {
@@ -26,7 +27,7 @@ public struct IndexQueryState {
 extension IndexQueryState: Builder {}
 
 extension Array where Element == IndexQueryState {
-  init(indices: [AlgoliaSearchClient.Index], query: Query = .init()) {
+  init(indices: [InstantSearchCore.Index], query: Query = .init()) {
     self = indices.map { IndexQueryState(indexName: $0.name, query: query) }
   }
 }

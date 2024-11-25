@@ -6,7 +6,7 @@
 //  Copyright © 2019 Algolia. All rights reserved.
 //
 
-import AlgoliaSearchClient
+import Search
 import Foundation
 public struct QueryBuilder {
   public let query: Query

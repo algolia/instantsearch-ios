@@ -5,16 +5,17 @@
 //  Created by Vladislav Fitc on 20/10/2020.
 //
 
-import AlgoliaSearchClient
+import Core
 import Foundation
+import Insights
 
 extension InsightsClient: EventsService {
-  public func sendEvents(_ events: [InsightsEvent], completion: @escaping (Result<Void, Error>) -> Void) {
-    sendEvents(events, requestOptions: nil) { result in
-      switch result {
-      case .success:
+  public func sendEvents(_ events: [EventsItems], completion: @escaping (Result<Void, Error>) -> Void) {
+    Task {
+      do {
+        _ = try await pushEvents(insightsEvents: InsightsEvents(events: events))
         completion(.success(()))
-      case let .failure(error):
+      } catch {
         completion(.failure(error))
       }
     }

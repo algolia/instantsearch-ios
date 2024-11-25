@@ -5,7 +5,7 @@
 //  Created by Vladislav Fitc on 11.03.2020.
 //
 
-@testable import AlgoliaSearchClient
+@testable import Search
 import Foundation
 import XCTest
 

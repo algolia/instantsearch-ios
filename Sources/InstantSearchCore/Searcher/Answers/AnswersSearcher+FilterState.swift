@@ -5,7 +5,7 @@
 //  Created by Vladislav Fitc on 14/12/2020.
 //
 
-import AlgoliaSearchClient
+import Search
 import Foundation
 
 @available(*, deprecated, message: "Answers feature is deprecated")

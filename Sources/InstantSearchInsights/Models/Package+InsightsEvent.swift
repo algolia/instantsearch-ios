@@ -5,10 +5,10 @@
 //  Created by Vladislav Fitc on 19/10/2020.
 //
 
-import AlgoliaSearchClient
 import Foundation
+import Insights
 
-extension Package where Item == InsightsEvent {
+extension Package where Item == EventsItems {
   init() {
     self.init(capacity: Algolia.Insights.minBatchSize)
   }

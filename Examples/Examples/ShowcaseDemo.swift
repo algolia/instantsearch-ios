@@ -5,7 +5,7 @@
 //  Created by Vladislav Fitc on 05.04.2022.
 //
 
-import AlgoliaSearchClient
+import Search
 import Foundation
 
 struct ShowcaseDemo: Codable, DemoProtocol {

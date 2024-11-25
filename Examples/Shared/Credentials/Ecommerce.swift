@@ -5,7 +5,7 @@
 //  Created by Vladislav Fitc on 08/05/2022.
 //
 
-import AlgoliaSearchClient
+import Search
 import Foundation
 
 extension SearchClient {

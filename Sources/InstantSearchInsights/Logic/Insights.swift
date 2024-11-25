@@ -5,8 +5,11 @@
 //  Copyright © 2018 Algolia. All rights reserved.
 //
 
-import AlgoliaSearchClient
+import Compat
+import Core
 import Foundation
+import Insights
+
 #if os(iOS)
   import UIKit
 #endif
@@ -189,7 +192,7 @@ public class Insights {
                    userToken: UserToken?,
                    generateTimestamps: Bool,
                    logger: Logger) {
-    typealias PackageStorage = JSONFilePackageStorage<[Package<InsightsEvent>]>
+    typealias PackageStorage = JSONFilePackageStorage<[Package<EventsItems>]>
 
     let storage: PackageStorage?
 
@@ -200,9 +203,10 @@ public class Insights {
       logger.error("\(error.localizedDescription)")
     }
 
-    let insightsClient = InsightsClient(appID: applicationID, apiKey: apiKey, region: region)
+    // TODO: Rely on a failable initializer instead?
+    let insightsClient = try! InsightsClient(appID: applicationID.rawValue, apiKey: apiKey.rawValue, region: region)
 
-    let acceptEvent: (InsightsEvent) -> Bool = { event in
+    let acceptEvent: (EventsItems) -> Bool = { event in
       guard let timestamp = event.timestamp else {
         return true
       }

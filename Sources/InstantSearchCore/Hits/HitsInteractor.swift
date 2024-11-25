@@ -5,7 +5,6 @@
 //  Created by Guy Daher on 15/02/2019.
 //
 
-import AlgoliaSearchClient
 import Foundation
 
 /// Component that manages and displays a list of search results

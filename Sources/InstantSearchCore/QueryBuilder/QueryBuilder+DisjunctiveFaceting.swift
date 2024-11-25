@@ -6,7 +6,7 @@
 //  Copyright © 2019 Algolia. All rights reserved.
 //
 
-import AlgoliaSearchClient
+import Search
 import Foundation
 /// Provides convenient method for building disjuncitve faceting queries and parsing disjunctive faceting
 

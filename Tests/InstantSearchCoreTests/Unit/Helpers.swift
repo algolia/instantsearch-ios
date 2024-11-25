@@ -1,4 +1,4 @@
-import AlgoliaSearchClient
+import Search
 import Foundation
 
 func safeIndexName(_ name: String) -> IndexName {

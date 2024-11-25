@@ -6,7 +6,7 @@
 //  Copyright © 2018 Algolia. All rights reserved.
 //
 
-import AlgoliaSearchClient
+import Search
 import Foundation
 @testable import InstantSearchInsights
 

@@ -5,7 +5,7 @@
 //  Created by Vladislav Fitc on 15/10/2020.
 //
 
-import AlgoliaSearchClient
+import Search
 import Foundation
 
 struct TestEvent {

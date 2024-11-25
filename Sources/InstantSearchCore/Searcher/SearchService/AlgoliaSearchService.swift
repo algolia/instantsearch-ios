@@ -5,7 +5,7 @@
 //  Created by Vladislav Fitc on 27/11/2020.
 //
 
-import AlgoliaSearchClient
+import Search
 import Foundation
 
 public class AlgoliaSearchService: SearchService {

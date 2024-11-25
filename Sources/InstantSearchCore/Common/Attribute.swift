@@ -4,6 +4,7 @@
 //  Created by Guy Daher on 10/12/2018.
 //  Copyright © 2018 Algolia. All rights reserved.
 //
+import Compat
 import Foundation
 
 public extension Attribute {

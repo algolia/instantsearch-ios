@@ -6,6 +6,7 @@
 //
 
 import Foundation
+import InstantSearchInsights
 
 public protocol IndexNameSettable {
   func setIndexName(_ indexName: IndexName)
