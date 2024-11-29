@@ -71,13 +71,46 @@
   #if os(iOS)
     @available(iOS 13.0, tvOS 13.0, watchOS 7.0, *)
     struct HitsView_Previews: PreviewProvider {
+      
+      struct PreviewRecord<Value: Codable>: Codable {
+        let objectID: ObjectID
+        let value: Value
+        
+        init(_ value: Value, objectID: ObjectID = ObjectID(rawValue: UUID().uuidString)) {
+          self.value = value
+          self.objectID = objectID
+        }
+        
+        static func withValue(_ value: Value) -> Self {
+          .init(value)
+        }
+      }
+      
+      static let rawHits: Data = """
+          {
+            "hits": [
+              {
+              "objectID": "1",
+              "value": "h1"
+              },
+              {
+              "objectID": "2",
+              "value": "h2"
+              }
+            ]
+          }
+          """.data(using: .utf8)!
+      
+      static let hitsController: HitsObservableController<PreviewRecord<String>> = .init()
+      
+      static let interactor = HitsInteractor<PreviewRecord<String>>(infiniteScrolling: .off, showItemsOnEmptyQuery: true)
+      
       static var previews: some View {
-        let hitsController: HitsObservableController<String> = .init()
         NavigationView {
           HitsList(hitsController) { string, _ in
             VStack {
               HStack {
-                Text(string ?? "---")
+                Text(string?.value ?? "---")
                   .frame(maxWidth: .infinity, minHeight: 30, maxHeight: .infinity, alignment: .leading)
                   .padding(.horizontal, 16)
               }
@@ -88,20 +121,30 @@
           }
           .padding(.top, 20)
           .onAppear {
-            hitsController.hits = ["One", "Two", "Three"]
-          }.navigationBarTitle("Hits")
+            hitsController.hitsSource = interactor
+            
+            let results = try! JSONDecoder().decode(SearchResponse.self, from: rawHits)
+            
+            interactor.onResultsUpdated.subscribe(with: hitsController) { (reb, hit) in
+              reb.reload()
+            }
+            interactor.update(results)
+          }
+          .navigationBarTitle("Hits")
         }
+        
         NavigationView {
           HitsList(hitsController) { string, _ in
             VStack {
               HStack {
-                Text(string ?? "---")
+                Text(string?.value ?? "---")
               }
               Divider()
             }
           } noResults: {
             Text("No results")
-          }.navigationBarTitle("Hits")
+          }
+          .navigationBarTitle("Hits")
         }
       }
     }
