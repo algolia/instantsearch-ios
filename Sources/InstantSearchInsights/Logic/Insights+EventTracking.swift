@@ -5,6 +5,7 @@
 //  Created by Vladislav Fitc on 20/10/2020.
 //
 
+import Compat
 import Foundation
 
 /// Tracking events non-tighten to search

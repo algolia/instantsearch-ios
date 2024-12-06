@@ -15,10 +15,12 @@ public struct Index: Credentials {
   let operationLauncher: OperationLauncher
   let configuration: Configuration
 
+  // FIXME: Credentials in v9 switches to appID
   public var appID: String {
     return transport.appID
   }
 
+  // FIXME: Credentials in v9 types apiKey as String
   public var apiKey: String {
     return transport.apiKey
   }

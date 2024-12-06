@@ -5,10 +5,10 @@
 //  Created by Vladislav Fitc on 19/10/2020.
 //
 
+import Compat
 import Foundation
-import Insights
 
-extension Packager where Item == EventsItems {
+extension Packager where Item == InsightsEvent {
   init() {
     self.init(packageCapacity: Algolia.Insights.minBatchSize)
   }

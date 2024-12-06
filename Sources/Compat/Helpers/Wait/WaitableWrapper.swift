@@ -5,7 +5,9 @@
 //  Created by Vladislav Fitc on 16/04/2020.
 //
 
+import Core
 import Foundation
+import Search
 
 public struct WaitableWrapper<T> {
 
@@ -69,7 +71,9 @@ extension WaitableWrapper where T: IndexTask & IndexNameContainer {
 
   static func wrap(credentials: Credentials) -> (T) -> WaitableWrapper<T> {
     return { task in
-      let index = SearchClient(appID: credentials.applicationID, apiKey: credentials.apiKey).index(withName: task.indexName)
+      // FIXME: Credentials in v9 switches to appID
+      // FIXME: Client v9 removes index method
+      let index = SearchClient(appID: credentials.appID, apiKey: credentials.apiKey).index(withName: task.indexName)
       return WaitableWrapper(task: task, index: index)
     }
   }
@@ -84,6 +88,7 @@ extension WaitableWrapper where T == BatchesResponse {
 
   init(batchesResponse: T, client: SearchClient) {
     self.wrapped = batchesResponse
+    // FIXME: Client v9 removes index method
     self.tasksToWait = batchesResponse.tasks.map { Waitable(index: client.index(withName: $0.indexName), taskID: $0.taskID) }
   }
 

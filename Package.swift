@@ -42,7 +42,9 @@ let package = Package(
   targets: [
     .target(
       name: "Compat",
-      dependencies: []
+      dependencies: [
+        .product(name: "Search", package: "algoliasearch-client-swift"),
+      ]
     ),
     .target(
       name: "InstantSearchInsights",

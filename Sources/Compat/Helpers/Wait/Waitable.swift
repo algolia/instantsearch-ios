@@ -1,12 +1,15 @@
 //
 //  Waitable.swift
-//  
+//
 //
 //  Created by Vladislav Fitc on 01/02/2021.
 //
 
 import Foundation
 import Search
+
+// FIXME: Removed in v9
+typealias Client = SearchClient
 
 struct Waitable: AnyWaitable {
 
@@ -19,6 +22,7 @@ struct Waitable: AnyWaitable {
   }
 
   init(client: Client, task: IndexedTask) {
+    // FIXME: Client v9 removes index method
     self.init(index: client.index(withName: task.indexName), taskID: task.taskID)
   }
 

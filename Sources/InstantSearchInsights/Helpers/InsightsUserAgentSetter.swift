@@ -5,7 +5,7 @@
 //  Created by Vladislav Fitc on 03/02/2023.
 //
 
-import Search
+import Core
 import Foundation
 
 struct InsightsUserAgentSetter {

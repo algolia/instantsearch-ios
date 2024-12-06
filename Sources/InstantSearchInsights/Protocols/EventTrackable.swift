@@ -6,6 +6,7 @@
 //  Copyright © 2018 Algolia. All rights reserved.
 //
 
+import Compat
 import Foundation
 // swiftlint:disable function_parameter_count
 protocol EventTrackable {
