@@ -47,7 +47,7 @@ jobs:
           fetch-depth: 0
       - uses: ruby/setup-ruby@v1
         with:
-          ruby-version: "2.7.2"
+          ruby-version: "2.7.8"
           bundler-cache: true
       - name: Deploy library release
         run: bundle exec fastlane deploy verbose:true type:${{ env.RELEASE_TYPE }} no_dry_run:true
