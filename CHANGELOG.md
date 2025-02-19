@@ -1,5 +1,17 @@
 # ChangeLog
 
+## [7.26.4](https://github.com/algolia/instantsearch-ios/compare/7.26.3...7.26.4) (2025-02-19)
+
+### Fix
+
+- **sortby**: properly map indices names (#332) ([a4cdf26](https://github.com/algolia/instantsearch-ios/commit/a4cdf26))
+
+### Refactor
+
+- optimize page map iterator to avoid items copying (#329) ([d3eff80](https://github.com/algolia/instantsearch-ios/commit/d3eff80))
+
+
+
 ## [7.26.3](https://github.com/algolia/instantsearch-ios/compare/7.26.2...7.26.3) (2024-07-29)
 
 ### Fix
