@@ -58,7 +58,7 @@ lane :deploy do |options|
   base_branch = options[:branch] || "master"
 
   # ensure branch and cleanliness locally but not on Bitrise.
-  if !ENV['GITHUB_ACTION'] 
+  if !ENV['GITHUB_ACTION']
     ensure_git_branch(
       branch: base_branch
     )
@@ -114,13 +114,15 @@ lane :deploy do |options|
     sh("git tag -d #{release_type}; git push --delete origin #{release_type}")
   end
 
-  pod_push(
-    path: podspec_path,
-    allow_warnings: true
-  )
+  # Disabled, manual CocoaPods release required.
+  # See CONTRIBUTING.md for more information.
+  # pod_push(
+  #   path: podspec_path,
+  #   allow_warnings: true
+  # )
 end
 
-lane :deployBeta do |options| 
+lane :deployBeta do |options|
   branch = options[:branch] || "master"
 
   pod_lib_lint(
@@ -149,10 +151,12 @@ lane :deployBeta do |options|
   )
   push_to_git_remote(remote: "origin")
 
-  pod_push(
-    path: "InstantSearch.podspec",
-    allow_warnings: true
-  )
+  # Disabled, manual CocoaPods release required.
+  # See CONTRIBUTING.md for more information.
+  # pod_push(
+  #   path: "InstantSearch.podspec",
+  #   allow_warnings: true
+  # )
 
 end
 
@@ -164,14 +168,14 @@ def prepare_git(branch)
   # ensure_git_branch(branch:branch)
   masterHash = sh("git rev-parse origin/#{branch}")
   headHash = sh("git rev-parse HEAD")
-  
-  if masterHash != headHash 
+
+  if masterHash != headHash
     raise "Error: Master and Head Hashes do not match, meaning that we are probably not on Master and therefore can't deploy"
   end
 
   # checkout master to be able to push tag there.
   sh("git checkout #{branch}")
-  
+
   # We already pull in bitrise before doing anything, so no need for this step anymore.
   # git_pull
 end
@@ -183,7 +187,7 @@ def prepare_api_keys()
   if api_key
     xcargs << %Q[ALGOLIA_API_KEY="#{api_key}"]
   end
-  
+
   api_id = ENV["ALGOLIA_APPLICATION_ID"]
   if api_id
     xcargs << %Q[ALGOLIA_APPLICATION_ID="#{api_id}"]
@@ -193,7 +197,7 @@ def prepare_api_keys()
   if places_api_id
     xcargs << %Q[PLACES_APPLICATION_ID="#{places_api_id}"]
   end
-  
+
   places_api_key = ENV["PLACES_API_KEY"]
   if places_api_key
     xcargs << %Q[PLACES_API_KEY="#{places_api_key}"]

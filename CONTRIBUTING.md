@@ -95,7 +95,9 @@ These changes will be then pushed in a pull request, ready to be merged.
 
 While both Swift Package Manager and Carthage rely on GitHub and git tags to retrieve the library, CocoaPods has its own repository.
 
-[Starting from Xcode 14.3](https://github.com/CocoaPods/CocoaPods/issues/11839), the deployment will fail at the `pod_push` step, requiring the library to be manually published to the CocoaPods repository. InstantSearch iOS can be published to CocoaPods manually from an authorized user's local environment. Xcodes 14.2 cannot be used to build as it's incompatible with macOS Sonoma and up, but it's possible to [copy some of its files](https://github.com/CocoaPods/CocoaPods/issues/12033#issuecomment-2172608443) that are mistakenly required by CocoaPods for Podfile validation:
+[Since Xcode 14.3](https://github.com/CocoaPods/CocoaPods/issues/11839), the deployment fails at the `pod_push` step, requiring the library to be manually published to the CocoaPods repository. The Fastlane deploy does not include this step anymore.
+
+InstantSearch iOS should be published to CocoaPods manually from an authorized user's local environment. Xcode 14.2 cannot be used to build as it's incompatible with macOS Sonoma and up, but it's possible to [copy some of its files](https://github.com/CocoaPods/CocoaPods/issues/12033#issuecomment-2172608443) that are mistakenly required by CocoaPods for Podfile validation:
 
 ```bash
 # Install Xcode 14.2 (here, using xcodes CLI)
