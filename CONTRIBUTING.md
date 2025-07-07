@@ -125,6 +125,8 @@ pod trunk add-owner InstantSearch user@algolia.com
 
 **Publishing a new version** manually:
 
+> Note: macOS, iOS, watchOS and tvOS component platforms need to be downloaded and installed via Xcode prior to running this command
+
 ```sh
 pod trunk push --allow-warnings
 ```
