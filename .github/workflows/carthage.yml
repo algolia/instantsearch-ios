@@ -3,6 +3,8 @@ on: [pull_request]
 jobs:
   check:
     runs-on: macos-15
+    env:
+      GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
     steps:
       - name: Select Xcode version
         run: sudo xcode-select -s '/Applications/Xcode_16.0.app/Contents/Developer'
@@ -10,5 +12,4 @@ jobs:
         run: |
           tee Cartfile <<<"github \"algolia/instantsearch-ios\" \"${{ github.head_ref }}\""
           carthage update --no-build
-          sh ./Carthage/Checkouts/instantsearch-ios/carthage-prebuild
           carthage build --use-xcframeworks --platform ios

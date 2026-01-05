@@ -83,7 +83,6 @@ github "algolia/instantsearch-ios" ~> 7.26
 - Launch the following commands from the project directory
  ```shell
  carthage update
- ./Carthage/Checkouts/instant-search-ios/carthage-prebuild
  carthage build
  ```
 
