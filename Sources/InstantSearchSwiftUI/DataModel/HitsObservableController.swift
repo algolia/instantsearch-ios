@@ -29,10 +29,13 @@ import InstantSearchTelemetry
     }
 
     public func reload() {
-      if let hitsSource = hitsSource, hitsSource.numberOfHits() > 0 {
-        hits = hitsSource.hits
-      } else {
-        hits = []
+      DispatchQueue.main.async { [weak self] in
+        guard let self = self else { return }
+        if let hitsSource = self.hitsSource, hitsSource.numberOfHits() > 0 {
+          self.hits = hitsSource.hits
+        } else {
+          self.hits = []
+        }
       }
     }
 

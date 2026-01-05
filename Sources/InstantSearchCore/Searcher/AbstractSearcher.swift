@@ -125,7 +125,7 @@ open class AbstractSearcher<Service: SearchService>: Searcher, SequencerDelegate
 public extension AbstractSearcher {
   /// Search error composition encapsulating the error returned by the search service and the request for which this error occured
   struct RequestError: Error {
-    /// Request for which an error occured
+    /// Request for which an error occurred
     public let request: Request
 
     /// Error returned by the search service
