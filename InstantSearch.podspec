@@ -18,7 +18,7 @@ Pod::Spec.new do |s|
   s.subspec "Insights" do |ss|
       ss.source_files = 'Sources/InstantSearchInsights/**/*.{swift}'
       ss.dependency 'AlgoliaSearchClient', '~> 8.18'
-      ss.dependency 'Logging', '~> 1.5.4'
+      ss.dependency 'Logging', '~> 1.5'
       ss.ios.deployment_target = '14.0'
       ss.osx.deployment_target = '11.0'
       ss.watchos.deployment_target = '7.0'
@@ -28,7 +28,7 @@ Pod::Spec.new do |s|
   s.subspec "Core" do |ss|
       ss.source_files = 'Sources/InstantSearchCore/**/*.{swift}'
       ss.dependency 'AlgoliaSearchClient', '~> 8.18'
-      ss.dependency 'Logging', '~> 1.5.4'
+      ss.dependency 'Logging', '~> 1.5'
       ss.dependency 'InstantSearch/Insights'
       ss.dependency 'SwiftProtobuf', '1.22.0'
       ss.dependency 'InstantSearchTelemetry', '~> 0.1.3'
@@ -42,7 +42,7 @@ Pod::Spec.new do |s|
   s.subspec "UI" do |ss|
       ss.source_files = 'Sources/InstantSearch/**/*.{swift}'
       ss.dependency 'InstantSearch/Core'
-      ss.dependency 'Logging', '~> 1.5.4'
+      ss.dependency 'Logging', '~> 1.5'
       ss.ios.deployment_target = '14.0'
       ss.osx.deployment_target = '11.0'
       ss.watchos.deployment_target = '7.0'
@@ -53,7 +53,7 @@ Pod::Spec.new do |s|
   s.subspec "SwiftUI" do |ss|
       ss.source_files = 'Sources/InstantSearchSwiftUI/**/*.{swift}'
       ss.dependency 'InstantSearch/Core'
-      ss.dependency 'Logging', '~> 1.5.4'
+      ss.dependency 'Logging', '~> 1.5'
       ss.dependency 'InstantSearchTelemetry', '~> 0.1.3'
       ss.ios.deployment_target = '14.0'
       ss.osx.deployment_target = '11.0'
