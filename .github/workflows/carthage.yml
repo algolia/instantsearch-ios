@@ -11,5 +11,6 @@ jobs:
       - name: Initialize Cartfile
         run: |
           tee Cartfile <<<"github \"algolia/instantsearch-ios\" \"${{ github.head_ref }}\""
-          carthage update --no-build
+          export GITHUB_TOKEN=${{ secrets.GITHUB_TOKEN }}
+          carthage update --no-build --use-xcframeworks
           carthage build --use-xcframeworks --platform ios
