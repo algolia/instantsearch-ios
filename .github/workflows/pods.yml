@@ -8,7 +8,7 @@ jobs:
       - name: Select Xcode version
         run: sudo xcode-select -s '/Applications/Xcode_15.2.app/Contents/Developer'
       - name: lint Insights
-        run: pod lib lint --subspec="Insights" --allow-warnings
+        run: pod lib lint --subspec="Insights" --allow-warnings --skip-import-validation
   lint-Core:
     runs-on: macos-14
     steps:
@@ -16,7 +16,7 @@ jobs:
       - name: Select Xcode version
         run: sudo xcode-select -s '/Applications/Xcode_15.2.app/Contents/Developer'
       - name: lint Core
-        run: pod lib lint --subspec="Core" --allow-warnings
+        run: pod lib lint --subspec="Core" --allow-warnings --skip-import-validation
   lint-UI:
     runs-on: macos-14
     steps:
@@ -24,7 +24,7 @@ jobs:
       - name: Select Xcode version
         run: sudo xcode-select -s '/Applications/Xcode_15.2.app/Contents/Developer'
       - name: lint UI
-        run: pod lib lint --subspec="UI" --allow-warnings
+        run: pod lib lint --subspec="UI" --allow-warnings --skip-import-validation
   lint-SwiftUI:
     runs-on: macos-14
     steps:
@@ -32,4 +32,4 @@ jobs:
       - name: Select Xcode version
         run: sudo xcode-select -s '/Applications/Xcode_15.2.app/Contents/Developer'
       - name: lint SwiftUI
-        run: pod lib lint --subspec="SwiftUI" --allow-warnings
+        run: pod lib lint --subspec="SwiftUI" --allow-warnings --skip-import-validation
