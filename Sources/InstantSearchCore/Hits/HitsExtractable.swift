@@ -13,22 +13,22 @@ public protocol HitsExtractable {
 }
 
 extension SearchResponse: HitsExtractable {
-  public func extractHits<T>(jsonDecoder: JSONDecoder) throws -> [T] where T: Decodable {
+  public func extractHits<Hit>(jsonDecoder: JSONDecoder) throws -> [Hit] where Hit: Decodable {
     let hitsData = try JSONEncoder().encode(hits)
-    return try jsonDecoder.decode([T].self, from: hitsData)
+    return try jsonDecoder.decode([Hit].self, from: hitsData)
   }
 }
 
 extension PlacesResponse: HitsExtractable {
-  public func extractHits<T>(jsonDecoder: JSONDecoder) throws -> [T] where T: Decodable {
+  public func extractHits<Hit>(jsonDecoder: JSONDecoder) throws -> [Hit] where Hit: Decodable {
     let hitsData = try JSONEncoder().encode(hits)
-    return try jsonDecoder.decode([T].self, from: hitsData)
+    return try jsonDecoder.decode([Hit].self, from: hitsData)
   }
 }
 
 extension FacetSearchResponse: HitsExtractable {
-  public func extractHits<T>(jsonDecoder: JSONDecoder) throws -> [T] where T: Decodable {
+  public func extractHits<Hit>(jsonDecoder: JSONDecoder) throws -> [Hit] where Hit: Decodable {
     let hitsData = try JSONEncoder().encode(facetHits)
-    return try jsonDecoder.decode([T].self, from: hitsData)
+    return try jsonDecoder.decode([Hit].self, from: hitsData)
   }
 }
