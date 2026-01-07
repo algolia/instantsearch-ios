@@ -52,7 +52,8 @@
     }
 
     private func row(atIndex index: Int) -> some View {
-      row(hitsObservable.hits[index], index).onAppear {
+      let hit = index < hitsObservable.hits.count ? hitsObservable.hits[index] : nil
+      return row(hit, index).onAppear {
         hitsObservable.notifyAppearanceOfHit(atIndex: index)
       }
     }
