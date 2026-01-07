@@ -1,5 +1,17 @@
 # ChangeLog
 
+## [7.27.1](https://github.com/algolia/instantsearch-ios/compare/7.27.0...7.27.1) (2026-01-07)
+
+### Fix
+
+- **HitsList**: remove race condition (#346) ([0bd0d9b](https://github.com/algolia/instantsearch-ios/commit/0bd0d9b))
+
+### Misc
+
+- Merge pull request #342 from algolia/version-7.27.0 ([a4347c2](https://github.com/algolia/instantsearch-ios/commit/a4347c2))
+
+
+
 ## [7.27.0](https://github.com/algolia/instantsearch-ios/compare/7.26.4...7.27.0) (2025-07-01)
 
 ### Fix
