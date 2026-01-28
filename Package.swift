@@ -44,7 +44,7 @@ let package = Package(
   targets: [
     .target(
       name: "InstantSearchInsights",
-      dependencies: ["AlgoliaSearchClient"],
+      dependencies: ["AlgoliaSearchClient", .product(name: "Logging", package: "swift-log")],
       exclude: ["Readme.md"],
       resources: [.copy("../PrivacyInfo.xcprivacy")]
     ),
