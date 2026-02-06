@@ -19,7 +19,7 @@ public extension DynamicFacetListInteractor {
     /// Mapping between a facet attribute and a descriptor of a filter group where the corresponding facet filters stored in the filter state.
     ///
     /// If no filter group descriptor provided, the filters for attribute will be automatically stored in the conjunctive (`and`)  group with the facet attribute name.
-    public let filterGroupForAttribute: [Attribute: FilterGroupDescriptor]
+    public let filterGroupForAttribute: [String: FilterGroupDescriptor]
 
     /// Type of filter group created by default for a facet attribute. Default value is `and`
     public let defaultFilterGroupType: RefinementOperator
@@ -35,7 +35,7 @@ public extension DynamicFacetListInteractor {
      */
     public init(interactor: DynamicFacetListInteractor,
                 filterState: FilterState,
-                filterGroupForAttribute: [Attribute: FilterGroupDescriptor] = [:],
+                filterGroupForAttribute: [String: FilterGroupDescriptor] = [:],
                 defaultFilterGroupType: RefinementOperator = .and) {
       self.interactor = interactor
       self.filterState = filterState
@@ -55,8 +55,8 @@ public extension DynamicFacetListInteractor {
       interactor.onFacetOrderChanged.cancelSubscription(for: filterState)
     }
 
-    private func groupID(for attribute: Attribute) -> FilterGroup.ID {
-      let (groupName, refinementOperator) = filterGroupForAttribute[attribute] ?? (attribute.rawValue, defaultFilterGroupType)
+    private func groupID(for attribute: String) -> FilterGroup.ID {
+      let (groupName, refinementOperator) = filterGroupForAttribute[attribute] ?? (attribute, defaultFilterGroupType)
       switch refinementOperator {
       case .or:
         return .or(name: groupName, filterType: .facet)
@@ -65,8 +65,8 @@ public extension DynamicFacetListInteractor {
       }
     }
 
-    private func calculateSelections(facets: [AttributedFacets], filterState: FilterState) -> [Attribute: Set<String>] {
-      let selectionsPerAttribute: [(attribute: Attribute, values: Set<String>)] =
+    private func calculateSelections(facets: [AttributedFacets], filterState: FilterState) -> [String: Set<String>] {
+      let selectionsPerAttribute: [(attribute: String, values: Set<String>)] =
         facets
         .map(\.attribute)
         .map { attribute in
@@ -117,7 +117,7 @@ public extension DynamicFacetListInteractor {
    If no filter group descriptor provided, the filters for attribute will be automatically stored in the group of `defaultFilterGroupType` with the facet attribute name.
    */
   @discardableResult func connectFilterState(_ filterState: FilterState,
-                                             filterGroupForAttribute: [Attribute: FilterGroupDescriptor] = [:], defaultFilterGroupType: RefinementOperator = .and) -> FilterStateConnection {
+                                             filterGroupForAttribute: [String: FilterGroupDescriptor] = [:], defaultFilterGroupType: RefinementOperator = .and) -> FilterStateConnection {
     let connection = FilterStateConnection(interactor: self,
                                            filterState: filterState,
                                            filterGroupForAttribute: filterGroupForAttribute,

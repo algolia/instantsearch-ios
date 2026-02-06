@@ -45,11 +45,11 @@ extension FilterState: FiltersWritable {
     return self.filters.removeAll(filters)
   }
 
-  func removeAll(for attribute: Attribute, fromGroupWithID groupID: FilterGroup.ID) {
+  func removeAll(for attribute: String, fromGroupWithID groupID: FilterGroup.ID) {
     filters.removeAll(for: attribute, fromGroupWithID: groupID)
   }
 
-  public func removeAll(for attribute: Attribute) {
+  public func removeAll(for attribute: String) {
     filters.removeAll(for: attribute)
   }
 

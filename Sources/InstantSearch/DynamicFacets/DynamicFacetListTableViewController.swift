@@ -18,13 +18,13 @@
     public var orderedFacets: [AttributedFacets]
 
     /// Set of selected facet values per attribute
-    public var selections: [Attribute: Set<String>]
+    public var selections: [String: Set<String>]
 
     // MARK: - DynamicFacetListController
 
-    public var didSelect: ((Attribute, Facet) -> Void)?
+    public var didSelect: ((String, FacetHits) -> Void)?
 
-    public func setSelections(_ selections: [Attribute: Set<String>]) {
+    public func setSelections(_ selections: [String: Set<String>]) {
       self.selections = selections
       tableView.reloadData()
     }
@@ -40,7 +40,7 @@
         - selections: Set of selected facet values per attribute
      */
     public init(orderedFacets: [AttributedFacets] = [],
-                selections: [Attribute: Set<String>] = [:]) {
+                selections: [String: Set<String>] = [:]) {
       self.orderedFacets = orderedFacets
       self.selections = selections
       super.init(style: .plain)
@@ -73,7 +73,7 @@
     // MARK: - UITableViewDelegate
 
     override public func tableView(_: UITableView, titleForHeaderInSection section: Int) -> String? {
-      return orderedFacets[section].attribute.rawValue
+      return orderedFacets[section].attribute
     }
 
     override public func tableView(_: UITableView, willDisplay cell: UITableViewCell, forRowAt indexPath: IndexPath) {

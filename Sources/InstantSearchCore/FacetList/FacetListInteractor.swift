@@ -6,14 +6,13 @@
 //  Copyright © 2019 Algolia. All rights reserved.
 //
 
-import AlgoliaSearchClient
 import Foundation
 
-public class FacetListInteractor: SelectableListInteractor<String, Facet> {
+public class FacetListInteractor: SelectableListInteractor<String, FacetHits> {
   public let onResultsUpdated: Observer<FacetSearchResponse>
   private let mutationQueue: OperationQueue
 
-  public init(facets: [Facet] = [], selectionMode: SelectionMode = .multiple) {
+  public init(facets: [FacetHits] = [], selectionMode: SelectionMode = .multiple) {
     onResultsUpdated = .init()
     mutationQueue = .init()
     super.init(items: facets, selectionMode: selectionMode)
@@ -30,7 +29,9 @@ public class FacetListInteractor: SelectableListInteractor<String, Facet> {
 extension FacetListInteractor: ResultUpdatable {
   @discardableResult public func update(_ facetResults: FacetSearchResponse) -> Operation {
     let updateOperation = BlockOperation { [weak self] in
-      self?.items = facetResults.facetHits
+      self?.items = facetResults.facetHits.map { hit in
+        FacetHits(value: hit.value, highlighted: hit.highlighted, count: hit.count)
+      }
       self?.onResultsUpdated.fire(facetResults)
     }
 

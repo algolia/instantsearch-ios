@@ -44,7 +44,7 @@ public struct OrGroupAccessor<Filter: FilterType>: SpecializedGroupAccessor {
 
   /// Removes all filters with specified attribute from group
   /// - parameter attribute: specified attribute
-  public func removeAll(for attribute: Attribute) {
+  public func removeAll(for attribute: String) {
     return filtersContainer.filters.removeAll(for: attribute, fromGroupWithID: groupID)
   }
 
@@ -74,7 +74,7 @@ public struct OrGroupAccessor<Filter: FilterType>: SpecializedGroupAccessor {
     filtersContainer.filters.toggle(filter, inGroupWithID: groupID)
   }
 
-  public func filters(for attribute: Attribute) -> [Filter] {
+  public func filters(for attribute: String) -> [Filter] {
     return filtersContainer.filters.getFilters(forGroupWithID: groupID).filter { $0.attribute == attribute }.compactMap { $0.filter as? Filter }
   }
 

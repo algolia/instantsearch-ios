@@ -103,7 +103,7 @@ public extension HitsConnector {
    */
   convenience init(appID: ApplicationID,
                    apiKey: APIKey,
-                   indexName: IndexName,
+                   indexName: String,
                    infiniteScrolling: InfiniteScrolling = Constants.Defaults.infiniteScrolling,
                    showItemsOnEmptyQuery: Bool = Constants.Defaults.showItemsOnEmptyQuery,
                    filterState: FilterState? = .none) {

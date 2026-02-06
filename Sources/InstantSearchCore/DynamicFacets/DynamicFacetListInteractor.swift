@@ -16,7 +16,7 @@ import Foundation
   - Convenient functions to toggle and fetch the selection state of facet values
  */
 public class DynamicFacetListInteractor {
-  public typealias SelectionsPerAttribute = [Attribute: Set<String>]
+  public typealias SelectionsPerAttribute = [String: Set<String>]
 
   /// Ordered list of attributed facets
   public var orderedFacets: [AttributedFacets] = .init() {
@@ -48,10 +48,10 @@ public class DynamicFacetListInteractor {
 
   /// Mapping between a facet attribute and a facet values selection mode
   /// If not provided, the default selection mode is `defaultSelectionMode`
-  public let selectionModeForAttribute: [Attribute: SelectionMode]
+  public let selectionModeForAttribute: [String: SelectionMode]
 
   /// Storage for selectable facet list logic per attribute
-  private var facetListPerAttribute: [Attribute: SelectableListInteractor<String, Facet>]
+  private var facetListPerAttribute: [String: SelectableListInteractor<String, FacetHits>]
 
   /**
     - Parameters:
@@ -62,8 +62,8 @@ public class DynamicFacetListInteractor {
 
    */
   public init(orderedFacets: [AttributedFacets] = [],
-              selections: [Attribute: Set<String>] = [:],
-              selectionModeForAttribute: [Attribute: SelectionMode] = [:],
+              selections: [String: Set<String>] = [:],
+              selectionModeForAttribute: [String: SelectionMode] = [:],
               defaultSelectionMode: SelectionMode = .single) {
     self.orderedFacets = orderedFacets
     self.selections = selections
@@ -91,7 +91,7 @@ public class DynamicFacetListInteractor {
         - attribute: the facet attribute
    */
   public func isSelected(facetValue: String,
-                         for attribute: Attribute) -> Bool {
+                         for attribute: String) -> Bool {
     return selections[attribute]?.contains(facetValue) ?? false
   }
 
@@ -102,7 +102,7 @@ public class DynamicFacetListInteractor {
         - attribute: the facet attribute
    */
   public func toggleSelection(ofFacetValue facetValue: String,
-                              for attribute: Attribute) {
+                              for attribute: String) {
     facetListPerAttribute[attribute]?.computeSelections(selectingItemForKey: facetValue)
   }
 
@@ -110,7 +110,7 @@ public class DynamicFacetListInteractor {
     for attributedFacet in orderedFacets {
       let attribute = attributedFacet.attribute
 
-      let facetList: SelectableListInteractor<String, Facet>
+      let facetList: SelectableListInteractor<String, FacetHits>
 
       if let existingFacetList = facetListPerAttribute[attribute] {
         facetList = existingFacetList
@@ -124,9 +124,9 @@ public class DynamicFacetListInteractor {
     }
   }
 
-  private func createFacetList(for attribute: Attribute) -> SelectableListInteractor<String, Facet> {
+  private func createFacetList(for attribute: String) -> SelectableListInteractor<String, FacetHits> {
     let selectionMode = selectionModeForAttribute[attribute] ?? defaultSelectionMode
-    let facetList = SelectableListInteractor<String, Facet>(selectionMode: selectionMode)
+    let facetList = SelectableListInteractor<String, FacetHits>(selectionMode: selectionMode)
 
     facetList.onSelectionsComputed.subscribe(with: self) { interactor, selections in
       var currentSelections = interactor.selections

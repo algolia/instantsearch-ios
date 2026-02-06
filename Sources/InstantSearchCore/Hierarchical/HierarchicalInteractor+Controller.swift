@@ -8,7 +8,7 @@
 
 import Foundation
 // swiftlint:disable large_tuple
-public typealias HierarchicalFacet = (facet: Facet, level: Int, isSelected: Bool)
+public typealias HierarchicalFacet = (facet: FacetHits, level: Int, isSelected: Bool)
 
 public extension Hierarchical {
   struct ControllerConnection<Controller: HierarchicalController, Output>: Connection where Output == Controller.Item {

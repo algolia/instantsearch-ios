@@ -20,7 +20,7 @@ public extension FilterGroup {
       return false
     }
 
-    public var hierarchicalAttributes: [Attribute] = []
+    public var hierarchicalAttributes: [String] = []
     public var hierarchicalFilters: [Filter.Facet] = []
 
     internal var typedFilters: [Filter.Facet]

@@ -8,5 +8,5 @@
 import Foundation
 
 public protocol IndexNameSettable {
-  func setIndexName(_ indexName: IndexName)
+  func setIndexName(_ indexName: String)
 }

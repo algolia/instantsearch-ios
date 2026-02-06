@@ -13,23 +13,23 @@ import Foundation
 // swiftlint:disable function_parameter_count
 
 protocol HitsAfterSearchTrackable {
-  func clickedAfterSearch(eventName: EventName,
-                          indexName: IndexName,
-                          objectIDsWithPositions: [(ObjectID, Int)],
-                          queryID: QueryID,
+  func clickedAfterSearch(eventName: String,
+                          indexName: String,
+                          objectIDsWithPositions: [(String, Int)],
+                          queryID: String,
                           timestamp: Date?,
                           userToken: UserToken?)
 
-  func convertedAfterSearch(eventName: EventName,
-                            indexName: IndexName,
-                            objectIDs: [ObjectID],
-                            queryID: QueryID,
+  func convertedAfterSearch(eventName: String,
+                            indexName: String,
+                            objectIDs: [String],
+                            queryID: String,
                             timestamp: Date?,
                             userToken: UserToken?)
 
-  func viewed(eventName: EventName,
-              indexName: IndexName,
-              objectIDs: [ObjectID],
+  func viewed(eventName: String,
+              indexName: String,
+              objectIDs: [String],
               timestamp: Date?,
               userToken: UserToken?)
 }

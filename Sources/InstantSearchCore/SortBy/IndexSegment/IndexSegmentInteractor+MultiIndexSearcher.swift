@@ -20,7 +20,7 @@ public extension IndexSegment {
       if
         let selected = interactor.selected,
         let index = interactor.items[selected] {
-        searcher.indexQueryStates[queryIndex].indexName = index.name
+        searcher.indexQueryStates[queryIndex].indexName = index
         searcher.indexQueryStates[queryIndex].query.page = 0
       }
 
@@ -30,7 +30,7 @@ public extension IndexSegment {
           let selected = computed,
           let index = interactor?.items[selected] {
           interactor?.selected = selected
-          searcher.indexQueryStates[queryIndex].indexName = index.name
+          searcher.indexQueryStates[queryIndex].indexName = index
           searcher.indexQueryStates[queryIndex].query.page = 0
           searcher.search()
         }

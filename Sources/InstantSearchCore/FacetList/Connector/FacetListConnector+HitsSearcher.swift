@@ -20,7 +20,7 @@ public extension FacetListConnector {
    */
   convenience init(searcher: HitsSearcher,
                    filterState: FilterState = .init(),
-                   attribute: Attribute,
+                   attribute: String,
                    interactor: FacetListInteractor = .init(),
                    operator: RefinementOperator,
                    groupName: String? = nil) {
@@ -51,7 +51,7 @@ public extension FacetListConnector {
    */
   convenience init<Controller: FacetListController>(searcher: HitsSearcher,
                                                     filterState: FilterState = .init(),
-                                                    attribute: Attribute,
+                                                    attribute: String,
                                                     interactor: FacetListInteractor = .init(),
                                                     operator: RefinementOperator,
                                                     groupName: String? = nil,
@@ -85,9 +85,9 @@ public extension FacetListConnector {
    */
   convenience init(searcher: HitsSearcher,
                    filterState: FilterState = .init(),
-                   attribute: Attribute,
+                   attribute: String,
                    selectionMode: SelectionMode,
-                   facets: [Facet] = [],
+                   facets: [FacetHits] = [],
                    operator: RefinementOperator,
                    groupName: String? = nil) {
     Telemetry.shared.traceConnector(type: .facetList,
@@ -119,9 +119,9 @@ public extension FacetListConnector {
    */
   convenience init<Controller: FacetListController>(searcher: HitsSearcher,
                                                     filterState: FilterState = .init(),
-                                                    attribute: Attribute,
+                                                    attribute: String,
                                                     selectionMode: SelectionMode,
-                                                    facets: [Facet] = [],
+                                                    facets: [FacetHits] = [],
                                                     operator: RefinementOperator,
                                                     groupName: String? = nil,
                                                     controller: Controller,

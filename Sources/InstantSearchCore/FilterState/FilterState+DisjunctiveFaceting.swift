@@ -9,7 +9,7 @@
 import Foundation
 
 extension FilterState: DisjunctiveFacetingDelegate {
-  public var disjunctiveFacetsAttributes: Set<Attribute> {
+  public var disjunctiveFacetsAttributes: Set<String> {
     return filters.disjunctiveFacetsAttributes
   }
 }

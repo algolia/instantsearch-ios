@@ -25,7 +25,7 @@ extension FilterState: FiltersReadable {
     return filters.getFilters(forGroupWithID: groupID)
   }
 
-  public func getFilters(for attribute: Attribute) -> Set<Filter> {
+  public func getFilters(for attribute: String) -> Set<Filter> {
     return filters.getFilters(for: attribute)
   }
 

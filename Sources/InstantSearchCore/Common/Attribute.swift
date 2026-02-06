@@ -7,5 +7,5 @@
 import Foundation
 
 public extension Attribute {
-  static let tags = Attribute("_tags")
+  static let tags = "_tags"
 }

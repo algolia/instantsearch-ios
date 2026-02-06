@@ -25,7 +25,7 @@ public extension FilterMapConnector {
                                                             filterState: FilterState,
                                                             items: [Int: Filter],
                                                             selected: Int,
-                                                            attribute: Attribute,
+                                                            attribute: String,
                                                             operator: RefinementOperator,
                                                             groupName: String? = nil,
                                                             controller: Controller,

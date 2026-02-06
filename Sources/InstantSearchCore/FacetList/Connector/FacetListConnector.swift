@@ -22,7 +22,7 @@ public class FacetListConnector {
   public let interactor: FacetListInteractor
 
   /// Attribute to filter
-  public let attribute: Attribute
+  public let attribute: String
 
   /// Connection between interactor and filter state
   public let filterStateConnection: Connection
@@ -36,7 +36,7 @@ public class FacetListConnector {
   internal init(searcher: Searcher,
                 filterState: FilterState = .init(),
                 interactor: FacetListInteractor = .init(),
-                attribute: Attribute,
+                attribute: String,
                 operator: RefinementOperator,
                 groupName: String?) {
     self.filterState = filterState

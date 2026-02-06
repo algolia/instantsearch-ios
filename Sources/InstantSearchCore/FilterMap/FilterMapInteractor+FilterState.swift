@@ -12,20 +12,20 @@ import Foundation
 public struct FilterMapInteractorFilterStateConnection<Filter: FilterType>: Connection {
   public let interactor: FilterMapInteractor<Filter>
   public let filterState: FilterState
-  public let attribute: Attribute
+  public let attribute: String
   public let `operator`: RefinementOperator
   public let groupName: String
 
   public init(interactor: FilterMapInteractor<Filter>,
               filterState: FilterState,
-              attribute: Attribute,
+              attribute: String,
               operator: RefinementOperator,
               groupName: String? = nil) {
     self.interactor = interactor
     self.filterState = filterState
     self.attribute = attribute
     self.operator = `operator`
-    self.groupName = groupName ?? attribute.rawValue
+    self.groupName = groupName ?? attribute
   }
 
   public func connect() {
@@ -84,7 +84,7 @@ public struct FilterMapInteractorFilterStateConnection<Filter: FilterType>: Conn
 
 public extension FilterMapInteractor {
   @discardableResult func connectFilterState(_ filterState: FilterState,
-                                             attribute: Attribute,
+                                             attribute: String,
                                              operator: RefinementOperator,
                                              groupName: String? = nil) -> FilterMapInteractorFilterStateConnection<Filter> {
     let connection = FilterMapInteractorFilterStateConnection(interactor: self, filterState: filterState, attribute: attribute, operator: `operator`, groupName: groupName)

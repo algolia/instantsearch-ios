@@ -12,12 +12,12 @@ public extension FacetListConnector {
   struct FilterStateConnection: Connection {
     public let interactor: FacetListInteractor
     public let filterState: FilterState
-    public let attribute: Attribute
+    public let attribute: String
     public let `operator`: RefinementOperator
     public let groupName: String?
 
     public func connect() {
-      let groupName = self.groupName ?? attribute.rawValue
+      let groupName = self.groupName ?? attribute
       let groupID: FilterGroup.ID
       switch `operator` {
       case .and:
@@ -35,7 +35,7 @@ public extension FacetListConnector {
 
     private func connect(_ filterState: FilterState,
                          to interactor: FacetListInteractor,
-                         with attribute: Attribute,
+                         with attribute: String,
                          via groupID: FilterGroup.ID) {
       whenSelectionsComputedThenUpdateFilterState(interactor: interactor, filterState: filterState, attribute: attribute, via: groupID)
       whenFilterStateChangedThenUpdateSelections(interactor: interactor, filterState: filterState, via: groupID)
@@ -43,7 +43,7 @@ public extension FacetListConnector {
 
     private func whenSelectionsComputedThenUpdateFilterState(interactor: FacetListInteractor,
                                                              filterState: FilterState,
-                                                             attribute: Attribute,
+                                                             attribute: String,
                                                              via groupID: FilterGroup.ID) {
       interactor.onSelectionsComputed.subscribePast(with: filterState) { filterState, selections in
         let filters = selections.map { Filter.Facet(attribute: attribute, stringValue: $0) }
@@ -82,7 +82,7 @@ public extension FacetListConnector {
 
 public extension FacetListInteractor {
   @discardableResult func connectFilterState(_ filterState: FilterState,
-                                             with attribute: Attribute,
+                                             with attribute: String,
                                              operator: RefinementOperator,
                                              groupName: String? = nil) -> FacetListConnector.FilterStateConnection {
     let connection = FacetListConnector.FilterStateConnection(interactor: self, filterState: filterState, attribute: attribute, operator: `operator`, groupName: groupName)

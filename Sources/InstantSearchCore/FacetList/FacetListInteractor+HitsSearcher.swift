@@ -6,7 +6,6 @@
 //  Copyright © 2019 Algolia. All rights reserved.
 //
 
-import AlgoliaSearchClient
 import Foundation
 public extension FacetListInteractor {
   @available(*, deprecated, renamed: "HitsSearcherConnection")
@@ -20,7 +19,7 @@ public extension FacetListInteractor {
     public let searcher: HitsSearcher
 
     /// Faceting attribute
-    public let attribute: Attribute
+    public let attribute: String
 
     /**
      - Parameters:
@@ -30,7 +29,7 @@ public extension FacetListInteractor {
      */
     public init(facetListInteractor: FacetListInteractor,
                 searcher: HitsSearcher,
-                attribute: Attribute) {
+                attribute: String) {
       self.facetListInteractor = facetListInteractor
       self.searcher = searcher
       self.attribute = attribute
@@ -40,7 +39,8 @@ public extension FacetListInteractor {
       // When new search results then update items
 
       searcher.onResults.subscribePast(with: facetListInteractor) { [attribute] interactor, searchResults in
-        interactor.items = searchResults.disjunctiveFacets?[attribute] ?? searchResults.facets?[attribute] ?? []
+        let facets = searchResults.facets?[attribute] ?? [:]
+        interactor.items = facets.map { FacetHits(value: $0.key, highlighted: $0.key, count: $0.value) }
       }
 
       searcher.request.query.updateQueryFacets(with: attribute)
@@ -59,7 +59,7 @@ public extension FacetListInteractor {
      - attribute: Faceting attribute
    */
   @discardableResult func connectSearcher(_ searcher: HitsSearcher,
-                                          with attribute: Attribute) -> HitsSearcherConnection {
+                                          with attribute: String) -> HitsSearcherConnection {
     let connection = HitsSearcherConnection(facetListInteractor: self,
                                             searcher: searcher,
                                             attribute: attribute)

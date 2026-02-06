@@ -19,7 +19,7 @@ public class FilterMapConnector<Filter: FilterType> {
   public let interactor: FilterMapInteractor<Filter>
 
   /// Attribute to filter
-  public let attribute: Attribute
+  public let attribute: String
 
   /// Whether we apply an `and` or `or` behavior to the filters in the filter state
   public let `operator`: RefinementOperator
@@ -51,7 +51,7 @@ public class FilterMapConnector<Filter: FilterType> {
               filterState: FilterState,
               items: [Int: Filter],
               selected: Int,
-              attribute: Attribute,
+              attribute: String,
               operator: RefinementOperator,
               groupName: String? = nil) {
     self.searcher = searcher
@@ -59,7 +59,7 @@ public class FilterMapConnector<Filter: FilterType> {
     interactor = .init(items: items)
     self.attribute = attribute
     self.operator = `operator`
-    self.groupName = groupName ?? attribute.rawValue
+    self.groupName = groupName ?? attribute
     searcherConnection = interactor.connectSearcher(searcher,
                                                     attribute: attribute)
     filterStateConnection = interactor.connectFilterState(filterState,

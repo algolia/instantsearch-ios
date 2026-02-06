@@ -16,27 +16,27 @@ import Foundation
 
 public extension Filter {
   struct Facet: FilterType, Equatable {
-    public let attribute: Attribute
+    public let attribute: String
     public let value: ValueType
     public var isNegated: Bool
     public let score: Int?
 
-    public init(attribute: Attribute, value: ValueType, isNegated: Bool = false, score: Int? = nil) {
+    public init(attribute: String, value: ValueType, isNegated: Bool = false, score: Int? = nil) {
       self.attribute = attribute
       self.isNegated = isNegated
       self.value = value
       self.score = score
     }
 
-    public init(attribute: Attribute, stringValue: String, isNegated: Bool = false) {
+    public init(attribute: String, stringValue: String, isNegated: Bool = false) {
       self.init(attribute: attribute, value: .string(stringValue), isNegated: isNegated)
     }
 
-    public init(attribute: Attribute, floatValue: Float, isNegated: Bool = false) {
-      self.init(attribute: attribute, value: .float(floatValue), isNegated: isNegated)
+    public init(attribute: String, floatValue: Double, isNegated: Bool = false) {
+      self.init(attribute: attribute, value: .number(floatValue), isNegated: isNegated)
     }
 
-    public init(attribute: Attribute, boolValue: Bool, isNegated: Bool = false) {
+    public init(attribute: String, boolValue: Bool, isNegated: Bool = false) {
       self.init(attribute: attribute, value: .bool(boolValue), isNegated: isNegated)
     }
   }
@@ -45,13 +45,13 @@ public extension Filter {
 extension Filter.Facet: Hashable {}
 
 extension Filter.Facet: RawRepresentable {
-  public typealias RawValue = (Attribute, ValueType)
+  public typealias RawValue = (String, ValueType)
 
-  public init?(rawValue: (Attribute, Filter.Facet.ValueType)) {
+  public init?(rawValue: (String, Filter.Facet.ValueType)) {
     self.init(attribute: rawValue.0, value: rawValue.1)
   }
 
-  public var rawValue: (Attribute, Filter.Facet.ValueType) {
+  public var rawValue: (String, Filter.Facet.ValueType) {
     return (attribute, value)
   }
 }
@@ -65,7 +65,7 @@ extension Filter.Facet: CustomStringConvertible {
 public extension Filter.Facet {
   enum ValueType: CustomStringConvertible, Hashable {
     case string(String)
-    case float(Float)
+    case number(Double)
     case bool(Bool)
 
     public var description: String {
@@ -74,7 +74,7 @@ public extension Filter.Facet {
         return value
       case let .bool(value):
         return "\(value)"
-      case let .float(value):
+      case let .number(value):
         return "\(value)"
       }
     }
@@ -90,10 +90,10 @@ extension Filter.Facet.ValueType: ExpressibleByBooleanLiteral {
 }
 
 extension Filter.Facet.ValueType: ExpressibleByFloatLiteral {
-  public typealias FloatLiteralType = Float
+  public typealias FloatLiteralType = Double
 
   public init(floatLiteral value: FloatLiteralType) {
-    self = .float(value)
+    self = .number(value)
   }
 }
 
@@ -109,6 +109,6 @@ extension Filter.Facet.ValueType: ExpressibleByIntegerLiteral {
   public typealias IntegerLiteralType = Int
 
   public init(integerLiteral value: IntegerLiteralType) {
-    self = .float(Float(value))
+    self = .number(Double(value))
   }
 }

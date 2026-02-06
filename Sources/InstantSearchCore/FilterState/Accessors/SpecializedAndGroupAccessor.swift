@@ -49,7 +49,7 @@ public struct SpecializedAndGroupAccessor<Filter: FilterType>: SpecializedGroupA
 
   /// Removes all filters with specified attribute from group
   /// - parameter attribute: specified attribute
-  public func removeAll(for attribute: Attribute) {
+  public func removeAll(for attribute: String) {
     return genericAccessor.removeAll(for: attribute)
   }
 
@@ -81,7 +81,7 @@ public struct SpecializedAndGroupAccessor<Filter: FilterType>: SpecializedGroupA
     genericAccessor.toggle(filter)
   }
 
-  public func filters(for attribute: Attribute) -> [Filter] {
+  public func filters(for attribute: String) -> [Filter] {
     return filtersContainer.filters.getFilters(forGroupWithID: groupID).filter { $0.attribute == attribute }.compactMap { $0.filter as? Filter }
   }
 
