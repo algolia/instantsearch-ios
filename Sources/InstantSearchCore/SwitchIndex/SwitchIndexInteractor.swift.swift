@@ -8,18 +8,18 @@ import Foundation
 
 @available(*, deprecated, message: "Use SortByInteractor instead")
 public class SwitchIndexInteractor {
-  public var indexNames: [IndexName]
+  public var indexNames: [String]
 
-  public var selectedIndexName: IndexName {
+  public var selectedIndexName: String {
     didSet {
       guard oldValue != selectedIndexName else { return }
       onSelectionChange.fire(selectedIndexName)
     }
   }
 
-  public var onSelectionChange: Observer<IndexName>
+  public var onSelectionChange: Observer<String>
 
-  public init(indexNames: [IndexName], selectedIndexName: IndexName) {
+  public init(indexNames: [String], selectedIndexName: String) {
     assert(indexNames.contains(selectedIndexName))
     self.indexNames = indexNames
     self.selectedIndexName = selectedIndexName
