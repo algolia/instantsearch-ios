@@ -10,7 +10,7 @@ import UIKit
 // swiftlint:disable cyclomatic_complexity
 class DemoViewControllerFactory: ViewControllerFactory {
   func viewController(for demo: Demo) -> UIViewController? {
-    guard let id = Demo.ID(rawValue: demo.objectID.rawValue) else {
+    guard let id = Demo.ID(rawValue: demo.objectID) else {
       return .none
     }
 

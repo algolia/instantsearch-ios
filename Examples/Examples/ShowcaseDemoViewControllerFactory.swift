@@ -21,7 +21,7 @@ class ShowcaseDemoViewControllerFactory: ViewControllerFactory {
   }
 
   func viewController(for demo: ShowcaseDemo) -> UIViewController? {
-    guard let demoID = ShowcaseDemo.ID(rawValue: demo.objectID.rawValue) else {
+    guard let demoID = ShowcaseDemo.ID(rawValue: demo.objectID) else {
       return nil
     }
 
