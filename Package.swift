@@ -1,4 +1,4 @@
-// swift-tools-version:5.5
+// swift-tools-version:5.9
 // The swift-tools-version declares the minimum version of Swift required to build this package.
 
 import PackageDescription
@@ -32,7 +32,7 @@ let package = Package(
   dependencies: [
     .package(name: "AlgoliaSearchClient",
              url: "https://github.com/algolia/algoliasearch-client-swift",
-             from: "8.18.2"),
+             from: "9.37.4"),
     .package(url: "https://github.com/apple/swift-log",
              from: "1.5.4"),
     .package(url: "https://github.com/apple/swift-protobuf",
@@ -44,22 +44,40 @@ let package = Package(
   targets: [
     .target(
       name: "InstantSearchInsights",
-      dependencies: ["AlgoliaSearchClient"],
+      dependencies: [
+        .product(name: "Core", package: "AlgoliaSearchClient"),
+        .product(name: "Insights", package: "AlgoliaSearchClient")
+      ],
       exclude: ["Readme.md"],
       resources: [.copy("../PrivacyInfo.xcprivacy")]
     ),
     .testTarget(
       name: "InstantSearchInsightsTests",
-      dependencies: ["InstantSearchInsights", "AlgoliaSearchClient"]
+      dependencies: [
+        "InstantSearchInsights",
+        .product(name: "Core", package: "AlgoliaSearchClient"),
+        .product(name: "Insights", package: "AlgoliaSearchClient")
+      ]
     ),
     .target(
       name: "InstantSearchCore",
-      dependencies: ["AlgoliaSearchClient", "InstantSearchInsights", .product(name: "InstantSearchTelemetry", package: "InstantSearchTelemetry"), .product(name: "Logging", package: "swift-log")],
+      dependencies: [
+        .product(name: "Core", package: "AlgoliaSearchClient"),
+        .product(name: "Search", package: "AlgoliaSearchClient"),
+        "InstantSearchInsights",
+        .product(name: "InstantSearchTelemetry", package: "InstantSearchTelemetry"),
+        .product(name: "Logging", package: "swift-log")
+      ],
       resources: [.copy("../PrivacyInfo.xcprivacy")]
     ),
     .testTarget(
       name: "InstantSearchCoreTests",
-      dependencies: ["InstantSearchCore", "AlgoliaSearchClient", "InstantSearchInsights"],
+      dependencies: [
+        "InstantSearchCore",
+        "InstantSearchInsights",
+        .product(name: "Core", package: "AlgoliaSearchClient"),
+        .product(name: "Search", package: "AlgoliaSearchClient")
+      ],
       resources: [
         .copy("Misc/DisjFacetingResult1.json"),
         .copy("Misc/DisjFacetingResult2.json"),
