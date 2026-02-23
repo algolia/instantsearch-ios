@@ -5,8 +5,9 @@
 //  Created by Vladislav Fitc on 29/09/2021.
 //
 
-import AlgoliaSearchClient
+import Core
 import Foundation
+import Search
 
 /// Searcher performing search for hits or facets in multiple indices simultaneously
 public class MultiSearcher: AbstractMultiSearcher<AlgoliaMultiSearchService> {
@@ -54,7 +55,7 @@ public class MultiSearcher: AbstractMultiSearcher<AlgoliaMultiSearchService> {
   public convenience init(appID: ApplicationID,
                           apiKey: APIKey,
                           requestOptions: RequestOptions? = nil) {
-    let client = SearchClient(appID: appID, apiKey: apiKey)
+    let client = try! SearchClient(appID: appID, apiKey: apiKey)
     self.init(client: client, requestOptions: requestOptions)
   }
 
@@ -64,7 +65,7 @@ public class MultiSearcher: AbstractMultiSearcher<AlgoliaMultiSearchService> {
         - query: Instance of Query. By default a new empty instant of Query will be created.
         - requestOptions: requestOptions: Deprecated: This option does not have an effect, use `requestOptions` in `init` instead.
    */
-  @discardableResult public func addHitsSearcher(indexName: IndexName,
+  @discardableResult public func addHitsSearcher(indexName: String,
                                                  query: Query = .init(),
                                                  requestOptions: RequestOptions? = nil) -> HitsSearcher {
     let searcher = HitsSearcher(client: service.client,
@@ -82,9 +83,9 @@ public class MultiSearcher: AbstractMultiSearcher<AlgoliaMultiSearchService> {
        - facetQuery: Initial facet search query
        - requestOptions: requestOptions: Deprecated: This option does not have an effect, use `requestOptions` in `init` instead.
    */
-  @discardableResult public func addFacetsSearcher(indexName: IndexName,
+  @discardableResult public func addFacetsSearcher(indexName: String,
                                                    query: Query = .init(),
-                                                   attribute: Attribute,
+                                                   attribute: String,
                                                    facetQuery _: String = "",
                                                    requestOptions: RequestOptions? = nil) -> FacetSearcher {
     let searcher = FacetSearcher(client: service.client,

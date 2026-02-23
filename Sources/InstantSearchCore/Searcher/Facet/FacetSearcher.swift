@@ -6,8 +6,9 @@
 //  Copyright © 2019 Algolia. All rights reserved.
 //
 
-import AlgoliaSearchClient
+import Core
 import Foundation
+import Search
 
 /// An entity performing facet values search
 public final class FacetSearcher: IndexSearcher<FacetSearchService> {
@@ -31,11 +32,11 @@ public final class FacetSearcher: IndexSearcher<FacetSearchService> {
   /// Name of facet attribute for which the values will be searched
   public var facetName: String {
     get {
-      request.attribute.rawValue
+      request.attribute
     }
 
     set {
-      request.attribute = Attribute(rawValue: newValue)
+      request.attribute = newValue
     }
   }
 
@@ -61,11 +62,11 @@ public final class FacetSearcher: IndexSearcher<FacetSearchService> {
    */
   public convenience init(appID: ApplicationID,
                           apiKey: APIKey,
-                          indexName: IndexName,
-                          facetName: Attribute,
+                          indexName: String,
+                          facetName: String,
                           query: Query = .init(),
                           requestOptions: RequestOptions? = nil) {
-    let service = FacetSearchService(client: .init(appID: appID, apiKey: apiKey))
+    let service = FacetSearchService(client: try! SearchClient(appID: appID, apiKey: apiKey))
     let request = Request(query: "", indexName: indexName, attribute: facetName, context: query, requestOptions: requestOptions)
     self.init(service: service, initialRequest: request)
     Telemetry.shared.trace(type: .facetSearcher,
@@ -76,8 +77,8 @@ public final class FacetSearcher: IndexSearcher<FacetSearchService> {
   }
 
   public convenience init(client: SearchClient,
-                          indexName: IndexName,
-                          facetName: Attribute,
+                          indexName: String,
+                          facetName: String,
                           query: Query = .init(),
                           requestOptions: RequestOptions? = nil) {
     let service = FacetSearchService(client: client)
@@ -91,19 +92,28 @@ public final class FacetSearcher: IndexSearcher<FacetSearchService> {
 }
 
 extension FacetSearcher: MultiSearchComponent {
-  public func collect() -> (requests: [MultiSearchQuery], completion: (Swift.Result<[MultiSearchResponse.Response], Swift.Error>) -> Void) {
-    let query = IndexedFacetQuery(indexName: request.indexName,
-                                  attribute: request.attribute,
-                                  facetQuery: request.query,
-                                  query: request.context)
-    return ([MultiSearchQuery(query)], { [weak self] result in
+  public typealias SubRequest = SearchQuery
+  public typealias SubResult = Search.SearchResult<SearchHit>
+
+  public func collect() -> (requests: [SearchQuery], completion: (Swift.Result<[Search.SearchResult<SearchHit>], Swift.Error>) -> Void) {
+    let params = SearchParamsEncoder.encode(request.context)
+    let query = SearchForFacets(params: params,
+                                facet: request.attribute,
+                                indexName: request.indexName,
+                                facetQuery: request.query,
+                                type: .facet)
+    return ([SearchQuery.searchForFacets(query)], { [weak self] result in
       guard let searcher = self else { return }
       switch result {
       case let .failure(error):
         searcher.onError.fire(error)
       case let .success(responses):
-        if let response = responses.first?.facetsResponse {
-          searcher.onResults.fire(response)
+        guard let response = responses.first else { return }
+        switch response {
+        case let .searchForFacetValuesResponse(facetResponse):
+          searcher.onResults.fire(facetResponse)
+        case .searchResponse:
+          break
         }
       }
     })
@@ -117,7 +127,7 @@ extension FacetSearcher: QuerySettable {
 }
 
 extension FacetSearcher: IndexNameSettable {
-  public func setIndexName(_ indexName: IndexName) {
+  public func setIndexName(_ indexName: String) {
     request.indexName = indexName
   }
 }
