@@ -18,7 +18,7 @@ class RelevantSortDemoController {
   let statsConnector: StatsConnector
 
   init() {
-    let indices: [IndexName] = [
+    let indices: [String] = [
       "test_Bestbuy",
       "test_Bestbuy_vr_price_asc",
       "test_Bestbuy_replica_price_asc"
@@ -36,7 +36,7 @@ class RelevantSortDemoController {
     searcher.search()
   }
 
-  func title(for indexName: IndexName) -> String {
+  func title(for indexName: String) -> String {
     switch indexName {
     case "test_Bestbuy":
       return "Most relevant"
@@ -45,7 +45,7 @@ class RelevantSortDemoController {
     case "test_Bestbuy_replica_price_asc":
       return "Hard Sort - Lowest Price"
     default:
-      return indexName.rawValue
+      return indexName
     }
   }
 }
