@@ -46,7 +46,7 @@ public extension MultiIndexHitsConnector {
                 infiniteScrolling: InfiniteScrolling = .on(withOffset: 10),
                 showItemsOnEmptyQuery: Bool = true,
                 filterState: FilterState? = .none) {
-      let hitsInteractor = HitsInteractor<JSON>(infiniteScrolling: infiniteScrolling,
+      let hitsInteractor = HitsInteractor<[String: AnyCodable]>(infiniteScrolling: infiniteScrolling,
                                                 showItemsOnEmptyQuery: showItemsOnEmptyQuery)
       self.init(indexName: indexName,
                 hitsInteractor: hitsInteractor,

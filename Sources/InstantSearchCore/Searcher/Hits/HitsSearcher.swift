@@ -224,7 +224,7 @@ public final class HitsSearcher: IndexSearcher<AlgoliaSearchService> {
 
 extension HitsSearcher: MultiSearchComponent {
   public typealias SubRequest = SearchQuery
-  public typealias SubResult = Search.SearchResult<SearchHit>
+  public typealias SubResult = Search.SearchResult<Hit<[String: AnyCodable]>>
 
   public func collect() -> (requests: [SearchQuery], completion: (Swift.Result<[Search.SearchResult<SearchHit>], Swift.Error>) -> Void) {
     return service.collect(for: request) { [weak self] result in

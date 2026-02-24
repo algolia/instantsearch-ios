@@ -84,16 +84,16 @@ private extension Hit {
     if let indexable = record as? Indexable {
       return indexable.objectID
     }
-    if let json = record as? JSON, let objectID = json["objectID"]?.value as? String {
+    if let json = record as? [String: AnyCodable], let objectID = json["objectID"]?.value as? String {
       return objectID
     }
     return ""
   }
 
-  static func encodeToJSON(_ record: Record) -> JSON? {
+  static func encodeToJSON(_ record: Record) -> [String: AnyCodable]? {
     let encoder = JSONEncoder()
     guard let data = try? encoder.encode(record) else { return nil }
-    return try? JSONDecoder().decode(JSON.self, from: data)
+    return try? JSONDecoder().decode([String: AnyCodable].self, from: data)
   }
 }
 

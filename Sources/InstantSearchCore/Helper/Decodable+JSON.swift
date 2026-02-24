@@ -8,7 +8,7 @@
 import Foundation
 
 extension Decodable {
-  init(json: JSON) throws {
+  init(json: [String: AnyCodable]) throws {
     let data = try JSONEncoder().encode(json)
     self = try JSONDecoder().decode(Self.self, from: data)
   }

@@ -93,9 +93,9 @@ public final class FacetSearcher: IndexSearcher<FacetSearchService> {
 
 extension FacetSearcher: MultiSearchComponent {
   public typealias SubRequest = SearchQuery
-  public typealias SubResult = Search.SearchResult<SearchHit>
+  public typealias SubResult = Search.SearchResult<Hit<[String: AnyCodable]>>
 
-  public func collect() -> (requests: [SearchQuery], completion: (Swift.Result<[Search.SearchResult<SearchHit>], Swift.Error>) -> Void) {
+  public func collect() -> (requests: [SearchQuery], completion: (Swift.Result<[Search.SearchResult<Hit<[String: AnyCodable]>>], Swift.Error>) -> Void) {
     let params = SearchParamsEncoder.encode(request.context)
     let query = SearchForFacets(params: params,
                                 facet: request.attribute,
