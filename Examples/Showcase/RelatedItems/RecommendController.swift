@@ -6,9 +6,11 @@
 //  Copyright © 2022 Algolia. All rights reserved.
 //
 
-import AlgoliaSearchClient
 import Foundation
 import UIKit
+
+#if canImport(Recommend)
+import Recommend
 
 class RecommendController {
   let recommendClient: RecommendClient
@@ -17,21 +19,29 @@ class RecommendController {
     self.recommendClient = recommendClient
   }
 
-  func presentRelatedItems(for objectID: ObjectID, from sourceViewController: UIViewController, animated: Bool = true) {
-    recommendClient.getRelatedProducts(options: [.init(indexName: .ecommerceRecommend, objectID: objectID)]) { result in
-      DispatchQueue.main.async {
-        switch result {
-        case let .failure(error):
-          let alertController = UIAlertController(title: "Error", message: "\(error)", preferredStyle: .alert)
-          alertController.addAction(UIAlertAction(title: "OK", style: .cancel))
-          sourceViewController.present(alertController, animated: animated)
-        case let .success(response):
+  func presentRelatedItems(for objectID: String, from sourceViewController: UIViewController, animated: Bool = true) {
+    let request = RecommendationsRequest.relatedQuery(.init(indexName: .ecommerceRecommend,
+                                                           threshold: 0,
+                                                           model: .relatedProducts,
+                                                           objectID: objectID))
+    let params = GetRecommendationsParams(requests: [request])
+    Task {
+      do {
+        let response = try await recommendClient.getRecommendations(getRecommendationsParams: params)
+        DispatchQueue.main.async {
           let viewController = StoreItemsTableViewController.with(response.results.first!)
           viewController.title = "Related items"
           let navigationController = UINavigationController(rootViewController: viewController)
           sourceViewController.present(navigationController, animated: animated)
         }
+      } catch {
+        DispatchQueue.main.async {
+          let alertController = UIAlertController(title: "Error", message: "\(error)", preferredStyle: .alert)
+          alertController.addAction(UIAlertAction(title: "OK", style: .cancel))
+          sourceViewController.present(alertController, animated: animated)
+        }
       }
     }
   }
 }
+#endif

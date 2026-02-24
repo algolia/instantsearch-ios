@@ -7,6 +7,7 @@
 //
 
 import Foundation
+import Search
 
 /// Search query suggestion item
 public struct QuerySuggestion {
@@ -29,8 +30,8 @@ extension QuerySuggestion: Codable {
 
   public init(from decoder: Decoder) throws {
     let container = try decoder.container(keyedBy: CodingKeys.self)
-    if let highlightResult = try? container.decode(TreeModel<HighlightResult>.self, forKey: .highlightResult) {
-      highlighted = highlightResult["query"]?.value?.value.taggedString.input
+    if let highlightResult = try? container.decode([String: SearchHighlightResult].self, forKey: .highlightResult) {
+      highlighted = highlightResult["query"]?.highlightedString?.taggedString.input
     } else {
       highlighted = nil
     }

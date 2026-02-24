@@ -5,8 +5,8 @@
 //  Created by Vladislav Fitc on 30.03.2022.
 //
 
-import AlgoliaSearchClient
 import Foundation
+import InstantSearchCore
 import UIKit
 
 extension ProductTableViewCell {

@@ -31,7 +31,7 @@ class SortByDemoController {
     searcher.isDisjunctiveFacetingEnabled = false
   }
 
-  func title(for indexName: IndexName) -> String {
+  func title(for indexName: String) -> String {
     switch indexName {
     case .ecommerceProducts:
       return "Default"
@@ -40,7 +40,7 @@ class SortByDemoController {
     case .ecommerceProductsDesc:
       return "Price Desc"
     default:
-      return indexName.rawValue
+      return indexName
     }
   }
 }
