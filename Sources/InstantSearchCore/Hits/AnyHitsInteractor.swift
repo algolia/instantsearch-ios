@@ -44,5 +44,5 @@ public protocol AnyHitsInteractor: AnyObject {
   func getCurrentRawHits() -> [[String: Any]]
 
   func notifyQueryChanged()
-  func process(_ error: Swift.Error, for query: Query)
+  func process(_ error: Swift.Error, for query: SearchSearchParamsObject)
 }

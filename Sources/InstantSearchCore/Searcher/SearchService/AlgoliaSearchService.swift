@@ -125,7 +125,7 @@ extension AlgoliaSearchService {
 public extension AlgoliaSearchService {
   struct Request: IndexNameProvider, TextualQueryProvider, AlgoliaRequest {
     public var indexName: String
-    public var query: Query
+    public var query: SearchSearchParamsObject
     public var requestOptions: RequestOptions?
     public var strategy: MultipleQueriesStrategy?
 
@@ -139,7 +139,7 @@ public extension AlgoliaSearchService {
     }
 
     public init(indexName: String,
-                query: Query,
+                query: SearchSearchParamsObject,
                 requestOptions: RequestOptions? = nil,
                 strategy: MultipleQueriesStrategy? = nil) {
       self.indexName = indexName

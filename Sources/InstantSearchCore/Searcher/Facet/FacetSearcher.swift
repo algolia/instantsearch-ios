@@ -64,7 +64,7 @@ public final class FacetSearcher: IndexSearcher<FacetSearchService> {
                           apiKey: String,
                           indexName: String,
                           facetName: String,
-                          query: Query = .init(),
+                          query: SearchSearchParamsObject = .init(),
                           requestOptions: RequestOptions? = nil) {
     let service = FacetSearchService(client: try! SearchClient(appID: appID, apiKey: apiKey))
     let request = Request(query: "", indexName: indexName, attribute: facetName, context: query, requestOptions: requestOptions)
@@ -79,7 +79,7 @@ public final class FacetSearcher: IndexSearcher<FacetSearchService> {
   public convenience init(client: SearchClient,
                           indexName: String,
                           facetName: String,
-                          query: Query = .init(),
+                          query: SearchSearchParamsObject = .init(),
                           requestOptions: RequestOptions? = nil) {
     let service = FacetSearchService(client: client)
     let request = Request(query: "", indexName: indexName, attribute: facetName, context: query, requestOptions: requestOptions)

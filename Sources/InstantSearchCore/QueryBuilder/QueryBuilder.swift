@@ -8,7 +8,7 @@
 
 import Foundation
 public struct QueryBuilder {
-  public let query: Query
+  public let query: SearchSearchParamsObject
   public let filterGroups: [FilterGroupType]
 
   public var keepSelectedEmptyFacets: Bool
@@ -35,7 +35,7 @@ public struct QueryBuilder {
     return resultQueriesCount + disjunctiveFacetingQueriesCount + hierarchicalFacetingQueriesCount
   }
 
-  public init(query: Query,
+  public init(query: SearchSearchParamsObject,
               disjunctiveFacets: Set<String> = [],
               filterGroups: [FilterGroupType] = [],
               hierarchicalAttributes: [String] = [],
@@ -53,7 +53,7 @@ public struct QueryBuilder {
     self.hierachicalFilters = hierachicalFilters
   }
 
-  public func build() -> [Query] {
+  public func build() -> [SearchSearchParamsObject] {
     var queryForResults = query
     queryForResults.filters = FilterGroupConverter().sql(filterGroups)
 

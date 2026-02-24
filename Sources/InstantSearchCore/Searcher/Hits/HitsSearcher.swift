@@ -162,7 +162,7 @@ public final class HitsSearcher: IndexSearcher<AlgoliaSearchService> {
   public convenience init(appID: String,
                           apiKey: String,
                           indexName: String,
-                          query: Query = .init(),
+                          query: SearchSearchParamsObject = .init(),
                           requestOptions: RequestOptions? = nil,
                           isAutoSendingHitsViewEvents: Bool = false) {
     let client = try! SearchClient(appID: appID, apiKey: apiKey)
@@ -184,7 +184,7 @@ public final class HitsSearcher: IndexSearcher<AlgoliaSearchService> {
    */
   public init(client: SearchClient,
               indexName: String,
-              query: Query = .init(),
+              query: SearchSearchParamsObject = .init(),
               requestOptions: RequestOptions? = nil,
               isAutoSendingHitsViewEvents: Bool = false) {
     let service = AlgoliaSearchService(client: client)

@@ -19,7 +19,7 @@ public extension HitsInteractor {
 
       searcher.onError.subscribe(with: interactor) { interactor, error in
         if let requestError = error as? AbstractSearcher<Service>.RequestError {
-          interactor.process(requestError.underlyingError, for: Query())
+          interactor.process(requestError.underlyingError, for: SearchSearchParamsObject())
         }
       }
 

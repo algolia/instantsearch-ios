@@ -250,7 +250,7 @@ extension HitsInteractor: ResultUpdatable {
     mutationQueue.addOperation(queryChangedCompletion)
   }
 
-  public func process(_: Swift.Error, for query: Query) {
+  public func process(_: Swift.Error, for query: SearchSearchParamsObject) {
     if let pendingPage = query.page {
       infiniteScrollingController.notifyPending(pageIndex: Int(pendingPage))
     }

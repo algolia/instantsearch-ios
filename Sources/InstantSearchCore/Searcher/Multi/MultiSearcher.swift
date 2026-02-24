@@ -66,7 +66,7 @@ public class MultiSearcher: AbstractMultiSearcher<AlgoliaMultiSearchService> {
         - requestOptions: requestOptions: Deprecated: This option does not have an effect, use `requestOptions` in `init` instead.
    */
   @discardableResult public func addHitsSearcher(indexName: String,
-                                                 query: Query = .init(),
+                                                 query: SearchSearchParamsObject = .init(),
                                                  requestOptions: RequestOptions? = nil) -> HitsSearcher {
     let searcher = HitsSearcher(client: service.client,
                                 indexName: indexName,
@@ -84,7 +84,7 @@ public class MultiSearcher: AbstractMultiSearcher<AlgoliaMultiSearchService> {
        - requestOptions: requestOptions: Deprecated: This option does not have an effect, use `requestOptions` in `init` instead.
    */
   @discardableResult public func addFacetsSearcher(indexName: String,
-                                                   query: Query = .init(),
+                                                   query: SearchSearchParamsObject = .init(),
                                                    attribute: String,
                                                    facetQuery _: String = "",
                                                    requestOptions: RequestOptions? = nil) -> FacetSearcher {

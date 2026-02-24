@@ -35,9 +35,9 @@ public struct IndexQueryState {
   public var indexName: String
 
   /// Query describing a search request
-  public var query: Query
+  public var query: SearchSearchParamsObject
 
-  public init(indexName: String, query: Query = .init()) {
+  public init(indexName: String, query: SearchSearchParamsObject = .init()) {
     self.indexName = indexName
     self.query = query
   }
@@ -47,7 +47,7 @@ extension IndexQueryState: Builder {}
 
 @available(*, deprecated, message: "Use String index names directly; SearchClient no longer provides initIndex.")
 extension Array where Element == IndexQueryState {
-  init(indices: [String], query: Query = .init()) {
+  init(indices: [String], query: SearchSearchParamsObject = .init()) {
     self = indices.map { IndexQueryState(indexName: $0, query: query) }
   }
 }

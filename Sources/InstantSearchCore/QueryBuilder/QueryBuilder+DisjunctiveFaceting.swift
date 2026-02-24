@@ -82,13 +82,13 @@ extension QueryBuilder {
   /// - parameter disjunctiveFacets: attributes of disjunctive facets
   /// - returns: list of "or" queries for disjunctive faceting
 
-  func buildDisjunctiveFacetingQueries(query: Query, filterGroups: [FilterGroupType], disjunctiveFacets: Set<String>) -> [Query] {
+  func buildDisjunctiveFacetingQueries(query: SearchSearchParamsObject, filterGroups: [FilterGroupType], disjunctiveFacets: Set<String>) -> [SearchSearchParamsObject] {
     return disjunctiveFacets.map { query.disjunctiveFacetingQuery(disjunctiveFacetAttribute: $0, with: filterGroups) }
   }
 }
 
-extension Query {
-  func disjunctiveFacetingQuery(disjunctiveFacetAttribute: String, with filterGroups: [FilterGroupType]) -> Query {
+extension SearchSearchParamsObject {
+  func disjunctiveFacetingQuery(disjunctiveFacetAttribute: String, with filterGroups: [FilterGroupType]) -> SearchSearchParamsObject {
     let filterGroups = filterGroups.droppingDisjunctiveFacetFilters(with: disjunctiveFacetAttribute)
     var output = self
     output.facets = [disjunctiveFacetAttribute]

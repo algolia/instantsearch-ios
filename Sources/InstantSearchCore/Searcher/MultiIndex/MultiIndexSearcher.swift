@@ -51,7 +51,7 @@ public class MultiIndexSearcher: Searcher, SequencerDelegate, SearchResultObserv
 
   /// Triggered when an error occured during search query execution
   /// - Parameter: a tuple of query and error
-  public let onError: Observer<([Query], Error)>
+  public let onError: Observer<([SearchSearchParamsObject], Error)>
 
   /// Triggered when an index of a query changed
   /// - Parameter: a tuple of a index of query for which the indexName has changed and the new indexName
@@ -75,7 +75,7 @@ public class MultiIndexSearcher: Searcher, SequencerDelegate, SearchResultObserv
   /// }
   /// ````
   /// - Default value: nil
-  public var shouldTriggerSearchForQueries: (([Query]) -> Bool)?
+  public var shouldTriggerSearchForQueries: (([SearchSearchParamsObject]) -> Bool)?
 
   private let processingQueue: OperationQueue
 

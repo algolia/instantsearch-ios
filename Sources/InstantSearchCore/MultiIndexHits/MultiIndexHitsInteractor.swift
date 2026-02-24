@@ -137,7 +137,7 @@ extension MultiIndexHitsInteractor {
     mutationQueue.addOperation(completion)
   }
 
-  public func process(_ error: Error, for queries: [Query]) {
+  public func process(_ error: Error, for queries: [SearchSearchParamsObject]) {
     zip(hitsInteractors, queries).forEach { hitsInteractor, query in
       hitsInteractor.process(error, for: query)
     }

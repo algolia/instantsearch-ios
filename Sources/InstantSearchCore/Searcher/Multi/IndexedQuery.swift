@@ -8,9 +8,9 @@ import Foundation
 /// Search query tied to a single index.
 public struct IndexedQuery: Hashable {
   public var indexName: String
-  public var query: Query
+  public var query: SearchSearchParamsObject
 
-  public init(indexName: String, query: Query) {
+  public init(indexName: String, query: SearchSearchParamsObject) {
     self.indexName = indexName
     self.query = query
   }

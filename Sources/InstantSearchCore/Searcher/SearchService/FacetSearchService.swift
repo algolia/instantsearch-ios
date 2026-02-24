@@ -42,7 +42,7 @@ public extension FacetSearchService {
     public var query: String
     public var indexName: String
     public var attribute: String
-    public var context: Query
+    public var context: SearchSearchParamsObject
     public var requestOptions: RequestOptions?
 
     public var textualQuery: String? {
@@ -53,7 +53,7 @@ public extension FacetSearchService {
     public init(query: String,
                 indexName: String,
                 attribute: String,
-                context: Query = .init(),
+                context: SearchSearchParamsObject = .init(),
                 requestOptions: RequestOptions? = nil) {
       self.query = query
       self.indexName = indexName
