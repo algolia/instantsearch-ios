@@ -7,7 +7,7 @@
 //
 
 import Foundation
-public typealias IndexPresenter = (Index) -> String
+public typealias IndexPresenter = (String) -> String
 
 public extension DefaultPresenter {
   enum Index {
