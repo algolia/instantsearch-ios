@@ -7,9 +7,10 @@
 // swiftlint:disable generic_type_name
 
 import Foundation
+import Search
 
 public protocol FacetStatsProvider {
-  var facetsStats: [String: FacetStats]? { get }
+  var facetsStats: [String: SearchFacetStats]? { get }
 }
 
 extension SearchResponse: FacetStatsProvider {}

@@ -7,6 +7,7 @@
 //
 
 import Foundation
+import Search
 /// Provides convenient method for building disjuncitve faceting queries and parsing disjunctive faceting
 
 extension QueryBuilder {
@@ -156,7 +157,7 @@ extension Collection where Element == SearchResponse {
     }
   }
 
-  func aggregateFacetStats() -> [String: FacetStats] {
+  func aggregateFacetStats() -> [String: SearchFacetStats] {
     return compactMap { $0.facetsStats }.reduce([:]) { aggregatedFacetStats, facetStats in
       aggregatedFacetStats.merging(facetStats) { _, new in new }
     }

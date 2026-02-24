@@ -7,6 +7,7 @@
 //
 
 import Foundation
+import Search
 
 @available(*, deprecated, renamed: "HitsSearcherConnection")
 public typealias BoundableSingleIndexSearcherConnection = BoundableHitsSearcherConnection
@@ -36,7 +37,7 @@ extension Boundable {
     return connection
   }
 
-  func computeBoundsFromFacetStats(attribute: String, facetStats: [String: FacetStats]?) {
+  func computeBoundsFromFacetStats(attribute: String, facetStats: [String: SearchFacetStats]?) {
     guard let facetStats = facetStats, let facetStatsOfAttribute = facetStats[attribute] else {
       applyBounds(bounds: nil)
       return

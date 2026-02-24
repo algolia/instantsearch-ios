@@ -36,7 +36,7 @@ public extension NSAttributedString {
     self.init(taggedString: highlightedString.taggedString, inverted: inverted, attributes: attributes)
   }
 
-  convenience init(highlightResult: HighlightResult,
+  convenience init(highlightResult: SearchHighlightResult,
                    inverted: Bool = false,
                    attributes: [NSAttributedString.Key: Any]) {
     guard let highlightedString = highlightResult.highlightedString else {
@@ -65,7 +65,7 @@ public extension NSAttributedString {
     self.init(attributedString: resultString)
   }
 
-  convenience init(highlightedResults: [HighlightResult],
+  convenience init(highlightedResults: [SearchHighlightResult],
                    inverted: Bool = false,
                    separator: NSAttributedString,
                    attributes: [NSAttributedString.Key: Any]) {
