@@ -16,11 +16,11 @@ struct TitleDescriptor {
 }
 
 class FacetListTableController: NSObject, FacetListController {
-  var onClick: ((Facet) -> Void)?
+  var onClick: ((FacetHits) -> Void)?
 
   var tableView: UITableView
 
-  var selectableItems: [SelectableItem<Facet>] = []
+  var selectableItems: [SelectableItem<FacetHits>] = []
   let titleDescriptor: TitleDescriptor?
   private let cellID = "cellID"
 
@@ -35,7 +35,7 @@ class FacetListTableController: NSObject, FacetListController {
 
   // MARK: RefinementFacetsViewController protocol
 
-  func setSelectableItems(selectableItems: [SelectableItem<Facet>]) {
+  func setSelectableItems(selectableItems: [SelectableItem<FacetHits>]) {
     self.selectableItems = selectableItems
   }
 
