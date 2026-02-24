@@ -15,12 +15,12 @@ import Foundation
 class EventTracker: EventTrackable {
   var eventProcessor: EventProcessable
   var logger: Logger
-  var userToken: UserToken?
+  var userToken: String?
   var generateTimestamps: Bool
 
   init(eventProcessor: EventProcessable,
        logger: Logger,
-       userToken: UserToken?,
+       userToken: String?,
        generateTimestamps: Bool) {
     self.eventProcessor = eventProcessor
     self.logger = logger
@@ -38,7 +38,7 @@ class EventTracker: EventTrackable {
   /// 3) Per-event user token
   /// The propagation starts from the deepest level and switches to the previous one in case of nil value on the current level.
 
-  func effectiveUserToken(withEventUserToken eventUserToken: UserToken?) -> UserToken {
+  func effectiveUserToken(withEventUserToken eventUserToken: String?) -> String {
     return eventUserToken ?? userToken ?? Insights.userToken
   }
 
@@ -46,11 +46,11 @@ class EventTracker: EventTrackable {
     return timestamp ?? (generateTimestamps ? Date() : nil)
   }
 
-  func view(eventName: EventName,
-            indexName: IndexName,
-            userToken: UserToken? = .none,
+  func view(eventName: String,
+            indexName: String,
+            userToken: String? = .none,
             timestamp: Date?,
-            objectIDs: [ObjectID]) {
+            objectIDs: [String]) {
     let event = InsightsEvent.viewedObjectIDs(eventName: eventName,
                                               indexName: indexName,
                                               userToken: effectiveUserToken(withEventUserToken: userToken),
@@ -59,9 +59,9 @@ class EventTracker: EventTrackable {
     eventProcessor.process(event)
   }
 
-  func view(eventName: EventName,
-            indexName: IndexName,
-            userToken: UserToken? = .none,
+  func view(eventName: String,
+            indexName: String,
+            userToken: String? = .none,
             timestamp: Date?,
             filters: [String]) {
     let facets = FilterFacet.parseFilters(filters)
@@ -73,13 +73,13 @@ class EventTracker: EventTrackable {
     eventProcessor.process(event)
   }
 
-  func click(eventName: EventName,
-             indexName: IndexName,
-             userToken: UserToken?,
+  func click(eventName: String,
+             indexName: String,
+             userToken: String?,
              timestamp: Date?,
-             objectIDs: [ObjectID],
+             objectIDs: [String],
              positions: [Int],
-             queryID: QueryID) {
+             queryID: String) {
     let objectIDsWithPositions = zip(objectIDs, positions).map { $0 }
     let event = InsightsEvent.clickedObjectIDsAfterSearch(eventName: eventName,
                                                           indexName: indexName,
@@ -90,11 +90,11 @@ class EventTracker: EventTrackable {
     eventProcessor.process(event)
   }
 
-  func click(eventName: EventName,
-             indexName: IndexName,
-             userToken: UserToken? = .none,
+  func click(eventName: String,
+             indexName: String,
+             userToken: String? = .none,
              timestamp: Date?,
-             objectIDs: [ObjectID]) {
+             objectIDs: [String]) {
     let event = InsightsEvent.clickedObjectIDs(eventName: eventName,
                                                indexName: indexName,
                                                userToken: effectiveUserToken(withEventUserToken: userToken),
@@ -103,9 +103,9 @@ class EventTracker: EventTrackable {
     eventProcessor.process(event)
   }
 
-  func click(eventName: EventName,
-             indexName: IndexName,
-             userToken: UserToken? = .none,
+  func click(eventName: String,
+             indexName: String,
+             userToken: String? = .none,
              timestamp: Date?,
              filters: [String]) {
     let facets = FilterFacet.parseFilters(filters)
@@ -117,11 +117,11 @@ class EventTracker: EventTrackable {
     eventProcessor.process(event)
   }
 
-  func conversion(eventName: EventName,
-                  indexName: IndexName,
-                  userToken: UserToken? = .none,
+  func conversion(eventName: String,
+                  indexName: String,
+                  userToken: String? = .none,
                   timestamp: Date?,
-                  objectIDs: [ObjectID]) {
+                  objectIDs: [String]) {
     let event = InsightsEvent.convertedObjectIDs(eventName: eventName,
                                                  indexName: indexName,
                                                  userToken: effectiveUserToken(withEventUserToken: userToken),
@@ -130,9 +130,9 @@ class EventTracker: EventTrackable {
     eventProcessor.process(event)
   }
 
-  func conversion(eventName: EventName,
-                  indexName: IndexName,
-                  userToken: UserToken? = .none,
+  func conversion(eventName: String,
+                  indexName: String,
+                  userToken: String? = .none,
                   timestamp: Date?,
                   filters: [String]) {
     let facets = FilterFacet.parseFilters(filters)
@@ -144,12 +144,12 @@ class EventTracker: EventTrackable {
     eventProcessor.process(event)
   }
 
-  func conversion(eventName: EventName,
-                  indexName: IndexName,
-                  userToken: UserToken?,
+  func conversion(eventName: String,
+                  indexName: String,
+                  userToken: String?,
                   timestamp: Date?,
-                  objectIDs: [ObjectID],
-                  queryID: QueryID) {
+                  objectIDs: [String],
+                  queryID: String) {
     let event = InsightsEvent.convertedObjectIDsAfterSearch(eventName: eventName,
                                                             indexName: indexName,
                                                             userToken: effectiveUserToken(withEventUserToken: userToken),

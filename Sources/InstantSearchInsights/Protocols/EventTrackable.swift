@@ -9,54 +9,54 @@
 import Foundation
 // swiftlint:disable function_parameter_count
 protocol EventTrackable {
-  func view(eventName: EventName,
-            indexName: IndexName,
-            userToken: UserToken?,
+  func view(eventName: String,
+            indexName: String,
+            userToken: String?,
             timestamp: Date?,
-            objectIDs: [ObjectID])
+            objectIDs: [String])
 
-  func view(eventName: EventName,
-            indexName: IndexName,
-            userToken: UserToken?,
+  func view(eventName: String,
+            indexName: String,
+            userToken: String?,
             timestamp: Date?,
             filters: [String])
 
-  func click(eventName: EventName,
-             indexName: IndexName,
-             userToken: UserToken?,
+  func click(eventName: String,
+             indexName: String,
+             userToken: String?,
              timestamp: Date?,
-             objectIDs: [ObjectID])
+             objectIDs: [String])
 
-  func click(eventName: EventName,
-             indexName: IndexName,
-             userToken: UserToken?,
+  func click(eventName: String,
+             indexName: String,
+             userToken: String?,
              timestamp: Date?,
-             objectIDs: [ObjectID],
+             objectIDs: [String],
              positions: [Int],
-             queryID: QueryID)
+             queryID: String)
 
-  func click(eventName: EventName,
-             indexName: IndexName,
-             userToken: UserToken?,
+  func click(eventName: String,
+             indexName: String,
+             userToken: String?,
              timestamp: Date?,
              filters: [String])
 
-  func conversion(eventName: EventName,
-                  indexName: IndexName,
-                  userToken: UserToken?,
+  func conversion(eventName: String,
+                  indexName: String,
+                  userToken: String?,
                   timestamp: Date?,
-                  objectIDs: [ObjectID])
+                  objectIDs: [String])
 
-  func conversion(eventName: EventName,
-                  indexName: IndexName,
-                  userToken: UserToken?,
+  func conversion(eventName: String,
+                  indexName: String,
+                  userToken: String?,
                   timestamp: Date?,
-                  objectIDs: [ObjectID],
-                  queryID: QueryID)
+                  objectIDs: [String],
+                  queryID: String)
 
-  func conversion(eventName: EventName,
-                  indexName: IndexName,
-                  userToken: UserToken?,
+  func conversion(eventName: String,
+                  indexName: String,
+                  userToken: String?,
                   timestamp: Date?,
                   filters: [String])
 }

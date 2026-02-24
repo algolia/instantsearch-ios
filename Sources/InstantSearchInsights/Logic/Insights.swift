@@ -42,7 +42,7 @@ public class Insights {
   /// Used as a default user token if no user token provided for event or application
   /// - Note: This value is ignored if a custom per-app or per-event user token is provided
 
-  public static var userToken: UserToken {
+  public static var userToken: String {
     let key = "com.algolia.InstantSearch.Insights.UserToken"
 
     if let existingToken = UserDefaults.standard.string(forKey: key) {
@@ -58,7 +58,7 @@ public class Insights {
   /// Overrides generated global application user token (see above)
   /// - Note: This value is ignored if a custom per-event user token provided
 
-  public var userToken: UserToken? {
+  public var userToken: String? {
     get {
       return (eventTracker as? EventTracker)?.userToken
     }
@@ -89,7 +89,7 @@ public class Insights {
     }
   }
 
-  private static var insightsMap: [ApplicationID: Insights] = [:]
+  private static var insightsMap: [String: Insights] = [:]
 //  private static var logger = InsightsLogger.logger
 
   /// Defines if event tracking is active. Default value is `true`.
@@ -138,7 +138,7 @@ public class Insights {
   /// If the application was not registered before, the nil value will be returned.
   /// - parameter  appId: The appId of application that is being tracked
 
-  public static func shared(appId: ApplicationID) -> Insights? {
+  public static func shared(appId: String) -> Insights? {
     guard let insightsInstance = insightsMap[appId] else {
       InstantSearchInsightsLog.debug("application for this app ID (\(appId)) is not registered. Please use `register(appId:, apiKey:)` method to register your application.")
       return nil
@@ -157,9 +157,9 @@ public class Insights {
   ///   If set to false, the events will be sent without timestamp value and will be automatically attributed on the server that may affect the events accuracy
   ///   Defafult value: true
   /// - parameter  region: The desired API endpoint region
-  @discardableResult public static func register(appId: ApplicationID,
-                                                 apiKey: APIKey,
-                                                 userToken: UserToken? = .none,
+  @discardableResult public static func register(appId: String,
+                                                 apiKey: String,
+                                                 userToken: String? = .none,
                                                  generateTimestamps: Bool = true,
                                                  region: Region? = region) -> Insights {
     _ = InsightsUserAgentSetter.set
@@ -183,11 +183,11 @@ public class Insights {
     self.eventTracker = eventTracker
   }
 
-  convenience init(applicationID: ApplicationID,
-                   apiKey: APIKey,
+  convenience init(applicationID: String,
+                   apiKey: String,
                    region: Region? = region,
                    flushDelay: TimeInterval,
-                   userToken: UserToken?,
+                   userToken: String?,
                    generateTimestamps: Bool,
                    logger: Logger) {
     typealias PackageStorage = JSONFilePackageStorage<[Package<InsightsEvent>]>

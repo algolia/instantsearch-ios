@@ -24,20 +24,20 @@ public final class HitsSearcher: IndexSearcher<AlgoliaSearchService> {
                             objectIDsWithPositions: [(String, Int)],
                             queryID: String,
                             timestamp: Date?,
-                            userToken: UserToken?) {}
+                            userToken: String?) {}
 
     func convertedAfterSearch(eventName: String,
                               indexName: String,
                               objectIDs: [String],
                               queryID: String,
                               timestamp: Date?,
-                              userToken: UserToken?) {}
+                              userToken: String?) {}
 
     func viewed(eventName: String,
                 indexName: String,
                 objectIDs: [String],
                 timestamp: Date?,
-                userToken: UserToken?) {}
+                userToken: String?) {}
   }
 
   private var insightsCredentials: (appID: String, apiKey: String)?
@@ -159,8 +159,8 @@ public final class HitsSearcher: IndexSearcher<AlgoliaSearchService> {
        - isAutoSendingHitsViewEvents: flag defining whether the automatic hits view Insights events sending is enabled
        - requestOptions: Custom request options. Default is `nil`.
    */
-  public convenience init(appID: ApplicationID,
-                          apiKey: APIKey,
+  public convenience init(appID: String,
+                          apiKey: String,
                           indexName: String,
                           query: Query = .init(),
                           requestOptions: RequestOptions? = nil,

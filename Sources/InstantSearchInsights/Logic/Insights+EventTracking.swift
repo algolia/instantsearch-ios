@@ -16,11 +16,11 @@ public extension Insights {
   /// - parameter timestamp: Event timestamp
   /// - parameter userToken: User identifier. Overrides application's user token if specified. Default value is nil.
 
-  func viewed(eventName: EventName,
-              indexName: IndexName,
-              objectIDs: [ObjectID],
+  func viewed(eventName: String,
+              indexName: String,
+              objectIDs: [String],
               timestamp: Date? = .none,
-              userToken: UserToken? = .none) {
+              userToken: String? = .none) {
     eventTracker.view(eventName: eventName,
                       indexName: indexName,
                       userToken: userToken,
@@ -35,11 +35,11 @@ public extension Insights {
   /// - parameter timestamp: Event timestamp
   /// - parameter userToken: User identifier. Overrides application's user token if specified. Default value is nil.
 
-  func viewed(eventName: EventName,
-              indexName: IndexName,
-              objectID: ObjectID,
+  func viewed(eventName: String,
+              indexName: String,
+              objectID: String,
               timestamp: Date? = nil,
-              userToken: UserToken? = .none) {
+              userToken: String? = .none) {
     eventTracker.view(eventName: eventName,
                       indexName: indexName,
                       userToken: userToken,
@@ -54,11 +54,11 @@ public extension Insights {
   /// - parameter timestamp: Event timestamp
   /// - parameter userToken: User identifier. Overrides application's user token if specified. Default value is nil.
 
-  func viewed(eventName: EventName,
-              indexName: IndexName,
+  func viewed(eventName: String,
+              indexName: String,
               filters: [String],
               timestamp: Date? = .none,
-              userToken: UserToken? = .none) {
+              userToken: String? = .none) {
     eventTracker.view(eventName: eventName,
                       indexName: indexName,
                       userToken: userToken,
@@ -73,11 +73,11 @@ public extension Insights {
   /// - parameter timestamp: Event timestamp
   /// - parameter userToken: User identifier. Overrides application's user token if specified. Default value is nil.
 
-  func clicked(eventName: EventName,
-               indexName: IndexName,
-               objectIDs: [ObjectID],
+  func clicked(eventName: String,
+               indexName: String,
+               objectIDs: [String],
                timestamp: Date? = .none,
-               userToken: UserToken? = .none) {
+               userToken: String? = .none) {
     eventTracker.click(eventName: eventName,
                        indexName: indexName,
                        userToken: userToken,
@@ -92,11 +92,11 @@ public extension Insights {
   /// - parameter timestamp: Event timestamp
   /// - parameter userToken: User identifier. Overrides application's user token if specified. Default value is nil.
 
-  func clicked(eventName: EventName,
-               indexName: IndexName,
-               objectID: ObjectID,
+  func clicked(eventName: String,
+               indexName: String,
+               objectID: String,
                timestamp: Date? = .none,
-               userToken: UserToken? = .none) {
+               userToken: String? = .none) {
     eventTracker.click(eventName: eventName,
                        indexName: indexName,
                        userToken: userToken,
@@ -111,11 +111,11 @@ public extension Insights {
   /// - parameter timestamp: Event timestamp
   /// - parameter userToken: User identifier. Overrides application's user token if specified. Default value is nil.
 
-  func clicked(eventName: EventName,
-               indexName: IndexName,
+  func clicked(eventName: String,
+               indexName: String,
                filters: [String],
                timestamp: Date? = .none,
-               userToken: UserToken? = .none) {
+               userToken: String? = .none) {
     eventTracker.click(eventName: eventName,
                        indexName: indexName,
                        userToken: userToken,
@@ -130,11 +130,11 @@ public extension Insights {
   /// - parameter timestamp: Event timestamp
   /// - parameter userToken: User identifier. Overrides application's user token if specified. Default value is nil.
 
-  func converted(eventName: EventName,
-                 indexName: IndexName,
-                 objectIDs: [ObjectID],
+  func converted(eventName: String,
+                 indexName: String,
+                 objectIDs: [String],
                  timestamp: Date? = .none,
-                 userToken: UserToken? = .none) {
+                 userToken: String? = .none) {
     eventTracker.conversion(eventName: eventName,
                             indexName: indexName,
                             userToken: userToken,
@@ -149,11 +149,11 @@ public extension Insights {
   /// - parameter timestamp: Event timestamp
   /// - parameter userToken: User identifier. Overrides application's user token if specified. Default value is nil.
 
-  func converted(eventName: EventName,
-                 indexName: IndexName,
-                 objectID: ObjectID,
+  func converted(eventName: String,
+                 indexName: String,
+                 objectID: String,
                  timestamp: Date? = .none,
-                 userToken: UserToken? = .none) {
+                 userToken: String? = .none) {
     eventTracker.conversion(eventName: eventName,
                             indexName: indexName,
                             userToken: userToken,
@@ -168,11 +168,11 @@ public extension Insights {
   /// - parameter timestamp: Event timestamp
   /// - parameter userToken: User identifier. Overrides application's user token if specified. Default value is nil.
 
-  func converted(eventName: EventName,
-                 indexName: IndexName,
+  func converted(eventName: String,
+                 indexName: String,
                  filters: [String],
                  timestamp: Date? = .none,
-                 userToken: UserToken? = .none) {
+                 userToken: String? = .none) {
     eventTracker.conversion(eventName: eventName,
                             indexName: indexName,
                             userToken: userToken,
