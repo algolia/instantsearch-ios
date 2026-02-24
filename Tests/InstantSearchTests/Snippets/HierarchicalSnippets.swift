@@ -20,7 +20,7 @@ import InstantSearch
 
       searcher.connectFilterState(filterState)
 
-      let hierarchicalAttributes: [Attribute] = [
+      let hierarchicalAttributes: [String] = [
         "hierarchicalCategories.lvl0",
         "hierarchicalCategories.lvl1",
         "hierarchicalCategories.lvl2"
@@ -46,7 +46,7 @@ import InstantSearch
 
       let filterState: FilterState = .init()
 
-      let hierarchicalAttributes: [Attribute] = [
+      let hierarchicalAttributes: [String] = [
         "hierarchicalCategories.lvl0",
         "hierarchicalCategories.lvl1",
         "hierarchicalCategories.lvl2"

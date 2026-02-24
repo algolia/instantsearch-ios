@@ -8,17 +8,16 @@
 #if !InstantSearchCocoaPods
   import InstantSearchCore
 #endif
-import AlgoliaSearchClient
 @testable import InstantSearchSwiftUI
 import XCTest
 
 // MARK: - Test Helper
 
 struct TestRecord<Value: Codable>: Codable {
-  let objectID: ObjectID
+  let objectID: String
   let value: Value
 
-  init(_ value: Value, objectID: ObjectID = ObjectID(rawValue: UUID().uuidString)) {
+  init(_ value: Value, objectID: String = UUID().uuidString) {
     self.value = value
     self.objectID = objectID
   }

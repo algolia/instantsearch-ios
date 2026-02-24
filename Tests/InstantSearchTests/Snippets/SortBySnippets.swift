@@ -29,7 +29,7 @@ import InstantSearch
         case "indexDefault": return "Default"
         case "indexAscendingOrder": return "Year Asc"
         case "indexDescendingOrder": return "Year Desc"
-        default: return indexName.rawValue
+        default: return indexName
         }
       }
 
@@ -59,7 +59,7 @@ import InstantSearch
         case "indexDefault": return "Default"
         case "indexAscendingOrder": return "Year Asc"
         case "indexDescendingOrder": return "Year Desc"
-        default: return indexName.rawValue
+        default: return indexName
         }
       }
 
