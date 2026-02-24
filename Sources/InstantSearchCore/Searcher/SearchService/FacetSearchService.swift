@@ -16,7 +16,7 @@ public class FacetSearchService: SearchService {
     self.client = client
   }
 
-  public func search(_ request: Request, completion: @escaping (Result<FacetSearchResponse, Error>) -> Void) -> Operation {
+  public func search(_ request: Request, completion: @escaping (Result<SearchForFacetValuesResponse, Error>) -> Void) -> Operation {
     let operation = TaskAsyncOperation { [client] in
       do {
         let params = SearchParamsEncoder.encode(request.context)
