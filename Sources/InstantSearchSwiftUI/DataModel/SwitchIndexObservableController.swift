@@ -17,20 +17,20 @@ import InstantSearchTelemetry
   @available(iOS 13.0, OSX 10.15, tvOS 13.0, watchOS 6.0, *)
   public class SwitchIndexObservableController: ObservableObject, SwitchIndexController {
     /// List of indices names to switch between
-    @Published public var indexNames: [IndexName]
+    @Published public var indexNames: [String]
 
     /// Name of currently selected index
-    @Published public var selected: IndexName
+    @Published public var selected: String
 
-    public var select: (IndexName) -> Void = { _ in }
+    public var select: (String) -> Void = { _ in }
 
-    public func set(indexNames: [IndexName], selected: IndexName) {
+    public func set(indexNames: [String], selected: String) {
       self.indexNames = indexNames
       self.selected = selected
     }
 
-    public init(indexNames: [IndexName] = [],
-                selected: IndexName = "") {
+    public init(indexNames: [String] = [],
+                selected: String = "") {
       self.indexNames = indexNames
       self.selected = selected
       InstantSearchTelemetry.shared.traceDeclarative(type: .sortBy)

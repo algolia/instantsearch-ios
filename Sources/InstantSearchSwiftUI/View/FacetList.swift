@@ -18,13 +18,13 @@
     @ObservedObject public var facetListObservableController: FacetListObservableController
 
     /// Closure constructing a facet row view
-    public var row: (Facet, Bool) -> Row
+    public var row: (FacetHits, Bool) -> Row
 
     /// Closure constructing a no results view
     public var noResults: (() -> NoResults)?
 
     public init(_ facetListObservableController: FacetListObservableController,
-                @ViewBuilder row: @escaping (Facet, Bool) -> Row,
+                @ViewBuilder row: @escaping (FacetHits, Bool) -> Row,
                 @ViewBuilder noResults: @escaping () -> NoResults) {
       self.facetListObservableController = facetListObservableController
       self.row = row
@@ -50,7 +50,7 @@
   @available(iOS 13.0, OSX 10.15, tvOS 13.0, watchOS 6.0, *)
   public extension FacetList where NoResults == Never {
     init(_ facetListObservableController: FacetListObservableController,
-         @ViewBuilder row: @escaping (Facet, Bool) -> Row) {
+         @ViewBuilder row: @escaping (FacetHits, Bool) -> Row) {
       self.facetListObservableController = facetListObservableController
       self.row = row
       noResults = nil
@@ -59,7 +59,7 @@
 
   @available(iOS 13.0, OSX 11.00, tvOS 13.0, watchOS 7.0, *)
   struct Facets_Previews: PreviewProvider {
-    static let test: [Facet] = {
+    static let test: [FacetHits] = {
       [
         ("Samsung", 356, "<em>S</em>amsung"),
         ("Sony", 236, "<em>S</em>ony"),
@@ -76,7 +76,7 @@
         ("Griffin Technology", 109, nil),
         ("Belkin", 104, nil)
       ].map { value, count, highlighted in
-        Facet(value: value, count: count, highlighted: highlighted)
+        FacetHits(value: value, highlighted: highlighted ?? "", count: count)
       }
     }()
 

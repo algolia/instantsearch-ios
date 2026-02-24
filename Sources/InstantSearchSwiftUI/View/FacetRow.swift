@@ -16,14 +16,14 @@
   @available(iOS 13.0, OSX 11.00, tvOS 13.0, watchOS 6.0, *)
   public struct FacetRow: View {
     /// Facet value
-    public var facet: Facet
+    public var facet: FacetHits
 
     /// Facet selection state
     public var isSelected: Bool
 
-    private func valueText(for facet: Facet) -> Text {
-      if let highlightedValue = facet.highlighted {
-        let highlightedValueString = HighlightedString(string: highlightedValue)
+    private func valueText(for facet: FacetHits) -> Text {
+      if !facet.highlighted.isEmpty {
+        let highlightedValueString = HighlightedString(string: facet.highlighted)
         return Text(highlightedString: highlightedValueString) { Text($0).bold() }
       } else {
         return Text(facet.value)
@@ -42,7 +42,7 @@
       .contentShape(Rectangle())
     }
 
-    public init(facet: Facet, isSelected: Bool) {
+    public init(facet: FacetHits, isSelected: Bool) {
       self.facet = facet
       self.isSelected = isSelected
     }

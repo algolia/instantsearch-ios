@@ -20,25 +20,25 @@ import InstantSearchTelemetry
     @Published public var orderedFacets: [AttributedFacets]
 
     /// Mapping between a facet attribute and a set of selected facet values
-    @Published public var selections: [Attribute: Set<String>]
+    @Published public var selections: [String: Set<String>]
 
     public func setOrderedFacets(_ orderedFacets: [AttributedFacets]) {
       self.orderedFacets = orderedFacets
     }
 
-    public func setSelections(_ selections: [Attribute: Set<String>]) {
+    public func setSelections(_ selections: [String: Set<String>]) {
       self.selections = selections
     }
 
-    public var didSelect: ((Attribute, Facet) -> Void)?
+    public var didSelect: ((String, FacetHits) -> Void)?
 
     /// Toggle facet selection
-    public func toggle(_ facet: Facet, for attribute: Attribute) {
+    public func toggle(_ facet: FacetHits, for attribute: String) {
       didSelect?(attribute, facet)
     }
 
     /// Returns bool value indicating whether the provided facet for attribute is selected
-    public func isSelected(_ facet: Facet, for attribute: Attribute) -> Bool {
+    public func isSelected(_ facet: FacetHits, for attribute: String) -> Bool {
       return selections[attribute]?.contains(facet.value) ?? false
     }
 
@@ -53,8 +53,8 @@ import InstantSearchTelemetry
        - didSelect: A closure to trigger when user selects a facet
      */
     public init(orderedFacets: [AttributedFacets] = [],
-                selections: [Attribute: Set<String>] = [:],
-                didSelect: ((Attribute, Facet) -> Void)? = nil) {
+                selections: [String: Set<String>] = [:],
+                didSelect: ((String, FacetHits) -> Void)? = nil) {
       self.orderedFacets = orderedFacets
       self.selections = selections
       self.didSelect = didSelect
