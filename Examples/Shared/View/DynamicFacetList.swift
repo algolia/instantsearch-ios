@@ -15,7 +15,7 @@ struct DynamicFacetList: View {
   var body: some View {
     ScrollView {
       ForEach(dynamicFacetListController.orderedFacets, id: \.attribute) { orderedFacet in
-        Section(header: header(withTitle: "\(orderedFacet.attribute.rawValue)")) {
+        Section(header: header(withTitle: "\(orderedFacet.attribute)")) {
           ForEach(orderedFacet.facets, id: \.value) { facet in
             VStack {
               FacetRow(facet: facet,
