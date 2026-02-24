@@ -14,7 +14,7 @@ import Foundation
 @available(*, deprecated, message: "Use multiple HitsSearcher aggregated with MultiSearcher instead of MultiIndexSearcher")
 public class MultiIndexHitsInteractor {
   public let onRequestChanged: Observer<Void>
-  public let onResultsUpdated: Observer<[SearchResponse]>
+  public let onResultsUpdated: Observer<[SearchResponse<SearchHit>]>
   public let onError: Observer<Swift.Error>
 
   private let mutationQueue: OperationQueue
@@ -108,7 +108,7 @@ extension MultiIndexHitsInteractor {
   /// - Parameter section: the section index of nested hits Interactor
   /// - Throws: HitsInteractor.Error.incompatibleRecordType if the record type of results mismatches the record type of corresponding hits Interactor
 
-  public func update(_ results: SearchResponse, forInteractorInSection section: Int) {
+  public func update(_ results: SearchResponse<SearchHit>, forInteractorInSection section: Int) {
     let completion = BlockOperation { [weak self] in
       self?.onResultsUpdated.fire([results])
     }
@@ -124,7 +124,7 @@ extension MultiIndexHitsInteractor {
   /// - Parameter metadata: the metadata of query corresponding to results
   /// - Throws: HitsInteractor.Error.incompatibleRecordType if the conversion of search results for one of a nested hits Interactors is impossible due to a record type mismatch
 
-  public func update(_ results: [SearchResponse]) {
+  public func update(_ results: [SearchResponse<SearchHit>]) {
     let completion = BlockOperation { [weak self] in
       self?.onResultsUpdated.fire(results)
     }

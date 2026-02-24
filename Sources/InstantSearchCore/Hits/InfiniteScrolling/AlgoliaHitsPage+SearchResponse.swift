@@ -15,7 +15,7 @@ extension AlgoliaHitsPage where Item: Decodable {
   ///     - searchResponse: An instance of `SearchResponse` object
   ///
   /// - Throws: `AlgoliaHitsPageSearchReponseError` instance
-  init(_ searchResponse: SearchResponse) throws {
+  init(_ searchResponse: SearchResponse<SearchHit>) throws {
     guard let page = searchResponse.page else {
       throw AlgoliaHitsPageSearchReponseError.missingPage
     }

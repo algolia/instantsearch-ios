@@ -20,7 +20,7 @@ extension SearchResponse: HitsExtractable {
   }
 }
 
-extension FacetSearchResponse: HitsExtractable {
+extension SearchForFacetValuesResponse: HitsExtractable {
   public func extractHits<Hit>(jsonDecoder: JSONDecoder) throws -> [Hit] where Hit: Decodable {
     let hitsData = try JSONEncoder().encode(facetHits)
     return try jsonDecoder.decode([Hit].self, from: hitsData)

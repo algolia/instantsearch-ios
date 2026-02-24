@@ -15,14 +15,14 @@ struct FacetsOrderer {
   let facets: [String: [FacetHits]]
 
   /// Facets ordering rule
-  let facetOrdering: FacetOrdering
+  let facetOrdering: SearchFacetOrdering
 
   /**
     - parameters:
       - facetOrder: Facets per attribute
       - facet: Facets ordering rule
    */
-  init(facetOrder: FacetOrdering, facets: [String: [FacetHits]]) {
+  init(facetOrder: SearchFacetOrdering, facets: [String: [FacetHits]]) {
     facetOrdering = facetOrder
     self.facets = facets
   }
@@ -49,7 +49,7 @@ struct FacetsOrderer {
   /// - parameter facets: the list of facets to order
   /// - parameter rule: the ordering rule for facets
   /// - returns: the list of ordered facets
-  private func order(facets: [FacetHits], with rule: FacetValuesOrder) -> [FacetHits] {
+  private func order(facets: [FacetHits], with rule: SearchValue) -> [FacetHits] {
     guard facets.count > 1 else {
       return facets
     }

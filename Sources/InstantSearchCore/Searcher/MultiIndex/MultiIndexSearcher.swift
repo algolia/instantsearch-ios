@@ -47,7 +47,7 @@ public class MultiIndexSearcher: Searcher, SequencerDelegate, SearchResultObserv
 
   public let onSearch: Observer<Void>
 
-  public let onResults: Observer<SearchesResponse>
+  public let onResults: Observer<SearchResponses<SearchHit>>
 
   /// Triggered when an error occured during search query execution
   /// - Parameter: a tuple of query and error
@@ -166,7 +166,7 @@ public class MultiIndexSearcher: Searcher, SequencerDelegate, SearchResultObserv
     let operation = TaskAsyncOperation { [weak self] in
       guard let searcher = self else { return }
       do {
-        let response: SearchesResponse = try await searcher.client.search(
+        let response: SearchResponses<SearchHit> = try await searcher.client.search(
           searchMethodParams: searchParams,
           requestOptions: requestOpts
         )

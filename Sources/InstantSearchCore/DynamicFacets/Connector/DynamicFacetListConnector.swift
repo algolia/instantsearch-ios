@@ -6,10 +6,11 @@
 //
 
 import Foundation
+import Search
 
 /// Component that displays automatically ordered facets, their ordered values, and lets the user refine the search results by filtering on specific values.
 
-public class DynamicFacetListConnector<Searcher: SearchResultObservable> where Searcher.SearchResult == SearchResponse {
+public class DynamicFacetListConnector<Searcher: SearchResultObservable> where Searcher.SearchResult == SearchResponse<SearchHit> {
   /// Searcher that handles your searches.
   public let searcher: Searcher
 

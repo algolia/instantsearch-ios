@@ -69,7 +69,7 @@ public struct QueryBuilder {
     return [queryForResults] + disjunctiveFacetingQueries + hierarchicalFacetingQueries
   }
 
-  public func aggregate(_ results: [SearchResponse]) throws -> SearchResponse {
+  public func aggregate(_ results: [SearchResponse<SearchHit>]) throws -> SearchResponse<SearchHit> {
     guard var aggregatedResult = results.first else {
       throw Error.emptyResults
     }

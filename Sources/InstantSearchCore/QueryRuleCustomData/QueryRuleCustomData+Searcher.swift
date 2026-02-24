@@ -9,7 +9,7 @@ import Foundation
 
 public extension QueryRuleCustomDataInteractor {
   /// Connection between a rule custom data logic and a single index searcher
-  struct SearcherConnection<Searcher: SearchResultObservable>: Connection where Searcher.SearchResult == SearchResponse {
+  struct SearcherConnection<Searcher: SearchResultObservable>: Connection where Searcher.SearchResult == SearchResponse<SearchHit> {
     /// Logic applied to the custom model
     public let interactor: QueryRuleCustomDataInteractor
 

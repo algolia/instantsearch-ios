@@ -9,7 +9,7 @@
 import Foundation
 
 public class FacetListInteractor: SelectableListInteractor<String, FacetHits> {
-  public let onResultsUpdated: Observer<FacetSearchResponse>
+  public let onResultsUpdated: Observer<SearchForFacetValuesResponse>
   private let mutationQueue: OperationQueue
 
   public init(facets: [FacetHits] = [], selectionMode: SelectionMode = .multiple) {
@@ -27,7 +27,7 @@ public class FacetListInteractor: SelectableListInteractor<String, FacetHits> {
 }
 
 extension FacetListInteractor: ResultUpdatable {
-  @discardableResult public func update(_ facetResults: FacetSearchResponse) -> Operation {
+  @discardableResult public func update(_ facetResults: SearchForFacetValuesResponse) -> Operation {
     let updateOperation = BlockOperation { [weak self] in
       self?.items = facetResults.facetHits.map { hit in
         FacetHits(value: hit.value, highlighted: hit.highlighted, count: hit.count)

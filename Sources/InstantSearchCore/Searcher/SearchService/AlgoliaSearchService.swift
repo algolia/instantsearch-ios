@@ -36,7 +36,7 @@ public class AlgoliaSearchService: SearchService {
     disjunctiveFacetsAttributes = []
   }
 
-  public func search(_ request: Request, completion: @escaping (Result<SearchResponse, Error>) -> Void) -> Operation {
+  public func search(_ request: Request, completion: @escaping (Result<SearchResponse<SearchHit>, Error>) -> Void) -> Operation {
     let operation = TaskAsyncOperation { [weak self] in
       guard let self else { return }
       do {
@@ -48,7 +48,7 @@ public class AlgoliaSearchService: SearchService {
           )
           multiCompletion(.success(response.results))
         } else {
-          let response: SearchResponse = try await self.client.searchSingleIndex(
+          let response: SearchResponse<SearchHit> = try await self.client.searchSingleIndex(
             indexName: request.indexName,
             searchParams: .searchSearchParamsObject(request.query),
             requestOptions: request.requestOptions
@@ -66,9 +66,9 @@ public class AlgoliaSearchService: SearchService {
 
 extension AlgoliaSearchService {
   func collect(for request: Request,
-               completion: @escaping (Swift.Result<SearchResponse, Error>) -> Void) -> (requests: [SearchQuery], completion: (Swift.Result<[SearchResult<SearchHit>], Error>) -> Void) {
+               completion: @escaping (Swift.Result<SearchResponse<SearchHit>, Error>) -> Void) -> (requests: [SearchQuery], completion: (Swift.Result<[SearchResult<SearchHit>], Error>) -> Void) {
     let queries: [IndexedQuery]
-    let transform: ([SearchResult<SearchHit>]) throws -> SearchResponse
+    let transform: ([SearchResult<SearchHit>]) throws -> SearchResponse<SearchHit>
     if isDisjunctiveFacetingEnabled {
       let filterGroups = disjunctiveFacetingDelegate?.toFilterGroups() ?? []
       let hierarchicalAttributes = hierarchicalFacetingDelegate?.hierarchicalAttributes ?? []

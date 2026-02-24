@@ -50,7 +50,7 @@ extension QueryBuilder {
   /// - parameter facets: dictionary of current facets
   /// - returns: disjuncitve faceting results enriched with selected but empty facets
 
-  private func completeMissingFacets(in results: SearchResponse, with facets: [String: [String]]) -> SearchResponse {
+  private func completeMissingFacets(in results: SearchResponse<SearchHit>, with facets: [String: [String]]) -> SearchResponse<SearchHit> {
     var output = results
     var currentFacets = output.facets ?? [:]
     let defaultFacets = typedFacetDictionary(with: facets)
@@ -72,7 +72,7 @@ extension QueryBuilder {
   /// - parameter facets: set of attribute of facets
   /// - returns: disjuncitve faceting results enriched with selected but empty facets
 
-  func completeMissingFacets(in results: SearchResponse, disjunctiveFacets: Set<String>, filters: [FilterType]) -> SearchResponse {
+  func completeMissingFacets(in results: SearchResponse<SearchHit>, disjunctiveFacets: Set<String>, filters: [FilterType]) -> SearchResponse<SearchHit> {
     let facetDictionary = self.facetDictionary(with: disjunctiveFacets, filters: filters)
     return completeMissingFacets(in: results, with: facetDictionary)
   }
@@ -150,7 +150,7 @@ extension Collection {
   }
 }
 
-extension Collection where Element == SearchResponse {
+extension Collection where Element == SearchResponse<SearchHit> {
   func aggregateFacets() -> [String: [String: Int]] {
     return compactMap { $0.facets }.reduce([:]) { aggregatedFacets, facets in
       aggregatedFacets.merging(facets) { _, new in new }
