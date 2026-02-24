@@ -9,7 +9,7 @@
 import Foundation
 
 protocol QueryIDContainer: AnyObject {
-  var queryID: QueryID? { get set }
+  var queryID: String? { get set }
 }
 
 extension HitsTracker: QueryIDContainer {}
@@ -20,7 +20,7 @@ public enum TrackableSearcher {
   @available(*, deprecated, message: "Use multiple HitsSearcher aggregated with MultiSearcher instead of MultiIndexSearcher")
   case multiIndex(MultiIndexSearcher, pointer: Int)
 
-  var indexName: IndexName {
+  var indexName: String {
     switch self {
     case let .singleIndex(searcher):
       return searcher.request.indexName
@@ -33,10 +33,10 @@ public enum TrackableSearcher {
   func setClickAnalyticsOn(_ on: Bool) {
     switch self {
     case let .singleIndex(searcher):
-      return searcher.request.query.clickAnalytics = on
+      searcher.request.query.clickAnalytics = on
 
     case let .multiIndex(searcher, pointer: index):
-      return searcher.indexQueryStates[index].query.clickAnalytics = on
+      searcher.indexQueryStates[index].query.clickAnalytics = on
     }
   }
 
@@ -48,7 +48,7 @@ public enum TrackableSearcher {
       }
     case let .multiIndex(searcher, pointer: index):
       searcher.onResults.subscribe(with: subscriber) { subscriber, results in
-        subscriber.queryID = results.results[index].queryID
+        subscriber.queryID = results.results[index].asSearchResponse?.queryID
       }
     }
   }

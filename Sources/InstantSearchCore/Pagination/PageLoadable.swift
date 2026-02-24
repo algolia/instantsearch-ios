@@ -26,9 +26,3 @@ extension FacetSearcher: PageLoadable {
   }
 }
 
-@available(*, deprecated, message: "Places feature is deprecated")
-extension PlacesSearcher: PageLoadable {
-  public func loadPage(atIndex _: Int) {
-    search()
-  }
-}

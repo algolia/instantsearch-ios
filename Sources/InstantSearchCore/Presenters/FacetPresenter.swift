@@ -8,7 +8,7 @@
 
 import Foundation
 
-public typealias FacetPresenter = (Facet) -> String
+public typealias FacetPresenter = (FacetHits) -> String
 
 public extension DefaultPresenter {
   enum Facet {

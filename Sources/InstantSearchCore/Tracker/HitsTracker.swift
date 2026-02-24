@@ -16,7 +16,7 @@ import InstantSearchInsights
 public class HitsTracker: InsightsTracker {
 
   /// The name of the event to track.
-  public let eventName: EventName
+  public let eventName: String
 
   public var isEnabled: Bool
 
@@ -27,10 +27,10 @@ public class HitsTracker: InsightsTracker {
   internal let tracker: HitsAfterSearchTrackable
 
   /// An optional identifier for the search query.
-  internal var queryID: QueryID?
+  internal var queryID: String?
 
   /// Max object IDs per event
-  private let maxObjectIDsCount = 20
+  private let maxObjectIDsCount = 10
 
   /// Initializes a new instance of the `HitsTracker` class with the specified event name, `TrackableSearcher`, and `Insights` object.
   ///
@@ -38,7 +38,7 @@ public class HitsTracker: InsightsTracker {
   ///   - eventName: The name of the event to track.
   ///   - searcher: A `TrackableSearcher` object that provides search results to be tracked.
   ///   - insights: An `Insights` object.
-  public required convenience init(eventName: EventName,
+  public required convenience init(eventName: String,
                                    searcher: TrackableSearcher,
                                    insights: Insights) {
     self.init(eventName: eventName,
@@ -52,7 +52,7 @@ public class HitsTracker: InsightsTracker {
   ///   - eventName: The name of the event to track.
   ///   - searcher: A `TrackableSearcher` object that provides search results to be tracked.
   ///   - tracker: A `HitsAfterSearchTrackable` object that tracks search result interactions.
-  init(eventName: EventName,
+  init(eventName: String,
        searcher: TrackableSearcher,
        tracker: HitsAfterSearchTrackable) {
     self.eventName = eventName
@@ -85,7 +85,7 @@ public extension HitsTracker {
   ///   - eventName: An optional custom event name.
   func trackClick<Record: Codable>(for hit: Hit<Record>,
                                    position: Int,
-                                   eventName: EventName? = nil) {
+                                   eventName: String? = nil) {
     trackClick(for: [hit],
                positions: [position],
                eventName: eventName)
@@ -99,7 +99,7 @@ public extension HitsTracker {
   ///   - eventName: An optional custom event name.
   func trackClick<Record: Codable>(for hits: [Hit<Record>],
                                    positions: [Int],
-                                   eventName: EventName? = nil) {
+                                   eventName: String? = nil) {
     guard isEnabled else { return }
     guard let queryID = queryID else { return }
     for objectIDsWithPositions in Array(zip(hits.map(\.objectID), positions)).chunk(into: maxObjectIDsCount) {
@@ -118,7 +118,7 @@ public extension HitsTracker {
   ///   - hit: The search result for which to track the conversion event.
   ///   - eventName: An optional custom event name.
   func trackConvert<Record: Codable>(for hit: Hit<Record>,
-                                     eventName: EventName? = nil) {
+                                     eventName: String? = nil) {
     trackConvert(for: [hit],
                  eventName: eventName)
   }
@@ -129,7 +129,7 @@ public extension HitsTracker {
   ///   - hits: The search results for which to track the conversion event.
   ///   - eventName: An optional custom event name.
   func trackConvert<Record: Codable>(for hits: [Hit<Record>],
-                                     eventName: EventName? = nil) {
+                                     eventName: String? = nil) {
     guard isEnabled else { return }
     guard let queryID = queryID else { return }
     for objectIDs in hits.map(\.objectID).chunk(into: maxObjectIDsCount) {
@@ -148,7 +148,7 @@ public extension HitsTracker {
   ///   - hit: The search result for which to track the view event.
   ///   - eventName: An optional custom event name.
   func trackView<Record: Codable>(for hit: Hit<Record>,
-                                  eventName: EventName? = nil) {
+                                  eventName: String? = nil) {
     trackView(for: [hit],
               eventName: eventName)
   }
@@ -159,7 +159,7 @@ public extension HitsTracker {
   ///   - hits: The search results for which to track the view event.
   ///   - eventName: An optional custom event name.
   func trackView<Record: Codable>(for hits: [Hit<Record>],
-                                  eventName: EventName? = nil) {
+                                  eventName: String? = nil) {
     guard isEnabled else { return }
     for objectIDs in hits.map(\.objectID).chunk(into: maxObjectIDsCount) {
       tracker.viewed(eventName: eventName ?? self.eventName,

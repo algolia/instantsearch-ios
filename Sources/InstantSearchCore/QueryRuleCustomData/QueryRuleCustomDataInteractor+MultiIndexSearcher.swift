@@ -36,7 +36,8 @@ public extension QueryRuleCustomDataInteractor {
 
     public func connect() {
       searcher.onResults.subscribe(with: interactor) { interactor, searchResponse in
-        interactor.extractModel(from: searchResponse.results[queryIndex])
+        guard let result = searchResponse.results[queryIndex].asSearchResponse else { return }
+        interactor.extractModel(from: result)
       }
     }
 

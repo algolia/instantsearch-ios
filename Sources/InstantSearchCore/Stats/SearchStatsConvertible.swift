@@ -7,6 +7,7 @@
 //
 
 import Foundation
+import Search
 
 public protocol SearchStatsConvertible {
   var searchStats: SearchStats { get }
@@ -19,21 +20,9 @@ extension SearchResponse: SearchStatsConvertible {
                  hitsPerPage: hitsPerPage ?? 20,
                  pagesCount: nbPages ?? 1,
                  page: page ?? 0,
-                 processingTimeMS: processingTimeMS.flatMap(Int.init) ?? 0,
+                 processingTimeMS: processingTimeMS ?? 0,
                  query: query,
                  queryID: queryID)
-  }
-}
-
-extension PlacesResponse: SearchStatsConvertible {
-  public var searchStats: SearchStats {
-    return .init(totalHitsCount: nbHits,
-                 hitsPerPage: nbHits,
-                 pagesCount: 1,
-                 page: 0,
-                 processingTimeMS: Int(processingTimeMS),
-                 query: query,
-                 queryID: nil)
   }
 }
 
@@ -43,7 +32,7 @@ extension FacetSearchResponse: SearchStatsConvertible {
                  hitsPerPage: facetHits.count,
                  pagesCount: 1,
                  page: 0,
-                 processingTimeMS: Int(processingTimeMS),
+                 processingTimeMS: processingTimeMS ?? 0,
                  query: nil,
                  queryID: nil)
   }

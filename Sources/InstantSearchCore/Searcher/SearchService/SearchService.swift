@@ -5,8 +5,8 @@
 //  Created by Vladislav Fitc on 25/11/2020.
 //
 
-import AlgoliaSearchClient
 import Foundation
+import Search
 
 /// Abstract search service
 public protocol SearchService {

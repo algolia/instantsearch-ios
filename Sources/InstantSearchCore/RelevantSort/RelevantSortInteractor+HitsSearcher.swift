@@ -38,10 +38,12 @@ public extension RelevantSortInteractor {
         searcher.search()
       }
       searcher.onResults.subscribePast(with: interactor) { interactor, searchResponse in
-        if let receivedRelevancyStrictness = searchResponse.appliedRelevancyStrictness {
-          let relevantSortPriority = RelevantSortPriority(relevancyStrictness: receivedRelevancyStrictness)
-          if relevantSortPriority != interactor.item {
-            interactor.item = relevantSortPriority
+        // In v9, appliedRelevancyStrictness is no longer available in the response
+        // We determine the sort state based on nbSortedHits presence
+        if let nbSortedHits = searchResponse.nbSortedHits, nbSortedHits > 0 {
+          // Relevant sort is applied
+          if interactor.item != .relevancy {
+            interactor.item = .relevancy
           }
         } else {
           interactor.item = .none
