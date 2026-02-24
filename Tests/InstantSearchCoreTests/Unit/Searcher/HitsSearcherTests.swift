@@ -114,21 +114,21 @@ class HitsSearcherTests: XCTestCase {
                                        tracker: testHitsTracker)
     let rawHits: [JSON] = [
       [
-        "objectID": "id1",
-        "title": "object1"
+        "objectID": AnyCodable("id1"),
+        "title": AnyCodable("object1")
       ],
       [
-        "objectID": "id2",
-        "title": "object2"
+        "objectID": AnyCodable("id2"),
+        "title": AnyCodable("object2")
       ],
       [
-        "objectID": "id3",
-        "title": "object3"
+        "objectID": AnyCodable("id3"),
+        "title": AnyCodable("object3")
       ]
     ]
-    
-    let hits = try! rawHits.map(Hit<JSON>.init)
-    searcher.onResults.fire(SearchResponse(hits: hits))
+
+    let hits = rawHits.map { Hit(object: $0) }
+    searcher.onResults.fire(makeSearchResponse(hits: hits))
   }
   
   func testAutomaticHitsViewTrackingOptOut() {
@@ -148,7 +148,7 @@ class HitsSearcherTests: XCTestCase {
                                        tracker: testHitsTracker)
     searcher.eventTracker.isEnabled = false
     
-    searcher.onResults.fire(SearchResponse(hits: []))
+    searcher.onResults.fire(makeSearchResponse())
     wait(for: [exp], timeout: 3)
   }
   

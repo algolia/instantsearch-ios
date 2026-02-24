@@ -20,7 +20,7 @@ class HitsTrackerTests: XCTestCase {
     static let customEventName: EventName = "custom event name"
     static let position = 10
     static let queryID: QueryID = "test query id"
-    static let object: [String: JSON] = ["field": "value"]
+    static let object: JSON = ["field": AnyCodable("value")]
   }
 
   let searcher = HitsSearcher(appID: Constants.appID, apiKey: Constants.apiKey, indexName: Constants.indexName)
@@ -33,7 +33,7 @@ class HitsTrackerTests: XCTestCase {
     return tracker
   }()
 
-  let hit = Hit<[String: JSON]>(object: Constants.object, objectID: Constants.objectID)
+  let hit = Hit<JSON>(object: Constants.object, objectID: Constants.objectID)
 
   func testClick() {
     let clickExpectation = expectation(description: #function)

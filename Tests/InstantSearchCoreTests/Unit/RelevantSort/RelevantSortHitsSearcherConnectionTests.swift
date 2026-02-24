@@ -35,11 +35,12 @@ class RelevantSortHitsSearcherConnectionTests: XCTestCase {
     let connection = RelevantSortInteractor.HitsSearcherConnection(interactor: interactor, searcher: searcher)
     connection.connect()
 
-    searcher.onResults.fire(SearchResponse().set(\.appliedRelevancyStrictness, to: 100))
+    // In v9, we use nbSortedHits to determine relevant sort state (appliedRelevancyStrictness is removed)
+    searcher.onResults.fire(makeSearchResponse().set(\.nbSortedHits, to: 100))
     XCTAssertEqual(interactor.item, .relevancy)
 
-    searcher.onResults.fire(SearchResponse().set(\.appliedRelevancyStrictness, to: 0))
-    XCTAssertEqual(interactor.item, .hitsCount)
+    searcher.onResults.fire(makeSearchResponse().set(\.nbSortedHits, to: nil))
+    XCTAssertEqual(interactor.item, .none)
 
     let relevancyPriorityExpectation = expectation(description: "Relevancy priority")
     searcher.onRequestChanged.subscribeOnce(with: self) { _, request in
@@ -66,11 +67,11 @@ class RelevantSortHitsSearcherConnectionTests: XCTestCase {
 
     interactor.connectSearcher(searcher)
 
-    searcher.onResults.fire(SearchResponse().set(\.appliedRelevancyStrictness, to: 100))
+    searcher.onResults.fire(makeSearchResponse().set(\.nbSortedHits, to: 100))
     XCTAssertEqual(interactor.item, .relevancy)
 
-    searcher.onResults.fire(SearchResponse().set(\.appliedRelevancyStrictness, to: 0))
-    XCTAssertEqual(interactor.item, .hitsCount)
+    searcher.onResults.fire(makeSearchResponse().set(\.nbSortedHits, to: nil))
+    XCTAssertEqual(interactor.item, .none)
 
     let relevancyPriorityExpectation = expectation(description: "Relevancy priority")
     searcher.onRequestChanged.subscribeOnce(with: self) { _, request in
@@ -99,10 +100,10 @@ class RelevantSortHitsSearcherConnectionTests: XCTestCase {
     connection.connect()
     connection.disconnect()
 
-    searcher.onResults.fire(SearchResponse().set(\.appliedRelevancyStrictness, to: 0))
+    searcher.onResults.fire(makeSearchResponse().set(\.nbSortedHits, to: nil))
     XCTAssertEqual(interactor.item, .relevancy)
 
-    searcher.onResults.fire(SearchResponse().set(\.appliedRelevancyStrictness, to: 100))
+    searcher.onResults.fire(makeSearchResponse().set(\.nbSortedHits, to: 100))
     XCTAssertEqual(interactor.item, .relevancy)
 
     let searchRequestExpectation = expectation(description: "Search request")

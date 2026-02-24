@@ -6,7 +6,6 @@
 //  Copyright © 2019 Algolia. All rights reserved.
 //
 
-import AlgoliaSearchClient
 import Foundation
 @testable import InstantSearchCore
 import XCTest
@@ -23,7 +22,7 @@ class StatsInteractorConnectorsTests: XCTestCase {
 
   func testConnectSearcher() {
     let vm = StatsInteractor()
-    let results = SearchResponse(hits: [TestRecord<Int>]())
+    let results = makeSearchResponse()
     let query = Query()
 
     let searcher = HitsSearcher(appID: "", apiKey: "", indexName: "", query: query)

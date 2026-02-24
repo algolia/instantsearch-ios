@@ -20,10 +20,10 @@ class FilterTrackerTests: XCTestCase {
     static let queryID: QueryID = "test query id"
 
     enum Filter {
-      static let facet = Facet(value: "test filter value", count: 10)
+      static let facet = FacetHits(value: "test filter value", highlighted: "test filter value", count: 10)
       static let attribute: Attribute = "test attribute"
       static let value = "test filter value"
-      static let serialized = "\"test attribute\":\"test filter value\""
+      static let serialized = "test attribute:\"test filter value\""
     }
   }
 
