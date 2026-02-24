@@ -41,8 +41,8 @@ public class MultiSearcher: AbstractMultiSearcher<AlgoliaMultiSearchService> {
        - apiKey: API Key
    */
   @available(*, deprecated, message: "Use init(appID:apiKey:requestOptions:) instead")
-  public convenience init(appID: ApplicationID,
-                          apiKey: APIKey) {
+  public convenience init(appID: String,
+                          apiKey: String) {
     self.init(appID: appID, apiKey: apiKey, requestOptions: nil)
   }
 
@@ -52,8 +52,8 @@ public class MultiSearcher: AbstractMultiSearcher<AlgoliaMultiSearchService> {
        - apiKey: API Key
        - requestOptions: Custom request options. Default is `nil`.
    */
-  public convenience init(appID: ApplicationID,
-                          apiKey: APIKey,
+  public convenience init(appID: String,
+                          apiKey: String,
                           requestOptions: RequestOptions? = nil) {
     let client = try! SearchClient(appID: appID, apiKey: apiKey)
     self.init(client: client, requestOptions: requestOptions)

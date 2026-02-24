@@ -86,9 +86,9 @@ public class MultiIndexSearcher: Searcher, SequencerDelegate, SearchResultObserv
    - indexNames: List of the indices names in which search will be performed
    - requestOptions: Custom request options. Default is nil.
    */
-  public convenience init(appID: ApplicationID,
-                          apiKey: APIKey,
-                          indexNames: [IndexName],
+  public convenience init(appID: String,
+                          apiKey: String,
+                          indexNames: [String],
                           requestOptions: RequestOptions? = nil) {
     let client = try! SearchClient(appID: appID, apiKey: apiKey)
     let indexQueryStates = indexNames.map { IndexQueryState(indexName: $0, query: .init()) }

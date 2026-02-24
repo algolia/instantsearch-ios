@@ -60,8 +60,8 @@ public final class FacetSearcher: IndexSearcher<FacetSearchService> {
    - query: Instance of Query. By default a new empty instant of Query will be created.
    - requestOptions: Custom request options. Default is `nil`.
    */
-  public convenience init(appID: ApplicationID,
-                          apiKey: APIKey,
+  public convenience init(appID: String,
+                          apiKey: String,
                           indexName: String,
                           facetName: String,
                           query: Query = .init(),

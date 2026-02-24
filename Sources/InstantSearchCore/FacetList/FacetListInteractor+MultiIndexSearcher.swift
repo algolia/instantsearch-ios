@@ -16,7 +16,7 @@ public extension FacetListInteractor {
     public let searcher: MultiIndexSearcher
 
     /// Faceting attribute
-    public let attribute: Attribute
+    public let attribute: String
 
     /// Index of query in the multi-index search
     public let queryIndex: Int
@@ -30,7 +30,7 @@ public extension FacetListInteractor {
      */
     public init(facetListInteractor: FacetListInteractor,
                 searcher: MultiIndexSearcher,
-                attribute: Attribute,
+                attribute: String,
                 queryIndex: Int) {
       self.facetListInteractor = facetListInteractor
       self.searcher = searcher

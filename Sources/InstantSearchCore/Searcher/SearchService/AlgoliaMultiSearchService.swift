@@ -16,7 +16,7 @@ public class AlgoliaMultiSearchService: MultiSearchService {
     self.client = client
   }
 
-  public convenience init(appID: ApplicationID, apiKey: APIKey) {
+  public convenience init(appID: String, apiKey: String) {
     self.init(client: try! SearchClient(appID: appID, apiKey: apiKey))
   }
 

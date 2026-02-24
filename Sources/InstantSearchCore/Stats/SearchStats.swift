@@ -45,7 +45,7 @@ public struct SearchStats: Codable {
   /// Mandatory when reporting click and conversion events
   /// Only reported when `clickAnalytics=true` in the `Query`
   ///
-  public let queryID: QueryID?
+  public let queryID: String?
 
   public init() {
     hitsPerPage = 0
@@ -65,7 +65,7 @@ public struct SearchStats: Codable {
               page: Int = 0,
               processingTimeMS: Int,
               query: String? = nil,
-              queryID: QueryID? = nil) {
+              queryID: String? = nil) {
     self.totalHitsCount = totalHitsCount
     self.nbSortedHits = nbSortedHits
     self.hitsPerPage = hitsPerPage ?? totalHitsCount

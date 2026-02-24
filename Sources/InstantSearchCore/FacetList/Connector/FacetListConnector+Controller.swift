@@ -15,7 +15,7 @@ public extension FacetListConnector {
                                                              interactor: FacetListInteractor = .init(),
                                                              controller: Controller,
                                                              presenter: SelectableListPresentable?,
-                                                             attribute: Attribute,
+                                                             attribute: String,
                                                              operator: RefinementOperator,
                                                              groupName: String?) {
     self.init(searcher: searcher,

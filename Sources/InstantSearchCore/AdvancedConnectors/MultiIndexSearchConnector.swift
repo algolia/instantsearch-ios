@@ -65,8 +65,8 @@ public struct MultiIndexSearchConnector: Connection {
      - queryInputInteractor: External query input interactor
      - queryInputController: Query input controller
    */
-  public init<QI: QueryInputController, HC: MultiIndexHitsController>(appID: ApplicationID,
-                                                                      apiKey: APIKey,
+  public init<QI: QueryInputController, HC: MultiIndexHitsController>(appID: String,
+                                                                      apiKey: String,
                                                                       indexModules: [MultiIndexHitsConnector.IndexModule],
                                                                       hitsController: HC,
                                                                       queryInputInteractor: QueryInputInteractor = .init(),

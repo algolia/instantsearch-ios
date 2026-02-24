@@ -6,6 +6,6 @@
 //
 import Foundation
 
-public extension Attribute {
+public extension String {
   static let tags = "_tags"
 }

@@ -73,10 +73,10 @@ public class DynamicFacetListConnector<Searcher: SearchResultObservable> where S
   public convenience init(searcher: Searcher,
                           filterState: FilterState = .init(),
                           orderedFacets: [AttributedFacets] = [],
-                          selections: [Attribute: Set<String>] = [:],
-                          selectionModeForAttribute: [Attribute: SelectionMode] = [:],
+                          selections: [String: Set<String>] = [:],
+                          selectionModeForAttribute: [String: SelectionMode] = [:],
                           defaultSelectionMode: SelectionMode = .single,
-                          filterGroupForAttribute: [Attribute: FilterGroupDescriptor] = [:],
+                          filterGroupForAttribute: [String: FilterGroupDescriptor] = [:],
                           defaultFilterGroupType: RefinementOperator = .and) {
     let interactor = DynamicFacetListInteractor(orderedFacets: orderedFacets,
                                                 selections: selections,
