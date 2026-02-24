@@ -18,7 +18,7 @@ public protocol InsightsTracker: AnyObject {
 public extension InsightsTracker {
   init(eventName: String,
        searcher: HitsSearcher,
-       userToken: UserToken? = .none) {
+       userToken: String? = .none) {
     // In v9, appID is internal on SearchClient - users should register Insights explicitly or use the other init
     guard let insights = Insights.shared else {
       fatalError("Insights must be registered before creating InsightsTracker. Call Insights.register(appId:apiKey:) first.")
@@ -40,7 +40,7 @@ public extension InsightsTracker {
   init(eventName: String,
        searcher: MultiIndexSearcher,
        pointer: Int,
-       userToken: UserToken? = .none) {
+       userToken: String? = .none) {
     guard let insights = Insights.shared else {
       fatalError("Insights must be registered before creating InsightsTracker. Call Insights.register(appId:apiKey:) first.")
     }

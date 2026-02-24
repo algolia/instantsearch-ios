@@ -18,20 +18,20 @@ protocol HitsAfterSearchTrackable {
                           objectIDsWithPositions: [(String, Int)],
                           queryID: String,
                           timestamp: Date?,
-                          userToken: UserToken?)
+                          userToken: String?)
 
   func convertedAfterSearch(eventName: String,
                             indexName: String,
                             objectIDs: [String],
                             queryID: String,
                             timestamp: Date?,
-                            userToken: UserToken?)
+                            userToken: String?)
 
   func viewed(eventName: String,
               indexName: String,
               objectIDs: [String],
               timestamp: Date?,
-              userToken: UserToken?)
+              userToken: String?)
 }
 
 extension Insights: HitsAfterSearchTrackable {}
