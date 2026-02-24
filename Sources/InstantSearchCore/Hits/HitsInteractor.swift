@@ -5,7 +5,6 @@
 //  Created by Guy Daher on 15/02/2019.
 //
 
-import AlgoliaSearchClient
 import Foundation
 
 /// Component that manages and displays a list of search results
@@ -164,8 +163,11 @@ public extension HitsInteractor {
 
 private extension HitsInteractor {
   func toRaw(_ hit: Record) -> [String: Any]? {
-    guard let json = try? JSON(hit) else { return nil }
-    return [String: Any](json)
+    guard let data = try? JSONEncoder().encode(hit),
+          let json = try? JSONSerialization.jsonObject(with: data, options: []) as? [String: Any] else {
+      return nil
+    }
+    return json
   }
 
   func cast<R: Decodable>(_ hit: Record) throws -> R {
@@ -179,7 +181,12 @@ private extension HitsInteractor {
 
 public extension HitsInteractor where Record == JSON {
   func rawHitForRow(_ row: Int) -> [String: Any]? {
-    return hit(atIndex: row).flatMap([String: Any].init)
+    guard let record = hit(atIndex: row),
+          let data = try? JSONEncoder().encode(record),
+          let json = try? JSONSerialization.jsonObject(with: data, options: []) as? [String: Any] else {
+      return nil
+    }
+    return json
   }
 }
 

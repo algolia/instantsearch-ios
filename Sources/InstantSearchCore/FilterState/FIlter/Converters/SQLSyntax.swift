@@ -54,8 +54,17 @@ extension Filter.Numeric: SQLSyntaxConvertible {
 extension Filter.Facet: SQLSyntaxConvertible {
   public var sqlForm: String {
     let scoreExpression = score.flatMap { "<score=\(String($0))>" } ?? ""
+    let valueString: String
+    switch value {
+    case let .string(value):
+      valueString = "\"\(value.escapingQuotes)\""
+    case let .bool(value):
+      valueString = value ? "true" : "false"
+    case let .number(value):
+      valueString = String(value)
+    }
     let expression = """
-    "\(attribute)":"\(value.description.escapingQuotes)\(scoreExpression)"
+    "\(attribute)":\(valueString)\(scoreExpression)
     """
     let prefix = isNegated ? "NOT " : ""
     return prefix + expression
@@ -101,5 +110,11 @@ extension FilterGroup.And: SQLSyntaxConvertible {
 extension FilterGroup.Or: SQLSyntaxConvertible {
   public var sqlForm: String {
     return groupSQLForm(for: filters, withSeparator: " OR ")
+  }
+}
+
+extension FilterGroup.Hierarchical: SQLSyntaxConvertible {
+  public var sqlForm: String {
+    return groupSQLForm(for: filters, withSeparator: " AND ")
   }
 }

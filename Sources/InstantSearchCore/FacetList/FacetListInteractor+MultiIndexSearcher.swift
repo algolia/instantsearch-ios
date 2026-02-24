@@ -5,7 +5,6 @@
 //  Created by Vladislav Fitc on 30/03/2021.
 //
 
-import AlgoliaSearchClient
 import Foundation
 public extension FacetListInteractor {
   @available(*, deprecated, message: "Use multiple HitsSearcher aggregated with MultiSearcher instead of MultiIndexSearcher")
@@ -43,7 +42,9 @@ public extension FacetListInteractor {
       // When new search results then update items
 
       searcher.onResults.subscribePast(with: facetListInteractor) { [attribute] interactor, response in
-        interactor.items = response.results[queryIndex].disjunctiveFacets?[attribute] ?? response.results[queryIndex].facets?[attribute] ?? []
+        guard let result = response.results[queryIndex].asSearchResponse else { return }
+        let facets = result.facets?[attribute] ?? [:]
+        interactor.items = facets.map { FacetHits(value: $0.key, highlighted: $0.key, count: $0.value) }
       }
 
       searcher.indexQueryStates[queryIndex].query.updateQueryFacets(with: attribute)

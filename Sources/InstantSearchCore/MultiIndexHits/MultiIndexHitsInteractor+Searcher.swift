@@ -7,6 +7,7 @@
 //
 
 import Foundation
+import Search
 
 @available(*, deprecated, message: "Use multiple HitsSearcher aggregated with MultiSearcher instead of MultiIndexSearcher")
 public extension MultiIndexHitsInteractor {
@@ -22,7 +23,15 @@ public extension MultiIndexHitsInteractor {
       }
 
       searcher.onResults.subscribePast(with: interactor) { interactor, searchResults in
-        interactor.update(searchResults.results)
+        let responses: [SearchResponse] = searchResults.results.compactMap { result in
+          switch result {
+          case let .searchResponse(response):
+            return response
+          case .searchForFacetValuesResponse:
+            return nil
+          }
+        }
+        interactor.update(responses)
       }
 
       searcher.onError.subscribe(with: interactor) { interactor, args in

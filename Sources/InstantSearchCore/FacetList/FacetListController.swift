@@ -8,4 +8,4 @@
 
 import Foundation
 
-public protocol FacetListController: SelectableListController where Item == Facet {}
+public protocol FacetListController: SelectableListController where Item == FacetHits {}

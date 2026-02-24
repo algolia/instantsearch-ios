@@ -6,7 +6,6 @@
 //  Copyright © 2019 Algolia. All rights reserved.
 //
 
-import AlgoliaSearchClient
 import Foundation
 /**
  Interactor which constitutes the aggregation of nested hits interactors providing a convenient functions for managing them.

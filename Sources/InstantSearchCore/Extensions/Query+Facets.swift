@@ -9,7 +9,8 @@
 import Foundation
 
 extension Query {
-  mutating func updateQueryFacets(with attribute: Attribute) {
-    facets = (facets ?? []).union([attribute])
+  mutating func updateQueryFacets(with attribute: String) {
+    let existing = facets ?? []
+    facets = Array(Set(existing + [attribute]))
   }
 }

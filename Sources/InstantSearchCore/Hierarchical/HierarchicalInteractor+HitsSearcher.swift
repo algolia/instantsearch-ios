@@ -6,7 +6,6 @@
 //  Copyright © 2019 Algolia. All rights reserved.
 //
 
-import AlgoliaSearchClient
 import Foundation
 public extension HierarchicalInteractor {
   @available(*, deprecated, renamed: "HitsSearcherConnection")
@@ -22,11 +21,11 @@ public extension HierarchicalInteractor {
       }
 
       searcher.onResults.subscribePast(with: interactor) { interactor, searchResults in
-
         if let hierarchicalFacets = searchResults.hierarchicalFacets {
           interactor.item = interactor.hierarchicalAttributes.map { hierarchicalFacets[$0] }.compactMap { $0 }
         } else if let firstHierarchicalAttribute = interactor.hierarchicalAttributes.first {
-          interactor.item = searchResults.facets?[firstHierarchicalAttribute].flatMap { [$0] } ?? []
+          let facets = searchResults.facets?[firstHierarchicalAttribute] ?? [:]
+          interactor.item = [facets.map { FacetHits(value: $0.key, highlighted: $0.key, count: $0.value) }]
         } else {
           interactor.item = []
         }

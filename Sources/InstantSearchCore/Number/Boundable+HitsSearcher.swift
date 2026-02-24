@@ -6,7 +6,6 @@
 //  Copyright © 2019 Algolia. All rights reserved.
 //
 
-import AlgoliaSearchClient
 import Foundation
 
 @available(*, deprecated, renamed: "HitsSearcherConnection")
@@ -21,7 +20,7 @@ public struct BoundableHitsSearcherConnection<B: Boundable>: Connection {
     let attribute = self.attribute
     searcher.request.query.updateQueryFacets(with: attribute)
     searcher.onResults.subscribePastOnce(with: boundable) { boundable, searchResults in
-      boundable.computeBoundsFromFacetStats(attribute: attribute, facetStats: searchResults.facetStats)
+      boundable.computeBoundsFromFacetStats(attribute: attribute, facetStats: searchResults.facetsStats)
     }
   }
 
@@ -37,12 +36,16 @@ extension Boundable {
     return connection
   }
 
-  func computeBoundsFromFacetStats(attribute: Attribute, facetStats: [Attribute: FacetStats]?) {
+  func computeBoundsFromFacetStats(attribute: String, facetStats: [String: FacetStats]?) {
     guard let facetStats = facetStats, let facetStatsOfAttribute = facetStats[attribute] else {
       applyBounds(bounds: nil)
       return
     }
 
-    applyBounds(bounds: Number(facetStatsOfAttribute.min)...Number(facetStatsOfAttribute.max))
+    guard let min = facetStatsOfAttribute.min, let max = facetStatsOfAttribute.max else {
+      applyBounds(bounds: nil)
+      return
+    }
+    applyBounds(bounds: Number(min)...Number(max))
   }
 }

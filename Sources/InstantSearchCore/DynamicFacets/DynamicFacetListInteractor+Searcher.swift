@@ -61,9 +61,10 @@ public extension DynamicFacetListInteractor {
       orderedFacets = []
       return
     }
-    let commonFacets = searchResponse.facets ?? [:]
-    let disjunctiveFacets = searchResponse.disjunctiveFacets ?? [:]
-    let facets = disjunctiveFacets.merging(commonFacets, uniquingKeysWith: { disjunctiveFacets, _ in disjunctiveFacets })
+    let facets = (searchResponse.facets ?? [:])
+      .mapValues { values in
+        values.map { FacetHits(value: $0.key, highlighted: $0.key, count: $0.value) }
+      }
     orderedFacets = FacetsOrderer(facetOrder: facetOrdering, facets: facets)()
   }
 }

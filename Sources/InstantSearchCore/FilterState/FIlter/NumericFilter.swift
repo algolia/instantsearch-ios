@@ -17,10 +17,10 @@ public extension Filter {
   struct Numeric: FilterType, Equatable {
     public enum ValueType: Hashable {
       case range(ClosedRange<Double>)
-      case comparison(Operator, Double)
+      case comparison(NumericOperator, Double)
     }
 
-    public enum Operator: String, CustomStringConvertible {
+    public enum NumericOperator: String, CustomStringConvertible {
       case lessThan = "<"
       case lessThanOrEqual = "<="
       case equals = "="
@@ -28,7 +28,7 @@ public extension Filter {
       case greaterThanOrEqual = ">="
       case greaterThan = ">"
 
-      var inversion: Operator {
+      var inversion: NumericOperator {
         switch self {
         case .equals:
           return .notEquals
@@ -50,21 +50,24 @@ public extension Filter {
       }
     }
 
-    public let attribute: Attribute
+    @available(*, deprecated, renamed: "NumericOperator")
+    public typealias Operator = NumericOperator
+
+    public let attribute: String
     public let value: ValueType
     public var isNegated: Bool
 
-    init(attribute: Attribute, value: ValueType, isNegated: Bool) {
+    init(attribute: String, value: ValueType, isNegated: Bool) {
       self.attribute = attribute
       self.isNegated = isNegated
       self.value = value
     }
 
-    public init(attribute: Attribute, range: ClosedRange<Double>, isNegated: Bool = false) {
+    public init(attribute: String, range: ClosedRange<Double>, isNegated: Bool = false) {
       self.init(attribute: attribute, value: .range(range), isNegated: isNegated)
     }
 
-    public init(attribute: Attribute, operator: Operator, value: Double, isNegated: Bool = false) {
+    public init(attribute: String, operator: NumericOperator, value: Double, isNegated: Bool = false) {
       self.init(attribute: attribute, value: .comparison(`operator`, value), isNegated: isNegated)
     }
   }
