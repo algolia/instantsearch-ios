@@ -17,8 +17,8 @@ public extension MultiIndexHitsConnector {
       - controller: Controller interfacing with a concrete multi-index hits view
    */
   @available(*, deprecated, message: "Use multiple HitsSearcher aggregated with MultiSearcher instead of MultiIndexSearcher")
-  convenience init<Controller: MultiIndexHitsController>(appID: ApplicationID,
-                                                         apiKey: APIKey,
+  convenience init<Controller: MultiIndexHitsController>(appID: String,
+                                                         apiKey: String,
                                                          indexModules: [IndexModule],
                                                          controller: Controller) {
     let searcher = MultiIndexSearcher(appID: appID,

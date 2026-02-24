@@ -15,7 +15,7 @@ import Foundation
 
 public extension Filter {
   struct Tag: FilterType, Equatable {
-    public let attribute: String = Attribute.tags
+    public let attribute: String = String.tags
     public var isNegated: Bool
     public let value: String
 

@@ -60,8 +60,8 @@ public extension HitsConnector {
       - controller: Controller interfacing with a concrete hits view
       - externalReload: Defines if controller will be updated automatically by the events or manually
    */
-  convenience init<Controller: HitsController>(appID: ApplicationID,
-                                               apiKey: APIKey,
+  convenience init<Controller: HitsController>(appID: String,
+                                               apiKey: String,
                                                indexName: String,
                                                infiniteScrolling: InfiniteScrolling = Constants.Defaults.infiniteScrolling,
                                                showItemsOnEmptyQuery: Bool = Constants.Defaults.showItemsOnEmptyQuery,

@@ -101,8 +101,8 @@ public extension HitsConnector {
       - showItemsOnEmptyQuery: If false, no results are displayed when the user hasn’t entered any query text.
       - filterState: FilterState that holds your filters
    */
-  convenience init(appID: ApplicationID,
-                   apiKey: APIKey,
+  convenience init(appID: String,
+                   apiKey: String,
                    indexName: String,
                    infiniteScrolling: InfiniteScrolling = Constants.Defaults.infiniteScrolling,
                    showItemsOnEmptyQuery: Bool = Constants.Defaults.showItemsOnEmptyQuery,

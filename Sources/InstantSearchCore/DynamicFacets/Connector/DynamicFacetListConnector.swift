@@ -41,7 +41,7 @@ public class DynamicFacetListConnector<Searcher: SearchResultObservable> where S
   public init(searcher: Searcher,
               filterState: FilterState = .init(),
               interactor: DynamicFacetListInteractor,
-              filterGroupForAttribute: [Attribute: FilterGroupDescriptor] = [:],
+              filterGroupForAttribute: [String: FilterGroupDescriptor] = [:],
               defaultFilterGroupType: RefinementOperator = .and) {
     self.searcher = searcher
     self.filterState = filterState

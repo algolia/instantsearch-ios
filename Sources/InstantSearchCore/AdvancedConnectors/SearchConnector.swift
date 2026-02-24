@@ -185,9 +185,9 @@ public extension SearchConnector {
    - filterState: Filter state
    */
   @available(*, deprecated, renamed: "init(appID:apiKey:indexName:searchBoxInteractor:searchBoxController:hitsInteractor:hitsController:filterState:)")
-  init<HC: HitsController, SBC: SearchBoxController>(appID: ApplicationID,
-                                                     apiKey: APIKey,
-                                                     indexName: IndexName,
+  init<HC: HitsController, SBC: SearchBoxController>(appID: String,
+                                                     apiKey: String,
+                                                     indexName: String,
                                                      queryInputInteractor: SearchBoxInteractor = .init(),
                                                      queryInputController: SBC,
                                                      hitsInteractor: HitsInteractor<Record>,

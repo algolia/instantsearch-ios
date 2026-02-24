@@ -65,7 +65,7 @@ public extension FacetListInteractor {
    */
   @available(*, deprecated, message: "Use multiple HitsSearcher aggregated with MultiSearcher instead of MultiIndexSearcher")
   @discardableResult func connectSearcher(_ searcher: MultiIndexSearcher,
-                                          with attribute: Attribute,
+                                          with attribute: String,
                                           queryIndex: Int) -> MultiIndexSearcherConnection {
     let connection = MultiIndexSearcherConnection(facetListInteractor: self,
                                                   searcher: searcher,

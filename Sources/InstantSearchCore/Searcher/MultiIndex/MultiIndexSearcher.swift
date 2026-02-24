@@ -55,7 +55,7 @@ public class MultiIndexSearcher: Searcher, SequencerDelegate, SearchResultObserv
 
   /// Triggered when an index of a query changed
   /// - Parameter: a tuple of a index of query for which the indexName has changed and the new indexName
-  public let onIndexChanged: Observer<(Int, IndexName)>
+  public let onIndexChanged: Observer<(Int, String)>
 
   /// Custom request options
   public var requestOptions: RequestOptions?

@@ -14,7 +14,7 @@ public typealias BoundableSingleIndexSearcherConnection = BoundableHitsSearcherC
 public struct BoundableHitsSearcherConnection<B: Boundable>: Connection {
   public let boundable: B
   public let searcher: HitsSearcher
-  public let attribute: Attribute
+  public let attribute: String
 
   public func connect() {
     let attribute = self.attribute
@@ -30,7 +30,7 @@ public struct BoundableHitsSearcherConnection<B: Boundable>: Connection {
 }
 
 extension Boundable {
-  @discardableResult public func connectSearcher(_ searcher: HitsSearcher, attribute: Attribute) -> BoundableHitsSearcherConnection<Self> {
+  @discardableResult public func connectSearcher(_ searcher: HitsSearcher, attribute: String) -> BoundableHitsSearcherConnection<Self> {
     let connection = BoundableHitsSearcherConnection(boundable: self, searcher: searcher, attribute: attribute)
     connection.connect()
     return connection

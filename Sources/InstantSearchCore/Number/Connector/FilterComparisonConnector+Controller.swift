@@ -22,7 +22,7 @@ public extension FilterComparisonConnector {
    */
   convenience init<Controller: NumberController>(searcher: HitsSearcher,
                                                  filterState: FilterState,
-                                                 attribute: Attribute,
+                                                 attribute: String,
                                                  numericOperator: Filter.Numeric.Operator,
                                                  number: Number,
                                                  bounds: ClosedRange<Number>?,
