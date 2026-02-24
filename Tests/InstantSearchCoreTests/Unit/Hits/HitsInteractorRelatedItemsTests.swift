@@ -37,14 +37,18 @@ class HitsInteractorRelatedItemsTests: XCTestCase {
     let hit: ObjectWrapper<Product> = .init(objectID: "objectID123", object: product)
     hitsInteractor.connectSearcher(searcher, withRelatedItemsTo: hit, with: matchingPatterns)
 
-    let expectedOptionalFilter: FiltersStorage = [
-      .and("brand:Amazon<score=3>"),
-      .or("categories:Streaming Media Players<score=2>", "categories:TV & Home Theater<score=2>"),
-      .and("type:Streaming media plyr<score=10>")
+    let expectedOptionalFilters = [
+      "brand:Amazon<score=3>",
+      "categories:Streaming Media Players<score=2>",
+      "categories:TV & Home Theater<score=2>",
+      "type:Streaming media plyr<score=10>"
     ]
+    let expectedFilters = FilterGroupConverter().sql([
+      FilterGroup.And(filters: [Filter.Facet(attribute: "objectID", stringValue: "objectID123", isNegated: true)])
+    ])
 
     XCTAssertEqual(searcher.request.query.sumOrFiltersScores, true)
-    XCTAssertEqual(searcher.request.query.optionalFilters?.units, expectedOptionalFilter.units)
-    XCTAssertEqual(searcher.request.query.facetFilters?.units, (["objectID:-objectID123"] as FiltersStorage).units)
+    XCTAssertEqual(Set(searcher.request.query.optionalFilters ?? []), Set(expectedOptionalFilters))
+    XCTAssertEqual(searcher.request.query.filters, expectedFilters)
   }
 }

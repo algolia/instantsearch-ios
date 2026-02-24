@@ -24,12 +24,13 @@ class EventTrackerTests: XCTestCase {
     let exp = expectation(description: "Wait for event processor callback")
 
     eventProcessor.didProcess = { event in
-      XCTAssertEqual(event.type, .view)
+      XCTAssertEqual(event.eventType, .viewedObjectIDs)
       XCTAssertEqual(event.indexName, TestEvent.indexName)
-      XCTAssertEqual(event.name, TestEvent.eventName)
+      XCTAssertEqual(event.eventName, TestEvent.eventName)
       XCTAssertEqual(event.userToken, TestEvent.userToken)
       XCTAssertNil(event.queryID)
-      XCTAssertEqual(event.resources, .objectIDs(TestEvent.objectIDs))
+      XCTAssertEqual(event.objectIDs, TestEvent.objectIDs)
+      XCTAssertNil(event.filters)
       exp.fulfill()
     }
 
@@ -46,12 +47,13 @@ class EventTrackerTests: XCTestCase {
     let exp = expectation(description: "Wait for event processor callback")
 
     eventProcessor.didProcess = { event in
-      XCTAssertEqual(event.type, .view)
+      XCTAssertEqual(event.eventType, .viewedFilters)
       XCTAssertEqual(event.indexName, TestEvent.indexName)
-      XCTAssertEqual(event.name, TestEvent.eventName)
+      XCTAssertEqual(event.eventName, TestEvent.eventName)
       XCTAssertEqual(event.userToken, TestEvent.userToken)
       XCTAssertNil(event.queryID)
-      XCTAssertEqual(event.resources, .filters(TestEvent.filters))
+      XCTAssertEqual(event.filters, FilterFacet.parseFilters(TestEvent.filters))
+      XCTAssertNil(event.objectIDs)
       exp.fulfill()
     }
 
@@ -68,12 +70,13 @@ class EventTrackerTests: XCTestCase {
     let exp = expectation(description: "Wait for event processor callback")
 
     eventProcessor.didProcess = { event in
-      XCTAssertEqual(event.type, .click)
+      XCTAssertEqual(event.eventType, .clickedObjectIDs)
       XCTAssertEqual(event.indexName, TestEvent.indexName)
-      XCTAssertEqual(event.name, TestEvent.eventName)
+      XCTAssertEqual(event.eventName, TestEvent.eventName)
       XCTAssertEqual(event.userToken, TestEvent.userToken)
       XCTAssertNil(event.queryID)
-      XCTAssertEqual(event.resources, .objectIDs(TestEvent.objectIDs))
+      XCTAssertEqual(event.objectIDs, TestEvent.objectIDs)
+      XCTAssertNil(event.filters)
       exp.fulfill()
     }
 
@@ -90,12 +93,13 @@ class EventTrackerTests: XCTestCase {
     let exp = expectation(description: "Wait for event processor callback")
 
     eventProcessor.didProcess = { event in
-      XCTAssertEqual(event.type, .click)
+      XCTAssertEqual(event.eventType, .clickedFilters)
       XCTAssertEqual(event.indexName, TestEvent.indexName)
-      XCTAssertEqual(event.name, TestEvent.eventName)
+      XCTAssertEqual(event.eventName, TestEvent.eventName)
       XCTAssertEqual(event.userToken, TestEvent.userToken)
       XCTAssertNil(event.queryID)
-      XCTAssertEqual(event.resources, .filters(TestEvent.filters))
+      XCTAssertEqual(event.filters, FilterFacet.parseFilters(TestEvent.filters))
+      XCTAssertNil(event.objectIDs)
       exp.fulfill()
     }
 
@@ -112,13 +116,13 @@ class EventTrackerTests: XCTestCase {
     let exp = expectation(description: "Wait for event processor callback")
 
     eventProcessor.didProcess = { event in
-      XCTAssertEqual(event.type, .conversion)
-
+      XCTAssertEqual(event.eventType, .convertedObjectIDs)
       XCTAssertEqual(event.indexName, TestEvent.indexName)
-      XCTAssertEqual(event.name, TestEvent.eventName)
+      XCTAssertEqual(event.eventName, TestEvent.eventName)
       XCTAssertEqual(event.userToken, TestEvent.userToken)
       XCTAssertNil(event.queryID)
-      XCTAssertEqual(event.resources, .objectIDs(TestEvent.objectIDs))
+      XCTAssertEqual(event.objectIDs, TestEvent.objectIDs)
+      XCTAssertNil(event.filters)
       exp.fulfill()
     }
 
@@ -135,12 +139,13 @@ class EventTrackerTests: XCTestCase {
     let exp = expectation(description: "Wait for event processor callback")
 
     eventProcessor.didProcess = { event in
-      XCTAssertEqual(event.type, .conversion)
+      XCTAssertEqual(event.eventType, .convertedFilters)
       XCTAssertEqual(event.indexName, TestEvent.indexName)
-      XCTAssertEqual(event.name, TestEvent.eventName)
+      XCTAssertEqual(event.eventName, TestEvent.eventName)
       XCTAssertEqual(event.userToken, TestEvent.userToken)
       XCTAssertNil(event.queryID)
-      XCTAssertEqual(event.resources, .filters(TestEvent.filters))
+      XCTAssertEqual(event.filters, FilterFacet.parseFilters(TestEvent.filters))
+      XCTAssertNil(event.objectIDs)
       exp.fulfill()
     }
 

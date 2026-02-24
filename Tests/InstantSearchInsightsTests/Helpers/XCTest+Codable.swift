@@ -5,9 +5,11 @@
 //  Created by Vladislav Fitc on 11.03.2020.
 //
 
-@testable import AlgoliaSearchClient
+import Core
 import Foundation
 import XCTest
+
+typealias JSON = [String: AnyCodable]
 
 func AssertEncodeDecode<T: Codable>(_ value: T, _ rawValue: JSON, file: StaticString = #file, line: UInt = #line) throws {
   try AssertEncode(value, expected: rawValue, file: file, line: line)
@@ -19,7 +21,6 @@ func AssertDecode<T: Codable & Equatable>(_ input: JSON, expected: T, file: Stat
   let data = try encoder.encode(input)
 
   let jsonDecoder = JSONDecoder()
-  jsonDecoder.dateDecodingStrategy = .swiftAPIClient
   let decoded = try jsonDecoder.decode(T.self, from: data)
 
   XCTAssertEqual(expected, decoded, file: file, line: line)
@@ -32,8 +33,8 @@ func AssertDecode<T: Codable>(_ input: JSON, expected: T, file: StaticString = #
   let jsonDecoder = JSONDecoder()
   let decoded = try jsonDecoder.decode(T.self, from: data)
 
-  let decodedJSON = try JSON(decoded)
-  let expectedJSON = try JSON(expected)
+  let decodedJSON = try encodeToJSON(decoded)
+  let expectedJSON = try encodeToJSON(expected)
 
   XCTAssertEqual(expectedJSON, decodedJSON, file: file, line: line)
 }
@@ -53,4 +54,11 @@ func AssertEquallyEncoded<A: Encodable, B: Encodable>(_ l: A, _ r: B, file: Stat
   let lData = try encoder.encode(l)
   let rData = try encoder.encode(r)
   XCTAssertEqual(lData, rData, file: file, line: line)
+}
+
+private func encodeToJSON<T: Encodable>(_ value: T) throws -> JSON {
+  let encoder = JSONEncoder()
+  let data = try encoder.encode(value)
+  let decoder = JSONDecoder()
+  return try decoder.decode(JSON.self, from: data)
 }

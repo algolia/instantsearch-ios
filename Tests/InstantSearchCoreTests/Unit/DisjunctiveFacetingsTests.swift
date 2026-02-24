@@ -6,7 +6,6 @@
 //  Copyright © 2019 Algolia. All rights reserved.
 //
 
-import AlgoliaSearchClient
 import Foundation
 @testable import InstantSearchCore
 import XCTest
@@ -27,9 +26,9 @@ class DisjunctiveFacetingTests: XCTestCase {
     do {
       let output = try queryBuilder.aggregate([res1, res2, res3])
       XCTAssertEqual(output.facetStats?.count, 2)
-      XCTAssertEqual(output.disjunctiveFacets?.count, 2)
-      XCTAssertEqual(output.disjunctiveFacets?.map { $0.key }.contains("price"), true)
-      XCTAssertEqual(output.disjunctiveFacets?.map { $0.key }.contains("pubYear"), true)
+      XCTAssertEqual(output.facets?.count, 2)
+      XCTAssertEqual(output.facets?.map { $0.key }.contains("price"), true)
+      XCTAssertEqual(output.facets?.map { $0.key }.contains("pubYear"), true)
     } catch {
       XCTFail("\(error)")
     }
@@ -82,7 +81,6 @@ class DisjunctiveFacetingTests: XCTestCase {
 
     let hierarchicalAttributes = (0...3)
       .map { "category.lvl\($0)" }
-      .map(Attribute.init(rawValue:))
 
     let hierarchicalFilters: [Filter.Facet] = [
       .init(attribute: "category.lvl0", stringValue: "a"),

@@ -107,7 +107,7 @@ class HitsInteractorControllerConnectionTester {
       resultsUpdatedExpectation.fulfill()
     }
 
-    interactor.onResultsUpdated.fire(SearchResponse(hits: [TestRecord<Int>]()))
+    interactor.onResultsUpdated.fire(makeSearchResponse())
 
     source.waitForExpectations(timeout: 2, handler: .none)
   }

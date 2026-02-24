@@ -6,20 +6,19 @@
 //  Copyright © 2019 Algolia. All rights reserved.
 //
 
-import AlgoliaSearchClient
 import Foundation
 @testable import InstantSearchCore
 import XCTest
 
 class FacetListInteractorTests: XCTestCase {
   class TestController: FacetListController {
-    typealias Item = Facet
+    typealias Item = FacetHits
 
-    var onClick: ((Facet) -> Void)?
+    var onClick: ((FacetHits) -> Void)?
     var didReload: (() -> Void)?
-    var selectableItems: [(item: Facet, isSelected: Bool)] = []
+    var selectableItems: [(item: FacetHits, isSelected: Bool)] = []
 
-    func setSelectableItems(selectableItems: [(item: Facet, isSelected: Bool)]) {
+    func setSelectableItems(selectableItems: [(item: FacetHits, isSelected: Bool)]) {
       self.selectableItems = selectableItems
     }
 
@@ -43,9 +42,9 @@ class FacetListInteractorTests: XCTestCase {
     let interactor = FacetListInteractor(selectionMode: .single)
 
     interactor.items = [
-      Facet(value: "cat1", count: 10, highlighted: nil),
-      Facet(value: "cat2", count: 5, highlighted: nil),
-      Facet(value: "cat3", count: 5, highlighted: nil)
+      FacetHits(value: "cat1", highlighted: "cat1", count: 10),
+      FacetHits(value: "cat2", highlighted: "cat2", count: 5),
+      FacetHits(value: "cat3", highlighted: "cat3", count: 5)
     ]
 
     let filterState = FilterState()
@@ -70,7 +69,7 @@ class FacetListInteractorTests: XCTestCase {
     let interactor = FacetListInteractor(selectionMode: .single)
 
     let query = Query()
-    let searcher = HitsSearcher(client: .init(appID: "", apiKey: ""), indexName: "", query: query)
+    let searcher = HitsSearcher(appID: "", apiKey: "", indexName: "", query: query)
 
     interactor.connectSearcher(searcher, with: "type")
 
@@ -79,11 +78,11 @@ class FacetListInteractorTests: XCTestCase {
 
       searcher.onResults.fire(results)
 
-      let expectedFacets: Set<Facet> = [
-        .init(value: "book", count: 357, highlighted: nil),
-        .init(value: "electronics", count: 184, highlighted: nil),
-        .init(value: "gifts", count: 27, highlighted: nil),
-        .init(value: "office", count: 28, highlighted: nil)
+      let expectedFacets: Set<FacetHits> = [
+        .init(value: "book", highlighted: "book", count: 357),
+        .init(value: "electronics", highlighted: "electronics", count: 184),
+        .init(value: "gifts", highlighted: "gifts", count: 27),
+        .init(value: "office", highlighted: "office", count: 28)
       ]
 
       XCTAssertEqual(Set(interactor.items), expectedFacets)
@@ -93,33 +92,4 @@ class FacetListInteractorTests: XCTestCase {
     }
   }
 
-  @available(*, deprecated, message: "Test to remove when MulstIndexSearcher obsoleted")
-  func testConnectMultiIndexSearcher() {
-    let interactor = FacetListInteractor(selectionMode: .single)
-
-    let searcher = MultiIndexSearcher(appID: "", apiKey: "", indexNames: ["index1", "index2"])
-
-    interactor.connectSearcher(searcher, with: "kind", queryIndex: 1)
-
-    do {
-      let results1: SearchResponse = try JSONDecoder().decode(fromResource: "SearchResultFacets", withExtension: "json")
-      let results2: SearchResponse = try JSONDecoder().decode(fromResource: "SearchResultFacets2", withExtension: "json")
-
-      let searchResponses = SearchesResponse(results: [results1, results2])
-
-      searcher.onResults.fire(searchResponses)
-
-      let expectedFacets: Set<Facet> = [
-        .init(value: "gadgets", count: 111, highlighted: nil),
-        .init(value: "stuff", count: 98, highlighted: nil),
-        .init(value: "things", count: 28, highlighted: nil),
-        .init(value: "others", count: 16, highlighted: nil)
-      ]
-
-      XCTAssertEqual(Set(interactor.items), expectedFacets)
-
-    } catch {
-      XCTFail(error.localizedDescription)
-    }
-  }
 }

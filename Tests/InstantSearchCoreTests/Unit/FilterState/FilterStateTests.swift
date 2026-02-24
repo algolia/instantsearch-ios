@@ -525,15 +525,15 @@ class FilterStateTests: XCTestCase {
     filterState.add(filterFacet3, toGroupWithID: groupFacetsAnd)
 
     let expectedResult = """
-    ( "type":"equipment<score=3>" ) AND ( "category":"chair<score=10>" OR "category":"table<score=5>" )
+    ( "type":"equipment"<score=3> ) AND ( "category":"chair"<score=10> OR "category":"table"<score=5> )
     """
 
     XCTAssertEqual(filterState.buildSQL(), expectedResult)
 
-    let expectedResultLegacy: FiltersStorage? = [
-      .and("type:equipment<score=3>"),
-      .or("category:chair<score=10>", "category:table<score=5>")
-    ]
-    XCTAssertEqual(FilterGroupConverter().legacy(filterState.toFilterGroups())?.units, expectedResultLegacy?.units)
+    let expectedResultLegacy = FiltersStorage(units: [
+      .and(["type:equipment<score=3>"]),
+      .or(["category:chair<score=10>", "category:table<score=5>"])
+    ])
+    XCTAssertEqual(FilterGroupConverter().legacy(filterState.toFilterGroups())?.units, expectedResultLegacy.units)
   }
 }

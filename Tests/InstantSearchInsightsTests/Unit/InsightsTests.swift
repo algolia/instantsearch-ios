@@ -5,7 +5,6 @@
 //  Copyright © 2018 Algolia. All rights reserved.
 //
 
-import AlgoliaSearchClient
 @testable import InstantSearchInsights
 import XCTest
 

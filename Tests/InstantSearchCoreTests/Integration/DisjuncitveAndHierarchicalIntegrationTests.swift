@@ -6,7 +6,6 @@
 //  Copyright © 2019 Algolia. All rights reserved.
 //
 
-import AlgoliaSearchClient
 import Foundation
 @testable import InstantSearchCore
 import XCTest
@@ -17,19 +16,19 @@ class DisjuncitveAndHierarchicalIntegrationTests: OnlineTestCase {
     let hierarchicalCategories: [String: String]
   }
 
-  static func attribute(for level: Int) -> Attribute {
-    return .init(rawValue: "hierarchicalCategories.lvl\(level)")
+  static func attribute(for level: Int) -> String {
+    return "hierarchicalCategories.lvl\(level)"
   }
 
   let lvl0 = attribute(for: 0)
   let lvl1 = attribute(for: 1)
   let lvl2 = attribute(for: 2)
 
-  var hierarchicalAttributes: [Attribute] {
+  var hierarchicalAttributes: [String] {
     return [lvl0, lvl1, lvl2]
   }
 
-  let colorAttribute: Attribute = "color"
+  let colorAttribute = "color"
 
   let cat1 = "Category1"
   let cat2 = "Category2"
@@ -45,7 +44,7 @@ class DisjuncitveAndHierarchicalIntegrationTests: OnlineTestCase {
   let cat3_2_1 = "Category3 > SubCategory2 > SubSubCategory1"
   let cat3_2_2 = "Category3 > SubCategory2 > SubSubCategory2"
 
-  var facetAttributes: [Attribute] {
+  var facetAttributes: [String] {
     return hierarchicalAttributes + [colorAttribute]
   }
 
@@ -57,24 +56,24 @@ class DisjuncitveAndHierarchicalIntegrationTests: OnlineTestCase {
   }
 
   func testDisjuncitiveHierarchical() {
-    let expectedHierarchicalFacets: [(Attribute, [Facet])] = [
+    let expectedHierarchicalFacets: [(String, [FacetHits])] = [
       (lvl0, [
-        .init(value: cat3, count: 2, highlighted: nil),
-        .init(value: cat2, count: 1, highlighted: nil)
+        .init(value: cat3, highlighted: cat3, count: 2),
+        .init(value: cat2, highlighted: cat2, count: 1)
       ]),
       (lvl1, [
-        .init(value: cat3_2, count: 2, highlighted: nil)
+        .init(value: cat3_2, highlighted: cat3_2, count: 2)
       ]),
       (lvl2, [
-        .init(value: cat3_2_1, count: 1, highlighted: nil),
-        .init(value: cat3_2_2, count: 1, highlighted: nil)
+        .init(value: cat3_2_1, highlighted: cat3_2_1, count: 1),
+        .init(value: cat3_2_2, highlighted: cat3_2_2, count: 1)
       ])
     ]
 
-    let expectedDisjunctiveFacets: [(Attribute, [Facet])] = [
+    let expectedDisjunctiveFacets: [(String, [FacetHits])] = [
       (colorAttribute, [
-        Facet(value: "red", count: 2, highlighted: nil),
-        Facet(value: "blue", count: 1, highlighted: nil)
+        FacetHits(value: "red", highlighted: "red", count: 2),
+        FacetHits(value: "blue", highlighted: "blue", count: 1)
       ])
     ]
 
@@ -92,7 +91,7 @@ class DisjuncitveAndHierarchicalIntegrationTests: OnlineTestCase {
       Filter.Facet(attribute: lvl1, stringValue: cat3_2)
     ]
 
-    let query = Query("").set(\.facets, to: Set(facetAttributes))
+    let query = Query("").set(\.facets, to: facetAttributes)
 
     let queryBuilder = QueryBuilder(query: query,
                                     disjunctiveFacets: [],
@@ -107,22 +106,26 @@ class DisjuncitveAndHierarchicalIntegrationTests: OnlineTestCase {
 
     let exp = expectation(description: "results")
 
-    let indexQueries = queries.map { IndexedQuery(indexName: self.index.name, query: $0) }
+    let indexQueries = queries.map { IndexedQuery(indexName: self.indexName, query: $0) }
 
-    client!.multipleQueries(queries: indexQueries) { result in
-      switch result {
-      case let .failure(error):
-        XCTFail("\(error)")
-      case let .success(response):
-        let finalResult = try! queryBuilder.aggregate(response.results)
+    Task {
+      do {
+        let response = try await client.search(
+          searchMethodParams: SearchMethodParams(queries: indexQueries.asSearchQueries(), strategy: .none)
+        )
+        let finalResult = try queryBuilder.aggregate(response.results)
         expectedDisjunctiveFacets.forEach { attribute, facets in
-          XCTAssertTrue(finalResult.disjunctiveFacets?[attribute]?.equalContents(to: facets) == true)
+          let values = finalResult.facets?[attribute] ?? [:]
+          let facetHits = values.map { FacetHits(value: $0.key, highlighted: $0.key, count: $0.value) }
+          XCTAssertTrue(facetHits.equalContents(to: facets))
         }
         expectedHierarchicalFacets.forEach { attribute, facets in
           XCTAssertTrue(finalResult.hierarchicalFacets?[attribute]?.equalContents(to: facets) == true)
         }
+        exp.fulfill()
+      } catch {
+        XCTFail("\(error)")
       }
-      exp.fulfill()
     }
 
     waitForExpectations(timeout: 15, handler: .none)

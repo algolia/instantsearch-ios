@@ -6,7 +6,6 @@
 //  Copyright © 2019 Algolia. All rights reserved.
 //
 
-import AlgoliaSearchClient
 import Foundation
 @testable import InstantSearchCore
 import XCTest
@@ -17,7 +16,7 @@ class DisjunctiveFacetingIntegrationTests: OnlineTestCase {
     let promotions: TreeModel<String>?
   }
 
-  let disjunctiveAttributes: [Attribute] = [
+  let disjunctiveAttributes: [String] = [
     "category",
     "color",
     "promotions"
@@ -31,52 +30,57 @@ class DisjunctiveFacetingIntegrationTests: OnlineTestCase {
   }
 
   func testDisjunctive() {
-    let expectedFacets: [(Attribute, [Facet])] = [
+    let expectedFacets: [(String, [FacetHits])] = [
       ("category", [
-        .init(value: "shirt", count: 2, highlighted: nil),
-        .init(value: "hat", count: 1, highlighted: nil)
+        .init(value: "shirt", highlighted: "shirt", count: 2),
+        .init(value: "hat", highlighted: "hat", count: 1)
       ]),
       ("promotions", [
-        .init(value: "free return", count: 2, highlighted: nil),
-        .init(value: "coupon", count: 1, highlighted: nil),
-        .init(value: "on sale", count: 1, highlighted: nil)
+        .init(value: "free return", highlighted: "free return", count: 2),
+        .init(value: "coupon", highlighted: "coupon", count: 1),
+        .init(value: "on sale", highlighted: "on sale", count: 1)
       ])
     ]
 
-    let expectedDisjucntiveFacets: [(Attribute, [Facet])] = [
+    let expectedDisjucntiveFacets: [(String, [FacetHits])] = [
       ("color", [
-        .init(value: "blue", count: 3, highlighted: nil),
-        .init(value: "green", count: 2, highlighted: nil),
-        .init(value: "orange", count: 2, highlighted: nil),
-        .init(value: "yellow", count: 2, highlighted: nil),
-        .init(value: "red", count: 1, highlighted: nil)
+        .init(value: "blue", highlighted: "blue", count: 3),
+        .init(value: "green", highlighted: "green", count: 2),
+        .init(value: "orange", highlighted: "orange", count: 2),
+        .init(value: "yellow", highlighted: "yellow", count: 2),
+        .init(value: "red", highlighted: "red", count: 1)
       ])
     ]
 
-    let query = Query().set(\.facets, to: Set(disjunctiveAttributes))
+    let query = Query().set(\.facets, to: disjunctiveAttributes)
     let colorFilter = Filter.Facet(attribute: "color", stringValue: "blue")
     let disjunctiveGroup = FilterGroup.Or(filters: [colorFilter], name: "colors")
     let queryBuilder = QueryBuilder(query: query, disjunctiveFacets: [], filterGroups: [disjunctiveGroup])
 
-    let queries = queryBuilder.build().map { IndexedQuery(indexName: index.name, query: $0) }
+    let queries = queryBuilder.build().map { IndexedQuery(indexName: indexName, query: $0) }
 
     XCTAssertEqual(queries.count, 2)
     XCTAssertEqual(queryBuilder.disjunctiveFacetingQueriesCount, 1)
 
     let exp = expectation(description: "results")
 
-    client.multipleQueries(queries: queries) { result in
+    Task {
       do {
-        let searchesResponse = try result.get()
-        let finalResult = try! queryBuilder.aggregate(searchesResponse.results)
+        let response = try await client.search(
+          searchMethodParams: SearchMethodParams(queries: queries.asSearchQueries(), strategy: .none)
+        )
+        let finalResult = try queryBuilder.aggregate(response.results)
         expectedFacets.forEach { attribute, facets in
-          XCTAssertTrue(finalResult.facets?[attribute]?.equalContents(to: facets) == true)
+          let values = finalResult.facets?[attribute] ?? [:]
+          let facetHits = values.map { FacetHits(value: $0.key, highlighted: $0.key, count: $0.value) }
+          XCTAssertTrue(facetHits.equalContents(to: facets))
         }
         expectedDisjucntiveFacets.forEach { attribute, facets in
-          XCTAssertTrue(finalResult.disjunctiveFacets?[attribute]?.equalContents(to: facets) == true)
+          let values = finalResult.facets?[attribute] ?? [:]
+          let facetHits = values.map { FacetHits(value: $0.key, highlighted: $0.key, count: $0.value) }
+          XCTAssertTrue(facetHits.equalContents(to: facets))
         }
         exp.fulfill()
-
       } catch {
         XCTFail("\(error)")
       }
@@ -86,44 +90,50 @@ class DisjunctiveFacetingIntegrationTests: OnlineTestCase {
   }
 
   func testMultiDisjunctive() {
-    let expectedFacets: [(Attribute, [Facet])] = [
+    let expectedFacets: [(String, [FacetHits])] = [
       ("category", [
-        .init(value: "shirt", count: 1, highlighted: nil)
+        .init(value: "shirt", highlighted: "shirt", count: 1)
       ]),
       ("promotions", [
-        .init(value: "coupon", count: 1, highlighted: nil)
+        .init(value: "coupon", highlighted: "coupon", count: 1)
       ])
     ]
 
-    let expectedDisjucntiveFacets: [(Attribute, [Facet])] = [
+    let expectedDisjucntiveFacets: [(String, [FacetHits])] = [
       ("color", [
-        .init(value: "blue", count: 1, highlighted: nil)
+        .init(value: "blue", highlighted: "blue", count: 1)
       ])
     ]
 
-    let query = Query().set(\.facets, to: Set(disjunctiveAttributes))
+    let query = Query().set(\.facets, to: disjunctiveAttributes)
     let colorFilter = Filter.Facet(attribute: "color", stringValue: "blue")
     let disjunctiveGroup = FilterGroup.Or(filters: [colorFilter], name: "colors")
     let promotionsFilter = Filter.Facet(attribute: "promotions", stringValue: "coupon")
     let conjunctiveGroup = FilterGroup.And(filters: [promotionsFilter], name: "promotions")
     let queryBuilder = QueryBuilder(query: query, disjunctiveFacets: [], filterGroups: [disjunctiveGroup, conjunctiveGroup])
 
-    let queries = queryBuilder.build().map { IndexedQuery(indexName: index.name, query: $0) }
+    let queries = queryBuilder.build().map { IndexedQuery(indexName: indexName, query: $0) }
 
     XCTAssertEqual(queries.count, 2)
     XCTAssertEqual(queryBuilder.disjunctiveFacetingQueriesCount, 1)
 
     let exp = expectation(description: "results")
 
-    client.multipleQueries(queries: queries) { result in
+    Task {
       do {
-        let searchesResponse = try result.get()
-        let finalResult = try queryBuilder.aggregate(searchesResponse.results)
+        let response = try await client.search(
+          searchMethodParams: SearchMethodParams(queries: queries.asSearchQueries(), strategy: .none)
+        )
+        let finalResult = try queryBuilder.aggregate(response.results)
         expectedFacets.forEach { attribute, facets in
-          XCTAssertTrue(finalResult.facets?[attribute]?.equalContents(to: facets) == true)
+          let values = finalResult.facets?[attribute] ?? [:]
+          let facetHits = values.map { FacetHits(value: $0.key, highlighted: $0.key, count: $0.value) }
+          XCTAssertTrue(facetHits.equalContents(to: facets))
         }
         expectedDisjucntiveFacets.forEach { attribute, facets in
-          XCTAssertTrue(finalResult.disjunctiveFacets?[attribute]?.equalContents(to: facets) == true)
+          let values = finalResult.facets?[attribute] ?? [:]
+          let facetHits = values.map { FacetHits(value: $0.key, highlighted: $0.key, count: $0.value) }
+          XCTAssertTrue(facetHits.equalContents(to: facets))
         }
         exp.fulfill()
       } catch {

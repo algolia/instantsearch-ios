@@ -11,10 +11,10 @@ import Foundation
 import XCTest
 
 class FacetListFacetSearcherConnectionTests: XCTestCase {
-  let facets: [Facet] = .init(prefix: "v", count: 3)
+  let facets: [FacetHits] = .init(prefix: "v", count: 3)
 
   var results: FacetSearcher.SearchResult {
-    return try! FacetSearcher.SearchResult(json: ["facetHits": try! JSON(facets), "exhaustiveFacetsCount": true, "processingTimeMS": 1])
+    return makeFacetSearchResponse(facetHits: facets)
   }
 
   weak var disposableInteractor: FacetListInteractor?
