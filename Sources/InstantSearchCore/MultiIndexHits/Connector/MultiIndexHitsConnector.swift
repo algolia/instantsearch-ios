@@ -77,8 +77,8 @@ public extension MultiIndexHitsConnector {
       - apiKey: Your application API Key
       - indexModules: List of index modules representing the aggregaged indices
    */
-  convenience init(appID: ApplicationID,
-                   apiKey: APIKey,
+  convenience init(appID: String,
+                   apiKey: String,
                    indexModules: [IndexModule]) {
     let searcher = MultiIndexSearcher(appID: appID,
                                       apiKey: apiKey,

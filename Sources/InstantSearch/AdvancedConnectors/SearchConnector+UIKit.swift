@@ -37,9 +37,9 @@
       }
     }
 
-    init<HC: HitsController>(appID: ApplicationID,
-                             apiKey: APIKey,
-                             indexName: IndexName,
+    init<HC: HitsController>(appID: String,
+                             apiKey: String,
+                             indexName: String,
                              searchController: UISearchController,
                              hitsInteractor: HitsInteractor<Record>,
                              hitsController: HC,

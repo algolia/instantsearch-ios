@@ -35,8 +35,8 @@
       }
     }
 
-    init<HC: MultiIndexHitsController>(appID: ApplicationID,
-                                       apiKey: APIKey,
+    init<HC: MultiIndexHitsController>(appID: String,
+                                       apiKey: String,
                                        indexModules: [MultiIndexHitsConnector.IndexModule],
                                        searchController: UISearchController,
                                        hitsController: HC) {
