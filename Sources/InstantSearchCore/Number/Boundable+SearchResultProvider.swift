@@ -6,11 +6,10 @@
 //
 // swiftlint:disable generic_type_name
 
-import AlgoliaSearchClient
 import Foundation
 
 public protocol FacetStatsProvider {
-  var facetStats: [Attribute: FacetStats]? { get }
+  var facetsStats: [String: FacetStats]? { get }
 }
 
 extension SearchResponse: FacetStatsProvider {}
@@ -24,7 +23,7 @@ public struct BoundableSearchResultProvderConnection<B: Boundable, SearchRespons
   public func connect() {
     let attribute = self.attribute
     searchResultProvider.onResults.subscribePastOnce(with: boundable) { boundable, searchResult in
-      boundable.computeBoundsFromFacetStats(attribute: attribute, facetStats: searchResult.facetStats)
+      boundable.computeBoundsFromFacetStats(attribute: attribute, facetStats: searchResult.facetsStats)
     }
   }
 

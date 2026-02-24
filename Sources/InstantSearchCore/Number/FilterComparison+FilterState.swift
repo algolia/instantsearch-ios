@@ -12,14 +12,14 @@ public extension NumberInteractor {
   struct FilterStateConnection: Connection {
     public let interactor: NumberInteractor
     public let filterState: FilterState
-    public let attribute: Attribute
+    public let attribute: String
     public let numericOperator: Filter.Numeric.Operator
     public let `operator`: RefinementOperator
     public let groupName: String?
 
     public init(interactor: NumberInteractor,
                 filterState: FilterState,
-                attribute: Attribute,
+                attribute: String,
                 numericOperator: Filter.Numeric.Operator,
                 operator: RefinementOperator = .and,
                 groupName: String? = nil) {
@@ -32,7 +32,7 @@ public extension NumberInteractor {
     }
 
     public func connect() {
-      let groupName = self.groupName ?? attribute.rawValue
+      let groupName = self.groupName ?? attribute
 
       switch `operator` {
       case .and:
@@ -49,7 +49,7 @@ public extension NumberInteractor {
 
     private func connectFilterState<Accessor: SpecializedGroupAccessor>(_ filterState: FilterState,
                                                                         to interactor: NumberInteractor,
-                                                                        attribute: Attribute,
+                                                                        attribute: String,
                                                                         numericOperator: Filter.Numeric.Operator,
                                                                         via accessor: Accessor) where Accessor.Filter == Filter.Numeric {
       whenFilterStateChangedUpdateExpression(interactor: interactor, filterState: filterState, attribute: attribute, numericOperator: numericOperator, accessor: accessor)
@@ -58,7 +58,7 @@ public extension NumberInteractor {
 
     private func whenFilterStateChangedUpdateExpression<Accessor: SpecializedGroupAccessor>(interactor: NumberInteractor,
                                                                                             filterState: FilterState,
-                                                                                            attribute: Attribute,
+                                                                                            attribute: String,
                                                                                             numericOperator: Filter.Numeric.Operator,
                                                                                             accessor: Accessor) where Accessor.Filter == Filter.Numeric {
       func extractValue(from numericFilter: Filter.Numeric) -> Number? {
@@ -76,7 +76,7 @@ public extension NumberInteractor {
 
     private func whenExpressionComputedUpdateFilterState<P: SpecializedGroupAccessor>(interactor: NumberInteractor,
                                                                                       filterState: FilterState,
-                                                                                      attribute: Attribute,
+                                                                                      attribute: String,
                                                                                       numericOperator: Filter.Numeric.Operator,
                                                                                       accessor: P) where P.Filter == Filter.Numeric {
       let removeCurrentItem = { [weak interactor] in
@@ -102,7 +102,7 @@ public extension NumberInteractor {
 
 public extension NumberInteractor {
   @discardableResult func connectFilterState(_ filterState: FilterState,
-                                             attribute: Attribute,
+                                             attribute: String,
                                              numericOperator: Filter.Numeric.Operator,
                                              operator: RefinementOperator = .and,
                                              groupName: String? = nil) -> FilterStateConnection {

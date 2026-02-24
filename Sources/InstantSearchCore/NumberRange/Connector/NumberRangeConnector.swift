@@ -19,7 +19,7 @@ public class NumberRangeConnector<Number: Comparable & DoubleRepresentable> {
   public let filterState: FilterState
 
   /// Attribute to filter
-  public let attribute: Attribute
+  public let attribute: String
 
   /// Logic applied to the numeric range
   public let interactor: NumberRangeInteractor<Number>
@@ -45,7 +45,7 @@ public class NumberRangeConnector<Number: Comparable & DoubleRepresentable> {
 
   public init(searcher: HitsSearcher,
               filterState: FilterState,
-              attribute: Attribute,
+              attribute: String,
               interactor: NumberRangeInteractor<Number>,
               operator: RefinementOperator = .and,
               groupName: String? = nil) {
@@ -82,7 +82,7 @@ public extension NumberRangeConnector {
    */
   convenience init(searcher: HitsSearcher,
                    filterState: FilterState,
-                   attribute: Attribute,
+                   attribute: String,
                    bounds: ClosedRange<Number>? = nil,
                    range: ClosedRange<Number>? = nil,
                    operator: RefinementOperator = .and,

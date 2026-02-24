@@ -20,7 +20,7 @@ public class FilterComparisonConnector<Number: Comparable & DoubleRepresentable>
   public let filterState: FilterState
 
   /// Attribute to filter with a numeric comparison
-  public let attribute: Attribute
+  public let attribute: String
 
   /// Comparison operator to apply
   public let numericOperator: Filter.Numeric.Operator
@@ -53,7 +53,7 @@ public class FilterComparisonConnector<Number: Comparable & DoubleRepresentable>
    */
   public init(searcher: HitsSearcher,
               filterState: FilterState,
-              attribute: Attribute,
+              attribute: String,
               numericOperator: Filter.Numeric.Operator,
               number: Number? = nil,
               bounds: ClosedRange<Number>? = nil,
@@ -65,7 +65,7 @@ public class FilterComparisonConnector<Number: Comparable & DoubleRepresentable>
     self.attribute = attribute
     self.numericOperator = numericOperator
     self.operator = `operator`
-    self.groupName = groupName ?? attribute.rawValue
+    self.groupName = groupName ?? attribute
     searcherConnection = interactor.connectSearcher(searcher, attribute: attribute)
     filterStateConnection = interactor.connectFilterState(filterState,
                                                           attribute: attribute,
