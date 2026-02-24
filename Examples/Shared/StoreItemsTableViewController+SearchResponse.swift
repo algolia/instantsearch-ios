@@ -10,7 +10,7 @@ import InstantSearch
 import UIKit
 
 extension StoreItemsTableViewController {
-  static func with(_ response: SearchResponse) -> Self {
+  static func with(_ response: SearchResponse<SearchHit>) -> Self {
     let hitsInteractor = HitsInteractor<Hit<StoreItem>>(infiniteScrolling: .off)
     hitsInteractor.update(response)
     let viewController = Self()
