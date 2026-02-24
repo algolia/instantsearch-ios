@@ -26,7 +26,7 @@ extension SearchResponse: SearchStatsConvertible {
   }
 }
 
-extension FacetSearchResponse: SearchStatsConvertible {
+extension SearchForFacetValuesResponse: SearchStatsConvertible {
   public var searchStats: SearchStats {
     return .init(totalHitsCount: facetHits.count,
                  hitsPerPage: facetHits.count,
