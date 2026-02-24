@@ -6,7 +6,6 @@
 //  Copyright © 2018 Algolia. All rights reserved.
 //
 
-import AlgoliaSearchClient
 import Foundation
 // swiftlint:disable function_parameter_count
 
@@ -52,15 +51,12 @@ class EventTracker: EventTrackable {
             userToken: UserToken? = .none,
             timestamp: Date?,
             objectIDs: [ObjectID]) {
-    do {
-      eventProcessor.process(try .view(name: eventName,
-                                       indexName: indexName,
-                                       userToken: effectiveUserToken(withEventUserToken: userToken),
-                                       timestamp: effectiveTimestamp(for: timestamp),
-                                       objectIDs: objectIDs))
-    } catch {
-      log(error)
-    }
+    let event = InsightsEvent.viewedObjectIDs(eventName: eventName,
+                                              indexName: indexName,
+                                              userToken: effectiveUserToken(withEventUserToken: userToken),
+                                              timestamp: effectiveTimestamp(for: timestamp)?.millisecondsSince1970,
+                                              objectIDs: objectIDs)
+    eventProcessor.process(event)
   }
 
   func view(eventName: EventName,
@@ -68,15 +64,13 @@ class EventTracker: EventTrackable {
             userToken: UserToken? = .none,
             timestamp: Date?,
             filters: [String]) {
-    do {
-      eventProcessor.process(try .view(name: eventName,
-                                       indexName: indexName,
-                                       userToken: effectiveUserToken(withEventUserToken: userToken),
-                                       timestamp: effectiveTimestamp(for: timestamp),
-                                       filters: filters))
-    } catch {
-      log(error)
-    }
+    let facets = FilterFacet.parseFilters(filters)
+    let event = InsightsEvent.viewedFilters(eventName: eventName,
+                                            indexName: indexName,
+                                            userToken: effectiveUserToken(withEventUserToken: userToken),
+                                            timestamp: effectiveTimestamp(for: timestamp)?.millisecondsSince1970,
+                                            filters: facets)
+    eventProcessor.process(event)
   }
 
   func click(eventName: EventName,
@@ -86,17 +80,14 @@ class EventTracker: EventTrackable {
              objectIDs: [ObjectID],
              positions: [Int],
              queryID: QueryID) {
-    do {
-      let objectIDsWithPositions = zip(objectIDs, positions).map { $0 }
-      eventProcessor.process(try .click(name: eventName,
-                                        indexName: indexName,
-                                        userToken: effectiveUserToken(withEventUserToken: userToken),
-                                        timestamp: effectiveTimestamp(for: timestamp),
-                                        queryID: queryID,
-                                        objectIDsWithPositions: objectIDsWithPositions))
-    } catch {
-      log(error)
-    }
+    let objectIDsWithPositions = zip(objectIDs, positions).map { $0 }
+    let event = InsightsEvent.clickedObjectIDsAfterSearch(eventName: eventName,
+                                                          indexName: indexName,
+                                                          userToken: effectiveUserToken(withEventUserToken: userToken),
+                                                          timestamp: effectiveTimestamp(for: timestamp)?.millisecondsSince1970,
+                                                          queryID: queryID,
+                                                          objectIDsWithPositions: objectIDsWithPositions)
+    eventProcessor.process(event)
   }
 
   func click(eventName: EventName,
@@ -104,15 +95,12 @@ class EventTracker: EventTrackable {
              userToken: UserToken? = .none,
              timestamp: Date?,
              objectIDs: [ObjectID]) {
-    do {
-      eventProcessor.process(try .click(name: eventName,
-                                        indexName: indexName,
-                                        userToken: effectiveUserToken(withEventUserToken: userToken),
-                                        timestamp: effectiveTimestamp(for: timestamp),
-                                        objectIDs: objectIDs))
-    } catch {
-      log(error)
-    }
+    let event = InsightsEvent.clickedObjectIDs(eventName: eventName,
+                                               indexName: indexName,
+                                               userToken: effectiveUserToken(withEventUserToken: userToken),
+                                               timestamp: effectiveTimestamp(for: timestamp)?.millisecondsSince1970,
+                                               objectIDs: objectIDs)
+    eventProcessor.process(event)
   }
 
   func click(eventName: EventName,
@@ -120,15 +108,13 @@ class EventTracker: EventTrackable {
              userToken: UserToken? = .none,
              timestamp: Date?,
              filters: [String]) {
-    do {
-      eventProcessor.process(try .click(name: eventName,
-                                        indexName: indexName,
-                                        userToken: effectiveUserToken(withEventUserToken: userToken),
-                                        timestamp: effectiveTimestamp(for: timestamp),
-                                        filters: filters))
-    } catch {
-      log(error)
-    }
+    let facets = FilterFacet.parseFilters(filters)
+    let event = InsightsEvent.clickedFilters(eventName: eventName,
+                                             indexName: indexName,
+                                             userToken: effectiveUserToken(withEventUserToken: userToken),
+                                             timestamp: effectiveTimestamp(for: timestamp)?.millisecondsSince1970,
+                                             filters: facets)
+    eventProcessor.process(event)
   }
 
   func conversion(eventName: EventName,
@@ -136,16 +122,12 @@ class EventTracker: EventTrackable {
                   userToken: UserToken? = .none,
                   timestamp: Date?,
                   objectIDs: [ObjectID]) {
-    do {
-      eventProcessor.process(try .conversion(name: eventName,
-                                             indexName: indexName,
-                                             userToken: effectiveUserToken(withEventUserToken: userToken),
-                                             timestamp: effectiveTimestamp(for: timestamp),
-                                             queryID: nil,
-                                             objectIDs: objectIDs))
-    } catch {
-      log(error)
-    }
+    let event = InsightsEvent.convertedObjectIDs(eventName: eventName,
+                                                 indexName: indexName,
+                                                 userToken: effectiveUserToken(withEventUserToken: userToken),
+                                                 timestamp: effectiveTimestamp(for: timestamp)?.millisecondsSince1970,
+                                                 objectIDs: objectIDs)
+    eventProcessor.process(event)
   }
 
   func conversion(eventName: EventName,
@@ -153,16 +135,13 @@ class EventTracker: EventTrackable {
                   userToken: UserToken? = .none,
                   timestamp: Date?,
                   filters: [String]) {
-    do {
-      eventProcessor.process(try .conversion(name: eventName,
-                                             indexName: indexName,
-                                             userToken: effectiveUserToken(withEventUserToken: userToken),
-                                             timestamp: effectiveTimestamp(for: timestamp),
-                                             queryID: nil,
-                                             filters: filters))
-    } catch {
-      log(error)
-    }
+    let facets = FilterFacet.parseFilters(filters)
+    let event = InsightsEvent.convertedFilters(eventName: eventName,
+                                               indexName: indexName,
+                                               userToken: effectiveUserToken(withEventUserToken: userToken),
+                                               timestamp: effectiveTimestamp(for: timestamp)?.millisecondsSince1970,
+                                               filters: facets)
+    eventProcessor.process(event)
   }
 
   func conversion(eventName: EventName,
@@ -171,16 +150,13 @@ class EventTracker: EventTrackable {
                   timestamp: Date?,
                   objectIDs: [ObjectID],
                   queryID: QueryID) {
-    do {
-      eventProcessor.process(try .conversion(name: eventName,
-                                             indexName: indexName,
-                                             userToken: effectiveUserToken(withEventUserToken: userToken),
-                                             timestamp: effectiveTimestamp(for: timestamp),
-                                             queryID: queryID,
-                                             objectIDs: objectIDs))
-    } catch {
-      log(error)
-    }
+    let event = InsightsEvent.convertedObjectIDsAfterSearch(eventName: eventName,
+                                                            indexName: indexName,
+                                                            userToken: effectiveUserToken(withEventUserToken: userToken),
+                                                            timestamp: effectiveTimestamp(for: timestamp)?.millisecondsSince1970,
+                                                            queryID: queryID,
+                                                            objectIDs: objectIDs)
+    eventProcessor.process(event)
   }
 
   private func log(_ error: Error) {

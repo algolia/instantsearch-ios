@@ -5,8 +5,9 @@
 //  Copyright © 2018 Algolia. All rights reserved.
 //
 
-import AlgoliaSearchClient
+import Core
 import Foundation
+import Insights
 #if os(iOS)
   import UIKit
 #endif
@@ -45,11 +46,11 @@ public class Insights {
     let key = "com.algolia.InstantSearch.Insights.UserToken"
 
     if let existingToken = UserDefaults.standard.string(forKey: key) {
-      return UserToken(rawValue: existingToken)
+      return existingToken
     } else {
       let generatedToken = UUID().uuidString
       UserDefaults.standard.set(generatedToken, forKey: key)
-      return UserToken(rawValue: generatedToken)
+      return generatedToken
     }
   }
 
@@ -162,7 +163,7 @@ public class Insights {
                                                  generateTimestamps: Bool = true,
                                                  region: Region? = region) -> Insights {
     _ = InsightsUserAgentSetter.set
-    let logger = Logger(label: "Insights (\(appId.rawValue))")
+    let logger = Logger(label: "Insights (\(appId))")
     logger.info("application registered")
     let insights = Insights(applicationID: appId,
                             apiKey: apiKey,
@@ -194,13 +195,13 @@ public class Insights {
     let storage: PackageStorage?
 
     do {
-      storage = try PackageStorage(filename: "\(applicationID.rawValue).storage.events")
+      storage = try PackageStorage(filename: "\(applicationID).storage.events")
     } catch {
       storage = nil
       logger.error("\(error.localizedDescription)")
     }
 
-    let insightsClient = InsightsClient(appID: applicationID, apiKey: apiKey, region: region)
+    let insightsClient = try! InsightsClient(appID: applicationID, apiKey: apiKey, region: region)
 
     let acceptEvent: (InsightsEvent) -> Bool = { event in
       guard let timestamp = event.timestamp else {

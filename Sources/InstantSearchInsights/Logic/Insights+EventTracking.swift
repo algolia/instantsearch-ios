@@ -5,7 +5,6 @@
 //  Created by Vladislav Fitc on 20/10/2020.
 //
 
-import AlgoliaSearchClient
 import Foundation
 
 /// Tracking events non-tighten to search
