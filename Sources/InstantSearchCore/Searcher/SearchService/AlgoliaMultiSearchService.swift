@@ -5,8 +5,9 @@
 //  Created by Vladislav Fitc on 27/09/2021.
 //
 
-import AlgoliaSearchClient
+import Core
 import Foundation
+import Search
 
 public class AlgoliaMultiSearchService: MultiSearchService {
   public let client: SearchClient
@@ -16,20 +17,29 @@ public class AlgoliaMultiSearchService: MultiSearchService {
   }
 
   public convenience init(appID: ApplicationID, apiKey: APIKey) {
-    self.init(client: .init(appID: appID, apiKey: apiKey))
+    self.init(client: try! SearchClient(appID: appID, apiKey: apiKey))
   }
 
-  public func search(_ request: Request, completion: @escaping (Swift.Result<MultiSearchResponse, Error>) -> Void) -> Operation {
-    return client.search(queries: request.queries,
-                         strategy: request.strategy,
-                         requestOptions: request.requestOptions,
-                         completion: completion)
+  public func search(_ request: Request, completion: @escaping (Swift.Result<SearchResponses<SearchHit>, Error>) -> Void) -> Operation {
+    let operation = TaskAsyncOperation { [client] in
+      do {
+        let response: SearchResponses<SearchHit> = try await client.search(
+          searchMethodParams: SearchMethodParams(queries: request.queries, strategy: request.strategy),
+          requestOptions: request.requestOptions
+        )
+        completion(.success(response))
+      } catch {
+        completion(.failure(error))
+      }
+    }
+    operation.start()
+    return operation
   }
 }
 
 public extension AlgoliaMultiSearchService {
   struct Request: AlgoliaRequest, MultiRequest {
-    public var subRequests: [MultiSearchQuery] {
+    public var subRequests: [SearchQuery] {
       get {
         return queries
       }
@@ -39,11 +49,11 @@ public extension AlgoliaMultiSearchService {
       }
     }
 
-    public var queries: [MultiSearchQuery]
+    public var queries: [SearchQuery]
     public var strategy: MultipleQueriesStrategy
     public var requestOptions: RequestOptions?
 
-    public init(queries: [MultiSearchQuery],
+    public init(queries: [SearchQuery],
                 strategy: MultipleQueriesStrategy,
                 requestOptions: RequestOptions? = nil) {
       self.queries = queries
@@ -53,8 +63,8 @@ public extension AlgoliaMultiSearchService {
   }
 }
 
-extension MultiSearchResponse: MultiResult {
-  public var subResults: [Response] {
+extension SearchResponses: MultiResult {
+  public var subResults: [SearchResult<T>] {
     return results
   }
 }

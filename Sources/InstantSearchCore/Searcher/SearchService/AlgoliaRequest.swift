@@ -5,6 +5,7 @@
 //  Created by Vladislav Fitc on 27/11/2020.
 //
 
+import Core
 import Foundation
 
 public protocol AlgoliaRequest {

@@ -6,8 +6,8 @@
 //  Copyright © 2019 Algolia. All rights reserved.
 //
 
-import AlgoliaSearchClient
 import Foundation
+import Search
 
 /// An entity performing search queries targeting multiple indices.
 @available(*, deprecated, message: "Use multiple HitsSearcher aggregated with MultiSearcher instead of MultiIndexSearcher")
@@ -90,7 +90,7 @@ public class MultiIndexSearcher: Searcher, SequencerDelegate, SearchResultObserv
                           apiKey: APIKey,
                           indexNames: [IndexName],
                           requestOptions: RequestOptions? = nil) {
-    let client = SearchClient(appID: appID, apiKey: apiKey)
+    let client = try! SearchClient(appID: appID, apiKey: apiKey)
     let indexQueryStates = indexNames.map { IndexQueryState(indexName: $0, query: .init()) }
     self.init(client: client,
               indexQueryStates: indexQueryStates,
@@ -106,9 +106,9 @@ public class MultiIndexSearcher: Searcher, SequencerDelegate, SearchResultObserv
    */
 
   public convenience init(client: SearchClient,
-                          indices: [Index],
+                          indices: [String],
                           requestOptions: RequestOptions? = nil) {
-    let indexQueryStates = indices.map { IndexQueryState(indexName: $0.name, query: .init()) }
+    let indexQueryStates = indices.map { IndexQueryState(indexName: $0, query: .init()) }
     self.init(client: client,
               indexQueryStates: indexQueryStates,
               requestOptions: requestOptions)
@@ -159,26 +159,35 @@ public class MultiIndexSearcher: Searcher, SequencerDelegate, SearchResultObserv
     onSearch.fire(())
 
     let queries = indexQueryStates.map { IndexedQuery(indexName: $0.indexName, query: $0.query) }
+    let searchQueries = queries.asSearchQueries()
+    let searchParams = SearchMethodParams(queries: searchQueries)
+    let requestOpts = requestOptions
 
-    let operation = client.multipleQueries(queries: queries) { [weak self] result in
+    let operation = TaskAsyncOperation { [weak self] in
       guard let searcher = self else { return }
-      searcher.processingQueue.addOperation {
-        switch result {
-        case let .success(response):
+      do {
+        let response: SearchesResponse = try await searcher.client.search(
+          searchMethodParams: searchParams,
+          requestOptions: requestOpts
+        )
+        searcher.processingQueue.addOperation {
           zip(queries, response.results)
-            .forEach { query, searchResults in
-              InstantSearchCoreLog.Results.success(searcher: searcher, indexName: query.indexName, results: searchResults)
+            .forEach { query, searchResult in
+              if let searchResponse = searchResult.asSearchResponse {
+                InstantSearchCoreLog.Results.success(searcher: searcher, indexName: query.indexName, results: searchResponse)
+              }
             }
           searcher.onResults.fire(response)
-
-        case let .failure(error):
-          let indicesDescriptor = "[\(queries.map { $0.indexName.rawValue }.joined(separator: ", "))]"
-          InstantSearchCoreLog.Results.failure(searcher: searcher, indexName: IndexName(rawValue: indicesDescriptor), error)
+        }
+      } catch {
+        searcher.processingQueue.addOperation {
+          let indicesDescriptor = "[\(queries.map { $0.indexName }.joined(separator: ", "))]"
+          InstantSearchCoreLog.Results.failure(searcher: searcher, indexName: indicesDescriptor, error)
           searcher.onError.fire((queries.map { $0.query }, error))
         }
       }
     }
-
+    operation.start()
     sequencer.orderOperation(operationLauncher: { return operation })
   }
 
