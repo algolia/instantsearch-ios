@@ -16,19 +16,19 @@ protocol FilterTrackable {
               indexName: String,
               filters: [String],
               timestamp: Date?,
-              userToken: UserToken?)
+              userToken: String?)
 
   func clicked(eventName: String,
                indexName: String,
                filters: [String],
                timestamp: Date?,
-               userToken: UserToken?)
+               userToken: String?)
 
   func converted(eventName: String,
                  indexName: String,
                  filters: [String],
                  timestamp: Date?,
-                 userToken: UserToken?)
+                 userToken: String?)
 }
 
 extension Insights: FilterTrackable {}
