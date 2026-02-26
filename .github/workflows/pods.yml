@@ -2,34 +2,34 @@ name: Cocoapods
 on: [pull_request]
 jobs:
   lint-Insights:
-    runs-on: macos-14
+    runs-on: macos-15
     steps:
       - uses: actions/checkout@v4
       - name: Select Xcode version
-        run: sudo xcode-select -s '/Applications/Xcode_15.2.app/Contents/Developer'
+        run: sudo xcode-select -s '/Applications/Xcode_16.0.app/Contents/Developer'
       - name: lint Insights
         run: pod lib lint --subspec="Insights" --allow-warnings --skip-import-validation --use-libraries
   lint-Core:
-    runs-on: macos-14
+    runs-on: macos-15
     steps:
       - uses: actions/checkout@v4
       - name: Select Xcode version
-        run: sudo xcode-select -s '/Applications/Xcode_15.2.app/Contents/Developer'
+        run: sudo xcode-select -s '/Applications/Xcode_16.0.app/Contents/Developer'
       - name: lint Core
         run: pod lib lint --subspec="Core" --allow-warnings --skip-import-validation --use-libraries
   lint-UI:
-    runs-on: macos-14
+    runs-on: macos-15
     steps:
       - uses: actions/checkout@v4
       - name: Select Xcode version
-        run: sudo xcode-select -s '/Applications/Xcode_15.2.app/Contents/Developer'
+        run: sudo xcode-select -s '/Applications/Xcode_16.0.app/Contents/Developer'
       - name: lint UI
         run: pod lib lint --subspec="UI" --allow-warnings --skip-import-validation --use-libraries
   lint-SwiftUI:
-    runs-on: macos-14
+    runs-on: macos-15
     steps:
       - uses: actions/checkout@v4
       - name: Select Xcode version
-        run: sudo xcode-select -s '/Applications/Xcode_15.2.app/Contents/Developer'
+        run: sudo xcode-select -s '/Applications/Xcode_16.0.app/Contents/Developer'
       - name: lint SwiftUI
         run: pod lib lint --subspec="SwiftUI" --allow-warnings --skip-import-validation --use-libraries
