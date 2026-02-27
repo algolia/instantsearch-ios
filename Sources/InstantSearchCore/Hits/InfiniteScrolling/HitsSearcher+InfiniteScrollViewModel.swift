@@ -1,6 +1,6 @@
 //
 //  HitsSearcher+PageSource.swift
-//  
+//
 //
 //  Created by Vladislav Fitc on 27/04/2023.
 //

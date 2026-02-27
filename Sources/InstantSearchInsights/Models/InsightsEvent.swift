@@ -161,87 +161,53 @@ public extension InsightsEvent {
 }
 
 extension InsightsEvent {
-  // swiftlint:disable:next function_body_length
+  private var filterStrings: [String]? {
+    filters?.map { $0.legacyString() }
+  }
+
   var eventsItem: EventsItems? {
     switch eventType {
     case .viewedObjectIDs:
       guard let objectIDs else { return nil }
-      let event = ViewedObjectIDs(eventName: eventName,
-                                  eventType: .view,
-                                  index: indexName,
-                                  objectIDs: objectIDs,
-                                  userToken: userToken,
-                                  timestamp: timestamp)
-      return .viewedObjectIDs(event)
+      return .viewedObjectIDs(ViewedObjectIDs(
+        eventName: eventName, eventType: .view, index: indexName,
+        objectIDs: objectIDs, userToken: userToken, timestamp: timestamp))
     case .clickedObjectIDsAfterSearch:
-      guard let objectIDs,
-            let positions,
-            let queryID else { return nil }
-      let event = ClickedObjectIDsAfterSearch(eventName: eventName,
-                                              eventType: .click,
-                                              index: indexName,
-                                              objectIDs: objectIDs,
-                                              positions: positions,
-                                              queryID: queryID,
-                                              userToken: userToken,
-                                              timestamp: timestamp)
-      return .clickedObjectIDsAfterSearch(event)
+      guard let objectIDs, let positions, let queryID else { return nil }
+      return .clickedObjectIDsAfterSearch(ClickedObjectIDsAfterSearch(
+        eventName: eventName, eventType: .click, index: indexName,
+        objectIDs: objectIDs, positions: positions, queryID: queryID,
+        userToken: userToken, timestamp: timestamp))
     case .clickedObjectIDs:
       guard let objectIDs else { return nil }
-      let event = ClickedObjectIDs(eventName: eventName,
-                                   eventType: .click,
-                                   index: indexName,
-                                   objectIDs: objectIDs,
-                                   userToken: userToken,
-                                   timestamp: timestamp)
-      return .clickedObjectIDs(event)
+      return .clickedObjectIDs(ClickedObjectIDs(
+        eventName: eventName, eventType: .click, index: indexName,
+        objectIDs: objectIDs, userToken: userToken, timestamp: timestamp))
     case .convertedObjectIDsAfterSearch:
-      guard let objectIDs,
-            let queryID else { return nil }
-      let event = ConvertedObjectIDsAfterSearch(eventName: eventName,
-                                                eventType: .conversion,
-                                                index: indexName,
-                                                objectIDs: objectIDs,
-                                                queryID: queryID,
-                                                userToken: userToken,
-                                                timestamp: timestamp)
-      return .convertedObjectIDsAfterSearch(event)
+      guard let objectIDs, let queryID else { return nil }
+      return .convertedObjectIDsAfterSearch(ConvertedObjectIDsAfterSearch(
+        eventName: eventName, eventType: .conversion, index: indexName,
+        objectIDs: objectIDs, queryID: queryID, userToken: userToken, timestamp: timestamp))
     case .convertedObjectIDs:
       guard let objectIDs else { return nil }
-      let event = ConvertedObjectIDs(eventName: eventName,
-                                     eventType: .conversion,
-                                     index: indexName,
-                                     objectIDs: objectIDs,
-                                     userToken: userToken,
-                                     timestamp: timestamp)
-      return .convertedObjectIDs(event)
+      return .convertedObjectIDs(ConvertedObjectIDs(
+        eventName: eventName, eventType: .conversion, index: indexName,
+        objectIDs: objectIDs, userToken: userToken, timestamp: timestamp))
     case .viewedFilters:
-      guard let filters else { return nil }
-      let event = ViewedFilters(eventName: eventName,
-                                eventType: .view,
-                                index: indexName,
-                                filters: filters.map { $0.legacyString() },
-                                userToken: userToken,
-                                timestamp: timestamp)
-      return .viewedFilters(event)
+      guard let filterStrings else { return nil }
+      return .viewedFilters(ViewedFilters(
+        eventName: eventName, eventType: .view, index: indexName,
+        filters: filterStrings, userToken: userToken, timestamp: timestamp))
     case .clickedFilters:
-      guard let filters else { return nil }
-      let event = ClickedFilters(eventName: eventName,
-                                 eventType: .click,
-                                 index: indexName,
-                                 filters: filters.map { $0.legacyString() },
-                                 userToken: userToken,
-                                 timestamp: timestamp)
-      return .clickedFilters(event)
+      guard let filterStrings else { return nil }
+      return .clickedFilters(ClickedFilters(
+        eventName: eventName, eventType: .click, index: indexName,
+        filters: filterStrings, userToken: userToken, timestamp: timestamp))
     case .convertedFilters:
-      guard let filters else { return nil }
-      let event = ConvertedFilters(eventName: eventName,
-                                   eventType: .conversion,
-                                   index: indexName,
-                                   filters: filters.map { $0.legacyString() },
-                                   userToken: userToken,
-                                   timestamp: timestamp)
-      return .convertedFilters(event)
+      guard let filterStrings else { return nil }
+      return .convertedFilters(ConvertedFilters(
+        eventName: eventName, eventType: .conversion, index: indexName,
+        filters: filterStrings, userToken: userToken, timestamp: timestamp))
     }
   }
 }

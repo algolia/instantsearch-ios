@@ -10,8 +10,6 @@ import Foundation
 #if !InstantSearchCocoaPods
   import InstantSearchInsights
 #endif
-// swiftlint:disable function_parameter_count
-
 protocol HitsAfterSearchTrackable {
   func clickedAfterSearch(eventName: String,
                           indexName: String,
@@ -35,4 +33,3 @@ protocol HitsAfterSearchTrackable {
 }
 
 extension Insights: HitsAfterSearchTrackable {}
-// swiftlint:enable function_parameter_count

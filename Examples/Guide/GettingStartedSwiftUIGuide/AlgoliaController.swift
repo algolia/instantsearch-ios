@@ -28,7 +28,7 @@ class AlgoliaController {
   let facetListController: FacetListObservableController
 
   init() {
-    searcher = HitsSearcher(appID: "latency",
+    searcher = try! HitsSearcher(appID: "latency",
                             apiKey: "1f6fd3a6fb973cb08419fe7d288fa4db",
                             indexName: "bestbuy")
     searchBoxInteractor = .init()

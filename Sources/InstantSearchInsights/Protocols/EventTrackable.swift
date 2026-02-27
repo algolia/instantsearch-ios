@@ -7,7 +7,7 @@
 //
 
 import Foundation
-// swiftlint:disable function_parameter_count
+
 protocol EventTrackable {
   func view(eventName: String,
             indexName: String,
@@ -60,4 +60,3 @@ protocol EventTrackable {
                   timestamp: Date?,
                   filters: [String])
 }
-// swiftlint:enable function_parameter_count

@@ -65,16 +65,15 @@ public struct MultiIndexSearchConnector: Connection {
      - queryInputInteractor: External query input interactor
      - queryInputController: Query input controller
    */
-  // swiftlint:disable:next function_parameter_count
   public init<QI: QueryInputController, HC: MultiIndexHitsController>(appID: String,
                                                                       apiKey: String,
                                                                       indexModules: [MultiIndexHitsConnector.IndexModule],
                                                                       hitsController: HC,
                                                                       queryInputInteractor: QueryInputInteractor = .init(),
-                                                                      queryInputController: QI) {
-    let searcher = MultiIndexSearcher(appID: appID,
-                                      apiKey: apiKey,
-                                      indexNames: indexModules.map(\.indexName))
+                                                                      queryInputController: QI) throws {
+    let searcher = try MultiIndexSearcher(appID: appID,
+                                          apiKey: apiKey,
+                                          indexNames: indexModules.map(\.indexName))
     self.init(searcher: searcher,
               indexModules: indexModules,
               hitsController: hitsController,

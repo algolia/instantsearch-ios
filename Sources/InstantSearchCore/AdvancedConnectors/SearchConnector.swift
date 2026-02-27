@@ -49,7 +49,6 @@ public struct SearchConnector<Record: Codable>: Connection {
    - hitsController: Hits controller
    - filterState: Filter state
    */
-  // swiftlint:disable:next function_parameter_count
   public init<HC: HitsController, SBC: SearchBoxController>(searcher: HitsSearcher,
                                                             searchBoxInteractor: SearchBoxInteractor = .init(),
                                                             searchBoxController: SBC,
@@ -87,7 +86,6 @@ public struct SearchConnector<Record: Codable>: Connection {
    - hitsController: Hits controller
    - filterState: Filter state
    */
-  // swiftlint:disable:next function_parameter_count
   public init<HC: HitsController, SBC: SearchBoxController>(appID: String,
                                                             apiKey: String,
                                                             indexName: String,
@@ -95,10 +93,10 @@ public struct SearchConnector<Record: Codable>: Connection {
                                                             searchBoxController: SBC,
                                                             hitsInteractor: HitsInteractor<Record>,
                                                             hitsController: HC,
-                                                            filterState: FilterState? = nil) where HC.DataSource == HitsInteractor<Record> {
-    let searcher = HitsSearcher(appID: appID,
-                                apiKey: apiKey,
-                                indexName: indexName)
+                                                            filterState: FilterState? = nil) throws where HC.DataSource == HitsInteractor<Record> {
+    let searcher = try HitsSearcher(appID: appID,
+                                    apiKey: apiKey,
+                                    indexName: indexName)
     self.init(searcher: searcher,
               searchBoxInteractor: searchBoxInteractor,
               searchBoxController: searchBoxController,
@@ -194,8 +192,8 @@ public extension SearchConnector {
                                                      queryInputController: SBC,
                                                      hitsInteractor: HitsInteractor<Record>,
                                                      hitsController: HC,
-                                                     filterState: FilterState? = nil) where HC.DataSource == HitsInteractor<Record> {
-    self.init(appID: appID,
+                                                     filterState: FilterState? = nil) throws where HC.DataSource == HitsInteractor<Record> {
+    try self.init(appID: appID,
               apiKey: apiKey,
               indexName: indexName,
               searchBoxInteractor: queryInputInteractor,

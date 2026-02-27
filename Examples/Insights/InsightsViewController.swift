@@ -32,7 +32,7 @@ class InsightsViewController: UIViewController {
     searchBoxConnector = .init(searcher: searcher,
                                controller: textFieldController)
     // Use the same credentials as SearchClient.ecommerce
-    let insights = Insights.register(appId: "latency", apiKey: "927c3fe76d4b52c5a2912973f35a3077")
+    let insights = try! Insights.register(appId: "latency", apiKey: "927c3fe76d4b52c5a2912973f35a3077")
     hitsTracker = .init(eventName: "demo",
                         searcher: searcher,
                         insights: insights)

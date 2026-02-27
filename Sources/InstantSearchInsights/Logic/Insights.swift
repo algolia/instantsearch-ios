@@ -161,17 +161,17 @@ public class Insights {
                                                  apiKey: String,
                                                  userToken: String? = .none,
                                                  generateTimestamps: Bool = true,
-                                                 region: Region? = region) -> Insights {
+                                                 region: Region? = region) throws -> Insights {
     _ = InsightsUserAgentSetter.set
     let logger = Logger(label: "Insights (\(appId))")
     logger.info("application registered")
-    let insights = Insights(applicationID: appId,
-                            apiKey: apiKey,
-                            region: region,
-                            flushDelay: Algolia.Insights.flushDelay,
-                            userToken: userToken,
-                            generateTimestamps: generateTimestamps,
-                            logger: logger)
+    let insights = try Insights(applicationID: appId,
+                                apiKey: apiKey,
+                                region: region,
+                                flushDelay: Algolia.Insights.flushDelay,
+                                userToken: userToken,
+                                generateTimestamps: generateTimestamps,
+                                logger: logger)
     Insights.insightsMap[appId] = insights
     return insights
   }
@@ -183,14 +183,13 @@ public class Insights {
     self.eventTracker = eventTracker
   }
 
-  // swiftlint:disable:next function_parameter_count
   convenience init(applicationID: String,
                    apiKey: String,
                    region: Region? = region,
                    flushDelay: TimeInterval,
                    userToken: String?,
                    generateTimestamps: Bool,
-                   logger: Logger) {
+                   logger: Logger) throws {
     typealias PackageStorage = JSONFilePackageStorage<[Package<InsightsEvent>]>
 
     let storage: PackageStorage?
@@ -202,8 +201,7 @@ public class Insights {
       logger.error("\(error.localizedDescription)")
     }
 
-    // swiftlint:disable:next force_try
-    let insightsClient = try! InsightsClient(appID: applicationID, apiKey: apiKey, region: region)
+    let insightsClient = try InsightsClient(appID: applicationID, apiKey: apiKey, region: region)
 
     let acceptEvent: (InsightsEvent) -> Bool = { event in
       guard let timestamp = event.timestamp else {

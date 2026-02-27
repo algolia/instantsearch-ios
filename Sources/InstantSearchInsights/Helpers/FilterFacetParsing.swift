@@ -16,7 +16,7 @@ extension FilterFacet {
     guard !attribute.isEmpty else { return nil }
 
     var valuePart = String(filter[filter.index(after: colonIndex)...]).trimmingCharacters(in: .whitespaces)
-    var score: Int? = nil
+    var score: Int?
 
     if let scoreRange = valuePart.range(of: "<score=") {
       let scoreSuffix = valuePart[scoreRange.lowerBound...]

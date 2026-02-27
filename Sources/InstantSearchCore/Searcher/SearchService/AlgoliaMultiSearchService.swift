@@ -16,9 +16,8 @@ public class AlgoliaMultiSearchService: MultiSearchService {
     self.client = client
   }
 
-  public convenience init(appID: String, apiKey: String) {
-    // swiftlint:disable:next force_try
-    self.init(client: try! SearchClient(appID: appID, apiKey: apiKey))
+  public convenience init(appID: String, apiKey: String) throws {
+    self.init(client: try SearchClient(appID: appID, apiKey: apiKey))
   }
 
   public func search(_ request: Request, completion: @escaping (Swift.Result<SearchResponses<SearchHit>, Error>) -> Void) -> Operation {

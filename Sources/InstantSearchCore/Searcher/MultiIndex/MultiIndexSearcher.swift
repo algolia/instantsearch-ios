@@ -89,9 +89,8 @@ public class MultiIndexSearcher: Searcher, SequencerDelegate, SearchResultObserv
   public convenience init(appID: String,
                           apiKey: String,
                           indexNames: [String],
-                          requestOptions: RequestOptions? = nil) {
-    // swiftlint:disable:next force_try
-    let client = try! SearchClient(appID: appID, apiKey: apiKey)
+                          requestOptions: RequestOptions? = nil) throws {
+    let client = try SearchClient(appID: appID, apiKey: apiKey)
     let indexQueryStates = indexNames.map { IndexQueryState(indexName: $0, query: .init()) }
     self.init(client: client,
               indexQueryStates: indexQueryStates,
@@ -105,7 +104,6 @@ public class MultiIndexSearcher: Searcher, SequencerDelegate, SearchResultObserv
    - indexNames: List of the indices names in which search will be performed
    - requestOptions: Custom request options. Default is `nil`.
    */
-
   public convenience init(client: SearchClient,
                           indices: [String],
                           requestOptions: RequestOptions? = nil) {

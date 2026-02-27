@@ -1,6 +1,7 @@
 excluded:
  - .build
  - ./Tests
+ - ./Examples
 # implicitly
 line_length: 300
 identifier_name:
@@ -8,6 +9,10 @@ identifier_name:
     - on
     - or
     - id
+function_parameter_count:
+  warning: 6
+  error: 10
+  ignores_default_parameters: true
 disabled_rules:
   - todo
   - implicit_getter

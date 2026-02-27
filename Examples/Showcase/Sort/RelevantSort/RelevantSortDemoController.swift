@@ -23,9 +23,9 @@ class RelevantSortDemoController {
       "test_Bestbuy_vr_price_asc",
       "test_Bestbuy_replica_price_asc"
     ]
-    searcher = .init(appID: "C7RIRJRYR9",
-                     apiKey: "6861aeb4f69b81db206d49ddb9f1dc1e",
-                     indexName: indices.first!)
+    searcher = try! .init(appID: "C7RIRJRYR9",
+                          apiKey: "6861aeb4f69b81db206d49ddb9f1dc1e",
+                          indexName: indices.first!)
     searchBoxConnector = .init(searcher: searcher)
     sortByConnector = .init(searcher: searcher,
                             indicesNames: indices,

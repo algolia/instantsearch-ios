@@ -66,13 +66,13 @@ final class SearchViewModel: ObservableObject {
   init() {
     let appID: ApplicationID = "latency"
     let apiKey: APIKey = "af044fb0788d6bb15f807e4420592bc5"
-    let itemsSearcher = HitsSearcher(appID: appID,
-                                     apiKey: apiKey,
-                                     indexName: "instant_search")
+    let itemsSearcher = try! HitsSearcher(appID: appID,
+                                          apiKey: apiKey,
+                                          indexName: "instant_search")
     self.itemsSearcher = itemsSearcher
-    self.suggestionsSearcher = HitsSearcher(appID: appID,
-                                            apiKey: apiKey,
-                                            indexName: "query_suggestions")
+    self.suggestionsSearcher = try! HitsSearcher(appID: appID,
+                                                 apiKey: apiKey,
+                                                 indexName: "query_suggestions")
     self.hits = itemsSearcher.paginatedData(of: Hit<Item>.self)
     searchQuery = ""
     suggestions = []

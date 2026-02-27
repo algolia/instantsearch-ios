@@ -106,10 +106,10 @@ public extension HitsConnector {
                    indexName: String,
                    infiniteScrolling: InfiniteScrolling = Constants.Defaults.infiniteScrolling,
                    showItemsOnEmptyQuery: Bool = Constants.Defaults.showItemsOnEmptyQuery,
-                   filterState: FilterState? = .none) {
-    let searcher = HitsSearcher(appID: appID,
-                                apiKey: apiKey,
-                                indexName: indexName)
+                   filterState: FilterState? = .none) throws {
+    let searcher = try HitsSearcher(appID: appID,
+                                    apiKey: apiKey,
+                                    indexName: indexName)
     let interactor = HitsInteractor<Hit>(infiniteScrolling: infiniteScrolling, showItemsOnEmptyQuery: showItemsOnEmptyQuery)
     self.init(searcher: searcher,
               interactor: interactor,

@@ -79,10 +79,10 @@ public extension MultiIndexHitsConnector {
    */
   convenience init(appID: String,
                    apiKey: String,
-                   indexModules: [IndexModule]) {
-    let searcher = MultiIndexSearcher(appID: appID,
-                                      apiKey: apiKey,
-                                      indexNames: indexModules.map { $0.indexName })
+                   indexModules: [IndexModule]) throws {
+    let searcher = try MultiIndexSearcher(appID: appID,
+                                          apiKey: apiKey,
+                                          indexNames: indexModules.map { $0.indexName })
     let interactor = MultiIndexHitsInteractor(hitsInteractors: indexModules.map { $0.hitsInteractor })
     self.init(searcher: searcher,
               interactor: interactor,

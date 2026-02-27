@@ -140,8 +140,9 @@ public final class HitsSearcher: IndexSearcher<AlgoliaSearchService> {
     let tracker: HitsAfterSearchTrackable
     if let shared = Insights.shared {
       tracker = shared
-    } else if let credentials = insightsCredentials {
-      tracker = Insights.register(appId: credentials.appID, apiKey: credentials.apiKey)
+    } else if let credentials = insightsCredentials,
+              let registered = try? Insights.register(appId: credentials.appID, apiKey: credentials.apiKey) {
+      tracker = registered
     } else {
       tracker = NoopHitsAfterSearchTracker()
     }
@@ -159,15 +160,13 @@ public final class HitsSearcher: IndexSearcher<AlgoliaSearchService> {
        - isAutoSendingHitsViewEvents: flag defining whether the automatic hits view Insights events sending is enabled
        - requestOptions: Custom request options. Default is `nil`.
    */
-  // swiftlint:disable:next function_parameter_count
   public convenience init(appID: String,
                           apiKey: String,
                           indexName: String,
                           query: SearchSearchParamsObject = .init(),
                           requestOptions: RequestOptions? = nil,
-                          isAutoSendingHitsViewEvents: Bool = false) {
-    // swiftlint:disable:next force_try
-    let client = try! SearchClient(appID: appID, apiKey: apiKey)
+                          isAutoSendingHitsViewEvents: Bool = false) throws {
+    let client = try SearchClient(appID: appID, apiKey: apiKey)
     self.init(client: client, indexName: indexName, query: query, requestOptions: requestOptions, isAutoSendingHitsViewEvents: isAutoSendingHitsViewEvents)
     insightsCredentials = (appID: appID, apiKey: apiKey)
     Telemetry.shared.trace(type: .hitsSearcher,

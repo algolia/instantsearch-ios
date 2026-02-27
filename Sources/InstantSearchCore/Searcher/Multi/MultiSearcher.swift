@@ -42,8 +42,8 @@ public class MultiSearcher: AbstractMultiSearcher<AlgoliaMultiSearchService> {
    */
   @available(*, deprecated, message: "Use init(appID:apiKey:requestOptions:) instead")
   public convenience init(appID: String,
-                          apiKey: String) {
-    self.init(appID: appID, apiKey: apiKey, requestOptions: nil)
+                          apiKey: String) throws {
+    try self.init(appID: appID, apiKey: apiKey, requestOptions: nil)
   }
 
   /**
@@ -54,9 +54,8 @@ public class MultiSearcher: AbstractMultiSearcher<AlgoliaMultiSearchService> {
    */
   public convenience init(appID: String,
                           apiKey: String,
-                          requestOptions: RequestOptions? = nil) {
-    // swiftlint:disable:next force_try
-    let client = try! SearchClient(appID: appID, apiKey: apiKey)
+                          requestOptions: RequestOptions? = nil) throws {
+    let client = try SearchClient(appID: appID, apiKey: apiKey)
     self.init(client: client, requestOptions: requestOptions)
   }
 

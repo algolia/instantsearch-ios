@@ -20,11 +20,9 @@ public class MultiIndexHitsInteractor {
   private let mutationQueue: OperationQueue
 
   /// List of nested hits interactors
-
   let hitsInteractors: [AnyHitsInteractor]
 
   /// Common initializer
-
   public init(hitsInteractors: [AnyHitsInteractor]) {
     self.hitsInteractors = hitsInteractors
     onRequestChanged = .init()
@@ -44,14 +42,12 @@ public class MultiIndexHitsInteractor {
   /// Returns the index of provided hits interactor.
   /// - Parameter hitsInteractor: the interactor to search for
   /// - Returns: The index of desired interactor. If no there is no such interactor, returns `nil`
-
   public func section<R>(of hitsInteractor: HitsInteractor<R>) -> Int? {
     return hitsInteractors.firstIndex { ($0 as? HitsInteractor<R>) === hitsInteractor }
   }
 
   /// Returns boolean value indicating if desired hitsInteractor is nested in current multi hits hitsInteractor
   /// - Parameter hitsInteractor: the interactor to check
-
   public func contains<R>(_ hitsInteractor: HitsInteractor<R>) -> Bool {
     return section(of: hitsInteractor) != nil
   }
@@ -60,7 +56,6 @@ public class MultiIndexHitsInteractor {
   /// - Parameter section: the section index of nested hits interactor
   /// - Throws: HitsInteractor.Error.incompatibleRecordType if the derived record type mismatches the record type of corresponding hits interactor
   /// - Returns: The nested interactor at specified index.
-
   public func hitsInteractor<R>(forSection section: Int) throws -> HitsInteractor<R> {
     guard let typedInteractor = hitsInteractors[section] as? HitsInteractor<R> else {
       throw HitsInteractor<R>.Error.incompatibleRecordType
@@ -74,7 +69,6 @@ public class MultiIndexHitsInteractor {
   /// - Parameter section: the index of a nested hits Interactor
   /// - Throws: HitsInteractor.Error.incompatibleRecordType if desired type of record doesn't match with record type of corresponding hits Interactor
   /// - Returns: The hit at row for index path or `nil` if there is no element at index in a specified section
-
   public func hit<R: Codable>(atIndex index: Int, inSection section: Int) throws -> R? {
     return try hitsInteractors[section].genericHitAtIndex(index)
   }
@@ -83,13 +77,11 @@ public class MultiIndexHitsInteractor {
   /// - Parameter index: the index of a hit in a nested hits Interactor
   /// - Parameter section: the index of a nested hits Interactor
   /// - Returns: The hit in raw dictionary form or `nil` if there is no element at index in a specified section
-
   public func rawHit(atIndex index: Int, inSection section: Int) -> [String: Any]? {
     return hitsInteractors[section].rawHitAtIndex(index)
   }
 
   /// Returns number of nested hits Interactors
-
   public func numberOfSections() -> Int {
     return hitsInteractors.count
   }
@@ -107,7 +99,6 @@ extension MultiIndexHitsInteractor {
   /// - Parameter results: list of typed search results.
   /// - Parameter section: the section index of nested hits Interactor
   /// - Throws: HitsInteractor.Error.incompatibleRecordType if the record type of results mismatches the record type of corresponding hits Interactor
-
   public func update(_ results: SearchResponse<SearchHit>, forInteractorInSection section: Int) {
     let completion = BlockOperation { [weak self] in
       self?.onResultsUpdated.fire([results])
@@ -123,7 +114,6 @@ extension MultiIndexHitsInteractor {
   /// - Parameter results: list of generic search results. Order of results must match the order of nested hits Interactors.
   /// - Parameter metadata: the metadata of query corresponding to results
   /// - Throws: HitsInteractor.Error.incompatibleRecordType if the conversion of search results for one of a nested hits Interactors is impossible due to a record type mismatch
-
   public func update(_ results: [SearchResponse<SearchHit>]) {
     let completion = BlockOperation { [weak self] in
       self?.onResultsUpdated.fire(results)
@@ -160,7 +150,6 @@ extension MultiIndexHitsInteractor {
     /// - Parameter indexPath: the pointer to a hit, where section points to a nested hits Interactor, and item defines the index of a hit in a Interactor
     /// - Throws: HitsInteractor.Error.incompatibleRecordType if desired type of record doesn't match with record type of corresponding hits Interactor
     /// - Returns: The hit at row for index path or `nil` if there is no element at index in a specified section
-
     func hit<R: Codable>(at indexPath: IndexPath) throws -> R? {
       return try hit(atIndex: indexPath.item, inSection: indexPath.section)
     }
@@ -168,7 +157,6 @@ extension MultiIndexHitsInteractor {
     /// Returns the hit in raw dictionary form
     /// - Parameter indexPath: the pointer to a hit, where section points to a nested hits Interactor, and item defines the index of a hit in a Interactor
     /// - Returns: The hit in raw dictionary form or `nil` if there is no element at index in a specified section
-
     func rawHit(at indexPath: IndexPath) -> [String: Any]? {
       return rawHit(atIndex: indexPath.item, inSection: indexPath.section)
     }

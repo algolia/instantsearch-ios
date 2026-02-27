@@ -37,17 +37,16 @@
       }
     }
 
-    // swiftlint:disable:next function_parameter_count
     init<HC: HitsController>(appID: String,
                              apiKey: String,
                              indexName: String,
                              searchController: UISearchController,
                              hitsInteractor: HitsInteractor<Record>,
                              hitsController: HC,
-                             filterState: FilterState? = nil) where HC.DataSource == HitsInteractor<Record> {
-      let searcher = HitsSearcher(appID: appID,
-                                  apiKey: apiKey,
-                                  indexName: indexName)
+                             filterState: FilterState? = nil) throws where HC.DataSource == HitsInteractor<Record> {
+      let searcher = try HitsSearcher(appID: appID,
+                                      apiKey: apiKey,
+                                      indexName: indexName)
       self.init(searcher: searcher,
                 searchController: searchController,
                 hitsInteractor: hitsInteractor,

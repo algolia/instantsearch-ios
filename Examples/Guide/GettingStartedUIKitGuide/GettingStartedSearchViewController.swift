@@ -137,9 +137,9 @@ extension GettingStartedGuide.StepTwo {
     lazy var searchController = UISearchController(searchResultsController: hitsViewController)
     let hitsViewController = SearchResultsViewController()
 
-    let searcher = HitsSearcher(appID: "latency",
-                                apiKey: "1f6fd3a6fb973cb08419fe7d288fa4db",
-                                indexName: "bestbuy")
+    let searcher = try! HitsSearcher(appID: "latency",
+                                     apiKey: "1f6fd3a6fb973cb08419fe7d288fa4db",
+                                     indexName: "bestbuy")
     lazy var searchConnector = SearchConnector<Item>(searcher: searcher,
                                                      searchController: searchController,
                                                      hitsInteractor: .init(),
@@ -162,9 +162,9 @@ extension GettingStartedGuide.StepThree {
     lazy var searchController = UISearchController(searchResultsController: hitsViewController)
     let hitsViewController = SearchResultsViewController()
 
-    let searcher = HitsSearcher(appID: "latency",
-                                apiKey: "1f6fd3a6fb973cb08419fe7d288fa4db",
-                                indexName: "bestbuy")
+    let searcher = try! HitsSearcher(appID: "latency",
+                                     apiKey: "1f6fd3a6fb973cb08419fe7d288fa4db",
+                                     indexName: "bestbuy")
     lazy var searchConnector = SearchConnector<Item>(searcher: searcher,
                                                      searchController: searchController,
                                                      hitsInteractor: .init(),
@@ -205,9 +205,9 @@ extension GettingStartedGuide.StepFour {
     lazy var searchController = UISearchController(searchResultsController: hitsViewController)
     let hitsViewController = SearchResultsViewController()
 
-    let searcher = HitsSearcher(appID: "latency",
-                                apiKey: "1f6fd3a6fb973cb08419fe7d288fa4db",
-                                indexName: "bestbuy")
+    let searcher = try! HitsSearcher(appID: "latency",
+                                     apiKey: "1f6fd3a6fb973cb08419fe7d288fa4db",
+                                     indexName: "bestbuy")
     lazy var searchConnector = SearchConnector<Item>(searcher: searcher,
                                                      searchController: searchController,
                                                      hitsInteractor: .init(),
@@ -249,9 +249,9 @@ extension GettingStartedGuide.StepFive {
     lazy var searchController = UISearchController(searchResultsController: hitsTableViewController)
     let hitsTableViewController = SearchResultsViewController()
 
-    let searcher = HitsSearcher(appID: "latency",
-                                apiKey: "1f6fd3a6fb973cb08419fe7d288fa4db",
-                                indexName: "bestbuy")
+    let searcher = try! HitsSearcher(appID: "latency",
+                                     apiKey: "1f6fd3a6fb973cb08419fe7d288fa4db",
+                                     indexName: "bestbuy")
     lazy var searchConnector = SearchConnector<Item>(searcher: searcher,
                                                      searchController: searchController,
                                                      hitsInteractor: .init(),
@@ -305,9 +305,9 @@ extension GettingStartedGuide.StepSix {
     lazy var searchController = UISearchController(searchResultsController: hitsViewController)
     let hitsViewController = SearchResultsViewController()
 
-    let searcher = HitsSearcher(appID: "latency",
-                                apiKey: "1f6fd3a6fb973cb08419fe7d288fa4db",
-                                indexName: "bestbuy")
+    let searcher = try! HitsSearcher(appID: "latency",
+                                     apiKey: "1f6fd3a6fb973cb08419fe7d288fa4db",
+                                     indexName: "bestbuy")
     lazy var searchConnector = SearchConnector<Item>(searcher: searcher,
                                                      searchController: searchController,
                                                      hitsInteractor: .init(),
@@ -365,9 +365,9 @@ extension GettingStartedGuide.StepSeven {
     lazy var searchController = UISearchController(searchResultsController: hitsViewController)
     let hitsViewController = SearchResultsViewController()
 
-    let searcher = HitsSearcher(appID: "latency",
-                                apiKey: "1f6fd3a6fb973cb08419fe7d288fa4db",
-                                indexName: "bestbuy")
+    let searcher = try! HitsSearcher(appID: "latency",
+                                     apiKey: "1f6fd3a6fb973cb08419fe7d288fa4db",
+                                     indexName: "bestbuy")
     lazy var searchConnector = SearchConnector<Item>(searcher: searcher,
                                                      searchController: searchController,
                                                      hitsInteractor: .init(),

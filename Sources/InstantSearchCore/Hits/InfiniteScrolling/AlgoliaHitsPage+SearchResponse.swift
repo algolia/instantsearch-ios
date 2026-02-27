@@ -1,6 +1,6 @@
 //
 //  AlgoliaHitsPage+SearchResponse.swift
-//  
+//
 //
 //  Created by Vladislav Fitc on 28/04/2023.
 //
