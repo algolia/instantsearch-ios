@@ -32,7 +32,7 @@ let package = Package(
   dependencies: [
     .package(name: "AlgoliaSearchClient",
              url: "https://github.com/algolia/algoliasearch-client-swift",
-             from: "9.37.4"),
+             "9.37.4"..<"9.40.0"),
     .package(url: "https://github.com/apple/swift-log",
              from: "1.5.4"),
     .package(url: "https://github.com/apple/swift-protobuf",
