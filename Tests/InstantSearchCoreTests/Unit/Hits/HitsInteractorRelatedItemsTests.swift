@@ -39,9 +39,9 @@ class HitsInteractorRelatedItemsTests: XCTestCase {
 
     let expectedOptionalFilters: Set<String> = [
       "brand:Amazon<score=3>",
-      "categories:Streaming Media Players<score=2>",
-      "categories:TV & Home Theater<score=2>",
-      "type:Streaming media plyr<score=10>"
+      "categories:\"Streaming Media Players\"<score=2>",
+      "categories:\"TV & Home Theater\"<score=2>",
+      "type:\"Streaming media plyr\"<score=10>"
     ]
     let expectedFilters = FilterGroupConverter().sql([
       FilterGroup.And(filters: [Filter.Facet(attribute: "objectID", stringValue: "objectID123", isNegated: true)])

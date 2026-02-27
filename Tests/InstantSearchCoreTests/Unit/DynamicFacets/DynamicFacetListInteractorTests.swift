@@ -38,11 +38,24 @@ class DynamicFacetListInteractorTests: XCTestCase {
     interactor.update(with: response)
 
     XCTAssertEqual(interactor.orderedFacets.count, 3)
-    XCTAssertTrue(interactor.orderedFacets.contains(AttributedFacets(attribute: "size",
-                                                                     facets: facetHits(of: ("s", 10), ("m", 20), ("l", 30), ("xl", 40)))))
-    XCTAssertTrue(interactor.orderedFacets.contains(AttributedFacets(attribute: "brand",
-                                                                     facets: facetHits(of: ("samsung", 5), ("sony", 4), ("philips", 12)))))
-    XCTAssertTrue(interactor.orderedFacets.contains(AttributedFacets(attribute: "color",
-                                                                     facets: facetHits(of: ("red", 5), ("green", 10), ("blue", 15)))))
+
+    let orderedAttributes = interactor.orderedFacets.map(\.attribute)
+    XCTAssertTrue(orderedAttributes.contains("size"))
+    XCTAssertTrue(orderedAttributes.contains("brand"))
+    XCTAssertTrue(orderedAttributes.contains("color"))
+
+    func assertFacets(for attribute: String, expected: [(String, Int)]) {
+      guard let af = interactor.orderedFacets.first(where: { $0.attribute == attribute }) else {
+        XCTFail("Missing attribute \(attribute)")
+        return
+      }
+      let actual = af.facets.map { "\($0.value):\($0.count)" }.sorted()
+      let exp = expected.map { "\($0.0):\($0.1)" }.sorted()
+      XCTAssertEqual(actual, exp, "Facet values mismatch for \(attribute)")
+    }
+
+    assertFacets(for: "size", expected: [("s", 10), ("m", 20), ("l", 30), ("xl", 40)])
+    assertFacets(for: "brand", expected: [("samsung", 5), ("sony", 4), ("philips", 12)])
+    assertFacets(for: "color", expected: [("red", 5), ("green", 10), ("blue", 15)])
   }
 }

@@ -27,9 +27,10 @@ class DisjunctiveFacetingTests: XCTestCase {
     do {
       let output = try queryBuilder.aggregate([res1, res2, res3])
       XCTAssertEqual(output.facetsStats?.count, 2)
-      XCTAssertEqual(output.facets?.count, 2)
+      XCTAssertEqual(output.facets?.count, 3)
       XCTAssertEqual(output.facets?.map { $0.key }.contains("price"), true)
       XCTAssertEqual(output.facets?.map { $0.key }.contains("pubYear"), true)
+      XCTAssertEqual(output.facets?.map { $0.key }.contains("type"), true)
     } catch {
       XCTFail("\(error)")
     }

@@ -93,7 +93,7 @@ class FilterStateTests: XCTestCase {
       Filter.Facet(attribute: "featured", value: true, isNegated: true)
     ], toGroupWithID: .or(name: "b", filterType: .facet))
 
-    let expectedState = "( NOT \"_tags\":\"tagA\" OR NOT \"_tags\":\"tagB\" ) AND ( NOT \"featured\":\"true\" OR NOT \"size\":\"40.0\" )"
+    let expectedState = "( NOT \"_tags\":\"tagA\" OR NOT \"_tags\":\"tagB\" ) AND ( NOT \"featured\":true OR NOT \"size\":40.0 )"
 
     XCTAssertEqual(filterState.buildSQL(), expectedState)
   }
@@ -214,7 +214,7 @@ class FilterStateTests: XCTestCase {
     XCTAssertFalse(filterState.contains(tagB, inGroupWithID: .and(name: "others")))
 
     let expectedResult = """
-    ( "price" > 100.0 OR "size":15.0 TO 20.0 ) AND ( "new":"true" AND "price" < 100.0 ) AND ( "_tags":"someTag" AND "brand":"apple" AND "featured":"true" AND "price" > 20.0 AND "rating":"4.0" AND "size":15.0 TO 20.0 ) AND ( "_tags":"A" OR "_tags":"B" OR "_tags":"hm" OR "_tags":"other" )
+    ( "price" > 100.0 OR "size":15.0 TO 20.0 ) AND ( "new":true AND "price" < 100.0 ) AND ( "_tags":"someTag" AND "brand":"apple" AND "featured":true AND "price" > 20.0 AND "rating":4.0 AND "size":15.0 TO 20.0 ) AND ( "_tags":"A" OR "_tags":"B" OR "_tags":"hm" OR "_tags":"other" )
     """
 
     XCTAssertEqual(filterState.buildSQL(), expectedResult)

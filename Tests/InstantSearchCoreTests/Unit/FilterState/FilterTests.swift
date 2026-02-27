@@ -20,7 +20,14 @@ class FilterTests: XCTestCase {
   func testFilterFacet(with value: Filter.Facet.ValueType) {
     let attribute: String = "a"
     var facetFilter = Filter.Facet(attribute: attribute, value: value)
-    let expectedExpression = "\"\(attribute)\":\"\(value)\""
+    let valueString: String
+    switch value {
+    case .string:
+      valueString = "\"\(value)\""
+    case .bool, .number:
+      valueString = "\(value)"
+    }
+    let expectedExpression = "\"\(attribute)\":\(valueString)"
     XCTAssertEqual(facetFilter.attribute, attribute)
     XCTAssertEqual(facetFilter.sqlForm, expectedExpression)
     XCTAssertFalse(facetFilter.isNegated)
