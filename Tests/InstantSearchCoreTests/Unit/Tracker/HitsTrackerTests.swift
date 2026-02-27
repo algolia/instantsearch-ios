@@ -23,7 +23,7 @@ class HitsTrackerTests: XCTestCase {
     static let object: [String: String] = ["field": "value"]
   }
 
-  let searcher = HitsSearcher(appID: Constants.appID, apiKey: Constants.apiKey, indexName: Constants.indexName)
+  let searcher = try! HitsSearcher(appID: Constants.appID, apiKey: Constants.apiKey, indexName: Constants.indexName)
 
   let testTracker = TestHitsTracker()
 

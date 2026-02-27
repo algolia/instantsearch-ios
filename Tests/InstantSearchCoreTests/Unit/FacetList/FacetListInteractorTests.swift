@@ -66,11 +66,11 @@ class FacetListInteractorTests: XCTestCase {
     XCTAssertEqual(interactor.selections, ["cat1", "cat2"])
   }
 
-  func testConnectSearcher() {
+  func testConnectSearcher() throws {
     let interactor = FacetListInteractor(selectionMode: .single)
 
     let query = SearchSearchParamsObject()
-    let searcher = HitsSearcher(appID: "testAppID", apiKey: "testApiKey", indexName: "", query: query)
+    let searcher = try HitsSearcher(appID: "testAppID", apiKey: "testApiKey", indexName: "", query: query)
 
     interactor.connectSearcher(searcher, with: "type")
 

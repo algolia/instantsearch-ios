@@ -21,7 +21,7 @@ class HitsInteractorRelatedItemsTests: XCTestCase {
     let image: URL
   }
 
-  func testConnect() {
+  func testConnect() throws {
     let matchingPatterns: [MatchingPattern<Product>] =
       [
         MatchingPattern(attribute: "brand", score: 3, filterPath: \.brand),
@@ -29,7 +29,7 @@ class HitsInteractorRelatedItemsTests: XCTestCase {
         MatchingPattern(attribute: "categories", score: 2, filterPath: \.categories)
       ]
 
-    let searcher = HitsSearcher(appID: "testAppID", apiKey: "testApiKey", indexName: "")
+    let searcher = try HitsSearcher(appID: "testAppID", apiKey: "testApiKey", indexName: "")
     let product = Product(name: "productName", brand: "Amazon", type: "Streaming media plyr", categories: ["Streaming Media Players", "TV & Home Theater"], image: URL(string: "http://url.com")!)
 
     let hitsInteractor = HitsInteractor<JSON>.init()

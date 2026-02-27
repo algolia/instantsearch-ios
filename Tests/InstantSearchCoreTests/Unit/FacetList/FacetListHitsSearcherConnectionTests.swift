@@ -17,8 +17,8 @@ class FacetListHitsSearcherConnectionTests: XCTestCase {
   weak var disposableSearcher: HitsSearcher?
   weak var disposableInteractor: FacetListInteractor?
 
-  func testLeak() {
-    let searcher = HitsSearcher(appID: "testAppID", apiKey: "testApiKey", indexName: "")
+  func testLeak() throws {
+    let searcher = try HitsSearcher(appID: "testAppID", apiKey: "testApiKey", indexName: "")
     let interactor = FacetListInteractor()
 
     disposableSearcher = searcher
@@ -33,8 +33,8 @@ class FacetListHitsSearcherConnectionTests: XCTestCase {
     XCTAssertNil(disposableInteractor, "Leaked interactor")
   }
 
-  func testConnect() {
-    let searcher = HitsSearcher(appID: "testAppID", apiKey: "testApiKey", indexName: "")
+  func testConnect() throws {
+    let searcher = try HitsSearcher(appID: "testAppID", apiKey: "testApiKey", indexName: "")
     let interactor = FacetListInteractor()
 
     let connection = FacetListInteractor.HitsSearcherConnection(facetListInteractor: interactor, searcher: searcher, attribute: attribute)
@@ -45,8 +45,8 @@ class FacetListHitsSearcherConnectionTests: XCTestCase {
                     isConnected: true)
   }
 
-  func testConnectMethod() {
-    let searcher = HitsSearcher(appID: "testAppID", apiKey: "testApiKey", indexName: "")
+  func testConnectMethod() throws {
+    let searcher = try HitsSearcher(appID: "testAppID", apiKey: "testApiKey", indexName: "")
     let interactor = FacetListInteractor()
 
     interactor.connectSearcher(searcher, with: attribute)
@@ -56,8 +56,8 @@ class FacetListHitsSearcherConnectionTests: XCTestCase {
                     isConnected: true)
   }
 
-  func testDisconnect() {
-    let searcher = HitsSearcher(appID: "testAppID", apiKey: "testApiKey", indexName: "")
+  func testDisconnect() throws {
+    let searcher = try HitsSearcher(appID: "testAppID", apiKey: "testApiKey", indexName: "")
     let interactor = FacetListInteractor()
 
     let connection = FacetListInteractor.HitsSearcherConnection(facetListInteractor: interactor, searcher: searcher, attribute: attribute)

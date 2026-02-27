@@ -10,8 +10,8 @@ import Foundation
 import XCTest
 
 class HitsSearcherTests: XCTestCase {
-  func testOnQueryChanged() {
-    let searcher = HitsSearcher(appID: "testAppID", apiKey: "testApiKey", indexName: "index1")
+  func testOnQueryChanged() throws {
+    let searcher = try HitsSearcher(appID: "testAppID", apiKey: "testApiKey", indexName: "index1")
     let exp = expectation(description: "Query change expectation")
     searcher.onQueryChanged.subscribe(with: self) { _, newQuery in
       XCTAssertEqual(newQuery, "new query")
@@ -21,8 +21,8 @@ class HitsSearcherTests: XCTestCase {
     waitForExpectations(timeout: 2, handler: .none)
   }
 
-  func testOnIndexChanged() {
-    let searcher = HitsSearcher(appID: "testAppID", apiKey: "testApiKey", indexName: "index1")
+  func testOnIndexChanged() throws {
+    let searcher = try HitsSearcher(appID: "testAppID", apiKey: "testApiKey", indexName: "index1")
     let exp = expectation(description: "Index change expectation")
     searcher.onIndexChanged.subscribe(with: self) { _, indexName in
       XCTAssertEqual(indexName, "index3")
@@ -32,8 +32,8 @@ class HitsSearcherTests: XCTestCase {
     waitForExpectations(timeout: 2, handler: .none)
   }
 
-  func testOnSearch() {
-    let searcher = HitsSearcher(appID: "testAppID", apiKey: "testApiKey", indexName: "index1")
+  func testOnSearch() throws {
+    let searcher = try HitsSearcher(appID: "testAppID", apiKey: "testApiKey", indexName: "index1")
     let exp = expectation(description: "Search expectation")
     searcher.onSearch.subscribe(with: self) { _, _ in
       exp.fulfill()
@@ -42,8 +42,8 @@ class HitsSearcherTests: XCTestCase {
     waitForExpectations(timeout: 2, handler: .none)
   }
 
-  func testConditionalSearch() {
-    let searcher = HitsSearcher(appID: "testAppID", apiKey: "testApiKey", indexName: "index1")
+  func testConditionalSearch() throws {
+    let searcher = try HitsSearcher(appID: "testAppID", apiKey: "testApiKey", indexName: "index1")
     let exp = expectation(description: "Search expectation")
     exp.isInverted = true
     searcher.onSearch.subscribe(with: self) { _, _ in
@@ -57,8 +57,8 @@ class HitsSearcherTests: XCTestCase {
     waitForExpectations(timeout: 2, handler: .none)
   }
 
-  func testTextualQueryChange() {
-    let searcher = HitsSearcher(appID: "testAppID", apiKey: "testApiKey", indexName: "index1")
+  func testTextualQueryChange() throws {
+    let searcher = try HitsSearcher(appID: "testAppID", apiKey: "testApiKey", indexName: "index1")
 
     let exp1 = expectation(description: "Request changed expectation")
 
@@ -77,8 +77,8 @@ class HitsSearcherTests: XCTestCase {
     waitForExpectations(timeout: 2, handler: .none)
   }
 
-  func testIndexChange() {
-    let searcher = HitsSearcher(appID: "testAppID", apiKey: "testApiKey", indexName: "index1")
+  func testIndexChange() throws {
+    let searcher = try HitsSearcher(appID: "testAppID", apiKey: "testApiKey", indexName: "index1")
 
     let exp1 = expectation(description: "Request changed expectation")
 
@@ -97,10 +97,10 @@ class HitsSearcherTests: XCTestCase {
     waitForExpectations(timeout: 2, handler: .none)
   }
   
-  func testAutomaticHitsViewTracking() {
-    let searcher = HitsSearcher(appID: "test_app_id",
-                                apiKey: "test_api_key",
-                                indexName: "test_index_name")
+  func testAutomaticHitsViewTracking() throws {
+    let searcher = try HitsSearcher(appID: "test_app_id",
+                                    apiKey: "test_api_key",
+                                    indexName: "test_index_name")
 
     let testHitsTracker = TestHitsTracker()
     
@@ -131,10 +131,10 @@ class HitsSearcherTests: XCTestCase {
     searcher.onResults.fire(makeSearchResponse(hits: hits))
   }
   
-  func testAutomaticHitsViewTrackingOptOut() {
-    let searcher = HitsSearcher(appID: "test_app_id",
-                                apiKey: "test_api_key",
-                                indexName: "test_index_name")
+  func testAutomaticHitsViewTrackingOptOut() throws {
+    let searcher = try HitsSearcher(appID: "test_app_id",
+                                    apiKey: "test_api_key",
+                                    indexName: "test_index_name")
 
     let testHitsTracker = TestHitsTracker()
     

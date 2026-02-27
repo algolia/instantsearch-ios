@@ -17,8 +17,8 @@ class TelemetryTests: XCTestCase {
     Telemetry.shared.reset()
   }
 
-  let hitsSearcher = HitsSearcher(appID: "testAppID", apiKey: "testApiKey", indexName: "")
-  let facetSearcher = FacetSearcher(appID: "testAppID", apiKey: "testApiKey", indexName: "", facetName: "")
+  let hitsSearcher = try! HitsSearcher(appID: "testAppID", apiKey: "testApiKey", indexName: "")
+  let facetSearcher = try! FacetSearcher(appID: "testAppID", apiKey: "testApiKey", indexName: "", facetName: "")
   let searchBoxInteractor = SearchBoxInteractor()
   let searchBoxController = TestSearchBoxController()
   let hitsController = TestHitsController<String>()
@@ -40,8 +40,8 @@ class TelemetryTests: XCTestCase {
   }
 
   func userAgentsTest() throws {
-    _ = HitsSearcher(appID: "testAppID", apiKey: "testApiKey", indexName: "")
-    _ = FacetSearcher(appID: "testAppID", apiKey: "testApiKey", indexName: "", facetName: "")
+    _ = try HitsSearcher(appID: "testAppID", apiKey: "testApiKey", indexName: "")
+    _ = try FacetSearcher(appID: "testAppID", apiKey: "testApiKey", indexName: "", facetName: "")
 
     guard let schema1 = TelemetrySchema(userAgentString: UserAgentController.httpHeaderValue) else {
       XCTFail("Cannot build Schema")
@@ -128,7 +128,7 @@ extension TelemetryTests {
   }
 
   func testSearchConnectorImplicitSearcher() throws {
-    _ = SearchConnector(appID: "testAppID",
+    _ = try SearchConnector(appID: "testAppID",
                         apiKey: "testApiKey",
                         indexName: "",
                         searchBoxController: searchBoxController,
@@ -482,7 +482,7 @@ extension TelemetryTests {
   }
 
   func testHitsConnectorParams() throws {
-    _ = HitsConnector<String>(appID: "testAppID",
+    _ = try HitsConnector<String>(appID: "testAppID",
                               apiKey: "testApiKey",
                               indexName: "",
                               infiniteScrolling: .off,
@@ -664,7 +664,7 @@ extension TelemetryTests {
   }
 
   func testFacetSearcherParams() throws {
-    _ = FacetSearcher(appID: "testAppID",
+    _ = try FacetSearcher(appID: "testAppID",
                       apiKey: "testApiKey",
                       indexName: "",
                       facetName: "")
@@ -686,7 +686,7 @@ extension TelemetryTests {
   }
 
   func testHitsSearcherParams() throws {
-    _ = HitsSearcher(appID: "testAppID",
+    _ = try HitsSearcher(appID: "testAppID",
                      apiKey: "testApiKey",
                      indexName: "")
     let component = try component(ofType: .hitsSearcher)
@@ -699,7 +699,7 @@ extension TelemetryTests {
 
 extension TelemetryTests {
   func testMultiSearcher() throws {
-    _ = MultiSearcher(appID: "testAppID", apiKey: "testApiKey")
+    _ = try MultiSearcher(appID: "testAppID", apiKey: "testApiKey")
     let component = try component(ofType: .multiSearcher)
     XCTAssertFalse(component.isConnector)
     XCTAssertTrue(component.parameters.isEmpty)

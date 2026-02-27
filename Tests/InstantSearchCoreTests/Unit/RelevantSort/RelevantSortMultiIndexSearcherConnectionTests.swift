@@ -15,8 +15,8 @@ class RelevantSortMultiIndexSearcherConnectionTests: XCTestCase {
   weak var disposableSearcher: MultiIndexSearcher?
   weak var disposableInteractor: RelevantSortInteractor?
 
-  func testLeak() {
-    let searcher = MultiIndexSearcher(appID: "testAppID", apiKey: "testApiKey", indexNames: ["a", "b"])
+  func testLeak() throws {
+    let searcher = try MultiIndexSearcher(appID: "testAppID", apiKey: "testApiKey", indexNames: ["a", "b"])
     let interactor = RelevantSortInteractor(priority: .relevancy)
 
     disposableSearcher = searcher
@@ -30,8 +30,8 @@ class RelevantSortMultiIndexSearcherConnectionTests: XCTestCase {
     XCTAssertNil(disposableInteractor, "Leaked interactor")
   }
 
-  func testConnect() {
-    let searcher = MultiIndexSearcher(appID: "testAppID", apiKey: "testApiKey", indexNames: ["a", "b"])
+  func testConnect() throws {
+    let searcher = try MultiIndexSearcher(appID: "testAppID", apiKey: "testApiKey", indexNames: ["a", "b"])
     let interactor = RelevantSortInteractor(priority: .relevancy)
 
     let connection = RelevantSortInteractor.MultiIndexSearcherConnection(interactor: interactor, searcher: searcher, queryIndex: 0)
@@ -62,8 +62,8 @@ class RelevantSortMultiIndexSearcherConnectionTests: XCTestCase {
     waitForExpectations(timeout: 2, handler: nil)
   }
 
-  func testConnectMethod() {
-    let searcher = MultiIndexSearcher(appID: "testAppID", apiKey: "testApiKey", indexNames: ["a", "b"])
+  func testConnectMethod() throws {
+    let searcher = try MultiIndexSearcher(appID: "testAppID", apiKey: "testApiKey", indexNames: ["a", "b"])
     let interactor = RelevantSortInteractor(priority: .relevancy)
 
     interactor.connectSearcher(searcher, queryIndex: 0)
@@ -93,8 +93,8 @@ class RelevantSortMultiIndexSearcherConnectionTests: XCTestCase {
     waitForExpectations(timeout: 2, handler: nil)
   }
 
-  func testDisconnect() {
-    let searcher = MultiIndexSearcher(appID: "testAppID", apiKey: "testApiKey", indexNames: ["a", "b"])
+  func testDisconnect() throws {
+    let searcher = try MultiIndexSearcher(appID: "testAppID", apiKey: "testApiKey", indexNames: ["a", "b"])
     let interactor = RelevantSortInteractor(priority: .relevancy)
 
     let connection = RelevantSortInteractor.MultiIndexSearcherConnection(interactor: interactor, searcher: searcher, queryIndex: 0)

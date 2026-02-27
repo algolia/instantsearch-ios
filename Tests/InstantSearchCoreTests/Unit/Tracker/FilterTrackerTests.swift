@@ -27,7 +27,7 @@ class FilterTrackerTests: XCTestCase {
     }
   }
 
-  let searcher = HitsSearcher(appID: Constants.appID, apiKey: Constants.apiKey, indexName: Constants.indexName)
+  let searcher = try! HitsSearcher(appID: Constants.appID, apiKey: Constants.apiKey, indexName: Constants.indexName)
 
   let testTracker = TestFiltersTracker()
 

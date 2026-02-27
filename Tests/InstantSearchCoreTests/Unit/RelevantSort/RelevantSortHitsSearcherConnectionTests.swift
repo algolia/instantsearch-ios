@@ -13,8 +13,8 @@ class RelevantSortHitsSearcherConnectionTests: XCTestCase {
   weak var disposableSearcher: HitsSearcher?
   weak var disposableInteractor: RelevantSortInteractor?
 
-  func testLeak() {
-    let searcher = HitsSearcher(appID: "testAppID", apiKey: "testApiKey", indexName: "")
+  func testLeak() throws {
+    let searcher = try HitsSearcher(appID: "testAppID", apiKey: "testApiKey", indexName: "")
     let interactor = RelevantSortInteractor(priority: .relevancy)
 
     disposableSearcher = searcher
@@ -28,8 +28,8 @@ class RelevantSortHitsSearcherConnectionTests: XCTestCase {
     XCTAssertNil(disposableInteractor, "Leaked interactor")
   }
 
-  func testConnect() {
-    let searcher = HitsSearcher(appID: "testAppID", apiKey: "testApiKey", indexName: "")
+  func testConnect() throws {
+    let searcher = try HitsSearcher(appID: "testAppID", apiKey: "testApiKey", indexName: "")
     let interactor = RelevantSortInteractor(priority: .relevancy)
 
     let connection = RelevantSortInteractor.HitsSearcherConnection(interactor: interactor, searcher: searcher)
@@ -61,8 +61,8 @@ class RelevantSortHitsSearcherConnectionTests: XCTestCase {
     waitForExpectations(timeout: 2, handler: nil)
   }
 
-  func testConnectMethod() {
-    let searcher = HitsSearcher(appID: "testAppID", apiKey: "testApiKey", indexName: "")
+  func testConnectMethod() throws {
+    let searcher = try HitsSearcher(appID: "testAppID", apiKey: "testApiKey", indexName: "")
     let interactor = RelevantSortInteractor(priority: .relevancy)
 
     interactor.connectSearcher(searcher)
@@ -92,8 +92,8 @@ class RelevantSortHitsSearcherConnectionTests: XCTestCase {
     waitForExpectations(timeout: 2, handler: nil)
   }
 
-  func testDisconnect() {
-    let searcher = HitsSearcher(appID: "testAppID", apiKey: "testApiKey", indexName: "")
+  func testDisconnect() throws {
+    let searcher = try HitsSearcher(appID: "testAppID", apiKey: "testApiKey", indexName: "")
     let interactor = RelevantSortInteractor(priority: .relevancy)
 
     let connection = RelevantSortInteractor.HitsSearcherConnection(interactor: interactor, searcher: searcher)

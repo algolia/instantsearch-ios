@@ -21,12 +21,12 @@ class StatsInteractorConnectorsTests: XCTestCase {
     }
   }
 
-  func testConnectSearcher() {
+  func testConnectSearcher() throws {
     let vm = StatsInteractor()
     let results = makeSearchResponse()
     let query = SearchSearchParamsObject()
 
-    let searcher = HitsSearcher(appID: "testAppID", apiKey: "testApiKey", indexName: "", query: query)
+    let searcher = try HitsSearcher(appID: "testAppID", apiKey: "testApiKey", indexName: "", query: query)
     vm.connectSearcher(searcher)
 
     let exp = expectation(description: "on item changed")
