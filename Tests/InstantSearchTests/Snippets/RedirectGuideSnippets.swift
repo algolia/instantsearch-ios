@@ -41,9 +41,9 @@ class RedirectGuideSnippets {
   }
 
   func redirectWidget() {
-    let searcher: HitsSearcher = .init(appID: "YourApplicationID",
-                                       apiKey: "YourSearchOnlyAPIKey",
-                                       indexName: "YourIndexName")
+    let searcher: HitsSearcher = try! .init(appID: "YourApplicationID",
+                                            apiKey: "YourSearchOnlyAPIKey",
+                                            indexName: "YourIndexName")
 
     let queryRuleCustomDataConnector = QueryRuleCustomDataConnector<Redirect>(searcher: searcher)
 

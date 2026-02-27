@@ -15,18 +15,18 @@ class InsightsTests: XCTestCase {
   let testEventProcessor = TestEventProcessor()
   lazy var testInsights: Insights = .init(eventProcessor: testEventProcessor, eventTracker: testEventTracker, logger: Logger(label: "InsightsTest"))
 
-  func testInitShouldFail() {
+  func testInitShouldFail() throws {
     let insightsRegister = Insights.shared(appId: "test")
     XCTAssertNil(insightsRegister)
 
-    Insights.register(appId: "app1", apiKey: "key1")
-    Insights.register(appId: "app2", apiKey: "key2")
+    try Insights.register(appId: "app1", apiKey: "key1")
+    try Insights.register(appId: "app2", apiKey: "key2")
 
     XCTAssertNil(Insights.shared)
   }
 
-  func testInitShouldWork() {
-    let insightsRegister = Insights.register(appId: appID, apiKey: apiKey)
+  func testInitShouldWork() throws {
+    let insightsRegister = try Insights.register(appId: appID, apiKey: apiKey)
     XCTAssertNotNil(insightsRegister)
 
     let insightsShared = Insights.shared(appId: appID)
@@ -35,8 +35,8 @@ class InsightsTests: XCTestCase {
     XCTAssertTrue(insightsRegister === insightsShared, "Getting the Insights instance from register and shared must be the same")
   }
 
-  func testOptIntOptOut() {
-    let insightsRegister = Insights.register(appId: appID, apiKey: apiKey)
+  func testOptIntOptOut() throws {
+    let insightsRegister = try Insights.register(appId: appID, apiKey: apiKey)
 
     XCTAssertTrue(insightsRegister.eventProcessor.isActive)
     insightsRegister.isActive = false
@@ -379,10 +379,10 @@ class InsightsTests: XCTestCase {
     XCTAssertEqual(insights.userToken, modifiedUserToken)
   }
 
-  func testRegister() {
+  func testRegister() throws {
     let userToken: String = "testUserToken1"
 
-    Insights.register(appId: "myAppID", apiKey: "apiKey", userToken: userToken)
+    try Insights.register(appId: "myAppID", apiKey: "apiKey", userToken: userToken)
 
     XCTAssertEqual(Insights.shared(appId: "myAppID")?.userToken, userToken)
 
