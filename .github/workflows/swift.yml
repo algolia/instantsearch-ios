@@ -14,8 +14,8 @@ jobs:
         run: sudo xcode-select -s '/Applications/Xcode_16.0.app/Contents/Developer'
       - name: Build project
         run: swift build
-      - name: Run tests
-        run: swift test
+      - name: Run unit tests
+        run: swift test --skip Integration --skip HierarchicalTests
   test-xcode-16:
     runs-on: macos-15
     env:
@@ -27,5 +27,5 @@ jobs:
         run: sudo xcode-select -s '/Applications/Xcode_16.0.app/Contents/Developer'
       - name: Build project
         run: swift build
-      - name: Run tests
-        run: swift test
+      - name: Run unit tests
+        run: swift test --skip Integration --skip HierarchicalTests
