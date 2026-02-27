@@ -9,8 +9,8 @@
 import XCTest
 
 class InsightsTests: XCTestCase {
-  let appID: ApplicationID = "test app id"
-  let apiKey: APIKey = "test key"
+  let appID: String = "test app id"
+  let apiKey: String = "test key"
   let testEventTracker = TestEventTracker()
   let testEventProcessor = TestEventProcessor()
   lazy var testInsights: Insights = .init(eventProcessor: testEventProcessor, eventTracker: testEventTracker, logger: Logger(label: "InsightsTest"))
@@ -357,7 +357,7 @@ class InsightsTests: XCTestCase {
   }
 
   func testUserTokenChange() {
-    let userToken: UserToken = "testUserToken1"
+    let userToken: String = "testUserToken1"
 
     let eventProcessor = TestEventProcessor()
     let logger = Logger(label: #function)
@@ -372,7 +372,7 @@ class InsightsTests: XCTestCase {
 
     XCTAssertEqual(insights.userToken, userToken)
 
-    let modifiedUserToken: UserToken = "testUserToken2"
+    let modifiedUserToken: String = "testUserToken2"
 
     insights.userToken = modifiedUserToken
 
@@ -380,13 +380,13 @@ class InsightsTests: XCTestCase {
   }
 
   func testRegister() {
-    let userToken: UserToken = "testUserToken1"
+    let userToken: String = "testUserToken1"
 
     Insights.register(appId: "myAppID", apiKey: "apiKey", userToken: userToken)
 
     XCTAssertEqual(Insights.shared(appId: "myAppID")?.userToken, userToken)
 
-    let modifiedUserToken: UserToken = "testUserToken2"
+    let modifiedUserToken: String = "testUserToken2"
 
     Insights.shared(appId: "myAppID")?.userToken = modifiedUserToken
 

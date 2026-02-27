@@ -135,8 +135,8 @@ class FilterStateTests: XCTestCase {
   func testAdd() {
     var filterState = GroupsStorage()
 
-    let filterFacet1 = Filter.Facet(attribute: Attribute("category"), value: "table")
-    let filterFacet2 = Filter.Facet(attribute: Attribute("category"), value: "chair")
+    let filterFacet1 = Filter.Facet(attribute: "category", value: "table")
+    let filterFacet2 = Filter.Facet(attribute: "category", value: "chair")
     let filterNumeric1 = Filter.Numeric(attribute: "price", operator: .greaterThan, value: 10)
     let filterNumeric2 = Filter.Numeric(attribute: "price", operator: .lessThan, value: 20)
     let filterTag1 = Filter.Tag(value: "Tom")
@@ -513,9 +513,9 @@ class FilterStateTests: XCTestCase {
   func testFilterScoring() {
     var filterState = GroupsStorage()
 
-    let filterFacet1 = Filter.Facet(attribute: Attribute("category"), value: "table", score: 5)
-    let filterFacet2 = Filter.Facet(attribute: Attribute("category"), value: "chair", score: 10)
-    let filterFacet3 = Filter.Facet(attribute: Attribute("type"), value: "equipment", score: 3)
+    let filterFacet1 = Filter.Facet(attribute: "category", value: "table", score: 5)
+    let filterFacet2 = Filter.Facet(attribute: "category", value: "chair", score: 10)
+    let filterFacet3 = Filter.Facet(attribute: "type", value: "equipment", score: 3)
 
     let groupFacetsOr = FilterGroup.ID.or(name: "filterFacetsOr", filterType: .facet)
     let groupFacetsAnd = FilterGroup.ID.and(name: "filterFacetsAnd")

@@ -12,16 +12,16 @@ import XCTest
 
 class FilterTrackerTests: XCTestCase {
   enum Constants {
-    static let appID: ApplicationID = "test_app_id"
-    static let apiKey: APIKey = "test_api_key"
-    static let indexName: IndexName = "test index name"
-    static let eventName: EventName = "event name"
-    static let customEventName: EventName = "custom event name"
-    static let queryID: QueryID = "test query id"
+    static let appID: String = "test_app_id"
+    static let apiKey: String = "test_api_key"
+    static let indexName: String = "test index name"
+    static let eventName: String = "event name"
+    static let customEventName: String = "custom event name"
+    static let queryID: String = "test query id"
 
     enum Filter {
       static let facet = FacetHits(value: "test filter value", highlighted: "test filter value", count: 10)
-      static let attribute: Attribute = "test attribute"
+      static let attribute: String = "test attribute"
       static let value = "test filter value"
       static let serialized = "test attribute:\"test filter value\""
     }

@@ -19,16 +19,22 @@ class TestPageLoader: PageLoadable {
 }
 
 struct TestRecord<Value: Codable>: Codable {
-  let objectID: ObjectID
+  let objectID: String
   let value: Value
 
-  init(_ value: Value, objectID: ObjectID = ObjectID(rawValue: UUID().uuidString)) {
+  init(_ value: Value, objectID: String = UUID().uuidString) {
     self.value = value
     self.objectID = objectID
   }
 
   static func withValue(_ value: Value) -> Self {
     .init(value)
+  }
+}
+
+private extension Hit {
+  static func withJSON(_ json: Record) -> Hit {
+    Hit(object: json)
   }
 }
 

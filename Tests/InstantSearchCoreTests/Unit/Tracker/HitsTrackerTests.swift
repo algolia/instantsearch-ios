@@ -12,15 +12,15 @@ import XCTest
 
 class HitsTrackerTests: XCTestCase {
   enum Constants {
-    static let appID: ApplicationID = "test_app_id"
-    static let apiKey: APIKey = "test_api_key"
-    static let indexName: IndexName = "test index name"
-    static let objectID: ObjectID = "test object id"
-    static let eventName: EventName = "event name"
-    static let customEventName: EventName = "custom event name"
+    static let appID: String = "test_app_id"
+    static let apiKey: String = "test_api_key"
+    static let indexName: String = "test index name"
+    static let objectID: String = "test object id"
+    static let eventName: String = "event name"
+    static let customEventName: String = "custom event name"
     static let position = 10
-    static let queryID: QueryID = "test query id"
-    static let object: JSON = ["field": AnyCodable("value")]
+    static let queryID: String = "test query id"
+    static let object: [String: String] = ["field": "value"]
   }
 
   let searcher = HitsSearcher(appID: Constants.appID, apiKey: Constants.apiKey, indexName: Constants.indexName)
@@ -33,7 +33,7 @@ class HitsTrackerTests: XCTestCase {
     return tracker
   }()
 
-  let hit = Hit<JSON>(object: Constants.object, objectID: Constants.objectID)
+  let hit = Hit<[String: String]>(object: Constants.object, objectID: Constants.objectID)
 
   func testClick() {
     let clickExpectation = expectation(description: #function)

@@ -11,11 +11,11 @@ import Foundation
 import XCTest
 
 class FacetListControllerConnectionTests: XCTestCase {
-  let attribute: Attribute = "Test Attribute"
+  let attribute: String = "Test Attribute"
   let groupName = "Test group"
 
-  let facets: [Facet] = .init(prefix: "f", count: 3)
-  let facetsWithAddition: [Facet] = .init(prefix: "f", count: 4)
+  let facets: [FacetHits] = .init(prefix: "f", count: 3)
+  let facetsWithAddition: [FacetHits] = .init(prefix: "f", count: 4)
 
   weak var disposableInteractor: FacetListInteractor?
   weak var disposableController: TestFacetListController?
