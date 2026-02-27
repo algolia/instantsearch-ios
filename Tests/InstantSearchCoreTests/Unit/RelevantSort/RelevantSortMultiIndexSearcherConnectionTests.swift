@@ -43,6 +43,9 @@ class RelevantSortMultiIndexSearcherConnectionTests: XCTestCase {
     searcher.onResults.fire(SearchResponses<SearchHit>(results: [.searchResponse(SearchResponse<SearchHit>(hits: []).set(\.nbSortedHits, to: nil))]))
     XCTAssertEqual(interactor.item, .none)
 
+    // Restore to a toggleable state (.none is not toggleable)
+    interactor.item = .hitsCount
+
     let relevancyPriorityExpectation = expectation(description: "Relevancy priority")
     searcher.onSearch.subscribeOnce(with: self) { _, _ in
       XCTAssertEqual(searcher.indexQueryStates[0].query.relevancyStrictness, 100)
@@ -73,6 +76,9 @@ class RelevantSortMultiIndexSearcherConnectionTests: XCTestCase {
 
     searcher.onResults.fire(SearchResponses<SearchHit>(results: [.searchResponse(SearchResponse<SearchHit>(hits: []).set(\.nbSortedHits, to: nil))]))
     XCTAssertEqual(interactor.item, .none)
+
+    // Restore to a toggleable state (.none is not toggleable)
+    interactor.item = .hitsCount
 
     let relevancyPriorityExpectation = expectation(description: "Relevancy priority")
     searcher.onSearch.subscribeOnce(with: self) { _, _ in

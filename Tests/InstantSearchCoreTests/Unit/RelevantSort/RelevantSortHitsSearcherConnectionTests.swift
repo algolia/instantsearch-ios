@@ -42,6 +42,9 @@ class RelevantSortHitsSearcherConnectionTests: XCTestCase {
     searcher.onResults.fire(makeSearchResponse().set(\.nbSortedHits, to: nil))
     XCTAssertEqual(interactor.item, .none)
 
+    // Restore to a toggleable state (.none is not toggleable)
+    interactor.item = .hitsCount
+
     let relevancyPriorityExpectation = expectation(description: "Relevancy priority")
     searcher.onRequestChanged.subscribeOnce(with: self) { _, request in
       XCTAssertEqual(request.query.relevancyStrictness, 100)
@@ -72,6 +75,9 @@ class RelevantSortHitsSearcherConnectionTests: XCTestCase {
 
     searcher.onResults.fire(makeSearchResponse().set(\.nbSortedHits, to: nil))
     XCTAssertEqual(interactor.item, .none)
+
+    // Restore to a toggleable state (.none is not toggleable)
+    interactor.item = .hitsCount
 
     let relevancyPriorityExpectation = expectation(description: "Relevancy priority")
     searcher.onRequestChanged.subscribeOnce(with: self) { _, request in

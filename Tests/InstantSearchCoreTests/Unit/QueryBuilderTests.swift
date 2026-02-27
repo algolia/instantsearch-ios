@@ -49,7 +49,7 @@ class QueryBuilderTests: XCTestCase {
 
     disjunctiveFacetingQueries.forEach { XCTAssertEqual($0.facets?.count, 1) }
 
-    let priceFilterString = "\"price\":\"100.0\""
+    let priceFilterString = "\"price\":100.0"
     let sizeFilterString = "\"size\":\"44\""
     let colorFilterString = "\"color\":\"green\""
     let singletonOrGroupString = "( \"type\":\"phone\" )"
