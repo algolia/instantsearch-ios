@@ -160,4 +160,3 @@ class EventTracker: EventTrackable {
     logger.error("\(error.localizedDescription)")
   }
 }
-// swiftlint:enable function_parameter_count
