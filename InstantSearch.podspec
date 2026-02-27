@@ -30,7 +30,7 @@ Pod::Spec.new do |s|
       ss.dependency 'AlgoliaSearchClient', '~> 9.37'
       ss.dependency 'Logging'
       ss.dependency 'InstantSearch/Insights'
-      ss.dependency 'SwiftProtobuf', '~> 1.26'
+      ss.dependency 'SwiftProtobuf', '~> 1.26.0'
       ss.dependency 'InstantSearchTelemetry', '~> 0.1.3'
       ss.ios.deployment_target = '14.0'
       ss.osx.deployment_target = '11.0'
