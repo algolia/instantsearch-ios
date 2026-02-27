@@ -17,6 +17,7 @@ public class AlgoliaMultiSearchService: MultiSearchService {
   }
 
   public convenience init(appID: String, apiKey: String) {
+    // swiftlint:disable:next force_try
     self.init(client: try! SearchClient(appID: appID, apiKey: apiKey))
   }
 

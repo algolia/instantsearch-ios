@@ -183,6 +183,7 @@ public class Insights {
     self.eventTracker = eventTracker
   }
 
+  // swiftlint:disable:next function_parameter_count
   convenience init(applicationID: String,
                    apiKey: String,
                    region: Region? = region,
@@ -201,6 +202,7 @@ public class Insights {
       logger.error("\(error.localizedDescription)")
     }
 
+    // swiftlint:disable:next force_try
     let insightsClient = try! InsightsClient(appID: applicationID, apiKey: apiKey, region: region)
 
     let acceptEvent: (InsightsEvent) -> Bool = { event in

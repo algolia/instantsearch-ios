@@ -7,25 +7,26 @@
 //
 
 import Foundation
+import Search
 @testable import InstantSearchCore
 import XCTest
 
 class DisjunctiveFacetingTests: XCTestCase {
   func testMergeResults() throws {
-    let query = Query()
+    let query = SearchSearchParamsObject()
 
     let queryBuilder = QueryBuilder(query: query, disjunctiveFacets: [], filterGroups: [
       FilterGroup.Or(filters: [Filter.Facet(attribute: "price", floatValue: 100)], name: "price"),
       FilterGroup.Or(filters: [Filter.Facet(attribute: "pubYear", floatValue: 2000)], name: "pubYear")
     ])
 
-    let res1: SearchResponse = try JSONDecoder().decode(fromResource: "DisjFacetingResult1", withExtension: "json")
-    let res2: SearchResponse = try JSONDecoder().decode(fromResource: "DisjFacetingResult2", withExtension: "json")
-    let res3: SearchResponse = try JSONDecoder().decode(fromResource: "DisjFacetingResult3", withExtension: "json")
+    let res1: SearchResponse<SearchHit> = try JSONDecoder().decode(fromResource: "DisjFacetingResult1", withExtension: "json")
+    let res2: SearchResponse<SearchHit> = try JSONDecoder().decode(fromResource: "DisjFacetingResult2", withExtension: "json")
+    let res3: SearchResponse<SearchHit> = try JSONDecoder().decode(fromResource: "DisjFacetingResult3", withExtension: "json")
 
     do {
       let output = try queryBuilder.aggregate([res1, res2, res3])
-      XCTAssertEqual(output.facetStats?.count, 2)
+      XCTAssertEqual(output.facetsStats?.count, 2)
       XCTAssertEqual(output.facets?.count, 2)
       XCTAssertEqual(output.facets?.map { $0.key }.contains("price"), true)
       XCTAssertEqual(output.facets?.map { $0.key }.contains("pubYear"), true)
@@ -35,7 +36,7 @@ class DisjunctiveFacetingTests: XCTestCase {
   }
 
   func testMultipleDisjunctiveGroupsOfSameType() {
-    let query = Query()
+    let query = SearchSearchParamsObject()
 
     let colorGroup = FilterGroup.Or<Filter.Facet>(filters: [.init(attribute: "color", stringValue: "red"), .init(attribute: "color", stringValue: "green")], name: "color")
     let sizeGroup = FilterGroup.Or<Filter.Facet>(filters: [.init(attribute: "size", stringValue: "m"), .init(attribute: "size", stringValue: "s")], name: "size")
@@ -71,7 +72,7 @@ class DisjunctiveFacetingTests: XCTestCase {
   }
 
   func testBuildHierarchicalQueries() {
-    let query = Query()
+    let query = SearchSearchParamsObject()
 
     let colorGroup = FilterGroup.And(filters: [Filter.Facet(attribute: "color", stringValue: "red")], name: "color")
 

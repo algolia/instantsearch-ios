@@ -13,4 +13,3 @@ public extension Hit {
     return try jsonDecoder.decode(Record.self, from: data)
   }
 }
-

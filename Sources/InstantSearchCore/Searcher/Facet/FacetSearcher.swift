@@ -60,12 +60,14 @@ public final class FacetSearcher: IndexSearcher<FacetSearchService> {
    - query: Instance of Query. By default a new empty instant of Query will be created.
    - requestOptions: Custom request options. Default is `nil`.
    */
+  // swiftlint:disable:next function_parameter_count
   public convenience init(appID: String,
                           apiKey: String,
                           indexName: String,
                           facetName: String,
                           query: SearchSearchParamsObject = .init(),
                           requestOptions: RequestOptions? = nil) {
+    // swiftlint:disable:next force_try
     let service = FacetSearchService(client: try! SearchClient(appID: appID, apiKey: apiKey))
     let request = Request(query: "", indexName: indexName, attribute: facetName, context: query, requestOptions: requestOptions)
     self.init(service: service, initialRequest: request)

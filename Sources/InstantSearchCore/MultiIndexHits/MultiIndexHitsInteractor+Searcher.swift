@@ -23,7 +23,7 @@ public extension MultiIndexHitsInteractor {
       }
 
       searcher.onResults.subscribePast(with: interactor) { interactor, searchResults in
-        let responses: [SearchResponse] = searchResults.results.compactMap { result in
+        let responses: [SearchResponse<SearchHit>] = searchResults.results.compactMap { result in
           switch result {
           case let .searchResponse(response):
             return response

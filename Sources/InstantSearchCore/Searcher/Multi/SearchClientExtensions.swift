@@ -40,4 +40,3 @@ extension SearchMethodParams {
     self.init(requests: queries, strategy: strategy?.searchStrategy)
   }
 }
-

@@ -34,10 +34,10 @@ class HitsInteractorRelatedItemsTests: XCTestCase {
 
     let hitsInteractor = HitsInteractor<JSON>.init()
 
-    let hit: ObjectWrapper<Product> = .init(objectID: "objectID123", object: product)
+    let hit: ObjectWrapper<Product> = .init(object: product, objectID: "objectID123")
     hitsInteractor.connectSearcher(searcher, withRelatedItemsTo: hit, with: matchingPatterns)
 
-    let expectedOptionalFilters = [
+    let expectedOptionalFilters: Set<String> = [
       "brand:Amazon<score=3>",
       "categories:Streaming Media Players<score=2>",
       "categories:TV & Home Theater<score=2>",
@@ -48,7 +48,15 @@ class HitsInteractorRelatedItemsTests: XCTestCase {
     ])
 
     XCTAssertEqual(searcher.request.query.sumOrFiltersScores, true)
-    XCTAssertEqual(Set(searcher.request.query.optionalFilters ?? []), Set(expectedOptionalFilters))
+    if case let .arrayOfSearchOptionalFilters(filters) = searcher.request.query.optionalFilters {
+      let actual = Set(filters.compactMap { filter -> String? in
+        if case let .string(value) = filter { return value }
+        return nil
+      })
+      XCTAssertEqual(actual, expectedOptionalFilters)
+    } else {
+      XCTFail("Expected arrayOfSearchOptionalFilters")
+    }
     XCTAssertEqual(searcher.request.query.filters, expectedFilters)
   }
 }

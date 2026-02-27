@@ -1,5 +1,8 @@
 import Foundation
+import Search
 @testable import InstantSearchCore
+
+typealias JSON = [String: AnyCodable]
 
 func safeIndexName(_ name: String) -> String {
   var targetName = Bundle.main.object(forInfoDictionaryKey: "BUILD_TARGET_NAME") as? String ?? ""
@@ -28,10 +31,11 @@ func uniqueAlgoliaBizHost() -> String {
   return "swift-\(UInt32(NSDate().timeIntervalSince1970)).algolia.biz"
 }
 
-func makeJSONHit(_ value: String) -> JSON {
+func makeJSONHit(_ value: String) -> [String: AnyCodable] {
   return ["value": AnyCodable(value)]
 }
 
+// swiftlint:disable:next function_parameter_count
 func makeSearchResponse(hits: [SearchHit] = [],
                         page: Int = 0,
                         nbHits: Int = 0,
@@ -39,25 +43,18 @@ func makeSearchResponse(hits: [SearchHit] = [],
                         nbPages: Int = 1,
                         processingTimeMS: Int = 0,
                         query: String = "",
-                        params: String = "") -> SearchResponse {
-  let encoder = JSONEncoder()
-  let hitsData = (try? encoder.encode(hits)) ?? Data()
-  let hitsJSONArray = (try? JSONSerialization.jsonObject(with: hitsData, options: [])) as? [Any] ?? []
-  let payload: [String: Any] = [
-    "hits": hitsJSONArray,
-    "page": page,
-    "nbHits": nbHits,
-    "hitsPerPage": hitsPerPage,
-    "nbPages": nbPages,
-    "processingTimeMS": processingTimeMS,
-    "query": query,
-    "params": params
-  ]
-  let data = try! JSONSerialization.data(withJSONObject: payload, options: [])
-  return try! JSONDecoder().decode(SearchResponse.self, from: data)
+                        params: String = "") -> SearchResponse<SearchHit> {
+  return SearchResponse(page: page,
+                        nbHits: nbHits,
+                        nbPages: nbPages,
+                        hitsPerPage: hitsPerPage,
+                        hits: hits,
+                        query: query,
+                        params: params)
+    .set(\.processingTimeMS, to: processingTimeMS)
 }
 
-func makeSearchResponse<Record: Encodable>(records: [Record]) -> SearchResponse {
+func makeSearchResponse<Record: Encodable>(records: [Record]) -> SearchResponse<SearchHit> {
   let hits: [SearchHit] = records.compactMap { record in
     guard let json = encodeToJSON(record) else { return nil }
     return Hit(object: json)
@@ -65,31 +62,21 @@ func makeSearchResponse<Record: Encodable>(records: [Record]) -> SearchResponse 
   return makeSearchResponse(hits: hits)
 }
 
-func makeSearchResponses(_ responses: [SearchResponse]) -> SearchResponses<SearchHit> {
+func makeSearchResponses(_ responses: [SearchResponse<SearchHit>]) -> SearchResponses<SearchHit> {
   return SearchResponses(results: responses.map { .searchResponse($0) })
 }
 
-func makeFacetSearchResponse(facetHits: [FacetHits],
+func makeFacetSearchResponse(facetHits: [InstantSearchCore.FacetHits],
                              processingTimeMS: Int = 1,
-                             exhaustiveFacetsCount: Bool = true) -> FacetSearchResponse {
-  let hitsPayload = facetHits.map { hit in
-    [
-      "value": hit.value,
-      "highlighted": hit.highlighted,
-      "count": hit.count
-    ]
-  }
-  let payload: [String: Any] = [
-    "facetHits": hitsPayload,
-    "exhaustiveFacetsCount": exhaustiveFacetsCount,
-    "processingTimeMS": processingTimeMS
-  ]
-  let data = try! JSONSerialization.data(withJSONObject: payload, options: [])
-  return try! JSONDecoder().decode(FacetSearchResponse.self, from: data)
+                             exhaustiveFacetsCount: Bool = true) -> SearchForFacetValuesResponse {
+  let searchFacetHits = facetHits.map { Search.FacetHits(value: $0.value, highlighted: $0.highlighted, count: $0.count) }
+  return SearchForFacetValuesResponse(facetHits: searchFacetHits,
+                                      exhaustiveFacetsCount: exhaustiveFacetsCount,
+                                      processingTimeMS: processingTimeMS)
 }
 
-private func encodeToJSON<Record: Encodable>(_ record: Record) -> JSON? {
+private func encodeToJSON<Record: Encodable>(_ record: Record) -> [String: AnyCodable]? {
   let encoder = JSONEncoder()
   guard let data = try? encoder.encode(record) else { return nil }
-  return try? JSONDecoder().decode(JSON.self, from: data)
+  return try? JSONDecoder().decode([String: AnyCodable].self, from: data)
 }

@@ -161,6 +161,7 @@ public extension InsightsEvent {
 }
 
 extension InsightsEvent {
+  // swiftlint:disable:next function_body_length
   var eventsItem: EventsItems? {
     switch eventType {
     case .viewedObjectIDs:
@@ -244,5 +245,3 @@ extension InsightsEvent {
     }
   }
 }
-
-

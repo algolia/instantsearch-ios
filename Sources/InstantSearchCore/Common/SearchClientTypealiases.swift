@@ -18,4 +18,3 @@ extension SearchResult where T == SearchHit {
     }
   }
 }
-

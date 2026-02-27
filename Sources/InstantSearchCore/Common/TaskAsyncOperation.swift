@@ -26,4 +26,3 @@ final class TaskAsyncOperation: AsyncOperation {
     super.cancel()
   }
 }
-

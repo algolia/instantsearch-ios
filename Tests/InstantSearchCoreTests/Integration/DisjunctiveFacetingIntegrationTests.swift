@@ -7,13 +7,14 @@
 //
 
 import Foundation
+import Search
 @testable import InstantSearchCore
 import XCTest
 class DisjunctiveFacetingIntegrationTests: OnlineTestCase {
   struct Item: Codable {
     let category: String
     let color: String?
-    let promotions: TreeModel<String>?
+    let promotions: AnyCodable?
   }
 
   let disjunctiveAttributes: [String] = [
@@ -24,13 +25,13 @@ class DisjunctiveFacetingIntegrationTests: OnlineTestCase {
 
   override func setUpWithError() throws {
     try super.setUpWithError()
-    let settings = Settings().set(\.attributesForFaceting, to: disjunctiveAttributes.map { .default($0) })
+    let settings = IndexSettings().set(\.attributesForFaceting, to: disjunctiveAttributes)
     let items: [Item] = try JSONDecoder().decode(fromResource: "disjunctive", withExtension: "json")
     try fillIndex(withItems: items, autoGeneratingObjectID: true, settings: settings)
   }
 
   func testDisjunctive() {
-    let expectedFacets: [(String, [FacetHits])] = [
+    let expectedFacets: [(String, [InstantSearchCore.FacetHits])] = [
       ("category", [
         .init(value: "shirt", highlighted: "shirt", count: 2),
         .init(value: "hat", highlighted: "hat", count: 1)
@@ -42,7 +43,7 @@ class DisjunctiveFacetingIntegrationTests: OnlineTestCase {
       ])
     ]
 
-    let expectedDisjucntiveFacets: [(String, [FacetHits])] = [
+    let expectedDisjucntiveFacets: [(String, [InstantSearchCore.FacetHits])] = [
       ("color", [
         .init(value: "blue", highlighted: "blue", count: 3),
         .init(value: "green", highlighted: "green", count: 2),
@@ -52,7 +53,7 @@ class DisjunctiveFacetingIntegrationTests: OnlineTestCase {
       ])
     ]
 
-    let query = Query().set(\.facets, to: disjunctiveAttributes)
+    let query = SearchSearchParamsObject().set(\.facets, to: disjunctiveAttributes)
     let colorFilter = Filter.Facet(attribute: "color", stringValue: "blue")
     let disjunctiveGroup = FilterGroup.Or(filters: [colorFilter], name: "colors")
     let queryBuilder = QueryBuilder(query: query, disjunctiveFacets: [], filterGroups: [disjunctiveGroup])
@@ -66,18 +67,19 @@ class DisjunctiveFacetingIntegrationTests: OnlineTestCase {
 
     Task {
       do {
-        let response = try await client.search(
+        let response: SearchResponses<SearchHit> = try await client.search(
           searchMethodParams: SearchMethodParams(queries: queries.asSearchQueries(), strategy: .none)
         )
-        let finalResult = try queryBuilder.aggregate(response.results)
+        let responses = response.results.compactMap(\.asSearchResponse)
+        let finalResult = try queryBuilder.aggregate(responses)
         expectedFacets.forEach { attribute, facets in
           let values = finalResult.facets?[attribute] ?? [:]
-          let facetHits = values.map { FacetHits(value: $0.key, highlighted: $0.key, count: $0.value) }
+          let facetHits = values.map { InstantSearchCore.FacetHits(value: $0.key, highlighted: $0.key, count: $0.value) }
           XCTAssertTrue(facetHits.equalContents(to: facets))
         }
         expectedDisjucntiveFacets.forEach { attribute, facets in
           let values = finalResult.facets?[attribute] ?? [:]
-          let facetHits = values.map { FacetHits(value: $0.key, highlighted: $0.key, count: $0.value) }
+          let facetHits = values.map { InstantSearchCore.FacetHits(value: $0.key, highlighted: $0.key, count: $0.value) }
           XCTAssertTrue(facetHits.equalContents(to: facets))
         }
         exp.fulfill()
@@ -90,7 +92,7 @@ class DisjunctiveFacetingIntegrationTests: OnlineTestCase {
   }
 
   func testMultiDisjunctive() {
-    let expectedFacets: [(String, [FacetHits])] = [
+    let expectedFacets: [(String, [InstantSearchCore.FacetHits])] = [
       ("category", [
         .init(value: "shirt", highlighted: "shirt", count: 1)
       ]),
@@ -99,13 +101,13 @@ class DisjunctiveFacetingIntegrationTests: OnlineTestCase {
       ])
     ]
 
-    let expectedDisjucntiveFacets: [(String, [FacetHits])] = [
+    let expectedDisjucntiveFacets: [(String, [InstantSearchCore.FacetHits])] = [
       ("color", [
         .init(value: "blue", highlighted: "blue", count: 1)
       ])
     ]
 
-    let query = Query().set(\.facets, to: disjunctiveAttributes)
+    let query = SearchSearchParamsObject().set(\.facets, to: disjunctiveAttributes)
     let colorFilter = Filter.Facet(attribute: "color", stringValue: "blue")
     let disjunctiveGroup = FilterGroup.Or(filters: [colorFilter], name: "colors")
     let promotionsFilter = Filter.Facet(attribute: "promotions", stringValue: "coupon")
@@ -121,18 +123,19 @@ class DisjunctiveFacetingIntegrationTests: OnlineTestCase {
 
     Task {
       do {
-        let response = try await client.search(
+        let response: SearchResponses<SearchHit> = try await client.search(
           searchMethodParams: SearchMethodParams(queries: queries.asSearchQueries(), strategy: .none)
         )
-        let finalResult = try queryBuilder.aggregate(response.results)
+        let responses = response.results.compactMap(\.asSearchResponse)
+        let finalResult = try queryBuilder.aggregate(responses)
         expectedFacets.forEach { attribute, facets in
           let values = finalResult.facets?[attribute] ?? [:]
-          let facetHits = values.map { FacetHits(value: $0.key, highlighted: $0.key, count: $0.value) }
+          let facetHits = values.map { InstantSearchCore.FacetHits(value: $0.key, highlighted: $0.key, count: $0.value) }
           XCTAssertTrue(facetHits.equalContents(to: facets))
         }
         expectedDisjucntiveFacets.forEach { attribute, facets in
           let values = finalResult.facets?[attribute] ?? [:]
-          let facetHits = values.map { FacetHits(value: $0.key, highlighted: $0.key, count: $0.value) }
+          let facetHits = values.map { InstantSearchCore.FacetHits(value: $0.key, highlighted: $0.key, count: $0.value) }
           XCTAssertTrue(facetHits.equalContents(to: facets))
         }
         exp.fulfill()

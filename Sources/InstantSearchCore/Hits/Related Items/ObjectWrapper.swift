@@ -22,4 +22,3 @@ public extension ObjectWrapper where Object: Indexable {
     self.objectID = object.objectID
   }
 }
-

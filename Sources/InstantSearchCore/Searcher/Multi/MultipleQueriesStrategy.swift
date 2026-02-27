@@ -19,4 +19,3 @@ public enum MultipleQueriesStrategy: String, Codable, CaseIterable {
     }
   }
 }
-

@@ -43,7 +43,7 @@ class TelemetryTests: XCTestCase {
     _ = HitsSearcher(appID: "", apiKey: "", indexName: "")
     _ = FacetSearcher(appID: "", apiKey: "", indexName: "", facetName: "")
 
-    guard let schema1 = TelemetrySchema(userAgentString: UserAgentController.value) else {
+    guard let schema1 = TelemetrySchema(userAgentString: UserAgentController.httpHeaderValue) else {
       XCTFail("Cannot build Schema")
       return
     }
@@ -52,7 +52,7 @@ class TelemetryTests: XCTestCase {
 
     _ = FilterState()
 
-    guard let schema2 = TelemetrySchema(userAgentString: UserAgentController.value) else {
+    guard let schema2 = TelemetrySchema(userAgentString: UserAgentController.httpHeaderValue) else {
       XCTFail("Cannot build Schema")
       return
     }
@@ -655,7 +655,7 @@ extension TelemetryTests {
 
 extension TelemetryTests {
   func testFacetSearcher() throws {
-    _ = FacetSearcher(client: .init(appID: "", apiKey: ""),
+    _ = FacetSearcher(client: try .init(appID: "", apiKey: ""),
                       indexName: "",
                       facetName: "")
     let component = try component(ofType: .facetSearcher)
@@ -678,7 +678,7 @@ extension TelemetryTests {
 
 extension TelemetryTests {
   func testHitsSearcher() throws {
-    _ = HitsSearcher(client: .init(appID: "", apiKey: ""),
+    _ = HitsSearcher(client: try .init(appID: "", apiKey: ""),
                      indexName: "")
     let component = try component(ofType: .hitsSearcher)
     XCTAssertFalse(component.isConnector)

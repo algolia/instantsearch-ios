@@ -7,6 +7,7 @@
 //
 
 import Foundation
+import Search
 @testable import InstantSearchCore
 import XCTest
 class DisjuncitveAndHierarchicalIntegrationTests: OnlineTestCase {
@@ -50,13 +51,13 @@ class DisjuncitveAndHierarchicalIntegrationTests: OnlineTestCase {
 
   override func setUpWithError() throws {
     try super.setUpWithError()
-    let settings = Settings().set(\.attributesForFaceting, to: facetAttributes.map { .default($0) })
+    let settings = IndexSettings().set(\.attributesForFaceting, to: facetAttributes)
     let items: [Item] = try JSONDecoder().decode(fromResource: "disjunctiveHierarchical", withExtension: "json")
     try fillIndex(withItems: items, autoGeneratingObjectID: true, settings: settings)
   }
 
   func testDisjuncitiveHierarchical() {
-    let expectedHierarchicalFacets: [(String, [FacetHits])] = [
+    let expectedHierarchicalFacets: [(String, [InstantSearchCore.FacetHits])] = [
       (lvl0, [
         .init(value: cat3, highlighted: cat3, count: 2),
         .init(value: cat2, highlighted: cat2, count: 1)
@@ -70,10 +71,10 @@ class DisjuncitveAndHierarchicalIntegrationTests: OnlineTestCase {
       ])
     ]
 
-    let expectedDisjunctiveFacets: [(String, [FacetHits])] = [
+    let expectedDisjunctiveFacets: [(String, [InstantSearchCore.FacetHits])] = [
       (colorAttribute, [
-        FacetHits(value: "red", highlighted: "red", count: 2),
-        FacetHits(value: "blue", highlighted: "blue", count: 1)
+        InstantSearchCore.FacetHits(value: "red", highlighted: "red", count: 2),
+        InstantSearchCore.FacetHits(value: "blue", highlighted: "blue", count: 1)
       ])
     ]
 
@@ -91,7 +92,7 @@ class DisjuncitveAndHierarchicalIntegrationTests: OnlineTestCase {
       Filter.Facet(attribute: lvl1, stringValue: cat3_2)
     ]
 
-    let query = Query("").set(\.facets, to: facetAttributes)
+    let query = SearchSearchParamsObject(query: "").set(\.facets, to: facetAttributes)
 
     let queryBuilder = QueryBuilder(query: query,
                                     disjunctiveFacets: [],
@@ -110,13 +111,14 @@ class DisjuncitveAndHierarchicalIntegrationTests: OnlineTestCase {
 
     Task {
       do {
-        let response = try await client.search(
+        let response: SearchResponses<SearchHit> = try await client.search(
           searchMethodParams: SearchMethodParams(queries: indexQueries.asSearchQueries(), strategy: .none)
         )
-        let finalResult = try queryBuilder.aggregate(response.results)
+        let responses = response.results.compactMap(\.asSearchResponse)
+        let finalResult = try queryBuilder.aggregate(responses)
         expectedDisjunctiveFacets.forEach { attribute, facets in
           let values = finalResult.facets?[attribute] ?? [:]
-          let facetHits = values.map { FacetHits(value: $0.key, highlighted: $0.key, count: $0.value) }
+          let facetHits = values.map { InstantSearchCore.FacetHits(value: $0.key, highlighted: $0.key, count: $0.value) }
           XCTAssertTrue(facetHits.equalContents(to: facets))
         }
         expectedHierarchicalFacets.forEach { attribute, facets in

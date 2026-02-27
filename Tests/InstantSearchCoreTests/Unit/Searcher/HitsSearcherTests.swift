@@ -112,7 +112,7 @@ class HitsSearcherTests: XCTestCase {
     searcher.eventTracker = HitsTracker(eventName: "test event name",
                                        searcher: .singleIndex(searcher),
                                        tracker: testHitsTracker)
-    let rawHits: [JSON] = [
+    let rawHits: [[String: AnyCodable]] = [
       [
         "objectID": AnyCodable("id1"),
         "title": AnyCodable("object1")

@@ -9,4 +9,3 @@ import Foundation
 public protocol Indexable {
   var objectID: String { get }
 }
-

@@ -7,18 +7,19 @@
 //
 
 import Foundation
+import Search
 @testable import InstantSearchCore
 import XCTest
 
 class FacetListInteractorTests: XCTestCase {
   class TestController: FacetListController {
-    typealias Item = FacetHits
+    typealias Item = InstantSearchCore.FacetHits
 
-    var onClick: ((FacetHits) -> Void)?
+    var onClick: ((InstantSearchCore.FacetHits) -> Void)?
     var didReload: (() -> Void)?
-    var selectableItems: [(item: FacetHits, isSelected: Bool)] = []
+    var selectableItems: [(item: InstantSearchCore.FacetHits, isSelected: Bool)] = []
 
-    func setSelectableItems(selectableItems: [(item: FacetHits, isSelected: Bool)]) {
+    func setSelectableItems(selectableItems: [(item: InstantSearchCore.FacetHits, isSelected: Bool)]) {
       self.selectableItems = selectableItems
     }
 
@@ -42,9 +43,9 @@ class FacetListInteractorTests: XCTestCase {
     let interactor = FacetListInteractor(selectionMode: .single)
 
     interactor.items = [
-      FacetHits(value: "cat1", highlighted: "cat1", count: 10),
-      FacetHits(value: "cat2", highlighted: "cat2", count: 5),
-      FacetHits(value: "cat3", highlighted: "cat3", count: 5)
+      InstantSearchCore.FacetHits(value: "cat1", highlighted: "cat1", count: 10),
+      InstantSearchCore.FacetHits(value: "cat2", highlighted: "cat2", count: 5),
+      InstantSearchCore.FacetHits(value: "cat3", highlighted: "cat3", count: 5)
     ]
 
     let filterState = FilterState()
@@ -68,17 +69,17 @@ class FacetListInteractorTests: XCTestCase {
   func testConnectSearcher() {
     let interactor = FacetListInteractor(selectionMode: .single)
 
-    let query = Query()
+    let query = SearchSearchParamsObject()
     let searcher = HitsSearcher(appID: "", apiKey: "", indexName: "", query: query)
 
     interactor.connectSearcher(searcher, with: "type")
 
     do {
-      let results: SearchResponse = try JSONDecoder().decode(fromResource: "SearchResultFacets", withExtension: "json")
+      let results: SearchResponse<SearchHit> = try JSONDecoder().decode(fromResource: "SearchResultFacets", withExtension: "json")
 
       searcher.onResults.fire(results)
 
-      let expectedFacets: Set<FacetHits> = [
+      let expectedFacets: Set<InstantSearchCore.FacetHits> = [
         .init(value: "book", highlighted: "book", count: 357),
         .init(value: "electronics", highlighted: "electronics", count: 184),
         .init(value: "gifts", highlighted: "gifts", count: 27),

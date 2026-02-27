@@ -7,6 +7,7 @@
 //
 
 import Foundation
+import Search
 @testable import InstantSearchCore
 import XCTest
 
@@ -32,10 +33,15 @@ struct TestRecord<Value: Codable>: Codable {
   }
 }
 
-private extension Hit {
-  static func withJSON(_ json: Record) -> Hit {
-    Hit(object: json)
+private func makeSearchResponseFromRecords<T: Encodable>(_ records: [T]) -> SearchResponse<SearchHit> {
+  let hits: [SearchHit] = records.compactMap { record in
+    guard let data = try? JSONEncoder().encode(record),
+          let json = try? JSONDecoder().decode([String: AnyCodable].self, from: data) else {
+      return nil
+    }
+    return InstantSearchCore.Hit(object: json)
   }
+  return SearchResponse(hits: hits)
 }
 
 @available(*, deprecated, message: "Test to remove when MulstIndexSearcher obsoleted")
@@ -85,10 +91,10 @@ class MultiIndexHitsInteractorTests: XCTestCase {
     let multiInteractor = MultiIndexHitsInteractor(hitsInteractors: [interactor1, interactor2])
 
     let hits1 = (1...3).map(TestRecord.withValue)
-    let results1 = SearchResponse(hits: hits1)
+    let results1 = makeSearchResponseFromRecords(hits1)
 
     let hits2 = [true, false, true].map(TestRecord.withValue)
-    let results2 = SearchResponse(hits: hits2)
+    let results2 = makeSearchResponseFromRecords(hits2)
 
     let noErrorExpectation = expectation(description: "correct update")
     noErrorExpectation.isInverted = true
@@ -115,11 +121,9 @@ class MultiIndexHitsInteractorTests: XCTestCase {
     let interactor2 = HitsInteractor<[String: Bool]>()
     let multiInteractor = MultiIndexHitsInteractor(hitsInteractors: [interactor1, interactor2])
 
-    let hits1 = [["a": 1], ["b": 2], ["c": 3]].map(Hit.withJSON)
-    let results1 = SearchResponse(hits: hits1)
+    let results1 = makeSearchResponseFromRecords([["a": 1], ["b": 2], ["c": 3]])
 
-    let hits2 = [["a": true], ["b": false], ["c": true]].map(Hit.withJSON)
-    let results2 = SearchResponse(hits: hits2)
+    let results2 = makeSearchResponseFromRecords([["a": true], ["b": false], ["c": true]])
 
     let errorExpectation = expectation(description: "incorrect update")
     errorExpectation.expectedFulfillmentCount = 2
@@ -152,10 +156,10 @@ class MultiIndexHitsInteractorTests: XCTestCase {
     let multiInteractor = MultiIndexHitsInteractor(hitsInteractors: [interactor1, interactor2])
 
     let hits1 = [1, 2, 3].map(TestRecord<Int>.withValue)
-    let results1 = SearchResponse(hits: hits1)
+    let results1 = makeSearchResponseFromRecords(hits1)
 
     let hits2 = [true, false].map(TestRecord<Bool>.withValue)
-    let results2 = SearchResponse(hits: hits2)
+    let results2 = makeSearchResponseFromRecords(hits2)
 
     let interactor1Exp = expectation(description: "Interactor 1")
     let interactor2Exp = expectation(description: "Interactor 2")
@@ -194,10 +198,10 @@ class MultiIndexHitsInteractorTests: XCTestCase {
     let multiInteractor = MultiIndexHitsInteractor(hitsInteractors: [interactor1, interactor2])
 
     let hits1 = [1, 2, 3].map(TestRecord.withValue)
-    let results1 = SearchResponse(hits: hits1)
+    let results1 = makeSearchResponseFromRecords(hits1)
 
     let hits2 = [true, false].map(TestRecord.withValue)
-    let results2 = SearchResponse(hits: hits2)
+    let results2 = makeSearchResponseFromRecords(hits2)
 
     let interactor1Exp = expectation(description: "Interactor 1")
     let interactor2Exp = expectation(description: "Interactor 2")
@@ -237,10 +241,10 @@ class MultiIndexHitsInteractorTests: XCTestCase {
     let multiInteractor = MultiIndexHitsInteractor(hitsInteractors: [interactor1, interactor2])
 
     let hits1 = [1, 2, 3].map(TestRecord.withValue)
-    let results1 = SearchResponse(hits: hits1)
+    let results1 = makeSearchResponseFromRecords(hits1)
 
     let hits2 = ["a", "b"].map(TestRecord.withValue)
-    let results2 = SearchResponse(hits: hits2)
+    let results2 = makeSearchResponseFromRecords(hits2)
 
     let interactor1Exp = expectation(description: "Interactor 1")
     let interactor2Exp = expectation(description: "Interactor 2")
@@ -286,10 +290,10 @@ class MultiIndexHitsInteractorTests: XCTestCase {
     let multiInteractor = MultiIndexHitsInteractor(hitsInteractors: [interactor1, interactor2])
 
     let hits1 = [1, 2, 3].map(TestRecord.withValue)
-    let results1 = SearchResponse(hits: hits1)
+    let results1 = makeSearchResponseFromRecords(hits1)
 
     let hits2 = [true, false].map(TestRecord.withValue)
-    let results2 = SearchResponse(hits: hits2)
+    let results2 = makeSearchResponseFromRecords(hits2)
 
     let resultsUpdatedExp = expectation(description: "Results updated")
 
@@ -342,7 +346,7 @@ class MultiIndexHitsInteractorTests: XCTestCase {
       return Operation()
     }
 
-    func process(_: Error, for _: Query) {}
+    func process(_: Error, for _: SearchSearchParamsObject) {}
 
     func notifyQueryChanged() {}
 

@@ -51,4 +51,3 @@ private extension SearchSearchParamsObject {
     return (try? JSONSerialization.jsonObject(with: data, options: [])) as? [String: Any]
   }
 }
-

@@ -37,6 +37,7 @@
       }
     }
 
+    // swiftlint:disable:next function_parameter_count
     init<HC: HitsController>(appID: String,
                              apiKey: String,
                              indexName: String,

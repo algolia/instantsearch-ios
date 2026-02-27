@@ -7,6 +7,7 @@
 //
 
 import Foundation
+import Search
 @testable import InstantSearchCore
 import XCTest
 class StatsInteractorConnectorsTests: XCTestCase {
@@ -23,7 +24,7 @@ class StatsInteractorConnectorsTests: XCTestCase {
   func testConnectSearcher() {
     let vm = StatsInteractor()
     let results = makeSearchResponse()
-    let query = Query()
+    let query = SearchSearchParamsObject()
 
     let searcher = HitsSearcher(appID: "", apiKey: "", indexName: "", query: query)
     vm.connectSearcher(searcher)

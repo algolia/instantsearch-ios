@@ -6,6 +6,7 @@
 //
 
 import Foundation
+import Search
 @testable import InstantSearchCore
 import XCTest
 
@@ -17,31 +18,22 @@ class DynamicFacetListInteractorTests: XCTestCase {
       Dictionary(uniqueKeysWithValues: raw.map { ($0.0, $0.1) })
     }
 
-    func facetHits(of raw: (String, Int)...) -> [FacetHits] {
-      raw.map { FacetHits(value: $0.0, highlighted: $0.0, count: $0.1) }
+    func facetHits(of raw: (String, Int)...) -> [InstantSearchCore.FacetHits] {
+      raw.map { InstantSearchCore.FacetHits(value: $0.0, highlighted: $0.0, count: $0.1) }
     }
 
     var response = makeSearchResponse()
 
     response.facets = [
-      "size": facetCounts(of: ("s", 10)),
-      "brand": facetCounts(of: ("samsung", 5), ("sony", 4), ("philips", 12))
-    ]
-    response.disjunctiveFacets = [
       "size": facetCounts(of: ("s", 10), ("m", 20), ("l", 30), ("xl", 40)),
+      "brand": facetCounts(of: ("samsung", 5), ("sony", 4), ("philips", 12)),
       "color": facetCounts(of: ("red", 5), ("green", 10), ("blue", 15))
     ]
-    response.renderingContent = try! RenderingContent(json: [
-      "facetOrdering": [
-        "facets": [
-          "order": [
-            "color",
-            "size",
-            "brand"
-          ]
-        ]
-      ]
-    ])
+    response.renderingContent = SearchRenderingContent(
+      facetOrdering: SearchFacetOrdering(
+        facets: SearchFacets(order: ["color", "size", "brand"])
+      )
+    )
 
     interactor.update(with: response)
 

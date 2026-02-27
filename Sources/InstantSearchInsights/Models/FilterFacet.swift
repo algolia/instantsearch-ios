@@ -51,5 +51,3 @@ public struct FilterFacet: Codable, Hashable {
     self.score = score
   }
 }
-
-

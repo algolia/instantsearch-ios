@@ -49,6 +49,7 @@ public struct SearchConnector<Record: Codable>: Connection {
    - hitsController: Hits controller
    - filterState: Filter state
    */
+  // swiftlint:disable:next function_parameter_count
   public init<HC: HitsController, SBC: SearchBoxController>(searcher: HitsSearcher,
                                                             searchBoxInteractor: SearchBoxInteractor = .init(),
                                                             searchBoxController: SBC,
@@ -86,6 +87,7 @@ public struct SearchConnector<Record: Codable>: Connection {
    - hitsController: Hits controller
    - filterState: Filter state
    */
+  // swiftlint:disable:next function_parameter_count
   public init<HC: HitsController, SBC: SearchBoxController>(appID: String,
                                                             apiKey: String,
                                                             indexName: String,

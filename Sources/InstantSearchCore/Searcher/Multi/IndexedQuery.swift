@@ -17,4 +17,3 @@ public struct IndexedQuery: Hashable {
 }
 
 public typealias IndexQuery = IndexedQuery
-

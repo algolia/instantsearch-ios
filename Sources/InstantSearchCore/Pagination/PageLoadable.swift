@@ -25,4 +25,3 @@ extension FacetSearcher: PageLoadable {
     search()
   }
 }
-

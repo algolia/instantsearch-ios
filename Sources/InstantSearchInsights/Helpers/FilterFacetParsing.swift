@@ -79,5 +79,3 @@ extension FilterFacet {
     return "\(attribute):\(prefix)\(valueString)\(scoreSuffix)"
   }
 }
-
-

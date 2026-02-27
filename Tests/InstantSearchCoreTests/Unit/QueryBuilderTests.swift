@@ -6,12 +6,13 @@
 //
 
 import Foundation
+import Search
 @testable import InstantSearchCore
 import XCTest
 
 class QueryBuilderTests: XCTestCase {
   func testDisjunctiveFacetingQueriesGeneration() {
-    let query = Query("phone")
+    let query = SearchSearchParamsObject(query: "phone")
     let disjunctiveFacets: Set<String> = ["price", "color"]
 
     let queryBuilder = QueryBuilder(query: query, disjunctiveFacets: disjunctiveFacets)
@@ -29,7 +30,7 @@ class QueryBuilderTests: XCTestCase {
   }
 
   func testDisjunctiveFacetingWithFiltersQueriesGeneration() {
-    let query = Query("phone")
+    let query = SearchSearchParamsObject(query: "phone")
     let disjunctiveFacets: Set<String> = ["price", "color", "brand"]
     let filterGroups: [FilterGroupType] = [
       FilterGroup.Or(filters: [Filter.Facet(attribute: "price", value: 100), Filter.Facet(attribute: "color", value: "green"), Filter.Facet(attribute: "size", value: "44")], name: "g1"),

@@ -55,6 +55,7 @@ public class MultiSearcher: AbstractMultiSearcher<AlgoliaMultiSearchService> {
   public convenience init(appID: String,
                           apiKey: String,
                           requestOptions: RequestOptions? = nil) {
+    // swiftlint:disable:next force_try
     let client = try! SearchClient(appID: appID, apiKey: apiKey)
     self.init(client: client, requestOptions: requestOptions)
   }

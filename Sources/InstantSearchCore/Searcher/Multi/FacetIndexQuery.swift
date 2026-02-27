@@ -19,4 +19,3 @@ public struct FacetIndexQuery: Hashable {
     self.query = query
   }
 }
-

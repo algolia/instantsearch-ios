@@ -20,5 +20,3 @@ extension SearchResponse {
     return result.isEmpty ? nil : result
   }
 }
-
-

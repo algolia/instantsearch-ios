@@ -7,6 +7,7 @@
 //
 
 import Foundation
+import Search
 @testable import InstantSearchCore
 import XCTest
 class HierarchicalTests: OnlineTestCase {
@@ -38,7 +39,7 @@ class HierarchicalTests: OnlineTestCase {
 
   override func setUpWithError() throws {
     try super.setUpWithError()
-    let settings = Settings().set(\.attributesForFaceting, to: hierarchicalAttributes.map { .default($0) })
+    let settings = IndexSettings().set(\.attributesForFaceting, to: hierarchicalAttributes)
     let items: [Item] = try JSONDecoder().decode(fromResource: "hierarchical", withExtension: "json")
     try fillIndex(withItems: items, autoGeneratingObjectID: true, settings: settings)
   }
@@ -53,7 +54,7 @@ class HierarchicalTests: OnlineTestCase {
       Filter.Facet(attribute: lvl1, stringValue: clothing_men)
     ]
 
-    let expectedHierarchicalFacets: [(String, [FacetHits])] = [
+    let expectedHierarchicalFacets: [(String, [InstantSearchCore.FacetHits])] = [
       (lvl0, [
         .init(value: clothing, highlighted: clothing, count: 4),
         .init(value: book, highlighted: book, count: 2),
@@ -69,7 +70,7 @@ class HierarchicalTests: OnlineTestCase {
       ])
     ]
 
-    let query = Query("").set(\.facets, to: hierarchicalAttributes)
+    let query = SearchSearchParamsObject(query: "").set(\.facets, to: hierarchicalAttributes)
 
     let queryBuilder = QueryBuilder(query: query,
                                     disjunctiveFacets: [],
@@ -84,10 +85,11 @@ class HierarchicalTests: OnlineTestCase {
 
     Task {
       do {
-        let searchesResponse = try await client.search(
+        let searchesResponse: SearchResponses<SearchHit> = try await client.search(
           searchMethodParams: SearchMethodParams(queries: queries.asSearchQueries(), strategy: .none)
         )
-        let finalResult = try queryBuilder.aggregate(searchesResponse.results)
+        let responses = searchesResponse.results.compactMap(\.asSearchResponse)
+        let finalResult = try queryBuilder.aggregate(responses)
         expectedHierarchicalFacets.forEach { attribute, facets in
           XCTAssertTrue(finalResult.hierarchicalFacets?[attribute]?.equalContents(to: facets) == true)
         }
@@ -105,7 +107,7 @@ class HierarchicalTests: OnlineTestCase {
 
     let hierarchicalFilters: [Filter.Facet] = []
 
-    let query = Query("").set(\.facets, to: hierarchicalAttributes)
+    let query = SearchSearchParamsObject(query: "").set(\.facets, to: hierarchicalAttributes)
 
     let queryBuilder = QueryBuilder(query: query,
                                     disjunctiveFacets: [],
@@ -120,10 +122,11 @@ class HierarchicalTests: OnlineTestCase {
 
     Task {
       do {
-        let searchesResponse = try await client.search(
+        let searchesResponse: SearchResponses<SearchHit> = try await client.search(
           searchMethodParams: SearchMethodParams(queries: queries.asSearchQueries(), strategy: .none)
         )
-        let finalResult = try queryBuilder.aggregate(searchesResponse.results)
+        let responses = searchesResponse.results.compactMap(\.asSearchResponse)
+        let finalResult = try queryBuilder.aggregate(responses)
         XCTAssertNil(finalResult.hierarchicalFacets)
         exp.fulfill()
       } catch {
@@ -145,7 +148,7 @@ class HierarchicalTests: OnlineTestCase {
       Filter.Facet(attribute: lvl2, stringValue: clothing_men_hats)
     ]
 
-    let expectedHierarchicalFacets: [(String, [FacetHits])] = [
+    let expectedHierarchicalFacets: [(String, [InstantSearchCore.FacetHits])] = [
       (lvl0, [
         .init(value: clothing, highlighted: clothing, count: 4),
         .init(value: book, highlighted: book, count: 2),
@@ -161,7 +164,7 @@ class HierarchicalTests: OnlineTestCase {
       ])
     ]
 
-    let query = Query("").set(\.facets, to: hierarchicalAttributes)
+    let query = SearchSearchParamsObject(query: "").set(\.facets, to: hierarchicalAttributes)
 
     let queryBuilder = QueryBuilder(query: query,
                                     disjunctiveFacets: [],
@@ -176,10 +179,11 @@ class HierarchicalTests: OnlineTestCase {
 
     Task {
       do {
-        let searchesResponse = try await client.search(
+        let searchesResponse: SearchResponses<SearchHit> = try await client.search(
           searchMethodParams: SearchMethodParams(queries: queries.asSearchQueries(), strategy: .none)
         )
-        let finalResult = try queryBuilder.aggregate(searchesResponse.results)
+        let responses = searchesResponse.results.compactMap(\.asSearchResponse)
+        let finalResult = try queryBuilder.aggregate(responses)
         expectedHierarchicalFacets.forEach { attribute, facets in
           XCTAssertTrue(finalResult.hierarchicalFacets?[attribute]?.equalContents(to: facets) == true)
         }

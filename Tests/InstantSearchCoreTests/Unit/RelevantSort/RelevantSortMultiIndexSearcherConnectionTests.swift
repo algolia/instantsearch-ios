@@ -6,6 +6,7 @@
 //
 
 import Foundation
+import Search
 @testable import InstantSearchCore
 import XCTest
 
@@ -36,11 +37,11 @@ class RelevantSortMultiIndexSearcherConnectionTests: XCTestCase {
     let connection = RelevantSortInteractor.MultiIndexSearcherConnection(interactor: interactor, searcher: searcher, queryIndex: 0)
     connection.connect()
 
-    searcher.onResults.fire(SearchesResponse(results: [SearchResponse().set(\.appliedRelevancyStrictness, to: 100)]))
+    searcher.onResults.fire(SearchResponses<SearchHit>(results: [.searchResponse(SearchResponse<SearchHit>(hits: []).set(\.nbSortedHits, to: 100))]))
     XCTAssertEqual(interactor.item, .relevancy)
 
-    searcher.onResults.fire(SearchesResponse(results: [SearchResponse().set(\.appliedRelevancyStrictness, to: 0)]))
-    XCTAssertEqual(interactor.item, .hitsCount)
+    searcher.onResults.fire(SearchResponses<SearchHit>(results: [.searchResponse(SearchResponse<SearchHit>(hits: []).set(\.nbSortedHits, to: nil))]))
+    XCTAssertEqual(interactor.item, .none)
 
     let relevancyPriorityExpectation = expectation(description: "Relevancy priority")
     searcher.onSearch.subscribeOnce(with: self) { _, _ in
@@ -67,11 +68,11 @@ class RelevantSortMultiIndexSearcherConnectionTests: XCTestCase {
 
     interactor.connectSearcher(searcher, queryIndex: 0)
 
-    searcher.onResults.fire(SearchesResponse(results: [SearchResponse().set(\.appliedRelevancyStrictness, to: 100)]))
+    searcher.onResults.fire(SearchResponses<SearchHit>(results: [.searchResponse(SearchResponse<SearchHit>(hits: []).set(\.nbSortedHits, to: 100))]))
     XCTAssertEqual(interactor.item, .relevancy)
 
-    searcher.onResults.fire(SearchesResponse(results: [SearchResponse().set(\.appliedRelevancyStrictness, to: 0)]))
-    XCTAssertEqual(interactor.item, .hitsCount)
+    searcher.onResults.fire(SearchResponses<SearchHit>(results: [.searchResponse(SearchResponse<SearchHit>(hits: []).set(\.nbSortedHits, to: nil))]))
+    XCTAssertEqual(interactor.item, .none)
 
     let relevancyPriorityExpectation = expectation(description: "Relevancy priority")
     searcher.onSearch.subscribeOnce(with: self) { _, _ in
@@ -100,10 +101,10 @@ class RelevantSortMultiIndexSearcherConnectionTests: XCTestCase {
     connection.connect()
     connection.disconnect()
 
-    searcher.onResults.fire(SearchesResponse(results: [SearchResponse().set(\.appliedRelevancyStrictness, to: 100)]))
+    searcher.onResults.fire(SearchResponses<SearchHit>(results: [.searchResponse(SearchResponse<SearchHit>(hits: []).set(\.nbSortedHits, to: 100))]))
     XCTAssertEqual(interactor.item, .relevancy)
 
-    searcher.onResults.fire(SearchesResponse(results: [SearchResponse().set(\.appliedRelevancyStrictness, to: 0)]))
+    searcher.onResults.fire(SearchResponses<SearchHit>(results: [.searchResponse(SearchResponse<SearchHit>(hits: []).set(\.nbSortedHits, to: nil))]))
     XCTAssertEqual(interactor.item, .relevancy)
 
     let searchRequestExpectation = expectation(description: "Search request")

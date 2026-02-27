@@ -13,7 +13,7 @@ import XCTest
 /// Abstract base class for online test cases.
 ///
 class OnlineTestCase: XCTestCase {
-  struct Task: Codable {
+  struct AlgoliaTask: Codable {
     let id: Int
     enum CodingKeys: String, CodingKey {
       case id = "taskID"
@@ -41,8 +41,8 @@ class OnlineTestCase: XCTestCase {
     // NOTE: We use a different index name for each test function.
     let className = String(reflecting: type(of: self)).components(separatedBy: ".").last!
     let functionName = invocation!.selector.description
-    let indexName = "\(className).\(functionName)"
-    indexName = safeIndexName(indexName)
+    let rawName = "\(className).\(functionName)"
+    self.indexName = safeIndexName(rawName)
 
     // Delete the index.
     // Although it's not shared with other test functions, it could remain from a previous execution.
@@ -73,13 +73,12 @@ class OnlineTestCase: XCTestCase {
     waitForExpectations(timeout: expectationTimeout, handler: nil)
   }
 
-  func fillIndex<O: Encodable>(withItems items: [O], autoGeneratingObjectID: Bool, settings: Settings) throws {
+  func fillIndex<O: Encodable>(withItems items: [O], autoGeneratingObjectID: Bool = true, settings: IndexSettings) throws {
     let fillExpectation = expectation(description: "Fill index")
     Task {
       do {
         _ = try await client.saveObjects(indexName: indexName,
-                                         objects: items,
-                                         autoGenerateObjectID: autoGeneratingObjectID)
+                                         objects: items)
         _ = try await client.setSettings(indexName: indexName,
                                          indexSettings: settings)
       } catch {

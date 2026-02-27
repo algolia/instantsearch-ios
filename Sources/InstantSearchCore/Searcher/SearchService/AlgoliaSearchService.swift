@@ -81,7 +81,7 @@ extension AlgoliaSearchService {
       queriesBuilder.keepSelectedEmptyFacets = keepSelectedEmptyFacets
       queries = queriesBuilder.build().map { IndexedQuery(indexName: request.indexName, query: $0) }
       transform = { results in
-        let responses = try results.map { result -> SearchResponse in
+        let responses = try results.map { result -> SearchResponse<SearchHit> in
           switch result {
           case let .searchResponse(response):
             return response

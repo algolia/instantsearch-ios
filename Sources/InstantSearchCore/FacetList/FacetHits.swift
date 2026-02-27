@@ -30,5 +30,3 @@ extension FacetHits: CustomStringConvertible {
     return value
   }
 }
-
-

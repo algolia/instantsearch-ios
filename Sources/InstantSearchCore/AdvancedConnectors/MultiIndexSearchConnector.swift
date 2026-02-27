@@ -65,6 +65,7 @@ public struct MultiIndexSearchConnector: Connection {
      - queryInputInteractor: External query input interactor
      - queryInputController: Query input controller
    */
+  // swiftlint:disable:next function_parameter_count
   public init<QI: QueryInputController, HC: MultiIndexHitsController>(appID: String,
                                                                       apiKey: String,
                                                                       indexModules: [MultiIndexHitsConnector.IndexModule],

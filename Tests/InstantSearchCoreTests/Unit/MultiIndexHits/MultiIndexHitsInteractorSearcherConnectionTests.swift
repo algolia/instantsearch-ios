@@ -6,6 +6,7 @@
 //
 
 import Foundation
+import Search
 @testable import InstantSearchCore
 import XCTest
 
@@ -121,9 +122,9 @@ extension MultiIndexHitsInteractorSearcherConnectionTests {
         resultsUpdatedExpectation.fulfill()
       }
 
-      let searchResponse = SearchesResponse(results: [
-        SearchResponse(hits: [Hit(object: ["field0": "value0"])]),
-        SearchResponse(hits: [Hit(object: ["field1": "value1"])])
+      let searchResponse = SearchResponses<SearchHit>(results: [
+        .searchResponse(SearchResponse<SearchHit>(hits: [Hit(object: ["field0": "value0"])])),
+        .searchResponse(SearchResponse<SearchHit>(hits: [Hit(object: ["field1": "value1"])]))
       ])
 
       searcher.onResults.fire(searchResponse)

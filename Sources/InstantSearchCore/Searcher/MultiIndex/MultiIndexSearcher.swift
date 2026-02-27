@@ -90,6 +90,7 @@ public class MultiIndexSearcher: Searcher, SequencerDelegate, SearchResultObserv
                           apiKey: String,
                           indexNames: [String],
                           requestOptions: RequestOptions? = nil) {
+    // swiftlint:disable:next force_try
     let client = try! SearchClient(appID: appID, apiKey: apiKey)
     let indexQueryStates = indexNames.map { IndexQueryState(indexName: $0, query: .init()) }
     self.init(client: client,

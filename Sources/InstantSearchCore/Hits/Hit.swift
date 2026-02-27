@@ -96,4 +96,3 @@ private extension Hit {
     return try? JSONDecoder().decode([String: AnyCodable].self, from: data)
   }
 }
-

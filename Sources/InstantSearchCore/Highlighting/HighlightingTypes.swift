@@ -106,4 +106,3 @@ private extension TaggedString {
     return untagged
   }
 }
-
