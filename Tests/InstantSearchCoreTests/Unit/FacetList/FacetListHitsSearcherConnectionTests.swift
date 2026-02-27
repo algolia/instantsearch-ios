@@ -18,7 +18,7 @@ class FacetListHitsSearcherConnectionTests: XCTestCase {
   weak var disposableInteractor: FacetListInteractor?
 
   func testLeak() {
-    let searcher = HitsSearcher(appID: "", apiKey: "", indexName: "")
+    let searcher = HitsSearcher(appID: "testAppID", apiKey: "testApiKey", indexName: "")
     let interactor = FacetListInteractor()
 
     disposableSearcher = searcher
@@ -34,7 +34,7 @@ class FacetListHitsSearcherConnectionTests: XCTestCase {
   }
 
   func testConnect() {
-    let searcher = HitsSearcher(appID: "", apiKey: "", indexName: "")
+    let searcher = HitsSearcher(appID: "testAppID", apiKey: "testApiKey", indexName: "")
     let interactor = FacetListInteractor()
 
     let connection = FacetListInteractor.HitsSearcherConnection(facetListInteractor: interactor, searcher: searcher, attribute: attribute)
@@ -46,7 +46,7 @@ class FacetListHitsSearcherConnectionTests: XCTestCase {
   }
 
   func testConnectMethod() {
-    let searcher = HitsSearcher(appID: "", apiKey: "", indexName: "")
+    let searcher = HitsSearcher(appID: "testAppID", apiKey: "testApiKey", indexName: "")
     let interactor = FacetListInteractor()
 
     interactor.connectSearcher(searcher, with: attribute)
@@ -57,7 +57,7 @@ class FacetListHitsSearcherConnectionTests: XCTestCase {
   }
 
   func testDisconnect() {
-    let searcher = HitsSearcher(appID: "", apiKey: "", indexName: "")
+    let searcher = HitsSearcher(appID: "testAppID", apiKey: "testApiKey", indexName: "")
     let interactor = FacetListInteractor()
 
     let connection = FacetListInteractor.HitsSearcherConnection(facetListInteractor: interactor, searcher: searcher, attribute: attribute)

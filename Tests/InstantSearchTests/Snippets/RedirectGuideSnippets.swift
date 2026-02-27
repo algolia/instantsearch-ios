@@ -11,7 +11,7 @@ import InstantSearch
 import Search
 
 class RedirectGuideSnippets {
-  let client = try! SearchClient(appID: "", apiKey: "")
+  let client = try! SearchClient(appID: "testAppID", apiKey: "testApiKey")
   let indexName = ""
 
   func addRedirectRule() {

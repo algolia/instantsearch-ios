@@ -22,7 +22,7 @@ class FacetListFacetSearcherConnectionTests: XCTestCase {
 
   func testLeak() {
     let interactor = FacetListInteractor(facets: facets, selectionMode: .single)
-    let searcher = FacetSearcher(appID: "", apiKey: "", indexName: "", facetName: "facet")
+    let searcher = FacetSearcher(appID: "testAppID", apiKey: "testApiKey", indexName: "", facetName: "facet")
 
     disposableInteractor = interactor
     disposableSearcher = searcher
@@ -38,7 +38,7 @@ class FacetListFacetSearcherConnectionTests: XCTestCase {
 
   func testConnect() {
     let interactor = FacetListInteractor(selectionMode: .single)
-    let searcher = FacetSearcher(appID: "", apiKey: "", indexName: "", facetName: "facet")
+    let searcher = FacetSearcher(appID: "testAppID", apiKey: "testApiKey", indexName: "", facetName: "facet")
 
     let connection = FacetListInteractor.FacetSearcherConnection(interactor: interactor, searcher: searcher)
     connection.connect()
@@ -48,7 +48,7 @@ class FacetListFacetSearcherConnectionTests: XCTestCase {
 
   func testConnectFunction() {
     let interactor = FacetListInteractor(selectionMode: .single)
-    let searcher = FacetSearcher(appID: "", apiKey: "", indexName: "", facetName: "facet")
+    let searcher = FacetSearcher(appID: "testAppID", apiKey: "testApiKey", indexName: "", facetName: "facet")
 
     interactor.connectFacetSearcher(searcher)
 
@@ -57,7 +57,7 @@ class FacetListFacetSearcherConnectionTests: XCTestCase {
 
   func testDisconnect() {
     let interactor = FacetListInteractor(selectionMode: .single)
-    let searcher = FacetSearcher(appID: "", apiKey: "", indexName: "", facetName: "facet")
+    let searcher = FacetSearcher(appID: "testAppID", apiKey: "testApiKey", indexName: "", facetName: "facet")
 
     let connection = FacetListInteractor.FacetSearcherConnection(interactor: interactor, searcher: searcher)
     connection.connect()

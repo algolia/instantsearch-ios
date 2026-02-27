@@ -13,7 +13,7 @@ import XCTest
 class SelectableSegmentInteractorConnectorsTests: XCTestCase {
   func testConnectSearcher() {
     let filterState = FilterState()
-    let searcher = HitsSearcher(appID: "", apiKey: "", indexName: "")
+    let searcher = HitsSearcher(appID: "testAppID", apiKey: "testApiKey", indexName: "")
 
     let interactor = FilterMapInteractor<Filter.Tag>(items: [0: "t1", 1: "t2", 2: "t3"])
     interactor.connectSearcher(searcher, attribute: "tags")

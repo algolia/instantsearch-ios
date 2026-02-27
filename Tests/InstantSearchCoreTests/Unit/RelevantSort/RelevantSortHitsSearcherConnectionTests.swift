@@ -14,7 +14,7 @@ class RelevantSortHitsSearcherConnectionTests: XCTestCase {
   weak var disposableInteractor: RelevantSortInteractor?
 
   func testLeak() {
-    let searcher = HitsSearcher(appID: "", apiKey: "", indexName: "")
+    let searcher = HitsSearcher(appID: "testAppID", apiKey: "testApiKey", indexName: "")
     let interactor = RelevantSortInteractor(priority: .relevancy)
 
     disposableSearcher = searcher
@@ -29,7 +29,7 @@ class RelevantSortHitsSearcherConnectionTests: XCTestCase {
   }
 
   func testConnect() {
-    let searcher = HitsSearcher(appID: "", apiKey: "", indexName: "")
+    let searcher = HitsSearcher(appID: "testAppID", apiKey: "testApiKey", indexName: "")
     let interactor = RelevantSortInteractor(priority: .relevancy)
 
     let connection = RelevantSortInteractor.HitsSearcherConnection(interactor: interactor, searcher: searcher)
@@ -62,7 +62,7 @@ class RelevantSortHitsSearcherConnectionTests: XCTestCase {
   }
 
   func testConnectMethod() {
-    let searcher = HitsSearcher(appID: "", apiKey: "", indexName: "")
+    let searcher = HitsSearcher(appID: "testAppID", apiKey: "testApiKey", indexName: "")
     let interactor = RelevantSortInteractor(priority: .relevancy)
 
     interactor.connectSearcher(searcher)
@@ -93,7 +93,7 @@ class RelevantSortHitsSearcherConnectionTests: XCTestCase {
   }
 
   func testDisconnect() {
-    let searcher = HitsSearcher(appID: "", apiKey: "", indexName: "")
+    let searcher = HitsSearcher(appID: "testAppID", apiKey: "testApiKey", indexName: "")
     let interactor = RelevantSortInteractor(priority: .relevancy)
 
     let connection = RelevantSortInteractor.HitsSearcherConnection(interactor: interactor, searcher: searcher)

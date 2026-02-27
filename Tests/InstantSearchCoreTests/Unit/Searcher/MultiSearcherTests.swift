@@ -48,7 +48,7 @@ class MultiSearcherTests: XCTestCase {
 
   func testRequestOptions() {
     let requestOpts = RequestOptions(headers: ["test": "test"])
-    let searcher = MultiSearcher(appID: "", apiKey: "", requestOptions: requestOpts)
+    let searcher = MultiSearcher(appID: "testAppID", apiKey: "testApiKey", requestOptions: requestOpts)
     searcher.addHitsSearcher(indexName: "")
 
     let exp = expectation(description: "Search expectation")

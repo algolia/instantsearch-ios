@@ -26,7 +26,7 @@ class StatsInteractorConnectorsTests: XCTestCase {
     let results = makeSearchResponse()
     let query = SearchSearchParamsObject()
 
-    let searcher = HitsSearcher(appID: "", apiKey: "", indexName: "", query: query)
+    let searcher = HitsSearcher(appID: "testAppID", apiKey: "testApiKey", indexName: "", query: query)
     vm.connectSearcher(searcher)
 
     let exp = expectation(description: "on item changed")

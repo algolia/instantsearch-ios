@@ -18,7 +18,7 @@ class SearchConnectorTests: XCTestCase {
       return controller
     }()
 
-    let searcher = HitsSearcher(client: try! SearchClient(appID: "", apiKey: ""), indexName: "")
+    let searcher = HitsSearcher(client: try! SearchClient(appID: "testAppID", apiKey: "testApiKey"), indexName: "")
     let searchBoxInteractor = SearchBoxInteractor()
     let searchBoxController = TestSearchBoxController()
     lazy var hitsInteractor = getInteractor(with: infiniteScrollingController)

@@ -18,7 +18,7 @@ class QueryRuleCustomDataSearcherConnectionTests: XCTestCase {
   }
 
   func testHitsSearcherConnection() {
-    let searcher = HitsSearcher(appID: "", apiKey: "", indexName: "")
+    let searcher = HitsSearcher(appID: "testAppID", apiKey: "testApiKey", indexName: "")
     let interactor = QueryRuleCustomDataInteractor<TestModel>()
 
     interactor.connectSearcher(searcher)

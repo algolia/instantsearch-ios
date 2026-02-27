@@ -15,7 +15,7 @@ class SortByConnectorTests: XCTestCase {
   var connector: SortByConnector!
 
   override func setUp() {
-    searcher = HitsSearcher(appID: "", apiKey: "", indexName: "")
+    searcher = HitsSearcher(appID: "testAppID", apiKey: "testApiKey", indexName: "")
     controller = TestSelectableSegmentController()
     connector = SortByConnector(searcher: searcher,
                                 indicesNames: ["Index1", "Index2", "Index3"],

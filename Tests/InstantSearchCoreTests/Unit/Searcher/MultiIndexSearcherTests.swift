@@ -12,7 +12,7 @@ import XCTest
 @available(*, deprecated, message: "Test to remove when MulstIndexSearcher obsoleted")
 class MultiIndexSearcherTests: XCTestCase {
   func testOnQueryChanged() {
-    let searcher = MultiIndexSearcher(appID: "", apiKey: "", indexNames: ["index1", "index2"])
+    let searcher = MultiIndexSearcher(appID: "testAppID", apiKey: "testApiKey", indexNames: ["index1", "index2"])
     let exp = expectation(description: "Query change expectation")
     searcher.onQueryChanged.subscribe(with: self) { _, _ in
       exp.fulfill()
@@ -22,7 +22,7 @@ class MultiIndexSearcherTests: XCTestCase {
   }
 
   func testOnIndexChanged() {
-    let searcher = MultiIndexSearcher(appID: "", apiKey: "", indexNames: ["index1", "index2"])
+    let searcher = MultiIndexSearcher(appID: "testAppID", apiKey: "testApiKey", indexNames: ["index1", "index2"])
     let exp = expectation(description: "")
     searcher.onIndexChanged.subscribe(with: self) { _, args in
       let (index, indexName) = args
@@ -35,7 +35,7 @@ class MultiIndexSearcherTests: XCTestCase {
   }
 
   func testOnSearch() {
-    let searcher = MultiIndexSearcher(appID: "", apiKey: "", indexNames: ["i1", "i2"])
+    let searcher = MultiIndexSearcher(appID: "testAppID", apiKey: "testApiKey", indexNames: ["i1", "i2"])
     let exp = expectation(description: "Search expectation")
     searcher.onSearch.subscribe(with: self) { _, _ in
       exp.fulfill()
@@ -45,7 +45,7 @@ class MultiIndexSearcherTests: XCTestCase {
   }
 
   func testConditionalSearch() {
-    let searcher = MultiIndexSearcher(appID: "", apiKey: "", indexNames: ["i1", "i2"])
+    let searcher = MultiIndexSearcher(appID: "testAppID", apiKey: "testApiKey", indexNames: ["i1", "i2"])
     let exp = expectation(description: "Search expectation")
     exp.isInverted = true
     searcher.onSearch.subscribe(with: self) { _, _ in

@@ -16,7 +16,7 @@ class RelevantSortMultiIndexSearcherConnectionTests: XCTestCase {
   weak var disposableInteractor: RelevantSortInteractor?
 
   func testLeak() {
-    let searcher = MultiIndexSearcher(appID: "", apiKey: "", indexNames: ["a", "b"])
+    let searcher = MultiIndexSearcher(appID: "testAppID", apiKey: "testApiKey", indexNames: ["a", "b"])
     let interactor = RelevantSortInteractor(priority: .relevancy)
 
     disposableSearcher = searcher
@@ -31,7 +31,7 @@ class RelevantSortMultiIndexSearcherConnectionTests: XCTestCase {
   }
 
   func testConnect() {
-    let searcher = MultiIndexSearcher(appID: "", apiKey: "", indexNames: ["a", "b"])
+    let searcher = MultiIndexSearcher(appID: "testAppID", apiKey: "testApiKey", indexNames: ["a", "b"])
     let interactor = RelevantSortInteractor(priority: .relevancy)
 
     let connection = RelevantSortInteractor.MultiIndexSearcherConnection(interactor: interactor, searcher: searcher, queryIndex: 0)
@@ -63,7 +63,7 @@ class RelevantSortMultiIndexSearcherConnectionTests: XCTestCase {
   }
 
   func testConnectMethod() {
-    let searcher = MultiIndexSearcher(appID: "", apiKey: "", indexNames: ["a", "b"])
+    let searcher = MultiIndexSearcher(appID: "testAppID", apiKey: "testApiKey", indexNames: ["a", "b"])
     let interactor = RelevantSortInteractor(priority: .relevancy)
 
     interactor.connectSearcher(searcher, queryIndex: 0)
@@ -94,7 +94,7 @@ class RelevantSortMultiIndexSearcherConnectionTests: XCTestCase {
   }
 
   func testDisconnect() {
-    let searcher = MultiIndexSearcher(appID: "", apiKey: "", indexNames: ["a", "b"])
+    let searcher = MultiIndexSearcher(appID: "testAppID", apiKey: "testApiKey", indexNames: ["a", "b"])
     let interactor = RelevantSortInteractor(priority: .relevancy)
 
     let connection = RelevantSortInteractor.MultiIndexSearcherConnection(interactor: interactor, searcher: searcher, queryIndex: 0)

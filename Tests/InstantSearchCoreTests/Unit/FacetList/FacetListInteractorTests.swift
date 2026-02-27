@@ -70,7 +70,7 @@ class FacetListInteractorTests: XCTestCase {
     let interactor = FacetListInteractor(selectionMode: .single)
 
     let query = SearchSearchParamsObject()
-    let searcher = HitsSearcher(appID: "", apiKey: "", indexName: "", query: query)
+    let searcher = HitsSearcher(appID: "testAppID", apiKey: "testApiKey", indexName: "", query: query)
 
     interactor.connectSearcher(searcher, with: "type")
 

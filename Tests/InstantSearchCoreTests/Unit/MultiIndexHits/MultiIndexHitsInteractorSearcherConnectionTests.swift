@@ -16,7 +16,7 @@ class MultiIndexHitsInteractorSearcherConnectionTests: XCTestCase {
   weak var disposableSearcher: MultiIndexSearcher?
 
   func testLeak() {
-    let searcher = MultiIndexSearcher(appID: "", apiKey: "", indexNames: ["i1", "i2"])
+    let searcher = MultiIndexSearcher(appID: "testAppID", apiKey: "testApiKey", indexNames: ["i1", "i2"])
     let subInteractorA = HitsInteractor<JSON>()
     let subInteractorB = HitsInteractor<JSON>()
     let interactor = MultiIndexHitsInteractor(hitsInteractors: [subInteractorA, subInteractorB])
@@ -34,7 +34,7 @@ class MultiIndexHitsInteractorSearcherConnectionTests: XCTestCase {
   }
 
   func testConnect() {
-    let searcher = MultiIndexSearcher(appID: "", apiKey: "", indexNames: ["i1", "i2"])
+    let searcher = MultiIndexSearcher(appID: "testAppID", apiKey: "testApiKey", indexNames: ["i1", "i2"])
     let subInteractorA = HitsInteractor<JSON>()
     let subInteractorB = HitsInteractor<JSON>()
     let interactor = MultiIndexHitsInteractor(hitsInteractors: [subInteractorA, subInteractorB])
@@ -48,7 +48,7 @@ class MultiIndexHitsInteractorSearcherConnectionTests: XCTestCase {
   }
 
   func testConnectMethod() {
-    let searcher = MultiIndexSearcher(appID: "", apiKey: "", indexNames: ["i1", "i2"])
+    let searcher = MultiIndexSearcher(appID: "testAppID", apiKey: "testApiKey", indexNames: ["i1", "i2"])
     let subInteractorA = HitsInteractor<JSON>()
     let subInteractorB = HitsInteractor<JSON>()
     let interactor = MultiIndexHitsInteractor(hitsInteractors: [subInteractorA, subInteractorB])
@@ -61,7 +61,7 @@ class MultiIndexHitsInteractorSearcherConnectionTests: XCTestCase {
   }
 
   func testDisconnect() {
-    let searcher = MultiIndexSearcher(appID: "", apiKey: "", indexNames: ["i1", "i2"])
+    let searcher = MultiIndexSearcher(appID: "testAppID", apiKey: "testApiKey", indexNames: ["i1", "i2"])
     let subInteractorA = HitsInteractor<JSON>()
     let subInteractorB = HitsInteractor<JSON>()
     let interactor = MultiIndexHitsInteractor(hitsInteractors: [subInteractorA, subInteractorB])

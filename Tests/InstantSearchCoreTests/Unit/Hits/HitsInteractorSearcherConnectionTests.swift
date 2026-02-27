@@ -32,7 +32,7 @@ class HitsInteractorSearcherConnectionTests: XCTestCase {
     let infiniteScrollingController = TestInfiniteScrollingController()
     infiniteScrollingController.pendingPages = [0, 2]
 
-    let searcher = HitsSearcher(client: try! SearchClient(appID: "", apiKey: ""), indexName: "")
+    let searcher = HitsSearcher(client: try! SearchClient(appID: "testAppID", apiKey: "testApiKey"), indexName: "")
     let interactor = getInteractor(with: infiniteScrollingController)
 
     disposableInteractor = interactor
@@ -52,7 +52,7 @@ class HitsInteractorSearcherConnectionTests: XCTestCase {
     let infiniteScrollingController = TestInfiniteScrollingController()
     infiniteScrollingController.pendingPages = [0, 2]
 
-    let searcher = HitsSearcher(client: try! SearchClient(appID: "", apiKey: ""), indexName: "")
+    let searcher = HitsSearcher(client: try! SearchClient(appID: "testAppID", apiKey: "testApiKey"), indexName: "")
     let interactor = getInteractor(with: infiniteScrollingController)
 
     let connection: Connection = HitsInteractor.HitsSearcherConnection(interactor: interactor,
@@ -70,7 +70,7 @@ class HitsInteractorSearcherConnectionTests: XCTestCase {
     let infiniteScrollingController = TestInfiniteScrollingController()
     infiniteScrollingController.pendingPages = [0, 2]
 
-    let searcher = HitsSearcher(client: try! SearchClient(appID: "", apiKey: ""), indexName: "")
+    let searcher = HitsSearcher(client: try! SearchClient(appID: "testAppID", apiKey: "testApiKey"), indexName: "")
     let interactor = getInteractor(with: infiniteScrollingController)
 
     let connection: Connection = HitsInteractor.HitsSearcherConnection(interactor: interactor,
@@ -89,7 +89,7 @@ class HitsInteractorSearcherConnectionTests: XCTestCase {
     let infiniteScrollingController = TestInfiniteScrollingController()
     infiniteScrollingController.pendingPages = [0, 2]
 
-    let searcher = HitsSearcher(client: try! SearchClient(appID: "", apiKey: ""), indexName: "")
+    let searcher = HitsSearcher(client: try! SearchClient(appID: "testAppID", apiKey: "testApiKey"), indexName: "")
     let interactor = getInteractor(with: infiniteScrollingController)
 
     interactor.connectSearcher(searcher)
