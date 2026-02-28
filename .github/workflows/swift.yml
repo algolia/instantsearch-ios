@@ -16,16 +16,3 @@ jobs:
         run: swift build
       - name: Run unit tests
         run: swift test --skip Integration --skip HierarchicalTests
-  test-xcode-16:
-    runs-on: macos-15
-    env:
-      ALGOLIA_APPLICATION_ID_1: ${{ secrets.ALGOLIA_APPLICATION_ID_1 }}
-      ALGOLIA_ADMIN_KEY_1: ${{ secrets.ALGOLIA_ADMIN_KEY_1 }}
-    steps:
-      - uses: actions/checkout@v4
-      - name: Select Xcode version
-        run: sudo xcode-select -s '/Applications/Xcode_16.0.app/Contents/Developer'
-      - name: Build project
-        run: swift build
-      - name: Run unit tests
-        run: swift test --skip Integration --skip HierarchicalTests
