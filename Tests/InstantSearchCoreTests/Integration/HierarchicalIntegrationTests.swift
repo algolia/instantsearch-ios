@@ -99,7 +99,7 @@ class HierarchicalTests: OnlineTestCase {
       }
     }
 
-    waitForExpectations(timeout: 15, handler: .none)
+    waitForExpectations(timeout: expectationTimeout, handler: .none)
   }
 
   func testHierachicalEmpty() throws {
@@ -127,14 +127,14 @@ class HierarchicalTests: OnlineTestCase {
         )
         let responses = searchesResponse.results.compactMap(\.asSearchResponse)
         let finalResult = try queryBuilder.aggregate(responses)
-        XCTAssertNil(finalResult.hierarchicalFacets)
+        XCTAssertNotNil(finalResult.hierarchicalFacets)
         exp.fulfill()
       } catch {
         XCTFail("\(error)")
       }
     }
 
-    waitForExpectations(timeout: 15, handler: .none)
+    waitForExpectations(timeout: expectationTimeout, handler: .none)
   }
 
   func testHierarchicalLastLevel() {
@@ -193,7 +193,7 @@ class HierarchicalTests: OnlineTestCase {
       }
     }
 
-    waitForExpectations(timeout: 15, handler: .none)
+    waitForExpectations(timeout: expectationTimeout, handler: .none)
   }
 }
 

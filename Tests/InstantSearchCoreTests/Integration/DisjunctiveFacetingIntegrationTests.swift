@@ -88,7 +88,7 @@ class DisjunctiveFacetingIntegrationTests: OnlineTestCase {
       }
     }
 
-    waitForExpectations(timeout: 15, handler: .none)
+    waitForExpectations(timeout: expectationTimeout, handler: .none)
   }
 
   func testMultiDisjunctive() {
@@ -144,6 +144,6 @@ class DisjunctiveFacetingIntegrationTests: OnlineTestCase {
       }
     }
 
-    waitForExpectations(timeout: 15, handler: .none)
+    waitForExpectations(timeout: expectationTimeout, handler: .none)
   }
 }

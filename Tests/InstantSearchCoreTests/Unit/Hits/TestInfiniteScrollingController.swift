@@ -14,7 +14,21 @@ class TestInfiniteScrollingController: InfiniteScrollable {
 
   var pageLoader: PageLoadable?
 
-  var pendingPages = Set<Int>()
+  private let lock = NSLock()
+  private var _pendingPages = Set<Int>()
+
+  var pendingPages: Set<Int> {
+    get {
+      lock.lock()
+      defer { lock.unlock() }
+      return _pendingPages
+    }
+    set {
+      lock.lock()
+      defer { lock.unlock() }
+      _pendingPages = newValue
+    }
+  }
 
   var didCalculatePages: ((Int, Int) -> Void)?
 
@@ -23,10 +37,14 @@ class TestInfiniteScrollingController: InfiniteScrollable {
   }
 
   func notifyPending(pageIndex: Int) {
-    pendingPages.remove(pageIndex)
+    lock.lock()
+    defer { lock.unlock() }
+    _pendingPages.remove(pageIndex)
   }
 
   func notifyPendingAll() {
-    pendingPages.removeAll()
+    lock.lock()
+    defer { lock.unlock() }
+    _pendingPages.removeAll()
   }
 }

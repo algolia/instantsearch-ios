@@ -130,6 +130,6 @@ class DisjuncitveAndHierarchicalIntegrationTests: OnlineTestCase {
       }
     }
 
-    waitForExpectations(timeout: 15, handler: .none)
+    waitForExpectations(timeout: expectationTimeout, handler: .none)
   }
 }
