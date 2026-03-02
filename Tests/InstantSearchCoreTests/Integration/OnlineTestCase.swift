@@ -28,24 +28,20 @@ class OnlineTestCase: XCTestCase {
   override func setUpWithError() throws {
     super.setUp()
 
-    // Init client.
     guard let credentials = TestCredentials.search else {
-      throw Error.missingCredentials
+      throw XCTSkip("Missing Algolia credentials (ALGOLIA_APPLICATION_ID_1 / ALGOLIA_ADMIN_KEY_1 environment variables)")
     }
 
     _ = CoreUserAgentSetter.set
 
     client = try! SearchClient(appID: credentials.appID, apiKey: credentials.apiKey)
 
-    // Init index.
     // NOTE: We use a different index name for each test function.
     let className = String(reflecting: type(of: self)).components(separatedBy: ".").last!
     let functionName = invocation!.selector.description
     let rawName = "\(className).\(functionName)"
     self.indexName = safeIndexName(rawName)
 
-    // Delete the index.
-    // Although it's not shared with other test functions, it could remain from a previous execution.
     let deleteExpectation = expectation(description: "Delete index (setup)")
     Task {
       do {
@@ -60,6 +56,8 @@ class OnlineTestCase: XCTestCase {
 
   override func tearDown() {
     super.tearDown()
+
+    guard let client, let indexName else { return }
 
     let expectation = self.expectation(description: "Delete index")
     Task {
@@ -90,8 +88,3 @@ class OnlineTestCase: XCTestCase {
   }
 }
 
-extension OnlineTestCase {
-  enum Error: Swift.Error {
-    case missingCredentials
-  }
-}
