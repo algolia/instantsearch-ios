@@ -20,7 +20,7 @@ class OnlineTestCase: XCTestCase {
     }
   }
 
-  var expectationTimeout: TimeInterval = 10
+  var expectationTimeout: TimeInterval = 100
 
   var client: SearchClient!
   var indexName: String!
@@ -76,9 +76,12 @@ class OnlineTestCase: XCTestCase {
     Task {
       do {
         _ = try await client.saveObjects(indexName: indexName,
-                                         objects: items)
-        _ = try await client.setSettings(indexName: indexName,
-                                         indexSettings: settings)
+                                         objects: items,
+                                         waitForTasks: true)
+        let settingsResponse = try await client.setSettings(indexName: indexName,
+                                                            indexSettings: settings)
+        _ = try await client.waitForTask(indexName: indexName,
+                                         taskID: settingsResponse.taskID)
       } catch {
         XCTFail("\(error)")
       }
