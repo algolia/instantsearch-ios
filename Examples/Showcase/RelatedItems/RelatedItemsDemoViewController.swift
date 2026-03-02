@@ -10,6 +10,9 @@ import InstantSearch
 import SDWebImage
 import UIKit
 
+#if canImport(Recommend)
+import Recommend
+
 class RelatedItemsDemoViewController: UIViewController {
   let searcher: HitsSearcher
   let hitsInteractor: HitsInteractor<Hit<StoreItem>>
@@ -69,3 +72,26 @@ class RelatedItemsDemoViewController: UIViewController {
     searcher.search()
   }
 }
+#else
+// Stub when Recommend module is not available
+class RelatedItemsDemoViewController: UIViewController {
+  override func viewDidLoad() {
+    super.viewDidLoad()
+    view.backgroundColor = .systemBackground
+    title = "Related Items"
+    
+    let label = UILabel()
+    label.text = "Recommend module not available.\nAdd the Recommend package to use this demo."
+    label.textAlignment = .center
+    label.numberOfLines = 0
+    label.translatesAutoresizingMaskIntoConstraints = false
+    view.addSubview(label)
+    NSLayoutConstraint.activate([
+      label.centerXAnchor.constraint(equalTo: view.centerXAnchor),
+      label.centerYAnchor.constraint(equalTo: view.centerYAnchor),
+      label.leadingAnchor.constraint(greaterThanOrEqualTo: view.leadingAnchor, constant: 20),
+      label.trailingAnchor.constraint(lessThanOrEqualTo: view.trailingAnchor, constant: -20)
+    ])
+  }
+}
+#endif

@@ -6,10 +6,11 @@
 //
 
 import Foundation
+import Search
 
 public extension DynamicFacetListInteractor {
   /// Connection between a dynamic facets business logic and a searcher
-  struct SearcherConnection<Searcher: SearchResultObservable>: Connection where Searcher.SearchResult == SearchResponse {
+  struct SearcherConnection<Searcher: SearchResultObservable>: Connection where Searcher.SearchResult == SearchResponse<SearchHit> {
     /// Dynamic facet list business logic
     public let interactor: DynamicFacetListInteractor
 
@@ -56,14 +57,15 @@ public extension DynamicFacetListInteractor {
 public extension DynamicFacetListInteractor {
   /// Update `orderedFacets` property with `renderingContent` and
   /// `facets`/`disjunctiveFacets` received of the `SearchResponse` instance
-  func update(with searchResponse: SearchResponse) {
+  func update(with searchResponse: SearchResponse<SearchHit>) {
     guard let facetOrdering = searchResponse.renderingContent?.facetOrdering else {
       orderedFacets = []
       return
     }
-    let commonFacets = searchResponse.facets ?? [:]
-    let disjunctiveFacets = searchResponse.disjunctiveFacets ?? [:]
-    let facets = disjunctiveFacets.merging(commonFacets, uniquingKeysWith: { disjunctiveFacets, _ in disjunctiveFacets })
+    let facets = (searchResponse.facets ?? [:])
+      .mapValues { values in
+        values.map { FacetHits(value: $0.key, highlighted: $0.key, count: $0.value) }
+      }
     orderedFacets = FacetsOrderer(facetOrder: facetOrdering, facets: facets)()
   }
 }

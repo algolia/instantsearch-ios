@@ -73,7 +73,7 @@ extension AbstractMultiSearcher: QuerySettable {
 }
 
 extension AbstractMultiSearcher: IndexNameSettable {
-  public func setIndexName(_ indexName: IndexName) {
+  public func setIndexName(_ indexName: String) {
     components
       .compactMap { $0.wrapped as? IndexNameSettable }
       .forEach {

@@ -38,7 +38,7 @@ import InstantSearch
       let numericRangeInteractor: NumberRangeInteractor<Double> = .init()
       let numberRangeController: RangeSliderController = .init(rangeSlider: .init())
 
-      let priceAttribute: Attribute = "price"
+      let priceAttribute = "price"
 
       searcher.connectFilterState(filterState)
 

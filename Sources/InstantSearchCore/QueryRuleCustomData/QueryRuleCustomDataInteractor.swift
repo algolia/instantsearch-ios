@@ -19,13 +19,21 @@ public class QueryRuleCustomDataInteractor<Model: Decodable>: ItemInteractor<Mod
 }
 
 extension QueryRuleCustomDataInteractor {
-  func extractModel(from searchResponse: SearchResponse) {
-    if let userData = searchResponse.userData,
-       let model = userData.compactMap({ try? Model(json: $0) }).first {
-      item = model
-    } else {
-      item = nil
+  func extractModel(from searchResponse: SearchResponse<SearchHit>) {
+    // userData is AnyCodable in v9 - extract array if present
+    if let userData = searchResponse.userData?.value as? [[String: Any]] {
+      if let model = userData.compactMap({ dict -> Model? in
+        guard let data = try? JSONSerialization.data(withJSONObject: dict),
+              let decoded = try? JSONDecoder().decode(Model.self, from: data) else {
+          return nil
+        }
+        return decoded
+      }).first {
+        item = model
+        return
+      }
     }
+    item = nil
   }
 }
 

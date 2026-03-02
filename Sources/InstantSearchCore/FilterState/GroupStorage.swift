@@ -67,7 +67,7 @@ extension GroupsStorage: FiltersReadable {
     return Set(filterGroups[groupID]?.filters.map(Filter.init) ?? [])
   }
 
-  func getFilters(for attribute: Attribute) -> Set<Filter> {
+  func getFilters(for attribute: String) -> Set<Filter> {
     return Set(getFilters().filter { $0.attribute == attribute })
   }
 
@@ -158,7 +158,7 @@ extension GroupsStorage: FiltersWritable {
     return wasRemoved
   }
 
-  mutating func removeAll(for attribute: Attribute, fromGroupWithID groupID: FilterGroup.ID) {
+  mutating func removeAll(for attribute: String, fromGroupWithID groupID: FilterGroup.ID) {
     guard let existingGroup = filterGroups[groupID] else {
       return
     }
@@ -167,7 +167,7 @@ extension GroupsStorage: FiltersWritable {
     filterGroups[groupID] = existingGroup.withFilters(updatedFilters)
   }
 
-  mutating func removeAll(for attribute: Attribute) {
+  mutating func removeAll(for attribute: String) {
     for (groupID, group) in filterGroups {
       let updatedFilters = group.filters.filter { $0.attribute != attribute }
       filterGroups[groupID] = group.withFilters(updatedFilters)
@@ -184,7 +184,7 @@ extension GroupsStorage: HierarchicalManageable {
     return filterGroups[.hierarchical(name: groupName)].flatMap { $0 as? FilterGroup.Hierarchical }
   }
 
-  func hierarchicalAttributes(forGroupWithName groupName: String) -> [Attribute] {
+  func hierarchicalAttributes(forGroupWithName groupName: String) -> [String] {
     return hierarchicalGroup(withName: groupName)?.hierarchicalAttributes ?? []
   }
 
@@ -192,7 +192,7 @@ extension GroupsStorage: HierarchicalManageable {
     return hierarchicalGroup(withName: groupName)?.hierarchicalFilters ?? []
   }
 
-  mutating func set(_ hierarchicalAttributes: [Attribute], forGroupWithName groupName: String) {
+  mutating func set(_ hierarchicalAttributes: [String], forGroupWithName groupName: String) {
     let groupID: FilterGroup.ID = .hierarchical(name: groupName)
     var updatedGroup: FilterGroup.Hierarchical = (filterGroups[groupID] as? FilterGroup.Hierarchical) ?? .init(filters: [], name: groupName)
     updatedGroup.hierarchicalAttributes = hierarchicalAttributes
@@ -209,7 +209,7 @@ extension GroupsStorage: HierarchicalManageable {
 
 extension GroupsStorage {
   /// Returns a set of attributes suitable for disjunctive faceting
-  func getDisjunctiveFacetsAttributes() -> Set<Attribute> {
+  func getDisjunctiveFacetsAttributes() -> Set<String> {
     let attributes = filterGroups
       .values
       .filter { $0.isDisjuncitve }
@@ -220,10 +220,10 @@ extension GroupsStorage {
   }
 
   /// Returns a dictionary of all facet filters with their associated values
-  func getFacetFilters() -> [Attribute: Set<Filter.Facet.ValueType>] {
+  func getFacetFilters() -> [String: Set<Filter.Facet.ValueType>] {
     let facetFilters: [Filter.Facet] = filterGroups.values.flatMap { $0.filters.compactMap { $0 as? Filter.Facet } }
 
-    var refinements: [Attribute: Set<Filter.Facet.ValueType>] = [:]
+    var refinements: [String: Set<Filter.Facet.ValueType>] = [:]
     for filter in facetFilters {
       let existingValues = refinements[filter.attribute, default: []]
       let updatedValues = existingValues.union([filter.value])
@@ -235,7 +235,7 @@ extension GroupsStorage {
   /// Returns a raw representaton of all facet filters with their associated values
   func getRawFacetFilters() -> [String: [String]] {
     return getFacetFilters()
-      .map { ($0.key.rawValue, $0.value.map { $0.description }) }
+      .map { ($0.key, $0.value.map { $0.description }) }
       .reduce([String: [String]]()) { refinements, arg1 in
         let (attribute, values) = arg1
         return refinements.merging([attribute: values], uniquingKeysWith: { _, new -> [String] in

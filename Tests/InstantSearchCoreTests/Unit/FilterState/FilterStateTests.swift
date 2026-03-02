@@ -93,7 +93,7 @@ class FilterStateTests: XCTestCase {
       Filter.Facet(attribute: "featured", value: true, isNegated: true)
     ], toGroupWithID: .or(name: "b", filterType: .facet))
 
-    let expectedState = "( NOT \"_tags\":\"tagA\" OR NOT \"_tags\":\"tagB\" ) AND ( NOT \"featured\":\"true\" OR NOT \"size\":\"40.0\" )"
+    let expectedState = "( NOT \"_tags\":\"tagA\" OR NOT \"_tags\":\"tagB\" ) AND ( NOT \"featured\":true OR NOT \"size\":40.0 )"
 
     XCTAssertEqual(filterState.buildSQL(), expectedState)
   }
@@ -135,8 +135,8 @@ class FilterStateTests: XCTestCase {
   func testAdd() {
     var filterState = GroupsStorage()
 
-    let filterFacet1 = Filter.Facet(attribute: Attribute("category"), value: "table")
-    let filterFacet2 = Filter.Facet(attribute: Attribute("category"), value: "chair")
+    let filterFacet1 = Filter.Facet(attribute: "category", value: "table")
+    let filterFacet2 = Filter.Facet(attribute: "category", value: "chair")
     let filterNumeric1 = Filter.Numeric(attribute: "price", operator: .greaterThan, value: 10)
     let filterNumeric2 = Filter.Numeric(attribute: "price", operator: .lessThan, value: 20)
     let filterTag1 = Filter.Tag(value: "Tom")
@@ -214,7 +214,7 @@ class FilterStateTests: XCTestCase {
     XCTAssertFalse(filterState.contains(tagB, inGroupWithID: .and(name: "others")))
 
     let expectedResult = """
-    ( "price" > 100.0 OR "size":15.0 TO 20.0 ) AND ( "new":"true" AND "price" < 100.0 ) AND ( "_tags":"someTag" AND "brand":"apple" AND "featured":"true" AND "price" > 20.0 AND "rating":"4.0" AND "size":15.0 TO 20.0 ) AND ( "_tags":"A" OR "_tags":"B" OR "_tags":"hm" OR "_tags":"other" )
+    ( "price" > 100.0 OR "size":15.0 TO 20.0 ) AND ( "new":true AND "price" < 100.0 ) AND ( "_tags":"someTag" AND "brand":"apple" AND "featured":true AND "price" > 20.0 AND "rating":4.0 AND "size":15.0 TO 20.0 ) AND ( "_tags":"A" OR "_tags":"B" OR "_tags":"hm" OR "_tags":"other" )
     """
 
     XCTAssertEqual(filterState.buildSQL(), expectedResult)
@@ -513,9 +513,9 @@ class FilterStateTests: XCTestCase {
   func testFilterScoring() {
     var filterState = GroupsStorage()
 
-    let filterFacet1 = Filter.Facet(attribute: Attribute("category"), value: "table", score: 5)
-    let filterFacet2 = Filter.Facet(attribute: Attribute("category"), value: "chair", score: 10)
-    let filterFacet3 = Filter.Facet(attribute: Attribute("type"), value: "equipment", score: 3)
+    let filterFacet1 = Filter.Facet(attribute: "category", value: "table", score: 5)
+    let filterFacet2 = Filter.Facet(attribute: "category", value: "chair", score: 10)
+    let filterFacet3 = Filter.Facet(attribute: "type", value: "equipment", score: 3)
 
     let groupFacetsOr = FilterGroup.ID.or(name: "filterFacetsOr", filterType: .facet)
     let groupFacetsAnd = FilterGroup.ID.and(name: "filterFacetsAnd")
@@ -525,15 +525,15 @@ class FilterStateTests: XCTestCase {
     filterState.add(filterFacet3, toGroupWithID: groupFacetsAnd)
 
     let expectedResult = """
-    ( "type":"equipment<score=3>" ) AND ( "category":"chair<score=10>" OR "category":"table<score=5>" )
+    ( "type":"equipment"<score=3> ) AND ( "category":"chair"<score=10> OR "category":"table"<score=5> )
     """
 
     XCTAssertEqual(filterState.buildSQL(), expectedResult)
 
-    let expectedResultLegacy: FiltersStorage? = [
-      .and("type:equipment<score=3>"),
-      .or("category:chair<score=10>", "category:table<score=5>")
-    ]
-    XCTAssertEqual(FilterGroupConverter().legacy(filterState.toFilterGroups())?.units, expectedResultLegacy?.units)
+    let expectedResultLegacy = FiltersStorage(units: [
+      .and(["type:equipment<score=3>"]),
+      .or(["category:chair<score=10>", "category:table<score=5>"])
+    ])
+    XCTAssertEqual(FilterGroupConverter().legacy(filterState.toFilterGroups())?.units, expectedResultLegacy.units)
   }
 }

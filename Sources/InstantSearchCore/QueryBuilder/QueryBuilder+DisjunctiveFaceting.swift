@@ -6,8 +6,8 @@
 //  Copyright © 2019 Algolia. All rights reserved.
 //
 
-import AlgoliaSearchClient
 import Foundation
+import Search
 /// Provides convenient method for building disjuncitve faceting queries and parsing disjunctive faceting
 
 extension QueryBuilder {
@@ -16,8 +16,8 @@ extension QueryBuilder {
   /// - parameter filters: list of filters containing disjunctive facets
   /// - returns: dictionary mapping disjunctive faceting attributes to list of raw facets
 
-  private func facetDictionary(with disjunctiveFacets: Set<Attribute>, filters: [FilterType]) -> [Attribute: [String]] {
-    return disjunctiveFacets.map { attribute -> (Attribute, [String]) in
+  private func facetDictionary(with disjunctiveFacets: Set<String>, filters: [FilterType]) -> [String: [String]] {
+    return disjunctiveFacets.map { attribute -> (String, [String]) in
       let values = filters
         .compactMap { $0 as? Filter.Facet }
         .filter { $0.attribute == attribute }
@@ -34,10 +34,10 @@ extension QueryBuilder {
   /// - parameter filters: list of filters containing disjunctive facets
   /// - returns: dictionary mapping disjunctive faceting attributes to list of facets
 
-  private func typedFacetDictionary(with dict: [Attribute: [String]]) -> [Attribute: [Facet]] {
+  private func typedFacetDictionary(with dict: [String: [String]]) -> [String: [String: Int]] {
     return dict
-      .map { attribute, facetValues -> (Attribute, [Facet]) in
-        let facets = facetValues.map { Facet(value: $0, count: 0, highlighted: .none) }
+      .map { attribute, facetValues -> (String, [String: Int]) in
+        let facets = Dictionary(uniqueKeysWithValues: facetValues.map { ($0, 0) })
         return (attribute, facets)
       }
       .reduce([:]) { dict, arg in
@@ -50,25 +50,20 @@ extension QueryBuilder {
   /// - parameter facets: dictionary of current facets
   /// - returns: disjuncitve faceting results enriched with selected but empty facets
 
-  private func completeMissingFacets(in results: SearchResponse, with facets: [Attribute: [String]]) -> SearchResponse {
+  private func completeMissingFacets(in results: SearchResponse<SearchHit>, with facets: [String: [String]]) -> SearchResponse<SearchHit> {
     var output = results
-
-    func complete(lhs: [Facet], withFacetValues facetValues: Set<String>) -> [Facet] {
-      let existingValues = lhs.map { $0.value }
-      return lhs + facetValues.subtracting(existingValues).map { Facet(value: $0, count: 0, highlighted: .none) }
+    var currentFacets = output.facets ?? [:]
+    let defaultFacets = typedFacetDictionary(with: facets)
+    currentFacets = currentFacets.merging(defaultFacets) { existing, new in
+      var merged = existing
+      new.forEach { key, value in
+        if merged[key] == nil {
+          merged[key] = value
+        }
+      }
+      return merged
     }
-
-    guard let currentDisjunctiveFacets = results.disjunctiveFacets else {
-      output.disjunctiveFacets = typedFacetDictionary(with: facets)
-      return output
-    }
-
-    facets.forEach { attribute, values in
-      let facets = currentDisjunctiveFacets[attribute] ?? []
-      let completedFacets = complete(lhs: facets, withFacetValues: Set(values))
-      output.disjunctiveFacets?[attribute] = completedFacets
-    }
-
+    output.facets = currentFacets.isEmpty ? nil : currentFacets
     return output
   }
 
@@ -77,7 +72,7 @@ extension QueryBuilder {
   /// - parameter facets: set of attribute of facets
   /// - returns: disjuncitve faceting results enriched with selected but empty facets
 
-  func completeMissingFacets(in results: SearchResponse, disjunctiveFacets: Set<Attribute>, filters: [FilterType]) -> SearchResponse {
+  func completeMissingFacets(in results: SearchResponse<SearchHit>, disjunctiveFacets: Set<String>, filters: [FilterType]) -> SearchResponse<SearchHit> {
     let facetDictionary = self.facetDictionary(with: disjunctiveFacets, filters: filters)
     return completeMissingFacets(in: results, with: facetDictionary)
   }
@@ -88,13 +83,13 @@ extension QueryBuilder {
   /// - parameter disjunctiveFacets: attributes of disjunctive facets
   /// - returns: list of "or" queries for disjunctive faceting
 
-  func buildDisjunctiveFacetingQueries(query: Query, filterGroups: [FilterGroupType], disjunctiveFacets: Set<Attribute>) -> [Query] {
+  func buildDisjunctiveFacetingQueries(query: SearchSearchParamsObject, filterGroups: [FilterGroupType], disjunctiveFacets: Set<String>) -> [SearchSearchParamsObject] {
     return disjunctiveFacets.map { query.disjunctiveFacetingQuery(disjunctiveFacetAttribute: $0, with: filterGroups) }
   }
 }
 
-extension Query {
-  func disjunctiveFacetingQuery(disjunctiveFacetAttribute: Attribute, with filterGroups: [FilterGroupType]) -> Query {
+extension SearchSearchParamsObject {
+  func disjunctiveFacetingQuery(disjunctiveFacetAttribute: String, with filterGroups: [FilterGroupType]) -> SearchSearchParamsObject {
     let filterGroups = filterGroups.droppingDisjunctiveFacetFilters(with: disjunctiveFacetAttribute)
     var output = self
     output.facets = [disjunctiveFacetAttribute]
@@ -115,7 +110,7 @@ extension Query {
 }
 
 extension Array where Element == FilterGroupType {
-  func droppingDisjunctiveFacetFilters(with attribute: Attribute) -> Self {
+  func droppingDisjunctiveFacetFilters(with attribute: String) -> Self {
     map { group in
       guard let disjunctiveFacetGroup = group as? FilterGroup.Or<Filter.Facet> else {
         return group
@@ -155,15 +150,15 @@ extension Collection {
   }
 }
 
-extension Collection where Element == SearchResponse {
-  func aggregateFacets() -> [Attribute: [Facet]] {
+extension Collection where Element == SearchResponse<SearchHit> {
+  func aggregateFacets() -> [String: [String: Int]] {
     return compactMap { $0.facets }.reduce([:]) { aggregatedFacets, facets in
       aggregatedFacets.merging(facets) { _, new in new }
     }
   }
 
-  func aggregateFacetStats() -> [Attribute: FacetStats] {
-    return compactMap { $0.facetStats }.reduce([:]) { aggregatedFacetStats, facetStats in
+  func aggregateFacetStats() -> [String: SearchFacetStats] {
+    return compactMap { $0.facetsStats }.reduce([:]) { aggregatedFacetStats, facetStats in
       aggregatedFacetStats.merging(facetStats) { _, new in new }
     }
   }

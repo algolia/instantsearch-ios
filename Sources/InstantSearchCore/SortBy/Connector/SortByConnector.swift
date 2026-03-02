@@ -6,7 +6,6 @@
 //  Copyright © 2019 Algolia. All rights reserved.
 //
 
-import AlgoliaSearchClient
 import Foundation
 
 /// Component that displays a list of indices, allowing a user to change the way hits are sorted
@@ -26,7 +25,7 @@ public class SortByConnector {
   public var controllerConnections: [Connection]
 
   /// List of selectable indices names
-  public var indicesNames: [IndexName] {
+  public var indicesNames: [String] {
     get {
       return interactor.items.sorted { item1, item2 in item1.key < item2.key }.map(\.value)
     }
@@ -35,12 +34,12 @@ public class SortByConnector {
       let enumeratedIndices = newValue
         .indices
         .map { ($0, newValue[$0]) }
-      interactor.items = [Int: IndexName](uniqueKeysWithValues: enumeratedIndices)
+      interactor.items = [Int: String](uniqueKeysWithValues: enumeratedIndices)
     }
   }
 
   /// Name of currently selected index
-  public var selectedIndexName: IndexName? {
+  public var selectedIndexName: String? {
     get {
       return interactor.selected.flatMap { interactor.items[$0] }
     }
@@ -73,12 +72,12 @@ public class SortByConnector {
      - selected: Consecutive index of the initially selected search index in the list.
    */
   public convenience init<Searcher: AnyObject & Searchable & IndexNameSettable>(searcher: Searcher,
-                                                                                indicesNames: [IndexName],
+                                                                                indicesNames: [String],
                                                                                 selected: Int? = nil) {
     let enumeratedIndices = indicesNames
       .indices
       .map { ($0, indicesNames[$0]) }
-    let items = [Int: IndexName](uniqueKeysWithValues: enumeratedIndices)
+    let items = [Int: String](uniqueKeysWithValues: enumeratedIndices)
     let interactor = SortByInteractor(items: items)
     interactor.selected = selected
     self.init(searcher: searcher,

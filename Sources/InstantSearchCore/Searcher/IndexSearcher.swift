@@ -20,7 +20,7 @@ open class IndexSearcher<Service: SearchService>: AbstractSearcher<Service> wher
 
   /// Triggered when an index name of request changed
   /// - Parameter: equals to a new index value
-  public let onIndexChanged: Observer<IndexName>
+  public let onIndexChanged: Observer<String>
 
   override public init(service: Service, initialRequest: Request) {
     onIndexChanged = .init()

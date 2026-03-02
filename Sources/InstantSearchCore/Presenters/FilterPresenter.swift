@@ -13,16 +13,16 @@ public typealias FilterPresenter = (Filter) -> String
 public extension DefaultPresenter {
   enum Filter {
     public static let present: FilterPresenter = { filter in
-      let attributeName = filter.filter.attribute.rawValue
+      let attributeName = filter.filter.attribute
 
       switch filter {
       case let .facet(facetFilter):
         switch facetFilter.value {
         case .bool:
-          return filter.filter.attribute.rawValue
+          return attributeName
 
-        case let .float(floatValue):
-          return "\(attributeName): \(floatValue)"
+        case let .number(numberValue):
+          return "\(attributeName): \(numberValue)"
 
         case let .string(stringValue):
           return stringValue
@@ -32,7 +32,7 @@ public extension DefaultPresenter {
 
         switch numericFilter.value {
         case let .comparison(compOperator, value):
-          return "\(attributeName) \(compOperator) \(value)"
+          return "\(attributeName) \(compOperator.rawValue) \(value)"
 
         case let .range(range):
           return "\(attributeName): \(range.lowerBound) to \(range.upperBound)"

@@ -8,7 +8,7 @@
 import Foundation
 
 public extension HitsInteractor {
-  struct SearcherConnection<Service: SearchService>: Connection where Service.Process == Operation, Service.Result == SearchResponse {
+  struct SearcherConnection<Service: SearchService>: Connection where Service.Process == Operation, Service.Result == SearchResponse<SearchHit> {
     public let interactor: HitsInteractor
     public let searcher: AbstractSearcher<Service>
 
@@ -19,7 +19,7 @@ public extension HitsInteractor {
 
       searcher.onError.subscribe(with: interactor) { interactor, error in
         if let requestError = error as? AbstractSearcher<Service>.RequestError {
-          interactor.process(requestError.underlyingError, for: Query())
+          interactor.process(requestError.underlyingError, for: SearchSearchParamsObject())
         }
       }
 

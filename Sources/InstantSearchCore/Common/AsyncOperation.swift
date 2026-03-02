@@ -53,8 +53,8 @@ extension AsyncOperation {
       return
     }
 
-    main()
     state = .executing
+    main()
   }
 
   override open func cancel() {

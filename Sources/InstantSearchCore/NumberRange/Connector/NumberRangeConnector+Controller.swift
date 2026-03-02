@@ -21,7 +21,7 @@ public extension NumberRangeConnector {
    */
   convenience init<Controller: NumberRangeController>(searcher: HitsSearcher,
                                                       filterState: FilterState,
-                                                      attribute: Attribute,
+                                                      attribute: String,
                                                       bounds: ClosedRange<Number>? = nil,
                                                       range: ClosedRange<Number>? = nil,
                                                       operator: RefinementOperator = .and,

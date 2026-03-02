@@ -17,13 +17,13 @@ public extension MultiIndexHitsConnector {
       - controller: Controller interfacing with a concrete multi-index hits view
    */
   @available(*, deprecated, message: "Use multiple HitsSearcher aggregated with MultiSearcher instead of MultiIndexSearcher")
-  convenience init<Controller: MultiIndexHitsController>(appID: ApplicationID,
-                                                         apiKey: APIKey,
+  convenience init<Controller: MultiIndexHitsController>(appID: String,
+                                                         apiKey: String,
                                                          indexModules: [IndexModule],
-                                                         controller: Controller) {
-    let searcher = MultiIndexSearcher(appID: appID,
-                                      apiKey: apiKey,
-                                      indexNames: indexModules.map { $0.indexName })
+                                                         controller: Controller) throws {
+    let searcher = try MultiIndexSearcher(appID: appID,
+                                          apiKey: apiKey,
+                                          indexNames: indexModules.map { $0.indexName })
     let interactor = MultiIndexHitsInteractor(hitsInteractors: indexModules.map { $0.hitsInteractor })
     self.init(searcher: searcher,
               interactor: interactor,

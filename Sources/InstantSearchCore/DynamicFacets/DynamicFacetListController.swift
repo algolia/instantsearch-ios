@@ -15,8 +15,8 @@ public protocol DynamicFacetListController: AnyObject {
   func setOrderedFacets(_ orderedFacets: [AttributedFacets])
 
   /// Update the facets selections
-  func setSelections(_ selections: [Attribute: Set<String>])
+  func setSelections(_ selections: [String: Set<String>])
 
   /// A closure to trigger when user selects a facet
-  var didSelect: ((Attribute, Facet) -> Void)? { get set }
+  var didSelect: ((String, FacetHits) -> Void)? { get set }
 }

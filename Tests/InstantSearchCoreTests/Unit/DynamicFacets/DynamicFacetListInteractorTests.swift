@@ -6,6 +6,7 @@
 //
 
 import Foundation
+import Search
 @testable import InstantSearchCore
 import XCTest
 
@@ -13,40 +14,48 @@ class DynamicFacetListInteractorTests: XCTestCase {
   func testDisjunctiveFacetsPropagation() {
     let interactor = DynamicFacetListInteractor()
 
-    func facets(of raw: (String, Int)...) -> [Facet] {
-      raw.map { Facet(value: $0.0, count: $0.1) }
+    func facetCounts(of raw: (String, Int)...) -> [String: Int] {
+      Dictionary(uniqueKeysWithValues: raw.map { ($0.0, $0.1) })
     }
 
-    var response = SearchResponse()
+    func facetHits(of raw: (String, Int)...) -> [InstantSearchCore.FacetHits] {
+      raw.map { InstantSearchCore.FacetHits(value: $0.0, highlighted: $0.0, count: $0.1) }
+    }
+
+    var response = makeSearchResponse()
 
     response.facets = [
-      "size": facets(of: ("s", 10)),
-      "brand": facets(of: ("samsung", 5), ("sony", 4), ("philips", 12))
+      "size": facetCounts(of: ("s", 10), ("m", 20), ("l", 30), ("xl", 40)),
+      "brand": facetCounts(of: ("samsung", 5), ("sony", 4), ("philips", 12)),
+      "color": facetCounts(of: ("red", 5), ("green", 10), ("blue", 15))
     ]
-    response.disjunctiveFacets = [
-      "size": facets(of: ("s", 10), ("m", 20), ("l", 30), ("xl", 40)),
-      "color": facets(of: ("red", 5), ("green", 10), ("blue", 15))
-    ]
-    response.renderingContent = try! RenderingContent(json: [
-      "facetOrdering": [
-        "facets": [
-          "order": [
-            "color",
-            "size",
-            "brand"
-          ]
-        ]
-      ]
-    ])
+    response.renderingContent = SearchRenderingContent(
+      facetOrdering: SearchFacetOrdering(
+        facets: SearchFacets(order: ["color", "size", "brand"])
+      )
+    )
 
     interactor.update(with: response)
 
     XCTAssertEqual(interactor.orderedFacets.count, 3)
-    XCTAssertTrue(interactor.orderedFacets.contains(AttributedFacets(attribute: "size",
-                                                                     facets: facets(of: ("s", 10), ("m", 20), ("l", 30), ("xl", 40)))))
-    XCTAssertTrue(interactor.orderedFacets.contains(AttributedFacets(attribute: "brand",
-                                                                     facets: facets(of: ("samsung", 5), ("sony", 4), ("philips", 12)))))
-    XCTAssertTrue(interactor.orderedFacets.contains(AttributedFacets(attribute: "color",
-                                                                     facets: facets(of: ("red", 5), ("green", 10), ("blue", 15)))))
+
+    let orderedAttributes = interactor.orderedFacets.map(\.attribute)
+    XCTAssertTrue(orderedAttributes.contains("size"))
+    XCTAssertTrue(orderedAttributes.contains("brand"))
+    XCTAssertTrue(orderedAttributes.contains("color"))
+
+    func assertFacets(for attribute: String, expected: [(String, Int)]) {
+      guard let af = interactor.orderedFacets.first(where: { $0.attribute == attribute }) else {
+        XCTFail("Missing attribute \(attribute)")
+        return
+      }
+      let actual = af.facets.map { "\($0.value):\($0.count)" }.sorted()
+      let exp = expected.map { "\($0.0):\($0.1)" }.sorted()
+      XCTAssertEqual(actual, exp, "Facet values mismatch for \(attribute)")
+    }
+
+    assertFacets(for: "size", expected: [("s", 10), ("m", 20), ("l", 30), ("xl", 40)])
+    assertFacets(for: "brand", expected: [("samsung", 5), ("sony", 4), ("philips", 12)])
+    assertFacets(for: "color", expected: [("red", 5), ("green", 10), ("blue", 15)])
   }
 }

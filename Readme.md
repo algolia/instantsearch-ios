@@ -70,25 +70,6 @@ Then, run the following command:
 ```bash
 $ pod update
 ```
-
-### Carthage
-
-[Carthage](https://github.com/Carthage/Carthage) is a simple, decentralized dependency manager for Cocoa.
-
-- To install InstantSearch, simply add the following line to your Cartfile:
-```ruby
-github "algolia/instantsearch-ios" ~> 7.26
-```
-
-- Launch the following commands from the project directory
- ```shell
- carthage update
- carthage build
- ```
-
- > NOTE: At this time, Carthage does not provide a way to build only specific repository subcomponents (or equivalent of CocoaPods's subspecs). All components and their dependencies will be built with the above command. However, you don't need to copy frameworks you aren't using into your project. For instance, if you aren't using UI components from `InstantSearch`, feel free to delete that framework from the Carthage Build directory after `carthage update` completes keeping only `InstantSearchCore`. If you only need event-tracking functionalities, delete all but `InstantSearchInsights` framework.
- 
- If this is your first time using Carthage in the project, you'll need to go through some additional steps as explained [over at Carthage](https://github.com/Carthage/Carthage#adding-frameworks-to-an-application).
  
 
 ## Documentation

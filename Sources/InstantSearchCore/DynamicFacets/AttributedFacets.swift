@@ -10,10 +10,10 @@ import Foundation
 /// List of ordered facets with their attribute.
 public struct AttributedFacets: Codable, Equatable {
   /// Facet attribute
-  public let attribute: Attribute
+  public let attribute: String
 
   /// List of ordered facet values
-  public let facets: [Facet]
+  public let facets: [FacetHits]
 
   enum CodingKeys: String, CodingKey {
     case attribute
@@ -25,8 +25,8 @@ public struct AttributedFacets: Codable, Equatable {
       - attribute: Facet attribute
       - facets: List of ordered facet values
    */
-  public init(attribute: Attribute,
-              facets: [Facet] = []) {
+  public init(attribute: String,
+              facets: [FacetHits] = []) {
     self.attribute = attribute
     self.facets = facets
   }

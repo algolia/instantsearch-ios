@@ -45,7 +45,7 @@ public struct SearchStats: Codable {
   /// Mandatory when reporting click and conversion events
   /// Only reported when `clickAnalytics=true` in the `Query`
   ///
-  public let queryID: QueryID?
+  public let queryID: String?
 
   public init() {
     hitsPerPage = 0
@@ -65,7 +65,7 @@ public struct SearchStats: Codable {
               page: Int = 0,
               processingTimeMS: Int,
               query: String? = nil,
-              queryID: QueryID? = nil) {
+              queryID: String? = nil) {
     self.totalHitsCount = totalHitsCount
     self.nbSortedHits = nbSortedHits
     self.hitsPerPage = hitsPerPage ?? totalHitsCount
@@ -86,7 +86,7 @@ public struct SearchStats: Codable {
     hitsPerPage = try container.decodeIfPresent(Int.self, forKey: .hitsPerPage) ?? 20
     processingTimeMS = try container.decode(Int.self, forKey: .processingTimeMS)
     query = try container.decodeIfPresent(String.self, forKey: .query)
-    queryID = try container.decodeIfPresent(QueryID.self, forKey: .queryID)
+    queryID = try container.decodeIfPresent(String.self, forKey: .queryID)
   }
 
   public func encode(to encoder: Encoder) throws {

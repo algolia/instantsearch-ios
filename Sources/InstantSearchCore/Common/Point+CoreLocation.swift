@@ -7,8 +7,18 @@
 //
 
 import Foundation
-
 import CoreLocation
+
+/// Simple latitude/longitude point used by geolocation helpers.
+public struct Point: Codable, Hashable {
+  public let latitude: Double
+  public let longitude: Double
+
+  public init(latitude: Double, longitude: Double) {
+    self.latitude = latitude
+    self.longitude = longitude
+  }
+}
 
 public extension Point {
   init(_ coordinate: CLLocationCoordinate2D) {

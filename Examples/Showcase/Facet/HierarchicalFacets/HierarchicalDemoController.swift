@@ -15,7 +15,7 @@ class HierarchicalDemoController {
   let clearFilterConnector: FilterClearConnector
   let hierarchicalConnector: HierarchicalConnector
 
-  let hierarchicalAttributes: [Attribute] = [
+  let hierarchicalAttributes: [String] = [
     "lvl0",
     "lvl1",
     "lvl2"

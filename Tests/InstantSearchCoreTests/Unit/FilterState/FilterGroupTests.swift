@@ -45,6 +45,6 @@ class FilterGroupTests: XCTestCase {
 
     let group = FilterGroup.Or(filters: filters)
 
-    XCTAssertEqual(group.sqlForm, "( \"brand\":\"philips\" OR \"diagonal\":\"42.0\" OR \"featured\":\"true\" )")
+    XCTAssertEqual(group.sqlForm, "( \"brand\":\"philips\" OR \"diagonal\":42.0 OR \"featured\":true )")
   }
 }

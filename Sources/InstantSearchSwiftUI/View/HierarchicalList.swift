@@ -18,13 +18,13 @@
     @ObservedObject public var hierarchicalObservableController: HierarchicalObservableController
 
     /// Closure constructing a hierarchical facet row view
-    public var row: (Facet, Int, Bool) -> Row
+    public var row: (FacetHits, Int, Bool) -> Row
 
     /// Closure constructing a no results view
     public var noResults: (() -> NoResults)?
 
     public init(_ hierarchicalObservableController: HierarchicalObservableController,
-                @ViewBuilder row: @escaping (Facet, Int, Bool) -> Row,
+                @ViewBuilder row: @escaping (FacetHits, Int, Bool) -> Row,
                 @ViewBuilder noResults: @escaping () -> NoResults) {
       self.hierarchicalObservableController = hierarchicalObservableController
       self.row = row
@@ -51,7 +51,7 @@
   @available(iOS 13.0, OSX 10.15, tvOS 13.0, watchOS 6.0, *)
   public extension HierarchicalList where NoResults == Never {
     init(_ hierarchicalObservableController: HierarchicalObservableController,
-         @ViewBuilder row: @escaping (Facet, Int, Bool) -> Row) {
+         @ViewBuilder row: @escaping (FacetHits, Int, Bool) -> Row) {
       self.hierarchicalObservableController = hierarchicalObservableController
       self.row = row
       noResults = nil
@@ -69,16 +69,16 @@
       }
       .onAppear {
         demoController.setItem([
-          (Facet(value: "Category1", count: 10), 0, false),
-          (Facet(value: "Category1 > Category1-1", count: 7), 1, false),
-          (Facet(value: "Category1 > Category1-2", count: 2), 1, false),
-          (Facet(value: "Category1 > Category1-3", count: 1), 1, false),
-          (Facet(value: "Category2", count: 14), 0, true),
-          (Facet(value: "Category2 > Category2-1", count: 8), 1, false),
-          (Facet(value: "Category2 > Category2-2", count: 4), 1, true),
-          (Facet(value: "Category2 > Category2-2 > Category2-2-1", count: 2), 2, false),
-          (Facet(value: "Category2 > Category2-2 > Category2-2-2", count: 2), 2, true),
-          (Facet(value: "Category2 > Category2-3", count: 2), 1, false)
+          (FacetHits(value: "Category1", highlighted: "", count: 10), 0, false),
+          (FacetHits(value: "Category1 > Category1-1", highlighted: "", count: 7), 1, false),
+          (FacetHits(value: "Category1 > Category1-2", highlighted: "", count: 2), 1, false),
+          (FacetHits(value: "Category1 > Category1-3", highlighted: "", count: 1), 1, false),
+          (FacetHits(value: "Category2", highlighted: "", count: 14), 0, true),
+          (FacetHits(value: "Category2 > Category2-1", highlighted: "", count: 8), 1, false),
+          (FacetHits(value: "Category2 > Category2-2", highlighted: "", count: 4), 1, true),
+          (FacetHits(value: "Category2 > Category2-2 > Category2-2-1", highlighted: "", count: 2), 2, false),
+          (FacetHits(value: "Category2 > Category2-2 > Category2-2-2", highlighted: "", count: 2), 2, true),
+          (FacetHits(value: "Category2 > Category2-3", highlighted: "", count: 2), 1, false)
         ])
       }
     }

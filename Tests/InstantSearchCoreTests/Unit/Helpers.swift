@@ -1,7 +1,10 @@
-import AlgoliaSearchClient
 import Foundation
+import Search
+@testable import InstantSearchCore
 
-func safeIndexName(_ name: String) -> IndexName {
+typealias JSON = [String: AnyCodable]
+
+func safeIndexName(_ name: String) -> String {
   var targetName = Bundle.main.object(forInfoDictionaryKey: "BUILD_TARGET_NAME") as? String ?? ""
   targetName = targetName.replacingOccurrences(of: " ", with: "-")
 
@@ -13,7 +16,7 @@ func safeIndexName(_ name: String) -> IndexName {
   } else {
     rawName = name
   }
-  return IndexName(rawValue: rawName)
+  return rawName
 }
 
 func average(values: [Double]) -> Double {
@@ -26,4 +29,54 @@ func average(values: [Double]) -> Double {
 ///
 func uniqueAlgoliaBizHost() -> String {
   return "swift-\(UInt32(NSDate().timeIntervalSince1970)).algolia.biz"
+}
+
+func makeJSONHit(_ value: String) -> [String: AnyCodable] {
+  return ["value": AnyCodable(value)]
+}
+
+// swiftlint:disable:next function_parameter_count
+func makeSearchResponse(hits: [SearchHit] = [],
+                        page: Int = 0,
+                        nbHits: Int = 0,
+                        hitsPerPage: Int = 20,
+                        nbPages: Int = 1,
+                        processingTimeMS: Int = 0,
+                        query: String = "",
+                        params: String = "") -> SearchResponse<SearchHit> {
+  return SearchResponse(page: page,
+                        nbHits: nbHits,
+                        nbPages: nbPages,
+                        hitsPerPage: hitsPerPage,
+                        hits: hits,
+                        query: query,
+                        params: params)
+    .set(\.processingTimeMS, to: processingTimeMS)
+}
+
+func makeSearchResponse<Record: Encodable>(records: [Record]) -> SearchResponse<SearchHit> {
+  let hits: [SearchHit] = records.compactMap { record in
+    guard let json = encodeToJSON(record) else { return nil }
+    return Hit(object: json)
+  }
+  return makeSearchResponse(hits: hits)
+}
+
+func makeSearchResponses(_ responses: [SearchResponse<SearchHit>]) -> SearchResponses<SearchHit> {
+  return SearchResponses(results: responses.map { .searchResponse($0) })
+}
+
+func makeFacetSearchResponse(facetHits: [InstantSearchCore.FacetHits],
+                             processingTimeMS: Int = 1,
+                             exhaustiveFacetsCount: Bool = true) -> SearchForFacetValuesResponse {
+  let searchFacetHits = facetHits.map { Search.FacetHits(value: $0.value, highlighted: $0.highlighted, count: $0.count) }
+  return SearchForFacetValuesResponse(facetHits: searchFacetHits,
+                                      exhaustiveFacetsCount: exhaustiveFacetsCount,
+                                      processingTimeMS: processingTimeMS)
+}
+
+private func encodeToJSON<Record: Encodable>(_ record: Record) -> [String: AnyCodable]? {
+  let encoder = JSONEncoder()
+  guard let data = try? encoder.encode(record) else { return nil }
+  return try? JSONDecoder().decode([String: AnyCodable].self, from: data)
 }

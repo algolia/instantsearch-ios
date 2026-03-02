@@ -16,7 +16,7 @@ public extension MultiIndexHitsConnector.IndexModule {
       - hitsInteractor: Logic applied to the suggestions
       - filterState: Filter state holding your suggestions filters
    */
-  init(suggestionsIndexName: IndexName,
+  init(suggestionsIndexName: String,
        hitsInteractor: HitsInteractor<Hit<QuerySuggestion>> = .init(infiniteScrolling: .off, showItemsOnEmptyQuery: true),
        filterState: FilterState? = .none) {
     self.init(indexName: suggestionsIndexName,

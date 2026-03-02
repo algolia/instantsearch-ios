@@ -5,18 +5,17 @@
 //  Created by Vladislav Fitc on 13/12/2021.
 //
 
-import AlgoliaSearchClient
 import Foundation
 import UIKit
 
 protocol DemoProtocol {
-  var objectID: ObjectID { get }
+  var objectID: String { get }
   var name: String { get }
   var type: String { get }
 }
 
 struct Demo: Codable, DemoProtocol {
-  let objectID: ObjectID
+  let objectID: String
   let name: String
   let type: String
 

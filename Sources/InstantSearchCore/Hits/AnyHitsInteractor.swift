@@ -5,7 +5,6 @@
 //  Created by Vladislav Fitc on 15/03/2019.
 //  Copyright © 2019 Algolia. All rights reserved.
 //
-import AlgoliaSearchClient
 import Foundation
 /** This is a type-erasure protocol for HitsInteractor which makes possible
  to create a collections of hits interactors with different record types.
@@ -45,5 +44,5 @@ public protocol AnyHitsInteractor: AnyObject {
   func getCurrentRawHits() -> [[String: Any]]
 
   func notifyQueryChanged()
-  func process(_ error: Swift.Error, for query: Query)
+  func process(_ error: Swift.Error, for query: SearchSearchParamsObject)
 }

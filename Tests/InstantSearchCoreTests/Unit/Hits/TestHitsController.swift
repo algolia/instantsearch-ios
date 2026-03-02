@@ -24,18 +24,3 @@ class TestHitsController<Hit: Codable>: HitsController {
   }
 }
 
-@available(*, deprecated, message: "Test to remove when MulstIndexSearcher obsoleted")
-class TestMultiIndexHitsController: MultiIndexHitsController {
-  var hitsSource: MultiIndexHitsSource?
-
-  var didReload: (() -> Void)?
-  var didScrollToTop: (() -> Void)?
-
-  func scrollToTop() {
-    didScrollToTop?()
-  }
-
-  func reload() {
-    didReload?()
-  }
-}

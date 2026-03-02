@@ -6,13 +6,9 @@
 //  Copyright © 2019 Algolia. All rights reserved.
 //
 
-import AlgoliaSearchClient
 import Foundation
 @testable import InstantSearchCore
 import XCTest
-extension Index {
-  static var test: Index = SearchClient(appID: "", apiKey: "").index(withName: "")
-}
 
 class HitsInteractorTests: XCTestCase {
   func testConstructionWithExplicitSettings() {
@@ -34,7 +30,7 @@ class HitsInteractorTests: XCTestCase {
     let vm = HitsInteractor<TestRecord<String>>(infiniteScrolling: .off, showItemsOnEmptyQuery: true)
 
     let hits = ["h1", "h2", "h3"].map(TestRecord.withValue)
-    let results = SearchResponse(hits: hits)
+    let results = makeSearchResponse(records: hits)
 
     XCTAssertEqual(vm.numberOfHits(), 0)
     XCTAssertNil(vm.hit(atIndex: 0))
@@ -58,7 +54,7 @@ class HitsInteractorTests: XCTestCase {
     let paginator = Paginator<TestRecord<Int>>()
 
     let hits = (0..<20).map(TestRecord.withValue)
-    let results = SearchResponse(hits: hits)
+    let results = makeSearchResponse(records: hits)
 
     let vm = HitsInteractor(
       settings: .init(showItemsOnEmptyQuery: false),
@@ -83,7 +79,7 @@ class HitsInteractorTests: XCTestCase {
     let infiniteScrollingController = TestInfiniteScrollingController()
 
     let hits = (0..<20).map(TestRecord.withValue)
-    let results = SearchResponse(hits: hits)
+    let results = makeSearchResponse(records: hits)
 
     let vm = HitsInteractor(
       settings: .init(showItemsOnEmptyQuery: true),
@@ -108,7 +104,7 @@ class HitsInteractorTests: XCTestCase {
     let infiniteScrollingController = TestInfiniteScrollingController()
 
     let hits = (0..<20).map(TestRecord.withValue)
-    let results = SearchResponse(hits: hits)
+    let results = makeSearchResponse(records: hits)
 
     let vm = HitsInteractor(
       settings: .init(showItemsOnEmptyQuery: true),
@@ -136,7 +132,7 @@ class HitsInteractorTests: XCTestCase {
   func testInfiniteScrollingTriggering() {
     let pc = Paginator<JSON>()
 
-    let page1 = ["i1", "i2", "i3"].map { JSON.string($0) }
+    let page1 = ["i1", "i2", "i3"].map(makeJSONHit)
     pc.pageMap = PageMap([1: page1])
 
     let isc = TestInfiniteScrollingController()
@@ -161,7 +157,7 @@ class HitsInteractorTests: XCTestCase {
   func testChangeQuery() {
     let pc = Paginator<JSON>()
 
-    let page1 = ["i1", "i2", "i3"].map { JSON.string($0) }
+    let page1 = ["i1", "i2", "i3"].map(makeJSONHit)
     pc.pageMap = PageMap([1: page1])
 
     let isc = TestInfiniteScrollingController()
@@ -204,10 +200,15 @@ class HitsInteractorTests: XCTestCase {
       jsonDecoder: snakeCaseDecoder
     )
 
-    var response = SearchResponse(hits: [
-      try Hit(json: ["objectID": "1", "first_name": "Jack", "last_name": "Johnson"]),
-      try Hit(json: ["objectID": "2", "first_name": "Helen", "last_name": "Smith"])
-    ])
+    let hits: [SearchHit] = [
+      Hit(object: ["objectID": AnyCodable("1"),
+                   "first_name": AnyCodable("Jack"),
+                   "last_name": AnyCodable("Johnson")]),
+      Hit(object: ["objectID": AnyCodable("2"),
+                   "first_name": AnyCodable("Helen"),
+                   "last_name": AnyCodable("Smith")])
+    ]
+    var response = makeSearchResponse(hits: hits)
     response.page = 0
 
     hitsInteractor.update(response)

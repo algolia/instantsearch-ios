@@ -5,49 +5,48 @@
 //  Created by Vladislav Fitc on 15/10/2020.
 //
 
-import AlgoliaSearchClient
 import Foundation
 @testable import InstantSearchInsights
 
 class TestEventTracker: EventTrackable {
-  var didViewObjects: ((EventName, IndexName, UserToken?, Date?, [ObjectID]) -> Void)?
-  var didViewFilters: ((EventName, IndexName, UserToken?, Date?, [String]) -> Void)?
-  var didClickObjects: ((EventName, IndexName, UserToken?, Date?, [ObjectID]) -> Void)?
-  var didClickObjectsAfterSearch: ((EventName, IndexName, UserToken?, Date?, [ObjectID], [Int], QueryID) -> Void)?
-  var didClickFilters: ((EventName, IndexName, UserToken?, Date?, [String]) -> Void)?
-  var didConvertObjects: ((EventName, IndexName, UserToken?, Date?, [ObjectID]) -> Void)?
-  var didConvertObjectsAfterSearch: ((EventName, IndexName, UserToken?, Date?, [ObjectID], QueryID) -> Void)?
-  var didConvertFilters: ((EventName, IndexName, UserToken?, Date?, [String]) -> Void)?
+  var didViewObjects: ((String, String, String?, Date?, [String]) -> Void)?
+  var didViewFilters: ((String, String, String?, Date?, [String]) -> Void)?
+  var didClickObjects: ((String, String, String?, Date?, [String]) -> Void)?
+  var didClickObjectsAfterSearch: ((String, String, String?, Date?, [String], [Int], String) -> Void)?
+  var didClickFilters: ((String, String, String?, Date?, [String]) -> Void)?
+  var didConvertObjects: ((String, String, String?, Date?, [String]) -> Void)?
+  var didConvertObjectsAfterSearch: ((String, String, String?, Date?, [String], String) -> Void)?
+  var didConvertFilters: ((String, String, String?, Date?, [String]) -> Void)?
 
-  func view(eventName: EventName, indexName: IndexName, userToken: UserToken?, timestamp: Date?, objectIDs: [ObjectID]) {
+  func view(eventName: String, indexName: String, userToken: String?, timestamp: Date?, objectIDs: [String]) {
     didViewObjects?(eventName, indexName, userToken, timestamp, objectIDs)
   }
 
-  func view(eventName: EventName, indexName: IndexName, userToken: UserToken?, timestamp: Date?, filters: [String]) {
+  func view(eventName: String, indexName: String, userToken: String?, timestamp: Date?, filters: [String]) {
     didViewFilters?(eventName, indexName, userToken, timestamp, filters)
   }
 
-  func click(eventName: EventName, indexName: IndexName, userToken: UserToken?, timestamp: Date?, objectIDs: [ObjectID]) {
+  func click(eventName: String, indexName: String, userToken: String?, timestamp: Date?, objectIDs: [String]) {
     didClickObjects?(eventName, indexName, userToken, timestamp, objectIDs)
   }
 
-  func click(eventName: EventName, indexName: IndexName, userToken: UserToken?, timestamp: Date?, objectIDs: [ObjectID], positions: [Int], queryID: QueryID) {
+  func click(eventName: String, indexName: String, userToken: String?, timestamp: Date?, objectIDs: [String], positions: [Int], queryID: String) {
     didClickObjectsAfterSearch?(eventName, indexName, userToken, timestamp, objectIDs, positions, queryID)
   }
 
-  func click(eventName: EventName, indexName: IndexName, userToken: UserToken?, timestamp: Date?, filters: [String]) {
+  func click(eventName: String, indexName: String, userToken: String?, timestamp: Date?, filters: [String]) {
     didClickFilters?(eventName, indexName, userToken, timestamp, filters)
   }
 
-  func conversion(eventName: EventName, indexName: IndexName, userToken: UserToken?, timestamp: Date?, objectIDs: [ObjectID]) {
+  func conversion(eventName: String, indexName: String, userToken: String?, timestamp: Date?, objectIDs: [String]) {
     didConvertObjects?(eventName, indexName, userToken, timestamp, objectIDs)
   }
 
-  func conversion(eventName: EventName, indexName: IndexName, userToken: UserToken?, timestamp: Date?, objectIDs: [ObjectID], queryID: QueryID) {
+  func conversion(eventName: String, indexName: String, userToken: String?, timestamp: Date?, objectIDs: [String], queryID: String) {
     didConvertObjectsAfterSearch?(eventName, indexName, userToken, timestamp, objectIDs, queryID)
   }
 
-  func conversion(eventName: EventName, indexName: IndexName, userToken: UserToken?, timestamp: Date?, filters: [String]) {
+  func conversion(eventName: String, indexName: String, userToken: String?, timestamp: Date?, filters: [String]) {
     didConvertFilters?(eventName, indexName, userToken, timestamp, filters)
   }
 }

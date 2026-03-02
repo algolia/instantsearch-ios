@@ -41,7 +41,7 @@ extension Filter.Numeric: LegacySyntaxConvertible {
       let expression = """
       \(attribute) \(`operator`.rawValue) \(value)
       """
-      return .and(.and(expression))
+      return FiltersStorage(units: [.and([expression])])
 
     case let .range(range):
       let units = [
@@ -60,9 +60,9 @@ extension Filter.Facet: LegacySyntaxConvertible {
     let scoreExpression = score.flatMap { "<score=\(String($0))>" } ?? ""
     let valuePrefix = isNegated ? "-" : ""
     let expression = """
-    \(attribute):\(valuePrefix)\(value)\(scoreExpression)
+    \(attribute):\(valuePrefix)\(value.legacyStringValue)\(scoreExpression)
     """
-    return .and(.and(expression))
+    return FiltersStorage(units: [.and([expression])])
   }
 }
 
@@ -72,7 +72,7 @@ extension Filter.Tag: LegacySyntaxConvertible {
     let expression = """
     \(attribute):\(valuePrefix)\(value)
     """
-    return .and(.and(expression))
+    return FiltersStorage(units: [.and([expression])])
   }
 }
 
@@ -83,7 +83,7 @@ extension FilterGroup.And: LegacySyntaxConvertible {
       .map(\.legacyForm)
       .flatMap(\.units)
       .flatMap(\.rawFilters)
-    return .and(.and(rawFilters))
+    return FiltersStorage(units: [.and(rawFilters)])
   }
 }
 
@@ -94,7 +94,7 @@ extension FilterGroup.Or: LegacySyntaxConvertible {
       .map(\.legacyForm)
       .flatMap(\.units)
       .flatMap(\.rawFilters)
-    return .and(.or(rawFilters))
+    return FiltersStorage(units: [.or(rawFilters)])
   }
 }
 
@@ -104,6 +104,21 @@ internal extension FiltersStorage.Unit {
     case let .and(values),
          let .or(values):
       return values
+    }
+  }
+}
+
+private extension Filter.Facet.ValueType {
+  var legacyStringValue: String {
+    switch self {
+    case let .string(value):
+      let needsQuoting = value.contains(" ") || value.contains(":")
+      let escaped = value.replacingOccurrences(of: "\"", with: "\\\"")
+      return needsQuoting ? "\"\(escaped)\"" : escaped
+    case let .number(value):
+      return String(value)
+    case let .bool(value):
+      return value ? "true" : "false"
     }
   }
 }

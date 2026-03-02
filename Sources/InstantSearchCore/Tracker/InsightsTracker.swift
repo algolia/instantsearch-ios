@@ -12,21 +12,23 @@ import Foundation
 #endif
 
 public protocol InsightsTracker: AnyObject {
-  init(eventName: EventName, searcher: TrackableSearcher, insights: Insights)
+  init(eventName: String, searcher: TrackableSearcher, insights: Insights)
 }
 
 public extension InsightsTracker {
-  init(eventName: EventName,
+  init(eventName: String,
        searcher: HitsSearcher,
-       userToken: UserToken? = .none) {
-    let credentials: AlgoliaSearchClient.Credentials = searcher.service.client
-    let insights = Insights.register(appId: credentials.applicationID, apiKey: credentials.apiKey, userToken: userToken)
+       userToken: String? = .none) {
+    // In v9, appID is internal on SearchClient - users should register Insights explicitly or use the other init
+    guard let insights = Insights.shared else {
+      fatalError("Insights must be registered before creating InsightsTracker. Call Insights.register(appId:apiKey:) first.")
+    }
     self.init(eventName: eventName,
               searcher: .singleIndex(searcher),
               insights: insights)
   }
 
-  init(eventName: EventName,
+  init(eventName: String,
        searcher: HitsSearcher,
        insights: Insights) {
     self.init(eventName: eventName,
@@ -35,19 +37,20 @@ public extension InsightsTracker {
   }
 
   @available(*, deprecated, message: "Use multiple HitsSearcher aggregated with MultiSearcher instead of MultiIndexSearcher")
-  init(eventName: EventName,
+  init(eventName: String,
        searcher: MultiIndexSearcher,
        pointer: Int,
-       userToken: UserToken? = .none) {
-    let credentials: AlgoliaSearchClient.Credentials = searcher.client
-    let insights = Insights.register(appId: credentials.applicationID, apiKey: credentials.apiKey, userToken: userToken)
+       userToken: String? = .none) {
+    guard let insights = Insights.shared else {
+      fatalError("Insights must be registered before creating InsightsTracker. Call Insights.register(appId:apiKey:) first.")
+    }
     self.init(eventName: eventName,
               searcher: .multiIndex(searcher, pointer: pointer),
               insights: insights)
   }
 
   @available(*, deprecated, message: "Use multiple HitsSearcher aggregated with MultiSearcher instead of MultiIndexSearcher")
-  init(eventName: EventName,
+  init(eventName: String,
        searcher: MultiIndexSearcher,
        pointer: Int,
        insights: Insights) {

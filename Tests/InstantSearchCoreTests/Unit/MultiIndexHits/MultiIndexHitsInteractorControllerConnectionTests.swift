@@ -5,10 +5,24 @@
 //  Created by Vladislav Fitc on 07/08/2020.
 //
 
-import AlgoliaSearchClient
 import Foundation
 @testable import InstantSearchCore
 import XCTest
+
+@available(*, deprecated, message: "Test to remove when MulstIndexSearcher obsoleted")
+class TestMultiIndexHitsController: MultiIndexHitsController {
+  var hitsSource: MultiIndexHitsSource?
+  var didScrollToTop: (() -> Void)?
+  var didReload: (() -> Void)?
+
+  func scrollToTop() {
+    didScrollToTop?()
+  }
+
+  func reload() {
+    didReload?()
+  }
+}
 
 @available(*, deprecated, message: "Test to remove when MulstIndexSearcher obsoleted")
 class MultiIndexHitsInteractorControllerConnectionTests: XCTestCase {

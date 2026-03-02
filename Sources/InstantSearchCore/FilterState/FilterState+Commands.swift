@@ -56,8 +56,8 @@ private extension FilterState {
   enum Clear: FilterStateCommand {
     case all
     case group(FilterGroup.ID)
-    case attribute(Attribute)
-    case attributeInGroup(Attribute, FilterGroup.ID)
+    case attribute(String)
+    case attributeInGroup(String, FilterGroup.ID)
 
     public func execute(on filterState: FilterState) {
       switch self {
@@ -118,7 +118,7 @@ public extension FilterState {
       return .init(command: FilterState.Clear.group(groupID))
     }
 
-    public static func removeAll(for attribute: Attribute, fromGroupWithID _: FilterGroup.ID? = nil) -> Command {
+    public static func removeAll(for attribute: String, fromGroupWithID _: FilterGroup.ID? = nil) -> Command {
       return .init(command: FilterState.Clear.attribute(attribute))
     }
 

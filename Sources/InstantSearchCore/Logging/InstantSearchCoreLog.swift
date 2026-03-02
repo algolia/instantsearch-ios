@@ -15,12 +15,12 @@ import Logging
 struct InstantSearchCoreLog: LogCollectable {
   static var logger: Logging.Logger = {
     NotificationCenter.default.addObserver(forName: Logs.logLevelChangeNotficationName, object: nil, queue: .main) { notification in
-      if let logLevel = notification.userInfo?["logLevel"] as? LogLevel {
-        InstantSearchCoreLog.logger.logLevel = logLevel.swiftLogLevel
+      if let logLevel = notification.userInfo?["logLevel"] as? Logging.Logger.Level {
+        InstantSearchCoreLog.logger.logLevel = logLevel
       }
     }
     var logger = Logging.Logger(label: "InstantSearchCore")
-    logger.logLevel = Logs.logSeverityLevel.swiftLogLevel
+    logger.logLevel = Logs.logSeverityLevel
     return logger
   }()
 }
@@ -47,14 +47,14 @@ extension InstantSearchCoreLog {
 
 extension InstantSearchCoreLog {
   enum Results {
-    static func failure(searcher: Searcher, indexName: IndexName, _ error: Error) {
-      logger.error("\(searcher): error - index: \(indexName.rawValue): \(error)")
+    static func failure(searcher: Searcher, indexName: String, _ error: Error) {
+      logger.error("\(searcher): error - index: \(indexName): \(error)")
     }
 
-    static func success(searcher: Searcher, indexName: IndexName, results: SearchStatsConvertible) {
+    static func success(searcher: Searcher, indexName: String, results: SearchStatsConvertible) {
       let stats = results.searchStats
       let query = stats.query ?? ""
-      let message = "\(searcher): received results - index: \(indexName.rawValue) query: \"\(query)\" hits count: \(stats.totalHitsCount) in \(stats.processingTimeMS)ms"
+      let message = "\(searcher): received results - index: \(indexName) query: \"\(query)\" hits count: \(stats.totalHitsCount) in \(stats.processingTimeMS)ms"
       logger.info("\(message)")
     }
   }

@@ -15,7 +15,7 @@ class SegmentedFilterDemoController {
   let clearFilterConnector: FilterClearConnector
 
   init() {
-    let gender: Attribute = "gender"
+    let gender = "gender"
     let male = Filter.Facet(attribute: "gender", stringValue: "male")
     let female = Filter.Facet(attribute: "gender", stringValue: "female")
     let notSpecified = Filter.Facet(attribute: "gender", stringValue: "not specified")
@@ -38,6 +38,6 @@ class SegmentedFilterDemoController {
 
     searcher.search()
     searcher.connectFilterState(filterState)
-    filterState.notify(.add(filter: male, toGroupWithID: .or(name: gender.rawValue, filterType: .facet)))
+    filterState.notify(.add(filter: male, toGroupWithID: .or(name: gender, filterType: .facet)))
   }
 }

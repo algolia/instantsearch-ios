@@ -23,7 +23,7 @@ final class DemoListViewController<Demo: DemoProtocol & Codable>: UITableViewCon
   private let cellIdentifier = "cellID"
   var groupedDemos: [(groupName: String, demos: [Demo])]
 
-  init(indexName: IndexName) {
+  init(indexName: String) {
     searcher = HitsSearcher(client: .instantSearch, indexName: indexName)
     filterState = .init()
     hitsInteractor = HitsInteractor(infiniteScrolling: .on(withOffset: 10), showItemsOnEmptyQuery: true)
@@ -44,8 +44,12 @@ final class DemoListViewController<Demo: DemoProtocol & Codable>: UITableViewCon
     navigationItem.searchController = searchController
     tableView.register(UITableViewCell.self, forCellReuseIdentifier: cellIdentifier)
     hitsInteractor.onResultsUpdated.subscribe(with: self) { viewController, results in
-      let demos = (try? results.extractHits(jsonDecoder: JSONDecoder()) as [Demo]) ?? []
-      viewController.updateDemos(demos)
+      do {
+        let demos: [Demo] = try results.extractHits(jsonDecoder: JSONDecoder())
+        viewController.updateDemos(demos)
+      } catch {
+        print("DemoListViewController: extractHits failed: \(error)")
+      }
     }
   }
 

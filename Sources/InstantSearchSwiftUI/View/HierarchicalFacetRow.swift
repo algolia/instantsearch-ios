@@ -15,7 +15,7 @@
   @available(iOS 13.0, OSX 11.00, tvOS 13.0, watchOS 6.0, *)
   public struct HierarchicalFacetRow: View {
     /// Facet value
-    public var facet: Facet
+    public var facet: FacetHits
 
     /// Facet selection state
     public var isSelected: Bool
@@ -44,7 +44,7 @@
       .padding(.leading, CGFloat(nestingLevel * 20))
     }
 
-    public init(facet: Facet,
+    public init(facet: FacetHits,
                 nestingLevel: Int,
                 isSelected: Bool,
                 separator: Character = ">") {

@@ -7,12 +7,13 @@
 //
 
 import Foundation
+import Search
 
 public extension Hit {
   /// Returns a highlighted string for a string key if highlightResult has a flat dictionary structure
   /// If the value for key is missing or it is an embedded structure, returns nil
   func hightlightedString(forKey key: String) -> HighlightedString? {
-    return highlightResult?.value(forKey: key)?.value?.value
+    return highlightResult?[key]?.highlightedString
   }
 }
 
@@ -35,10 +36,14 @@ public extension NSAttributedString {
     self.init(taggedString: highlightedString.taggedString, inverted: inverted, attributes: attributes)
   }
 
-  convenience init(highlightResult: HighlightResult,
+  convenience init(highlightResult: SearchHighlightResult,
                    inverted: Bool = false,
                    attributes: [NSAttributedString.Key: Any]) {
-    self.init(taggedString: highlightResult.value.taggedString, inverted: inverted, attributes: attributes)
+    guard let highlightedString = highlightResult.highlightedString else {
+      self.init(string: "")
+      return
+    }
+    self.init(taggedString: highlightedString.taggedString, inverted: inverted, attributes: attributes)
   }
 
   convenience init(taggedStrings: [TaggedString],
@@ -60,11 +65,11 @@ public extension NSAttributedString {
     self.init(attributedString: resultString)
   }
 
-  convenience init(highlightedResults: [HighlightResult],
+  convenience init(highlightedResults: [SearchHighlightResult],
                    inverted: Bool = false,
                    separator: NSAttributedString,
                    attributes: [NSAttributedString.Key: Any]) {
-    let taggedStrings = highlightedResults.map { $0.value.taggedString }
+    let taggedStrings = highlightedResults.compactMap { $0.highlightedString?.taggedString }
     self.init(taggedStrings: taggedStrings,
               inverted: inverted,
               separator: separator,

@@ -1,6 +1,6 @@
 //
 //  AlgoliaHitsPage+SearchResponse.swift
-//  
+//
 //
 //  Created by Vladislav Fitc on 28/04/2023.
 //
@@ -15,7 +15,7 @@ extension AlgoliaHitsPage where Item: Decodable {
   ///     - searchResponse: An instance of `SearchResponse` object
   ///
   /// - Throws: `AlgoliaHitsPageSearchReponseError` instance
-  init(_ searchResponse: SearchResponse) throws {
+  init(_ searchResponse: SearchResponse<SearchHit>) throws {
     guard let page = searchResponse.page else {
       throw AlgoliaHitsPageSearchReponseError.missingPage
     }
@@ -24,7 +24,7 @@ extension AlgoliaHitsPage where Item: Decodable {
     }
     let hits: [Item]
     do {
-      hits = try searchResponse.extractHits()
+      hits = try searchResponse.extractHits(jsonDecoder: JSONDecoder())
     } catch let error {
       throw AlgoliaHitsPageSearchReponseError.hitsExtractionError(error)
     }

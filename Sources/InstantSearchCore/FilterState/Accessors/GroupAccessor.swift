@@ -67,7 +67,7 @@ extension ReadOnlyFiltersContainer: FilterGroupsConvertible {
 public protocol GroupAccessor {
   var isEmpty: Bool { get }
 
-  func removeAll(for attribute: Attribute)
+  func removeAll(for attribute: String)
   func removeAll()
   func removeAllOthers()
 }
@@ -75,7 +75,7 @@ public protocol GroupAccessor {
 public class ReadOnlyGroupAccessor<Filter: FilterType> {
   var storedIsEmpty: () -> Bool
   var storedGetFilters: () -> [Filter]
-  var storedGetFiltersForAttribute: (Attribute) -> [Filter]
+  var storedGetFiltersForAttribute: (String) -> [Filter]
   var storedContains: (Filter) -> Bool
 
   init<A: SpecializedGroupAccessor>(_ accessor: A) where A.Filter == Filter {
@@ -93,7 +93,7 @@ public class ReadOnlyGroupAccessor<Filter: FilterType> {
     return storedGetFilters()
   }
 
-  func filters(for attribute: Attribute) -> [Filter] {
+  func filters(for attribute: String) -> [Filter] {
     return storedGetFiltersForAttribute(attribute)
   }
 
@@ -106,7 +106,7 @@ public protocol SpecializedGroupAccessor: GroupAccessor {
   associatedtype Filter: FilterType
 
   func filters() -> [Filter]
-  func filters(for attribute: Attribute) -> [Filter]
+  func filters(for attribute: String) -> [Filter]
 
   func add(_ filters: Filter...)
   func addAll<S: Sequence>(_ filters: S) where S.Element == Filter

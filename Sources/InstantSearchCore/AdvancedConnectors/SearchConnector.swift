@@ -86,17 +86,17 @@ public struct SearchConnector<Record: Codable>: Connection {
    - hitsController: Hits controller
    - filterState: Filter state
    */
-  public init<HC: HitsController, SBC: SearchBoxController>(appID: ApplicationID,
-                                                            apiKey: APIKey,
-                                                            indexName: IndexName,
+  public init<HC: HitsController, SBC: SearchBoxController>(appID: String,
+                                                            apiKey: String,
+                                                            indexName: String,
                                                             searchBoxInteractor: SearchBoxInteractor = .init(),
                                                             searchBoxController: SBC,
                                                             hitsInteractor: HitsInteractor<Record>,
                                                             hitsController: HC,
-                                                            filterState: FilterState? = nil) where HC.DataSource == HitsInteractor<Record> {
-    let searcher = HitsSearcher(appID: appID,
-                                apiKey: apiKey,
-                                indexName: indexName)
+                                                            filterState: FilterState? = nil) throws where HC.DataSource == HitsInteractor<Record> {
+    let searcher = try HitsSearcher(appID: appID,
+                                    apiKey: apiKey,
+                                    indexName: indexName)
     self.init(searcher: searcher,
               searchBoxInteractor: searchBoxInteractor,
               searchBoxController: searchBoxController,
@@ -185,15 +185,15 @@ public extension SearchConnector {
    - filterState: Filter state
    */
   @available(*, deprecated, renamed: "init(appID:apiKey:indexName:searchBoxInteractor:searchBoxController:hitsInteractor:hitsController:filterState:)")
-  init<HC: HitsController, SBC: SearchBoxController>(appID: ApplicationID,
-                                                     apiKey: APIKey,
-                                                     indexName: IndexName,
+  init<HC: HitsController, SBC: SearchBoxController>(appID: String,
+                                                     apiKey: String,
+                                                     indexName: String,
                                                      queryInputInteractor: SearchBoxInteractor = .init(),
                                                      queryInputController: SBC,
                                                      hitsInteractor: HitsInteractor<Record>,
                                                      hitsController: HC,
-                                                     filterState: FilterState? = nil) where HC.DataSource == HitsInteractor<Record> {
-    self.init(appID: appID,
+                                                     filterState: FilterState? = nil) throws where HC.DataSource == HitsInteractor<Record> {
+    try self.init(appID: appID,
               apiKey: apiKey,
               indexName: indexName,
               searchBoxInteractor: queryInputInteractor,

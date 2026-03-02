@@ -6,33 +6,54 @@
 //  Copyright © 2018 Algolia. All rights reserved.
 //
 
-import AlgoliaSearchClient
 @testable import InstantSearchInsights
 import XCTest
 
 class PackageTests: XCTestCase {
   func testEventsPackageCoding() throws {
+    let clickFilter = FilterFacet(attribute: "filter", value: .string("f1"))
+    let viewFilter = FilterFacet(attribute: "filter", value: .string("f2"))
     let package = try Package<InsightsEvent>(events: [
-      .click(name: "ClickEventName", indexName: "Index1", userToken: "User1", filters: ["f1"]),
-      .view(name: "ViewEventName", indexName: "Index2", userToken: "User2", filters: ["f2"])
+      .clickedFilters(eventName: "ClickEventName",
+                      indexName: "Index1",
+                      userToken: "User1",
+                      timestamp: nil,
+                      filters: [clickFilter]),
+      .viewedFilters(eventName: "ViewEventName",
+                     indexName: "Index2",
+                     userToken: "User2",
+                     timestamp: nil,
+                     filters: [viewFilter])
     ])
     try AssertEncodeDecode(package, [
       "id": .init(package.id),
       "capacity": .init(Algolia.Insights.minBatchSize),
       "items": [
         [
-          "eventType": "click",
+          "eventType": "clickedFilters",
           "eventName": "ClickEventName",
-          "index": "Index1",
+          "indexName": "Index1",
           "userToken": "User1",
-          "filters": ["f1"]
+          "filters": [
+            [
+              "attribute": "filter",
+              "value": "f1",
+              "isNegated": false
+            ]
+          ]
         ],
         [
-          "eventType": "view",
+          "eventType": "viewedFilters",
           "eventName": "ViewEventName",
-          "index": "Index2",
+          "indexName": "Index2",
           "userToken": "User2",
-          "filters": ["f2"]
+          "filters": [
+            [
+              "attribute": "filter",
+              "value": "f2",
+              "isNegated": false
+            ]
+          ]
         ]
       ]
     ])
@@ -45,7 +66,11 @@ class PackageTests: XCTestCase {
   }
 
   func testConstrutionWithEvent() throws {
-    let package = Package(event: try .click(name: "event name", indexName: "index name", userToken: "user_token", filters: ["name:value"]))
+    let package = Package(event: .clickedFilters(eventName: "event name",
+                                                 indexName: "index name",
+                                                 userToken: "user_token",
+                                                 timestamp: nil,
+                                                 filters: [FilterFacet(attribute: "name", value: .string("value"))]))
 
     XCTAssertEqual(package.items.count, 1)
   }

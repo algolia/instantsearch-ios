@@ -11,18 +11,18 @@ import Foundation
 import XCTest
 
 class FacetListFacetSearcherConnectionTests: XCTestCase {
-  let facets: [Facet] = .init(prefix: "v", count: 3)
+  let facets: [FacetHits] = .init(prefix: "v", count: 3)
 
   var results: FacetSearcher.SearchResult {
-    return try! FacetSearcher.SearchResult(json: ["facetHits": try! JSON(facets), "exhaustiveFacetsCount": true, "processingTimeMS": 1])
+    return makeFacetSearchResponse(facetHits: facets)
   }
 
   weak var disposableInteractor: FacetListInteractor?
   weak var disposableSearcher: FacetSearcher?
 
-  func testLeak() {
+  func testLeak() throws {
     let interactor = FacetListInteractor(facets: facets, selectionMode: .single)
-    let searcher = FacetSearcher(appID: "", apiKey: "", indexName: "", facetName: "facet")
+    let searcher = try FacetSearcher(appID: "testAppID", apiKey: "testApiKey", indexName: "", facetName: "facet")
 
     disposableInteractor = interactor
     disposableSearcher = searcher
@@ -36,9 +36,9 @@ class FacetListFacetSearcherConnectionTests: XCTestCase {
     XCTAssertNil(disposableSearcher, "Leaked searcher")
   }
 
-  func testConnect() {
+  func testConnect() throws {
     let interactor = FacetListInteractor(selectionMode: .single)
-    let searcher = FacetSearcher(appID: "", apiKey: "", indexName: "", facetName: "facet")
+    let searcher = try FacetSearcher(appID: "testAppID", apiKey: "testApiKey", indexName: "", facetName: "facet")
 
     let connection = FacetListInteractor.FacetSearcherConnection(interactor: interactor, searcher: searcher)
     connection.connect()
@@ -46,18 +46,18 @@ class FacetListFacetSearcherConnectionTests: XCTestCase {
     check(interactor: interactor, searcher: searcher, isConnected: true)
   }
 
-  func testConnectFunction() {
+  func testConnectFunction() throws {
     let interactor = FacetListInteractor(selectionMode: .single)
-    let searcher = FacetSearcher(appID: "", apiKey: "", indexName: "", facetName: "facet")
+    let searcher = try FacetSearcher(appID: "testAppID", apiKey: "testApiKey", indexName: "", facetName: "facet")
 
     interactor.connectFacetSearcher(searcher)
 
     check(interactor: interactor, searcher: searcher, isConnected: true)
   }
 
-  func testDisconnect() {
+  func testDisconnect() throws {
     let interactor = FacetListInteractor(selectionMode: .single)
-    let searcher = FacetSearcher(appID: "", apiKey: "", indexName: "", facetName: "facet")
+    let searcher = try FacetSearcher(appID: "testAppID", apiKey: "testApiKey", indexName: "", facetName: "facet")
 
     let connection = FacetListInteractor.FacetSearcherConnection(interactor: interactor, searcher: searcher)
     connection.connect()

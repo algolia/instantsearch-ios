@@ -6,13 +6,14 @@
 //
 
 import Foundation
+import Search
 @testable import InstantSearchCore
 import XCTest
 
 class QueryBuilderTests: XCTestCase {
   func testDisjunctiveFacetingQueriesGeneration() {
-    let query = Query("phone")
-    let disjunctiveFacets: Set<Attribute> = ["price", "color"]
+    let query = SearchSearchParamsObject(query: "phone")
+    let disjunctiveFacets: Set<String> = ["price", "color"]
 
     let queryBuilder = QueryBuilder(query: query, disjunctiveFacets: disjunctiveFacets)
 
@@ -24,13 +25,13 @@ class QueryBuilderTests: XCTestCase {
     XCTAssertEqual(disjunctiveFacetingQueries.count, 2)
 
     disjunctiveFacetingQueries.forEach { XCTAssertEqual($0.facets?.count, 1) }
-    let disjunctiveFacetingQueriesFacetSet: Set<Attribute> = disjunctiveFacetingQueries.compactMap { $0.facets ?? [] }.reduce([]) { $0.union($1) }
+    let disjunctiveFacetingQueriesFacetSet: Set<String> = disjunctiveFacetingQueries.compactMap { $0.facets ?? [] }.reduce([]) { $0.union($1) }
     XCTAssertEqual(disjunctiveFacets, disjunctiveFacetingQueriesFacetSet)
   }
 
   func testDisjunctiveFacetingWithFiltersQueriesGeneration() {
-    let query = Query("phone")
-    let disjunctiveFacets: Set<Attribute> = ["price", "color", "brand"]
+    let query = SearchSearchParamsObject(query: "phone")
+    let disjunctiveFacets: Set<String> = ["price", "color", "brand"]
     let filterGroups: [FilterGroupType] = [
       FilterGroup.Or(filters: [Filter.Facet(attribute: "price", value: 100), Filter.Facet(attribute: "color", value: "green"), Filter.Facet(attribute: "size", value: "44")], name: "g1"),
       FilterGroup.Or(filters: [Filter.Facet(attribute: "type", value: "phone")], name: "g2"),
@@ -48,7 +49,7 @@ class QueryBuilderTests: XCTestCase {
 
     disjunctiveFacetingQueries.forEach { XCTAssertEqual($0.facets?.count, 1) }
 
-    let priceFilterString = "\"price\":\"100.0\""
+    let priceFilterString = "\"price\":100.0"
     let sizeFilterString = "\"size\":\"44\""
     let colorFilterString = "\"color\":\"green\""
     let singletonOrGroupString = "( \"type\":\"phone\" )"

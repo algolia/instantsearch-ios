@@ -58,7 +58,7 @@ import InstantSearch
     }
 
     func controllerExample() {
-      let connector = FacetListConnector(searcher: .init(appID: "", apiKey: "", indexName: ""), attribute: "", operator: .or)
+      let connector = FacetListConnector(searcher: .init(appID: "testAppID", apiKey: "testApiKey", indexName: ""), attribute: "", operator: .or)
       let controller = FacetListTableController(tableView: .init())
       let presenter = FacetListPresenter(sortBy: [], limit: 10, showEmptyFacets: true)
       connector.interactor.connectController(controller, with: presenter)

@@ -5,18 +5,18 @@
 //  Created by Vladislav Fitc on 05/06/2020.
 //
 
-import AlgoliaSearchClient
+import Core
 import Foundation
 
 struct TestCredentials: Credentials {
-  let applicationID: ApplicationID
-  let apiKey: APIKey
+  let appID: String
+  let apiKey: String
 
   static let search: TestCredentials? = {
     if
       let appID = String(environmentVariable: "ALGOLIA_APPLICATION_ID_1"),
       let apiKey = String(environmentVariable: "ALGOLIA_ADMIN_KEY_1") {
-      return TestCredentials(applicationID: ApplicationID(rawValue: appID), apiKey: APIKey(rawValue: apiKey))
+      return TestCredentials(appID: appID, apiKey: apiKey)
     } else {
       return nil
     }
@@ -26,7 +26,7 @@ struct TestCredentials: Credentials {
     if
       let appID = String(environmentVariable: "ALGOLIA_PLACES_APPLICATION_ID"),
       let apiKey = String(environmentVariable: "ALGOLIA_PLACES_API_KEY") {
-      return TestCredentials(applicationID: ApplicationID(rawValue: appID), apiKey: APIKey(rawValue: apiKey))
+      return TestCredentials(appID: appID, apiKey: apiKey)
     } else {
       return nil
     }

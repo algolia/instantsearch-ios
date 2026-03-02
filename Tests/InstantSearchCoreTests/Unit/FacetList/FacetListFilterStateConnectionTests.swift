@@ -11,9 +11,9 @@ import Foundation
 import XCTest
 
 class FacetListFilterStateConnectionTests: XCTestCase {
-  let attribute: Attribute = "Test Attribute"
+  let attribute: String = "Test Attribute"
   let groupName = "Test group"
-  let facets: [Facet] = .init(prefix: "v", count: 4)
+  let facets: [FacetHits] = .init(prefix: "v", count: 4)
 
   weak var disposableInteractor: FacetListInteractor?
   weak var disposableFilterState: FilterState?

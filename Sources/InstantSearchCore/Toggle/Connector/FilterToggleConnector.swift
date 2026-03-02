@@ -39,7 +39,7 @@ public class FilterToggleConnector<Filter: FilterType> {
     self.interactor = interactor
     filterStateConnection = interactor.connectFilterState(filterState,
                                                           operator: `operator`,
-                                                          groupName: groupName ?? interactor.item.attribute.rawValue)
+                                                         groupName: groupName ?? interactor.item.attribute)
     controllerConnections = []
     Telemetry.shared.traceConnector(type: .filterToggle,
                                     parameters: [

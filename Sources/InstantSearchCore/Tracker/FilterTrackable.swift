@@ -12,23 +12,23 @@ import Foundation
 #endif
 
 protocol FilterTrackable {
-  func viewed(eventName: EventName,
-              indexName: IndexName,
+  func viewed(eventName: String,
+              indexName: String,
               filters: [String],
               timestamp: Date?,
-              userToken: UserToken?)
+              userToken: String?)
 
-  func clicked(eventName: EventName,
-               indexName: IndexName,
+  func clicked(eventName: String,
+               indexName: String,
                filters: [String],
                timestamp: Date?,
-               userToken: UserToken?)
+               userToken: String?)
 
-  func converted(eventName: EventName,
-                 indexName: IndexName,
+  func converted(eventName: String,
+                 indexName: String,
                  filters: [String],
                  timestamp: Date?,
-                 userToken: UserToken?)
+                 userToken: String?)
 }
 
 extension Insights: FilterTrackable {}

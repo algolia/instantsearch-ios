@@ -27,7 +27,7 @@ enum MultiIndexDemoSection: CaseIterable {
     }
   }
 
-  var indexName: IndexName {
+  var indexName: String {
     switch self {
     case .suggestions:
       return .ecommerceSuggestions

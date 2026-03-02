@@ -5,11 +5,10 @@
 //  Created by Vladislav Fitc on 05.04.2022.
 //
 
-import AlgoliaSearchClient
 import Foundation
 
 struct ShowcaseDemo: Codable, DemoProtocol {
-  let objectID: ObjectID
+  let objectID: String
   let name: String
   let type: String
 

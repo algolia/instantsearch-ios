@@ -11,9 +11,9 @@ import Foundation
 public typealias HierarchicalPath = [Filter.Facet]
 
 /// Component containing the business logic of the hierarchical menu
-public class HierarchicalInteractor: ItemInteractor<[[Facet]]> {
+public class HierarchicalInteractor: ItemInteractor<[[FacetHits]]> {
   /// The names of the hierarchical attributes that we need to target, in ascending order.
-  let hierarchicalAttributes: [Attribute]
+  let hierarchicalAttributes: [String]
 
   /// The string separating the facets in the hierarchical facets. Usually something like " > ".
   ///
@@ -37,7 +37,7 @@ public class HierarchicalInteractor: ItemInteractor<[[Facet]]> {
       - hierarchicalAttributes: The names of the hierarchical attributes that we need to target, in ascending order.
       - separator: The string separating the facets in the hierarchical facets. Usually something like " > ".
    */
-  public init(hierarchicalAttributes: [Attribute], separator: String) {
+  public init(hierarchicalAttributes: [String], separator: String) {
     self.hierarchicalAttributes = hierarchicalAttributes
     self.separator = separator
     onSelectionsChanged = .init()

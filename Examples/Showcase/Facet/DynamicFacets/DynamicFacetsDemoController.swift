@@ -20,8 +20,8 @@ class DynamicFacetListDemoController {
 
   init<SBC: SearchBoxController, DFC: DynamicFacetListController>(searchBoxController: SBC,
                                                                   dynamicFacetListController: DFC) {
-    searcher = .init(client: .init(appID: "RVURKQXRHU",
-                                   apiKey: "937e4e6ec422ff69fe89b569dba30180"),
+    searcher = .init(client: try! .init(appID: "RVURKQXRHU",
+                                        apiKey: "937e4e6ec422ff69fe89b569dba30180"),
                      indexName: "test_facet_ordering")
     filterState = .init()
     searchBoxConnector = .init(searcher: searcher, controller: searchBoxController)

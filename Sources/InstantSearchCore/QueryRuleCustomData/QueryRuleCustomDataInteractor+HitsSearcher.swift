@@ -45,7 +45,7 @@ public extension QueryRuleCustomDataInteractor {
     - Parameters:
       - searcher: Searcher to connect
    */
-  @discardableResult func connectSearcher<S: Searcher>(_ searcher: S) -> Connection where S: SearchResultObservable, S.SearchResult == SearchResponse {
+  @discardableResult func connectSearcher<S: Searcher>(_ searcher: S) -> Connection where S: SearchResultObservable, S.SearchResult == SearchResponse<SearchHit> {
     let connection = SearcherConnection(interactor: self, searcher: searcher)
     connection.connect()
     return connection

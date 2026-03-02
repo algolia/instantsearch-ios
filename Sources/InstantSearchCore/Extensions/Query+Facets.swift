@@ -1,5 +1,5 @@
 //
-//  Query+Facets.swift
+//  SearchSearchParamsObject+Facets.swift
 //  InstantSearchCore
 //
 //  Created by Vladislav Fitc on 17/05/2019.
@@ -8,8 +8,9 @@
 
 import Foundation
 
-extension Query {
-  mutating func updateQueryFacets(with attribute: Attribute) {
-    facets = (facets ?? []).union([attribute])
+extension SearchSearchParamsObject {
+  mutating func updateQueryFacets(with attribute: String) {
+    let existing = facets ?? []
+    facets = Array(Set(existing + [attribute]))
   }
 }

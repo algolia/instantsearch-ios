@@ -5,8 +5,9 @@
 //  Copyright © 2018 Algolia. All rights reserved.
 //
 
-import AlgoliaSearchClient
+import Core
 import Foundation
+import Insights
 #if os(iOS)
   import UIKit
 #endif
@@ -41,15 +42,15 @@ public class Insights {
   /// Used as a default user token if no user token provided for event or application
   /// - Note: This value is ignored if a custom per-app or per-event user token is provided
 
-  public static var userToken: UserToken {
+  public static var userToken: String {
     let key = "com.algolia.InstantSearch.Insights.UserToken"
 
     if let existingToken = UserDefaults.standard.string(forKey: key) {
-      return UserToken(rawValue: existingToken)
+      return existingToken
     } else {
       let generatedToken = UUID().uuidString
       UserDefaults.standard.set(generatedToken, forKey: key)
-      return UserToken(rawValue: generatedToken)
+      return generatedToken
     }
   }
 
@@ -57,7 +58,7 @@ public class Insights {
   /// Overrides generated global application user token (see above)
   /// - Note: This value is ignored if a custom per-event user token provided
 
-  public var userToken: UserToken? {
+  public var userToken: String? {
     get {
       return (eventTracker as? EventTracker)?.userToken
     }
@@ -88,7 +89,7 @@ public class Insights {
     }
   }
 
-  private static var insightsMap: [ApplicationID: Insights] = [:]
+  private static var insightsMap: [String: Insights] = [:]
 //  private static var logger = InsightsLogger.logger
 
   /// Defines if event tracking is active. Default value is `true`.
@@ -137,7 +138,7 @@ public class Insights {
   /// If the application was not registered before, the nil value will be returned.
   /// - parameter  appId: The appId of application that is being tracked
 
-  public static func shared(appId: ApplicationID) -> Insights? {
+  public static func shared(appId: String) -> Insights? {
     guard let insightsInstance = insightsMap[appId] else {
       InstantSearchInsightsLog.debug("application for this app ID (\(appId)) is not registered. Please use `register(appId:, apiKey:)` method to register your application.")
       return nil
@@ -156,21 +157,21 @@ public class Insights {
   ///   If set to false, the events will be sent without timestamp value and will be automatically attributed on the server that may affect the events accuracy
   ///   Defafult value: true
   /// - parameter  region: The desired API endpoint region
-  @discardableResult public static func register(appId: ApplicationID,
-                                                 apiKey: APIKey,
-                                                 userToken: UserToken? = .none,
+  @discardableResult public static func register(appId: String,
+                                                 apiKey: String,
+                                                 userToken: String? = .none,
                                                  generateTimestamps: Bool = true,
-                                                 region: Region? = region) -> Insights {
+                                                 region: Region? = region) throws -> Insights {
     _ = InsightsUserAgentSetter.set
-    let logger = Logger(label: "Insights (\(appId.rawValue))")
+    let logger = Logger(label: "Insights (\(appId))")
     logger.info("application registered")
-    let insights = Insights(applicationID: appId,
-                            apiKey: apiKey,
-                            region: region,
-                            flushDelay: Algolia.Insights.flushDelay,
-                            userToken: userToken,
-                            generateTimestamps: generateTimestamps,
-                            logger: logger)
+    let insights = try Insights(applicationID: appId,
+                                apiKey: apiKey,
+                                region: region,
+                                flushDelay: Algolia.Insights.flushDelay,
+                                userToken: userToken,
+                                generateTimestamps: generateTimestamps,
+                                logger: logger)
     Insights.insightsMap[appId] = insights
     return insights
   }
@@ -182,25 +183,25 @@ public class Insights {
     self.eventTracker = eventTracker
   }
 
-  convenience init(applicationID: ApplicationID,
-                   apiKey: APIKey,
+  convenience init(applicationID: String,
+                   apiKey: String,
                    region: Region? = region,
                    flushDelay: TimeInterval,
-                   userToken: UserToken?,
+                   userToken: String?,
                    generateTimestamps: Bool,
-                   logger: Logger) {
+                   logger: Logger) throws {
     typealias PackageStorage = JSONFilePackageStorage<[Package<InsightsEvent>]>
 
     let storage: PackageStorage?
 
     do {
-      storage = try PackageStorage(filename: "\(applicationID.rawValue).storage.events")
+      storage = try PackageStorage(filename: "\(applicationID).storage.events")
     } catch {
       storage = nil
       logger.error("\(error.localizedDescription)")
     }
 
-    let insightsClient = InsightsClient(appID: applicationID, apiKey: apiKey, region: region)
+    let insightsClient = try InsightsClient(appID: applicationID, apiKey: apiKey, region: region)
 
     let acceptEvent: (InsightsEvent) -> Bool = { event in
       guard let timestamp = event.timestamp else {

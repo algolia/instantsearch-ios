@@ -5,6 +5,7 @@
 //  Created by Vladislav Fitc on 06/10/2021.
 //
 
+import Core
 import Foundation
 @testable import InstantSearchCore
 import InstantSearchInsights
@@ -16,31 +17,15 @@ class TelemetryTests: XCTestCase {
     Telemetry.shared.reset()
   }
 
-  class TestRequester: HTTPRequester {
-    var onRequestPerform: (URLRequest) -> Void = { _ in }
-
-    init(onRequestPerform: @escaping (URLRequest) -> Void) {
-      self.onRequestPerform = onRequestPerform
-    }
-
-    struct EmptyError: Error {}
-
-    func perform<T>(request: URLRequest, completion: @escaping (Result<T, Error>) -> Void) -> TransportTask where T: Decodable {
-      onRequestPerform(request)
-      completion(.failure(EmptyError()))
-      return URLSession.shared.dataTask(with: request)
-    }
-  }
-
-  let hitsSearcher = HitsSearcher(appID: "", apiKey: "", indexName: "")
-  let facetSearcher = FacetSearcher(appID: "", apiKey: "", indexName: "", facetName: "")
+  let hitsSearcher = try! HitsSearcher(appID: "testAppID", apiKey: "testApiKey", indexName: "")
+  let facetSearcher = try! FacetSearcher(appID: "testAppID", apiKey: "testApiKey", indexName: "", facetName: "")
   let searchBoxInteractor = SearchBoxInteractor()
   let searchBoxController = TestSearchBoxController()
   let hitsController = TestHitsController<String>()
   let hitsInteractor = HitsInteractor<String>()
   let filterState = FilterState()
   let filter = FacetFilter(attribute: "a", boolValue: true)
-  let facet = Facet(value: "f", count: 0, highlighted: nil)
+  let facet = FacetHits(value: "f", highlighted: "", count: 0)
 
   func component(ofType type: TelemetryComponentType) throws -> TelemetryComponent {
     if let component = Telemetry.shared.component(ofType: type) {
@@ -55,62 +40,25 @@ class TelemetryTests: XCTestCase {
   }
 
   func userAgentsTest() throws {
-    let expectation1 = expectation(description: "URL request expectation")
+    _ = try HitsSearcher(appID: "testAppID", apiKey: "testApiKey", indexName: "")
+    _ = try FacetSearcher(appID: "testAppID", apiKey: "testApiKey", indexName: "", facetName: "")
 
-    _ = HitsSearcher(appID: "", apiKey: "", indexName: "")
-    _ = FacetSearcher(appID: "", apiKey: "", indexName: "", facetName: "")
-
-    let requester = TestRequester { request in
-      guard let userAgentValue = request.allHTTPHeaderFields?["User-Agent"] else {
-        XCTFail("Missing user-agent value")
-        expectation1.fulfill()
-        return
-      }
-      guard let schema = TelemetrySchema(userAgentString: userAgentValue) else {
-        XCTFail("Cannot build Schema")
-        expectation1.fulfill()
-        return
-      }
-      XCTAssertTrue(schema.components.contains(where: { $0.type == .hitsSearcher }))
-      XCTAssertTrue(schema.components.contains(where: { $0.type == .facetSearcher }))
-      expectation1.fulfill()
+    guard let schema1 = TelemetrySchema(userAgentString: UserAgentController.httpHeaderValue) else {
+      XCTFail("Cannot build Schema")
+      return
     }
-
-    let client = SearchClient(configuration: .init(applicationID: "", apiKey: ""),
-                              requester: requester)
-
-    do {
-      try client.index(withName: "indexname").search(query: Query())
-    } catch _ {}
-
-    wait(for: [expectation1], timeout: 5)
+    XCTAssertTrue(schema1.components.contains(where: { $0.type == .hitsSearcher }))
+    XCTAssertTrue(schema1.components.contains(where: { $0.type == .facetSearcher }))
 
     _ = FilterState()
 
-    let expectation2 = expectation(description: "URL request expectation")
-
-    requester.onRequestPerform = { request in
-      guard let userAgentValue = request.allHTTPHeaderFields?["User-Agent"] else {
-        XCTFail("Missing user-agent value")
-        expectation1.fulfill()
-        return
-      }
-      guard let schema = TelemetrySchema(userAgentString: userAgentValue) else {
-        XCTFail("Cannot build Schema")
-        expectation1.fulfill()
-        return
-      }
-      XCTAssertTrue(schema.components.contains(where: { $0.type == .hitsSearcher }))
-      XCTAssertTrue(schema.components.contains(where: { $0.type == .facetSearcher }))
-      XCTAssertTrue(schema.components.contains(where: { $0.type == .filterState }))
-      expectation2.fulfill()
+    guard let schema2 = TelemetrySchema(userAgentString: UserAgentController.httpHeaderValue) else {
+      XCTFail("Cannot build Schema")
+      return
     }
-
-    do {
-      try client.index(withName: "indexname").search(query: Query())
-    } catch _ {}
-
-    wait(for: [expectation2], timeout: 5)
+    XCTAssertTrue(schema2.components.contains(where: { $0.type == .hitsSearcher }))
+    XCTAssertTrue(schema2.components.contains(where: { $0.type == .facetSearcher }))
+    XCTAssertTrue(schema2.components.contains(where: { $0.type == .filterState }))
   }
 }
 
@@ -180,8 +128,8 @@ extension TelemetryTests {
   }
 
   func testSearchConnectorImplicitSearcher() throws {
-    _ = SearchConnector(appID: "",
-                        apiKey: "",
+    _ = try SearchConnector(appID: "testAppID",
+                        apiKey: "testApiKey",
                         indexName: "",
                         searchBoxController: searchBoxController,
                         hitsInteractor: hitsInteractor,
@@ -534,8 +482,8 @@ extension TelemetryTests {
   }
 
   func testHitsConnectorParams() throws {
-    _ = HitsConnector<String>(appID: "",
-                              apiKey: "",
+    _ = try HitsConnector<String>(appID: "testAppID",
+                              apiKey: "testApiKey",
                               indexName: "",
                               infiniteScrolling: .off,
                               showItemsOnEmptyQuery: false,
@@ -703,25 +651,11 @@ extension TelemetryTests {
   }
 }
 
-// MARK: - Answers Searcher
-
-extension TelemetryTests {
-  @available(*, deprecated, message: "Answers feature is deprecated")
-  func testAnswersSearcher() throws {
-    _ = AnswersSearcher(applicationID: "",
-                        apiKey: "",
-                        indexName: "")
-    let component = try component(ofType: .answersSearcher)
-    XCTAssertFalse(component.isConnector)
-    XCTAssertTrue(component.parameters.isEmpty)
-  }
-}
-
 // MARK: - Facet Searcher
 
 extension TelemetryTests {
   func testFacetSearcher() throws {
-    _ = FacetSearcher(client: .init(appID: "", apiKey: ""),
+    _ = FacetSearcher(client: try .init(appID: "testAppID", apiKey: "testApiKey"),
                       indexName: "",
                       facetName: "")
     let component = try component(ofType: .facetSearcher)
@@ -730,8 +664,8 @@ extension TelemetryTests {
   }
 
   func testFacetSearcherParams() throws {
-    _ = FacetSearcher(appID: "",
-                      apiKey: "",
+    _ = try FacetSearcher(appID: "testAppID",
+                      apiKey: "testApiKey",
                       indexName: "",
                       facetName: "")
     let component = try component(ofType: .facetSearcher)
@@ -744,7 +678,7 @@ extension TelemetryTests {
 
 extension TelemetryTests {
   func testHitsSearcher() throws {
-    _ = HitsSearcher(client: .init(appID: "", apiKey: ""),
+    _ = HitsSearcher(client: try .init(appID: "testAppID", apiKey: "testApiKey"),
                      indexName: "")
     let component = try component(ofType: .hitsSearcher)
     XCTAssertFalse(component.isConnector)
@@ -752,8 +686,8 @@ extension TelemetryTests {
   }
 
   func testHitsSearcherParams() throws {
-    _ = HitsSearcher(appID: "",
-                     apiKey: "",
+    _ = try HitsSearcher(appID: "testAppID",
+                     apiKey: "testApiKey",
                      indexName: "")
     let component = try component(ofType: .hitsSearcher)
     XCTAssertFalse(component.isConnector)
@@ -765,7 +699,7 @@ extension TelemetryTests {
 
 extension TelemetryTests {
   func testMultiSearcher() throws {
-    _ = MultiSearcher(appID: "", apiKey: "")
+    _ = try MultiSearcher(appID: "testAppID", apiKey: "testApiKey")
     let component = try component(ofType: .multiSearcher)
     XCTAssertFalse(component.isConnector)
     XCTAssertTrue(component.parameters.isEmpty)

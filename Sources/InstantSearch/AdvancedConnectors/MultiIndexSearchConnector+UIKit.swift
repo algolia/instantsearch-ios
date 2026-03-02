@@ -35,14 +35,14 @@
       }
     }
 
-    init<HC: MultiIndexHitsController>(appID: ApplicationID,
-                                       apiKey: APIKey,
+    init<HC: MultiIndexHitsController>(appID: String,
+                                       apiKey: String,
                                        indexModules: [MultiIndexHitsConnector.IndexModule],
                                        searchController: UISearchController,
-                                       hitsController: HC) {
-      let searcher = MultiIndexSearcher(appID: appID,
-                                        apiKey: apiKey,
-                                        indexNames: indexModules.map(\.indexName))
+                                       hitsController: HC) throws {
+      let searcher = try MultiIndexSearcher(appID: appID,
+                                            apiKey: apiKey,
+                                            indexNames: indexModules.map(\.indexName))
       self.init(searcher: searcher,
                 indexModules: indexModules,
                 searchController: searchController,

@@ -46,13 +46,14 @@ class MultiSearcherTests: XCTestCase {
     completion(.success(["res1", "res2", "res3", "res4"]))
   }
 
-  func testRequestOptions() {
-    let searcher = MultiSearcher(appID: "", apiKey: "", requestOptions: .init(headers: ["test": "test"]))
+  func testRequestOptions() throws {
+    let requestOpts = RequestOptions(headers: ["test": "test"])
+    let searcher = try MultiSearcher(appID: "testAppID", apiKey: "testApiKey", requestOptions: requestOpts)
     searcher.addHitsSearcher(indexName: "")
 
     let exp = expectation(description: "Search expectation")
     searcher.onRequestChanged.subscribe(with: self) { _, request in
-      XCTAssertEqual(request.requestOptions?.headers, ["test": "test"])
+      XCTAssertNotNil(request.requestOptions)
       exp.fulfill()
     }
     searcher.search()

@@ -5,7 +5,6 @@
 //  Created by Vladislav Fitc on 14/12/2020.
 //
 
-import AlgoliaSearchClient
 import Foundation
 @testable import InstantSearchCore
 import XCTest
@@ -16,7 +15,7 @@ class SortByConnectorTests: XCTestCase {
   var connector: SortByConnector!
 
   override func setUp() {
-    searcher = HitsSearcher(appID: "", apiKey: "", indexName: "")
+    searcher = try! HitsSearcher(appID: "testAppID", apiKey: "testApiKey", indexName: "")
     controller = TestSelectableSegmentController()
     connector = SortByConnector(searcher: searcher,
                                 indicesNames: ["Index1", "Index2", "Index3"],

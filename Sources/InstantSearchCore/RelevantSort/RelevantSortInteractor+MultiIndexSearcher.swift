@@ -43,10 +43,10 @@ public extension RelevantSortInteractor {
         searcher.search()
       }
       searcher.onResults.subscribePast(with: interactor) { interactor, searchesResponse in
-        if let receivedRelevancyStrictness = searchesResponse.results[queryIndex].appliedRelevancyStrictness {
-          let relevantSortPriority = RelevantSortPriority(relevancyStrictness: receivedRelevancyStrictness)
-          if relevantSortPriority != interactor.item {
-            interactor.item = relevantSortPriority
+        guard let result = searchesResponse.results[queryIndex].asSearchResponse else { return }
+        if let nbSortedHits = result.nbSortedHits, nbSortedHits > 0 {
+          if interactor.item != .relevancy {
+            interactor.item = .relevancy
           }
         } else {
           interactor.item = .none

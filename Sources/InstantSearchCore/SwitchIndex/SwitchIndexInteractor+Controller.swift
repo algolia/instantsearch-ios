@@ -9,10 +9,10 @@ import Foundation
 @available(*, deprecated, message: "Use SortByInteractor with SelectableSegmentController instead")
 public protocol SwitchIndexController: AnyObject {
   /// Closure to trigger when an index selected
-  var select: (IndexName) -> Void { get set }
+  var select: (String) -> Void { get set }
 
   /// External update of the indices names list and the currently selected index name
-  func set(indexNames: [IndexName], selected: IndexName)
+  func set(indexNames: [String], selected: String)
 }
 
 @available(*, deprecated, message: "Use SortByInteractor instead")

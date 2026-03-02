@@ -17,24 +17,24 @@ import InstantSearchTelemetry
   @available(iOS 13.0, OSX 10.15, tvOS 13.0, watchOS 6.0, *)
   public class FacetListObservableController: ObservableObject, FacetListController {
     /// List of facets to present
-    @Published public var facets: [Facet]
+    @Published public var facets: [FacetHits]
 
     /// Set of selected facet values
     @Published public var selections: Set<String>
 
-    public var onClick: ((Facet) -> Void)?
+    public var onClick: ((FacetHits) -> Void)?
 
     /// Toggle facet selection
-    public func toggle(_ facet: Facet) {
+    public func toggle(_ facet: FacetHits) {
       onClick?(facet)
     }
 
     /// Returns a bool value indicating whether the provided facet is selected
-    public func isSelected(_ facet: Facet) -> Bool {
+    public func isSelected(_ facet: FacetHits) -> Bool {
       return selections.contains(facet.value)
     }
 
-    public func setSelectableItems(selectableItems: [SelectableItem<Facet>]) {
+    public func setSelectableItems(selectableItems: [SelectableItem<FacetHits>]) {
       facets = selectableItems.map(\.item)
       selections = Set(selectableItems.filter(\.isSelected).map(\.item.value))
     }
@@ -49,9 +49,9 @@ import InstantSearchTelemetry
        - selections: Set of selected filters
        - onClick: Action triggered on interaction with filter
      */
-    public init(facets: [Facet] = [],
+    public init(facets: [FacetHits] = [],
                 selections: Set<String> = [],
-                onClick: ((Facet) -> Void)? = nil) {
+                onClick: ((FacetHits) -> Void)? = nil) {
       self.facets = facets
       self.selections = selections
       self.onClick = onClick

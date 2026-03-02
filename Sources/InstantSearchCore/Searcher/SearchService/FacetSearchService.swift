@@ -5,7 +5,9 @@
 //  Created by Vladislav Fitc on 27/11/2020.
 //
 
+import Core
 import Foundation
+import Search
 
 public class FacetSearchService: SearchService {
   let client: SearchClient
@@ -14,23 +16,33 @@ public class FacetSearchService: SearchService {
     self.client = client
   }
 
-  public func search(_ request: Request, completion: @escaping (Result<FacetSearchResponse, Error>) -> Void) -> Operation {
-    return client
-      .index(withName: request.indexName)
-      .searchForFacetValues(of: request.attribute,
-                            matching: request.query,
-                            applicableFor: request.context,
-                            requestOptions: request.requestOptions,
-                            completion: completion)
+  public func search(_ request: Request, completion: @escaping (Result<SearchForFacetValuesResponse, Error>) -> Void) -> Operation {
+    let operation = TaskAsyncOperation { [client] in
+      do {
+        let params = SearchParamsEncoder.encode(request.context)
+        let searchRequest = SearchForFacetValuesRequest(params: params, facetQuery: request.query)
+        let response = try await client.searchForFacetValues(
+          indexName: request.indexName,
+          facetName: request.attribute,
+          searchForFacetValuesRequest: searchRequest,
+          requestOptions: request.requestOptions
+        )
+        completion(.success(response))
+      } catch {
+        completion(.failure(error))
+      }
+    }
+    operation.start()
+    return operation
   }
 }
 
 public extension FacetSearchService {
   struct Request: IndexNameProvider, TextualQueryProvider, AlgoliaRequest {
     public var query: String
-    public var indexName: IndexName
-    public var attribute: Attribute
-    public var context: AlgoliaSearchClient.Query
+    public var indexName: String
+    public var attribute: String
+    public var context: SearchSearchParamsObject
     public var requestOptions: RequestOptions?
 
     public var textualQuery: String? {
@@ -39,9 +51,9 @@ public extension FacetSearchService {
     }
 
     public init(query: String,
-                indexName: IndexName,
-                attribute: Attribute,
-                context: Query,
+                indexName: String,
+                attribute: String,
+                context: SearchSearchParamsObject = .init(),
                 requestOptions: RequestOptions? = nil) {
       self.query = query
       self.indexName = indexName

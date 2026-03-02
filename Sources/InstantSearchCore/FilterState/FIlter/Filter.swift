@@ -13,7 +13,7 @@ public enum Filter: Hashable {
   case numeric(Numeric)
   case tag(Tag)
 
-  public var attribute: Attribute {
+  public var attribute: String {
     switch self {
     case let .facet(filter):
       return filter.attribute
@@ -21,6 +21,32 @@ public enum Filter: Hashable {
       return filter.attribute
     case let .tag(filter):
       return filter.attribute
+    }
+  }
+
+  public var isNegated: Bool {
+    get {
+      switch self {
+      case let .facet(filter):
+        return filter.isNegated
+      case let .numeric(filter):
+        return filter.isNegated
+      case let .tag(filter):
+        return filter.isNegated
+      }
+    }
+    set {
+      switch self {
+      case var .facet(filter):
+        filter.isNegated = newValue
+        self = .facet(filter)
+      case var .numeric(filter):
+        filter.isNegated = newValue
+        self = .numeric(filter)
+      case var .tag(filter):
+        filter.isNegated = newValue
+        self = .tag(filter)
+      }
     }
   }
 
@@ -80,7 +106,7 @@ extension Filter: CustomStringConvertible {
 /// Abstract filter protocol
 public protocol FilterType {
   /// Identifier of field affected by filter
-  var attribute: Attribute { get }
+  var attribute: String { get }
 
   /// A Boolean value indicating whether filter is inverted
   var isNegated: Bool { get set }
@@ -101,3 +127,5 @@ public extension FilterType {
   mutableFilterCopy.not(value: !filter.isNegated)
   return mutableFilterCopy
 }
+
+extension Filter: FilterType {}

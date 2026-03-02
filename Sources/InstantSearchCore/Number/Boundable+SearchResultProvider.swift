@@ -6,11 +6,11 @@
 //
 // swiftlint:disable generic_type_name
 
-import AlgoliaSearchClient
 import Foundation
+import Search
 
 public protocol FacetStatsProvider {
-  var facetStats: [Attribute: FacetStats]? { get }
+  var facetsStats: [String: SearchFacetStats]? { get }
 }
 
 extension SearchResponse: FacetStatsProvider {}
@@ -19,12 +19,12 @@ extension SearchResponse: FacetStatsProvider {}
 public struct BoundableSearchResultProvderConnection<B: Boundable, SearchResponseProvider: SearchResultObservable>: Connection where SearchResponseProvider.SearchResult: FacetStatsProvider {
   public let boundable: B
   public let searchResultProvider: SearchResponseProvider
-  public let attribute: Attribute
+  public let attribute: String
 
   public func connect() {
     let attribute = self.attribute
     searchResultProvider.onResults.subscribePastOnce(with: boundable) { boundable, searchResult in
-      boundable.computeBoundsFromFacetStats(attribute: attribute, facetStats: searchResult.facetStats)
+      boundable.computeBoundsFromFacetStats(attribute: attribute, facetStats: searchResult.facetsStats)
     }
   }
 
@@ -35,7 +35,7 @@ public struct BoundableSearchResultProvderConnection<B: Boundable, SearchRespons
 
 public extension Boundable {
   @available(*, deprecated, message: "use connectSearcher(_ searcher: HitsSearcher, attribute: Attribute)")
-  @discardableResult func connect<SearchResponseProvider>(_ searchResultProvider: SearchResponseProvider, attribute: Attribute) -> BoundableSearchResultProvderConnection<Self, SearchResponseProvider> {
+  @discardableResult func connect<SearchResponseProvider>(_ searchResultProvider: SearchResponseProvider, attribute: String) -> BoundableSearchResultProvderConnection<Self, SearchResponseProvider> {
     let connection = BoundableSearchResultProvderConnection(boundable: self, searchResultProvider: searchResultProvider, attribute: attribute)
     connection.connect()
     return connection

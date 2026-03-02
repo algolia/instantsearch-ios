@@ -43,7 +43,7 @@ public struct AndGroupAccessor: GroupAccessor {
 
   /// Removes all filters with specified attribute from group
   /// - parameter attribute: specified attribute
-  public func removeAll(for attribute: Attribute) {
+  public func removeAll(for attribute: String) {
     return filtersContainer.filters.removeAll(for: attribute, fromGroupWithID: groupID)
   }
 

@@ -12,7 +12,7 @@ import XCTest
 @available(*, deprecated, message: "Test to remove when MulstIndexSearcher obsoleted")
 class MultiIndexSearchConnectorTests: XCTestCase {
   struct ConnectorContainer {
-    let searcher = MultiIndexSearcher(appID: "", apiKey: "", indexNames: ["i1", "i2"])
+    let searcher = try! MultiIndexSearcher(appID: "testAppID", apiKey: "testApiKey", indexNames: ["i1", "i2"])
     let indexModules: [MultiIndexHitsConnector.IndexModule] = [
       .init(indexName: "i1", hitsInteractor: HitsInteractor<JSON>()),
       .init(indexName: "i2", hitsInteractor: HitsInteractor<JSON>())

@@ -6,6 +6,7 @@
 //
 
 import Foundation
+import Search
 @testable import InstantSearchCore
 import XCTest
 
@@ -17,7 +18,7 @@ class SearchConnectorTests: XCTestCase {
       return controller
     }()
 
-    let searcher = HitsSearcher(client: SearchClient(appID: "", apiKey: ""), indexName: "")
+    let searcher = HitsSearcher(client: try! SearchClient(appID: "testAppID", apiKey: "testApiKey"), indexName: "")
     let searchBoxInteractor = SearchBoxInteractor()
     let searchBoxController = TestSearchBoxController()
     lazy var hitsInteractor = getInteractor(with: infiniteScrollingController)
@@ -34,7 +35,7 @@ class SearchConnectorTests: XCTestCase {
     func getInteractor(with infiniteScrollingController: InfiniteScrollable) -> HitsInteractor<JSON> {
       let paginator = Paginator<JSON>()
 
-      let page1 = ["i1", "i2", "i3"].map { JSON.string($0) }
+      let page1 = ["i1", "i2", "i3"].map(makeJSONHit)
       paginator.pageMap = PageMap([1: page1])
 
       let interactor = HitsInteractor(settings: .init(infiniteScrolling: .on(withOffset: 10), showItemsOnEmptyQuery: true),

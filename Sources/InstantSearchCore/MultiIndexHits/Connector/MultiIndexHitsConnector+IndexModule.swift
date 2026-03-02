@@ -13,7 +13,7 @@ public extension MultiIndexHitsConnector {
   @available(*, deprecated, message: "Use multiple HitsSearcher aggregated with MultiSearcher instead of MultiIndexSearcher")
   struct IndexModule {
     /// Name of the index
-    public let indexName: IndexName
+    public let indexName: String
 
     /// Logic applied to the hits
     public let hitsInteractor: AnyHitsInteractor
@@ -27,7 +27,7 @@ public extension MultiIndexHitsConnector {
         - hitsInteractor: The logic applied to the hits
         - filterState: FilterState that holds your filters
      */
-    public init<Hit: Codable>(indexName: IndexName,
+    public init<Hit: Codable>(indexName: String,
                               hitsInteractor: HitsInteractor<Hit>,
                               filterState: FilterState? = .none) {
       self.indexName = indexName
@@ -42,11 +42,11 @@ public extension MultiIndexHitsConnector {
         - showItemsOnEmptyQuery: Defines if interactor gives access to  the hits in case of empty query
         - filterState: FilterState that holds your filters
      */
-    public init(indexName: IndexName,
+    public init(indexName: String,
                 infiniteScrolling: InfiniteScrolling = .on(withOffset: 10),
                 showItemsOnEmptyQuery: Bool = true,
                 filterState: FilterState? = .none) {
-      let hitsInteractor = HitsInteractor<JSON>(infiniteScrolling: infiniteScrolling,
+      let hitsInteractor = HitsInteractor<[String: AnyCodable]>(infiniteScrolling: infiniteScrolling,
                                                 showItemsOnEmptyQuery: showItemsOnEmptyQuery)
       self.init(indexName: indexName,
                 hitsInteractor: hitsInteractor,

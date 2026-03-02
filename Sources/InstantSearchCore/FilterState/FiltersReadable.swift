@@ -35,7 +35,7 @@ protocol FiltersReadable {
 
   func getFilters(forGroupWithID groupID: FilterGroup.ID) -> Set<Filter>
 
-  func getFilters(for attribute: Attribute) -> Set<Filter>
+  func getFilters(for attribute: String) -> Set<Filter>
 
   /// Returns a set of all the filters contained by all the groups
   func getFilters() -> Set<Filter>
@@ -57,7 +57,7 @@ extension FiltersReadable {
 }
 
 extension FiltersReadable {
-  var disjunctiveFacetsAttributes: Set<Attribute> {
+  var disjunctiveFacetsAttributes: Set<String> {
     let attributes = getGroupIDs()
       .filter { groupID in
         switch groupID {

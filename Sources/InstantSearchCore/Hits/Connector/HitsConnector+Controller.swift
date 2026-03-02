@@ -60,17 +60,17 @@ public extension HitsConnector {
       - controller: Controller interfacing with a concrete hits view
       - externalReload: Defines if controller will be updated automatically by the events or manually
    */
-  convenience init<Controller: HitsController>(appID: ApplicationID,
-                                               apiKey: APIKey,
-                                               indexName: IndexName,
+  convenience init<Controller: HitsController>(appID: String,
+                                               apiKey: String,
+                                               indexName: String,
                                                infiniteScrolling: InfiniteScrolling = Constants.Defaults.infiniteScrolling,
                                                showItemsOnEmptyQuery: Bool = Constants.Defaults.showItemsOnEmptyQuery,
                                                filterState: FilterState? = .none,
                                                controller: Controller,
-                                               externalReload: Bool = false) where Controller.DataSource == HitsInteractor<Hit> {
-    let searcher = HitsSearcher(appID: appID,
-                                apiKey: apiKey,
-                                indexName: indexName)
+                                               externalReload: Bool = false) throws where Controller.DataSource == HitsInteractor<Hit> {
+    let searcher = try HitsSearcher(appID: appID,
+                                    apiKey: apiKey,
+                                    indexName: indexName)
     let interactor = HitsInteractor<Hit>(infiniteScrolling: infiniteScrolling,
                                          showItemsOnEmptyQuery: showItemsOnEmptyQuery)
     self.init(searcher: searcher,

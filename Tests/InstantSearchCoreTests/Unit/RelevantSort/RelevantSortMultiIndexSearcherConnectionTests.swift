@@ -6,6 +6,7 @@
 //
 
 import Foundation
+import Search
 @testable import InstantSearchCore
 import XCTest
 
@@ -14,8 +15,8 @@ class RelevantSortMultiIndexSearcherConnectionTests: XCTestCase {
   weak var disposableSearcher: MultiIndexSearcher?
   weak var disposableInteractor: RelevantSortInteractor?
 
-  func testLeak() {
-    let searcher = MultiIndexSearcher(appID: "", apiKey: "", indexNames: ["a", "b"])
+  func testLeak() throws {
+    let searcher = try MultiIndexSearcher(appID: "testAppID", apiKey: "testApiKey", indexNames: ["a", "b"])
     let interactor = RelevantSortInteractor(priority: .relevancy)
 
     disposableSearcher = searcher
@@ -29,18 +30,21 @@ class RelevantSortMultiIndexSearcherConnectionTests: XCTestCase {
     XCTAssertNil(disposableInteractor, "Leaked interactor")
   }
 
-  func testConnect() {
-    let searcher = MultiIndexSearcher(appID: "", apiKey: "", indexNames: ["a", "b"])
+  func testConnect() throws {
+    let searcher = try MultiIndexSearcher(appID: "testAppID", apiKey: "testApiKey", indexNames: ["a", "b"])
     let interactor = RelevantSortInteractor(priority: .relevancy)
 
     let connection = RelevantSortInteractor.MultiIndexSearcherConnection(interactor: interactor, searcher: searcher, queryIndex: 0)
     connection.connect()
 
-    searcher.onResults.fire(SearchesResponse(results: [SearchResponse().set(\.appliedRelevancyStrictness, to: 100)]))
+    searcher.onResults.fire(SearchResponses<SearchHit>(results: [.searchResponse(SearchResponse<SearchHit>(hits: []).set(\.nbSortedHits, to: 100))]))
     XCTAssertEqual(interactor.item, .relevancy)
 
-    searcher.onResults.fire(SearchesResponse(results: [SearchResponse().set(\.appliedRelevancyStrictness, to: 0)]))
-    XCTAssertEqual(interactor.item, .hitsCount)
+    searcher.onResults.fire(SearchResponses<SearchHit>(results: [.searchResponse(SearchResponse<SearchHit>(hits: []).set(\.nbSortedHits, to: nil))]))
+    XCTAssertEqual(interactor.item, .none)
+
+    // Restore to a toggleable state (.none is not toggleable)
+    interactor.item = .hitsCount
 
     let relevancyPriorityExpectation = expectation(description: "Relevancy priority")
     searcher.onSearch.subscribeOnce(with: self) { _, _ in
@@ -61,17 +65,20 @@ class RelevantSortMultiIndexSearcherConnectionTests: XCTestCase {
     waitForExpectations(timeout: 2, handler: nil)
   }
 
-  func testConnectMethod() {
-    let searcher = MultiIndexSearcher(appID: "", apiKey: "", indexNames: ["a", "b"])
+  func testConnectMethod() throws {
+    let searcher = try MultiIndexSearcher(appID: "testAppID", apiKey: "testApiKey", indexNames: ["a", "b"])
     let interactor = RelevantSortInteractor(priority: .relevancy)
 
     interactor.connectSearcher(searcher, queryIndex: 0)
 
-    searcher.onResults.fire(SearchesResponse(results: [SearchResponse().set(\.appliedRelevancyStrictness, to: 100)]))
+    searcher.onResults.fire(SearchResponses<SearchHit>(results: [.searchResponse(SearchResponse<SearchHit>(hits: []).set(\.nbSortedHits, to: 100))]))
     XCTAssertEqual(interactor.item, .relevancy)
 
-    searcher.onResults.fire(SearchesResponse(results: [SearchResponse().set(\.appliedRelevancyStrictness, to: 0)]))
-    XCTAssertEqual(interactor.item, .hitsCount)
+    searcher.onResults.fire(SearchResponses<SearchHit>(results: [.searchResponse(SearchResponse<SearchHit>(hits: []).set(\.nbSortedHits, to: nil))]))
+    XCTAssertEqual(interactor.item, .none)
+
+    // Restore to a toggleable state (.none is not toggleable)
+    interactor.item = .hitsCount
 
     let relevancyPriorityExpectation = expectation(description: "Relevancy priority")
     searcher.onSearch.subscribeOnce(with: self) { _, _ in
@@ -92,18 +99,18 @@ class RelevantSortMultiIndexSearcherConnectionTests: XCTestCase {
     waitForExpectations(timeout: 2, handler: nil)
   }
 
-  func testDisconnect() {
-    let searcher = MultiIndexSearcher(appID: "", apiKey: "", indexNames: ["a", "b"])
+  func testDisconnect() throws {
+    let searcher = try MultiIndexSearcher(appID: "testAppID", apiKey: "testApiKey", indexNames: ["a", "b"])
     let interactor = RelevantSortInteractor(priority: .relevancy)
 
     let connection = RelevantSortInteractor.MultiIndexSearcherConnection(interactor: interactor, searcher: searcher, queryIndex: 0)
     connection.connect()
     connection.disconnect()
 
-    searcher.onResults.fire(SearchesResponse(results: [SearchResponse().set(\.appliedRelevancyStrictness, to: 100)]))
+    searcher.onResults.fire(SearchResponses<SearchHit>(results: [.searchResponse(SearchResponse<SearchHit>(hits: []).set(\.nbSortedHits, to: 100))]))
     XCTAssertEqual(interactor.item, .relevancy)
 
-    searcher.onResults.fire(SearchesResponse(results: [SearchResponse().set(\.appliedRelevancyStrictness, to: 0)]))
+    searcher.onResults.fire(SearchResponses<SearchHit>(results: [.searchResponse(SearchResponse<SearchHit>(hits: []).set(\.nbSortedHits, to: nil))]))
     XCTAssertEqual(interactor.item, .relevancy)
 
     let searchRequestExpectation = expectation(description: "Search request")

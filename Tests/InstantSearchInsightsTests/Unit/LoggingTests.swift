@@ -44,16 +44,23 @@ class TestLogHandler: LogHandler {
 class LoggingTests: XCTestCase {
   let logLevels: [LogLevel] = [.trace, .debug, .info, .notice, .warning, .error, .critical]
 
-  static var defaultLogger: Logging.Logger?
+  private var savedLogger: Logging.Logger?
+  private var savedLogSeverityLevel: LogLevel?
 
-  override class func setUp() {
-    defaultLogger = InstantSearchInsightsLog.logger
+  override func setUp() {
+    super.setUp()
+    savedLogger = InstantSearchInsightsLog.logger
+    savedLogSeverityLevel = Logs.logSeverityLevel
   }
 
-  override class func tearDown() {
-    defaultLogger.flatMap { value in
-      InstantSearchInsightsLog.logger = value
+  override func tearDown() {
+    if let logger = savedLogger {
+      InstantSearchInsightsLog.logger = logger
     }
+    if let level = savedLogSeverityLevel {
+      Logs.logSeverityLevel = level
+    }
+    super.tearDown()
   }
 
   func testMatchLevel() {

@@ -5,23 +5,33 @@
 //  Created by Vladislav Fitc on 13/10/2020.
 //
 
+import Core
 import Foundation
 import InstantSearch
+import Search
 
 class RedirectGuideSnippets {
-  let index = SearchClient(appID: "", apiKey: "").index(withName: "")
+  let client = try! SearchClient(appID: "testAppID", apiKey: "testApiKey")
+  let indexName = ""
 
   func addRedirectRule() {
-    let rule = Rule(objectID: "a-rule-id")
-      .set(\.conditions, to: [
-        .init(anchoring: .is, pattern: .literal("star wars"))
-      ])
-      .set(\.consequence, to: Rule.Consequence()
-        .set(\.userData, to: ["redirect": "https://www.google.com/#q=star+wars"]))
+    // In v9, Rule requires consequence in initializer
+    let rule = Rule(
+      objectID: "a-rule-id",
+      conditions: [
+        SearchCondition(pattern: "star wars", anchoring: .is)
+      ],
+      consequence: SearchConsequence(userData: AnyCodable(["redirect": "https://www.google.com/#q=star+wars"]))
+    )
 
-    index.saveRule(rule) { result in
-      if case let .success(response) = result {
+    Task {
+      do {
+        let response = try await client.saveRule(indexName: indexName,
+                                                 objectID: rule.objectID,
+                                                 rule: rule)
         print("Response: \(response)")
+      } catch {
+        print("Error: \(error)")
       }
     }
   }
@@ -31,9 +41,9 @@ class RedirectGuideSnippets {
   }
 
   func redirectWidget() {
-    let searcher: HitsSearcher = .init(appID: "YourApplicationID",
-                                       apiKey: "YourSearchOnlyAPIKey",
-                                       indexName: "YourIndexName")
+    let searcher: HitsSearcher = try! .init(appID: "YourApplicationID",
+                                            apiKey: "YourSearchOnlyAPIKey",
+                                            indexName: "YourIndexName")
 
     let queryRuleCustomDataConnector = QueryRuleCustomDataConnector<Redirect>(searcher: searcher)
 
@@ -47,9 +57,13 @@ class RedirectGuideSnippets {
   }
 
   func configureIndex() {
-    index.setSettings(Settings().set(\.attributesForFaceting, to: ["query_terms"])) { result in
-      if case let .success(response) = result {
+    Task {
+      do {
+        let response = try await client.setSettings(indexName: indexName,
+                                                    indexSettings: Search.IndexSettings().set(\.attributesForFaceting, to: ["query_terms"]))
         print("Response: \(response)")
+      } catch {
+        print("Error: \(error)")
       }
     }
   }

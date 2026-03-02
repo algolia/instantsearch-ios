@@ -101,15 +101,15 @@ public extension HitsConnector {
       - showItemsOnEmptyQuery: If false, no results are displayed when the user hasn’t entered any query text.
       - filterState: FilterState that holds your filters
    */
-  convenience init(appID: ApplicationID,
-                   apiKey: APIKey,
-                   indexName: IndexName,
+  convenience init(appID: String,
+                   apiKey: String,
+                   indexName: String,
                    infiniteScrolling: InfiniteScrolling = Constants.Defaults.infiniteScrolling,
                    showItemsOnEmptyQuery: Bool = Constants.Defaults.showItemsOnEmptyQuery,
-                   filterState: FilterState? = .none) {
-    let searcher = HitsSearcher(appID: appID,
-                                apiKey: apiKey,
-                                indexName: indexName)
+                   filterState: FilterState? = .none) throws {
+    let searcher = try HitsSearcher(appID: appID,
+                                    apiKey: apiKey,
+                                    indexName: indexName)
     let interactor = HitsInteractor<Hit>(infiniteScrolling: infiniteScrolling, showItemsOnEmptyQuery: showItemsOnEmptyQuery)
     self.init(searcher: searcher,
               interactor: interactor,

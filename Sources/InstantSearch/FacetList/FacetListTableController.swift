@@ -12,11 +12,11 @@
   import UIKit
 
   open class FacetListTableController: NSObject, FacetListController {
-    open var onClick: ((Facet) -> Void)?
+    open var onClick: ((FacetHits) -> Void)?
 
     public let tableView: UITableView
 
-    public var selectableItems: [SelectableItem<Facet>] = []
+    public var selectableItems: [SelectableItem<FacetHits>] = []
     public var facetPresenter: FacetPresenter?
 
     let cellID: String
@@ -32,7 +32,7 @@
 
     // MARK: - RefinementFacetsViewController
 
-    public func setSelectableItems(selectableItems: [SelectableItem<Facet>]) {
+    public func setSelectableItems(selectableItems: [SelectableItem<FacetHits>]) {
       self.selectableItems = selectableItems
     }
 

@@ -5,6 +5,7 @@
 //  Created by Vladislav Fitc on 16/06/2020.
 //
 
+import Core
 import Foundation
 
 struct CoreUserAgentSetter {

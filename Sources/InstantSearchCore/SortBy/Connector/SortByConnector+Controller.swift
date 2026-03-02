@@ -17,14 +17,14 @@ public extension SortByConnector {
    - presenter: Presenter defining how the indices appear in the controller
    */
   convenience init<Searcher: AnyObject & Searchable & IndexNameSettable, Controller: SelectableSegmentController>(searcher: Searcher,
-                                                                                                                  indicesNames: [IndexName],
+                                                                                                                  indicesNames: [String],
                                                                                                                   selected: Int? = nil,
                                                                                                                   controller: Controller,
                                                                                                                   presenter: @escaping IndexNamePresenter = DefaultPresenter.IndexName.present) where Controller.SegmentKey == Int {
     let enumeratedIndices = indicesNames
       .indices
       .map { ($0, indicesNames[$0]) }
-    let items = [Int: IndexName](uniqueKeysWithValues: enumeratedIndices)
+    let items = [Int: String](uniqueKeysWithValues: enumeratedIndices)
     let interactor = SortByInteractor(items: items)
     interactor.selected = selected
     self.init(searcher: searcher, interactor: interactor)
@@ -40,7 +40,10 @@ public extension SortByConnector {
    */
   @discardableResult func connectController<Controller: SelectableSegmentController>(_ controller: Controller,
                                                                                      presenter: @escaping IndexNamePresenter = DefaultPresenter.IndexName.present) -> SortByInteractor.ControllerConnection<Controller> where Controller.SegmentKey == Int {
-    let connection = interactor.connectController(controller, presenter: presenter)
+    let connection = SortByInteractor.ControllerConnection(interactor: interactor,
+                                                           controller: controller,
+                                                           presenter: presenter)
+    connection.connect()
     controllerConnections.append(connection)
     return connection
   }

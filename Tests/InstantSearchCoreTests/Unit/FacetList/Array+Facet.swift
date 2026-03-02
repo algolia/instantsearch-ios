@@ -9,10 +9,10 @@
 import Foundation
 @testable import InstantSearchCore
 
-extension Array where Element == Facet {
+extension Array where Element == FacetHits {
   init(prefix: String, count: Int) {
     self = (0..<count)
       .map { "\(prefix)\($0)" }
-      .map { Facet(value: $0, count: .random(in: 1...100)) }
+      .map { FacetHits(value: $0, highlighted: $0, count: .random(in: 1...100)) }
   }
 }

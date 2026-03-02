@@ -18,9 +18,16 @@ class FilterTests: XCTestCase {
   }
 
   func testFilterFacet(with value: Filter.Facet.ValueType) {
-    let attribute: Attribute = "a"
+    let attribute: String = "a"
     var facetFilter = Filter.Facet(attribute: attribute, value: value)
-    let expectedExpression = "\"\(attribute)\":\"\(value)\""
+    let valueString: String
+    switch value {
+    case .string:
+      valueString = "\"\(value)\""
+    case .bool, .number:
+      valueString = "\(value)"
+    }
+    let expectedExpression = "\"\(attribute)\":\(valueString)"
     XCTAssertEqual(facetFilter.attribute, attribute)
     XCTAssertEqual(facetFilter.sqlForm, expectedExpression)
     XCTAssertFalse(facetFilter.isNegated)
@@ -32,7 +39,7 @@ class FilterTests: XCTestCase {
   }
 
   func testFilterNumericComparisonConstruction() {
-    let attribute: Attribute = "a"
+    let attribute: String = "a"
     let value: Double = 10
     let op: Filter.Numeric.Operator = .equals
     let expectedExpression = """
@@ -49,7 +56,7 @@ class FilterTests: XCTestCase {
   }
 
   func testFilterNumericRangeConstruction() {
-    let attribute: Attribute = "a"
+    let attribute: String = "a"
     let value: ClosedRange<Double> = 0...10
     let expectedExpression = """
     "\(attribute)":\(value.lowerBound) TO \(value.upperBound)
@@ -65,7 +72,7 @@ class FilterTests: XCTestCase {
   }
 
   func testTimeStamp() {
-    let attribute: Attribute = "beginDate"
+    let attribute: String = "beginDate"
     let timeStamp = Date().timeIntervalSince1970
     let numericFilter = Filter.Numeric(attribute: attribute, operator: .greaterThan, value: timeStamp)
     XCTAssertEqual(numericFilter.sqlForm, "\"beginDate\" > \(timeStamp)")
@@ -73,7 +80,7 @@ class FilterTests: XCTestCase {
 
   func testFilterTagConstruction() {
     let value = "a"
-    let attribute: Attribute = .tags
+    let attribute: String = .tags
     let expectedExpression = """
     "\(attribute)":"\(value)"
     """

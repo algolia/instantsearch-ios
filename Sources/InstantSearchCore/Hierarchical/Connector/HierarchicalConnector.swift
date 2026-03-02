@@ -39,7 +39,7 @@ public class HierarchicalConnector {
    */
   public init(searcher: HitsSearcher,
               filterState: FilterState,
-              hierarchicalAttributes: [Attribute],
+              hierarchicalAttributes: [String],
               separator: String) {
     self.searcher = searcher
     self.filterState = filterState

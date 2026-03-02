@@ -6,8 +6,8 @@
 //  Copyright © 2019 Algolia. All rights reserved.
 //
 
-import AlgoliaSearchClient
 import Foundation
+import Search
 @testable import InstantSearchCore
 import XCTest
 
@@ -18,7 +18,7 @@ class HitsInteractorSearcherConnectionTests: XCTestCase {
   func getInteractor(with infiniteScrollingController: InfiniteScrollable) -> HitsInteractor<JSON> {
     let paginator = Paginator<JSON>()
 
-    let page1 = ["i1", "i2", "i3"].map { JSON.string($0) }
+    let page1 = ["i1", "i2", "i3"].map(makeJSONHit)
     paginator.pageMap = PageMap([1: page1])
 
     let interactor = HitsInteractor(settings: .init(infiniteScrolling: .on(withOffset: 10), showItemsOnEmptyQuery: true),
@@ -32,7 +32,7 @@ class HitsInteractorSearcherConnectionTests: XCTestCase {
     let infiniteScrollingController = TestInfiniteScrollingController()
     infiniteScrollingController.pendingPages = [0, 2]
 
-    let searcher = HitsSearcher(client: SearchClient(appID: "", apiKey: ""), indexName: "")
+    let searcher = HitsSearcher(client: try! SearchClient(appID: "testAppID", apiKey: "testApiKey"), indexName: "")
     let interactor = getInteractor(with: infiniteScrollingController)
 
     disposableInteractor = interactor
@@ -52,7 +52,7 @@ class HitsInteractorSearcherConnectionTests: XCTestCase {
     let infiniteScrollingController = TestInfiniteScrollingController()
     infiniteScrollingController.pendingPages = [0, 2]
 
-    let searcher = HitsSearcher(client: SearchClient(appID: "", apiKey: ""), indexName: "")
+    let searcher = HitsSearcher(client: try! SearchClient(appID: "testAppID", apiKey: "testApiKey"), indexName: "")
     let interactor = getInteractor(with: infiniteScrollingController)
 
     let connection: Connection = HitsInteractor.HitsSearcherConnection(interactor: interactor,
@@ -70,7 +70,7 @@ class HitsInteractorSearcherConnectionTests: XCTestCase {
     let infiniteScrollingController = TestInfiniteScrollingController()
     infiniteScrollingController.pendingPages = [0, 2]
 
-    let searcher = HitsSearcher(client: SearchClient(appID: "", apiKey: ""), indexName: "")
+    let searcher = HitsSearcher(client: try! SearchClient(appID: "testAppID", apiKey: "testApiKey"), indexName: "")
     let interactor = getInteractor(with: infiniteScrollingController)
 
     let connection: Connection = HitsInteractor.HitsSearcherConnection(interactor: interactor,
@@ -89,7 +89,7 @@ class HitsInteractorSearcherConnectionTests: XCTestCase {
     let infiniteScrollingController = TestInfiniteScrollingController()
     infiniteScrollingController.pendingPages = [0, 2]
 
-    let searcher = HitsSearcher(client: SearchClient(appID: "", apiKey: ""), indexName: "")
+    let searcher = HitsSearcher(client: try! SearchClient(appID: "testAppID", apiKey: "testApiKey"), indexName: "")
     let interactor = getInteractor(with: infiniteScrollingController)
 
     interactor.connectSearcher(searcher)
@@ -157,7 +157,7 @@ extension HitsInteractorSearcherConnectionTests {
         XCTAssertTrue(tester.infiniteScrollingController.pendingPages.isEmpty, file: file, line: line)
       }
 
-      let searchResponse = SearchResponse(hits: [Hit(object: ["field": "value"])])
+      let searchResponse = makeSearchResponse(hits: [Hit(object: ["field": AnyCodable("value")])])
       searcher.onResults.fire(searchResponse)
     }
 

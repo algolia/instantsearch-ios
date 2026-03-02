@@ -6,17 +6,16 @@
 //  Copyright © 2019 Algolia. All rights reserved.
 //
 
-import AlgoliaSearchClient
 import Foundation
 public struct QueryBuilder {
-  public let query: Query
+  public let query: SearchSearchParamsObject
   public let filterGroups: [FilterGroupType]
 
   public var keepSelectedEmptyFacets: Bool
 
-  private let disjunctiveFacets: Set<Attribute>
+  private let disjunctiveFacets: Set<String>
 
-  public let hierarchicalAttributes: [Attribute]
+  public let hierarchicalAttributes: [String]
   public let hierachicalFilters: [Filter.Facet]
 
   public let resultQueriesCount: Int = 1
@@ -36,10 +35,10 @@ public struct QueryBuilder {
     return resultQueriesCount + disjunctiveFacetingQueriesCount + hierarchicalFacetingQueriesCount
   }
 
-  public init(query: Query,
-              disjunctiveFacets: Set<Attribute> = [],
+  public init(query: SearchSearchParamsObject,
+              disjunctiveFacets: Set<String> = [],
               filterGroups: [FilterGroupType] = [],
-              hierarchicalAttributes: [Attribute] = [],
+              hierarchicalAttributes: [String] = [],
               hierachicalFilters: [Filter.Facet] = []) {
     let disjunctiveFacetsFromFilters = filterGroups
       .compactMap { $0 as? FilterGroup.Or<Filter.Facet> }
@@ -54,7 +53,7 @@ public struct QueryBuilder {
     self.hierachicalFilters = hierachicalFilters
   }
 
-  public func build() -> [Query] {
+  public func build() -> [SearchSearchParamsObject] {
     var queryForResults = query
     queryForResults.filters = FilterGroupConverter().sql(filterGroups)
 
@@ -70,7 +69,7 @@ public struct QueryBuilder {
     return [queryForResults] + disjunctiveFacetingQueries + hierarchicalFacetingQueries
   }
 
-  public func aggregate(_ results: [SearchResponse]) throws -> SearchResponse {
+  public func aggregate(_ results: [SearchResponse<SearchHit>]) throws -> SearchResponse<SearchHit> {
     guard var aggregatedResult = results.first else {
       throw Error.emptyResults
     }
@@ -79,13 +78,19 @@ public struct QueryBuilder {
       throw Error.queriesResultsCountMismatch(totalQueriesCount, results.count)
     }
 
-    let resultsForFaceting = results.dropFirst()
-    let resultsForDisjuncitveFaceting = resultsForFaceting[...disjunctiveFacetingQueriesCount]
-    let resultsForHierarchicalFaceting = resultsForFaceting.dropFirst(disjunctiveFacetingQueriesCount)[..<totalQueriesCount]
+    let resultsForDisjuncitveFaceting = results.dropFirst().prefix(disjunctiveFacetingQueriesCount)
 
-    update(&aggregatedResult, withResults: results)
-    update(&aggregatedResult, withResultsForDisjuncitveFaceting: resultsForDisjuncitveFaceting)
-    update(&aggregatedResult, withResultsForHierarchicalFaceting: resultsForHierarchicalFaceting)
+    let facetStats = results.aggregateFacetStats()
+    aggregatedResult.facetsStats = facetStats.isEmpty ? nil : facetStats
+
+    let aggregatedFacets = results.aggregateFacets()
+    aggregatedResult.facets = aggregatedFacets.isEmpty ? nil : aggregatedFacets
+
+    let exhaustiveFacets = resultsForDisjuncitveFaceting
+      .compactMap { $0.exhaustive?.facetsCount }
+    if !exhaustiveFacets.isEmpty {
+      aggregatedResult.exhaustiveFacetsCount = exhaustiveFacets.allSatisfy { $0 }
+    }
 
     if keepSelectedEmptyFacets {
       let filters = filterGroups.flatMap { $0.filters }
@@ -93,21 +98,6 @@ public struct QueryBuilder {
     }
 
     return aggregatedResult
-  }
-
-  func update<C: Collection>(_ result: inout SearchResponse, withResults results: C) where C.Element == SearchResponse {
-    let facetStats = results.aggregateFacetStats()
-    result.facetStats = facetStats.isEmpty ? nil : facetStats
-  }
-
-  func update<C: Collection>(_ result: inout SearchResponse, withResultsForDisjuncitveFaceting resultsForDisjuncitveFaceting: C) where C.Element == SearchResponse {
-    result.disjunctiveFacets = resultsForDisjuncitveFaceting.aggregateFacets()
-    result.exhaustiveFacetsCount = resultsForDisjuncitveFaceting.allSatisfy { $0.exhaustiveFacetsCount == true }
-  }
-
-  func update<C: Collection>(_ result: inout SearchResponse, withResultsForHierarchicalFaceting resultsForHierarchicalFaceting: C) where C.Element == SearchResponse {
-    let hierarchicalFacets = resultsForHierarchicalFaceting.aggregateFacets()
-    result.hierarchicalFacets = hierarchicalFacets.isEmpty ? nil : hierarchicalFacets
   }
 
   public enum Error: Swift.Error {

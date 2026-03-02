@@ -9,6 +9,6 @@
 import Foundation
 
 public protocol HierarchicalFacetingDelegate: AnyObject {
-  var hierarchicalAttributes: [Attribute] { get set }
+  var hierarchicalAttributes: [String] { get set }
   var hierarchicalFilters: [Filter.Facet] { get set }
 }

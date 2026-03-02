@@ -6,17 +6,41 @@
 //  Copyright © 2019 Algolia. All rights reserved.
 //
 
-import AlgoliaSearchClient
+import Core
 #if !InstantSearchCocoaPods
 import InstantSearchInsights
 #endif
 import Foundation
+import Search
 
 @available(*, deprecated, renamed: "HitsSearcher")
 public typealias SingleIndexSearcher = HitsSearcher
 
 /// An entity performing hits search
 public final class HitsSearcher: IndexSearcher<AlgoliaSearchService> {
+  private struct NoopHitsAfterSearchTracker: HitsAfterSearchTrackable {
+    func clickedAfterSearch(eventName: String,
+                            indexName: String,
+                            objectIDsWithPositions: [(String, Int)],
+                            queryID: String,
+                            timestamp: Date?,
+                            userToken: String?) {}
+
+    func convertedAfterSearch(eventName: String,
+                              indexName: String,
+                              objectIDs: [String],
+                              queryID: String,
+                              timestamp: Date?,
+                              userToken: String?) {}
+
+    func viewed(eventName: String,
+                indexName: String,
+                objectIDs: [String],
+                timestamp: Date?,
+                userToken: String?) {}
+  }
+
+  private var insightsCredentials: (appID: String, apiKey: String)?
   /// Current index & query tuple
   @available(*, deprecated, message: "Use the `request` property instead")
   public var indexQueryState: IndexQueryState {
@@ -74,7 +98,7 @@ public final class HitsSearcher: IndexSearcher<AlgoliaSearchService> {
   /// Manually set attributes for disjunctive faceting
   ///
   /// These attributes are merged with disjunctiveFacetsAttributes provided by DisjunctiveFacetingDelegate to create the necessary queries for disjunctive faceting
-  public var disjunctiveFacetsAttributes: Set<Attribute> {
+  public var disjunctiveFacetsAttributes: Set<String> {
     get {
       service.disjunctiveFacetsAttributes
     }
@@ -113,12 +137,18 @@ public final class HitsSearcher: IndexSearcher<AlgoliaSearchService> {
   /// It is an instance of the HitsTracker class that provides methods for tracking clicks, conversions, and views for search results.
   /// By default, it uses the eventName property of the HitsSearcher instance as the event name to track, but custom event names can also be provided by passing them as parameters to the tracking methods.
   public lazy var eventTracker: HitsTracker = {
-    let client = service.client
-    let insights = Insights.register(appId: client.applicationID,
-                                     apiKey: client.apiKey)
+    let tracker: HitsAfterSearchTrackable
+    if let shared = Insights.shared {
+      tracker = shared
+    } else if let credentials = insightsCredentials,
+              let registered = try? Insights.register(appId: credentials.appID, apiKey: credentials.apiKey) {
+      tracker = registered
+    } else {
+      tracker = NoopHitsAfterSearchTracker()
+    }
     return HitsTracker(eventName: "hits event",
-                       searcher: self,
-                       insights: insights)
+                       searcher: .singleIndex(self),
+                       tracker: tracker)
   }()
 
   /**
@@ -130,14 +160,15 @@ public final class HitsSearcher: IndexSearcher<AlgoliaSearchService> {
        - isAutoSendingHitsViewEvents: flag defining whether the automatic hits view Insights events sending is enabled
        - requestOptions: Custom request options. Default is `nil`.
    */
-  public convenience init(appID: ApplicationID,
-                          apiKey: APIKey,
-                          indexName: IndexName,
-                          query: Query = .init(),
+  public convenience init(appID: String,
+                          apiKey: String,
+                          indexName: String,
+                          query: SearchSearchParamsObject = .init(),
                           requestOptions: RequestOptions? = nil,
-                          isAutoSendingHitsViewEvents: Bool = false) {
-    let client = SearchClient(appID: appID, apiKey: apiKey)
+                          isAutoSendingHitsViewEvents: Bool = false) throws {
+    let client = try SearchClient(appID: appID, apiKey: apiKey)
     self.init(client: client, indexName: indexName, query: query, requestOptions: requestOptions, isAutoSendingHitsViewEvents: isAutoSendingHitsViewEvents)
+    insightsCredentials = (appID: appID, apiKey: apiKey)
     Telemetry.shared.trace(type: .hitsSearcher,
                            parameters: [
                              .appID,
@@ -153,8 +184,8 @@ public final class HitsSearcher: IndexSearcher<AlgoliaSearchService> {
        - requestOptions: Custom request options. Default is nil.
    */
   public init(client: SearchClient,
-              indexName: IndexName,
-              query: Query = .init(),
+              indexName: String,
+              query: SearchSearchParamsObject = .init(),
               requestOptions: RequestOptions? = nil,
               isAutoSendingHitsViewEvents: Bool = false) {
     let service = AlgoliaSearchService(client: client)
@@ -193,7 +224,10 @@ public final class HitsSearcher: IndexSearcher<AlgoliaSearchService> {
 }
 
 extension HitsSearcher: MultiSearchComponent {
-  public func collect() -> (requests: [MultiSearchQuery], completion: (Swift.Result<[MultiSearchResponse.Response], Swift.Error>) -> Void) {
+  public typealias SubRequest = SearchQuery
+  public typealias SubResult = Search.SearchResult<Hit<[String: AnyCodable]>>
+
+  public func collect() -> (requests: [SearchQuery], completion: (Swift.Result<[Search.SearchResult<SearchHit>], Swift.Error>) -> Void) {
     return service.collect(for: request) { [weak self] result in
       guard let searcher = self else { return }
       switch result {
@@ -214,7 +248,7 @@ extension HitsSearcher: QuerySettable {
 }
 
 extension HitsSearcher: IndexNameSettable {
-  public func setIndexName(_ indexName: IndexName) {
+  public func setIndexName(_ indexName: String) {
     request.indexName = indexName
     request.query.page = 0
   }

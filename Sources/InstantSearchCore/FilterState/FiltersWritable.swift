@@ -57,12 +57,12 @@ protocol FiltersWritable {
   /// - parameter attribute: target attribute
   /// - parameter groupID: target group ID
 
-  mutating func removeAll(for attribute: Attribute, fromGroupWithID groupID: FilterGroup.ID)
+  mutating func removeAll(for attribute: String, fromGroupWithID groupID: FilterGroup.ID)
 
   /// Removes all filters with specified attribute in all the groups
   /// - parameter attribute: target attribute
 
-  mutating func removeAll(for attribute: Attribute)
+  mutating func removeAll(for attribute: String)
 
   /// Removes all filters from all the groups
 

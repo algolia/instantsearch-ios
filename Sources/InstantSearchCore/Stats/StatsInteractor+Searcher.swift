@@ -8,7 +8,7 @@
 import Foundation
 
 public extension StatsInteractor {
-  struct SearcherConnection<Searcher: SearchResultObservable>: Connection where Searcher.SearchResult == SearchResponse {
+  struct SearcherConnection<Searcher: SearchResultObservable>: Connection where Searcher.SearchResult == SearchResponse<SearchHit> {
     public let interactor: StatsInteractor
     public let searcher: Searcher
 

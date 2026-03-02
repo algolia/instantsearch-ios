@@ -9,8 +9,8 @@
 import Foundation
 
 public protocol HierarchicalManageable {
-  func hierarchicalAttributes(forGroupWithName groupName: String) -> [Attribute]
+  func hierarchicalAttributes(forGroupWithName groupName: String) -> [String]
   func hierarchicalFilters(forGroupWithName groupName: String) -> [Filter.Facet]
-  mutating func set(_ hierarchicalAttributes: [Attribute], forGroupWithName groupName: String)
+  mutating func set(_ hierarchicalAttributes: [String], forGroupWithName groupName: String)
   mutating func set(_ hierarchicalFilters: [Filter.Facet], forGroupWithName groupName: String)
 }

@@ -6,10 +6,11 @@
 //
 
 import Foundation
+import Search
 
 /// Component that displays automatically ordered facets, their ordered values, and lets the user refine the search results by filtering on specific values.
 
-public class DynamicFacetListConnector<Searcher: SearchResultObservable> where Searcher.SearchResult == SearchResponse {
+public class DynamicFacetListConnector<Searcher: SearchResultObservable> where Searcher.SearchResult == SearchResponse<SearchHit> {
   /// Searcher that handles your searches.
   public let searcher: Searcher
 
@@ -41,7 +42,7 @@ public class DynamicFacetListConnector<Searcher: SearchResultObservable> where S
   public init(searcher: Searcher,
               filterState: FilterState = .init(),
               interactor: DynamicFacetListInteractor,
-              filterGroupForAttribute: [Attribute: FilterGroupDescriptor] = [:],
+              filterGroupForAttribute: [String: FilterGroupDescriptor] = [:],
               defaultFilterGroupType: RefinementOperator = .and) {
     self.searcher = searcher
     self.filterState = filterState
@@ -73,10 +74,10 @@ public class DynamicFacetListConnector<Searcher: SearchResultObservable> where S
   public convenience init(searcher: Searcher,
                           filterState: FilterState = .init(),
                           orderedFacets: [AttributedFacets] = [],
-                          selections: [Attribute: Set<String>] = [:],
-                          selectionModeForAttribute: [Attribute: SelectionMode] = [:],
+                          selections: [String: Set<String>] = [:],
+                          selectionModeForAttribute: [String: SelectionMode] = [:],
                           defaultSelectionMode: SelectionMode = .single,
-                          filterGroupForAttribute: [Attribute: FilterGroupDescriptor] = [:],
+                          filterGroupForAttribute: [String: FilterGroupDescriptor] = [:],
                           defaultFilterGroupType: RefinementOperator = .and) {
     let interactor = DynamicFacetListInteractor(orderedFacets: orderedFacets,
                                                 selections: selections,

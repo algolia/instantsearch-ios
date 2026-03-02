@@ -10,29 +10,26 @@ import Foundation
 #if !InstantSearchCocoaPods
   import InstantSearchInsights
 #endif
-// swiftlint:disable function_parameter_count
-
 protocol HitsAfterSearchTrackable {
-  func clickedAfterSearch(eventName: EventName,
-                          indexName: IndexName,
-                          objectIDsWithPositions: [(ObjectID, Int)],
-                          queryID: QueryID,
+  func clickedAfterSearch(eventName: String,
+                          indexName: String,
+                          objectIDsWithPositions: [(String, Int)],
+                          queryID: String,
                           timestamp: Date?,
-                          userToken: UserToken?)
+                          userToken: String?)
 
-  func convertedAfterSearch(eventName: EventName,
-                            indexName: IndexName,
-                            objectIDs: [ObjectID],
-                            queryID: QueryID,
+  func convertedAfterSearch(eventName: String,
+                            indexName: String,
+                            objectIDs: [String],
+                            queryID: String,
                             timestamp: Date?,
-                            userToken: UserToken?)
+                            userToken: String?)
 
-  func viewed(eventName: EventName,
-              indexName: IndexName,
-              objectIDs: [ObjectID],
+  func viewed(eventName: String,
+              indexName: String,
+              objectIDs: [String],
               timestamp: Date?,
-              userToken: UserToken?)
+              userToken: String?)
 }
 
 extension Insights: HitsAfterSearchTrackable {}
-// swiftlint:enable function_parameter_count

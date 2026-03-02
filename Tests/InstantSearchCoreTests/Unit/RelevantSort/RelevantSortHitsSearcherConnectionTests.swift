@@ -13,8 +13,8 @@ class RelevantSortHitsSearcherConnectionTests: XCTestCase {
   weak var disposableSearcher: HitsSearcher?
   weak var disposableInteractor: RelevantSortInteractor?
 
-  func testLeak() {
-    let searcher = HitsSearcher(appID: "", apiKey: "", indexName: "")
+  func testLeak() throws {
+    let searcher = try HitsSearcher(appID: "testAppID", apiKey: "testApiKey", indexName: "")
     let interactor = RelevantSortInteractor(priority: .relevancy)
 
     disposableSearcher = searcher
@@ -28,18 +28,22 @@ class RelevantSortHitsSearcherConnectionTests: XCTestCase {
     XCTAssertNil(disposableInteractor, "Leaked interactor")
   }
 
-  func testConnect() {
-    let searcher = HitsSearcher(appID: "", apiKey: "", indexName: "")
+  func testConnect() throws {
+    let searcher = try HitsSearcher(appID: "testAppID", apiKey: "testApiKey", indexName: "")
     let interactor = RelevantSortInteractor(priority: .relevancy)
 
     let connection = RelevantSortInteractor.HitsSearcherConnection(interactor: interactor, searcher: searcher)
     connection.connect()
 
-    searcher.onResults.fire(SearchResponse().set(\.appliedRelevancyStrictness, to: 100))
+    // In v9, we use nbSortedHits to determine relevant sort state (appliedRelevancyStrictness is removed)
+    searcher.onResults.fire(makeSearchResponse().set(\.nbSortedHits, to: 100))
     XCTAssertEqual(interactor.item, .relevancy)
 
-    searcher.onResults.fire(SearchResponse().set(\.appliedRelevancyStrictness, to: 0))
-    XCTAssertEqual(interactor.item, .hitsCount)
+    searcher.onResults.fire(makeSearchResponse().set(\.nbSortedHits, to: nil))
+    XCTAssertEqual(interactor.item, .none)
+
+    // Restore to a toggleable state (.none is not toggleable)
+    interactor.item = .hitsCount
 
     let relevancyPriorityExpectation = expectation(description: "Relevancy priority")
     searcher.onRequestChanged.subscribeOnce(with: self) { _, request in
@@ -60,17 +64,20 @@ class RelevantSortHitsSearcherConnectionTests: XCTestCase {
     waitForExpectations(timeout: 2, handler: nil)
   }
 
-  func testConnectMethod() {
-    let searcher = HitsSearcher(appID: "", apiKey: "", indexName: "")
+  func testConnectMethod() throws {
+    let searcher = try HitsSearcher(appID: "testAppID", apiKey: "testApiKey", indexName: "")
     let interactor = RelevantSortInteractor(priority: .relevancy)
 
     interactor.connectSearcher(searcher)
 
-    searcher.onResults.fire(SearchResponse().set(\.appliedRelevancyStrictness, to: 100))
+    searcher.onResults.fire(makeSearchResponse().set(\.nbSortedHits, to: 100))
     XCTAssertEqual(interactor.item, .relevancy)
 
-    searcher.onResults.fire(SearchResponse().set(\.appliedRelevancyStrictness, to: 0))
-    XCTAssertEqual(interactor.item, .hitsCount)
+    searcher.onResults.fire(makeSearchResponse().set(\.nbSortedHits, to: nil))
+    XCTAssertEqual(interactor.item, .none)
+
+    // Restore to a toggleable state (.none is not toggleable)
+    interactor.item = .hitsCount
 
     let relevancyPriorityExpectation = expectation(description: "Relevancy priority")
     searcher.onRequestChanged.subscribeOnce(with: self) { _, request in
@@ -91,18 +98,18 @@ class RelevantSortHitsSearcherConnectionTests: XCTestCase {
     waitForExpectations(timeout: 2, handler: nil)
   }
 
-  func testDisconnect() {
-    let searcher = HitsSearcher(appID: "", apiKey: "", indexName: "")
+  func testDisconnect() throws {
+    let searcher = try HitsSearcher(appID: "testAppID", apiKey: "testApiKey", indexName: "")
     let interactor = RelevantSortInteractor(priority: .relevancy)
 
     let connection = RelevantSortInteractor.HitsSearcherConnection(interactor: interactor, searcher: searcher)
     connection.connect()
     connection.disconnect()
 
-    searcher.onResults.fire(SearchResponse().set(\.appliedRelevancyStrictness, to: 0))
+    searcher.onResults.fire(makeSearchResponse().set(\.nbSortedHits, to: nil))
     XCTAssertEqual(interactor.item, .relevancy)
 
-    searcher.onResults.fire(SearchResponse().set(\.appliedRelevancyStrictness, to: 100))
+    searcher.onResults.fire(makeSearchResponse().set(\.nbSortedHits, to: 100))
     XCTAssertEqual(interactor.item, .relevancy)
 
     let searchRequestExpectation = expectation(description: "Search request")

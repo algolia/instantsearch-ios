@@ -12,22 +12,22 @@ import XCTest
 
 class FacetListPresenterTests: XCTestCase {
   func testCountDescSelectedOnTop() {
-    let initial: [SelectableItem<Facet>] = [
-      (.init(value: "red", count: 10, highlighted: nil), true),
-      (.init(value: "orange", count: 20, highlighted: nil), true),
-      (.init(value: "yellow", count: 30, highlighted: nil), false),
-      (.init(value: "black", count: 5, highlighted: nil), false),
-      (.init(value: "blue", count: 40, highlighted: nil), false),
-      (.init(value: "green", count: 0, highlighted: nil), true)
+    let initial: [SelectableItem<FacetHits>] = [
+      (.init(value: "red", count: 10), true),
+      (.init(value: "orange", count: 20), true),
+      (.init(value: "yellow", count: 30), false),
+      (.init(value: "black", count: 5), false),
+      (.init(value: "blue", count: 40), false),
+      (.init(value: "green", count: 0), true)
     ]
 
-    let expected: [SelectableItem<Facet>] = [
-      (.init(value: "orange", count: 20, highlighted: nil), true),
-      (.init(value: "red", count: 10, highlighted: nil), true),
-      (.init(value: "green", count: 0, highlighted: nil), true),
-      (.init(value: "blue", count: 40, highlighted: nil), false),
-      (.init(value: "yellow", count: 30, highlighted: nil), false),
-      (.init(value: "black", count: 5, highlighted: nil), false)
+    let expected: [SelectableItem<FacetHits>] = [
+      (.init(value: "orange", count: 20), true),
+      (.init(value: "red", count: 10), true),
+      (.init(value: "green", count: 0), true),
+      (.init(value: "blue", count: 40), false),
+      (.init(value: "yellow", count: 30), false),
+      (.init(value: "black", count: 5), false)
     ]
 
     let refinementFacetsPresenter = FacetListPresenter(sortBy: [.isRefined, .count(order: .descending)])
@@ -37,22 +37,22 @@ class FacetListPresenterTests: XCTestCase {
   }
 
   func testCountDescNotSelectedOnTop() {
-    let initial: [SelectableItem<Facet>] = [
-      (.init(value: "red", count: 10, highlighted: nil), true),
-      (.init(value: "orange", count: 20, highlighted: nil), true),
-      (.init(value: "yellow", count: 30, highlighted: nil), false),
-      (.init(value: "black", count: 5, highlighted: nil), false),
-      (.init(value: "blue", count: 40, highlighted: nil), false),
-      (.init(value: "green", count: 0, highlighted: nil), true)
+    let initial: [SelectableItem<FacetHits>] = [
+      (.init(value: "red", count: 10), true),
+      (.init(value: "orange", count: 20), true),
+      (.init(value: "yellow", count: 30), false),
+      (.init(value: "black", count: 5), false),
+      (.init(value: "blue", count: 40), false),
+      (.init(value: "green", count: 0), true)
     ]
 
-    let expected: [SelectableItem<Facet>] = [
-      (.init(value: "blue", count: 40, highlighted: nil), false),
-      (.init(value: "yellow", count: 30, highlighted: nil), false),
-      (.init(value: "orange", count: 20, highlighted: nil), true),
-      (.init(value: "red", count: 10, highlighted: nil), true),
-      (.init(value: "black", count: 5, highlighted: nil), false),
-      (.init(value: "green", count: 0, highlighted: nil), true)
+    let expected: [SelectableItem<FacetHits>] = [
+      (.init(value: "blue", count: 40), false),
+      (.init(value: "yellow", count: 30), false),
+      (.init(value: "orange", count: 20), true),
+      (.init(value: "red", count: 10), true),
+      (.init(value: "black", count: 5), false),
+      (.init(value: "green", count: 0), true)
     ]
 
     let refinementFacetsPresenter = FacetListPresenter(sortBy: [.count(order: .descending)])
@@ -63,22 +63,22 @@ class FacetListPresenterTests: XCTestCase {
   }
 
   func testCountAscSelectedOnTop() {
-    let initial: [SelectableItem<Facet>] = [
-      (.init(value: "red", count: 10, highlighted: nil), true),
-      (.init(value: "orange", count: 20, highlighted: nil), true),
-      (.init(value: "yellow", count: 30, highlighted: nil), false),
-      (.init(value: "black", count: 5, highlighted: nil), false),
-      (.init(value: "blue", count: 40, highlighted: nil), false),
-      (.init(value: "green", count: 0, highlighted: nil), true)
+    let initial: [SelectableItem<FacetHits>] = [
+      (.init(value: "red", count: 10), true),
+      (.init(value: "orange", count: 20), true),
+      (.init(value: "yellow", count: 30), false),
+      (.init(value: "black", count: 5), false),
+      (.init(value: "blue", count: 40), false),
+      (.init(value: "green", count: 0), true)
     ]
 
-    let expected: [SelectableItem<Facet>] = [
-      (.init(value: "green", count: 0, highlighted: nil), true),
-      (.init(value: "red", count: 10, highlighted: nil), true),
-      (.init(value: "orange", count: 20, highlighted: nil), true),
-      (.init(value: "black", count: 5, highlighted: nil), false),
-      (.init(value: "yellow", count: 30, highlighted: nil), false),
-      (.init(value: "blue", count: 40, highlighted: nil), false)
+    let expected: [SelectableItem<FacetHits>] = [
+      (.init(value: "green", count: 0), true),
+      (.init(value: "red", count: 10), true),
+      (.init(value: "orange", count: 20), true),
+      (.init(value: "black", count: 5), false),
+      (.init(value: "yellow", count: 30), false),
+      (.init(value: "blue", count: 40), false)
     ]
 
     let refinementFacetsPresenter = FacetListPresenter(sortBy: [.isRefined, .count(order: .ascending)])
@@ -88,22 +88,22 @@ class FacetListPresenterTests: XCTestCase {
   }
 
   func testCountAscNotSelectedOnTop() {
-    let initial: [SelectableItem<Facet>] = [
-      (.init(value: "red", count: 10, highlighted: nil), true),
-      (.init(value: "orange", count: 20, highlighted: nil), true),
-      (.init(value: "yellow", count: 30, highlighted: nil), false),
-      (.init(value: "black", count: 5, highlighted: nil), false),
-      (.init(value: "blue", count: 40, highlighted: nil), false),
-      (.init(value: "green", count: 0, highlighted: nil), true)
+    let initial: [SelectableItem<FacetHits>] = [
+      (.init(value: "red", count: 10), true),
+      (.init(value: "orange", count: 20), true),
+      (.init(value: "yellow", count: 30), false),
+      (.init(value: "black", count: 5), false),
+      (.init(value: "blue", count: 40), false),
+      (.init(value: "green", count: 0), true)
     ]
 
-    let expected: [SelectableItem<Facet>] = [
-      (.init(value: "blue", count: 40, highlighted: nil), false),
-      (.init(value: "yellow", count: 30, highlighted: nil), false),
-      (.init(value: "orange", count: 20, highlighted: nil), true),
-      (.init(value: "red", count: 10, highlighted: nil), true),
-      (.init(value: "black", count: 5, highlighted: nil), false),
-      (.init(value: "green", count: 0, highlighted: nil), true)
+    let expected: [SelectableItem<FacetHits>] = [
+      (.init(value: "blue", count: 40), false),
+      (.init(value: "yellow", count: 30), false),
+      (.init(value: "orange", count: 20), true),
+      (.init(value: "red", count: 10), true),
+      (.init(value: "black", count: 5), false),
+      (.init(value: "green", count: 0), true)
     ]
 
     let refinementFacetsPresenter = FacetListPresenter(sortBy: [.count(order: .descending)])
@@ -114,22 +114,22 @@ class FacetListPresenterTests: XCTestCase {
   }
 
   func testNameAscSelectedOnTop() {
-    let initial: [SelectableItem<Facet>] = [
-      (.init(value: "red", count: 10, highlighted: nil), true),
-      (.init(value: "orange", count: 20, highlighted: nil), true),
-      (.init(value: "yellow", count: 30, highlighted: nil), false),
-      (.init(value: "black", count: 5, highlighted: nil), false),
-      (.init(value: "blue", count: 40, highlighted: nil), false),
-      (.init(value: "green", count: 0, highlighted: nil), true)
+    let initial: [SelectableItem<FacetHits>] = [
+      (.init(value: "red", count: 10), true),
+      (.init(value: "orange", count: 20), true),
+      (.init(value: "yellow", count: 30), false),
+      (.init(value: "black", count: 5), false),
+      (.init(value: "blue", count: 40), false),
+      (.init(value: "green", count: 0), true)
     ]
 
-    let expected: [SelectableItem<Facet>] = [
-      (.init(value: "green", count: 0, highlighted: nil), true),
-      (.init(value: "orange", count: 20, highlighted: nil), true),
-      (.init(value: "red", count: 10, highlighted: nil), true),
-      (.init(value: "black", count: 5, highlighted: nil), false),
-      (.init(value: "blue", count: 40, highlighted: nil), false),
-      (.init(value: "yellow", count: 30, highlighted: nil), false)
+    let expected: [SelectableItem<FacetHits>] = [
+      (.init(value: "green", count: 0), true),
+      (.init(value: "orange", count: 20), true),
+      (.init(value: "red", count: 10), true),
+      (.init(value: "black", count: 5), false),
+      (.init(value: "blue", count: 40), false),
+      (.init(value: "yellow", count: 30), false)
     ]
 
     let refinementFacetsPresenter = FacetListPresenter(sortBy: [.isRefined, .alphabetical(order: .ascending)])
@@ -139,22 +139,22 @@ class FacetListPresenterTests: XCTestCase {
   }
 
   func testNameAscNotSelectedOnTop() {
-    let initial: [SelectableItem<Facet>] = [
-      (.init(value: "red", count: 10, highlighted: nil), true),
-      (.init(value: "orange", count: 20, highlighted: nil), true),
-      (.init(value: "yellow", count: 30, highlighted: nil), false),
-      (.init(value: "black", count: 5, highlighted: nil), false),
-      (.init(value: "blue", count: 40, highlighted: nil), false),
-      (.init(value: "green", count: 0, highlighted: nil), true)
+    let initial: [SelectableItem<FacetHits>] = [
+      (.init(value: "red", count: 10), true),
+      (.init(value: "orange", count: 20), true),
+      (.init(value: "yellow", count: 30), false),
+      (.init(value: "black", count: 5), false),
+      (.init(value: "blue", count: 40), false),
+      (.init(value: "green", count: 0), true)
     ]
 
-    let expected: [SelectableItem<Facet>] = [
-      (.init(value: "black", count: 5, highlighted: nil), false),
-      (.init(value: "blue", count: 40, highlighted: nil), false),
-      (.init(value: "green", count: 0, highlighted: nil), true),
-      (.init(value: "orange", count: 20, highlighted: nil), true),
-      (.init(value: "red", count: 10, highlighted: nil), true),
-      (.init(value: "yellow", count: 30, highlighted: nil), false)
+    let expected: [SelectableItem<FacetHits>] = [
+      (.init(value: "black", count: 5), false),
+      (.init(value: "blue", count: 40), false),
+      (.init(value: "green", count: 0), true),
+      (.init(value: "orange", count: 20), true),
+      (.init(value: "red", count: 10), true),
+      (.init(value: "yellow", count: 30), false)
     ]
 
     let refinementFacetsPresenter = FacetListPresenter(sortBy: [.alphabetical(order: .ascending)])
@@ -164,22 +164,22 @@ class FacetListPresenterTests: XCTestCase {
   }
 
   func testNameDescSelectedOnTop() {
-    let initial: [SelectableItem<Facet>] = [
-      (.init(value: "red", count: 10, highlighted: nil), true),
-      (.init(value: "orange", count: 20, highlighted: nil), true),
-      (.init(value: "yellow", count: 30, highlighted: nil), false),
-      (.init(value: "black", count: 5, highlighted: nil), false),
-      (.init(value: "blue", count: 40, highlighted: nil), false),
-      (.init(value: "green", count: 0, highlighted: nil), true)
+    let initial: [SelectableItem<FacetHits>] = [
+      (.init(value: "red", count: 10), true),
+      (.init(value: "orange", count: 20), true),
+      (.init(value: "yellow", count: 30), false),
+      (.init(value: "black", count: 5), false),
+      (.init(value: "blue", count: 40), false),
+      (.init(value: "green", count: 0), true)
     ]
 
-    let expected: [SelectableItem<Facet>] = [
-      (.init(value: "red", count: 10, highlighted: nil), true),
-      (.init(value: "orange", count: 20, highlighted: nil), true),
-      (.init(value: "green", count: 0, highlighted: nil), true),
-      (.init(value: "yellow", count: 30, highlighted: nil), false),
-      (.init(value: "blue", count: 40, highlighted: nil), false),
-      (.init(value: "black", count: 5, highlighted: nil), false)
+    let expected: [SelectableItem<FacetHits>] = [
+      (.init(value: "red", count: 10), true),
+      (.init(value: "orange", count: 20), true),
+      (.init(value: "green", count: 0), true),
+      (.init(value: "yellow", count: 30), false),
+      (.init(value: "blue", count: 40), false),
+      (.init(value: "black", count: 5), false)
     ]
 
     let refinementFacetsPresenter = FacetListPresenter(sortBy: [.isRefined, .alphabetical(order: .descending)])
@@ -189,22 +189,22 @@ class FacetListPresenterTests: XCTestCase {
   }
 
   func testNameDescNotSelectedOnTop() {
-    let initial: [SelectableItem<Facet>] = [
-      (.init(value: "red", count: 10, highlighted: nil), true),
-      (.init(value: "orange", count: 20, highlighted: nil), true),
-      (.init(value: "yellow", count: 30, highlighted: nil), false),
-      (.init(value: "black", count: 5, highlighted: nil), false),
-      (.init(value: "blue", count: 40, highlighted: nil), false),
-      (.init(value: "green", count: 0, highlighted: nil), true)
+    let initial: [SelectableItem<FacetHits>] = [
+      (.init(value: "red", count: 10), true),
+      (.init(value: "orange", count: 20), true),
+      (.init(value: "yellow", count: 30), false),
+      (.init(value: "black", count: 5), false),
+      (.init(value: "blue", count: 40), false),
+      (.init(value: "green", count: 0), true)
     ]
 
-    let expected: [SelectableItem<Facet>] = [
-      (.init(value: "yellow", count: 30, highlighted: nil), false),
-      (.init(value: "red", count: 10, highlighted: nil), true),
-      (.init(value: "orange", count: 20, highlighted: nil), true),
-      (.init(value: "green", count: 0, highlighted: nil), true),
-      (.init(value: "blue", count: 40, highlighted: nil), false),
-      (.init(value: "black", count: 5, highlighted: nil), false)
+    let expected: [SelectableItem<FacetHits>] = [
+      (.init(value: "yellow", count: 30), false),
+      (.init(value: "red", count: 10), true),
+      (.init(value: "orange", count: 20), true),
+      (.init(value: "green", count: 0), true),
+      (.init(value: "blue", count: 40), false),
+      (.init(value: "black", count: 5), false)
     ]
 
     let refinementFacetsPresenter = FacetListPresenter(sortBy: [.alphabetical(order: .descending)])
@@ -231,18 +231,18 @@ class FacetListPresenterTests: XCTestCase {
 //  }
 
   func testSortWithEqualCounts() {
-    let initial: [SelectableItem<Facet>] = [
-      (.init(value: "blue", count: 10, highlighted: nil), false),
-      (.init(value: "red", count: 10, highlighted: nil), true),
-      (.init(value: "green", count: 5, highlighted: nil), true),
-      (.init(value: "orange", count: 10, highlighted: nil), true)
+    let initial: [SelectableItem<FacetHits>] = [
+      (.init(value: "blue", count: 10), false),
+      (.init(value: "red", count: 10), true),
+      (.init(value: "green", count: 5), true),
+      (.init(value: "orange", count: 10), true)
     ]
 
-    let expected: [SelectableItem<Facet>] = [
-      (.init(value: "orange", count: 10, highlighted: nil), true),
-      (.init(value: "red", count: 10, highlighted: nil), true),
-      (.init(value: "green", count: 5, highlighted: nil), true),
-      (.init(value: "blue", count: 10, highlighted: nil), false)
+    let expected: [SelectableItem<FacetHits>] = [
+      (.init(value: "orange", count: 10), true),
+      (.init(value: "red", count: 10), true),
+      (.init(value: "green", count: 5), true),
+      (.init(value: "blue", count: 10), false)
     ]
 
     let refinementFacetsPresenter = FacetListPresenter(sortBy: [.isRefined, .count(order: .descending), .alphabetical(order: .ascending)])

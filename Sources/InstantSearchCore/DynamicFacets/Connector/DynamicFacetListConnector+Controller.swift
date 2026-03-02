@@ -22,14 +22,15 @@ public extension DynamicFacetListConnector {
   convenience init<Controller: DynamicFacetListController>(searcher: Searcher,
                                                            filterState: FilterState = .init(),
                                                            interactor: DynamicFacetListInteractor = .init(),
-                                                           filterGroupForAttribute: [Attribute: FilterGroupDescriptor] = [:],
+                                                           filterGroupForAttribute: [String: FilterGroupDescriptor] = [:],
                                                            defaultFilterGroupType: RefinementOperator = .and,
                                                            controller: Controller) {
     self.init(searcher: searcher,
               filterState: filterState,
               interactor: interactor,
               filterGroupForAttribute: filterGroupForAttribute,
-              defaultFilterGroupType: defaultFilterGroupType)
+              defaultFilterGroupType: defaultFilterGroupType,
+              controller: controller)
     connectController(controller)
   }
 
@@ -50,10 +51,10 @@ public extension DynamicFacetListConnector {
   convenience init<Controller: DynamicFacetListController>(searcher: Searcher,
                                                            filterState: FilterState = .init(),
                                                            orderedFacets: [AttributedFacets] = [],
-                                                           selections: [Attribute: Set<String>] = [:],
-                                                           selectionModeForAttribute: [Attribute: SelectionMode] = [:],
+                                                           selections: [String: Set<String>] = [:],
+                                                           selectionModeForAttribute: [String: SelectionMode] = [:],
                                                            defaultSelectionMode: SelectionMode = .single,
-                                                           filterGroupForAttribute: [Attribute: FilterGroupDescriptor] = [:],
+                                                           filterGroupForAttribute: [String: FilterGroupDescriptor] = [:],
                                                            defaultFilterGroupType: RefinementOperator = .and,
                                                            controller: Controller) {
     let interactor = DynamicFacetListInteractor(orderedFacets: orderedFacets,
@@ -64,7 +65,8 @@ public extension DynamicFacetListConnector {
               filterState: filterState,
               interactor: interactor,
               filterGroupForAttribute: filterGroupForAttribute,
-              defaultFilterGroupType: defaultFilterGroupType)
+              defaultFilterGroupType: defaultFilterGroupType,
+              controller: controller)
     connectController(controller)
   }
 

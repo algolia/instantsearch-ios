@@ -11,7 +11,7 @@ import Foundation
 import XCTest
 
 class CurrentFiltersControllerConnectionTests: XCTestCase {
-  let attribute: Attribute = "Test Attribute"
+  let attribute: String = "Test Attribute"
   let groupName = "Test group"
 
   weak var disposableInteractor: CurrentFiltersInteractor?

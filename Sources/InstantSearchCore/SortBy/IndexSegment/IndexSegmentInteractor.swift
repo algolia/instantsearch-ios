@@ -6,11 +6,10 @@
 //  Copyright © 2019 Algolia. All rights reserved.
 //
 
-import AlgoliaSearchClient
 import Foundation
 
 @available(*, deprecated, message: "Use SortByInteractor")
-public typealias IndexSegmentInteractor = SelectableSegmentInteractor<Int, Index>
+public typealias IndexSegmentInteractor = SelectableSegmentInteractor<Int, String>
 
 @available(*, deprecated, message: "Use SortByInteractor")
 public enum IndexSegment {}

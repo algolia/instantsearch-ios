@@ -5,38 +5,55 @@
 //  Created by Vladislav Fitc on 15/10/2020.
 //
 
-import AlgoliaSearchClient
 import Foundation
+@testable import InstantSearchInsights
 
 struct TestEvent {
-  static let eventName: EventName = "test event name"
-  static let indexName: IndexName = "test index"
-  static let userToken: UserToken = "testtoken"
-  static let queryID: QueryID = "test query id"
+  static let eventName: String = "test event name"
+  static let indexName: String = "test index"
+  static let userToken: String = "testtoken"
+  static let queryID: String = "test query id"
   static let timeStamp = Date()
-  static let objectIDs: [ObjectID] = ["o1", "o2", "o3"]
+  static let objectIDs: [String] = ["o1", "o2", "o3"]
   static let positions: [Int] = [1, 2, 3]
   static let filters = ["key1:value1", "key2:value2"]
-  static var objectIDsWithPositions: [(ObjectID, Int)] { zip(objectIDs, positions).map { $0 } }
+  static let filterFacets = FilterFacet.parseFilters(filters)
+  static var objectIDsWithPositions: [(String, Int)] { zip(objectIDs, positions).map { $0 } }
 
   static var click: InsightsEvent {
     [clickWithFilters, clickWithObjects].randomElement()!
   }
 
   static var clickWithFilters: InsightsEvent {
-    try! .click(name: "click event name", indexName: indexName, userToken: userToken, timestamp: timeStamp, filters: filters)
+    .clickedFilters(eventName: "click event name",
+                    indexName: indexName,
+                    userToken: userToken,
+                    timestamp: timeStamp.millisecondsSince1970,
+                    filters: filterFacets)
   }
 
   static var clickWithObjects: InsightsEvent {
-    try! .click(name: "click event name", indexName: indexName, userToken: userToken, timestamp: timeStamp, objectIDs: objectIDs)
+    .clickedObjectIDs(eventName: "click event name",
+                      indexName: indexName,
+                      userToken: userToken,
+                      timestamp: timeStamp.millisecondsSince1970,
+                      objectIDs: objectIDs)
   }
 
   static var viewWithObjects: InsightsEvent {
-    try! .view(name: "view event name", indexName: indexName, userToken: userToken, timestamp: timeStamp, objectIDs: objectIDs)
+    .viewedObjectIDs(eventName: "view event name",
+                     indexName: indexName,
+                     userToken: userToken,
+                     timestamp: timeStamp.millisecondsSince1970,
+                     objectIDs: objectIDs)
   }
 
   static var viewWithFilters: InsightsEvent {
-    try! .view(name: "view event name", indexName: indexName, userToken: userToken, timestamp: timeStamp, filters: filters)
+    .viewedFilters(eventName: "view event name",
+                   indexName: indexName,
+                   userToken: userToken,
+                   timestamp: timeStamp.millisecondsSince1970,
+                   filters: filterFacets)
   }
 
   static var view: InsightsEvent {
@@ -44,11 +61,20 @@ struct TestEvent {
   }
 
   static var conversionWithObjects: InsightsEvent {
-    try! .conversion(name: "conversion event name", indexName: indexName, userToken: userToken, timestamp: timeStamp, queryID: queryID, objectIDs: objectIDs)
+    .convertedObjectIDsAfterSearch(eventName: "conversion event name",
+                                   indexName: indexName,
+                                   userToken: userToken,
+                                   timestamp: timeStamp.millisecondsSince1970,
+                                   queryID: queryID,
+                                   objectIDs: objectIDs)
   }
 
   static var conversionWithFilters: InsightsEvent {
-    try! .conversion(name: "conversion event name", indexName: indexName, userToken: userToken, timestamp: timeStamp, queryID: queryID, filters: filters)
+    .convertedFilters(eventName: "conversion event name",
+                      indexName: indexName,
+                      userToken: userToken,
+                      timestamp: timeStamp.millisecondsSince1970,
+                      filters: filterFacets)
   }
 
   static var conversion: InsightsEvent {

@@ -52,11 +52,17 @@ public extension FacetListConnector {
     /// Add missing refinements with a count of 0 to all returned facets
     /// Example: if in result we have color: [(red, 10), (green, 5)] and that in the refinements
     /// we have "color: red" and "color: yellow", the final output would be [(red, 10), (green, 5), (yellow, 0)]
-    private static func merge(_ facets: [Facet], withSelectedValues selections: Set<String>) -> [SelectableItem<Facet>] {
-      return facets.map { SelectableItem<Facet>($0, selections.contains($0.value)) }
+    private static func merge(_ facets: [FacetHits], withSelectedValues selections: Set<String>) -> [SelectableItem<FacetHits>] {
+      var mergedFacets = facets
+      let existingValues = Set(facets.map(\.value))
+      let missingValues = selections.subtracting(existingValues)
+      if !missingValues.isEmpty {
+        mergedFacets.append(contentsOf: missingValues.map { FacetHits(value: $0, highlighted: "", count: 0) })
+      }
+      return mergedFacets.map { SelectableItem<FacetHits>($0, selections.contains($0.value)) }
     }
 
-    private static func setControllerItemsWith<Controller: FacetListController>(facets: [Facet], selections: Set<String>, controller: Controller, presenter: SelectableListPresentable?) {
+    private static func setControllerItemsWith<Controller: FacetListController>(facets: [FacetHits], selections: Set<String>, controller: Controller, presenter: SelectableListPresentable?) {
       let updatedFacets = merge(facets, withSelectedValues: selections)
       let sortedFacetValues = presenter?.transform(refinementFacets: updatedFacets) ?? updatedFacets
       controller.setSelectableItems(selectableItems: sortedFacetValues)

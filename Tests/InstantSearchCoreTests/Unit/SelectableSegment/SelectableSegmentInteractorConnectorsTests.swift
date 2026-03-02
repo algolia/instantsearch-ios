@@ -6,15 +6,14 @@
 //  Copyright © 2019 Algolia. All rights reserved.
 //
 
-import AlgoliaSearchClient
 import Foundation
 @testable import InstantSearchCore
 import XCTest
 
 class SelectableSegmentInteractorConnectorsTests: XCTestCase {
-  func testConnectSearcher() {
+  func testConnectSearcher() throws {
     let filterState = FilterState()
-    let searcher = HitsSearcher(appID: "", apiKey: "", indexName: "")
+    let searcher = try HitsSearcher(appID: "testAppID", apiKey: "testApiKey", indexName: "")
 
     let interactor = FilterMapInteractor<Filter.Tag>(items: [0: "t1", 1: "t2", 2: "t3"])
     interactor.connectSearcher(searcher, attribute: "tags")

@@ -23,7 +23,7 @@ extension FilterState: HierarchicalFacetingDelegate {
     }
   }
 
-  public var hierarchicalAttributes: [Attribute] {
+  public var hierarchicalAttributes: [String] {
     get {
       return self[hierarchical: hierarchicalGroupName].hierarchicalAttributes
     }

@@ -10,7 +10,7 @@ import Foundation
 
 /// Provides a convenient interface to a hierarchical group contained by FilterState
 public struct HierarchicalGroupAccessor: SpecializedGroupAccessor {
-  public typealias Filter = FacetFilter
+  public typealias Filter = InstantSearchCore.Filter.Facet
 
   let groupID: FilterGroup.ID
   var filtersContainer: FiltersContainer
@@ -19,7 +19,7 @@ public struct HierarchicalGroupAccessor: SpecializedGroupAccessor {
     return filtersContainer.filters.isEmpty
   }
 
-  var hierarchicalAttributes: [Attribute] {
+  var hierarchicalAttributes: [String] {
     return filtersContainer.filters.hierarchicalAttributes(forGroupWithName: groupID.name)
   }
 
@@ -27,7 +27,7 @@ public struct HierarchicalGroupAccessor: SpecializedGroupAccessor {
     return filtersContainer.filters.hierarchicalFilters(forGroupWithName: groupID.name)
   }
 
-  func set(_ hierarchicalAttributes: [Attribute]) {
+  func set(_ hierarchicalAttributes: [String]) {
     filtersContainer.filters.set(hierarchicalAttributes, forGroupWithName: groupID.name)
   }
 
@@ -60,7 +60,7 @@ public struct HierarchicalGroupAccessor: SpecializedGroupAccessor {
 
   /// Removes all filters with specified attribute from group
   /// - parameter attribute: specified attribute
-  public func removeAll(for attribute: Attribute) {
+  public func removeAll(for attribute: String) {
     return filtersContainer.filters.removeAll(for: attribute, fromGroupWithID: groupID)
   }
 
@@ -93,7 +93,7 @@ public struct HierarchicalGroupAccessor: SpecializedGroupAccessor {
     filtersContainer.filters.toggle(filter, inGroupWithID: groupID)
   }
 
-  public func filters(for attribute: Attribute) -> [Filter] {
+  public func filters(for attribute: String) -> [Filter] {
     return filtersContainer.filters.getFilters(for: attribute).compactMap { $0.filter as? Filter }
   }
 

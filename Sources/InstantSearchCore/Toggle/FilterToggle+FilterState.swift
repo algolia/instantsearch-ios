@@ -24,7 +24,7 @@ public extension FilterToggle {
       self.interactor = interactor
       self.filterState = filterState
       self.operator = `operator`
-      self.groupName = groupName ?? interactor.item.attribute.rawValue
+      self.groupName = groupName ?? interactor.item.attribute
     }
 
     public func connect() {
@@ -56,7 +56,7 @@ public extension FilterToggle {
       filterState.onChange.subscribePast(with: interactor, callback: onChange)
     }
 
-    func whenSelectionsComputedThenUpdateFilterState<GroupAccessor: SpecializedGroupAccessor>(attribute _: Attribute,
+    func whenSelectionsComputedThenUpdateFilterState<GroupAccessor: SpecializedGroupAccessor>(attribute _: String,
                                                                                               via accessor: GroupAccessor) where GroupAccessor.Filter == Filter {
       interactor.onSelectedComputed.subscribePast(with: filterState) { [weak interactor] filterState, computedSelected in
 
@@ -74,7 +74,7 @@ public extension FilterToggle {
       }
     }
 
-    func whenSelectionsComputedThenUpdateFilterState<F: FilterType>(attribute _: Attribute,
+    func whenSelectionsComputedThenUpdateFilterState<F: FilterType>(attribute _: String,
                                                                     groupID: FilterGroup.ID,
                                                                     default: F) {
       interactor.onSelectedComputed.subscribePast(with: filterState) { [weak interactor] filterState, computedSelected in

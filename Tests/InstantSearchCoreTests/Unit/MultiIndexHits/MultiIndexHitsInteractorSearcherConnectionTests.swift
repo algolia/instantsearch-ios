@@ -5,8 +5,8 @@
 //  Created by Vladislav Fitc on 07/08/2020.
 //
 
-import AlgoliaSearchClient
 import Foundation
+import Search
 @testable import InstantSearchCore
 import XCTest
 
@@ -15,8 +15,8 @@ class MultiIndexHitsInteractorSearcherConnectionTests: XCTestCase {
   weak var disposableInteractor: MultiIndexHitsInteractor?
   weak var disposableSearcher: MultiIndexSearcher?
 
-  func testLeak() {
-    let searcher = MultiIndexSearcher(appID: "", apiKey: "", indexNames: ["i1", "i2"])
+  func testLeak() throws {
+    let searcher = try MultiIndexSearcher(appID: "testAppID", apiKey: "testApiKey", indexNames: ["i1", "i2"])
     let subInteractorA = HitsInteractor<JSON>()
     let subInteractorB = HitsInteractor<JSON>()
     let interactor = MultiIndexHitsInteractor(hitsInteractors: [subInteractorA, subInteractorB])
@@ -33,8 +33,8 @@ class MultiIndexHitsInteractorSearcherConnectionTests: XCTestCase {
     XCTAssertNil(disposableSearcher, "Leaked searcher")
   }
 
-  func testConnect() {
-    let searcher = MultiIndexSearcher(appID: "", apiKey: "", indexNames: ["i1", "i2"])
+  func testConnect() throws {
+    let searcher = try MultiIndexSearcher(appID: "testAppID", apiKey: "testApiKey", indexNames: ["i1", "i2"])
     let subInteractorA = HitsInteractor<JSON>()
     let subInteractorB = HitsInteractor<JSON>()
     let interactor = MultiIndexHitsInteractor(hitsInteractors: [subInteractorA, subInteractorB])
@@ -47,8 +47,8 @@ class MultiIndexHitsInteractorSearcherConnectionTests: XCTestCase {
                      source: self).check(isConnected: true)
   }
 
-  func testConnectMethod() {
-    let searcher = MultiIndexSearcher(appID: "", apiKey: "", indexNames: ["i1", "i2"])
+  func testConnectMethod() throws {
+    let searcher = try MultiIndexSearcher(appID: "testAppID", apiKey: "testApiKey", indexNames: ["i1", "i2"])
     let subInteractorA = HitsInteractor<JSON>()
     let subInteractorB = HitsInteractor<JSON>()
     let interactor = MultiIndexHitsInteractor(hitsInteractors: [subInteractorA, subInteractorB])
@@ -60,8 +60,8 @@ class MultiIndexHitsInteractorSearcherConnectionTests: XCTestCase {
                      source: self).check(isConnected: true)
   }
 
-  func testDisconnect() {
-    let searcher = MultiIndexSearcher(appID: "", apiKey: "", indexNames: ["i1", "i2"])
+  func testDisconnect() throws {
+    let searcher = try MultiIndexSearcher(appID: "testAppID", apiKey: "testApiKey", indexNames: ["i1", "i2"])
     let subInteractorA = HitsInteractor<JSON>()
     let subInteractorB = HitsInteractor<JSON>()
     let interactor = MultiIndexHitsInteractor(hitsInteractors: [subInteractorA, subInteractorB])
@@ -122,9 +122,9 @@ extension MultiIndexHitsInteractorSearcherConnectionTests {
         resultsUpdatedExpectation.fulfill()
       }
 
-      let searchResponse = SearchesResponse(results: [
-        SearchResponse(hits: [Hit(object: ["field0": "value0"])]),
-        SearchResponse(hits: [Hit(object: ["field1": "value1"])])
+      let searchResponse = SearchResponses<SearchHit>(results: [
+        .searchResponse(SearchResponse<SearchHit>(hits: [Hit(object: ["field0": "value0"])])),
+        .searchResponse(SearchResponse<SearchHit>(hits: [Hit(object: ["field1": "value1"])]))
       ])
 
       searcher.onResults.fire(searchResponse)

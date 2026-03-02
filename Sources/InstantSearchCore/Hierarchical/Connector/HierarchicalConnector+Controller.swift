@@ -21,7 +21,7 @@ public extension HierarchicalConnector {
    */
   convenience init<Controller: HierarchicalController, Output>(searcher: HitsSearcher,
                                                                filterState: FilterState,
-                                                               hierarchicalAttributes: [Attribute],
+                                                               hierarchicalAttributes: [String],
                                                                separator: String,
                                                                controller: Controller,
                                                                presenter: @escaping HierarchicalPresenter<Output>) where Controller.Item == Output {

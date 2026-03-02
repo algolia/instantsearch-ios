@@ -5,7 +5,6 @@
 //  Created by Vladislav Fitc on 20/10/2020.
 //
 
-import AlgoliaSearchClient
 import Foundation
 
 /// Tracking events tighten to search
@@ -19,13 +18,13 @@ public extension Insights {
   /// - parameter timestamp: Event timestamp
   /// - parameter userToken: User identifier. Overrides application's user token if specified. Default value is nil.
 
-  func clickedAfterSearch(eventName: EventName,
-                          indexName: IndexName,
-                          objectIDs: [ObjectID],
+  func clickedAfterSearch(eventName: String,
+                          indexName: String,
+                          objectIDs: [String],
                           positions: [Int],
-                          queryID: QueryID,
+                          queryID: String,
                           timestamp: Date? = .none,
-                          userToken: UserToken? = .none) {
+                          userToken: String? = .none) {
     eventTracker.click(eventName: eventName,
                        indexName: indexName,
                        userToken: userToken,
@@ -43,12 +42,12 @@ public extension Insights {
   /// - parameter timestamp: Event timestamp
   /// - parameter userToken: User identifier. Overrides application's user token if specified. Default value is nil.
 
-  func clickedAfterSearch(eventName: EventName,
-                          indexName: IndexName,
-                          objectIDsWithPositions: [(ObjectID, Int)],
-                          queryID: QueryID,
+  func clickedAfterSearch(eventName: String,
+                          indexName: String,
+                          objectIDsWithPositions: [(String, Int)],
+                          queryID: String,
                           timestamp: Date? = .none,
-                          userToken: UserToken? = .none) {
+                          userToken: String? = .none) {
     clickedAfterSearch(eventName: eventName,
                        indexName: indexName,
                        objectIDs: objectIDsWithPositions.map { $0.0 },
@@ -67,13 +66,13 @@ public extension Insights {
   /// - parameter timestamp: Event timestamp
   /// - parameter userToken: User identifier. Overrides application's user token if specified. Default value is nil.
 
-  func clickedAfterSearch(eventName: EventName,
-                          indexName: IndexName,
-                          objectID: ObjectID,
+  func clickedAfterSearch(eventName: String,
+                          indexName: String,
+                          objectID: String,
                           position: Int,
-                          queryID: QueryID,
+                          queryID: String,
                           timestamp: Date? = .none,
-                          userToken: UserToken? = .none) {
+                          userToken: String? = .none) {
     clickedAfterSearch(eventName: eventName,
                        indexName: indexName,
                        objectIDs: [objectID],
@@ -91,12 +90,12 @@ public extension Insights {
   /// - parameter timestamp: Event timestamp
   /// - parameter userToken: User identifier. Overrides application's user token if specified. Default value is nil.
 
-  func convertedAfterSearch(eventName: EventName,
-                            indexName: IndexName,
-                            objectIDs: [ObjectID],
-                            queryID: QueryID,
+  func convertedAfterSearch(eventName: String,
+                            indexName: String,
+                            objectIDs: [String],
+                            queryID: String,
                             timestamp: Date? = .none,
-                            userToken: UserToken? = .none) {
+                            userToken: String? = .none) {
     eventTracker.conversion(eventName: eventName,
                             indexName: indexName,
                             userToken: userToken,
@@ -113,12 +112,12 @@ public extension Insights {
   /// - parameter timestamp: Event timestamp
   /// - parameter userToken: User identifier. Overrides application's user token if specified. Default value is nil.
 
-  func convertedAfterSearch(eventName: EventName,
-                            indexName: IndexName,
-                            objectID: ObjectID,
-                            queryID: QueryID,
+  func convertedAfterSearch(eventName: String,
+                            indexName: String,
+                            objectID: String,
+                            queryID: String,
                             timestamp: Date? = .none,
-                            userToken: UserToken? = .none) {
+                            userToken: String? = .none) {
     eventTracker.conversion(eventName: eventName,
                             indexName: indexName,
                             userToken: userToken,

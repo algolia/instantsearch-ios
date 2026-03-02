@@ -8,5 +8,5 @@
 import Foundation
 
 public protocol IndexNameProvider {
-  var indexName: IndexName { get set }
+  var indexName: String { get set }
 }

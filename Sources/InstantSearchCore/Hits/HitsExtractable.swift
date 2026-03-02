@@ -7,6 +7,7 @@
 //
 
 import Foundation
+import Search
 
 public protocol HitsExtractable {
   func extractHits<T: Decodable>(jsonDecoder: JSONDecoder) throws -> [T]
@@ -19,14 +20,7 @@ extension SearchResponse: HitsExtractable {
   }
 }
 
-extension PlacesResponse: HitsExtractable {
-  public func extractHits<Hit>(jsonDecoder: JSONDecoder) throws -> [Hit] where Hit: Decodable {
-    let hitsData = try JSONEncoder().encode(hits)
-    return try jsonDecoder.decode([Hit].self, from: hitsData)
-  }
-}
-
-extension FacetSearchResponse: HitsExtractable {
+extension SearchForFacetValuesResponse: HitsExtractable {
   public func extractHits<Hit>(jsonDecoder: JSONDecoder) throws -> [Hit] where Hit: Decodable {
     let hitsData = try JSONEncoder().encode(facetHits)
     return try jsonDecoder.decode([Hit].self, from: hitsData)

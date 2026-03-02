@@ -6,14 +6,13 @@
 //  Copyright © 2019 Algolia. All rights reserved.
 //
 
-import AlgoliaSearchClient
 import Foundation
 
 extension QueryBuilder {
-  func buildHierarchicalQueries(with query: Query,
+  func buildHierarchicalQueries(with query: SearchSearchParamsObject,
                                 filterGroups: [FilterGroupType],
-                                hierarchicalAttributes: [Attribute],
-                                hierachicalFilters: [Filter.Facet]) -> [Query] {
+                                hierarchicalAttributes: [String],
+                                hierachicalFilters: [Filter.Facet]) -> [SearchSearchParamsObject] {
     // An empty hierarchical offset in the beggining is added to create
     // The first request in the list returning search results
 
@@ -24,7 +23,7 @@ extension QueryBuilder {
     let offsetHierachicalFilters: [Filter.Facet?] = [.none] + hierachicalFilters
 
     let queriesForHierarchicalFacets = zip(hierarchicalAttributes, offsetHierachicalFilters)
-      .map { arguments -> Query in
+      .map { arguments -> SearchSearchParamsObject in
         let (attribute, hierarchicalFilter) = arguments
 
         var outputFilterGroups = filterGroups

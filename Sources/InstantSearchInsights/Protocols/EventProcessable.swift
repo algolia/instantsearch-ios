@@ -6,7 +6,6 @@
 //  Copyright © 2018 Algolia. All rights reserved.
 //
 
-import AlgoliaSearchClient
 import Foundation
 
 protocol EventProcessable: AnyObject {
