@@ -1,5 +1,86 @@
 # ChangeLog
 
+## [8.0.0](https://github.com/algolia/instantsearch-ios/compare/7.27.0...8.0.0) (2026-03-03)
+
+### Feat
+
+- Migrate to Algolia Swift API Client v9 (`AlgoliaSearchClient ~> 9.37`) (#350) ([5bda453](https://github.com/algolia/instantsearch-ios/commit/5bda453fad9eb63fd60954e089f94c74288caf99))
+- Modular SPM imports: the Algolia client is now consumed as separate `Core`, `Search`, and `Insights` products
+- Bump minimum Swift tools version to 5.9
+
+### Breaking
+
+- `HitsSearcher(appID:apiKey:indexName:)`, `MultiIndexSearcher`, `FacetSearcher`, and `MultiSearcher` convenience initializers now `throw` (because `SearchClient(appID:apiKey:)` throws in v9)
+- Removed `AnswersSearcher`, `AlgoliaAnswersSearchService`, and `AnswersSearcher+FilterState` (Algolia Answers has been sunset)
+- Removed `PlacesSearcher`, `AlgoliaPlacesSearchService`, `Hit+Place`, and `HitsConnector+GeoSearch` (Algolia Places has been sunset)
+- Removed `IndexSegmentInteractor+AnswersSearcher`
+- Removed Carthage support (Cartfile is retained for reference but CI workflow is removed)
+- `SearchClient.appID` is now internal in v9; Insights auto-registration from searcher requires explicit `Insights.register(appId:apiKey:)` calls
+- Query types changed to `SearchSearchParamsObject` (from the v9 client)
+- `Hit` type is now defined locally in InstantSearchCore (no longer re-exported from the API client)
+
+### Fix
+
+- Thread-safety fix for `TestInfiniteScrollingController` to prevent data race crashes (signal 11)
+- Corrected `testHierachicalEmpty` assertion from `XCTAssertNil` to `XCTAssertNotNil`
+- Increased integration test timeouts to use consistent `expectationTimeout` (100s)
+
+### Migration Guide from 7.x to 8.0.0
+
+#### 1. Update dependencies
+
+**Swift Package Manager**: Update your `Package.swift` dependency:
+```swift
+.package(url: "https://github.com/algolia/instantsearch-ios", from: "8.0.0")
+```
+
+**CocoaPods**: Update your `Podfile`:
+```ruby
+pod 'InstantSearch', '~> 8.0'
+```
+
+**Carthage**: Carthage is no longer supported. Please migrate to Swift Package Manager or CocoaPods.
+
+#### 2. Handle throwing initializers
+
+Searcher convenience initializers that accept `appID` and `apiKey` strings now throw because `SearchClient(appID:apiKey:)` throws in the Algolia Swift API Client v9. Wrap these calls with `try`:
+
+```swift
+// Before (7.27.x)
+let searcher = HitsSearcher(appID: "YourAppID", apiKey: "YourApiKey", indexName: "index")
+
+// After (8.0.0)
+let searcher = try HitsSearcher(appID: "YourAppID", apiKey: "YourApiKey", indexName: "index")
+```
+
+This applies to `HitsSearcher`, `FacetSearcher`, `MultiIndexSearcher`, and `MultiSearcher`.
+
+Alternatively, create the `SearchClient` yourself and use the non-throwing `init(client:indexName:)` variant:
+```swift
+let client = try SearchClient(appID: "YourAppID", apiKey: "YourApiKey")
+let searcher = HitsSearcher(client: client, indexName: "index")
+```
+
+#### 3. Remove Answers and Places usage
+
+`AnswersSearcher` and `PlacesSearcher` (along with their services and connectors) have been removed because Algolia Answers and Algolia Places have been sunset. Remove any code that references these types.
+
+#### 4. Register Insights explicitly
+
+`SearchClient.appID` is now internal in the v9 client. If you rely on automatic Insights registration from a searcher, you must now register Insights explicitly:
+
+```swift
+Insights.register(appId: "YourAppID", apiKey: "YourApiKey")
+```
+
+#### 5. Adapt to new query types
+
+The query parameter type has changed from the v8 client's `Query` to `SearchSearchParamsObject` from the v9 client. If you manipulate query parameters directly, update your code accordingly.
+
+#### 6. Use the local `Hit` type
+
+The `Hit` type is now defined locally in InstantSearchCore rather than being re-exported from the API client. A new `SearchHit` typealias (`Hit<[String: AnyCodable]>`) is available for convenience.
+
 ## [7.27.0](https://github.com/algolia/instantsearch-ios/compare/7.26.4...7.27.0) (2025-07-01)
 
 ### Fix

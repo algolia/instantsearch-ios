@@ -10,7 +10,7 @@ import Foundation
 
 /** Defines filter representing a numeric relation or a range
  # See also:
- [Reference](https:www.algolia.com/doc/guides/managing-results/refine-results/filtering/how-to/filter-by-numeric-value/)
+ [Reference](https://www.algolia.com/doc/guides/managing-results/refine-results/filtering/how-to/filter-by-numeric-value/)
  */
 
 public extension Filter {
