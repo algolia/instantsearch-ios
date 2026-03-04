@@ -19,7 +19,7 @@ public extension InsightsTracker {
   init(eventName: String,
        searcher: HitsSearcher,
        userToken: String? = .none) {
-    // In v9, appID is internal on SearchClient - users should register Insights explicitly or use the other init
+    // appID is internal on SearchClient - users should register Insights explicitly or use the other init
     guard let insights = Insights.shared else {
       fatalError("Insights must be registered before creating InsightsTracker. Call Insights.register(appId:apiKey:) first.")
     }

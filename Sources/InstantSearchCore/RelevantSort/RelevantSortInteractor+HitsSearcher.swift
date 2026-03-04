@@ -38,7 +38,7 @@ public extension RelevantSortInteractor {
         searcher.search()
       }
       searcher.onResults.subscribePast(with: interactor) { interactor, searchResponse in
-        // In v9, appliedRelevancyStrictness is no longer available in the response
+        // appliedRelevancyStrictness is not available in the response
         // We determine the sort state based on nbSortedHits presence
         if let nbSortedHits = searchResponse.nbSortedHits, nbSortedHits > 0 {
           // Relevant sort is applied

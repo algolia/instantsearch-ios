@@ -4,28 +4,21 @@
 //
 
 import Foundation
-import Core
+import Search
 
-/// Facet hit model returned by facet search requests.
-public struct FacetHits: Codable, Hashable {
-  public let value: String
-  public let highlighted: String
-  public let count: Int
-
-  public init(value: String, highlighted: String = "", count: Int) {
-    self.value = value
-    self.highlighted = highlighted.isEmpty ? value : highlighted
-    self.count = count
-  }
-}
+public typealias FacetHits = Search.FacetHits
 
 public extension FacetHits {
+  init(value: String, count: Int) {
+    self.init(value: value, highlighted: value, count: count)
+  }
+
   var isEmpty: Bool {
     return count == 0
   }
 }
 
-extension FacetHits: CustomStringConvertible {
+extension FacetHits: @retroactive CustomStringConvertible {
   public var description: String {
     return value
   }
