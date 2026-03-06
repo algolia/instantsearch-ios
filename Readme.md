@@ -2,7 +2,6 @@
 
 [![Pod Version](http://img.shields.io/cocoapods/v/InstantSearch.svg?style=flat)](https://github.com/algolia/instantsearch-ios/)
 [![Pod Platform](http://img.shields.io/cocoapods/p/InstantSearch.svg?style=flat)](https://github.com/algolia/instantsearch-ios/)
-[![Carthage compatible](https://img.shields.io/badge/Carthage-compatible-brightgreen.svg)](https://github.com/algolia/instantsearch-ios/)
 [![SwiftPM compatible](https://img.shields.io/badge/SwiftPM-compatible-brightgreen.svg)](https://swift.org/package-manager/)
 [![Mac Catalyst compatible](https://img.shields.io/badge/Catalyst-compatible-brightgreen.svg)](https://developer.apple.com/documentation/xcode/creating_a_mac_version_of_your_ipad_app/)
 [![Licence](http://img.shields.io/cocoapods/l/InstantSearch.svg?style=flat)](https://opensource.org/licenses/Apache-2.0)
@@ -11,11 +10,11 @@ By [Algolia](http://algolia.com).
 
 InstantSearch family: **InstantSearch iOS** | [InstantSearch Android][instantsearch-android-github] | [React InstantSearch][react-instantsearch-github] | [InstantSearch.js][instantsearch-js-github] | [Angular InstantSearch][instantsearch-angular-github] | [Vue InstantSearch][instantsearch-vue-github].
 
-**InstantSearch iOS** is a framework providing components and helpers to help you build the best instant-search experience on iOS with Algolia. It is built on top of Algolia's [Swift API Client](https://github.com/algolia/algoliasearch-client-swift) library to provide you a high-level solution to quickly build various search interfaces.
+**InstantSearch iOS** is a framework providing components and helpers to help you build the best instant-search experience on iOS with Algolia. It is built on top of Algolia's [Swift API Client v9](https://github.com/algolia/algoliasearch-client-swift) library to provide you a high-level solution to quickly build various search interfaces.
 
 ## Structure
 
- **InstantSearch iOS** consists of three products
+ **InstantSearch iOS** consists of four products
  - *[InstantSearch Insights](./Sources/InstantSearchInsights/README.md)* – library that allows developers to capture search-related events
  - *InstantSearch Core* – the business logic modules of InstantSearch
  - *InstantSearch* – the complete InstantSearch toolset including UIKit components
@@ -44,9 +43,9 @@ If you're a framework author and use InstantSearch as a dependency, update your 
 
 ```swift
 let package = Package(
-    // 7.26.0 ..< 8.0.0
+    // 8.0.0 ..< 9.0.0
     dependencies: [
-        .package(url: "https://github.com/algolia/instantsearch-ios", from: "7.26.0")
+        .package(url: "https://github.com/algolia/instantsearch-ios", from: "8.0.0")
     ],
     // ...
 )
@@ -59,7 +58,7 @@ let package = Package(
 To install InstantSearch, simply add the following line to your Podfile:
 
 ```ruby
-pod 'InstantSearch', '~> 7.26'
+pod 'InstantSearch', '~> 8.0'
 # pod 'InstantSearch/Insights' for access to Insights library only
 # pod 'InstantSearch/Core' for access business logic without UIKit components
 # pod 'InstantSearch/SwiftUI' for access to SwiftUI components
@@ -120,9 +119,9 @@ class ViewController: UIViewController {
   lazy var searchController = UISearchController(searchResultsController: hitsViewController)
   let hitsViewController = SearchResultsViewController()
 
-  let searcher = HitsSearcher(appID: "latency",
-                              apiKey: "1f6fd3a6fb973cb08419fe7d288fa4db",
-                              indexName: "bestbuy")
+  let searcher = try! HitsSearcher(appID: "latency",
+                                   apiKey: "1f6fd3a6fb973cb08419fe7d288fa4db",
+                                   indexName: "bestbuy")
   lazy var searchConnector = SearchConnector<Item>(searcher: searcher,
                                                     searchController: searchController,
                                                     hitsInteractor: .init(),

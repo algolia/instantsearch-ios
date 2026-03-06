@@ -16,6 +16,8 @@ Insights.register(appId: "testApp",
                   userToken: "testToken")
 ```
 
+> **Note (v9 migration):** Starting with InstantSearch 8.0.0, `SearchClient.appID` is internal in the Algolia Swift API Client v9. If you previously relied on automatic Insights registration through a searcher, you must now call `Insights.register(appId:apiKey:)` explicitly before tracking events.
+
 ### Sending metrics
 
 Once that you registered your **Application ID** and the **API Key** you can easily start sending metrics. 

@@ -10,7 +10,7 @@ import Foundation
 
 /** Defines tag filter
  # See also:
- [Reference](https:www.algolia.com/doc/guides/managing-results/refine-results/filtering/how-to/filter-by-tags/)
+ [Reference](https://www.algolia.com/doc/guides/managing-results/refine-results/filtering/how-to/filter-by-tags/)
  */
 
 public extension Filter {
