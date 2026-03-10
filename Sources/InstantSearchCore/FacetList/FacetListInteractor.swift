@@ -29,9 +29,7 @@ public class FacetListInteractor: SelectableListInteractor<String, FacetHits> {
 extension FacetListInteractor: ResultUpdatable {
   @discardableResult public func update(_ facetResults: SearchForFacetValuesResponse) -> Operation {
     let updateOperation = BlockOperation { [weak self] in
-      self?.items = facetResults.facetHits.map { hit in
-        FacetHits(value: hit.value, highlighted: hit.highlighted, count: hit.count)
-      }
+      self?.items = facetResults.facetHits
       self?.onResultsUpdated.fire(facetResults)
     }
 

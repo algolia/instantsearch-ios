@@ -66,7 +66,7 @@ func makeSearchResponses(_ responses: [SearchResponse<SearchHit>]) -> SearchResp
   return SearchResponses(results: responses.map { .searchResponse($0) })
 }
 
-func makeFacetSearchResponse(facetHits: [InstantSearchCore.FacetHits],
+func makeFacetSearchResponse(facetHits: [FacetHits],
                              processingTimeMS: Int = 1,
                              exhaustiveFacetsCount: Bool = true) -> SearchForFacetValuesResponse {
   let searchFacetHits = facetHits.map { AlgoliaSearch.FacetHits(value: $0.value, highlighted: $0.highlighted, count: $0.count) }

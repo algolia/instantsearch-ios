@@ -7,7 +7,7 @@ import AlgoliaCore
 import Foundation
 import AlgoliaSearch
 
-/// A generic hit wrapper compatible with Algolia Search v9 models.
+/// A generic hit wrapper for Algolia search results.
 public struct Hit<Record: Codable>: Codable {
   public let object: Record
   public let objectID: String
