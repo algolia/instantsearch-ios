@@ -7,7 +7,7 @@
 //
 
 import Foundation
-import Search
+import AlgoliaSearch
 /// Provides convenient method for building disjuncitve faceting queries and parsing disjunctive faceting
 
 extension QueryBuilder {

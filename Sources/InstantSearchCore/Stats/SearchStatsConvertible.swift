@@ -7,7 +7,7 @@
 //
 
 import Foundation
-import Search
+import AlgoliaSearch
 
 public protocol SearchStatsConvertible {
   var searchStats: SearchStats { get }

@@ -5,25 +5,25 @@
 //  Created by Vladislav Fitc on 27/09/2021.
 //
 
-import Core
+import AlgoliaCore
 import Foundation
-import Search
+import AlgoliaSearch
 
 public class AlgoliaMultiSearchService: MultiSearchService {
-  public let client: SearchClient
+  public let client: AlgoliaSearch.SearchClient
 
-  public init(client: SearchClient) {
+  public init(client: AlgoliaSearch.SearchClient) {
     self.client = client
   }
 
   public convenience init(appID: String, apiKey: String) throws {
-    self.init(client: try SearchClient(appID: appID, apiKey: apiKey))
+    self.init(client: try AlgoliaSearch.SearchClient(appID: appID, apiKey: apiKey))
   }
 
-  public func search(_ request: Request, completion: @escaping (Swift.Result<SearchResponses<SearchHit>, Error>) -> Void) -> Operation {
+  public func search(_ request: Request, completion: @escaping (Swift.Result<AlgoliaSearch.SearchResponses<SearchHit>, Error>) -> Void) -> Operation {
     let operation = TaskAsyncOperation { [client] in
       do {
-        let response: SearchResponses<SearchHit> = try await client.search(
+        let response: AlgoliaSearch.SearchResponses<SearchHit> = try await client.search(
           searchMethodParams: SearchMethodParams(queries: request.queries, strategy: request.strategy),
           requestOptions: request.requestOptions
         )
@@ -63,7 +63,7 @@ public extension AlgoliaMultiSearchService {
   }
 }
 
-extension SearchResponses: MultiResult {
+extension AlgoliaSearch.SearchResponses: MultiResult {
   public var subResults: [SearchResult<T>] {
     return results
   }

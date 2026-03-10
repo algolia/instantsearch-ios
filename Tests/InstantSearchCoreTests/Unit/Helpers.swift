@@ -1,5 +1,5 @@
 import Foundation
-import Search
+import AlgoliaSearch
 @testable import InstantSearchCore
 
 typealias JSON = [String: AnyCodable]
@@ -69,7 +69,7 @@ func makeSearchResponses(_ responses: [SearchResponse<SearchHit>]) -> SearchResp
 func makeFacetSearchResponse(facetHits: [InstantSearchCore.FacetHits],
                              processingTimeMS: Int = 1,
                              exhaustiveFacetsCount: Bool = true) -> SearchForFacetValuesResponse {
-  let searchFacetHits = facetHits.map { Search.FacetHits(value: $0.value, highlighted: $0.highlighted, count: $0.count) }
+  let searchFacetHits = facetHits.map { AlgoliaSearch.FacetHits(value: $0.value, highlighted: $0.highlighted, count: $0.count) }
   return SearchForFacetValuesResponse(facetHits: searchFacetHits,
                                       exhaustiveFacetsCount: exhaustiveFacetsCount,
                                       processingTimeMS: processingTimeMS)

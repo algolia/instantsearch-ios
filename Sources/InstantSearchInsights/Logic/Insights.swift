@@ -5,9 +5,9 @@
 //  Copyright © 2018 Algolia. All rights reserved.
 //
 
-import Core
+import AlgoliaCore
 import Foundation
-import Insights
+import AlgoliaInsights
 #if os(iOS)
   import UIKit
 #endif

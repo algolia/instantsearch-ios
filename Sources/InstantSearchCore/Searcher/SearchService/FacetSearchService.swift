@@ -5,14 +5,14 @@
 //  Created by Vladislav Fitc on 27/11/2020.
 //
 
-import Core
+import AlgoliaCore
 import Foundation
-import Search
+import AlgoliaSearch
 
 public class FacetSearchService: SearchService {
-  let client: SearchClient
+  let client: AlgoliaSearch.SearchClient
 
-  public init(client: SearchClient) {
+  public init(client: AlgoliaSearch.SearchClient) {
     self.client = client
   }
 

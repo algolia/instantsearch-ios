@@ -5,12 +5,12 @@
 //  Created by Vladislav Fitc on 27/11/2020.
 //
 
-import Core
+import AlgoliaCore
 import Foundation
-import Search
+import AlgoliaSearch
 
 public class AlgoliaSearchService: SearchService {
-  public let client: SearchClient
+  public let client: AlgoliaSearch.SearchClient
 
   /// Flag defining if disjunctive faceting is enabled
   /// - Default value: true
@@ -31,7 +31,7 @@ public class AlgoliaSearchService: SearchService {
   /// These attributes are merged with disjunctiveFacetsAttributes provided by DisjunctiveFacetingDelegate to create the necessary queries for disjunctive faceting
   public var disjunctiveFacetsAttributes: Set<String>
 
-  public init(client: SearchClient) {
+  public init(client: AlgoliaSearch.SearchClient) {
     self.client = client
     disjunctiveFacetsAttributes = []
   }
@@ -42,7 +42,7 @@ public class AlgoliaSearchService: SearchService {
       do {
         if self.isDisjunctiveFacetingEnabled {
           let (queries, multiCompletion) = self.collect(for: request, completion: completion)
-          let response: SearchResponses<SearchHit> = try await self.client.search(
+          let response: AlgoliaSearch.SearchResponses<SearchHit> = try await self.client.search(
             searchMethodParams: SearchMethodParams(queries: queries, strategy: request.strategy),
             requestOptions: request.requestOptions
           )

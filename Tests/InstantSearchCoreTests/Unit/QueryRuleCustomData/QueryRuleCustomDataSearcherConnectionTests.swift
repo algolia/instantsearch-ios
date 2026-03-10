@@ -5,9 +5,9 @@
 //  Created by Vladislav Fitc on 12/10/2020.
 //
 
-import Core
+import AlgoliaCore
 import Foundation
-import Search
+import AlgoliaSearch
 @testable import InstantSearchCore
 import XCTest
 

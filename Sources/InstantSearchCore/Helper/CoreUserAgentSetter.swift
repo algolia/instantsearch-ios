@@ -5,7 +5,7 @@
 //  Created by Vladislav Fitc on 16/06/2020.
 //
 
-import Core
+import AlgoliaCore
 import Foundation
 
 struct CoreUserAgentSetter {
@@ -13,7 +13,7 @@ struct CoreUserAgentSetter {
   static let set = Self()
 
   init() {
-    UserAgentController.append(UserAgent(title: "InstantSearch iOS", version: Version.current.description))
+    UserAgentController.append(UserAgent(title: "InstantSearch iOS", version: Version.instantSearch.description))
     UserAgentController.append(Telemetry.shared)
   }
 }

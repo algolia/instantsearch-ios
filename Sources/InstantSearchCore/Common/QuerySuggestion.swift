@@ -7,7 +7,7 @@
 //
 
 import Foundation
-import Search
+import AlgoliaSearch
 
 /// Search query suggestion item
 public struct QuerySuggestion {

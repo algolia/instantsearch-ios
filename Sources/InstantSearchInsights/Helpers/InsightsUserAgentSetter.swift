@@ -5,7 +5,7 @@
 //  Created by Vladislav Fitc on 03/02/2023.
 //
 
-import Core
+import AlgoliaCore
 import Foundation
 
 struct InsightsUserAgentSetter {

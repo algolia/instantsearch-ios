@@ -4,7 +4,7 @@
 //
 
 import Foundation
-import Insights
+import AlgoliaInsights
 
 public struct InsightsEvent: Codable, Hashable {
   public enum EventType: String, Codable {

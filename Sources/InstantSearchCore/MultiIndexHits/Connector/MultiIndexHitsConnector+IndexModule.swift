@@ -46,7 +46,7 @@ public extension MultiIndexHitsConnector {
                 infiniteScrolling: InfiniteScrolling = .on(withOffset: 10),
                 showItemsOnEmptyQuery: Bool = true,
                 filterState: FilterState? = .none) {
-      let hitsInteractor = HitsInteractor<[String: AnyCodable]>(infiniteScrolling: infiniteScrolling,
+      let hitsInteractor = HitsInteractor<[String: AlgoliaCore.AnyCodable]>(infiniteScrolling: infiniteScrolling,
                                                 showItemsOnEmptyQuery: showItemsOnEmptyQuery)
       self.init(indexName: indexName,
                 hitsInteractor: hitsInteractor,

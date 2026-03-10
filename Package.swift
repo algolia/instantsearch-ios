@@ -32,7 +32,7 @@ let package = Package(
   dependencies: [
     .package(name: "AlgoliaSearchClient",
              url: "https://github.com/algolia/algoliasearch-client-swift",
-             "9.37.4"..<"9.40.0"),
+             "9.41.0"..<"10.0.0"),
     .package(url: "https://github.com/apple/swift-log",
              from: "1.5.4"),
     .package(url: "https://github.com/apple/swift-protobuf",
@@ -45,8 +45,8 @@ let package = Package(
     .target(
       name: "InstantSearchInsights",
       dependencies: [
-        .product(name: "Core", package: "AlgoliaSearchClient"),
-        .product(name: "Insights", package: "AlgoliaSearchClient")
+        .product(name: "AlgoliaCore", package: "AlgoliaSearchClient"),
+        .product(name: "AlgoliaInsights", package: "AlgoliaSearchClient")
       ],
       exclude: ["Readme.md"],
       resources: [.copy("../PrivacyInfo.xcprivacy")]
@@ -55,15 +55,15 @@ let package = Package(
       name: "InstantSearchInsightsTests",
       dependencies: [
         "InstantSearchInsights",
-        .product(name: "Core", package: "AlgoliaSearchClient"),
-        .product(name: "Insights", package: "AlgoliaSearchClient")
+        .product(name: "AlgoliaCore", package: "AlgoliaSearchClient"),
+        .product(name: "AlgoliaInsights", package: "AlgoliaSearchClient")
       ]
     ),
     .target(
       name: "InstantSearchCore",
       dependencies: [
-        .product(name: "Core", package: "AlgoliaSearchClient"),
-        .product(name: "Search", package: "AlgoliaSearchClient"),
+        .product(name: "AlgoliaCore", package: "AlgoliaSearchClient"),
+        .product(name: "AlgoliaSearch", package: "AlgoliaSearchClient"),
         "InstantSearchInsights",
         .product(name: "InstantSearchTelemetry", package: "InstantSearchTelemetry"),
         .product(name: "Logging", package: "swift-log")
@@ -75,8 +75,8 @@ let package = Package(
       dependencies: [
         "InstantSearchCore",
         "InstantSearchInsights",
-        .product(name: "Core", package: "AlgoliaSearchClient"),
-        .product(name: "Search", package: "AlgoliaSearchClient")
+        .product(name: "AlgoliaCore", package: "AlgoliaSearchClient"),
+        .product(name: "AlgoliaSearch", package: "AlgoliaSearchClient")
       ],
       resources: [
         .copy("Misc/DisjFacetingResult1.json"),

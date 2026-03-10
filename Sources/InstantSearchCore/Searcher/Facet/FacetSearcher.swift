@@ -6,13 +6,13 @@
 //  Copyright © 2019 Algolia. All rights reserved.
 //
 
-import Core
+import AlgoliaCore
 import Foundation
-import Search
+import AlgoliaSearch
 
 /// An entity performing facet values search
 public final class FacetSearcher: IndexSearcher<FacetSearchService> {
-  public var client: SearchClient {
+  public var client: AlgoliaSearch.SearchClient {
     return service.client
   }
 
@@ -66,7 +66,7 @@ public final class FacetSearcher: IndexSearcher<FacetSearchService> {
                           facetName: String,
                           query: SearchSearchParamsObject = .init(),
                           requestOptions: RequestOptions? = nil) throws {
-    let service = FacetSearchService(client: try SearchClient(appID: appID, apiKey: apiKey))
+    let service = FacetSearchService(client: try AlgoliaSearch.SearchClient(appID: appID, apiKey: apiKey))
     let request = Request(query: "", indexName: indexName, attribute: facetName, context: query, requestOptions: requestOptions)
     self.init(service: service, initialRequest: request)
     Telemetry.shared.trace(type: .facetSearcher,
@@ -76,7 +76,7 @@ public final class FacetSearcher: IndexSearcher<FacetSearchService> {
                            ])
   }
 
-  public convenience init(client: SearchClient,
+  public convenience init(client: AlgoliaSearch.SearchClient,
                           indexName: String,
                           facetName: String,
                           query: SearchSearchParamsObject = .init(),
@@ -93,9 +93,9 @@ public final class FacetSearcher: IndexSearcher<FacetSearchService> {
 
 extension FacetSearcher: MultiSearchComponent {
   public typealias SubRequest = SearchQuery
-  public typealias SubResult = Search.SearchResult<Hit<[String: AnyCodable]>>
+  public typealias SubResult = AlgoliaSearch.SearchResult<Hit<[String: AlgoliaCore.AnyCodable]>>
 
-  public func collect() -> (requests: [SearchQuery], completion: (Swift.Result<[Search.SearchResult<Hit<[String: AnyCodable]>>], Swift.Error>) -> Void) {
+  public func collect() -> (requests: [SearchQuery], completion: (Swift.Result<[AlgoliaSearch.SearchResult<Hit<[String: AlgoliaCore.AnyCodable]>>], Swift.Error>) -> Void) {
     let params = SearchParamsEncoder.encode(request.context)
     let query = SearchForFacets(params: params,
                                 facet: request.attribute,

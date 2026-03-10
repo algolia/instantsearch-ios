@@ -179,7 +179,7 @@ private extension HitsInteractor {
   }
 }
 
-public extension HitsInteractor where Record == [String: AnyCodable] {
+public extension HitsInteractor where Record == [String: AlgoliaCore.AnyCodable] {
   func rawHitForRow(_ row: Int) -> [String: Any]? {
     guard let record = hit(atIndex: row),
           let data = try? JSONEncoder().encode(record),

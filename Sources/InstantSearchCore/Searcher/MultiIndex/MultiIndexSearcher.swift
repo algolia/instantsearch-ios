@@ -7,7 +7,7 @@
 //
 
 import Foundation
-import Search
+import AlgoliaSearch
 
 /// An entity performing search queries targeting multiple indices.
 @available(*, deprecated, message: "Use multiple HitsSearcher aggregated with MultiSearcher instead of MultiIndexSearcher")
@@ -29,7 +29,7 @@ public class MultiIndexSearcher: Searcher, SequencerDelegate, SearchResultObserv
   }
 
   /// `Client` instance containing indices in which search will be performed
-  public let client: SearchClient
+  public let client: AlgoliaSearch.SearchClient
 
   /// List of  index & query tuples
   public var indexQueryStates: [IndexQueryState] {
@@ -47,7 +47,7 @@ public class MultiIndexSearcher: Searcher, SequencerDelegate, SearchResultObserv
 
   public let onSearch: Observer<Void>
 
-  public let onResults: Observer<SearchResponses<SearchHit>>
+  public let onResults: Observer<AlgoliaSearch.SearchResponses<SearchHit>>
 
   /// Triggered when an error occured during search query execution
   /// - Parameter: a tuple of query and error
@@ -90,7 +90,7 @@ public class MultiIndexSearcher: Searcher, SequencerDelegate, SearchResultObserv
                           apiKey: String,
                           indexNames: [String],
                           requestOptions: RequestOptions? = nil) throws {
-    let client = try SearchClient(appID: appID, apiKey: apiKey)
+    let client = try AlgoliaSearch.SearchClient(appID: appID, apiKey: apiKey)
     let indexQueryStates = indexNames.map { IndexQueryState(indexName: $0, query: .init()) }
     self.init(client: client,
               indexQueryStates: indexQueryStates,
@@ -104,7 +104,7 @@ public class MultiIndexSearcher: Searcher, SequencerDelegate, SearchResultObserv
    - indexNames: List of the indices names in which search will be performed
    - requestOptions: Custom request options. Default is `nil`.
    */
-  public convenience init(client: SearchClient,
+  public convenience init(client: AlgoliaSearch.SearchClient,
                           indices: [String],
                           requestOptions: RequestOptions? = nil) {
     let indexQueryStates = indices.map { IndexQueryState(indexName: $0, query: .init()) }
@@ -121,7 +121,7 @@ public class MultiIndexSearcher: Searcher, SequencerDelegate, SearchResultObserv
    - requestOptions: Custom request options. Default is nil.
    */
 
-  public init(client: SearchClient,
+  public init(client: AlgoliaSearch.SearchClient,
               indexQueryStates: [IndexQueryState],
               requestOptions: RequestOptions? = nil) {
     self.client = client
@@ -165,7 +165,7 @@ public class MultiIndexSearcher: Searcher, SequencerDelegate, SearchResultObserv
     let operation = TaskAsyncOperation { [weak self] in
       guard let searcher = self else { return }
       do {
-        let response: SearchResponses<SearchHit> = try await searcher.client.search(
+        let response: AlgoliaSearch.SearchResponses<SearchHit> = try await searcher.client.search(
           searchMethodParams: searchParams,
           requestOptions: requestOpts
         )

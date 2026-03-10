@@ -6,7 +6,7 @@
 //
 
 import Foundation
-import Search
+import AlgoliaSearch
 
 public extension DynamicFacetListInteractor {
   /// Connection between a dynamic facets business logic and a searcher

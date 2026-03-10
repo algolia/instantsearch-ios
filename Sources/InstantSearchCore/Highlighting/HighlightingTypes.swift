@@ -4,7 +4,7 @@
 //
 
 import Foundation
-import Search
+import AlgoliaSearch
 
 /// Represents a string with highlight tags and computed highlight ranges.
 public struct TaggedString: Hashable {

@@ -6,7 +6,7 @@
 //
 
 import Foundation
-import Search
+import AlgoliaSearch
 
 #if canImport(Recommend)
 import Recommend

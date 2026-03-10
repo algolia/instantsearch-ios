@@ -4,7 +4,7 @@
 //
 
 import Foundation
-import Core
+import AlgoliaCore
 
 /// Facet hit model returned by facet search requests.
 public struct FacetHits: Codable, Hashable {
