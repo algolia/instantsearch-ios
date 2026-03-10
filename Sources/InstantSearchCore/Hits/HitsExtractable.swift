@@ -7,7 +7,7 @@
 //
 
 import Foundation
-import Search
+import AlgoliaSearch
 
 public protocol HitsExtractable {
   func extractHits<T: Decodable>(jsonDecoder: JSONDecoder) throws -> [T]

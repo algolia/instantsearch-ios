@@ -3,9 +3,9 @@
 //  InstantSearchCore
 //
 
-import Core
+import AlgoliaCore
 import Foundation
-import Search
+import AlgoliaSearch
 
 /// A generic hit wrapper for Algolia search results.
 public struct Hit<Record: Codable>: Codable {
@@ -31,7 +31,7 @@ public struct Hit<Record: Codable>: Codable {
   }
 
   public init(from decoder: Decoder) throws {
-    let searchHit = try Search.Hit(from: decoder)
+    let searchHit = try AlgoliaSearch.Hit(from: decoder)
     objectID = searchHit.objectID
     highlightResult = searchHit.highlightResult
     snippetResult = searchHit.snippetResult
@@ -39,18 +39,18 @@ public struct Hit<Record: Codable>: Codable {
     distinctSeqID = searchHit.distinctSeqID
 
     var payload = searchHit.additionalProperties
-    payload["objectID"] = AnyCodable(searchHit.objectID)
+    payload["objectID"] = AlgoliaCore.AnyCodable(searchHit.objectID)
     if let highlightResult {
-      payload["_highlightResult"] = AnyCodable(highlightResult)
+      payload["_highlightResult"] = AlgoliaCore.AnyCodable(highlightResult)
     }
     if let snippetResult {
-      payload["_snippetResult"] = AnyCodable(snippetResult)
+      payload["_snippetResult"] = AlgoliaCore.AnyCodable(snippetResult)
     }
     if let rankingInfo {
-      payload["_rankingInfo"] = AnyCodable(rankingInfo)
+      payload["_rankingInfo"] = AlgoliaCore.AnyCodable(rankingInfo)
     }
     if let distinctSeqID {
-      payload["_distinctSeqID"] = AnyCodable(distinctSeqID)
+      payload["_distinctSeqID"] = AlgoliaCore.AnyCodable(distinctSeqID)
     }
 
     let data = try JSONEncoder().encode(payload)
@@ -58,13 +58,13 @@ public struct Hit<Record: Codable>: Codable {
   }
 
   public func encode(to encoder: Encoder) throws {
-    var searchHit = Search.Hit(objectID: objectID,
+    var searchHit = AlgoliaSearch.Hit(objectID: objectID,
                                highlightResult: highlightResult,
                                snippetResult: snippetResult,
                                rankingInfo: rankingInfo,
                                distinctSeqID: distinctSeqID)
     if var json = Hit.encodeToJSON(object) {
-      // Remove keys that are already handled by Search.Hit to avoid duplicates
+      // Remove keys that are already handled by AlgoliaSearch.Hit to avoid duplicates
       json.removeValue(forKey: "objectID")
       json.removeValue(forKey: "_highlightResult")
       json.removeValue(forKey: "_snippetResult")
@@ -84,15 +84,15 @@ private extension Hit {
     if let indexable = record as? Indexable {
       return indexable.objectID
     }
-    if let json = record as? [String: AnyCodable], let objectID = json["objectID"]?.value as? String {
+    if let json = record as? [String: AlgoliaCore.AnyCodable], let objectID = json["objectID"]?.value as? String {
       return objectID
     }
     return ""
   }
 
-  static func encodeToJSON(_ record: Record) -> [String: AnyCodable]? {
+  static func encodeToJSON(_ record: Record) -> [String: AlgoliaCore.AnyCodable]? {
     let encoder = JSONEncoder()
     guard let data = try? encoder.encode(record) else { return nil }
-    return try? JSONDecoder().decode([String: AnyCodable].self, from: data)
+    return try? JSONDecoder().decode([String: AlgoliaCore.AnyCodable].self, from: data)
   }
 }

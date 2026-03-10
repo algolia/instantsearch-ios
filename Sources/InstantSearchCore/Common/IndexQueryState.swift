@@ -6,8 +6,8 @@
 //  Copyright © 2019 Algolia. All rights reserved.
 //
 
-@_exported import Core
-@_exported import Search
+@_exported import AlgoliaCore
+@_exported import AlgoliaSearch
 import Foundation
 
 /// Helper protocol enabling `set`-style value updates for structs.
@@ -22,12 +22,12 @@ public extension Builder {
 }
 
 extension SearchSearchParamsObject: Builder {}
-extension Search.SearchResponse: Builder {}
-extension Search.SearchResponses: Builder {}
-extension Search.IndexSettings: Builder {}
-extension Search.Rule: Builder {}
-extension Search.SearchConsequence: Builder {}
-extension Search.SearchCondition: Builder {}
+extension AlgoliaSearch.SearchResponse: Builder {}
+extension AlgoliaSearch.SearchResponses: Builder {}
+extension AlgoliaSearch.IndexSettings: Builder {}
+extension AlgoliaSearch.Rule: Builder {}
+extension AlgoliaSearch.SearchConsequence: Builder {}
+extension AlgoliaSearch.SearchCondition: Builder {}
 /// Structure containing all necessary components to perform a search
 
 public struct IndexQueryState {

@@ -7,7 +7,7 @@
 //
 
 import Foundation
-import Search
+import AlgoliaSearch
 
 public extension Hit {
   /// Returns a highlighted string for a string key if highlightResult has a flat dictionary structure

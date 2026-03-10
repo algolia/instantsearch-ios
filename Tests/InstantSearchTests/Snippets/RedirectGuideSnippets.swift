@@ -5,10 +5,10 @@
 //  Created by Vladislav Fitc on 13/10/2020.
 //
 
-import Core
+import AlgoliaCore
 import Foundation
 import InstantSearch
-import Search
+import AlgoliaSearch
 
 class RedirectGuideSnippets {
   let client = try! SearchClient(appID: "testAppID", apiKey: "testApiKey")
@@ -60,7 +60,7 @@ class RedirectGuideSnippets {
     Task {
       do {
         let response = try await client.setSettings(indexName: indexName,
-                                                    indexSettings: Search.IndexSettings().set(\.attributesForFaceting, to: ["query_terms"]))
+                                                    indexSettings: AlgoliaSearch.IndexSettings().set(\.attributesForFaceting, to: ["query_terms"]))
         print("Response: \(response)")
       } catch {
         print("Error: \(error)")

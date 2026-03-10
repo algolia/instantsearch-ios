@@ -4,7 +4,7 @@
 //
 
 import Foundation
-import Search
+import AlgoliaSearch
 
 public enum MultipleQueriesStrategy: String, Codable, CaseIterable {
   case none

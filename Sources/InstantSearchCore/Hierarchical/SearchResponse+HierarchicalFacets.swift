@@ -4,7 +4,7 @@
 //
 
 import Foundation
-import Search
+import AlgoliaSearch
 
 extension SearchResponse {
   /// Maps facet counts into hierarchical facet hits grouped by attribute.

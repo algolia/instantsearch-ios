@@ -4,9 +4,9 @@
 //
 
 import Foundation
-import Search
+import AlgoliaCore
 
-public typealias FacetHits = Search.FacetHits
+public typealias FacetHits = AlgoliaSearch.FacetHits
 
 public extension FacetHits {
   init(value: String, count: Int) {

@@ -6,12 +6,12 @@
 //  Copyright © 2019 Algolia. All rights reserved.
 //
 
-import Core
+import AlgoliaCore
 #if !InstantSearchCocoaPods
 import InstantSearchInsights
 #endif
 import Foundation
-import Search
+import AlgoliaSearch
 
 @available(*, deprecated, renamed: "HitsSearcher")
 public typealias SingleIndexSearcher = HitsSearcher
@@ -166,7 +166,7 @@ public final class HitsSearcher: IndexSearcher<AlgoliaSearchService> {
                           query: SearchSearchParamsObject = .init(),
                           requestOptions: RequestOptions? = nil,
                           isAutoSendingHitsViewEvents: Bool = false) throws {
-    let client = try SearchClient(appID: appID, apiKey: apiKey)
+    let client = try AlgoliaSearch.SearchClient(appID: appID, apiKey: apiKey)
     self.init(client: client, indexName: indexName, query: query, requestOptions: requestOptions, isAutoSendingHitsViewEvents: isAutoSendingHitsViewEvents)
     insightsCredentials = (appID: appID, apiKey: apiKey)
     Telemetry.shared.trace(type: .hitsSearcher,
@@ -183,7 +183,7 @@ public final class HitsSearcher: IndexSearcher<AlgoliaSearchService> {
        - isAutoSendingHitsViewEvents: flag defining whether the automatic hits view Insights events sending is enabled
        - requestOptions: Custom request options. Default is nil.
    */
-  public init(client: SearchClient,
+  public init(client: AlgoliaSearch.SearchClient,
               indexName: String,
               query: SearchSearchParamsObject = .init(),
               requestOptions: RequestOptions? = nil,
@@ -193,6 +193,7 @@ public final class HitsSearcher: IndexSearcher<AlgoliaSearchService> {
     super.init(service: service, initialRequest: request)
     Telemetry.shared.trace(type: .hitsSearcher,
                            parameters: .client)
+    insightsCredentials = (appID: client.configuration.appID, apiKey: client.configuration.apiKey)
     onResults.subscribe(with: self) { searcher, response in
         if isAutoSendingHitsViewEvents {
             searcher.eventTracker.trackView(for: response.hits, eventName: "Hits Viewed")
@@ -206,7 +207,7 @@ public final class HitsSearcher: IndexSearcher<AlgoliaSearchService> {
       - isAutoSendingHitsViewEvents: flag defining whether the automatic hits view Insights events sending is enabled
       - requestOptions: Custom request options. Default is nil.
    */
-  public convenience init(client: SearchClient,
+  public convenience init(client: AlgoliaSearch.SearchClient,
                           indexQueryState: IndexQueryState,
                           requestOptions: RequestOptions? = nil,
                           isAutoSendingHitsViewEvents: Bool = false) {
@@ -225,9 +226,9 @@ public final class HitsSearcher: IndexSearcher<AlgoliaSearchService> {
 
 extension HitsSearcher: MultiSearchComponent {
   public typealias SubRequest = SearchQuery
-  public typealias SubResult = Search.SearchResult<Hit<[String: AnyCodable]>>
+  public typealias SubResult = AlgoliaSearch.SearchResult<Hit<[String: AlgoliaCore.AnyCodable]>>
 
-  public func collect() -> (requests: [SearchQuery], completion: (Swift.Result<[Search.SearchResult<SearchHit>], Swift.Error>) -> Void) {
+  public func collect() -> (requests: [SearchQuery], completion: (Swift.Result<[AlgoliaSearch.SearchResult<SearchHit>], Swift.Error>) -> Void) {
     return service.collect(for: request) { [weak self] result in
       guard let searcher = self else { return }
       switch result {

@@ -7,7 +7,7 @@
 //
 
 import Foundation
-import Search
+import AlgoliaSearch
 
 @available(*, deprecated, renamed: "HitsSearcherConnection")
 public typealias BoundableSingleIndexSearcherConnection = BoundableHitsSearcherConnection

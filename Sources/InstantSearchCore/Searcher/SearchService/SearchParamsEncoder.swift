@@ -4,7 +4,7 @@
 //
 
 import Foundation
-import Search
+import AlgoliaSearch
 
 struct SearchParamsEncoder {
   static func encode(_ params: SearchSearchParamsObject) -> String? {

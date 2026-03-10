@@ -6,7 +6,7 @@
 //
 
 import Foundation
-import Search
+import AlgoliaSearch
 
 /// Component that displays automatically ordered facets, their ordered values, and lets the user refine the search results by filtering on specific values.
 

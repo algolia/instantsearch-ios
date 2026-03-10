@@ -5,9 +5,9 @@
 //  Created by Vladislav Fitc on 20/10/2020.
 //
 
-import Core
+import AlgoliaCore
 import Foundation
-import Insights
+import AlgoliaInsights
 
 extension InsightsClient: EventsService {
   public func sendEvents(_ events: [InsightsEvent], completion: @escaping (Result<Void, Error>) -> Void) {

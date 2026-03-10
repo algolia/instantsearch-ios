@@ -5,7 +5,7 @@
 //  Created by Vladislav Fitc on 05/06/2020.
 //
 
-import Core
+import AlgoliaCore
 import Foundation
 
 struct TestCredentials: Credentials {

@@ -7,7 +7,7 @@
 //
 
 import Foundation
-import Search
+import AlgoliaSearch
 @testable import InstantSearchCore
 import XCTest
 /// Abstract base class for online test cases.

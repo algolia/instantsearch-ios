@@ -7,7 +7,7 @@
 // swiftlint:disable generic_type_name
 
 import Foundation
-import Search
+import AlgoliaSearch
 
 public protocol FacetStatsProvider {
   var facetsStats: [String: SearchFacetStats]? { get }

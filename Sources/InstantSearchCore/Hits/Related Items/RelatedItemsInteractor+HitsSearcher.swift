@@ -7,7 +7,7 @@
 //
 
 import Foundation
-import Search
+import AlgoliaSearch
 
 extension HitsInteractor {
   @discardableResult public func connectSearcher<T>(_ searcher: HitsSearcher, withRelatedItemsTo hit: ObjectWrapper<T>, with matchingPatterns: [MatchingPattern<T>]) -> HitsSearcherConnection {

@@ -5,9 +5,9 @@
 //  Created by Vladislav Fitc on 29/09/2021.
 //
 
-import Core
+import AlgoliaCore
 import Foundation
-import Search
+import AlgoliaSearch
 
 /// Searcher performing search for hits or facets in multiple indices simultaneously
 public class MultiSearcher: AbstractMultiSearcher<AlgoliaMultiSearchService> {
@@ -16,7 +16,7 @@ public class MultiSearcher: AbstractMultiSearcher<AlgoliaMultiSearchService> {
        - client: Algolia search client
    */
   @available(*, deprecated, message: "Use init(client:requestOptions:) instead")
-  public convenience init(client: SearchClient) {
+  public convenience init(client: AlgoliaSearch.SearchClient) {
       self.init(client: client, requestOptions: nil)
   }
 
@@ -25,7 +25,7 @@ public class MultiSearcher: AbstractMultiSearcher<AlgoliaMultiSearchService> {
        - client: Algolia search client
        - requestOptions: Custom request options. Default is `nil`.
    */
-  public convenience init(client: SearchClient, requestOptions: RequestOptions? = nil) {
+  public convenience init(client: AlgoliaSearch.SearchClient, requestOptions: RequestOptions? = nil) {
     let service = AlgoliaMultiSearchService(client: client)
     let initialRequest = Request(queries: [],
                                  strategy: .none,
@@ -55,7 +55,7 @@ public class MultiSearcher: AbstractMultiSearcher<AlgoliaMultiSearchService> {
   public convenience init(appID: String,
                           apiKey: String,
                           requestOptions: RequestOptions? = nil) throws {
-    let client = try SearchClient(appID: appID, apiKey: apiKey)
+    let client = try AlgoliaSearch.SearchClient(appID: appID, apiKey: apiKey)
     self.init(client: client, requestOptions: requestOptions)
   }
 

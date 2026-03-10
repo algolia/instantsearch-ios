@@ -4,7 +4,7 @@
 //
 
 import Foundation
-import Search
+import AlgoliaSearch
 
 extension SearchQuery {
   static func from(_ query: IndexedQuery) -> SearchQuery {

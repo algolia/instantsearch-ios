@@ -5,7 +5,7 @@
 //  Created by Vladislav Fitc on 06/10/2021.
 //
 
-import Core
+import AlgoliaCore
 import Foundation
 @testable import InstantSearchCore
 import InstantSearchInsights
