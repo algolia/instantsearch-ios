@@ -1,5 +1,17 @@
 # ChangeLog
 
+## [9.0.0](https://github.com/algolia/instantsearch-ios/compare/7.27.1...9.0.0) (2026-03-10)
+
+### Misc
+
+- (feat): Migration to new Algolia 9 client (#350) ([5bda453f](https://github.com/algolia/instantsearch-ios/commit/5bda453f))
+
+### Refactor
+
+- **core**: remainder v9 migration cleanup (#352) ([33f62bc2](https://github.com/algolia/instantsearch-ios/commit/33f62bc2))
+
+
+
 ## [8.0.0](https://github.com/algolia/instantsearch-ios/compare/7.27.0...8.0.0) (2026-03-03)
 
 ### Feat
