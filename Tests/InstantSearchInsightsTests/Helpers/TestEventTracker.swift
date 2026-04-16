@@ -5,6 +5,7 @@
 //  Created by Vladislav Fitc on 15/10/2020.
 //
 
+import AlgoliaInsights
 import Foundation
 @testable import InstantSearchInsights
 
@@ -17,6 +18,10 @@ class TestEventTracker: EventTrackable {
   var didConvertObjects: ((String, String, String?, Date?, [String]) -> Void)?
   var didConvertObjectsAfterSearch: ((String, String, String?, Date?, [String], String) -> Void)?
   var didConvertFilters: ((String, String, String?, Date?, [String]) -> Void)?
+  var didPurchaseObjects: ((String, String, String?, Date?, [String], [ObjectData]?, String?, InsightsValue?) -> Void)?
+  var didPurchaseObjectsAfterSearch: ((String, String, String?, Date?, [String], [ObjectDataAfterSearch], String, String?, InsightsValue?) -> Void)?
+  var didAddToCartObjects: ((String, String, String?, Date?, [String], [ObjectData]?, String?, InsightsValue?) -> Void)?
+  var didAddToCartObjectsAfterSearch: ((String, String, String?, Date?, [String], [ObjectDataAfterSearch]?, String, String?, InsightsValue?) -> Void)?
 
   func view(eventName: String, indexName: String, userToken: String?, timestamp: Date?, objectIDs: [String]) {
     didViewObjects?(eventName, indexName, userToken, timestamp, objectIDs)
@@ -48,5 +53,21 @@ class TestEventTracker: EventTrackable {
 
   func conversion(eventName: String, indexName: String, userToken: String?, timestamp: Date?, filters: [String]) {
     didConvertFilters?(eventName, indexName, userToken, timestamp, filters)
+  }
+
+  func purchase(eventName: String, indexName: String, userToken: String?, timestamp: Date?, objectIDs: [String], objectData: [ObjectData]?, currency: String?, value: InsightsValue?) {
+    didPurchaseObjects?(eventName, indexName, userToken, timestamp, objectIDs, objectData, currency, value)
+  }
+
+  func purchase(eventName: String, indexName: String, userToken: String?, timestamp: Date?, objectIDs: [String], objectDataAfterSearch: [ObjectDataAfterSearch], queryID: String, currency: String?, value: InsightsValue?) {
+    didPurchaseObjectsAfterSearch?(eventName, indexName, userToken, timestamp, objectIDs, objectDataAfterSearch, queryID, currency, value)
+  }
+
+  func addToCart(eventName: String, indexName: String, userToken: String?, timestamp: Date?, objectIDs: [String], objectData: [ObjectData]?, currency: String?, value: InsightsValue?) {
+    didAddToCartObjects?(eventName, indexName, userToken, timestamp, objectIDs, objectData, currency, value)
+  }
+
+  func addToCart(eventName: String, indexName: String, userToken: String?, timestamp: Date?, objectIDs: [String], objectDataAfterSearch: [ObjectDataAfterSearch]?, queryID: String, currency: String?, value: InsightsValue?) {
+    didAddToCartObjectsAfterSearch?(eventName, indexName, userToken, timestamp, objectIDs, objectDataAfterSearch, queryID, currency, value)
   }
 }

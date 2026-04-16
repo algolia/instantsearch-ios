@@ -5,6 +5,7 @@
 //  Copyright © 2018 Algolia. All rights reserved.
 //
 
+import AlgoliaInsights
 @testable import InstantSearchInsights
 import XCTest
 
@@ -417,6 +418,156 @@ class InsightsTests: XCTestCase {
                                 indexName: TestEvent.indexName,
                                 objectIDsWithPositions: TestEvent.objectIDsWithPositions,
                                 queryID: TestEvent.queryID)
+
+    waitForExpectations(timeout: 5, handler: nil)
+  }
+
+  func testPurchaseWithObjects() {
+    let exp = expectation(description: "callback expectation")
+    exp.expectedFulfillmentCount = 2
+
+    testEventTracker.didPurchaseObjects = { eventName, indexName, userToken, _, objectIDs, objectData, currency, _ in
+      exp.fulfill()
+      XCTAssertEqual(TestEvent.eventName, eventName)
+      XCTAssertEqual(TestEvent.userToken, userToken)
+      XCTAssertEqual(TestEvent.indexName, indexName)
+      XCTAssertEqual(TestEvent.currency, currency)
+      if objectIDs.count > 1 {
+        XCTAssertEqual(TestEvent.objectIDs, objectIDs)
+        XCTAssertEqual(objectData?.count, TestEvent.objectDataItems.count)
+      } else {
+        XCTAssertEqual(TestEvent.objectIDs.first, objectIDs.first)
+        XCTAssertEqual(objectData?.count, 1)
+      }
+    }
+
+    testInsights.purchased(eventName: TestEvent.eventName,
+                           indexName: TestEvent.indexName,
+                           objectIDs: TestEvent.objectIDs,
+                           objectData: TestEvent.objectDataItems,
+                           currency: TestEvent.currency,
+                           userToken: TestEvent.userToken)
+
+    testInsights.purchased(eventName: TestEvent.eventName,
+                           indexName: TestEvent.indexName,
+                           objectID: TestEvent.objectIDs.first!,
+                           objectData: TestEvent.objectDataItems.first!,
+                           currency: TestEvent.currency,
+                           userToken: TestEvent.userToken)
+
+    waitForExpectations(timeout: 5, handler: nil)
+  }
+
+  func testPurchaseAfterSearch() {
+    let exp = expectation(description: "callback expectation")
+    exp.expectedFulfillmentCount = 2
+
+    testEventTracker.didPurchaseObjectsAfterSearch = { eventName, indexName, userToken, _, objectIDs, objectData, queryID, currency, _ in
+      exp.fulfill()
+      XCTAssertEqual(TestEvent.eventName, eventName)
+      XCTAssertEqual(TestEvent.userToken, userToken)
+      XCTAssertEqual(TestEvent.indexName, indexName)
+      XCTAssertEqual(TestEvent.queryID, queryID)
+      XCTAssertEqual(TestEvent.currency, currency)
+      if objectIDs.count > 1 {
+        XCTAssertEqual(TestEvent.objectIDs, objectIDs)
+        XCTAssertEqual(objectData.count, TestEvent.objectDataAfterSearchItems.count)
+      } else {
+        XCTAssertEqual(TestEvent.objectIDs.first, objectIDs.first)
+        XCTAssertEqual(objectData.count, 1)
+      }
+    }
+
+    testInsights.purchasedAfterSearch(eventName: TestEvent.eventName,
+                                      indexName: TestEvent.indexName,
+                                      objectIDs: TestEvent.objectIDs,
+                                      objectData: TestEvent.objectDataAfterSearchItems,
+                                      queryID: TestEvent.queryID,
+                                      currency: TestEvent.currency,
+                                      userToken: TestEvent.userToken)
+
+    testInsights.purchasedAfterSearch(eventName: TestEvent.eventName,
+                                      indexName: TestEvent.indexName,
+                                      objectID: TestEvent.objectIDs.first!,
+                                      objectData: TestEvent.objectDataAfterSearchItems.first!,
+                                      queryID: TestEvent.queryID,
+                                      currency: TestEvent.currency,
+                                      userToken: TestEvent.userToken)
+
+    waitForExpectations(timeout: 5, handler: nil)
+  }
+
+  func testAddToCartWithObjects() {
+    let exp = expectation(description: "callback expectation")
+    exp.expectedFulfillmentCount = 2
+
+    testEventTracker.didAddToCartObjects = { eventName, indexName, userToken, _, objectIDs, objectData, currency, _ in
+      exp.fulfill()
+      XCTAssertEqual(TestEvent.eventName, eventName)
+      XCTAssertEqual(TestEvent.userToken, userToken)
+      XCTAssertEqual(TestEvent.indexName, indexName)
+      XCTAssertEqual(TestEvent.currency, currency)
+      if objectIDs.count > 1 {
+        XCTAssertEqual(TestEvent.objectIDs, objectIDs)
+        XCTAssertEqual(objectData?.count, TestEvent.objectDataItems.count)
+      } else {
+        XCTAssertEqual(TestEvent.objectIDs.first, objectIDs.first)
+        XCTAssertEqual(objectData?.count, 1)
+      }
+    }
+
+    testInsights.addedToCart(eventName: TestEvent.eventName,
+                            indexName: TestEvent.indexName,
+                            objectIDs: TestEvent.objectIDs,
+                            objectData: TestEvent.objectDataItems,
+                            currency: TestEvent.currency,
+                            userToken: TestEvent.userToken)
+
+    testInsights.addedToCart(eventName: TestEvent.eventName,
+                            indexName: TestEvent.indexName,
+                            objectID: TestEvent.objectIDs.first!,
+                            objectData: TestEvent.objectDataItems.first!,
+                            currency: TestEvent.currency,
+                            userToken: TestEvent.userToken)
+
+    waitForExpectations(timeout: 5, handler: nil)
+  }
+
+  func testAddToCartAfterSearch() {
+    let exp = expectation(description: "callback expectation")
+    exp.expectedFulfillmentCount = 2
+
+    testEventTracker.didAddToCartObjectsAfterSearch = { eventName, indexName, userToken, _, objectIDs, objectData, queryID, currency, _ in
+      exp.fulfill()
+      XCTAssertEqual(TestEvent.eventName, eventName)
+      XCTAssertEqual(TestEvent.userToken, userToken)
+      XCTAssertEqual(TestEvent.indexName, indexName)
+      XCTAssertEqual(TestEvent.queryID, queryID)
+      XCTAssertEqual(TestEvent.currency, currency)
+      if objectIDs.count > 1 {
+        XCTAssertEqual(TestEvent.objectIDs, objectIDs)
+        XCTAssertEqual(objectData?.count, TestEvent.objectDataAfterSearchItems.count)
+      } else {
+        XCTAssertEqual(TestEvent.objectIDs.first, objectIDs.first)
+        XCTAssertEqual(objectData?.count, 1)
+      }
+    }
+
+    testInsights.addedToCartAfterSearch(eventName: TestEvent.eventName,
+                                        indexName: TestEvent.indexName,
+                                        objectIDs: TestEvent.objectIDs,
+                                        objectData: TestEvent.objectDataAfterSearchItems,
+                                        queryID: TestEvent.queryID,
+                                        currency: TestEvent.currency,
+                                        userToken: TestEvent.userToken)
+
+    testInsights.addedToCartAfterSearch(eventName: TestEvent.eventName,
+                                        indexName: TestEvent.indexName,
+                                        objectID: TestEvent.objectIDs.first!,
+                                        objectData: TestEvent.objectDataAfterSearchItems.first!,
+                                        queryID: TestEvent.queryID,
+                                        currency: TestEvent.currency,
+                                        userToken: TestEvent.userToken)
 
     waitForExpectations(timeout: 5, handler: nil)
   }

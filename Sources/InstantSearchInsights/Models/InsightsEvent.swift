@@ -16,6 +16,10 @@ public struct InsightsEvent: Codable, Hashable {
     case viewedFilters
     case clickedFilters
     case convertedFilters
+    case purchasedObjectIDsAfterSearch
+    case purchasedObjectIDs
+    case addedToCartObjectIDsAfterSearch
+    case addedToCartObjectIDs
   }
 
   public let eventType: EventType
@@ -27,6 +31,10 @@ public struct InsightsEvent: Codable, Hashable {
   public let positions: [Int]?
   public let queryID: String?
   public let filters: [FilterFacet]?
+  public let currency: String?
+  public let objectData: [ObjectData]?
+  public let objectDataAfterSearch: [ObjectDataAfterSearch]?
+  public let value: InsightsValue?
 
   public init(eventType: EventType,
               eventName: String,
@@ -36,7 +44,11 @@ public struct InsightsEvent: Codable, Hashable {
               objectIDs: [String]? = nil,
               positions: [Int]? = nil,
               queryID: String? = nil,
-              filters: [FilterFacet]? = nil) {
+              filters: [FilterFacet]? = nil,
+              currency: String? = nil,
+              objectData: [ObjectData]? = nil,
+              objectDataAfterSearch: [ObjectDataAfterSearch]? = nil,
+              value: InsightsValue? = nil) {
     self.eventType = eventType
     self.eventName = eventName
     self.indexName = indexName
@@ -46,6 +58,10 @@ public struct InsightsEvent: Codable, Hashable {
     self.positions = positions
     self.queryID = queryID
     self.filters = filters
+    self.currency = currency
+    self.objectData = objectData
+    self.objectDataAfterSearch = objectDataAfterSearch
+    self.value = value
   }
 }
 
@@ -158,6 +174,84 @@ public extension InsightsEvent {
                  timestamp: timestamp,
                  filters: filters)
   }
+
+  static func purchasedObjectIDsAfterSearch(eventName: String,
+                                            indexName: String,
+                                            userToken: String,
+                                            timestamp: Int64?,
+                                            queryID: String,
+                                            objectIDs: [String],
+                                            objectDataAfterSearch: [ObjectDataAfterSearch],
+                                            currency: String? = nil,
+                                            value: InsightsValue? = nil) -> InsightsEvent {
+    return .init(eventType: .purchasedObjectIDsAfterSearch,
+                 eventName: eventName,
+                 indexName: indexName,
+                 userToken: userToken,
+                 timestamp: timestamp,
+                 objectIDs: objectIDs,
+                 queryID: queryID,
+                 objectDataAfterSearch: objectDataAfterSearch,
+                 value: value)
+  }
+
+  static func purchasedObjectIDs(eventName: String,
+                                 indexName: String,
+                                 userToken: String,
+                                 timestamp: Int64?,
+                                 objectIDs: [String],
+                                 objectData: [ObjectData]? = nil,
+                                 currency: String? = nil,
+                                 value: InsightsValue? = nil) -> InsightsEvent {
+    return .init(eventType: .purchasedObjectIDs,
+                 eventName: eventName,
+                 indexName: indexName,
+                 userToken: userToken,
+                 timestamp: timestamp,
+                 objectIDs: objectIDs,
+                 currency: currency,
+                 objectData: objectData,
+                 value: value)
+  }
+
+  static func addedToCartObjectIDsAfterSearch(eventName: String,
+                                              indexName: String,
+                                              userToken: String,
+                                              timestamp: Int64?,
+                                              queryID: String,
+                                              objectIDs: [String],
+                                              objectDataAfterSearch: [ObjectDataAfterSearch]? = nil,
+                                              currency: String? = nil,
+                                              value: InsightsValue? = nil) -> InsightsEvent {
+    return .init(eventType: .addedToCartObjectIDsAfterSearch,
+                 eventName: eventName,
+                 indexName: indexName,
+                 userToken: userToken,
+                 timestamp: timestamp,
+                 objectIDs: objectIDs,
+                 queryID: queryID,
+                 objectDataAfterSearch: objectDataAfterSearch,
+                 value: value)
+  }
+
+  static func addedToCartObjectIDs(eventName: String,
+                                   indexName: String,
+                                   userToken: String,
+                                   timestamp: Int64?,
+                                   objectIDs: [String],
+                                   objectData: [ObjectData]? = nil,
+                                   currency: String? = nil,
+                                   value: InsightsValue? = nil) -> InsightsEvent {
+    return .init(eventType: .addedToCartObjectIDs,
+                 eventName: eventName,
+                 indexName: indexName,
+                 userToken: userToken,
+                 timestamp: timestamp,
+                 objectIDs: objectIDs,
+                 currency: currency,
+                 objectData: objectData,
+                 value: value)
+  }
 }
 
 extension InsightsEvent {
@@ -208,6 +302,30 @@ extension InsightsEvent {
       return .convertedFilters(ConvertedFilters(
         eventName: eventName, eventType: .conversion, index: indexName,
         filters: filterStrings, userToken: userToken, timestamp: timestamp))
+    case .purchasedObjectIDsAfterSearch:
+      guard let objectIDs, let objectDataAfterSearch else { return nil }
+      return .purchasedObjectIDsAfterSearch(PurchasedObjectIDsAfterSearch(
+        eventName: eventName, eventType: .conversion, eventSubtype: .purchase, index: indexName,
+        objectIDs: objectIDs, userToken: userToken, currency: currency,
+        objectData: objectDataAfterSearch, timestamp: timestamp, value: value))
+    case .purchasedObjectIDs:
+      guard let objectIDs else { return nil }
+      return .purchasedObjectIDs(PurchasedObjectIDs(
+        eventName: eventName, eventType: .conversion, eventSubtype: .purchase, index: indexName,
+        objectIDs: objectIDs, userToken: userToken, currency: currency,
+        objectData: objectData, timestamp: timestamp, value: value))
+    case .addedToCartObjectIDsAfterSearch:
+      guard let objectIDs, let queryID else { return nil }
+      return .addedToCartObjectIDsAfterSearch(AddedToCartObjectIDsAfterSearch(
+        eventName: eventName, eventType: .conversion, eventSubtype: .addToCart, index: indexName,
+        queryID: queryID, objectIDs: objectIDs, userToken: userToken, currency: currency,
+        objectData: objectDataAfterSearch, timestamp: timestamp, value: value))
+    case .addedToCartObjectIDs:
+      guard let objectIDs else { return nil }
+      return .addedToCartObjectIDs(AddedToCartObjectIDs(
+        eventName: eventName, eventType: .conversion, eventSubtype: .addToCart, index: indexName,
+        objectIDs: objectIDs, userToken: userToken, currency: currency,
+        objectData: objectData, timestamp: timestamp, value: value))
     }
   }
 }

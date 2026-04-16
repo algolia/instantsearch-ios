@@ -6,6 +6,7 @@
 //  Copyright © 2018 Algolia. All rights reserved.
 //
 
+import AlgoliaInsights
 import Foundation
 
 /// Provides convenient functions for tracking events which can be used for search personalization.
@@ -153,6 +154,86 @@ class EventTracker: EventTrackable {
                                                             timestamp: effectiveTimestamp(for: timestamp)?.millisecondsSince1970,
                                                             queryID: queryID,
                                                             objectIDs: objectIDs)
+    eventProcessor.process(event)
+  }
+
+  func purchase(eventName: String,
+                indexName: String,
+                userToken: String? = .none,
+                timestamp: Date?,
+                objectIDs: [String],
+                objectData: [ObjectData]?,
+                currency: String?,
+                value: InsightsValue?) {
+    let event = InsightsEvent.purchasedObjectIDs(eventName: eventName,
+                                                 indexName: indexName,
+                                                 userToken: effectiveUserToken(withEventUserToken: userToken),
+                                                 timestamp: effectiveTimestamp(for: timestamp)?.millisecondsSince1970,
+                                                 objectIDs: objectIDs,
+                                                 objectData: objectData,
+                                                 currency: currency,
+                                                 value: value)
+    eventProcessor.process(event)
+  }
+
+  func purchase(eventName: String,
+                indexName: String,
+                userToken: String? = .none,
+                timestamp: Date?,
+                objectIDs: [String],
+                objectDataAfterSearch: [ObjectDataAfterSearch],
+                queryID: String,
+                currency: String?,
+                value: InsightsValue?) {
+    let event = InsightsEvent.purchasedObjectIDsAfterSearch(eventName: eventName,
+                                                            indexName: indexName,
+                                                            userToken: effectiveUserToken(withEventUserToken: userToken),
+                                                            timestamp: effectiveTimestamp(for: timestamp)?.millisecondsSince1970,
+                                                            queryID: queryID,
+                                                            objectIDs: objectIDs,
+                                                            objectDataAfterSearch: objectDataAfterSearch,
+                                                            currency: currency,
+                                                            value: value)
+    eventProcessor.process(event)
+  }
+
+  func addToCart(eventName: String,
+                 indexName: String,
+                 userToken: String? = .none,
+                 timestamp: Date?,
+                 objectIDs: [String],
+                 objectData: [ObjectData]?,
+                 currency: String?,
+                 value: InsightsValue?) {
+    let event = InsightsEvent.addedToCartObjectIDs(eventName: eventName,
+                                                   indexName: indexName,
+                                                   userToken: effectiveUserToken(withEventUserToken: userToken),
+                                                   timestamp: effectiveTimestamp(for: timestamp)?.millisecondsSince1970,
+                                                   objectIDs: objectIDs,
+                                                   objectData: objectData,
+                                                   currency: currency,
+                                                   value: value)
+    eventProcessor.process(event)
+  }
+
+  func addToCart(eventName: String,
+                 indexName: String,
+                 userToken: String? = .none,
+                 timestamp: Date?,
+                 objectIDs: [String],
+                 objectDataAfterSearch: [ObjectDataAfterSearch]?,
+                 queryID: String,
+                 currency: String?,
+                 value: InsightsValue?) {
+    let event = InsightsEvent.addedToCartObjectIDsAfterSearch(eventName: eventName,
+                                                              indexName: indexName,
+                                                              userToken: effectiveUserToken(withEventUserToken: userToken),
+                                                              timestamp: effectiveTimestamp(for: timestamp)?.millisecondsSince1970,
+                                                              queryID: queryID,
+                                                              objectIDs: objectIDs,
+                                                              objectDataAfterSearch: objectDataAfterSearch,
+                                                              currency: currency,
+                                                              value: value)
     eventProcessor.process(event)
   }
 
