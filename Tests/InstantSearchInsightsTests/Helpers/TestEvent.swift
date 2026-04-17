@@ -5,6 +5,7 @@
 //  Created by Vladislav Fitc on 15/10/2020.
 //
 
+import AlgoliaInsights
 import Foundation
 @testable import InstantSearchInsights
 
@@ -79,6 +80,62 @@ struct TestEvent {
 
   static var conversion: InsightsEvent {
     [conversionWithObjects, conversionWithFilters].randomElement()!
+  }
+
+  static let objectDataItems: [ObjectData] = [
+    ObjectData(price: .double(9.99), quantity: 1),
+    ObjectData(price: .double(19.99), quantity: 2),
+    ObjectData(price: .double(29.99), quantity: 1)
+  ]
+
+  static let objectDataAfterSearchItems: [ObjectDataAfterSearch] = [
+    ObjectDataAfterSearch(queryID: queryID, price: .double(9.99), quantity: 1),
+    ObjectDataAfterSearch(queryID: queryID, price: .double(19.99), quantity: 2),
+    ObjectDataAfterSearch(queryID: queryID, price: .double(29.99), quantity: 1)
+  ]
+
+  static let currency: String = "USD"
+
+  static var purchasedWithObjects: InsightsEvent {
+    .purchasedObjectIDs(eventName: "purchase event name",
+                        indexName: indexName,
+                        userToken: userToken,
+                        timestamp: timeStamp.millisecondsSince1970,
+                        objectIDs: objectIDs,
+                        objectData: objectDataItems,
+                        currency: currency)
+  }
+
+  static var purchasedAfterSearch: InsightsEvent {
+    .purchasedObjectIDsAfterSearch(eventName: "purchase event name",
+                                   indexName: indexName,
+                                   userToken: userToken,
+                                   timestamp: timeStamp.millisecondsSince1970,
+                                   queryID: queryID,
+                                   objectIDs: objectIDs,
+                                   objectDataAfterSearch: objectDataAfterSearchItems,
+                                   currency: currency)
+  }
+
+  static var addedToCartWithObjects: InsightsEvent {
+    .addedToCartObjectIDs(eventName: "add to cart event name",
+                          indexName: indexName,
+                          userToken: userToken,
+                          timestamp: timeStamp.millisecondsSince1970,
+                          objectIDs: objectIDs,
+                          objectData: objectDataItems,
+                          currency: currency)
+  }
+
+  static var addedToCartAfterSearch: InsightsEvent {
+    .addedToCartObjectIDsAfterSearch(eventName: "add to cart event name",
+                                     indexName: indexName,
+                                     userToken: userToken,
+                                     timestamp: timeStamp.millisecondsSince1970,
+                                     queryID: queryID,
+                                     objectIDs: objectIDs,
+                                     objectDataAfterSearch: objectDataAfterSearchItems,
+                                     currency: currency)
   }
 
   static var random: InsightsEvent {

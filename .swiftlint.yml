@@ -10,7 +10,7 @@ identifier_name:
     - or
     - id
 function_parameter_count:
-  warning: 8
+  warning: 9
   error: 10
   ignores_default_parameters: true
 function_body_length:

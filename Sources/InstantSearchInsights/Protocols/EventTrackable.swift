@@ -6,6 +6,7 @@
 //  Copyright © 2018 Algolia. All rights reserved.
 //
 
+import AlgoliaInsights
 import Foundation
 
 protocol EventTrackable {
@@ -59,4 +60,42 @@ protocol EventTrackable {
                   userToken: String?,
                   timestamp: Date?,
                   filters: [String])
+
+  func purchase(eventName: String,
+                indexName: String,
+                userToken: String?,
+                timestamp: Date?,
+                objectIDs: [String],
+                objectData: [ObjectData]?,
+                currency: String?,
+                value: InsightsValue?)
+
+  func purchase(eventName: String,
+                indexName: String,
+                userToken: String?,
+                timestamp: Date?,
+                objectIDs: [String],
+                objectDataAfterSearch: [ObjectDataAfterSearch],
+                queryID: String,
+                currency: String?,
+                value: InsightsValue?)
+
+  func addToCart(eventName: String,
+                 indexName: String,
+                 userToken: String?,
+                 timestamp: Date?,
+                 objectIDs: [String],
+                 objectData: [ObjectData]?,
+                 currency: String?,
+                 value: InsightsValue?)
+
+  func addToCart(eventName: String,
+                 indexName: String,
+                 userToken: String?,
+                 timestamp: Date?,
+                 objectIDs: [String],
+                 objectDataAfterSearch: [ObjectDataAfterSearch]?,
+                 queryID: String,
+                 currency: String?,
+                 value: InsightsValue?)
 }
