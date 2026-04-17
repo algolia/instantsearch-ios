@@ -191,6 +191,7 @@ public extension InsightsEvent {
                  timestamp: timestamp,
                  objectIDs: objectIDs,
                  queryID: queryID,
+                 currency: currency,
                  objectDataAfterSearch: objectDataAfterSearch,
                  value: value)
   }
@@ -230,6 +231,7 @@ public extension InsightsEvent {
                  timestamp: timestamp,
                  objectIDs: objectIDs,
                  queryID: queryID,
+                 currency: currency,
                  objectDataAfterSearch: objectDataAfterSearch,
                  value: value)
   }
