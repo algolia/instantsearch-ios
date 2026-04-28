@@ -1,5 +1,13 @@
 # ChangeLog
 
+## [8.0.1](https://github.com/algolia/instantsearch-ios/compare/8.0.0...8.0.1) (2026-04-20)
+
+### Misc
+
+- (feat): Add event subtype support to InstantSearch Insights (#354) ([511d8453](https://github.com/algolia/instantsearch-ios/commit/511d8453))
+
+
+
 ## [8.0.0](https://github.com/algolia/instantsearch-ios/compare/7.27.0...8.0.0) (2026-03-03)
 
 ### Feat
