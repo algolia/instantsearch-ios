@@ -75,4 +75,35 @@ final class SearchParamsEncoderTests: XCTestCase {
       )
     }
   }
+
+  /// Hierarchical / `FilterState` flows produce a SQL-like `filters` string. A facet value containing `&`
+  /// (e.g. `"Category & Name"`) must also be percent-encoded so the server doesn't split the `params`
+  /// query string in the middle of the `filters` value.
+  func testEncodingEscapesAmpersandInFiltersString() throws {
+    let originalFilters = #"( "hierarchicalCategories.lvl0":"Category & Name" )"#
+    var params = SearchSearchParamsObject()
+    params.filters = originalFilters
+
+    let encoded = try XCTUnwrap(SearchParamsEncoder.encode(params))
+
+    XCTAssertFalse(
+      encoded.contains("Category & Name"),
+      "Raw '&' in `filters` would break query-string parsing on the server; got: \(encoded)"
+    )
+
+    let pairs = encoded
+      .split(separator: "&")
+      .map { $0.split(separator: "=", maxSplits: 1).map(String.init) }
+    for pair in pairs {
+      XCTAssertEqual(pair.count, 2, "Every pair should split cleanly into key=value")
+    }
+
+    let filtersPair = try XCTUnwrap(pairs.first { $0.first == "filters" })
+    let decoded = try XCTUnwrap(filtersPair[1].removingPercentEncoding)
+    XCTAssertEqual(
+      decoded,
+      originalFilters,
+      "After percent-decoding the value should match the original filters string"
+    )
+  }
 }
