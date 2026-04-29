@@ -7,14 +7,27 @@ import Foundation
 import AlgoliaSearch
 
 struct SearchParamsEncoder {
+  /// Character set safe for use inside an individual query key or value.
+  ///
+  /// `CharacterSet.urlQueryAllowed` leaves the sub-delimiters `& = + ? # ; / @` unescaped because they are legal
+  /// characters in the query component as a whole. When a value contains any of these (for example `&` inside a
+  /// `facetFilters` value like `"Dates & Dried Fruits"`), the resulting `params` string is misparsed on the server
+  /// and the content after the `&` is interpreted as a separate unknown parameter. We therefore strip those
+  /// characters from the allowed set so they get correctly percent-encoded.
+  private static let queryValueAllowed: CharacterSet = {
+    var allowed = CharacterSet.urlQueryAllowed
+    allowed.remove(charactersIn: "&=+?#;/@")
+    return allowed
+  }()
+
   static func encode(_ params: SearchSearchParamsObject) -> String? {
     guard let dictionary = params.asDictionary else { return nil }
     let items = dictionary
       .sorted(by: { $0.key < $1.key })
       .compactMap { key, value -> String? in
         guard let encodedValue = encodeValue(value) else { return nil }
-        guard let encodedKey = key.addingPercentEncoding(withAllowedCharacters: .urlQueryAllowed) else { return nil }
-        guard let encodedValueEscaped = encodedValue.addingPercentEncoding(withAllowedCharacters: .urlQueryAllowed) else { return nil }
+        guard let encodedKey = key.addingPercentEncoding(withAllowedCharacters: queryValueAllowed) else { return nil }
+        guard let encodedValueEscaped = encodedValue.addingPercentEncoding(withAllowedCharacters: queryValueAllowed) else { return nil }
         return "\(encodedKey)=\(encodedValueEscaped)"
       }
     return items.isEmpty ? nil : items.joined(separator: "&")
