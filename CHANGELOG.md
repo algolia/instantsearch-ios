@@ -1,5 +1,13 @@
 # ChangeLog
 
+## [8.0.2](https://github.com/algolia/instantsearch-ios/compare/8.0.1...8.0.2) (2026-04-29)
+
+### Fix
+
+- **core**: percent-encode reserved sub-delimiters in `SearchParamsEncoder` (#357) ([dfb0cd60](https://github.com/algolia/instantsearch-ios/commit/dfb0cd60))
+
+
+
 ## [8.0.1](https://github.com/algolia/instantsearch-ios/compare/8.0.0...8.0.1) (2026-04-20)
 
 ### Misc
