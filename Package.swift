@@ -27,6 +27,10 @@ let package = Package(
     .library(
       name: "InstantSearchSwiftUI",
       targets: ["InstantSearchSwiftUI"]
+    ),
+    .library(
+      name: "InstantSearchAgentStudio",
+      targets: ["InstantSearchAgentStudio"]
     )
   ],
   dependencies: [
@@ -104,6 +108,15 @@ let package = Package(
     .testTarget(
       name: "InstantSearchSwiftUITests",
       dependencies: ["InstantSearchSwiftUI"]
+    ),
+    .target(
+      name: "InstantSearchAgentStudio",
+      dependencies: [],
+      resources: [.copy("../PrivacyInfo.xcprivacy")]
+    ),
+    .testTarget(
+      name: "InstantSearchAgentStudioTests",
+      dependencies: ["InstantSearchAgentStudio"]
     )
   ]
 )
