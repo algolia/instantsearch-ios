@@ -675,6 +675,7 @@
 		AF50CED327FC53230036F549 /* UIView+Layout.swift in Sources */ = {isa = PBXBuildFile; fileRef = AF50CCBE27FAE6AA0036F549 /* UIView+Layout.swift */; };
 		AF7FEB89272CAC5D0003BE62 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = AF7FEB88272CAC5D0003BE62 /* AppDelegate.swift */; };
 		AF7FEB8B272CAC5D0003BE62 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = AF7FEB8A272CAC5D0003BE62 /* SceneDelegate.swift */; };
+		A6E47A0400000040000AAA04 /* AgentStudioDemoView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A6E47A0300000030000AAA03 /* AgentStudioDemoView.swift */; };
 		AF7FEB92272CAC5E0003BE62 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = AF7FEB91272CAC5E0003BE62 /* Assets.xcassets */; };
 		AF7FEB95272CAC5E0003BE62 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = AF7FEB93272CAC5E0003BE62 /* LaunchScreen.storyboard */; };
 		AF8311FC27FC7CD200509DF5 /* InstantSearch in Frameworks */ = {isa = PBXBuildFile; productRef = AF8311FB27FC7CD200509DF5 /* InstantSearch */; };
@@ -789,6 +790,7 @@
 		AFEFEF9227F47F8300B47F7F /* ProductTableViewCell+ProductHit.swift in Sources */ = {isa = PBXBuildFile; fileRef = AFEFEF8B27F47F8300B47F7F /* ProductTableViewCell+ProductHit.swift */; };
 		AFEFEF9327F47F8300B47F7F /* ProductTableViewCell+ProductHit.swift in Sources */ = {isa = PBXBuildFile; fileRef = AFEFEF8B27F47F8300B47F7F /* ProductTableViewCell+ProductHit.swift */; };
 		AFEFEF9C27F48EC200B47F7F /* InstantSearch in Frameworks */ = {isa = PBXBuildFile; productRef = AFEFEF9B27F48EC200B47F7F /* InstantSearch */; };
+		A6E47A0100000010000AAA01 /* InstantSearchAgent in Frameworks */ = {isa = PBXBuildFile; productRef = A6E47A0200000020000AAA02 /* InstantSearchAgent */; };
 		AFEFEF9E27F48ECA00B47F7F /* InstantSearch in Frameworks */ = {isa = PBXBuildFile; productRef = AFEFEF9D27F48ECA00B47F7F /* InstantSearch */; };
 		AFEFEFA027F48EE100B47F7F /* InstantSearch in Frameworks */ = {isa = PBXBuildFile; productRef = AFEFEF9F27F48EE100B47F7F /* InstantSearch */; };
 		AFEFEFA227F48EE500B47F7F /* InstantSearch in Frameworks */ = {isa = PBXBuildFile; productRef = AFEFEFA127F48EE500B47F7F /* InstantSearch */; };
@@ -1084,6 +1086,7 @@
 		AF7FEB85272CAC5D0003BE62 /* Examples.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Examples.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		AF7FEB88272CAC5D0003BE62 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		AF7FEB8A272CAC5D0003BE62 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
+		A6E47A0300000030000AAA03 /* AgentStudioDemoView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AgentStudioDemoView.swift; sourceTree = "<group>"; };
 		AF7FEB91272CAC5E0003BE62 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		AF7FEB94272CAC5E0003BE62 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		AF7FEB96272CAC5E0003BE62 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
@@ -1402,6 +1405,7 @@
 			files = (
 				AF50CA2127F6FB220036F549 /* InstantSearchSwiftUI in Frameworks */,
 				AFEFEF9C27F48EC200B47F7F /* InstantSearch in Frameworks */,
+				A6E47A0100000010000AAA01 /* InstantSearchAgent in Frameworks */,
 				AF508A042766D08200F30F18 /* SDWebImage in Frameworks */,
 				AFEFEFAB27F48F3300B47F7F /* InstantSearchVoiceOverlay in Frameworks */,
 			);
@@ -1989,6 +1993,7 @@
 				4022E866280EE07C00D71D66 /* Showcase */,
 				AFEFEF9527F48ABB00B47F7F /* Packages */,
 				AF50CD8827FB27CE0036F549 /* Shared */,
+				A6E47A0500000050000AAA05 /* Agent */,
 				AF7FEB87272CAC5D0003BE62 /* Examples */,
 				AF46A7572747EF9D004E86F3 /* CategoriesHits */,
 				AFAE55372733E09300B52A43 /* MultiIndex */,
@@ -2042,6 +2047,14 @@
 				40718B4C282923E80061DC87 /* MediaDemo.app */,
 			);
 			name = Products;
+			sourceTree = "<group>";
+		};
+		A6E47A0500000050000AAA05 /* Agent */ = {
+			isa = PBXGroup;
+			children = (
+				A6E47A0300000030000AAA03 /* AgentStudioDemoView.swift */,
+			);
+			path = Agent;
 			sourceTree = "<group>";
 		};
 		AF7FEB87272CAC5D0003BE62 /* Examples */ = {
@@ -2756,6 +2769,7 @@
 			packageProductDependencies = (
 				AF508A032766D08200F30F18 /* SDWebImage */,
 				AFEFEF9B27F48EC200B47F7F /* InstantSearch */,
+				A6E47A0200000020000AAA02 /* InstantSearchAgent */,
 				AFEFEFAA27F48F3300B47F7F /* InstantSearchVoiceOverlay */,
 				AF50CA2027F6FB220036F549 /* InstantSearchSwiftUI */,
 			);
@@ -4086,6 +4100,7 @@
 				AFE7BE1D27FF07C8003CAC71 /* DynamicFacetList.swift in Sources */,
 				404C4112280C991000EC9FEB /* SortByDemoSwiftUI.swift in Sources */,
 				4034B6F32810078B00F4A303 /* ProductRow+StoreItem.swift in Sources */,
+				A6E47A0400000040000AAA04 /* AgentStudioDemoView.swift in Sources */,
 				AF7FEB8B272CAC5D0003BE62 /* SceneDelegate.swift in Sources */,
 				404C40D1280C95A000EC9FEB /* CurrentFiltersDemoViewController.swift in Sources */,
 				AFB181A627FC8FF3000AA57B /* ToggleFilterDemoController.swift in Sources */,
@@ -7036,6 +7051,10 @@
 		AFEFEF9B27F48EC200B47F7F /* InstantSearch */ = {
 			isa = XCSwiftPackageProductDependency;
 			productName = InstantSearch;
+		};
+		A6E47A0200000020000AAA02 /* InstantSearchAgent */ = {
+			isa = XCSwiftPackageProductDependency;
+			productName = InstantSearchAgent;
 		};
 		AFEFEF9D27F48ECA00B47F7F /* InstantSearch */ = {
 			isa = XCSwiftPackageProductDependency;
