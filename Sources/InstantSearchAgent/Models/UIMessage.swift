@@ -56,11 +56,16 @@ public struct ToolUIPart: Sendable, Equatable {
   public let toolName: String
   public let toolCallId: String
   public var state: ToolCallState
+  /// Raw, possibly-incomplete tool output accumulated from
+  /// `data-tool-output-delta` chunks before the final `tool-output-available`
+  /// arrives. Internal bookkeeping; the parsed result lives in `state`.
+  public var rawOutput: String
 
-  public init(toolName: String, toolCallId: String, state: ToolCallState) {
+  public init(toolName: String, toolCallId: String, state: ToolCallState, rawOutput: String = "") {
     self.toolName = toolName
     self.toolCallId = toolCallId
     self.state = state
+    self.rawOutput = rawOutput
   }
 }
 

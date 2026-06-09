@@ -6,6 +6,7 @@
 //
 
 import Foundation
+import SwiftUI
 import UIKit
 // swiftlint:disable cyclomatic_complexity
 class DemoViewControllerFactory: ViewControllerFactory {
@@ -68,6 +69,12 @@ class DemoViewControllerFactory: ViewControllerFactory {
       viewController.didSelect = pusher.callAsFunction(_:)
       viewController.title = "Declarative UI"
       return viewController
+
+    case .agenticExperience:
+      guard #available(iOS 15.0, *) else { return .none }
+      let hostingController = UIHostingController(rootView: AgentStudioDemoView())
+      hostingController.title = "Agentic Experience"
+      return hostingController
     }
   }
 }

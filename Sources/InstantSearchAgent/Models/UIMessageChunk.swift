@@ -31,12 +31,18 @@ public enum UIMessageChunk: Sendable, Equatable {
   case reasoningDelta(id: String, delta: String)
   case reasoningEnd(id: String)
 
-  // Tools (AI SDK 5 names)
+  // Tools (AI SDK 5 names). `toolName` is optional on the chunks that reference
+  // an already-started call by `toolCallId` — Agent Studio's ai-sdk-5 stream
+  // omits it there, and requiring it would silently drop the chunk.
   case toolInputStart(toolName: String, toolCallId: String)
-  case toolInputDelta(toolName: String, toolCallId: String, inputTextDelta: String)
+  case toolInputDelta(toolName: String?, toolCallId: String, inputTextDelta: String)
   case toolInputAvailable(toolName: String, toolCallId: String, input: Data)
-  case toolOutputAvailable(toolName: String, toolCallId: String, output: Data, preliminary: Bool)
-  case toolError(toolName: String, toolCallId: String, errorText: String, input: Data?)
+  case toolOutputAvailable(toolName: String?, toolCallId: String, output: Data, preliminary: Bool)
+  case toolError(toolName: String?, toolCallId: String, errorText: String, input: Data?)
+  /// Incremental tool output, streamed as `data-tool-output-delta`. Fragments
+  /// must be concatenated and parsed once complete (used by
+  /// `algolia_display_results` and some search agents).
+  case toolOutputDelta(toolCallId: String, toolName: String?, delta: String)
 
   // Sources / files
   case sourceURL(sourceId: String, url: URL, title: String?)
@@ -105,22 +111,22 @@ extension UIMessageChunk {
       guard let name = string("toolName"), let cid = string("toolCallId") else { throw AgentStudioError.malformedChunk }
       return .toolInputStart(toolName: name, toolCallId: cid)
     case "tool-input-delta":
-      guard let name = string("toolName"), let cid = string("toolCallId"),
+      guard let cid = string("toolCallId"),
             let delta = string("inputTextDelta") else { throw AgentStudioError.malformedChunk }
-      return .toolInputDelta(toolName: name, toolCallId: cid, inputTextDelta: delta)
+      return .toolInputDelta(toolName: string("toolName"), toolCallId: cid, inputTextDelta: delta)
     case "tool-input-available":
       guard let name = string("toolName"), let cid = string("toolCallId"),
             let input = subdata("input") else { throw AgentStudioError.malformedChunk }
       return .toolInputAvailable(toolName: name, toolCallId: cid, input: input)
     case "tool-output-available":
-      guard let name = string("toolName"), let cid = string("toolCallId"),
+      guard let cid = string("toolCallId"),
             let output = subdata("output") else { throw AgentStudioError.malformedChunk }
-      return .toolOutputAvailable(toolName: name, toolCallId: cid, output: output,
+      return .toolOutputAvailable(toolName: string("toolName"), toolCallId: cid, output: output,
                                    preliminary: bool("preliminary") ?? false)
     case "tool-error":
-      guard let name = string("toolName"), let cid = string("toolCallId"),
+      guard let cid = string("toolCallId"),
             let err = string("errorText") else { throw AgentStudioError.malformedChunk }
-      return .toolError(toolName: name, toolCallId: cid, errorText: err, input: subdata("input"))
+      return .toolError(toolName: string("toolName"), toolCallId: cid, errorText: err, input: subdata("input"))
     case "source-url":
       guard let sid = string("sourceId"), let urlStr = string("url"), let url = URL(string: urlStr) else {
         throw AgentStudioError.malformedChunk
@@ -132,6 +138,12 @@ extension UIMessageChunk {
       return .file(url: url, mediaType: media)
     case "error":
       return .error(errorText: string("errorText") ?? "Unknown error")
+    case "data-tool-output-delta":
+      guard let data = raw["data"] as? [String: Any],
+            let cid = data["toolCallId"] as? String else { throw AgentStudioError.malformedChunk }
+      return .toolOutputDelta(toolCallId: cid,
+                              toolName: data["toolName"] as? String,
+                              delta: data["delta"] as? String ?? "")
     default:
       if type.hasPrefix("data-") {
         let name = String(type.dropFirst("data-".count))

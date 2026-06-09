@@ -23,6 +23,10 @@ final class DemoListViewController<Demo: DemoProtocol & Codable>: UITableViewCon
   private let cellIdentifier = "cellID"
   var groupedDemos: [(groupName: String, demos: [Demo])]
 
+  /// Static sections appended after the index-driven demos (e.g. experimental
+  /// entries that have no backing Algolia record). Always rendered last.
+  var extraSections: [(groupName: String, demos: [Demo])] = []
+
   init(indexName: String) {
     searcher = HitsSearcher(client: .instantSearch, indexName: indexName)
     filterState = .init()
@@ -69,6 +73,7 @@ final class DemoListViewController<Demo: DemoProtocol & Codable>: UITableViewCon
     groupedDemos = demosPerType
       .sorted { $0.key < $1.key }
       .map { ($0.key, $0.value.sorted { $0.name < $1.name }) }
+      + extraSections
     DispatchQueue.main.async {
       self.tableView.reloadData()
     }

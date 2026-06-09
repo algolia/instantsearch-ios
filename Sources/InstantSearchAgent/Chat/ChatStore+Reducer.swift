@@ -95,7 +95,7 @@ enum ChunkReducer {
       // We don't reconstruct the partial JSON in v0.1 — the JS lib does this
       // to support `streamInput` tools, which we'll add in v0.2.
       upsertTool(in: &message, toolCallId: cid) {
-        ToolUIPart(toolName: name, toolCallId: cid, state: .inputStreaming(partial: nil))
+        ToolUIPart(toolName: name ?? "", toolCallId: cid, state: .inputStreaming(partial: nil))
       } update: { _ in }
       return false
 
@@ -109,7 +109,7 @@ enum ChunkReducer {
 
     case let .toolOutputAvailable(name, cid, output, preliminary):
       upsertTool(in: &message, toolCallId: cid) {
-        ToolUIPart(toolName: name, toolCallId: cid,
+        ToolUIPart(toolName: name ?? "", toolCallId: cid,
                    state: .outputAvailable(input: Data("null".utf8), output: output, preliminary: preliminary))
       } update: { existing in
         let input: Data = {
@@ -123,9 +123,26 @@ enum ChunkReducer {
 
     case let .toolError(name, cid, errorText, input):
       upsertTool(in: &message, toolCallId: cid) {
-        ToolUIPart(toolName: name, toolCallId: cid, state: .outputError(input: input, errorText: errorText))
+        ToolUIPart(toolName: name ?? "", toolCallId: cid, state: .outputError(input: input, errorText: errorText))
       } update: { existing in
         existing.state = .outputError(input: input, errorText: errorText)
+      }
+      return true
+
+    case let .toolOutputDelta(cid, name, delta):
+      upsertTool(in: &message, toolCallId: cid) {
+        var part = ToolUIPart(toolName: name ?? "", toolCallId: cid,
+                              state: .inputAvailable(input: Data("null".utf8)), rawOutput: delta)
+        part.state = Self.toolState(fromRawOutput: delta, previousInput: Data("null".utf8))
+        return part
+      } update: { existing in
+        let previousInput: Data = {
+          if case let .inputAvailable(input) = existing.state { return input }
+          if case let .outputAvailable(input, _, _) = existing.state { return input }
+          return Data("null".utf8)
+        }()
+        existing.rawOutput += delta
+        existing.state = Self.toolState(fromRawOutput: existing.rawOutput, previousInput: previousInput)
       }
       return true
 
@@ -152,6 +169,17 @@ enum ChunkReducer {
   }
 
   // MARK: - helpers
+
+  /// Parse accumulated `data-tool-output-delta` text into a preliminary
+  /// `.outputAvailable`. While the JSON is still incomplete we keep the part in
+  /// `.inputAvailable` so the UI shows a running state.
+  private static func toolState(fromRawOutput raw: String, previousInput: Data) -> ToolCallState {
+    guard let data = raw.data(using: .utf8),
+          (try? JSONSerialization.jsonObject(with: data, options: [])) != nil else {
+      return .inputAvailable(input: previousInput)
+    }
+    return .outputAvailable(input: previousInput, output: data, preliminary: true)
+  }
 
   private static func lastTextIndex(in message: UIMessage<EmptyMetadata>, withId id: String) -> Int? {
     for index in stride(from: message.parts.count - 1, through: 0, by: -1) {

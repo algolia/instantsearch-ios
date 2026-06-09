@@ -33,6 +33,13 @@ struct Demo: Codable, DemoProtocol {
     case codexQuerySuggestions = "codex_query_suggestions"
     case codexMultipleIndex = "codex_multiple_index"
     case codexCategoriesHits = "codex_categories_hits"
+    case agenticExperience = "experimental_agentic_experience"
   }
   // swiftlint:enable type_name
+
+  /// Static entries that are not backed by the `mobile_demos` Algolia index.
+  /// Appended after the index-driven demos so they always render last.
+  static let experimental: [Demo] = [
+    Demo(objectID: ID.agenticExperience.rawValue, name: "Agentic Experience", type: "Experimental"),
+  ]
 }

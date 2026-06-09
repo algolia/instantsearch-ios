@@ -6,8 +6,8 @@
 //
 //  Demonstrates the minimal flow: build an `AgentStudioTransport` from
 //  credentials, drive a `ChatStore`, and render its observable state in
-//  SwiftUI. The agent id is entered at runtime so the demo can run against any
-//  published Agent Studio agent without hardcoding one.
+//  SwiftUI. It reuses the Agent Studio showcase agent that ships with the
+//  InstantSearch web examples, so it works out of the box with no setup.
 //
 
 import InstantSearchAgent
@@ -15,40 +15,29 @@ import SwiftUI
 
 @available(iOS 15.0, *)
 struct AgentStudioDemoView: View {
-  // Public demo credentials shared by the other examples.
+  // Same Agent Studio showcase config that ships with the InstantSearch web
+  // examples (`examples/js/showcase`), so the demo works out of the box.
   // In a real app pass a SEARCH-ONLY key — never an admin key.
   private static let appID = "latency"
-  private static let apiKey = "1f6fd3a6fb973cb08419fe7d288fa4db"
+  private static let apiKey = "6be0576ff61c053d5f9a3225e2a90f76"
+  private static let agentID = "eedef238-5468-470d-bc37-f99fa741bd25"
 
-  @State private var agentID: String = ""
   @State private var input: String = ""
   @StateObject private var holder = ChatStoreHolder()
 
   var body: some View {
     VStack(spacing: 0) {
-      TextField("Agent ID (alg_…)", text: $agentID)
-        .textFieldStyle(.roundedBorder)
-        .autocorrectionDisabled()
-        .textInputAutocapitalization(.never)
-        .padding(.horizontal)
-        .padding(.top, 8)
-        .onChange(of: agentID) { newValue in
-          holder.configure(appID: Self.appID,
-                           apiKey: Self.apiKey,
-                           agentID: newValue.trimmingCharacters(in: .whitespaces))
-        }
-
       if let chat = holder.store {
-        ChatView(chat: chat, input: $input, agentID: agentID)
+        ChatView(chat: chat, input: $input)
       } else {
-        Spacer()
-        Text("Enter an Agent ID to start chatting.")
-          .foregroundColor(.secondary)
-        Spacer()
+        ProgressView()
       }
     }
     .navigationTitle("Agent Studio")
     .navigationBarTitleDisplayMode(.inline)
+    .onAppear {
+      holder.configure(appID: Self.appID, apiKey: Self.apiKey, agentID: Self.agentID)
+    }
   }
 }
 
@@ -56,7 +45,6 @@ struct AgentStudioDemoView: View {
 private struct ChatView: View {
   @ObservedObject var chat: ChatStore
   @Binding var input: String
-  let agentID: String
 
   var body: some View {
     VStack {
@@ -90,7 +78,7 @@ private struct ChatView: View {
         TextField("Ask anything…", text: $input, onCommit: send)
           .textFieldStyle(.roundedBorder)
         Button("Send", action: send)
-          .disabled(input.isEmpty || agentID.isEmpty || chat.status != .ready)
+          .disabled(input.isEmpty || chat.status != .ready)
         if chat.status == .streaming {
           Button("Stop", action: chat.stop)
         }
@@ -102,7 +90,7 @@ private struct ChatView: View {
 
   private func send() {
     let trimmed = input.trimmingCharacters(in: .whitespacesAndNewlines)
-    guard !trimmed.isEmpty, !agentID.isEmpty else { return }
+    guard !trimmed.isEmpty else { return }
     chat.send(text: trimmed)
     input = ""
   }
@@ -117,12 +105,12 @@ private struct MessageRow: View {
       Text(message.role == .user ? "You" : "Assistant")
         .font(.caption).bold()
         .foregroundColor(.secondary)
-      Text(message.plainText.isEmpty ? "…" : message.plainText)
-        .fixedSize(horizontal: false, vertical: true)
+      if !message.plainText.isEmpty {
+        Text(message.plainText)
+          .fixedSize(horizontal: false, vertical: true)
+      }
       ForEach(toolCalls, id: \.toolCallId) { tool in
-        Text("🔧 \(tool.toolName) • \(label(for: tool.state))")
-          .font(.caption)
-          .foregroundColor(.secondary)
+        ToolPartView(tool: tool)
       }
     }
     .frame(maxWidth: .infinity, alignment: .leading)
@@ -134,14 +122,124 @@ private struct MessageRow: View {
       return nil
     }
   }
+}
 
-  private func label(for state: ToolCallState) -> String {
-    switch state {
-    case .inputStreaming: return "preparing…"
-    case .inputAvailable: return "running…"
-    case .outputAvailable: return "done"
-    case let .outputError(_, errorText): return "error: \(errorText)"
+@available(iOS 15.0, *)
+private struct ToolPartView: View {
+  let tool: ToolUIPart
+
+  var body: some View {
+    switch tool.state {
+    case let .outputAvailable(_, output, _):
+      // Mirrors the web Chat widget: the `algolia_search_index` tool returns
+      // `output.hits`, which we render as a product carousel.
+      let products = Self.isSearchTool(tool.toolName) ? Self.products(from: output) : []
+      if products.isEmpty {
+        statusLabel("done")
+      } else {
+        ProductCarousel(products: products)
+      }
+    case let .outputError(_, errorText):
+      statusLabel("error: \(errorText)")
+    case .inputAvailable:
+      statusLabel("running…")
+    case .inputStreaming:
+      statusLabel("preparing…")
     }
+  }
+
+  private func statusLabel(_ status: String) -> some View {
+    Text("🔧 \(tool.toolName) • \(status)")
+      .font(.caption)
+      .foregroundColor(.secondary)
+  }
+
+  /// The web showcase treats `algolia_search_index` and `algolia_search_index_*`
+  /// (MCP) as product search.
+  static func isSearchTool(_ name: String) -> Bool {
+    name == "algolia_search_index" || name.hasPrefix("algolia_search_index_")
+  }
+
+  /// Reads `output.hits[]` from the search tool result, matching the web widget.
+  static func products(from output: Data) -> [AgentProduct] {
+    guard let root = try? JSONSerialization.jsonObject(with: output) as? [String: Any],
+          let hits = root["hits"] as? [[String: Any]] else {
+      return []
+    }
+    return hits.compactMap { hit in
+      guard let objectID = hit["objectID"] as? String else { return nil }
+      let name = (hit["name"] as? String) ?? (hit["title"] as? String) ?? objectID
+      let imageURL = (hit["image"] as? String) ?? (hit["image_url"] as? String) ?? (hit["thumbnailUrl"] as? String)
+      let price: String? = {
+        if let value = hit["price"] as? Double { return "$\(value)" }
+        if let value = hit["price"] as? Int { return "$\(value)" }
+        return nil
+      }()
+      return AgentProduct(objectID: objectID, name: name, imageURL: imageURL.flatMap(URL.init(string:)), price: price)
+    }
+  }
+}
+
+private struct AgentProduct: Identifiable, Equatable {
+  let objectID: String
+  let name: String
+  let imageURL: URL?
+  let price: String?
+
+  var id: String { objectID }
+}
+
+@available(iOS 15.0, *)
+private struct ProductCarousel: View {
+  let products: [AgentProduct]
+
+  var body: some View {
+    ScrollView(.horizontal, showsIndicators: false) {
+      HStack(alignment: .top, spacing: 8) {
+        ForEach(products) { ProductCard(product: $0) }
+      }
+      .padding(.vertical, 8)
+    }
+  }
+}
+
+@available(iOS 15.0, *)
+private struct ProductCard: View {
+  let product: AgentProduct
+
+  var body: some View {
+    VStack(alignment: .leading, spacing: 0) {
+      ZStack {
+        Color(.secondarySystemBackground)
+        if let url = product.imageURL {
+          AsyncImage(url: url) { image in
+            image.resizable().scaledToFit()
+          } placeholder: {
+            ProgressView()
+          }
+        } else {
+          Text("🛍️").font(.largeTitle)
+        }
+      }
+      .frame(width: 140, height: 120)
+      .clipped()
+
+      VStack(alignment: .leading, spacing: 2) {
+        Text(product.name)
+          .font(.caption).bold()
+          .lineLimit(2)
+        if let price = product.price {
+          Text(price)
+            .font(.caption)
+            .foregroundColor(.accentColor)
+        }
+      }
+      .padding(8)
+      .frame(width: 140, alignment: .leading)
+    }
+    .background(Color(.systemBackground))
+    .cornerRadius(8)
+    .overlay(RoundedRectangle(cornerRadius: 8).stroke(Color(.separator), lineWidth: 0.5))
   }
 }
 
