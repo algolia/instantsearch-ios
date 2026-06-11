@@ -27,7 +27,10 @@ public extension MultiIndexHitsInteractor {
           switch result {
           case let .searchResponse(response):
             return response
-          case .searchForFacetValuesResponse:
+          case .searchForFacetValuesResponse,
+               .searchResponsePartial:
+            return nil
+          @unknown default:
             return nil
           }
         }

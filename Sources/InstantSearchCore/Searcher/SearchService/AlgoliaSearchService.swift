@@ -85,7 +85,10 @@ extension AlgoliaSearchService {
           switch result {
           case let .searchResponse(response):
             return response
-          case .searchForFacetValuesResponse:
+          case .searchForFacetValuesResponse,
+               .searchResponsePartial:
+            throw MultiSearchError.unexpectedFacetResponse
+          @unknown default:
             throw MultiSearchError.unexpectedFacetResponse
           }
         }
@@ -100,7 +103,10 @@ extension AlgoliaSearchService {
         switch first {
         case let .searchResponse(response):
           return response
-        case .searchForFacetValuesResponse:
+        case .searchForFacetValuesResponse,
+             .searchResponsePartial:
+          throw MultiSearchError.unexpectedFacetResponse
+        @unknown default:
           throw MultiSearchError.unexpectedFacetResponse
         }
       }
