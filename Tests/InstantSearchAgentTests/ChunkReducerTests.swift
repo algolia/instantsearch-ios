@@ -103,6 +103,25 @@ final class ChunkReducerTests: XCTestCase {
     XCTAssertTrue(preliminary)
   }
 
+  func testDataSuggestionsChunkBecomesDataPart() throws {
+    // `data-suggestions` (prompt chips) is stored as a generic data part so the
+    // ChatStore can derive the suggestions list from it.
+    let payload = Data(#"{"type":"data-suggestions","data":{"suggestions":["How can I do X?","What about Y?"]}}"#.utf8)
+    let chunk = try XCTUnwrap(UIMessageChunk.decode(payload: payload))
+    guard case let .data(name, _, _) = chunk else {
+      return XCTFail("expected data chunk, got \(chunk)")
+    }
+    XCTAssertEqual(name, "suggestions")
+
+    var msg = UIMessage<EmptyMetadata>(id: "alg_msg_5", role: .assistant)
+    ChunkReducer.apply(chunk, to: &msg)
+    let dataPart = msg.parts.compactMap { part -> (String, Data)? in
+      if case let .data(name, _, json) = part { return (name, json) }
+      return nil
+    }.first
+    XCTAssertEqual(dataPart?.0, "suggestions")
+  }
+
   func testSseExtractionIgnoresKeepalivesAndDoneSentinel() {
     XCTAssertEqual(SSEStreamParser.AsyncIterator.extractJsonPayload(from: "data: {\"type\":\"finish\"}"), "{\"type\":\"finish\"}")
     XCTAssertEqual(SSEStreamParser.AsyncIterator.extractJsonPayload(from: "data: [DONE]"), "[DONE]")

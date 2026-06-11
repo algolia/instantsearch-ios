@@ -74,9 +74,25 @@ private struct ChatView: View {
           .padding(.horizontal)
       }
 
+      // Prompt suggestions ("what to ask next"). Shown only while idle, as
+      // tappable chips; tapping one sends it as a new user message — the same
+      // behavior as the web Chat widget.
+      if chat.status == .ready, !chat.suggestions.isEmpty {
+        ScrollView(.horizontal, showsIndicators: false) {
+          HStack(spacing: 8) {
+            ForEach(chat.suggestions, id: \.self) { suggestion in
+              SuggestionChip(text: suggestion) { chat.send(text: suggestion) }
+            }
+          }
+          .padding(.horizontal)
+        }
+      }
+
       HStack {
-        TextField("Ask anything…", text: $input, onCommit: send)
+        TextField("Ask anything…", text: $input)
           .textFieldStyle(.roundedBorder)
+          .submitLabel(.send)
+          .onSubmit(send)
         Button("Send", action: send)
           .disabled(input.isEmpty || chat.status != .ready)
         if chat.status == .streaming {
@@ -90,9 +106,31 @@ private struct ChatView: View {
 
   private func send() {
     let trimmed = input.trimmingCharacters(in: .whitespacesAndNewlines)
+    // Clear the field immediately so it never retains the sent text, even if the
+    // store rejects the message (e.g. while a request is already in flight).
+    input = ""
     guard !trimmed.isEmpty else { return }
     chat.send(text: trimmed)
-    input = ""
+  }
+}
+
+@available(iOS 15.0, *)
+private struct SuggestionChip: View {
+  let text: String
+  let action: () -> Void
+
+  var body: some View {
+    Button(action: action) {
+      Text(text)
+        .font(.subheadline)
+        .padding(.horizontal, 12)
+        .padding(.vertical, 8)
+        .background(
+          Capsule().stroke(Color.accentColor.opacity(0.5), lineWidth: 1)
+        )
+    }
+    .buttonStyle(.plain)
+    .foregroundColor(.accentColor)
   }
 }
 

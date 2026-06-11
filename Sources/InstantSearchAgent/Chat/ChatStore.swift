@@ -30,6 +30,23 @@ public final class ChatStore: ObservableObject {
   @Published public private(set) var status: ChatStatus = .ready
   @Published public private(set) var error: AgentStudioError?
 
+  /// Prompt suggestions ("what to ask next") streamed by the agent as a
+  /// `data-suggestions` part. Derived from the last assistant message, matching
+  /// the web `connectChat` behavior. Present only once that message exists;
+  /// hosts typically show these as tappable chips while `status == .ready`.
+  public var suggestions: [String] {
+    guard let message = messages.last(where: { $0.role == .assistant }) else { return [] }
+    for part in message.parts {
+      if case let .data(name, _, json) = part, name == "suggestions" {
+        struct Payload: Decodable { let suggestions: [String] }
+        if let payload = try? JSONDecoder().decode(Payload.self, from: json) {
+          return payload.suggestions
+        }
+      }
+    }
+    return []
+  }
+
   // MARK: - Configuration
 
   public let conversationID: String
