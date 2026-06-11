@@ -11,6 +11,10 @@
 import Foundation
 
 enum ChunkReducer {
+  // One exhaustive `switch` over every chunk type; the high complexity and
+  // length are inherent to a flat dispatch and splitting it would only scatter
+  // the reducer logic.
+  // swiftlint:disable cyclomatic_complexity function_body_length
   /// Apply `chunk` to `message` in place. Returns whether the chunk produced a
   /// visible change (used to debounce UI updates).
   @discardableResult
@@ -167,6 +171,7 @@ enum ChunkReducer {
       return false
     }
   }
+  // swiftlint:enable cyclomatic_complexity function_body_length
 
   // MARK: - helpers
 

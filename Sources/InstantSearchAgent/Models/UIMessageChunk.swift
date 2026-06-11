@@ -59,6 +59,10 @@ public enum UIMessageChunk: Sendable, Equatable {
 }
 
 extension UIMessageChunk {
+  // One exhaustive `switch` over every AI SDK 5 chunk type; the high complexity
+  // and length are inherent to a flat dispatch and splitting it would only
+  // scatter the wire-format mapping.
+  // swiftlint:disable cyclomatic_complexity function_body_length
   /// Decode a single SSE payload (the JSON after `data:`).
   ///
   /// Returns `nil` for the SSE termination sentinel (`[DONE]`). Throws if the
@@ -153,6 +157,7 @@ extension UIMessageChunk {
       return .unknown(typeIdentifier: type, json: payload)
     }
   }
+  // swiftlint:enable cyclomatic_complexity function_body_length
 }
 
 /// Errors surfaced by the agent studio client.

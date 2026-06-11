@@ -123,7 +123,7 @@ public final class AgentStudioTransport: @unchecked Sendable {
   static func encodeBody(_ request: AgentStudioRequest) throws -> Data {
     var dict: [String: Any] = [
       "messages": try request.messages.map { try Self.encodeJSON($0) as Any },
-      "trigger": request.trigger.rawValue,
+      "trigger": request.trigger.rawValue
     ]
     if let id = request.conversationID {
       dict["id"] = id

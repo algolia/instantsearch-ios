@@ -35,7 +35,7 @@ public struct AgentStudioEndpoint: Sendable, Equatable {
     components.path = "/agent-studio/1/agents/\(agentID)/completions"
     var query = [
       URLQueryItem(name: "compatibilityMode", value: "ai-sdk-5"),
-      URLQueryItem(name: "stream", value: stream ? "true" : "false"),
+      URLQueryItem(name: "stream", value: stream ? "true" : "false")
     ]
     if !cache {
       query.append(URLQueryItem(name: "cache", value: "false"))
