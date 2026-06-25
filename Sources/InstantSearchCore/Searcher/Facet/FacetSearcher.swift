@@ -112,7 +112,10 @@ extension FacetSearcher: MultiSearchComponent {
         switch response {
         case let .searchForFacetValuesResponse(facetResponse):
           searcher.onResults.fire(facetResponse)
-        case .searchResponse:
+        case .searchResponse,
+             .searchResponsePartial:
+          break
+        @unknown default:
           break
         }
       }

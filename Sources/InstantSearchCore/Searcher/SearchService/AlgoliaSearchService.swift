@@ -81,14 +81,7 @@ extension AlgoliaSearchService {
       queriesBuilder.keepSelectedEmptyFacets = keepSelectedEmptyFacets
       queries = queriesBuilder.build().map { IndexedQuery(indexName: request.indexName, query: $0) }
       transform = { results in
-        let responses = try results.map { result -> SearchResponse<SearchHit> in
-          switch result {
-          case let .searchResponse(response):
-            return response
-          case .searchForFacetValuesResponse:
-            throw MultiSearchError.unexpectedFacetResponse
-          }
-        }
+        let responses = try results.map(Self.fullResponse)
         return try queriesBuilder.aggregate(responses)
       }
     } else {
@@ -97,12 +90,7 @@ extension AlgoliaSearchService {
         guard let first = results.first else {
           throw MultiSearchError.emptyResults
         }
-        switch first {
-        case let .searchResponse(response):
-          return response
-        case .searchForFacetValuesResponse:
-          throw MultiSearchError.unexpectedFacetResponse
-        }
+        return try Self.fullResponse(from: first)
       }
     }
     let searchQueries = queries.asSearchQueries()
@@ -119,6 +107,18 @@ extension AlgoliaSearchService {
       }
     }
     return (searchQueries, multiCompletion)
+  }
+
+  private static func fullResponse(from result: SearchResult<SearchHit>) throws -> SearchResponse<SearchHit> {
+    switch result {
+    case let .searchResponse(response):
+      return response
+    case .searchForFacetValuesResponse,
+         .searchResponsePartial:
+      throw MultiSearchError.unexpectedFacetResponse
+    @unknown default:
+      throw MultiSearchError.unexpectedFacetResponse
+    }
   }
 }
 

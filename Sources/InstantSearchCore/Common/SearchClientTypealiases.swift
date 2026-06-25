@@ -13,7 +13,10 @@ extension SearchResult where T == SearchHit {
     switch self {
     case let .searchResponse(response):
       return response
-    case .searchForFacetValuesResponse:
+    case .searchForFacetValuesResponse,
+         .searchResponsePartial:
+      return nil
+    @unknown default:
       return nil
     }
   }
