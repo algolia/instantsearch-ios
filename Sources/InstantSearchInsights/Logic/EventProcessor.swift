@@ -154,9 +154,10 @@ class EventProcessor<Service: EventsService, PackageStorage: Storage>: Flushable
 
     dispatchQueue.async { [weak self] in
       guard let processor = self else { return }
-      // Appending to a package awaiting a service response would change its identifier
-      // and make its removal on success impossible, leading to duplicate sends
-      processor.packager.pack(event, sealedPackageIDs: processor.inFlightPackageIDs)
+      // Appending to a package changes its identifier: for a package awaiting a service
+      // response this would make its removal on success impossible, leading to duplicate
+      // sends, and for a failed package it would reset its backoff and retry count
+      processor.packager.pack(event, sealedPackageIDs: processor.inFlightPackageIDs.union(processor.retryCounts.keys))
       let updatedPackages = processor.packager.packages
       do {
         try processor.storage?.store(updatedPackages)

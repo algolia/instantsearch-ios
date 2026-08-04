@@ -371,6 +371,37 @@ class EventsProcessorTests: XCTestCase {
     XCTAssertEqual(eventsProcessor.packager.packages.count, 1, "a retryable package must be kept")
   }
 
+  func testEventProcessedAfterFailureDoesNotResetBackoff() {
+    let service = FailingEventService<String>()
+    let queue = DispatchQueue(label: "test queue")
+    let eventsProcessor = EventProcessor(service: service,
+                                         storage: storage,
+                                         packageCapacity: 10,
+                                         flushNotificationName: nil,
+                                         flushDelay: 1000,
+                                         logger: Logger(label: #function),
+                                         dispatchQueue: queue)
+
+    eventsProcessor.process("first")
+    queue.sync {}
+
+    eventsProcessor.flush()
+    queue.sync {}
+    queue.sync {}
+
+    eventsProcessor.process("second")
+    queue.sync {}
+
+    XCTAssertEqual(eventsProcessor.packager.packages.count, 2, "an event tracked after a failure must start a new package, not reset the failed one")
+
+    eventsProcessor.flush()
+    queue.sync {}
+    queue.sync {}
+
+    XCTAssertEqual(service.sendCount, 2, "only the new package may be sent while the failed one is backing off")
+    XCTAssertEqual(eventsProcessor.packager.packages.map(\.items), [["first"], ["second"]], "both packages must be kept for retry")
+  }
+
   func testPackageDroppedAfterMaxRetryCount() {
     let exp = expectation(description: "two sync attempts")
     exp.expectedFulfillmentCount = 2
