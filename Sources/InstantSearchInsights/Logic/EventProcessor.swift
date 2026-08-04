@@ -230,7 +230,7 @@ private extension EventProcessor {
 
         switch result {
         case .success:
-          processor.logger.info("package succesfully sent")
+          processor.logger.info("package successfully sent")
           processor.remove([eventsPackage])
 
         case let .failure(error) where !Service.isRetryable(error):
