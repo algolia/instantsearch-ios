@@ -34,6 +34,7 @@ struct Demo: Codable, DemoProtocol {
     case codexMultipleIndex = "codex_multiple_index"
     case codexCategoriesHits = "codex_categories_hits"
     case agenticExperience = "experimental_agentic_experience"
+    case compositionSearch = "experimental_composition_search"
   }
   // swiftlint:enable type_name
 
@@ -41,5 +42,6 @@ struct Demo: Codable, DemoProtocol {
   /// Appended after the index-driven demos so they always render last.
   static let experimental: [Demo] = [
     Demo(objectID: ID.agenticExperience.rawValue, name: "Agentic Experience", type: "Experimental"),
+    Demo(objectID: ID.compositionSearch.rawValue, name: "Composition Search", type: "Experimental"),
   ]
 }

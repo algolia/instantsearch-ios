@@ -75,6 +75,12 @@ class DemoViewControllerFactory: ViewControllerFactory {
       let hostingController = UIHostingController(rootView: AgentStudioDemoView())
       hostingController.title = "Agentic Experience"
       return hostingController
+
+    case .compositionSearch:
+      guard #available(iOS 15.0, *) else { return .none }
+      let hostingController = UIHostingController(rootView: CompositionDemoView())
+      hostingController.title = "Composition Search"
+      return hostingController
     }
   }
 }

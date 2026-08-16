@@ -66,6 +66,7 @@ let package = Package(
       dependencies: [
         .product(name: "AlgoliaCore", package: "algoliasearch-client-swift"),
         .product(name: "AlgoliaSearch", package: "algoliasearch-client-swift"),
+        .product(name: "AlgoliaComposition", package: "algoliasearch-client-swift"),
         "InstantSearchInsights",
         .product(name: "InstantSearchTelemetry", package: "instantsearch-telemetry-native"),
         .product(name: "Logging", package: "swift-log")
@@ -78,7 +79,8 @@ let package = Package(
         "InstantSearchCore",
         "InstantSearchInsights",
         .product(name: "AlgoliaCore", package: "algoliasearch-client-swift"),
-        .product(name: "AlgoliaSearch", package: "algoliasearch-client-swift")
+        .product(name: "AlgoliaSearch", package: "algoliasearch-client-swift"),
+        .product(name: "AlgoliaComposition", package: "algoliasearch-client-swift")
       ],
       resources: [
         .copy("Misc/DisjFacetingResult1.json"),

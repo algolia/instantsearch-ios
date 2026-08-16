@@ -676,6 +676,7 @@
 		AF7FEB89272CAC5D0003BE62 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = AF7FEB88272CAC5D0003BE62 /* AppDelegate.swift */; };
 		AF7FEB8B272CAC5D0003BE62 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = AF7FEB8A272CAC5D0003BE62 /* SceneDelegate.swift */; };
 		A6E47A0400000040000AAA04 /* AgentStudioDemoView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A6E47A0300000030000AAA03 /* AgentStudioDemoView.swift */; };
+		A6E47A0700000070000AAA07 /* CompositionDemoView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A6E47A0600000060000AAA06 /* CompositionDemoView.swift */; };
 		AF7FEB92272CAC5E0003BE62 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = AF7FEB91272CAC5E0003BE62 /* Assets.xcassets */; };
 		AF7FEB95272CAC5E0003BE62 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = AF7FEB93272CAC5E0003BE62 /* LaunchScreen.storyboard */; };
 		AF8311FC27FC7CD200509DF5 /* InstantSearch in Frameworks */ = {isa = PBXBuildFile; productRef = AF8311FB27FC7CD200509DF5 /* InstantSearch */; };
@@ -1087,6 +1088,7 @@
 		AF7FEB88272CAC5D0003BE62 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		AF7FEB8A272CAC5D0003BE62 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
 		A6E47A0300000030000AAA03 /* AgentStudioDemoView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AgentStudioDemoView.swift; sourceTree = "<group>"; };
+		A6E47A0600000060000AAA06 /* CompositionDemoView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CompositionDemoView.swift; sourceTree = "<group>"; };
 		AF7FEB91272CAC5E0003BE62 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		AF7FEB94272CAC5E0003BE62 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		AF7FEB96272CAC5E0003BE62 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
@@ -1994,6 +1996,7 @@
 				AFEFEF9527F48ABB00B47F7F /* Packages */,
 				AF50CD8827FB27CE0036F549 /* Shared */,
 				A6E47A0500000050000AAA05 /* Agent */,
+				A6E47A0800000080000AAA08 /* Composition */,
 				AF7FEB87272CAC5D0003BE62 /* Examples */,
 				AF46A7572747EF9D004E86F3 /* CategoriesHits */,
 				AFAE55372733E09300B52A43 /* MultiIndex */,
@@ -2055,6 +2058,14 @@
 				A6E47A0300000030000AAA03 /* AgentStudioDemoView.swift */,
 			);
 			path = Agent;
+			sourceTree = "<group>";
+		};
+		A6E47A0800000080000AAA08 /* Composition */ = {
+			isa = PBXGroup;
+			children = (
+				A6E47A0600000060000AAA06 /* CompositionDemoView.swift */,
+			);
+			path = Composition;
 			sourceTree = "<group>";
 		};
 		AF7FEB87272CAC5D0003BE62 /* Examples */ = {
@@ -4101,6 +4112,7 @@
 				404C4112280C991000EC9FEB /* SortByDemoSwiftUI.swift in Sources */,
 				4034B6F32810078B00F4A303 /* ProductRow+StoreItem.swift in Sources */,
 				A6E47A0400000040000AAA04 /* AgentStudioDemoView.swift in Sources */,
+				A6E47A0700000070000AAA07 /* CompositionDemoView.swift in Sources */,
 				AF7FEB8B272CAC5D0003BE62 /* SceneDelegate.swift in Sources */,
 				404C40D1280C95A000EC9FEB /* CurrentFiltersDemoViewController.swift in Sources */,
 				AFB181A627FC8FF3000AA57B /* ToggleFilterDemoController.swift in Sources */,
