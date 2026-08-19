@@ -9,6 +9,53 @@
 @testable import InstantSearchInsights
 import XCTest
 
+private struct TestError: Error {}
+
+/// Service capturing completion handlers without invoking them, simulating in-flight requests
+private class HoldingEventService<Event>: EventsService {
+  var sentEvents: [[Event]] = []
+  var pendingCompletions: [(Result<Void, Error>) -> Void] = []
+
+  func sendEvents(_ events: [Event], completion: @escaping (Result<Void, Error>) -> Void) {
+    sentEvents.append(events)
+    pendingCompletions.append(completion)
+  }
+
+  static func isRetryable(_: Error) -> Bool {
+    return true
+  }
+}
+
+/// Service immediately failing with a retryable error
+private class FailingEventService<Event>: EventsService {
+  var sendCount = 0
+  var didSendEvents: ([Event]) -> Void = { _ in }
+
+  func sendEvents(_ events: [Event], completion: @escaping (Result<Void, Error>) -> Void) {
+    sendCount += 1
+    didSendEvents(events)
+    completion(.failure(TestError()))
+  }
+
+  static func isRetryable(_: Error) -> Bool {
+    return true
+  }
+}
+
+/// Service immediately failing with a non-retryable error
+private class NonRetryableFailingEventService<Event>: EventsService {
+  var sendCount = 0
+
+  func sendEvents(_: [Event], completion: @escaping (Result<Void, Error>) -> Void) {
+    sendCount += 1
+    completion(.failure(TestError()))
+  }
+
+  static func isRetryable(_: Error) -> Bool {
+    return false
+  }
+}
+
 class EventsProcessorTests: XCTestCase {
   var storage: TestPackageStorage<String> { return .init() }
 
@@ -248,5 +295,205 @@ class EventsProcessorTests: XCTestCase {
     eventsProcessor.flush()
 
     waitForExpectations(timeout: 10, handler: nil)
+  }
+
+  func testInFlightPackageIsNotResent() {
+    let service = HoldingEventService<String>()
+    let queue = DispatchQueue(label: "test queue")
+    let eventsProcessor = EventProcessor(service: service,
+                                         storage: storage,
+                                         packageCapacity: 10,
+                                         flushNotificationName: nil,
+                                         flushDelay: 1000,
+                                         logger: Logger(label: #function),
+                                         dispatchQueue: queue)
+
+    eventsProcessor.process("Test event")
+    queue.sync {}
+
+    eventsProcessor.flush()
+    eventsProcessor.flush()
+    eventsProcessor.flush()
+    queue.sync {}
+
+    XCTAssertEqual(service.sentEvents.count, 1, "a package awaiting a service response must not be sent again")
+  }
+
+  func testEventProcessedDuringSyncIsNotAppendedToInFlightPackage() {
+    let service = HoldingEventService<String>()
+    let queue = DispatchQueue(label: "test queue")
+    let eventsProcessor = EventProcessor(service: service,
+                                         storage: storage,
+                                         packageCapacity: 10,
+                                         flushNotificationName: nil,
+                                         flushDelay: 1000,
+                                         logger: Logger(label: #function),
+                                         dispatchQueue: queue)
+
+    eventsProcessor.process("first")
+    queue.sync {}
+    eventsProcessor.flush()
+    queue.sync {}
+
+    eventsProcessor.process("second")
+    queue.sync {}
+    XCTAssertEqual(eventsProcessor.packager.packages.count, 2, "an event tracked during a sync must start a new package")
+
+    service.pendingCompletions.first?(.success(()))
+    queue.sync {}
+    queue.sync {}
+
+    XCTAssertEqual(eventsProcessor.packager.packages.map(\.items), [["second"]], "the sent package must be removed, the new one kept")
+  }
+
+  func testRetryableFailureBacksOff() {
+    let service = FailingEventService<String>()
+    let queue = DispatchQueue(label: "test queue")
+    let eventsProcessor = EventProcessor(service: service,
+                                         storage: storage,
+                                         packageCapacity: 10,
+                                         flushNotificationName: nil,
+                                         flushDelay: 1000,
+                                         logger: Logger(label: #function),
+                                         dispatchQueue: queue)
+
+    eventsProcessor.process("Test event")
+    queue.sync {}
+
+    eventsProcessor.flush()
+    queue.sync {}
+    queue.sync {}
+
+    eventsProcessor.flush()
+    queue.sync {}
+
+    XCTAssertEqual(service.sendCount, 1, "a failed package must not be retried before its backoff delay expires")
+    XCTAssertEqual(eventsProcessor.packager.packages.count, 1, "a retryable package must be kept")
+  }
+
+  func testEventProcessedAfterFailureDoesNotResetBackoff() {
+    let service = FailingEventService<String>()
+    let queue = DispatchQueue(label: "test queue")
+    let eventsProcessor = EventProcessor(service: service,
+                                         storage: storage,
+                                         packageCapacity: 10,
+                                         flushNotificationName: nil,
+                                         flushDelay: 1000,
+                                         logger: Logger(label: #function),
+                                         dispatchQueue: queue)
+
+    eventsProcessor.process("first")
+    queue.sync {}
+
+    eventsProcessor.flush()
+    queue.sync {}
+    queue.sync {}
+
+    eventsProcessor.process("second")
+    queue.sync {}
+
+    XCTAssertEqual(eventsProcessor.packager.packages.count, 2, "an event tracked after a failure must start a new package, not reset the failed one")
+
+    eventsProcessor.flush()
+    queue.sync {}
+    queue.sync {}
+
+    XCTAssertEqual(service.sendCount, 2, "only the new package may be sent while the failed one is backing off")
+    XCTAssertEqual(eventsProcessor.packager.packages.map(\.items), [["first"], ["second"]], "both packages must be kept for retry")
+  }
+
+  func testPackageDroppedAfterMaxRetryCount() {
+    let exp = expectation(description: "two sync attempts")
+    exp.expectedFulfillmentCount = 2
+
+    let service = FailingEventService<String>()
+    service.didSendEvents = { _ in exp.fulfill() }
+    let queue = DispatchQueue(label: "test queue")
+    let eventsProcessor = EventProcessor(service: service,
+                                         storage: storage,
+                                         packageCapacity: 10,
+                                         flushNotificationName: nil,
+                                         flushDelay: 0.1,
+                                         maxRetryCount: 2,
+                                         logger: Logger(label: #function),
+                                         dispatchQueue: queue)
+
+    eventsProcessor.process("Test event")
+
+    waitForExpectations(timeout: 5, handler: nil)
+    queue.sync {}
+    XCTAssertTrue(eventsProcessor.packager.packages.isEmpty, "the package must be dropped once the retry count is exhausted")
+  }
+
+  func testNonRetryableFailureRemovesPackage() {
+    let service = NonRetryableFailingEventService<String>()
+    let queue = DispatchQueue(label: "test queue")
+    let eventsProcessor = EventProcessor(service: service,
+                                         storage: storage,
+                                         packageCapacity: 10,
+                                         flushNotificationName: nil,
+                                         flushDelay: 1000,
+                                         logger: Logger(label: #function),
+                                         dispatchQueue: queue)
+
+    eventsProcessor.process("Test event")
+    queue.sync {}
+
+    eventsProcessor.flush()
+    queue.sync {}
+    queue.sync {}
+
+    eventsProcessor.flush()
+    queue.sync {}
+
+    XCTAssertEqual(service.sendCount, 1)
+    XCTAssertTrue(eventsProcessor.packager.packages.isEmpty)
+  }
+
+  func testFullyFilteredPackageIsRemoved() throws {
+    let service = HoldingEventService<Int>()
+    let queue = DispatchQueue(label: "test queue")
+
+    let storage = TestPackageStorage<Int>()
+    storage.store([try .init(items: [1, 3], capacity: 2)])
+
+    let eventsProcessor = EventProcessor(service: service,
+                                         storage: storage,
+                                         packageCapacity: 10,
+                                         flushNotificationName: nil,
+                                         flushDelay: 1000,
+                                         acceptEvent: { $0 % 2 == 0 },
+                                         logger: Logger(label: #function),
+                                         dispatchQueue: queue)
+
+    eventsProcessor.flush()
+    queue.sync {}
+
+    XCTAssertTrue(service.sentEvents.isEmpty)
+    XCTAssertTrue(eventsProcessor.packager.packages.isEmpty, "a package whose events are all filtered out must be removed")
+  }
+
+  func testExpiredPackageIsDroppedWithoutSending() {
+    let service = HoldingEventService<String>()
+    let queue = DispatchQueue(label: "test queue")
+    let eventsProcessor = EventProcessor(service: service,
+                                         storage: storage,
+                                         packageCapacity: 10,
+                                         flushNotificationName: nil,
+                                         flushDelay: 1000,
+                                         packageExpirationDelay: 0.05,
+                                         logger: Logger(label: #function),
+                                         dispatchQueue: queue)
+
+    eventsProcessor.process("Test event")
+    queue.sync {}
+
+    Thread.sleep(forTimeInterval: 0.2)
+
+    eventsProcessor.flush()
+    queue.sync {}
+
+    XCTAssertTrue(service.sentEvents.isEmpty, "an expired package must not be sent")
+    XCTAssertTrue(eventsProcessor.packager.packages.isEmpty, "an expired package must be removed")
   }
 }
