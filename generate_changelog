@@ -1,10 +1,12 @@
-# This script updates the CHANGELOG.md using Polyglot script 
+# This script updates the CHANGELOG.md using git-cliff
 # and generates diff changelog with latest changes to use in release notes
 
-# Check if polyglot installed
-if ! command -v polyglot &> /dev/null
+set -e
+
+# Check if git-cliff installed
+if ! command -v git-cliff &> /dev/null
 then
-  echo "Polyglot tool could not be found. Install 'algolia/polyglot' first."
+  echo "git-cliff tool could not be found. Install 'git-cliff' first."
   exit 1
 fi
 
@@ -16,17 +18,16 @@ then
  exit 1
 fi
 
-# Backup previous changelog
-mv CHANGELOG.md CHANGELOG_backup.md
+# The release tag is cut after this script runs, so the version is rendered as
+# the tag for the commits that do not belong to a tag yet.
+cliff_args="--tag ${version_number} --unreleased"
 
-# Generate the changelog for changes since last tag to extract release notes
-polyglot changelog $version_number
+# Generate the entry for the new version on its own, without the changelog header
+git-cliff $cliff_args --strip header --output release_notes.md
 
-# Cut unnecessary first 5 lines of generated release notes
-cat CHANGELOG.md | tail -n +5 | cat > release_notes.md
-
-# Restore previous changelog
-mv CHANGELOG_backup.md CHANGELOG.md
+# Drop the version heading and the blank line below it
+tail -n +3 release_notes.md > release_notes_sections.md
+mv release_notes_sections.md release_notes.md
 
 # Update changelog
-polyglot changelog $version_number
+git-cliff $cliff_args --prepend CHANGELOG.md
