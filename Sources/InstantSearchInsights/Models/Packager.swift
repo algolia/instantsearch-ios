@@ -22,9 +22,15 @@ struct Packager<Item: Codable>: Packaging {
   }
 
   mutating func pack(_ item: Item) {
+    pack(item, sealedPackageIDs: [])
+  }
+
+  /// Packs an item, appending it to the last pending package unless that package is full
+  /// or its identifier is sealed (currently being synchronized), in which case a new package is started
+  mutating func pack(_ item: Item, sealedPackageIDs: Set<String>) {
     let package: Package<Item>
 
-    if let lastPackage = packages.last, !lastPackage.isFull {
+    if let lastPackage = packages.last, !lastPackage.isFull, !sealedPackageIDs.contains(lastPackage.id) {
       package = (try? packages.removeLast().appending(item)) ?? Package(item: item, capacity: packageCapacity)
     } else {
       package = Package(item: item, capacity: packageCapacity)

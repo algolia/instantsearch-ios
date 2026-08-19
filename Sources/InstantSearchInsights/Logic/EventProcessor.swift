@@ -58,6 +58,27 @@ class EventProcessor<Service: EventsService, PackageStorage: Storage>: Flushable
     }
   }
 
+  /// Maximal number of failed sync attempts for a package before it is dropped
+  let maxRetryCount: Int
+
+  /// Upper bound of the exponential backoff delay between sync attempts of a failed package
+  let maxRetryBackoff: TimeInterval
+
+  /// The delay after which a stored package is discarded without sending
+  let packageExpirationDelay: TimeInterval
+
+  /// Identifiers of the packages currently being synchronized with the service.
+  /// Must only be accessed from the dispatchQueue.
+  private var inFlightPackageIDs: Set<String> = []
+
+  /// Count of failed sync attempts per package identifier.
+  /// Must only be accessed from the dispatchQueue.
+  private var retryCounts: [String: Int] = [:]
+
+  /// Earliest allowed date of the next sync attempt per package identifier.
+  /// Must only be accessed from the dispatchQueue.
+  private var nextAttemptDates: [String: Date] = [:]
+
   /// The queue synchronizing the access to a packager
   private let dispatchQueue: DispatchQueue
 
@@ -69,6 +90,9 @@ class EventProcessor<Service: EventsService, PackageStorage: Storage>: Flushable
       - flushNotificationName: The name of the notification triggering the events flushing
       - flushDelay: The delay between recurrent events flushing
       - acceptEvent: Closure filttering events before synchronizing them with the service
+      - maxRetryCount: Maximal number of failed sync attempts for a package before it is dropped
+      - maxRetryBackoff: Upper bound of the exponential backoff delay between sync attempts of a failed package
+      - packageExpirationDelay: The delay after which a stored package is discarded without sending
       - logger: Logging component
       - dispatchQueue: The queue synchronizing the access to event packages
    */
@@ -78,8 +102,14 @@ class EventProcessor<Service: EventsService, PackageStorage: Storage>: Flushable
        flushNotificationName: Notification.Name?,
        flushDelay: TimeInterval,
        acceptEvent: @escaping (Event) -> Bool = { _ in true },
+       maxRetryCount: Int = Algolia.Insights.maxRetryCount,
+       maxRetryBackoff: TimeInterval = Algolia.Insights.maxRetryBackoff,
+       packageExpirationDelay: TimeInterval = Algolia.Insights.packageExpirationDelay,
        logger: Logger,
        dispatchQueue: DispatchQueue = .init(label: "insights.events", qos: .background)) {
+    self.maxRetryCount = maxRetryCount
+    self.maxRetryBackoff = maxRetryBackoff
+    self.packageExpirationDelay = packageExpirationDelay
     packager = .init(packageCapacity: packageCapacity)
     self.storage = storage
     self.logger = logger
@@ -124,7 +154,10 @@ class EventProcessor<Service: EventsService, PackageStorage: Storage>: Flushable
 
     dispatchQueue.async { [weak self] in
       guard let processor = self else { return }
-      processor.packager.pack(event)
+      // Appending to a package changes its identifier: for a package awaiting a service
+      // response this would make its removal on success impossible, leading to duplicate
+      // sends, and for a failed package it would reset its backoff and retry count
+      processor.packager.pack(event, sealedPackageIDs: processor.inFlightPackageIDs.union(processor.retryCounts.keys))
       let updatedPackages = processor.packager.packages
       do {
         try processor.storage?.store(updatedPackages)
@@ -141,11 +174,32 @@ class EventProcessor<Service: EventsService, PackageStorage: Storage>: Flushable
   @objc func flush() {
     dispatchQueue.async { [weak self] in
       guard let processor = self else { return }
-      let eventsPackages = processor.packager.packages
+
+      let now = Date()
+
+      let expiredPackages = processor.packager.packages.filter { package in
+        !processor.inFlightPackageIDs.contains(package.id) &&
+          now.timeIntervalSince(package.creationDate) > processor.packageExpirationDelay
+      }
+      if !expiredPackages.isEmpty {
+        processor.logger.error("dropping \(expiredPackages.count) event packages older than \(processor.packageExpirationDelay)s")
+        processor.remove(expiredPackages)
+      }
+
+      let eventsPackages = processor.packager.packages.filter { package in
+        guard !processor.inFlightPackageIDs.contains(package.id) else {
+          return false
+        }
+        guard let nextAttemptDate = processor.nextAttemptDates[package.id] else {
+          return true
+        }
+        return nextAttemptDate <= now
+      }
       if eventsPackages.isEmpty {
         processor.logger.info("no pending event packages, skip flushing")
       } else {
         processor.logger.info("flushing pending \(eventsPackages.count) event packages")
+        eventsPackages.forEach { processor.inFlightPackageIDs.insert($0.id) }
         eventsPackages.forEach(processor.sync)
       }
     }
@@ -153,6 +207,8 @@ class EventProcessor<Service: EventsService, PackageStorage: Storage>: Flushable
 }
 
 private extension EventProcessor {
+  /// Synchronize a package with the service. Must be called from the dispatchQueue,
+  /// with the package identifier already marked as in-flight.
   func sync(_ eventsPackage: Package<Event>) {
     logger.info("sending events package: \(eventsPackage.items)")
 
@@ -160,6 +216,8 @@ private extension EventProcessor {
 
     guard !eligibleEvents.isEmpty else {
       logger.info("all events in package were filtered out by the acceptance condition, no event will be sent")
+      inFlightPackageIDs.remove(eventsPackage.id)
+      remove([eventsPackage])
       return
     }
 
@@ -167,28 +225,46 @@ private extension EventProcessor {
 
       guard let processor = self else { return }
 
-      let shouldRemovePackage: Bool
-
-      switch result {
-      case .success:
-        processor.logger.info("package succesfully sent")
-        shouldRemovePackage = true
-      case let .failure(error):
-        processor.logger.error("package sending failed: \(error.localizedDescription)")
-        shouldRemovePackage = !Service.isRetryable(error)
-      }
-
-      guard shouldRemovePackage else { return }
-
       processor.dispatchQueue.async {
-        processor.packager.remove(eventsPackage)
-        let updatedPackages = processor.packager.packages
-        do {
-          try processor.storage?.store(updatedPackages)
-        } catch {
-          processor.logger.error("\(error.localizedDescription)")
+        processor.inFlightPackageIDs.remove(eventsPackage.id)
+
+        switch result {
+        case .success:
+          processor.logger.info("package successfully sent")
+          processor.remove([eventsPackage])
+
+        case let .failure(error) where !Service.isRetryable(error):
+          processor.logger.error("package sending failed: \(error.localizedDescription), the package won't be retried")
+          processor.remove([eventsPackage])
+
+        case let .failure(error):
+          let retryCount = (processor.retryCounts[eventsPackage.id] ?? 0) + 1
+          guard retryCount < processor.maxRetryCount else {
+            processor.logger.error("package sending failed \(retryCount) times: \(error.localizedDescription), dropping the package")
+            processor.remove([eventsPackage])
+            return
+          }
+          processor.retryCounts[eventsPackage.id] = retryCount
+          let backoff = min(processor.flushDelay * pow(2, Double(retryCount - 1)), processor.maxRetryBackoff)
+          processor.nextAttemptDates[eventsPackage.id] = Date().addingTimeInterval(backoff)
+          processor.logger.error("package sending failed: \(error.localizedDescription), next attempt in \(backoff)s")
         }
       }
+    }
+  }
+
+  /// Remove packages and their retry bookkeeping. Must be called from the dispatchQueue.
+  func remove(_ eventsPackages: [Package<Event>]) {
+    for eventsPackage in eventsPackages {
+      packager.remove(eventsPackage)
+      retryCounts.removeValue(forKey: eventsPackage.id)
+      nextAttemptDates.removeValue(forKey: eventsPackage.id)
+    }
+    let updatedPackages = packager.packages
+    do {
+      try storage?.store(updatedPackages)
+    } catch {
+      logger.error("\(error.localizedDescription)")
     }
   }
 }

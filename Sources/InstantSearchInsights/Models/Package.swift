@@ -12,6 +12,7 @@ struct Package<Item: Codable> {
   let id: String
   let items: [Item]
   let capacity: Int
+  let creationDate: Date
 
   var isFull: Bool {
     return items.count == capacity
@@ -21,12 +22,14 @@ struct Package<Item: Codable> {
     id = UUID().uuidString
     items = []
     self.capacity = capacity
+    creationDate = Date()
   }
 
   init(item: Item, capacity: Int) {
     id = UUID().uuidString
     items = [item]
     self.capacity = capacity
+    creationDate = Date()
   }
 
   init(items: [Item], capacity: Int) throws {
@@ -36,6 +39,14 @@ struct Package<Item: Codable> {
     id = UUID().uuidString
     self.items = items
     self.capacity = capacity
+    creationDate = Date()
+  }
+
+  private init(items: [Item], capacity: Int, creationDate: Date) {
+    id = UUID().uuidString
+    self.items = items
+    self.capacity = capacity
+    self.creationDate = creationDate
   }
 
   func appending(_ item: Item) throws -> Package {
@@ -46,7 +57,7 @@ struct Package<Item: Codable> {
     guard items.count + self.items.count <= capacity else {
       throw Error.packageOverflow(capacity: capacity)
     }
-    return try Package(items: self.items + items, capacity: capacity)
+    return Package(items: self.items + items, capacity: capacity, creationDate: creationDate)
   }
 }
 
@@ -89,6 +100,7 @@ extension Package: Codable {
     case id
     case items
     case capacity
+    case creationDate
   }
 
   init(from decoder: Decoder) throws {
@@ -96,6 +108,8 @@ extension Package: Codable {
     id = try container.decode(String.self, forKey: .id)
     items = try container.decode([Item].self, forKey: .items)
     capacity = try container.decode(Int.self, forKey: .capacity)
+    // Packages stored by previous versions carry no creation date, consider them created at load time
+    creationDate = try container.decodeIfPresent(Date.self, forKey: .creationDate) ?? Date()
   }
 
   func encode(to encoder: Encoder) throws {
@@ -103,6 +117,7 @@ extension Package: Codable {
     try container.encode(id, forKey: .id)
     try container.encode(items, forKey: .items)
     try container.encode(capacity, forKey: .capacity)
+    try container.encode(creationDate, forKey: .creationDate)
   }
 }
 
