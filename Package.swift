@@ -35,7 +35,7 @@ let package = Package(
   ],
   dependencies: [
     .package(url: "https://github.com/algolia/algoliasearch-client-swift",
-             "9.41.0"..<"10.0.0"),
+             "9.43.2"..<"10.0.0"),
     .package(url: "https://github.com/apple/swift-log",
              from: "1.5.4"),
     .package(url: "https://github.com/apple/swift-protobuf",

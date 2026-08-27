@@ -28,5 +28,15 @@ struct Algolia {
 
     // Default events batch size
     static let minBatchSize = 10
+
+    /// Maximum number of sync attempts for an events package before it is dropped
+    static let maxRetryCount = 20
+
+    /// Upper bound of the exponential backoff delay between sync attempts of a failed package
+    static let maxRetryBackoff: TimeInterval = 15 * 60
+
+    /// The delay after which a stored events package is discarded without sending: 4 days,
+    /// matching the server-side event acceptance window
+    static let packageExpirationDelay: TimeInterval = 4 * 24 * 3600
   }
 }

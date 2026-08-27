@@ -20,12 +20,14 @@ jobs:
     runs-on: macos-latest
     env:
       GITHUB_ACTION: ${{ github.action_path }}
-      GITHUB_PERSONAL_ACCESS_TOKEN: ${{ secrets.GH_PERSONAL_ACCESS_TOKEN }}
       COCOAPODS_TRUNK_TOKEN: ${{ secrets.COCOAPODS_TRUNK_TOKEN }}
     steps:
-      - uses: actions/setup-go@v5
+      - name: Mint GitHub App token
+        id: app-token
+        uses: actions/create-github-app-token@v2
         with:
-          go-version: "1.17"
+          app-id: ${{ secrets.FX_BOT_APP_ID }}
+          private-key: ${{ secrets.FX_BOT_PRIVATE_KEY }}
       - name: Set release type environment
         run: |
           echo "RELEASE_TYPE=${GITHUB_REF#refs/*/}" >> $GITHUB_ENV
@@ -33,21 +35,26 @@ jobs:
           if [[ "$RELEASE_TYPE" != "patch" && "$RELEASE_TYPE" != "minor" && "$RELEASE_TYPE" != "major" ]]; then
             echo "RELEASE_TYPE=${{ github.event.inputs.release }}" >> $GITHUB_ENV
           fi
-      - name: Check out polyglot
-        uses: actions/checkout@v4
-        with:
-          repository: algolia/polyglot
-          token: ${{ secrets.GH_PERSONAL_ACCESS_TOKEN }}
-      - name: Install polyglot
-        run: |
-          make install
-          export PATH="$GOPATH/bin:$PATH"
       - uses: actions/checkout@v4
         with:
+          token: ${{ steps.app-token.outputs.token }}
           fetch-depth: 0
+      - name: Install git-cliff
+        env:
+          GIT_CLIFF_VERSION: 2.13.1
+        run: |
+          curl -fsSL "https://github.com/orhun/git-cliff/releases/download/v${GIT_CLIFF_VERSION}/git-cliff-${GIT_CLIFF_VERSION}-aarch64-apple-darwin.tar.gz" -o "${RUNNER_TEMP}/git-cliff.tar.gz"
+          tar -xzf "${RUNNER_TEMP}/git-cliff.tar.gz" -C "${RUNNER_TEMP}"
+          echo "${RUNNER_TEMP}/git-cliff-${GIT_CLIFF_VERSION}" >> $GITHUB_PATH
+      - name: Configure git identity
+        run: |
+          git config user.name "frontend-experiences-bot[bot]"
+          git config user.email "frontend-experiences-bot[bot]@users.noreply.github.com"
       - uses: ruby/setup-ruby@v1
         with:
           ruby-version: "2.7.8"
           bundler-cache: true
       - name: Deploy library release
         run: bundle exec fastlane deploy verbose:true type:${{ env.RELEASE_TYPE }} no_dry_run:true
+        env:
+          GITHUB_API_TOKEN: ${{ steps.app-token.outputs.token }}

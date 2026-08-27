@@ -1,0 +1,29 @@
+[changelog]
+header = "# ChangeLog\n"
+body = """
+## [{{ version }}](https://github.com/algolia/instantsearch-ios/compare/{{ previous.version }}...{{ version }}) ({{ timestamp | date(format="%Y-%m-%d") }})
+{% for group, commits in commits | group_by(attribute="group") %}
+### {{ group }}
+
+{% for commit in commits %}- {% if commit.scope %}**{{ commit.scope }}**: {% endif %}{{ commit.message | split(pat="
+") | first | trim }} ([{{ commit.id | truncate(length=8, end="") }}](https://github.com/algolia/instantsearch-ios/commit/{{ commit.id | truncate(length=8, end="") }}))
+{% endfor %}{% endfor %}
+
+"""
+trim = false
+
+[git]
+conventional_commits = true
+commit_preprocessors = [
+  { pattern = "^\\(([a-zA-Z]+)\\)(\\([a-zA-Z-_]+\\))?:", replace = "$1$2:" },
+]
+filter_unconventional = false
+filter_commits = true
+sort_commits = "newest"
+commit_parsers = [
+  { message = "(?i)^(feat|feature|add|adds|added)(\\(.+\\))?:", group = "Feat" },
+  { message = "(?i)^(fix|fixes|fixed)(\\(.+\\))?:", group = "Fix" },
+  { message = "(?i)^(refactor|change|changes|changed|improve|improves|improved|update|updates|updated|internal|internals|perf|performance)(\\(.+\\))?:", group = "Refactor" },
+  { message = "(?i)^(docs?|documentation|style|format|test|tests|testing|chore|chores|ci|infra|travis)(\\(.+\\))?:", skip = true },
+  { message = ".*", group = "Misc" },
+]

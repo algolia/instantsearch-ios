@@ -28,6 +28,7 @@ class PackageTests: XCTestCase {
     try AssertEncodeDecode(package, [
       "id": .init(package.id),
       "capacity": .init(Algolia.Insights.minBatchSize),
+      "creationDate": .init(package.creationDate.timeIntervalSinceReferenceDate),
       "items": [
         [
           "eventType": "clickedFilters",
@@ -114,9 +115,25 @@ class PackageTests: XCTestCase {
     let updatedPackage = try eventsPackage.appending(TestEvent.random)
 
     XCTAssertEqual(updatedPackage.items.count, eventsCount + 1)
+    XCTAssertEqual(updatedPackage.creationDate, eventsPackage.creationDate)
 
     let anotherUpdatedPackage = try eventsPackage.appending(events)
 
     XCTAssertEqual(anotherUpdatedPackage.items.count, events.count * 2)
+  }
+
+  func testDecodingLegacyPackageWithoutCreationDate() throws {
+    let legacyJSON = """
+    {
+      "id": "7DE20DED-380B-4381-9CC7-EB94B1E1E3F2",
+      "capacity": 2,
+      "items": ["a", "b"]
+    }
+    """
+    let package = try JSONDecoder().decode(Package<String>.self, from: Data(legacyJSON.utf8))
+
+    XCTAssertEqual(package.id, "7DE20DED-380B-4381-9CC7-EB94B1E1E3F2")
+    XCTAssertEqual(package.items, ["a", "b"])
+    XCTAssertEqual(package.creationDate.timeIntervalSinceNow, 0, accuracy: 10)
   }
 }
