@@ -1,5 +1,25 @@
 # ChangeLog
 
+## [8.1.0](https://github.com/algolia/instantsearch-ios/compare/8.0.3...8.1.0) (2026-08-27)
+
+### Feat
+
+- Add Composition API support with CompositionSearcher (#366) ([20965fe9](https://github.com/algolia/instantsearch-ios/commit/20965fe9))
+- Add experimental InstantSearchAgent product for Agent Studio (#363) ([d63753ff](https://github.com/algolia/instantsearch-ios/commit/d63753ff))
+
+### Fix
+
+- require algoliasearch-client-swift >= 9.43.2 to match SearchResult handling (#364) (#367) ([f6a8a370](https://github.com/algolia/instantsearch-ios/commit/f6a8a370))
+- **insights**: seal backed-off packages so new events do not reset their retry state ([dd068766](https://github.com/algolia/instantsearch-ios/commit/dd068766))
+- **insights**: bound event package retries to prevent duplicate sends ([499c9cbe](https://github.com/algolia/instantsearch-ios/commit/499c9cbe))
+
+### Misc
+
+- Merge pull request #365 from algolia/fix/insights-event-processor-retry-loop ([70311edf](https://github.com/algolia/instantsearch-ios/commit/70311edf))
+- Potential fix for pull request finding ([d4152e8f](https://github.com/algolia/instantsearch-ios/commit/d4152e8f))
+
+
+
 ## [8.0.3](https://github.com/algolia/instantsearch-ios/compare/8.0.2...8.0.3) (2026-05-21)
 
 
