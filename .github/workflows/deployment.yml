@@ -57,4 +57,4 @@ jobs:
       - name: Deploy library release
         run: bundle exec fastlane deploy verbose:true type:${{ env.RELEASE_TYPE }} no_dry_run:true
         env:
-          GITHUB_API_TOKEN: ${{ steps.app-token.outputs.token }}
+          GITHUB_APP_TOKEN: ${{ steps.app-token.outputs.token }}

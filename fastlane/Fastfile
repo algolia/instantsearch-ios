@@ -91,7 +91,7 @@ lane :deploy do |options|
 
   create_pull_request(
     repo: repository_name,
-    api_token: ENV["GITHUB_API_TOKEN"],
+    api_bearer: ENV["GITHUB_APP_TOKEN"],
     title: "chore: Deploying new #{release_type} version #{new_version}",
     head: branch_name,
     base: base_branch,
@@ -100,7 +100,7 @@ lane :deploy do |options|
 
   set_github_release(
   	repository_name: repository_name,
-    api_token: ENV["GITHUB_API_TOKEN"],
+    api_bearer: ENV["GITHUB_APP_TOKEN"],
   	name: new_version,
   	tag_name: new_version,
   	description: (File.read("../release_notes.md") rescue "No release notes provided"),
