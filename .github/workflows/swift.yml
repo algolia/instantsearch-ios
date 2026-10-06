@@ -83,6 +83,9 @@ jobs:
           xcrun simctl list devices available | grep "$UDID"
           echo "udid=$UDID" >> "$GITHUB_OUTPUT"
       - name: xcodebuild ${{ matrix.action }}
+        # A step timeout (unlike a job timeout) fails the step instead of
+        # cancelling the job, so the log upload below still runs.
+        timeout-minutes: 20
         run: |
           set -o pipefail
           EXTRA_ARGS=()
