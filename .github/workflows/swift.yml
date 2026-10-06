@@ -103,7 +103,7 @@ jobs:
             | tee "$RUNNER_TEMP/xcodebuild.log" \
             | xcbeautify --renderer github-actions
       - name: Upload raw xcodebuild log
-        if: failure()
+        if: always()
         uses: actions/upload-artifact@v4
         with:
           name: xcodebuild-${{ matrix.platform }}-27.log
