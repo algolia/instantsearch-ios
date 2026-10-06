@@ -11,8 +11,8 @@ import InstantSearch
   import UIKit
 
   class SortBySnippets {
-    func widgetSnippet() {
-      let searcher: HitsSearcher = .init(appID: "YourApplicationID",
+    func widgetSnippet() throws {
+      let searcher: HitsSearcher = try .init(appID: "YourApplicationID",
                                          apiKey: "YourSearchOnlyAPIKey",
                                          indexName: "indexDefault")
       let alertController = UIAlertController(title: "Change Index",
@@ -36,8 +36,8 @@ import InstantSearch
       _ = sortByConnector
     }
 
-    func advancedSnippet() {
-      let searcher: HitsSearcher = .init(appID: "YourApplicationID",
+    func advancedSnippet() throws {
+      let searcher: HitsSearcher = try .init(appID: "YourApplicationID",
                                          apiKey: "YourSearchOnlyAPIKey",
                                          indexName: "indexDefault")
 
@@ -54,7 +54,9 @@ import InstantSearch
 
 //    indexSegmentInteractor.connectSearcher(searcher: searcher)
 
-      indexSegmentInteractor.connectController(selectIndexController) { indexName -> String in
+      // The explicit connection type disambiguates from the deprecated
+      // `IndexSegmentInteractor.connectController(_:presenter:)` overload.
+      let connection: SortByInteractor.ControllerConnection = indexSegmentInteractor.connectController(selectIndexController) { indexName -> String in
         switch indexName {
         case "indexDefault": return "Default"
         case "indexAscendingOrder": return "Year Asc"
@@ -63,6 +65,7 @@ import InstantSearch
         }
       }
 
+      _ = connection
       _ = searcher
     }
   }

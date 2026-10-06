@@ -11,8 +11,8 @@ import InstantSearch
   import UIKit
 
   class LoadingSnippets {
-    func widgetSnippet() {
-      let searcher = HitsSearcher(appID: "YourApplicationID",
+    func widgetSnippet() throws {
+      let searcher = try HitsSearcher(appID: "YourApplicationID",
                                   apiKey: "YourSearchOnlyAPIKey",
                                   indexName: "YourIndexName")
       let activityIndicatorController: ActivityIndicatorController = .init(activityIndicator: UIActivityIndicatorView())
@@ -25,8 +25,8 @@ import InstantSearch
       _ = loadingConnector
     }
 
-    func advancedSnippet() {
-      let searcher = HitsSearcher(appID: "YourApplicationID",
+    func advancedSnippet() throws {
+      let searcher = try HitsSearcher(appID: "YourApplicationID",
                                   apiKey: "YourSearchOnlyAPIKey",
                                   indexName: "YourIndexName")
       let loadingInteractor: LoadingInteractor = .init()

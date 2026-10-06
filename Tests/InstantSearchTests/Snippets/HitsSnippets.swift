@@ -12,7 +12,7 @@ import InstantSearch
 
   class HitsSnippets {
     private let hitsInteractor: HitsInteractor<CustomHitModel> = .init()
-    private let hitsConnector = HitsConnector<CustomHitModel>(appID: "YourApplicationID",
+    private let hitsConnector = try! HitsConnector<CustomHitModel>(appID: "YourApplicationID",
                                                               apiKey: "YourSearchOnlyAPIKey",
                                                               indexName: "YourIndexName")
 
@@ -36,10 +36,10 @@ import InstantSearch
 
     class MoreCustomHitsTableViewController: HitsTableViewController<CustomCellConfigurator> {}
 
-    func widgetSnippet() {
+    func widgetSnippet() throws {
       let filterState: FilterState = .init()
       let hitsTableViewController = CustomHitsTableViewController()
-      let hitsConnector = HitsConnector<CustomHitModel>(appID: "YourApplicationID",
+      let hitsConnector = try HitsConnector<CustomHitModel>(appID: "YourApplicationID",
                                                         apiKey: "YourSearchOnlyAPIKey",
                                                         indexName: "YourIndexName",
                                                         filterState: filterState,
@@ -48,8 +48,8 @@ import InstantSearch
       hitsConnector.searcher.search()
     }
 
-    func advancedSnippet() {
-      let searcher = HitsSearcher(appID: "YourApplicationID",
+    func advancedSnippet() throws {
+      let searcher = try HitsSearcher(appID: "YourApplicationID",
                                   apiKey: "YourSearchOnlyAPIKey",
                                   indexName: "YourIndexName")
 

@@ -11,8 +11,8 @@ import InstantSearch
   import UIKit
 
   class SearchBoxSnippets {
-    func widgetExample() {
-      let searcher: HitsSearcher = .init(appID: "YourApplicationID",
+    func widgetExample() throws {
+      let searcher: HitsSearcher = try .init(appID: "YourApplicationID",
                                          apiKey: "YourSearchOnlyAPIKey",
                                          indexName: "YourIndexName")
       let searchBarController: SearchBarController = .init(searchBar: UISearchBar())
@@ -23,8 +23,8 @@ import InstantSearch
       _ = searchBoxConnector
     }
 
-    func advancedExample() {
-      let searcher: HitsSearcher = .init(appID: "YourApplicationID",
+    func advancedExample() throws {
+      let searcher: HitsSearcher = try .init(appID: "YourApplicationID",
                                          apiKey: "YourSearchOnlyAPIKey",
                                          indexName: "YourIndexName")
       let searchBoxInteractor: SearchBoxInteractor = .init()

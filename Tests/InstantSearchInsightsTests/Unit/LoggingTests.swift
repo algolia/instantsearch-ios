@@ -10,7 +10,7 @@ import Foundation
 import Logging
 import XCTest
 
-class TestLogHandler: LogHandler {
+class InsightsTestLogHandler: LogHandler {
   subscript(metadataKey _: String) -> Logger.Metadata.Value? {
     get {
       return nil
@@ -70,7 +70,7 @@ class LoggingTests: XCTestCase {
     expectation.expectedFulfillmentCount = messages.count
 
     InstantSearchInsightsLog.logger = Logger(label: "test insights logger", factory: { label in
-      return TestLogHandler(label: label) { level, message in
+      return InsightsTestLogHandler(label: label) { level, message in
         XCTAssertEqual("\(message)", messages[LogLevel(swiftLogLevel: level)])
         expectation.fulfill()
       }
@@ -92,7 +92,7 @@ class LoggingTests: XCTestCase {
       exp.isInverted = true
 
       InstantSearchInsightsLog.logger = Logger(label: "test insights logger", factory: { label in
-        return TestLogHandler(label: label) { _, _ in
+        return InsightsTestLogHandler(label: label) { _, _ in
           exp.fulfill()
         }
       })
@@ -111,7 +111,7 @@ class LoggingTests: XCTestCase {
       exp.expectedFulfillmentCount = index + 1
 
       InstantSearchInsightsLog.logger = Logger(label: "test insights logger", factory: { label in
-        return TestLogHandler(label: label) { _, _ in
+        return InsightsTestLogHandler(label: label) { _, _ in
           exp.fulfill()
         }
       })

@@ -275,12 +275,16 @@ class InsightsTests: XCTestCase {
     let mockService = MockEventService<InsightsEvent> { _ in exp.fulfill() }
     let storage = TestPackageStorage<InsightsEvent>()
     let logger = Logger(label: #function)
+    // The production queue runs at `.background` QoS, which can be starved for
+    // seconds on a loaded CI simulator host; this test checks the flush
+    // pipeline, not scheduling, so give it a responsive queue.
     let eventProcessor = EventProcessor(service: mockService,
                                         storage: storage,
                                         packageCapacity: Algolia.Insights.minBatchSize,
                                         flushNotificationName: nil,
                                         flushDelay: 1,
-                                        logger: logger)
+                                        logger: logger,
+                                        dispatchQueue: .init(label: "insights.events.test", qos: .userInitiated))
 
     let eventTracker = EventTracker(eventProcessor: eventProcessor,
                                     logger: logger,

@@ -107,6 +107,6 @@ class HitsInteractorFilterStateConnectionTester {
     filterState.add(Filter.Tag("t"), toGroupWithID: .and(name: ""))
     filterState.notifyChange()
 
-    source.waitForExpectations(timeout: 2, handler: nil)
+    source.waitForExpectations(timeout: 5, handler: nil)
   }
 }

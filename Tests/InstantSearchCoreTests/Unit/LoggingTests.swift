@@ -11,7 +11,7 @@ import InstantSearchInsights
 import Logging
 import XCTest
 
-class TestLogHandler: LogHandler {
+class CoreTestLogHandler: LogHandler {
   subscript(metadataKey _: String) -> Logging.Logger.Metadata.Value? {
     get {
       return nil
@@ -73,7 +73,7 @@ class LoggingTests: XCTestCase {
     expectation.expectedFulfillmentCount = messages.count
 
     InstantSearchCoreLog.logger = Logger(label: "test insights logger", factory: { label in
-      return TestLogHandler(label: label) { level, message in
+      return CoreTestLogHandler(label: label) { level, message in
         XCTAssertEqual("\(message)", messages[LogLevel(swiftLogLevel: level)])
         expectation.fulfill()
       }
@@ -95,7 +95,7 @@ class LoggingTests: XCTestCase {
       exp.isInverted = true
 
       InstantSearchCoreLog.logger = Logger(label: "test core logger", factory: { label in
-        return TestLogHandler(label: label) { _, _ in
+        return CoreTestLogHandler(label: label) { _, _ in
           exp.fulfill()
         }
       })
@@ -114,7 +114,7 @@ class LoggingTests: XCTestCase {
       exp.expectedFulfillmentCount = index + 1
 
       InstantSearchCoreLog.logger = Logger(label: "test core logger", factory: { label in
-        return TestLogHandler(label: label) { _, _ in
+        return CoreTestLogHandler(label: label) { _, _ in
           exp.fulfill()
         }
       })

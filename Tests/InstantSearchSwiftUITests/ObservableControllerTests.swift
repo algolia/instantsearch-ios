@@ -93,8 +93,10 @@ class ObservableControllerTests: XCTestCase {
 
     let expectation = self.expectation(description: "reload completes on main thread")
 
-    // Call reload from a background thread
-    DispatchQueue.global(qos: .background).async {
+    // Call reload from a background thread. `.userInitiated` rather than
+    // `.background`: background QoS work can be starved for seconds on a
+    // loaded CI simulator host, which is not what this test is about.
+    DispatchQueue.global(qos: .userInitiated).async {
       controller.reload()
 
       // Wait for main thread update
@@ -119,8 +121,8 @@ class ObservableControllerTests: XCTestCase {
     let expectation = self.expectation(description: "concurrent operations complete")
     expectation.expectedFulfillmentCount = 2
 
-    // Simulate concurrent reloads
-    DispatchQueue.global(qos: .background).async {
+    // Simulate concurrent reloads (see testReloadIsAsyncAndMainThread for the QoS choice)
+    DispatchQueue.global(qos: .userInitiated).async {
       for _ in 0..<10 {
         controller.reload()
       }
