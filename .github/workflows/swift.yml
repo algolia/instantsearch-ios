@@ -89,3 +89,27 @@ jobs:
             -skipPackagePluginValidation \
             CODE_SIGNING_ALLOWED=NO \
             | xcbeautify --renderer github-actions
+
+  # Builds the Examples app against the iOS 27 SDK. This is the app-shaped
+  # consumer of the library in this repository and exercises the Xcode 27
+  # source breaks that only affect apps (SwiftUI @State macro, scene-based
+  # life cycle requirement, launch screen requirement).
+  examples:
+    name: Examples app (iOS 27 simulator, Xcode 27.0)
+    runs-on: xcode-27
+    steps:
+      - uses: actions/checkout@v4
+      - name: Select Xcode version
+        run: |
+          sudo xcode-select -s '/Applications/Xcode_27.app/Contents/Developer'
+          xcodebuild -version
+      - name: Build Examples
+        run: |
+          set -o pipefail
+          xcodebuild build \
+            -project Examples/Examples.xcodeproj \
+            -scheme Examples \
+            -destination 'generic/platform=iOS Simulator' \
+            -skipPackagePluginValidation \
+            CODE_SIGNING_ALLOWED=NO \
+            | xcbeautify --renderer github-actions
