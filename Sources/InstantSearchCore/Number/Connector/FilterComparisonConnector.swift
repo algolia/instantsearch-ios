@@ -23,7 +23,7 @@ public class FilterComparisonConnector<Number: Comparable & DoubleRepresentable>
   public let attribute: String
 
   /// Comparison operator to apply
-  public let numericOperator: Filter.Numeric.Operator
+  public let numericOperator: Filter.Numeric.NumericOperator
 
   /// Whether the filter is added to a conjuncitve(`and`) or a disjuncitve (`or`) group in the filter state
   public let `operator`: RefinementOperator
@@ -54,7 +54,7 @@ public class FilterComparisonConnector<Number: Comparable & DoubleRepresentable>
   public init(searcher: HitsSearcher,
               filterState: FilterState,
               attribute: String,
-              numericOperator: Filter.Numeric.Operator,
+              numericOperator: Filter.Numeric.NumericOperator,
               number: Number? = nil,
               bounds: ClosedRange<Number>? = nil,
               operator: RefinementOperator = .and,

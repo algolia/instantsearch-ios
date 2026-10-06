@@ -7,7 +7,7 @@
 //
 
 import Foundation
-import AlgoliaSearch
+@preconcurrency import AlgoliaSearch
 
 /// An entity performing search queries targeting multiple indices.
 @available(*, deprecated, message: "Use multiple HitsSearcher aggregated with MultiSearcher instead of MultiIndexSearcher")

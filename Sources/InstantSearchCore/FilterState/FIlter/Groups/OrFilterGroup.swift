@@ -30,8 +30,8 @@ public extension FilterGroup {
       self.name = name
     }
 
-    public static func or<T: FilterType>(_ filters: [T]) -> FilterGroup.Or<T> {
-      return FilterGroup.Or<T>(filters: filters)
+    public static func or<F: FilterType>(_ filters: [F]) -> FilterGroup.Or<F> {
+      return FilterGroup.Or<F>(filters: filters)
     }
 
     public func withFilters<S: Sequence>(_ filters: S) -> Or where S.Element == FilterType {

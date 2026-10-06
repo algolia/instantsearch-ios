@@ -29,8 +29,7 @@ public extension DynamicFacetListConnector {
               filterState: filterState,
               interactor: interactor,
               filterGroupForAttribute: filterGroupForAttribute,
-              defaultFilterGroupType: defaultFilterGroupType,
-              controller: controller)
+              defaultFilterGroupType: defaultFilterGroupType)
     connectController(controller)
   }
 
@@ -65,8 +64,7 @@ public extension DynamicFacetListConnector {
               filterState: filterState,
               interactor: interactor,
               filterGroupForAttribute: filterGroupForAttribute,
-              defaultFilterGroupType: defaultFilterGroupType,
-              controller: controller)
+              defaultFilterGroupType: defaultFilterGroupType)
     connectController(controller)
   }
 

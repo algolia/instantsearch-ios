@@ -2,17 +2,90 @@ name: Swift
 
 on: [pull_request]
 
+env:
+  ALGOLIA_APPLICATION_ID_1: ${{ secrets.ALGOLIA_APPLICATION_ID_1 }}
+  ALGOLIA_ADMIN_KEY_1: ${{ secrets.ALGOLIA_ADMIN_KEY_1 }}
+
 jobs:
+  # Builds and runs the test suite with `swift build` / `swift test` (macOS host).
+  # - Xcode 27 (Swift 6.4, 27.0 SDKs) is the primary toolchain. It only runs on
+  #   Apple silicon and macOS Tahoe 26.6+, so it ships on the dedicated
+  #   `xcode-27` GitHub-hosted runner label rather than the `macos-26` image.
+  # - Xcode 26.6 (Swift 6.3) is kept as a baseline because the library is
+  #   consumed by apps that have not moved to Xcode 27 yet.
   test:
-    runs-on: macos-15
-    env:
-      ALGOLIA_APPLICATION_ID_1: ${{ secrets.ALGOLIA_APPLICATION_ID_1 }}
-      ALGOLIA_ADMIN_KEY_1: ${{ secrets.ALGOLIA_ADMIN_KEY_1 }}
+    name: swift test (Xcode ${{ matrix.xcode }})
+    runs-on: ${{ matrix.runner }}
+    strategy:
+      fail-fast: false
+      matrix:
+        include:
+          - runner: xcode-27
+            xcode: "27.0"
+            developer_dir: /Applications/Xcode_27.app/Contents/Developer
+          - runner: macos-26
+            xcode: "26.6"
+            developer_dir: /Applications/Xcode_26.6.app/Contents/Developer
     steps:
       - uses: actions/checkout@v4
       - name: Select Xcode version
-        run: sudo xcode-select -s '/Applications/Xcode_16.0.app/Contents/Developer'
+        run: |
+          sudo xcode-select -s '${{ matrix.developer_dir }}'
+          xcodebuild -version
+          swift --version
       - name: Build project
         run: swift build
       - name: Run tests
         run: swift test
+
+  # Builds and tests against the iOS 27 simulator and builds for the other
+  # Apple platforms the package supports, using the 27.0 SDKs.
+  platforms:
+    name: ${{ matrix.name }} (Xcode 27.0)
+    runs-on: xcode-27
+    strategy:
+      fail-fast: false
+      matrix:
+        include:
+          - name: iOS 27 simulator
+            action: test
+            platform: iOS
+          - name: tvOS 27 simulator
+            action: build
+            platform: tvOS
+          - name: watchOS 27 simulator
+            action: build
+            platform: watchOS
+    steps:
+      - uses: actions/checkout@v4
+      - name: Select Xcode version
+        run: |
+          sudo xcode-select -s '/Applications/Xcode_27.app/Contents/Developer'
+          xcodebuild -version
+      - name: Pick simulator destination
+        id: destination
+        run: |
+          UDID=$(xcrun simctl list devices available -j \
+            | jq -r --arg platform "${{ matrix.platform }}" '
+                [ .devices
+                  | to_entries[]
+                  | select(.key | contains("com.apple.CoreSimulator.SimRuntime." + $platform + "-27"))
+                  | .value[]
+                  | select(.isAvailable)
+                ] | sort_by(.name) | last | .udid')
+          if [ -z "$UDID" ] || [ "$UDID" = "null" ]; then
+            echo "No ${{ matrix.platform }} 27 simulator found" >&2
+            xcrun simctl list runtimes
+            exit 1
+          fi
+          xcrun simctl list devices available | grep "$UDID"
+          echo "udid=$UDID" >> "$GITHUB_OUTPUT"
+      - name: xcodebuild ${{ matrix.action }}
+        run: |
+          set -o pipefail
+          xcodebuild ${{ matrix.action }} \
+            -scheme InstantSearch-Package \
+            -destination "id=${{ steps.destination.outputs.udid }}" \
+            -skipPackagePluginValidation \
+            CODE_SIGNING_ALLOWED=NO \
+            | xcbeautify --renderer github-actions

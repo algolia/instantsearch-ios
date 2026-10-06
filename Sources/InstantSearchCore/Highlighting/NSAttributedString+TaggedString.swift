@@ -21,7 +21,7 @@ public extension NSAttributedString {
   convenience init(taggedString: TaggedString,
                    inverted: Bool = false,
                    attributes: [NSAttributedString.Key: Any]) {
-    var taggedString = taggedString
+    let taggedString = taggedString
     let attributedString = NSMutableAttributedString(string: taggedString.output)
     let ranges = inverted ? taggedString.untaggedRanges : taggedString.taggedRanges
     ranges.forEach { range in

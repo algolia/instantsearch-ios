@@ -5,7 +5,7 @@
 
 import Foundation
 
-final class TaskAsyncOperation: AsyncOperation {
+final class TaskAsyncOperation: AsyncOperation, @unchecked Sendable {
   private let work: () async -> Void
   private var task: Task<Void, Never>?
 
@@ -15,6 +15,7 @@ final class TaskAsyncOperation: AsyncOperation {
   }
 
   override func main() {
+    let work = work
     task = Task { [weak self] in
       await work()
       self?.state = .finished
