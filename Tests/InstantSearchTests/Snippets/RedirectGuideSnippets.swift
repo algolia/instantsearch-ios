@@ -14,7 +14,7 @@ class RedirectGuideSnippets {
   let client = try! SearchClient(appID: "testAppID", apiKey: "testApiKey")
   let indexName = ""
 
-  func addRedirectRule() {
+  func addRedirectRule() throws {
     // In v9, Rule requires consequence in initializer
     let rule = Rule(
       objectID: "a-rule-id",
@@ -56,7 +56,7 @@ class RedirectGuideSnippets {
     }
   }
 
-  func configureIndex() {
+  func configureIndex() throws {
     Task {
       do {
         let response = try await client.setSettings(indexName: indexName,

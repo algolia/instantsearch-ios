@@ -48,7 +48,8 @@ let package = Package(
       name: "InstantSearchInsights",
       dependencies: [
         .product(name: "AlgoliaCore", package: "algoliasearch-client-swift"),
-        .product(name: "AlgoliaInsights", package: "algoliasearch-client-swift")
+        .product(name: "AlgoliaInsights", package: "algoliasearch-client-swift"),
+        .product(name: "Logging", package: "swift-log")
       ],
       exclude: ["Readme.md"],
       resources: [.copy("../PrivacyInfo.xcprivacy")]
@@ -58,7 +59,8 @@ let package = Package(
       dependencies: [
         "InstantSearchInsights",
         .product(name: "AlgoliaCore", package: "algoliasearch-client-swift"),
-        .product(name: "AlgoliaInsights", package: "algoliasearch-client-swift")
+        .product(name: "AlgoliaInsights", package: "algoliasearch-client-swift"),
+        .product(name: "Logging", package: "swift-log")
       ]
     ),
     .target(
@@ -80,7 +82,9 @@ let package = Package(
         "InstantSearchInsights",
         .product(name: "AlgoliaCore", package: "algoliasearch-client-swift"),
         .product(name: "AlgoliaSearch", package: "algoliasearch-client-swift"),
-        .product(name: "AlgoliaComposition", package: "algoliasearch-client-swift")
+        .product(name: "AlgoliaComposition", package: "algoliasearch-client-swift"),
+        .product(name: "InstantSearchTelemetry", package: "instantsearch-telemetry-native"),
+        .product(name: "Logging", package: "swift-log")
       ],
       resources: [
         .copy("Misc/DisjFacetingResult1.json"),
@@ -95,12 +99,22 @@ let package = Package(
     ),
     .target(
       name: "InstantSearch",
-      dependencies: ["InstantSearchCore"],
+      dependencies: [
+        "InstantSearchCore",
+        .product(name: "Logging", package: "swift-log")
+      ],
       resources: [.copy("../PrivacyInfo.xcprivacy")]
     ),
     .testTarget(
       name: "InstantSearchTests",
-      dependencies: ["InstantSearch"]
+      dependencies: [
+        "InstantSearch",
+        "InstantSearchCore",
+        "InstantSearchInsights",
+        .product(name: "AlgoliaCore", package: "algoliasearch-client-swift"),
+        .product(name: "AlgoliaSearch", package: "algoliasearch-client-swift"),
+        .product(name: "Logging", package: "swift-log")
+      ]
     ),
     .target(
       name: "InstantSearchSwiftUI",
