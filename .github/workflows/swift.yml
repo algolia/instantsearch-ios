@@ -16,6 +16,7 @@ jobs:
   test:
     name: swift test (Xcode ${{ matrix.xcode }})
     runs-on: ${{ matrix.runner }}
+    timeout-minutes: 30
     strategy:
       fail-fast: false
       matrix:
@@ -43,6 +44,7 @@ jobs:
   platforms:
     name: ${{ matrix.name }} (Xcode 27.0)
     runs-on: xcode-27
+    timeout-minutes: 30
     strategy:
       fail-fast: false
       matrix:
@@ -83,12 +85,27 @@ jobs:
       - name: xcodebuild ${{ matrix.action }}
         run: |
           set -o pipefail
+          EXTRA_ARGS=()
+          if [ "${{ matrix.action }}" = "test" ]; then
+            # Fail a test that runs for more than the allowance instead of
+            # hanging the job: the raw log then names the offending test.
+            EXTRA_ARGS+=(-test-timeouts-enabled YES -default-test-execution-time-allowance 120)
+          fi
           xcodebuild ${{ matrix.action }} \
             -scheme InstantSearch-Package \
             -destination "id=${{ steps.destination.outputs.udid }}" \
             -skipPackagePluginValidation \
             CODE_SIGNING_ALLOWED=NO \
+            "${EXTRA_ARGS[@]}" \
+            | tee "$RUNNER_TEMP/xcodebuild.log" \
             | xcbeautify --renderer github-actions
+      - name: Upload raw xcodebuild log
+        if: failure()
+        uses: actions/upload-artifact@v4
+        with:
+          name: xcodebuild-${{ matrix.platform }}-27.log
+          path: ${{ runner.temp }}/xcodebuild.log
+          if-no-files-found: ignore
 
   # Builds the Examples app against the iOS 27 SDK. This is the app-shaped
   # consumer of the library in this repository and exercises the Xcode 27
@@ -97,6 +114,7 @@ jobs:
   examples:
     name: Examples app (iOS 27 simulator, Xcode 27.0)
     runs-on: xcode-27
+    timeout-minutes: 30
     steps:
       - uses: actions/checkout@v4
       - name: Select Xcode version
