@@ -70,6 +70,13 @@ open class AbstractSearcher<Service: SearchService>: Searcher, SequencerDelegate
   /// Sequencer which orders and debounce redundant search operations
   internal let sequencer: Sequencer
 
+  /// Serial queue delivering the search results, errors and loading state.
+  ///
+  /// The search service might complete concurrent in-flight requests simultaneously from different threads.
+  /// Funnelling the delivery through this queue guarantees that `onResults`, `onError` and `isLoading` are never
+  /// fired concurrently and that the loading state is always delivered after the results which ended it.
+  private let processingQueue: OperationQueue
+
   /**
     - Parameters:
        - index: Index value in which search will be performed
@@ -80,6 +87,7 @@ open class AbstractSearcher<Service: SearchService>: Searcher, SequencerDelegate
     self.service = service
     request = initialRequest
     sequencer = .init()
+    processingQueue = .init()
     isLoading = .init()
     onResults = .init()
     onError = .init()
@@ -90,6 +98,8 @@ open class AbstractSearcher<Service: SearchService>: Searcher, SequencerDelegate
     onResults.retainLastData = true
     onError.retainLastData = false
     isLoading.retainLastData = true
+    processingQueue.maxConcurrentOperationCount = 1
+    processingQueue.qualityOfService = .userInitiated
     updateClientUserAgents()
   }
 
@@ -106,12 +116,15 @@ open class AbstractSearcher<Service: SearchService>: Searcher, SequencerDelegate
       if case let .failure(error) = result, error.isCancellation {
         return
       }
-      let result = result.mapError { RequestError(request: request, error: $0) }
-      switch result {
-      case let .failure(error):
-        searcher.onError.fire(error)
-      case let .success(searchResult):
-        searcher.onResults.fire(searchResult)
+      searcher.processingQueue.addOperation { [weak searcher] in
+        guard let searcher = searcher else { return }
+        let result = result.mapError { RequestError(request: request, error: $0) }
+        switch result {
+        case let .failure(error):
+          searcher.onError.fire(error)
+        case let .success(searchResult):
+          searcher.onResults.fire(searchResult)
+        }
       }
     }
 
@@ -120,6 +133,12 @@ open class AbstractSearcher<Service: SearchService>: Searcher, SequencerDelegate
 
   public func cancel() {
     sequencer.cancelPendingOperations()
+  }
+
+  func didChangeOperationsState(hasPendingOperations: Bool) {
+    processingQueue.addOperation { [weak self] in
+      self?.isLoading.fire(hasPendingOperations)
+    }
   }
 }
 

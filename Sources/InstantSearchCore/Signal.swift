@@ -9,34 +9,52 @@ import Foundation
 
 /// Create instances of `Signal` and assign them to public constants on your class for each event type that your
 /// class fires.
+///
+/// `Signal` is thread-safe: it can be fired and subscribed to from any thread. Its mutable state is guarded by a
+/// lock which is never held while invoking the subscribers callbacks, so a callback can safely subscribe to, cancel
+/// a subscription of or fire the very same `Signal`.
 public final class Signal<T> {
   public typealias SignalCallback<O: AnyObject> = (O, T) -> Void
 
   /// The number of times the `Signal` has fired.
-  public private(set) var fireCount: Int = 0
+  public var fireCount: Int {
+    return synchronized { _fireCount }
+  }
 
   /// Whether or not the `Signal` should retain a reference to the last data it was fired with. Defaults to false.
-  public var retainLastData: Bool = false {
-    didSet {
-      if !retainLastData {
-        lastDataFired = nil
+  public var retainLastData: Bool {
+    get {
+      return synchronized { _retainLastData }
+    }
+    set {
+      synchronized {
+        _retainLastData = newValue
+        if !newValue {
+          _lastDataFired = nil
+        }
       }
     }
   }
 
   /// The last data that the `Signal` was fired with. In order for the `Signal` to retain the last fired data, its
   /// `retainLastFired`-property needs to be set to true
-  public private(set) var lastDataFired: T?
+  public var lastDataFired: T? {
+    return synchronized { _lastDataFired }
+  }
 
   /// All the observers of to the `Signal`.
   public var observers: [AnyObject] {
-    return signalListeners.filter {
-      return $0.observer != nil
-    }.map { signal -> AnyObject in
-      return signal.observer!
+    return synchronized {
+      signalListeners.compactMap { $0.observer }
     }
   }
 
+  /// Lock guarding the mutable state of the `Signal`.
+  /// Must never be held while invoking a subscriber callback to avoid deadlocks on re-entrancy.
+  private let lock = NSLock()
+  private var _fireCount: Int = 0
+  private var _retainLastData: Bool
+  private var _lastDataFired: T?
   private var signalListeners = [SignalSubscription<T>]()
 
   /// Initializer.
@@ -44,7 +62,7 @@ public final class Signal<T> {
   /// - parameter retainLastData: Whether or not the Signal should retain a reference to the last data it was fired
   ///   with. Defaults to false.
   public init(retainLastData: Bool = false) {
-    self.retainLastData = retainLastData
+    _retainLastData = retainLastData
   }
 
   /// Subscribes an observer to the `Signal`.
@@ -55,9 +73,8 @@ public final class Signal<T> {
   /// - returns: A `SignalSubscription` that can be used to cancel or filter the subscription.
   @discardableResult
   public func subscribe<O: AnyObject>(with observer: O, callback: @escaping SignalCallback<O>) -> SignalSubscription<T> {
-    flushCancelledListeners()
     let signalListener = SignalSubscription<T>(observer: observer, callback: callback)
-    signalListeners.append(signalListener)
+    _ = register(signalListener)
     return signalListener
   }
 
@@ -69,8 +86,10 @@ public final class Signal<T> {
   /// - parameter callback: The closure to invoke when the signal fires for the first time.
   @discardableResult
   public func subscribeOnce<O: AnyObject>(with observer: O, callback: @escaping SignalCallback<O>) -> SignalSubscription<T> {
-    let signalListener = subscribe(with: observer, callback: callback)
+    let signalListener = SignalSubscription<T>(observer: observer, callback: callback)
+    // The flag is set before the registration so that a concurrent `fire` cannot deliver the data twice
     signalListener.once = true
+    _ = register(signalListener)
     return signalListener
   }
 
@@ -85,8 +104,8 @@ public final class Signal<T> {
     #if DEBUG
       signalsAssert(retainLastData, "can't subscribe to past events on Signal with retainLastData set to false")
     #endif
-    let signalListener = subscribe(with: observer, callback: callback)
-    if let lastDataFired = lastDataFired {
+    let signalListener = SignalSubscription<T>(observer: observer, callback: callback)
+    if let lastDataFired = register(signalListener) {
       signalListener.callback(lastDataFired)
     }
     return signalListener
@@ -104,12 +123,20 @@ public final class Signal<T> {
     #if DEBUG
       signalsAssert(retainLastData, "can't subscribe to past events on Signal with retainLastData set to false")
     #endif
-    let signalListener = subscribe(with: observer, callback: callback)
+    let signalListener = SignalSubscription<T>(observer: observer, callback: callback)
+    let lastDataFired: T? = synchronized {
+      flushCancelledListenersLocked()
+      // If there is a past value, the subscription is fulfilled immediately and doesn't need to be registered
+      guard _lastDataFired == nil else {
+        return _lastDataFired
+      }
+      signalListener.once = true
+      signalListeners.append(signalListener)
+      return nil
+    }
     if let lastDataFired = lastDataFired {
       signalListener.callback(lastDataFired)
       signalListener.cancel()
-    } else {
-      signalListener.once = true
     }
     return signalListener
   }
@@ -118,11 +145,15 @@ public final class Signal<T> {
   ///
   /// - parameter data: The data to fire the `Signal` with.
   public func fire(_ data: T) {
-    fireCount += 1
-    lastDataFired = retainLastData ? data : nil
-    flushCancelledListeners()
+    // Update the state and snapshot the listeners under the lock, then dispatch outside of it
+    let listeners: [SignalSubscription<T>] = synchronized {
+      _fireCount += 1
+      _lastDataFired = _retainLastData ? data : nil
+      flushCancelledListenersLocked()
+      return signalListeners
+    }
 
-    for signalListener in signalListeners where (signalListener.filter?(data)).isNil(or: true) {
+    for signalListener in listeners where (signalListener.filter?(data)).isNil(or: true) {
       _ = signalListener.dispatch(data: data)
     }
   }
@@ -131,35 +162,54 @@ public final class Signal<T> {
   ///
   /// - parameter observer: The observer whose subscriptions to cancel
   public func cancelSubscription(for observer: AnyObject) {
-    signalListeners = signalListeners.filter {
-      if let definiteListener: AnyObject = $0.observer {
-        return definiteListener !== observer
+    synchronized {
+      signalListeners = signalListeners.filter {
+        if let definiteListener: AnyObject = $0.observer {
+          return definiteListener !== observer
+        }
+        return false
       }
-      return false
     }
   }
 
   /// Cancels all subscriptions for the `Signal`.
   public func cancelAllSubscriptions() {
-    signalListeners.removeAll(keepingCapacity: false)
+    synchronized {
+      signalListeners.removeAll(keepingCapacity: false)
+    }
   }
 
   /// Clears the last fired data from the `Signal` and resets the fire count.
   public func clearLastData() {
-    lastDataFired = nil
+    synchronized {
+      _lastDataFired = nil
+    }
   }
 
   // MARK: - Private Interface
 
-  private func flushCancelledListeners() {
-    var removeListeners = false
-    for signalListener in signalListeners where signalListener.observer == nil {
-      removeListeners = true
+  private func synchronized<R>(_ body: () throws -> R) rethrows -> R {
+    lock.lock()
+    defer { lock.unlock() }
+    return try body()
+  }
+
+  /// Registers the listener and returns the last fired data, atomically.
+  private func register(_ signalListener: SignalSubscription<T>) -> T? {
+    return synchronized {
+      flushCancelledListenersLocked()
+      signalListeners.append(signalListener)
+      return _lastDataFired
     }
-    if removeListeners {
-      signalListeners = signalListeners.filter {
-        return $0.observer != nil
-      }
+  }
+
+  /// Must be called while holding the lock.
+  private func flushCancelledListenersLocked() {
+    guard signalListeners.contains(where: { $0.observer == nil }) else {
+      return
+    }
+    signalListeners = signalListeners.filter {
+      return $0.observer != nil
     }
   }
 }
@@ -182,9 +232,11 @@ public final class SignalSubscription<T> {
   /// Whether the observer should be removed once it observes the `Signal` firing once. Defaults to false.
   public var once = false
 
+  /// Lock guarding the state mutated while dispatching (`observer` consumption of one-shot subscriptions and sampling).
+  private let lock = NSLock()
   fileprivate var queuedData: T?
   fileprivate var filter: SignalFilter?
-  fileprivate var callback: SignalCallback
+  fileprivate let callback: SignalCallback
   fileprivate var dispatchQueue: DispatchQueue?
   private var sampleInterval: TimeInterval?
 
@@ -243,24 +295,36 @@ public final class SignalSubscription<T> {
   // MARK: - Internal Interface
 
   func dispatch(data: T) -> Bool {
-    guard observer != nil else {
+    // Check the observer is still alive and, for one-shot subscriptions, consume the subscription atomically
+    // so that concurrent fires cannot deliver the data twice
+    let shouldDispatch: Bool = synchronized {
+      guard observer != nil else {
+        return false
+      }
+      if once {
+        observer = nil
+      }
+      return true
+    }
+
+    guard shouldDispatch else {
       return false
     }
 
-    if once {
-      observer = nil
-    }
-
     if let sampleInterval = sampleInterval {
-      if queuedData != nil {
-        queuedData = data
-      } else {
-        queuedData = data
+      let shouldSchedule: Bool = synchronized {
+        defer { queuedData = data }
+        return queuedData == nil
+      }
+      if shouldSchedule {
         let block = { [weak self] () in
-          if let definiteSelf = self {
-            let data = definiteSelf.queuedData!
-            definiteSelf.queuedData = nil
-            definiteSelf.callback(data)
+          guard let definiteSelf = self else { return }
+          let sampledData: T? = definiteSelf.synchronized {
+            defer { definiteSelf.queuedData = nil }
+            return definiteSelf.queuedData
+          }
+          if let sampledData = sampledData {
+            definiteSelf.callback(sampledData)
           }
         }
         let dispatchQueue = self.dispatchQueue ?? DispatchQueue.main
@@ -278,6 +342,12 @@ public final class SignalSubscription<T> {
     }
 
     return observer != nil
+  }
+
+  private func synchronized<R>(_ body: () throws -> R) rethrows -> R {
+    lock.lock()
+    defer { lock.unlock() }
+    return try body()
   }
 }
 
