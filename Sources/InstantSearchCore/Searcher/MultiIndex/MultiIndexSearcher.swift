@@ -179,6 +179,8 @@ public class MultiIndexSearcher: Searcher, SequencerDelegate, SearchResultObserv
           searcher.onResults.fire(response)
         }
       } catch {
+        // A cancelled search is superseded by a more recent one: its outcome is not an error to report
+        guard !error.isCancellation else { return }
         searcher.processingQueue.addOperation {
           let indicesDescriptor = "[\(queries.map { $0.indexName }.joined(separator: ", "))]"
           InstantSearchCoreLog.Results.failure(searcher: searcher, indexName: indicesDescriptor, error)

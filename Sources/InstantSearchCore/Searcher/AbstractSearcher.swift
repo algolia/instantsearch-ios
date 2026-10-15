@@ -102,7 +102,8 @@ open class AbstractSearcher<Service: SearchService>: Searcher, SequencerDelegate
 
     let operation = service.search(request) { [weak self, request] result in
       guard let searcher = self else { return }
-      if case let .failure(error) = result, error is CancellationError {
+      // A cancelled search is superseded by a more recent one: its outcome is neither a result nor an error to report
+      if case let .failure(error) = result, error.isCancellation {
         return
       }
       let result = result.mapError { RequestError(request: request, error: $0) }
