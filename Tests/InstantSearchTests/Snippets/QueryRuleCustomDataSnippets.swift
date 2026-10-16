@@ -34,8 +34,8 @@ import InstantSearch
       }
     }
 
-    func widgetExample() {
-      let searcher: HitsSearcher = .init(appID: "YourApplicationID",
+    func widgetExample() throws {
+      let searcher: HitsSearcher = try .init(appID: "YourApplicationID",
                                          apiKey: "YourSearchOnlyAPIKey",
                                          indexName: "YourIndexName")
       let bannerViewController = BannerViewController()
@@ -47,8 +47,8 @@ import InstantSearch
       _ = queryRuleCustomDataConnector
     }
 
-    func advancedExample() {
-      let searcher: HitsSearcher = .init(appID: "YourApplicationID",
+    func advancedExample() throws {
+      let searcher: HitsSearcher = try .init(appID: "YourApplicationID",
                                          apiKey: "YourSearchOnlyAPIKey",
                                          indexName: "YourIndexName")
       let queryRuleCustomDataInteractor: QueryRuleCustomDataInteractor<Banner> = .init()

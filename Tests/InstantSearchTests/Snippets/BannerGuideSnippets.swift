@@ -28,8 +28,8 @@ import InstantSearch
       }
     }
 
-    func setupWidget() {
-      let searcher: HitsSearcher = .init(appID: "YourApplicationID",
+    func setupWidget() throws {
+      let searcher: HitsSearcher = try .init(appID: "YourApplicationID",
                                          apiKey: "YourSearchOnlyAPIKey",
                                          indexName: "YourIndexName")
       let bannerViewController = BannerViewController()

@@ -11,8 +11,8 @@ import InstantSearch
   import UIKit
 
   class NumberRangeSnippets {
-    func widgetSnippet() {
-      let searcher: HitsSearcher = .init(appID: "YourApplicationID",
+    func widgetSnippet() throws {
+      let searcher: HitsSearcher = try .init(appID: "YourApplicationID",
                                          apiKey: "YourApiKey",
                                          indexName: "YourIndexName")
       let filterState: FilterState = .init()
@@ -29,8 +29,8 @@ import InstantSearch
       _ = numericRangeConnector
     }
 
-    func advancedSnippet() {
-      let searcher: HitsSearcher = .init(appID: "YourApplicationID",
+    func advancedSnippet() throws {
+      let searcher: HitsSearcher = try .init(appID: "YourApplicationID",
                                          apiKey: "YourApiKey",
                                          indexName: "YourIndexName")
       let filterState: FilterState = .init()

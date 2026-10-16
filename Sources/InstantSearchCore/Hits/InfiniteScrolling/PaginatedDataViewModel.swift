@@ -53,22 +53,30 @@ public final class PaginatedDataViewModel<ItemsPage: Page>: ObservableObject {
   /// Loads the next page of data.
   public func loadNext() {
     Task {
-      let page: ItemsPage
-      if let maxPage = await storage.items.last, maxPage.hasNext {
-        page = try await source.fetchPage(after: maxPage)
-      } else {
-        page = try await source.fetchInitialPage()
+      do {
+        let page: ItemsPage
+        if let maxPage = await storage.items.last, maxPage.hasNext {
+          page = try await source.fetchPage(after: maxPage)
+        } else {
+          page = try await source.fetchInitialPage()
+        }
+        await append(page)
+      } catch {
+        InstantSearchCoreLog.error(prefix: "PaginatedDataViewModel.loadNext: ", error)
       }
-      await append(page)
     }
   }
 
   /// Loads the previous page of data.
   public func loadPrevious() {
     Task {
-      if let minPage = await storage.items.first, minPage.hasPrevious {
-        let page = try await source.fetchPage(before: minPage)
-        await prepend(page)
+      do {
+        if let minPage = await storage.items.first, minPage.hasPrevious {
+          let page = try await source.fetchPage(before: minPage)
+          await prepend(page)
+        }
+      } catch {
+        InstantSearchCoreLog.error(prefix: "PaginatedDataViewModel.loadPrevious: ", error)
       }
     }
   }

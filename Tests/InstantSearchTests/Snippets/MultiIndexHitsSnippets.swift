@@ -15,14 +15,14 @@ import InstantSearch
     struct Actor: Codable {}
     struct Movie: Codable {}
 
-    func widgetSnippet() {
+    func widgetSnippet() throws {
       let actorHitsInteractor: HitsInteractor<Actor> = .init(infiniteScrolling: .off)
       let movieHitsInteractor: HitsInteractor<Movie> = .init(infiniteScrolling: .off)
 
       let movieFilterState: FilterState = .init()
       let hitsTableViewController = MultiIndexHitsTableController(tableView: .init())
 
-      let multiIndexHitsConnector = MultiIndexHitsConnector(appID: "YourApplicationID",
+      let multiIndexHitsConnector = try MultiIndexHitsConnector(appID: "YourApplicationID",
                                                             apiKey: "YourSearchOnlyAPIKey",
                                                             indexModules: [
                                                               .init(indexName: "actors",
@@ -36,8 +36,8 @@ import InstantSearch
       _ = multiIndexHitsConnector
     }
 
-    func advancedSnippet() {
-      let searcher: MultiIndexSearcher = .init(appID: "YourApplicationID",
+    func advancedSnippet() throws {
+      let searcher: MultiIndexSearcher = try .init(appID: "YourApplicationID",
                                                apiKey: "YourSearchOnlyAPIKey",
                                                indexNames: ["actors", "movies"])
 

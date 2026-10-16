@@ -122,7 +122,10 @@ final class ChunkReducerTests: XCTestCase {
     XCTAssertEqual(dataPart?.0, "suggestions")
   }
 
-  func testSseExtractionIgnoresKeepalivesAndDoneSentinel() {
+  func testSseExtractionIgnoresKeepalivesAndDoneSentinel() throws {
+    guard #available(iOS 15.0, macOS 12.0, tvOS 15.0, watchOS 8.0, *) else {
+      throw XCTSkip("SSEStreamParser requires iOS 15 / macOS 12 / tvOS 15 / watchOS 8")
+    }
     XCTAssertEqual(SSEStreamParser.AsyncIterator.extractJsonPayload(from: "data: {\"type\":\"finish\"}"), "{\"type\":\"finish\"}")
     XCTAssertEqual(SSEStreamParser.AsyncIterator.extractJsonPayload(from: "data: [DONE]"), "[DONE]")
     XCTAssertNil(SSEStreamParser.AsyncIterator.extractJsonPayload(from: "event: ping"))

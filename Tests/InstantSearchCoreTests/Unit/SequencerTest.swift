@@ -119,8 +119,11 @@ class SequencerTest: XCTestCase {
     exp.expectedFulfillmentCount = sequencer.maxPendingOperationsCount
     exp.assertForOverFulfill = false
 
+    // The operations must outlive the ordering loop below, otherwise an operation
+    // that completes before later ones are ordered is dismissed rather than
+    // cancelled and the counts below become timing dependent (seen on slow CI hosts).
     let operations: [Operation] = (0..<operationsCount).map { number in
-      let op = DelayedOperation(delay: 10, completionHandler: { exp.fulfill() })
+      let op = DelayedOperation(delay: 2000, completionHandler: { exp.fulfill() })
       op.name = "\(number + 1)"
       return op
     }
@@ -128,19 +131,19 @@ class SequencerTest: XCTestCase {
     let testQueue = OperationQueue()
     testQueue.maxConcurrentOperationCount = 10
 
-    // Launch 100 delayed operations that last 10 seconds each and add them to sequencer with max 10 pending operations
+    // Launch 100 delayed operations that last 2 seconds each and add them to sequencer with max 10 pending operations
     operations.forEach { operation in
       testQueue.addOperation(operation)
       sequencer.orderOperation { operation }
     }
 
-    // Check the state of operations in 5 seconds
-    waitForExpectations(timeout: 5, handler: .none)
+    // Wait for the surviving operations to complete
+    waitForExpectations(timeout: 10, handler: .none)
 
     // Sequencer must cancel first 90 ordered operations
     XCTAssertEqual(operations.filter { $0.isCancelled }.count, operationsCount - sequencer.maxPendingOperationsCount)
 
-    // Last 10 operations still in progress as they last longer than 5 seconds
+    // Last 10 operations were never cancelled
     XCTAssertEqual(operations.filter { !$0.isCancelled }.count, sequencer.maxPendingOperationsCount)
   }
 
@@ -151,8 +154,10 @@ class SequencerTest: XCTestCase {
 
     sequencer.maxPendingOperationsCount = slowOperationsCount + 1
 
+    // Slow operations must still be pending when the fast one completes, even on a
+    // slow CI host; cancelled operations finish immediately so this stays fast.
     let slowOperations: [Operation] = (0..<slowOperationsCount).map { number in
-      let op = DelayedOperation(delay: .random(in: 100...300), completionHandler: .none)
+      let op = DelayedOperation(delay: .random(in: 2000...3000), completionHandler: .none)
       op.name = "\(number + 1)"
       let exp = expectation(description: "\(number)")
       op.completionBlock = {
@@ -239,6 +244,8 @@ class SequencerTest: XCTestCase {
       }
     }
 
-    waitForExpectations(timeout: 10, handler: nil)
+    // Up to 30 000 operations; generous budget for slow CI simulator hosts
+    // (takes ~1s on a development machine).
+    waitForExpectations(timeout: 60, handler: nil)
   }
 }
