@@ -1,5 +1,13 @@
 # ChangeLog
 
+## [8.1.1](https://github.com/algolia/instantsearch-ios/compare/8.1.0...8.1.1) (2026-10-16)
+
+### Fix
+
+- **core**: serialize search result delivery, make Signal thread-safe and drop cancellation errors (#373) ([0e9add69](https://github.com/algolia/instantsearch-ios/commit/0e9add69))
+
+
+
 ## [8.1.0](https://github.com/algolia/instantsearch-ios/compare/8.0.3...8.1.0) (2026-08-27)
 
 ### Feat
