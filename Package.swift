@@ -41,7 +41,7 @@ let package = Package(
     .package(url: "https://github.com/apple/swift-protobuf",
              "1.26.0"..<"2.0.0"),
     .package(url: "https://github.com/algolia/instantsearch-telemetry-native",
-             exact: "0.1.3")
+             .upToNextMinor(from: "0.1.3"))
   ],
   targets: [
     .target(
