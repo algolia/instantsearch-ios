@@ -35,7 +35,7 @@
     init(taggedString: TaggedString,
          @ViewBuilder regular: @escaping (String) -> Text = { Text($0) },
          @ViewBuilder tagged: @escaping (String) -> Text) {
-      var mutableTaggedString = taggedString
+      let mutableTaggedString = taggedString
 
       let taggedRanges = mutableTaggedString.taggedRanges.map { ($0, true) }
       let untaggedRanges = mutableTaggedString.untaggedRanges.map { ($0, false) }

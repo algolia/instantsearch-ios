@@ -8,7 +8,7 @@
 
 import Foundation
 
-open class AsyncOperation: Operation {
+open class AsyncOperation: Operation, @unchecked Sendable {
   public enum State: String {
     case ready, executing, finished
 

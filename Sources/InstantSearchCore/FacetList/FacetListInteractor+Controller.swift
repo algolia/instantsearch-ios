@@ -62,7 +62,7 @@ public extension FacetListConnector {
       return mergedFacets.map { SelectableItem<FacetHits>($0, selections.contains($0.value)) }
     }
 
-    private static func setControllerItemsWith<Controller: FacetListController>(facets: [FacetHits], selections: Set<String>, controller: Controller, presenter: SelectableListPresentable?) {
+    private static func setControllerItemsWith<C: FacetListController>(facets: [FacetHits], selections: Set<String>, controller: C, presenter: SelectableListPresentable?) {
       let updatedFacets = merge(facets, withSelectedValues: selections)
       let sortedFacetValues = presenter?.transform(refinementFacets: updatedFacets) ?? updatedFacets
       controller.setSelectableItems(selectableItems: sortedFacetValues)
