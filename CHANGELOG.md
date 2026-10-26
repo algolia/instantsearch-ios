@@ -1,5 +1,9 @@
 # ChangeLog
 
+## [9.0.0](https://github.com/algolia/instantsearch-ios/compare/8.1.1...9.0.0) (2026-10-26)
+
+
+
 ## [8.1.1](https://github.com/algolia/instantsearch-ios/compare/8.1.0...8.1.1) (2026-10-16)
 
 ### Fix
