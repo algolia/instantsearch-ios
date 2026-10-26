@@ -13,7 +13,7 @@ jobs:
   #   `xcode-27` GitHub-hosted runner label rather than the `macos-26` image.
   # - Xcode 26.6 (Swift 6.3) is kept as a baseline because the library is
   #   consumed by apps that have not moved to Xcode 27 yet.
-  test:
+  swift-test:
     name: swift test (Xcode ${{ matrix.xcode }})
     runs-on: ${{ matrix.runner }}
     timeout-minutes: 30
@@ -134,3 +134,17 @@ jobs:
             -skipPackagePluginValidation \
             CODE_SIGNING_ALLOWED=NO \
             | xcbeautify --renderer github-actions
+
+  # Single status check that `master` branch protection requires (together
+  # with `lint` and `format`). It succeeds only if every job above succeeded,
+  # so the protection rule covers the simulator and Examples jobs as well.
+  test:
+    name: test
+    runs-on: ubuntu-latest
+    needs: [swift-test, platforms, examples]
+    if: always()
+    steps:
+      - name: Check upstream job results
+        run: |
+          echo '${{ toJSON(needs) }}' | jq -e 'all(.[]; .result == "success")' > /dev/null \
+            || { echo "::error::At least one upstream job did not succeed"; exit 1; }
