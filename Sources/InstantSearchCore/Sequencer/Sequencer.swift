@@ -162,7 +162,7 @@ class Sequencer: Sequencable {
 }
 
 private extension Sequencer {
-  class SequencerCompletionOperation: Operation {
+  class SequencerCompletionOperation: Operation, @unchecked Sendable {
     let sequenceNo: Int
     weak var sequencer: Sequencer?
     var correspondingOperation: Operation

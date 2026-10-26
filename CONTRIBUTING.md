@@ -37,6 +37,14 @@ Be as specific as possible providing a precise explanation of feature request so
 
 To set up this project, you will need to install [Xcode](https://developer.apple.com/xcode/) and [Ruby](https://www.ruby-lang.org/en/documentation/installation/).
 
+#### Toolchain
+
+- **Primary toolchain: Xcode 27.0 (27A266a, Swift 6.4) with the 27.0 SDKs.** This is what CI uses for `swift test`, the iOS 27 simulator test run and the tvOS / watchOS 27 simulator builds. Xcode 27 requires macOS Tahoe 26.6 or later and only installs on Apple silicon Macs — Intel machines cannot build with it.
+- **Baseline toolchain: Xcode 26.6 (Swift 6.3).** CI also runs `swift test` on it because the library is consumed by apps that have not migrated yet. Keep the package compiling on both.
+- The package stays in the Swift 5 language mode and keeps its deployment targets (iOS 14 / macOS 11 / watchOS 7 / tvOS 14). Xcode 27 raised its own floors to macOS 12 and watchOS 9; SwiftPM clamps to those automatically when building with Xcode 27.
+- Each test target must declare every module it imports in `Package.swift`. Swift 6.4 builds every test target as its own `.xctest` bundle, so an undeclared transitive import (for example `Logging`) builds under `swift test` on older toolchains but fails to link on Xcode 27 and on every `xcodebuild` platform run.
+- `Package.resolved` is intentionally not committed: the version constraints in `Package.swift` are the effective lockfile and CI resolves the newest matching releases on every run.
+
 ### Code contribution process
 
 For any code contribution, you need to:

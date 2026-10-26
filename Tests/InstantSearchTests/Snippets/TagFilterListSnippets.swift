@@ -11,8 +11,8 @@ import InstantSearch
   import UIKit
 
   class TagFilterListSnippets {
-    func widgetExample() {
-      let searcher = HitsSearcher(appID: "YourApplicationID",
+    func widgetExample() throws {
+      let searcher = try HitsSearcher(appID: "YourApplicationID",
                                   apiKey: "YourSearchOnlyAPIKey",
                                   indexName: "YourIndexName")
 
@@ -41,8 +41,8 @@ import InstantSearch
       _ = filterListConnector
     }
 
-    func advancedExample() {
-      let searcher = HitsSearcher(appID: "YourApplicationID",
+    func advancedExample() throws {
+      let searcher = try HitsSearcher(appID: "YourApplicationID",
                                   apiKey: "YourSearchOnlyAPIKey",
                                   indexName: "YourIndexName")
 

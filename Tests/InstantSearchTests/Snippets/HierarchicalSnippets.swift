@@ -11,8 +11,8 @@ import InstantSearch
   import UIKit
 
   class HierachicalMenuSnippets {
-    func widgetSnippet() {
-      let searcher: HitsSearcher = .init(appID: "YourApplicationID",
+    func widgetSnippet() throws {
+      let searcher: HitsSearcher = try .init(appID: "YourApplicationID",
                                          apiKey: "YourSearchOnlyAPIKey",
                                          indexName: "YourIndexName")
 
@@ -39,8 +39,8 @@ import InstantSearch
       _ = hierachicalConnector
     }
 
-    func advancedSnippet() {
-      let searcher: HitsSearcher = .init(appID: "YourApplicationID",
+    func advancedSnippet() throws {
+      let searcher: HitsSearcher = try .init(appID: "YourApplicationID",
                                          apiKey: "YourSearchOnlyAPIKey",
                                          indexName: "YourIndexName")
 

@@ -12,8 +12,8 @@ import InstantSearch
   import UIKit
 
   class ToggleFilterSnippets {
-    func widgetSnippet() {
-      let searcher: HitsSearcher = .init(appID: "YourApplicationID",
+    func widgetSnippet() throws {
+      let searcher: HitsSearcher = try .init(appID: "YourApplicationID",
                                          apiKey: "YourSearchOnlyAPIKey",
                                          indexName: "YourIndexName")
 
@@ -30,8 +30,8 @@ import InstantSearch
       _ = filterToggleConnector
     }
 
-    func advancedSnippet() {
-      let searcher: HitsSearcher = .init(appID: "YourApplicationID",
+    func advancedSnippet() throws {
+      let searcher: HitsSearcher = try .init(appID: "YourApplicationID",
                                          apiKey: "YourSearchOnlyAPIKey",
                                          indexName: "YourIndexName")
       let filterState: FilterState = .init()

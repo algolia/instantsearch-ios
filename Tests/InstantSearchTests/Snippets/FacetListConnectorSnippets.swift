@@ -11,8 +11,8 @@ import InstantSearch
   import UIKit
 
   class FacetListConnectorSnippets {
-    func widgetExample() {
-      let searcher = HitsSearcher(appID: "YourApplicationID",
+    func widgetExample() throws {
+      let searcher = try HitsSearcher(appID: "YourApplicationID",
                                   apiKey: "YourSearchOnlyAPIKey",
                                   indexName: "YourIndexName")
 
@@ -36,8 +36,8 @@ import InstantSearch
       _ = categoryConnector
     }
 
-    func manualExample() {
-      let searcher = HitsSearcher(appID: "YourApplicationID",
+    func manualExample() throws {
+      let searcher = try HitsSearcher(appID: "YourApplicationID",
                                   apiKey: "YourSearchOnlyAPIKey",
                                   indexName: "YourIndexName")
       let filterState: FilterState = .init()
@@ -57,8 +57,8 @@ import InstantSearch
       searcher.search()
     }
 
-    func controllerExample() {
-      let connector = FacetListConnector(searcher: .init(appID: "testAppID", apiKey: "testApiKey", indexName: ""), attribute: "", operator: .or)
+    func controllerExample() throws {
+      let connector = FacetListConnector(searcher: try .init(appID: "testAppID", apiKey: "testApiKey", indexName: ""), attribute: "", operator: .or)
       let controller = FacetListTableController(tableView: .init())
       let presenter = FacetListPresenter(sortBy: [], limit: 10, showEmptyFacets: true)
       connector.interactor.connectController(controller, with: presenter)
