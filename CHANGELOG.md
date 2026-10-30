@@ -1,5 +1,18 @@
 # ChangeLog
 
+## [9.0.0](https://github.com/algolia/instantsearch-ios/compare/8.1.1...9.0.0) (2026-10-26)
+
+### Fix
+
+- **core**: fix infinite recursion (stack overflow) in the `DynamicFacetListConnector.init(…, controller:)` convenience initializers (#371) ([0ca43711](https://github.com/algolia/instantsearch-ios/commit/0ca43711))
+- **core**: log `PaginatedDataViewModel` page fetch errors instead of silently dropping them (#371) ([0ca43711](https://github.com/algolia/instantsearch-ios/commit/0ca43711))
+
+### Chore
+
+- Xcode 27 (Swift 6.4, iOS/tvOS/watchOS 27 SDKs) is now the primary toolchain, built and tested in CI including on the iOS 27 simulator; Xcode 26.6 remains supported. Minimum deployment targets are unchanged (#371) ([0ca43711](https://github.com/algolia/instantsearch-ios/commit/0ca43711))
+- **deps**: relax `swift-protobuf` from an exact `1.26.0` pin to `>= 1.26.0, < 2.0` and `instantsearch-telemetry-native` to `~> 0.1.3`; declare the `swift-log` dependency of `InstantSearchInsights` explicitly (#371) ([0ca43711](https://github.com/algolia/instantsearch-ios/commit/0ca43711))
+
+
 ## [8.1.1](https://github.com/algolia/instantsearch-ios/compare/8.1.0...8.1.1) (2026-10-16)
 
 ### Fix
